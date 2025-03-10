@@ -1,8 +1,8 @@
 ---
 title     : 'Doris'
-summary   : 'Collect metrics of Doris'
+summary   : 'Collect metrics data from Doris'
 tags:
-  - 'DATA STORES'
+  - 'Database'
 __int_icon      : 'icon/doris'
 dashboard :
   - desc  : 'Doris'
@@ -12,33 +12,32 @@ monitor   :
     path  : 'monitor/en/doris'
 ---
 
-
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Doris collector is used to collect metric data related to Doris, and currently it only supports data in Prometheus format.
+The Doris collector is used to collect metrics data related to Doris, currently only supporting Prometheus format data.
 
 ## Configuration {#config}
 
-Already tested version:
+Tested versions:
 
 - [x] 2.0.0
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-Doris defaults to enabling the Prometheus port
+Doris has the Prometheus port enabled by default.
 
-Check front-end: curl ip: 8030/metrics
+Verify frontend: curl ip:8030/metrics
 
-Check backend: curl ip: 8040/metrics
+Verify backend: curl ip:8040/metrics
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "host installation"
+=== "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `doris.conf.sample` and name it `doris.conf`. Examples are as follows:
+    Enter the `conf.d/db` directory under the DataKit installation directory, copy `doris.conf.sample` and rename it to `doris.conf`. Example:
     
     ```toml
         
@@ -99,16 +98,16 @@ Check backend: curl ip: 8040/metrics
       # more_tag = "some_other_value"
     
     ```
-    
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
@@ -125,11 +124,11 @@ Check backend: curl ip: 8040/metrics
 |`job`|Job type.|
 |`method`|Method type.|
 |`name`|Metric name.|
-|`quantile`|quantile.|
+|`quantile`|Quantile.|
 |`state`|State.|
 |`type`|Metric type.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -140,46 +139,46 @@ Check backend: curl ip: 8040/metrics
 |`counter_hit_sql_block_rule`|Number of queries blocked by SQL BLOCK RULE.|float|count|
 |`edit_log`|Value of metadata log.|float|count|
 |`edit_log_clean`|The number of times the historical metadata log was cleared.|float|count|
-|`editlog_write_latency_ms`|metadata log write latency . For example, {quantile=0.75} indicates the 75th percentile write latency .|float|ms|
+|`editlog_write_latency_ms`|Metadata log write latency. For example, {quantile=0.75} indicates the 75th percentile write latency.|float|ms|
 |`external_schema_cache`|SpecifyExternal Catalog _ The number of corresponding schema caches.|float|count|
 |`hive_meta_cache`|Specify External Hive Meta store Catalog The number of corresponding partition caches.|float|count|
 |`image_clean`|The number of times cleaning of historical metadata image files.|float|count|
 |`image_push`|The number of times cleaning of historical metadata image files.|float|count|
 |`image_write`|The Number of to generate metadata image files.|float|count|
 |`job`|Current count of different job types and different job statuses. For example, {job=load, type=INSERT, state=LOADING} represents an import job of type INSERT and the number of jobs in the LOADING state.|float|count|
-|`max_journal_id`|The maximum metadata log ID of the current FE node . If it is Master FE , it is the maximum ID currently written , if it is a non- Master FE , represents the maximum ID of the metadata log currently being played back.|float|count|
+|`max_journal_id`|The maximum metadata log ID of the current FE node. If it is Master FE, it is the maximum ID currently written; if it is a non-Master FE, it represents the maximum ID of the metadata log currently being played back.|float|count|
 |`max_tablet_compaction_score`|The largest compaction score value among all BE nodes.|float|percent|
-|`publish_txn_num`|Specify the number of transactions being published by the DB . For example, { db =test} indicates the number of transactions currently being published by DB test.|float|count|
-|`qps`|Current number of FE queries per second ( only query requests are counted ).|float|req/s|
+|`publish_txn_num`|Specify the number of transactions being published by the DB. For example, { db =test} indicates the number of transactions currently being published by DB test.|float|count|
+|`qps`|Current number of FE queries per second (only query requests are counted).|float|req/s|
 |`query_err`|Value of error query.|float|count|
 |`query_err_rate`|Error queries per second.|float|req/s|
-|`query_instance_begin`|Specify the fragment where the user request starts Number of instances . For example, {user=test_u} represents the user test_u Number of instances to start requesting.|float|count|
-|`query_instance_num`|Specifies the fragment that the user is currently requesting Number of instances . For example, {user=test_u} represents the user test_u The number of instances currently being requested.|float|count|
+|`query_instance_begin`|Specify the fragment where the user request starts Number of instances. For example, {user=test_u} represents the user test_u Number of instances to start requesting.|float|count|
+|`query_instance_num`|Specifies the fragment that the user is currently requesting Number of instances. For example, {user=test_u} represents the user test_u The number of instances currently being requested.|float|count|
 |`query_latency_ms`|Percentile statistics of query request latency. For example, {quantile=0.75} indicates the query delay at the 75th percentile.|float|ms|
-|`query_latency_ms_db`|Percentile statistics of query request delay of each DB . For example, {quantile=0.75,db=test} indicates the query delay of the 75th percentile of DB test.|float|ms|
-|`query_olap_table`|The statistics of the number of requests for the internal table ( `OlapTable` ).|float|count|
-|`query_rpc_failed`|RPC failures sent to the specified BE . For example, { be=192.168.10.1} indicates the number of RPC failures sent to BE with IP address 192.168.10.1.|float|count|
-|`query_rpc_size`|Specify the RPC data size of BE . For example, { be=192.168.10.1} indicates the number of RPC data bytes sent to BE with IP address 192.168.10.1.|float|count|
-|`query_rpc_total`|Of RPCs sent to the specified BE . For example, { be=192.168.10.1} indicates the number of RPCs sent to BE with IP address 192.168.10.1.|float|count|
+|`query_latency_ms_db`|Percentile statistics of query request delay of each DB. For example, {quantile=0.75,db=test} indicates the query delay of the 75th percentile of DB test.|float|ms|
+|`query_olap_table`|The statistics of the number of requests for the internal table (`OlapTable`).|float|count|
+|`query_rpc_failed`|RPC failures sent to the specified BE. For example, { be=192.168.10.1} indicates the number of RPC failures sent to BE with IP address 192.168.10.1.|float|count|
+|`query_rpc_size`|Specify the RPC data size of BE. For example, { be=192.168.10.1} indicates the number of RPC data bytes sent to BE with IP address 192.168.10.1.|float|count|
+|`query_rpc_total`|Of RPCs sent to the specified BE. For example, { be=192.168.10.1} indicates the number of RPCs sent to BE with IP address 192.168.10.1.|float|count|
 |`query_total`|All query requests.|float|count|
 |`report_queue_size`|The queue length of various periodic reporting tasks of BE on the FE side.|float|count|
-|`request_total`|All operation requests received through the MySQL port (including queries and other statements ).|float|count|
+|`request_total`|All operation requests received through the MySQL port (including queries and other statements).|float|count|
 |`routine_load_error_rows`|Count the total number of error rows for all Routine Load jobs in the cluster.|float|count|
 |`routine_load_receive_bytes`|The amount of data received by all Routine Load jobs in the cluster.|float|B|
 |`routine_load_rows`|Count the number of data rows received by all Routine Load jobs in the cluster.|float|count|
-|`rps`|Current number of FE requests per second (including queries and other types of statements ).|float|count|
-|`scheduled_tablet_num`|Tablets being scheduled by the Master FE node . Includes replicas being repaired and replicas being balanced.|float|count|
-|`tablet_max_compaction_score`|The compaction core reported by each BE node . For example, { backend=172.21.0.1:9556} represents the reported value of BE 172.21.0.1:9556.|float|percent|
-|`tablet_num`|Current total number of tablets on each BE node . For example, {backend=172.21.0.1:9556} indicates the current number of tablets of the BE 172.21.0.1:9556.|float|count|
+|`rps`|Current number of FE requests per second (including queries and other types of statements).|float|count|
+|`scheduled_tablet_num`|Tablets being scheduled by the Master FE node. Includes replicas being repaired and replicas being balanced.|float|count|
+|`tablet_max_compaction_score`|The compaction core reported by each BE node. For example, { backend=172.21.0.1:9556} represents the reported value of BE 172.21.0.1:9556.|float|percent|
+|`tablet_num`|Current total number of tablets on each BE node. For example, {backend=172.21.0.1:9556} indicates the current number of tablets of the BE 172.21.0.1:9556.|float|count|
 |`tablet_status_count`|Statistics Master FE node The cumulative value of the number of tablets scheduled by the tablet scheduler.|float|count|
-|`thread_pool`|Count the number of working threads and queuing status of various thread pools . active_thread_num Indicates the number of tasks being executed . pool_size Indicates the total number of threads in the thread pool . task_in_queue Indicates the number of tasks being queued.|float|count|
+|`thread_pool`|Count the number of working threads and queuing status of various thread pools. active_thread_num Indicates the number of tasks being executed. pool_size Indicates the total number of threads in the thread pool. task_in_queue Indicates the number of tasks being queued.|float|count|
 |`thrift_rpc_latency_ms`|The RPC requests received by each method of the FE thrift interface take time. For example, {method=report} indicates that the RPC request received by the report method takes time.|float|ms|
-|`thrift_rpc_total`|RPC requests received by each method of the FE thrift interface . For example, {method=report} indicates the number of RPC requests received by the report method.|float|count|
+|`thrift_rpc_total`|RPC requests received by each method of the FE thrift interface. For example, {method=report} indicates the number of RPC requests received by the report method.|float|count|
 |`txn_counter`|Value of the number of imported transactions in each status.|float|count|
 |`txn_exec_latency_ms`|Percentile statistics of transaction execution time. For example, {quantile=0.75} indicates the 75th percentile transaction execution time.|float|ms|
-|`txn_num`|Specifies the number of transactions being performed by the DB . For example, { db =test} indicates the number of transactions currently being executed by DB test.|float|count|
+|`txn_num`|Specifies the number of transactions being performed by the DB. For example, { db =test} indicates the number of transactions currently being executed by DB test.|float|count|
 |`txn_publish_latency_ms`|Percentile statistics of transaction publish time. For example, {quantile=0.75} indicates that the 75th percentile transaction publish time is.|float|ms|
-|`txn_replica_num`|Specifies the number of replicas opened by the transaction being executed by the DB . For example, { db =test} indicates the number of copies opened by the transaction currently being executed by DB test.|float|count|
+|`txn_replica_num`|Specifies the number of replicas opened by the transaction being executed by the DB. For example, { db =test} indicates the number of copies opened by the transaction currently being executed by DB test.|float|count|
 |`txn_status`|Count the number of import transactions currently in various states. For example, {type=committed} indicates the number of transactions in the committed state.|float|count|
 
 
@@ -197,11 +196,11 @@ Check backend: curl ip: 8040/metrics
 |`mode`|Metric mode.|
 |`name`|Metric name.|
 |`path`|File path.|
-|`quantile`|quantile.|
+|`quantile`|Quantile.|
 |`status`|Metric status.|
 |`type`|Metric type.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -219,8 +218,8 @@ Check backend: curl ip: 8040/metrics
 |`cache_lookup_count`|Record the number of times the specified LRU Cache is searched.|float|B|
 |`cache_usage`|Record the usage of the specified LRU Cache.|float|B|
 |`cache_usage_ratio`|Record the usage of the specified LRU Cache.|float|percent|
-|`chunk_pool_local_core_alloc_count`|ChunkAllocator , the number of times memory is allocated from the memory queue of the bound core.|float|count|
-|`chunk_pool_other_core_alloc_count`|ChunkAllocator , the number of times memory is allocated from the memory queue of other cores.|float|count|
+|`chunk_pool_local_core_alloc_count`|ChunkAllocator, the number of times memory is allocated from the memory queue of the bound core.|float|count|
+|`chunk_pool_other_core_alloc_count`|ChunkAllocator, the number of times memory is allocated from the memory queue of other cores.|float|count|
 |`chunk_pool_reserved_bytes`|ChunkAllocator The amount of memory reserved in.|float|B|
 |`chunk_pool_system_alloc_cost_ns`|SystemAllocator The cumulative value of time spent applying for memory.|float|ns|
 |`chunk_pool_system_alloc_count`|SystemAllocator Number of times to apply for memory.|float|count|
@@ -230,9 +229,9 @@ Check backend: curl ip: 8040/metrics
 |`compaction_deltas_total`|Processed by compaction `rowset` The cumulative value of the number.|float|count|
 |`compaction_used_permits`|The number of tokens used by the Compaction task.|float|count|
 |`compaction_waitting_permits`|Compaction tokens awaiting.|float|count|
-|`cpu`|CPU related metrics metrics, from /proc/stat collection. Each value of each logical core will be collected separately . like {device=cpu0,mode =nice} Indicates the nice value of cpu0.|float|count|
+|`cpu`|CPU related metrics metrics, from /proc/stat collection. Each value of each logical core will be collected separately. like {device=cpu0,mode =nice} Indicates the nice value of cpu0.|float|count|
 |`data_stream_receiver_count`|Number of data receiving terminals Receiver.|float|count|
-|`disk_bytes_read`|The cumulative value of disk reads. from /proc/ `diskstats` collection. The values of each disk will be collected separately . like {device=vdd} express vvd disk value.|float|B|
+|`disk_bytes_read`|The cumulative value of disk reads. from /proc/ `diskstats` collection. The values of each disk will be collected separately. like {device=vdd} express vvd disk value.|float|B|
 |`disk_bytes_written`|The cumulative value of disk writes.|float|B|
 |`disk_io_time_ms`|The dis io time.|float|ms|
 |`disk_io_time_weighted`|The dis io time weighted.|float|ms|
@@ -241,15 +240,15 @@ Check backend: curl ip: 8040/metrics
 |`disk_write_time_ms`|The disk write time.|float|ms|
 |`disk_writes_completed`|The disk writes completed.|float|B|
 |`disks_avail_capacity`|Specify the remaining space on the disk where the specified data directory is located. like {path=path1} express /path1 The remaining space on the disk where the directory is located.|float|B|
-|`disks_compaction_num`|Compaction tasks being executed on the specified data directory . like {path=path1} means /path1 The number of tasks being executed on the directory.|float|count|
+|`disks_compaction_num`|Compaction tasks being executed on the specified data directory. like {path=path1} means /path1 The number of tasks being executed on the directory.|float|count|
 |`disks_compaction_score`|Specifies the number of compaction tokens being executed on the data directory. like {path=path1} means /path1 Number of tokens being executed on the directory.|float|percent|
 |`disks_local_used_capacity`|The specified data directory is located.|float|B|
 |`disks_remote_used_capacity`|The specified data directory is located.|float|B|
-|`disks_state`|Specifies the disk status of the data directory . 1 means normal. 0 means abnormal.|float|bool|
+|`disks_state`|Specifies the disk status of the data directory. 1 means normal. 0 means abnormal.|float|bool|
 |`disks_total_capacity`|Capacity of the disk where the specified data directory is located.|float|B|
 |`engine_requests_total`|Engine_requests total on BE.|float|count|
 |`fd_num_limit`|System file handle limit upper limit. from /proc/sys/fs/file-nr collection.|float|count|
-|`fd_num_used`|The number of file handles used by the system . from /proc/sys/fs/file-nr collection.|float|count|
+|`fd_num_used`|The number of file handles used by the system. from /proc/sys/fs/file-nr collection.|float|count|
 |`file_created_total`|Cumulative number of local file creation times.|float|count|
 |`fragment_endpoint_count`|Value of various task execution statuses on BE.|float|count|
 |`fragment_instance_count`|The number of fragment instances currently received.|float|count|
@@ -261,7 +260,7 @@ Check backend: curl ip: 8040/metrics
 |`heavy_work_pool_queue_size`|The maximum length of the heavy thread pool queue will block the submission of work if it exceeds it.|float|count|
 |`light_work_active_threads`|Number of active threads in light thread pool.|float|count|
 |`light_work_max_threads`|Number of light thread pool threads.|float|count|
-|`light_work_pool_queue_size`|The maximum length of the light thread pool queue . If it exceeds the maximum length, the submission of work will be blocked.|float|count|
+|`light_work_pool_queue_size`|The maximum length of the light thread pool queue. If it exceeds the maximum length, the submission of work will be blocked.|float|count|
 |`load_average`|Machine Load Avg Metric metrics. For example, {mode=15_minutes} is 15 minutes Load Avg.|float|count|
 |`load_bytes`|Cumulative quantity sent through tablet Sink.|float|B|
 |`load_channel_count`|The number of load channels currently open.|float|count|
@@ -274,7 +273,7 @@ Check backend: curl ip: 8040/metrics
 |`max_disk_io_util_percent`|value of the disk with the largest IO UTIL among all disks.|float|percent|
 |`max_network_receive_bytes_rate`|The maximum receive rate calculated among all network cards.|float|B/S|
 |`max_network_send_bytes_rate`|The calculated maximum sending rate among all network cards.|float|B/S|
-|`mem_consumption`|Specifies the current memory overhead of the module . For example, {type=compaction} represents the current total memory overhead of the compaction module.|float|B|
+|`mem_consumption`|Specifies the current memory overhead of the module. For example, {type=compaction} represents the current total memory overhead of the compaction module.|float|B|
 |`memory_allocated_bytes`|BE process physical memory size, taken from /proc/self/status/ VmRSS.|float|B|
 |`memory_jemalloc`|Jemalloc stats, taken from `je_mallctl`.|float|B|
 |`memory_pgpgin`|The amount of data written by the system from disk to memory page.|float|B|
@@ -288,7 +287,7 @@ Check backend: curl ip: 8040/metrics
 |`meta_request_total`|Access RocksDB The cumulative number of meta requests.|float|count|
 |`network_receive_bytes`|each network card are accumulated. Collected from /proc/net/dev.|float|B|
 |`network_receive_packets`|each network card is accumulated. Collected from /proc/net/dev.|float|count|
-|`network_send_bytes`|each network card . Collected from /proc/net/dev.|float|B|
+|`network_send_bytes`|each network card. Collected from /proc/net/dev.|float|B|
 |`network_send_packets`|The total number of packets sent by each network card is accumulated. Collected from /proc/net/dev.|float|count|
 |`proc`|The number of processes currently .|float|count|
 |`process_fd_num_limit_hard`|BE process. pass /proc/ pid /limits collection.|float|count|
@@ -313,9 +312,9 @@ Check backend: curl ip: 8040/metrics
 |`send_batch_thread_pool_thread_num`|The number of threads in the thread pool used to send packets when importing.|float|count|
 |`small_file_cache_count`|Currently cached by BE.|float|count|
 |`snmp_tcp_in_errs`|tcp packet reception errors. Collected from /proc/net/ SNMP.|float|count|
-|`snmp_tcp_in_segs`|tcp packets sent . Collected from /proc/net/ SNMP.|float|count|
+|`snmp_tcp_in_segs`|tcp packets sent. Collected from /proc/net/ SNMP.|float|count|
 |`snmp_tcp_out_segs`|tcp packets sent. Collected from /proc/net/ SNMP.|float|count|
-|`snmp_tcp_retrans_segs`|TCP packet retransmissions . Collected from /proc/net/ SNMP.|float|count|
+|`snmp_tcp_retrans_segs`|TCP packet retransmissions. Collected from /proc/net/ SNMP.|float|count|
 |`stream_load`|Value of the number received by stream load.|float|count|
 |`stream_load_pipe_count`|Current stream load data pipelines.|float|count|
 |`stream_load_txn_request`|Value of the number of transactions by stream load.|float|count|
@@ -325,10 +324,10 @@ Check backend: curl ip: 8040/metrics
 |`tablet_base_max_compaction_score`|The current largest Base Compaction Score.|float|percent|
 |`tablet_cumulative_max_compaction_score`|Same as above. Current largest Cumulative Compaction Score.|float|percent|
 |`tablet_version_num_distribution`|The histogram of the number of tablet versions.|float|count|
-|`thrift_connections_total`|Thrift connections created . like {name=heartbeat} Indicates the cumulative number of connections to the heartbeat service.|float|count|
+|`thrift_connections_total`|Thrift connections created. like {name=heartbeat} Indicates the cumulative number of connections to the heartbeat service.|float|count|
 |`thrift_current_connections`|Current number of thrift connections. like {name=heartbeat} Indicates the current number of connections to the heartbeat service.|float|count|
-|`thrift_opened_clients`|Thrift clients currently open . like {name=frontend} Indicates the number of clients accessing the FE service.|float|count|
-|`thrift_used_clients`|Thrift clients currently in use . like {name=frontend} Indicates the number of clients being used to access the FE service.|float|count|
+|`thrift_opened_clients`|Thrift clients currently open. like {name=frontend} Indicates the number of clients accessing the FE service.|float|count|
+|`thrift_used_clients`|Thrift clients currently in use. like {name=frontend} Indicates the number of clients being used to access the FE service.|float|count|
 |`timeout_canceled_fragment_count`|Cumulative value of the number of fragment instances canceled due to timeout.|float|count|
 |`unused_rowsets_count`|The number of currently abandoned `rowsets`.|float|count|
 |`upload_fail_count`|Cumulative value of `rowset` failed to be uploaded to remote storage.|float|count|
@@ -350,13 +349,13 @@ Check backend: curl ip: 8040/metrics
 |`state`|Metric state.|
 |`type`|Metric type.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`node_info`|Node_number.|float|count|
-|`system_meminfo`|FE node machines. Collected from /proc/meminfo . include buffers , cached , memory_available , memory_free , memory_total.|float|B|
+|`system_meminfo`|FE node machines. Collected from /proc/meminfo. include buffers, cached, memory_available, memory_free, memory_total.|float|B|
 |`system_snmp`|FE node machines. Collected from /proc/net/ SNMP.|float|count|
 
 
@@ -372,17 +371,14 @@ Check backend: curl ip: 8040/metrics
 |`instance`|Instance endpoint.|
 |`type`|Metric type.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`heap_size_bytes`|JVM memory metrics. The tags include max, used, committed , corresponding to the maximum value, used and requested memory respectively.|float|B|
+|`heap_size_bytes`|JVM memory metrics. The tags include max, used, committed, corresponding to the maximum value, used and requested memory respectively.|float|B|
 |`non_heap_size_bytes`|JVM off-heap memory statistics.|float|B|
 |`old_gc`|Cumulative value of GC.|float|count|
 |`old_size_bytes`|JVM old generation memory statistics.|float|B|
 |`thread`|JVM thread count statistics.|float|count|
 |`young_size_bytes`|JVM new generation memory statistics.|float|B|
-
-
-

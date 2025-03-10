@@ -1,121 +1,108 @@
 ---
-title     : 'EMQX'
-summary   : 'Collect EMQX collection, topics, subsriptions, message, package related metric information'
+title: 'EMQX'
+summary: 'Collect metrics related to EMQX collection, topics, subscriptions, message, and packet'
 __int_icon: 'icon/emqx'
-dashboard :
-  - desc  : 'EMQX Monitoring View'
-    path  : 'dashboard/zh/emqx'
-monitor   :
-  - desc  : 'No'
-    path  : '-'
+dashboard:
+  - desc: 'EMQX monitoring view'
+    path: 'dashboard/en/emqx'
+monitor:
+  - desc: 'Not available'
+    path: '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
 # EMQX
 <!-- markdownlint-enable -->
 
-EMQX collection, topics, `subsriptions`, message, package related index information were collected.
+Collect metrics related to EMQX collection, topics, `subscriptions`, message, and packet.
 
-## Installation Configuration {#config}
-
+## Installation and Configuration {#config}
 
 ### EMQX Metrics
 
-EMQX default exposure metric port is: `18083`, you can view metric information through the browser: `http://clientIP:18083/api/v5/prometheus/stats`.
+EMQX exposes metrics on port `18083` by default. You can view the metrics information via a browser at: `http://clientIP:18083/api/v5/prometheus/stats`.
 
 ### DataKit Collector Configuration
 
-Because `EMQX` can expose `metrics` URL directly, it can be collected directly through [`prom`](./prom.md) collector.
+Since `EMQX` can directly expose a `metrics` URL, you can collect data using the [`prom`](./prom.md) collector.
 
-
-
-The adjustments are as follows:
+Adjust the content as follows:
 
 ```toml
+[[inputs.prom]]
+  ## Exporter URLs.
+  urls = ["http://clientIP:18083/api/v5/prometheus/stats"]
 
-urls = ["http://clientIP:18083/api/v5/prometheus/stats"]
+  source = "emqx"
 
-source = "emqx"
+  keep_exist_metric_name = true
 
-measurement_prefix = "emqx_"
-
-interval = "10s"
-
+  ## Customize tags.
+  [inputs.prom.tags]
+    job = "emqx"  
+...
 ```
 
-<!-- markdownlint-disable MD033 -->
-<font color="red">*Other configurations are adjusted as needed*</font>
-<!-- markdownlint-enable -->
-, adjust parameter description:
-
-- Urls: `prometheus` Metric address, where you fill in the metric URL exposed by the corresponding component
-- Source: Collector alias, recommended to distinguish
-- Interval: collection interval
-- Measurement_Prefix: index prefix
+Adjust the above parameters in the document.
 
 ### Restart DataKit
 
-[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
+```shell
+systemctl restart datakit
+```
 
-## Metric {#metric}
+## Metrics {#metric}
 
-### Tags
-
-|Tags| Description |
-| -- | -- |
-|instance| instance |
-
-
-### Metric Set `emqx_emqx`
+### Metric Set `emqx`
 
 #### Statistics
 
-|Metrics| Description |
-| -- | -- |
-|connections_count| current connections count  |
-|topics_count| current topics count |
-|`suboptions_count`|That is `subscriptions_count`|
-|subscribers_count| current subscribers count|
-|cluster_nodes_running |Cluster `running` status node|
-|cluster_nodes_stopped| Cluster `stop` status  node |
+| Metrics | Description |
+| --- | --- |
+| emqx_connections_count | Current number of connections |
+| emqx_topics_count | Current number of topics |
+| `emqx_suboptions_count` | Same as `subscriptions_count` |
+| emqx_subscribers_count | Current number of subscribers |
+| emqx_cluster_nodes_running | Nodes in the cluster with `running` status |
+| emqx_cluster_nodes_stopped | Nodes in the cluster with `stopped` status |
 
-#### Message (PUBLISH message)
+#### Messages (PUBLISH Packet)
 
-|Metrics| Description |
-| -- | -- |
-|messages_ Received | The number of messages received from the client, equal to the sum of messages.qos0.received, messages.qos1.received and messages.qos2.received
-|messages_ Send | The number of messages sent to the client, equal to the sum of messages.qos0.send, messages.qos1.sent and messages.qos2.sent
-|messages_ Total number of dropped messages | EMQX forwards internally to the subscription process
+| Metrics | Description |
+| --- | --- |
+| emqx_messages_received | Number of messages received from clients, equal to the sum of messages.qos0.received, messages.qos1.received, and messages.qos2.received |
+| emqx_messages_sent | Number of messages sent to clients, equal to the sum of messages.qos0.sent, messages.qos1.sent, and messages.qos2.sent |
+| emqx_messages_dropped | Total number of messages dropped before being forwarded to subscription processes within EMQX |
 
 #### Bytes
 
-|Metrics| Description |
-| -- | -- |
-|bytes_received| current received bytes |
-|bytes_sent| current send bytes |
-
+| Metrics | Description |
+| --- | --- |
+| emqx_bytes_received | Number of bytes received |
+| emqx_bytes_sent | Number of bytes sent |
 
 #### Packets
 
-|Metrics| Description |
-| -- | -- |
-|packets_connect |Number of CONNECT messages received|
-|packets_connack_sent| Send `CONNACK` message count |
-|packets_connack_error |The reason code sent is not `CONNACK` number of messages with 0x00, and the value of this metric is greater than or equal to `packets_connack_auth_error`|
-|packets_connack_auth_error | The `CONNACK` number of messages sent with reason codes 0x86 and 0x87
-|packets_disconnect_sent| Send DISCONNECT message count|
-|packets_disconnect_received| Receive DISCONNECT message count|
-|packets_publish_received | Number of PUBLISH messages received
-|packets_publish_send | Number of PuBLISH messages sent
-|packets_publish_error | Number of unpublished PUBLISH messages received
-|packets_publish_dropped | Number of PUBLISH messages discarded beyond receive limit
-|packets_subscribe_received | Number of SUBSCRIBE messages received
-|packets_subscribe_error | Number of unsuccessful SUBSCRIBE messages received
-| `packets.suback.sent` |Number of `SUBACK` Messages Sent
-|packets_unsubscribe_received | Number of UNSUBSCRIBE messages received
-|packets_unsubscribe_error | Number of Unsubscribe Failed UNSUBSCRIBE Messages Received
+| Metrics | Description |
+| --- | --- |
+| emqx_packets_connect | Number of CONNECT packets received |
+| emqx_packets_connack_sent | Number of `CONNACK` packets sent |
+| emqx_packets_connack_error | Number of `CONNACK` packets sent with a reason code not equal to 0x00, this metric's value is greater than or equal to `packets_connack_auth_error` |
+| emqx_packets_connack_auth_error | Number of `CONNACK` packets sent with reason codes 0x86 and 0x87 |
+| emqx_packets_disconnect_sent | Number of DISCONNECT packets sent |
+| emqx_packets_disconnect_received | Number of DISCONNECT packets received |
+| emqx_packets_publish_received | Number of PUBLISH packets received |
+| emqx_packets_publish_sent | Number of PUBLISH packets sent |
+| emqx_packets_publish_error | Number of PUBLISH packets received that could not be published |
+| emqx_packets_publish_dropped | Number of PUBLISH packets dropped due to exceeding reception limits |
+| emqx_packets_subscribe_received | Number of SUBSCRIBE packets received |
+| emqx_packets_subscribe_error | Number of SUBSCRIBE packets received with subscription failures |
+| `emqx_packets_suback_sent` | Number of `SUBACK` packets sent |
+| emqx_packets_unsubscribe_received | Number of UNSUBSCRIBE packets received |
+| emqx_packets_unsubscribe_error | Number of UNSUBSCRIBE packets received with unsubscription failures |
 
+For detailed metric information, refer to the [official documentation](https://www.emqx.io/docs/en/v5.1/observability/metrics-and-stats.html#metrics-reference).
 
-Detailed Metric Information Reference [DOCS](https://www.emqx.io/docs/zh/v5.1/observability/metrics-and-stats.html#%E6%8C%87%E6%A0%87%E5%AF%B9%E7%85%A7%E6%89%8B%E5%86%8C)
+## Common Troubleshooting {#faq}
 
-
+[No Data Reporting Troubleshooting](../datakit/why-no-data.md)

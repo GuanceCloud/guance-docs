@@ -1,43 +1,56 @@
 ---
 title     : 'Disk S.M.A.R.T'
-summary   : 'Collect disk metrics through smartctl'
+summary   : 'Collect disk metrics using `smartctl`'
 tags:
-  - 'HOST'
+  - 'Host'
 __int_icon      : 'icon/smartctl'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Data collection of computer hard disk running state.
+Data collection for computer hard drive operational status
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requrements}
 
-Installing smartmontools
+Install `smartmontools`
 
 - Linux: `sudo apt install smartmontools -y`
 
-  If the solid state drive is nvme compliant, it is recommended to install nvme-cli for more nvme information: `sudo apt install nvme-cli -y`
+If the solid-state drive conforms to the NVMe standard, it is recommended to install `nvme-cli` to obtain more NVMe information:
 
-- MacOS: `brew install smartmontools -y`
-- WinOS: download [Windows version](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
+<!-- markdownlint-disable MD046 -->
+=== "Linux"
 
-### Collector Configuration {#input-config}
+    ```shell
+    sudo apt install nvme-cli -y
+    ```
+
+=== "macOS"
+
+    ```shell
+    brew install smartmontools -y
+    ```
+=== "Windows"
+
+    Download [Windows version](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
+<!-- markdownlint-enable -->
+
+### Collector Installation {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/smart` directory under the DataKit installation directory, copy `smart.conf.sample` and name it `smart.conf`. Examples are as follows:
+    Navigate to the `conf.d/smart` directory under the DataKit installation directory, copy `smart.conf.sample`, and rename it to `smart.conf`. Example configuration:
     
     ```toml
         
@@ -84,16 +97,16 @@ Installing smartmontools
     
     ```
     
-    After configuration, restart DataKit.
+    After configuring, restart DataKit.
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.smart.tags]`:
+All data collected below will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. Additional tags can be specified in the configuration through `[inputs.smart.tags]`:
 
 ```toml
  [inputs.smart.tags]
@@ -111,17 +124,17 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
-|`capacity`|disk capacity|
-|`device`|device mount name|
-|`enabled`|is SMART supported|
-|`exit_status`|command process status|
+|`capacity`|Disk capacity|
+|`device`|Device mount name|
+|`enabled`|Is SMART supported|
+|`exit_status`|Command process status|
 |`health_ok`|SMART overall-health self-assessment test result|
-|`host`|host name|
-|`model`|device model|
-|`serial_no`|device serial number|
+|`host`|Hostname|
+|`model`|Device model|
+|`serial_no`|Device serial number|
 |`wwn`|WWN Device Id|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -150,7 +163,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`erase_fail_count_worst`|The worst value of erase failed count.|int|count|
 |`fail`|Read attribute failed.|bool|count|
 |`flags`|Attribute flags.|int|count|
-|`g-sense_error_rate_raw_value`|The raw value of|int|count|
+|`g-sense_error_rate_raw_value`|The raw value of g-sensor error rate.|int|count|
 |`g-sense_error_rate_threshold`|The threshold value of g-sensor error rate.|int|count|
 |`g-sense_error_rate_value`|The value of g-sensor error rate.|int|count|
 |`g-sense_error_rate_worst`|The worst value of g-sensor error rate.|int|count|
@@ -163,7 +176,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`load_cycle_count_value`|The value of load cycle count.|int|count|
 |`load_cycle_count_worst`|The worst value of load cycle count.|int|count|
 |`maximum_erase_cycle_raw_value`|The raw value of maximum erase cycle count.|int|count|
-|`maximum_erase_cycle_value`|The raw value of maximum erase cycle count.|int|count|
+|`maximum_erase_cycle_value`|The value of maximum erase cycle count.|int|count|
 |`maximum_erase_cycle_worst`|The worst value of maximum erase cycle count.|int|count|
 |`min_bad_block/die_raw_value`|The raw value of min bad block.|int|count|
 |`min_bad_block/die_value`|The value of min bad block.|int|count|
@@ -180,8 +193,8 @@ For all of the following data collections, a global tag named `host` is appended
 |`perc_avail_resrvd_space_value`|The value of available reserved space.|int|count|
 |`perc_avail_resrvd_space_worst`|The worst value of available reserved space.|int|count|
 |`perc_write/erase_count_raw_value`|The raw value of write/erase count.|int|count|
-|`perc_write/erase_count_value`|The value of of write/erase count.|int|count|
-|`perc_write/erase_count_worst`|The worst value of of write/erase count.|int|count|
+|`perc_write/erase_count_value`|The value of write/erase count.|int|count|
+|`perc_write/erase_count_worst`|The worst value of write/erase count.|int|count|
 |`perc_write/erase_ct_bc_raw_value`|The raw value of write/erase count.|int|count|
 |`perc_write/erase_ct_bc_value`|The value of write/erase count.|int|count|
 |`perc_write/erase_ct_bc_worst`|The worst value of write/erase count.|int|count|
@@ -249,7 +262,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`total_nand_writes_gib_worst`|The worst value of total NAND flush writes.|int|count|
 |`total_reads_gib_raw_value`|The raw value of total read.|int|count|
 |`total_reads_gib_value`|The value of total read.|int|count|
-|`total_reads_gib_worst`|The worst value of total read|int|count|
+|`total_reads_gib_worst`|The worst value of total read.|int|count|
 |`total_write/erase_count_raw_value`|The raw value of total write/erase count.|int|count|
 |`total_write/erase_count_value`|The value of total write/erase count.|int|count|
 |`total_write/erase_count_worst`|The worst value of total write/erase count.|int|count|
@@ -269,3 +282,29 @@ For all of the following data collections, a global tag named `host` is appended
 |`unknown_attribute_worst`|The worst value of unknown attribute.|int|-|
 
 
+</input_content>
+<target_language>英语</target_language>
+</input>
+
+- If the input is Markdown content, example:
+<example>
+Input example:
+- input_content: "# Introduction\nThis is a brief introduction to the product.\n- Feature 1\n- Feature 2"
+- target_language: English
+
+Expected output:
+- translated_content: "# Introduction\nThis is a brief introduction to the product.\n- Feature 1\n- Feature 2"
+</example>
+
+- If the input is YAML content, example:
+<example>
+Input example:
+nav:
+ - 观测云: /guance
+ - 应用性能监测: /apm
+
+Expected output (do not add extra ```YAML ``` Markdown code block markers):
+nav:
+ - Guance: /guance
+ - APM: /apm
+</example>

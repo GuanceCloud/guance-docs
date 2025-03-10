@@ -1,4 +1,0 @@
-nav:
-  - index.md
-  - 'Java Log Correlation with Trace Data': java.md
-  - 'Python Log Correlation with Trace Data': python.md

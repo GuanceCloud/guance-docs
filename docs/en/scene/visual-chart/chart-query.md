@@ -1,216 +1,290 @@
 # Chart Query
 ---
 
-## Introduction
+After selecting a chart, you can use various query methods to perform in-depth queries and analysis on different categories of data. These query methods help intuitively display numerical information in the chart and reveal important relationships between data.
 
-When editing charts, you can perform chart queries and other chart settings depending on the selected chart type. A chart query is a graph that displays numerical data and exposes important data relationships in a visual layout based on a user-defined data query. Each correct query corresponds to a json text, and the json text and chart query within the Support Workbench can be parsed to help you gain insight into the chart plotting details.
+## Query Methods {#query}
 
-## data queries {#query}
+A single chart supports the following query methods simultaneously:
 
-A single chart can display multiple queries at the same time, including 「simple query」, 「expression query」 and 「DQL query」. Click 「Add Simple Query」 or 「Add Expression Query」 to add a new query. The 「Simple Query」 and 「DQL Query」 can be switched between each other via buttons. For single-query charts such as overview charts, dashboards, and leaderboards, 「Simple Query」 can be directly converted to 「Expression Query」.
+- Simple Query
+- Expression Query
+- DQL Query
+- PromQL Query
+- Data Source
 
-Note: When switching from 「DQL Query」 to 「Simple Query」, if the parsing cannot be done or is incomplete：
+???+ warning "Switching Query Methods"
 
-- the previous DQL query statement is displayed if it is switched back to 「DQL query」 directly after no operation under 「Simple query」；
-- If you adjust the query statement under 「Simple Query」, switching back to 「DQL Query」 again will parse it according to the latest 「Simple Query」.
+    Simple Query and DQL Query can be switched via the :fontawesome-solid-code: button. After switching, if it cannot be parsed or parsed incompletely:
 
-![](../img/chart015.png)
+    - If no operation has been performed under Simple Query, switching back to DQL Query will show the previous DQL query statement.
+    - If the query statement has been adjusted under Simple Query, switching back to DQL Query will parse according to the latest Simple Query.
 
-### Simple Query
+![Query](../../img/query.png)
 
-Simple query supports querying data from different data sources and displaying charts by selecting aggregation functions, grouping labels, Labels, filtering criteria, etc.
+### Simple Query {#simple}
 
-- Support dragging up and down through the 「Separator」 button in the middle of the chart and query to display more query areas
-- Support dragging up and down by the 「drag and drop」 button on the left side of the query statement to adjust the order of the query
+Queries data from different [data sources](#source) and displays it through charts by selecting aggregation functions, grouping labels, Labels, filter conditions, etc.
 
-![](../img/chart016.png)
+#### Data Sources {#source}
 
-#### Data Sources
+Data comes from a series of combinations including Metrics, logs, basic objects, resource catalog, events, APM, RUM, security checks, network, Profile, cloud billing.
 
-Data sources include a combination of data from metrics, logs, base objects, custom objects, events, application performance, user access, security patrol, network, and profiles.
-
-| Options | Description |
+| Source | Description |
 | --- | --- |
-| Metrics | You need to select 「Metrics Set」 and 「Metrics」. A metrics set can contain multiple metrics, and the base function checks 「Last by」 by default. Combine with the chart type, select the metric you want to display for query. |
-| Logs/Basic Objects/Custom Objects/Events/Application Performance/User Access/Security Patrol/Network/ Profile | System Objects, Custom Objects and Security Patrol need to select 「Category」 and 「Attribute/Label」, Logs/Events/Application Performance/User Access need to select 「Source」 and 「Attribute/Label」, and 「Count by」 is selected by default for the base function. |
+| Metrics | You need to select **Measurement** and **Metrics**, one Measurement can contain multiple metrics. |
+| Other Types | Basic objects, resource catalog, security checks: Need to select **Resource Class** and **Properties/Labels**; <br /> Logs, events, APM, RUM: Need to select **Source** and **Properties/Labels**. |
 
-Note: If you set the index in 「Log」 - 「Index」, when you select "Log" as the data source of the chart query, you can select different indexes corresponding to the log content, the default is index `default`. For more details, please refer to the document [Log Index](.../.../logs/multi-index/index.md).
+???- warning "When Logs are Used as Data Source"
 
-![](../img/5.log_7.png)
+    Different indexes can be selected for corresponding log content, default index is `default`.
 
-#### Grouping
+    > For more details, refer to the documentation [Log Index](../../logs/multi-index/index.md).
 
-Grouping query supports selecting different "tags" for grouping query, and the data is displayed in groups according to the selected tag items, and supports selecting multiple tags (no more than three) for query.
+    ![Chart Source Log](../../img/chart-source-log.png)
 
-It supports aliasing the grouped queries. After adding aliases, the name of the chart legend changes, which is convenient to distinguish the related metrics more intuitively. (The charts currently supported by this function are: time series chart, pie chart, bar chart, scatter chart, bubble chart, funnel chart.)
+#### Multiple Queries
 
-![](../img/chart017.png)
+Select multiple query conditions, and data is grouped and displayed according to the selected filters.
 
-#### Label {#label}
+To easily distinguish the display of query results, click the AS button to add an alias for each query condition.
 
-Before selecting Label in the chart query, you need to set the Label attribute for the host in 「Infrastructure」 - 「Host」. In the following figure, click 「fx」, select 「Label Filtering」, enter the Label attribute "guance", and you can find the data of one host. For host Label settings, please refer to the document [Host](../../infrastructure/host.md).
+![Multiple Queries](../../img/chart-multi-query.png)
 
-![](../img/chart018.png)
+If you want the added aliases to be directly displayed on the chart, click the right-hand side [Legend](./chart-config.md#legend) > Position, and choose bottom or right.
 
-#### Filtering
+![Multiple Queries Legend](../../img/chart-multi-query-legend.png)
 
-Support filtering by tags. Click the 「Funnel」 icon to add a filter for the query. Multiple filters are supported, and each filter can have 「and」 and 「or」 values between them.
+#### Label Filtering {#label}
 
-| Filtering criteria | Description | Supported filtering criteria types |
+**Prerequisite**: Labels have already been set for hosts in **Infrastructure > [Hosts](../../infrastructure/host.md#label)**.
+
+In **`fx` > Label Filtering**, select or exclude host Label properties for filtering display.
+
+![Label Query](../../img/chart_query_label.png)
+
+#### Adding Filters
+
+Click the :material-filter-outline: icon to add filter conditions to the current query.
+
+Multiple filter conditions can be added under a single query, with each condition having either `AND` or `OR` relationships.
+
+| Filter Condition | Description | Supported Condition Types |
 | -------------- | ---------------------------------------- | ---------------------------- |
-| `=` | is equal to | `Integer`, `Float`, `String` |
-| `! =` | not equal to | `Integer`, `Float`, `String` |
-| `>=` | greater than or equal to | `Integer`, `Float`, `String` |
-| `<=` | less than or equal to | `Integer`, `Float`, `String` |
-| `>` | greater than | `Integer`, `Float`, `String` |
-| `<` | less than | `Integer`, `Float`, `String` |
-| `match` | contains | `String` |
-| `not match` | not include | `String` |
-| `wildcard` | fuzzy match (supports log type data other than metrics) | `String` |
-| `not wildcard` | fuzzy not match (supports log data other than metrics) | `String` |
+| `=`            | Equals                                   | `Integer`, `Float`, `String` |
+| `!=`           | Not equal                                | `Integer`, `Float`, `String` |
+| `>=`           | Greater than or equal                    | `Integer`, `Float`, `String` |
+| `<=`           | Less than or equal                       | `Integer`, `Float`, `String` |
+| `>`            | Greater than                             | `Integer`, `Float`, `String` |
+| `<`            | Less than                                | `Integer`, `Float`, `String` |
+| `match`        | Contains                                 | `String`                     |
+| `not match`    | Does not contain                        | `String`                     |
+| `wildcard`     | Fuzzy match (supports log data except Metrics) | `String`                     |
+| `not wildcard` | Fuzzy non-match (supports log data except Metrics) | `String`                     |
 
-**Note: `#{host}` in the content of the filter condition is a view variable, refer to the documentation [view-variable](../view-variable.md). **
-
-![](../img/chart019.png)
+![Add Label Filter](../../img/chart_query_add_label.png)
 
 #### Functions
 
-Supports calculating data sources such as metrics by functions. Click the 「fx」 icon to add a function to the query, and support adding multiple functions.
+Click the **fx** icon to add function calculations for indicators and other data sources.
 
-![](../img/chart020.png)
+![Add Function](../../img/chart_query_add_fix.png)
 
-##### Aggregation functions
+##### Rollup Function {#rollup}
 
-The following aggregation methods are supported in UI mode to return the result values, and more aggregation functions are supported in DQL mode, see [DQL aggregation functions](../../dql/funcs.md).
+This slices data into specified time intervals and calculates and returns data for each interval.
 
-| Aggregate Functions | Description |
-| --- | --- | last
-| last | Returns the value of the newest timestamp |
-| first | Returns the value of the earliest timestamp |
-| avg | Returns the average value of the fields. There is one and only one parameter, and the parameter type is the field name |
-| min | Returns the minimum value.
-| max | Returns the maximum value.
-| sum | Returns the sum of the field values.
-| P50 | Returns the 50th percentile of the field values.
-| P75 | returns the 75th percentile of the field
-| P90 | returns the 90th percentile of the field
-| P99 | Returns the 99th percentile of the field
-| count | Returns a summary of non-empty field values
-| count_distinct | counts the number of different values in a field
-| difference | Returns the difference between consecutive time values in a field.
-| derivative | Returns the rate of change of a field within a series.
-| non_negative_derivative | returns the non-negative rate of change of a value in a field in a series
+**Note**:
 
-##### conversion functions
+1. In time series charts, after selecting this function and the aggregation method, go to **Advanced Configuration** to choose the time interval;
+2. In non-time series charts, after selecting this function, you can choose aggregation methods such as `avg`, `sum`, `min`, and time intervals including auto, 10s, 20s, 30s, 1m, 5m, 10m, 30m, 1h, 6h, 12h, 1d, 7d, 30d (`interval`);
+3. Only supports Metrics data queries; simple mode does not support choosing the Rollup function for other data queries;
+4. The Rollup function does not support adding multiple instances.
 
-The conversion functions here are also called outer functions. The functions supported in UI mode are shown below, and more outer functions are supported in DQL mode, see [DQL outer functions](../../dql/out-funcs.md).
+> For more details, refer to [Rollup Function](../../dql/rollup-func.md).
 
-| Conversion functions (outer functions) | Description |
+##### Transformation Functions
+
+Also known as outer functions, UI mode supports the following functions:
+
+| <div style="width: 180px">Transformation Function (Outer Function)</div> | Description |
 | --- | --- |
-| cumsum | Sums the processed set cumulatively |
-| abs | Computes the absolute value of each element of the processing set |
-| log2 | Computes the logarithm of the base 2 of each element of the processing set, if the processing set is at least one line larger than the base 2, otherwise it returns null |
-| log10 | Computes the logarithm of the base 10 of each element of the processing set, if the processing set is greater than at least one row, otherwise null is returned.
-| moving_average | Computes the moving average of the processing set, the size of the window must be no smaller than the number of rows in the processing set, otherwise null is returned.
-| difference | Calculates the difference between the adjacent elements of the processing set, if the processing set is larger than one row, otherwise null is returned.
-| derivative | Computes the derivative of the set of adjacent elements, in seconds (s).
-| non_negative_derivative | Computes the nonnegative derivative of the set of adjacent elements, in seconds (s).
-| non_negative_difference | Computes the nonnegative difference of the adjacent elements of the processing set, the processing set is at least one row larger, otherwise it returns null |
-| series_sum | When a series is generated by a group, it is merged into 1 series according to the time point, where the sum of multiple series at the same time point is at least one row larger than the processing set, otherwise null is returned.
-| rate | Calculate the rate of change of an metric within a certain time range, suitable for slow change counters. The time unit is seconds (s).
-| irate | Calculates the rate of change of an metric within a certain time frame, suitable for fast changing counters, in seconds (s) |
+| `cumsum` | Cumulative sum of processed sets |
+| `abs` | Calculate the absolute value of each element in the processed set |
+| `log2` | Calculate the logarithm of each element in the processed set with base 2, requires at least one row, otherwise returns null |
+| `log10` | Calculate the logarithm of each element in the processed set with base 10, requires at least one row, otherwise returns null |
+| `moving_average` | Calculate the moving average of the processed set, window size must be no less than the number of rows in the processed set, otherwise returns null |
+| `difference` | Calculate the difference between adjacent elements in the processed set, requires at least one row, otherwise returns null |
+| `derivative` | Calculate the derivative of adjacent elements in the processed set, differentiation time unit is seconds (s) |
+| `non_negative_derivative` | Calculate the non-negative derivative of adjacent elements in the processed set, differentiation time unit is seconds (s) |
+| `non_negative_difference` | Calculate the non-negative difference between adjacent elements in the processed set, requires at least one row, otherwise returns null |
+| `series_sum` | When grouping produces multiple series, merge them into one series based on timestamps. Sum values of the same timestamp across multiple series, requires at least one row, otherwise returns null |
+| `rate` | Calculate the rate of change of a metric over a certain time range, suitable for slowly changing counters. Time unit is seconds (s) |
+| `irate` | Calculate the rate of change of a metric over a certain time range, suitable for rapidly changing counters, time unit is seconds (s) |
 
-##### window function {#window}
+> In DQL mode, more outer functions are supported, refer to [DQL Outer Functions](../../dql/out-funcs.md).
 
-Support the selected time interval for the window (record set), combined with the aggregation function for each record to perform statistical calculations, support the selection of 1 minute, 5 minutes, 15 minutes, 30 minutes, 1 hour, 3 hours, etc.
+##### Aggregation Functions {#aggregate-function}
 
-Note: The window function query result does not change the number of records, and the number of records currently present remains the same as before after the function result is executed.
+UI mode supports selecting aggregation methods to return result values.
 
-##### No data fill {#fillin}
 
-Support to set the way to fill in the null data, which is displayed as 「fill」 in the query after setting, including three types.
-
-| function | description |
+| Aggregation Function | Description |
 | --- | --- |
+| `last` | Returns the value of the latest timestamp |
+| `first` | Returns the value of the earliest timestamp |
+| `avg` | Returns the average value of the field. Parameter is only one field name |
+| `min` | Returns the minimum value |
+| `max` | Returns the maximum value |
+| `sum` | Returns the sum of field values |
+| `P50` | Returns the 50th percentile value of the field |
+| `P75` | Returns the 75th percentile value of the field |
+| `P90` | Returns the 90th percentile value of the field |
+| `P99` | Returns the 99th percentile value of the field |
+| `count` | Returns the count of non-null field values |
+| `count_distinct` | Counts the number of distinct values in a field |
+| `difference` | Returns the difference between consecutive time values in a field |
+| `derivative` | Returns the rate of change of a field within a series |
+| `non_negative_derivative` | Returns the non-negative rate of change of a field within a series |
 
+> In DQL mode, more aggregation functions are supported, refer to [DQL Aggregation Functions](../../dql/funcs.md).
 
-| linear fill | A linear fill is a fill of null data by a linear function.
-| Numeric fill | Numeric fill is a customizable fill value |
+##### Window Functions {#window}
 
+Window functions use selected time intervals as windows (record sets), combining aggregation functions to perform statistical calculations on each record, supporting intervals of 1 minute, 5 minutes, 15 minutes, 30 minutes, 1 hour, 3 hours, 6 hours, 12 hours, 24 hours.
 
-#### Alias
+**Note**: Window function query results do not change the number of records; the number of existing records remains the same after executing the function.
 
-Support adding custom name, click 「AS」 to add alias.
+##### No Data Fill {#fillin}
 
-![](../img/3.chart_8.png)
+Set the filling method for null values. After setting, it is displayed as **fill** in queries, including three types:
+
+| Function | Description |
+| --- | --- |
+| Previous Value Fill (previous) | Convert null values to the previous value. |
+| Linear Fill (linear) | Perform linear function calculation on null values and fill them. |
+| Value Fill | Customizable fill value. |
+
+##### Advanced Functions
+
+Advanced functions are mainly used for further function calculations on data queried by DQL and provide intuitive time series chart displays. <<< custom_key.brand_name >>> time series charts support custom functions for secondary processing and returning data results.
+
+> For more details, refer to [Advanced Functions](../../dql/advanced-funcs/index.md).
 
 #### Hide Query
 
-Click the 「Hide」 icon to hide the results of that query on the chart. As you can see from the chart below, the system loading data only shows the results of 1 minute and 15 minutes queries, the results of 5 minutes system loading queries have been hidden and cannot be viewed on the chart.
+Click the :material-eye-outline: icon to hide the query result of that line on the chart.
 
-![](../img/3.chart_9.png)
+As shown below, the system loads data only displaying 1m and 15m query results, while the 5m system load query result is hidden and cannot be viewed on the chart.
 
-#### Copying a query
+![Hide Query Result](../../img/enable_chart_query_result.png)
 
-Click the "Copy" icon to copy the query.
+### Expression Query
 
-#### Delete a query
-
-Click the "Delete" icon to delete the query.
-
-### DQL queries
-
-During the chart query process, you can switch to DQL mode when a simple query can no longer meet your needs. Click 「</>」 to manually enter a DQL statement for a chart query, and tap the screen anywhere to execute the query statement and refresh the chart, the system will prompt for the wrong DQL query statement.
-
-DQL is a language developed specifically for guances, and a chart supports multiple DQL queries at the same time. For details, see [DQL Query] (../../dql/query.md).
-
-![](../img/chart021.png)
-
-### Expression Queries
-
-Expression queries perform calculations by adding expressions. If the expression query contains multiple query statements, the grouping labels need to be consistent. In an expression calculation, if query A has units, the result of query A and the number also has units. For example, if the unit of A is KB, then the unit of A+100 is also KB.
+Calculate using added expressions. If the expression query contains multiple query statements, grouping tags need to remain consistent. In expression calculations, if Query A has units, the result of operations involving Query A and numbers also retains the units. For example, if A's unit is KB, then A+100 also has the unit KB.
 
 ![](../img/chart022.png)
 
-## Time slice {#time-slicing}
+### DQL Query
 
-### Turn on time slicing
+<<< custom_key.brand_name >>> supports switching to DQL mode to manually input DQL statements for chart queries.
 
-Time slicing is generally used in conjunction with time intervals. When time slicing is turned on, the original data is first aggregated in segments at a certain time interval, and then the aggregated data set is aggregated a second time to get the result value.
+> A single chart supports multiple DQL queries simultaneously. For more details, refer to [DQL Query](../../dql/query.md).
+
+![DQL Query](../../img/chart021.png)
+
+### PromQL Query {#PromQL}
+
+<<< custom_key.brand_name >>> supports writing PromQL queries to fetch data.
+
+| Query Type      | Description        |
+| ----------- | -------- |
+| Range Query      | Run queries over a time range        |
+| Instant Query      | Run queries for a single point in time        |
+
+PromQL is added by default as a text box input. In this input box, both simple PromQL queries and expression queries can be entered.
+
+> Click to learn about [Comparison of DQL and Other Query Languages](../../dql/dql-vs-others.md#promql); or visit [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+
+
+### Add Data Source {#func}
+
+Perform operations like filtering, searching, and aggregating data stored in databases.
+
+![Add Data Source](../../img/func.png)
+
+> Specific configuration methods see [External Function Configuration](../../dql/dql-out-func.md).
+
+<!-- 
+
+#### Preset Field Query
+
+If workspace data reporting is interrupted, preset field values can be configured in queries when configuring chart queries, defaulting to numeric type and displaying [aggregation functions](#aggregate-function).
+-->
+
+
+
+<!--
+If you have published scripts and synchronized them to the corresponding workspace in the Function platform, you can directly select Func data sources from the table below. <<< custom_key.brand_name >>> automatically retrieves workspace Issue information, ultimately providing visualized data display. Currently <<< custom_key.brand_name >>> supports listing handling duration statistics for [resolved Issues](../../exception/issue.md#others).
+
+| Function List    | Description |
+| --------- | ----------- |
+| incidents-issue_total_count | Incident-total number of issues |
+| incidents-open_issue_count | Incident-number of open issues |
+| incidents-pending_issue_count | Incident-number of pending issues |
+| incidents-resolved_issue_count | Incident-number of resolved issues |
+| incidents-average_issue_duration | Incident-average handling duration |
+| incidents-max_issue_duration | Incident-maximum handling duration |
+| incidents-issue_count_distribution_by_level | Incident-distribution by issue level |
+| incidents-issue_count_distribution_by_reference | Incident-distribution by issue source |
+| incidents-issue_count_by_assignee(top10) | Incident-TOP 10 assignees by issue count |
+| incidents-issue_duration_by_assignee(top10) | Incident-TOP 10 assignees by issue handling duration |
+| incidents-unresolved_issue_assignee_distribution | Incident-distribution of unresolved issues by assignee |
+| incidents-unresolved_issue_list | Incident-list of unresolved issues |
+-->
+
+
+
+<!--
+## Time Slicing {#time-slicing}
+
+### Enable Time Slicing
+
+Time slicing generally works with time intervals. After enabling time slicing, raw data is first segmented and aggregated according to a specified time interval, and then the aggregated dataset is re-aggregated to get the final result.
 
 ![](../img/8.chart_7.png)
 
-在In the example overview chart below, the memory active in the last hour is first aggregated in 5-minute intervals to obtain 12 averages, and then the maximum value is displayed on the chart.
+In the following overview diagram, memory activity within the last hour is first aggregated into 12 average values with a 5-minute interval, and then the maximum value is displayed on the chart.
 
 ![](../img/8.chart_8.png)
 
-### Turn off time slicing
+### Disable Time Slicing
 
-If time slicing is not turned on, all the raw data collected is aggregated according to the selected function to get the result value.
+If time slicing is not enabled, all collected raw data is aggregated based on the selected function to get the result.
 
-![](../img/8.chart_6.png)
+<img src="../../img/8.chart_6.png" width="70%" >
 
-In the following example overview chart, the memory active in the last hour is averaged and displayed on the chart.
+In the following overview diagram, the average value of memory activity within the last hour is displayed on the chart.
 
 ![](../img/8.chart_9.png)
 
-## Chart Thousands {#thousand}
+## Thousand Separator {#thousand}
 
-The guance dashboard chart query results support automatic addition of data in thousandths format.
+<<< custom_key.brand_name >>> dashboard chart query results support automatic thousand separator formatting.
 
 ![](../img/13.table_1.png)
 
-If the unit is set, the data format is displayed according to the set unit.
+If a unit is set, data format follows the set unit.
 
 ![](../img/13.table_2.png)
 
-After setting, the data can be displayed in thousandths data format in preview, or in unit setting format if units are set.
+After setting, previewed data will display in thousand separator format, and if a unit is set, it will follow the unit format.
 
-- Kilobits data format display
+- Thousand separator data format:
 
-![](../img/13.table_4.png)
+<img src="../../img/13.table_4.png" width="70%" >
 
-- The set data format is displayed
+- Set data format:
 
-![](../img/13.table_5.png)
-
+<img src="../../img/13.table_5.png" width="70%" >
+-->

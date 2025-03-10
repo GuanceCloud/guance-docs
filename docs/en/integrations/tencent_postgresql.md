@@ -2,99 +2,102 @@
 title: 'Tencent Cloud PostgreSQL'
 tags: 
   - Tencent Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/tencent_postgresql'
 dashboard:
 
-  - desc: 'Tencent PostgreSQL Dashboard'
-    path: 'dashboard/zh/tencent_postgresql'
+  - desc: 'Tencent Cloud PostgreSQL built-in views'
+    path: 'dashboard/en/tencent_postgresql'
 
 monitor:
-  - desc: 'Tencent PostgreSQL Monitor'
+  - desc: 'Tencent Cloud PostgreSQL monitor'
+    path: 'monitor/en/tencent_postgresql'
+
+
 ---
 <!-- markdownlint-disable MD025 -->
 # Tencent Cloud PostgreSQL
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-To synchronize the monitoring data of PostgreSQL cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud - **PostgreSQLCollect**）」(ID：`guance_tencentcloud_postgresql`)
 
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+### Install PostgreSQL Collection Script
 
-Click [Deploy Startup Scripts], the system will automatically create the `Startup` script set and automatically configure the corresponding startup scripts.
+> Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-You can see the corresponding auto-trigger configuration in "Management / Auto-trigger Configuration" after you turn it on. Click "Execute" to execute the task immediately without waiting for the regular time. Wait for a while, you can check the record and log of the executed task.
+To synchronize PostgreSQL monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-PostgreSQL Collection)" (ID: `guance_tencentcloud_postgresql`)
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+Click [Install], then enter the required parameters: Tencent Cloud AK, Tencent Cloud account name.
 
-<!-- markdownlint-disable MD001 -->
-### Verify
-<!-- markdownlint-enable -->
+Click [Deploy Startup Script], the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
-2. On the Guance cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists.
-3. On the Guance cloud platform, press 「Metrics」 to check whether monitoring data exists.
+After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click [Execute] to immediately run once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-## Metric {#metric}
-Configure Tencent Cloud COS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}
+> If you need to collect corresponding logs, you also need to enable the corresponding log collection script. If you need to collect billing data, you need to enable the cloud billing collection script.
 
-### Monitor Metric
+By default, we collect some configurations, for more details see the metrics section [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
-| Metric name      | Metric        | Implication                        | Unit  | Dimensions              |
-| --------------- | ---------------------- | --------------------------- | ----- | ----------------- |
-| `Cpu`  | CPU Utilization     | Actual CPU utilization  | %    | resourceId |
-| `DataFileSize`  | Data File Size  | Size of space occupied by data files   | GB | resourceId |
-| `LogFileSize`  | Log File Size  | Size of log files  | MB | resourceId |
-| `TempFileSize`  | Temporary File Size  | Size of temporary files  | times | resourceId |
-| `StorageRate`  | Storage Utilization Rate  | Total storage space utilization, including temporary files, data files, log files, and other types of database files  | % | resourceId |
-| `Qps`  | Queries per Second   | Average number of SQL statements executed per second  | times/s | resourceId |
-| `Connections`  | Connections   | The current total number of connections to the database when initiating a collection against the database  | count | resourceId |
-| `NewConnIn5s`  | New Connections in 5 Seconds  | Number of all connections established in the last 5 seconds when initiating a collection against a database  | times | resourceId |
-| `ActiveConns` | Active Connections | Database transient active connection (non-idle connection) when initiating a collection against the database    | count | resourceId |
-| `IdleConns` | Idle Connections | Instantaneous idle connections (idle connections) to the database queried when initiating a collection against the database  | count | resourceId |
-| `Waiting`   | Waiting Sessions   | Number of sessions the database is waiting for when a capture is initiated against the database (status is waiting) | times/s | resourceId |
-| `LongWaiting` | Long Waiting Sessions | Number of sessions where the database waited for more than 5 seconds during a collection cycle (status is waiting and the wait status was maintained for 5 seconds)  | count | resourceId |
-| `IdleInXact`  | Idle Transactions  | The number of transactions in the database that are in idle state at the time the capture is initiated on the database | count | resourceId |
-| `LongXact`   | Transactions with Execution Time Longer than 1 Second  | Number of transactions with an execution time of more than 1 second in a capture cycle  | count | resourceId |
-| `Tps` | Transactions per Second | Average number of successful transactions executed per second (including rollbacks and commits)  | times/s | resourceId |
-| `XactCommit` | Transactions Committed per Second  | Average number of transactions committed per second  | times/s | resourceId |
-| `XactRollback`   | Transactions Rolled Back per Second  | Average number of transactions rolled back per second  | times/s | resourceId |
-| `ReadWriteCalls` | Requests  | Total number of requests in a statistical cycle  | count | resourceId |
-| `ReadCalls` | Read Requests  | Number of read requests in a statistical cycle  | count | resourceId |
-| `WriteCalls` | Write Requests  | Number of write requests in a statistical cycle  | count | resourceId |
-| `OtherCalls` | Other Requests  | Number of other requests (begin, create, non-DML, DDL, DQL operations) in a statistical cycle  | count | resourceId |
-| `HitPercent` | Buffer Cache Hit Rate  | Hit rate of all SQL statements executed in a request cycle  | % | resourceId |
-| `SqlRuntimeAvg` | Average Execution Latency  | Average execution latency of all SQL statements in a statistical cycle  | ms | resourceId |
-| `SqlRuntimeMax` | Top 10 Longest Execution Latency  | Average execution latency of the top 10 longest SQLs in a statistical period  | ms | resourceId |
-| `SqlRuntimeMin` | Top 10 Shortest Execution Latency  | Average execution latency of the top 10 shortest SQLs in a statistical cycle  | ms | resourceId |
-| `SlowQueryCnt` | Number of Slow Queries  | Number of slow queries in a collection cycle  | count | resourceId |
-| `LongQuery` | Number of SQL Queries with Execution Time Longer than 1 Second  | Number of SQL queries that take longer than 1s to execute when a collection is initiated against the database.  | count | resourceId |
-| `2pc` | Number of 2PC Transactions  | Number of current 2PC transactions when initiating a collection against the database  | count | resourceId |
-| `Long2pc` | Number of 2PC Transactions Not Committed for More than 5 Seconds  | Number of 2PC transactions with a current execution time of more than 5s when the database initiates a collection  | count | resourceId |
-| `Deadlocks` | Number of Deadlocks  | Number of all deadlocks in an acquisition cycle  | count | resourceId |
-| `Memory` | Memory Usage  | Memory Used  | MB | resourceId |
-| `MemoryRate` | Memory Utilization Rate  | Memory Used Percentage of Total Occupancy  | % | resourceId |
 
-## Object {#object}
+### Verification
 
-Collected Tencent Cloud PostgreSQL object data structure, you can see the object data from "Infrastructure - Customize".
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
+2. On the Guance platform, in "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, in "Metrics", check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}
+
+### Monitoring Metrics
+
+| Metric English Name | Metric Chinese Name | Meaning | Unit | Dimensions |
+| ------------------- | ------------------- | ------- | ---- | ---------- |
+| `Cpu` | CPU Utilization | Actual CPU utilization | % | resourceId |
+| `DataFileSize` | Data File Size | Size of data files | GB | resourceId |
+| `LogFileSize` | Log File Size | Size of WAL log files | MB | resourceId |
+| `TempFileSize` | Temporary File Size | Size of temporary files | times | resourceId |
+| `StorageRate` | Storage Space Usage Rate | Total storage space usage rate, including temporary files, data files, log files, and other types of database files | % | resourceId |
+| `Qps` | Queries Per Second | Average number of SQL statements executed per second | times/sec | resourceId |
+| `Connections` | Connections | Total number of current connections to the database when initiating collection | count | resourceId |
+| `NewConnIn5s` | New Connections in 5 Seconds | Number of all connections established within the last 5 seconds when initiating collection | times | resourceId |
+| `ActiveConns` | Active Connections | Instantaneous active connections (non-idle connections) when initiating collection | count | resourceId |
+| `IdleConns` | Idle Connections | Instantaneous idle connections (idle connections) when initiating collection | count | resourceId |
+| `Waiting` | Waiting Sessions | Number of sessions currently waiting (status is waiting) when initiating collection | times/sec | resourceId |
+| `LongWaiting` | Sessions Waiting Over 5 Seconds | Number of sessions that have been waiting for more than 5 seconds (status is waiting and maintained for 5 seconds) within one collection cycle | count | resourceId |
+| `IdleInXact` | Idle Transactions | Number of transactions currently in idle state when initiating collection | count | resourceId |
+| `LongXact` | Transactions Executing Over 1 Second | Number of transactions that took longer than 1 second within one collection cycle | count | resourceId |
+| `Tps` | Transactions Per Second | Average number of successful transactions executed per second (including rollbacks and commits) | times/sec | resourceId |
+| `XactCommit` | Transaction Commits | Average number of transactions committed per second | times/sec | resourceId |
+| `XactRollback` | Transaction Rollbacks | Average number of transactions rolled back per second | times/sec | resourceId |
+| `ReadWriteCalls` | Requests | Total number of requests within a statistical period | times | resourceId |
+| `ReadCalls` | Read Requests | Total number of read requests within a statistical period | times | resourceId |
+| `WriteCalls` | Write Requests | Total number of write requests within a statistical period | times | resourceId |
+| `OtherCalls` | Other Requests | Total number of other requests (begin, create, non-DML, DDL, DQL operations) within a statistical period | times | resourceId |
+| `HitPercent` | Buffer Cache Hit Rate | Hit rate of all SQL statements executed within a request period | % | resourceId |
+| `SqlRuntimeAvg` | Average Execution Latency | Average execution latency of all SQL statements within one statistical period | ms | resourceId |
+| `SqlRuntimeMax` | Longest TOP10 Execution Latency | Average execution latency of the longest TOP10 SQL statements within one statistical period | ms | resourceId |
+| `SqlRuntimeMin` | Shortest TOP10 Execution Latency | Average execution latency of the shortest TOP10 SQL statements within one statistical period | ms | resourceId |
+| `SlowQueryCnt` | Slow Query Count | Number of slow queries within one collection cycle | count | resourceId |
+| `LongQuery` | SQLs Executing Over 1 Second | Number of SQL statements that took longer than 1 second when initiating collection | count | resourceId |
+| `2pc` | 2PC Transactions | Number of current 2PC transactions when initiating collection | count | resourceId |
+| `Long2pc` | 2PC Transactions Over 5 Seconds Uncommitted | Number of 2PC transactions that have been executing for more than 5 seconds when initiating collection | count | resourceId |
+| `Deadlocks` | Deadlock Count | Total number of deadlocks within one collection cycle | count | resourceId |
+| `Memory` | Memory Usage | Amount of memory used | MB | resourceId |
+| `MemoryRate` | Memory Usage Rate | Percentage of used memory out of total available memory | % | resourceId |
+
+## Objects {#object}
+
+The collected Tencent Cloud **postgresql** object data structure can be viewed in "Infrastructure - Custom"
 
 ```json
 {
@@ -119,37 +122,34 @@ Collected Tencent Cloud PostgreSQL object data structure, you can see the object
     "CreateTime"       : "2022-08-24 13:54:00",
     "DeadLine"         : "2072-08-24 13:54:00",
     "ReadonlyInstances": "[]",
-    "RelatedInstance"  : "{Instance JSON data}",
-    "ReplicaSets"      : "{Instance JSON data}",
+    "RelatedInstance"  : "{instance JSON data}",
+    "ReplicaSets"      : "{instance JSON data}",
     "StandbyInstances" : "[]",
-    "message"          : "{Instance JSON data}",
+    "message"          : "{instance JSON data}",
   }
 }
 ```
 
-## Logging {#logging}
+## Logs {#logging}
 
-### Slow query statistics
+### Slow Query Statistics
 
-#### Preconditions
+#### Prerequisites
 
-> Tip 1: The code running of this script depends on the collection of PostgreSQL instance objects. If the custom collection of PostgreSQL object is not configured, the slow log script cannot collect slow log data.
-
-<!-- markdownlint-disable MD024 -->
-#### Installation script
-<!-- markdownlint-enable -->
-
-On the basis of the previous, you need to install another script for TencentCloud PostgreSQL slow query statistics log collection.
-
-In "Manage/Script Marketplace", click and install the corresponding script package:
+> Note 1: This script's code execution depends on the collection of PostgreSQL instance objects. If PostgreSQL custom object collection is not configured, the slow log script cannot collect slow log data.
 
 
-- 「Guance Integration (Tencent Cloud - PostgreSQL Slow Query Log Collection)  」(ID：`guance_tencentcloud_postgresql_slowlog`)
+#### Install Log Collection Script
 
+On top of the previous setup, you need to install a script corresponding to **PostgreSQL slow query statistics log collection**
 
-After data is synchronized, you can view the data in Logs of the Guance.
+In "Manage / Script Market", click and install the corresponding script package:
 
-The following is an example of the reported data:
+- "Guance Integration (Tencent Cloud-PostgreSQL Slow Query Log Collection)" (ID: `guance_tencentcloud_postgresql_slowlog`)
+
+After data is synchronized normally, you can view the data in the "Logs" section of Guance.
+
+Example of reported data:
 
 ```json
 {
@@ -188,32 +188,27 @@ The following is an example of the reported data:
       "LastTime"    : "2021-07-27 03:12:01",
       "MaxCostTime" : "101.828125",
       "MinCostTime" : "101.828125",
-      "message"     : "{Slow query JSON data}"
+      "message"     : "{slow query JSON data}"
   }
 }
 
 
 ```
 
-> Note: The fields in tags and Fields may change with subsequent updates
->
-> Tip 1: The tags value is supplemented by a custom object
->
-> Tip 2: 'fields.message' is the JSON serialized string
->
-> Tip 3: 'fields.Slowlog' records each record for all slow query details
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
+> Note 1: `tags` values are supplemented by custom objects.
+> Note 2: `fields.message` is a JSON serialized string.
 
-### **Appendice**
+### Appendix
 
-#### TencentCloud-PostgreSQL「Region」
+#### TencentCloud-PostgreSQL "Regions"
 
-Please refer to the official Tencent documentation:
+Refer to the official Tencent documentation:
 
-- [TencentCloud-MongoDB Region ID](https://cloud.tencent.com/document/api/409/16764)
+- [TencentCloud-MongoDB Region IDs](https://cloud.tencent.com/document/api/409/16764)
 
 
-#### TencentCloud-PostgreSQL「Slow Log Information Documentation」
-Please refer to the official Tencent documentation:
+#### TencentCloud-PostgreSQL "Slow Log Information Documentation"
+Refer to the official Tencent documentation:
 
-- [TencentCloud-PostgreSQL Slow Log Details Documentation](https://cloud.tencent.com/document/api/409/60541)
-
+- [TencentCloud-PostgreSQL Slow Log Detailed Information Documentation](https://cloud.tencent.com/document/api/409/60541)

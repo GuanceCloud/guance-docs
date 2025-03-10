@@ -1,79 +1,80 @@
 ---
-title: 'HUAWEI GaussDB-Cassandra'
+title: 'Huawei Cloud GaussDB-Cassandra'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'The displayed metrics for Huawei Cloud GaussDB-Cassandra include read/write throughput, latency, data consistency, and scalability. These metrics reflect the performance and reliability of GaussDB-Cassandra in handling large-scale distributed data storage and access.'
 __int_icon: 'icon/huawei_gaussdb_cassandra'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD GaussDB-Cassandra Dashboard'
-    path: 'dashboard/zh/huawei_gaussdb_cassandra'
+  - desc: 'Built-in Views for Huawei Cloud GaussDB-Cassandra'
+    path: 'dashboard/en/huawei_gaussdb_cassandra'
 
 monitor:
-  - desc: 'HUAWEI CLOUD GaussDB-Cassandra Monitor'
-    path: 'monitor/zh/huawei_gaussdb_cassandra'
+  - desc: 'Monitors for Huawei Cloud GaussDB-Cassandra'
+    path: 'monitor/en/huawei_gaussdb_cassandra'
 
 ---
 
-
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD GaussDB-Cassandra
+# Huawei Cloud GaussDB-Cassandra
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+The displayed metrics for Huawei Cloud GaussDB-Cassandra include read/write throughput, latency, data consistency, and scalability. These metrics reflect the performance and reliability of GaussDB-Cassandra in handling large-scale distributed data storage and access.
 
-## ConfiG {#config}
+
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automate)」: All preconditions are installed automatically, Please continue with the script installation.
+We recommend enabling Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func yourself, Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Installation script
+### Installation Script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize the monitoring data of  HUAWEI CLOUD GaussDB-Cassandra cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD GaussDB-Cassandra Collect）」(ID：`guance_huaweicloud_gaussdb_cassandra`)
+To synchronize monitoring data from Huawei Cloud DIS, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-GaussDB-Cassandra Collection)」(ID: `guance_huaweicloud_gaussdb_cassandra`)
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
+After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
-tap【Deploy startup Script】, The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After the script is installed, Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-GaussDB-CassandraCollect）」, Expand to modify this script, find `collector_configs`and`monitor_configs`Edit the content in`region_projects`, Change the locale and Project ID to the actual locale and Project ID, Click Save Publish again.
+Once the script is installed, find the script 「Guance Integration (Huawei Cloud-GaussDB-Cassandra Collection)」 under 「Development」 in Func, expand and modify this script. Find `collector_configs` and `monitor_configs`, and edit the content of `region_projects` below, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」. tap【Run】, It can be executed immediately once, without waiting for a periodic time. After a while, you can view task execution records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+By default, we collect some configurations; for details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
 
-### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+### Verification
 
-## Metric {#metric}
-Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/cassandraug-nosql/nosql_03_0011.html){:target="_blank"}
+1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and check the task records and logs for any anomalies.
+2. On the Guance platform, go to 「Infrastructure / Custom」 to check if asset information exists.
+3. On the Guance platform, go to 「Metrics」 to check if there are corresponding monitoring data.
 
-| **Metric ID**                 | Metric Name               | **Description**                                           | Value Range | Monitored Object                  | Monitoring Period (Raw Data) |
+## Metrics {#metric}
+After configuring Huawei Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/cassandraug-nosql/nosql_03_0011.html){:target="_blank"}
+
+| Metric ID                                | Metric Name             | Metric Description                                                     | Value Range      | Measurement Object | Monitoring Period (Original Metric)|
 | ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
-| `cassandra001_cpu_usage`       | CPU Usage      | CPU usage of an instance Unit: Percent                | 0~100 %  | GaussDB(for Cassandra) instance nodes | 1 minute                                             |
-| `cassandra002_mem_usage`       | Memory Usage | Memory usage of the instance Unit: Percent               | 0~100 %  | GaussDB(for Cassandra) instance nodes | 1 minute                |
-| `cassandra003_bytes_out`       | Network Output Throughput | Outgoing traffic in bytes per second Unit: byte/s | ≥ 0 kb/s | GaussDB(for Cassandra) instance nodes | 1 minute                |
-| `cassandra004_bytes_in`    | Network Input Throughput | Incoming traffic in bytes per second Unit: byte/s | ≥ 0 kb/s | GaussDB(for Cassandra) instance nodes | 1 minute                |
-| `nosql005_disk_usage`      | Storage Space Usage    | Storage space usage of the monitored object Unit: Percent                | 0~100 %  | GaussDB(for Cassandra) instance nodes | 1 minute                |
-| `nosql006_disk_total_size` | Total Storage Space     | Total storage space of the monitored object Unit: GB                | ≥ 0 GB   | GaussDB(for Cassandra) instance nodes | 1 minute                |
-| `nosql007_disk_used_size`  | Used Storage Space     | Used storage space of the monitored object Unit: GB          | ≥ 0 GB   | GaussDB(for Cassandra) instance nodes | 1 minute                |
-| `cassandra014_connections` | Active Node Connections | Total number of connections attempting to connect to Cassandra instance nodes Unit: count | ≥ 0 Counts | GaussDB(for Cassandra) instance nodes | 1 minute |
-| `cassandra015_read_latency` | Average Read Latency | Average amount of time consumed by read requests Unit: ms | ≥ 0 ms | GaussDB(for Cassandra) instance nodes | 1 minute |
-| `cassandra016_write_latency` | Average Write Latency | Average amount of time consumed by write requests Unit: ms | ≥ 0 ms | GaussDB(for Cassandra) instance nodes | 1 minute |
-| `cassandra037_pending_write` | Suspended Write Tasks | Number of write tasks in waiting status Unit: count | ≥ 0 Counts | GaussDB(for Cassandra) instance nodes | 1 minute |
-| `cassandra038_pending_read` | Suspended Read Tasks | Number of read tasks in waiting status Unit: count | ≥ 0 Counts | GaussDB(for Cassandra) instance nodes | 1 minute |
+| `cassandra001_cpu_usage`       | CPU Utilization      | This metric collects CPU usage at the system level. Unit: %                  | 0~100 %  | GaussDB(for Cassandra) instance node | 1 minute                                             |
+| `cassandra002_mem_usage`       | Memory Utilization     | This metric collects memory usage at the system level. Unit: %                 | 0~100 %  | GaussDB(for Cassandra) instance node | 1 minute                |
+| `cassandra003_bytes_out`       | Network Output Throughput | Statistics on average traffic output per second from all network adapters of the measurement object. Unit: kb/s | ≥ 0 kb/s | GaussDB(for Cassandra) instance node | 1 minute                |
+| `cassandra004_bytes_in`    | Network Input Throughput | Statistics on average traffic input per second from all network adapters of the measurement object. Unit: kb/s | ≥ 0 kb/s | GaussDB(for Cassandra) instance node | 1 minute                |
+| `nosql005_disk_usage`      | Disk Utilization     | This metric statistics disk utilization of the measurement object. Unit: %                 | 0~100 %  | GaussDB(for Cassandra) instance node | 1 minute                |
+| `nosql006_disk_total_size` | Total Disk Size     | This metric statistics total disk size of the measurement object. Unit: GB                | ≥ 0 GB   | GaussDB(for Cassandra) instance node | 1 minute                |
+| `nosql007_disk_used_size`  | Disk Used Size     | This metric statistics total used disk size of the measurement object. Unit: GB          | ≥ 0 GB   | GaussDB(for Cassandra) instance node | 1 minute                |
+| `cassandra014_connections` | Active Connections | This metric statistics current active connections of the Cassandra instance node. Unit: Counts | ≥ 0 Counts | GaussDB(for Cassandra) instance node | 1 minute |
+| `cassandra015_read_latency` | Read Latency | This metric statistics average time spent on database read requests. Unit: ms | ≥ 0 ms | GaussDB(for Cassandra) instance node | 1 minute |
+| `cassandra016_write_latency` | Write Latency | This metric statistics average time spent on database write requests. Unit: ms | ≥ 0 ms | GaussDB(for Cassandra) instance node | 1 minute |
+| `cassandra037_pending_write` | Pending Write Tasks | Describes the number of pending write tasks currently queued. Unit: Counts | ≥ 0 Counts | GaussDB(for Cassandra) instance node | 1 minute |
+| `cassandra038_pending_read` | Pending Read Tasks | Describes the number of pending read tasks currently queued. Unit: Counts | ≥ 0 Counts | GaussDB(for Cassandra) instance node | 1 minute |
 
-## Object {#object}
+## Objects {#object}
 
-The collected HUAWEI CLOUD GaussDB-Cassandra  object data structure can see the object data from 「Infrastructure-Custom」
+The collected Huawei Cloud GaussDB-Cassandra object data structure can be viewed in 「Infrastructure - Custom」
 
 ``` json
 {
@@ -107,18 +108,14 @@ The collected HUAWEI CLOUD GaussDB-Cassandra  object data structure can see the 
 
 ```
 
-
-> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tips 1：`tags.name`The value is the instance ID for unique identification
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Tips 2：The following fields are JSON serialized strings
+> Tip 2: The following fields are serialized JSON strings:
 >
 > - `fields.message`
 > - `fields.backup_strategy`
 > - `fields.datastore`
 > - `fields.groups`
 > - `fields.actions`
-
-
-

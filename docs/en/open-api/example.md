@@ -1,23 +1,22 @@
-# Request Example
+# Request Examples
 
 ---
 
-This article lists some examples of requests for the Open API. 
-
+This article lists some request examples for Open API.
 
 ## GET Request
 
-### Take getting the dashboard list interface as an example
-The request is as follows
+### Example of Getting the Dashboard List Interface
+Request as follows:
 ```bash
-curl "https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
+curl "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \
   --compressed \
   --insecure
 ```
 
-Response result:
+Response result as follows:
 ```bash
 {
     "code":200,
@@ -39,10 +38,10 @@ Response result:
 
 ## POST Request
 
-### Take removing the dashboard interface as an example
-The request is as follows
+### Example of Deleting a Dashboard Interface
+Request as follows:
 ```bash
-curl "https://openapi.guance.com/api/v1/dashboards/${dashboard_uuid}/delete" \
+curl "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/${dashboard_uuid}/delete" \
   -X "POST" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \
@@ -50,7 +49,7 @@ curl "https://openapi.guance.com/api/v1/dashboards/${dashboard_uuid}/delete" \
   --insecure
 ```
 
-Response result:
+Response result as follows:
 ```bash
 {
     "code":200,
@@ -63,7 +62,6 @@ Response result:
 ```
 
 
+## Notes
 
-## Description
-
-${DF_API_KEY}: Indicate the caller API Key. See [API Key management](../management/api-key/open-api.md)
+${DF_API_KEY}: Represents the caller's API KEY. For obtaining methods, see [API Key Management](../management/api-key/open-api.md)

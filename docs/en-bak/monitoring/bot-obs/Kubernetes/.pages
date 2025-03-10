@@ -1,0 +1,3 @@
+nav:
+  - 'Kubernetes Pod Abnormal Restart Intelligent Inspection': k8s-pod-restart.md
+  - 'Kubernetes Health Intelligent Integration': k8s-health.md

@@ -1,68 +1,68 @@
 ---
-title: 'Azure Public Ip Address'
+title: 'Azure Public IP Address'
 tags:
   - 'AZURE'
-summary: 'Collect Azure Public Ip Address metric data'
+  - 'Network'
+summary: 'Collect Azure Public IP Address Metrics data'
 __int_icon: 'icon/azure_public_ip'
 dashboard:
-  - desc: 'Azure Public Ip Address'
+  - desc: 'Azure Public IP Address monitoring view'
     path: 'dashboard/en/azure_public_ip'
-monitor   :
-  - desc  : 'Azure Public Ip Address'
-    path  : 'monitor/en/azure_public_ip'
+monitor:
+  - desc: 'Not available yet'
+    path: '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Azure Public Ip Address
+# Azure Public IP Address
 <!-- markdownlint-enable -->
 
-Collect Azure Public Ip Address metric data.
+Collect Azure Public IP Address Metrics data.
 
-## Config {#config}
+## Configuration {#config}
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+### Install Func
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-> Recommend deploying GSE (Game Server Engine) edition translation.
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+> We recommend deploying the GSE version
 
+### Install Script
 
-> Tip: Please prepare the required Azure application registration information in advance and assign the role of subscribing to `Monitoring Reader` to the application registration
+> Note: Please prepare the required Azure application registration information in advance and assign the `Monitoring Reader` role to the application registration.
 
-To synchronize the monitoring data of Azure Virtual Machines resources, we install the corresponding collection script: `ID:guance_azure_network_public_ip_address`
+To synchronize Azure Public IP Address monitoring data, we install the corresponding collection script: 「Guance Integration (Azure-Network Public IP Address Collection)」(ID: `guance_azure_network_public_ip_address`)
 
-
-After clicking on **Install**, enter the corresponding parameters:
+After clicking 【Install】, enter the corresponding parameters:
 
 - `Azure Tenant ID`: Tenant ID
 - `Azure Client ID`: Application Registration Client ID
-- `Azure Client Secret Value`: Client password value, note not ID
-- `Subscriptions`: subscription ID, multiple subscriptions used `,` split
+- `Azure Client Secret Value`: Client secret value, not the ID
+- `Subscriptions`: Subscription ID, multiple subscriptions separated by `,`
 
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
 
-tap **Deploy startup Script**，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
 
-After this function is enabled, you can view the automatic triggering configuration in "**Management / Crontab Config**". Click "**Run**"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+We have configured some defaults; for details, see the Metrics section.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-azure-network-public-ip-address/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-azure-vm/){:target="_blank"}
 
+### Verification
 
+1. In 「Manage / Automatic Trigger Configuration」, confirm that the corresponding tasks have the automatic trigger configurations, and check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data is present.
 
-### Verify
+## Metrics {#metric}
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+After configuring Azure Public IP Address monitoring data, the default metric set is as follows. You can collect more metrics through configuration [Microsoft.Network/publicIPAddresses supported metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-network-publicipaddresses-metrics){:target="_blank"}
 
-## Metric {#metric}
-Configure Azure Virtual Machines monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Microsoft.Network/publicIPAddresses](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-network-publicipaddresses-metrics){:target="_blank"}
-
-| Metric Name | Description| Unit |
+| Metric Name | Description | Unit |
 | ---- | ------ | ------ |
-|`byte_count_total`| Total number of Bytes transmitted within time period | byte|
-|`packet_count_total`| Total number of Packets transmitted within time period| count |
-|`syn_count_total`| Total number of SYN Packets transmitted within time period | count |
-|`vip_availability_average`| Average IP Address availability per time duration | count |
-
+| `byte_count_total` | Total bytes transmitted during the period | byte |
+| `packet_count_total` | Total packets transmitted during the period | count |
+| `syn_count_total` | Total SYN packets transmitted during the period | count |
+| `vip_availability_average` | Average availability of the IP address for each duration | count |

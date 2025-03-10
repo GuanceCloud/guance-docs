@@ -1,30 +1,35 @@
 ---
 title     : 'Proxy'
-summary   : 'Proxy HTTP requests to Datakit'
-__int_icon      : 'icon/proxy'
+summary   : 'Proxy Datakit’s HTTP requests'
+tags:
+  - 'PROXY'
+__int_icon: 'icon/proxy'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Proxy collector used to proxy HTTP request.
+Proxy Datakit’s requests, sending its data from an internal network to the public network.
+
+<!-- TODO: A proxy network traffic topology diagram is missing here -->
 
 ## Configuration {#config}
 
 ### Collector Configuration {#input-config}
 
+Select a DataKit in the network that can access the internet as a proxy and configure its proxy settings.
+
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/proxy` directory under the DataKit installation directory, copy `proxy.conf.sample` and name it `proxy.conf`. Examples are as follows:
+    Navigate to the `conf.d/proxy` directory under the DataKit installation directory, copy `proxy.conf.sample` and rename it to `proxy.conf`. Example configuration:
     
     ```toml
         
@@ -37,117 +42,121 @@ Proxy collector used to proxy HTTP request.
       # allowed client IP address(in CIDR format)
       allowed_client_cidrs = []
     
-      # verbose mode will show more info about during proxying.
+      # verbose mode will show more info during proxying.
       verbose = false
     
       # mitm: man-in-the-middle mode
       mitm = false
     
     ```
-    
-    After configuration, [restart Datakit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+
+---
+
+???+ attention "Security-related Configuration"
+
+    In some cases, it may be necessary to expose this proxy on the public network. At this point, we need to take some necessary security measures to prevent the proxy from being exploited by attackers.
+
+    1. Enable client whitelist control (`allowed_client_cidrs`): Only proxy requests from specified clients, for example:
+
+    ```toml
+    # IPv6 CIDR configuration supported here
+    allowed_client_cidrs = ["10.0.0.0/8", "2001:db8::/32"]
+    ```
+
+    1. If deployed on a public cloud, set up internal network CIDR access on VPC. You can also add iptables rules on the corresponding host:
+
+    ```shell
+    # Example of OS-level firewall (using Linux iptables)
+    iptables -A INPUT -p tcp --dport 9530 -s 10.0.0.0/8 -j ACCEPT  # Allow only internal network access
+    iptables -A INPUT -p tcp --dport 9530 -j DROP
+    ```
+
 <!-- markdownlint-enable -->
 
 ## Network Topology {#network-topo}
 
-If all local Datakit Proxied there HTTP(s) requests to some proxy input:
+If an internal Datakit points its Proxy to a Datakit with a Proxy collector enabled:
 
 ```toml
-# /usr/local/datakit/conf.d/datakit.conf
 [dataway]
   http_proxy = "http://some-datakit-with-proxy-ip:port"
-  # some other configures...
 ```
 
-The topology seems like this(here proxy server bind on some IP's 9530 port):
+Then the request traffic from various internal Datakits will go through the Proxy (assuming the Proxy binds to port 9530):
 
 ``` mermaid
 flowchart LR;
 dk_A(Datakit A);
 dk_B(Datakit B);
 dk_C(Datakit C);
-dk_X_proxy("Datakit X's Proxy(some-ip:9530)");
+dk_X_proxy("Datakit X's Proxy(0.0.0.0:9530)");
 dw(Dataway/Openway);
 
-subgraph "Local network"
+subgraph "Internal Network"
 dk_A --> dk_X_proxy;
 dk_B --> dk_X_proxy;
 dk_C --> dk_X_proxy;
 end
 
-subgraph "Public network"
-dk_X_proxy ==> |https://openway.guance.com|dw;
+subgraph "Public Network"
+dk_X_proxy --> |https://openway.guance.com|dw;
 end
 ```
 
-### About MITM mode {#mitm}
+### About MITM Mode {#mitm}
 
-> MITM: Man In The Middle.
+Enabling MITM mode facilitates collecting more detailed metrics from the Proxy. The principle is as follows:
 
-We can enable MITM mode to observe more details about the proxy input:
+- When an internal Datakit connects to the Proxy, it must trust the HTTPS certificate provided by the Proxy collector (this certificate is definitely not secure, and its source is [here](https://github.com/elazarl/goproxy/blob/master/certs.go){:target="_blank"}).
+- Once Datakit trusts this HTTPS certificate, the Proxy collector can sniff the content of HTTPS packets and record more request-related metrics.
+- After recording the metrics, the Proxy collector forwards the request to Dataway using Guance’s secure HTTPS certificate.
 
-- All local Datakit connect to the proxy, it must enable option `tls_insecure`:
-
-```toml
-# /usr/local/datakit/conf.d/datakit.conf
-[dataway]
-  tls_insecure = true # Don't worry about the insecure settings, see below.
-  # some other configures...
-```
-
-Here the *insecure* means all local Datakit must trust the TLS certificate within the proxy server(the Proxy input), the certificate source is [here](https://github.com/elazarl/goproxy/blob/master/certs.go){:target="_blank"}.
-
-- Once Datakit trust the certificate, the proxy will see all details the the HTTP(s) request, and export more Prometheus metrics about them
-- The proxy will re-send the request to Dataway(and with **valid** TLS certificate)
+The Datakit and Proxy use an insecure certificate only within the internal network. When the Proxy forwards traffic to the public Dataway, it still uses a secure HTTPS certificate.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    While MITM enabled, the performance of Proxy input will decrease dramatically, because the Proxy need to read&copy incoming request. See more details about the benchmark below.
+    Enabling MITM mode significantly reduces the performance of the Proxy. See the performance test results below.
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
 
-Proxy input export some Prometheus metrics:
-
-| POSITION                        | TYPE    | NAME                                      | LABELS              | HELP                            |
-| ---                             | ---     | ---                                       | ---                 | ---                             |
-| *internal/plugins/inputs/proxy* | COUNTER | `datakit_input_proxy_connect`             | `client_ip`         | Proxied connect(method CONNECT) |
-| *internal/plugins/inputs/proxy* | COUNTER | `datakit_input_proxy_api_total`           | `api,method`        | Proxied API total               |
-| *internal/plugins/inputs/proxy* | SUMMARY | `datakit_input_proxy_api_latency_seconds` | `api,method,status` | Proxied API latency             |
-
-If some Datakit enabled Proxy input, there will be some metrics in dashboard of Datakit.
+Refer to the [Datakit Metrics](../datakit/datakit-metrics.md) section, search for `proxy` to get related metrics.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    Without MITM, `datakit_input_proxy_api_total` and `datakit_input_proxy_api_latency_seconds` will be null.
+    If MITM functionality is not enabled, there will be no `datakit_input_proxy_api_total` and `datakit_input_proxy_api_latency_seconds` metrics.
 <!-- markdownlint-enable -->
 
-## Benchmark {#benchmark}
+## Performance Testing {#benchmark}
 
-We got a simple HTTP(s) server & client to benchmark the proxy input. Basic settings:
+Using simple HTTP server/client programs, the basic environment parameters are as follows:
 
-- Machine: Apple M1 Pro/16GB
+- Hardware: Apple M1 Pro/16GB
 - OS: macOS Ventura 13
-- HTTP(s) server: A simple HTTP(s) server that route on `POST /v1/write/:category`, and response 200 immediately.
-- Client: POST a text file about 170KB(*metric.data*) to the server.
-- Proxy: Started a Proxy input(on `http://localhost:19530`) within a local Datakit
-- Jobs: 16 clients, each POST 100 requests
+- Server: An empty-running HTTPS service that accepts POST requests to `/v1/write/` and immediately returns 200
+- Client: POST a text file of about 170KB (*metric.data*) to the server
+- Proxy: A local Datakit Proxy collector running on `http://localhost:19530`
+- Request volume: 16 clients in total, each sending 100 requests
 
-The command seems like this:
+Command used:
 
 ```shell
-$./cli -c 16 -r 100 -f metric.data -proxy http://localhost:19530
+$ ./cli -c 16 -r 100 -f metric.data -proxy http://localhost:19530
+
+...
 ```
 
-We got following result(in Prometheus metrics):
+The performance test results are as follows:
 
-- Without MITM:
+- Performance without enabling MITM:
 
 ```not-set
 Benchmark metrics:
@@ -166,7 +175,7 @@ api_latency_seconds_count{api="/v1/write/xxx",status="200 OK"} 1600
 api_post_bytes_total{api="/v1/write/xxx",status="200 OK"} 2.764592e+08
 ```
 
-- With MITM, performance decrease dramatically(~100X):
+- Performance after enabling MITM (~100X slower):
 
 ``` not-set
 Benchmark metrics:
@@ -187,7 +196,7 @@ api_post_bytes_total{api="/v1/write/xxx",status="200 OK"} 2.764592e+08
 
 Conclusion:
 
-- Without MITM, the TPS is 1600/0.249329709 = 6417/Sec
-- With MITM, the TPS decrease to 1600/29.454341333 = 54/sec
+- Without MITM enabled, TPS is approximately 1600/0.249329709 = 6417/s
+- With MITM enabled, TPS drops to 1600/29.454341333 = 54/s
 
-So we do **NOT** recommend to enable MITM, it's a settings for debugging or testing.
+Therefore, **it is not recommended** to enable MITM in a production environment, use it only for debugging or testing.

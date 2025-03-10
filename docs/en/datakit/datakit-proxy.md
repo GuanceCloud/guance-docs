@@ -1,24 +1,15 @@
-# DataKit Agent
----
+# DataKit Proxy
 
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
+When DataKit cannot access the internet, you can deploy a proxy within the intranet to forward traffic. This document provides two implementation methods:
 
----
+- Through the built-in proxy service of DataKit
+- Through an Nginx proxy service
 
-When Datakit cannot access the external, a proxy can be deployed on the intranet to send traffic. This article provides two implementations:
+## Built-in DataKit Proxy {#datakit}
 
-- Through DataKit's built-in forward proxy service
-- Use Nginx as the proxy service
+Configuration for the built-in Proxy collector, refer to [this](../integrations/proxy.md).
 
-## Use DataKit Proxy {#datakit}
-
-Select a DataKit in the network that can access the external network as a proxy, and configure its proxy settings.
-
-Detailed proxy input configure, please refer to [here](../integrations/proxy.md).
-
-- Set the proxy mode of _proxy Datakit_.
-
-Go to the `conf.d/` directory under the proxy DataKit installation directory and configure the proxy service in _datakit.conf_. As follows:
+Enter the `conf.d/` directory under the **proxied** DataKit installation directory and configure the proxy service in `datakit.conf`. As follows:
 
 ```toml
 [dataway]
@@ -26,27 +17,30 @@ Go to the `conf.d/` directory under the proxy DataKit installation directory and
   http_proxy = "http://<PROXY-IP:PROXY-PORT>"
 ```
 
-Once configured, [restart DataKit](datakit-service-how-to.md#manage-service)。
+After configuration, [restart DataKit](datakit-service-how-to.md#manage-service).
 
-Test whether the proxy service is ok, sending metrics to the workspace:
+### Testing the Proxy {#testing}
+
+Test whether the proxy service is working properly:
+
+- By sending metrics to the workspace for testing
 
 ```shell
-$ curl -x <PROXY-IP:PROXY-PORT> -v -X POST https://openway.guance.com/v1/write/metrics?token=<YOUR-TOKEN> -d "proxy_test,name=test c=123i"
-...
+curl -x <PROXY-IP:PROXY-PORT> -v -X POST https://openway.guance.com/v1/write/metrics?token=<YOUR-TOKEN> -d "proxy_test,name=test c=123i"
 ```
 
-If the proxy server works properly, the workspace will receive metric data `proxy_test,name=test c=123i`.
+If the proxy server is working correctly, the workspace will receive the metric data `proxy_test,name=test c=123i`.
 
 ## Nginx {#nginx}
 
-Proxy HTTPS traffic nginx uses a 4-layer transparent proxy mode, that is, it needs:
+For proxying HTTPS traffic, Nginx uses a Layer 4 transparent proxy method, which requires:
 
-- a transparent nginx proxy server that can access the external network
-- The client where DataKit resides uses the hosts file for domain name configuration
+- A transparent proxy server running Nginx that can access the internet
+- The client machine where DataKit resides should use the *hosts* file for domain name configuration
 
-### Configure the `Nginx` Proxy Service {#config-nginx-proxy}
+### Configuring the `Nginx` Proxy Service {#config-nginx-proxy}
 
-```not-set
+``` nginx
 # Proxy HTTPS
 stream {
     # resolver 114.114.114.114;
@@ -64,9 +58,9 @@ http {
 }
 ```
 
-Proxy HTTP traffic here nginx uses 7 layers of transparent proxy (this section can be skipped if proxy HTTP is not needed):
+For proxying HTTP traffic, Nginx uses a Layer 7 transparent proxy method (if you do not need to proxy HTTP, you can skip this section):
 
-```not-set
+```nginx
 # Proxy HTTP
 http {
     # resolver 114.114.114.114;
@@ -75,39 +69,35 @@ http {
         listen 80;
         location / {
             proxy_pass http://$http_host$request_uri;    # Configure forward proxy parameters
-            proxy_set_header Host $http_host;            # Resolve nginx 503 error after "." in URL
-            proxy_buffers 256 4k;                        # Configure cache size
-            proxy_max_temp_file_size 0;                  # Turn off disk cache read and write to reduce I/O
-            proxy_connect_timeout 30;                    # Agent connection timeout
+            proxy_set_header Host $http_host;            # Solve the issue of Nginx returning 503 if the URL contains "."
+            proxy_buffers 256 4k;                        # Configure buffer size
+            proxy_max_temp_file_size 0;                  # Disable disk cache read/write to reduce I/O
+            proxy_connect_timeout 30;                    # Set proxy connection timeout
             proxy_cache_valid 200 302 10m;
             proxy_cache_valid 301 1h;
-            proxy_cache_valid any 1m;                    # Configure proxy server cache time
+            proxy_cache_valid any 1m;                    # Set proxy server cache duration
             proxy_send_timeout 60;
             proxy_read_timeout 60;
         }
     }
 
-    // ... other configurations
+    // ... Other configurations
 }
 ```
 
-### Load New Configuration and Test {#load-test}
+### Loading New Configuration and Testing {#load-test}
 
 ```shell
 $ nginx -t        # Test configuration
 ...
 
-$ nginx -s reload # reload configuration
+$ nginx -s reload # Reload configuration
 ...
 ```
 
-<!-- markdownlint-disable MD013 -->
-## Configure the Domain Name on the `Datakit` Agent Machine {#config-domain-name}
-<!-- markdownlint-enable -->
+Configure the domain names on the proxied machine's `Datakit`, assuming `192.168.1.66` is the IP address of the Nginx transparent proxy server.
 
-Let's assume that `192.168.1.66` is the IP address of the nginx transparent proxy server.
-
-```sh
+```shell
 $ sudo vi /etc/hosts
 
 192.168.1.66 static.guance.com
@@ -121,7 +111,8 @@ $ sudo vi /etc/hosts
 192.168.1.66 zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com
 ```
 
-On the agent machine, test whether the agent is normal:
+On the proxied machine, test whether the proxy is working properly:
+
 <!-- markdownlint-disable MD046 -->
 === "Linux/Unix Shell"
 
@@ -137,17 +128,17 @@ On the agent machine, test whether the agent is normal:
     curl -uri 'https://openway.guance.com/v1/write/metrics?token=<YOUR-TOKEN>' -Headers @{"param"="value"} -ContentType 'application/x-www-form-urlencoded' -body 'proxy_test_nginx,name=test c=123i' -method 'POST'
     ```
     
-    Note: Some PowerShell machines report the mistake of `curl : : Request aborted: Failed to create SSL/TLS secure channel`. Because the server-side certificate encryption version number is not supported locally by default, you can view the supported protocols with the command `[Net.ServicePointManager]::SecurityProtocol`. If you want local support, you can do the following:
+    Note: On some machines, PowerShell may report an error `curl: The request was aborted: Could not create SSL/TLS secure channel.` This occurs because the server certificate encryption version is not supported by the local default settings. You can check the supported protocols using the command `[Net.ServicePointManager]::SecurityProtocol`. To enable support locally, perform the following operations:
     
     ```PowerShell
-    # 64 bit PowerShell
+    # 64-bit PowerShell
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
     
-    # 32 bit PowerShell
+    # 32-bit PowerShell
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NetFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -Value '1' -Type DWord
     ```
     
-    Close the PowerShell window, open a new PowerShell window, and execute the following code to see the supported protocols:
+    Close the PowerShell window, open a new PowerShell window, and execute the following code to check the supported protocols:
     
     ```PowerShell
     [Net.ServicePointManager]::SecurityProtocol

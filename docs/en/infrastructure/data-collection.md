@@ -1,69 +1,71 @@
 # Data Collection
 ---
 
-Guance supports collecting data from hosts, cloud hosts, containers, processes and other cloud services, and then actively reports them to the workspace.
+<<< custom_key.brand_name >>> supports collecting object data from hosts, cloud hosts, containers, processes, and other cloud services, and actively reports it to the workspace.
 
-## Preconditions
+## Prerequisites
 
-- [Install DataKit](../datakit/datakit-install.md)
+[Install DataKit](../datakit/datakit-install.md).
 
 ## Data Collection
 
-### Host
+### Hosts
 
-After the DataKit installation is completed on the host to be observed, the system will open a batch of collectors related to the host by default, and actively report the data to the Guance workspace. 
+After completing the installation of DataKit on the host that needs to be observed, the system will automatically enable a batch of collectors related to the host and actively report data to the <<< custom_key.brand_name >>> workspace.
 
-> See [DataKit Collector Use](../datakit/datakit-input-conf.md); [Host](../datakit/hostobject.md).
+> For more details, refer to [DataKit Collector Usage](../datakit/datakit-input-conf.md) and [Host Object](../integrations/hostobject.md).
 
-**Note**: After enabling host collection, changing the hostname `host_name` will automatically add a new host. The original hostname will continue to be displayed in the **Infrastructure > Hosts** list. However, one hour after the change, the host will stop reporting data until it has not reported any data for 24 hours, at which point it will be removed from the list. Since the maximum number of DataKit instances within a 24-hour period is used for billing purposes, during this billing cycle, it will be counted as two hosts for billing purposes.
+**Note**: After enabling host collection, changing the hostname `host_name` will add a new host by default. The original hostname will continue to be displayed in the **Infrastructure > Hosts** list but will stop reporting data after one hour. After 24 hours without reporting data, it will be removed from the list. Since the number of DataKits is calculated as the maximum value within 24 hours, it will be billed as two hosts during this billing cycle.
 
-The list of collectors turned on by default is as follows:
+The list of collectors enabled by default is as follows:
 
 | Collector Name | Description |
 | --- | --- |
-| `cpu` | Collect the CPU usage of the host |
-| `disk` | Collection disk occupancy |
-| `diskio` | Collect the disk IO status of the host |
-| `mem` | Collect the memory usage of the host |
-| `swap` | Collect Swap memory usage |
-| `system` | Collect the load of host operating system |
-| `net` | Collect host network traffic |
-| `host_process` | Collect the list of resident (surviving for more than 10min) processes on the host |
-| `hostobject` | Collect basic information of host computer (such as operating system information and hardware information.) |
-| container | Collect possible containers or Kubernetes data on the host. Assuming there are no containers on the host, the collector will exit directly.|
+| `cpu` | Collects CPU usage of the host |
+| `disk` | Collects disk usage |
+| `diskio` | Collects disk IO usage of the host |
+| `mem` | Collects memory usage of the host |
+| `swap` | Collects Swap memory usage |
+| `system` | Collects operating system load of the host |
+| `net` | Collects network traffic of the host |
+| `host_process` | Collects a list of long-running (surviving more than 10 minutes) processes on the host |
+| `hostobject` | Collects basic information about the host (such as OS information, hardware information, etc.) |
+| container | Collects container or Kubernetes data on the host; if no containers exist on the host, the collector exits directly |
 
+### Cloud Hosts
 
-### Cloud Host
+If the host where DataKit resides is a cloud host, cloud synchronization can be enabled via the `cloud_provider` label. After configuration, restart DataKit.
 
-If the host on which the DataKit is located is a cloud host, cloud synchronization can be started by using the `cloud_provider` tag. After configuration, restart datakit. 
+> For more details, refer to [Enabling Cloud Synchronization](../integrations/hostobject.md).
 
-> See [Turn on Cloud Synchronization](../datakit/hostobject.md).
+### Containers
 
-### Container
+To enable container data collection, there are two methods:
 
-There are two ways to start container data collection:
+1. Start the [Container](../integrations/container.md) collector after installing DataKit on the host;
 
-1. To start the [Container](../datakit/container.md) collector after the host installs the datakit.
 2. Install DataKit using the [DaemonSet method](../datakit/datakit-daemonset-deploy.md).
 
-**Note**:
+???+ warning
 
-- Install DataKit through the host, and open the container collector to support collecting Containers and Pods data only;
-- DataKit is installed in DaemonSet mode, which supports collecting data of all container components such as Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs and Cron Jobs. The collected data can be viewed and analyzed in corresponding explorers.
+    - When installing DataKit on the host, enabling the container collector only supports collecting Containers and Pods data;
 
-### Process
+    - Installing DataKit via the DaemonSet method supports collecting all container component data such as Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc., which can be viewed and analyzed in the corresponding Explorer.
 
-To start process data collection, you need to go to the `conf.d/host` directory under the DataKit installation directory, copy `host_processes.conf.sample` and name it `host_processes.conf`. After configuration, restart datakit.
+### Processes
 
-**Note**: The process collector is turned on by default, but it does not collect process metric data by default. If you need to collect metric related data, you can set `open_metric` to `true` in `host_processes.conf`. 
+To enable process data collection, navigate to the `conf.d/host` directory under the DataKit installation directory, copy `host_processes.conf.sample`, and rename it to `host_processes.conf`. After configuration, restart DataKit.
 
-> See [Process](../datakit/host_processes.md).
+**Note**: The process collector is enabled by default, but it does not collect process Metrics by default. If you need to collect Metrics-related data, set `open_metric` to `true` in `host_processes.conf`.
 
-### Custom
+> For more details, refer to [Processes](../integrations/host_processes.md).
 
-Guance enables you to report custom data to the workspace and synchronize the data to the specified classification.
+### Resource Catalog
 
-- You can create new classes and customize fields through the path Infrastructure-Customization.
-- When reporting custom data, you need to install and connect DataKit and DataFlux Function first, then report data to DataKit through DataFlux Function, and finally report data to Guance Clou workspace by DataKit. 
+<<< custom_key.brand_name >>> supports reporting Resource Catalog data to the workspace and synchronizing object data to specified Resource Classes.
 
-> For the specific operation process, see [Custom Data Reporting](custom/data-reporting.md). 
+- Through **Infrastructure > Custom**, you can create new Resource Classes and resource catalog fields;
+
+- When reporting Resource Catalog data, you need to install and connect DataKit and DataFlux Func first, then report data to DataKit through DataFlux Func, which will ultimately report object data to the <<< custom_key.brand_name >>> workspace.
+
+> For specific operation steps, refer to [Reporting Resource Catalog Data](custom/data-reporting.md).

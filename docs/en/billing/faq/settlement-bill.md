@@ -1,80 +1,80 @@
-# Settlement and Billing
+# Billing and Settlement
 
-## How Is Guance charged?
+## How does <<< custom_key.brand_name >>> charge?
 
-Guance supports a pay-as-you-go billing model, allowing you to start for free, purchase as needed, and pay based on usage, providing you with a ready-to-use, comprehensive cloud platform for observation.
+<<< custom_key.brand_name >>> supports free start, pay-as-you-go, and usage-based billing methods, providing you with an out-of-the-box, comprehensive cloud platform for monitoring.
 
-> For more details, see [Billing Methods](../../billing/billing-method/index.md).
+> For more details, refer to [Billing Method](../../billing-method/index.md) to see how <<< custom_key.brand_name >>> charges.
 
-## Site-Related {#site}
+## Site-related {#site}
 
-### How can workspaces under domestic sites settle in US dollars? {#switch}
-
-Please contact your account manager.
-
-### How can the Experience Plan under domestic sites be directly upgraded to the Commercial Plan and settle in US dollars?
-
-You can go to [Billing Center](https://boss.guance.com/) > Workspace Management > Bind Workspace to upgrade directly. If you need to change the currency for settlement after the upgrade, please contact your account manager.
-
-### How can the Commercial Plan under domestic sites switch from RMB settlement to US dollar settlement?
+### How can workspaces under domestic sites use US dollar settlement? {#switch}
 
 Please contact your account manager.
 
-## How can workspaces under Hong Kong China and overseas sites settle in RMB?
+### How can the Free Plan be directly upgraded to the Commercial Plan and use US dollar settlement under domestic sites?
+
+You can go to [Billing Center](https://boss.guance.com/) > Workspace Management > Bind Workspace Entry to bind and upgrade directly. After upgrading, if you need to change the currency for settlement, please contact your account manager.
+
+### How can the Commercial Plan switch from RMB settlement to US dollar settlement under domestic sites?
 
 Please contact your account manager.
 
-### How can the Experience Plan under Hong Kong China and overseas sites be directly upgraded to the Commercial Plan and settle in RMB?
-
-You can go to the overseas plan [Billing Center](https://bill.guance.one/) > Workspace Management > Bind Workspace to upgrade directly. If you need to change the currency for settlement after the upgrade, please contact your account manager.
-
-### How can the Commercial Plan under Hong Kong China and overseas sites switch from US dollar settlement to RMB settlement?
+## How can workspaces under Hong Kong and overseas sites use RMB settlement?
 
 Please contact your account manager.
 
-## What Is the difference between Guance Billing Center account settlement and cloud account settlement?
+### How can the Free Plan be directly upgraded to the Commercial Plan and use RMB settlement under Hong Kong and overseas sites?
 
-- [Guance Billing Center Account Settlement](../../billing/billing-account/enterprise-account.md): Settle directly in the Guance Billing Center by recharging, which you can do through cash recharge, purchasing vouchers, or prepaid cards for the Guance Billing Center account;
-- [Cloud Account Settlement](../../billing/billing-account/aliyun-account.md): Settle directly through the corresponding cloud vendor's account.
+You can go to the overseas [Billing Center](https://bill.guance.one/) > Workspace Management > Bind Workspace Entry to bind and upgrade directly. After upgrading, if you need to change the currency for settlement, please contact your account manager.
 
-## What Is arbitrary account settlement?
+### How can the Commercial Plan switch from US dollar settlement to RMB settlement under Hong Kong and overseas sites?
 
-Arbitrary account settlement means that when you **change the settlement method** in the Guance Billing Center, you are not restricted by the registration site and can choose any cloud account for settlement. For example, if you register an account at the "CN1 (Hangzhou)" site, the default settlement method is **Alibaba Cloud account settlement**. However, if you have enabled arbitrary account settlement, you can choose "Amazon Cloud account settlement."
+Please contact your account manager.
 
-To enable this, please contact your account manager.
+## What is the difference between Guance Billing Center account settlement and cloud account settlement?
+
+- [Guance Billing Center account settlement](../../billing/billing-account/enterprise-account.md): Directly recharge and settle in the Guance Billing Center. You can recharge the Guance Billing Center account through cash, purchasing coupons, or prepaid cards;
+- [Cloud account settlement](../../billing/billing-account/aliyun-account.md): Directly recharge and settle using the corresponding cloud provider's account.
+
+## What is flexible account settlement?
+
+Flexible account settlement means that when you **change the settlement method** in the Guance Billing Center, you can choose any cloud account for settlement without being restricted by the registration site. For example, if you registered an account at "China Region 1 (Hangzhou)" site, which defaults to **Alibaba Cloud account settlement**, but if you enable flexible account settlement, you can choose "Amazon Web Services account settlement."
+
+To enable this feature, please contact your account manager.
 
 ![](../img/9.upgrade_7.png)
 
-## How to change the settlement method? {#switch}
+## How do I change the settlement method? {#switch}
 
-You can change the settlement method in the Guance Billing Center under **Workspace Management** by selecting **Change Settlement Method**.
+You can go to the Guance Billing Center **Workspace Management** and select **Change Settlement Method**.
 
 ![](../img/9.upgrade_9.png)
 
-## How to recharge?
+## How do I recharge?
 
-- If you use the Guance Billing Center account for settlement, you can recharge the Guance Billing Center account through cash recharge, purchasing vouchers, or prepaid cards;
+- If you are using Guance Billing Center account settlement, you can recharge the Guance Billing Center account through cash, purchasing coupons, or prepaid cards;
 
-- If you use a cloud account for settlement, you can recharge directly in the cloud account.
+- If you are using cloud account settlement, you can directly recharge through the cloud account.
 
-> For more details, see [Account Wallet](../../billing-center/account-wallet/index.md).
+> For more details, refer to [Account Wallet](../../billing-center/account-wallet/index.md).
 
-## How to view billing details?
+## How do I view the bill details?
 
-The Guance Billing Center provides billing info, including monthly bills, consumption details, income and expenditure details, voucher details, and prepaid card details management.
+The Guance Billing Center provides bill management, including monthly bills, consumption details, income and expenditure details, coupon details, and prepaid card details management.
 
-> For more details, see [Billing Management](../../billing-center/billing-management.md).
+> For more details, refer to [Bill Management](../../billing-center/billing-management.md).
 
-## How to grant payment and Bill handling authority only to corporate financial personnel?
+## How can billing and payment handling permissions be assigned only to corporate finance personnel?
 
 This will be linked with the Guance workspace > [Member Management](../../management/member-management.md) feature.
 
-:material-numeric-1-circle-outline: Go to **Management > Roles > Add Role**, name the role [Finance], and select the authority of [Payment Plan and Bill]:
+:material-numeric-1-circle-outline: Go to **Management > Member Management > Role Management > Add Role**, name this role as "Finance," and select the **Billing** permission:
 
 ![](../img/faq-billing.png)
 
-:material-numeric-2-circle-outline: When [inviting target members](../../management/invite-member.md), select the role given to this member at the time of joining:
+:material-numeric-2-circle-outline: When [inviting target members](../../management/invite-member.md), assign this member role upon joining:
 
 <img src="../../img/faq-billing-1.png" width="60%" >
 
-:material-numeric-3-circle-outline: If the target member is already in the current workspace, you can directly edit the role in **Management > [Member Management](../../management/member-management.md#edit)**.
+:material-numeric-3-circle-outline: If the target member is already in the current workspace, you can directly edit their role in **Management > [Member Management](../../management/member-management.md#edit)**.

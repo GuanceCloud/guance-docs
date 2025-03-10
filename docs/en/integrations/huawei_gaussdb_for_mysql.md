@@ -1,114 +1,130 @@
 ---
-title: 'HUAWEI GaussDB for MySQL'
+title: 'Huawei Cloud GaussDB for MySQL'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
-__int_icon: 'icon/gaussdb_for_mysql'
+summary: 'GaussDB for MySQL, including CPU, memory, network, buffer pool, storage, slow logs, `innoDB` and other related metrics.'
+__int_icon: 'icon/huawei_gaussdb_for_mysql'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD GaussDB for MySQL Monitoring View'
-    path: 'dashboard/zh/gaussdb_for_mysql'
+  - desc: 'Built-in views for GaussDB for MySQL'
+    path: 'dashboard/en/huawei_gaussdb_for_mysql'
 
 monitor:
-  - desc: 'HUAWEI CLOUD GaussDB for MySQL Monitor'
-    path: 'monitor/zh/gaussdb_for_mysql'
+  - desc: 'GaussDB for MySQL monitor'
+    path: 'monitor/en/huawei_gaussdb_for_mysql'
 
 ---
 
-
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD GaussDB for MySQL
+# Huawei Cloud GaussDB for MySQL
 <!-- markdownlint-enable -->
 
-HUAWEI CLOUD GaussDB for MySQL includes metrics related to CPU, memory, network, buffer pool, storage, slow logs, and `InnoDB` performance.
+GaussDB for MySQL, including CPU, memory, network, buffer pool, storage, slow logs, `innoDB` and other related metrics.
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+
+
+### Installation Script
+
+> **Tip:** Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+
+To synchronize monitoring data for GaussDB for MySQL, we install the corresponding collection script:「Guance Integration (Huawei Cloud-Gaussdb-Mysql Collection)」(ID: `guance_huaweicloud_ddm_gaussdb_mysql`)
+
+After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
+
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+
+Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+We default to collecting some configurations, see the metrics section for details.
+
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb-mysql/){:target="_blank"}
+
+
+### Verification
+
+1. In 「Manage / Automatic Trigger Configuration」, confirm that the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
+2. On the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring GaussDB for MySQL, the default metric set is as follows. More metrics can be collected through configuration. [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-gaussdb/gaussdb_03_0085.html){:target="_blank"}
+
+| Metric ID                                | Metric Name             | Metric Description                                                     | Value Range      | Measurement Object (Dimension) | **Monitoring Period (Raw Metric)** |
+| ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
+| `gaussdb_mysql001_cpu_util`                       | CPU Utilization            | This metric measures the CPU utilization of the measurement object.                       | 0～100%         | GaussDB(for MySQL) instance          | 1 minute 5 seconds 1 second                                           |
+| `gaussdb_mysql002_mem_util`                            | Memory Utilization         | This metric measures the memory utilization of the measurement object.                                | 0~100%          | GaussDB(for MySQL) instance          | 1 minute 5 seconds 1 second                                             |
+| `gaussdb_mysql004_bytes_in`                      | Network Input Throughput            | This metric measures the average traffic input per second from all network adapters of the measurement object.                       | ≥0 bytes/s           | GaussDB(for MySQL) instance          | 1 minute 5 seconds 1 second                                    |
+| `gaussdb_mysql005_bytes_out`                            | Network Output Throughput                    | This metric measures the average traffic output per second from all network adapters of the measurement object. | ≥0 bytes/s    | GaussDB(for MySQL) instance | 1 minute 5 seconds 1 second              |
+| `gaussdb_mysql006_conn_count`                       | Total Database Connections                    | This metric counts the total number of connections to the GaussDB(for MySQL) server.     | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute 5 seconds 1 second              |
+| `gaussdb_mysql007_conn_active_count`                            | Active Connection Count                    | This metric counts the current active connections.                             | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute 5 seconds 1 second              |
+| `gaussdb_mysql010_innodb_buf_usage`                       | Buffer Pool Usage                      | This metric measures the ratio of used pages to the total data pages in the InnoDB cache.         | 0-1           | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql011_innodb_buf_hit`                            | Buffer Pool Hit Rate                      | This metric measures the ratio of reads hit to read requests during this period.                 | 0-1           | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql012_innodb_buf_dirty`                       | Buffer Pool Dirty Block Rate                      | This metric measures the ratio of dirty data in the InnoDB cache.                 | 0～100%       | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql013_innodb_reads`                            | InnoDB Read Throughput                  | This metric measures the average bytes read per second by InnoDB.                       | ≥0 bytes/s    | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql014_innodb_writes`                       | InnoDB Write Throughput                  | This metric measures the average bytes written per second by InnoDB to temporary table pages. | ≥0 bytes/s    | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql017_innodb_log_write_req_count`                            | InnoDB Log Write Request Frequency              | This metric measures the average number of log write requests per second.                       | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql020_temp_tbl_count`                       | Temporary Table Count                        | This metric counts the number of temporary tables created automatically on disk when executing statements in GaussDB(for MySQL). | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql028_comdml_del_count`                            | Delete Statement Execution Frequency                | This metric measures the average number of Delete statements executed per second.                   | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute 5 seconds 1 second              |
+| `gaussdb_mysql029_comdml_ins_count`                       | Insert Statement Execution Frequency                | This metric measures the average number of Insert statements executed per second.                   | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute 5 seconds 1 second              |
+| `gaussdb_mysql030_comdml_ins_sel_count`                            | Insert_Select Statement Execution Frequency         | This metric measures the average number of Insert_Select statements executed per second.            | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql031_comdml_rep_count`                       | Replace Statement Execution Frequency               | This metric measures the average number of Replace statements executed per second.                  | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql032_comdml_rep_sel_count`                            | Replace_Selection Statement Execution Frequency     | This metric measures the average number of Replace_Selection statements executed per second.        | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql033_comdml_sel_count`                       | Select Statement Execution Frequency                | This metric measures the average number of Select statements executed per second.                   | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute 5 seconds 1 second              |
+| `gaussdb_mysql034_comdml_upd_count`                            | Update Statement Execution Frequency                | This metric measures the average number of Update statements executed per second.                   | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute 5 seconds 1 second              |
+| `gaussdb_mysql035_innodb_del_row_count`                       | Row Deletion Rate                        | This metric measures the average number of rows deleted per second from InnoDB tables.                 | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql036_innodb_ins_row_count`                            | Row Insertion Rate                        | This metric measures the average number of rows inserted per second into InnoDB tables.                 | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql037_innodb_read_row_count`                       | Row Read Rate                        | This metric measures the average number of rows read per second from InnoDB tables.                 | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql038_innodb_upd_row_count`                            | Row Update Rate                        | This metric measures the average number of rows updated per second in InnoDB tables.                 | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql048_disk_used_size`                       | Disk Usage Size                        | This metric measures the disk usage size of the measurement object.                       | 0GB～128TB    | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql072_conn_usage`                            | Connection Usage Rate                      | This metric measures the percentage of current used GaussDB(for MySQL) connections out of the maximum allowed. | 0~100%        | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql074_slow_queries`                       | Slow Query Count                    | This metric shows the number of slow queries generated by GaussDB(for MySQL) per minute.         | ≥0 counts/min | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql104_dfv_write_delay`                            | Storage Write Latency                        | This metric measures the average latency of writing data to the storage layer over a period of time.           | ≥0 ms         | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql105_dfv_read_delay`                       | Storage Read Latency                        | This metric measures the average latency of reading data from the storage layer over a period of time.           | ≥0 ms         | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql106_innodb_row_lock_current_waits`                            | InnoDB Row Lock Count                    | This metric collects the number of row locks currently waiting on InnoDB tables.![img](https://res-static.hc-cdn.cn/aem/content/dam/cloudbu-site/archive/hk/en-us/support/resource/framework/v3/images/support-doc-en-note.png)**Note:** If there are DDL statements causing blocking, long transactions, or slow SQL, the number of waiting row locks may increase. | ≥0 Locks/s    | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql107_comdml_ins_and_ins_sel_count`                       | Insert and Insert_Select Statement Execution Frequency | This metric measures the average number of Insert and Insert_Select statements executed per second.  | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql108_com_commit_count`                            | Commit Statement Execution Frequency                | This metric measures the average number of Commit statements executed per second.                 | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql109_com_rollback_count`                       | Rollback Statement Execution Frequency              | This metric measures the average number of Rollback statements executed per second.               | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql110_innodb_bufpool_reads`                            | InnoDB Storage Layer Read Request Frequency            | This metric measures the average number of read requests from the storage layer by InnoDB per second.     | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql111_innodb_bufpool_read_requests`                       | InnoDB Read Request Frequency                  | This metric measures the average number of read requests by InnoDB per second.             | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql119_disk_used_ratio`                            | Disk Usage Rate                        | This metric measures the disk usage rate.                                 | 0~100%        | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql116_innodb_bufpool_read_ahead_rnd`                       | Innodb Random Pre-read Page Count                | This metric collects the number of random pre-read pages on InnoDB tables.                     | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql117_innodb_pages_read`                            | Innodb Physical Page Reads Count          | This metric collects the number of physical pages read on InnoDB tables.               | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql118_innodb_pages_written`                       | Innodb Physical Page Writes Count          | This metric collects the number of physical pages written on InnoDB tables.               | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql342_iostat_iops_write`                            | IO Write IOPS                          | This metric collects the number of writes per second on the disk.                               | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql344_iostat_iops_read`                       | IO Read IOPS                          | This metric collects the number of reads per second on the disk.                               | ≥0 counts/s   | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql346_iostat_throughput_write`                            | IO Write Bandwidth                          | This metric collects the write bandwidth per second on the disk.                               | ≥0 bytes/s    | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql348_iostat_throughput_read`                       | IO Read Bandwidth                          | This metric collects the read bandwidth per second on the disk.                               | ≥0 bytes/s    | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql123_sort_range`                            | Range Sort Count                        | This metric measures the number of sorts completed using range scans during this period.           | ≥0 counts/min | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql121_innodb_row_lock_time`                       | Row Lock Time Spent                      | This metric measures the time spent on row locks on InnoDB tables during this period.             | ≥0 ms         | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql122_innodb_row_lock_waits`                            | Row Lock Wait Count                        | This metric measures the number of row locks on InnoDB tables during this period.                 | ≥0 counts/min | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql126_table_open_cache_hits`                       | Open Table Cache Hits Count            | This metric measures the number of hits in the open table cache during this period.             | ≥0 counts/min | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql124_sort_rows`                            | Sorted Rows Count                          | This metric measures the number of sorted rows during this period.                       | ≥0 counts/min | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql125_sort_scan`                       | Scan Table Sort Count                      | This metric measures the number of sorts completed by scanning tables during this period.             | ≥0 counts/min | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql060_rx_errors`                            | Received Packet Error Rate                    | This metric measures the ratio of erroneous packets received to the total received packets during the monitoring period. | 0~100%        | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql127_table_open_cache_misses`                       | Open Table Cache Misses Count          | This metric measures the number of misses in the open table cache during this period.           | ≥0 counts/min | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql128_long_trx_count`                            | Number of Unclosed Long Transactions                | This metric measures the number of unclosed long transactions.                           | ≥0 counts     | GaussDB(for MySQL) instance | 150 seconds                    |
+| `gaussdb_mysql063_tx_dropped`                       | Sent Packet Drop Rate                    | This metric measures the ratio of dropped packets sent to the total sent packets during the monitoring period. | 0~100%        | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql061_rx_dropped`                            | Received Packet Drop Rate                    | This metric measures the ratio of dropped packets received to the total received packets during the monitoring period. | 0~100%        | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql062_tx_errors`                       | Sent Packet Error Rate                    | This metric measures the ratio of erroneous packets sent to the total sent packets during the monitoring period. | 0~100%        | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql114_innodb_bufpool_read_ahead`                            | Innodb Sequential Pre-read Page Count                | This metric collects the number of sequential pre-read pages on InnoDB tables.                     | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql378_create_temp_tbl_per_min`                       | Temporary Tables Created Per Minute                | This metric measures the number of temporary tables created automatically on disk per minute when executing statements in GaussDB(for MySQL). | ≥0counts/min  | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql371_taurus_binlog_total_file_counts`                            | Binlog File Count                    | This metric measures the number of Binlog files in GaussDB(for MySQL).             | ≥0            | GaussDB(for MySQL) instance | 5 minutes                    |
+| `gaussdb_mysql115_innodb_bufpool_read_ahead_evicted`                       | Innodb Sequential Pre-read Unaccessed Pages Count  | This metric collects the number of sequential pre-read pages on InnoDB tables that were not accessed.       | ≥0 counts     | GaussDB(for MySQL) instance | 1 minute                    |
+| `gaussdb_mysql120_innodb_buffer_pool_bytes_data`                            | Buffer Pool Data Total Bytes                | This metric measures the total bytes of data contained in the InnoDB buffer pool.             | ≥0 bytes      | GaussDB(for MySQL) instance | 1 minute                    |
 
 
 
-### Installation script
+## Objects {#object}
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of  GaussDB for MySQL , we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-CBRCollect）」(ID：`guance_huaweicloud_ddm_gaussdb_mysql`)
-
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
-
-tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click【Run】,you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb-mysql/){:target="_blank"}
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-Configure HUAWEI CLOUD SYS.CBR monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-gaussdb/gaussdb_03_0085.html){:target="_blank"}
-
-| **Metric**                                         | **Name**                                       | **Description**                                              | **Value Range** | **Remarks**                                                  |
-|------------------------------------|----------------------------------------------------------| ------------------------------------------------------------ | ---------- | ---------------- |
-| gaussdb_mysql001_cpu_util                          | CPU Usage                                      | CPU usage of the monitored object                            | 0–100%          | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql002_mem_util                          | Memory Usage                                   | Memory usage of the monitored object                         | 0–100%          | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql004_bytes_in                          | Network Input Throughput                       | Incoming traffic in bytes per second                         | ≥0 Bytes/s      | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql005_bytes_out                            | Network Output Throughput                      | Outgoing traffic in bytes per second                         | ≥0 Bytes/s      | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql006_conn_count                       | Total Connections                              | Total number of connections that connect to the MySQL server | ≥0 Connections  | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql007_conn_active_count                            | Current Active Connections                     | Number of active connections                                 | ≥0 Connections  | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql010_innodb_buf_usage                       | Buffer Pool Usage                              | Ratio of used pages to total pages in the InnoDB buffer      | 0–100%          | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql011_innodb_buf_hit                            | Buffer Pool Hit Ratio                          | Ratio of read hits to read requests in the InnoDB buffer     | 0–100%          | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql012_innodb_buf_dirty                       | Buffer Pool Dirty Block Ratio                  | Ratio of dirty data to all data in the InnoDB buffer         | 0–100%          | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql013_innodb_reads                            | InnoDB Read Throughput                         | Number of read bytes per second in the InnoDB buffer         | ≥0 Bytes/s      | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql014_innodb_writes                       | InnoDB Write Throughput                        | Number of write bytes per second in the InnoDB buffer        | ≥0 Bytes/s      | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql017_innodb_log_write_req_count                            | InnoDB Log Write Requests per Second           | Number of InnoDB log write requests per second               | ≥0 Requests/s   | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql020_temp_tbl_count                       | Temporary Tables                               | Number of temporary tables automatically created on hard disks when MySQL statements are executed | ≥0 Tables       | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql028_comdml_del_count                            | DELETE Statements per Second                   | Number of DELETE statements executed per second              | ≥0 Statements/s | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql029_comdml_ins_count                       | INSERT Statements per Second                   | Number of INSERT statements executed per second              | ≥0 Statements/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql030_comdml_ins_sel_count                            | INSERT_SELECT Statements per Second            | Number of INSERT_SELECT statements executed per second       | ≥0 Statements/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql031_comdml_rep_count                       | REPLACE Statements per Second                  | Number of REPLACE statements executed per second             | ≥0 Statements/s | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql032_comdml_rep_sel_count                            | REPLACE_SELECTION Statements per Second        | Number of REPLACE_SELECTION statements executed per second   | ≥0 Statements/s | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql033_comdml_sel_count                       | SELECT Statements per Second                   | Number of SELECT statements executed per second              | ≥0 Statements/s | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql034_comdml_upd_count                            | UPDATE Statements per Second                   | Number of UPDATE statements executed per second              | ≥0 Statements/s | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql035_innodb_del_row_count                       | Row Delete Frequency                           | Number of rows deleted from the InnoDB table per second      | ≥0 Rows/s       | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql036_innodb_ins_row_count                            | Row Insert Frequency                           | Number of rows inserted into the InnoDB table per second     | ≥0 Rows/s       | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql037_innodb_read_row_count                       | Row Read Frequency                             | Number of rows read from the InnoDB table per second         | ≥0 Rows/s       | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql038_innodb_upd_row_count                            | Row Update Frequency                           | Number of rows updated into the InnoDB table per second      | ≥0 Rows/s       | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql048_disk_used_size                       | Used Storage Space                             | Used storage space of the monitored object                   | 0 GB-128 TB     | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql072_conn_usage                            | Connection Usage                               | Percent of used MySQL connections to the total number of connections | 0-100%          | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql074_slow_queries                       | Slow Query Logs                                | Number of MySQL slow query logs generated per minute         | ≥0 Queries/min  | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql104_dfv_write_delay                            | Storage Write Latency                          | Average latency of writing data to the storage layer in a specified period | ≥0 ms           | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql105_dfv_read_delay                       | Storage Read Latency                           | Average latency of reading data from the storage layer in a specified period | ≥0 ms           | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql106_innodb_row_lock_current_waits                            | InnoDB Row Locks                               | Number of row locks being waited by operations on the InnoDB table | ≥0 Locks        | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql107_comdml_ins_and_ins_sel_count                       | INSERT and INSERT_SELECT Statements per Second | Number of INSERT and INSERT_SELECT statements executed per second | ≥0 Statements/s | Monitored object: ECSMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql108_com_commit_count                            | COMMIT Statements per Second                   | Number of COMMIT statements executed per second              | ≥0 Statements/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql109_com_rollback_count                       | ROLLBACK Statements per Second                 | Number of ROLLBACK statements executed per second            | ≥0 Statements/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql110_innodb_bufpool_reads                            | InnoDB Storage Layer Read Requests per Second  | Number of times that InnoDB reads data from the storage layer per second | ≥0 Times/s      | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql111_innodb_bufpool_read_requests                       | InnoDB Read Requests per Second                | Number of InnoDB read requests per second                    | ≥0 Requests/s   | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql119_disk_used_ratio                            | Disk Usage                                     | Disk usage of the monitored object                           | 0-100%          | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance1 minute |
-| gaussdb_mysql116_innodb_bufpool_read_ahead_rnd                       | InnoDB **Bufpool** Read Ahead Rnd                  | Number of random **read-aheads** initiated by InnoDB             | ≥0 **Read-aheads**  | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql117_innodb_pages_read                            | InnoDB Pages Read                              | Number of pages read from the InnoDB buffer pool by operations on InnoDB tables | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql118_innodb_pages_written                       | InnoDB Pages Written                           | Number of pages written by operations on InnoDB tables       | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql342_iostat_iops_write                            | I/O Write IOPS                                 | Number of disk writes per second                             | ≥0 Operations/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql344_iostat_iops_read                       | I/O Read IOPS                                  | Number of disk reads per second                              | ≥0 Operations/s | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql346_iostat_throughput_write                            | I/O Write Bandwidth                            | Disk write bandwidth per second                              | ≥0 Bytes/s      | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql348_iostat_throughput_read                       | I/O Read Bandwidth                             | Disk read bandwidth per second                               | ≥0 Bytes/s      | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql114_innodb_bufpool_read_ahead                            | InnoDB **Bufpool** Read Ahead                      | Number of pages read into the InnoDB buffer pool by the read-ahead background thread | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-| gaussdb_mysql378_create_temp_tbl_per_min                       | Temporary Tables Created per Minute            | Number of temporary tables automatically created on disks per minute when GaussDB(for MySQL) statements are executed | ≥0counts/min    | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance1 minute |
-| gaussdb_mysql371_taurus_binlog_total_file_counts                            | Binlog Files                                   | Number of GaussDB(for MySQL) **binlog** files                    | ≥0              | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance5 minutes |
-| gaussdb_mysql115_innodb_bufpool_read_ahead_evicted                       | InnoDB **Bufpool** Read Ahead Evicted              | Number of pages read into the InnoDB buffer pool by the read-ahead background thread that were subsequently evicted without having been accessed by queries | ≥0 Pages        | Monitored object: databaseMonitored instance type: GaussDB(for MySQL) instance |
-
-## Object {#object}
-
-The collected HUAWEI CLOUD OBS object data structure can see the object data from 「Infrastructure-Custom」
+The collected HUAWEI SYS.CBR object data structure can be viewed under 「Infrastructure - Custom」
 
 ``` json
 {
@@ -126,22 +142,21 @@ The collected HUAWEI CLOUD OBS object data structure can see the object data fro
     "instance_name"           : "nosql-efa7"
   },
   "fields": {
-    "charge_info"          : "{The value can be yearly or monthly or on-demand. The default value is on-demand}",
+    "charge_info"          : "{Billing type information, supports prepaid and pay-as-you-go, default is pay-as-you-go}",
     "create_time"          : "2023-08-01T14:17:40+0800",
     "update_time"          : "2023-08-01T14:17:42+0800",
     "private_ips"          : "[\"192.168.0.223\"]",
     "proxy_ips"            : "[]",
-    "readonly_private_ips" : "[Instance Reads the Intranet IP address list]",
+    "readonly_private_ips" : "[Private IP address list of the read replica]",
     "message"              : "{Instance JSON data}"
   }
 }
 
+
 ```
 
-
-> *notice：`tags`、`fields`The fields in this section may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tips 1：`tags.name`The value serves as the instance ID for unique identification
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Tips 2：`fields.message`、`fields.charge_info`、`fields.private_ips`、`fields.proxy_ips`、`fields.readonly_private_ips`、are all JSON-serialized string representations.
-
+> Tip 2: `fields.message`, `fields.charge_info`, `fields.private_ips`, `fields.proxy_ips`, and `fields.readonly_private_ips` are JSON serialized strings.

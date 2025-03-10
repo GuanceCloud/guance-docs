@@ -2,17 +2,19 @@
 title: 'AWS DynamoDB'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .'
+summary: 'The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access.'
 __int_icon: 'icon/aws_dynamodb'
 dashboard:
-  - desc: 'AWS DynamoDB Monitoring View'
+
+  - desc: 'Built-in views for AWS DynamoDB'
     path: 'dashboard/en/aws_dynamodb'
+
 monitor:
   - desc: 'AWS DynamoDB Monitor'
     path: 'monitor/en/aws_dynamodb'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_dynamodb'
 ---
 
@@ -22,80 +24,81 @@ cloudCollector:
 <!-- markdownlint-enable -->
 
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .
+The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the **DynamoDB** performance and scalability when handling large-scale data storage and access.
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,[Refer to](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of DynamoDB cloud resources, we install the corresponding collection script: `ID:guance_aws_dynamodb`
-
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click[Run],you can immediately execute once, without waiting for a regular time.After a while,you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Installation Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance  platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance  platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/metrics-dimensions.html){:target="_blank"}
+To synchronize AWS DynamoDB monitoring data, we install the corresponding collection script: 「Guance Integration (AWS-DynamoDB Collection)」(ID: `guance_aws_dynamodb`)
+
+After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
+
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup script.
+
+Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+We collect some configurations by default; for details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding automatic trigger configuration exists for the task, and check the corresponding task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」check if asset information exists.
+3. In the Guance platform, under 「Metrics」check if the corresponding monitoring data exists.
+
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/metrics-dimensions.html){:target="_blank"}
 
 ### ConditionalCheckFailedRequests
 
-The number of failed attempts to perform conditional writes.
+The number of attempts to perform conditional writes that failed.
 
-| metric name | descriptive | unit  | dimension  |
+| Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| ConditionalCheckFailedRequests_Average | Average number of erroneous requests | Count | TableName |
-| ConditionalCheckFailedRequests_Maximum | Error Request Maximum | Count | TableName |
-| ConditionalCheckFailedRequests_Minimum | Error Request Minimum | Count | TableName |
-| ConditionalCheckFailedRequests_SampleCount | Number of erroneous requests | Count | TableName |
-| ConditionalCheckFailedRequests_Sum | Total number of erroneous requests | Count | TableName |
+| ConditionalCheckFailedRequests_Average | Average number of failed requests | Count | TableName |
+| ConditionalCheckFailedRequests_Maximum | Maximum value of failed requests | Count | TableName |
+| ConditionalCheckFailedRequests_Minimum | Minimum value of failed requests | Count | TableName |
+| ConditionalCheckFailedRequests_SampleCount | Number of failed requests | Count | TableName |
+| ConditionalCheckFailedRequests_Sum | Total number of failed requests | Count | TableName |
 
 ### ConsumedReadCapacityUnits
-Specifies the number of read capacity units occupied during the time period so that you can track the use of preset throughput.
 
-| metric name | descriptive | unit | dimension |
+Number of read capacity units consumed during a specified period, which can track the use of provisioned throughput.
+
+| Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| ConsumedReadCapacityUnits_Average | Average read capacity per request | Count | TableName |
-| ConsumedReadCapacityUnits_Maximum | Maximum number of read capacity units occupied by any request to a table or index | Count | TableName |
-| ConsumedReadCapacityUnits_Minimum | Minimum number of read capacity units occupied by any request to a table or index | Count | TableName |
-| ConsumedReadCapacityUnits_SampleCount | Number of read requests to DynamoDB, even if the read capacity is not occupied | Count | TableName |
-| ConsumedReadCapacityUnits_Sum | Total read capacity units occupied | Count | TableName |
+| ConsumedReadCapacityUnits_Average | Average read capacity consumed per request | Count | TableName |
+| ConsumedReadCapacityUnits_Maximum | Maximum read capacity units consumed by any request to the table or index | Count | TableName |
+| ConsumedReadCapacityUnits_Minimum | Minimum read capacity units consumed by any request to the table or index | Count | TableName |
+| ConsumedReadCapacityUnits_SampleCount | Number of read requests to DynamoDB, even if no read capacity was consumed | Count | TableName |
+| ConsumedReadCapacityUnits_Sum | Total read capacity units consumed | Count | TableName |
 
 ### ConsumedWriteCapacityUnits
-Specifies the number of write capacity units occupied during the time period so that you can track the use of preset throughput.
 
-| metric name | descriptive | unit | dimension |
+Number of write capacity units consumed during a specified period, which can track the use of provisioned throughput.
+
+| Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| ConsumedWriteCapacityUnits_Average | Average write capacity occupied per request | Count | TableName |
-| ConsumedWriteCapacityUnits_Maximum | Maximum number of write capacity units occupied by any request to a table or index | Count | TableName |
-| ConsumedWriteCapacityUnits_Minimum | Minimum number of write capacity units occupied by any request to a table or index | Count | TableName |
-| ConsumedWriteCapacityUnits_SampleCount | Number of write requests to DynamoDB, even if read capacity is not occupied | Count | TableName |
-| ConsumedWriteCapacityUnits_Sum | Total Write Capacity Units Occupied | Count | TableName |
+| ConsumedWriteCapacityUnits_Average | Average write capacity consumed per request | Count | TableName |
+| ConsumedWriteCapacityUnits_Maximum | Maximum write capacity units consumed by any request to the table or index | Count | TableName |
+| ConsumedWriteCapacityUnits_Minimum | Minimum write capacity units consumed by any request to the table or index | Count | TableName |
+| ConsumedWriteCapacityUnits_SampleCount | Number of write requests to DynamoDB, even if no read capacity was consumed | Count | TableName |
+| ConsumedWriteCapacityUnits_Sum | Total write capacity units consumed | Count | TableName |
 
-## Object {#object}
+## Objects {#object}
 
-Collected AWS DynamoDB object data structure, you can see the object data from the "Infrastructure - Customize"
+The structure of collected AWS DynamoDB object data can be viewed in 「Infrastructure - Custom」
 
 ```json
 {
@@ -116,14 +119,14 @@ Collected AWS DynamoDB object data structure, you can see the object data from t
     "KeySchema"             : "[{\"AttributeName\": \"LockID\", \"KeyType\": \"HASH\"}]",
     "LocalSecondaryIndexes" : "{}",
     "TableSizeBytes"        : "96",
-    "message"               : "{Instance json}"
+    "message"               : "{instance JSON info}"
   }
 }
 
 ```
 
-> *Note: Fields in `tags`, `fields` are subject to change with subsequent updates.*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The `tags.name` value is the instance ID, which serves as a unique identifier.
-> Tip 2: `fields.message`, `fields.NetworkInterfaces`, and `fields.BlockDeviceMappings` are JSON serialized strings.
-
+> Tip 1: The value of `tags.name` is the instance ID, used for unique identification.
+>
+> Tip 2: `fields.message`, `fields.Endpoint` are JSON serialized strings.

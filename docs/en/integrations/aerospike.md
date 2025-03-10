@@ -1,47 +1,46 @@
 ---
-title: 'Aerospike'
-summary: 'Collecting Aerospike-related metric information'
+title     : 'Aerospike'
+summary   : 'Collect metrics related to Aerospike'
 __int_icon: 'icon/aerospike'
-dashboard:
-  - desc: 'Aerospike Namespace Overview Monitoring View'
-    path: 'dashboard/zh/aerospike_namespace'
-  - desc: 'Aerospike Monitoring Stack Node Monitoring View'
-    path: 'dashboard/zh/aerospike_stack_node'
+dashboard :
+  - desc  : 'Aerospike Namespace Overview monitoring view'
+    path  : 'dashboard/en/aerospike_namespace'
+  - desc  : 'Aerospike Monitoring Stack Node monitoring view'
+    path  : 'dashboard/en/aerospike_stack_node'
 monitor   :
-  - desc: 'Aerospike Detection Library'
-    path: 'monitor/zh/aerospike'
+  - desc  : 'Aerospike detection library'
+    path  : 'monitor/en/aerospike'
 ---
 
 <!-- markdownlint-disable MD025 -->
 # Aerospike
 <!-- markdownlint-enable -->
+
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
-Aerospike Namespace performance metrics are presented, including clusters, memory usage in space, disk usage, number of objects, read and write rates, and so on.
+Displays performance Metrics for Aerospike Namespaces, including memory usage, disk usage, object count, read/write rates within the cluster and namespace.
 
-Aerospike Node related metrics display, including Node cluster, Node status, number of records, memory, disk metrics, and so on.
-
-
+Displays Metrics related to Aerospike Nodes, including Node cluster, Node status, record count, memory, disk Metrics, etc.
 
 
-## Installation Configuration{#config}
+## Installation and Configuration {#config}
 
-### Preconditions{#requirement}
+### Prerequisites {#requirement}
 
-- Aerospike installed
+- Aerospike is installed
 
-The sample Aerospike version is Linux Environment 6.0.0 (CentOS), and the metrics may vary from version to version.
+The example Aerospike version is Linux environment 6.0.0 (CentOS), and the Metrics may vary across different versions.
 
-`aerospike-prometheus-exporter` Exporter, an official development, facilitates fast access to Aerospike monitoring.
+`aerospike-prometheus-exporter` is an officially developed Exporter that facilitates rapid integration for monitoring Aerospike.
 
 ### Metric Collection
 
 #### Install exporter
 
-Official Download&Install Exporter Address [https://docs.aerospike.com/monitorstack/install/linux](https://docs.aerospike.com/monitorstack/install/linux)
+Official download & installation address for the exporter: [https://docs.aerospike.com/monitorstack/install/linux](https://docs.aerospike.com/monitorstack/install/linux)
 
 ```shell
 wget https://www.aerospike.com/download/monitoring/aerospike-prometheus-exporter/latest/artifact/rpm -O aerospike-prometheus-exporter.tgz
@@ -54,7 +53,7 @@ rpm -Uvh aerospike-prometheus-exporter--x86_64.rpm
 
 #### Configure exporter
 
-Profile address `/etc/aerospike-prometheus-exporter/ape.toml`, default metrics port is 9145, default collection port is 3000, no profile adjustment is required by default.
+Configuration file location `/etc/aerospike-prometheus-exporter/ape.toml`, default metrics port is 9145, default collection port is 3000. In most cases, no configuration adjustments are necessary.
 
 ```toml
 [Agent]
@@ -187,7 +186,7 @@ latency_buckets_count = 0
 # Secondary index metrics allowlist
 # sindex_metrics_allowlist = []
 
-# Metrics Blocklist - If specified, these metrics will be NOT be scraped.
+# Metrics Blocklist - If specified, these metrics will NOT be scraped.
 
 # Namespace metrics blocklist
 # namespace_metrics_blocklist = []
@@ -227,60 +226,62 @@ systemctl restart aerospike-prometheus-exporter.service
 
 #### Access Metrics
 
-Access metrics through `curl http://localhost:9145/metrics`
+Access Metrics via `curl http://localhost:9145/metrics`.
 
-#### DataKit adds `aerospike-prom.conf` profile{#input-config}
+#### Add a new `aerospike-prom.conf` configuration file for DataKit {#input-config}
 
-Under `/usr/local/datakit/conf.d/prom` directory, copy `prom.conf.sample` to `aerospike-prom.conf`
+In the `/usr/local/datakit/conf.d/prom` directory, copy `prom.conf.sample` as `aerospike-prom.conf`
 
 ```shell
 cp prom.conf.sample aerospike-prom.conf
 ```
 
-Description of main parameters
+Key parameters explanation:
 
-- Url: `aerospike-prometheus-exporter` Metric address
-- Interval: acquisition frequency
-- Source: collector alias
+- url: Address of `aerospike-prometheus-exporter` Metrics
+- interval: Collection frequency
+- source: Collector alias
 
 ```toml
 [[inputs.prom]]
   urls = ["http://192.168.0.189:9145/metrics"]
-  
+  ## Ignore request errors for URLs
   ignore_req_err = false
-  
+  ## Collector alias
   source = "aerospike"
   metric_types = []
   measurement_prefix = ""
-  
+  ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
   interval = "10s"
-  
+  ## TLS configuration
   tls_open = false
-  
+  ## Custom Tags
   [inputs.prom.tags]
 ```
 
 #### Restart DataKit
 
-[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
-
-## Log Collection{#logging}
-
-### Parameter Description
-
-```txt
-- logfiles：File names or a pattern to tail.
-- source：`aerospike` # Your logging source, if it's empty, use 'default'.
-- service：`aerospike` # service name
+```shell
+systemctl restart datakit
 ```
 
-In the `/usr/local/datakit/conf.d` directory, copy a conf and rename it `logging-aerospike.conf`
+## Log Collection {#logging}
+
+### Parameter Explanation
+
+```txt
+- logfiles: Log file paths (usually access logs and error logs)
+- source: `aerospike` # Data source
+- service: `aerospike` # Service name
+```
+
+In the `/usr/local/datakit/conf.d` directory, copy the conf file and rename it to `logging-aerospike.conf`
 
 ```shell
 cp logging.conf.sample logging-aerospike.conf
 ```
 
-### `logging-aerospike.conf` Full Text
+### Full content of `logging-aerospike.conf`
 
 ```toml
 [[inputs.logging]]
@@ -289,7 +290,7 @@ logfiles = [
 "/var/log/aerospike/aerospike.log",
 ]
 
-## glob filteer
+## glob filter
 ignore = [""]
 
 ## your logging source, if it's empty, use 'default'
@@ -301,7 +302,7 @@ service = "aerospike"
 ## grok pipeline script name
 pipeline = ""
 
-## optional status:
+## optional statuses:
 ##   "emerg","alert","critical","error","warning","info","debug","OK"
 ignore_status = []
 
@@ -309,7 +310,7 @@ ignore_status = []
 ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
 character_encoding = ""
 
-## datakit read text from Files or Socket , default max_textline is 32k
+## datakit reads text from Files or Socket , default max_textline is 32k
 ## If your log text line exceeds 32Kb, please configure the length of your text,
 ## but the maximum length cannot exceed 32Mb
 # maximum_length = 32766
@@ -330,7 +331,6 @@ ignore_dead_log = "10m"
   # more_tag = "some_other_value"
 ```
 
-## Metric {#metric}
+## Metric Details {#metric}
 
-[Refer to Aerospike website metrics](https://docs.aerospike.com/server/operations/monitor/key_metrics )
-
+[Refer to Aerospike official Metrics documentation](https://docs.aerospike.com/server/operations/monitor/key_metrics)

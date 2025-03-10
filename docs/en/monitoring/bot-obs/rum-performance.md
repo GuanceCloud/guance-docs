@@ -1,68 +1,65 @@
-# RUM Performance Intelligent Integration
+# RUM Performance Inspection
 ---
 
 ## Background
 
-Real User Monitoring (RUM) is an application performance monitoring technology designed to evaluate website performance by simulating the behavior of real users browsing the site. The goal of RUM is to understand website performance from the user's perspective, including website load times, page rendering effects, page element loading status, and interaction response. The main use case of RUM performance inspection is for client-side websites, such as e-commerce websites, financial websites, entertainment websites, and so on, which all need to provide users with a fast and smooth browsing experience. By analyzing the results of RUM performance, developers can quickly understand the user's actual experience and improve website performance.
+Real User Monitoring (RUM) is an application performance monitoring technology designed to evaluate website performance by simulating real user behavior while browsing the site. The purpose of RUM is to understand website performance from the user's perspective, including load times, page rendering effects, loading status of page elements, and interaction responses. The use cases for RUM performance inspection mainly involve client-side websites such as e-commerce sites, financial sites, entertainment sites, etc., which all need to provide users with a fast and smooth browsing experience. By analyzing RUM performance results, developers can quickly understand the actual user experience and improve website performance accordingly.
 
-## Preconditions
+## Prerequisites
 
-1. In Guance「 [user access monitoring](../../real-user-monitoring/index) 」that already have access applications.
-2. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
-4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+1. <<< custom_key.brand_name >>>「[User Analysis](../../real-user-monitoring/index)」already has integrated applications.
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+4. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>>「Manage / API Key Management」
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you are considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current <<< custom_key.brand_name >>> SaaS deployment [same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Start Intelligent Inspection
+## Initiating Inspection
 
-In the DataFlux Func, install the "Guance Custom Inspection (RUM Performance)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
+In your self-hosted DataFlux Func, install 「 <<< custom_key.brand_name >>> Self-hosted Inspection (RUM Performance)」from the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the desired inspection scenario in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) connection, then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create the startup script and trigger configuration. You can directly jump to view the corresponding configuration via the provided link.
 
 ![image](../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configuring Inspection
 
-### Configure Intelligent Inspection in Guance
+Configure the desired filtering conditions for the inspection in either the <<< custom_key.brand_name >>> Studio under Monitoring - Smart Inspection module or in the auto-created startup script of DataFlux Func. Refer to the two configuration methods below.
+
+### Configuring Inspection in <<< custom_key.brand_name >>>
 
 ![image](../img/rum_performance03.png)
 
 #### Enable/Disable
-RUM Performance Intelligent Integration is "enabled" by default and can be manually "disabled". Once enabled, it will inspect the configured RUM Performance Intelligent Integration configuration list.
+RUM performance inspection defaults to "Enabled". It can be manually "Disabled". Once enabled, it will inspect the configured RUM performance inspection settings.
 
-#### Export
+#### Editing
+Smart Inspection 「RUM Performance Inspection」 supports manual addition of filter conditions. Click the **Edit** button in the operation menu on the right side of the smart inspection list to edit the inspection template.
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
+* Filter Conditions: Configure `app_name` for the application name.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
 
-#### Editor
-
-Intelligent Check "RUM Performance Intelligent Integration" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
-
-* Filter criteria: Configure the app_name to specify the name of the application.
-* Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
-
-Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start check:
+Click Edit in the configuration entry parameters, fill in the corresponding detection object in the parameter configuration, and click Save to start the inspection:
 
 ![image](../img/rum_performance04.png)
 
-You can refer to the following to configuration information for multiple applications.
+You can refer to the following JSON configuration for multiple application information:
 
 ```json
-// configuration example:
- 	configs:
+// Configuration Example:
+ 	configs
     	app_name_1
     	app_name_2
 ```
 
->  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the intelligent inspection processing function.
+> **Note**: In the self-hosted DataFlux Func, when writing custom inspection processing functions, you can also add filter conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> Studio will override those set in the custom inspection processing function.
 
-### Configuring inspections in DataFlux Func
+### Configuring Inspection in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
+In DataFlux Func, after configuring the required filter conditions for the inspection, you can test by selecting the `run()` method directly on the page. After clicking Publish, the script will execute normally. You can also view or change configurations in <<< custom_key.brand_name >>>「Monitoring / Smart Inspection」.
 
 ```python
 from guance_monitor__runner import Runner
@@ -73,7 +70,7 @@ import guance_monitor_rum_performance__main as main
 def filter_appid(data):
     appid = data[0]
     '''
-    Filter `app_name`, customize the conditions for matching the required `app_name`, and return True if matched, and False if not matched.
+    Filter app_name, customize conditions for matching app_name, return True if matched, False otherwise
     return True｜False
     '''
     if app_names in ['app_xxxxxxxxxxx']:
@@ -81,55 +78,50 @@ def filter_appid(data):
   
   
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
-@DFF.API('RUM 性能巡检', fixed_crontab='*/15 * * * *', timeout=900)
+@DFF.API('RUM Performance Inspection', fixed_crontab='*/15 * * * *', timeout=900)
 def run(configs=None):
     """
-     Optional parameters：
-        configs：Multiple `app_name_1` can be specified (concatenated by line breaks). If not specified, all apps will be checked.
+    Parameters:
+        configs: Multiple app_name_1 can be specified (separated by new lines), unspecified means inspect all apps
 
-    config example：
+    Configuration Example:
         configs
             app_name_1
             app_name_2
     """
     checkers = [
-        main.RumPerformanceCheck(configs=configs, filters=[filter_appid]), # Support for user-configured multiple filtering functions that are executed in sequence.
+        main.RumPerformanceCheck(configs=configs, filters=[filter_appid]), # Support for user-configured multiple filtering functions that are executed sequentially.
     ]
 
     Runner(checkers, debug=False).run()
 ```
 
+## Viewing Events
 
-
-## View Events
-
-Guance will conduct inspections based on the current RUM performance of the application. When RUM performance metrics are detected as abnormal, the smart inspection will generate corresponding events. Click the "View Related Events" button in the operation menu on the right side of the smart inspection list to view the corresponding abnormal events.
+<<< custom_key.brand_name >>> inspects RUM performance based on the current state. When RUM performance metrics are abnormal, smart inspections generate corresponding events. Click the **View Related Events** button in the operation menu on the right side of the smart inspection list to view corresponding anomaly events.
 
 ![image](../img/rum_performance05.png)
 
-### Event Details page
+### Event Details Page
+Click **Event** to view the details page of the smart inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history records, and related events.
 
-Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the current smart inspection configuration.
 
-* Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check
-* Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events
-
-#### Basic Properties
-
-* Detection Dimensions: Filter criteria based on intelligent check configuration, enabling replication of detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security check, links, user access monitoring, availability monitoring and CI data
-* Extended Attributes: Supports replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering
+#### Basic Attributes
+* Detection Dimensions: Based on the filtering conditions configured in the smart inspection, support copying detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, user analysis, synthetic tests, and CI data.
+* Extended Attributes: Select extended attributes to copy in `key/value` format, apply forward/reverse filtering.
 
 ![image](../img/rum_performance06.png)
 
-#### Event details
+#### Event Details
 
-RUM Performance Intelligent Inspection will detect three core performance metrics: LCP, FID, and CLS. When one of these metrics is abnormal, an event report will be generated based on the abnormal metric.
+RUM performance inspection monitors three core performance metrics: LCP, FID, CLS. When one of these metrics is abnormal, it generates a corresponding event report.
 
-- Event Overview: describes the object and content of the abnormal inspection event.
-- Abnormal Page List: You can view the details of LCP, FID, and CLS metrics for the corresponding page.
-- Page Details: includes the abnormal time, page address, and abnormal values of the metrics. By clicking on the page address, you can further analyze the abnormality by jumping to the corresponding front-end page.
-- Sample the affected users: You can view information such as user ID, session ID, and username of the affected users on the current abnormal page, and you can jump to the corresponding session to view the impact on users by session ID.
-- Suggestions: provides optimization and improvement suggestions for the current abnormal metric.
+* Event Overview: Describes the object and content of the anomaly inspection event.
+* Anomalous Page List: View LCP, FID, CLS metric details for the corresponding pages.
+* Page Details: View the abnormal time, page URL, abnormal metric values, etc., for the anomalous metrics. Click the page URL to navigate to the front-end page for further analysis.
+* Affected User Samples: View user IDs, session IDs, usernames, etc., affected by the anomalous page. Click the session ID to view the impact on users.
+* Improvement Suggestions: Provide optimization recommendations for the current abnormal metrics.
 
 ![image](../img/rum_performance07.png)
 
@@ -137,42 +129,38 @@ RUM Performance Intelligent Inspection will detect three core performance metric
 
 ![image](../img/rum_performance09.png)
 
-#### History
+#### History Records
 
-Support to view detection objects, exception/recovery time and duration.
+Support viewing detected objects, anomaly/recovery times, and duration.
 
 ![image](../img/rum_performance10.png)
 
-#### Related events
-
-Support to view associated events by filtering fields and selected time component information.
+#### Related Events
+Support viewing related events through filtered fields and selected time components.
 
 ![image](../img/rum_performance11.png)
 
-## FAQ
-**1.How to configure the detection frequency of RUM Performance Intelligent Inspection**
+## Common Issues
+**1. How to configure the inspection frequency of RUM performance**
 
-In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
+* In the self-hosted DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing custom inspection processing functions, then configure it in 「Manage / Automatic Trigger Configuration」.
 
-**2.There may be no anomaly analysis when RUM Performance Intelligent Inspection is triggered**
+**2. Why might there be no anomaly analysis when RUM performance inspection triggers**
 
-Check the current data collection status of `datakit` when there is no anomaly analysis in the patrol report..
+If there is no anomaly analysis in the inspection report, check the current `datakit` data collection status.
 
-**3.Under what circumstances will RUM Performance Intelligent Inspection events be generated?**
+**3. Under what circumstances will RUM performance inspection events be generated**
 
-An alert event will be generated if the front-end application's LCP metric is greater than 2.5s, FID metric is greater than 100ms, or CLS metric is greater than 0.1.
+If the configured front-end application experiences LCP metrics > 2.5s, FID metrics > 100ms, or CLS metrics > 0.1, an alert event will be generated.
 
-**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+**4. What should I do if previously running scripts encounter errors during inspection**
 
-Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
+Update the referenced script set in the DataFlux Func Script Market. Check the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) for updates to the script market to facilitate timely script updates.
 
-**5. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+**5. What should I do if the script set in Startup remains unchanged during inspection script upgrade**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
+Delete the corresponding script set first, then click the Upgrade button to configure the <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**6. How to determine if the inspection is effective after it is enabled**
+**6. How to determine if the inspection is effective after enabling**
 
-Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the wor
-
-
-
+In 「Manage / Automatic Trigger Configuration」, check the inspection status. First, it should be Enabled, then verify the inspection script by clicking Execute. If it shows successful execution within the last xxx minutes, the inspection is running effectively.

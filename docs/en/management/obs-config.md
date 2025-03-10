@@ -1,41 +1,39 @@
-# HUAWEI Cloud OBS Authorization
+# Huawei Cloud OBS Bucket Authorization
 
-## Steps
+## Specific Operations
 
-I. [Login to HUAWEI Cloud console](https://auth.huaweicloud.com/authui/login.html?service=https://console.huaweicloud.com/console/#/login).
+1. [Log in to the Huawei Cloud console](https://auth.huaweicloud.com/authui/login.html?service=https://console.huaweicloud.com/console/#/login).
 
-II. Enter **Object Storage Service > Parallel File Systems**, namely what we called Bucket:
+2. On the **Service List** page, find **Object Storage Service**, enter the **Parallel File System** page, which is the bucket:
 
 ![](img/obs.png)
 
-III. Enter **Parallel File Systems > Permissions > ACLs**:
+3. Select the target file system, go to **Access Control > ACL**:
 
 ![](img/obs-1.png)
 
-IV. Click **Add** to enter the **Add Account Authorization** page.
+4. Click **Add**, enter the **New Account Authorization** page.
 
-i. Please fill in the authorized Huawei Cloud account ID, check the bucket access permission and ACL access permission, and click **OK** to confirm:
+4.1 Enter the authorized Huawei Cloud account ID, check the bucket access permissions and ACL access permissions, and click OK:
 
-**Note**: The account ID here refers to the exclusive Huawei Cloud account provided by Guance for you: `f000ee4d7327428da2f53a081e7109bd`
+**Note**: The account ID here is the exclusive Huawei Cloud account ID provided by <<< custom_key.brand_name >>>: `f000ee4d7327428da2f53a081e7109bd`
 
 ![](img/obs-2.png)
 
-V. If you do not have download permissions, you need to check the **Object Read** Permission and click **OK** to proceed.
+5. If download permission is not available, check the **Object Read Permission**, and click **OK**.
 
 ![](img/obs-3.png)
 
-## More Reading
+## Further Reading
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; What is Bucket Permission?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0004.html)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; What is a Bucket Policy?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0004.html)
 
 </div>
 
-
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; In Huawei Cloud, how can I grant read and write permissions for buckets to other accounts?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0025.html)
-
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; How to Grant Read and Write Permissions for Other Accounts on a Bucket in Huawei Cloud?</font>](https://support.huaweicloud.com/perms-cfg-obs/obs_40_0025.html)
 
 </div>

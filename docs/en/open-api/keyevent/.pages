@@ -1,4 +1,5 @@
 nav:
-  - 'Get a List of Unrecovered Events': unrecovered-list.md
-  - 'Get Event Content': get.md
-  - 'Create an Event': create.md
+  - 'Get the list of unrecovered incidents': unrecovered-list.md
+  - 'Get the content of an incident': get.md
+  - 'Manually recover an incident': recover.md
+  - 'Create an incident': create.md

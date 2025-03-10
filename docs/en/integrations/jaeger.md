@@ -1,43 +1,39 @@
 ---
-title     : 'Jaeger'
-summary   : 'Receive Jaeger APM Data'
+title: 'Jaeger'
+summary: 'Receive Jaeger APM Data'
+__int_icon: 'icon/jaeger'
 tags:
   - 'JAEGER'
-  - 'APM'
-  - 'TRACING'
-__int_icon      : 'icon/jaeger'
-dashboard :
-  - desc  : 'N/A'
-    path  : '-'
-monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - 'Trace Analysis'
+dashboard:
+  - desc: 'None available'
+    path: '-'
+monitor:
+  - desc: 'None available'
+    path: '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze Jaeger Tracing protocol data.
+The built-in Jaeger Agent in Datakit is used to receive, process, and analyze data from the Jaeger Tracing protocol.
 
 ## Configuration {#config}
-
-### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    The current version of Jaeger supports the HTTP and UDP communication protocols and the Apache Thrift encoding specification.
+    The current Jaeger version supports HTTP and UDP communication protocols with Apache Thrift encoding standards.
 
 === "Host Installation"
 
-    Go to the `conf.d/jaeger` directory under the DataKit installation directory, copy `jaeger.conf.sample` and name it `jaeger.conf`. Examples are as follows:
+    Navigate to the `conf.d/jaeger` directory under the DataKit installation directory, copy `jaeger.conf.sample` and rename it to `jaeger.conf`. An example configuration is as follows:
 
     ```toml
         
     [[inputs.jaeger]]
-      # Jaeger endpoint for receiving tracing span over HTTP.
+      # Jaeger endpoint for receiving tracing spans over HTTP.
       # Default value set as below. DO NOT MODIFY THE ENDPOINT if not necessary.
       endpoint = "/apis/traces"
     
@@ -45,21 +41,21 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
       # address = "127.0.0.1:6831"
       # binary_address = "127.0.0.1:6832"
     
-      ## ignore_tags will work as a blacklist to prevent tags send to data center.
-      ## Every value in this list is a valid string of regular expression.
+      ## ignore_tags will work as a blacklist to prevent tags from being sent to the data center.
+      ## Every value in this list is a valid regular expression string.
       # ignore_tags = ["block1", "block2"]
     
       ## Keep rare tracing resources list switch.
-      ## If some resources are rare enough(not presend in 1 hour), those resource will always send
-      ## to data center and do not consider samplers and filters.
+      ## If some resources are rare enough (not present in 1 hour), those resources will always be sent
+      ## to the data center and do not consider samplers and filters.
       # keep_rare_resource = false
     
-      ## delete trace message
+      ## Delete trace message
       # del_message = true
     
       ## Ignore tracing resources map like service:[resources...].
-      ## The service name is the full service name in current application.
-      ## The resource list is regular expressions uses to block resource names.
+      ## The service name is the full service name in the current application.
+      ## The resource list is regular expressions used to block resource names.
       ## If you want to block some resources universally under all services, you can set the
       ## service name as "*". Note: double quotes "" cannot be omitted.
       # [inputs.jaeger.close_resource]
@@ -68,7 +64,7 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
         # "*" = ["close_resource_under_all_services"]
         # ...
     
-      ## Sampler config uses to set global sampling strategy.
+      ## Sampler config used to set global sampling strategy.
       ## sampling_rate used to set global sampling rate.
       # [inputs.jaeger.sampler]
         # sampling_rate = 1.0
@@ -78,88 +74,88 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
         # key2 = "value2"
         # ...
     
-      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
+      ## Threads config controls how many goroutines an agent can start to handle HTTP requests.
       ## buffer is the size of jobs' buffering of worker channel.
-      ## threads is the total number fo goroutines at running time.
+      ## threads is the total number of goroutines at running time.
       ## timeout is the duration(ms) before a job can return a result.
       # [inputs.jaeger.threads]
         # buffer = 100
         # threads = 8
     
-      ## Storage config a local storage space in hard dirver to cache trace data.
+      ## Storage config sets up a local storage space on the hard drive to cache trace data.
       ## path is the local file path used to cache data.
-      ## capacity is total space size(MB) used to store data.
+      ## capacity is the total space size(MB) used to store data.
       # [inputs.jaeger.storage]
         # path = "./jaeger_storage"
         # capacity = 5120
     
     ```
 
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable collectors.
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    Environment variables can also be used to modify configuration parameters (you need to add them as default collectors in ENV_DEFAULT_ENABLED_INPUTS):
+
     - **ENV_INPUT_JAEGER_HTTP_ENDPOINT**
     
-        Endpoint for receiving tracing span over HTTP
+        Endpoint for receiving tracing spans via HTTP
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `endpoint`
+        **Collector Configuration Field**: `endpoint`
     
         **Example**: /apis/traces
     
     - **ENV_INPUT_JAEGER_UDP_ENDPOINT**
     
-        Agent URL for UDP transport
+        UDP agent URL
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `address`
+        **Collector Configuration Field**: `address`
     
         **Example**: 127.0.0.1:6831
     
     - **ENV_INPUT_JAEGER_IGNORE_TAGS**
     
-        Ignore tags
+        Ignored tags
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `ignore_tags`
+        **Collector Configuration Field**: `ignore_tags`
     
         **Example**: ["block1","block2"]
     
     - **ENV_INPUT_JAEGER_KEEP_RARE_RESOURCE**
     
-        Keep rare tracing resources list switch
+        Keep rare tracing resources list
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `keep_rare_resource`
+        **Collector Configuration Field**: `keep_rare_resource`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_JAEGER_DEL_MESSAGE**
     
-        Delete trace message
+        Delete trace messages
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `del_message`
+        **Collector Configuration Field**: `del_message`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_JAEGER_CLOSE_RESOURCE**
     
-        Ignore tracing resources that service (regular)
+        Ignore specified services' tracing (regex match)
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `close_resource`
+        **Collector Configuration Field**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -167,64 +163,64 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         Global sampling rate
     
-        **Type**: Float
+        **Field Type**: Float
     
-        **input.conf**: `sampler`
+        **Collector Configuration Field**: `sampler`
     
         **Example**: 0.3
     
     - **ENV_INPUT_JAEGER_THREADS**
     
-        Total number of threads and buffer
+        Number of threads and buffer
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `threads`
+        **Collector Configuration Field**: `threads`
     
         **Example**: {"buffer":1000, "threads":100}
     
     - **ENV_INPUT_JAEGER_STORAGE**
     
-        Local cache file path and size (MB) 
+        Local cache path and size (MB)
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `storage`
+        **Collector Configuration Field**: `storage`
     
         **Example**: {"storage":"./jaeger_storage", "capacity": 5120}
     
     - **ENV_INPUT_JAEGER_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If the configuration file has the same named tags, they will override them.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
 
-When using UDP protocol, pay attention to the data format in the protocol. By default, the protocol used for port 6831 is `Thrift CompactProtocol` format, while the protocol used for port 6832 is `Thrift Binary Protocol`.
-Jaeger uses the protocol from port 6831 by default.
+When using the UDP protocol, note the data format in the protocol. By default, port 6831 uses the `thrift CompactProtocol` format, while port 6832 uses the `thrift BinaryProtocol` format.
+Jaeger defaults to using the protocol on port 6831, so when you are not using port 6832, do not uncomment it.
 
-### Configure Jaeger HTTP Agent {#config-http-agent}
+### Configuring Jaeger HTTP Agent {#config-http-agent}
 
-endpoint represents Jaeger HTTP Agent routing
+The `endpoint` represents the route for the Jaeger HTTP Agent.
 
 ```toml
 [[inputs.jaeger]]
-  # Jaeger endpoint for receiving tracing span over HTTP.
+  # Jaeger endpoint for receiving tracing spans over HTTP.
   # Default value set as below. DO NOT MODIFY THE ENDPOINT if not necessary.
   endpoint = "/apis/traces"
 ```
 
-- Modify the Agent Host Port of Jaeger Client to Datakit Port (default is 9529)
-- Modify the Agent endpoint of the Jaeger Client to the endpoint specified in the configuration above
+- Modify the Jaeger Client's Agent Host Port to the DataKit Port (default is 9529).
+- Modify the Jaeger Client's Agent endpoint to the endpoint specified in the configuration.
 
-### Configure Jaeger UDP Agent {#config-udp-agent}
+### Configuring Jaeger UDP Agent {#config-udp-agent}
 
-Modify the Agent UDP Host: Port of the Jaeger Client to the address specified in the following configuration:
+Modify the Jaeger Client's Agent UDP Host:Port to the address specified in the configuration:
 
 ```toml
 [[inputs.jaeger]]
@@ -232,13 +228,13 @@ Modify the Agent UDP Host: Port of the Jaeger Client to the address specified in
   address = "127.0.0.1:6831"
 ```
 
-Refer to [Datakit Tracing](datakit-tracing.md) for configuration of data sampling, data filtering, closing resources, and so on.
+For more details on data sampling, filtering, and resource blocking configurations, refer to [DataKit Tracing](datakit-tracing.md).
 
-## Sample {#demo}
+## Example {#demo}
 
-### Golang Sample {#go-http}
+### Golang HTTP Example {#go-http}
 
-Here is an example of an HTTP Agent:
+Below is an example of an HTTP Agent:
 
 ```golang
 package main
@@ -333,9 +329,9 @@ func send(urlstr string, i int) {
 }
 ```
 
-### Golang UDP Sample {#go-udp}
+### Golang UDP Example {#go-udp}
 
-Here is an example of a UDP Agent:
+Below is an example of a UDP Agent:
 
 ```golang
 package main
@@ -396,25 +392,18 @@ func foo() {
 }
 ```
 
-## Metric {#metric}
-
-
-
-
+## Metrics {#metric}
 
 ### `jaeger`
 
-
-
 - Tags
 
-
 | Tag | Description |
-|  ----  | --------|
+| ---- | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
-|`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
-|`env`|Application environment info. Available in Jaeger. Optional.|
+|`endpoint`|Endpoint information. Available in SkyWalking, Zipkin. Optional.|
+|`env`|Application environment information. Available in Jaeger. Optional.|
 |`host`|Hostname.|
 |`http_method`|HTTP request method name. Available in DDTrace, OpenTelemetry. Optional.|
 |`http_route`|HTTP route. Optional.|
@@ -426,25 +415,21 @@ func foo() {
 |`source_type`|Tracing source type|
 |`span_type`|Span type|
 |`status`|Span status|
-|`version`|Application version info. Available in Jaeger. Optional.|
+|`version`|Application version information. Available in Jaeger. Optional.|
 
-- Metrics
-
+- Metric List
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`resource`|Resource name produce current span|string|-|
-|`span_id`|Span id|string|-|
-|`start`|start time of span.|int|usec|
-|`trace_id`|Trace id|string|-|
+|`resource`|Resource name that produces the current span|string|-|
+|`span_id`|Span ID|string|-|
+|`start`|Start time of span.|int|usec|
+|`trace_id`|Trace ID|string|-|
 
-
-
-
-## Jaeger Official Documentation {#doc}
+## Official Jaeger Documentation {#doc}
 
 - [Quick Start](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
 - [Docs](https://www.jaegertracing.io/docs/){:target="_blank"}

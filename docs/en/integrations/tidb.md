@@ -1,12 +1,12 @@
 ---
 title     : 'TiDB'
-summary   : 'Collect TiDB cluster, TiDB, Etcd, Region and other related component metric information'
+summary   : 'Collect metrics information from TiDB cluster, TiDB, Etcd, Region, and other related components'
 __int_icon: 'icon/tidb'
 dashboard :
-  - desc  : 'TiDB Monitoring View'
-    path  : 'dashboard/zh/tidb'
+  - desc  : 'TiDB monitoring view'
+    path  : 'dashboard/en/tidb'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -14,30 +14,30 @@ monitor   :
 # TiDB
 <!-- markdownlint-enable -->
 
-TiDB view display, including overview (such as start-up time, storage information, node information, etc.), cluster (cluster-related information), TiDB, Etcd, Region, and other related metric information.
+The TiDB view displays information including an overview (such as startup time, storage information, node information, etc.), cluster (related cluster information), TiDB, Etcd, Region, and other relevant metrics.
 
 
-## Configuration {#config}
+## Installation and Configuration {#config}
 
-### Version support
+### Version Support
 
-Version support depends on TiDB's own system support
+Version support depends on the versions supported by the TiDB system itself.
 
-Description: Example TiDB version 6.3+
+Note: The example TiDB version is 6.3+
 
-(Linux / Windows environment is the same)
+(The environment for Linux / Windows is the same)
 
-To install TiDB, refer to the documentation [TiDB Deployment Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)
+To install TiDB, refer to the documentation [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4).
 
-The following collection processes were carried out as [TiDB Deployment Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)deployment.
-
-
-### Metric Collection Configuration
-
-Each TiDB component (a total of four components) has been exposed `metrics` under the HTTP protocol
+The following collection process follows the deployment method described in [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4) for data collection.
 
 
-| Component  |Metrics port|
+### Metrics Collection Configuration
+
+All TiDB components (a total of 4 components) expose `metrics` via HTTP protocol
+
+
+| Component | Metrics Port |
 | --- | --- |
 | TiDB | 10080 |
 | pd  | 2379 |
@@ -45,13 +45,13 @@ Each TiDB component (a total of four components) has been exposed `metrics` unde
 | TiFlash | 8234 <br/> 20292 |
 
 
-These are the `metrics` ports associated with single-node cluster component deployment, and ports behave similarly if they are multi-node clusters
+The above table lists the `metrics` ports for single-node cluster component deployments; for multi-node clusters, the port configuration is similar.
 
-#### Open DataKit Collector
+#### Enable DataKit Collector
 
 <!-- markdownlint-disable MD046 MD038 MD010-->
-=== "TiDB Metric Collection"
-    1. Copy sample file
+=== "TiDB Metrics Collection"
+    1. Copy the sample file
     ```bash hl_lines="2"
       cd /usr/local/datakit/conf.d/prom/
       cp prom.conf.sample tidb_prom.conf
@@ -59,7 +59,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 
     2. Adjust `tidb_prom.conf`
 
-    ??? Info' `tidb_prom.conf` '
+	??? info "`tidb_prom.conf`"	
 		```toml hl_lines="4 12 17 21 80"
 		[[inputs.prom]]
 		  # Exporter URLs.
@@ -96,7 +96,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentification. For now support Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -105,7 +105,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -144,17 +144,17 @@ These are the `metrics` ports associated with single-node cluster component depl
 		
 		```
 
-=== "pd metric collection"
+=== "pd Metrics Collection"
 
-    1. Copy the sample file
+	1. Copy the sample file
 	```shell hl_lines="2"
 	cd /usr/local/datakit/conf.d/prom/
 	cp prom.conf.sample tidb_pd_prom.conf
 	```
 
-    2. Adjust `tidb_pd_prom.conf`
+	2. Adjust `tidb_pd_prom.conf`
 
-    ??? Info' `tidb_pd_prom.conf` '
+	??? info "`tidb_pd_prom.conf`"	
 		``` toml hl_lines="4 12 21 29 91 92 93 94 95 108"
 		[[inputs.prom]]
 		  # Exporter URLs.
@@ -214,7 +214,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentification. For now support Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -223,7 +223,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -268,17 +268,17 @@ These are the `metrics` ports associated with single-node cluster component depl
 		
 		```
 
-=== "TiKV Metric Collection"
+=== "TiKV Metrics Collection"
 
-    1. Copy the sample file
+	1. Copy the sample file
 	```shell hl_lines="2"
 	cd /usr/local/datakit/conf.d/prom/
 	cp prom.conf.sample tidb_tikv_prom.conf
 	```
 
-    2. Adjust `tidb_tikv_prom.conf`
+	2. Adjust `tidb_tikv_prom.conf`
 
-    ???+ Info' `tidb_tikv_prom.conf` '
+	??? info "`tidb_tikv_prom.conf`"	
 		``` toml hl_lines="4 12 29 38 103"
 		[[inputs.prom]]
 		  # Exporter URLs.
@@ -338,7 +338,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentification. For now support Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -347,7 +347,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -387,17 +387,17 @@ These are the `metrics` ports associated with single-node cluster component depl
 		
 		```
 
-=== "TiFlash Metric Collection"
+=== "TiFlash Metrics Collection"  
 
-    1. Copy the sample file
+	1. Copy the sample file
 	```shell hl_lines="2"
 	cd /usr/local/datakit/conf.d/prom/
 	cp prom.conf.sample tidb_tiflash_prom.conf
 	```
 
-    2. Adjust `tidb_tiflash_prom.conf`
+	2. Adjust `tidb_tiflash_prom.conf`
 
-    ???+ Info' `tidb_tiflash_prom.conf` '
+	??? info "`tidb_tiflash_prom.conf`"	
 		``` toml hl_lines="4 12 29 38 103"
 		[[inputs.prom]]
 		  # Exporter URLs.
@@ -457,7 +457,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 		  # The matched tags would be dropped, but the item would still be sent.
 		  # tags_ignore = ["xxxx"]
 
-		  ## Customize authentification. For now support Bearer Token only.
+		  ## Customize authentication. For now supports Bearer Token only.
 		  # Filling in 'token' or 'token_file' is acceptable.
 		  # [inputs.prom.auth]
 		  # type = "bearer_token"
@@ -466,7 +466,7 @@ These are the `metrics` ports associated with single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritier over 'measurement_name' configuration.
+		  # Prioritizes over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -506,26 +506,23 @@ These are the `metrics` ports associated with single-node cluster component depl
 		```
 
 <!-- markdownlint-disable MD033 -->
+<font color="red">*Note that adjustments are needed for marked sections*</font>
 
-<font color="red">*Note that the marker needs to be adjusted*</font>
 
+Key Parameter Explanation:
 
-Description of main parameters:
-
-- urls: `prometheus` Metric address, where you fill in the metric URL exposed by the corresponding component
-- source: Collector alias, recommended to distinguish
-- interval: collection interval
-- measurement_prefix: Metric set prefix for easy management of classification
-- tls_open:TLS Configuration
-- metric_types: Metric type, not filled in, represents the collection of all metrics, recommended to fill in as needed, involving timeline
-- tags_ignore: ignore unnecessary Tags
-- [inputs.prom.tags_rename.mapping]:<font color="red"> tag rename, if tag and filed rename are encountered, tag needs to be renamed, otherwise the whole index cannot be collected.</font>
-- [inputs.prom.tags]: Set tags to apply to all metrics currently in use
-<!-- markdownlint-enable -->
+- urls: Prometheus metrics address, fill in the corresponding component's exposed metrics URL.
+- source: Collector alias, it is recommended to differentiate them.
+- interval: Collection interval.
+- measurement_prefix: Prefix for the metrics set, making management and classification easier.
+- tls_open: TLS configuration.
+- metric_types: Metric types, leaving it blank means collecting all metrics. It is recommended to fill in as needed, especially concerning Time Series.
+- tags_ignore: Ignore unnecessary tags.
+- [inputs.prom.tags_rename.mapping]: <font color="red">Rename tags. If a tag conflicts with a field name, rename the tag to ensure metrics can be collected.</font>
+- [inputs.prom.tags]: Set tags applied to all metrics.
 
 ### Restart DataKit
 
 ```shell
 systemctl restart datakit
 ```
-

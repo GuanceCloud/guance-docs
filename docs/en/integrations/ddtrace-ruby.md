@@ -1,13 +1,12 @@
 ---
 title     : 'DDTrace Ruby'
-summary   : 'Tracing Ruby applications with DDTrace'
+summary   : 'DDTrace Ruby Integration'
 tags      :
   - 'DDTRACE'
   - 'RUBY'
-  - 'APM'
-  - 'TRACING'
+  - 'Tracing'
 __int_icon: 'icon/ddtrace'
 ---
 
 
-For integrating APM into Ruby applications, please refer to the [Datadog Ruby Integration Documentation](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/ruby/#advanced-configuration){:target="_blank"}.
+For Ruby APM integration, please refer to the [Datadog Ruby Integration Documentation](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/ruby/#advanced-configuration){:target="_blank"}.

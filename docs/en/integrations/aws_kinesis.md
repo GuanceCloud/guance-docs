@@ -2,19 +2,19 @@
 title: 'AWS Kinesis'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/aws_kinesis'
 dashboard:
 
-  - desc: 'AWS Kinesis Monitoring View'
+  - desc: 'AWS Kinesis monitoring view'
     path: 'dashboard/en/aws_kinesis'
 
 monitor:
-  - desc: 'AWS Kinesis Monitor'
+  - desc: 'AWS Kinesis monitor'
     path: 'monitor/en/aws_kinesis'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud collector'
   path: 'cloud-collector/en/aws_kinesis'
 ---
 
@@ -23,61 +23,62 @@ cloudCollector:
 # AWS Kinesis
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Deploy Func on your own](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare a qualified Amazon AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of AWS Kinesis cloud resources, we install the corresponding collection script: `ID:guance_aws_kinesis`
+To synchronize AWS Kinesis cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (AWS-Kinesis Collection)" (ID: `guance_aws_kinesis`)
 
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
+Click 【Install】, then enter the corresponding parameters: Amazon AK, Amazon account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup scripts.
 
-Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
+Then, in the collection script, change the regions in `collector_configs` and `cloudwatch_configs` to the actual regions.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+In addition, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a while, you can check the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-kinesis/){:target="_blank"}
+By default, we collect some configurations; for details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-kinesis/){:target="_blank"}
 
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. In 「Manage / Automatic Trigger Configuration」, confirm that the corresponding task has an automatic trigger configuration, and you can check the task records and logs to see if there are any anomalies.
+2. On the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. On the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
 
-## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html){:target="_blank"}
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/en_us/streams/latest/dev/monitoring-with-cloudwatch.html){:target="_blank"}
 
-### Metric
+### Instance Metrics
 
-`AWS/Kinesis` The namespace includes the following instance metrics 。
+The `AWS/Kinesis` namespace includes the following instance metrics.
 
-| Metric                                   | Description                                                                                                                                                                                                                                                                                                                                                                             |
-|:-------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `IncomingBytes`                      | The number of bytes successfully put to the Kinesis stream over the specified time period. This metric includes bytes from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the bytes in a single put operation for the stream in the specified time period.Shard-level metric name: IncomingBytes.Dimensions: StreamName.Units: Bytes  |
-| `IncomingRecords`                    | The number of records successfully put to the Kinesis stream over the specified time period. This metric includes record counts from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the records in a single put operation for the stream in the specified time period.Shard-level metric name: IncomingRecords.Dimensions: StreamName.Units: Count      |
-| `WriteProvisionedThroughputExceeded` | The number of records rejected due to throttling for the stream over the specified time period. This metric includes throttling from PutRecord and PutRecords operations. The most commonly used statistic for this metric is Average.When the Minimum statistic has a non-zero value, records were being throttled for the stream during the specified time period.When the Maximum statistic has a value of 0 (zero), no records were being throttled for the stream during the specified time period.Shard-level metric name: WriteProvisionedThroughputExceeded.Dimensions: StreamName.Units: Count |
-| `PutRecords.Bytes`                   | The number of bytes put to the Kinesis stream using the PutRecords operation over the specified time period.Dimensions: StreamName.Units: Bytes                                          |
-| `PutRecords.Success`                 | The number of PutRecords operations where at least one record succeeded, per Kinesis stream, measured over the specified time period.Dimensions: StreamName.Units: Count                                                                                                                                                                                                                                                       |
-| `PutRecords.Latency`                 | The time taken per PutRecords operation, measured over the specified time period.Dimensions: StreamName.Units: Milliseconds                                                                                                                                                                                                                                                                                                                          |
-| `PutRecords.FailedRecords`           | The number of records rejected due to internal failures in a PutRecords operation per Kinesis data stream, measured over the specified time period. Occasional internal failures are to be expected and should be retried.Dimensions: StreamName.Units: Count                                                                                                                                                                                                                                                                           |
-| `PutRecords.ThrottledRecords`        | The number of records rejected due to throttling in a PutRecords operation per Kinesis data stream, measured over the specified time period.Dimensions: StreamName.Units: Count                                                                                                                                                                                                                                                                                                  |
-| `utRecords.TotalRecords`             | The total number of records sent in a PutRecords operation per Kinesis data stream, measured over the specified time period.Dimensions: StreamName.Units: Count                                                                                                                                                                                                                                                                                                                     |
-## Object {#object}
+| Metric                                   | Description                                                                                                                                                                                                                       |
+|:-------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `IncomingBytes`                      | The number of bytes successfully placed into the Kinesis stream during the specified time period. This metric includes bytes from `PutRecord` and `PutRecords`. Statistics Minimum, Maximum, and Average indicate the number of bytes in a single put operation within the specified time period. Shard-level metric name: IncomingBytes. Dimensions: StreamName. Unit: Bytes                                                          |
+| `IncomingRecords`                    | The number of records successfully placed into the Kinesis stream during the specified time period. This metric includes records from `PutRecord` and `PutRecords`. Statistics Minimum, Maximum, and Average indicate the number of records in a single put operation within the specified time period. Shard-level metric name: IncomingRecords. Dimensions: StreamName. Unit: Count                                                        |
+| `WriteProvisionedThroughputExceeded` | The number of records rejected due to stream limits during the specified time period. This metric includes limits from `PutRecord` and `PutRecords` operations. The most commonly used statistic for this metric is Average. When the Minimum statistic value is not zero, records in the stream were throttled during the specified time period. When the Maximum statistic value is 0 (zero), no records in the stream were throttled during the specified time period. Shard-level metric name: WriteProvisionedThroughputExceeded. Dimensions: StreamName. Unit: Count |
+| `PutRecords.Bytes`                   | The number of bytes placed into the Kinesis stream using `PutRecords` during the specified time period. Dimensions: StreamName. Unit: Bytes                                                                                                                                    |
+| `PutRecords.Success`                 | The number of `PutRecords` operations measured where at least one record was successful in each Kinesis stream during the specified time period. Dimensions: StreamName. Unit: Count                                                                                                                                                      |
+| `PutRecords.Latency`                 | The time taken for each `PutRecords` operation measured during the specified time period. Dimensions: StreamName. Unit: Milliseconds                                                                                                                                                                       |
+| `PutRecords.FailedRecords`           | The number of records rejected due to internal failures. `PutRecords` operations measured in each Kinesis data stream during the specified time period. Occasional internal failures should be retried. Dimensions: StreamName. Unit: Count |
+| `PutRecords.ThrottledRecords`        | The number of records rejected due to throttling. `PutRecords` operations measured in each Kinesis data stream during the specified time period. Dimensions: StreamName. Unit: Count |
+| `PutRecords.TotalRecords`            | The total number of records measured in each Kinesis data stream during the specified time period. Dimensions: StreamName. Unit: Count |
 
-The collected AWS Kinesis object data structure, You can see the object data from「Infrastructure-Custom」
+## Objects {#object}
+
+The collected AWS Kinesis object data structure can be seen in 「Infrastructure - Custom」
 
 ```json
 {
@@ -100,6 +101,6 @@ The collected AWS Kinesis object data structure, You can see the object data fro
 }
 ```
 
-> *Note: The fields in 'tags' may change with subsequent updates*
+> *Note: The fields in `tags` may change with subsequent updates*
 >
-> Tip 1: The 'name' value is the instance name and serves as a unique identifier
+> Tip 1: The `name` value is the instance name, used for unique identification

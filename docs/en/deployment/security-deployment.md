@@ -1,46 +1,45 @@
-# Secure Deployment 
+# Security Deployment Solution
 ---
 
 ## Preface
-For some customers who are very sensitive to finance, insurance and security, as well as customers who have self-control needs for the data provided by the Guance, we would provide solutions for deploying products to customers' own controllable environment. But in fact, if we can't upgrade and manage these Guance deployed to the customer side in time and quickly for a long time, this would cause customers to fail to upgrade in time and effectively or lead to a series of problems such as irreparable bugs in the product. Thus we need to be able to help customers upgrade and maintain the whole system under safe and controllable conditions in this deployment cooperation mode, so that these deployment customers can enjoy the service experience completely consistent with SaaS version under absolutely safe conditions. 
+For clients in finance, insurance, and other sectors with high sensitivity to security, as well as those who require self-management of data provided by "<<< custom_key.brand_name >>>", we will offer a solution to deploy the product in their own controlled environment. However, if we cannot promptly upgrade and manage these deployments on the client side, it could lead to issues such as untimely upgrades or unresolved bugs. Therefore, in this Deployment Plan cooperation model, we need to help clients securely maintain and upgrade the entire system, ensuring that these clients enjoy services identical to the SaaS version while maintaining absolute security.
 
-## Existing Problems
-In fact, there are many doubts about our engineers deploying, installing, maintaining and upgrading Guance on customers' own servers. These concerns include the following: 
+## Existing Issues
+In reality, our engineers deploying, installing, maintaining, and upgrading the "<<< custom_key.brand_name >>>" product on the client's own servers raises many concerns. These concerns include:
 
-**Systematic Security Risks of Guance**
+**Systemic Security Risks of "<<< custom_key.brand_name >>>"**
 
-Customers worried about the possible security risks of the Guance itself, or the distrust of the engineers who operate the Guance after the deployment of Guance in the intranet of the enterprise, for example, making traditional attacks on the intranet, using the deployment cluster of the "Guance" as an attack springboard to attack the customer's intranet environment, or the operators using the authority in the deployment management process to attack the intranet. 
+There are worries that after deploying "<<< custom_key.brand_name >>>" within the corporate intranet, potential security risks from "<<< custom_key.brand_name >>>" itself or distrust of the engineers operating it may arise. For example, traditional internal network attacks can be initiated using the "<<< custom_key.brand_name >>>" deployment cluster as a stepping stone to attack the client’s internal network, or operators could exploit permissions during deployment management to attack the internal network.
 
-**Data Leakage Risk of Guance**
+**Data Leakage Risks of "<<< custom_key.brand_name >>>"**
 
-Customers worried about the data leakage of the Guance itself, including the data being stolen or destroyed by the operation upgrade personnel. 
+Concerns also exist regarding data leakage from "<<< custom_key.brand_name >>>", including theft or destruction of data by personnel performing upgrades.
 
-Because of this series of concerns, customers refused our engineers to install, upgrade and maintain the software. Yet customers did not have the corresponding technical ability, and at the same time, they could not effectively deal with the system failure, which led to the extreme decline of the user experience. 
+Due to these concerns, clients may refuse our engineers from installing, upgrading, and maintaining the software, while lacking the necessary technical capabilities themselves. This results in an inability to effectively handle system failures, leading to a poor user experience.
 
 ## Solutions
-Guance itself is a comprehensive observable platform, **which is a data receiver, and does not need to access any monitored objects. All monitored objects are packaged by DataKit and then pushed to the center of Guance Cloud in a client way**. Therefore, if we build a safe deployment environment reasonably, we can eliminate the above-mentioned security risks, and let customers completely hand over the maintenance and management updates of products to us, so that customers can experience the SaaS-like use experience completely without paying attention to system deployment issues. 
+"<<< custom_key.brand_name >>>" is a comprehensive observability platform. **It acts as a data receiver and does not need to access any monitored objects directly. All monitored objects send data via DataKit, which then pushes the data to the central "<<< custom_key.brand_name >>>" server.** Therefore, by properly constructing a secure deployment environment, the aforementioned security risks can be eliminated, allowing clients to fully entrust us with maintenance, management, and updates, providing them with a seamless SaaS-like experience without worrying about system deployment issues.
 
-#### Independent Cloud Account Method (recommended):
-Open a special account for deploying Guance on an independent cloud platform to completely isolate from the customer's production or test environment, that is, physically (logically and physically) ensure that when our engineers maintain, manage and update Guance products, they cannot attack the customer's business network with the server related to Guance as a springboard machine. Due to the architectural characteristics of Guance, only the objects that need to be observed in the customer's intranet can transmit data to the DataWay of Guance through the DataKit, that is, the Datakit can be connected to the DataWay deployed in the center by one-way TCP. 
+#### Independent Cloud Account Method (Recommended):
+Open a dedicated account for deploying "<<< custom_key.brand_name >>>" on an independent cloud platform, ensuring complete isolation from the client's production or testing environments. This guarantees that when our engineers maintain and update the "<<< custom_key.brand_name >>>" product, they cannot use the related servers as stepping stones to attack the client’s business network. Due to the architecture of "<<< custom_key.brand_name >>>", only the observed objects within the client’s intranet need to transmit data to the "<<< custom_key.brand_name >>>" DataWay via DataKit, ensuring a one-way TCP connection from DataKit to the centrally deployed DataWay.
 
-#### VPC Isolation Mode
-Open an independent VPC on the same cloud platform account, deploy Guance under this independent VPC, and involve corresponding routing rules to ensure that Datakit of the core system can access DataWay deployed under the independent VPC in one direction. At the same time, an independent RAM account is opened, and all cloud resources under the independent VPC are authorized to the RAM account. 
+#### VPC Isolation Method
+Enable an independent VPC on the same cloud platform account, deploy "<<< custom_key.brand_name >>>" under this isolated VPC, and configure routing rules to ensure that core system Datakits can access the DataWay deployed in the isolated VPC unidirectionally. Additionally, create an independent RAM account and authorize all cloud resources under the isolated VPC to this RAM account.
 
-#### Physical Network Isolation Mode
-By means of iptable or security group of physical network, the cluster that controls the deployment of Guance cannot access other intranet servers, and only opens the port of DataWay in Guance to Datakit to realize one-way TCP connection. 
+#### Physical Network Isolation Method
+Use iptables or security groups to control the "<<< custom_key.brand_name >>>" cluster so that it cannot access other internal network servers, and only open the DataWay port of "<<< custom_key.brand_name >>>" to Datakit to achieve a one-way TCP connection.
 
-### Further Strengthen
-The above three methods have been able to prevent hackers from invading Guance or bad engineers from attacking core business systems while maintaining Guance. However, if we need to protect the Guance platform and protect the data in the Guance platform, we still need to further strengthen the configuration. 
+### Further Enhancements
+The above three methods can prevent hackers or malicious engineers from attacking core business systems after gaining access to "<<< custom_key.brand_name >>>". However, to protect the "<<< custom_key.brand_name >>>" platform and its data, additional enhancements are necessary.
 
-#### Open the Operation Audit Function of the Cloud Platform 
-Turn on the audit function and record the audit log in an audit workspace of Guance, so as to know all the behaviors of logging in to the cloud console through RAM account, and ensure that any maintenance and management behaviors can be audited in the cloud console. 
+#### Enable Operation Audit Functionality on the Cloud Platform
+Activate auditing functionality and log audit logs into an audit workspace within "<<< custom_key.brand_name >>>". This allows tracking of all actions performed through the RAM account on the cloud console, ensuring all maintenance and management activities are auditable.
 
-#### Turn on the Bastion Machine 
-All behaviors of Guance cluster management based on SSH login to related clusters are audited by bastion machines. 
+#### Enable Bastion Host
+All SSH login-related cluster management activities for "<<< custom_key.brand_name >>>" should be audited through a bastion host.
 
-#### Reasonably Control RAM Account Number and Home Base Machine Account Number
-The internal engineer of the customer would control when we need to update the system management to open the corresponding RAM account and open the authority of the home base machine, and update the password or secret key regularly to avoid the intrusion caused by the leakage of the system password at ordinary times. 
+#### Proper Management of RAM Accounts and Bastion Host Accounts
+Client internal engineers should control the opening of RAM accounts and bastion host permissions only when we need to perform system updates and management, regularly updating passwords or keys to prevent unauthorized access due to password leaks.
 
 ## Conclusion
-To sum up, if the deployment method is adopted reasonably, customers can safely hand over the deployment version of Guance to us for full maintenance without worrying about any danger, which would not happen. 
-
+In summary, if the appropriate deployment methods are adopted, clients can confidently entrust the Deployment Plan of "<<< custom_key.brand_name >>>" to us for full maintenance, without any concerns, ensuring that potential risks do not occur.

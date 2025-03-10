@@ -2,68 +2,66 @@
 title: 'AWS Timestream'
 tags: 
   - AWS
-summary: 'AWS Timestream displays the metrics include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and the current AWS account, the time elapsed for successful requests and the number of samples, the amount of data stored in memory, and the amount of data stored in magnetic storage.'
+summary: 'The metrics displayed for AWS Timestream include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and account, the elapsed time and sample count of successful requests, the amount of data stored in memory, and the amount of data stored on magnetic storage.'
 __int_icon: 'icon/aws_timestream'
 dashboard:
 
-  - desc: 'AWS Timestream dashboard'
+  - desc: 'Built-in views for AWS Timestream'
     path: 'dashboard/en/aws_timestream'
 
 monitor:
-  - desc: 'AWS Timestream monitor'
+  - desc: 'Monitors for AWS Timestream'
     path: 'monitor/en/aws_timestream'
 
 ---
 
 <!-- markdownlint-disable MD025 -->
-# AWS `Timestream`
+# AWS **Timestream**
 <!-- markdownlint-enable -->
 
-AWS `Timestream` displays the metrics include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and the current AWS account, the time elapsed for successful requests and the number of samples, the amount of data stored in memory, and the amount of data stored in magnetic storage.
 
-## Config {#config}
+The metrics displayed for AWS **Timestream** include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and account, the elapsed time and sample count of successful requests, the amount of data stored in memory, and the amount of data stored on magnetic storage.
+
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening [ Integrations - Extension - DataFlux Func (Automata) ]: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func manually, refer to [Manual Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, you can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)
+> Note: Prepare an Amazon Cloud AK that meets the requirements (for simplicity, you can directly grant `CloudWatchReadOnlyAccess` read-only permissions).
 
-To synchronize the monitoring data of AWS `Timestream` cloud resources, we install the corresponding collection script: `ID:guance_aws_timestream`
+To synchronize monitoring data from AWS **Timestream**, install the corresponding collection script: "Guance Integration (AWS-**Timestream** Collection)" (ID: `guance_aws_timestream`).
 
-Click [Install] and enter the corresponding parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET and Account Name.
+After clicking 【Install】, enter the required parameters: AWS AK ID, AWS AK SECRET, account_name.
 
-Tap [Deploy startup Script],The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】. The system will automatically create a `Startup` script set and configure the startup scripts accordingly. Ensure that the 'regions' in the startup script match the actual regions where your instances are located.
 
-Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
+Once enabled, you can view the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
 
-After this function is enabled, you can view the automatic triggering configuration in [Management / Crontab Config]. Click[Run],you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing data, enable the cloud billing collection script.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+By default, we collect some configurations; see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"} for details.
 
+### Verification
 
-### Verify
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have been configured for automatic triggers and check the task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, under "Metrics", check if the corresponding monitoring data exists.
 
-1. In [ Management / Crontab Config ] check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click [ Infrastructure / Custom ] to check whether asset information exists
-3. On the Guance platform, press [ Metrics ] to check whether monitoring data exists
+## Metrics {#metric}
 
-## Metric {#metric}
+After configuring Amazon Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration:
 
-After configure AWS Simple Queue Service monitoring, the default metric set is as follows. You can collect more metrics by configuring them:
+[Amazon Cloud Monitoring AWS **Timestream** Metric Details](https://docs.aws.amazon.com/zh_cn/timestream/latest/developerguide/metrics-dimensions.html){:target="_blank"}
 
-[Available CloudWatch metrics for AWS `Timestream`](https://docs.aws.amazon.com/timestream/latest/developerguide/metrics-dimensions.html){:target="_blank"}
-
-
-| Metric | Description | Units | Valid Statistics |
+| Metric Name | Description | Unit | Valid Statistics |
 | :---: | :---: | :---: | :---: |
-| `SystemErrors` | The requests to `Timestream` that generate a SystemError during the specified time period. A SystemError usually indicates an internal service error. | Count | Sum, SampleCount |
-| `UserErrors` | Requests to `Timestream` that generate an InvalidRequest error during the specified time period. An InvalidRequest usually indicates a client-side error, such as an invalid combination of parameters, an attempt to update a nonexistent table, or an incorrect request signature. UserErrors represents the aggregate of invalid requests for the current AWS Region and the current AWS account. | Count | Sum, SampleCount |
-| `SuccessfulRequestLatency` | The successful requests to `Timestream` during the specified time period.  SuccessfulRequestLatency can provide two different kinds of information: The elapsed time for successful requests (Minimum, Maximum,Sum, or Average). The number of successful requests (SampleCount). SuccessfulRequestLatency reflects activity only within `Timestream` and does not take into account network latency or client-side activity. | Milliseconds | Average, Minimum, Maximum, Sum, SampleCount |
-| `MemoryCumulativeBytesMetered` | The amount of data stored in memory store, in bytes. | Bytes | Average |
-| `MagneticCumulativeBytesMetered`| The amount of data stored in magnetic store, in bytes. | Bytes | Average |
-
+| `SystemErrors` | Requests to **Timestream** that generate system errors within a specified time period. System errors typically indicate internal service errors. | Count | Sum, SampleCount (displayed as SampleCount in the Amazon **Timestream** console) |
+| `UserErrors` | **Timestream** requests that generate InvalidRequest errors within a specified time period. InvalidRequest usually indicates client-side errors, such as invalid parameter combinations, attempts to update non-existent tables, or incorrect request signatures. UserErrors represent the total number of invalid requests for the current AWS region and account. | Count | Sum, SampleCount (displayed as SampleCount in the Amazon **Timestream** console) |
+| `SuccessfulRequestLatency` | Successful requests to **Timestream** within a specified time period. SuccessfulRequestLatency can provide two types of information: the runtime of successful requests (Minimum, Maximum, Sum, or Average). The number of successful requests (SampleCount). SuccessfulRequestLatency only reflects activity within **Timestream**, not network latency or client activity. | Milliseconds | Average, Minimum, Maximum, Sum, SampleCount (displayed as SampleCount in the Amazon **Timestream** console) |
+| `MemoryCumulativeBytesMetered` | Amount of data stored in memory, in bytes. | Bytes | Average |
+| `MagneticCumulativeBytesMetered` | Amount of data stored on magnetic storage, in bytes. | Bytes | Average |

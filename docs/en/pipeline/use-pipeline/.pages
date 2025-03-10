@@ -1,14 +1,13 @@
 nav:
-
  - index.md
- - Quick start: pipeline-quick-start.md
- - Basics and principles:
+ - Quick Start: pipeline-quick-start.md
+ - Basics and Principles:
    - pipeline-architecture.md
-   - Data processing of each data category: pipeline-category.md
-   - Grok pattern: pipeline-grok.md
- - Platypus Grammar: pipeline-platypus-grammar.md
- - Built-in function: pipeline-built-in-function.md
- - Additional features:
+   - Data Processing for Each Data Category: pipeline-category.md
+   - Grok Patterns: pipeline-grok.md
+ - Platypus Syntax: pipeline-platypus-grammar.md
+ - Built-in Functions: pipeline-built-in-function.md
+ - Additional Features:
    - Reference Table: pipeline-refer-table.md
    - Offload: pipeline-offload.md
- - Performance benchmarks and optimizations: pipeline-benchmark.md
+ - Performance Benchmarks and Optimization: pipeline-benchmark.md

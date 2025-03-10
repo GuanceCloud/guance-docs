@@ -1,116 +1,102 @@
-# Idle Resources Intelligent Inspection
+# Idle Host Inspection
 ---
 
 ## Background
 
-Cloud computing has rapidly developed as a new mode of IT service, providing convenient, fast, and elastic IT infrastructure and application services for both enterprises and individuals, and bringing high efficiency and economy. However, as cloud resources gradually become the main component of enterprise data centers, the huge waste of cloud resources has become increasingly significant. Especially within enterprises, due to fluctuations in demand and isolation between departments, some cloud resources are not fully utilized, resulting in a large number of idle resources. This situation can cause an increase in cloud service costs, a decrease in resource efficiency, and even a reduction in security and performance levels. In order to better manage and optimize idle resources in the cloud, and improve the utilization efficiency of cloud computing, it is necessary to perform inspections on idle resources in the cloud. Through inspections, unnecessary resources in cloud services can be found and processed, avoiding problems such as cost increases, data leaks, or poor performance caused by long-term unnecessary use of resources.
+As business grows, the volume of resource usage increases, and enterprise data centers become larger. The problem of significant waste from idle hosts becomes more pronounced. Especially within enterprises, due to demand fluctuations and departmental isolation, some hosts cannot be fully utilized, resulting in a large amount of idle resources. This situation can lead to a direct increase in cloud service costs, reduced resource efficiency, and potential decreases in security and performance levels.
 
-## Preconditions
+## Prerequisites
 
-1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
-3. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+3. In <<< custom_key.brand_name >>> under "Manage / API Key Management," create an [API Key](../../management/api-key/open-api.md) for operations.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with the current SaaS deployment of <<< custom_key.brand_name >>> on [the same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Start Intelligent Inspection
+## Enable Inspection
 
-In the DataFlux Func, install the "Guance Custom Inspection (Idle Host Inspection)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
+In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-built Inspection (Idle Host Inspection)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key as prompted to enable it.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scenario you want to enable in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration. You can directly jump to view the corresponding configuration via the link.
 
 ![image](../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configure Inspection
 
-### Configure Intelligent Inspection in Guance
+### Configuration in <<< custom_key.brand_name >>>
 
 ![image](../img/idle-resources03.png)
 
 #### Enable/Disable
-Idle Resources Intelligent Inspection is "enabled" by default and can be manually "disabled". Once enabled, it will inspect the configured Idle Resources Intelligent Inspection configuration list.
+Idle host inspection is enabled by default. It can be manually disabled. Once enabled, it will inspect the configured list of idle host inspection configurations.
 
-#### Export
+#### Edit
+The intelligent inspection "Idle Host Inspection" supports manual addition of filtering conditions. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
+* Filtering Conditions: No parameters need to be configured; it will inspect all workspace cloud hosts by default.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
 
-#### Editor
-
-Intelligent Check "Idle Resources Intelligent Inspection" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
-
-* Filter criteria: Without configuring parameters, the entire workspace cloud host will be inspected by default.
-* Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
-
-Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start check:
+Click Edit in the entry parameter configuration, fill in the corresponding detection object in the parameter configuration, click Save, and start the inspection:
 
 ![image](../img/idle-resources04.png)
 
 ## View Events
-CloudMonitor will inspect based on the current status of hosts in the workspace. When an idle host is found, an event will be generated for smart inspection. Click the "View Related Events" button under the operation menu on the right side of the smart inspection list to view the corresponding abnormal events.
+<<< custom_key.brand_name >>> inspects the host status of the current workspace. When idle hosts are detected, the intelligent inspection generates corresponding events. Click the **View Related Events** button in the operation menu on the right side of the intelligent inspection list to view the corresponding anomaly events.
 
 ![image](../img/idle-resources05.png)
 
-### Event Details page
+### Event Details Page
+Click **Event** to view the details page of the intelligent inspection event, which includes event status, occurrence time of anomalies, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the current intelligent inspection configuration.
 
-* Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check
-* Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events
-
-#### Basic Properties
-
-* Detection Dimensions: Filter criteria based on intelligent check configuration, enabling replication of detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security check, links, user access monitoring, availability monitoring and CI data
-* Extended Attributes: Supports replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering
+#### Basic Attributes
+* Detection Dimensions: Based on the filtering conditions configured in the intelligent inspection, it supports copying `key/value` pairs, adding filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, synthetic tests, and CI data.
+* Extended Attributes: After selecting extended attributes, it supports copying in `key/value` format and performing forward/reverse filtering.
 
 ![image](../img/idle-resources06.png)
 
-#### Event details
+#### Event Details
 
-Idle Resources Intelligent Inspection will detect the running status of cloud hosts and generate corresponding event reports when it finds that they are idle.
+The idle host inspection detects the running state of cloud hosts and generates event reports when they are found to be idle.
 
-- Event Overview: describes the object and content of the abnormal inspection event.
-- Idle host details: You can view detailed information about the host that is currently in idle state.
-- Process details: By displaying the process status of the idle host, it provides support for business diagnosis.
+* Event Overview: Describes the object and content of the anomaly inspection event.
+* Idle Host Details: View detailed information about currently idle hosts.
+* Process Details: Displaying the process status of idle hosts provides support for business diagnostics.
 
 ![image](../img/idle-resources07.png)
 
 #### History
 
-Support to view detection objects, exception/recovery time and duration.
+Supports viewing the inspected objects, anomaly/recovery times, and duration.
 
 ![image](../img/idle-resources08.png)
 
-#### Related events
-
-Support to view associated events by filtering fields and selected time component information.
+#### Related Events
+Supports viewing related events through filtered fields and selected time component information.
 
 ![image](../img/idle-resources09.png)
 
-## FAQ
-**1.How to configure the detection frequency of Idle Resources Intelligent Inspection**
+## FAQs
+**1. How to configure the inspection frequency for idle hosts**
 
-In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
+* In the self-hosted DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the self-built inspection handling function, and then configure it in "Manage / Automatic Trigger Configuration".
 
-**2.There may be no anomaly analysis when Idle Resources Intelligent Inspection is triggered**
+**2. Why there might be no anomaly analysis during inspection**
 
-Check the current data collection status of `datakit` when there is no anomaly analysis in the patrol report..
+If the inspection report lacks anomaly analysis, check the current `datakit` data collection status.
 
-**3. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+**3. Previously normal scripts fail during inspection**
 
-Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
+Update the referenced script set in the DataFlux Func Script Market. You can refer to the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to view the update records of the script market for timely updates.
 
-**4. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+**4. During script upgrades, the Startup script set does not change**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
+Delete the corresponding script set first, then click the Upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**5. How to determine if the inspection is effective after it is enabled**
+**5. How to determine if the inspection has taken effect after enabling**
 
-Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.
-
-
-
-
-
+In "Manage / Automatic Trigger Configuration," check the inspection status. First, ensure it is enabled, then verify the inspection script by clicking Execute. If it shows "Executed successfully xx minutes ago," the inspection is running normally and has taken effect.

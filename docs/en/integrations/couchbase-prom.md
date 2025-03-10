@@ -1,13 +1,15 @@
 ---
-title     : 'CouchBase Exporter'
-summary   : 'The collector can take many metrics from CouchBase instance, such as the memory and disk used by the data, the number of current connections and other metrics, and collect the metrics into the observation cloud to help monitor and analyze various anomalies in CouchBase. ' 
+title: 'CouchBase Exporter'
+summary: 'The collector can gather many metrics from a CouchBase instance, such as memory and disk usage for data, current number of connections, and more. It sends these metrics to Guance to help monitor and analyze various anomalies in CouchBase.'
 __int_icon: 'icon/couchbase'
-dashboard :
-  - desc  : 'CouchBase built-in view by Exporter'
-    path  : 'dashboard/zh/couchbase_prom'
-monitor   :
-  - desc  : 'CouchBase Monitor'
-    path  : 'monitor/zh/couchbase_prom'
+dashboard:
+  - desc: 'Built-in CouchBase Views by Exporter'
+    path: 'dashboard/en/couchbase_prom'
+
+monitor:
+  - desc: 'CouchBase Monitor'
+    path: 'monitor/en/couchbase_prom'
+
 ---
 
 
@@ -16,28 +18,28 @@ monitor   :
 <!-- markdownlint-enable -->
 
 
-The collector can take many metrics from the CouchBase instance, such as the memory and disk used by the data, the number of current connections, and so on, and collect the metrics to the observation cloud to help monitor and analyze various anomalies in CouchBase.
+The collector can gather many metrics from a CouchBase instance, such as memory and disk usage for data, current number of connections, and more. It sends these metrics to Guance to help monitor and analyze various anomalies in CouchBase.
 
-## Collector Configuration{#config}
+## Collector Configuration {#config}
 
-### Preconditions
+### Prerequisites
 
-#### Version description
+#### Version Information
 
-> CouchBase Version:*7.2.0*
+> CouchBase Version: *7.2.0*
 > CouchBase Exporter Version: `blakelead/couchbase-exporter:latest`
 
-#### Install CouchBase Exporter
+#### Installing CouchBase Exporter
 
-Client collector CouchBase Exporter using CouchBase, collector document [Address](https://github.com/blakelead/couchbase_exporter)
+Use the CouchBase client collector CouchBase Exporter. Collector documentation [link](https://github.com/blakelead/couchbase_exporter)
 
-Note: The user password used in this article is the user password of CouchBase Server
+Note: The username and password used in this document are those of the CouchBase Server.
 
 ```bash
-docker run -d  --name cbexporter --publish 9191:9191 --env EXPORTER_LISTEN_ADDR=:9191                      --env EXPORTER_TELEMETRY_PATH=/metrics                      --env EXPORTER_SERVER_TIMEOUT=10s                      --env EXPORTER_LOG_LEVEL=debug                      --env EXPORTER_LOG_FORMAT=json                      --env EXPORTER_DB_URI=http://172.17.0.92:8091                      --env EXPORTER_DB_TIMEOUT=10s                      --env EXPORTER_DB_USER=Administrator                      --env EXPORTER_DB_PASSWORD=guance.com                      --env EXPORTER_SCRAPE_CLUSTER=true                      --env EXPORTER_SCRAPE_NODE=true                      --env EXPORTER_SCRAPE_BUCKET=true                      --env EXPORTER_SCRAPE_XDCR=false                      blakelead/couchbase-exporter:latest
+docker run -d  --name cbexporter                      --publish 9191:9191                      --env EXPORTER_LISTEN_ADDR=:9191                      --env EXPORTER_TELEMETRY_PATH=/metrics                      --env EXPORTER_SERVER_TIMEOUT=10s                      --env EXPORTER_LOG_LEVEL=debug                      --env EXPORTER_LOG_FORMAT=json                      --env EXPORTER_DB_URI=http://172.17.0.92:8091                      --env EXPORTER_DB_TIMEOUT=10s                      --env EXPORTER_DB_USER=Administrator                      --env EXPORTER_DB_PASSWORD=guance.com                      --env EXPORTER_SCRAPE_CLUSTER=true                      --env EXPORTER_SCRAPE_NODE=true                      --env EXPORTER_SCRAPE_BUCKET=true                      --env EXPORTER_SCRAPE_XDCR=false                      blakelead/couchbase-exporter:latest
 ```
 
-Parameter description:
+Parameter descriptions:
 
 ```txt
 |                            |                     |                                                    |                                                 |
@@ -56,42 +58,110 @@ Parameter description:
 | EXPORTER_TLS_CLIENT_KEY    | -tls.client-key     | Client private key                                 |                                                 |
 | EXPORTER_DB_USER           | *not allowed*       | Administrator username                             |                                                 |
 | EXPORTER_DB_PASSWORD       | *not allowed*       | Administrator password                             |                                                 |
-| EXPORTER_LOG_LEVEL         | -log.level          | Log level: info,debug,warn,error,fatal             | error                                           |
-| EXPORTER_LOG_FORMAT        | -log.format         | Log format: text, `json`                             | text                                            |
-| EXPORTER_SCRAPE_CLUSTER    | -scrape.cluster     | If false, wont scrape cluster metrics              | true                                            |
-| EXPORTER_SCRAPE_NODE       | -scrape.node        | If false, wont scrape node metrics                 | true                                            |
-| EXPORTER_SCRAPE_BUCKET     | -scrape.bucket      | If false, wont scrape bucket metrics               | true                                            |
-| EXPORTER_SCRAPE_XDCR       | -scrape.xdcr        | If false, wont scrape `xdcr` metrics                 | false                                           |
+| EXPORTER_LOG_LEVEL         | -log.level          | Log level: info, debug, warn, error, fatal         | error                                           |
+| EXPORTER_LOG_FORMAT        | -log.format         | Log format: text, `json`                           | text                                            |
+| EXPORTER_SCRAPE_CLUSTER    | -scrape.cluster     | If false, won't scrape cluster metrics             | true                                            |
+| EXPORTER_SCRAPE_NODE       | -scrape.node        | If false, won't scrape node metrics                | true                                            |
+| EXPORTER_SCRAPE_BUCKET     | -scrape.bucket      | If false, won't scrape bucket metrics              | true                                            |
+| EXPORTER_SCRAPE_XDCR       | -scrape.xdcr        | If false, won't scrape `xdcr` metrics              | false                                           |
 |                            | -help               | Command line help                                  |                                                 |
 ```
 
-### Configuration implementation
+### Configuration Implementation
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
+    - Enable the DataKit Prom plugin and copy the sample file
+    
     ```bash
     /usr/local/datakit/conf.d/prom
     cp prom.conf.sample couchbase-prom.conf
     ```
+    
+    - Modify the `couchbase-prom.conf` configuration file
     
     ```toml
     [[inputs.prom]]
     ## Exporter URLs
     urls = [""]
     
+    ## Ignore request errors for URL
     ignore_req_err = false
     
+    ## Collector alias
     source = "zookeeper"
     
+    ## Output source for collected data
+    # Configure this to write collected data to a local file instead of sending it to the center
+    # You can then use the `datakit --prom-conf /path/to/this/conf` command to debug locally saved Measurement
+    # If the URL is configured as a local file path, the `--prom-conf` command will prioritize debugging the data in the output path
+    # output = "/abs/path/to/file"
+    > 
+    ## Maximum size limit for collected data, in bytes
+    # Set this when writing data to a local file
+    # If the size of the collected data exceeds this limit, the data will be discarded
+    # The default maximum size limit is 32MB
+    # max_file_size = 0
+    
+    ## Metric type filtering, options are counter, gauge, histogram, summary
+    # By default, only counter and gauge types are collected
+    # If empty, no filtering is applied
     metric_types = ["counter", "gauge"]
     
+    ## Metric name filtering
+    # Supports regex, multiple configurations can be set where any one match is sufficient
+    # If empty, no filtering is applied
+    # metric_name_filter = ["cpu"]
+    
+    ## Prefix for Measurement names
+    # Configure this to add a prefix to Measurement names
     measurement_prefix = ""
     
+    ## Measurement name
+    # By default, the first field after splitting the metric name by underscores "_" is used as the Measurement name, the rest as the current metric name
+    # If `measurement_name` is configured, no splitting occurs
+    # The final Measurement name will include the `measurement_prefix`
+    # measurement_name = "prom"
+    
+    ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
     interval = "10s"
     
+    ## Filter tags, multiple tags can be configured
+    # Matching tags will be ignored
+    # tags_ignore = ["xxxx"]
+    
+    ## TLS configuration
+    tls_open = false
+    # tls_ca = "/tmp/ca.crt"
+    # tls_cert = "/tmp/peer.crt"
+    # tls_key = "/tmp/peer.key"
+    
+    ## Custom authentication method, currently supports Bearer Token only
+    # Only one of `token` or `token_file` needs to be configured
+    # [inputs.prom.auth]
+    # type = "bearer_token"
+    # token = "xxxxxxxx"
+    # token_file = "/tmp/token"
+    
+    ## Custom Measurement names
+    # Metrics with the specified prefix can be grouped into a single Measurement
+    # Custom Measurement name configuration takes precedence over `measurement_name`
+    #[[inputs.prom.measurements]]
+    #  prefix = "cpu_"
+    #  name = "cpu"
+    
+    # [[inputs.prom.measurements]]
+    # prefix = "mem_"
+    # name = "mem"
+    
+    ## Custom Tags
+    [inputs.prom.tags]
+    #some_tag = "some_value"
+    # more_tag = "some_other_value"
     ```
     
+    - Restart DataKit
     
     ```bash
     systemctl restart datakit
@@ -99,13 +169,14 @@ Parameter description:
 
 === "Kubernetes"
 
+    > Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](datakit-daemonset-deploy.md#configmap-setting).
 
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all data collection below, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.prom.tags]`:
+By default, all collected data appends a global tag named `host` (the tag value is the hostname where DataKit is installed). Additional tags can be specified in the configuration using `[inputs.prom.tags]`:
 
 ```toml
 [inputs.prom.tags]
@@ -113,98 +184,98 @@ For all data collection below, a global tag named `host` is appended by default 
 # more_tag = "some_other_value"
 ```
 
-### Cluster metrics
+### Cluster Metrics
 
-Label
+Tags
 
-| name     |description|
+| name     | description                     |
 | -------- | ------------------------------- |
-| bucket   |bucket name|
-| host     |host name which installed nginx|
-| instance |host|
+| bucket   | Bucket name                     |
+| host     | Host name where Nginx is installed |
+| instance | Host                            |
 
-index
+Metrics
 
-|name| description          |
+| name                            | description          |
 | ------------------------------- | -------------------- |
-|cluster_rebalance_status| `Rebalancing` status |
+| cluster_rebalance_status    | `Rebalancing` status |
 
-The complete metrics are as follows: [Address]( https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#cluster-metrics)
+Complete metrics list: [link]( https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#cluster-metrics)
 
-### Node metrics
+### Node Metrics
 
-Label
+Tags
 
-| name     |description|
+| name     | description                     |
 | -------- | ------------------------------- |
-| bucket   |bucket name|
-| host     |host name which installed nginx|
-| instance |host|
+| bucket   | Bucket name                     |
+| host     | Host name where Nginx is installed |
+| instance | Host                            |
 
-index
+Metrics
 
-| name                                    |description|
+| name                                    | description                               |
 | --------------------------------------- | ----------------------------------------- |
-| node_stats_couch_docs_data_size   |CouchBase documents data size in the node|
-| node_stats_get_hits               |Number of get hits|
-| node_uptime_seconds               |Node uptime|
-| node_status                      |Status of CouchBase node|
+| node_stats_couch_docs_data_size   | CouchBase documents data size in the node |
+| node_stats_get_hits               | Number of get hits                        |
+| node_uptime_seconds               | Node uptime                               |
+| node_status                      | Status of CouchBase node                  |
 
-The complete metrics are as follows: [Address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#node-metrics)
+Complete metrics list: [link](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#node-metrics)
 
-### Bucket metrics
+### Bucket Metrics
 
-Label
+Tags
 
-| name     |description|
+| name     | description                     |
 | -------- | ------------------------------- |
-| bucket   |bucket name|
-| host     |host name which installed nginx|
-| instance |host|
+| bucket   | Bucket name                     |
+| host     | Host name where Nginx is installed |
+| instance | Host                            |
 
-index
+Metrics
 
-| name                                  |description|
+| name                                  | description                                     |
 | ------------------------------------- | ----------------------------------------------- |
-| bucket_ram_quota_percent_used  |Memory used by the bucket in percent|
-| bucket_ops_per_second          |Number of operations per second|
-| bucket_item_count            |Number of items in the bucket|
-| bucketstats_curr_connections     |Current bucket connections|
-| bucketstats_delete_hits         |Delete hits|
-| bucketstats_disk_write_queue     |Disk write queue depth|
-| bucketstats_ep_bg_fetched       |Disk reads per second|
-| bucketstats_ep_mem_high_wat     |Memory usage high water mark for auto-evictions|
+| bucket_ram_quota_percent_used  | Memory used by the bucket in percent            |
+| bucket_ops_per_second          | Number of operations per second                 |
+| bucket_item_count            | Number of items in the bucket                   |
+| bucketstats_curr_connections     | Current bucket connections                      |
+| bucketstats_delete_hits         | Delete hits                                     |
+| bucketstats_disk_write_queue     | Disk write queue depth                          |
+| bucketstats_ep_bg_fetched       | Disk reads per second                           |
+| bucketstats_ep_mem_high_wat     | Memory usage high water mark for auto-evictions |
 
-The complete metrics are as follows: [address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#bucket-metrics)
+Complete metrics list: [link](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#bucket-metrics)
 
-### XDCR metrics
+### XDCR Metrics
 
-Label
+Tags
 
-| name     |description|
+| name     | description                     |
 | -------- | ------------------------------- |
-| bucket   |bucket name|
-| host     |host name which installed nginx|
-| instance |host|
+| bucket   | Bucket name                     |
+| host     | Host name where Nginx is installed |
+| instance | Host                            |
 
-index
+Metrics
 
-The complete metrics are as follows: [address](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#xdcr-metrics)
+Complete metrics list: [link](https://github.com/blakelead/couchbase_exporter/blob/master/resources/metrics.md#xdcr-metrics)
 
-## Journal{#logging}
+## Logging {#logging}
 
-To collect a log of CouchBase, follow these steps:
+To collect logs from CouchBase, follow these steps:
 
-- Open the DataKit log plug-in and copy the sample file
+- Enable the DataKit log plugin and copy the sample file
 
 ```bash
 /usr/local/datakit/conf.d/log
 cp logging.conf.sample couchbase-logging.conf
 ```
 
-> Note: DataKit must be installed on the host of CouchBase in order to collect CouchBase logs.
+> Note: DataKit must be installed on the same host as CouchBase to collect CouchBase logs.
 
-- Modify `couchbase-prom.conf` Profile
+- Modify the `couchbase-prom.conf` configuration file
 
 ```toml
 # {"version": "1.9.2", "desc": "do NOT edit this line"}
@@ -216,7 +287,7 @@ cp logging.conf.sample couchbase-logging.conf
     "/opt/couchbase/var/lib/couchbase/logs/couchdb.log",
   ]
 
-  ## glob filteer
+  ## glob filter
   ignore = [""]
 
   ## Your logging source, if it's empty, use 'default'.
@@ -228,11 +299,11 @@ cp logging.conf.sample couchbase-logging.conf
   ## Grok pipeline script name.
   pipeline = ""
 
-  ## optional status:
+  ## Optional statuses:
   ##   "emerg","alert","critical","error","warning","info","debug","OK"
   ignore_status = []
 
-  ## optional encodings:
+  ## Optional encodings:
   ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
   character_encoding = ""
 
@@ -246,7 +317,7 @@ cp logging.conf.sample couchbase-logging.conf
   ## Removes ANSI escape codes from text strings.
   remove_ansi_escape_codes = false
 
-  ## If the data sent failure, will retry forevery.
+  ## If the data sent failure, will retry forever.
   blocking_mode = true
 
   ## If file is inactive, it is ignored.
@@ -260,4 +331,3 @@ cp logging.conf.sample couchbase-logging.conf
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 ```
-

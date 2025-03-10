@@ -2,11 +2,11 @@
 title: 'AWS DocumentDB'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。'
+summary: 'The metrics displayed for AWS DocumentDB include read and write throughput, query latency, and scalability.'
 __int_icon: 'icon/aws_documentdb'
 dashboard:
 
-  - desc: 'AWS DocumentDB Monitoring View'
+  - desc: 'Built-in views for AWS DocumentDB'
     path: 'dashboard/en/aws_documentdb'
 
 monitor:
@@ -14,7 +14,7 @@ monitor:
     path: 'monitor/en/aws_documentdb'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_documentdb'
 ---
 
@@ -23,86 +23,85 @@ cloudCollector:
 # AWS DocumentDB
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。
+The metrics displayed for AWS DocumentDB include read and write throughput, query latency, and scalability.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation.
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Installation Script
 
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize the monitoring data of DocumentDB cloud resources, we install the corresponding collection script: `ID:guance_aws_documentdb`
+To synchronize monitoring data from DocumentDB, we install the corresponding collection script: "Guance Integration (AWS DocumentDB Collection)" (ID: `guance_aws_documentdb`)
 
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
+After clicking [Install], enter the required parameters: Amazon AK and Amazon account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and configure the startup script accordingly.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+Additionally, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click [Execute] to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+By default, we collect some configurations. For more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. In "Manage / Automatic Trigger Configuration", confirm that the corresponding task has the automatic trigger configuration and check the task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
-## Metric {#metric}
-
-After configuring Amazon CloudWatch - cloud monitoring, the default set of metrics is as follows. You can collect more metrics by configuring [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/documentdb/latest/developerguide/cloud_watch.html#cloud_watch-metrics_list){:target="_blank"}
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration. [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/documentdb/latest/developerguide/cloud_watch.html#cloud_watch-metrics_list){:target="_blank"}
 
 | Metric                    | Description                                                         |
 | :---------------------- | :----------------------------------------------------------- |
-| `CPUUtilization` | The percentage of CPU used by an instance.                   |
-| `FreeableMemory` | The amount of available random access memory, in bytes.      |
-| `FreeLocalStorage` | This metric reports the amount of storage available to each instance for temporary tables and logs. This value depends on the instance class. You can increase the amount of free storage space for an instance by choosing a larger instance class for your instance. |
-| `SwapUsage` | The amount of swap space used on the instance.               |
-| `DatabaseConnections` | The number of connections open on an instance taken at a one-minute frequency. |
-| `DatabaseConnectionsMax` | The maximum number of open database connections on an instance in a one-minute period. |
-| `DatabaseCursors` | The number of cursors open on an instance taken at a one-minute frequency. |
-| `DatabaseCursorsMax` | The maximum number of open cursors on an instance in a one-minute period. |
-| `DatabaseCursorsTimedOut` | The number of cursors that timed out in a one-minute period. |
-| `LowMemThrottleQueueDepth` | The queue depth for requests that are throttled due to low available memory taken at a one-minute frequency. |
-| `LowMemThrottleMaxQueueDepth` | The maximum queue depth for requests that are throttled due to low available memory in a one-minute period. |
-| `LowMemNumOperationsThrottled` | The number of requests that are throttled due to low available memory in a one-minute period. |
-| `ReadThroughput` | The average number of bytes read from disk per second.       |
-| `WriteThroughput` | The average number of bytes written to disk per second.      |
-| `ReadIOPS` | The average number of disk read I/O operations per second. Amazon DocumentDB reports read and write IOPS separately, and on one-minute intervals. |
-| `NetworkThroughput` | The amount of network throughput, in bytes per second, both received from and transmitted to clients by each instance in the Amazon DocumentDB cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume. |
-| `NetworkReceiveThroughput` | The amount of network throughput, in bytes per second, received from clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume. |
-| `NetworkTransmitThroughput` | The amount of network throughput, in bytes per second, sent to clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume. |
-| `WriteIOPS` | The average number of disk write I/O operations per second. When used on a cluster level, `WriteIOPs` are evaluated across all instances in the cluster. Read and write IOPS are reported separately, on 1-minute intervals. |
-| `ReadLatency` | The average amount of time taken per disk I/O operation.     |
-| `WriteLatency` | The average amount of time, in milliseconds, taken per disk I/O operation. |
-| `DBInstanceReplicaLag` | The amount of lag, in milliseconds, when replicating updates from the primary instance to a replica instance. |
-| `OpcountersQuery` | The number of queries issued in a one-minute period.         |
-| `OpcountersCommand` | The number of commands issued in a one-minute period.        |
-| `OpcountersDelete` | The number of delete operations issued in a one-minute period. |
-| `OpcountersGetmore` | The number of get mores issued in a one-minute period.        |
-| `OpcountersInsert` | The number of insert operations issued in a one-minute period. |
-| `OpcountersUpdate` | The number of updated documents in a one-minute period.      |
-| `DocumentsDeleted` | The number of deleted documents in a one-minute period.      |
-| `DocumentsInserted` | The number of inserted documents in a one-minute period.     |
-| `DocumentsReturned` | The number of returned documents in a one-minute period.     |
-| `DocumentsUpdated` | The number of updated documents in a one-minute period.      |
-| `TTLDeletedDocuments` | The number of documents deleted by a TTLMonitor in a one-minute period. |
-| `IndexBufferCacheHitRatio` | The percentage of index requests that are served by the buffer cache. You might see a spike greater than 100% for the metric right after you drop an index, collection or database. This will automatically be corrected after 60 seconds. This limitation will be fixed in a future patch update. |
-| `BufferCacheHitRatio` | The percentage of requests that are served by the buffer cache. |
-| `DiskQueueDepth` | the number of concurrent write requests to the distributed storage volume. |
-| `EngineUptime` | The amount of time, in seconds, that the instance has been running. |
+| `CPUUtilization` | The percentage of CPU utilized by the instance. |
+| `FreeableMemory` | The amount of available random access memory (in bytes). |
+| `FreeLocalStorage` | This metric reports the storage available on each instance for temporary tables and logs. This value depends on the instance class. You can increase the storage space available to the instance by selecting a larger instance class. |
+| `SwapUsage` | The size of the swap space used on the instance. |
+| `DatabaseConnections` | The number of connections opened on the instance per minute. |
+| `DatabaseConnectionsMax` | The maximum number of database connections opened on the instance per minute. |
+| `DatabaseCursors` | The number of cursors opened on the instance per minute. |
+| `DatabaseCursorsMax` | The maximum number of cursors opened on the instance per minute. |
+| `DatabaseCursorsTimedOut` | The number of cursors timed out per minute. |
+| `LowMemThrottleQueueDepth` | The depth of the queue of requests throttled due to insufficient available memory, measured per minute. |
+| `LowMemThrottleMaxQueueDepth` | The maximum depth of the queue of requests throttled due to insufficient available memory per minute. |
+| `LowMemNumOperationsThrottled` | The number of requests throttled due to insufficient available memory per minute. |
+| `ReadThroughput` | The average number of bytes read from disk per second. |
+| `WriteThroughput` | The average number of bytes written to disk per second. |
+| `ReadIOPS` | The average number of disk read I/O operations per second. Amazon DocumentDB reports read and write IOPS separately every minute. |
+| `NetworkThroughput` | The network throughput received from and sent to clients by each instance in the Amazon DocumentDB cluster, measured in bytes per second. This throughput does not include network traffic between instances and cluster volumes within the cluster. |
+| `NetworkReceiveThroughput` | The network throughput received from clients by each instance in the cluster (in bytes per second). This throughput does not include network traffic between instances and cluster volumes within the cluster. |
+| `NetworkTransmitThroughput` | The network throughput sent to clients by each instance in the cluster (in bytes per second). This throughput does not include network traffic between instances and cluster volumes within the cluster. |
+| `WriteIOPS` | The average number of disk write I/O operations per second. When used at the cluster level, `WriteIOPs` evaluates across all instances in the cluster. Read and write IOPS are reported separately every minute. |
+| `ReadLatency` | The average time required for each disk I/O operation. |
+| `WriteLatency` | The average time required for each disk I/O operation (in milliseconds). |
+| `DBInstanceReplicaLag` | The total lag in milliseconds when replicating updates from the primary instance to replica instances. |
+| `OpcountersQuery` | The number of queries issued per minute. |
+| `OpcountersCommand` | The number of commands issued per minute. |
+| `OpcountersDelete` | The number of delete operations issued per minute. |
+| `OpcountersGetmore` | The number of get more operations issued per minute. |
+| `OpcountersInsert` | The number of insert operations issued per minute. |
+| `OpcountersUpdate` | The number of update operations issued per minute. |
+| `DocumentsDeleted` | The number of documents deleted per minute. |
+| `DocumentsInserted` | The number of documents inserted per minute. |
+| `DocumentsReturned` | The number of documents returned per minute. |
+| `DocumentsUpdated` | The number of documents updated per minute. |
+| `TTLDeletedDocuments` | The number of documents deleted by TTLMonitor per minute. |
+| `IndexBufferCacheHitRatio` | The percentage of index requests served by the cache. After deleting indexes, collections, or databases, you may see a spike in this metric greater than 100%. This will automatically correct itself after 60 seconds. This limitation will be fixed in future patch updates. |
+| `BufferCacheHitRatio` | The percentage of requests served by the buffer cache. |
+| `DiskQueueDepth` | The number of concurrent write requests to the distributed storage volume. |
+| `EngineUptime` | The length of time the instance has been running (in seconds). |
 
 
-## Object {#object}
+## Objects {#object}
 
-The collected AWS DocumentDB object data structure can be viewed in "Infrastructure - Custom" under the object data.
+The structure of AWS DocumentDB objects collected can be viewed under "Infrastructure - Custom"
 
 ```json
 {
@@ -130,10 +129,10 @@ The collected AWS DocumentDB object data structure can be viewed in "Infrastruct
     "PubliclyAccessible": "False",
     "StatusInfos": "{}",
     "VpcSecurityGroups": "[{\"Status\": \"active\", \"VpcSecurityGroupId\": \"sg-08895f59\"}]",
-    "message": "{Instance json 信息}"
+    "message": "{instance JSON information}"
   }
 }
 
 ```
 
-> *Note: Fields in `tags`, `fields` are subject to change with subsequent updates.*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*

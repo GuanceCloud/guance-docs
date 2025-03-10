@@ -2,7 +2,7 @@
 title: 'AWS DMS'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'The metrics displayed for AWS DMS include data migration speed, latency, data consistency, and migration success rate. These metrics reflect the performance and reliability of DMS during database migration and replication.'
 __int_icon: 'icon/aws_dms'
 dashboard:
 
@@ -20,73 +20,73 @@ monitor:
 # AWS DMS
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+The metrics displayed for AWS DMS include data migration speed, latency, data consistency, and migration success rate. These metrics reflect the performance and reliability of DMS during database migration and replication.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of AWS DMS cloud resources, we install the corresponding collection script: `ID:guance_aws_dms`
+To synchronize monitoring data for AWS DMS cloud resources, we install the corresponding collection script: "Guance Integration (AWS-DMS Collection)" (ID: `guance_aws_dms`).
 
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
+After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the startup script accordingly.
 
-Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
+Then, in the collection script, change the regions in `collector_configs` and `cloudwatch_configs` to the actual regions.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+Additionally, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+By default, we collect some configurations; for more details, see the [Configuration of Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
-## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Monitoring.html){:target="_blank"}
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/dms/latest/userguide/CHAP_Monitoring.html){:target="_blank"}
 
-### Metric
+### Instance Metrics
 
-`AWS/DMS` The namespace includes the following instance metrics 。
+The `AWS/DMS` namespace includes the following instance metrics.
 
-| Metric                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|:---------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `CPUUtilization`                             | The percentage of allocated vCPU (virtual CPU) currently in use on the instance.Units: Percent                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `FreeMemory`                                 | The amount of physical memory available for use by applications, page cache, and for the kernel’s own data structures. For more information, see MemFree value in /proc/memInfo section of the Linux man-pages.Units: Bytes                                                                                                                                                                                                                                                                                                    |
-| `FreeStorageSpace`                           | The amount of available storage space.Units: Bytes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `WriteIOPS`                                  | The average number of disk write I/O operations per second.Units: Count/Second                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `ReadIOPS`                                   | The average number of disk read I/O operations per second.Units: Count/Second                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `WriteThroughput`                            | The average number of bytes written to disk per second.Units: Bytes/Second                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `ReadThroughput`                             | The average number of bytes read from disk per second.Units: Bytes/Second                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `NetworkTransmitThroughput`                  | The outgoing (Transmit) network traffic on the replication instance, including both customer database traffic and AWS DMS traffic used for monitoring and replication.Units: Bytes/second                                                                                                                                                                                                                                                                                                                                                  |
-| `NetworkReceiveThroughput`                   | The incoming (Receive) network traffic on the replication instance, including both customer database traffic and AWS DMS traffic used for monitoring and replication.Units: Bytes/second                                                                                                                                                                                                                                                                                                                                                   |
-| `CDCChangesMemorySource`                     | Amount of rows accumulating in a memory and waiting to be committed from the source. You can view this metric together with CDCChangesDiskSource.                                                                                                                                                                                                                                                                                                                                                                                          |
-| `CDCChangesMemoryTarget`                     | Amount of rows accumulating in a memory and waiting to be committed to the target. You can view this metric together with CDCChangesDiskTarget.                                                                                                                                                                                                                                                                                                                                                                                            |
-| `CDCChangesDiskSource`                       | Amount of rows accumulating on disk and waiting to be committed from the source. You can view this metric together with CDCChangesMemorySource.。                                                                                                                                                                                                                                                                                                                                                                                           |
-| `CDCChangesDiskTarget`                       | Amount of rows accumulating on disk and waiting to be committed to the target. You can view this metric together with CDCChangesMemoryTarget.。                                                                                                                                                                                                                                                                                                                                                                                             |
-| `CDCThroughputBandwidthTarget`               | Outgoing data transmitted for the target in KB per second. CDCThroughputBandwidth records outgoing data transmitted on sampling points. If no task network traffic is found, the value is zero. Because CDC does not issue long-running transactions, network traffic may not be recorded.                                                                                                                                                                                                                                                 |
-| `CDCThroughputRowsSource`                    | Incoming task changes from the source in rows per second.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `CDCThroughputRowsTarget`                    | Outgoing task changes for the target in rows per second.|
+| Metric                                           | Description                                                                                                                                          |
+|:---------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| `CPUUtilization`                             | The percentage of allocated vCPUs (virtual CPUs) currently in use on the instance. Unit: Percentage                                                                                                       |
+| `FreeMemory`                                 | The amount of physical memory available for applications, page cache, and kernel data structures. For more information, see the MemFree value in the Linux manual page `/proc/memInfo`. Unit: Bytes                                                           |
+| `FreeStorageSpace`                           | The size of available storage space. Unit: Bytes                                                                                                                             |
+| `WriteIOPS`                                  | The average number of disk write I/O operations per second. Unit: Count/Second                                                                                                                    |
+| `ReadIOPS`                                   | The average number of disk read I/O operations per second. Unit: Count/Second                                                                                                                    |
+| `WriteThroughput`                            | The average number of bytes written to the disk per second. Unit: Bytes/Second                                                                                                                        |
+| `ReadThroughput`                             | The average number of bytes read from the disk per second. Unit: Bytes/Second                                                                                                                       |
+| `NetworkTransmitThroughput`                  | Outbound (transmit) network traffic on the replication instance, including customer database AWS DMS traffic and traffic used for monitoring and replication. Unit: Bytes/Second                                                                                        |
+| `NetworkReceiveThroughput`                   | Inbound (receive) network traffic on the replication instance, including customer database AWS DMS traffic and traffic used for monitoring and replication. Unit: Bytes/Second                                                                                        |
+| `CDCChangesMemorySource`                     | The number of rows accumulated in memory and waiting to be committed from the source. You can view this metric together with `CDCChangesDiskSource`.                                                                                          |
+| `CDCChangesMemoryTarget`                     | The number of rows accumulated in memory and waiting to be committed to the target. You can view this metric together with `CDCChangesDiskTarget`.                                                                                         |
+| `CDCChangesDiskSource`                       | The number of rows accumulated on disk and waiting to be committed from the source. You can view this metric together with `CDCChangesMemorySource`.                                                                                        |
+| `CDCChangesDiskTarget`                       | The number of rows accumulated on disk and waiting to be committed to the target. You can view this metric together with `CDCChangesMemoryTarget`.                                                                                       |
+| `CDCThroughputBandwidthTarget`               | The outbound data transmitted to the target, measured in KB per second. CDC ThroughputBandwidth records the outbound data transmitted at sampling points. If no task network traffic is found, this value is zero. Since CDC does not publish long-running transactions, network traffic may not be recorded.                                |
+| `CDCThroughputRowsSource`                    | Incoming task changes from the source, measured in rows per second.                                                                                                                           |
+| `CDCThroughputRowsTarget`                    | Outgoing task changes to the target, measured in rows per second.|
 
-## Object {#object}
+## Objects {#object}
 
-The collected AWS DMS object data structure, You can see the object data from「Infrastructure-Custom」
+The structure of collected AWS DMS object data can be viewed in "Infrastructure - Custom".
 
 ```json
 {
-  "measurement": "aws_gateway",
+  "measurement": "aws_dms",
   "tags": {
     "AvailabilityZone"              :"cn-northwest-1b",
     "class"                         :"aws_dms",
@@ -99,6 +99,6 @@ The collected AWS DMS object data structure, You can see the object data from「
 }
 ```
 
-> *Note: The fields in 'tags' may change with subsequent updates*
+> *Note: Fields in `tags` may change with subsequent updates.*
 >
-> Tip 1: The 'name' value is the instance ID and serves as a unique identifier
+> Tip 1: The `name` value is the instance ID, which serves as a unique identifier.

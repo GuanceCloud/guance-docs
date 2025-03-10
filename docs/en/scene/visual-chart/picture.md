@@ -1,23 +1,24 @@
-# Pictures
+# Image
 ---
 
-## Introduction
+Generally used to display images; you can add an image URL to show the corresponding image. You can adjust the image shape by selecting options such as fill, fit, stretch, or center.
 
-Pictures are generally used to display pictures, you can add the picture address in the picture to display the corresponding picture, you can adjust the shape of the picture by choosing fill, fit, stretch, center. In the link page, you can add the URL you need to jump to.
+<img src="../../img/picture.png" width="60%" >
 
-## Use Case
 
-The image chart of the Guance is used to display images to illustrate tips. For example, you can add a logo image with a link to jump to the corresponding URL.
+## Use Cases
 
-## Chart Style
-| Options | Description |
-| --- | --- |
-| Chart Title | Set the title name for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
-| Mode | <li>Fill: The image is scaled equivalently, after which the minimum edge of the image is adapted to the maximum edge of the card to achieve the effect of filling the screen<br /><li>Adaptation: The image is scaled equivalently, except that the largest edge of the image is not scaled when the smallest edge of the card is enlarged, maintaining the image scale while maximizing the display of the image；<br /><li>Stretching: Instead of scaling the image, the image is stretched according to the size of the card<br /><li>Centered: the image size remains the same centered display<br /> |
+Images in <<< custom_key.brand_name >>> are used to display pictures for illustrative purposes. For example, you can add a linked logo image to redirect to the corresponding website.
 
-## Example diagram
+## Chart Configuration
 
-Below is an example of the logo image.
+> For more details, refer to [Chart Configuration](./chart-config.md).
 
-![](../img/picture.png)
+### Display Options
 
+Types:
+
+- Fill: The image is proportionally resized and then scaled based on the shortest side of the image to fit the card's largest side, achieving a screen-filling effect;
+- Fit: The image is proportionally resized, but it stops scaling when its longest side matches the card's shortest side, maximizing the image while maintaining its aspect ratio;
+- Stretch: The image is not proportionally resized but stretched according to the card size;
+- Center: The image remains unchanged in size and is centered.

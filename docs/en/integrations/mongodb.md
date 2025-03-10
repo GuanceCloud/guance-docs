@@ -1,15 +1,15 @@
 ---
 title     : 'MongoDB'
-summary   : 'Collect mongodb metrics data'
+summary   : 'Collect metrics data from MongoDB'
 tags:
-  - 'DATA STORES'
+  - 'database'
 __int_icon      : 'icon/mongodb'
 dashboard :
-  - desc  : 'Mongodb'
+  - desc  : 'MongoDB monitoring view'
     path  : 'dashboard/en/mongodb'
 monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - desc  : 'MongoDB monitor'
+    path  : 'monitor/en/mongodb'
 ---
 
 
@@ -17,23 +17,23 @@ monitor   :
 
 ---
 
-MongoDb database, Collection, MongoDb database cluster running status data Collection.
+Data collection for the status of MongoDB database, Collection, and MongoDB database cluster operations.
 
-## Config {#config}
+## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- Already tested version:
+- Tested versions:
     - [x] 6.0
     - [x] 5.0
     - [x] 4.0
     - [x] 3.0
     - [x] 2.8.0
 
-- Developed and used MongoDB version `4.4.5`;
-- Write the configuration file in the corresponding directory and then start DataKit to complete the configuration;
-- For secure connections using TLS, please configure the response certificate file path and configuration under `## TLS connection config` in the configuration file;
-- If MongoDB has access control enabled, you need to configure the necessary user rights to establish an authorized connection:
+- Development uses MongoDB version `4.4.5`;
+- Write the configuration file in the corresponding directory and start DataKit to complete the configuration;
+- If you use TLS for secure connections, configure the certificate file paths and settings under `## TLS connection config` in the configuration file;
+- If MongoDB has enabled access control, necessary user permissions must be configured to establish an authorized connection:
 
 ```sh
 # Run MongoDB shell.
@@ -43,7 +43,7 @@ $ mongo
 > use admin
 > db.auth("<admin OR root>", "<YOUR_MONGODB_ADMIN_PASSWORD>")
 
-# Create the user for the Datakit.
+# Create the user for DataKit.
 > db.createUser({
   "user": "datakit",
   "pwd": "<YOUR_COLLECT_PASSWORD>",
@@ -56,16 +56,16 @@ $ mongo
 })
 ```
 
->More authorization information can refer to official documentation [Built-In Roles](https://www.mongodb.com/docs/manual/reference/built-in-roles/){:target="_blank"}。
+> For more permission details, refer to the official documentation [Built-In Roles](https://www.mongodb.com/docs/manual/reference/built-in-roles/){:target="_blank"}.
 
-After done with commands above, filling the `user` and `pwd` to Datakit configuration file `conf.d/db/mongodb.conf`.
+After executing the above commands, fill in the created "username" and "password" in the DataKit configuration file `conf.d/db/mongodb.conf`.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `mongodb.conf.sample` and name it `mongodb.conf`. Examples are as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `mongodb.conf.sample`, and rename it to `mongodb.conf`. Example:
 
     ```toml
         
@@ -143,20 +143,20 @@ After done with commands above, filling the `user` and `pwd` to Datakit configur
     
     ```
 
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### TLS config (self-signed) {#tls}
+### TLS Configuration (self-signed) {#tls}
 
-Use OpenSSL to generate a certificate file for MongoDB TLS configuration to enable server-side encryption and client-side authentication.
+Generate certificate files using `openssl` for MongoDB TLS configuration to enable server-side encryption and client authentication.
 
-- Configure TLS certificates
+- Configure TLS certificate
 
-Install OpenSSL and run the following command:
+Install `openssl` and run the following command:
 
 ```shell
 sudo apt install openssl -y
@@ -164,24 +164,24 @@ sudo apt install openssl -y
 
 - Configure MongoDB server-side encryption
 
-Use OpenSSL to generate a certificate-level key file, run the following command and enter the corresponding authentication block information at the command prompt:
+Use `openssl` to generate certificate-level key files, run the following command and enter the required validation block information as prompted:
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
 ```
 
-- `bits`: rsa key digits, for example, 2048
-- `days`: expired date
+- `bits`: RSA key bits, for example 2048
+- `days`: expiration date
 - `mongod.key.pem`: key file
 - `mongod.cert.pem`: CA certificate file
 
-Running the above command generates the `cert.pem` file and the `key.pem` file, and we need to merge the `block` inside the two files to run the following command:
+After running the above command, `cert.pem` and `key.pem` files will be generated. We need to merge the two files' blocks by running the following command:
 
 ```shell
 sudo bash -c "cat mongod.cert.pem mongod.key.pem >>mongod.pem"
 ```
 
-Configure the TLS subentry in the /etc/mongod.config file after merging
+After merging, configure the TLS sub-item in the `/etc/mongod.config` file
 
 ```yaml
 # TLS config
@@ -191,44 +191,44 @@ net:
     certificateKeyFile: </etc/ssl/mongod.pem>
 ```
 
-Start MongoDB with the configuration file and run the following command:
+Start MongoDB using the configuration file by running the following command:
 
 ```shell
 mongod --config /etc/mongod.conf
 ```
 
-Start MongoDB from the command line and run the following command:
+Start MongoDB using the command line by running the following command:
 
 ```shell
 mongod --tlsMode requireTLS --tlsCertificateKeyFile </etc/ssl/mongod.pem> --dbpath <.db/mongodb>
 ```
 
-Copy mongod.cert.pem as mongo.cert.pem to MongoDB client and enable TLS:
+Copy `mongod.cert.pem` to `mongo.cert.pem` on the MongoDB client and enable TLS:
 
 ```shell
 mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem>
 ```
 
-- Configuring MongoDB Client Authentication
+- Configure MongoDB client authentication
 
-Use OpenSSL to generate a certificate-level key file and run the following command:
+Use `openssl` to generate certificate-level key files, run the following command:
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
 ```
 
-- `bits`: rsa key digits, for example, 2048
-- `days`: expired date
+- `bits`: RSA key bits, for example 2048
+- `days`: expiration date
 - `mongo.key.pem`: key file
 - `mongo.cert.pem`: CA certificate file
 
-Merging the block in the mongod.cert.pem and mongod.key.pem files runs the following command:
+Merge `mongod.cert.pem` and `mongod.key.pem` files by running the following command:
 
 ```shell
 sudo bash -c "cat mongod.cert.pem mongod.key.pem >>mongod.pem"
 ```
 
-Copy the mongod.cert.pem file to the MongoDB server and configure the TLS entry in the /etc/mongod.config file.
+Copy the `mongod.cert.pem` file to the MongoDB server and then configure the TLS item in the `/etc/mongod.config` file:
 
 ```yaml
 # Tls config
@@ -239,23 +239,23 @@ net:
     CAFile: </etc/ssl/mongod.cert.pem>
 ```
 
-Start MongoDB and run the following command:
+Start MongoDB by running the following command:
 
 ```shell
 mongod --config /etc/mongod.conf
 ```
 
-Copy mongod.cert.pem for mongo.cert.pem; Copy mongod.pem for mongo.pem to MongoDB client and enable TLS:
+Copy `mongod.cert.pem` to `mongo.cert.pem`, and `mongod.pem` to `mongo.pem` on the MongoDB client and enable TLS:
 
 ```shell
 mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCertificateKeyFile </etc/ssl/mongo.pem>
 ```
 
-**Note:**`insecure_skip_verify` must be `true` in mongodb.conf configuration when using self-signed certificates.
+> Note: When using self-signed certificates, `insecure_skip_verify` in `mongodb.conf` must be `true`
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.mongodb.tags]` if needed:
+By default, all data collected will append the global election tag. You can also specify other tags through `[inputs.mongodb.tags]` in the configuration:
 
 ```toml
  [inputs.mongodb.tags]
@@ -266,10 +266,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
 ### `mongodb`
 
-- explain
+- Description
 
 MongoDB measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
@@ -278,32 +277,32 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|mongodb host|
-|`mongod_host`|mongodb host with port|
+|`host`|MongoDB host|
+|`mongod_host`|MongoDB host with port|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`active_reads`|The number of the active client connections performing read operations.|int|count|
+|`active_reads`|The number of active client connections performing read operations.|int|count|
 |`active_writes`|The number of active client connections performing write operations.|int|count|
-|`aggregate_command_failed`|The number of times that 'aggregate' command failed on this mongod|int|count|
-|`aggregate_command_total`|The number of times that 'aggregate' command executed on this mongod.|int|count|
+|`aggregate_command_failed`|The number of times the 'aggregate' command failed on this mongod|int|count|
+|`aggregate_command_total`|The number of times the 'aggregate' command executed on this mongod.|int|count|
 |`assert_msg`|The number of message assertions raised since the MongoDB process started. Check the log file for more information about these messages.|int|count|
 |`assert_regular`|The number of regular assertions raised since the MongoDB process started. Check the log file for more information about these messages.|int|count|
-|`assert_rollovers`|The number of times that the rollover counters have rolled over since the last time the MongoDB process started. The counters will rollover to zero after 2 30 assertions. Use this value to provide context to the other values in the asserts data structure.|int|count|
-|`assert_user`|The number of "user asserts" that have occurred since the last time the MongoDB process started. These are errors that user may generate, such as out of disk space or duplicate key. You can prevent these assertions by fixing a problem with your application or deployment. Check the MongoDB log for more information.|int|count|
+|`assert_rollovers`|The number of times the rollover counters have rolled over since the last time the MongoDB process started. The counters will rollover to zero after 2^30 assertions. Use this value to provide context to the other values in the asserts data structure.|int|count|
+|`assert_user`|The number of "user asserts" that have occurred since the last time the MongoDB process started. These are errors that users may generate, such as out of disk space or duplicate key. You can prevent these assertions by fixing a problem with your application or deployment. Check the MongoDB log for more information.|int|count|
 |`assert_warning`|Changed in version 4.0. Starting in MongoDB 4.0, the field returns zero 0. In earlier versions, the field returns the number of warnings raised since the MongoDB process started.|int|count|
-|`available_reads`|The number of concurrent of read transactions allowed into the WiredTiger storage engine|int|count|
-|`available_writes`|The number of concurrent of write transactions allowed into the WiredTiger storage engine|int|count|
+|`available_reads`|The number of concurrent read transactions allowed into the WiredTiger storage engine|int|count|
+|`available_writes`|The number of concurrent write transactions allowed into the WiredTiger storage engine|int|count|
 |`commands`|The total number of commands issued to the database since the mongod instance last started. `opcounters.command` counts all commands except the write commands: insert, update, and delete.|int|count|
 |`commands_per_sec`|Deprecated, use commands.|int|count|
 |`connections_available`|The number of unused incoming connections available.|int|count|
 |`connections_current`|The number of incoming connections from clients to the database server .|int|count|
 |`connections_total_created`|Count of all incoming connections created to the server. This number includes connections that have since closed.|int|count|
-|`count_command_failed`|The number of times that 'count' command failed on this mongod|int|count|
-|`count_command_total`|The number of times that 'count' command executed on this mongod|int|count|
+|`count_command_failed`|The number of times the 'count' command failed on this mongod|int|count|
+|`count_command_total`|The number of times the 'count' command executed on this mongod|int|count|
 |`cursor_no_timeout`|Deprecated, use cursor_no_timeout_count.|int|count|
 |`cursor_no_timeout_count`|The number of open cursors with the option DBQuery.Option.noTimeout set to prevent timeout after a period of inactivity|int|count|
 |`cursor_pinned`|Deprecated, use cursor_pinned_count.|int|count|
@@ -312,29 +311,29 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 |`cursor_timed_out_count`|The total number of cursors that have timed out since the server process started. If this number is large or growing at a regular rate, this may indicate an application error.|int|count|
 |`cursor_total`|Deprecated, use cursor_total_count.|int|count|
 |`cursor_total_count`|The number of cursors that MongoDB is maintaining for clients. Because MongoDB exhausts unused cursors, typically this value small or zero. However, if there is a queue, stale *tailable* cursors, or a large number of operations this value may rise.|int|count|
-|`delete_command_failed`|The number of times that 'delete' command failed on this mongod|int|count|
-|`delete_command_total`|The number of times that 'delete' command executed on this mongod|int|count|
+|`delete_command_failed`|The number of times the 'delete' command failed on this mongod|int|count|
+|`delete_command_total`|The number of times the 'delete' command executed on this mongod|int|count|
 |`deletes`|The total number of delete operations since the mongod instance last started.|int|count|
 |`deletes_per_sec`|Deprecated, use deletes.|int|count|
-|`distinct_command_failed`|The number of times that 'distinct' command failed on this mongod|int|count|
-|`distinct_command_total`|The number of times that 'distinct' command executed on this mongod|int|count|
+|`distinct_command_failed`|The number of times the 'distinct' command failed on this mongod|int|count|
+|`distinct_command_total`|The number of times the 'distinct' command executed on this mongod|int|count|
 |`document_deleted`|The total number of documents deleted.|int|count|
 |`document_inserted`|The total number of documents inserted.|int|count|
 |`document_returned`|The total number of documents returned by queries.|int|count|
 |`document_updated`|The total number of documents updated.|int|count|
-|`find_and_modify_command_failed`|The number of times that 'find' and 'modify' commands failed on this mongod|int|count|
-|`find_and_modify_command_total`|The number of times that 'find' and 'modify' commands executed on this mongod|int|count|
-|`find_command_failed`|The number of times that 'find' command failed on this mongod|int|count|
-|`find_command_total`|The number of times that 'find' command executed on this mongod|int|count|
+|`find_and_modify_command_failed`|The number of times the 'find' and 'modify' commands failed on this mongod|int|count|
+|`find_and_modify_command_total`|The number of times the 'find' and 'modify' commands executed on this mongod|int|count|
+|`find_command_failed`|The number of times the 'find' command failed on this mongod|int|count|
+|`find_command_total`|The number of times the 'find' command executed on this mongod|int|count|
 |`flushes`|The number of transaction checkpoints|int|count|
 |`flushes_per_sec`|Deprecated, use flushes.|int|count|
 |`flushes_total_time_ns`|The transaction checkpoint total time (ms)"|int|count|
-|`get_more_command_failed`|The number of times that 'get more' command failed on this mongod|int|count|
-|`get_more_command_total`|The number of times that 'get more' command executed on this mongod|int|count|
+|`get_more_command_failed`|The number of times the 'get more' command failed on this mongod|int|count|
+|`get_more_command_total`|The number of times the 'get more' command executed on this mongod|int|count|
 |`getmores`|The total number of `getMore` operations since the mongod instance last started. This counter can be high even if the query count is low. Secondary nodes send `getMore` operations as part of the replication process.|int|count|
 |`getmores_per_sec`|Deprecated, use getmores|int|count|
-|`insert_command_failed`|The number of times that 'insert' command failed on this mongod|int|count|
-|`insert_command_total`|The number of times that 'insert' command executed on this mongod|int|count|
+|`insert_command_failed`|The number of times the 'insert' command failed on this mongod|int|count|
+|`insert_command_total`|The number of times the 'insert' command executed on this mongod|int|count|
 |`inserts`|The total number of insert operations received since the mongod instance last started.|int|count|
 |`inserts_per_sec`|Deprecated, use inserts.|int|count|
 |`jumbo_chunks`|Count jumbo flags in cluster chunk.|int|count|
@@ -411,14 +410,14 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 |`total_in_use`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently in use.|int|count|
 |`total_keys_scanned`|The total number of index items scanned during queries and query-plan evaluation.|int|count|
 |`total_refreshing`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently being refreshed.|int|count|
-|`total_tickets_reads`|A document that returns information on the number of concurrent of read transactions allowed into the WiredTiger storage engine.|int|count|
-|`total_tickets_writes`|A document that returns information on the number of concurrent of write transactions allowed into the WiredTiger storage engine.|int|count|
+|`total_tickets_reads`|A document that returns information on the number of concurrent read transactions allowed into the WiredTiger storage engine.|int|count|
+|`total_tickets_writes`|A document that returns information on the number of concurrent write transactions allowed into the WiredTiger storage engine.|int|count|
 |`ttl_deletes`|The total number of documents deleted from collections with a ttl index.|int|count|
 |`ttl_deletes_per_sec`|Deprecated, use ttl_deletes.|int|count|
 |`ttl_passes`|The number of times the background process removes documents from collections with a ttl index.|int|count|
 |`ttl_passes_per_sec`|Deprecated, use ttl_passes.|int|count|
-|`update_command_failed`|The number of times that 'update' command failed on this mongod|int|count|
-|`update_command_total`|The number of times that 'update' command executed on this mongod|int|count|
+|`update_command_failed`|The number of times the 'update' command failed on this mongod|int|count|
+|`update_command_total`|The number of times the 'update' command executed on this mongod|int|count|
 |`updates`|The total number of update operations received since the mongod instance last started.|int|count|
 |`updates_per_sec`|Deprecated, use updates.|int|count|
 |`uptime_ns`|The total upon time of mongod in nano seconds.|int|count|
@@ -446,9 +445,10 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 
 
 
+
 ### `mongodb_db_stats`
 
-- explain
+- Description
 
 MongoDB stats measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
@@ -457,11 +457,11 @@ MongoDB stats measurement. Some metrics may not appear depending on the MongoDB 
 
 | Tag | Description |
 |  ----  | --------|
-|`db_name`|database name|
-|`host`|mongodb host|
-|`mongod_host`|mongodb host with port|
+|`db_name`|Database name|
+|`host`|MongoDB host|
+|`mongod_host`|MongoDB host with port|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -502,9 +502,10 @@ MongoDB stats measurement. Some metrics may not appear depending on the MongoDB 
 
 
 
+
 ### `mongodb_col_stats`
 
-- explain
+- Description
 
 MongoDB collection measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
@@ -513,12 +514,12 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 
 | Tag | Description |
 |  ----  | --------|
-|`collection`|collection name|
-|`db_name`|database name|
-|`host`|mongodb host|
-|`mongod_host`|mongodb host with port|
+|`collection`|Collection name|
+|`db_name`|Database name|
+|`host`|MongoDB host|
+|`mongod_host`|MongoDB host with port|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -546,101 +547,7 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 |`wtcache_pages_evicted_by_app_thread`|(Existed in 3.0 and earlier version)|int|count|
 |`wtcache_pages_queued_for_eviction`|(Existed in 3.0 and earlier version)|int|count|
 |`wtcache_pages_read_into`|Number of pages read into the cache. (Existed in 3.0 and earlier version)|int|count|
-|`wtcache_pages_requested_from`|Number of pages request from the cache. (Existed in 3.0 and earlier version)|int|count|
-|`wtcache_pages_written_from`|Pages written from cache. (Existed in 3.0 and earlier version)|int|count|
-|`wtcache_server_evicting_pages`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_tracked_dirty_bytes`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_unmodified_pages_evicted`|Main statistics for page eviction. (Existed in 3.0 and earlier version)|int|count|
-|`wtcache_worker_thread_evictingpages`|(Existed in 3.0 and earlier version)|int|count|
-
-
-
-
-
-### `mongodb_shard_stats`
-
-- explain
-
-MongoDB shard measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
-
-- Tags
-
-
-| Tag | Description |
-|  ----  | --------|
-|`host`|mongodb host|
-|`mongod_host`|mongodb host with port|
-
-- Metrics
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`available`|The number of connections available for this host to connect to the mongos.|int|count|
-|`created`|The number of connections the host has ever created to connect to the mongos.|int|count|
-|`in_use`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently in use.|int|count|
-|`refreshing`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently being refreshed.|int|count|
-
-
-
-
-
-### `mongodb_top_stats`
-
-- explain
-
-MongoDB top measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
-
-- Tags
-
-
-| Tag | Description |
-|  ----  | --------|
-|`collection`|collection name|
-|`host`|mongodb host|
-|`mongod_host`|mongodb host with port|
-
-- Metrics
-
-
-| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
-|`commands_count`|The total number of "command" event issues.|int|count|
-|`commands_time`|The amount of time in microseconds that "command" costs.|int|count|
-|`get_more_count`|The total number of `getmore` event issues.|int|count|
-|`get_more_time`|The amount of time in microseconds that `getmore` costs.|int|count|
-|`insert_count`|The total number of "insert" event issues.|int|count|
-|`insert_time`|The amount of time in microseconds that "insert" costs.|int|count|
-|`mapped_megabytes`|Mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
-|`non-mapped_megabytes`|Non mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
-|`page_faults_per_sec`|Page Faults/sec is the average number of pages faulted per second. (Existed in 3.0 and earlier version)|int|count|
-|`percent_cache_dirty`|Size in bytes of the dirty data in the cache. This value should be less than the bytes currently in the cache value. (Existed in 3.0 and earlier version)|int|count|
-|`percent_cache_used`|Size in byte of the data currently in cache. This value should not be greater than the maximum bytes configured value. (Existed in 3.0 and earlier version)|int|count|
-|`queries_count`|The total number of "queries" event issues.|int|count|
-|`queries_time`|The amount of time in microseconds that "queries" costs.|int|count|
-|`read_lock_count`|The total number of "readLock" event issues.|int|count|
-|`read_lock_time`|The amount of time in microseconds that "readLock" costs.|int|count|
-|`remove_count`|The total number of "remove" event issues.|int|count|
-|`remove_time`|The amount of time in microseconds that "remove" costs.|int|count|
-|`total_count`|The total number of "total" event issues.|int|count|
-|`total_time`|The amount of time in microseconds that "total" costs.|int|count|
-|`update_count`|The total number of "update" event issues.|int|count|
-|`update_time`|The amount of time in microseconds that "update" costs.|int|count|
-|`write_lock_count`|The total number of "writeLock" event issues.|int|count|
-|`write_lock_time`|The amount of time in microseconds that "writeLock" costs.|int|count|
-|`wtcache_app_threads_page_read_count`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_app_threads_page_read_time`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_app_threads_page_write_count`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_bytes_read_into`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_bytes_written_from`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_current_bytes`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_internal_pages_evicted`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_max_bytes_configured`|Maximum cache size. (Existed in 3.0 and earlier version)|int|count|
-|`wtcache_modified_pages_evicted`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_pages_evicted_by_app_thread`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_pages_queued_for_eviction`|(Existed in 3.0 and earlier version)|int|count|
-|`wtcache_pages_read_into`|Number of pages read into the cache. (Existed in 3.0 and earlier version)|int|count|
-|`wtcache_pages_requested_from`|Number of pages request from the cache. (Existed in 3.0 and earlier version)|int|count|
+|`wtcache_pages_requested_from`|Number of pages requested from the cache. (Existed in 3.0 and earlier version)|int|count|
 |`wtcache_pages_written_from`|Pages written from cache. (Existed in 3.0 and earlier version)|int|count|
 |`wtcache_server_evicting_pages`|(Existed in 3.0 and earlier version)|int|count|
 |`wtcache_tracked_dirty_bytes`|(Existed in 3.0 and earlier version)|int|count|
@@ -652,7 +559,8 @@ MongoDB top measurement. Some metrics may not appear depending on the MongoDB ve
 
 
 
-## Custom Object {#object}
+
+## Custom Objects {#object}
 
 
 
@@ -687,41 +595,43 @@ MongoDB top measurement. Some metrics may not appear depending on the MongoDB ve
 
 | Tag | Description |
 |  ----  | --------|
-|`col_co_status`|Current status of collector on Mongodb(`OK/NotOK`)|
+|`col_co_status`|Current status of collector on MongoDB (`OK/NotOK`)|
 |`host`|The server host address|
-|`ip`|Connection IP of the Mongodb|
-|`name`|Object uniq ID|
+|`ip`|Connection IP of the MongoDB|
+|`name`|Object unique ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`display_name`|Displayed name in UI|string|-|
-|`uptime`|Current Mongodb uptime|int|s|
-|`version`|Current version of Mongodb|string|-|
+|`uptime`|Current MongoDB uptime|int|s|
+|`version`|Current version of MongoDB|string|-|
 
 
 
 
-## Mongod Log Collection {#logging}
+## Log Collection {#logging}
 
-Annotate the configuration file `# enable_mongod_log = false` and change `false` to `true`. Other configuration options for mongod log are in `[inputs.mongodb.log]`, and the commented configuration is very default. If the path correspondence is correct, no configuration is needed. After starting Datakit, you will see a collection measurement named `mongod_log`.
+Uncomment `# enable_mongod_log = false` in the configuration file and change `false` to `true`. Other mongod log configuration options are under `[inputs.mongodb.log]`. Commented-out configurations are default settings; if the paths are correct, no additional configuration is needed. After starting DataKit, you will see a metric set named `mongod_log`.
 
-Log raw data sample
+Sample of original log data:
 
-```not-set
+```log
 {"t":{"$date":"2021-06-03T09:12:19.977+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1622711539:977142][1:0x7f1b9f159700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 653, snapshot max: 653 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0)"}}
 ```
 
-Log cut field
+Log parsing fields
 
-| Field Name | Field Value                   | Description                                                    |
-| ---------- | ----------------------------- | -------------------------------------------------------------- |
-| message    |                               | Log raw data                                                   |
-| component  | STORAGE                       | The full component string of the log message                   |
-| context    | WTCheckpointThread            | The name of the thread issuing the log statement               |
-| msg        | WiredTiger message            | The raw log output message as passed from the server or driver |
-| status     | I                             | The short severity code of the log message                     |
-| time       | 2021-06-03T09:12:19.977+00:00 | Timestamp                                                      |
+| Field Name    | Field Value                        | Description                                                           |
+| ------------- | ---------------------------------- | --------------------------------------------------------------------- |
+| message       |                                    | Log raw data                                                          |
+| component     | STORAGE                           | The full component string of the log message                          |
+| context       | WTCheckpointThread                | The name of the thread issuing the log statement                      |
+| msg           | WiredTiger message                | The raw log output message as passed from the server or driver        |
+| status        | I                                 | The short severity code of the log message                            |
+| time          | 2021-06-03T09:12:19.977+00:00     | Timestamp                                                             |
+
+This concludes the translation of the provided content. If there's anything else you need assistance with, feel free to ask!

@@ -1,14 +1,14 @@
 ---
 title: 'Zadigx'
-summary: 'ZadigX is a cloud-native DevOps value chain platform developed by KodeRover based on Kubernetes.'
+summary: 'Zadigx displays metrics including Overview, automated builds, automated deployments, and automated testing.'
 __int_icon: 'icon/zadigx'
 dashboard:
   - desc: 'Zadigx'
-    path: 'dashboard/zh/zadigx/'
+    path: 'dashboard/en/zadigx/'
 
 monitor:
   - desc: 'Zadigx'
-    path: 'monitor/zh/zadigx/'
+    path: 'monitor/en/zadigx/'
 ---
 
 
@@ -16,63 +16,63 @@ monitor:
 # Zadigx
 <!-- markdownlint-enable -->
 
-Zadigx showcases, including overview, automated build, automated deployment, automated testing, etc.
+Zadigx displays metrics including Overview, automated builds, automated deployments, and automated testing.
 
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-> GSE edition is recommended
-
-
-
-### Installation script
-
-> Note: Please prepare a Zadigx API Token that meets the requirements in advance.
-
-To synchronize Zadigx monitoring data, we need to install the corresponding collection script:「Guance Integration（**Zadig** dataCollect）」(ID：`guance_zadig`)
-
-Click "Install" and modify the `private_token` in the created "start up" collection script for **zadigx** to your API Token.
-
-You can see the corresponding auto-trigger configuration in "Management / Auto-trigger Configuration" after you turn it on. Click "Execute" to execute the task immediately without waiting for the regular time. Wait for a while, you can check the record and log of the executed task.
-
-
-We have collected some default configurations. Please refer to the metric for details.
+> We recommend deploying the GSE version
 
 
 
+### Installation Script
 
-### Verify
+> Note: Please prepare a qualified Zadigx API Token in advance
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
-2. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists.
+To synchronize Zadigx monitoring data, we install the corresponding collection script: 「Guance Integration (Zadigx Data Collection)」(ID: `guance_zadig`)
 
-## Metric {#metric}
-After configuring Zadigx monitoring, the default set of metrics is as follows:
+After clicking 【Install】, modify the `private_token` in the created `start up` Zadigx collection script and enter your API Token.
 
-| **Metric** |        **Metric Name**        | **Unit** |
+Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+
+By default, we collect some configurations; see the Metrics section for details.
+
+
+
+
+### Verification
+
+1. In 「Manage / Automatic Trigger Configuration」confirm that the corresponding tasks have the matching automatic trigger configurations. You can also check the task records and logs for any anomalies.
+2. On the Guance platform, under 「Metrics」check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring Zadigx monitoring, the default Measurement set is as follows
+
+| Metric         |        Metric Name        | Unit         |
 | ---- | :----: | ---- |
-| `zadig_overview_project_count` | `Number of Projects`     | `Count` |
-| `zadig_overview_cluster_count` |     `Number of Clusters`     | `Count` |
-| `zadig_overview_service_count` | `Number of Services` | `Count` |
-| `zadig_overview_workflow_count` | `Number of Workflows` | `Count`    |
-| `zadig_overview_env_count` | `Number of Environments` | `Count` |
-| `zadig_overview_artifact_count` | `Number of Artifacts` | `Count` |
-| `zadig_test_case_count` | `Number of Automated Test Cases`    | `Count` |
-| `zadig_test_exec_count` |       `Number of Automated Test Executions`       | `Count` |
-| `zadig_test_average_runtime` | `Average Runtime of Automated Tests` | `S`     |
-| `zadig_build_success` |     `Number of Successful Automated Builds`     | `Count` |
-| `zadig_build_failure` |      `Number of Failed Automated Builds`      | `Count` |
-| `zadig_build_total` | `Total Number of Automated Builds` | `Count`    |
-| `zadig_deploy_success` | `Number of Successful Automated Deployments` | `Count`    |
-| `zadig_deploy_failure` | `Number of Failed Automated Deployments` | `Count`    |
-| `zadig_deploy_total` |     `Total Number of Automated Deployments`     | `Count`    |
-| `zadig_test_success_count` | `Number of Successful Automated Tests` | `Count`   |
-| `zadig_test_timeout_count` |     `Number of Automated Test Timeouts`     | `Count`    |
-| `zadig_test_failed_count` | `Number of Failed Automated Tests` | `Count`    |
+| `zadig_overview_project_count` |         Project Count        | Count       |
+| `zadig_overview_cluster_count` |     Cluster Count     | Count      |
+| `zadig_overview_service_count` |  Service Count | Count       |
+| `zadig_overview_workflow_count` |  Workflow Count | Count           |
+| `zadig_overview_env_count` |    Environment Count   | Count      |
+| `zadig_overview_artifact_count` |    Artifact Count   | Count       |
+| `zadig_test_case_count` |       Automated Test Case Count      | Count        |
+| `zadig_test_exec_count` |       Automated Test Execution Count       | Times        |
+| `zadig_test_average_runtime` | Average Duration of Automated Test Execution | Seconds       |
+| `zadig_build_success` |     Successful Automated Builds     | Times        |
+| `zadig_build_failure` |      Failed Automated Builds      | Times       |
+| `zadig_build_total` | Total Automated Builds | Times           |
+| `zadig_deploy_success` | Successful Automated Deployments | Times           |
+| `zadig_deploy_failure` | Failed Automated Deployments | Times           |
+| `zadig_deploy_total` |     Total Automated Deployments     | Times           |
+| `zadig_test_success_count` | Successful Automated Tests | Times          |
+| `zadig_test_timeout_count` |     Timed-out Automated Tests     | Times           |
+| `zadig_test_failed_count` | Failed Automated Tests | Times           |

@@ -1,17 +1,17 @@
 ---
-title: 'Tencent KeeWiDB'
+title: 'Tencent Cloud KeeWiDB'
 tags: 
   - Tencent Cloud
-summary: 'Tencent Cloud KeeWiDB metric display includes metrics such as connection count, requests, cache, keys, and slow queries.'
+summary: 'Tencent Cloud KeeWiDB metrics display, including connections, requests, cache, keys, slow queries, etc.'
 __int_icon: 'icon/tencent_keewidb'
 dashboard:
 
-  - desc: 'Tencent KeeWiDB Built-in Dashboard'
-    path: 'dashboard/zh/tencent_keewidb'
+  - desc: 'Tencent Cloud KeeWiDB built-in views'
+    path: 'dashboard/en/tencent_keewidb'
 
 monitor:
-  - desc: 'Tencent KeeWiDB Monitor'
-    path: 'monitor/zh/tencent_keewidb'
+  - desc: 'Tencent Cloud KeeWiDB monitor'
+    path: 'monitor/en/tencent_keewidb'
 
 ---
 
@@ -20,66 +20,66 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-Tencent Cloud KeeWiDB metric display includes metrics such as connection count, requests, cache, keys, and slow queries.
+Tencent Cloud KeeWiDB metrics display, including connections, requests, cache, keys, slow queries, etc.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare Tencent AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of KeeWiDB, we install the corresponding collection script：「Guance Integration（Tencent Cloud-KeeWiDB Collect）」(ID：`guance_tencentcloud_keewidb`)
-
-Click 【Install】 and enter the corresponding parameters: Tencent AK, Tencent account name.。
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
-
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
-
-We collected some configurations by default, as described in the Metrics column [Configuring Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-keewidb/){:target="_blank"}
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-Configure Tencent Cloud Redis monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/49729){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-| Metric English Name       | Metric Chinese Name          | Metric Description                                                     | Unit  | Dimension       | Granularity                         |
-| ---------------- | ------------------- | ------------------------------------------------------------ | ----- | ---------- | -------------------------------- |
-| `KeeCpuUtil`       | CPU usage rate.         | KeeWiDB node CPU usage rate.                                 | %     | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| Connections        | Connection count.       | Number of TCP connections received by the instance.          | item             | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| ConnectionsUtil    | Connection usage rate.  | Ratio of actual TCP connections to the maximum connection count. | %     | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| KeeCommands        | Total requests.         | QPS (Queries Per Second), the number of command executions per second. | times per second | `instanceid`               | 5s、 60s、 300s、 3600s、 86400s |
-| KeeCmdRead         | Read requests.          | Number of read command executions per second.                | times per second | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| KeeCmdWrite        | Write requests.         | Number of write command executions per second.               | times per second | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| KeeCmdOtherKee     | Other requests.         | Number of command executions other than read and write commands. | item             | `instanceid`、`keewidbnodeid` | 5s、 60s、 300s、 3600s、 86400s |
-| KeeCmdSlow         | Slow queries.           | Number of command executions with an execution delay greater than the configured `slowlog` - log - slower - than setting. | item             | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| CmdErr             | Execution errors.       | Number of Proxy command execution errors per second, such as command not found, parameter errors, and other similar situations. | times per second | `instanceid`               | 5s、 60s、 300s、 3600s、 86400s |
-| `KeeKeyspaceHitUtil` | Cache hit rate.         | Cache hit rate refers to the proportion of requests in which the requested data is found in the cache system. Cache hit rate = Cache hit count / Total request count. | %     | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| KeeKeys            | Total number of keys.   | Total number of first-level keys stored in the instance.     | item             | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| KeeExpireKeys      | Number of expired keys. | Number of keys evicted within a time window, corresponding to the "expired_keys" value in the output of the "info" command. | times per second | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| KeeDiskUsed        | Disk usage.             | Disk capacity already in use.                                | MB    | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
-| KeeDiskUtil        | Disk usage rate.        | Ratio of the disk capacity already in use to the maximum capacity. | %     | `instanceid`                | 5s、 60s、 300s、 3600s、 86400s |
-| KeeDiskIops        | Disk IOPS usage.        | Number of input-output operations per second on the disk.    | times per second | `instanceid`              | 5s、 60s、 300s、 3600s、 86400s |
+
+### Install Script
+
+> Note: Prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`)
+
+Synchronize the monitoring data of Tencent Cloud KeeWiDB by installing the corresponding collection script:「Guance Integration (Tencent Cloud-KeeWiDB Collection)」(ID: `guance_tencentcloud_keewidb`)
+
+Click 【Install】, then enter the required parameters: Tencent Cloud AK, Tencent Cloud account name.
+
+Click 【Deploy and Start Script】. The system will automatically create a `Startup` script set and configure the startup script accordingly.
+
+Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to immediately execute once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+By default, we collect some configurations; see the metrics section for details [Customize cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-keewidb/){:target="_blank"}
 
 
-## Object {#object}
-The data structure of collected Tencent Cloud Redis object can be viewed in 'Infrastructure - Custom' where object data is available
+
+### Verification
+
+1. Confirm in 「Manage / Automatic Trigger Configuration」whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring Tencent Cloud KeeWiDB, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/49729){:target="_blank"}
+
+### Tencent Cloud KeeWiDB Instance Monitoring
+
+| Metric Name        | Metric Description       | Explanation                                                     | Unit  | Dimensions                      | Statistical Granularity                         |
+| ------------------ | ------------------------ | --------------------------------------------------------------- | ----- | ------------------------------- | ----------------------------------------------- |
+| `KeeCpuUtil`       | CPU Utilization          | CPU utilization of KeeWiDB nodes                                | %     | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| Connections        | Connection Count         | Number of TCP connections to the instance                       | Count | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| ConnectionsUtil    | Connection Utilization   | Percentage of actual TCP connections to maximum connections     | %     | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeCommands        | Total Requests           | QPS, number of commands executed per second                     | Times/sec | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeCmdRead         | Read Requests            | Number of read commands executed per second                     | Times/sec | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeCmdWrite        | Write Requests           | Number of write commands executed per second                    | Times/sec | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeCmdOtherKee     | Other Requests           | Number of command executions outside read/write commands        | Count | `instanceid`、`keewidbnodeid`   | 5s、60s、300s、3600s、86400s                   |
+| KeeCmdSlow         | Slow Queries             | Number of commands with execution latency greater than `slowlog-log-slower-than` configuration | Count | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| CmdErr             | Execution Errors         | Number of Proxy command execution errors per second, e.g., non-existent commands, parameter errors | Times/sec | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| `KeeKeyspaceHitUtil` | Cache Hit Rate          | Proportion of requested data found in the cache. Cache hit rate = cache hits / total requests | %     | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeKeys            | Total Keys               | Total number of keys stored in the instance (first-level keys)  | Count | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeExpireKeys      | Expired Keys             | Number of keys evicted within the time window, corresponding to the expired_keys output of the info command | Count/sec | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeDiskUsed        | Disk Usage               | Used disk capacity                                             | MB    | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeDiskUtil        | Disk Utilization         | Percentage of used disk capacity to maximum capacity            | %     | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+| KeeDiskIops        | Disk IOPS Usage          | Number of disk input/output operations per second               | Times/sec | `instanceid`                    | 5s、60s、300s、3600s、86400s                   |
+
+## Objects {#object}
+The collected Tencent Cloud KeeWiDB object data structure can be viewed in 「Infrastructure-Custom」
 
 ```json
 {
@@ -103,27 +103,24 @@ The data structure of collected Tencent Cloud Redis object can be viewed in 'Inf
     "ClientLimits"    : "10000",
     "Createtime"      : "2022-07-14 13:54:14",
     "DeadlineTime"    : "0000-00-00 00:00:00",
-    "InstanceNodeInfo": "{Instance节点信息}",
+    "InstanceNodeInfo": "{Instance node information}",
     "InstanceTitle"   : "Running",
     "Size"            : 1024,
     "message"         : "{Instance JSON data}"
   }
 }
-
 ```
 
+Some parameter explanations are as follows
 
+| Field          | Type | Explanation                                                         |
+| :------------ | :--- | :----------------------------------------------------------- |
+| `Status`      | str  | Current status of the instance. 0: Pending initialization. 1: Instance in process. 2: Instance running. -2: Instance isolated. -3: Instance pending deletion. |
+| `ProductType` | str  | Product type. standalone: Standard edition. cluster: Cluster edition. |
+| `BillingMode` | str  | Billing mode. 0: Pay-as-you-go. 1: Prepaid. |
+| `ProjectId`   | str  | Project ID |
+| `NodeSet`     | str  | Detailed information of the instance nodes. Note: This field may return null, indicating no valid value. |
 
-Partial parameter explanations are as follows:
-
-| Field          | Type    | Description           |
-| :------------ | :------ | :------------- |
-| `Status`      | str  | Instance current status. 0: Pending initialization. 1: Instance in progress. 2: Instance running. -2: Instance isolated. -3: Instance pending deletion. |
-| `ProductType` | str  | Product types. "standalone": Standard version. "cluster": Cluster version.          |
-| `BillingMode` | str  | Billing mode. 0: Pay-as-you-go. 1: Subscription (monthly/yearly).                      |
-| `ProjectId`   | str  | Project ID.                                                    |
-| `NodeSet`     | str  | Detailed information of instance nodes. Note: This field may return null, indicating no valid values. |
-
-> *Note: The fields in tags and fields may change in subsequent updates*
-> Hint 1: The value of tags.name is the instance ID, which serves as a unique identifier
-> Hint 2: The value of fields.message is a JSON-serialized string
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
+> Tip 1: `tags.name` value is the instance ID, serving as unique identification.
+> Tip 2: `fields.message` is a JSON serialized string.

@@ -1,152 +1,137 @@
-# Dashboards 
+# Dashboards and Data Linking
 ---
 
-## Why are dashboards necessary?
+Real-time visualized data can aggregate and intuitively display core data that enterprises focus on, such as <u>IT and business data, enhancing information sharing and communication efficiency, and quickly identifying abnormal data</u>. This helps teams focus on the right and effective tasks, enabling relevant personnel to make better decisions faster.
 
-Real-time visual data can gather and visually display core data such as IT and business that enterprises pay attention to, strengthen the efficiency of information sharing and communication, quickly discover abnormal problem data, help teams pay attention to correct and effective things, and urge relevant personnel to make better decisions faster.
+<<< custom_key.brand_name >>> dashboard functionality <u>includes a rich set of built-in dashboard templates, providing high customization flexibility, truly connecting the correlation between data</u>, achieving clear presentation of IT systems and business Metrics data that users care about, assisting enterprises in real-time monitoring of IT systems and business operations.
 
-## What is special about Guance dashboards?    
 
-Guance dashboard function has built-in dashboard templates with various types, providing a high degree of customization flexibility, truly opening up the correlation between data, clearly displaying IT system and business metric data concerned by users and assisting enterprises to grasp IT system and business operation in real time.
+## Ready-to-Use Templates
 
-<font color=coral size=5>**So what exactly do we have?**</font>
-
-## Out-of-the-box Templates
-
-**System View** is a standard dashboard template provided by Guance, which can be used out of the box with one click to quickly observe the accessed data, help users intuitively track, analyze and display key performance metrics, and observe the overall operation status of the system and business.
+The **System View** is a standard dashboard template provided by <<< custom_key.brand_name >>>, ready-to-use out-of-the-box. It allows users to quickly observe connected data, helping them visually track, analyze, and display key performance indicators, monitoring the overall operation of systems and businesses.
 
 <div class="grid" markdown>
 
 === "Method:material-numeric-1-circle-outline: Create from **Dashboards**"
-    
-    Enter **Scenes > Dashboards > Create**, select or search the view template you want in **System View**, and click **Confirm**.
 
-    ![](../img/dashboard-1.png)
+    Click on the **Scenarios** module on the left side, then click sequentially **Dashboard > Create Dashboard**, choose or search for the desired view template in **System View**, click **Confirm**, and you will successfully add it.
 
-    ![](../img/dashboard.gif)
+    <img src="../../img/dashboard-1.png" width="80%" />
 
-    <!--
     <img src="../../img/dashboard-2.png" width="80%" />
-    -->
 
-    <font color=coral>**Note:**</font> If the current **Template Library** can't meet your specific needs for the time being, you can click **Create** to create your exclusive view from scratch.
+    **Note**: If the current **Template Library** cannot meet your specific needs, you can click **+ Create Blank Dashboard** to start building your exclusive view from scratch.
 
-=== "Method:material-numeric-2-circle-outline: Clone from **Inner View**"
+=== "Method:material-numeric-2-circle-outline: Clone from **Built-in Views**"
 
-    Enter **Scenes > Inner View**, select or search the view template you want in **System View**, preview and click **Clone**.
+    Click on the **Scenarios** module on the left side, then click **Built-in Views**, choose or search for the desired view template in **System View**, preview it, and click **Clone** to successfully add it.
 
-    ![](../img/dashboard-1.gif)
-
-    <!--
     <img src="../../img/dashboard-3.png" width="80%" />
 
     <img src="../../img/dashboard-4.png" width="80%" />
-    -->
 
 
-=== "View Added Dashboards"
+=== "View Dashboard After Successful Addition"
 
-    After the dashboard is successfully added, you can view it immediately on the jumped page. Click [Add Charts](#chart) to customize and add a variety of visual charts. Enter again and then you can view from the **Dashboards** list.
+    After successfully adding the dashboard, you can immediately view it on the current page. Click **[Add Chart](#chart)** to customize and add various visualization charts. Re-enter to view from the **Dashboard** list.
 
     ![](../img/getting-guance-5.png)
 
 </div>
 
 
-## Custom Visual Charts {#chart}
+## Customizable Visualization Charts {#chart}
 
+<<< custom_key.brand_name >>> includes over 20 standard visualization charts, allowing users to quickly create different dashboards based on different business needs, meeting personalized data visualization requirements, ensuring data readability, format consistency, and efficient comprehensive presentation.
 
-Guance has built-in visual charts of more than 20 standards, which can quickly create different dashboards according to different business requirements, and meet users' requirements for personalized data, data readability, format consistency, efficient and comprehensive visual display.
+Currently supported chart types include: Time Series, Summary, Table, Treemap, Funnel, Pie, Bar, Histogram, SLO, Top List, Gauge, Scatter Plot, Bubble Chart, China Map, World Map, Hexbin, Text, Image, Video, Command Panel, IFrame, Log Flow, Object List, Alert Statistics, etc.
 
-At present, the supported chart types include: <u>Query value, Pie chart, Bar chart, Histogram, Top list, Gauge, Segmentation Threshold, Scatter Plot, Bubble, Table, Formatting configuration, Tree map, Funnel, China map, World map, Honeycomb, Logs Stream, Object list, Event, Command Panel, Iframe, text, picture, video, etc</u>.
-
-> See [Visual Charts](../../scene/visual-chart/index.md) for more instructions on charts.
+> For detailed usage of each chart type, refer to the documentation [Visualization Charts](../../scene/visual-chart/index.md)
 
 ![](../img/dashboard-5.png)
 
+![](../img/dashboard-6.png)
 
-## Data Link of Dashboards
+## Data Linking in Dashboards
 
-The data accessed by Guance has a high degree of correlation and interactivity.
+Data connected to <<< custom_key.brand_name >>> has <u>high correlation and interactivity</u>.
 
-- Highly correlated data can provide more comprehensive and accurate information, helping users understand the real situation of business systems and then formulating more accurate countermeasures;
-- Interactive data can reduce inefficient collaboration across platforms, teams and members, and really bring you an observation experience of **One Platform Observes All**.
+- Highly correlated data provides more comprehensive and accurate information, helping users understand the true state of business systems, thus formulating more accurate strategies;
+- Interactive data reduces inefficient collaboration across platforms, teams, and members, truly bringing you the experience of <u>"one platform, overseeing all"</u>.
 
-### Realized in Label Mode
+### Using Labels
 
-Guance dashboard can be linked with Infrastructure, Logs, APM, RUM, Explorers and other modules by means of custom Label `Label`. When viewing data in ther modules, you can view the custom bound dashboard at the same time on current page.
+<<< custom_key.brand_name >>> dashboards can be linked with modules like Infrastructure, Logs, APM, RUM, Explorer, etc., through custom `Label` tags. When viewing data in other modules, you can also <u>view the associated dashboard on the same page</u>.
 
-*Take the example of adding `kafka` here.*
+??? example "Example Background Description"
 
-- Requirement: You want to see the usage of Kafka running on the host named `filebeat-logstash` and Label `Kafka` in the **Infrastructure** at the same time.
-    
-- Plan: Through the Label `Label` association, you can bind the Kafka monitoring view in the **Dashboards** in the **Infrastructure**, so that you can view without jumping.
+    - Requirement: Hope to view Kafka usage on hosts named `filebeat-logstash` with Label `kafka` within the **Infrastructure** module;  
+    - Solution: By associating via `Label`, you can bind the Kafka monitoring view from the **Dashboard** module to the **Infrastructure** module, <u>achieving simultaneous viewing without navigation</u>.
 
-![](../img/dashboard-7.png)
+    ![](../img/dashboard-7.png)
 
 <div class="grid" markdown>
 
 === "Step:material-numeric-1-circle-outline: Create Label"
 
+    Taking the addition of `kafka` as an example:
 
     ![](../img/dashboard-8.png)
 
 === "Step:material-numeric-2-circle-outline: Bind Label"
     
-    - In **Scene > Dashboards**, go to the existing dashboard that needs to be bound. (*If none, create one then*);
-    - Click **Settings > Save to Inner View** and bind the corresponding `Label`. (*Take "Kafka Monitoring View" as an example.*)
+    - In **Scenarios > Dashboards**, enter an existing dashboard that needs binding; *if none exists, create one*
+    - Click **Settings > Save as Built-in View**, and bind the corresponding `Label`. *For example, “Kafka Monitoring View”*
 
     ![](../img/dashboard-9.png)
 
-    <img src="../../img/dashboard-10.png" width="70%" />
+    ![](../img/dashboard-10.png)
 
 
-=== "Comparison of Effects"
+=== "Before and After Effect Comparison"
 
-    - Before binding:
+    - Before Binding:
 
     ![](../img/dashboard-11.png)
 
-    - After binding:
+    - After Binding:
 
     ![](../img/dashboard-12.png)
 
 </div>
 
-### Realized by Chart Link
+### Using Chart Links
 
-Visual charts in Guance dashboard can be linked with the explorer, other dashboards, infrastructure, external links and other modules through chart links. You can <u>jump from the current chart to the target page with one click</u>, so as to overview important metrics through the dashboard first, and then make targeted in-depth analysis.
+Visualization charts in <<< custom_key.brand_name >>> dashboards can link to modules like Explorer, other dashboards, infrastructure, external links, etc., through chart links. You can <u>jump directly to the target page from the current chart</u>, enabling a quick overview of important metrics followed by targeted deep analysis.
 
-At present, chart links support built-in association links and custom association links, and the corresponding variable values in links can be modified through template variables, and data information can be transmitted to complete data linkage.
+Currently, chart links support <u>built-in and custom association links</u>, and can pass data information through template variables, completing data linking.
 
-> See [Chart Links](../../scene/visual-chart/chart-link.md) for more details.
+> For more details, refer to the documentation [Chart Links](../../scene/visual-chart/chart-link.md).
 
 ![](../img/dashboard-13.png)
 
 
+### Using Monitoring Alerts
 
-### Realized by Monitors
+<<< custom_key.brand_name >>> has powerful anomaly detection capabilities, not only providing a series of monitoring templates but also supporting custom monitors. Combined with alert notification functions, it helps you quickly identify, locate, and resolve issues.
 
-Guance has powerful anomaly monitoring capability, which not only provides a series of monitoring templates but also supports custom monitors. 
+> For more details, refer to the documentation [Monitoring](../../monitoring/index.md).
 
-> See [Monitors](../../monitoring/index.md) for more information.
-
-Guance dashboard can be linked with the monitors, synchronize the monitoring information to prevent the omission of important alarm notifications, and thus facilitate the observation of team members.
-
+<<< custom_key.brand_name >>> dashboards can be linked with monitoring alerts, synchronizing monitoring information to comprehensively assist in monitoring and alerting, preventing important alerts from being missed and making it convenient for team members to observe.
 
 <div class="grid" markdown>
 
-=== "Step:material-numeric-1-circle-outline: Associate **Dashboards** in **Monitors**"
+=== "Step:material-numeric-1-circle-outline: Directly Associate Dashboard in Monitor"
 
-    Open the created monitor, select the dashboard to be associated in **Associated Dashboard** and then **Save**.
+    Open an already created monitor, select the dashboard to associate under **Associated Dashboard**, and **Save**.<br/>
+    (Example shown: “Host Memory Less Than 100M Monitor”)
 
+    ![](../img/6.monitor-dashboard_1.png)
 
-    ![](../img/monitor-dashboard_1.png)
+=== "Step:material-numeric-2-circle-outline: Navigate from Monitor List"
 
-=== "Step:material-numeric-2-circle-outline: Jump from **Monitor List**"
+    In the **Monitor List**, click **View Related View** to navigate to the associated dashboard.
 
-    In **Monitor List**, click **View Related View**, and you can jump to view the dashboard associated with it.
-
-    ![](../img/monitor-dashboard_2.png)
+    ![](../img/6.monitor-dashboard_2.png)
 
 </div>

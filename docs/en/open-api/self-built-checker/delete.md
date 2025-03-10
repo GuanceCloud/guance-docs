@@ -1,38 +1,33 @@
-# Delete an Intelligent Inspection
+# Delete a Smart Security Check
 
 ---
 
-<br />**post /api/v1/self_built_checker/delete**
+<br />**POST /api/v1/self_built_checker/delete**
 
 ## Overview
-Delete an intelligent inspection according to `checker_uuid`.
+Delete a user-defined security check based on `checker_uuid`
 
 
 
+## Body Request Parameters
 
-## Body Request Parameter
+| Parameter Name | Type   | Required | Description                              |
+|:--------------|:-------|:--------|:----------------------------------------|
+| ruleUUID      | string |         | UUID of the user-defined security check<br>Example: rul_xxxxx <br>Allow empty: False <br> |
+| refKey        | string |         | Associated key of the user-defined security check<br>Example: xxx <br>Allow empty: False <br> |
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| ruleUUID | string |  | Self-built UUID for intelligent inspection<br>Example: rul_xxxxx <br>Allow null: False <br> |
-| refKey | string |  | Association key of intelligent inspection<br>Example: xxx <br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/self_built_checker/rul_d0736e059fd74d859cdcdce102687378/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/self_built_checker/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw 'null' \
---compressed \
---insecure
+--data-raw '{"ruleUUID":"rule_xxx"}' \
+--compressed
 ```
-
 
 
 
@@ -47,7 +42,3 @@ curl 'https://openapi.guance.com/api/v1/self_built_checker/rul_d0736e059fd74d859
     "traceId": "TRACE-0ABCD3FC-9441-4617-9301-A95299460890"
 } 
 ```
-
-
-
-

@@ -1,3 +1,0 @@
-nav:
-  - 'Pod Incident Restart Security Check': k8s-pod-restart.md
-  - 'Kubernetes Health Security Check': k8s-health.md

@@ -1,14 +1,14 @@
-# Customize to Add Additional Data TAG
+# Custom Addition of Additional Data TAG
 
 ---
 
-After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)` API to add additional TAGs to all RUM events collected from the application.
+After initializing RUM, use the `addRumGlobalContext(key:string, value:any)` API to add additional TAGs to all RUM events collected from the application.
 
-### Add TAG
+### Adding TAGs
 
 === "CDN"
 
-    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [Download File](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) and introduce it locally
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -26,7 +26,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [Introduction](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -41,11 +41,11 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
     });
     ```
 
-### Replace TAG (Override)
+### Replacing TAGs (Overwrite)
 
 === "CDN"
 
-    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [Download File](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) and introduce it locally
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -60,7 +60,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [Introduction](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -73,11 +73,11 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
     });
     ```
 
-### Get All Set Custom TAGs
+### Getting All Set Custom TAGs
 
 === "CDN"
 
-    Introduction: (see WeChat official [npm introduction method](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [Download File](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) and introduce it locally
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
@@ -87,7 +87,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [Introduction](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -96,11 +96,11 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
     ```
 
-### Remove the Custom TAG Corresponding to Specific Key
+### Removing Specific Key's Custom TAG
 
 === "CDN"
 
-    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [Download File](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) and introduce it locally
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
@@ -110,7 +110,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [Introduction](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')
@@ -118,11 +118,11 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
     const context = datafluxRum.removeRumGlobalContext('<CONTEXT_KEY>');
     ```
 
-### Clear all the Custom TAG
+### Clearing All Custom TAGs
 
 === "CDN"
 
-    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
+    [Download File](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) and introduce it locally
 
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js');
@@ -132,7 +132,7 @@ After initializing the RUM, use the `addRumGlobalContext(key:string, value:any)`
 
 === "NPM"
 
-    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
+    [Introduction](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
 
     ```javascript
     const { datafluxRum } = require('@cloudcare/rum-miniapp')

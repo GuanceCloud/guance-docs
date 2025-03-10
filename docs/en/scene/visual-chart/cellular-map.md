@@ -1,54 +1,36 @@
 # Honeycomb Chart
 ---
 
-## Introduction
+Displays the data situation under different groups, indicating the magnitude of the data through the depth of color blocks. It can be used for monitoring assets and infrastructure.
 
-Display data under different groups, which can be used for monitoring assets and infrastructure.
+![](../img/bee.png)
 
-## Use Case
+## Chart Configuration
 
-The cellular graph of the guance is used to show the data under different groupings. For example, you can see the CPU usage of different hosts.
+> For more details, refer to [Chart Configuration](./chart-config.md).
 
-## Chart Query
 
-Chart query supports 「simple query」, 「expression query」 and 「DQL query」, please click [chart-query](chart-query.md) for detailed explanation of chart query conditions. You can add multiple queries, but the Tag of by (grouping) must be the same, modify one, and the other will be modified automatically.
+<!--
 
-The chart query matches colors by metric values, as described below.
+## Common Configuration
 
-| Options | Description |
+| Option | Description |
 | --- | --- |
-| Metrics | When adding multiple metric queries, you can set the main metric to be displayed. "Metric" is the metric that determines the gradient color of the color block |
+| Title | Set a title for the chart. Once set, it will display in the top-left corner of the chart, with an option to hide it. |
+| Description | Add a description to the chart. After setting, an 【i】 icon will appear after the chart title, which does not show if not set. |
+| Colors | Gradient intervals:<br><li>Auto: By default, the system divides the current data's maximum and minimum values into 5 intervals, supporting custom maximum and minimum values;<br><li>Custom: Supports custom gradient color levels, i.e., setting the level ranges for the honeycomb chart areas. The system defaults to dividing the selected metric's max and min values into 5 gradient levels, supporting custom number of levels (up to 10), level ranges, and display colors.<br/><br/>Gradient colors: The gradient colors of the blocks. After selecting a color, the system generates color blocks based on the selected color and the number of levels. |
+| Legend | For more details, refer to [Legend Explanation](./timeseries-chart.md#legend). |
+| Unit | **:material-numeric-1-box: Default unit display**:<br /><li>If the queried data is metric data and you have set units for the metrics in [Metric Management](../../metrics/dictionary.md), the units will be displayed according to the metric's unit settings;<br /><li>If no unit is configured in **Metric Management**, the data will be displayed using [thousands separator](chart-query.md#thousand) with comma-separated values.<br />**:material-numeric-2-box: After configuring units**:<br />The system will prioritize the custom unit configuration for displaying the data, supporting two options for metric data:<br /><br />**Scientific Notation Explanation**<br /><u>Default rounding</u>: Units are in ten thousand, million, e.g., 10000 displays as 1 ten thousand, 1000000 displays as 1 million. Two decimal places are retained;<br /><u>Short scale</u>: Units are K, M, B, representing thousand, million, billion, trillion respectively. For example, 1000 is 1 k, 10000 is 10 k, 1000000 is 1 million; two decimal places are retained.|
+| Data Format | You can choose the number of decimal places and whether to use a thousands separator.<br /><li>The thousands separator is enabled by default. If disabled, the original value without separators will be displayed. For more details, refer to [Data Thousands Separator Format](../visual-chart/chart-query.md#thousand). |
 
-## Chart Linking
+## Advanced Configuration
 
-Links can help you jump from the current chart to the target page, support adding internal links and external links to the platform, and support modifying the corresponding variable values in the links through template variables to transfer the data information to complete the data linkage. Please click [chart-link](chart-link.md) to view the related settings.
-## Chart Style
-| Options | Description |
+| Option | Description |
 | --- | --- |
-| Chart Title | Set the title name for the chart, after setting, it will be shown on the top left of the chart, support hide |
-| Show legend | The color grade range is displayed in the lower right corner of the chart |
-| Color | 1. Gradient color system: gradient color of the color block. After selecting the color, the system will use the selected color as the base to generate the selected number of levels of color blocks<br>2.Gradient interval.<br><li>Automatic: the default is divided into 5 intervals equally according to the maximum and minimum values of the current data, and supports customizing the maximum and minimum values.<br><li>Customization: Support customizing the gradient color level, i.e. the level setting of the honeycomb map area range. By default, the system divides the maximum and minimum values of the selected metric into 5 gradient levels, and supports customizing the number of levels (up to 10), the range of levels and the display color |
+| Lock Time Range | Fix the time range for querying data in this chart, independent of the global time component. After setting, the user-defined time will appear in the top-right corner of the chart, such as 【xx minutes】, 【xx hours】, 【xx days】. For example, if the lock time interval is 30 minutes, regardless of the time range selected in the time component, only the data from the last 30 minutes will be displayed. |
+| Field Mapping | Works with view variable object mapping. By default, it is off. If object mapping is configured in view variables:<br /><li>When field mapping is enabled, the chart shows the **grouped fields** and corresponding **mapped fields**, and any grouped fields not specified in the mapping will not be displayed;<br /><li>When field mapping is disabled, the chart displays normally without showing the mapped fields. |
+| Workspace Authorization | A list of authorized workspaces. After selection, the chart can query and display data from these workspaces. |
+| Data Sampling | Only applicable to Doris log data engine workspaces; when enabled, it samples non-metric data, with a dynamic sampling rate based on data volume. |
+| Time Offset | Non-time series data has at least a 1-minute delay after being stored. When using relative time queries, recent data may not be captured, leading to missing data.<br />Enabling time offset shifts the actual query time range forward by 1 minute to prevent data loss due to storage delays. For example, if the current time is 12:30 and you query the last 15 minutes of data, with time offset enabled, the actual query time would be 12:14-12:29.<br />:warning: <br /><li>This setting only applies to relative time queries. If the time range is an "absolute time range," the time offset does not apply.<br /><li>For charts with time intervals, such as time series charts, if the time interval exceeds 1 minute, the time offset does not apply. For charts without time intervals, like summary charts or bar charts, the time offset remains effective.|
 
-
-## Chart Setup
-
-### Basic Settings
-| Options | Description |
-| --- | --- |
-| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (.../.../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns: chart query data results are displayed as 1ms<br /><li>1000000000ns: chart query data results are displayed as 1s<br /><li>10000000000ns: chart query data results are displayed as 1m<br /><br/>2. Support for query results preset units, manual input format: aggregation function (metrics), such as `last(usage_idle)` |
-
-### Advanced Settings
-| Options | Description |
-| --- | --- |
-| Time slice | When time slicing is turned on, the original data will be aggregated in segments at certain time intervals, and then the aggregated data set will be aggregated a second time to get the result value, which is turned off by default. For details, please refer to [time slicing description](chart-query.md#time-slicing) |
-| Lock time | Support locking the time range of chart query data, not limited by the global time component. The time set by the user will appear in the upper right corner of the chart after successful setup, e.g. 【xx minutes】, 【xx hours】, 【xx days】. If the time interval is locked at 30 minutes, then when adjusting the time component, no matter what time range view is queried, only the last 30 minutes of data will be displayed. |
-| Time interval | If the time slice is off, there is no time interval option, if the time slice is on, the time interval option is as follows：<br /><li>Original interval: default query to display data according to the time range of the time component<br /><li>Auto-alignment: When turned on, the query will be dynamically adjusted according to the selected time range and aggregation interval, rounded up according to the calculated time interval. (For example, if the automatic aggregation algorithm calculates the time interval to be 50 seconds, then the actual query will be launched according to the time interval of 1 minute) The system presets 1 ms, 10 ms, 50 ms, 100 ms, 500 ms, 1 second, 5 seconds, 15 seconds, 30 seconds, 1 minute, 5 minutes, 10 minutes, 30 minutes, 1 hour, 6 hours, 12 hours, 1 day, 1 week, 1 month, and many time interval.<br /><li>Custom time interval: When 【Lock time】 is selected, according to the length of lock time, different optional time intervals will be automatically matched to query the displayed data. (For example, if you select 1 minute as the time interval, the query will actually be launched at 1 minute interval)<br /> |
-| Field Mapping | The object mapping function with view variables is off by default, if object mapping is configured in the view variables：<br /><li>When field mapping is enabled, the chart displays the 「grouped fields」 of the query and the corresponding 「mapped fields」, and the grouped fields without specified mapping are not displayed.<br /><li>When field mapping is turned off, the chart is displayed normally, without the mapped fields<br /> |
-| Chart Description | Add description information to the chart, after setting the chart title will appear behind the 【i】 prompt, do not set it will not be displayed |
-| Workspace | A list of authorized workspaces, which can be queried and displayed via charts after selection |
-
-## Example Graph
-
-The following graph shows the CPU usage of different hosts for the last 15 minutes.
-
-![](../img/fengwo.png)
+-->

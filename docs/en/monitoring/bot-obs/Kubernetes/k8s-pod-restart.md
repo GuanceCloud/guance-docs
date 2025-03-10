@@ -1,71 +1,67 @@
-# Kubernetes Pod Abnormal Restart Intelligent Inspection
+# Kubernetes Pod Abnormal Restart Inspection
 
 ---
 
 ## Background
 
-Kubernetes helps users automatically schedule and expand containerized applications, but modern Kubernetes environments are becoming more and more complex. When platform and application engineers need to investigate events in dynamic and containerized environments, finding the most meaningful signals may involve many trial and error steps. Intelligent Inspection can filter exceptions according to the current search context, thus speeding up incident investigation, reducing the pressure on engineers, reducing the average repair time and improving the end-user experience.
+Kubernetes helps users automatically schedule and scale containerized applications, but modern Kubernetes environments are becoming increasingly complex. When platform and application engineers need to investigate events in dynamic, containerized environments, finding the most meaningful signals can involve many trial-and-error steps. By using intelligent inspections, anomalies can be filtered based on the current search context, accelerating event investigation, reducing engineer stress, decreasing mean time to repair, and improving end-user experience.
 
-## Preconditions
+## Prerequisites
 
-1. Open「[container data collection](../../../../datakit/container/) 」in Guance
-2. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../../dataflux-func/index.md)
-4. In Guance「Management / API Key Management」create [API Key](../../../../management/api-key/open-api.md)
+1. Enable "[Container Data Collection](https://docs.guance.com/datakit/container/)" in <<< custom_key.brand_name >>>
+2. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
+4. Create an [API Key](../../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> under "Management / API Key Management"
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current SaaS deployment of <<< custom_key.brand_name >>>.
 
-## Start Intelligent Inspection
+## Enabling Inspection
 
-In the DataFlux Func, install the "Guance Custom Inspection (K8S-Pod Restart Detection)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
+In your self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-built Inspection (K8S-Pod Restart Detection)" from the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [Guance Node](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After the startup script is successfully deployed, it will automatically create the startup script and automatic trigger configuration. You can directly jump to view the corresponding configuration via the provided link.
 
 ![image](../../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configuring Inspection
 
-### Configure Intelligent Inspection in Guance
+### Configuring Inspection in <<< custom_key.brand_name >>>
 
 ![image](../../img/k8s-pod-restart02.png)
 
 #### Enable/Disable
 
-  The default state of intelligent check is "disabled", which can be manually "enabled". The Pod in the configured Kubernetes cluster can be patrolled after being turned on.
+Intelligent inspection is **disabled** by default. You can manually **enable** it. Once enabled, it will inspect Pods in the configured Kubernetes clusters.
 
-#### Export
+#### Editing
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
+The "Kubernetes Pod Abnormal Restart Inspection" supports adding filter conditions manually. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
 
-#### Editor
+- Filter Conditions: Configure the cluster_name (optional, detects all namespaces if not configured) and namespace (required) for the Kubernetes cluster to be inspected.
+- Alert Notifications: Supports selecting and editing alert strategies, including event severity, notification targets, and alert silence periods.
 
-  Intelligent check "Kubernetes Pod Abnormal Restart Check" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
-
-  * Filter Criteria: Configure cluster_name (cluster name, optional, all namespaces detected when not configured) and namespaces to be detected (namespace, required) that need to be inspected by Kubernetes.
-  * Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period.
-
-  Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start patrol inspection:
+Click Edit in the configuration entry parameters, fill in the detection objects in the parameter configuration, and save to start the inspection:
 
 ![image](../../img/k8s-pod-restart03.png)
 
-  You can refer to the following to configure multiple clusters and namespace information:
+You can refer to the following JSON configuration to set multiple clusters and namespace information:
 
-  ```json
-   // Configuration example: namespace can be configured with multiple or single
-      configs =[
-          {"cluster_name": "xxx", "namespace": ["xxx1", "xxx2"]},
-          {"cluster_name": "yyy","namespace": "yyy1"}
-      ]
-  ```
+```json
+// Configuration example: namespace can be configured as multiple or single
+configs = [
+    {"cluster_name": "xxx", "namespace": ["xxx1", "xxx2"]},
+    {"cluster_name": "yyy", "namespace": "yyy1"}
+]
+```
 
-> Note: When writing self-built inspection processing functions in DataFlux Func, you can also add filter conditions (refer to the sample code configuration). Note that the parameters configured in the Guance Studio will override the parameters configured when writing self-built inspection processing functions.
+> **Note**: In your self-hosted DataFlux Func, when writing custom inspection handling functions, you can also add filtering conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> studio will override those configured in the custom inspection handling function.
 
-### Configuring inspections in DataFlux Func
+### Configuring Inspection in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
+In DataFlux Func, after configuring the required filtering conditions, you can test by selecting and clicking the `run()` method directly on the page. After clicking Publish, the script will run normally. You can also view or change configurations in <<< custom_key.brand_name >>> under "Monitoring / Intelligent Inspection".
 
 ```python
 from guance_monitor__runner import Runner
@@ -75,28 +71,28 @@ import guance_monitor_k8s_pod_restart__main as main
 # Support for using filtering functions to filter the objects being inspected, for example:
 def filter_namespace(cluster_namespaces):
     '''
-    Filter the host, customize the conditions that meet the requirements for the host, and return True if there is a match, and False if there is no match.
-Return True|False.
+    Filter host, define conditions for hosts that meet requirements, return True for matching, False otherwise
+    return True｜False
     '''
-     cluster_name = cluster_namespaces.get('cluster_name','')
-     namespace = cluster_namespaces.get('namespace','')
-     if cluster_name in ['xxxx']:
-         return True
+    cluster_name = cluster_namespaces.get('cluster_name', '')
+    namespace = cluster_namespaces.get('namespace', '')
+    if cluster_name in ['xxxx']:
+        return True
   
   
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
-@DFF.API('K8S-Pod 重启检测巡检', fixed_crontab='*/30 * * * *', timeout=900)
+@DFF.API('K8S-Pod Restart Detection Inspection', fixed_crontab='*/30 * * * *', timeout=900)
 def run(configs=None):
     """
-        Optional parameters:
-        configs: (If not configured, all will be checked by default. If configured, please follow the content below)
+    Optional parameters:
+        configs: (if not configured, defaults to detecting all; follow the below content if configured)
+            Configure the cluster_name (optional, detects based on namespace if not configured)
+            Configure the namespace (required)
 
-        Configure the cluster_name that needs to be checked (cluster name , optional, if not configured, it will be checked based on namespace)
-        Configure the namespace that needs to be checked (namespace, required)
-        Example: multiple or single namespaces can be configured.
+    Example: namespace can be configured as multiple or single
         configs =[
             {"cluster_name": "xxx", "namespace": ["xxx1", "xxx2"]},
-            {"cluster_name": "yyy","namespace": "yyy1"}
+            {"cluster_name": "yyy", "namespace": "yyy1"}
         ]
 
     """
@@ -107,71 +103,74 @@ def run(configs=None):
     Runner(checkers, debug=False).run()
 ```
 
-### View Events
+### Viewing Events
 
-  Intelligent check is based on the Guance check algorithm, which will find out whether there will be abnormal restart of Pod in the currently configured cluster. For abnormal situations, intelligent check will generate corresponding events. Under the operation menu on the right side of intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+Based on <<< custom_key.brand_name >>> inspection algorithms, intelligent inspection will look for abnormal Pod restarts within the currently configured clusters. For any abnormalities, intelligent inspection will generate corresponding events. Click the **View Related Events** button in the operation menu on the right side of the intelligent inspection list to view the corresponding abnormal events.
 
 ![image](../../img/k8s-pod-restart04.png)
 
 ### Event Details Page
 
-  Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+Click **Event** to view the details page of the intelligent inspection event, which includes event status, time of occurrence, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-  * Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check.
-  * Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events.
+* Click the small icon "View Monitor Configuration" in the top-right corner of the details page to view and edit the current intelligent inspection configuration.
 
-#### Basic Properties
+#### Basic Attributes
 
-  * Detection dimensions: Filter criteria based on smart patrol configuration, enabling replication of detection dimensions `key/value`, adding to filters and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data.
-  * Extended attributes: Supports replication in the form of `key/value` after selecting extended attributes, and forward/reverse filtering.
+* Detection Dimensions: Based on the configured filtering conditions of intelligent inspection, supports copying `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, RUM PV, synthetic tests, and CI data.
+* Extended Attributes: After selecting extended attributes, supports copying in `key/value` form, forward/reverse filtering.
 
-  ![image](../../img/k8s-pod-restart05.png)
+![image](../../img/k8s-pod-restart05.png)
 
 #### Event Details
 
-  * Event Overview: Describe the object and content of the anomaly inspection event.
-  * Exception pod: You can view the status of exception pod under the current namespace.
-  * container status: Detailed error time, container ID status, current resource status and container type can be viewed; Clicking the container ID will bring you to the specific container details page.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Abnormal Pod: View the status of abnormal pods in the current namespace.
+* Container Status: View detailed error times, container IDs, current resource usage, and container types; clicking on the container ID will lead to the specific container detail page.
 
 ![image](../../img/k8s-pod-restart06.png)
-  ![image](../../img/k8s-pod-restart07.png)
+![image](../../img/k8s-pod-restart07.png)
 
 #### History
 
-  Support to view detection objects, exception/recovery time and duration.
+Supports viewing detection objects, abnormal/recovery times, and duration.
 
- ![image](../../img/k8s-pod-restart08.png)
+![image](../../img/k8s-pod-restart08.png)
 
-#### Associated Events
+#### Related Events
 
-  Support to view associated events by filtering fields and selected time component information.
+Supports viewing related events through selected filtering fields and time component information.
 
- ![image](../../img/k8s-pod-restart09.png)
+![image](../../img/k8s-pod-restart09.png)
 
+#### Kubernetes Metrics
 
-
-#### Kubernetes Metric
-
-The Kubernetes monitoring view in the event allows you to view finer-grained information corresponding to the exception information and possible factors affecting it.
+You can view more granular information about the corresponding anomalies and potential influencing factors through the Kubernetes monitoring view in the event.
 
 ![image](../../img/k8s-pod-restart10.png)
 
-## FAQ
+## FAQs
 
-  **1.How to configure the detection frequency of Kubernetes Pod abnormal restart check**
+**1. How to configure the detection frequency for Kubernetes Pod abnormal restart inspection**
 
-  * In the custom DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing the custom check processing function, and then configure it in "Administration/Automatic Trigger Configuration".
+* In your self-hosted DataFlux Func, add `fixed_crontab='*/30 * * * *', timeout=900` in the decorator when writing custom inspection handling functions, then configure in "Management / Automatic Trigger Configuration".
 
-  **2.Kubernetes Pod exception restart check triggered without exception analysis**
+**2. Why might there be no anomaly analysis when Kubernetes Pod abnormal restart inspection triggers**
 
-  Check the current data collection status of `datakit` when there is no anomaly analysis in the patrol report.
+If there is no anomaly analysis in the inspection report, check the data collection status of the current `datakit`.
 
-  **3.Under what circumstances will Kubernetes Pod abnormal restart patrol event occur**
+**3. Under what circumstances will Kubernetes Pod abnormal restart inspection events be generated**
 
-  Taking the proportion of restarted pod number under cluster_name + namespace as the entry, when the metric rises in recent 30 minutes, it triggers the logic of generating events and performs root cause analysis.
+Based on the percentage of restarted pods in cluster_name + namespace, if this metric increases over the past 30 minutes, it triggers event generation logic and root cause analysis.
 
-  **4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+**4. What to do if previously normal scripts encounter errors during inspection**
 
-Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
+Update the referenced script sets in the DataFlux Func Script Market. You can check the update records via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
 
-  
+**5. No changes in the Startup script set during inspection script upgrades**
+
+Delete the corresponding script set first, then click the upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
+
+**6. How to determine if the inspection has taken effect after enabling**
+
+In "Management / Automatic Trigger Configuration," check the inspection status. It should be enabled, and you can verify by clicking Execute. If it shows "Executed Successfully xxx Minutes Ago," the inspection is running normally.

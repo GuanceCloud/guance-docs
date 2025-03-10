@@ -4,8 +4,12 @@ nav:
   - 'Guance Exclusive Plan Service Agreement': service-agreement-sls.md
   - 'Guance SaaS Service Level Agreement': sla.md
   - 'Legal Declaration': legal-declaration.md
-  - 'Data Security Confidentiality Agreement': confidentiality.md
+  - 'Data Confidentiality Agreement': confidentiality.md
   - 'Data Security Agreement': security.md
+  - 'Guance Billing Center User Recharge Agreement': center-charge.md
+  - 'Guance Billing Center Service Agreement': center-service.md
+  - 'Guance Mobile App Privacy Policy': app-privacy-policy.md
+  - 'Guance Mobile SDK Privacy Policy': app-sdk-privacy-policy.md
   - 'Data Processing Agreement (DPA)': data-access.md
   - 'Guance Account Cancellation Notice': account-cancellation.md
   - 'Guance Billing Center Account Cancellation Notice': boss-account-cancellation.md

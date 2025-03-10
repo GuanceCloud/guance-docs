@@ -1,103 +1,103 @@
 ---
-title: 'Aliyun NAT'
+title: 'Alibaba Cloud NAT'
 tags: 
   - Alibaba Cloud
-summary: 'Aliyun NAT Metrics, including the number of concurrent connections, number of new connections, VPC traffic, and VPC data packets。'
+summary: 'Alibaba Cloud NAT metrics display, including concurrent connections, new connections, VPC traffic, VPC packets, etc.'
 __int_icon: 'icon/aliyun_nat'
 dashboard:
-  - desc: 'Aliyun NAT Monitoring View'
-    path: 'dashboard/zh/aliyun_nat/'
+  - desc: 'Alibaba Cloud NAT built-in views'
+    path: 'dashboard/en/aliyun_nat/'
 
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun NAT
+# Alibaba Cloud NAT
 <!-- markdownlint-enable -->
 
-Aliyun NAT metrics, including the number of concurrent connections, number of new connections, VPC traffic, and VPC data packets。
+Alibaba Cloud NAT metrics display, including concurrent connections, new connections, VPC traffic, VPC packets, etc.
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-> Deployment of the GSE version is recommended
+> We recommend deploying the GSE version
 
-### Installation script
+### Installation Script
 
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -NATCollect）」(ID：`guance_aliyun_nat`)
+To synchronize monitoring data of NAT cloud resources, we install the corresponding collection script:「Guance Integration (Alibaba Cloud-NAT Collection)」(ID: `guance_aliyun_nat`)
 
-Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.。
+After clicking 【Install】, enter the required parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup scripts accordingly.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+Once enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+We have collected some configurations by default; for more details, see the Metrics section.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. Confirm in 「Manage / Automatic Trigger Configuration」whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
-## Metric {#metric}
+## Metrics {#metric}
 
-Configure Aliyun OSS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                         | Metric Name              | Dimensions              | Statistics | Unit   | Min Periods |
 | ---- | ------ | ------ | ---- | ---- | ---- |
-| BWRateInFromInside                | Traffic Rate from VPC | userId,instanceId       | Value      | bps    | 60 s        |
-| BWRateInFromOutside               | Traffic Rate from Public Network | userId,instanceId       | Value      | bps    | 60 s        |
-| BWRateOutToInside                 | Inbound VPC Traffic Rate | userId,instanceId       | Value      | bps    | 60 s        |
-| BWRateOutToOutside                | Inbound Public Network Traffic Rate | userId,instanceId       | Value      | bps    | 60 s        |
-| BytesInFromInside                 | Traffic from VPC | userId,instanceId       | Value      | bytes  | 60 s        |
-| BytesInFromOutside                | Traffic from Public Network | userId,instanceId       | Value      | bytes  | 60 s        |
-| BytesOutToInside                  | Inbound VPC Traffic | userId,instanceId       | Value      | bytes  | 60 s        |
-| BytesOutToOutside                 | Inbound Public Network Traffic | userId,instanceId       | Value      | bytes  | 60 s        |
-| DropTotalBps                      | Total Bandwidth of Packet Loss | userId,instanceId       | Value      | bit/s  | 60 s        |
-| DropTotalPps                      | Total Rate of Packet Loss | userId,instanceId       | Value      | countS | 60 s        |
-| EniBytesDropRx                    | Inbound Interface Drop Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniBytesDropTx                    | Outbound Interface Drop Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniBytesRx                        | Inbound Interface Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniBytesTx                        | Outbound Interface Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
-| EniPacketsDropPortAllocationFail  | Number of Failed Port Assignments on the Interface | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsDropRx                  | Inbound Interface Dropped Packet Volume | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsDropTx                  | Outbound Interface Dropped Packet Volume | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsRx                      | Inbound Interface Packet Volume | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniPacketsTx                      | Outbound Interface Packet Volume | userId,instanceId,eniId | Value      | count  | 60 s        |
-| EniSessionActiveConnection        | Interface Concurrent Connection Number | userId,instanceId,eniId | Value      | count  | 60 s        |
+| BWRateInFromInside                | Traffic Rate from VPC     | userId,instanceId       | Value      | bps    | 60 s        |
+| BWRateInFromOutside               | Traffic Rate from Public  | userId,instanceId       | Value      | bps    | 60 s        |
+| BWRateOutToInside                 | Traffic Rate into VPC     | userId,instanceId       | Value      | bps    | 60 s        |
+| BWRateOutToOutside                | Traffic Rate into Public  | userId,instanceId       | Value      | bps    | 60 s        |
+| BytesInFromInside                 | Traffic from VPC          | userId,instanceId       | Value      | bytes  | 60 s        |
+| BytesInFromOutside                | Traffic from Public       | userId,instanceId       | Value      | bytes  | 60 s        |
+| BytesOutToInside                  | Traffic into VPC          | userId,instanceId       | Value      | bytes  | 60 s        |
+| BytesOutToOutside                 | Traffic into Public       | userId,instanceId       | Value      | bytes  | 60 s        |
+| DropTotalBps                      | Total Dropped Bandwidth   | userId,instanceId       | Value      | bit/s  | 60 s        |
+| DropTotalPps                      | Total Dropped Packet Rate | userId,instanceId       | Value      | countS | 60 s        |
+| EniBytesDropRx                    | Interface Inbound Dropped Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
+| EniBytesDropTx                    | Interface Outbound Dropped Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
+| EniBytesRx                        | Interface Inbound Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
+| EniBytesTx                        | Interface Outbound Traffic | userId,instanceId,eniId | Value      | bytes  | 60 s        |
+| EniPacketsDropPortAllocationFail  | Interface Port Allocation Failed Packets | userId,instanceId,eniId | Value      | count  | 60 s        |
+| EniPacketsDropRx                  | Interface Inbound Dropped Packets | userId,instanceId,eniId | Value      | count  | 60 s        |
+| EniPacketsDropTx                  | Interface Outbound Dropped Packets | userId,instanceId,eniId | Value      | count  | 60 s        |
+| EniPacketsRx                      | Interface Inbound Packets | userId,instanceId,eniId | Value      | count  | 60 s        |
+| EniPacketsTx                      | Interface Outbound Packets | userId,instanceId,eniId | Value      | count  | 60 s        |
+| EniSessionActiveConnection        | Interface Concurrent Connections | userId,instanceId,eniId | Value      | count  | 60 s        |
 | EniSessionLimitDropConnection     | Interface New Dropped Connection Rate | userId,instanceId,eniId | Value      | countS | 60 s        |
 | EniSessionNewConnection           | Interface New Connection Rate | userId,instanceId,eniId | Value      | countS | 60 s        |
 | EniSessionNewLimitDropConnection  | Interface Concurrent Dropped Connection Rate | userId,instanceId,eniId | Value      | countS | 60 s        |
-| ErrorPortAllocationCount          | Number of port allocation failures within the interval | userId,instanceId       | Value      | count  | 60 s        |
-| ErrorPortAllocationRate           | Rate of port allocation failures within the interval | userId,instanceId       | Value      | countS | 60 s        |
-| InBpsSum                          | Throughput           | userId,instanceId       | Value      | bit/s  | 60 s        |
-| PPSRateInFromInside               | Packet rate from VPC | userId,instanceId       | Value      | countS | 60 s        |
-| PPSRateInFromOutside              | Packet rate from the public network | userId,instanceId       | Value      | countS | 60 s        |
-| PPSRateOutToInside                | Packet rate into VPC | userId,instanceId       | Value      | countS | 60 s        |
-| PPSRateOutToOutside               | Packet rate into the public network | userId,instanceId       | Value      | countS | 60 s        |
-| PacketsInFromInside               | Packet volume from VPC | userId,instanceId       | Value      | count  | 60 s        |
-| PacketsInFromOutside              | Packet volume from the public network | userId,instanceId       | Value      | count  | 60 s        |
-| PacketsOutToInside                | Packet volume into VPC | userId,instanceId       | Value      | count  | 60 s        |
-| PacketsOutToOutside               | Packet volume into the public network | userId,instanceId       | Value      | count  | 60 s        |
-| SessionActiveConnection           | Number of concurrent connections | userId,instanceId       | Value      | count  | 60 s        |
-| SessionActiveConnectionWaterLever | Concurrent connection water level | userId,instanceId       | Value      | %      | 60 s        |
-| SessionLimitDropConnection        | Concurrent connection drop rate | userId,instanceId       | Value      | countS | 60 s        |
-| SessionNewConnection              | New connection rate | userId,instanceId       | Value      | countS | 60 s        |
-| SessionNewConnectionWaterLever    | New connection water level | userId,instanceId       | Value      | %      | 60 s        |
-| SessionNewLimitDropConnection     | New drop connection rate | userId,instanceId       | Value      | countS | 60 s        |
+| ErrorPortAllocationCount          | Number of Port Allocation Failures in Interval | userId,instanceId       | Value      | count  | 60 s        |
+| ErrorPortAllocationRate           | Port Allocation Failure Rate in Interval | userId,instanceId       | Value      | countS | 60 s        |
+| InBpsSum                          | Throughput                | userId,instanceId       | Value      | bit/s  | 60 s        |
+| PPSRateInFromInside               | Packet Rate from VPC      | userId,instanceId       | Value      | countS | 60 s        |
+| PPSRateInFromOutside              | Packet Rate from Public   | userId,instanceId       | Value      | countS | 60 s        |
+| PPSRateOutToInside                | Packet Rate into VPC      | userId,instanceId       | Value      | countS | 60 s        |
+| PPSRateOutToOutside               | Packet Rate into Public   | userId,instanceId       | Value      | countS | 60 s        |
+| PacketsInFromInside               | Packet Volume from VPC    | userId,instanceId       | Value      | count  | 60 s        |
+| PacketsInFromOutside              | Packet Volume from Public | userId,instanceId       | Value      | count  | 60 s        |
+| PacketsOutToInside                | Packet Volume into VPC    | userId,instanceId       | Value      | count  | 60 s        |
+| PacketsOutToOutside               | Packet Volume into Public | userId,instanceId       | Value      | count  | 60 s        |
+| SessionActiveConnection           | Concurrent Connections    | userId,instanceId       | Value      | count  | 60 s        |
+| SessionActiveConnectionWaterLever | Concurrent Connection Water Level | userId,instanceId       | Value      | %      | 60 s        |
+| SessionLimitDropConnection        | Concurrent Dropped Connection Rate | userId,instanceId       | Value      | countS | 60 s        |
+| SessionNewConnection              | New Connection Rate       | userId,instanceId       | Value      | countS | 60 s        |
+| SessionNewConnectionWaterLever    | New Connection Water Level | userId,instanceId       | Value      | %      | 60 s        |
+| SessionNewLimitDropConnection     | New Dropped Connection Rate | userId,instanceId       | Value      | countS | 60 s        |
 
-## Object {#object}
+## Objects {#object}
 
-The collected Aliyun NAT object data structure can see the object data from「Infrastructure-Custom」
+The structure of the collected Alibaba Cloud SLB object data can be viewed in 「Infrastructure-Custom」
 
 ```json
 {
@@ -118,5 +118,4 @@ The collected Aliyun NAT object data structure can see the object data from「In
     "message"     : "{Instance JSON data}"
   }
 }
-
 ```

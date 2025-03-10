@@ -1,14 +1,14 @@
 ---
 title     : 'Profiling'
-summary   : 'Collect application runtime performance data'
+summary   : 'Collect runtime performance data of applications'
+__int_icon: 'icon/profiling'
 tags:
   - 'PROFILE'
-__int_icon: 'icon/profiling'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -17,21 +17,21 @@ monitor   :
 
 ---
 
-Profile supports collecting dynamic performance data of applications running in different language environments such as Java/Python, and helps users to view performance problems of CPU, memory and IO.
+Profile supports collecting dynamic performance data from applications running in different language environments such as Java, Python, and Go, helping users identify performance issues related to CPU, memory, and IO.
 
 ## Configuration {#config}
 
-At present, DataKit collects profiling data in two ways:
+Currently, DataKit can collect profiling data in two ways:
 
-- Push mode: the DataKit Profile service needs to be opened, and the client actively pushes data to the DataKit
+- Push method: Requires enabling the DataKit Profile service, where the client actively pushes data to DataKit.
+- Pull method: Currently only supported for [Go](profile-go.md), requiring manual configuration of relevant information.
 
-- Pull method: currently only [Go](profile-go.md) support, need to manually configure relevant information
+### Collector Configuration {#input-config}
 
-### DataKit Configuration {#datakit-config}
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/profile` directory under the DataKit installation directory, copy `profile.conf.sample` and name it `profile.conf`. The configuration file is described as follows:
+    Navigate to the `conf.d/profile` directory under the DataKit installation directory, copy `profile.conf.sample` and rename it to `profile.conf`. The configuration file is explained as follows:
     
     ```shell
         
@@ -44,19 +44,19 @@ At present, DataKit collects profiling data in two ways:
       ## set true to enable election, pull mode only
       election = true
     
-      ## the max allowed size of http request body (of MB), 32MB by default.
+      ## the max allowed size of http request body (in MB), 32MB by default.
       body_size_limit_mb = 32 # MB
     
-      ## set false to stop generating apm metrics from ddtrace output.
+      ## set false to stop generating APM metrics from ddtrace output.
       generate_metrics = true
     
       ## io_config is used to control profiling uploading behavior.
-      ## cache_path set the disk directory where temporarily cache profiling data.
-      ## cache_capacity_mb specify the max storage space (in MiB) that profiling cache can use.
-      ## clear_cache_on_start set whether we should clear all previous profiling cache on restarting Datakit.
-      ## upload_workers set the count of profiling uploading workers.
-      ## send_timeout specify the http timeout when uploading profiling data to dataway.
-      ## send_retry_count set the max retry count when sending every profiling request.
+      ## cache_path sets the disk directory where temporarily cache profiling data.
+      ## cache_capacity_mb specifies the max storage space (in MiB) that profiling cache can use.
+      ## clear_cache_on_start sets whether we should clear all previous profiling cache on restarting Datakit.
+      ## upload_workers sets the count of profiling uploading workers.
+      ## send_timeout specifies the http timeout when uploading profiling data to DataWay.
+      ## send_retry_count sets the max retry count when sending every profiling request.
       # [inputs.profile.io_config]
       #   cache_path = "/usr/local/datakit/cache/profile_inputs"  # C:\Program Files\datakit\cache\profile_inputs by default on Windows
       #   cache_capacity_mb = 10240  # 10240MB
@@ -114,15 +114,27 @@ At present, DataKit collects profiling data in two ways:
     
     ```
     
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service) to start the Profile service.
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
-## Profiling {#profiling}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.profile.tags]`:
+### Client Application Configuration {#app-config}
+
+The client application must be configured separately based on the programming language. Supported languages include:
+
+- [Java](profile-java.md)
+- [Go](profile-go.md)
+- [Python](profile-python.md)
+- [C/C++](profile-cpp.md)
+- [NodeJS](profile-nodejs.md)
+- [.NET](profile-dotnet.md)
+
+## Profiling Fields {#profiling}
+
+All collected data will have a global tag named `host` (with the tag value being the hostname of the host where DataKit is located) appended by default. You can also specify additional tags through `[inputs.profile.tags]` in the configuration:
 
 ``` toml
  [inputs.profile.tags]
@@ -131,17 +143,12 @@ For all of the following data collections, a global tag named `host` is appended
   # ...
 ```
 
-
-
 ### `profile`
-
-
 
 - Tags
 
-
 | Tag | Description |
-|  ----  | --------|
+| ---- | --------|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
@@ -159,8 +166,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
-
+- Metrics List
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
@@ -169,7 +175,5 @@ For all of the following data collections, a global tag named `host` is appended
 |`parent_id`|Parent span ID of current span|string|-|
 |`resource`|Resource name produce current span|string|-|
 |`span_id`|Span id|string|-|
-|`start`|start time of span.|int|usec|
+|`start`|Start time of span.|int|usec|
 |`trace_id`|Trace id|string|-|
-
-

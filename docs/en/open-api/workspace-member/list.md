@@ -1,37 +1,32 @@
-# Get a List of Members
+# Get Member List
 
 ---
 
-<br />**get /api/v1/workspace/members/list**
+<br />**GET /api/v1/workspace/members/list**
 
 ## Overview
-List all members in the current workspace.
+List all members in the current workspace
 
 
 
-
-## Query Request Parameter
+## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| search | string |  | Search by name/mailbox<br>Example: supper_workspace <br>Allow null: False <br> |
-| pageIndex | integer |  | Page number<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer |  | Quantity returned per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:-------------------|:-------|:-----|:----------------|
+| search | string | No  | Search by name/email<br>Example: supper_workspace <br>Can be empty: False <br> |
+| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/members/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/members/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
-
 
 
 
@@ -46,21 +41,21 @@ curl 'https://openapi.guance.com/api/v1/workspace/members/list?pageIndex=1&pageS
             "deleteAt": -1,
             "email": "88@qq.com",
             "extend": {
-                "user_icon": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74.png"
+                "user_icon": "acnt_xxxx32.png"
             },
             "exterId": "acnt-gtxSK4UrogwM3N2guGNGim",
             "id": 19,
             "mobile": "",
-            "name": "测试",
+            "name": "Test",
             "nameSpace": "",
             "role": "owner",
             "status": 0,
             "updateAt": 1614149795,
             "updator": "external",
-            "userIconUrl": "http://static.cloudcare.cn:10561/icon/acnt_6f2fd4c0766d11ebb56ef2b2c21faf74.png",
+            "userIconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
             "userType": "common",
             "username": "88@qq.com",
-            "uuid": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74",
+            "uuid": "acnt_xxxx32",
             "waitAudit": 0
         }
     ],
@@ -76,7 +71,3 @@ curl 'https://openapi.guance.com/api/v1/workspace/members/list?pageIndex=1&pageS
     "traceId": "TRACE-DA203788-B799-4BE2-9AB4-552047E01EED"
 } 
 ```
-
-
-
-

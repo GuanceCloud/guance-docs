@@ -1,6 +1,0 @@
-nav:
-  - 'List members': list.md
-  - 'Invite one or more members': batch-invitation.md
-  - 'Add one or more members (Deployment Plan)': batch-add.md
-  - 'Delete one or more members': batch-delete.md
-  - 'Modify one or more members': batch-modify.md

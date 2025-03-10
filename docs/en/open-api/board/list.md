@@ -1,38 +1,32 @@
-# Get a List of Dashboards
+# Get Dashboard List
 
 ---
 
-<br />**get /api/v1/dashboards/list**
+<br />**GET /api/v1/dashboards/list**
 
 ## Overview
-Get a list of dashboards, arranged by default in descending order of update time.
+Retrieve the list of dashboards, sorted by update time in descending order by default
 
 
+## Query Request Parameters
 
+| Parameter Name | Type   | Required | Description                          |
+|:--------------|:-------|:---------|:-------------------------------------|
+| search        | string |          | Search by name<br>Allow empty: False <br> |
+| tagNames      | json   |          | Tag names for filtering<br>Allow empty: False <br>Example: [] <br> |
+| pageIndex     | integer|          | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize      | integer|          | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Query Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| search | string |  | Search by name<br>Allow null: False <br> |
-| tagNames | json |  | Tag name for filtering<br>Allow null: False <br>Example: [] <br> |
-| pageIndex | integer |  | Page number<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer |  | Quantity returned per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
-
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/list?pageIndex=1&pageSize=10' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
-
 
 
 
@@ -45,10 +39,10 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
             "chartGroupPos": [],
             "chartPos": [
                 {
-                    "chartUUID": "chrt_1cbdbf10c1494c80b36b91b4e0e1ab90",
+                    "chartUUID": "chrt_xxxx32",
                     "pos": {
                         "h": 11,
-                        "i": "chrt_2e650ef84b1a4eb389011fd95f7db11e",
+                        "i": "chrt_xxxx32",
                         "w": 11,
                         "x": 0,
                         "y": 0
@@ -57,7 +51,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
             ],
             "createAt": 1642587228,
             "createdWay": "import",
-            "creator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+            "creator": "acnt_xxxx32",
             "dashboardBindSet": [],
             "deleteAt": -1,
             "extend": {},
@@ -72,25 +66,25 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
                 "sceneInfo": [],
                 "tagInfo": [
                     {
-                        "id": "tag_07a3a85d01474c1585add18bfb1b5cde",
+                        "id": "tag_xxxx32",
                         "name": "openapi"
                     },
                     {
-                        "id": "tag_977d40b3f40c4d3f8e90956698b57c48",
+                        "id": "tag_xxxx32",
                         "name": "test"
                     }
                 ]
             },
             "type": "CUSTOM",
             "updateAt": 1642587228,
-            "updator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+            "updator": "acnt_xxxx32",
             "updatorInfo": {
-                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_5fc5bb139e474911b6d3d300863f0c8b.png",
+                "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "66",
                 "username": "66@qq.com"
             },
-            "uuid": "dsbd_541083cc19ec4d27ad597839a0477a97",
-            "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"
+            "uuid": "dsbd_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",
@@ -105,7 +99,3 @@ curl 'https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10'
     "traceId": "TRACE-26483481-16C2-4B24-ACAF-E743AADE2663"
 } 
 ```
-
-
-
-

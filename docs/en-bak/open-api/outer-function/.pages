@@ -1,0 +1,3 @@
+nav:
+  - 'Func List': list.md
+  - 'Outer Func Execution': execute.md

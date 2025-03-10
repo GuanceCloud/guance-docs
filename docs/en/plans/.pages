@@ -1,14 +1,15 @@
 nav:
   - index.md
-  - Public Commercial Plan:
+  - Commercial Plan Registration:
     - commercial.md
-    - 'Register Commercial Plan in Guance': commercial-register.md    
-    - 'Access to Commercial Plan in Alibaba Cloud': commercial-aliyun.md
-    - 'Access to Exclusive Plan in Alibaba Cloud': commercial-aliyun-sls.md
-    - 'Access to Commercial Plan in AWS Cloud': commercial-aws.md
-    - 'Subscribe Guance.one from AWS Marketplace': commercial-aws-gl.md
-    - 'Access to Commercial Plan in Huawei Cloud': commercial-huaweiyun.md
-  - Public Cloud Experience Plan: trail.md
-  - Private Cloud Deployment Plan: deployment.md
+    - 'Register Commercial Plan from Official Website': commercial-register.md   
+    - Register Commercial Plan from Cloud Providers:
+      - 'Subscribe on Alibaba Cloud Marketplace': commercial-aliyun.md
+      - 'Subscribe on Alibaba Cloud International Marketplace': en-alicloud.md
+      - 'Subscribe to Exclusive Plan on Alibaba Cloud Marketplace': commercial-aliyun-sls.md
+      - 'Subscribe on AWS Marketplace': commercial-aws.md
+      - 'Purchase on Huawei Cloud Store': commercial-huaweiyun.md
+      - 'Purchase on Microsoft Azure Store': commercial-azure.md
+  - Register Free Plan: trail.md
+  - Deployment Plan: deployment.md
   - Independent Storage Plan: independent-storage.md
-  - Overseas Registration: inter-commercial.md

@@ -1,59 +1,78 @@
-# Strategy {#notify-strategy}
+# Notification Strategies {#notify-strategy}
 
-Based on the created Issues and the current workspace [schedule](../calendar.md), unified management can be carried out in **Incidents > Configuration > Strategy** to further allocate the scope of Issue notifications and associated schedules.
+Based on the already created Issues and the current workspace [calendar](../calendar.md), you can manage notification strategies uniformly in **Incident > Configuration Management > Notification Strategies**, further allocating notification scopes and associated schedules for Issue notifications.
 
-## Create a New Strategy {#create}
+## Create Notification Strategy {#create}
 
 <img src="../../img/notice-create.png" width="60%" >
 
 :material-numeric-1-circle-outline: Enter the strategy name;
 
-:material-numeric-2-circle-outline: Select the notification scope, which mainly includes the following three types:
+:material-numeric-2-circle-outline: Select notification scope: This mainly includes the following four categories:
 
-- New and modified Issues;
+- Creation and modification of Issues;
 
-- Issue escalation:
-    - If there is a situation where an **unassigned Issue owner** persists for a specific number of minutes, it will be included in the current strategy's notification scope;
-    - If there is a situation where an Issue remains unresolved for a specific number of minutes, it will be included in the current strategy's notification scope;
+- Issue escalation;
 
-![](../img/notice-create-1.png)
+- Creation, modification, and deletion of Issue replies;
 
-- New, modified, and deleted Issue replies.
+- Daily summaries.
 
-:material-numeric-3-circle-outline: Configure the corresponding schedule: that is, select the schedule within the current workspace to send notifications in conjunction with the schedule. You can also directly [create a new schedule](../calendar.md#create) as needed.
+:material-numeric-3-circle-outline: Configure the corresponding schedule: Select a schedule within the current workspace to send notifications according to the schedule. You can also directly [create a new schedule](../calendar.md#create) as needed.
 
 <img src="../../img/notice-create-2.png" width="60%" >
 
-## Manage Strategy List
+### Issue Escalation {#upgrade}
 
-In the strategy list, you can perform the following operations:
+To ensure that Issues are promptly notified to relevant parties, configure Issue escalation to avoid situations where Issues are unattended or not resolved in time.
 
-1. Hover over the associated schedule and channel of a certain strategy to directly view the associated configuration, and click to view details;
-2. Click the edit button to modify the configuration of that strategy;
-3. Click the delete button to delete that strategy.
+**Prerequisite for rule activation**: Applies only to newly created Issues.
 
-### Audit {#check-events}
+<img src="../../img/notice-create-1.png" width="70%" >
 
-When receiving Issue notifications, sometimes you may encounter notifications not being sent normally or have doubts about the notification strategy. In this case, you can check the **Audit** event data of the current notification strategy to determine the relevant movements of that strategy.
+1. If an Issue **responsible person is not assigned** within the specified number of minutes, set the frequency of system reminders;
+2. For Issues **in `open` status**:
 
-Click the button to jump to the audit page, which directly displays the operation audit of the current notification strategy. The time is set to the most recent 1 day by default, and you can change the time range as needed to view.
+    - If the duration exceeds the specified number of minutes, set the frequency of system reminders;
+    - If the Issue does not transition to other statuses (such as `pending`, `resolved`, or `closed`) within the specified number of minutes, set the frequency of system reminders.
 
-### Execution Log
+???+ warning "Note"
 
-Click the execution log button to view all the execution data of the current strategy.
+    The **Issues in `open` status** mentioned above include the following two types:
 
-In the expanded execution log details page, Guance intuitively displays the log data for you according to the log time, Issue title, notification scope, and notification object. In the list, the system will include the following types of data:
+    - Newly created Issues (default status is `open`);
+    - Existing Issues that have changed from other statuses to `open`.
 
-- Issue unassigned owner and duration;
-- Issue processing timeout and duration;
-- Issue new/addition/edit;
-- Issue reply new/addition/edit/deletion;
-- Daily summary;
+## Manage Rules
+
+In the rules list, you can perform the following operations:
+
+1. Hover over the associated schedule and channels of a specific rule to view the associated configurations directly; click to view details;
+2. Click the edit button to modify the configuration of this rule;
+3. Click the delete button to delete this rule;
+
+### Operation Audit {#check-events}
+
+When receiving Issue notifications, sometimes notifications may not be sent correctly or there might be questions about the notification strategy. In such cases, you can check the **operation audit** event data for the current notification strategy to determine the related actions.
+
+Clicking the operation audit button will redirect you to the audit page, which displays the operation audit of the current notification strategy. The default time range is the most recent 1 day, but you can change it as needed.
+
+### Execution Logs
+
+Click the execution logs button to view all execution data for the current strategy.
+
+In the expanded execution log details page, <<< custom_key.brand_name >>> provides intuitive log data based on log time, Issue title, notification scope, and notification targets. The list includes the following types of data:
+
+- Unassigned Issue responsible persons and duration;
+- Overdue Issue processing and duration;
+- New/edited Issues;
+- New/edited/deleted Issue replies;
+- Daily summaries;
 
 In the list, you can manage through the following operations:
 
-1. You can enter the notification scope, associated channel, and notification object in the search bar for search positioning;
+1. Enter the notification scope, associated channel, or notification target in the search bar to locate specific items;
 
 2. Click :material-text-search: to expand the details.
 
-    - **Note**: Since the daily summary involves multiple Issues, the Issue title is displayed as `-`.
+    - **Note**: Since daily summaries involve multiple Issues, the Issue title is displayed as `-`.

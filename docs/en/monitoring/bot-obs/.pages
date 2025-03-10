@@ -1,18 +1,18 @@
 nav:
   - index.md
-  - 'Memory leak Intelligent Inspection': memory-leak.md
-  - 'Disk utilization Intelligent Inspection': disk-usage.md
-  - 'Host Restart Intelligent Inspection': host-restart.md
-  - 'APM Intelligent Inspection': apm.md
-  - 'Alibaba Cloud Asset Intelligent Inspection': cloudasset.md
-  - 'Cloud Account Billing Inspection Intelligent Integration': cloudfee-instance.md
-  - 'Alibaba Cloud Preemptible Instance Survival Intelligent Inspection': spot-alive.md
-  - 'Idle Resources Intelligent Inspection': idle-resources.md
-  - 'Cloud Idle Resources Intelligent Inspection': cloud-idle-resources.md
-  - 'AWS Cloudtrail Exception Event Intelligent Inspection': aws_ak_errorlog.md
-  - 'Workspace Asset Intelligent Inspection': workspace-weekly-report.md
-  - 'RUM Log Error Intelligent Inspection': rum_errors.md
-  - 'RUM Performance Intelligent Integration': rum-performance.md
-  - 'MySQL Performance Intelligent Inspection': mysql-performance.md
-  - 'Server Application Error Intelligent Inspection': apm-errors.md
+  - 'Memory Leak Security Check': memory-leak.md
+  - 'Disk Usage Security Check': disk-usage.md
+  - 'Host Restart Security Check': host-restart.md
+  - 'APM Security Check': apm.md
+  - 'Cloud Account Instance-level Billing Security Check': cloudfee-instance.md
+  - 'Alibaba Cloud Spot Instance Survival Security Check': spot-alive.md
+  - 'Idle Host Security Check': idle-resources.md
+  - 'Idle Cloud Resources Security Check': cloud-idle-resources.md
+  - 'Workspace Asset Security Check': workspace-weekly-report.md
+  - 'Frontend Application Log Error Security Check': rum_errors.md
+  - 'RUM Performance Security Check': rum-performance.md
+  - 'Alibaba Cloud Asset Security Check': cloudasset.md
+  - 'AWS Cloudtrail Anomaly Event Security Check': aws_ak_errorlog.md
+  - 'MySQL Performance Security Check': mysql-performance.md
+  - 'Server-side Application Error Security Check': apm-errors.md
   - 'Kubernetes': Kubernetes

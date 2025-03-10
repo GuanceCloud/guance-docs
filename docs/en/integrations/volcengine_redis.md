@@ -1,118 +1,125 @@
 ---
-title: 'Volcengine Redis'
+title: 'VolcEngine Redis'
 tags: 
-  - Volcengine
-summary: 'Volcengine Redis Metrics Collection'
+  - VolcEngine
+summary: 'VolcEngine Redis Metrics Collection'
+__int_icon: 'icon/volcengine_redis'
 dashboard:
-  - desc: 'Volcengine Redis'
+  - desc: 'VolcEngine Redis'
     path: 'dashboard/en/volcengine_redis/'
 monitor:
-  - desc: 'Volcengine Redis Monitor'
+  - desc: 'VolcEngine Redis Monitor'
     path: 'monitor/en/volcengine_redis'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Volcengine` Redis
+# VolcEngine Redis
 <!-- markdownlint-enable -->
 
-Volcengine Redis Metrics Collection.
 
-## Config {#config}
+VolcEngine Redis metrics collection.
+
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): All prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-### Installation script
+If you deploy Func on your own, refer to [Self-hosted Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+### Install Script
 
-To synchronize the monitoring data of **Redis** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcenine` -**Redis** Collect）」(ID：`guance_volcengine_redis`)
+> Note: Prepare a VolcEngine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-Click "Install" and enter the corresponding parameters: `Volcenine` AK, `Volcenine` account name.
+To synchronize ECS cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (VolcEngine-ECS Collection)" (ID: `guance_volcengine_redis`)
 
-tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+After clicking 【Install】, enter the required parameters: VolcEngine AK and VolcEngine account name.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+After activation, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the task execution records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
-
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing data, enable the cloud billing collection script.
 
 
-## Metric  {#metric}
+By default, we collect some configurations; for details, see the Metrics section.
 
-The default metric set is as follows. You can collect more metrics by configuring them [`Volcenine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_Redis){:target="_blank"}
-
-| `MetricName` | `SubNamespace` | Description | MetricUnit | Dimension |
-|---------------|-----------------|----------------------|------------|-----------|
-| `AggregatedTotalQps` | `aggregated_proxy` | Total QPS on the Proxy node. | Count/Second | ResourceID |
-| `AggregatedMaxQueryLatency` | `aggregated_proxy` | Maximum latency of the server's response when the Proxy executes a command. | Microsecond | ResourceID |
-| `AggregatedResponseMaxBytes` | `aggregated_proxy` | Maximum bytes in a single response on the Proxy node. | Bytes(SI) | ResourceID |
-| `AggregatedUsedConn` | `aggregated_proxy` | Number of client connections connected to the Proxy. | Count | ResourceID |
-| `AggregatedConnUtil` | `aggregated_proxy` | Ratio of used connections to the total number of connections supported by the instance. | Percent | ResourceID |
-| `AggregatedReadQps` | `aggregated_proxy` | Read QPS on the Proxy node. | Count/Second | ResourceID |
-| `AggregatedWriteQps` | `aggregated_proxy` | Write QPS on the Proxy node. | Count/Second | ResourceID |
-| `AggregatedP99QueryLatency` | `aggregated_proxy` | The request latency at the 99th percentile for all requests from the Proxy to the Server node. | Microsecond | ResourceID |
-| `AggregatedPeakUsedConn` | `aggregated_proxy` | Peak number of used connections per second on the proxy node. | Count | ResourceID |
-| `AggregatedAvgQueryLatency` | `aggregated_proxy` | Average latency of the server's response when the Proxy executes a command. | Microsecond | ResourceID |
-| `AggregatedTotalConnReceived` | `aggregated_proxy` | Total number of connections established from the start of the Proxy to the specified query time. | Count | ResourceID |
-| `AggregatedNetworkPeakReceiveThroughput` | `aggregated_proxy` | Peak network traffic flowing into the Proxy node per second. | Bytes/Second(SI) | ResourceID |
-| `AggregatedNetworkPeakTransmitThroughput` | `aggregated_proxy` | Peak network traffic flowing out of the Proxy node per second. | Bytes/Second(SI) | ResourceID |
-| `AggregatedCpuUtil` | `aggregated_server` | CPU utilization of the Server node. | Percent | ResourceID |
-| `AggregatedKeyHitRate` | `aggregated_server` | Hit rate when reading Key on the Server node. | Percent | ResourceID |
-| `AggregatedTotalKey` | `aggregated_server` | Total number of Keys stored on the Server node. | Count | ResourceID |
-| `AggregatedUsedMem` | `aggregated_server` | Amount of memory used on the Server node. | Bytes(IEC) | ResourceID |
-| `AggregatedMemUtil` | `aggregated_server` | Memory utilization of the Server node. | Percent | ResourceID |
-| `AggregatedExpiredKeyPerSec` | `aggregated_server` | Number of Keys expired per second in the instance. | Count/Second | ResourceID |
-| `AggregatedEvictedKeyPerSec` | `aggregated_server` | Number of Keys evicted per second in the instance. | Count/Second | ResourceID |
-| `AggregatedKeyWithExpiration` | `aggregated_server` | Total number of Keys with expiration time set since the start of the Server node. | Count | ResourceID |
-| `AggregatedKeyHitPerSec` | `aggregated_server` | Number of Keys hit per second on the Server node. | Count/Second | ResourceID |
-| `AggregatedKeyMissPerSec` | `aggregated_server` | Number of Keys missed per second on the Server node. | Count/Second | ResourceID |
-| `AggregatedNetworkPeakTransmitThroughput` | `aggregated_server` | Peak network traffic flowing into the Server node per second. | Bytes/Second(SI) | ResourceID |
-| `AggregatedNetworkPeakReceiveThroughput` | `aggregated_server` | Peak network traffic flowing out of the Server node per second. | Bytes/Second(SI) | ResourceID |
-| `TotalQps` | `proxy` | Total QPS on the Proxy node. | Count/Second | ResourceID, Node |
-| `MaxQueryLatency` | `proxy` | Maximum latency of the server's response when the Proxy executes a command. | Microsecond | ResourceID, Node |
-| `ResponseMaxBytes` | `proxy` | Maximum bytes in a single response on the Proxy node. | Bytes(SI) | ResourceID, Node |
-| `UsedConn` | `proxy` | Number of client connections connected to the Proxy. | Count | ResourceID, Node |
-| `ConnUtil` | `proxy` | Ratio of used connections to the total number of connections supported by the Proxy node. | Percent | Node, ResourceID |
-| `ReadQps` | `proxy` | Read QPS on the Proxy node. | Count/Second | Node, ResourceID |
-| `WriteQps` | `proxy` | Write QPS on the Proxy node. | Count/Second | Node, ResourceID |
-| `P99QueryLatency` | `proxy` | The request latency at the 99th percentile for all requests from the Proxy to the Server node. | Microsecond | Node, ResourceID |
-| `PeakUsedConn` | `proxy` | Peak number of used connections per second on the proxy node. | Count | ResourceID, Node |
-| `PeakConnUtil` | `proxy` | Peak connection utilization per second on the proxy node. | Percent | ResourceID, Node |
-| `AvgQueryLatency` | `proxy` | Average latency of the server's response when the Proxy executes a command. | Microsecond | ResourceID, Node |
-| `TotalConnReceived` | `proxy` | Total number of connections established from the start of the Proxy to the specified query time. | Count | ResourceID, Node |
-| `NetworkPeakReceiveThroughput` | `proxy` | Peak network traffic flowing into the Proxy node per second. | Bytes/Second(SI) | ResourceID, Node |
-| `CpuUtil` | `server` | CPU utilization of the Server node. | Percent | ResourceID, Node |
-| `KeyHitRate` | `server` | Hit rate when reading Key on the Server node. | Percent | ResourceID, Node |
-| `TotalKey` | `server` | Total number of Keys stored on the Server node. | Count | ResourceID, Node |
-| `UsedMem` | `server` | Amount of memory used on the Server node. | Bytes(IEC) | ResourceID, Node |
-| `ExpiredKeyPerSec` | `server` | Number of Keys expired per second on the Server node. | Count/Second | ResourceID, Node |
-| `EvictedKeyPerSec` | `server` | Number of Keys evicted per second on the Server node. | Count/Second | ResourceID, Node |
-| `MemUtil` | `server` | Memory utilization of the Server node. | Percent | ResourceID, Node |
-| `KeyWithExpiration` | `server` | Total number of Keys with expiration time set since the start of the Server node. | Count | Node, ResourceID |
-| `KeyHitPerSec` | `server` | Number of Keys hit per second on the Server node. | Count/Second | Node, ResourceID |
-| `KeyMissPerSec` | `server` | Number of Keys missed per second on the Server node. | Count/Second | Node, ResourceID |
-| `IsPrimary` | `server` | Whether the current Server node is the primary node. | None | Node, ResourceID |
-| `NetworkReceiveThroughputUtil` | `server` | Peak bandwidth utilization rate for network traffic flowing into the Server node per second. | Percent | ResourceID, Node |
-| `NetworkTransmitThroughputUtil` | `server` | Peak bandwidth utilization rate for network traffic flowing out of the Server node per second. | Percent | ResourceID, Node |
-| `NetworkPeakReceiveThroughput` | `server` | Peak network traffic flowing into the Server node per second. | Bytes/Second(SI) | ResourceID, Node |
-| `NetworkPeakTransmitThroughput` | `server` | Peak network traffic flowing out of the Server node per second. | Bytes/Second(SI) | ResourceID, Node |
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
 
-## Object  {#object}
-The collected `Volcenine` Cloud **Redis** object data structure can see the object data from 「Infrastructure-Resource」
+### Verification
+
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and check the task records and logs for any anomalies.
+2. On the Guance platform, in "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, in "Metrics", check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+
+The default metric sets are as follows. You can collect more metrics through configuration. For detailed information on VolcEngine cloud monitoring metrics, see [VolcEngine Cloud Monitoring Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_Redis){:target="_blank"}
+
+|`MetricName` |`Subnamespace` |Description |Unit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`AggregatedTotalQps` |`aggregated_proxy` |Total QPS on Proxy nodes. |Count/Second | ResourceID|
+|`AggregatedMaxQueryLatency` |`aggregated_proxy` |Maximum latency of Server response when executing commands on Proxy. |Microsecond | ResourceID|
+|`AggregatedResponseMaxBytes` |`aggregated_proxy` |Maximum byte size of a single response on Proxy nodes. |Bytes(SI) | ResourceID|
+|`AggregatedUsedConn` |`aggregated_proxy` |Number of client connections connected to Proxy. |Count | ResourceID|
+|`AggregatedConnUtil` |`aggregated_proxy` |Ratio of used connections to total supported connections by the instance. |Percent | ResourceID|
+|`AggregatedReadQps` |`aggregated_proxy` |Read QPS on Proxy nodes. |Count/Second | ResourceID|
+|`AggregatedWriteQps` |`aggregated_proxy` |Write QPS on Proxy nodes. |Count/Second | ResourceID|
+|`AggregatedP99QueryLatency` |`aggregated_proxy` |99th percentile latency of all request times from Proxy to Server nodes. |Microsecond | ResourceID|
+|`AggregatedPeakUsedConn` |`aggregated_proxy` |Peak number of used connections per second on Proxy nodes. |Count | ResourceID|
+|`AggregatedAvgQueryLatency` |`aggregated_proxy` |Average latency of Server response when executing commands on Proxy. |Microsecond | ResourceID|
+|`AggregatedTotalConnReceived` |`aggregated_proxy` |Total number of connections established between Proxy start and specified query time. |Count | ResourceID|
+|`AggregatedNetworkPeakReceiveThroughput` |`aggregated_proxy` |Peak network throughput flowing into Proxy nodes per second. |Bytes/Second(SI) | ResourceID|
+|`AggregatedNetworkPeakTransmitThroughput` |`aggregated_proxy` |Peak network throughput flowing out of Proxy nodes per second. |Bytes/Second(SI) | ResourceID|
+|`AggregatedCpuUtil` |`aggregated_server` |CPU utilization of Server nodes. |Percent | ResourceID|
+|`AggregatedKeyHitRate` |`aggregated_server` |Hit rate when reading Keys on Server nodes. |Percent | ResourceID|
+|`AggregatedTotalKey` |`aggregated_server` |Total number of Keys stored on Server nodes. |Count | ResourceID|
+|`AggregatedUsedMem` |`aggregated_server` |Amount of memory used on Server nodes. |Bytes(IEC) | ResourceID|
+|`AggregatedMemUtil` |`aggregated_server` |Memory utilization of Server nodes. |Percent | ResourceID|
+|`AggregatedExpiredKeyPerSec` |`aggregated_server` |Number of expired Keys per second on the instance. |Count/Second | ResourceID|
+|`AggregatedEvictedKeyPerSec` |`aggregated_server` |Number of evicted Keys per second on the instance. |Count/Second | ResourceID|
+|`AggregatedKeyWithExpiration` |`aggregated_server` |Total number of Keys set with expiration time since Server start. |Count | ResourceID|
+|`AggregatedKeyHitPerSec` |`aggregated_server` |Number of hit Keys per second on Server nodes. |Count/Second | ResourceID|
+|`AggregatedKeyMissPerSec` |`aggregated_server` |Number of missed Keys per second on Server nodes. |Count/Second | ResourceID|
+|`AggregatedNetworkPeakTransmitThroughput` |`aggregated_server` |Peak network throughput flowing into Server nodes per second. |Bytes/Second(SI) | ResourceID|
+|`AggregatedNetworkPeakReceiveThroughput` |`aggregated_server` |Peak network throughput flowing out of Server nodes per second. |Bytes/Second(SI) | ResourceID|
+|`TotalQps` |`proxy` |Total QPS on Proxy nodes. |Count/Second | ResourceID,Node|
+|`MaxQueryLatency` |`proxy` |Maximum latency of Server response when executing commands on Proxy. |Microsecond | ResourceID,Node|
+|`ResponseMaxBytes` |`proxy` |Maximum byte size of a single response on Proxy nodes. |Bytes(SI) | ResourceID,Node|
+|`UsedConn` |`proxy` |Number of client connections connected to Proxy. |Count | ResourceID,Node|
+|`ConnUtil` |`proxy` |Ratio of used connections to total supported connections on Proxy nodes. |Percent | Node,ResourceID|
+|`ReadQps` |`proxy` |Read QPS on Proxy nodes. |Count/Second | Node,ResourceID|
+|`WriteQps` |`proxy` |Write QPS on Proxy nodes. |Count/Second | Node,ResourceID|
+|`P99QueryLatency` |`proxy` |99th percentile latency of all request times from Proxy to Server nodes. |Microsecond | Node,ResourceID|
+|`PeakUsedConn` |`proxy` |Peak number of used connections per second on Proxy nodes. |Count | ResourceID,Node|
+|`PeakConnUtil` |`proxy` |Peak connection utilization per second on Proxy nodes. |Percent | ResourceID,Node|
+|`AvgQueryLatency` |`proxy` |Average latency of Server response when executing commands on Proxy. |Microsecond | ResourceID,Node|
+|`TotalConnReceived` |`proxy` |Total number of connections established between Proxy start and specified query time. |Count | ResourceID,Node|
+|`NetworkPeakReceiveThroughput` |`proxy` |Peak network throughput flowing into Proxy nodes per second. |Bytes/Second(SI) | ResourceID,Node|
+|`CpuUtil` |`server` |CPU utilization of Server nodes. |Percent | ResourceID,Node|
+|`KeyHitRate` |`server` |Hit rate when reading Keys on Server nodes. |Percent | ResourceID,Node|
+|`TotalKey` |`server` |Total number of Keys stored on Server nodes. |Count | ResourceID,Node|
+|`UsedMem` |`server` |Amount of memory used on Server nodes. |Bytes(IEC) | ResourceID,Node|
+|`ExpiredKeyPerSec` |`server` |Number of expired Keys per second on Server nodes. |Count/Second | ResourceID,Node|
+|`EvictedKeyPerSec` |`server` |Number of evicted Keys per second on Server nodes. |Count/Second | ResourceID,Node|
+|`MemUtil` |`server` |Memory utilization of Server nodes. |Percent | ResourceID,Node|
+|`KeyWithExpiration` |`server` |Total number of Keys set with expiration time since Server start. |Count | Node,ResourceID|
+|`KeyHitPerSec` |`server` |Number of hit Keys per second on Server nodes. |Count/Second | Node,ResourceID|
+|`KeyMissPerSec` |`server` |Number of missed Keys per second on Server nodes. |Count/Second | Node,ResourceID|
+|`IsPrimary` |`server` |Whether the current Server node is the primary node. |None | Node,ResourceID|
+|`NetworkReceiveThroughputUtil` |`server` |Peak bandwidth utilization flowing into Server nodes per second. |Percent | ResourceID,Node|
+|`NetworkTransmitThroughputUtil` |`server` |Peak bandwidth utilization flowing out of Server nodes per second. |Percent | ResourceID,Node|
+|`NetworkPeakReceiveThroughput` |`server` |Peak network throughput flowing into Server nodes per second. |Bytes/Second(SI) | ResourceID,Node|
+|`NetworkPeakTransmitThroughput` |`server` |Peak network throughput flowing out of Server nodes per second. |Bytes/Second(SI) | ResourceID,Node|
 
 
+
+## Objects {#object}
+
+Data structure of collected VolcEngine Redis objects, which can be viewed in "Basic Settings - Resource Catalog".
+
+</input_content>
+<target_language>英语</target_language>
+</input>

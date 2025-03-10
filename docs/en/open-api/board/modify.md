@@ -2,35 +2,34 @@
 
 ---
 
-<br />**post /api/v1/dashboards/\{dashboard_uuid\}/modify**
+<br />**POST /api/v1/dashboards/\{dashboard_uuid\}/modify**
 
 ## Overview
-Modify the property information of the dashboard.
+Modify the properties of a dashboard.
 
 
+## Route Parameters
+
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| dashboard_uuid        | string   | Y        | View UUID                |
 
 
-## Routing Parameters
+## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| dashboard_uuid | string | Y | View UUID<br> |
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| name                 | string   |          | View name<br>Example: Test View 1<br>Allow empty: False <br> |
+| desc                 | string   |          | Description<br>Example: Description 1<br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 2048 <br> |
+| identifier           | string   |          | Identifier ID -- Added on December 25, 2024<br>Example: xxxx<br>Allow empty: False <br>Allow empty string: True <br>Maximum length: 128 <br> |
+| extend               | json     |          | Additional view information<br>Example: {}<br>Allow empty: False <br> |
+| mapping              | array    |          | Mapping, defaults to []<br>Example: []<br>Allow empty: False <br> |
+| tagNames             | array    |          | Tag names, note that this field is fully updated<br>Allow empty: False <br> |
+| isPublic             | int      |          | Whether it is publicly displayed, 1 for public, 0 for private, -1 for custom<br>Example: 1<br>Allow empty: False <br> |
+| permissionSet        | array    |          | Custom operation permissions when isPublic is -1, configurable (roles except owner, member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy']<br>Allow empty: False <br> |
+| readPermissionSet    | array    |          | Custom read permissions when isPublic is -1, configurable (roles except owner, member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy']<br>Allow empty: False <br> |
 
-
-## Body Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| name | string |  | View name<br>Example: test view 1 <br>Allow null: False <br> |
-| extend | json |  | View additional information<br>Example: {} <br>Allow null: False <br> |
-| mapping | array |  | mapping, default to[]<br>Example: [] <br>Allow null: False <br> |
-| tagNames | array |  | The name of the tag, note that this field is updated in full<br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-
-
-
+## Additional Parameter Notes
 
 
 
@@ -42,10 +41,10 @@ Modify the property information of the dashboard.
         "chartGroupPos": [],
         "chartPos": [
             {
-                "chartUUID": "chrt_1cbdbf10c1494c80b36b91b4e0e1ab90",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 11,
-                    "i": "chrt_2e650ef84b1a4eb389011fd95f7db11e",
+                    "i": "chrt_xxxx32",
                     "w": 11,
                     "x": 0,
                     "y": 0
@@ -54,7 +53,7 @@ Modify the property information of the dashboard.
         ],
         "createAt": 1642587228,
         "createdWay": "import",
-        "creator": "acnt_5fc5bb139e474911b6d3d300863f0c8b",
+        "creator": "acnt_xxxx32",
         "dashboardBidding": {},
         "dashboardBindSet": [],
         "deleteAt": -1,
@@ -72,14 +71,14 @@ Modify the property information of the dashboard.
         },
         "type": "CUSTOM",
         "updateAt": 1642587908.306098,
-        "updator": "wsak_c1c8af0c545541428403c09481f1baf8",
+        "updator": "wsak_xxxxx",
         "updatorInfo": {
             "iconUrl": "",
-            "name": "第一个key",
-            "username": "AK(wsak_c1c8af0c545541428403c09481f1baf8)"
+            "name": "First Key",
+            "username": "AK(wsak_xxxxx)"
         },
-        "uuid": "dsbd_541083cc19ec4d27ad597839a0477a97",
-        "workspaceUUID": "wksp_c4201f4ef30c4a86b01a998e7544f822"
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",
@@ -87,7 +86,3 @@ Modify the property information of the dashboard.
     "traceId": "TRACE-5F0F4D27-0A77-41B3-9E05-227648467853"
 } 
 ```
-
-
-
-

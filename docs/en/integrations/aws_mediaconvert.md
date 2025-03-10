@@ -2,15 +2,15 @@
 title: 'AWS MediaConvert'
 tags: 
   - AWS
-summary: 'AWS MediaConvert, including data transfer, video errors, job count, padding, etc.'
+summary: 'AWS MediaConvert, including data transfer, video errors, job counts, padding, etc.'
 __int_icon: 'icon/aws_mediaconvert'
 dashboard:
 
-  - desc: 'AWS MediaConvert Monitoring View'
+  - desc: 'Built-in views for AWS MediaConvert'
     path: 'dashboard/en/aws_mediaconvert'
 
 monitor:
-  - desc: 'AWS MediaConvert Monitor'
+  - desc: 'Monitors for AWS MediaConvert'
     path: 'monitor/en/aws_mediaconvert'
 
 ---
@@ -20,59 +20,57 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-AWS MediaConvert, including data transfer, video errors, job count, padding, etc.
+AWS MediaConvert, including data transfer, video errors, job counts, padding, etc.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of AWS MediaConvert, we install the corresponding collection script: `ID:guance_aws_mediaconvert`
-
-Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
-
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Install Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-## Metric {#metric}
-Configure AWS MediaConvert. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}
+To synchronize monitoring data from AWS MediaConvert, we install the corresponding collection script: "Guance Integration (AWS-MediaConvert Collection)" (ID: `guance_aws_mediaconvert`).
 
+After clicking 【Install】, enter the required parameters: Amazon AK and Amazon account name.
+
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+
+Additionally, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+
+### Verification
+
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the automatic trigger configuration, and check the task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the Guance platform, under "Metrics", check if there is any corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring AWS MediaConvert, the default metric set is as follows. You can collect more metrics through configuration [AWS MediaConvert Metrics Details](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}
 
 ### Metrics
 
-| Metric | Description | Unit |
+| TH | TH | TH |
 | -- | -- | -- |
-| AvgBitrateBottom | Average data transfer rate | B/S |
-| AvgBitrateTop | The highest value of data transmission rate | B/S |
-| BlackVideoDetectedRatio | Black screen percentage | % |
-| BlackVideoDetected | Black screen occurrence time | seconds |
-| Errors | Number of video errors | count |
-| JobsCanceledCount | Number of job cancellations | count |
-| JobsCompletedCount | Number of job completed | count |
-| JobsErroredCount | Number of job errors | count |
-| QVBRAvgQualityHighBitrate | Video Variable Bit Rate | % |
-| SDOutputDuration | Standard definition output detection | seconds |
-| StandbyTime | standby time | seconds |
-| VideoPaddingInsertedRatio | Video Fill Ratio | % |
-| VideoPaddingInserted | Is there a video filling | count |
-
+| `AvgBitrateBottom` | Average data transfer rate | B/S |
+| `AvgBitrateTop` | Maximum data transfer rate | B/S |
+| `BlackVideoDetectedRatio` | Black screen percentage | % |
+| `BlackVideoDetected` | Black screen occurrence time | seconds |
+| `Errors` | Number of video errors | count |
+| `JobsCanceledCount` | Number of canceled jobs | count |
+| `JobsCompletedCount` | Number of completed jobs | count |
+| `JobsErroredCount` | Number of errored jobs | count |
+| `QVBRAvgQualityHighBitrate` | Video variable bitrate | % |
+| `SDOutputDuration` | Standard definition output detection | seconds |
+| `StandbyTime` | Standby time | seconds |
+| `VideoPaddingInsertedRatio` | Video padding ratio | % |
+| `VideoPaddingInserted` | Whether video padding occurred | count |
+</input_content>
+</example>
+</example>

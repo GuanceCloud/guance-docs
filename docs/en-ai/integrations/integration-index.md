@@ -1,7 +1,0 @@
----
-icon: zy/integrations
----
-
-# integration
-
----

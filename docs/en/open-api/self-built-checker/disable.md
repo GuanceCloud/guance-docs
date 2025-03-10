@@ -1,38 +1,33 @@
-# Disable an Intelligent Inspection
+# Disable a Smart Security Check
 
 ---
 
-<br />**post /api/v1/self_built_checker/disable**
+<br />**POST /api/v1/self_built_checker/disable**
 
 ## Overview
-Disable an intelligent inspection according to `checker_uuid`.
+Disable a user-defined security check based on `checker_uuid`
 
 
 
+## Body Request Parameters
 
-## Body Request Parameter
+| Parameter Name | Type   | Required | Description                                      |
+|:--------------|:-------|:---------|:-------------------------------------------------|
+| ruleUUIDs     | array  |          | UUID of the user-defined security check<br>Example: rul_xxxxx <br>Nullable: False <br> |
+| refKey        | string |          | Associated key of the user-defined security check<br>Example: xxx <br>Nullable: False <br> |
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| ruleUUID | string |  | UUID of intelligent inspection<br>Example: rul_xxxxx <br>Allow null: False <br> |
-| refKey | string |  | Association key of intelligent inspection<br>Example: xxx <br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/self_built_checker/rul_71e719ee94f84d65a3fa68fb3054a815/disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/self_built_checker/disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw 'null' \
---compressed \
---insecure
+--data-raw '{"ruleUUIDs":["rul_xxxx32","rul_xxxx32"]}' \
+--compressed 
 ```
-
 
 
 
@@ -47,7 +42,3 @@ curl 'https://openapi.guance.com/self_built_checker/rul_71e719ee94f84d65a3fa68fb
     "traceId": "TRACE-1969B4EA-18AE-4D23-AAC7-3FC6586493EB"
 } 
 ```
-
-
-
-

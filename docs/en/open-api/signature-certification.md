@@ -1,14 +1,11 @@
-# Interface Signature Authentication
+# API Signature Authentication
 
 ---
 
 ## Authentication Method
 
-The interface is authenticated by API KEY, and the value of *DF-API-KEY* in the Header of the request body is used as validity check for each request. And the workspace qualification basis of this request (take the workspace to which this DF-API-KEY belongs).
+The API uses API KEY for authentication. For each request, the value of *DF-API-KEY* in the request header is used to validate the request. Additionally, the workspace limitation for this request is determined by the workspace associated with this DF-API-KEY.
 
-All interfaces currently displayed by the Open API need to provide only API KEY (Header: DF-API-KEY) as credentials.
-If the credentials exist and are valid, the authentication is considered passed.
+All interfaces currently displayed in the Open API only require providing the API KEY (Header: DF-API-KEY) as credentials. If the credentials exist and are valid, the authentication is considered successful.
 
-See [API Key management](../management/api-key/open-api.md).
-
-
+For details on obtaining the API KEY, see [API Key Management](../management/api-key/index.md)

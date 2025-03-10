@@ -1,6 +1,6 @@
 ---
-title     : 'Milvus vector database'
-summary   : 'Collect relevant metric information of Mlivus vector database'
+title     : 'Milvus Vector Database'
+summary   : 'Collect metrics related to the Milvus vector database'
 __int_icon: 'icon/milvus'
 dashboard :
   - desc  : 'Milvus Monitoring View'
@@ -10,18 +10,18 @@ monitor   :
     path  : 'monitor/en/milvus'
 ---
 
-Collect relevant metric information of Mlivus vector database
+Collect metrics related to the Milvus vector database
 
-## Config {#config}
+## Configuration {#config}
 
-### Preconditions {#requirement}
+### Prerequisites {#requirement}
 
-- [x] Installed DataKit
+- [x] DataKit is installed
 - [x] Install [Milvus](https://www.bookstack.cn/read/milvus-0.10.0-zh/0895869624c7d37e.md)
 
-### Enable Milvus monitoring
+### Enable Milvus Monitoring
 
-Go to the Milvus `/home/$USER/milvus/conf` directory, modify the `server_config.yaml` file, enable Milvus monitoring
+Enter the Milvus `/home/$USER/milvus/conf` directory, modify the `server_config.yaml` file to enable Milvus monitoring
 
 ```yaml
 metric:
@@ -30,13 +30,13 @@ metric:
   port: 9091
 ```
 
-Note: If milvus is deployed in a Docker container, the above address should be changed to the host IP address
+Note: If Milvus is deployed in a Docker container, the above address should be changed to the host machine IP.
 
-- After modification, restart Milvus `http://localhost:9091/metrics` View monitoring data
+- After modification, restart Milvus and view the monitoring data via `http://localhost:9091/metrics`
 
-### Configure Datakit
+### Configure DataKit
 
-- Go to the `conf.d/prom` directory under the datakit installation directory, copy `prom.conf.sample` and name it `milvus.conf`
+- Go to the `conf.d/prom` directory under the DataKit installation directory, copy `prom.conf.sample` and rename it to `milvus.conf`
 
 ```shell
 cp prom.conf.sample milvus.conf
@@ -76,77 +76,77 @@ cp prom.conf.sample milvus.conf
 ```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Adjust other configurations as needed*</font>，parameter adjustment instructions ：
+<font color="red">*Other configurations can be adjusted as needed*</font>, parameter adjustment instructions:
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD004 -->
-- urls：Metric address, fill in the URL of the metric exposed by the corresponding component here
-- source：Collector alias, it is recommended to make a distinction
-- keep_exist_metric_name: Maintain metric name
-- interval：Collection interval
+- urls: Metrics address, fill in the metric URL exposed by the corresponding component
+- source: Collector alias, recommended for differentiation
+- keep_exist_metric_name: Keep metric names
+- interval: Collection interval
 - inputs.prom.tags: Add additional tags
 <!-- markdownlint-enable -->
 
-Restart the datakit and execute the following command
+Restart DataKit, execute the following command
 
 ```shell
 datakit service -R
 ```
 
-## Metric {#metric}
+## Metrics {#metric}
 
-### Milvus Metric set
+### Milvus Measurement Set
 
-The Milvus metric is located under the milvus metric set. Here are the relevant explanations for the Milvus metric
+Milvus metrics are located under the Milvus measurement set. Here is an introduction to Milvus metrics
 
-| Metrics | description | unit |
+| Metrics | Description | Unit |
 |:--------|:------------|:-----|
-|`ann_iterator_init_latency_bucket`|`Delay distribution bucket for initialization of ANN iterators`| s |
-|`bitset_ratio_bucket`|`Distribution bucket of bitset ratio`| s |
-|`build_latency_bucket`|`Distributed Bucket with Index Construction Delay`| s |
-|`build_latency_count`|`Count of index construction delay`| count |
-|`build_latency_sum`|`The total delay in index construction`| s |
-|`search_latency_bucket`|`Distribution bucket of search delay`| s |
-|`search_latency_count`|`Count of Search Delay`| count |
-|`search_latency_sum`|`Total search latency`| count |
-|`search_topk_bucket`|`Search for the distribution bucket of topk`| s |
-|`search_topk_count`|`Search for topk counts`| count |
-|`search_topk_sum`|`Search for the total sum of topk`| count |
-|`milvus_datanode_consume_msg_count`|`The number of messages consumed by data nodes`| count |
-|`milvus_datanode_flush_buffer_op_count`|`Number of buffer refresh operations for data nodes`| count |
-|`milvus_datanode_msg_rows_count`|`Number of message lines in data nodes`| count |
-|`milvus_querynode_consume_tt_lag_ms`|`Query the time lag of node consumption`| microsecond |
-|`milvus_querynode_disk_used_size`|`Query the size of the node disk usage`| bytes |
-|`milvus_querynode_entity_num`|`Query the number of node entities`| count |
-|`milvus_querynode_entity_size`|`Query node entity size`| bytes |
-|`milvus_querynode_search_group_nq_bucket`|`Distribution Bucket for Query Node Search Group Query Count`| s |
-|`milvus_querynode_search_group_nq_count`|`Count the number of node search group queries`| count |
-|`milvus_querynode_search_group_nq_sum`|`Total number of node search group queries`| count |
-|`milvus_proxy_req_count`|`Proxy request frequency`| count |
-|`milvus_proxy_req_latency_bucket`|`Distribution bucket for proxy request delay`| s |
-|`milvus_proxy_req_latency_count`|`Count of proxy request delays`| count |
-|`milvus_proxy_req_latency_sum`|`The total delay of proxy requests`| s |
-|`milvus_proxy_search_vectors_count`|`Proxy search vector count`| count |
-|`milvus_proxy_send_bytes_count`|`Number of bytes sent by proxys`| bytes |
-|`milvus_rootcoord_collection_num`|`Root coordination set quantity`| count |
-|`milvus_rootcoord_ddl_req_count`|`Root coordination DDL request frequency`| count |
-|`milvus_rootcoord_ddl_req_latency_bucket`|`Distributed Bucket for Root Coordination DDL Request Delay`| s |
-|`milvus_rootcoord_ddl_req_latency_count`|`Count of root coordination DDL request delays`| count |
-|`milvus_rootcoord_ddl_req_latency_sum`|`The total delay of root coordination DDL requests`| s |
-|`milvus_rootcoord_entity_num`|`Number of root coordination entities`| count |
-|`milvus_rootcoord_partition_num`|`Number of root coordination partitions`| count |
-|`milvus_rootcoord_produce_tt_lag_ms`|`Root coordination production time lag`| microsecond |
-|`milvus_storage_kv_size_bucket`|`Milvus stores the distribution bucket of key value pair sizes`| bytes |
-|`milvus_storage_kv_size_count`|`Milvus stores the count of key value pair sizes`| count |
-|`milvus_storage_kv_size_sum`|`Milvus stores the total size of key value pairs`| bytes |
-|`milvus_storage_op_count`|`Milvus storage operation times`| count |
-|`milvus_storage_request_latency_bucket`|`Milvus Storage Request Delay Distribution Bucket`| s |
-|`milvus_storage_request_latency_count`|`Milvus Storage Request Delay Count`| count |
-|`milvus_storage_request_latency_sum`|`The total delay of Milvus storage requests`| s |
-|`milvus_num_node`|`Number of Milvus nodes`| count |
-|`milvus_runtime_info`|`Milvus runtime information`| - |
-|`process_max_fds`|`Maximum number of file descriptors for a process`| count |
-|`process_open_fds`|`Number of file descriptors opened by the process`| count |
-|`process_start_time_seconds`|`Process start time`| s |
-|`process_virtual_memory_bytes`|`Number of bytes in virtual memory of the process`| bytes |
-|`process_virtual_memory_max_bytes`|`Maximum bytes of process virtual memory`| bytes |
+|`ann_iterator_init_latency_bucket`| Distribution bucket for ANN iterator initialization latency | s |
+|`bitset_ratio_bucket`| Distribution bucket for bitset ratio | s |
+|`build_latency_bucket`| Distribution bucket for index build latency | s |
+|`build_latency_count`| Count of index build latency | count |
+|`build_latency_sum`| Sum of index build latency | s |
+|`search_latency_bucket`| Distribution bucket for search latency | s |
+|`search_latency_count`| Count of search latency | count |
+|`search_latency_sum`| Sum of search latency | count |
+|`search_topk_bucket`| Distribution bucket for search topk | s |
+|`search_topk_count`| Count of search topk | count |
+|`search_topk_sum`| Sum of search topk | count |
+|`milvus_datanode_consume_msg_count`| Number of messages consumed by the data node | count |
+|`milvus_datanode_flush_buffer_op_count`| Number of buffer flush operations by the data node | count |
+|`milvus_datanode_msg_rows_count`| Number of message rows processed by the data node | count |
+|`milvus_querynode_consume_tt_lag_ms`| Time lag in consuming messages by the query node | microsecond |
+|`milvus_querynode_disk_used_size`| Disk usage size by the query node | bytes |
+|`milvus_querynode_entity_num`| Number of entities in the query node | count |
+|`milvus_querynode_entity_size`| Size of entities in the query node | bytes |
+|`milvus_querynode_search_group_nq_bucket`| Distribution bucket for search group queries in the query node | s |
+|`milvus_querynode_search_group_nq_count`| Count of search group queries in the query node | count |
+|`milvus_querynode_search_group_nq_sum`| Sum of search group queries in the query node | count |
+|`milvus_proxy_req_count`| Number of proxy requests | count |
+|`milvus_proxy_req_latency_bucket`| Distribution bucket for proxy request latency | s |
+|`milvus_proxy_req_latency_count`| Count of proxy request latency | count |
+|`milvus_proxy_req_latency_sum`| Sum of proxy request latency | s |
+|`milvus_proxy_search_vectors_count`| Number of vector searches by the proxy | count |
+|`milvus_proxy_send_bytes_count`| Number of bytes sent by the proxy | bytes |
+|`milvus_rootcoord_collection_num`| Number of collections in the root coordinator | count |
+|`milvus_rootcoord_ddl_req_count`| Number of DDL requests in the root coordinator | count |
+|`milvus_rootcoord_ddl_req_latency_bucket`| Distribution bucket for DDL request latency in the root coordinator | s |
+|`milvus_rootcoord_ddl_req_latency_count`| Count of DDL request latency in the root coordinator | count |
+|`milvus_rootcoord_ddl_req_latency_sum`| Sum of DDL request latency in the root coordinator | s |
+|`milvus_rootcoord_entity_num`| Number of entities in the root coordinator | count |
+|`milvus_rootcoord_partition_num`| Number of partitions in the root coordinator | count |
+|`milvus_rootcoord_produce_tt_lag_ms`| Time lag in producing messages by the root coordinator | microsecond |
+|`milvus_storage_kv_size_bucket`| Distribution bucket for key-value pair sizes in Milvus storage | bytes |
+|`milvus_storage_kv_size_count`| Count of key-value pair sizes in Milvus storage | count |
+|`milvus_storage_kv_size_sum`| Sum of key-value pair sizes in Milvus storage | bytes |
+|`milvus_storage_op_count`| Number of operations in Milvus storage | count |
+|`milvus_storage_request_latency_bucket`| Distribution bucket for request latency in Milvus storage | s |
+|`milvus_storage_request_latency_count`| Count of request latency in Milvus storage | count |
+|`milvus_storage_request_latency_sum`| Sum of request latency in Milvus storage | s |
+|`milvus_num_node`| Number of nodes in Milvus | count |
+|`milvus_runtime_info`| Runtime information of Milvus | - |
+|`process_max_fds`| Maximum number of file descriptors for the process | count |
+|`process_open_fds`| Number of open file descriptors for the process | count |
+|`process_start_time_seconds`| Start time of the process | s |
+|`process_virtual_memory_bytes`| Virtual memory bytes for the process | bytes |
+|`process_virtual_memory_max_bytes`| Maximum virtual memory bytes for the process | bytes |

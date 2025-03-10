@@ -1,6 +1,7 @@
 nav:
-  - 'Get a List of Notification Objects': list.md
-  - 'Create a Notification Object': create.md
-  - 'Get a Notification Object Info': get.md
-  - 'Modify a Notification Object': modify.md
-  - 'Delete a Notification Object': delete.md
+  - 'List Notification Targets': list.md
+  - 'Create a Notification Target': create.md
+  - 'Get Notification Target Information': get.md
+  - 'Modify a Notification Target': modify.md
+  - 'Delete a Notification Target': delete.md
+  - 'Batch Delete Notification Targets': batch-delete.md

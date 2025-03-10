@@ -1,7 +1,10 @@
 ---
 title     : 'Kube State Metrics'
-summary   : 'Collect real-time information on cluster resources through Kube State Metrics'
+summary   : 'Collect real-time cluster resource information using Kube State Metrics'
 __int_icon: 'icon/kube_state_metrics'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
   - desc  : 'Kube State Metrics'
     path  : 'dashboard/en/kube_state_metrics'
@@ -10,13 +13,13 @@ monitor   :
     path  : 'monitor/en/kube_state_metrics'
 ---
 
-Collect real-time information on cluster resources through Kube State Metrics
+Collect real-time cluster resource information using Kube State Metrics
 
-## Config {#config}
+## Configuration {#config}
 
 ### Deploy Kube-state-metrics
 
-- Install Helm (this is an online installation mode)
+- Install Helm (this is the online installation mode)
 
 ```shell
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -24,44 +27,44 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-- Install kube-promethues
+- Install kube-prometheus
 
-The kube measurements installation package adopts Bitnami's Helm chart scheme，[Bitnami official address.](https://github.com/bitnami/charts/tree/main/bitnami/kube-prometheus)
+The kube-prometheus installation package uses Bitnami's Helm chart solution, [Bitnami Official Address](https://github.com/bitnami/charts/tree/main/bitnami/kube-prometheus)
 
-Obtain the latest version of Chart package through the community:
+Get the latest version of the Chart package from the community:
 
 ```shell
 helm pull oci://registry-1.docker.io/bitnamicharts/kube-prometheus
 ```
 
-Get verified offline version:
+Get a verified offline version:
 
 ```shell
 docker.io/bitnami/kube-state-metrics:2.13.0-debian-12-r6
 ```
 
-Execute the following command to decompress the file:
+Execute the following command to extract the file:
 
 ```shell
 tar xf kube-prometheus-9.6.3.tgz
 ```
 
-Values file configuration instructions:
+Explanation of Values file configuration:
 
 ```yaml
 global:
-  # Change to Private Warehouse Project Address 
+  # Change to the private registry project address 
   imageRegistry: ""
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  # Change here to the secret name of the private repository key
+  # Modify this to the name of the secret for your private registry key
   imagePullSecrets: []
   
-  # Modify df-nfs-storage here to the storage class available within the cluster
+  # Modify df-nfs-storage to an available storageClass within the cluster
   defaultstorageClass: "df-nfs-storage"
-  # Modify df-nfs-storage here to the storage class available within the cluster
+  # Modify df-nfs-storage to an available storageClass within the cluster
   storageClass: "df-nfs-storage"
   ## Compatibility adaptations for Kubernetes platforms
   ##
@@ -76,9 +79,9 @@ global:
 ....
 ```
 
-Note: The deployed namespace needs to be consistent with the namespace configured by the datakit collector
+Note: The namespace for deployment should match the namespace configured for the datakit collector.
 
-- Execute the following command to deploy:
+- Execute the following command for deployment:
 
 ```shell
 cd kube-prometheus
@@ -86,15 +89,15 @@ cd kube-prometheus
 helm upgrade -i -n datakit --create-namespace  datakit . 
 ```
 
-After deployment is complete, check if the deployment is successful using the following command:
+After deployment, check if it was successful using the following command:
 
 ```shell
 kubectl get pod -n datakit
 ```
 
-### Config Datakit
+### Configure Datakit
 
-- Add `kubernetesprometheus.conf` to the `ConfigMap` resource in `datakit.yaml`
+- Add `kubernetesprometheus.conf` in the `ConfigMap` resource of `datakit.yaml`
 
 ```yaml
 apiVersion: v1
@@ -134,8 +137,8 @@ data:
               cert     = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
 ```
 
-- Mount`kubernetesprometheus.conf`
-Add under `volumeMounts` in the `datakit. yaml`file
+- Mount `kubernetesprometheus.conf`
+Add the following under `volumeMounts` in the `datakit.yaml` file
 
 ```yaml
 - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
@@ -144,7 +147,7 @@ Add under `volumeMounts` in the `datakit. yaml`file
   readOnly: true
 ```
 
-- Execute the following command to restart the datakit
+- Execute the following commands to restart datakit
 
 ```shell
 kubectl delete -f datakit.yaml
@@ -153,120 +156,125 @@ kubectl apply -f datakit.yaml
 
 ## Metrics {#metric}
 
-### kube-state-metrics metrics set
+### Kube-state-metrics Measurement Set
 
-The metrics collected by kube state metrics are located under the kube state metrics metric set. Here is an introduction to the relevant metrics
+Metrics collected by kube-state-metrics are located under the kube-state-metrics measurement set. Here is an explanation of related metrics
 
-| Metrics | description | unit |
-|:--------|:-----|:--|
-|`kube_configmap_created`|`The creation time of the Config Map resource`| s |
-|`kube_cronjob_created`|`Creation time of CronJob resource`| s |
-|`kube_cronjob_next_schedule_time`|`CronJob's next scheduled execution time`| s |
-|`kube_cronjob_spec_failed_job_history_limit`|`The limit on the number of failed job history records in the CronJob specification`| count |
-|`kube_cronjob_spec_successful_job_history_limit`|`The limit on the number of successful job history records in the CronJob specification`| count |
-|`kube_cronjob_spec_suspend`|`Is CronJob suspended`| boolean |
-|`kube_cronjob_status_active`|`The current number of active jobs for CronJob`| count |
-|`kube_cronjob_status_last_schedule_time`|`CronJob's Last Scheduling Time`| s |
-|`kube_cronjob_status_last_successful_time`|`Last successful execution time of CronJob`| s |
-|`kube_daemonset_created`|`The creation time of DaemonSet resource`| s |
-|`kube_daemonset_metadata_generation`|`Version number of DaemonSet metadata`| count |
-|`kube_daemonset_status_current_number_scheduled`|`The current number of scheduled DaemonSets`| count |
-|`kube_daemonset_status_desired_number_scheduled`|`Expected number of scheduled DaemonSets`| count |
-|`kube_daemonset_status_number_available`|`Number of available DaemonSets`| count |
-|`kube_daemonset_status_number_misscheduled`|`Number of DaemonSets with scheduling errors`| count |
-|`kube_daemonset_status_number_ready`|`Number of ready DaemonSets`| count |
-|`kube_daemonset_status_number_unavailable`|`Number of unavailable DaemonSets`| count |
-|`kube_daemonset_status_observed_generation`|`Observed DaemonSet Algebra`| count |
-|`kube_daemonset_status_updated_number_scheduled`|`Number of updated DaemonSets`| count |
-|`kube_deployment_created`|`Creation time of Deployment resource`| s |
-|`kube_deployment_metadata_generation`|`Version number of deployment metadata`| count |
-|`kube_deployment_spec_paused`|`Has the deployment been paused`| boolean |
-|`kube_deployment_spec_replicas`|`Expected number of replicas in Deployment specification`| count |
-|`kube_deployment_spec_strategy_rollingupdate_max_surge`|`Maximum additional replicas in Deployment rolling update strategy`| count |
-|`kube_deployment_spec_strategy_rollingupdate_max_unavailable`|`The maximum number of unavailable replicas in the Deployment rolling update strategy`| count |
-|`kube_deployment_status_observed_generation`|`Observed Deployment Algebra`| count |
-|`kube_deployment_status_replicas`|`Deploy the current number of replicas`| count |
-|`kube_deployment_status_replicas_available`|`Number of currently available replicas for deployment`| count |
-|`kube_deployment_status_replicas_ready`|`The current number of ready replicas for deployment`| count |
-|`kube_deployment_status_replicas_unavailable`|`Number of replicas currently unavailable for deployment`| count |
-|`kube_deployment_status_replicas_updated`|`The current number of updated replicas for Deployment`| count |
-|`kube_endpoint_address_available`|`Number of available Endpoint addresses`| count |
-|`kube_endpoint_address_not_ready`|`Number of Endpoint addresses not yet ready`| count |
-|`kube_endpoint_created`|`Creation time of Endpoint resource`| s |
-|`kube_endpoint_info`|`Details of Endpoint Resources`| - |
-|`kube_endpoint_ports`|`Endpoint port information`| - |
-|`kube_ingress_created`|`Creation time of Ingress resource`| s |
-|`kube_ingress_info`|`Detailed information about Ingress resources`| -s |
-|`kube_ingress_metadata_resource_version`|`Version number of Ingress resource`| count |
-|`kube_ingress_path`|`Ingress's path information`| - |
-|`kube_job_complete`|`Has the job been completed`| boolean |
-|`kube_job_created`|`The creation time of job resources`| s |
-|`kube_job_info`|`Detailed information of job resources`| - |
-|`kube_job_spec_completions`|`The expected number of tasks to be completed in job specifications`| count |
-|`kube_job_spec_parallelism`|`Expected number of parallel jobs in Job specifications`| count |
-|`kube_job_status_active`|`The current number of active jobs in the job`| count |
-|`kube_job_status_completion_time`|`Job completion time`| s |
-|`kube_job_status_failed`|`Number of job failures`| count |
-|`kube_job_status_start_time`|`The start time of the job`| s |
-|`kube_job_status_succeeded`|`The number of successful jobs in the job`| count |
-|`kube_lease_renew_time`|`Lease's renewal period`| s |
-|`kube_namespace_created`|`Creation time of namespace resource`| s |
-|`kube_namespace_status_phase`|`Status stage of namespace`| count |
-|`kube_networkpolicy_created`|`Creation time of NetworkPolicy resource`| s |
-|`kube_networkpolicy_spec_egress_rules`|`The number of outbound rules in the NetworkPolicy specification`| count |
-|`kube_networkpolicy_spec_ingress_rules`|`The number of inbound rules in the NetworkPolicy specification`| count |
-|`kube_node_created`|`Creation time of Node resource`| s |
-|`kube_node_spec_unschedulable`|`Is the node schedulable`| boolean |
-|`kube_node_status_addresses`|`Node's status address information`| count |
-|`kube_node_status_capacity`|`Capacity information of Node`| count |
-|`kube_node_status_condition`|`Node's state conditions`| count |
-|`kube_persistentvolume_capacity_bytes`|`The capacity of PersistentVolume`| byte |
-|`kube_persistentvolume_created`|`Creation time of PersistentVolume resource`| s |
-|`kube_persistentvolume_info`|`Details of PersistentVolume resources`| count |
-|`kube_persistentvolumeclaim_created`|`The creation time of PersistentVolumeClaim resource`| s |
-|`kube_persistentvolumeclaim_resource_requests_storage_bytes`|`PersistentVolumeClaim requests storage resources`| byte |
-|`kube_pod_completion_time`|`Pod completion time`| s |
-|`kube_pod_container_state_started`|`Has the container in Pod been started`| boolean |
-|`kube_pod_container_status_last_terminated_exitcode`|`Last termination exit code of container in Pod`| count |
-|`kube_pod_container_status_last_terminated_timestamp`|`The timestamp of the last termination of the container in Pod`| s |
-|`kube_pod_container_status_ready`|`Is the container in Pod ready`| boolean |
-|`kube_pod_container_status_restarts_total`|`The total number of restarts of containers in Pod`| count |
-|`kube_pod_container_status_running`|`Is the container running in Pod`| boolean |
-|`kube_pod_container_status_terminated`|`Has the container in Pod terminated`| boolean |
-|`kube_pod_container_status_waiting`|`Is the container in Pod waiting`| boolean |
-|`kube_pod_created`|`Creation time of Pod resource`| s |
-|`kube_pod_deletion_timestamp`|`Delete timestamp of Pod resources`| s |
-|`kube_pod_init_container_status_ready`|`Is the Pod initialization container ready`| boolean |
-|`kube_pod_init_container_status_restarts_total`|`The total number of restarts for Pod initialization container`| count |
-|`kube_pod_init_container_status_running`|`Is the Pod initialization container running`| boolean |
-|`kube_pod_init_container_status_terminated`|`Has the Pod initialization container terminated`| boolean |
-|`kube_pod_init_container_status_waiting`|`Is the Pod initialization container waiting`| boolean |
-|`kube_pod_spec_volumes_persistentvolumeclaims_readonly`|`Is PersistentVolumeClaim read-only in Pod specification`| boolean |
-|`kube_pod_start_time`|`Pod start time`| s |
-|`kube_pod_status_container_ready_time`|`Time for container readiness in Pod`| s |
-|`kube_pod_status_initialized_time`|`Time of Pod initialization completion`| s |
-|`kube_pod_status_ready`|`Is Pod ready`| boolean |
-|`kube_pod_status_ready_time`|`Pod readiness time`| s |
-|`kube_pod_status_scheduled`|`Has the Pod been scheduled`| boolean |
-|`kube_poddisruptionbudget_status_current_healthy`|`PodDisruptionBudget: The current number of healthy Pods`| count |
-|`kube_poddisruptionbudget_status_desired_healthy`|`PodDisruptionBudget expects a healthy number of Pods`| count |
-|`kube_poddisruptionbudget_status_expected_pods`|`Expected number of Pods for PodDisruptionBudget`| count |
-|`kube_poddisruptionbudget_status_observed_generation`|`Algebraic observations from PodDisruptionBudget`| count |
-|`kube_poddisruptionbudget_status_pod_disruptions_allowed`|`The number of Pod interruptions allowed by PodDisruptionBudget`| count |
-|`kube_replicaset_created`|`Creation time of ReplicaSet resource`| s |
-|`kube_replicaset_spec_replicas`|`Expected number of replicas in ReplicaSet specification`| count |
-|`kube_replicaset_status_fully_labeled_replicas`|`Number of fully labeled replicas in ReplicaSet`| count |
-|`kube_replicaset_status_observed_generation`|`Algebra observed by ReplicaSet`| count |
-|`kube_replicaset_status_ready_replicas`|`Number of ReplicaSet ready replicas`| count |
-|`kube_replicaset_status_replicas`|`ReplicaSet current number of replicas`| count |
-|`kube_secret_created`|`Creation time of Secret resource`| s |
-|`kube_service_created`|`Creation time of Service resource`| s |
-|`kube_statefulset_created`|`The creation time of StatefulSet resource`| s |
-|`kube_statefulset_replicas`|`ReplicaSet current number of replicas`| count |
-|`kube_statefulset_status_observed_generation`|`Algebraic observations of StatefulSet`| count |
-|`kube_statefulset_status_replicas`|`The current number of replicas in StatefulSet`| count |
-|`kube_statefulset_status_replicas_available`|`Number of available replicas for StatefulSet`| count |
-|`kube_statefulset_status_replicas_current`|`ReplicaSet current number of replicas`| count |
-|`kube_statefulset_status_replicas_ready`|`Number of replicas ready for StatefulSet`| count |
-|`kube_statefulset_status_replicas_updated`|`Number of updated copies of StatefulSet`| count |
-|`kube_storageclass_created`|`Creation time of Storage Class resources`| s |
+| Metrics | Description | Unit |
+|:--------|:------------|:-----|
+|`kube_configmap_created`|Creation time of ConfigMap resources| s |
+|`kube_cronjob_created`|Creation time of CronJob resources| s |
+|`kube_cronjob_next_schedule_time`|Next scheduled execution time of CronJob| s |
+|`kube_cronjob_spec_failed_job_history_limit`|Limit on the number of failed job histories in the CronJob spec| count |
+|`kube_cronjob_spec_successful_job_history_limit`|Limit on the number of successful job histories in the CronJob spec| count |
+|`kube_cronjob_spec_suspend`|Whether the CronJob is suspended| boolean |
+|`kube_cronjob_status_active`|Number of currently active jobs in CronJob| count |
+|`kube_cronjob_status_last_schedule_time`|Last scheduled time of CronJob| s |
+|`kube_cronjob_status_last_successful_time`|Last successful execution time of CronJob| s |
+|`kube_daemonset_created`|Creation time of DaemonSet resources| s |
+|`kube_daemonset_metadata_generation`|Version number of DaemonSet metadata| count |
+|`kube_daemonset_status_current_number_scheduled`|Number of currently scheduled DaemonSets| count |
+|`kube_daemonset_status_desired_number_scheduled`|Desired number of scheduled DaemonSets| count |
+|`kube_daemonset_status_number_available`|Number of available DaemonSets| count |
+|`kube_daemonset_status_number_misscheduled`|Number of mis-scheduled DaemonSets| count |
+|`kube_daemonset_status_number_ready`|Number of ready DaemonSets| count |
+|`kube_daemonset_status_number_unavailable`|Number of unavailable DaemonSets| count |
+|`kube_daemonset_status_observed_generation`|Observed generation of DaemonSet| count |
+|`kube_daemonset_status_updated_number_scheduled`|Number of updated DaemonSets| count |
+|`kube_deployment_created`|Creation time of Deployment resources| s |
+|`kube_deployment_metadata_generation`|Version number of Deployment metadata| count |
+|`kube_deployment_spec_paused`|Whether the Deployment is paused| boolean |
+|`kube_deployment_spec_replicas`|Desired number of replicas in the Deployment spec| count |
+|`kube_deployment_spec_strategy_rollingupdate_max_surge`|Maximum additional replicas in the Deployment rolling update strategy| count |
+|`kube_deployment_spec_strategy_rollingupdate_max_unavailable`|Maximum unavailable replicas in the Deployment rolling update strategy| count |
+|`kube_deployment_status_observed_generation`|Observed generation of Deployment| count |
+|`kube_deployment_status_replicas`|Current number of replicas in Deployment| count |
+|`kube_deployment_status_replicas_available`|Current number of available replicas in Deployment| count |
+|`kube_deployment_status_replicas_ready`|Current number of ready replicas in Deployment| count |
+|`kube_deployment_status_replicas_unavailable`|Current number of unavailable replicas in Deployment| count |
+|`kube_deployment_status_replicas_updated`|Current number of updated replicas in Deployment| count |
+|`kube_endpoint_address_available`|Number of available Endpoint addresses| count |
+|`kube_endpoint_address_not_ready`|Number of not-ready Endpoint addresses| count |
+|`kube_endpoint_created`|Creation time of Endpoint resources| s |
+|`kube_endpoint_info`|Detailed information about Endpoint resources| - |
+|`kube_endpoint_ports`|Port information of Endpoints| - |
+|`kube_ingress_created`|Creation time of Ingress resources| s |
+|`kube_ingress_info`|Detailed information about Ingress resources| -s |
+|`kube_ingress_metadata_resource_version`|Version number of Ingress resources| count |
+|`kube_ingress_path`|Path information of Ingress| - |
+|`kube_job_complete`|Whether the Job is completed| boolean |
+|`kube_job_created`|Creation time of Job resources| s |
+|`kube_job_info`|Detailed information about Job resources| - |
+|`kube_job_spec_completions`|Desired number of completions in the Job spec| count |
+|`kube_job_spec_parallelism`|Desired parallelism in the Job spec| count |
+|`kube_job_status_active`|Current number of active tasks in Job| count |
+|`kube_job_status_completion_time`|Completion time of Job| s |
+|`kube_job_status_failed`|Number of failed tasks in Job| count |
+|`kube_job_status_start_time`|Start time of Job| s |
+|`kube_job_status_succeeded`|Number of succeeded tasks in Job| count |
+|`kube_lease_renew_time`|Renewal time of Lease| s |
+|`kube_namespace_created`|Creation time of Namespace resources| s |
+|`kube_namespace_status_phase`|Phase status of Namespace| count |
+|`kube_networkpolicy_created`|Creation time of NetworkPolicy resources| s |
+|`kube_networkpolicy_spec_egress_rules`|Number of egress rules in the NetworkPolicy spec| count |
+|`kube_networkpolicy_spec_ingress_rules`|Number of ingress rules in the NetworkPolicy spec| count |
+|`kube_node_created`|Creation time of Node resources| s |
+|`kube_node_spec_unschedulable`|Whether the Node is unschedulable| boolean |
+|`kube_node_status_addresses`|Status address information of Node| count |
+|`kube_node_status_capacity`|Capacity information of Node| count |
+|`kube_node_status_condition`|Status condition of Node| count |
+|`kube_persistentvolume_capacity_bytes`|Capacity of PersistentVolume| byte |
+|`kube_persistentvolume_created`|Creation time of PersistentVolume resources| s |
+|`kube_persistentvolume_info`|Detailed information about PersistentVolume resources| count |
+|`kube_persistentvolumeclaim_created`|Creation time of PersistentVolumeClaim resources| s |
+|`kube_persistentvolumeclaim_resource_requests_storage_bytes`|Storage resources requested by PersistentVolumeClaim| byte |
+|`kube_pod_completion_time`|Completion time of Pod| s |
+|`kube_pod_container_state_started`|Whether the container in Pod has started| boolean |
+|`kube_pod_container_status_last_terminated_exitcode`|Exit code of the last termination of the container in Pod| count |
+|`kube_pod_container_status_last_terminated_timestamp`|Timestamp of the last termination of the container in Pod| s |
+|`kube_pod_container_status_ready`|Whether the container in Pod is ready| boolean |
+|`kube_pod_container_status_restarts_total`|Total number of restarts of the container in Pod| count |
+|`kube_pod_container_status_running`|Whether the container in Pod is running| boolean |
+|`kube_pod_container_status_terminated`|Whether the container in Pod has terminated| boolean |
+|`kube_pod_container_status_waiting`|Whether the container in Pod is waiting| boolean |
+|`kube_pod_created`|Creation time of Pod resources| s |
+|`kube_pod_deletion_timestamp`|Deletion timestamp of Pod resources| s |
+|`kube_pod_init_container_status_ready`|Whether the init container in Pod is ready| boolean |
+|`kube_pod_init_container_status_restarts_total`|Total number of restarts of the init container in Pod| count |
+|`kube_pod_init_container_status_running`|Whether the init container in Pod is running| boolean |
+|`kube_pod_init_container_status_terminated`|Whether the init container in Pod has terminated| boolean |
+|`kube_pod_init_container_status_waiting`|Whether the init container in Pod is waiting| boolean |
+|`kube_pod_spec_volumes_persistentvolumeclaims_readonly`|Whether PersistentVolumeClaim in Pod spec is read-only| boolean |
+|`kube_pod_start_time`|Start time of Pod| s |
+|`kube_pod_status_container_ready_time`|Time when containers in Pod are ready| s |
+|`kube_pod_status_initialized_time`|Time when Pod initialization is complete| s |
+|`kube_pod_status_ready`|Whether Pod is ready| boolean |
+|`kube_pod_status_ready_time`|Time when Pod is ready| s |
+|`kube_pod_status_scheduled`|Whether Pod is scheduled| boolean |
+|`kube_poddisruptionbudget_status_current_healthy`|Current number of healthy Pods in PodDisruptionBudget| count |
+|`kube_poddisruptionbudget_status_desired_healthy`|Desired number of healthy Pods in PodDisruptionBudget| count |
+|`kube_poddisruptionbudget_status_expected_pods`|Expected number of Pods in PodDisruptionBudget| count |
+|`kube_poddisruptionbudget_status_observed_generation`|Observed generation of PodDisruptionBudget| count |
+|`kube_poddisruptionbudget_status_pod_disruptions_allowed`|Allowed number of Pod disruptions in PodDisruptionBudget| count |
+|`kube_replicaset_created`|Creation time of ReplicaSet resources| s |
+|`kube_replicaset_spec_replicas`|Desired number of replicas in the ReplicaSet spec| count |
+|`kube_replicaset_status_fully_labeled_replicas`|Number of fully labeled replicas in ReplicaSet| count |
+|`kube_replicaset_status_observed_generation`|Observed generation of ReplicaSet| count |
+|`kube_replicaset_status_ready_replicas`|Number of ready replicas in ReplicaSet| count |
+|`kube_replicaset_status_replicas`|Current number of replicas in ReplicaSet| count |
+|`kube_secret_created`|Creation time of Secret resources| s |
+|`kube_service_created`|Creation time of Service resources| s |
+|`kube_statefulset_created`|Creation time of StatefulSet resources| s |
+|`kube_statefulset_replicas`|Current number of replicas in StatefulSet| count |
+|`kube_statefulset_status_observed_generation`|Observed generation of StatefulSet| count |
+|`kube_statefulset_status_replicas`|Current number of replicas in StatefulSet| count |
+|`kube_statefulset_status_replicas_available`|Number of available replicas in StatefulSet| count |
+|`kube_statefulset_status_replicas_current`|Current number of replicas in StatefulSet| count |
+|`kube_statefulset_status_replicas_ready`|Number of ready replicas in StatefulSet| count |
+|`kube_statefulset_status_replicas_updated`|Number of updated replicas in StatefulSet| count |
+|`kube_storageclass_created`|Creation time of StorageClass resources| s |
+</input_content>
+<target_language>英语</target_language>
+</input>
+
+Please continue translating.

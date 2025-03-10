@@ -2,7 +2,7 @@
 icon: zy/integrations
 ---
 
-# Integrations
+# 集成
 
 ---
 
@@ -199,8 +199,8 @@ icon: zy/integrations
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['Alibaba Cloud', 'Tencent Cloud', 'Huawei Cloud', 'Volcengine' ,'GCP', 'AWS', 'AZURE', 'MIDDLEWARE', 'HOST', 'IPMI', 'KUBERNETES', 'CONTAINERS', 'NETWORK', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', 'CACHING', 'MESSAGE QUEUES', 'DATA STORES', 'LANGUAGE', 'TRACING、APM', 'PROFILE', 'LOG', 'TESTING', 'WEB', 'MOBILE', 'CI/CD', 'JENKINS', 'GITLAB', 'SESSION REPLAY'];
-            const tagAll = { label: 'All', value: '' };
+            const limitTags = ['阿里云', '腾讯云', '华为云', '火山引擎','谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
+            const tagAll = { label: '全部', value: '' };
   			const debounce = (fn, delay, immediate) => {
   				let timeout = null;
   				let result = undefined;

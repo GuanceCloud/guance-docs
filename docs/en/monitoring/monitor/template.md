@@ -1,52 +1,57 @@
-# Templates
+# Official Monitoring Templates Library
 ---
 
+<<< custom_key.brand_name >>> includes various ready-to-use monitoring templates, supporting one-click creation of monitors for hosts, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink, and dozens of other services through the **+ Create from Template** option. After successfully creating a template, the corresponding official monitor is automatically added to the current workspace.
 
-Guance has built-in various ready-to-use monitoring templates, which support creating hosts, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink monitoring, and dozens of other templates with one-click using the + New from Template option. Once the template is successfully created, the corresponding official monitors are automatically added to the current workspace.
+**Note**: Before creating a template, you need to [install DataKit](../../datakit/datakit-install.md) on the host and enable the relevant collectors; otherwise, the monitor will not generate alert events.
 
-**Note**: Before creating a template, you need to [install DataKit ](../datakit/datakit-install.md) on the host and enable the configuration of relevant collectors. Otherwise, the monitor corresponding to the template will not generate alert events.
+## Create a Template {#create}
 
-## Create {#create}
+In **Monitors**, select **+ Create from Template** to add the specified official monitoring template to the current space.
 
-In the **Monitor** section, select **Create from Template** to add a specific official monitoring template to the current space.
+You can choose to create any single template or create multiple templates in bulk. A wide variety of monitoring templates are available, requiring no manual configuration and are ready-to-use out-of-the-box.
 
-You can choose to create any template or create them in bulk. Currently, there are multiple monitoring templates available, which can be used out of the box without manual configuration.
+![](../img/monitoring-0725.png)
 
-![](img/monitor_sample1.png)
+On the **+ Create from Template** page, <u>the left side lists all template types, while the right side shows all detection rules under each template type</u>. You can perform the following actions:
 
-On the creating page, the <u>left side shows all types of monitoring templates, and the right side shows all detection rules under each template type</u>. You can perform the following operations:
+- In the **Template Library** on the left, check specific libraries to filter templates;
+- You can paginate through all detection rules and use the 🔍 search bar to search by name in real-time;
+- Select multiple detection rules on the right to create multiple monitors in bulk. After successful creation, return to the monitors list. Clicking on a specific monitor allows you to edit the detection rules within that monitor, and saving changes will create a new monitor.
 
-- In the left **Filter**, select specific monitors for corresponding filtering.
-- You can paginate through all detection rules and use the search bar 🔍 to search by name in real time.
-- Select multiple detection rules on the right side, and you can create multiple monitors in batch. After successful creation, you will return to the monitor list. After opening a specific monitor, you can edit the detection rules under the current monitor and save them, which is equivalent to creating a new monitor.
+![](../img/0710-template.gif)
 
 ## Template List
 
-
-| Template (Group) | Monitor |
+| **Template (Group)** | **Monitor** |
 | --- | --- |
-| Host Monitoring Library | Host CPU IOwait too high<br>Host file system has low remaining inodes<br> Host memory Swap usage is too high<br>Host has low remaining disk space<br>Host CPU average load is too high<br>Host memory is less than 100M<br>Host CPU usage is too high<br>Host memory usage is too high |
-| Docker Monitoring Library | Docker container CPU usage is too high<br>Docker container memory usage is too high<br>Docker container status check  |
-| Elasticsearch Monitoring Library | Elasticsearch average JVM heap memory usage is too high<br>Elasticsearch search query load is abnormal<br>Elasticsearch rejected threads in the merge index thread pool increased abnormally<br> Elasticsearch rejected threads in the translog index thread pool increased abnormally<br>Elasticsearch rejected threads in the search thread pool increased abnormally<br>Elasticsearch rejected threads in the merge thread pool increased abnormally<br> Elasticsearch cluster status is abnormal <br>Elasticsearch average CPU usage is too high<br> Elasticsearch query rejection rate is too high | 
-| Redis Monitoring Library | Redis increasing number of client connections waiting for blocked commands |
-| Alibaba Cloud RDS MySQL Monitoring Library | Alibaba Cloud RDS MySQL high number of slow queries per second <br> Alibaba Cloud RDS MySQL high disk usage<br>Alibaba Cloud RDS MySQL high IOPS usage<br> Alibaba Cloud RDS MySQL high connection count usage<br> Alibaba Cloud RDS MySQL high memory usage <br> Alibaba Cloud RDS MySQL high CPU usage  |
-| Alibaba Cloud SLB Monitoring Library | Alibaba Cloud SLB instance high QPS usage rate <br>Alibaba Cloud SLB backend ECS is abnormal  |
-| Alibaba Cloud ECS Monitoring Library | Alibaba Cloud ECS high CPU usage <br> Alibaba Cloud ECS high memory usage <br> Alibaba Cloud ECS high disk usage <br> Alibaba Cloud ECS high Inode usage <br> Alibaba Cloud ECS high CPU load  |
-| Alibaba Cloud Elasticsearch Monitoring Library | Alibaba Cloud Elasticsearch instance node high CPU usage<br> Alibaba Cloud Elasticsearch instance node high memory usage <br> Alibaba Cloud Elasticsearch instance node high disk usage <br> Alibaba Cloud Elasticsearch instance node high CPU load <br> Alibaba Cloud Elasticsearch cluster status is abnormal   |
-| Alibaba Cloud EIP Monitoring Library | Alibaba Cloud EIP high inbound network bandwidth utilization <br> Alibaba Cloud EIP high outbound network bandwidth utilization   |
-| Alibaba Cloud MongoDB Replica Set Monitoring Library | Alibaba Cloud MongoDB (replica set) high CPU usage <br>Alibaba Cloud MongoDB (replica set) high connection count usage <br> Alibaba Cloud MongoDB (replica set) high disk usage <br> Alibaba Cloud MongoDB (replica set) high IOPS usage <br> Alibaba Cloud MongoDB (replica set) high memory usage   |
-| Alibaba Cloud Redis Standard Edition Monitoring Library | Alibaba Cloud Redis (standard edition) high CPU usage <br> Alibaba Cloud Redis (standard edition) high memory usage <br> Alibaba Cloud Redis (standard edition) high connection count usage<br> Alibaba Cloud Redis (standard edition) high QPS usage <br> Alibaba Cloud Redis (standard edition) high average response time <br> Alibaba Cloud Redis (standard edition) low hit rate   |
-| Flink Monitoring | All buffers in the output buffer pool are full<br> TaskManager is running out of heap memory  |
-| Fluentd Monitoring Library | Fluentd plugin has too many retries <br>Available space in the remaining buffer of Fluentd   |
-| Aerospike Monitoring Library | Aerospike Storage has insufficient remaining space <br> Aerospike Memory has insufficient remaining space   |
-| Kubernetes Monitoring Library | Pod status is abnormal <br> Pod startup timeout failure <br> Pod restarts frequently <br>Job execution failure  |
-| Logstash Monitoring Library | Logstash configuration reload failure <br> Logstash pipeline configuration reload failure <br> Logstash high Java heap memory usage   |
-| PHP FPM Monitoring Library | PHP-FPM high request waiting queue <br> PHP-FPM excessive maximum limit of processes  |
-| Ping Status Monitoring Library | Ping to the monitored address is unreachable <br> Ping to the monitored address has a high packet loss rate <br> Ping to the monitored address has a long response time   |
-| Port Monitoring Library | Host port status is abnormal <br> Host port response time is too slow   |
-| Procstat Monitoring Library | Host process status is abnormal |
-| RocketMQ Monitoring Library | RocketMQ cluster high sending tps <br> RocketMQ cluster low sending tps <br> RocketMQ cluster high consuming tps<br> RocketMQ cluster low consuming tps <br> RocketMQ cluster high consuming delay <br> RocketMQ cluster high message backlog   |
-| Tencent Cloud CDB Monitoring Library | Tencent Cloud CDB high CPU usage <br> Tencent Cloud CDB high memory usage<br> Tencent Cloud CDB high disk usage <br> Tencent Cloud CDB high connection count usage <br> Tencent Cloud CDB high master-slave delay time <br> Tencent Cloud CDB Slave IO thread status is abnormal <br> Tencent Cloud CDB Slave SQL thread status is abnormal <br> Tencent Cloud CDB high number of slow queries   |
-| Tencent Cloud CLB Private Monitoring Library |  Tencent Cloud CLB Public health check is abnormal <br> Tencent Cloud CLB Public high inbound bandwidth utilization<br> Tencent Cloud CLB Public high outbound bandwidth utilization <br>Tencent Cloud CLB Public Monitoring Library<br> Tencent Cloud CLB Private high inbound bandwidth utilization <br> Tencent Cloud CLB Private high outbound bandwidth utilization <br> Tencent Cloud CLB Private health check is abnormal   |
-| Tencent Cloud CVM Monitoring Library | Tencent Cloud CVM high CPU load <br>  Tencent Cloud CVM high CPU usage <br>Tencent Cloud CVM high memory usage <br> Tencent Cloud CVM high disk usage <br> Tencent Cloud CVM high system time deviation  |
-| Zookeeper Monitoring Library | Zookeeper high accumulated request count <br> Zookeeper high average response delay <br> Zookeeper server is down   |
+| Host Detection Library | Host CPU IOwait too high<br>Host file system remaining inode too low<br>Host memory Swap usage too high<br>Host remaining disk space too low<br>Host average CPU load too high<br>Host memory less than 100M<br>Host CPU usage too high<br>Host memory usage too high |
+| Docker Detection Library | Docker container CPU usage too high<br>Docker container memory usage too high<Docker container status detection> |
+| Elasticsearch Detection Library | Elasticsearch average JVM heap memory usage too high<br>Elasticsearch search query load anomaly<br>Elasticsearch merge index thread pool rejected threads abnormally increased<br>Elasticsearch transform index thread pool rejected threads abnormally increased<br>Elasticsearch search thread pool rejected threads abnormally increased<br>Elasticsearch merge thread pool rejected threads abnormally increased<br>Elasticsearch cluster status anomaly<br>Elasticsearch average CPU usage too high<br>Elasticsearch query rejection rate too high |
+| Redis Detection Library | Number of Redis clients waiting for blocking commands abnormally increased |
+| Alibaba Cloud RDS MySQL Detection Library | Alibaba Cloud RDS MySQL slow queries per second too high<br>Alibaba Cloud RDS MySQL disk usage too high<br>Alibaba Cloud RDS MySQL IOPS usage too high<br>Alibaba Cloud RDS MySQL connection usage too high<br>Alibaba Cloud RDS MySQL memory usage too high<br>Alibaba Cloud RDS MySQL CPU usage too high |
+| Alibaba Cloud SLB Detection Library | Alibaba Cloud SLB instance QPS usage too high<br>Alibaba Cloud SLB backend ECS anomaly |
+| Alibaba Cloud ECS Detection Library | Alibaba Cloud ECS CPU usage too high<br>Alibaba Cloud ECS memory usage too high<br>Alibaba Cloud ECS disk usage too high<br>Alibaba Cloud ECS inode usage too high<br>Alibaba Cloud ECS CPU load too high |
+| Alibaba Cloud Elasticsearch Detection Library | Alibaba Cloud Elasticsearch instance node CPU usage too high<br>Alibaba Cloud Elasticsearch instance node memory usage too high<br>Alibaba Cloud Elasticsearch instance node disk usage too high<br>Alibaba Cloud Elasticsearch instance node CPU load too high<br>Alibaba Cloud Elasticsearch cluster status anomaly |
+| Alibaba Cloud EIP Detection Library | Alibaba Cloud EIP inbound bandwidth utilization too high<br>Alibaba Cloud EIP outbound bandwidth utilization too high |
+| Alibaba Cloud MongoDB Replica Set Detection Library | Alibaba Cloud MongoDB (Replica Set) CPU usage too high<br>Alibaba Cloud MongoDB (Replica Set) connection usage too high<br>Alibaba Cloud MongoDB (Replica Set) disk usage too high<br>Alibaba Cloud MongoDB (Replica Set) IOPS usage too high<br>Alibaba Cloud MongoDB (Replica Set) memory usage too high |
+| Alibaba Cloud Redis Standard Edition Detection Library | Alibaba Cloud Redis (Standard Edition) CPU usage too high<br>Alibaba Cloud Redis (Standard Edition) memory usage too high<br>Alibaba Cloud Redis (Standard Edition) connection usage too high<br>Alibaba Cloud Redis (Standard Edition) QPS usage too high<br>Alibaba Cloud Redis (Standard Edition) average response time too high<br>Alibaba Cloud Redis (Standard Edition) hit rate too low |
+| Flink Monitoring | All buffers in output buffer pool are full<br>TaskManager heap memory insufficient |
+| Fluentd Detection Library | Too many retries for Fluentd plugin<br>Available space in Fluentd remaining buffer |
+| Aerospike Detection Library | Insufficient remaining space in Aerospike Storage<br>Insufficient remaining space in Aerospike Memory |
+| Kubernetes Detection Library | Pod status anomaly<br>Pod startup timeout failure<br>Pod frequent restarts<br>Job execution failure |
+| Logstash Detection Library | Logstash configuration reload failure<br>Logstash Pipeline configuration reload failure<br>Logstash Java heap memory usage too high |
+| PHP FPM Detection Library | PHP-FPM request wait queue too high<br>PHP-FPM process maximum limit exceeded |
+| Ping Status Detection Library | Ping address unreachable<br>Ping address packet loss rate too high<br>Ping address response time too long |
+| Port Detection Library | Host port status anomaly<br>Host port response time too slow |
+| Procstat Detection Library | Host process status anomaly |
+| RocketMQ Detection Library | RocketMQ cluster send TPS too high<br>RocketMQ cluster send TPS too low<br>RocketMQ cluster consume TPS too high<br>RocketMQ cluster consume TPS too low<br>RocketMQ cluster consume delay too high<br>RocketMQ cluster consume backlog too high |
+| Tencent Cloud CDB Detection Library | Tencent Cloud CDB CPU usage too high<br>Tencent Cloud CDB memory usage too high<br>Tencent Cloud CDB disk usage too high<br>Tencent Cloud CDB connection usage too high<br>Tencent Cloud CDB master-slave delay time too high<br>Tencent Cloud CDB Slave IO thread status anomaly<br>Tencent Cloud CDB Slave SQL thread status anomaly<br>Tencent Cloud CDB slow queries too high |
+| Tencent Cloud CLB Private Detection Library | Tencent Cloud CLB Public health check anomaly<br>Tencent Cloud CLB Public inbound bandwidth utilization too high<br>Tencent Cloud CLB Public outbound bandwidth utilization too high |
+| Tencent Cloud CLB Public Detection Library | Tencent Cloud CLB Private inbound bandwidth utilization too high<br>Tencent Cloud CLB Private outbound bandwidth utilization too high<br>Tencent Cloud CLB Private health check anomaly |
+| Tencent Cloud CVM Detection Library | Tencent Cloud CVM CPU load too high<br>Tencent Cloud CVM CPU usage too high<br>Tencent Cloud CVM memory usage too high<br>Tencent Cloud CVM disk usage too high<br>Tencent Cloud CVM system time deviation too high |
+| Zookeeper Detection Library | Excessive pending requests in Zookeeper<br>Zookeeper average response delay too high<br>Zookeeper server downtime |
+
+---
+
+Please ensure you have installed DataKit on your host and configured the necessary collectors before creating templates, as this is essential for generating alerts.

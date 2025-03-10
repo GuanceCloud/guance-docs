@@ -1,39 +1,39 @@
 ---
-title: 'Guance Exception Tracking (issue) - Feishu'
-summary: 'Guance anomaly tracking is integrated with Feishu depth, making it convenient to send anomaly tracking information to Feishu, reply through Feishu, and send it back to the Guance'
+title: 'Incident - Lark'
+summary: 'Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance'
 __int_icon: 'icon/feishu'
 dashboard:
-  - desc: 'No'
+  - desc: 'None'
     path: ''
 monitor:
-  - desc: 'No'
+  - desc: 'None'
     path: ''
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Guance Exception Tracking (issue) - Feishu
+# Incident - Lark
 <!-- markdownlint-enable -->
 
-Guance anomaly tracking is integrated with Feishu depth, making it convenient to send anomaly tracking information to Feishu, reply through Feishu, and send it back to the Guance.
+Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance.
 
 ---
 
 ## Configuration {#config}
 
-### Precondition {#reqirement}
+### Prerequisites
 
-Require management permissions for the [Guance workspace] and the [Feishu Open Platform].
+You need administrative permissions for both the "Guance Workspace" and the "Lark Open Platform".
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically,Please continue with the script installation
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
+> We recommend deploying the GSE version.
 
-### Installation script
+### Install Script
 
-In the script market, install the corresponding collection script: "Guance Integration (Guance Exception Tracking - Feishu)" (ID: 'guiance_issue_feishu') to activate.
+In the script market, install the corresponding collection script: "Guance Integration (Guance Incident - Lark)" (ID: `guance_issue_feishu`) to enable it.
 
-For the convenience of document maintenance, please redirect to [Feishu Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-feishu-integration/){:target="_blank"} Perform the operation.
-
+For easier maintenance of the documentation, please navigate to [Lark Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-feishu-integration/){:target="_blank"} for operation.

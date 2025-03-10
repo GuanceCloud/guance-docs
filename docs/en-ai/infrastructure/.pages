@@ -1,8 +1,0 @@
-nav:
-  - index.md
-  - 'Data Collection': data-collection.md
-  - 'Host': host.md
-  - 'Container': container.md
-  - 'Process': process.md
-  - 'Network': network.md
-  - 'Resource Catalog': custom

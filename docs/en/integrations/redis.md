@@ -1,9 +1,9 @@
 ---
 title     : 'Redis'
-summary   : 'Collect Redis metrics and logs'
+summary   : 'Redis Metrics and Log Collection'
 tags:
-  - 'CACHING'
-  - 'MIDDLEWARE'
+  - 'Cache'
+  - 'Middleware'
 __int_icon      : 'icon/redis'
 dashboard :
   - desc  : 'Redis'
@@ -13,22 +13,21 @@ monitor:
     path: 'monitor/en/redis'
 ---
 
-
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Redis indicator collector, which collects the following data:
+Redis metrics collector gathers the following data:
 
-- Turn on AOF data persistence and collect relevant metrics
+- When AOF data persistence is enabled, related metrics will be collected.
 - RDB data persistence metrics
 - Slow Log monitoring metrics
 - Big Key scan monitoring
-- Master-slave replication
+- Master-slave Replication
 
 ## Configuration {#config}
 
-Already tested version:
+Tested versions:
 
 - [x] 7.0.11
 - [x] 6.2.12
@@ -36,29 +35,24 @@ Already tested version:
 - [x] 5.0.14
 - [x] 4.0.14
 
-### Precondition {#reqirement}
+### Prerequisites {#reqirement}
 
-- Redis version v5.0+
-
-When collecting data under the master-slave architecture, please configure the host information of the slave node or master node for data collection, and you can get the different metric information related to the master-slave.
-
-Create Monitor User (**optional**)
-
-redis6.0+ goes to the `redis-cli` command line, create the user and authorize
+- When collecting data in a master-slave architecture, configure the host information of the slave node or master node for data collection to obtain different master-slave related metrics.
+- Create a monitoring user (**optional**): For Redis 6.0+, enter `redis-cli` command line and create a user with authorization:
 
 ```sql
 ACL SETUSER username >password
 ACL SETUSER username on +@dangerous +ping
 ```
 
-- goes to the `redis-cli` command line, authorization statistics `hotkey/bigkey` information
+- Authorize statistics for `hotkey/bigkey` information, enter `redis-cli` command line:
 
 ```sql
 CONFIG SET maxmemory-policy allkeys-lfu
 ACL SETUSER username on +get +@read +@connection +@keyspace ~*
 ```
 
-- collect hotkey & `bigkey` remote, need install redis-cli (collect local need not install it)
+- Remote collection of hotkey & `bigkey` requires installing `redis-cli` (when collecting locally, `redis-server` already includes `redis-cli`):
 
 ```shell
 # ubuntu 
@@ -73,7 +67,7 @@ yum install -y  redis
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `redis.conf.sample` and name it `redis.conf`. Examples are as follows:
+    Enter the `conf.d/db` directory under the DataKit installation directory, copy `redis.conf.sample` and rename it to `redis.conf`. Example configuration as follows:
     
     ```toml
         
@@ -115,19 +109,19 @@ yum install -y  redis
       # redis_cli_path = "/usr/bin/redis-cli"
     
       ## @param hotkey - boolean - optional - default: false
-      ## If you collet hotkey, set this to true
+      ## If you collect hotkey, set this to true
       # hotkey = false
     
       ## @param bigkey - boolean - optional - default: false
-      ## If you collet bigkey, set this to true
+      ## If you collect bigkey, set this to true
       # bigkey = false
     
       ## @param key_interval - number - optional - default: 5m
-      ## Interval of collet hotkey & bigkey
+      ## Interval of collect hotkey & bigkey
       # key_interval = "5m"
     
       ## @param key_timeout - number - optional - default: 5m
-      ## Timeout of collet hotkey & bigkey
+      ## Timeout of collect hotkey & bigkey
       # key_timeout = "5m"
     
       ## @param key_scan_sleep - string - optional - default: "0.1"
@@ -196,36 +190,36 @@ yum install -y  redis
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
 ---
 
 ???+ attention
 
-    If it is Alibaba Cloud Redis and the corresponding username and PASSWORD are set, the `<PASSWORD>` should be set to `your-user:your-password`, such as `datakit:Pa55W0rd`.
+    If using Alibaba Cloud Redis and setting corresponding username and password, `<PASSWORD>` in the conf should be set to `your-user:your-password`, like `datakit:Pa55W0rd`
 <!-- markdownlint-enable -->
 
 ### Log Collection Configuration {#logging-config}
 
-To collect Redis logs, you need to open the log file `redis.config` output configuration in Redis:
+To collect Redis logs, you need to enable log file output configuration in Redis `redis.config`:
 
 ```toml
 [inputs.redis.log]
-    # Log path needs to be filled with absolute path
+    # Log paths require absolute paths
     files = ["/var/log/redis/*.log"]
 ```
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    When configuring log collection, you need to install the DataKit on the same host as the Redis service, or otherwise mount the log on the DataKit machine.
-    
-    In K8s, Redis logs can be exposed to stdout, and DataKit can automatically find its corresponding log.
+    When configuring log collection, DataKit needs to be installed on the same host as the Redis service, or use other methods to mount logs to the machine where DataKit is located.
+
+    In K8s, you can expose Redis logs to stdout, and DataKit can automatically find the corresponding logs.
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
-<!-- markdownlint-disable MD009 -->
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.redis.tags]` if needed:
+
+All data collected below will append global election tags by default, or specify other tags through `[inputs.redis.tags]` in the configuration:
 
 ``` toml
  [inputs.redis.tags]
@@ -261,7 +255,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -273,7 +267,7 @@ For all of the following data collections, the global election tags will added a
 |`id`|Unique 64-bit client ID.|float|count|
 |`idle`|Idle time of the connection in seconds|float|s|
 |`multi`|Number of commands in a MULTI/EXEC context.|float|count|
-|`multi_mem`|Memory is used up by buffered multi commands. Added in Redis 7.0.|float|count|
+|`multi_mem`|Memory used up by buffered multi commands. Added in Redis 7.0.|float|count|
 |`obl`|Output buffer length.|float|count|
 |`oll`|Output list length (replies are queued in this list when the buffer is full).|float|count|
 |`omem`|Output buffer memory usage.|float|count|
@@ -284,7 +278,8 @@ For all of the following data collections, the global election tags will added a
 |`resp`|Client RESP protocol version. Added in Redis 7.0.|float|count|
 |`ssub`|Number of shard channel subscriptions. Added in Redis 7.0.3.|float|count|
 |`sub`|Number of channel subscriptions|float|count|
-|`tot_mem`|Total memory consumed by this client in its various buffers.|float|count| 
+|`tot_mem`|Total memory consumed by this client in its various buffers.|float|count|
+
 
 
 
@@ -303,12 +298,12 @@ For all of the following data collections, the global election tags will added a
 |`server_addr`|Server addr|
 |`service_name`|Service name|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during fail overs.|float|-|
+|`cluster_current_epoch`|The local Current Epoch variable. This is used in order to create unique increasing version numbers during failovers.|float|-|
 |`cluster_known_nodes`|The total number of known nodes in the cluster, including nodes in HANDSHAKE state that may not currently be proper members of the cluster.|float|count|
 |`cluster_my_epoch`|The Config Epoch of the node we are talking with. This is the current configuration version assigned to this node.|float|-|
 |`cluster_size`|The number of master nodes serving at least one hash slot in the cluster.|float|count|
@@ -341,7 +336,8 @@ For all of the following data collections, the global election tags will added a
 |`cluster_stats_messages_sent`|Number of messages sent via the cluster node-to-node binary bus.|float|count|
 |`cluster_stats_messages_update_received`|Another node slots configuration.|float|count|
 |`cluster_stats_messages_update_sent`|Another node slots configuration.|float|count|
-|`total_cluster_links_buffer_limit_exceeded`|Accumulated count of cluster links freed due to exceeding the `cluster-link-sendbuf-limit` configuration.|float|count| 
+|`total_cluster_links_buffer_limit_exceeded`|Accumulated count of cluster links freed due to exceeding the `cluster-link-sendbuf-limit` configuration.|float|count|
+
 
 
 
@@ -361,7 +357,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -370,7 +366,8 @@ For all of the following data collections, the global election tags will added a
 |`failed_calls`|The number of failed calls (errors within the command execution).|float|count|
 |`rejected_calls`|The number of rejected calls (errors prior command execution).|float|count|
 |`usec`|The total CPU time consumed by these commands.|float|μs|
-|`usec_per_call`|The average CPU consumed per command execution.|float|μs| 
+|`usec_per_call`|The average CPU consumed per command execution.|float|μs|
+
 
 
 
@@ -390,14 +387,15 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_ttl`|Average ttl.|int|-|
-|`expires`|expires time.|int|-|
-|`keys`|Key.|int|-| 
+|`expires`|Expires time.|int|-|
+|`keys`|Key.|int|-|
+
 
 
 
@@ -427,7 +425,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -589,6 +587,7 @@ For all of the following data collections, the global election tags will added a
 |`total_net_input_bytes`|The total number of bytes read from the network|float|B|
 |`total_net_output_bytes`|The total number of bytes written to the network|float|B|
 |`total_net_repl_input_bytes`|The total number of bytes read from the network for replication purposes.|float|B|
+|`total_net_repl_output_bytes`|The total number of```markdown
 |`total_net_repl_output_bytes`|The total number of bytes written to the network for replication purposes.|float|B|
 |`total_reads_processed`|Total number of read events processed.|float|count|
 |`total_system_memory`|The total amount of memory that the Redis host has.|float|B|
@@ -617,7 +616,8 @@ For all of the following data collections, the global election tags will added a
 |`used_memory_peak_perc`|The percentage of used_memory_peak out of used_memory.|float|percent|
 |`used_memory_rss`|Number of bytes that Redis allocated as seen by the operating system (a.k.a resident set size)|float|B|
 |`used_memory_scripts`|Number of bytes used by cached Lua scripts.|float|B|
-|`used_memory_startup`|Initial amount of memory consumed by Redis at startup in bytes|float|B| 
+|`used_memory_startup`|Initial amount of memory consumed by Redis at startup in bytes|float|B|
+
 
 
 
@@ -640,7 +640,7 @@ For all of the following data collections, the global election tags will added a
 |`slave_id`|Slave ID, only collected for master redis.|
 |`slave_state`|Slave state, only collected for master redis.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -649,7 +649,7 @@ For all of the following data collections, the global election tags will added a
 |`master_link_status`|Status of the link (up/down), `1` for up, `0` for down, only collected for slave redis.|int|-|
 |`master_repl_offset`|The server's current replication offset.|int|-|
 |`slave_lag`|Slave lag, only collected for master redis.|int|-|
-|`slave_offset`|Slave offset, only collected for master redis.|int|-| 
+|`slave_offset`|Slave offset, only collected for master redis.|int|-|
 
 
 
@@ -665,7 +665,8 @@ For all of the following data collections, the global election tags will added a
 
 
 
-## Custom Object {#object}
+
+## Custom Objects {#object}
 
 
 
@@ -726,7 +727,7 @@ For all of the following data collections, the global election tags will added a
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -738,7 +739,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-## Logging {#logging}
+## Logs {#logging}
 
 <!-- markdownlint-disable MD024 -->
 
@@ -761,13 +762,14 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`keys_sampled`|Sampled keys in the key space.|int|-|
-|`value_length`|Key length.|int|-| 
+|`value_length`|Key length.|int|-|
+
 
 
 
@@ -788,13 +790,14 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`key_count`|Key count times.|int|-|
-|`keys_sampled`|Sampled keys in the key space.|int|-| 
+|`keys_sampled`|Sampled keys in the key space.|int|-|
+
 
 
 
@@ -836,7 +839,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -844,7 +847,8 @@ For all of the following data collections, the global election tags will added a
 |`cost_time`|Latest event latency in millisecond.|int|ms|
 |`event_name`|Event name.|string|-|
 |`max_cost_time`|All-time maximum latency for this event.|int|ms|
-|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec| 
+|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec|
+
 
 
 
@@ -852,19 +856,19 @@ For all of the following data collections, the global election tags will added a
 
 ### `redis_slowlog`
 
-Redis 慢查询命令历史，这里我们将其以日志的形式采集
+Redis slow query command history, here we collect it as logs.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|host|
-|`message`|log message|
-|`server`|server|
+|`host`|Host|
+|`message`|Log message|
+|`server`|Server|
 |`service_name`|Service name|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -877,7 +881,8 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 |`slowlog_id`|Slow log unique ID|int|-|
 |`slowlog_max`|Slow maximum duration|int|μs|
 |`slowlog_median`|Slow median duration|int|μs|
-|`slowlog_micros`|Cost time|int|μs| 
+|`slowlog_micros`|Cost time|int|μs|
+
 
 
 
@@ -885,21 +890,23 @@ Redis 慢查询命令历史，这里我们将其以日志的形式采集
 
 
 <!-- markdownlint-enable -->
-### Logging Pipeline {#pipeline}
 
-The original log is:
+### Pipeline Log Parsing {#pipeline}
+
+Original log:
 
 ```log
 122:M 14 May 2019 19:11:40.164 * Background saving terminated with success
 ```
 
-The list of cut fields is as follows:
+Parsed fields list:
 
-| Field Name  | Field Value                                 | Description                                  |
-| ---         | ---                                         | ---                                          |
-| `pid`       | `122`                                       | process id                                   |
-| `role`      | `M`                                         | role                                         |
-| `serverity` | `*`                                         | service                                      |
-| `statu`     | `notice`                                    | log level                                    |
-| `msg`       | `Background saving terminated with success` | log content                                  |
-| `time`      | `1557861100164000000`                       | Nanosecond timestamp (as line protocol time) |
+| Field Name      | Field Value                                      | Description                         |
+| ---             | ---                                              | ---                                 |
+| `pid`           | `122`                                            | Process id                          |
+| `role`          | `M`                                              | Role                                |
+| `severity`      | `*`                                              | Severity                            |
+| `status`        | `notice`                                         | Log level                           |
+| `msg`           | `Background saving terminated with success`      | Log content                         |
+| `time`          | `1557861100164000000`                            | Nanosecond timestamp (as line protocol time) |
+```

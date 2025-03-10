@@ -1,78 +1,76 @@
-# Data Scanner
+# Sensitive Data Scanning
 
-In the process of using Guance products, many sensitive data such as network device addresses, Token, API keys, and personal privacy will inevitably be generated. In order to avoid information leakage and cause security risks, Guance provides the function of Sensitive Data Scanner, which realizes custom information shielding by creating desensitization rules for data.
+During the use of <<< custom_key.brand_name >>> products, various sensitive data such as network device addresses, Tokens, API keys, and personal privacy information are inevitably generated. To prevent information leakage and avoid security risks, <<< custom_key.brand_name >>> provides a sensitive data scanning feature. This allows users to create desensitization rules to achieve customized information masking.
 
-## Setup
+## Create Desensitization Rules
 
-Into **Management > Data Scanner**, you can customize [**New rules**](#custom), or create directly from the [**Templates**](#official).
+Enter **Manage > Sensitive Data Scanning**, where you can choose to customize [**Create**](#custom) or directly create from the [**Official Rule Library**](#official).
 
 ![](img/scan-3.png)
 
-### Custom Templates {#custom}
+### Custom Creation {#custom}
 
-<img src="../img/scan.png" width="70%" >
+![](img/scan.png)
 
-Ⅰ. Scan range: 
+1. Scanning Scope:
 
-| Field | Description    |
+| Field | Description |
 | ---------- | ------------- |
-| Type | The type of data that needs to be scanned; **Log** is selected by default.    |
-| Filters | The range of data that needs to be scanned.    |
+| Data Type | The type of data that needs to be scanned; by default, it selects 【Logs】. |
+| Data Filtering | The scope of data that needs to be scanned. |
 
+2. Define Matching Rules:
 
-II. Define regex to match: 
-
-| Field | Description    |
+| Field | Description |
 | ---------- | ------------- |
-| Rule Name | The name of the current data rule.    |
-| Regex | To match data strings that need to be encrypted.    |
-| Data test | Enter a string of data and click Test to verify whether it matches the regex.<br />:warning: Test data will not be saved.    |
+| Rule Name | The name of the current data rule. |
+| Regular Expression | Used to match strings of data that need to be encrypted. |
+| Data Testing | Enter a string of data, click Test, to verify if it matches the regular expression.<br />:warning: Test data will not be saved. |
 
-III. Sensitive data processing: 
+3. Sensitive Data Processing:
 
-- Desensitization field: All fields are supported. There are three options: specified fields and excluded fields; Specified Fields is selected by default;
+- Desensitization Fields: Supports all fields, specified fields, and excluded fields; by default, it selects 【Specified Fields】.
+- Desensitization Method: 
 
-- Desensitization mode:  
- 
-    i. Replace all matching sensitive data with *.
+    :material-numeric-1-circle: General Encryption: Replaces all matching sensitive data with *;
 
-    ii. Partially encryption: Replace some character strings in sensitive data with * to keep some sensitive information, for example: mobile phone number *******1005.  
+    :material-numeric-2-circle: Partial Encryption: Replaces part of the sensitive data string with *, retaining some sensitive information, e.g., phone number *******1005;
 
-    iii. Replace encryption: Replace all matching sensitive data with the specified string, which is irreversible after replacement.
+    :material-numeric-3-circle: Replacement Encryption: Replaces all matching sensitive data with a specified string, which is irreversible after replacement;
 
-    iv. MD5 encryption: Any data can be encrypted into a fixed-length string, which is irreversible after replacement.
-     
-??? abstract "Features of MD5 Encryption"
+    :material-numeric-4-circle: MD5 Encryption: Encrypts any data into a fixed-length string, which is irreversible after replacement.
 
-    - Fixed length: No matter how long the string is, the length after encryption is the same, which is 32 bits.
-    - Highly discrete: Any changes to the original data, even small changes, will lead to huge differences in the calculation results.
-    - The operation is irreversible: When the operation result is known, the original string cannot be obtained through the inverse operation, but the screening and positioning can still be performed.
+??? abstract "Characteristics of MD5 Encryption"
 
-- Add tags: You can add custom tags for the desensitized data. Multiple tags are separated by `,`.
+    - Fixed Length: Regardless of the length of the string, the encrypted result is always 32 characters;
+    - Highly Dispersed: Any change in the original data, even minor changes, results in a vastly different hash;
+    - Non-Reversible: It's impossible to reverse-engineer the original string from the hash, but it can still be used for filtering and positioning.
 
-### Templates {#official}
+- Add Tags: You can add custom tags to the desensitized data; multiple tags are separated by 【,】.
+
+### Official Rule Library {#official}
 
 ![](img/scan-1.png)
 
-On **Templates** page, all monitoring template types are on the left, and all detection rules under the template type are on the right. You can perform the following operations:
+On the **Create Rule > Official Rule Library** page, the left side lists all monitoring template types, while the right side shows all detection rules under each template type. You can perform the following operations:
 
-- In the detection library on the left, check a specific rule library to perform corresponding filtering;
-- After select multiple detection rules, you can create multiple data rules in batches.
+- In the left-side rule library, check specific rule libraries to filter accordingly;
+- Select multiple detection rules to batch-create multiple data rules.
 
-When you select one or more detection rules, click **Create**;
+When you select one or more detection rules and click Create;
 
-On the page, **Define regex to match** is automatically collapsed, where you can select the templates again as needed.
+On the creation page, **Define Matching Rules** is automatically collapsed, allowing you to reselect official rules as needed.
 
 ![](img/scan-2.gif)
 
-After the creation is successful, all created rules can be viewed in the rule list. 
+After successful creation, you can view all created rules in the rule list.
 
-## Rule List
+## Desensitization Rule List
 
-i. Query: Search based on monitor name in the 🔍 column.   
-ii. Click :fontawesome-regular-trash-can: to delete the current rule.    
-iii. Click the Edit button to modify the current rule.  
-iv. You can enabling or disabling the current rule.  
-v. Batch operation: Click :fontawesome-regular-square: next to the rule name, the symbol can choose to disable, enable, and delete the selected rules in batches.
+1. Search: Use the 🔍 bar to search based on monitor name.
+2. Click :fontawesome-regular-trash-can: to delete the current rule.
+3. Click the edit button to modify the current rule.
+4. Supports enabling or disabling the current rule.
+5. Batch Operations: Click the :fontawesome-regular-square: symbol next to the rule name to choose batch disable, enable, or delete selected rules.
 
 ![](img/scan-4.png)

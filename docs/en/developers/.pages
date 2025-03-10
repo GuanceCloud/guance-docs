@@ -1,5 +1,7 @@
 nav:
  - index.md
- - 'Pythond': pythond.md
- - 'Pipeline Data Processor': pipeline
- 
+ - 'Develop Custom Collector with Python': pythond.md
+ - 'Custom Scheck':
+   - 'Implement Check for Changes in Sensitive Files': scheck-filechange.md
+   - 'Monitor System User Changes': scheck-userchange.md
+ - 'Resource Catalog': custom-object.md

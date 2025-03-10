@@ -1,12 +1,12 @@
 ---
 title     : 'Trino'
-summary   : 'Collect Trino metrics information'
+summary   : 'Collect Trino Metrics information'
 __int_icon: 'icon/trino'
 dashboard :
-  - desc  : 'Trino'
-    path  : 'dashboard/zh/trino'
+  - desc  : 'Trino Monitoring View'
+    path  : 'dashboard/en/trino'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -14,33 +14,33 @@ monitor   :
 # `Trino`
 <!-- markdownlint-enable -->
 
-Collect `Trino` metrics information.
+Collect `Trino` Metrics information.
 
 
-## Configuration {#config}
+## Installation and Configuration {#config}
 
-`Trino` is an application written in Java language that can obtain metrics information through jmx.
+`Trino` is a Java application that can expose metrics information via JMX.
 
-JMX Exporter is an open-source tool used to export JMX (Java Management Extension) metrics for Java applications into Prometheus format metric data.
+JMX Exporter is an open-source tool used to export Java application JMX (Java Management Extensions) metrics in Prometheus format.
 
-Obtain `Trino` metrics information through JMX Exporter, and collect jmx metrics information by opening DataKit's prom collector.
+By using JMX Exporter, you can collect `Trino` metrics information and then use DataKit's prom collector to gather the JMX metrics.
 
 ### Download JMX Exporter
 
-Download url [https://github.com/prometheus/jmx_exporter/releases](https://github.com/prometheus/jmx_exporter/releases)
+Download from [https://github.com/prometheus/jmx_exporter/releases](https://github.com/prometheus/jmx_exporter/releases)
 
 ### Coordinator Node
 
-`coordinator` is a type of server called `Trino`, responsible for parsing statements, querying plans, and managing workers.
+The `coordinator` is a type of `Trino` server responsible for parsing statements, query planning, and managing workers.
 
-- Add `jmx_config.yaml`
+- Create `jmx_config.yaml`
 
 ```yaml
 rules:
 - pattern: ".*"
 ```
 
-- Adjust startup command
+- Modify the startup command
 
 ```shell
 ...
@@ -50,20 +50,20 @@ rules:
 ...
 ```
 
-Among them, `3900` is an exposed port that can be accessed through the `http://localhost:3900`  Obtain metrics information.
+Here, `3900` is the exposed port. After starting, you can access the metrics at `http://localhost:3900`.
 
-### DataKit Collector
+### DataKit Collector Configuration
 
-Due to the fact that `Trino` can directly expose the `metrics` URL through JMX Exporter, it can be collected directly through the [`prom`](./prom.md) collector.
+Since `Trino` can directly expose a `metrics` URL via JMX Exporter, you can use the [`prom`](./prom.md) collector to gather the metrics.
 
-Perform the following actions:
+Perform the following steps:
 
 ```shell
 cd datakit/conf.d/prom
 cp prom.conf.sample trino.conf
 ```
 
-Adjust the content of `trino.conf` as follows:
+Modify the `trino.conf` as follows:
 
 ```toml
 
@@ -76,76 +76,80 @@ Adjust the content of `trino.conf` as follows:
   interval = "10s"
 
 ```
+
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Note that the marker needs to be adjusted*</font>
+<font color="red">*Other configurations can be adjusted as needed*</font>
 <!-- markdownlint-enable -->
+Parameter adjustment instructions:
 
-Description of main parameters:
-
-- urls: `trino` Metric address, where you fill in the metric URL exposed by the corresponding component
-- source: Collector alias, recommended to distinguish
-- interval: collection interval
-- measurement_prefix: Metric set prefix for easy management of classification
+<!-- markdownlint-disable MD004 -->
+- urls: Prometheus metrics URL, fill in the corresponding component's exposed metrics URL.
+- source: Collector alias, it is recommended to differentiate.
+- interval: Collection interval.
 
 <!-- markdownlint-enable -->
 ### Restart DataKit
 
 [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-## Metric {#metric}
+## Metrics {#metric}
 
-### MetricSets Trino
+### Metrics Set `Trino`
 
 | Metric | Description |
-| -- | -- |
+| ------ | ----------- |
 | `memory_ClusterMemoryPool_Nodes` | Number of cluster nodes |
-| `memory_ClusterMemoryPool_BlockedNodes`  | Nodes blocked by memory cluster and memory pool |
-| `memory_ClusterMemoryPool_FreeDistributedBytes`  | Free available memory in cluster memory pool |
-| `memory_ClusterMemoryPool_TotalDistributedBytes`  | Total memory in cluster memory |
-| `memory_ClusterMemoryPool_ReservedDistributedBytes`  |Unallocated available memory in cluster memory pool |
-| `memory_ClusterMemoryManager_ClusterMemoryBytes`  | Cluster memory size |
-| `memory_ClusterMemoryManager_QueriesKilledDueToOutOfMemory`  | The total number of queries for oom killed|
-| `execution_QueryManager_RunningQueries`  | The current number of running queries |
-| `execution_QueryManager_QueuedQueries`  | The number of queries waiting to be executed |
-| `execution_QueryManager_SubmittedQueries_OneMinute_Count`  | Number of queries submitted per minute |
-| `execution_QueryManager_CompletedQueries_OneMinute_Count`  | Number of completed queries per minute |
-| `execution_QueryManager_CompletedQueries_TotalCount`  | Total number of completed queries |
-| `execution_QueryManager_FailedQueries_OneMinute_Count`  | Number of failed queries per minute |
-| `execution_QueryManager_FailedQueries_FiveMinute_Count`  | Number of queries that failed within 5 minutes |
-| `execution_QueryManager_UserErrorFailures_OneMinute_Count`  | Number of failed queries caused by exceptions per minute |
-| `execution_QueryManager_UserErrorFailures_FiveMinute_Count`  | Number of failed queries caused by 5-minute exceptions |
-| `execution_QueryManager_UserErrorFailures_TotalCount`  | The total number of failed queries caused by exceptions |
-| `execution_QueryManager_InternalFailures_OneMinute_Count`  | The number of failed queries caused by internal service exceptions per minute |
-| `execution_QueryManager_InternalFailures_TotalCount`  | The total number of failed queries caused by internal service exceptions |
-| `execution_SqlTaskManager_InputDataSize_OneMinute_Count`  | Task input data volume per minute |
-| `execution_SqlTaskManager_InputDataSize_TotalCount`  | Task input data volume|
-| `execution_SqlTaskManager_InputPositions_OneMinute_Count`  | Number of input data rows per minute for Task|
-| `execution_SqlTaskManager_InputPositions_TotalCount`  | Total number of input data rows for Task|
-| `execution_SqlTaskManager_OutputDataSize_OneMinute_Count`  | Task output data volume per minute |
-| `execution_SqlTaskManager_OutputDataSize_TotalCount`  | Task output data volume|
-| `execution_SqlTaskManager_OutputPositions_OneMinute_Count`  | Number of output data rows per minute for Task|
-| `execution_SqlTaskManager_OutputPositions_FiveMinute_Count`  | 5-minute Task output data rows|
-| `execution_SqlTaskManager_OutputPositions_TotalCount`  | Total number of output data rows for Task|
-| `execution_SqlTaskManager_FailedTasks_OneMinute_Count`  | Number of failed tasks per minute|
-| `execution_SqlTaskManager_FailedTasks_FiveMinute_Count`  | Number of Tasks Failed in 5 Minutes|
-| `execution_SqlTaskManager_FailedTasks_TotalCount`  | Total number of output data rows for Task|
-|`execution_executor_TaskExecutor_Tasks`|The number of all tasks registered with the task executor|
-|`execution_executor_TaskExecutor_TotalSplits`|Total number of splits for task executors|
-|`execution_executor_TaskExecutor_RunningSplits`|The number of splits run by the task executor|
-|`execution_executor_TaskExecutor_WaitingSplits`|The number of splits waiting on the task executor|
-|`memory_ClusterMemoryManager_TotalAvailableProcessors`| Cluster CPU count |
+| `memory_ClusterMemoryPool_BlockedNodes` | Nodes blocked by the cluster memory pool |
+| `memory_ClusterMemoryPool_FreeDistributedBytes` | Unallocated available memory in the cluster memory pool |
+| `memory_ClusterMemoryPool_TotalDistributedBytes` | Total memory in the cluster |
+| `memory_ClusterMemoryPool_ReservedDistributedBytes` | Unallocated available memory in the cluster memory pool |
+| `memory_ClusterMemoryManager_ClusterMemoryBytes` | Cluster memory size |
+| `memory_ClusterMemoryManager_QueriesKilledDueToOutOfMemory` | Total number of queries killed due to out-of-memory |
+| `execution_QueryManager_RunningQueries` | Number of currently running queries |
+| `execution_QueryManager_QueuedQueries` | Number of queued queries awaiting execution |
+| `execution_QueryManager_SubmittedQueries_OneMinute_Count` | Number of queries submitted per minute |
+| `execution_QueryManager_CompletedQueries_OneMinute_Count` | Number of queries completed per minute |
+| `execution_QueryManager_CompletedQueries_TotalCount` | Total number of completed queries |
+| `execution_QueryManager_FailedQueries_OneMinute_Count` | Number of failed queries per minute |
+| `execution_QueryManager_FailedQueries_FiveMinute_Count` | Number of failed queries in the last 5 minutes |
+| `execution_QueryManager_UserErrorFailures_OneMinute_Count` | Number of user error failures per minute |
+| `execution_QueryManager_UserErrorFailures_FiveMinute_Count` | Number of user error failures in the last 5 minutes |
+| `execution_QueryManager_UserErrorFailures_TotalCount` | Total number of user error failures |
+| `execution_QueryManager_InternalFailures_OneMinute_Count` | Number of internal failures per minute |
+| `execution_QueryManager_InternalFailures_FiveMinute_Count` | Number of internal failures in the last 5 minutes |
+| `execution_QueryManager_InternalFailures_TotalCount` | Total number of internal failures |
+| `execution_SqlTaskManager_InputDataSize_OneMinute_Count` | Task input data size per minute |
+| `execution_SqlTaskManager_InputDataSize_FiveMinute_Count` | Task input data size in the last 5 minutes |
+| `execution_SqlTaskManager_InputDataSize_TotalCount` | Total task input data size |
+| `execution_SqlTaskManager_InputPositions_OneMinute_Count` | Task input row count per minute |
+| `execution_SqlTaskManager_InputPositions_FiveMinute_Count` | Task input row count in the last 5 minutes |
+| `execution_SqlTaskManager_InputPositions_TotalCount` | Total task input row count |
+| `execution_SqlTaskManager_OutputDataSize_OneMinute_Count` | Task output data size per minute |
+| `execution_SqlTaskManager_OutputDataSize_FiveMinute_Count` | Task output data size in the last 5 minutes |
+| `execution_SqlTaskManager_OutputDataSize_TotalCount` | Total task output data size |
+| `execution_SqlTaskManager_OutputPositions_OneMinute_Count` | Task output row count per minute |
+| `execution_SqlTaskManager_OutputPositions_FiveMinute_Count` | Task output row count in the last 5 minutes |
+| `execution_SqlTaskManager_OutputPositions_TotalCount` | Total task output row count |
+| `execution_SqlTaskManager_FailedTasks_OneMinute_Count` | Number of failed tasks per minute |
+| `execution_SqlTaskManager_FailedTasks_FiveMinute_Count` | Number of failed tasks in the last 5 minutes |
+| `execution_SqlTaskManager_FailedTasks_TotalCount` | Total number of failed tasks |
+| `execution_executor_TaskExecutor_Tasks` | Total number of tasks registered with the task executor |
+| `execution_executor_TaskExecutor_TotalSplits` | Total splits handled by the task executor |
+| `execution_executor_TaskExecutor_RunningSplits` | Running splits on the task executor |
+| `execution_executor_TaskExecutor_WaitingSplits` | Waiting splits on the task executor |
+| `memory_ClusterMemoryManager_TotalAvailableProcessors` | Total CPU cores in the cluster |
 
-### MetricSets Java
+### Metrics Set Java
 
 | Metric | Description |
-| --  | -- |
-| `lang_Runtime_Uptime`  | Online duration |
-| `lang_G1_Concurrent_GC_CollectionCount`  | gc count |
-| `lang_Memory_HeapMemoryUsage_used`  | Heap used memory |
-| `lang_Memory_HeapMemoryUsage_init`  | Heap initial memory |
-| `lang_Memory_HeapMemoryUsage_max`  | Maximum heap memory |
-| `lang_Memory_HeapMemoryUsage_committed`  | Heap has committed memory |
-| `lang_Memory_NonHeapMemoryUsage_used`  | NonHeap used memory |
-| `lang_Memory_NonHeapMemoryUsage_init`  | NonHeap initial memory |
-| `lang_Memory_NonHeapMemoryUsage_max`  | Maximum NonHeap memory |
-| `lang_Memory_NonHeapMemoryUsage_committed`  | NonHeap has committed memory |
+| ------ | ----------- |
+| `lang_Runtime_Uptime` | Uptime |
+| `lang_G1_Concurrent_GC_CollectionCount` | GC collection count |
+| `lang_Memory_HeapMemoryUsage_used` | Used heap memory |
+| `lang_Memory_HeapMemoryUsage_init` | Initial heap memory |
+| `lang_Memory_HeapMemoryUsage_max` | Maximum heap memory |
+| `lang_Memory_HeapMemoryUsage_committed` | Committed heap memory |
+| `lang_Memory_NonHeapMemoryUsage_used` | Used non-heap memory |
+| `lang_Memory_NonHeapMemoryUsage_init` | Initial non-heap memory |
+| `lang_Memory_NonHeapMemoryUsage_max` | Maximum non-heap memory |
+| `lang_Memory_NonHeapMemoryUsage_committed` | Committed non-heap memory |

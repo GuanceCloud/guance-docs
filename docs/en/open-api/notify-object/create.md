@@ -1,68 +1,97 @@
-# Create a Notification Object
+# Create a Notification Target
 
 ---
 
-<br />**post /api/v1/notify_object/create**
+<br />**POST /api/v1/notify_object/create**
 
 ## Overview
-Create a notification object.
+Create a notification target
 
 
 
-
-## Body Request Parameter
+## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| type | string | Y | trigger rule type, default to `trigger`<br>Allow null: True <br>Optional value: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms'] <br> |
-| name | string | Y | Notification object name<br>Allow null: False <br> |
-| optSet | json |  | Alarm setting<br>Allow null: False <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| type | string | Y | Trigger rule type, default is `trigger`<br>Can be empty: True <br>Optional values: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'simpleHTTPRequest'] <br> |
+| name | string | Y | Notification target name<br>Can be empty: False <br> |
+| optSet | json |  | Alert settings<br>Can be empty: False <br> |
+| openPermissionSet | boolean |  | Enable custom permission configuration, (default false: not enabled), if enabled, the operation permissions for this rule are based on permissionSet<br>Can be empty: False <br> |
+| permissionSet | array |  | Operation permission configuration, can configure (roles except owner, member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>Can be empty: False <br> |
 
-## Supplementary Description of Parameters
-
-
-*Data description.*
-
-
-**1. Parameters of optSet When `type` Equals `dingTalkRobot`**
-
-| key      | Type   | Required or not | Description    |
-| :------- | :----- | :------- | :------------------ |
-| webhook  | String | Required    | Address adjustment of DingTalk machine |
-| secret   | String | Required    | The key of the DingTalk machine (add the machine-security settings-sign) |
+## Additional Parameter Explanation
 
 
-**2. Parameters of optSet When `type` Equals `HTTPRequest`**
+*Data explanation.*
 
-| key      | Type   | Required or not | Description  |
+**Request parameter explanation: **
+| Parameter Name           | Type | Description                                                 |
+| ------------------------ | ---- | ------------------------------------------------------------ |
+| name       | string | Notification target name |
+| type             | string | Trigger rule type                                                 |
+| optSet             | dict | Alert settings                                                 |
+| openPermissionSet             | boolean | Whether to enable custom permission configuration, default is false                                                 |
+| permissionSet             | array | Operation permission configuration                                                 |
+
+**1. When `type`=`dingTalkRobot`, parameters of optSet **
+
+| Key      | Type   | Required | Description    |
+| :------- | :----- | :------- | :------------- |
+| webhook  | String | Required | DingTalk bot invocation URL |
+| secret   | String | Required | DingTalk bot invocation secret key (add bot - security settings - sign) |
+
+
+**2. When `type`=`HTTPRequest`, parameters of optSet **
+
+| Key      | Type   | Required | Description  |
 | :------- | :----- | :------- | :----------- |
-| url      | String | Required | HTTP call address |
+| url      | String | Required | HTTP invocation URL |
 
 
-**3. Parameters of optSet When `type` Equals `wechatRobot`**
+**3. When `type`=`wechatRobot`, parameters of optSet **
 
-| key      | Type   | Required or not | Description  |
+| Key      | Type   | Required | Description  |
 | :------- | :----- | :------- | :----------- |
-| webhook  | String | Required    | bot call address |
+| webhook  | String | Required | Bot invocation URL |
 
-**4. Parameters of optSet When `type` Equals `mailGroup`**
 
-| key      | Type   | Required or not | Description  |
+**4. When `type`=`mailGroup`, parameters of optSet **
+
+| Key      | Type   | Required | Description  |
 | :------- | :----- | :------- | :----------- |
-| to  | Array | Required    | Member account list |
+| to  | Array | Required | List of member accounts |
 
-**5. Parameters of optSet When `type` Equals `feishuRobot`**
 
-| key      | Type   | Required or not | Description    |
-| :------- | :----- | :------- | :------------------ |
-| webhook  | String | Required    | Feishu machine adjustment address |
-| secret   | String | Required    | Feishu Machine Adjustment Key (Add Machine-Security Settings-Add Signs) |
+**5. When `type`=`feishuRobot`, parameters of optSet **
 
-**6. Parameters of optSet When `type` Equals `sms`**
+| Key      | Type   | Required | Description    |
+| :------- | :----- | :------- | :------------- |
+| webhook  | String | Required | Lark bot invocation URL |
+| secret   | String | Required | Lark bot invocation secret key (add bot - security settings - sign) |
 
- | key      | Type   | Required or not | Description  |
- | :------- | :----- | :------- | :----------- |
- | to  | Array | Required    | Mobile phone number list |
+
+**6. When `type`=`sms`, parameters of optSet **
+
+| Key      | Type   | Required | Description  |
+| :------- | :----- | :------- | :----------- |
+| to  | Array | Required | List of phone numbers |
+
+
+**7. When `type`=`simpleHTTPRequest`, parameters of optSet **
+
+| Key      | Type   | Required | Description  |
+| :------- | :----- | :------- | :----------- |
+| url      | String | Required | HTTP invocation URL |
+
+**Explanation of permissionSet and openPermissionSet fields (new fields added in iteration on 2024-06-26):**
+When the notification target configuration has openPermissionSet enabled, only the space owner and members belonging to the roles, teams, or members specified in permissionSet can edit/delete.
+When the notification target configuration has openPermissionSet disabled (default), delete/edit permissions follow the original interface edit/delete permissions.
+
+The permissionSet field can be configured with role UUIDs (wsAdmin, general, readOnly, role_xxxxx), team UUIDs (group_yyyy), and member UUIDs (acnt_xxx).
+Example of permissionSet field:
+```
+  ["wsAdmin", "general", "group_yyyy", "acnt_xxxx"]
+```
 
 
 
@@ -73,7 +102,3 @@ Create a notification object.
 ```shell
  
 ```
-
-
-
-

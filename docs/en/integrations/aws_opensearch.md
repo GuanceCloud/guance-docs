@@ -2,19 +2,19 @@
 title: 'AWS OpenSearch'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance'
+summary: 'AWS OpenSearch, including connection counts, request numbers, latency, and slow queries.'
 __int_icon: 'icon/aws_opensearch'
 dashboard:
 
-  - desc: 'AWS OpenSearch Monitoring View'
+  - desc: 'Built-in views for AWS OpenSearch'
     path: 'dashboard/en/aws_opensearch'
 
 monitor:
-  - desc: 'AWS OpenSearch Monitor'
+  - desc: 'Monitor for AWS OpenSearch'
     path: 'monitor/en/aws_opensearch'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_opensearch'
 ---
 
@@ -23,156 +23,152 @@ cloudCollector:
 <!-- markdownlint-enable -->
 
 
-AWS OpenSearch, including number of connections, number of requests, latency, slow query, etc.
+ AWS OpenSearch, including connection counts, request numbers, latency, and slow queries.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Continue with script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
+### Installation Script
 
-### Installation script
+> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+To synchronize monitoring data from AWS OpenSearch, we install the corresponding collection script: 「Guance Integration (AWS-OpenSearch Collection)」(ID: `guance_aws_open_search`)
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script: `ID:guance_aws_open_search`
+After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
-Click 【Install】 and enter the corresponding parameters: Aws AK, Aws account name.。
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the startup script accordingly.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+We have configured some settings by default; for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-open-search/){:target="_blank"}
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
 
-We collected some configurations by default, as described in the Metrics column [Configuring Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-open-search/){:target="_blank"}
+### Verification
 
-### Verify
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has the corresponding automatic trigger configuration, and check the task records and logs for any anomalies.
+2. On the Guance platform, under 「Infrastructure / Custom」check if asset information exists.
+3. On the Guance platform, under 「Metrics」check if there is corresponding monitoring data.
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-Configure AWS OpenSearch monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aws Cloud Monitor Metrics Details](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-cloudwatchmetrics.html){:target="_blank"}
+## Metrics {#metric}
+After configuring AWS OpenSearch, the default metric set is as follows. You can collect more metrics through configuration [AWS Cloud Monitoring Metric Details](https://docs.aws.amazon.com/zh_cn/opensearch-service/latest/developerguide/managedomains-cloudwatchmetrics.html){:target="_blank"}
 
 
 
-| Metric                                                         | Metric Description                                                     |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `ClusterStatus.green`                                        | The value of 1 indicates that all index shards are allocated to nodes in the cluster. Relevant statistical data: Maximum |
-| `ClusterStatus.yellow`                                       | The value of 1 indicates that all primary shards of the indexes are allocated to nodes in the cluster, but at least one replica shard of an index is not. For more information, please refer to Yellow Cluster Status{:target="_blank"}: Relevant statistical data: Maximum |
-| `ClusterStatus.red`                                          | The value of 1 indicates that at least one primary shard and replica shard of an index are not allocated to nodes in the cluster. For more information, please refer to Red Cluster Status{:target="_blank"}: Relevant statistical data: Maximum |
-| `Shards.active`                                              | The total number of active primary and replica shards. Relevant statistical data: Maximum, Total      |
-| `Shards.unassigned`                                          | The number of shards that are not allocated to nodes in the cluster. Relevant statistical data: Maximum, Total       |
-| `Shards.delayedUnassigned`                                   | The number of shards whose allocation has been delayed due to timeout settings on their nodes. Relevant statistical data: Maximum, Total |
-| `Shards.activePrimary`                                       | The number of active primary shards. Relevant statistical data: Maximum, Total                     |
-| `Shards.initializing`                                        | The number of shards that are currently initializing. Relevant statistical data: Total                       |
-| `Shards.relocating`                                          | The number of shards that are currently relocating. Relevant statistical data: Total                     |
-| `Nodes`                                                      | The number of nodes in the OpenSearch service cluster, including dedicated master nodes and data nodes. For more information, please refer to Change Configuration in Amazon OpenSearch Service{:target="_blank"}: Relevant statistical data: Maximum |
-| `SearchableDocuments`                                        | The total number of searchable documents across all data nodes in the cross-cluster. Relevant statistical data: Minimum, Maximum, Average|
-| `CPUUtilization`                                             | The CPU utilization percentage of data nodes in the cluster. The maximum value represents the node with the highest CPU utilization. The average value represents all nodes in the cluster. This metric can also be used for individual nodes. Relevant statistical data: Maximum, Average |
-| `ClusterUsedSpace`                                           | The total amount of used space in the cluster. You must allow one minute to obtain an accurate value. The OpenSearch service console displays this value in GiB, while the Amazon CloudWatch console displays it in MiB. Relevant statistical data: Minimum, Maximum |
-| `ClusterIndexWritesBlocked`                                     | Indicates whether your cluster is accepting or blocking incoming write requests. A value of 0 means the cluster is accepting requests, while a value of 1 means requests are blocked. Some common factors include low FreeStorageSpace or high JVMMemoryPressure. To address this issue, consider increasing disk space or scaling the cluster. Relevant statistical data: Maximum |
-| `FreeStorageSpace`                                                 | The available space for each data node in the cluster. The Sum value displays the total available space for the cluster, but you must allow one minute to obtain an accurate value. Minimum and Maximum values represent the nodes with the smallest and largest available space, respectively. This metric can also be used for individual nodes.When this metric reaches 0, the service throws an OpenSearchClusterBlockException. To recover, you must delete indexes, add larger instances, or add EBS-based storage to existing instances. For more information, please refer to "Lack of Available Storage Space" documentation.The OpenSearch service console displays this value in GiB, while the Amazon CloudWatch console displays it in MiB |
-| `JVMMemoryPressure`                                          | The maximum percentage of Java heap used for all data nodes in the cluster. The OpenSearch service allocates half of the instance's RAM for the Java heap, with a maximum heap size of 32 GiB. You can vertically scale the instance's RAM up to 64 GiB, and horizontal scaling is possible by adding instances. For recommended CloudWatch alarms for Amazon OpenSearch service, please refer to Amazon OpenSearch Service Recommended CloudWatch Alarms{:target="_blank"}.Relevant statistical data: Maximum. Note that there have been changes to the logic of this metric in service software R20220323. For more information, please see the Release Notes{:target="_blank"} |
-| `JVMGCYoungCollectionCount`                                  | The number of "Old Gen" garbage collection runs. In a cluster with sufficient resources, this number should remain small and not grow frequently. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `JVMGCOldCollectionTime`                                     | The time taken for "Old Gen" garbage collection in the cluster, measured in milliseconds. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `JVMGCYoungCollectionTime`                                   | The time taken for "Young Gen" garbage collection in the cluster, measured in milliseconds. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `JVMGCOldCollectionCount`                                    | The number of "Young Gen" garbage collection runs. A large number of continuously increasing runs is normal for cluster operations. This metric is also available at the node level. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `IndexingLatency`                                            | The difference in total time (measured in milliseconds) for all index operations in the node between minute N and minute (N-1) |
-| `IndexingRate`                                               | The number of index operations per minute |
-| `SearchLatency`                                              | The difference in total time (measured in milliseconds) for all search operations in the node between minute N and minute (N-1) |
-| `SearchRate`                                                 | The total number of search requests for all shards on the data nodes per minute |
-| `SegmentCount`                                               | The number of shards on the data nodes. The more shards you have, the longer it takes for each search. OpenSearch sometimes merges smaller shards into larger ones. Relevant node statistical data: Maximum, Average. Relevant cluster statistical data: Sum, Maximum, Average |
-| `SysMemoryUtilization`                                       | The percentage of used instance memory. A higher value for this metric is normal and usually does not indicate any issues with the cluster. For better indications of potential performance and stability problems, refer to the JVMMemoryPressure metric. Relevant node statistical data: Minimum, Maximum, Average. Relevant cluster statistical data: Minimum, Maximum, Average |
-| `OpenSearchDashboardsConcurrentConnections`                  | The active concurrent connection count on the OpenSearch dashboard. If this number is consistently high, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `OpenSearchDashboardsHeapTotal`                              | The amount of heap memory allocated to the OpenSearch dashboard, measured in MiB (`Mebibytes`). The precise memory allocation may vary based on different EC2 instance types. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `OpenSearchDashboardsHeapUsed`                               | The absolute amount of heap memory used by the OpenSearch dashboard, measured in MiB (`Mebibytes`). Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `OpenSearchDashboardsHeapUtilization`                        | The maximum available heap memory percentage used by the OpenSearch dashboard. If this value exceeds 80%, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Minimum, Maximum, Average |
-| `OpenSearchDashboardsResponseTimesMaxInMillis`               | The maximum time (measured in milliseconds) required for the OpenSearch dashboard to respond to requests. If requests consistently take a long time to return results, consider increasing the instance type size. Relevant node statistical data: Maximum. Relevant cluster statistical data: Maximum, Average|
-| `OpenSearchDashboardsOS1MinuteLoad`                          | The one-minute average CPU load on the OpenSearch dashboard. Ideally, the CPU load should be kept below 1.00. While temporary spikes are acceptable, if this metric consistently stays above 1.00, we recommend increasing the instance type size. Relevant node statistical data: Average. Relevant cluster statistical data: Average, Maximum |
-| `OpenSearchDashboardsRequestTotal`                           | The total number of HTTP requests sent to the OpenSearch dashboard. If your system is slow or you notice a large number of dashboard requests, consider increasing the instance type size. Relevant node statistical data: Total. Relevant cluster statistical data: Sum |
-| `ThreadpoolForce_mergeQueue`                                 | The number of queued tasks in the force merge thread pool. If the queue size is consistently large, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `ThreadpoolForce_mergeRejected`                              | The number of rejected tasks in the force merge thread pool. If this number continues to grow, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum |
-| `ThreadpoolForce_mergeThreads`                               | The size of the force merge thread pool. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum |
-| `ThreadpoolSearchQueue`                                      | The number of queued tasks in the search thread pool. If the queue size is consistently large, consider scaling your cluster. The maximum size of the search queue is 1000. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum |
-| `ThreadpoolSearchRejected`                                   | The number of rejected tasks in the search thread pool. If this number continues to grow, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum |
-| `ThreadpoolSearchThreads`                                    | The size of the search thread pool. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum |
-| `Threadpoolsql-workerQueue`                                  | The number of queued tasks in the SQL search thread pool. If the queue size is consistently large, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum, Maximum, Average |
-| `Threadpoolsql-workerRejected`                               | The number of rejected tasks in the SQL search thread pool. If this number continues to grow, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Sum |
-| `Threadpoolsql-workerThreads`                                | The size of the SQL search thread pool. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum |
-| `ThreadpoolWriteQueue`                                       | The number of queued tasks in the write thread pool. If the queue size is consistently large, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum |
-| `ThreadpoolWriteRejected`                                    | The number of rejected tasks in the write thread pool. If this number continues to increase, consider scaling your cluster. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum |
-| `ThreadpoolWriteThreads`                                     | The size of the write thread pool. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum |
-| `CoordinatingWriteRejected`                                  | The total number of rejections that occurred on the coordinating node due to index pressure since the last OpenSearch service process startup. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum. This metric is available in version 7.1 and higher |
-| `ReplicaWriteRejected`                                       | The total number of rejections that occurred on replica shards due to index pressure since the last OpenSearch service process startup. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum. This metric is available in version 7.1 and higher |
-| `PrimaryWriteRejected`                                       | The total number of rejections that occurred on primary shards due to index pressure since the last OpenSearch service process startup. Relevant node statistical data: Maximum. Relevant cluster statistical data: Average, Sum. This metric is available in version 7.1 and higher |
-| `ReadLatency`                                                | The latency of read operations on EBS volumes in seconds. This metric is also available for individual nodes. Relevant statistical data: Minimum, Maximum, Average |
-| `ReadThroughput`                                             | The throughput of read operations on EBS volumes in bytes per second. This metric is also available for individual nodes. Relevant statistical data: Minimum, Maximum, Average |
-| `ReadIOPS`                                                   | The number of input and output (I/O) operations per second for read operations on EBS volumes. This metric is also available for individual nodes. Relevant statistical data: Minimum, Maximum, Average |
-| `WriteIOPS`                                                  | The number of input and output (I/O) operations per second for write operations on EBS volumes. This metric is also available for individual nodes. Relevant statistical data: Minimum, Maximum, Average |
-| `WriteLatency`                                               | The latency of write operations on EBS volumes, measured in seconds. This metric is also available for individual nodes. Relevant statistical data: Minimum, Maximum, Average |
-| `BurstBalance`                                               | The percentage of remaining burst balance of an EBS volume, which represents the accumulated I/O credits. A value of 100 indicates that the volume has reached the maximum number of credits. If this percentage is below 70%, please refer to the "EBS Burst Balance Low" issue. For domains with gp3 volume type and domains with gp2 volumes larger than 1000 GiB in size, the burst balance will stay at 0. Relevant statistical data: Minimum, Maximum, Average |
-| `CurrentPointInTime`                                         | The number of active PIT (Point-in-Time) search contexts in a node |
-| `TotalPointInTime`                                           | The number of PIT (Point-in-Time) search contexts that have expired since the node started |
-| `HasActivePointInTime`                                       | A value of 1 indicates that there are active PIT (Point-in-Time) search contexts on the node since it started. A value of 0 indicates that there are no active PIT search contexts |
-| `HasUsedPointInTime`                                         | A value of 1 indicates that there are expired PIT (Point-in-Time) search contexts on the node since it started. A value of 0 indicates that there are no expired PIT search contexts |
-| `AsynchronousSearchInitializedRate`                          | The number of asynchronous searches that were initiated in the past 1 minute |
-| `AsynchronousSearchRunningCurrent`                           | The number of asynchronous searches that are currently running |
-| `AsynchronousSearchCompletionRate`                           | The number of asynchronous searches that were successfully completed in the past 1 minute |
-| `AsynchronousSearchFailureRate`                              | The number of asynchronous searches that were completed and the number that failed in the last minute |
-| `AsynchronousSearchPersistRate`                              | The number of asynchronous searches that have been continuously running in the last minute |
-| `AsynchronousSearchRejected`                                 | The total number of asynchronous searches that have been rejected since the node started |
-| `AsynchronousSearchCancelled`                                | The total number of asynchronous searches that have been cancelled since the node started |
-| `SQLRequestCount`                                            | The total number of requests to the _SQL API. Relevant statistic: Sum |
-| `SQLUnhealthy`                                               | A value of 1 indicates that the SQL plugin returned a 5xx response code or passed an invalid query DSL to OpenSearch in response to a specific request. Other requests will continue to succeed. A value of 0 indicates no recent failures. If you see a continuous value of 1, investigate the issues with your client's requests to the plugin. Relevant statistic: Maximum |
-| `SQLDefaultCursorRequestCount`                               | Similar to SQLRequestCount, but only counts paginated requests. Relevant statistic: Total |
-| `SQLFailedRequestCountByCusErr`                              | The number of requests to the _SQL API that failed due to client issues. For example, requests may fail with an HTTP status code 400 if there's an IndexNotFoundException. Relevant statistic: Total |
-| `SQLFailedRequestCountBySysErr`                              | The number of requests to the _SQL API that failed due to server issues or feature limitations. For example, requests may fail with an HTTP status code 503 if there's a VerificationException. Relevant statistic: Total |
-| `OldGenJVMMemoryPressure`                                    | The maximum percentage of the Java heap used for "old generation" on all data nodes in the cluster. This metric is also available at the node level. Relevant statistic: Maximum |
-| `OpenSearchDashboardsHealthyNodes`（以前称之为 `KibanaHealthyNodes`） | Health check of the OpenSearch dashboard. If the minimum, maximum, and average values are all equal to 1, then the dashboard is running normally. For example, if you have 10 nodes and the maximum value is 1, the minimum value is 0, and the average value is 0.7, it means that 7 nodes (70%) are running normally, and 3 nodes (30%) are not in good health. Relevant statistics: Minimum, Maximum, Average |
-| `InvalidHostHeaderRequests`                                  | The number of HTTP requests to the OpenSearch cluster that contain invalid (or missing) host headers. Valid requests include domain `hostnames` as the host header value. OpenSearch service rejects invalid requests made to public access domains without restrictive access policies. It is recommended to apply restrictive access policies to all domains. If you see a large value for this metric, please verify that your OpenSearch client includes the domain hostname in its requests (e.g., instead of its IP address). Relevant statistics: Total |
-| `OpenSearchRequests(previously ElasticsearchRequests)`       | The number of requests made to the OpenSearch cluster. Relevant Statistics: Total         |
-| `2xx, 3xx, 4xx, 5xx`                                         | The number of requests to the domain that resulted in the specified HTTP response code (2*xx*, 3*xx*, 4*xx*, 5*xx*). Relevant Statistics: Total |
+## Cluster Metrics
 
+Amazon OpenSearch Service provides the following metrics for clusters.
 
-## Object {#object}
-The data structure of collected Tencent Cloud Redis object can be viewed in 'Infrastructure - Custom' where object data is available
+| Metric                                                       | Description                                                     |
+| :----------------------------------------------------------- | :-------------------------------------------------------------- |
+| `ClusterStatus.green`                                        | Indicates that all index shards are allocated to nodes in the cluster. Relevant statistics: Maximum |
+| `ClusterStatus.yellow`                                       | Indicates that all primary shards of indices are allocated to nodes in the cluster, but at least one index replica shard is not. For more information, see [Yellow Cluster Status](https://docs.aws.amazon.com/zh_cn/opensearch-service/latest/developerguide/handling-errors.html#handling-errors-yellow-cluster-status){:target="_blank"}: Relevant statistics: Maximum |
+| `ClusterStatus.red`                                          | Indicates that at least one index's primary shard and replica shards are not allocated to nodes in the cluster. For more information, see [Red Cluster Status](https://docs.aws.amazon.com/zh_cn/opensearch-service/latest/developerguide/handling-errors.html#handling-errors-red-cluster-status){:target="_blank"}: Relevant statistics: Maximum |
+| `Shards.active`                                              | Total number of active primary and replica shards. Relevant statistics: Maximum, Total |
+| `Shards.unassigned`                                          | Number of shards not assigned to nodes in the cluster. Relevant statistics: Maximum, Total |
+| `Shards.delayedUnassigned`                                   | Number of shards whose node allocation has been delayed due to timeout settings. Relevant statistics: Maximum, Total |
+| `Shards.activePrimary`                                       | Number of active primary shards. Relevant statistics: Maximum, Total |
+| `Shards.initializing`                                        | Number of shards currently initializing. Relevant statistics: Total |
+| `Shards.relocating`                                          | Number of shards currently relocating. Relevant statistics: Total |
+| `Nodes`                                                      | Number of nodes in the OpenSearch service cluster, including dedicated master UltraWarm nodes and nodes. For more information, see [Changing Configuration in Amazon OpenSearch Service](https://docs.aws.amazon.com/zh_cn/opensearch-service/latest/developerguide/managedomains-configuration-changes.html){:target="_blank"}: Relevant statistics: Maximum |
+| `SearchableDocuments`                                        | Total number of searchable documents across all data nodes in the cluster. Relevant statistics: Minimum, Maximum, Average |
+| `CPUUtilization`                                             | Percentage of CPU utilization on data nodes in the cluster. The maximum shows the node with the highest CPU utilization. The average represents all nodes in the cluster. This metric can also be used for individual nodes. Relevant statistics: Maximum, Average |
+| `ClusterUsedSpace`                                           | Total used space in the cluster. You must wait one minute to get an accurate value. The OpenSearch service console displays this value in GiB. The Amazon CloudWatch console displays it in MiB. Relevant statistics: Minimum, Maximum |
+| `ClusterIndexWritesBlocked`                                  | Indicates whether your cluster accepts or blocks incoming write requests. A value of 0 means the cluster accepts requests. A value of 1 means blocking requests. Common factors include low `FreeStorageSpace` or high `JVMMemoryPressure`. To mitigate this issue, consider increasing disk space or expanding the cluster. Relevant statistics: Maximum |
+| `FreeStorageSpace`                                           | Available space on each data node in the cluster. Sum shows the total available space in the cluster, but you must wait one minute to get an accurate value. Minimum and Maximum display the nodes with the least and most available space respectively. This metric can also be used for individual nodes. An `OpenSearchClusterBlockException` is thrown when this metric reaches 0. To recover, you must delete indexes, add larger instances, or add EBS-based storage to existing instances. For more information, see Missing Available Storage Space. The OpenSearch service console displays this value in GiB. The Amazon CloudWatch console displays it in MiB. |
+| `JVMMemoryPressure`                                          | Maximum percentage of Java heap used on all data nodes in the cluster. OpenSearch services allocate half of the instance RAM for Java heap, with a maximum heap size of 32 GiB. You can vertically scale up to 64GiB of instance RAM, after which horizontal scaling can be achieved by adding instances. See [Recommended CloudWatch Alarms for Amazon OpenSearch Service](https://docs.aws.amazon.com/zh_cn/opensearch-service/latest/developerguide/cloudwatch-alarms.html){:target="_blank"}. Relevant statistics: Maximum Note that the logic for this metric was changed in service software R20220323. For more information, see [Release Notes](https://docs.aws.amazon.com/zh_cn/opensearch-service/latest/developerguide/release-notes.html){:target="_blank"}. |
+| `JVMGCYoungCollectionCount`                                  | Number of "young generation" garbage collection runs. In a well-resourced cluster, this number should remain small and not frequently increase. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `JVMGCOldCollectionTime`                                     | Time spent on "old generation" garbage collection in the cluster, in milliseconds. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `JVMGCYoungCollectionTime`                                   | Time spent on "young generation" garbage collection in the cluster, in milliseconds. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `JVMGCOldCollectionCount`                                    | Number of "old generation" garbage collection runs. A large and continuously growing number of runs is normal for cluster operations. This metric is also obtained at the node level. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `IndexingLatency`                                            | Difference in total time taken for all indexing operations between minute N and minute (N-1), in milliseconds. |
+| `IndexingRate`                                               | Number of indexing operations per minute. |
+| `SearchLatency`                                              | Difference in total time taken for all searches between minute N and minute (N-1), in milliseconds. |
+| `SearchRate`                                                 | Total number of search requests per minute across all shards on data nodes. |
+| `SegmentCount`                                               | Number of segments on data nodes. The more segments you have, the longer each search takes. OpenSearch sometimes merges smaller segments into larger ones. Node-level statistics: Maximum, Average Cluster-level statistics: Sum, Maximum, Average |
+| `SysMemoryUtilization`                                       | Percentage of memory in use on the instance. A high value is normal and usually does not indicate issues with the cluster. For better indicators of potential performance and stability issues, see the `JVMMemoryPressure` metric. Node-level statistics: Minimum, Maximum, Average Cluster-level statistics: Minimum, Maximum, Average |
+| `OpenSearchDashboardsConcurrentConnections`                  | Number of active concurrent connections to OpenSearch Dashboards. If this number is consistently high, consider expanding your cluster. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `OpenSearchDashboardsHeapTotal`                              | Heap memory allocated to OpenSearch Dashboards in MiB. Different EC2 instance types may affect precise memory allocation. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `OpenSearchDashboardsHeapUsed`                               | Absolute amount of heap memory used by OpenSearch Dashboards in MiB. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `OpenSearchDashboardsHeapUtilization`                        | Percentage of maximum available heap memory used by OpenSearch Dashboards. If this value exceeds 80%, consider expanding your cluster. Node-level statistics: Maximum Cluster-level statistics: Minimum, Maximum, Average |
+| `OpenSearchDashboardsResponseTimesMaxInMillis`               | Maximum time taken by OpenSearch Dashboards to respond to requests, in milliseconds. If requests consistently take a long time to return results, consider increasing the instance type size. Node-level statistics: Maximum Cluster-level statistics: Maximum, Average |
+| `OpenSearchDashboardsOS1MinuteLoad`                          | One-minute average CPU load on OpenSearch Dashboards. Ideally, CPU load should stay below 1.00. While temporary spikes are fine, if this metric consistently stays above 1.00, we recommend increasing the instance type size. Node-level statistics: Average Cluster-level statistics: Average, Maximum |
+| `OpenSearchDashboardsRequestTotal`                           | Total number of HTTP requests issued to OpenSearch Dashboards. If your system is slow or you see a lot of dashboard requests, consider increasing the instance type size. Node-level statistics: Total Cluster-level statistics: Sum |
+| `ThreadpoolForce_mergeQueue`                                 | Number of queued tasks in the force merge thread pool. If queue size remains large, consider expanding your cluster. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `ThreadpoolForce_mergeRejected`                              | Number of rejected tasks in the force merge thread pool. If this number continues to grow, consider expanding your cluster. Node-level statistics: Maximum Cluster-level statistics: Sum |
+| `ThreadpoolForce_mergeThreads`                               | Size of the force merge thread pool. Node-level statistics: Maximum Cluster-level statistics: Average, Sum |
+| `ThreadpoolSearchQueue`                                      | Number of queued tasks in the search thread pool. If queue size remains large, consider expanding your cluster. The maximum queue size for search is 1000. Node-level statistics: Maximum Cluster-level statistics: Average, Sum |
+| `ThreadpoolSearchRejected`                                   | Number of rejected tasks in the search thread pool. If this number continues to grow, consider expanding your cluster. Node-level statistics: Maximum Cluster-level statistics: Sum |
+| `ThreadpoolSearchThreads`                                    | Size of the search thread pool. Node-level statistics: Maximum Cluster-level statistics: Average, Sum |
+| `Threadpoolsql-workerQueue`                                  | Number of queued tasks in the SQL search thread pool. If queue size remains large, consider expanding your cluster. Node-level statistics: Maximum Cluster-level statistics: Sum, Maximum, Average |
+| `Threadpoolsql-workerRejected`                               | Number of rejected tasks in the SQL search thread pool. If this number continues to grow, consider expanding your cluster. Node-level statistics: Maximum Cluster-level statistics: Sum |
+| `Threadpoolsql-workerThreads`                                | Size of the SQL search thread pool. Node-level statistics: Maximum Cluster-level statistics: Average, Sum |
+| `ThreadpoolWriteQueue`                                       | Number of queued tasks in the write thread pool. Node-level statistics: Maximum Cluster-level statistics: Average, Sum |
+| `ThreadpoolWriteRejected`                                    | Number of rejected tasks in the write thread pool. Node-level statistics: Maximum Cluster-level statistics: Average, Sum |
+| `ThreadpoolWriteThreads`                                     | Size of the write thread pool. Node-level statistics: Maximum Cluster-level statistics: Average, Sum |
+| `CoordinatingWriteRejected`                                  | Total number of rejections on the coordinating node since the last OpenSearch service process started, due to index pressure. Node-level statistics: Maximum Cluster-level statistics: Average, Sum This metric is available in version 7.1 and higher. |
+| `ReplicaWriteRejected`                                       | Total number of rejections on replica shards since the last OpenSearch service process started, due to index pressure. Node-level statistics: Maximum Cluster-level statistics: Average, Sum This metric is available in version 7.1 and higher. |
+| `PrimaryWriteRejected`                                       | Total number of rejections on primary shards since the last OpenSearch service process started, due to index pressure. Node-level statistics: Maximum Cluster-level statistics: Average, Sum This metric is available in version 7.1 and higher. |
+| `ReadLatency`                                                | Latency of read operations on EBS volumes, in seconds. This metric can also be used for individual nodes. Relevant statistics: Minimum, Maximum, Average |
+| `ReadThroughput`                                             | Throughput of read operations on EBS volumes, in bytes/second. This metric can also be used for individual nodes. Relevant statistics: Minimum, Maximum, Average |
+| `ReadIOPS`                                                   | Number of input/output (I/O) operations per second for read operations on EBS volumes. This metric can also be used for individual nodes. Relevant statistics: Minimum, Maximum, Average |
+| `WriteIOPS`                                                  | Number of input/output (I/O) operations per second for write operations on EBS volumes. This metric can also be used for individual nodes. Relevant statistics: Minimum, Maximum, Average |
+| `WriteLatency`                                               | Latency of write operations on EBS volumes, in seconds. This metric can also be used for individual nodes. Relevant statistics: Minimum, Maximum, Average |
+| `BurstBalance`                                               | Percentage of remaining input/output (I/O) credits in the burst bucket of an EBS volume. A value of 100 indicates that the volume has accumulated the maximum number of credits. If this percentage is below 70%, see Low EBS Burst Balance. For domains with gp3 volumes and domains with gp2 volumes larger than 1000 GiB, burst balance remains at 0. Relevant statistics: Minimum, Maximum, Average |
+| `CurrentPointInTime`                                         | Number of active PIT search contexts on the node. |
+| `TotalPointInTime`                                           | Number of expired PIT search contexts since the node started. |
+| `HasActivePointInTime`                                       | Value of 1 indicates that there is an active PIT context on the node since it started. Value of 0 indicates none. |
+| `HasUsedPointInTime`                                         | Value of 1 indicates that there has been an expired PIT context on the node since it started. Value of 0 indicates none. |
+| `AsynchronousSearchInitializedRate`                          | Number of asynchronous searches initialized in the past minute. |
+| `AsynchronousSearchRunningCurrent`                           | Number of asynchronous searches currently running. |
+| `AsynchronousSearchCompletionRate`                           | Number of asynchronous searches successfully completed in the past minute. |
+| `AsynchronousSearchFailureRate`                              | Number of asynchronous searches completed and failed in the past minute. |
+| `AsynchronousSearchPersistRate`                              | Number of asynchronous searches persisted in the past minute. |
+| `AsynchronousSearchRejected`                                 | Total number of asynchronous searches rejected since the node started. |
+| `AsynchronousSearchCancelled`                                | Total number of asynchronous searches canceled since the node started. |
+| `SQLRequestCount`                                            | Number of requests to the _SQL API. Relevant statistics: Total |
+| `SQLUnhealthy`                                               | Value of 1 indicates that the SQL plugin will return 5xx response codes or pass invalid query DSL to OpenSearch for specific requests. Other requests continue to succeed. Value of 0 indicates no recent failures. If you see a consistent value of 1, investigate issues with requests your client sends to the plugin. Relevant statistics: Maximum |
+| `SQLDefaultCursorRequestCount`                               | Similar to `SQLRequestCount`, but only counts paginated requests. Relevant statistics: Total |
+| `SQLFailedRequestCountByCusErr`                              | Number of failed requests to the _SQL API due to client issues. For example, requests might return HTTP status code 400 due to `IndexNotFoundException`. Relevant statistics: Total |
+| `SQLFailedRequestCountBySysErr`                              | Number of failed requests to the _SQL API due to server issues or functional limitations. For example, requests might return HTTP status code 503 due to `VerificationException`. Relevant statistics: Total |
+| `OldGenJVMMemoryPressure`                                    | Maximum percentage of Java heap used for "old generation" on all data nodes in the cluster. This metric is also obtained at the node level. Relevant statistics: Maximum |
+| `OpenSearchDashboardsHealthyNodes` (previously called `KibanaHealthyNodes`) | Health check for OpenSearch Dashboards. If the minimum, maximum, and average all equal 1, the dashboard is functioning normally. If you have 10 nodes, the maximum is 1, the minimum is 0, and the average is 0.7, it means 7 nodes (70%) are functioning normally, and 3 nodes (30%) are not. Relevant statistics: Minimum, Maximum, Average |
+| `InvalidHostHeaderRequests`                                  | Number of HTTP requests to the OpenSearch cluster containing invalid (or missing) host headers. Valid requests include the domain hostname as the host header value. OpenSearch service rejects invalid requests to public access domains without restrictive access policies. We recommend applying restrictive access policies to all domains. If you see a large value for this metric, confirm that your OpenSearch client includes the domain hostname (rather than its IP address) in its requests. Relevant statistics: Total |
+| `OpenSearchRequests(previously ElasticsearchRequests)`       | Number of requests issued to the OpenSearch cluster. Relevant statistics: Total           |
+| `2xx, 3xx, 4xx, 5xx`                                         | Number of requests to the domain resulting in specified HTTP response codes (2*xx*, 3*xx*, 4*xx*, 5*xx*). Relevant statistics: Total |
+
+## Objects {#object}
+
+The structure of collected AWS OpenSearch object data can be viewed under 「Infrastructure - Custom」
 
 ```json
 {
   "measurement": "aws_opensearch",
   "tags": {
-    "name"        : "crs-xxxx",
-    "BillingMode" : "0",
-    "Engine"      : "Redis",
-    "InstanceId"  : "crs-xxxx",
-    "InstanceName": "solution",
-    "Port"        : "6379",
-    "ProductType" : "standalone",
-    "ProjectId"   : "0",
-    "RegionId"    : "ap-shanghai",
-    "Status"      : "2",
-    "Type"        : "6",
-    "WanIp"       : "172.x.x.x",
-    "ZoneId"      : "200002"
+    "name"                  : "df-prd-es",
+    "EngineVersion"         : "Elasticsearch_7.10",
+    "DomainId"              : "5882XXXXX135/df-prd-es",
+    "DomainName"            : "df-prd-es",
+    "ClusterConfig"         : "{JSON data of instance type and instance count in the domain}",
+    "ServiceSoftwareOptions": "{JSON data of current service software state}",
+    "region"                : "cn-northwest-1",
+    "RegionId"              : "cn-northwest-1"
   },
   "fields": {
-    "ClientLimits"    : "10000",
-    "Createtime"      : "2022-07-14 13:54:14",
-    "DeadlineTime"    : "0000-00-00 00:00:00",
-    "InstanceNodeInfo": "{Instance node info}",
-    "InstanceTitle"   : "instance",
-    "Size"            : 1024,
-    "message"         : "{Instance JSON data}"
+    "EBSOptions": "{JSON data of elastic block storage options for the specified domain}",
+    "Endpoints" : "{JSON mapping of domain endpoints for submitting index and search requests}",
+    "message"   : "{JSON data of instance}"
   }
 }
 ```
 
-
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
+> Note 1: The value of `tags.name` is the instance ID, used as a unique identifier.
+> Note 2: The data field corresponding to `tags.name` in this script is `DomainName`. When using this script, ensure that multiple AWS accounts do not have duplicate `DomainName` values.
+> Note 3: `tags.ClusterConfig`, `tags.Endpoint`, `tags.ServiceSoftwareOptions`, `fields.message`, `fields.EBSOptions`, `fields.Endpoints` are all JSON serialized strings.

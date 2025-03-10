@@ -1,14 +1,14 @@
-# Customize to Add Additional Data TAG
+# Custom Addition of Extra Data TAG
 
 ---
 
-After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)` API to add additional TAGs to all RUM events collected from the application.
+After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)` API to add extra TAGs to all RUM events collected from the application.
 
-### Add TAG
+### Adding TAGs
 
 === "CDN Sync"
 
-    ``` javascript
+    ```javascript
     window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
 
     // Code example
@@ -21,7 +21,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
 
 === "CDN Async"
 
-    ``` javascript
+    ```javascript
     DATAFLUX_RUM.onReady(function() {
         DATAFLUX_RUM.setGlobalContextProperty('<CONTEXT_KEY>', '<CONTEXT_VALUE>');
     })
@@ -41,7 +41,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
 
 === "NPM"
 
-    ``` javascript
+    ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
     datafluxRum.setGlobalContextProperty('<CONTEXT_KEY>', <CONTEXT_VALUE>);
 
@@ -53,7 +53,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
     });
     ```
 
-### Replace TAG (Override)
+### Replacing TAGs (Overwrite)
 
 === "CDN Sync"
 
@@ -96,7 +96,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
     });
     ```
 
-### Get All Set Custom TAGs
+### Getting All Set Custom TAGs
 
 === "CDN Sync"
 
@@ -122,7 +122,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
 
     ```
 
-### Remove the Custom TAG Corresponding to Specific Key
+### Removing Specific Key Corresponding Custom TAG
 
 === "CDN Sync"
 
@@ -147,7 +147,7 @@ After initializing RUM, use the `setGlobalContextProperty(key:string, value:any)
     const context = datafluxRum.removeGlobalContextProperty('<CONTEXT_KEY>');
     ```
 
-### Clear all the Custom TAG
+### Removing All Custom TAGs
 
 === "CDN Sync"
 
