@@ -9,7 +9,7 @@ nav:
   - Integrations: integrations
   - Quick Start: getting-started
   - <br/>Product Features: ""
-  - Use Cases: scene
+  - Scenes: scene
   - Monitoring: monitoring
   - Events: events
   - Incident: exception
