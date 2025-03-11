@@ -71,6 +71,3 @@ After configuring AWS MediaConvert, the default metric set is as follows. You ca
 | `StandbyTime` | Standby time | seconds |
 | `VideoPaddingInsertedRatio` | Video padding ratio | % |
 | `VideoPaddingInserted` | Whether video padding occurred | count |
-</input_content>
-</example>
-</example>
