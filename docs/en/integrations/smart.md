@@ -280,31 +280,3 @@ All data collected below will append a global tag named `host` (tag value is the
 |`unknown_attribute_raw_value`|The raw value of unknown attribute.|int|-|
 |`unknown_attribute_value`|The value of unknown attribute.|int|-|
 |`unknown_attribute_worst`|The worst value of unknown attribute.|int|-|
-
-
-</input_content>
-<target_language>英语</target_language>
-</input>
-
-- If the input is Markdown content, example:
-<example>
-Input example:
-- input_content: "# Introduction\nThis is a brief introduction to the product.\n- Feature 1\n- Feature 2"
-- target_language: English
-
-Expected output:
-- translated_content: "# Introduction\nThis is a brief introduction to the product.\n- Feature 1\n- Feature 2"
-</example>
-
-- If the input is YAML content, example:
-<example>
-Input example:
-nav:
- - 观测云: /guance
- - 应用性能监测: /apm
-
-Expected output (do not add extra ```YAML ``` Markdown code block markers):
-nav:
- - Guance: /guance
- - APM: /apm
-</example>

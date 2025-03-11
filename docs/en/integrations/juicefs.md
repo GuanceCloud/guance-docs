@@ -39,8 +39,8 @@ interval = "10s"
 <!-- markdownlint-disable MD033 -->
 <font color="red">*Other configurations can be adjusted as needed*</font>
 <!-- markdownlint-enable -->
+, Parameter adjustment notes:
 
-Parameter adjustment notes:
 - urls: Prometheus metrics address; enter the metrics URL exposed by the corresponding component.
 - source: Collector alias, it is recommended to differentiate.
 - interval: Collection interval.

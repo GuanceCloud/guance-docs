@@ -909,4 +909,3 @@ Parsed fields list:
 | `status`        | `notice`                                         | Log level                           |
 | `msg`           | `Background saving terminated with success`      | Log content                         |
 | `time`          | `1557861100164000000`                            | Nanosecond timestamp (as line protocol time) |
-```

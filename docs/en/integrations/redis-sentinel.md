@@ -31,6 +31,7 @@ java -Xmx64m -jar redis-sentinel-exporter-0.2.jar --spring.redis.sentinel.master
 ```
 
 Parameter description:
+
 - `spring.redis.sentinel.master`: Cluster name
 - `spring.redis.sentinel.nodes`: Sentinel node addresses
 

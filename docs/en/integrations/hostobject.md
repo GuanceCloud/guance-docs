@@ -232,7 +232,7 @@ After successfully installing and starting DataKit, the Host Object collector wi
         **Collector Configuration Field**: `cloud_meta_token_url`
     
         **Example**: `{"aws":"xxx", "aliyun":"yyy"}`
-    
+
 <!-- markdownlint-enable -->
 
 ### Enable Cloud Sync {#cloudinfo}

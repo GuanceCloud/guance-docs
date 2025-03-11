@@ -162,6 +162,7 @@ Taking Kubernetes `1.24` as an example, to enable audit log policy:
     # Default level for all other requests.
     - level: Metadata
 ```
+
 <!-- markdownlint-enable -->
 
 💡 Corresponding policy information can be adjusted according to actual needs.

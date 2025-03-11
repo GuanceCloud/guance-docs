@@ -29,7 +29,9 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > We recommend deploying the GSE version.
 
+<!-- markdownlint-disable MD024 -->
 ### Install Script
+<!-- markdownlint-enable -->
 
 > Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
@@ -189,11 +191,15 @@ Field descriptions:
 
 ### Slow Query Details
 
+<!-- markdownlint-disable MD024 -->
 #### Prerequisites
+<!-- markdownlint-enable -->
 
 > Note: This script depends on the collection of PolarDB instance objects. If PolarDB custom object collection is not configured, the slow log script cannot collect slow log data.
 
+<!-- markdownlint-disable MD024 -->
 #### Install Script
+<!-- markdownlint-enable -->
 
 In addition to the previous setup, you need to install another script for collecting **PolarDB slow query detail logs**.
 

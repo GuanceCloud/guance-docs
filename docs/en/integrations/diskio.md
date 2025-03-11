@@ -260,7 +260,7 @@ Average:     dev253-1      0.00      0.00      0.00      0.00      0.00      0.0
 
 ### Collection Script {#py-script}
 
-Create a new file *<DataKit Directory>/python.d/diskio/diskio.py*, with the following content:
+Create a new file *[DataKit Directory]/python.d/diskio/diskio.py*, with the following content:
 
 ```python
 import subprocess

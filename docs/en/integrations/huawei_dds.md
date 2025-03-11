@@ -207,19 +207,3 @@ After data synchronization is successful, you can view the data in the Guance pl
 > - `fields.datastore`
 > - `fields.groups`
 > - `fields.actions`
->
-```
-
-After data synchronization is successful, you can view the data in the Guance platform under 「Infrastructure / Custom (Objects)」.
-
-> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
->
-> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
->
-> Tip 2:
->
-> - `fields.message`
-> - `fields.backup_strategy`
-> - `fields.datastore`
-> - `fields.groups`
-> - `fields.actions`

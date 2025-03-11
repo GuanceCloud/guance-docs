@@ -18,7 +18,9 @@ cloudCollector:
   path: 'cloud-collector/en/aws_auto_scaling'
 ---
 
+<!-- markdownlint-disable MD025 -->
 # AWS Auto Scaling
+<!-- markdownlint-enable -->
 
 AWS Auto Scaling, including instance counts, capacity units, warm pools, etc.
 
@@ -73,4 +75,3 @@ After configuring AWS Auto Scaling, the default metric set is as follows. You ca
 | `WarmPoolTotalCapacity`                                       | Total capacity of the warm pool, including instances in running, stopped, pending, or terminating states |
 | `GroupAndWarmPoolDesiredCapacity`                             | Desired capacity combining the Auto Scaling group and warm pool     |
 | `GroupAndWarmPoolTotalCapacity`                               | Total capacity combining the Auto Scaling group and warm pool. This includes instances in running, stopped, pending, terminating, or in-service states |
-</table>
