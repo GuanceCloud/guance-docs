@@ -400,8 +400,7 @@ dql > M::zookeeper LIMIT 1
 | **zookeeper_snapshottime** | Histogram of `snapshottime` for write snapshot time | Metric | Available for Zookeeper 3.6+  |
 | **zookeeper_snapshottime_count** | Total count of snapshot time for writing snapshots | Metric | Available for Zookeeper 3.6+  |
 | **zookeeper_snapshottime_sum** | Sum of snapshot time for writing snapshots | Metric | Available for Zookeeper 3.6+  |
-| **zookeeper_stale_replies** | | Metric | Available for Zookeeper| **Name** | **Description** | **Metric Type** | **Availability** |
-| --- | --- | --- | --- |
+| **zookeeper_stale_replies** | | Metric | Available for Zookeeper 3.6+|
 | **zookeeper_stale_requests** | | Metric | Available for Zookeeper 3.6+ |
 | **zookeeper_stale_requests_dropped** | | Metric | Available for Zookeeper 3.6+ |
 | **zookeeper_stale_sessions_expired** | | Metric | Available for Zookeeper 3.6+ |
