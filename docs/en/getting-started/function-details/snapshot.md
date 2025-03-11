@@ -1,171 +1,256 @@
 # Snapshots
 ---
 
-## Overview
+<<< custom_key.brand_name >>> snapshots support creating custom time-range copies of data for scenario dashboards, infrastructure, metrics, logs, events, APM, RUM, cloud dial testing, security checks, CI visualization, and other Explorers. They also generate shortcut links with specified viewing permissions.
 
-Snapshot in Guance supports <u>creating a copy of data immediately copied in custom time period and generating a quick access link with specified viewing permissions</u> for explorers in Dashboards, Infrastructure, Metrics, Logs, Events, APM, RUM, cloud dialing test, Security Check, CI Visualization, etc.
+- If there is a need to record data from specific moments when a business system encounters issues or anomalies, the **Save Snapshot** feature can effectively help IT engineers quickly document accurate observation data, aiding in rapid problem identification.
+- When different teams within an enterprise or external partners need to share certain observation data while ensuring data permission isolation, the **Share Snapshot** feature can significantly improve collaboration efficiency among members with different responsibilities, helping the enterprise solve problems quickly.
 
-- If there is a similar need to <u>keep data of problems or abnormal moments in business systems</u>, the **Save Snapshot** function can effectively help IT engineers quickly record true and accurate observation data and thus quickly locate problems.
-- If there is a need to <u>share some observation data</u> among different teams within the enterprise or with external partners on the premise of ensuring data authority isolation, the function of **Share Snapshot** can effectively improve the cooperation efficiency among members of different division of labor and help the enterprise solve problems quickly.
+## Save Snapshots {#save}
 
-## Step 1: Save Snapshot  
+### Snapshot Permissions {#permission}
 
-### Snapshot Permission {#permission}
+- For pages that support saving snapshots, only the **Owner** and **Administrator** of the current workspace have the permissions to **save snapshots, share snapshots, and manage snapshot sharing** among the [four default roles](../../management/role-management.md#_3).
+- In addition to default roles, you can grant relevant snapshot permissions through [custom roles](../../management/role-management.md#_5) and assign these roles to required members.
 
-- For pages that support saving snapshots, only the **Owner** and **Administrator** of the current workspace have the permissions of **Save Snapshot**, **Share Snapshot** and **Snapshot Sharing Management** in the [four default roles](../../management/role-management.md#_3) of members.
-- In addition to the default role, you can also grant relevant snapshot permissions and assign the role to the desired member through the [custom role](../../management/role-management.md#_5).
+### Saving Methods
 
-### How to Save
-
-Enter the page where you want to save the snapshot, adjust the time control in the upper right corner and filter out the data to be saved. Use the following method to pop up the **Save Snapshot** window.
+Enter the page where you want to save a snapshot, adjust the time widget in the top-right corner, and filter out the data you wish to save. Use the following methods to bring up the **Save Snapshot** window.
 
 <div class="grid" markdown>
 
-=== "Shortcut Keys"
+=== "Shortcuts"
 
     :fontawesome-brands-windows: &nbsp; &nbsp; ++ctrl+k++
 
     :fontawesome-brands-apple: &nbsp; &nbsp; ++cmd+k++
 
-    <font color=coral>**Note:**</font> When a shortcut exists in your daemon that conflicts with the shortcut above, **Save Snapshot** shortcut function will not be available.
+    **Note**: If your backend program has conflicting shortcuts, the **Save Snapshot** shortcut function will not work.
 
-=== "Explorer > Snapshot Button"
+=== "Explorer Page Snapshot Button"
     
-    **Save Snapshot** at the top (left of search box), click **Save Snapshot**.
+    **Explorer > Top Snapshot Button** (left of the search box), click **Save Snapshot**.
 
-    <img src="../../img/snapshot-1.png" width="60%" >
+    <img src="../../img/snapshot-1.png" width="80%" >
 
-=== "Explorer > Settings Button"
+=== "Dashboard Settings Button"
 
-    **Explorers > Settings** at the top (left side of time control), click **Save Snapshot**.
+    **Explorer > Top Settings Button** (left of the time widget), click **Save Snapshot**.
 
-    <img src="../../img/snapshot-13.png" width="60%" >
+    ![](../../img/snapshot-13.png)
 
 </div>
 
 ### Snapshot Settings {#snapshot-setting}
 
-After the **Save Snapshot** window pops up successfully, you can set up the snapshot.
+After successfully bringing up the **Save Snapshot** window, you can configure the settings for this snapshot.
 
 <img src="../../img/snapshot-2.png" width="60%" >
 
+1. Enter the snapshot name;
+2. Visibility scope: including **Public** and **Private**.
+    - Public: All users in the current workspace can view this snapshot;
+    - Private: Only the user who saved the snapshot can view it.                     
+3. Automatically retrieves the selected time range from the current page; you can adjust the time range here.                    
 
-| Fields      | Description                          |
-| ----------- | ------------------------------------ |
-| Visible range      | Includes **Public** and **Private**.<br/>Users who publicly represent the current workspace can view this snapshot; Private only means that other users DO NOT have the right to view the snapshot.                     |
-| Time screening      | Save the currently selected time range, and the shared links do not support switching time controls; If it is closed, it will follow the system default, and the shared snapshot can switch the time control.                          |
-| Save as absolute time      | Time screening will only be displayed when it is turned on, and when it is turned on, it is selected to save the currently selected absolute time.  |      
+## View Snapshots
 
-## Step 2: View Snapshots
+### Viewing Methods {#check}
 
-### General Functions
+You can view saved snapshots via the following entry points:
 
-- Support snapshot name keyword search, and match related snapshot names vaguely through keywords.
-- Support sharing, copying links and deleting functions.
-- Click **Snapshot Name** to open the corresponding data copy and reproduce the data label when the snapshot was saved.
-- If, when saving the snapshot, [Private is selected](#snapshot-setting), the snapshot name will be followed by :material-lock:and no one else will be able to view it.  
-### Viewing Methods
+#### :material-numeric-1-circle: In the Snapshot Menu
 
-In addition to the above general functions, the following two ways to view snapshots also have special functions.
+- **Workspace > Shortcut > Snapshot** menu, view all snapshots saved in the current workspace.
 
-<div class="grid" markdown>
+<img src="../../img/snapshot-3.png" width="50%" >
 
-=== "View in Snapshot Menu" 
+- Each page can display up to 20 snapshots; navigate to the next page to see more.
 
-    - **Workspace > Shortcuts** in the lower left corner-Click the **Snapshot** menu to view **all saved snapshots in the current workspace**.
+<img src="../../img/snapshot-4.png" width="50%" >
 
-    <img src="../../img/snapshot-3.png" width="60%" >
+#### :material-numeric-2-circle: In the Explorer Page 
 
-    - Up to 20 snapshot names can be displayed on each page and you can view more snapshots by jumping to the next page.
+Enter **Explorer > Snapshots**, which displays **snapshots saved by the current Explorer**. For example, snapshots saved in the **Log Explorer** cannot be viewed in the **APM > Trace** Explorer;
 
+- Hover over historical snapshots to display the corresponding time range and filters in a floating window. The time range can be "Absolute Time," "Relative Time," or "Default" based on the selection at the time of snapshot creation.
 
-=== "View on Explorer Page" 
+<img src="../../img/snapshot-5.png" width="60%" >
 
-    - **Explorers > Snapshots** at the top, showing only <u>all saved snapshots in the current explorers</u>. For example, snapshots saved in **Logs> Explorers** cannot be viewed in **Explorers** in **APM > Links**.
-    - When hover on the saved history snapshot, the window will be suspended to show the corresponding time range and filter conditions. The time range is divided into **Absolute Time**, **Relative Time** and **Default** according to the choice when saving snapshots.
+- If you have clicked into a specific historical snapshot, clicking **Snapshot** again and then **Return to Explorer** will take you back to the default Explorer before entering the historical snapshot.
 
-    <img src="../../img/snapshot-5.png" width="70%" >
+<img src="../../img/snapshot-6.png" width="60%" >
 
-    - If you have entered a historical snapshot, click **Snapshot** again, and a **Return** button will emerge to back default explorer before entering the historical snapshot.
+#### :material-numeric-3-circle: In the Dashboard Page 
 
-    ![](../../img/snapshot-6.gif)
+Enter **Scenarios > Dashboard**, and in the upper right-hand corner under **Historical Snapshots**, view all dashboard snapshots saved in the current workspace.
 
-</div>
+![](../img/snapshot-14.png)
 
-## Step 3: Share Snapshots
+### Snapshot List Operations
 
-### Sharing Methods {#sharing-method}
+- In the 🔍 bar, you can input the snapshot name to search for related snapshots by keyword;
+- On the right side of each snapshot, you can choose to share/delete the snapshot or copy the snapshot link;
+- Clicking the **Snapshot Name** opens the corresponding data copy and restores the data tags as they were when the snapshot was saved;
+- If the visibility scope was set to **Private** during snapshot creation, a :material-lock: icon will appear after the snapshot name, indicating that others cannot view it.
 
-Guance supports two snapshot sharing methods: public sharing and encryption, and the shared snapshots will automatically generate corresponding links. You can share the snapshot link to anyone or share it encrypted to someone who owns the key.
+## Share Snapshots {#share}
 
-???+ info "Data slot description for sharing snapshot links"
+In the snapshot list on the right, click :octicons-share-android-16:, to share the current specific snapshot.
 
-    - If you open absolute time when saving snapshots, the absolute time when saving snapshots will be displayed after sharing.<br/>
-    For example, if you choose to save a snapshot of the last 15 minutes at `13:30`, open the snapshot link at `14:00` and display the data from `13:15 to 13:30`.
-    - If saving as absolute time is selected when saving the snapshot, the relative time when saving the snapshot will be displayed after sharing.<br/>
-    For example, if you choose to save a snapshot of the last 15 minutes at `13:30`, open the snapshot link at `14:00` and display the data from `13:45 to 14:00`.
+<!--
+<img src="../../img/snapshot-0724.png" width="60%" >
+-->
 
-<div class="grid" markdown>
+### Basic Configuration
 
-=== "Public Sharing" 
+<!--
+In the share snapshot window, the snapshot name is the one entered when [saving the snapshot](#save); it is not editable by default.
+-->
+
+<img src="../../img/snapshot-basis.png" width="60%" >
+
+#### Time Range
+
+After saving the snapshot, it retains the time range selected at the time of saving. You can choose whether the recipient can change the time range on the snapshot page.
+
+#### Validity Period
+
+Options include 1 day, 3 days, 7 days, and permanent validity; the default is 1 day.
+
+**Note**: If you select "Permanent Validity," it may pose data security risks, so please consider carefully.
+
+#### Sharing Method {#sharing-method}
+
+<<< custom_key.brand_name >>> supports two snapshot sharing methods: public sharing and encrypted sharing. Shared snapshots automatically generate corresponding links. You can share the snapshot link with "anyone" or encrypt it for those with the key.
+
+???+ abstract "Explanation of Data Time Range in Shared Snapshot Links"
+
+    - If **Absolute Time** was enabled when saving the snapshot, the shared link will show the absolute time at which the snapshot was saved.
+
+    For example: if you save a snapshot of the last 15 minutes of data at `13:30`, opening the snapshot link at `14:00` will display data from `13:15 ~ 13:30`.
+
+    - If **Absolute Time** was disabled when saving the snapshot, the shared link will show the relative time from the moment the snapshot was saved.
     
-    Users who get the sharing link can view the Guance workspace data displayed in this snapshot.
+    For example: if you save a snapshot of the last 15 minutes of data at `13:30`, opening the snapshot link at `14:00` will display data from `13:45 ~ 14:00`.
 
-    <img src="../../img/snapshot-7.png" width="50%" >
-
-=== "Password Sharing" 
-
-    Set the password form that conforms to `4 to 8 digits and English combination`, and only users who get the sharing link and corresponding password can view the Guance workspace data displayed in this snapshot.
-
-    <img src="../../img/snapshot-8.png" width="50%" >
-
-</div>
-
-### Advanced settings
-
-<div class="grid" markdown>
-
-=== "Set Effective Time" 
-
-    Snapshot sharing supports setting effective time, and supports selecting "48 hours" or "Permanent".
-
-    <font color=coral>**Note:**</font> Permanently and effectively sharing is prone to data security risks, so please use it carefully.
-
-    <img src="../../img/7.snapshot_1.png" width="50%" >
-
-=== "Show Top Bar" 
+:material-numeric-1-circle: Public Sharing
     
-    - Turn on the effect of sharing in the top bar, and you can see that there will be an introduction to the platform at the top:
+Users with the share link can view the <<< custom_key.brand_name >>> workspace data displayed by this snapshot.    
+    
+**Note**: In the Log Explorer, users with [snapshot viewing](../../management/logdata-access.md#snapshot) permissions can view the filtering conditions in the search bar above the snapshot page and add additional search criteria.
 
-    <img src="../../img/snapshot-11.png" width="90%" >
+<img src="../../img/snapshot-7.png" width="50%" >
 
-    - Turn off the effect of showing sharing in the top bar:
+:material-numeric-2-circle: Encrypted Sharing
 
-    <img src="../../img/snapshot-10.png" width="90%" >
+Set a password conforming to `4-8 digits and English letters`. Users with both the share link and the corresponding password can view the <<< custom_key.brand_name >>> workspace data displayed by this snapshot.
 
-=== "Show Watermark"
+<img src="../../img/snapshot-8.png" width="50%" >
 
-    When sharing snapshot, it supports the watermark of displaying the name of the sharer in the format of "sharer: name".
+#### Additional Options
+
+:material-numeric-1-circle: Display Top Bar 
+    
+- Enabling the top bar shows platform introduction text at the top.
+
+<img src="../../img/snapshot-11.png" width="90%" >
+
+- Disabling the top bar hides the platform introduction text.
+
+<img src="../../img/snapshot-10.png" width="90%" >
+
+:material-numeric-2-circle: Display Watermark
+
+Snapshots can display a watermark with the sharer's name in the format "Shared by: Name".
+
+<img src="../../img/7.snapshot_3.png" width="90%" >
+
+### Data Masking {#sensitive}
+
+You can configure masking rules for field values within the snapshot. Input the masking fields and regular expressions, click preview, and matched content will be displayed as `*`.
+
+- Masking fields: multiple selections supported;
+- Regular expressions: use regex syntax for masking; refer to [Data Access](../../management/logdata-access.md#config) for more operations.
+
+<img src="../../img/snapshot-mask.png" width="60%" >
 
 
-</div>
+<!--
+**Note**:  
 
-## Shared Snapshot Management
+- If the regex configuration includes groups, only the content within the group will be masked;   
+- If the regex configuration does not include groups, the entire match will be masked.
+  
+*Example: Need to share a snapshot of log data with a member while hiding UID.*
 
-Members with [save, analyze and manage snapshots permissions](#permission) can enter the Share Snapshots management page in the following two ways to view snapshots, view sharing links, cancel sharing and other operations.
+Configure data masking rules with regex. Here, no groups are used:
 
-> See [Sharing Management](../../management/share-management.md#_3) for more information.
+<img src="../../img/0727-sensitive.png" width="50%" >
+
+After setting the sharing method, validity period, etc., click **Confirm**. Check the [View Snapshot](#view) page, and the UID information will be hidden:
+
+For example, the `message` field contains: `2023-07-27 07:20:56.240 [INFO][65]  UID:"9e269876-361b-4ba4-a566-8f8ccae74d68"`, after configuration, it displays as `2023-07-27 07:20:56.240 [INFO][65] *** `.
+
+![](../img/0727-sensitive-1.png)
+
+
+
+If the regex configuration includes groups `UID:(".*?")`, i.e.:
+
+<img src="../../img/0727-sensitive-2.png" >
+
+The masked effect is:
+
+For example, after configuration, it displays as `2023-07-27 07:20:56.240 [INFO][65] UID:***`.
+
+![](../img/0727-sensitive-3.png)
+-->
+
+
+### IP Restrictions {#ip}
+
+Enable IP whitelist: This adds an extra layer of protection to snapshot sharing.
+
+<img src="../../img/snapshot-ip.png" width="60%" >
+
+When enabling the IP whitelist, you can choose to use the current workspace's IP whitelist or customize the input:
+
+- Workspace IP Whitelist: Uses the current workspace's IP whitelist, which changes according to the workspace's IP whitelist configuration and cannot be edited in the snapshot sharing settings;
+- Custom Input: You can input custom IP access whitelists. IPs not listed will not be able to view the shared snapshot.
+
+> For more details, refer to [How to Configure IP Whitelist](../../management/settings/index.md#ip).
+
+### Preview Snapshot
+
+After completing all configurations for sharing the snapshot, you can choose to preview the snapshot effect:
+
+<img src="../../img/snapshot-preview.png" width="60%" >
+
+The masking effect in the snapshot is shown below:
+
+<img src="../../img/snapshot-preview-page.png" width="70%" >
+
+**Note**: This preview mirrors the actual sharing process. For example, if you set IP whitelist restrictions in the [configuration steps](#share), IPs outside the whitelist will also be unable to view the preview snapshot.
+
+### Manage Shared Snapshots {#view}
+
+Members with permissions to [save, analyze, and manage snapshots](#permission) can enter the **Manage Shared Snapshots** page via the following two methods to view snapshots, check share links, cancel shares, etc.
+
+> Refer to [Share Management](../../management/share-management.md#_3) for more details.
 
 <div class="grid" markdown>
 
-=== "Management" 
+=== "Management Module" 
 
-    Click **Management > Sharing > Sharing Snapshot** module in the left navigation bar in turn.
+    Enter **Management > Share Management > Shared Snapshots** module.
 
     <img src="../../img/snapshot-12.png" width="80%" >
 
-=== "Snapshot Sharing" 
+=== "Snapshot Share Window" 
 
-    [Step 3: Snapshot Sharing](#sharing-method). When selecting public sharing or private sharing, you can click **View Sharing List** in the upper right corner to jump to the **Sharing Snapshot** management module.
+    When performing [snapshot sharing](#sharing-method), click **View Share List** in the top-right corner to navigate to the **Shared Snapshots** management module.
+
+    <img src="../../img/snapshot-12-1.png" width="60%" >
 
 </div>

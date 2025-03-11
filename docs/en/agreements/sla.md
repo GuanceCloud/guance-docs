@@ -1,89 +1,88 @@
-
-# Guance SaaS Service Level Agreement
+# <<< custom_key.brand_name >>> SaaS Service Level Agreement
 ---
 
-Effective : August 20, 2024
+Effective Date: August 20, 2024
 
-This Service Level Agreement (hereinafter referred to as "SLA") stipulates the service availability level indicators and compensation scheme of the Guance SaaS Service (referred to as "Guance SaaS Service") provided by Guance to users.
+This Service Level Agreement (SLA) specifies the service availability level and compensation plan for the <<< custom_key.brand_name >>> SaaS service provided by <<< custom_key.brand_name >>> to users.
 
-**1. Definition**
+1. Definitions
 
-1.1 Service cycle: A service cycle is a natural month. If the user uses the Guance SaaS Service for less than one month, the accumulated usage time of the Guance SaaS Service in the current month will be taken as a service cycle.
+1.1 Service Period: A service period is one calendar month. If a user uses the <<< custom_key.brand_name >>> SaaS service for less than one month, the cumulative usage time of the <<< custom_key.brand_name >>> SaaS service in that month will be considered as one service period.
 
-1.2 Total minutes of service cycle: The total number of days in the service cycle → 24 (hours) → 60 (minutes) is calculated.
+1.2 Total Minutes in a Service Period: The total number of days in the service period × 24 (hours) × 60 (minutes).
 
-1.3 Service instance: The "workspace" created by the user in the Guance SaaS site.
+1.3 Service Instance: A "workspace" created by the user on the <<< custom_key.brand_name >>> SaaS site.
 
-1.4 Minutes of service unavailability: If a user is unable to establish a connection with a specified Guance SaaS service instance for a continuous period of 5 minutes (or longer), a single service for 15 minutes, or if multiple services are simultaneously unavailable for a period exceeding 15 minutes, this duration is considered as the time when the Guance SaaS service instance is unavailable. The cumulative sum of the minutes in which a single Guance SaaS service instance is unavailable within a service period is referred to as the service's downtime minutes.
+1.4 Unavailable Minutes: If all attempts to establish a connection with a specified <<< custom_key.brand_name >>> SaaS service instance fail continuously for 5 minutes or longer, or if multiple services fail simultaneously for more than 15 minutes, this period is considered unavailable. The sum of unavailable minutes for a single <<< custom_key.brand_name >>> SaaS service instance within a service period is the total unavailable minutes.
 
-1.5 Monthly service fee: The cash payment part of the billing fee incurred by users for a single Guance SaaS Service instance in a natural month (excluding gift vouchers, discount vouchers, etc.).
+1.5 Monthly Service Fee: The cash payment portion of the bill for a single <<< custom_key.brand_name >>> SaaS service instance used by the user in one calendar month (excluding gifted vouchers, discount coupons, etc.).
 
-**2. Service Availability**
+2. Service Availability
 
-2.1 Service Availability Calculation Formula
+2.1 Calculation Formula for Service Availability
 
-Service availability is calculated as follows with a single service instance as the dimension:
+Service availability is calculated on a per-service-instance basis as follows:
 
-Service Availability = (Total Service Cycle Minutes-Service Unavailable Minutes)/Total Service Cycle Minutes × 100%
+Service Availability = (Total Minutes in Service Period - Unavailable Minutes) / Total Minutes in Service Period × 100%
 
 2.2 Service Availability Commitment
 
-The availability of Guance SaaS Service is not less than 99.90%, that is, the monthly unavailable time is ≤ 43.2 min. If the Guance SaaS Service instance fails to meet the aforesaid availability commitment, the user can be compensated according to Article 4 of this agreement.
+The <<< custom_key.brand_name >>> SaaS service availability is guaranteed to be no less than 99.90%, meaning the monthly downtime should not exceed 43.2 minutes. If the <<< custom_key.brand_name >>> SaaS service instance does not meet this availability commitment, users can receive compensation according to Article 4 of this agreement.
 
-**3. Service Unavailable**
+3. Service Unavailability
 
-3.1 The following are service unavailable scenarios
+3.1 Scenarios of Service Unavailability
 
-(1) Log in to Guance (SaaS site) or display page continuously for more than 5 minutes due to the user's network or equipment;
+(1) Inability to log in to <<< custom_key.brand_name >>> (SaaS site) or display pages for more than 5 consecutive minutes due to reasons other than the user's own network or device issues;
 
-(2) The data query of various data viewers, views and monitors due to the user's network or equipment failed (the query returned 5xx error code) for more than 5 consecutive minutes;
+(2) Data query failures (API returns 5xx error codes) for various data explorers, views, monitors, etc., for more than 5 consecutive minutes due to reasons other than the user's own network or device issues;
 
-(3) The monitor does not operate normally for more than 15 minutes according to the configured rules;
+(3) Monitors do not operate normally according to configured rules for more than 15 minutes;
 
-(4) The data writing failure rate caused by the failure of Guance reaches more than 15% for more than 10 consecutive minutes not due to the configuration of DataKit (for example, the failure rate of data writing caused by the failure of Guance is caused by the failure of Pipeline cutting fields before and after);
+(4) Data write failure rate exceeds 15% for more than 10 consecutive minutes due to faults in <<< custom_key.brand_name >>> causing conflicts from inconsistent field slicing before and after Pipeline configuration;
 
-(5) The data reported by the DataKit data collector compiled and published by the Guance officer due to the user's network or equipment is received and returned with 5xx errors for more than 10 consecutive minutes;
+(5) DataKit data collector interfaces receive 5xx errors for more than 10 consecutive minutes due to reasons other than user's own network or device issues, using the official <<< custom_key.brand_name >>> compiled DataKit;
 
-(6)After logging into Guance normally and querying the saved content in a standardized manner, the content cannot be returned normally within 5 minutes, including but not limited to: incomplete content display, irregular, overtime error reporting, other error reporting, etc.;
+(6) After logging into <<< custom_key.brand_name >>> normally, performing standard queries on saved content fails to return results within 5 minutes, including but not limited to incomplete, irregular displays, timeouts, or other error messages;
 
-3.2 Exceptions
+3.2 Exclusions
 
-The length of service unavailability due to the following reasons is not included in the service unavailability time:
+Downtime caused by the following reasons is not counted towards service unavailability time:
 
-(1) Guance, when performing scheduled system maintenance that affects availability, will provide users with a notice 12 hours in advance during working hours. This maintenance includes, but is not limited to, the inspection, maintenance, and optimization of equipment, systems, and software services, as well as planned availability fluctuations such as cutovers, maintenance, and simulation drills. (For maintenance during working days, the allowed downtime is up to 120 minutes, and for non-working days, it is up to 240 minutes. Any downtime exceeding these limits will be supplemented with a separate explanation and will require user confirmation.)
+(1) System maintenance notified by <<< custom_key.brand_name >>> at least 12 hours in advance during working hours, including but not limited to equipment, system, software service inspections, maintenance, optimization, cutover, drills, and planned availability fluctuations (within 120 minutes during workdays and 240 minutes outside workdays; any additional time requires separate notice and user confirmation);
 
-(2) Any failure or configuration adjustment other than the network or equipment on which the normal operation of the Guance service depends;
+(2) Failures or configuration adjustments outside <<< custom_key.brand_name >>>'s network or equipment that support normal service operation;
 
-(3) The user's application program is caused by the attack behavior of the customer identified by both parties afterwards;
+(3) Issues caused by confirmed hacker attacks on the user’s application;
 
-(4) The loss or leakage of data, orders and passwords caused by improper maintenance or confidentiality of users;
+(4) Issues caused by improper maintenance or confidentiality breaches leading to loss or leakage of data, passwords, etc.;
 
-(5) Caused by the negligence of the user or the operation authorized by the user;
+(5) Issues caused by user negligence or authorized operations;
 
-(6) Caused by the user's failure to follow the suggestions of Guance products;
+(6) Issues caused by the user not following <<< custom_key.brand_name >>> product documentation or usage recommendations;
 
-(7) The sudden growth of user scale data traffic (exceeding 100% of the growth in the same hour of the previous working day, with the minimum growth exceeding 50 million documents, including logs, links, RUM, events, dial testing, infrastructure, etc.) does not inform Guance in advance of the usability reduction;
+(7) Large-scale data traffic surges (exceeding 100% growth over the same hour of the previous workday, with a minimum increase of 50 million documents, including logs, traces, RUM PV, events, tests, infrastructure, etc.) without prior written notification to <<< custom_key.brand_name >>>;
 
-(8) Caused by other force majeure (the resulting service costs need not be borne by users).
+(8) Other force majeure events (users are also not liable for service fees arising from these events).
 
-**4. Compensation Programme**
+4. Compensation Plan
 
-4.1 Compensation Standard
+4.1 Compensation Standards
 
-For each the Guance SaaS Service instance, according to the monthly service availability of a single instance, the compensation service voucher is calculated according to the standard in the following table (Table 5), and the amount of the compensation voucher shall not exceed 100% of the monthly service fee paid by the user in the month when the service availability commitment is not met.
+For each <<< custom_key.brand_name >>> SaaS service instance, compensation service vouchers are calculated based on the monthly service availability of a single instance according to the table below (Table 5), with the compensation voucher amount not exceeding 100% of the monthly service fee paid by the user in the month when the availability commitment was not met.
 
-4.2 Time Limit for Compensation Application
+4.2 Compensation Application Deadline
 
-Users can claim compensation after the fifth (5) working days of each natural month for instances where service availability commitments have not been met in the previous month. Claims for compensation shall be filed by ticket or email no later than two (2) months after the end of the relevant month in which the Guance SaaS Service fails to meet the service availability commitment.
+Users can submit compensation applications for instances that did not meet the service availability commitment in the previous month starting from the fifth (5th) business day of each calendar month. Applications must be submitted via ticket or email no later than two (2) months after the end of the relevant month when the <<< custom_key.brand_name >>> SaaS service did not meet the availability commitment.
 
-**5. Others**
+5. Other
 
-| Availability Interval                       | Compensation Standard                             |   
-| ------------------------------ | ------------------------------------ |
-| 99.00% ≤ Service Availability < 99.90%                       | Compensate 15% of Monthly Service Fee                             |
-| 95.00% ≤ service Availability < 99.00%                       | Compensate 30% of Monthly Service Fee                             |
-| Service Availability < 95.00%                       | Compensate 100% of Monthly Service Fee   
+Service Availability Compensation Standards
 
-Guance reserves the right to make amendments to the terms of SLA. In case of any modification of this SLA clause, Guance will notify you by website publicity or email 3 days in advance.
+| Availability Range | Compensation Standard |
+| ------------------ | ---------------------- |
+| 99.00% ≤ Service Availability < 99.90% | 15% of Monthly Service Fee |
+| 95.00% ≤ Service Availability < 99.00% | 30% of Monthly Service Fee |
+| Service Availability < 95.00% | 100% of Monthly Service Fee |
 
-
+<<< custom_key.brand_name >>> reserves the right to modify this SLA. Any modifications to this SLA will be notified to you 3 days in advance via website announcement or email.

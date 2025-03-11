@@ -1,52 +1,39 @@
 # Funnel Chart
 ---
 
-## Introduction
+A funnel chart is generally suitable for process analysis that has standardization, a long cycle, and multiple stages. By comparing data at each stage through the funnel chart, problems can be intuitively identified.
 
-Funnel diagrams are generally suitable for process analysis with normality, long cycle time and many links. By comparing the data of each link through funnel diagrams, we can visually compare the problems.
+**Note**: The funnel chart query conditions are limited to a maximum of 4 selections.
 
-## Use Case
+![](../img/filter.png)
 
-Guance's funnel charts are used to compare data at each step in the process. For example, the funnel chart is suitable for website business process analysis, showing the final conversion rate of users from entering the website to achieving a purchase, and the conversion rate of each step.
+## Use Cases
 
-## Chart Query
+It can be used to compare data at various stages of a process. For example, a funnel chart is applicable for website business process analysis, showing the final conversion rate from when users enter the site to making a purchase, as well as the conversion rate at each step.
 
-Chart query supports 「simple query」, 「expression query」 and 「DQL query」, please click [chart-query](chart-query.md) for detailed explanation of chart query conditions. The set of metrics and metrics of the query can be different, but the by (grouping) Tag must be the same, modify one, the other queries are automatically modified synchronously.
+## Chart Configuration
 
-## Chart Linking
+> For more details, refer to [Chart Configuration](./chart-config.md).
 
-Links can help you jump from the current chart to the target page, support adding internal links and external links to the platform, and support modifying the corresponding variable values in the links through template variables to transfer the data information to complete the data linkage. Please click [chart-link](chart-link.md) to view the related settings.
 
-## Chart Style
-| Options | Description |
+<!--
+## Common Configuration
+
+| Option | Description |
 | --- | --- |
-| Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
-| Color | Set the chart data display color, support custom manual input preset color, input format: aggregation function (metric) {"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
-| Alias | <li>Supports adding aliases to grouped queries. After adding aliases, the name of the legend changes, making it easier to distinguish related metrics more intuitively.<br/><li>Support custom manual input of preset aliases, input format: aggregation function(metric){"tag": "tag value"}, such as `last(usage_idle){"host": "guance_01"}` |
+| Title | Set a title for the chart, which will be displayed in the top-left corner of the chart after setting. It supports being hidden. |
+| Description | Add a description to the chart; after setting it, an [i] prompt will appear after the chart title. If not set, it will not be displayed. |
+| Color | Set the display color of the chart data. |
+| Alias | <li>Support adding aliases to grouped queries; after adding an alias, the legend name changes accordingly, making it easier to distinguish related metrics;<br/><li>Support custom manual input of preset aliases, with the format: aggregation function (metric){"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}`. |
+| Data Format | You can choose the number of decimal places and whether to use thousand separators.<br /><li>The thousand separator is enabled by default; if disabled, the original value without any separators will be shown. For more details, refer to [Data Thousand Separator Formatting](../visual-chart/chart-query.md#thousand). |
 
+## Advanced Configuration
 
-## Chart Setup
-
-### Basic Settings
-| Options | Description |
+| Option | Description |
 | --- | --- |
-| Unit | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns：Chart query data results in 1ms<br /><li>1000000000ns：The chart query data result shows 1s<br /><li>10000000000ns：The chart query data result shows 1m<br /><br/>2.Support for query results preset units, manual input format: aggregation function (metric), such as `last(age_idle)` |
-
-### Advanced Settings
-| Options | Description |
-| --- | --- |
-| Time slice | When time slicing is turned on, the original data will be aggregated in segments at certain time intervals, and then the aggregated data set will be aggregated a second time to get the result value, which is turned off by default. For details, please refer to [time slicing description](chart-query.md#time-slicing) |
-| Lock time | Support locking the time range of chart query data, not limited by the global time component. The time set by the user will appear in the upper right corner of the chart after successful setup, e.g. 【xx minutes】, 【xx hours】, 【xx days】. If the time interval is locked at 30 minutes, then when adjusting the time component, no matter what time range view is queried, only the last 30 minutes of data will be displayed. |
-| Time interval | If the time slice is off, there is no time interval option, if the time slice is on, the time interval option is as follows：<br /><li>Original interval: default query to display data according to the time range of the time component<br /><li>Auto-alignment: When turned on, the query will be dynamically adjusted according to the selected time range and aggregation interval, rounded upwards according to the calculated time interval in close proximity.(For example, if the auto-aggregation algorithm calculates the time interval to be 50 seconds, then the actual query will be launched at an interval of 1 minute) ）The system is preset with 1 ms, 10 ms, 50 ms, 100 ms, 500 ms, 1 sec, 5 sec, 15 sec, 30 sec, 1 min, 5 min, 10 min, 30 min, 1 hr, 6 hr, 12 hr, 1 day, 1 week, 1 month, and many other time intervals.<br /><li>Custom time interval: When [Lock time] is selected, according to the length of lock time, different optional time intervals will be automatically matched to query the displayed data. (For example, if you select 1 minute as the time interval, the query will actually be launched at 1 minute interval)<br /> |
-| Chart Description | Add description information to the chart, after setting the chart title will appear behind the 【i】 prompt, do not set it will not be displayed |
-| Workspace | A list of authorized workspaces, which can be queried and displayed via charts after selection |
-
-
-## Example diagram
-
-The following figure shows an example of total CPU usage, system usage and user usage.
-
-Note: The maximum number of query criteria for the funnel chart is 4.
-
-![](../img/4.loudoutu.png)
-
+| Lock Time | This fixes the time range for querying current chart data, independent of the global time component. After successful setup, the user-defined time will appear in the top-right corner of the chart, e.g., [xx minutes], [xx hours], [xx days]. |
+| Time Slicing | When time slicing is enabled, the original data is first segmented and aggregated based on a certain time interval, and then the resulting dataset is aggregated again to obtain the final result value. By default, this is turned off.<br /><br />If time slicing is disabled, there is no time interval option; if enabled, the time interval options are:<br /><li>Auto-align: After enabling, the query adjusts dynamically based on the selected time range and aggregation interval, rounding up to the nearest higher value.<br /> &nbsp; &nbsp; &nbsp;The system presets various time intervals: 1 millisecond, 10 milliseconds, 50 milliseconds, 100 milliseconds, 500 milliseconds, 1 second, 5 seconds, 15 seconds, 30 seconds, 1 minute, 5 minutes, 10 minutes, 30 minutes, 1 hour, 6 hours, 12 hours, 1 day, 1 week, 1 month;<br /><li>Custom Time Interval: When selecting [Lock Time], different selectable time intervals are automatically matched based on the locked time length for displaying data. (*For example, if the time interval is set to 1 minute, the actual query will be made every 1 minute*).<br /><br /><br />For more details, refer to [Time Slicing Explanation](chart-query.md#time-slicing). |
+| Workspace Authorization | Lists authorized workspaces; after selection, the chart can query and display data from these workspaces. |
+| Data Sampling | Only for Doris log data engine workspaces; when enabled, it samples all data except Metrics, with a non-fixed sampling rate that adjusts dynamically based on data volume. |
+| Time Offset | Non-time series data have at least a 1-minute delay after being stored. When using relative time queries, this may cause recent data not to be collected, leading to missing data.<br />Enabling time offset shifts the actual query time range forward by 1 minute when querying relative time ranges, preventing data retrieval issues due to storage delays. For example, if it's currently 12:30 and you query the last 15 minutes of data, with time offset enabled, the actual queried time range is 12:14-12:29.<br />:warning: <br /><li>This setting only applies to relative time queries; if the time range is an absolute time range, time offset does not apply.<br /><li>For charts with time intervals, such as time series charts, if the set time interval exceeds 1 minute, time offset does not apply; it only applies if the interval is <= 1 minute. For charts without time intervals, such as overview charts or bar charts, time offset remains effective.|
+-->

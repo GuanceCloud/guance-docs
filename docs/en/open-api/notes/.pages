@@ -1,4 +1,8 @@
 nav:
-  - 'Get a List of Notes': list.md
+  - 'Get Notes List': list.md
+  - 'Get a Note': get.md
+  - 'Delete a Note': delete.md
   - 'Export a Note': export.md
   - 'Import a Note': import.md
+  - 'Create a Note': create.md
+  - 'Modify a Note': modify.md

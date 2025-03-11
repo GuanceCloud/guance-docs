@@ -1,0 +1,10 @@
+nav:
+  - index.md
+  - 'Glossary': glossary.md
+  - 'Login Methods': login.md
+  - 'Account': account-wallet
+  - 'Support Center': support-center.md
+  - 'Billing Management': billing-management.md
+  - 'Account Settings': account-management.md
+  - 'Workspace Management': workspace-management.md
+  - 'FAQ': faq.md

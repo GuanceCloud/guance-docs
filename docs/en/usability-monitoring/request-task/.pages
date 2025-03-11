@@ -1,6 +1,9 @@
 nav:
   - index.md
-  - 'HTTP Tests': http.md
-  - 'ICMP Tests': icmp.md
-  - 'TCP Tests': tcp.md
-  - 'WEBSOCKET Tests': websocket.md
+  - 'Synthetic Tests':
+    - api_test.md
+    - 'HTTP': http.md
+    - 'ICMP': icmp.md
+    - 'TCP': tcp.md
+    - 'WEBSOCKET': websocket.md
+  - 'Multi-step Test': multistep_test.md

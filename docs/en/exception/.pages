@@ -1,8 +1,7 @@
 nav:
   - index.md
-  - 'Create Issues': issue.md
-  - 'Manage Issues': channel.md
-  - 'Analysis Dashboard': issue-view.md
-  - 'Schedule': calendar.md
-  - 'Configuration': config-manag
-  
+  - 'Create Issue': issue.md
+  - 'Manage Issue': channel.md
+  - 'Analysis Board': issue-view.md
+  - 'Calendar': calendar.md
+  - 'Configuration Management': config-manag

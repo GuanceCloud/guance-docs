@@ -1,14 +1,12 @@
 ---
-title     : 'DDTrace Attach '
-summary   : 'Attach DDTrace to Java applications'
+title     : 'Automatic Injection of DDTrace-Java Agent'
+summary   : 'DDTrace Java Integration'
 tags      :
-  - 'APM'
-  - 'TRACING'
+  - 'Tracing'
   - 'JAVA'
 __int_icon: 'icon/ddtrace'
 ---
 
-This Java tool is mainly used to inject DDTrace-Java agent into the currently running Java process without manually configuring and restarting the host Java process.
 <!-- markdownlint-disable MD046 MD030 -->
 <div class="grid cards" markdown>
 
@@ -18,32 +16,44 @@ This Java tool is mainly used to inject DDTrace-Java agent into the currently ru
     [:octicons-history-16:](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
 
 </div>
-<!-- markdownlint-enable MD046 MD030-->
+<!-- markdownlint-enable MD046 MD030 -->
 
-## principle {#principle}
+---
 
-Attach after the JVM is started and load through the Attach API. This method will execute the agent main method after the agent is loaded.
+This Java tool is primarily used to inject the DDTrace-Java agent into a currently running Java process without manual configuration or restarting the host Java process.
 
-## download {#download}
+## Principle {#principle}
+
+The basic principle of agent injection is to inject through a file in the */proc/[Java-PID]* (or */tmp/*) directory:
+
+``` not-set
+load instrument dd-agent.jar=<params...>
+```
+
+Then send a SIGQUIT signal to the JVM, which will read the specified agent JAR package.
+
+## Download and Compile {#download}
 
 JDK versions 1.8 and above cannot be used interchangeably.
 
-If using a released version, please use the corresponding [releases version](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
+If using a release version, please use the corresponding [release version](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
 
-Download source and build：
+***It is recommended to download the source code*** and compile it:
 
 ```shell
 git clone https://github.com/GuanceCloud/agent-attach-java
 ```
 
-If it is JDK version 1.8, modify the configuration file pom.xml:
+For JDK 1.8 version, modify the pom.xml configuration file:
 
 ```xml
+<!-- Change the version to 1.8 -->
     <configuration>
       <source>1.8</source>
       <target>1.8</target>
     </configuration>
-
+    
+    <!-- Uncomment the following and comment out tools.jar !!!-->
     <dependency>
       <groupId>io.earcam.wrapped</groupId>
       <artifactId>com.sun.tools.attach</artifactId>
@@ -53,15 +63,22 @@ If it is JDK version 1.8, modify the configuration file pom.xml:
     </dependency>
 ```
 
-If the version is JDK 9, 11, 17, use the following configuration pom.xml:
+For JDK 9, 11, 17, use the following pom.xml configuration:
 
 ```xml
-<!--Modify the target version to the specified version-->
+<!-- Change the target version to the specified version -->
     <configuration>
         <source>11</source>
         <target>11</target>
     </configuration>
 
+<!--    <dependency>
+      <groupId>io.earcam.wrapped</groupId>
+      <artifactId>com.sun.tools.attach</artifactId>
+      <version>1.8.0_jdk8u131-b11</version>
+      <scope>compile</scope>
+      <type>jar</type>
+    </dependency>-->
     <dependency>
       <groupId>com.sun</groupId>
       <artifactId>tools</artifactId>
@@ -73,15 +90,16 @@ If the version is JDK 9, 11, 17, use the following configuration pom.xml:
 
 ```shell
 mvn package
-# 使用 target/agent-attach-java-jar-with-dependencies.jar
+# Use target/agent-attach-java-jar-with-dependencies.jar
 rm -f target/agent-attach-java.jar
 mv target/agent-attach-java-jar-with-dependencies.jar agent-attach-java.jar
 ```
 
-use -h ：
+Use `-h` to view:
 
-```txt
-root@q-PC:agent-attach-java$ java -jar target/agent-attach-java-jar-with-dependencies.jar -h
+``` shell
+agent-attach-java$ java -jar target/agent-attach-java-jar-with-dependencies.jar -h
+
 java -jar agent-attach-java.jar [-options <dd options>]
                                 [-agent-jar <agent filepath>]
                                 [-pid <pid>]
@@ -89,41 +107,36 @@ java -jar agent-attach-java.jar [-options <dd options>]
                                 [-h]
                                 [-help]
 [-options]:
-   this is dd-java-agnet.jar env, example:
+   This is the dd-java-agent.jar environment, example:
        dd.agent.port=9529,dd.agent.host=localhost,dd.service.name=serviceName,...
 [-agent-jar]:
-   default is: /usr/local/ddtrace/dd-java-agent.jar
+   Default is: /usr/local/ddtrace/dd-java-agent.jar
 [-pid]:
-   service PID String
+   Service PID String
 [-displayName]:
-   service name
-Note: -pid or -displayName must have a non empty !!!
+   Service name
+Note: -pid or -displayName must have a non-empty value!!
 
-example command line:
+Example command line:
+
 java -jar agent-attach-java.jar -options 'dd.service.name=test,dd.tag=v1'\
  -displayName tmall.jar \
  -agent-jar /usr/local/ddtrace/dd-java-agent.jar
 ```
 
-Parameter Description:
+Parameter descriptions:
 
-- `-options` ddtrace parameter: `dd.agent.host=localhost,dd.agent.port=9529,dd.service.name=mytest ...`
-- "-agent-jar" The default agent path is: `/usr/local/ddtrace/dd-java-agent.jar`
-- "-pid "process PID, PID and `displayName` cannot both be empty. Just use one of them
-- "-displayName" Process name such as `-displayName tmall.jar`
-- "-h or -help" Help
+- `-options` DDTrace parameters: `dd.agent.host=localhost,dd.agent.port=9529,dd.service.name=mytest ...`
+- `-agent-jar` agent path, default is: `/usr/local/ddtrace/dd-java-agent.jar`
+- `-pid` process PID, either PID or `displayName` cannot be empty at the same time; one of them can be used.
+- `-displayName` process name, for example `-displayName tmall.jar`
+- `-h or -help` help
 
-> Since there has been no tools. jar file since jdk9. So I brought the tools file under the project directory: 'lib/tools. jar' is from the jdk1.8 version.
+Note: Since *tools.jar* file does not exist from JDK 9 onwards, the *tools* file is included in the project directory. *lib/tools.jar* is for JDK 1.8 version.
 
-Java run：
+## Dynamically Inject *dd-java-agent.jar* {#dynamic-inject-ddagent-java}
 
-```shell
-java -jar agent-attach-java.jar
-```
-
-## Auto attach `dd-java-agent.jar`` {#dynamic-inject-ddagent-java}
-
-- download `dd-java-agent.jar`, and put to */usr/local/ddtrace/*.
+- First, download *dd-java-agent.jar* and place it in the */usr/local/ddtrace/* directory.
 
 ```shell
 mkdir -p /usr/local/ddtrace
@@ -131,13 +144,15 @@ cd /usr/local/ddtrace
 wget https://static.guance.com/ddtrace/dd-java-agent.jar
 ```
 
+<!-- markdownlint-disable MD046 -->
 ???+ attention
 
-You must use [Extended DDTrace](ddtrace-ext-java.md), otherwise the automatic injection function is limited (various Trace parameters cannot be set).
+    You must use the [Extended DDTrace](ddtrace-ext-java.md), otherwise the auto-injection feature will be limited (various trace parameters cannot be set).
+<!-- markdownlint-enable -->
 
-- Start Java application (ignored if Java application is started)
+- Start the Java application (if the Java application is already started, ignore this step)
 
-- use `agent-attach-java.jar` attach to `dd-trace-java.jar`
+- Start *agent-attach-java.jar* to inject *dd-trace-java.jar*
 
 ```shell
 java -jar agent-attach-java.jar \
@@ -146,14 +161,22 @@ java -jar agent-attach-java.jar \
  -agent-jar /usr/local/datakit/data/dd-java-agent.jar
 ```
 
+Or:
+
+```shell
+java -jar agent-attach-java.jar \
+ -options "dd.agent.port=9529" \
+ -pid 7027 \
+ -agent-jar /usr/local/datakit/data/dd-java-agent.jar
+```
 
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: NoClassDefFoundError VirtualMachine？ {#NoClassDefFound}
+### :material-chat-question: Cannot find class VirtualMachine? {#NoClassDefFound}
 <!-- markdownlint-enable -->
 
-Error messages:
+Error message:
 
 ```text
 Exception in thread "main" java.lang.NoClassDefFoundError: com/sun/tools/attach/VirtualMachine
@@ -167,14 +190,14 @@ Caused by: java.lang.ClassNotFoundException: com.sun.tools.attach.VirtualMachine
         ... 2 more
 ```
 
-This is due to the lack of tools.jar package. Use the correct pom.xml configuration file or download the corresponding version.
+This is due to the missing tools.jar package. Use the correct pom.xml configuration file or download the corresponding version.
 
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: UnsupportedClassVersionError？ {#UnsupportedClass}
+### :material-chat-question: Unsupported Version? {#UnsupportedClass}
 <!-- markdownlint-enable -->
 
-Error messages:
+Error message:
 
 ```text
 Error: A JNI error has occurred, please check your installation and try again
@@ -194,5 +217,4 @@ Exception in thread "main" java.lang.UnsupportedClassVersionError: com/guance/ja
         at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:495)
 ```
 
-This is because the compile time version is too low and the runtime version is too high.
-Replace the version or use the current version to recompile.
+This occurs because the compilation version is lower than the runtime version. Change the version or recompile using the current version.

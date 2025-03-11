@@ -1,34 +1,40 @@
-
 # Amazon EKS Integration
 ---
 
-[Amazon Elastic Kubernetes Services (Amazon EKS)](https://aws.amazon.com/eks/){:target="_blank"} is a managed container service to run and scale Kubernetes applications in the AWS cloud. For running and extending Kubernetes applications in the AWS cloud. DataKit provides observations for the Amazon EKS Cluster in different dimensions by namespace, cluster, Pod.Customers can use their existing AWS support agreements to obtain support.
-
-<!-- markdownlint-disable MD013 -->
-## Architecture overview {#architecture-overview}
-<!-- markdownlint-enable -->
-
-![overview](https://static.guance.com/images/datakit/datakit-eks-architecture-overview.png){:target="_blank"}
+[Amazon Elastic Kubernetes Service (Amazon EKS)](https://aws.amazon.com/eks/){:target="_blank"} is a managed container service for running and scaling Kubernetes applications in the AWS cloud.
+DataKit provides observability for Amazon EKS clusters at different dimensions such as namespaces, clusters, and Pods. Customers can use existing AWS support agreements to obtain support.
 
 
-## Using Amazon EKS add-on {#add-on-install}
+## Architecture Overview {#architecture-overview}
 
-Deploying Datakit on an Amazon EKS cluster using Amazon EKS add-on.
+<figure markdown>
+  ![](https://static.guance.com/images/datakit/datakit-eks-architecture-overview.png){ width="800" }
+  <figcaption>Architecture Diagram</figcaption>
+</figure>
+
+## Deploy DataKit {#add-on-install}
+
+Use the Amazon EKS addon to deploy DataKit on an Amazon EKS cluster.
 
 ### Prerequisites {#prerequisites-addon-install}
 
-- Subscribe on the AWS Marketplace [Guance Container Agent](https://aws.amazon.com/marketplace/pp/prodview-tdwkw3qcsimso?sr=0-2&ref_=beagle&applicationId=AWSMPContessa){:target="_blank"} 。
-- You have access to an [Amazon EKS Cluster](https://aws.amazon.com/eks/){:target="_blank"} .
-- You need to get it in advance `DK_DATAWAY`. You can also obtain it by following the instructions below:
-    - You can go to [Guance official website](https://www.guance.one/){:target="_blank"}, [register now](https://auth.guance.com/en/businessRegister){:target="_blank"} as a Guance user.
-    - Click the 「Integration」 menu, then select the 「DataKit」 TAB and copy the `DK_DATAWAY` parameter
-     ![`datakit-eks-en-get-datawayur`](https://static.guance.com/images/datakit/datakit-eks-en-get-datawayurl.png){:target="_blank"}
+- Subscribe to [Guance Container Agent](https://aws.amazon.com/marketplace/pp/prodview-tdwkw3qcsimso?sr=0-2&ref_=beagle&applicationId=AWSMPContessa){:target="_blank"} on the AWS Marketplace.
+- You have access to an [Amazon EKS cluster](https://aws.amazon.com/eks/){:target="_blank"}.
+- You need to obtain `DK_DATAWAY` in advance. You can also follow the instructions below:
+    - Go to the [Guance](https://en.guance.com/){:target="_blank"} website, refer to the [registration](https://docs.guance.com/en/billing/commercial-register/){:target="_blank"} guide to become a Guance user.
+    - Click on the "Integration" menu, then select the "DataKit" tab, and copy the `DK_DATAWAY` parameter as shown in the image:
+
+<figure markdown>
+  ![](https://static.guance.com/images/datakit/datakit-eks-zh-get-datawayurl.png){ width="800" }
+  <figcaption></figcaption>
+</figure>  
 
 <!-- markdownlint-disable MD046 -->  
-=== "Enable Datakit add-on from AWS console"
+=== "Enable DataKit Add-on from AWS Console"
 
-    - Search Add-ons
-      First, in the Amazon EKS Console, go to your EKS cluster and select "Get more Add-ons" on the "add-ons" TAB to find the new third-party EKS add-ons in the cluster Settings of the existing EKS cluster. And search for 'datakit', select 'Guance Container Agent', next step.
+    - Search for the add-on
+    
+      First, in the Amazon EKS console, go to your EKS cluster and under the "Add-ons" tab, select "Get more add-ons". In the cluster settings of your existing EKS cluster, look for new third-party EKS add-ons and search for `datakit`, select "Guance Container Agent", and proceed to the next step.
     
     <figure markdown>
       ![](https://static.guance.com/images/datakit/eks-install/get-more-addon.png){ width="800" }
@@ -41,7 +47,7 @@ Deploying Datakit on an Amazon EKS cluster using Amazon EKS add-on.
     </figure>
 
     - Confirm installation
-      Select the latest version to install.
+      Choose the latest version to install.
     
     <figure markdown>
       ![](https://static.guance.com/images/datakit/eks-install/select-install-addon.png){ width="800" }
@@ -53,18 +59,18 @@ Deploying Datakit on an Amazon EKS cluster using Amazon EKS add-on.
       <figcaption></figcaption>
     </figure>    
 
-=== "Enable Datakit add-on using AWS CLI"
+=== "Enable DataKit Add-on using AWS CLI"
 
     ???+ tip
-         You need to replace `$YOUR_CLUSTER_NAME` and `$AWS_REGION` accordingly with your actual Amazon EKS cluster name and AWS region.
+        You need to replace `$YOUR_CLUSTER_NAME` and `$AWS_REGION` with your actual Amazon EKS cluster name and AWS region.
         
-    Install：
+    Installation:
     
     ```shell
     aws eks create-addon --addon-name guance_datakit --cluster-name $YOUR_CLUSTER_NAME --region $AWS_REGION
     ```
     
-    verify：
+    Verification:
     
     ```shell
     aws eks describe-addon --addon-name guance_datakit --cluster-name $YOUR_CLUSTER_NAME --region $AWS_REGION
@@ -72,7 +78,7 @@ Deploying Datakit on an Amazon EKS cluster using Amazon EKS add-on.
 <!-- markdownlint-enable -->
 
 
-### configuration DataKit {#config-addon-datakit}
+### Configure DataKit {#config-addon-datakit}
 
 
 Set the `token` environment variable:
@@ -81,19 +87,18 @@ Set the `token` environment variable:
 token="https://us1-openway.guance.com?token=<YOUR-WORKSPACE-TOKEN>"
 ```
 
-Add token to `env-dataway` secrets:
+Add the token to the `env-dataway` secrets:
 
 ```shell
 envDataway=$(echo -n "$token" | base64)
 kubectl patch secret env-dataway -p "{\"data\": {\"datawayUrl\": \"$envDataway\"}}" -n datakit
 ```
 
-restart DataKit:
+Restart DataKit:
 
 ```shell
 kubectl rollout restart ds datakit -n datakit
 ```
-
 
 ### Verify Deployment {#verify-addon-install}
 
@@ -103,32 +108,36 @@ kubectl rollout restart ds datakit -n datakit
 helm ls -n datakit
 ```
 
-Expected output：
+Expected output:
 
-```shell
-NAME  NAMESPACE REVISION  UPDATED STATUS  CHART APP VERSION
-datakit dataki  1 2024-01-12 14:50:07.880846 +0800 CST  deployed  datakit-1.20.0  1.20.0
+```txt
+datakit  datakit  1  2024-01-12 14:50:07.880846 +0800 CST  deployed  datakit-1.20.0  1.20.0
 ```
 
-- Guance Cloud verify
+- Verify on the Guance platform
 
-![`datakit-eks-en-verify`](https://static.guance.com/images/datakit/datakit-eks-en-verify.png){:target="_blank"}
+<figure markdown>
+  ![](https://static.guance.com/images/datakit/datakit-eks-zh-verify.png){ width="800" }
+  <figcaption>Verification</figcaption>
+</figure>
 
-
-<!-- markdownlint-disable MD013 -->
-## Deploying DataKit on an Amazon EKS Cluster using Helm {#helm-install}
-<!-- markdownlint-enable -->
+## Deploy DataKit on Amazon EKS Cluster Using Helm {#helm-install}
 
 ### Prerequisites {#prerequisites-helm-install}
 
-- Install the following tools: [Helm 3.7.1](https://github.com/helm/helm/releases/tag/v3.7.1){:target="_blank"}, [kubectl](https://kubernetes.io/docs/tasks/tools/){:target="_blank"}, and [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"} .
-- You have access to an [Amazon EKS Cluster](https://aws.amazon.com/eks/){:target="_blank"} .
-- You need to get it in advance `DK_DATAWAY`. You can also obtain it by following the instructions below:
-    - You can go to [Guance official website](https://www.guance.one/){:target="_blank"}, [register now](https://auth.guance.com/en/businessRegister){:target="_blank"} as a Guance user.
-    - Click the 「Integration」 menu, then select the 「DataKit」 TAB and copy the `DK_DATAWAY` parameter
-     ![`datakit-eks-en-get-datawayur`](https://static.guance.com/images/datakit/datakit-eks-en-get-datawayurl.png){:target="_blank"}
+- Install the following tools: [Helm 3.7.1](https://github.com/helm/helm/releases/tag/v3.7.1){:target="_blank"}, [kubectl](https://kubernetes.io/docs/tasks/tools/){:target="_blank}, and [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"}.
+- You have access to an [Amazon EKS cluster](https://aws.amazon.com/eks/){:target="_blank"}.
+- You need to obtain `DK_DATAWAY` in advance. You can also follow the instructions below:
+    - Go to the [Guance](https://en.guance.com/){:target="_blank"} website, refer to the [registration](https://docs.guance.com/en/billing/commercial-register/){:target="_blank"} guide to become a Guance user.
+    - Click on the "Integration" menu, then select the "DataKit" tab, and copy the `DK_DATAWAY` parameter as shown in the image:
 
-### Login to the ECR Registry {#login-ecr}
+<figure markdown>
+  ![](https://static.guance.com/images/datakit/datakit-eks-zh-get-datawayurl.png){ width="800" }
+  <figcaption>Copy URL</figcaption>
+</figure>
+  
+
+### Log in to ECR Repository {#login-ecr}
 
 ```shell
 export HELM_EXPERIMENTAL_OCI=1
@@ -139,13 +148,14 @@ aws ecr get-login-password \
     --password-stdin 709825985650.dkr.ecr.us-east-1.amazonaws.com
 ```
 
-### Helm installation (Upgrade) DataKit {#helm-install}
+### Helm Install (Upgrade) DataKit {#helm-install}
 
 <!-- markdownlint-disable MD046 -->
-???+ attention "Attention"
+???+ attention "Important Notes"
 
-    - Helm Version must be 3.7.1.
-    - `datakit.datawayUrl` Must be modified.
+    The Helm version must be 3.7.1.
+    `datakit.datawayUrl` must be modified.
+
 <!-- markdownlint-enable -->
 
 ```shell
@@ -153,7 +163,7 @@ helm upgrade -i datakit oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/guanc
      --create-namespace -n datakit
 ```
 
-Expected output：
+Expected output:
 
 ```shell
 Release "datakit" does not exist. Installing it now.
@@ -173,8 +183,7 @@ NOTES:
   kubectl --namespace datakit port-forward $POD_NAME 9527:$CONTAINER_PORT
 ```
 
-### configuration DataKit {#config-datakit}
-
+### Configure DataKit {#config-datakit}
 
 Set the `token` environment variable:
 
@@ -182,14 +191,14 @@ Set the `token` environment variable:
 token="https://us1-openway.guance.com?token=<YOUR-WORKSPACE-TOKEN>"
 ```
 
-Add token to `env-dataway` secrets:
+Add the token to the `env-dataway` secrets:
 
 ```shell
 envDataway=$(echo -n "$token" | base64)
 kubectl patch secret env-dataway -p "{\"data\": {\"datawayUrl\": \"$envDataway\"}}" -n datakit
 ```
 
-restart Datakit:
+Restart DataKit:
 
 ```shell
 kubectl rollout restart ds datakit -n datakit
@@ -203,18 +212,19 @@ kubectl rollout restart ds datakit -n datakit
 helm ls -n datakit
 ```
 
-Expected output：
+Expected output:
 
-```shell
-NAME  NAMESPACE REVISION  UPDATED STATUS  CHART APP VERSION
-datakit dataki  1 2024-01-12 14:50:07.880846 +0800 CST  deployed  datakit-1.20.0  1.20.0
+```txt
+datakit  datakit  1  2024-01-12 14:50:07.880846 +0800 CST  deployed  datakit-1.20.0  1.20.0
 ```
 
-- Guance Cloud verify
+- Verify on the Guance platform
 
-![`datakit-eks-en-verify`](https://static.guance.com/images/datakit/datakit-eks-en-verify.png){:target="_blank"}
+<figure markdown>
+  ![](https://static.guance.com/images/datakit/datakit-eks-zh-verify.png){ width="800" }
+  <figcaption>Verification</figcaption>
+</figure>
 
+## Further Reading {#more-reading}
 
-## More Readings {#more-reading}
-
-[K8s deploy](datakit-daemonset-deploy.md)
+[K8s Installation](datakit-daemonset-deploy.md)

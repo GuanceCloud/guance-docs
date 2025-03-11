@@ -1,86 +1,88 @@
-# Hybrid Cloud Deployment
+# Hybrid Cloud Deployment Solution
 ---
 
 ## Overview
-Guance is divided into SaaS service version and private deployment version. SaaS service version access is fast and convenient, and our center provides all services. Customers only need to install DataKit and start the required data collection to use all monitoring functions of Guance. For some customers with large application cluster monitoring and inconvenient data leaving the intranet, Guance can provide privately deployed versions. 
+"<<< custom_key.brand_name >>>" is available in two editions: SaaS service and private deployment. The SaaS service edition offers quick and easy integration, with all services provided by our center. Customers only need to install DataKit and enable the required data collection to use all monitoring features of "<<< custom_key.brand_name >>>". For customers who require large-scale application cluster monitoring or have data that cannot leave the internal network, "<<< custom_key.brand_name >>>" can provide a private deployment version.
 
-## Deployment and Implementation of Guance
-The deployment and implementation of Guance is divided into three parts: 1. DataKit deployment of monitored objects and data collection implementation; 2. Implement the scheme of scene, view and anomaly detection in Guance; 3. If you use the privately deployed version of Guance, you need to deploy a set of Guance independently. 
+## Deployment Implementation of "<<< custom_key.brand_name >>>"
+The deployment implementation of "<<< custom_key.brand_name >>>" consists of three parts: 1) Deployment of DataKit on monitored objects and data collection; 2) Implementation of scenarios, views, anomaly detection, etc., within "<<< custom_key.brand_name >>>"; 3) If using the private deployment version of "<<< custom_key.brand_name >>>", an independent deployment of "<<< custom_key.brand_name >>>" is also required.
 
-After installing DataKit on the host object of the monitored user system and starting the corresponding data collection, it needs to be reported to the Guance center for visual insight into the data, data association analysis of metrics, logs, links, RUM, anomaly detection, etc. The Guance center can choose to use SaaS version or private deployment version. 
-### SaaS Version of Guance
-SaaS version has the characteristics of low access cost and fast implementation speed (only need to install and open DataKit in the customer application environment), which is suitable for small and medium-sized application cluster monitoring. It is characterized by low cost of early input, charging according to usage, and no early resource input. 
+DataKit is installed on the monitored user system hosts. After enabling the corresponding data collection, the data needs to be reported to the "<<< custom_key.brand_name >>>" center for visualization and insights, including correlation analysis of metrics, logs, traces, RUM, etc., and anomaly detection. The "<<< custom_key.brand_name >>>" center can either use the SaaS version or the private deployment version.
+### SaaS Version of "<<< custom_key.brand_name >>>"
+The SaaS version has low access and usage costs and fast implementation (only requiring the installation and activation of DataKit in the customer's application environment), making it suitable for medium to small-scale application clusters. It features low upfront investment and pay-as-you-go pricing, eliminating the need for initial resource investment.
 
-Refer to the section "DataKit Deployment Scenarios" later for a detailed implementation of DataKit. 
+For specific implementation steps for DataKit, refer to the "DataKit Deployment Plan" section.
 
-### Private Deployment Version of Guance
-For customers with large volume or high control degree of system and data, they can use private deployment version and exclusive use of resources. In this way, the input cost is high in the early stage, and a resource procurement cost is needed in the early stage. Taking Alibaba Cloud as an example, the annual resource consumption cost is at least 200,000 ~ 300,000 (according to the total data scale of customers). 
+### Private Deployment Version of "<<< custom_key.brand_name >>>"
+For larger-scale applications or customers requiring higher control over systems and data, the private deployment version can be used, ensuring exclusive resource usage. This approach requires higher upfront investment, including resource procurement costs. For example, deploying on Alibaba Cloud would incur annual resource consumption costs of at least 200,000 to 300,000 RMB (depending on the total data scale).
 
-### Private Deployment Architecture 
+### Private Deployment Architecture
 
 ![](img/10.deployment_1.png)
 
-Private deployment version of Guance, We are responsible for the installation, deployment and later maintenance and upgrade for customers. In order to ensure the security of customer application system, In the network planning of IT resources, it should be isolated from the monitored user application service cluster, and only the monitored objects are allowed to access Guance resources in one direction. VPC isolation, security group isolation and even deployment of the Guance to an independent cloud account can be used, which can effectively guarantee the data security of the user system. 
+Private deployment of "<<< custom_key.brand_name >>>" is handled by us, including installation, deployment, and ongoing maintenance and upgrades. To ensure the security of the customer’s application system, IT resources should be isolated from the monitored user application service cluster, allowing only one-way access from monitored objects to "<<< custom_key.brand_name >>>" resources. This can be achieved through VPC isolation, security group isolation, or even deploying "<<< custom_key.brand_name >>>" in a separate cloud account, effectively safeguarding the security of the user system's data.
 
-Guance center supports deployment on various clouds, it also supports deployment on offline hosts. Due to the differences in cloud products supported by various clouds and the differences in systems in different customer environments, the whole system adopts the cloud native micro-service architecture in deployment architecture, and uses Kubernetes as the deployment base of the whole system to ensure the consistency of the running environment of the system and eliminate system differences. 
+The "<<< custom_key.brand_name >>>" center supports deployment on various clouds and offline hosts. Due to differences in supported cloud products and customer environments, the system adopts a cloud-native microservices architecture, using Kubernetes as the deployment foundation to ensure consistent runtime environments and eliminate system differences.
 
-Architecturally, all data such as hosts, application logs and links of user systems are collected by DataKit and reported to the Guance center through DataWay. If the amount of collected data is huge and a single DataWay cannot carry it, DataWay supports cluster deployment and horizontal expansion. 
+In this architecture, all host, application log, trace, and other data are collected by DataKit and reported to the "<<< custom_key.brand_name >>>" center via DataWay. If the data volume is enormous and a single DataWay cannot handle it, DataWay supports cluster deployment for horizontal scaling.
 
-In order to ensure that the data reported by clients is balanced and not blocked, the Guance Cloud center uses NSQ message queue (**an open source message system without center and automatic registration and discovery of nodes**). All data first enters NSQ message queue, and Kodo queues the consumption data. After processing, the time series metric data is written into InfluxDB, and the log text data is written into Elasticsearch. 
+To ensure balanced and non-blocking client-side data reporting, the "<<< custom_key.brand_name >>>" center uses NSQ message queues (an open-source message system with no central node, automatic registration, and discovery). All data first enters the NSQ message queue, then Kodo processes and consumes the data, writing time series metrics to InfluxDB and log text data to Elasticsearch.
 
-#### Deploy on the Cloud 
-For the deployment of Guance, it is recommended to use the deployment scheme on the cloud, deploy all required hardware resources on the cloud, and give priority to the cloud products supported by cloud vendors, because the cloud products themselves ensure the reliability, stability and disaster tolerance of the infrastructure. 
+#### Cloud Deployment
+We recommend cloud deployment for "<<< custom_key.brand_name >>>". Cloud deployment utilizes hardware resources provided by cloud vendors, leveraging cloud products that ensure infrastructure reliability, stability, and disaster recovery.
 
-Take Alibaba Cloud as an example. For example, Kubernetes uses Alibaba Cloud's **container service ACK**; InfluxDB uses Alibaba Cloud's **time series database InfluxDB version**; ElasticSearch uses Alibaba Cloud's big data cloud product **Elasticsearch**; MySQL uses Alibaba Cloud's **cloud database RDS MySQL version**, and Redis use **cloud database Redis version**.
+For example, on Alibaba Cloud:
+- Kubernetes uses **Alibaba Cloud Container Service ACK**
+- InfluxDB uses **Alibaba Cloud Time Series Database InfluxDB Edition**
+- Elasticsearch uses **Alibaba Cloud Elasticsearch**
+- MySQL uses **Alibaba Cloud RDS MySQL Edition**
+- Redis uses **Alibaba Cloud Redis**
 
-#### Deployment on Offline Host 
+#### Offline Host Deployment
+"<<< custom_key.brand_name >>>" also supports deployment on offline hosts, where all basic components must be set up independently. The "<<< custom_key.brand_name >>>" center must be deployed based on Kubernetes.
 
-Guance also supports deployment on offline hosts, and all basic components need to be built by themselves. The deployment of the Guance center must also be based on Kubernetes. 
+First, deploy a Kubernetes cluster on the offline host. All basic components such as InfluxDB, Elasticsearch, MySQL, Redis, etc., can be deployed as containers within the Kubernetes cluster. To improve system stability, we recommend deploying "<<< custom_key.brand_name >>>" and its dependencies in separate container clusters.
 
-First of all, Kubernetes cluster needs to be deployed on the offline host. All basic components such as InfuxDB, Elasticsearch, MySQL and Redis can be deployed in Kubernetes cluster in container mode. In order to improve the stability of the system, it is recommended to deploy in two container clusters together with Guance. 
+## DataKit Deployment Plan
+DataKit deployment is independent of the "<<< custom_key.brand_name >>>" center architecture. Regardless of whether you connect to the SaaS version or the private deployment version of "<<< custom_key.brand_name >>>", there is no difference in data ingestion into the target workspace. Once DataKit is implemented, switching the target "<<< custom_key.brand_name >>>" center only requires changing the data gateway address.
 
-## DataKit Deployment Scenario
-The deployment and implementation of DataKit is independent of the architecture of the Guance center, and there is no difference in the target workspace of data access, whether accessing SaaS version of Guance or private deployment version of Guance. 
-That is to say, after the implementation of DataKit, the target Guance center can be seamlessly switched, as long as the data gateway address is changed. 
-
-### DataKit Infrastructure
+### DataKit Basic Architecture
 ![](img/10.deployment_2.png)
 
-DataKit supports three mainstream platforms: Linux, MacOS and Windows. DataKit is installed in the monitored host. After installation, the collection of basic metrics of the host has been started by default, such as CPU, Mem, Disk, DiskIO and System. More other data collection can be started. For specific configuration methods and collection source list, please check the document [collection source configuration](../integrations/changgelog.md).
+DataKit supports three major platforms: Linux, MacOS, Windows. Installing DataKit on the monitored host enables default collection of basic host metrics like CPU, Mem, Disk, DiskIO, System, etc. Additional data collection can be enabled as needed. Specific configuration methods and source lists can be found in the [Collection Source Configuration](../integrations/integration-index.md) documentation.
 
-After the DataKit is installed, the 9529 listening port is opened by default (the default listening port can be modified in the datakit.conf file), which is used as the HTTP data access service port. The data collected by various external collection sources such as Metric, Log, Tracing, RUM and Security would be cleaned and formatted after reaching the DataKit through the HTTP interface address of the 9529 port, and then reported to the Guance center. 
+After installation, DataKit listens on port 9529 (the default listening port can be modified in the datakit.conf file) as an HTTP data intake service. Various external collection sources like Metrics, Logs, Traces, RUM, Security send data to DataKit via the HTTP interface on port 9529, which then cleans and formats the data before reporting it to the "<<< custom_key.brand_name >>>" center.
 
-### Link Tracing Deployment 
+### Trace Deployment
 ![](img/10.deployment_3.png)
 
-DataKit supports data access of open source link acquisition frameworks such as Skywalking, Jaeger, Zipkin and ddTrace, and configures the agent output address of link acquisition framework as DataKit tracing routing address. 
+DataKit supports data intake from open-source tracing frameworks like Skywalking, Jaeger, Zipkin, ddTrace. Configure the agent output address of the tracing framework to the DataKit tracing route address.
 
-The best deployment scheme is to deploy DataKit in every application server, so as to better unify the server host index, application log, syslog, application service link data and other data of application service and carry out correlation analysis. 
+The optimal deployment plan is to deploy DataKit on each application server to better correlate host metrics, application logs, syslog, and application service trace data for unified analysis.
 
-### User Access Monitoring Deployment 
+### User Access Monitoring Deployment
 ![](img/10.deployment_4.png)
 
-The access mode of user access monitoring data can view the document [RUM](../real-user-monitoring/index.md).
+For user access monitoring data ingestion, refer to the [User Access Monitoring](../real-user-monitoring/index.md) documentation.
 
-In the deployment mode, a DataKit (RUM DataKit) needs to be deployed on the user application server, and the application client introduces rum sdk of each end. After preprocessing and formatting by RUM DataKit, various page requests, resource requests, js error messages and other data accessing the client are uploaded to Guance. 
+Deployment involves installing a DataKit (RUM DataKit) on the user application server and integrating the appropriate RUM SDKs on the client side. Various page requests, resource requests, JS error information, etc., from the user client are preprocessed and formatted by RUM DataKit before being uploaded to "<<< custom_key.brand_name >>>".
 
 ### Kubernetes Deployment
 
-In the era of cloud native micro-service architecture, a large number of application services collect micro-service architecture. Kubernetes, as a cloud native container orchestration and scheduling tool, is frequently used. DataKit also supports containerized deployment. 
+In the era of cloud-native microservices architectures, many application services adopt microservices architecture. Kubernetes, as a cloud-native container orchestration and scheduling tool, is increasingly used. DataKit also supports containerized deployment.
 
-#### DaemonSet Mode
+#### DaemonSet Method
 
-Two major advantages of DataKit deployment in Kubernetes using DaemonSet: 
+Deploying DataKit in Kubernetes using the DaemonSet method offers two main advantages:
 
-1. Deployment is simple, and no matter how large the same service cluster is, it is not necessary for each service cluster to be deployed and implemented separately. 
-1. With the high scalability of Kubernetes cluster, DataKit can be automatically opened on the automatically expanded node host without manual intervention. 
+1. Simple deployment: Regardless of the size of the service cluster, no individual deployment is required.
+2. Leveraging Kubernetes cluster scalability: Automatically start DataKit on newly added nodes without manual intervention.
 
-### Cluster Deployment Without Public Network Exit 
-In some server-side scenarios, not all service hosts can access from the public network, and DataKit on these hosts without public network outlets cannot directly report data to Guance. 
+### Cluster Deployment Without Public Internet Access
+In some server scenarios, not all service hosts can access the public internet. For these hosts, DataKit cannot directly report data to "<<< custom_key.brand_name >>>".
 
-You can open another host with public network export capability in the cluster as Proxy, and all DataKits in the cluster report data to Guance through this Proxy. 
+A solution is to use a host with public internet access as a Proxy within the cluster. All DataKit instances within the cluster can route their data through this Proxy to "<<< custom_key.brand_name >>>".
 
-DataKit itself also supports Proxy cascade. After installing DataKit on this public network host, Proxy can be started, and the data addresses of DataKit in the cluster can be configured to this Proxy DataKit. All monitoring data of the intranet host would be reported to the Guance center through this DataKit with public network exit. 
+DataKit also supports proxy chaining. Install DataKit on the public internet host and configure it as a Proxy. Set the data addresses of all internal DataKit instances to this Proxy DataKit, allowing internal host monitoring data to be reported to the "<<< custom_key.brand_name >>>" center via this DataKit.
 
-In addition, Nginx, HAProxy, H5 and other Proxy schemes can also be used to send the intranet data out of the public network after passing through Proxy. 
-
+Additionally, Nginx, HAProxy, H5, and other Proxy solutions can be used to route internal data to the public internet.

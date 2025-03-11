@@ -1,36 +1,26 @@
-# Modify One/More Labels of a Host
+# Modify One or More Labels for a Specific Host
 
 ---
 
-<br />**post /api/v1/object/hosts/\{host\}/label/modify**
+<br />**POST /api/v1/object/hosts/\{host\}/label/modify**
 
 ## Overview
-Modify one/more labels of a host, and after the interface is successfully called, there will generally be no more than 5 minutes of cache. 
+Modify one or more labels for a specific host. After a successful API call, there may be a cache of up to 5 minutes.
 
+## Route Parameters
 
+| Parameter Name | Type   | Required | Description       |
+|:--------------|:-------|:---------|:------------------|
+| host          | string | Yes      | Hostname          |
 
+## Body Request Parameters
 
-## Routing Parameters
+| Parameter Name | Type   | Required | Description               |
+|:--------------|:-------|:---------|:--------------------------|
+| source        | string | Yes      | Data source<br>Example: HOST <br>Can be empty: False <br> |
+| labels        | array  |          | List of object names<br>Can be empty: False <br> |
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| host | string | Y | 主机名<br> |
-
-
-## Body Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| source | string | Y | Data source<br>Example: HOST <br>Allow null: False <br> |
-| labels | array |  | List of object names<br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-
-
-
-
-
+## Additional Parameter Notes
 
 ## Response
 ```shell
@@ -43,7 +33,3 @@ Modify one/more labels of a host, and after the interface is successfully called
     "traceId": "TRACE-96EDF6EA-847D-4E23-BE1B-B387257B6BFA"
 } 
 ```
-
-
-
-

@@ -1,14 +1,14 @@
 ---
 title     : 'DB2'
-summary   : 'Collect IBM DB2 metrics'
+summary   : 'Collect metrics data from IBM DB2'
 tags:
-  - 'DATA STORES'
+  - 'Database'
 __int_icon      : 'icon/db2'
 dashboard :
   - desc  : 'IBM Db2'
     path  : 'dashboard/en/db2'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -16,17 +16,17 @@ monitor   :
 
 ---
 
-Collects [IBM Db2](https://www.ibm.com/products/db2){:target="_blank"} performance metrics.
+Collect performance metrics from [IBM Db2](https://www.ibm.com/products/db2){:target="_blank"}.
 
-Already tested version:
+Tested versions:
 
 - [x] 11.5.0.0a
 
 ## Configuration {#config}
 
-### Precondition {#reqirement}
+### Prerequisites {#reqirement}
 
-- Download **DB2 ODBC/CLI driver** from [IBM Website](https://www-01.ibm.com/support/docview.wss?uid=swg21418043){:target="_blank"}, or from our website:
+- Download the **DB2 ODBC/CLI driver** from the [IBM website](https://www-01.ibm.com/support/docview.wss?uid=swg21418043){:target="_blank"}, or use our pre-downloaded version:
 
 ```sh
 https://static.guance.com/otn_software/db2/linuxx64_odbc_cli.tar.gz
@@ -34,7 +34,7 @@ https://static.guance.com/otn_software/db2/linuxx64_odbc_cli.tar.gz
 
 MD5: `A03356C83E20E74E06A3CC679424A47D`
 
-- Extract the downloaded **DB2 ODBC/CLI driver** files, recommend path: `/opt/ibm/clidriver`
+- Extract the downloaded **DB2 ODBC/CLI driver**, recommended path: `/opt/ibm/clidriver`
 
 ```sh
 [root@Linux /opt/ibm/clidriver]# ls
@@ -53,11 +53,11 @@ MD5: `A03356C83E20E74E06A3CC679424A47D`
 └── security64
 ```
 
-Then put the path /opt/ibm/clidriver/**lib** to the `LD_LIBRARY_PATH` line in *Datakit's IBM Db2 configuration file* .
+Then set the path `/opt/ibm/clidriver/**lib**` in the `LD_LIBRARY_PATH` environment variable of the *DataKit IBM Db2 configuration file*.
 
-- Additional dependency libraries may need to be installed for some operation system:
+- For some systems, additional dependencies may need to be installed:
 
-```shell
+```sh
 # Ubuntu/Debian
 apt-get install -y libxml2
 
@@ -65,7 +65,7 @@ apt-get install -y libxml2
 yum install -y libxml2
 ```
 
-- Switch to the instance master user and run these commands at the `db2` prompt:
+- Run the following commands with administrative privileges in the `db2` command-line mode to enable monitoring:
 
 ```sh
 update dbm cfg using HEALTH_MON on
@@ -75,9 +75,9 @@ update dbm cfg using DFT_MON_TABLE on
 update dbm cfg using DFT_MON_BUFPOOL on
 ```
 
-These commands will enable the database system monitor switches for each of the objects you want to monitor: Statement, Lock, Tables, Buffer pool.
+The above statements enable monitoring for Statement, Lock, Tables, and Buffer pool.
 
-Next, run `get dbm cfg` and you should see the following:
+You can check the status of enabled monitoring with the `get dbm cfg` command:
 
 ```sh
  Default database monitor switches
@@ -96,7 +96,7 @@ Next, run `get dbm cfg` and you should see the following:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `db2.conf.sample` and name it `db2.conf`. Examples are as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `db2.conf.sample` and rename it to `db2.conf`. Example:
     
     ```toml
         
@@ -130,7 +130,7 @@ Next, run `get dbm cfg` and you should see the following:
       # Parameter Description (Marked with * is mandatory field)
       #############################
       # *--interval       : Collect interval (Default is 1m)
-      # *--host           : IBM Db2 nstance address (IP)
+      # *--host           : IBM Db2 instance address (IP)
       # *--port           : IBM Db2 listen port (Default is 50000)
       # *--username       : IBM Db2 username (Default is db2inst1)
       # *--password       : IBM Db2 password
@@ -139,16 +139,16 @@ Next, run `get dbm cfg` and you should see the following:
     
     ```
     
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.db2.tags]` if needed:
+All collected data will default append global election tags, or specify other tags through `[inputs.db2.tags]` in the configuration:
 
 ``` toml
   [inputs.db2.tags]
@@ -170,7 +170,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -190,7 +190,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -225,7 +225,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -265,7 +265,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|Host name.|
 |`tablespace_name`|Tablespace name.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -288,7 +288,7 @@ For all of the following data collections, the global election tags will added a
 |`db2_service`|Server service.|
 |`host`|Host name.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -304,39 +304,39 @@ For all of the following data collections, the global election tags will added a
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to view the running log of IBM Db2 Collector? {#faq-logging}
+### :material-chat-question: How to view the logs of the IBM Db2 collector? {#faq-logging}
 
-Because the IBM Db2 collector is an external collector, its name is `db2`, its logs are stored separately in *[Datakit-install-path]/externals/db2.log*.
+Since the IBM Db2 collector is an external collector with the program name `db2`, its logs are stored separately in *[DataKit installation directory]/externals/db2.log*.
 
-### :material-chat-question: After IBM Db2 collection is configured, why is there no data displayed in monitor? {#faq-no-data}
+### :material-chat-question: Why is there no data displayed in the monitor after configuring the IBM Db2 collector? {#faq-no-data}
 
-There are several possible reasons:
+Possible reasons include:
 
-- IBM Db2 dynamic library dependencies are problematic
+- Issues with IBM Db2 dynamic library dependencies
 
-Even though you may already have a corresponding IBM Db2 package on your machine, it is recommended to use the dependency package specified in the above document and ensure that its installation path is consistent with the path specified by `LD_LIBRARY_PATH`.
+Even if you already have the corresponding IBM Db2 package on your local machine, it is still recommended to use the specified dependency package mentioned in the documentation and ensure that its installation path matches the path specified in `LD_LIBRARY_PATH`.
 
-- There is a problem with the glibc version
+- glibc version issues
 
-As the IBM Db2 collector is compiled independently and CGO is turned on, its runtime requires glibc dependencies. On Linux, you can check whether there is any problem with the glibc dependencies of the current machine by the following command:
+Since the IBM Db2 collector is independently compiled and has CGO enabled, it requires glibc dependencies on Linux. You can check the current machine's glibc dependencies with the following command:
 
 ```shell
-$ ldd <Datakit-install-path>/externals/db2
-  linux-vdso.so.1 (0x00007ffed33f9000)
-  libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f70144e1000)
-  libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f70144be000)
-  libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f70142cc000)
-  /lib64/ld-linux-x86-64.so.2 (0x00007f70144fc000)
+$ ldd <DataKit installation directory>/externals/db2
+    linux-vdso.so.1 (0x00007ffed33f9000)
+    libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f70144e1000)
+    libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f70144be000)
+    libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f70142cc000)
+    /lib64/ld-linux-x86-64.so.2 (0x00007f70144fc000)
 ```
 
-If the following information is reported, it is basically caused by the low glibc version on the current machine:
+If you see a message like the following, it indicates that the glibc version on the current machine is too low:
 
 ```shell
 externals/db2: /lib64/libc.so.6: version  `GLIBC_2.14` not found (required by externals/db2)
 ```
 
-- IBM Db2 Collector is only available on Linux/AMD64 architecture DataKit and is not supported on other platforms.
+- The IBM Db2 collector can only be used with DataKit on Linux/AMD64 architecture, and is not supported on other platforms
 
-This means that the IBM Db2 collector can only run on AMD64 Linux, and no other platform can run the current IBM Db2 collector.
+This means the IBM Db2 collector can only run on AMD64 Linux, and cannot run on other platforms.
 
 <!-- markdownlint-enable -->

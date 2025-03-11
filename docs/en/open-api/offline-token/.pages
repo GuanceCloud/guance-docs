@@ -1,0 +1,3 @@
+nav:
+  - '【Token without login】Generate token': create-temporary-token.md
+  - '【Token without login】Revoke token': revoke-temporary-token.md

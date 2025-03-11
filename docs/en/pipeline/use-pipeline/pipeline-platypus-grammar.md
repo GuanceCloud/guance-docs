@@ -1,128 +1,128 @@
-# Platypus Grammar
+# Platypus Syntax
 ---
 
-Below is the syntax definition for the Platypus language used by the Pipeline processor. With the gradual support of different syntaxes, this document will be adjusted and added or deleted to varying degrees.
+The following is the syntax definition of the Platypus language used by Pipeline processors. As different syntax features are gradually supported, this document will be adjusted and modified to varying degrees.
 
-## Identifier and Keyword {#identifier-and-keyword}
+## Identifiers and Keywords {#identifier-and-keyword}
 
-### Identifier {#identifier}
+### Identifiers {#identifier}
 
-Identifiers are used to identify objects and can be used to represent a variable, function, etc. The identifier contains keywords; the custom identifier cannot be repeated with the keywords of the Pipeline data processor language;
+Identifiers are used to identify objects and can represent a variable, function, etc. Identifiers include keywords; custom identifiers cannot conflict with the keywords of the Pipeline data processor language.
 
-Identifiers can be composed of numbers (`0-9`), letters (`A-Z a-z`), and underscores (`_`), but the first character cannot be a number and is case-sensitive:
+Identifiers can consist of digits (`0-9`), letters (`A-Z a-z`), and underscores (`_`), but they cannot start with a digit and are case-sensitive:
 
 - `_abc`
 - `abc`
 - `abc1`
 - `abc_1_`
 
-Use backticks if you need to start with a non-alphabet or non-underscore, or use characters other than the above in the identifier:
+If an identifier needs to start with a non-letter or non-underscore character, or if it contains characters other than those mentioned above, backticks should be used:
 
 - `` `1abc` ``
 - `` `@some-variable` ``
-- `` ` 这是一个表情包变量👍` ``
+- `` ` This is an emoji variable👍` ``
 
-**special agreement**：
+**Special Convention**:
 
-We agree to use the identifier `_` to represent the input data of the Pipeline data processor, and this parameter may be implicitly passed to some built-in functions;
+We conventionally use the identifier `_` to represent the input data of the Pipeline data processor. This parameter may be implicitly passed to some built-in functions.
 
-To maintain forward compatibility, `_` will be treated as an alias for `message` when used in the current version.
+In the current version, for forward compatibility, `_` will be treated as an alias for `message`.
 
-### Keyword {#keyword}
+### Keywords {#keyword}
 
-Keywords are words with special meaning, such as `if`, `elif`, `else`, `for`, `in`, `break`, `continue`, `nil`, etc. These words cannot be used as variables or constants or the name of a function etc.
+Keywords are words with special meanings, such as `if`, `elif`, `else`, `for`, `in`, `break`, `continue`, `nil`, etc. These words cannot be used as names for variables, constants, or functions.
 
 ## Comments {#comments}
 
-Use `#` as line comment character, inline comment is not supported
+Use `#` for single-line comments; inline comments are not supported.
 
 ```python
-# This is a line comment
-a = 1 # this is a comment line
+# This is a single-line comment
+a = 1 # This is a single-line comment
 
 """
-This is a (multiline) string that replaces comments
+This is a (multi-line) string, used as a comment replacement
 """
 a = 2
 
-"comments"
+"String"
 a = 3
 ```
 
 ## Built-in Data Types {#built-in-data-types}
 
-In Platypus, the Pipeline data processor language, by default, the type of the value of a variable can change dynamically, but each value has its data type, which can be one of the **basic types** or **composite type**
+In the Pipeline data processor language Platypus, by default, the type of a variable's value can dynamically change, but each value has its own data type, which can be one of the **basic types** or **composite types**.
 
-When a variable is not assigned a value, its value is nil, which means no value.
+When a variable is unassigned, its value is `nil`, indicating no value.
 
-### Basic Type {#basic-type}
+### Basic Types {#basic-type}
 
 #### Integer (int) Type {#int-type}
 
-Integer type length is 64bit, signed, currently only supports writing integer literals in decimal format, such as `-1`, `0`, `1`, `+19`
+Integer type has a length of 64 bits and is signed. Currently, only decimal integer literals are supported, such as `-1`, `0`, `1`, `+19`.
 
-#### Floating Point (float) Type {#float-type}
+#### Floating-point (float) Type {#float-type}
 
-The length of the floating-point type is 64bit, signed, and currently only supports writing floating-point literals in decimal, such as `-1.00001`, `0.0`, `1.0`, `+19.0`
+Floating-point type has a length of 64 bits and is signed. Currently, only decimal floating-point literals are supported, such as `-1.00001`, `0.0`, `1.0`, `+19.0`.
 
 #### Boolean (bool) Type {#bool-type}
 
-Boolean literals only have `true` and `false`
+Boolean type literals are only `true` and `false`.
 
 #### String (str) Type {#str-type}
 
-String literals can be written with double quotes or single quotes, and multi-line strings can be written using triple double quotes or triple single quotes
+String literals can be enclosed in double quotes or single quotes. Multi-line strings can be written using triple double quotes or triple single quotes.
 
 - `"hello world"`
 - `'hello world'`
-- Use `"""` to express multi-line strings
+- Using `"""` for multi-line strings
 
-   ```python
-   """hello
-   world"""
-   ```
+  ```python
+  """hello
+  world"""
+  ```
 
-- Use `'''` to express multi-line strings
+- Using `'''` for multi-line strings
   
-   ```python
-   '''
-   hello
-   the world
-   '''
-   ```
+  ```python
+  '''
+  hello
+  world
+  '''
+  ```
 
-### Composite Type {#composite-type}
+### Composite Types {#composite-type}
 
-The map type and list type are different from other types. Multiple variables can point to the same map or list object. The memory copy of the list or map is not performed during assignment, but the memory address of the map/list value is referenced.
+Map and list types differ from other types in that multiple variables can point to the same map or list object. Assignment does not copy the list or map in memory but instead references the memory address of the map/list value.
 
 #### Map Type {#map-type}
 
-The map type is a key-value structure. (Currently) only the string type can be used as a key, and the data type of the value is not limited.
+Map type is a key-value structure. (Currently) only string types can be used as keys, with no restrictions on the value's data type.
 
-It can read and write elements in the map through index expressions:
+Elements within a map can be read or written using index expressions:
 
 ```python
 a = {
-   "1": [1, "2", 3, nil],
-   "2": 1.1,
-   "abc": nil,
-   "def": true
+  "1": [1, "2", 3, nil],
+  "2": 1.1,
+  "abc": nil,
+  "def": true
 }
 
-# Since a["1"] is a list object, b just refers to the value of a["1"]
+# Since `a["1"]` is a list object, `b` just references the value of `a["1"]`
 b = a["1"]
 
 """
-At this point a["1"][0] == 1.1
+Now `a["1"][0] == 1.1`
 """
 b[0] = 1.1
 ```
 
 #### List Type {#list-type}
 
-The list type can store any number of values of any type in the list.
+List type can store any number of values of any type.
 
-It can read and write elements in the list through index expressions:
+Elements within a list can be read or written using index expressions:
 
 ```python
 a = [1, "2", 3.0, false, nil, {"a": 1}]
@@ -130,49 +130,49 @@ a = [1, "2", 3.0, false, nil, {"a": 1}]
 a = a[0] # a == 1
 ```
 
-## Operator {#operator}
+## Operators {#operator}
 
-The following operators are currently supported by Platypus, and the higher the value, the higher the priority:
+The following are the operators currently supported by Platypus, with higher numbers indicating higher precedence:
 
-|Priority|Symbol|Associativity|Description|
-|-|-|-|-|
-| 1 | `=` | right | assignment; named argument; lowest precedence|
-| 1 | `+=` | right | assignment, left operand = left operand + right operand|
-| 1 | `-=` | right | assignment, left operand = left operand - right operand|
-| 1 | `*=` | right | assignment, left operand = left operand * right operand|
-| 1 | `/=` | right | assignment, left operand = left operand / right operand|
-| 1 | `%=` | right | assignment, left operand = left operand % right operand|
-| 2 | `||` | left | logical "or" |
-| 3 | `&&` | left | Logical AND |
-| 4 | `in` | left | Determine whether the key is in the map; Specify the element in the list; The substring is included in the string|
-| 5 | `>=` | left | condition "greater than or equal to" |
-| 5 | `>` | left | condition "greater than" |
-| 5 | `!=` | left | condition "not equal to" |
-| 5 | `==` | left | condition "equal to" |
-| 5 | `<=` | left | condition "less than or equal to" |
-| 5 | `<` | left | condition "less than" |
-| 6 | `+` | left | arithmetic "plus" |
-| 6 | `-` | left | arithmetic "minus" |
-| 7 | `*` | left | arithmetic "multiply" |
-| 7 | `/` | left | arithmetic "division" |
-| 7 | `%` | left | arithmetic "remainder"|
-| 8 | `!`  | right | unary operator; logical "negation", available for 6 built-in data types |
-| 8 | `+`  | right | unary operator; positive sign, can be used to represent positive numbers |
-| 8 | `-`  | right | unary operator; minus sign, used to flip the sign and represent negative numbers |
-| 9 | `[]` | left | Subscript operator; can use list subscript or map key to get value|
-| 9 | `()` | left | Can change operator precedence; function call|
+| Precedence | Symbol | Associativity | Description |
+| --- | --- | --- | --- |
+| 1 | `=` | Right | Assignment; named parameters; lowest precedence |
+| 1 | `+=` | Right | Assignment, left operand = left operand + right operand |
+| 1 | `-=` | Right | Assignment, left operand = left operand - right operand |
+| 1 | `*=` | Right | Assignment, left operand = left operand * right operand |
+| 1 | `/=` | Right | Assignment, left operand = left operand / right operand |
+| 1 | `%=` | Right | Assignment, left operand = left operand % right operand |
+| 2 | `||` | Left | Logical "or" |
+| 3 | `&&` | Left | Logical "and" |
+| 4 | `in` | Left | Check if key exists in map; check if element exists in list; check if substring exists in string |
+| 5 | `>=` | Left | Condition "greater than or equal to" |
+| 5 | `>` | Left | Condition "greater than" |
+| 5 | `!=` | Left | Condition "not equal to" |
+| 5 | `==` | Left | Condition "equal to" |
+| 5 | `<=` | Left | Condition "less than or equal to" |
+| 5 | `<` | Left | Condition "less than" |
+| 6 | `+` | Left | Arithmetic "addition" |
+| 6 | `-` | Left | Arithmetic "subtraction" |
+| 7 | `*` | Left | Arithmetic "multiplication" |
+| 7 | `/` | Left | Arithmetic "division" |
+| 7 | `%` | Left | Arithmetic "modulus" |
+| 8 | `!` | Right | Unary operator; logical "not", applicable to all six built-in data types |
+| 8 | `+` | Right | Unary operator; positive sign, used to indicate positive numbers |
+| 8 | `-` | Right | Unary operator; negative sign, used to negate or indicate negative numbers |
+| 9 | `[]` | Left | Index operator; used for list indices or map keys |
+| 9 | `()` | Left | Change operator precedence; function calls |
 
-## Expression {#expr}
+## Expressions {#expr}
 
-Platypus uses the symbol comma `,` as the expression separator, such as the parameter transfer used to call the expression and the expression when the map and list are initialized.
+Platypus uses the comma `,` as the expression separator, such as for passing arguments to function calls and initializing maps and lists.
 
-In Platypus, expressions can have values, but **statements must not have values**, that is, statements cannot be used as the left and right operands of operators such as `=`, but expressions can.
+In Platypus, expressions can have values, but **statements never have values**, meaning statements cannot be used as operands for operators like `=`, while expressions can.
 
-### Literal Expression {#list-expr}
+### Literal Expressions {#list-expr}
 
-Literals of various data types can be used as expressions, such as integers `100`, `-1`, `0`, floating-point numbers `1.1`, Boolean values `true`, `false`, etc.
+Literals of various data types can serve as expressions, such as integers `100`, `-1`, `0`, floats `1.1`, booleans `true`, `false`, etc.
 
-The following two are literal expressions of composite types:
+The following are examples of composite type literal expressions:
 
 - List literal expression
 
@@ -184,41 +184,41 @@ The following two are literal expressions of composite types:
 
 ```txt
 {
-   "a": 1,
-   "b": "2",
+  "a": 1,
+  "b": "2",
 }
 ```
 
-### Call Expression {#call-expr}
+### Call Expressions {#call-expr}
 
-The following is a function call to get the number of list elements:
+The following is an example of a function call to get the number of elements in a list:
 
 ```txt
 len([1, 3, "5"])
 ```
 
-### Binary Expression {#binary-expr}
+### Binary Expressions {#binary-expr}
 
-Binary expressions consist of binary operators and left and right operands.
+Binary expressions consist of a binary operator and two operands.
 
-The current version of the assignment expression is a binary expression, which has a return value; but because the assignment expression may cause some problems, this syntax will be deleted in the future, and the **assignment statement** syntax will be added.
+In the current version, assignment expressions are considered binary expressions and return a value; however, due to potential issues with assignment expressions, this syntax will be deprecated in favor of **assignment statements**.
 
 ```python
-#0
-2 out of 5
+# 0
+2 / 5
 
-# 0.4, promote the type of the left operand to a floating-point number during calculation
+# 0.4, during calculation the left operand's type is promoted to float
 2 / 5.0
 
-#true
+# true
 1 + 2 * 3 == 7 && 1 <= 2
 
 
-# a = (b = 3), a == 3 due to the right associativity of the `=` operator
+# Due to the right associativity of the `=` operator, `a = (b = 3)`, thus `a == 3`
 b == 3;
 a = b = 3
 
-# Note: Since the assignment expression syntax is about to be abolished, please replace it with an assignment statement
+# Note: Due to the upcoming deprecation of assignment expressions, please replace them with assignment statements
 b = 3
 a = b
 
@@ -231,14 +231,13 @@ x = 1; y= [1]
 x in y  # true
 ```
 
-### Index Expression {#index-expr}
+### Index Expressions {#index-expr}
 
-Index expressions use the `[]` subscript operator to operate on the elements of a list/map.
+Index expressions use the `[]` subscript operator to manipulate elements of lists or maps.
 
-The elements of list or map can be valued or modified and elements can be added to the map through index expressions.
-For lists, negative numbers can be used for indexing.
+Index expressions can be used to access or modify elements of lists or maps and add elements to maps. Negative indices can be used for lists.
 
-Syntax example:
+Syntax examples:
 
 ```py
 a = [1, 2 ,3, -1.]
@@ -247,24 +246,24 @@ b = {"a": [-1], "b": 2}
 a[-1] = -2
 b["a"][-1] = a[-1]
 
-# result
+# Result
 # a: [1,2,3,-2]
 # b: {"a":[-2],"b":2}
 ```
 
-### Bracket Expression {#bracket-expr}
+### Parentheses Expressions {#bracket-expr}
 
-Bracket expressions can change the precedence of operand operations in binary expressions, but not associativity:
+Parentheses expressions can alter the precedence of operands in binary expressions but do not change associativity:
 
 ```txt
 # 1 + 2 * 3 == 7
 
-(1 + 2) * 3 # == 9
+(1 + 2) * 3  # == 9
 ```
 
-## Statement {#stmt}
+## Statements {#stmt}
 
-All expressions in Platypus can be regarded as value statements. When an expression ends with a statement delimiter `;` or `\n`, it will be regarded as a statement. For example, the following script contains four statements:
+All expressions in Platypus can be considered value statements. When an expression ends with a statement separator `;` or `\n`, it is treated as a statement. For example, the following script contains four statements:
 
 ```go
 len("abc")
@@ -272,39 +271,39 @@ len("abc")
 a = 2; a + 2 * 3 % 2
 ```
 
-### Value Statement (expression statement) {#value-stmt}
+### Value Statements (Expression Statements) {#value-stmt}
 
-When an expression is followed by a statement delimiter, it can be regarded as a value statement. The following are four legal statements:
+An expression followed by a statement separator can be considered a value statement. The following are four valid statements:
 
 ```txt
-# floats as statements
+# Float as a statement
 1.;
 
-# function call expression as statement
+# Function call expression as a statement
 len("Hello World!"); len({"a": 1})
 
-# identifiers as statements
+# Identifier as a statement
 abc
 ```
 
-### Assignment Statement {#assignment-stmt}
+### Assignment Statements {#assignment-stmt}
 
-Syntax example:
+Syntax examples:
 
 ```py
 
 key_a = "key-a"
 
-# The identifier a is used as the left operand, assigning a a list literal
+# Identifier `a` as the left operand, assign a list literal to `a`
 a = [1, nil, 3]
 
-# index expression as left operand
+# Index expression as the left operand
 a[0] = 0
 a[2] = {"key-b": "value-b"}
 a[2][key_a] = 123
 ```
 
-### Select Statement {#select-stmt}
+### Selection Statements {#select-stmt}
 
 Platypus supports `if/elif/else` syntax:
 
@@ -334,28 +333,28 @@ if condition_1 {
 }
 ```
 
-Same as most programming languages, enter the corresponding statement block according to whether the condition of `if/elif` is true, or enter the else branch if it is not true.
+Similar to most programming languages, based on whether the `if/elif` conditions evaluate to true, the corresponding block of code is executed. If none of the conditions are met, the `else` block is executed.
 
-The current condition can be any expression, as long as its value is one of the built-in data types, when its value is the default value of the type, the expression value is `flase`:
+Currently, the condition can be any expression, as long as its value is one of the built-in data types. When the value is the default value of the type, the expression evaluates to `false`:
 
-- When the condition is an `int` type value, it is `0` then the condition is `false`, otherwise it is `true`
-- When the condition is a `float` type value, it is `0.0` then the condition is `false`, otherwise it is `true`
-- When the condition is a `string` type value, it is an empty string `""` then the condition is `false`, otherwise it is `true`
-- when the condition is a `bool` type value, the condition is the current value
-- When the condition is a value of type `nil`, the condition is `false`
-- When the condition is a `map` type value, its length is 0 then the condition is `false`, otherwise it is `true`
-- When the condition is a `list` type value, its length is 0 then the condition is `false`, otherwise it is `true`
+- For `int` type values, `0` evaluates to `false`, otherwise `true`.
+- For `float` type values, `0.0` evaluates to `false`, otherwise `true`.
+- For `string` type values, an empty string `""` evaluates to `false`, otherwise `true`.
+- For `bool` type values, the condition is the current value.
+- For `nil` type values, the condition is `false`.
+- For `map` type values, if the length is `0`, the condition is `false`, otherwise `true`.
+- For `list` type values, if the length is `0`, the condition is `false`, otherwise `true`.
 
-### Loop Statement {#loop-stmt}
+### Loop Statements {#loop-stmt}
 
-Platypus supports `for` statement and `for in` statement.
+Platypus supports `for` statements and `for in` statements.
 
-The following are two statements that are only allowed in a loop block:
+The following are two statements that can only be used within loop blocks:
 
-- `cotinue` statement, do not execute subsequent statements, continue to start the next cycle
-- The `break` statement, which ends the loop
+- `cotinue` statement, skips the remaining statements and continues with the next iteration.
+- `break` statement, exits the loop.
 
-When using the `for` statement, it may cause an infinite loop, so it should be used with caution, or use the `for in` statement instead.
+Using a `for` statement can lead to infinite loops, so it should be used cautiously, or prefer using `for in` statements.
 
 ```txt
 for init-expr; condition; loop-expr {
@@ -364,55 +363,55 @@ for init-expr; condition; loop-expr {
 ```
 
 ```txt
-for varb_name in map_value/list_value/string_value {
+for varb_name in map_value/list_value/string_value  {
 
 }
 ```
 
-Example usage:
+Usage examples:
 
-- Use `for` to execute 10 loops:
+- Using `for` to execute a loop 10 times:
 
-   ```py
-   for a = 0; a < 10; a = a + 1 {
+  ```py
+  for a = 0; a < 10; a = a + 1 {
     
-   }
-   ```
+  }
+  ```
 
-- Use `for in` to iterate over all elements of the list:
+- Using `for in` to iterate over all elements of a list:
 
-   ```py
-   b = "2"
-   for a in ["1", "a" ,"2"] {
-     b = b + a
-     if b == "21a" {
-       break
-     }
-   }
-   # b == "21a"
-   ```
+  ```py
+  b = "2"
+  for a in ["1", "a" ,"2"] {
+    b = b + a
+    if b == "21a" {
+      break
+    }
+  }
+  # b == "21a"
+  ```
 
-- use `for in` to iterate over all keys of the map:
+- Using `for in` to iterate over all keys of a map:
 
-   ```py
-   d = 0
-   map_a = {"a": 1, "b": 2}
-   for x in map_a {
-     d = d + map_a[x]
-   }
-   ```
+  ```py
+  d = 0
+  map_a = {"a": 1, "b":2}
+  for x in map_a {
+    d = d + map_a[x]
+  }
+  ```
 
-- use `for in` to iterate over all characters of string:
+- Using `for in` to iterate over all characters of a string:
 
-   ```py
-   s = ""
-   for c in "abcdef" {
-     if s == "abc" {
-       break
-     } else {
-       continue
-     }
-     s = s + "a"
-   }
-   # s == "abc"
-   ```
+  ```py
+  s = ""
+  for c in "abcdef" {
+    if s == "abc" {
+      break
+    } else {
+      continue
+    }
+    s = s + "a"
+  }
+  # s == "abc"
+  ```

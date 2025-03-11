@@ -1,0 +1,35 @@
+nav:
+  - index.md
+  - 'Chart Query': chart-query.md
+  - 'Chart Json': chart-json.md
+  - 'Chart Links': chart-link.md
+  - 'Event Association': events-relative.md
+  - 'Chart Sharing': chart-share.md
+  - 'Chart Grouping': chart-group.md
+  - 'Contemporary Comparison': time-comparison.md
+  - 'Timeseries Chart': timeseries-chart.md
+  - 'Query Value': overview-chart.md
+  - 'Table': table-chart.md
+  - 'Tree Map': treemap.md
+  - 'Funnel': funnel-chart.md
+  - 'Pie Chart': pie-chart.md
+  - 'Bar Chart': bar-chart.md
+  - 'Histogram': histogram.md
+  - 'SLO': slo-chart.md
+  - 'Top List': leaderboard.md
+  - 'Dashboard': dashboard.md
+  - 'Scatter Plot': scatter-plot.md
+  - 'Bubble': bubble-chart.md
+  - 'China Map': china-map.md
+  - 'World Map': world-map.md
+  - 'Honeycomb': cellular-map.md
+  - 'Topology Chart': topology-map.md
+  - 'Sankey Diagram': sankey.md
+  - 'Text': text.md
+  - 'Pictures': picture.md
+  - 'Video': video.md
+  - 'Command Panel': command-panel.md
+  - 'IFrame': iframe.md
+  - 'Logs Stream': log-stream.md
+  - 'Object List': object-list.md
+  - 'Event': alert-statistics.md

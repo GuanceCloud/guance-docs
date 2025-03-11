@@ -1,0 +1,8 @@
+nav:
+  - 'Create a Dashboard': create.md
+  - 'Get a List of Dashboards': list.md
+  - 'Delete a Dashboard': delete.md
+  - 'Modify a Dashboard': modify.md
+  - 'Get a Dashboard': get.md
+  - 'Export a Dashboard': export.md
+  - 'Import a Dashboard': import.md

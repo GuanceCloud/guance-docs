@@ -1,31 +1,30 @@
 ---
-skip: 'reason: 不属于集成文档'
+skip: 'reason: not part of the integration documentation'
 ---
-# DataKit directory
+
+# DataKit Directory
 
 ## Windows
 
-Installation directory:`C:\Program Files\datakit`
+Installation directory: `C:\Program Files\datakit`
 
-Log directory:`C:\Program Files\datakit`
+Log directory: `C:\Program Files\datakit`
 
 ## Linux/MacOS
 
-Installation directory:`/usr/local/datakit`
+Installation directory: `/usr/local/datakit`
 
-Log directory:`/var/log/datakit`
+Log directory: `/var/log/datakit`
 
-## Log
+## Logs
 
-There are two main files in the log directory: `gin.log` and `log`.
+Under the log directory, there are mainly two files: `gin.log` and `log`
 
-- `gin.log` ：It is an access log file, which is the log record of external access to DataKit and does not include GRPC.
-- `log`：It is a DataKit running log file that mainly records the startup and running status of the collector, as well as data reporting information.
+- `gin.log`: This is the access log file, which records external access to DataKit, excluding GRPC.
+- `log`: This is the DataKit runtime log file, primarily recording the startup and operational status of collectors as well as data reporting information.
 
-## Collector
+## Collectors
 
+The collector directory is `conf.d`, which contains over 200 built-in collector configurations. For example, the `conf.d/db` directory includes more than ten types of database collector configurations; `conf.d/host` also has over a dozen host-related collectors.
 
-The collector directory is `conf.d`, which contains over 200 types of collector configurations. For example, the `conf.d/db` directory contains more than 10 types of database collector configurations `conf.d/host` also has over a dozen types of host related collectors.
-
-Among them, `conf.d/datakit.conf` is the configuration related to the DataKit main collector, such as tokens, global tags, resources, APIs, and other related configurations.
-
+Among these, `conf.d/datakit.conf` is the main configuration file for DataKit's primary collector, including configurations related to token, global tags, resources, APIs, etc.

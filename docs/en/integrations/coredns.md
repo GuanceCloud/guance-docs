@@ -1,15 +1,15 @@
 ---
-title     : 'CoreDNS'
-summary   : 'Collect CoreDNS metrics and logs'
+title: 'CoreDNS'
+summary: 'Collect metrics data from CoreDNS'
 tags:
-  - 'MIDDLEWARE'
-__int_icon      : 'icon/coredns'
-dashboard :
-  - desc  : 'CoreDNS'
-    path  : 'dashboard/en/coredns'
-monitor   :
-  - desc  : 'CoreDNS'
-    path  : 'monitor/en/coredns'
+  - 'Middleware'
+__int_icon: 'icon/coredns'
+dashboard:
+  - desc: 'CoreDNS'
+    path: 'dashboard/en/coredns'
+monitor:
+  - desc: 'Not available'
+    path: 'monitor/en/coredns'
 ---
 
 
@@ -17,20 +17,20 @@ monitor   :
 
 ---
 
-CoreDNS collector is used to collect metric data related to CoreDNS.
+The CoreDNS collector is used to collect metrics data related to CoreDNS.
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- CoreDNS [configuration](https://coredns.io/plugins/metrics/){:target="_blank"}; Enable the `prometheus` plug-in
+- Enable the `prometheus` plugin in CoreDNS [configuration](https://coredns.io/plugins/metrics/){:target="_blank"}
 
-### Collector Configuration {#input-conifg}
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/coredns` directory under the DataKit installation directory, copy `coredns.conf.sample` and name it `coredns.conf`. Examples are as follows:
+    Navigate to the `conf.d/coredns` directory under the DataKit installation directory, copy `coredns.conf.sample`, and rename it to `coredns.conf`. An example configuration is as follows:
     
     ```toml
         
@@ -88,13 +88,12 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
       prefix = "coredns_dns_"
       name = "coredns"
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-
-    Enable [`kubernetesprometheus`(https://docs.guance.com/integrations/kubernetesprometheus/) through DataKit .
+    Enable the [`kubernetesprometheus` collector](https://docs.guance.com/integrations/kubernetesprometheus/) through DataKit.
 
     ```yaml
     [inputs.kubernetesprometheus]
@@ -107,10 +106,9 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
           [inputs.kubernetesprometheus.instances.custom.tags]
             cluster = "demo"
     ```
-
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
@@ -126,7 +124,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`server`|Server responsible for the request.|
 |`zone`|Zone name used for the request/response.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -151,7 +149,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`type`|Cache type|
 |`zones`|Zone name used for the request/response|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -177,9 +175,9 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`host`|Host name|
 |`instance`|Instance endpoint|
 |`server`|Server responsible for the request|
-|`type`|signature|
+|`type`|Signature|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -203,7 +201,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -231,14 +229,14 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`request_duration_seconds`|Histogram of the time each request took|float|s|
 |`requests_total`|Counter of requests made per upstream|float|count|
-|`responses_total`|Counter of requests made per upstream|float|count|
+|`responses_total`|Counter of responses received per upstream|float|count|
 
 
 
@@ -252,7 +250,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`host`|Host name|
 |`instance`|Instance endpoint|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -279,7 +277,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`view`|View name|
 |`zone`|Zone name|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -308,13 +306,13 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`revision`|Gitcommit contains the commit where we built CoreDNS from|
 |`server`|Server responsible for the request|
 |`service_kind`|Service kind|
-|`status`|HTTPs status code|
+|`status`|HTTP status code|
 |`value`|The returned hash value|
 |`version`|CoreDNS version|
 |`view`|View name|
 |`zone`|Zone name used for the request/response|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -324,7 +322,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`dns64_requests_translated_total`|Counter of DNS requests translated by dns64|float|count|
 |`dns_do_requests_total`|Counter of DNS requests with DO bit set per zone|float|count|
 |`dns_https_responses_total`|Counter of DoH responses per server and http status code|float|count|
-|`dns_panics_total`|A metrics that counts the number of panics|float|count|
+|`dns_panics_total`|A metric that counts the number of panics|float|count|
 |`dns_plugin_enabled`|A metric that indicates whether a plugin is enabled on per server and zone basis|float|bool|
 |`dns_request_duration_seconds`|Histogram of the time (in seconds) each request took per zone|float|s|
 |`dns_request_size_bytes`|Size of the `EDNS0` UDP buffer in bytes (64K for TCP) per zone and protocol|float|B|
@@ -339,3 +337,8 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`reload_version_info`|A metric with a constant '1' value labeled by hash, and value which type of hash generated|float|bool|
 
 
+</input_content>
+<target_language>英语</target_language>
+</input>
+
+Please continue translating if there's more content.

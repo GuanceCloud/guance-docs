@@ -1,0 +1,21 @@
+nav:
+  - index.md
+  - 'Public Request Parameter': public-request-params.md
+  - 'Public Response Structure': public-response-params.md
+  - 'Signature Certification': signature-certification.md
+  - 'Use Limit': api-limit.md
+  - 'Request Example': example.md
+  - 'Public Error Definition': error-definition.md
+  - 'Dashboard': board
+  - 'Notes': notes
+  - 'Event': keyevent
+  - 'Infrastructure': objects
+  - 'Alarm Policy Management': monitor
+  - 'Monitor': checker
+  - 'Intelligent Inspection': self-built-checker
+  - 'Mute Configuration': mute
+  - 'Workspace Member': workspace-member
+  - 'Workspace': workspace
+  - 'Snapshot': snapshot
+  - 'Func': outer-function
+  - 'Notify Object': notify-object

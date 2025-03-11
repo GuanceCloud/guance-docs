@@ -1,12 +1,12 @@
 ---
 title     : 'Resin'
-summary   : 'Resin Performance metrics display, including startup time, heap memory, non heap memory, classes, threads, etc.'
+summary   : 'Display of Resin performance Metrics, including startup time, heap memory, non-heap memory, classes, threads, etc.'
 __int_icon: 'icon/resin'
 dashboard :
-  - desc  : 'Resin'
+  - desc  : 'Resin monitoring view'
     path  : 'dashboard/en/resin'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'None'
     path  : '-'
 ---
 
@@ -14,20 +14,21 @@ monitor   :
 # Resin
 <!-- markdownlint-enable -->
 
-## Installation Configuration{#config}
+## Installation and Configuration {#config}
 
-Explanation: The example Resin version is Windows environment Resin/4.0.66 (Windows).
+Note: The example Resin version is for a Windows environment, Resin/4.0.66 (Windows).
 
-Metric collection is achieved through the use of `jolokia-jvm-agent` to collect Resin runtime metrics.
+Metric collection is performed using the `jolokia-jvm-agent` to gather runtime Metrics of Resin.
 
-### Resin enables metric collection
+
+### Enabling Metric Collection in Resin
 
 - Configure `config/resin.properties`
 
-ADD `jvm_args` ，parameter description：
+Add `jvm_args`, parameter descriptions:
 
-- `javaagent`：`jolokia-jvm-agent`
-- port=9530 # `jolokia-jvm-agent` export port
+- `javaagent`: `jolokia-jvm-agent`
+- port=9530 # Port exposed by `jolokia-jvm-agent` for Metrics
 
 ```shell
 jvm_args  : -Xmx2048m -XX:MaxPermSize=256m -javaagent:C:/"Program Files"/datakit/data/jolokia-jvm-agent.jar=port=9530
@@ -39,20 +40,20 @@ Double-click `resin.exe`
 
 ### DataKit Collector Configuration
 
-- Enables the DataKit JVM plugin and copy the 'sample' file
+- Enable the DataKit JVM plugin and copy the `sample` file
 
 ```shell
 cd datakit/conf.d/jvm
 cp jvm.conf.sample jvm.conf
 ```
 
-- Modify `jvm.conf` configuration file
+- Edit the `jvm.conf` configuration file
 
-Main parameter description
+Key parameters description:
 
-- urls：`jolokia` agent access url
-- interval：acquisition frequency
-- inputs.jvm.metric：jvm metrics
+- urls: Access address for the `jolokia` agent
+- interval: Collection frequency
+- inputs.jvm.metric: JVM-related Metrics
 
 ```toml
 # {"version": "1.2.12", "desc": "do NOT edit this line"}
@@ -71,7 +72,7 @@ Main parameter description
 # tls_key  = "/var/private/client-key.pem"
 # insecure_skip_verify = false
 
-## Monitor Intreval
+## Monitoring Interval
 interval   = "10s"
 
 # Add agents URLs to query
@@ -116,56 +117,55 @@ tag_keys = ["name"]
   # ...
 ```
 
-- Restart DataKit
+- Restart DataKit (if you need to enable logging, configure log collection before restarting)
 
-[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-## Metric {#metric}
+## Metrics {#metric}
 
-### Metric Set resin_runtime
+### Metrics Set resin_runtime
 
-|Metrics| Describe |
+| Metric | Description |
 | --- | --- |
-| `Uptime` | Online duration |
-| `StartTime` | resin start time |
-| `VmVersion` | jvm version |
+| `Uptime` | Uptime duration |
+| `StartTime` | Startup time |
+| `VmVersion` | Virtual machine version |
 | `SpecName` | Java virtual machine specification name |
 
-### Metric Set resin_memory
+### Metrics Set resin_memory
 
-|Metrics| Describe |
+| Metric | Description |
 | --- | --- |
-| `HeapMemoryUsage` | heap memory used |
-| `NonHeapMemoryUsage` | nonHeap memory used |
+| `HeapMemoryUsage` | Heap memory usage |
+| `NonHeapMemoryUsage` | Non-heap memory usage |
 
-### Metric Set resin_threading
+### Metrics Set resin_threading
 
-|Metrics| Describe |
+| Metric | Description |
 | --- | --- |
-| `TotalStartedThreadCount` | Total number of startup threads |
+| `TotalStartedThreadCount` | Total number of started threads |
 | `ThreadCount` | Number of active threads |
 | `DaemonThreadCount` | Number of daemon threads |
-| `PeakThreadCount` | Thread Peak |
+| `PeakThreadCount` | Peak thread count |
 
-### Metric Set resin_class_loading
+### Metrics Set resin_class_loading
 
-|Metrics| Describe |
+| Metric | Description |
 | --- | --- |
-| LoadedClassCount | The current class has been loaded |
-| UnloadedClassCount | Total number of `unloadun` classes |
+| LoadedClassCount | Number of currently loaded classes |
+| UnloadedClassCount | Total number of unloaded classes |
 | TotalLoadedClassCount | Total number of loaded classes |
 
-### Metric Set resin_memory_pool
+### Metrics Set resin_memory_pool
 
-|Metrics| Describe |
+| Metric | Description |
 | --- | --- |
-| Usage | Memory pool used |
-| PeakUsage | Used Memory Pool Peak |
-| CollectionUsage | Used memory pool recycling |
+| Usage | Used memory pool |
+| PeakUsage | Peak used memory pool |
+| CollectionUsage | Collected used memory pool |
 
-### Metric Set resin_garbage_collector
+### Metrics Set resin_garbage_collector
 
-|Metrics| Describe |
+| Metric | Description |
 | --- | --- |
 | CollectionTime | GC time |
 | CollectionCount | GC count |

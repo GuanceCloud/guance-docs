@@ -1,29 +1,28 @@
 ---
 title     : 'OpenLIT'
-summary   : 'OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit'
+summary   : 'OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to Guance'
 tags      :
   - 'OTEL'
-  - 'Tracing'
+  - 'Trace Linking'
 __int_icon: 'icon/openlit'
 dashboard:
-  - desc: 'OpenLIT Monitoring View'
+  - desc: 'Built-in views of OpenLIT'
     path: 'dashboard/en/openlit'
 ---
 
-OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit.
+OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to Guance.
 
 ## Configuration {#config}
-
 <!-- markdownlint-disable MD038 -->
-Before using OTEL to send Traces to DataKit, please ensure that you have configured the [Collector](opentelemetry.md. Additionally, you need to adjust the configuration file by adding `customer_tags = ["gen_ai.application_name","gen_ai.request.model","gen_ai.prompt","gen_ai.completion","gen_ai.request.temperature","gen_ai.usage.input_tokens","gen_ai.usage.output_tokens","gen_ai.usage.total_tokens","gen_ai.endpoint","gen_ai.system"]`, as shown below:
+Before sending trace linking data to DataKit using OTEL, ensure that the [Collector](opentelemetry.md) is configured. You also need to adjust the configuration file `customer_tags = ["gen_ai.application_name","gen_ai.request.model","gen_ai.prompt","gen_ai.completion","gen_ai.request.temperature","gen_ai.usage.input_tokens","gen_ai.usage.output_tokens","gen_ai.usage.total_tokens","gen_ai.endpoint","gen_ai.system"]` as follows:
 <!-- markdownlint-enable -->
 
 ```toml
 [[inputs.opentelemetry]]
-  ## customer_tags will work as a whitelist to prevent tags send to data center.
-  ## All . will replace to _ ,like this :
-  ## "project.name" to send to GuanCe center is "project_name"
-  customer_tags = ["gen_ai.application_name","gen_ai.request.model","gen_ai.prompt","gen_ai.completion","gen_ai.request.temperature","gen_ai.usage.input_tokens","gen_ai.usage.output_tokens","gen_ai.usage.total_tokens","gen_ai.endpoint","gen_ai.system"]
+  ## customer_tags will work as a whitelist to prevent tags from being sent to the data center.
+  ## All . will be replaced with _, like this:
+  ## "project.name" will be sent to Guance center as "project_name"
+    customer_tags = ["gen_ai.application_name","gen_ai.request.model","gen_ai.prompt","gen_ai.completion","gen_ai.request.temperature","gen_ai.usage.input_tokens","gen_ai.usage.output_tokens","gen_ai.usage.total_tokens","gen_ai.endpoint","gen_ai.system"]
 
   ...
 ```
@@ -31,7 +30,7 @@ Before using OTEL to send Traces to DataKit, please ensure that you have configu
 After making these adjustments, restart DataKit.
 
 
-### Install OpenLIT SDK
+### Install the OpenLIT SDK
 
 > pip install openlit
 
@@ -41,9 +40,10 @@ After making these adjustments, restart DataKit.
 import openlit
 
 openlit.init(otlp_endpoint="http://127.0.0.1:9529/otel")
+
 ```
 
-Example Usage for monitoring OpenAI Usage:
+Example code to monitor OpenAI usage:
 
 ```python
 from openai import OpenAI
@@ -63,7 +63,7 @@ chat_completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "What is LLM Observability",
+            "content": "What is LLM observability",
         }
     ],
     model="gpt-3.5-turbo",
@@ -71,6 +71,6 @@ chat_completion = client.chat.completions.create(
 
 ```
 
-## Reference {#more-readings}
+## Additional Resources {#more-readings}
 
 - OpenLIT [quickstart](https://docs.openlit.io/latest/quickstart){:target="_blank"}

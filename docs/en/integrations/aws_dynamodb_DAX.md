@@ -2,19 +2,19 @@
 title: 'AWS DynamoDB DAX'
 tags: 
   - AWS
-summary: 'The display metrics of AWS DynamoDB DAX include CPU usage of nodes or clusters, number of bytes received or sent on all network interfaces, number of packets, etc. These metrics reflect the running status of DynamoDB DAX.'
+summary: 'The metrics displayed for AWS DynamoDB DAX include CPU utilization of nodes or clusters, bytes received or transmitted on all network interfaces, number of packets, etc. These metrics reflect the operational status of DynamoDB DAX.'
 __int_icon: 'icon/aws_dynamodb_DAX'
 dashboard:
 
-  - desc: 'AWS DynamoDB DAX Dashboard'
+  - desc: 'Built-in views for AWS DynamoDB DAX'
     path: 'dashboard/en/aws_dynamodb_DAX'
 
 monitor:
-  - desc: 'AWS DynamoDB DAX Monitor'
+  - desc: 'AWS DynamoDB DAX monitor'
     path: 'monitor/en/aws_dynamodb_DAX'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_dynamodb_dax'
 ---
 
@@ -24,83 +24,86 @@ cloudCollector:
 <!-- markdownlint-enable -->
 
 
-The display metrics of AWS DynamoDB DAX include CPU usage of nodes or clusters, number of bytes received or sent on all network interfaces, number of packets, etc. These metrics reflect the running status of **DynamoDB DAX**.
+The metrics displayed for AWS DynamoDB DAX include CPU utilization of nodes or clusters, bytes received or transmitted on all network interfaces, number of packets, etc. These metrics reflect the operational status of DynamoDB DAX.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening [ Integrations - Extension - DataFlux Func (Automata) ]: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling Guance integration - expansion - DataFlux Func (Automata): All prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-### Installation script
-
-> Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, you can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)
-
-To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script: `ID:guance_aws_lambda`
-
-Click [ Install ] and enter the corresponding parameters: AWS AK, AWS account name.
-
-Tap [Deploy startup Script], the system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
-
-Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
-
-After this function is enabled, you can view the automatic triggering configuration in [Management / Crontab Config]. Click [Run], you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Installation Script
 
-1. In [ Management / Crontab Config ] check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click [ Infrastructure / Custom ] to check whether asset information exists
-3. On the Guance platform, press [ Metrics ] to check whether monitoring data exists
+> Note: Please prepare an Amazon Cloud AK that meets the requirements in advance (for simplicity, you can directly grant `CloudWatchReadOnlyAccess` permission)
 
-## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them.
+To synchronize monitoring data from AWS-DynamoDB DAX, we install the corresponding collection script: "Guance Integration (AWS-DynamoDB DAX Collection)" (ID: `guance_aws_dynamodb_dax`)
 
-[The metrics of Amazon CloudWatch for DynamoDB Accelerator (DAX)](https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/dax-metrics-dimensions-dax.html){:target="_blank"}
+After clicking 【Install】, enter the required parameters: AWS AK ID, AWS AK SECRET, account_name.
+
+Click 【Deploy Startup Script】 and the system will automatically create a `Startup` script set and configure the startup script accordingly. Ensure that 'regions' in the startup script match the actual regions where instances are located.
+
+After enabling, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the task execution records and corresponding logs.
+
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing data, enable the cloud billing collection script.
 
 
-| Metric | Description | Units | Valid Statistics |
+By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. Confirm in 「Manage / Automatic Trigger Configuration」 whether the corresponding task has the automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+
+After configuring Amazon CloudWatch, the default metric set is as follows. More metrics can be collected through configuration:
+
+[Amazon CloudWatch DynamoDB Accelerator (DAX) Metric Details](https://docs.aws.amazon.com/en_us/amazondynamodb/latest/developerguide/dax-metrics-dimensions-dax.html){:target="_blank"}
+
+
+| Metric Name | Description | Unit | Valid Statistics |
 | :---: | :---: | :---: | :---: |
-| `CPUUtilization` | The percentage of CPU utilization of the node or cluster. | Percent | Minimum Maximum Average |
-| `CacheMemoryUtilization` | The percentage of available cache memory that is in use by the item cache and query cache on the node or cluster. Cached data starts to be evicted prior to memory utilization reaching 100% (see **EvictedSize** metric). If **CacheMemoryUtilization** reaches 100% on any node, write requests will be throttled and you should consider switching to a cluster with a larger node type. | Percent | Minimum Maximum Average  |
-| `NetworkBytesIn` | The number of bytes received on all network interfaces by the node or cluster. | Bytes | Minimum Maximum Average |
-| `NetworkBytesOut` | The number of bytes sent out on all network interfaces by the node or cluster. This metric identifies the volume of outgoing traffic in terms of the number of bytes on a single node or cluster. | Bytes | Minimum Maximum Average |
-| `NetworkPacketsIn` | The number of packets received on all network interfaces by the node or cluster. | Count | Minimum Maximum Average  |
-| `NetworkPacketsOut` | The number of packets sent out on all network interfaces by the node or cluster. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single node or cluster. | Count | Minimum Maximum Average |
-| `GetItemRequestCount` | The number of GetItem requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `BatchGetItemRequestCount` | The number of BatchGetItem requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `BatchWriteItemRequestCount` | The number of BatchWriteItem requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `DeleteItemRequestCount` | The number of DeleteItem requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `PutItemRequestCount` | The number of PutItem requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `UpdateItemRequestCount` | The number of UpdateItem requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `TransactWriteItemsCount` | The number of TransactWriteItems requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `TransactGetItemsCount`| The number of TransactGetItems requests handled by the node or cluster.| Count | Minimum Maximum Average SampleCount Sum |
-| `ItemCacheHits` | The number of times an item was returned from the cache by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `ItemCacheMisses` | The number of times an item was not in the node or cluster cache, and had to be retrieved from DynamoDB. | Count | Minimum Maximum Average SampleCount Sum |
-| `QueryCacheHits` | The number of times a query result was returned from the node or cluster cache. | Count | Minimum Maximum Average SampleCount Sum |
-| `QueryCacheMisses` | The number of times a query result was not in the node or cluster cache, and had to be retrieved from DynamoDB. | Count | Minimum Maximum Average SampleCount Sum |
-| `ScanCacheHits` | The number of times a scan result was returned from the node or cluster cache. | Count | Minimum Maximum Average SampleCount Sum |
-| `ScanCacheMisses` | The number of times a scan result was not in the node or cluster cache, and had to be retrieved from DynamoDB. | Count | Minimum Maximum Average SampleCount Sum |
-| `TotalRequestCount` | Total number of requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `ErrorRequestCount` | Total number of requests that resulted in a user error reported by the node or cluster. Requests that were throttled by the node or cluster are included. | Count | Minimum Maximum Average SampleCount Sum |
-| `ThrottledRequestCount` | Total number of requests throttled by the node or cluster. Requests that were throttled by DynamoDB are not included, and can be monitored using DynamoDB Metrics. | Count | Minimum Maximum Average SampleCount Sum |
-| `FaultRequestCount` | Total number of requests that resulted in an internal error reported by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `FailedRequestCount` | Total number of requests that resulted in an error reported by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `QueryRequestCount` | The number of query requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `ScanRequestCount` | The number of scan requests handled by the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `ClientConnections` | The number of simultaneous connections made by clients to the node or cluster. | Count | Minimum Maximum Average SampleCount Sum |
-| `EstimatedDbSize` | An approximation of the amount of data cached in the item cache and the query cache by the node or cluster. | Bytes | Minimum Maximum Average |
-| `EvictedSize` | The amount of data that was evicted by the node or cluster to make room for newly requested data. If the miss rate goes up, and you see this metric also growing, it probably means that your working set has increased. You should consider switching to a cluster with a larger node type. | Bytes | Minimum Maximum Average Sum |
+| `CPUUtilization` | Percentage of CPU utilization for nodes or clusters. | Percent | Minimum Maximum Average |
+| `CacheMemoryUtilization` | Percentage of available cache memory used by item cache and query cache on nodes or clusters. Cache data starts to be evicted when memory utilization reaches 100% (see EvictedSize metric). If CacheMemoryUtilization reaches 100% on any node, write requests will be throttled, and you should consider switching to a cluster with larger node types. | Percent | Minimum Maximum Average  |
+| `NetworkBytesIn` | Number of bytes received by nodes or clusters on all network interfaces. | Bytes | Minimum Maximum Average |
+| `NetworkBytesOut` | Number of bytes sent by nodes or clusters on all network interfaces. This metric identifies outbound traffic based on packet counts on individual instances. | Bytes | Minimum Maximum Average |
+| `NetworkPacketsIn`| Number of packets received by nodes or clusters on all network interfaces. | Count | Minimum Maximum Average  |
+| `NetworkPacketsOut` | Number of packets sent by nodes or clusters on all network interfaces. This metric identifies outbound traffic based on packet counts on individual instances. | Count | Minimum Maximum Average |
+| `GetItemRequestCount`| Number of GetItem requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `BatchGetItemRequestCount`| Number of BatchGetItem requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `BatchWriteItemRequestCount` | Number of BatchWriteItem requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `DeleteItemRequestCount` | Number of DeleteItem requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `PutItemRequestCount` | Number of PutItem requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `UpdateItemRequestCount` | Number of UpdateItem requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `TransactWriteItemsCount` | Number of TransactWriteItems requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `TransactGetItemsCount`| Number of TransactGetItems requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `ItemCacheHits` | Number of times items were returned from cache by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `ItemCacheMisses`| Number of times items were not found in the cache of nodes or clusters and had to be retrieved from DynamoDB. | Count | Minimum Maximum Average SampleCount Sum |
+| `QueryCacheHits` | Number of times query results were returned from the cache of nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `QueryCacheMisses`| Number of times query results were not found in the cache of nodes or clusters and had to be retrieved from DynamoDB. | Count | Minimum Maximum Average SampleCount Sum |
+| `ScanCacheHits`| Number of times scan results were returned from the cache of nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `ScanCacheMisses`| Number of times scan results were not found in the cache of nodes or clusters and had to be retrieved from DynamoDB. | Count | Minimum Maximum Average SampleCount Sum |
+| `TotalRequestCount`| Total number of requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `ErrorRequestCount`| Total number of user error requests that caused nodes or clusters to report errors. Includes throttled requests. | Count | Minimum Maximum Average SampleCount Sum |
+| `ThrottledRequestCount` | Total number of throttled requests by nodes or clusters. Does not include throttled requests by DynamoDB, which can be monitored using DynamoDB metrics. | Count | Minimum Maximum Average SampleCount Sum |
+| `FaultRequestCount`| Total number of internal error requests reported by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `FailedRequestCount`| Total number of failed requests reported by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `QueryRequestCount`| Total number of query requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `ScanRequestCount`| Total number of scan requests processed by nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `ClientConnections`| Number of simultaneous connections established between clients and nodes or clusters. | Count | Minimum Maximum Average SampleCount Sum |
+| `EstimatedDbSize`| Approximate amount of data cached in item cache and query cache per node or cluster. | Bytes | Minimum Maximum Average |
+| `EvictedSize`| Amount of data evicted by nodes or clusters to make space for new request data. If error rates increase and this metric also grows, it may indicate an increase in your working set. Consider switching to a cluster with larger node types. | Bytes | Minimum Maximum Average Sum |
 
 
-## Object {#object}
+## Objects {#object}
 
-The collected AWS DynamoDB object data structure can be seen from the [ Infrastructure - Custom]  object data
+The structure of AWS DynamoDB objects collected can be viewed under 「Infrastructure - Custom」
 
 ```json
 {
@@ -119,10 +122,9 @@ The collected AWS DynamoDB object data structure can be seen from the [ Infrastr
     "ActiveNodes"           : "1",
     "NodeType"              : "1",
     "PreferredMaintenanceWindow" : "[{\"AttributeName\": \"LockID\", \"KeyType\": \"HASH\"}]",
-    "message"               : "{Instance json}"
+    "message"               : "{instance JSON info}"
   }
 }
-
 ```
 
-> *Note: The fields in 'tags' and' fields' may change with subsequent updates*
+>*Note: Fields in `tags` and `fields` may change with subsequent updates.*

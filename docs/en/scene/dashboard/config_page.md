@@ -1,150 +1,131 @@
-# Manag Page 
+# Page Management
 
-After entering a specific dashboard page, you can manage the dashboard through the following operations.
+After entering a dashboard page, you can manage the dashboard through the following operations.
 
-## Card Metadata Info {#metadata}
+## Card Properties {#metadata}
 
-Upon entering a specific dashboard, you can view the diagram information at the top `metadata` section of the page.
+After entering a specific dashboard, you can view the illustrated information in the `metadata` section at the top of the page.
 
-<img src="../img/dashboard-metadata.png" width="70%" >
+<img src="../../img/dashboard-metadata.png" width="70%" >
 
-In addition to viewing the current dashboard's ID, creator, creation time, updater, and update time, you can also directly click here to modify the current dashboard's name, description, tags, and visibility range.
+In addition to viewing the current dashboard's ID, identifier ID, creator, creation time, updater, and update time, you can also directly click to modify the name, description, labels, and visibility scope of the current dashboard here.
 
-If necessary, you can delete the current dashboard.
+If needed, click delete here, confirm again, and the current dashboard will be deleted.
 
-**Note**: If the current dashboard page has been saved as a snapshot and shared externally, the shared recipients cannot view the card metadata information here without logging in.
+**Note**: If the current dashboard page is saved as a snapshot and shared externally, non-logged-in users cannot view the card properties information here.
 
-## Adding Charts
+## Add Charts
 
-After the dashboard is created, you can add charts to the dashboard.
+After creating a dashboard, you can add charts to it.
+
+After selecting a chart, click **Complete Addition**.
 
 ![](../img/2.dashboard_4.png)
 
-
 ### Grouping {#group}
 
-You can also categorize the charts within the dashboard.
+You can categorize the charts within the dashboard.
 
-1. Entering the editing page;
-2. Enter the group name;
-3. Choose the group color as needed;
-4. Click Confirm.
+1. Click on grouping;
+2. Enter a group name;
+3. Select a group color as needed;
+4. Click confirm.
 
 ![](../img/dashboard-group.png)
 
-If you need to modify the group, hover and click the settings button on the right.
+To modify this group, hover over and click the settings button on the right side.
 
 ![](../img/dashboard-group-1.png)
 
 ## Cross-Workspace Query {#cross-workspace}
 
-If a workspace is granted to another workspace, you can switch workspaces on the dashboard to view the corresponding chart information.
+If a workspace has been granted access to other workspaces, you can switch workspaces within the dashboard to view corresponding chart information.
 
-**Note**: If the chart in the dashboard has already been configured with workspace query settings, it takes precedence over the dashboard or viewer global configuration.
+**Note**: If the charts within the dashboard have already configured workspace query settings, these settings take precedence over global configurations for the dashboard or Explorer.
 
 ![](../img/dashboard-workspace.png)
 
 ### Pin {#pin}
 
-On the premise that the current workspace is authorized to view data from several other workspaces, you can choose to pin the authorized workspace A, which will set workspace A as the default workspace for querying data.
+When the current accessed workspace is authorized to view data from several other workspaces, you can choose to pin an authorized workspace A, making it the default workspace for querying data.
 
-<img src="../img/pin.png" width="60%" >
+<img src="../../img/pin.png" width="60%" >
 
 **Note**:
 
-1. Designating a new default workspace will override the previous one.
-2. You can unpin other workspaces, reverting to the current workspace for queries.
-3. This feature is not available for read-only members.
+1. Since only one workspace can be designated as the default option each time, setting another workspace as the default will invalidate the previous default.
+2. You can unpin other workspaces, after which the current workspace will be used by default for filling query data.
+3. Read-only members do not support this operation.
 
+## Full-Screen Mode
 
-## Full Screen
-
-Guance automatically hides the top and side navigation bars for full-screen viewing. Press ESC to exit full screen.
+<<< custom_key.brand_name >>> will automatically hide the left and top navigation bars for you and display the view in full screen. Press the **ESC** key to exit full-screen mode.
 
 ![](../img/2.dashboard_2.png)
 
 ## Auto Refresh {#refresh}
 
-The refresh feature provided by Guance can help you quickly obtain real-time dashboard data.
+Helps you quickly obtain real-time dashboard data.
 
-<div class="grid" markdown>
+Available frequencies: 5s, 10s, 30s, 1m, 5m, 30m, 1h.
 
-=== "Relative Time"
+To disable auto-refresh, select Off (Disabled).
 
-    That is, when the time widget is within the relative time range, you can choose from five refresh frequencies including 5s/10s/30s/1m/5m/30m/1h; the default is 30s;
-
-    Or directly support manual refresh by clicking :octicons-sync-24:.
-
-    <img src="../../img/relative-time.png" width="70%" >
-
-=== "Absolute Time"
-
-    That is, when the time widget is in absolute time mode, you can manually refresh by clicking :octicons-sync-24:.
-
-    <img src="../../img/absolute-time.png" width="70%" >
-
-
-</div>
-
-**Note**: The settings for this refresh function do not conflict with [Viewer Auto Refresh](../../getting-started/function-details/explorer-search.md#auto-refresh).
+**Note**: All dashboards and views share the same refresh configuration.
 
 ## Settings
 
-After the dashboard is created, click :octicons-gear-24: to perform the following operations on the dashboard.
+After creating a dashboard, click :octicons-gear-24: to perform the following operations on the dashboard.
 
 ![](../img/2.dashboard_3.png)
 
+### Create Issue 
 
-### Create New Issue
+You can create an Issue based on anomalies observed within the current dashboard.
 
-You can create an Issue for the anomalies observed in the current dashboard.
+> For more related operations, refer to [How to Manually Create an Issue at the View Level](../../exception/issue.md#dashboards). For more information about Issues, refer to [Incident](../../exception/index.md).
 
-> For more related operations, see [How to Manually Create an Issue at the View Level](../../exception/issue.md#dashboards). For more information about Issues, see [Exception Tracking](../../exception/index.md).
+### Save Snapshot 
 
-### Save Snapshot
+1. Enter a snapshot name;
+2. Choose visibility scope;
+3. Select a time range; this selected time range will be automatically filled when opening the snapshot again;
+4. Click confirm.
 
-1. Enter the snapshot name;
-2. Choose the visibility range;
-3. Select the time range, and the next time you open this snapshot, it will automatically fill in the selected time range;
-4. Click Confirm.
+Besides using the button to open the save page, you can also use the shortcut `(Windows: Ctrl+K / Mac OS: Cmd+K)` to quickly save a snapshot. After saving, you can view it under **Shortcut > Snapshots**.
 
-You can save snapshots quickly using the shortcut `Ctrl+K` on Windows or `Cmd+K` on Mac OS. Saved snapshots are accessible under **Shortcuts > Snapshots**.
+> For more details, refer to [Snapshot](../../getting-started/function-details/snapshot.md).
 
-> For more information, see [Snapshots](../../getting-started/function-details/snapshot.md).
+### Save to Built-in View
 
-### Save to Inner View
+1. The view name defaults to the current dashboard name but can be modified;
+2. Choose binding relationships, such as `label:*`;
+3. Click confirm.
 
-1. The view name defaults to the current dashboard name and can be modified;
-2. Choose the binding relationship, such as `label:*`;
-3. Click Confirm.
+**Note**: User views within the same workspace cannot have duplicate names.
 
-**Note**: User views under the same workspace are not allowed to have duplicate names.
+After saving, you can view the saved dashboard view “CPU Monitoring View” under **Use Cases > Built-in Views > User Views**.
 
-After saving, you can view the saved dashboard view "CPU Monitoring View" in **Scenes > Inner Views > User Views**.
-
-At the same time, because the binding relationship `label:*` is set, the bound Inner View "CPU Monitoring View" can be viewed on the host and container detail pages where the "Label Attribute" has been set in the infrastructure.
+Because a binding relationship `label:*` was set, hosts and container detail pages with “Label Attributes” configured in infrastructure can also view the bound built-in view “CPU Monitoring View”.
 
 ![](../img/2.dashboard_6.png)
 
+### Export/Import Dashboard JSON
 
-### Export/Import as JSON
+You can export the current dashboard’s JSON file or import a JSON file to overwrite the current dashboard.
 
-You can export the current dashboard's JSON file or import a JSON file to overwrite the current dashboard.
-
-**Note**: Importing a dashboard JSON replaces the current one and can't be undone.
-
+**Note**: Importing a dashboard JSON will overwrite the existing dashboard, and once overwritten, it cannot be restored.
 
 ![](../img/2.dashboard_7.png)
 
-### Clone
+### Clone Dashboard
 
-1. Enter the name of the dashboard to be copied;
-2. Choose the visibility;
+1. Enter the name for the copied dashboard;
+2. Choose the visibility scope for the dashboard;
 3. Click **Confirm**, and you can view the cloned dashboard in the dashboard list.
 
+## Historical Versions
 
-## History Version
+<<< custom_key.brand_name >>> will display the historical operation records of this dashboard for the past three months.
 
-Guance will display the historical operation records of the dashboard within the last three months.
-
-> For more details, see [Snapshot History Version](./history-version.md).
+> For more details, refer to [Snapshot Historical Versions](./history-version.md).

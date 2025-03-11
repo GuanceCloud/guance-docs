@@ -1,23 +1,32 @@
 # IFrame
 ---
 
-## Introduction
+Used to embed external pages in dashboards, supporting https and http links.
 
-IFrame supports you to configure https or http link addresses.
+![](../img/ifram.png)
 
-## Chart Style
-| Options | Description |
+## Chart Settings
+
+Add IFrame URL: Embed another website within the chart. (Use an HTTPS URL or configure your browser to allow insecure content)
+
+
+
+<!--
+| Option | Description |
 | --- | --- |
-| Chart Title | Set the title name for the chart, after setting, it will be shown on the top left of the chart, support hide |
+| Chart Title | Set a title name for the chart. After setting, it will be displayed in the top-left corner of the chart, and supports hiding. |
 
 
-## Example diagram
+## Example Images
 
-1.Enter the external address directly in the IFrame URL to view
+1. Directly enter an external URL in the IFrame URL to view:
 
 ![](../img/7.ifram_1.png)
 
-2.The IFrame URL is viewed using template variables, and more configuration can be found in the document [chart-link](chart-link.md).
+2. Use template variables in the IFrame URL to view.
+
+> For more configurations, refer to [Chart Links](chart-link.md).
 
 ![](../img/7.ifram_2.png)
 
+-->

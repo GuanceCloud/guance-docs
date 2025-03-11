@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Metrics Collection': collection.md
+  - 'Metrics Analysis': explorer.md
+  - 'Metrics Management': dictionary.md

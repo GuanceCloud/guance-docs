@@ -1,46 +1,37 @@
 # How to Configure RUM Sampling
 ---
 
-## Overview
+## Introduction
 
-Guance supports collecting Web, Android, iOS and Miniapp application data, and by default, collecting user access data according by the full volume. You can set up sampling to collect user access data to save data storage and reduce cost.
+<<< custom_key.brand_name >>> supports collecting data from Web, Android, iOS, and mini-program applications. By default, it collects user access data in full volume. You can configure sampling to collect user access data, thereby reducing data storage and lowering costs.
 
-The following will introduce how to collect 90% of user access data of Web application as an example.
+Below, *we will use a Web application as an example to introduce how to collect 90% of the user access data for a Web application.*
 
-## Sampling Setting
+## Sampling Configuration
 
-There are three ways to access the web application: NPM access, synchronous loading and asynchronous loading. Login to Guance Console, enter "Real User Monitoring" page, click "New Application" in the upper right corner, enter "Application Name" and customize "Application ID" in the new window, and click "Create" to select the application type to get access.
+Taking **synchronous loading** as an example, add `sessionSampleRate: 90` in your code, then copy and paste it into the first line of the HTML page you want to integrate, which will collect user access data for the Web application at a rate of 90%.
 
-- Application Name (required): The name of the application used to identify the current implementation of user access monitoring.
-- Application ID (required): The unique identification of the application in the current workspace, which is used for SDK data collection and upload matching, and corresponds to the field: app_id after data entry. This field only supports English, numeric, underscore input, up to 48 characters.
-
-![](../img/sampling.png)
-
-Take "synchronous loading" as an example, add `sampleRate: 90` to the code, and then copy and paste it into the first line of the HTML of the page you need to access, you can collect the user access data of the web application at a rate of 90%.
-
-> Note: After setting the sampling, the initialization will generate a random number between 0-100, when this random number is less than the collection rate you set, then the data related to the current user visit will be reported, otherwise it will not be reported.
-
-The "NPM Access" and "Asynchronous Loading" can be set in the same way. For more information, please refer to the document [Web Application Access](web/app-access.md).
-
+```javascript
+import { datafluxRum } from '@cloudcare/browser-rum';
+datafluxRum.init({
+    applicationId: '<Application ID>',
+    datakitOrigin: '<DATAKIT ORIGIN>', // Protocol (including: //), domain name (or IP address) [and port number]
+    env: 'production',
+    version: '1.0.0',
+    service: 'browser',
+    sessionSampleRate: 100,
+    sessionReplaySampleRate: 70,
+    trackInteractions: true,
+    traceType: 'ddtrace', // Optional, defaults to ddtrace. Currently supports 6 types: ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent
+    allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of origins or regex patterns that allow injecting trace headers
+})
 ```
-<script src="https://static.guance.com/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
-<script>
-  window.DATAFLUX_RUM &&
-    window.DATAFLUX_RUM.init({
-      applicationId: 'guance_sampling',
-      datakitOrigin: '<DATAKIT ORIGIN>', // 协议（包括：//），域名（或IP地址）[和端口号]
-      sampleRate: 90,
-      env: 'production',
-      version: '1.0.0',
-      trackInteractions: true,
-      
-    })
-</script>
-```
+**Note**: After setting the sampling rate, initialization will generate a random number between 0-100. If this number is less than the set sampling rate, the relevant user access data will be reported; otherwise, it will not be reported.
 
-## Other Application Sampling
+> **NPM integration** and **asynchronous loading** can also be configured similarly. Please refer to the documentation [Web Application Integration](../web/app-access.md#access).
 
-- The iOS sampling settings can be found in [iOS Application Access](ios/app-access.md).
-- Android sampling settings can be found in [Android Application Access](android/app-access.md).
-- The miniapp sampling settings can be found in [Miniapp Application Access](miniapp/app-access.md).
+## Sampling for Other Applications
 
+- For iOS sampling configuration, refer to [iOS Application Integration](../ios/app-access.md).
+- For Android sampling configuration, refer to [Android Application Integration](../android/app-access.md).
+- For mini-program sampling configuration, refer to [Mini-program Application Integration](../miniapp/app-access.md).

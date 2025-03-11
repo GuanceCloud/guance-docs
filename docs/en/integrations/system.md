@@ -1,37 +1,35 @@
 ---
 title     : 'System'
-summary   : 'Collecting metrics data related to the host system'
+summary   : 'Collect metrics data related to the host system'
 tags:
-  - 'HOST'
+  - 'Host'
 __int_icon      : 'icon/system'
 dashboard :
   - desc  : 'System'
     path  : 'dashboard/en/system'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The system collector collects system load, uptime, the number of CPU cores, and the number of users logged in.
+The System collector gathers system load, uptime, number of CPU cores, and the number of logged-in users.
 
 ## Configuration {#config}
 
-## Preconditions {#requrements}
+After successfully installing and starting DataKit, the System collector is enabled by default and does not require manual activation.
 
-None
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-## Collector Configuration {#input-config}
 
 === "Host Installation"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `system.conf.sample` and name it `system.conf`. Examples are as follows:
-    
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `system.conf.sample`, and rename it to `system.conf`. An example is shown below:
+
     ```toml
         
     [[inputs.system]]
@@ -43,41 +41,42 @@ None
         # more_tag = "some_other_value"
     
     ```
-    
-    After configuration, restart DataKit.
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [configuring ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    Environment variables can also be used to modify configuration parameters (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
+
     - **ENV_INPUT_SYSTEM_INTERVAL**
     
-        Collect interval
+        Collector repetition interval duration
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `interval`
+        **Collector Configuration Field**: `interval`
     
-        **Default**: 10s
+        **Default Value**: 10s
     
     - **ENV_INPUT_SYSTEM_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If there are tags with the same name in the configuration file, they will be overwritten.
     
-        **Type**: Map
+        **Field Type**: Map
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
----
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+---
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.system.tags]`:
+## Metrics {#metric}
+
+By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit resides), and you can specify other tags through `[inputs.system.tags]` in the configuration:
 
 ```toml
  [inputs.system.tags]
@@ -85,8 +84,6 @@ For all of the following data collections, a global tag named `host` is appended
   # more_tag = "some_other_value"
   # ...
 ```
-
-
 
 ### `system`
 
@@ -97,9 +94,9 @@ Basic information about system operation.
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|hostname|
+|`host`|Hostname|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -113,7 +110,7 @@ Basic information about system operation.
 |`load5_per_core`|CPU single core load average over the last 5 minutes.|float|-|
 |`memory_usage`|The percentage of used memory.|float|percent|
 |`n_cpus`|CPU logical core count.|int|count|
-|`n_users`|User number.|int|count|
+|`n_users`|Number of users.|int|count|
 |`process_count`|Number of Processes running on the machine.|int|-|
 |`uptime`|System uptime.|int|s|
 
@@ -128,9 +125,9 @@ Connection track metrics (Linux only).
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|hostname|
+|`host`|Hostname|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -157,9 +154,9 @@ System file handle metrics (Linux only).
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|hostname|
+|`host`|Hostname|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -171,6 +168,6 @@ System file handle metrics (Linux only).
 
 ## FAQ {#faq}
 
-### Why no `cpu_total_usage`? {#no-cpu}
+### Why is there no `cpu_total_usage` metric? {#no-cpu}
 
-Some CPU acquisition features are not supported on some platforms, such as macOS.
+CPU collection functionality is not supported on certain platforms, such as macOS.

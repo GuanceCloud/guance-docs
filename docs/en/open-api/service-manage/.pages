@@ -1,0 +1,10 @@
+nav:
+  - '【Service List】List': list.md
+  - '【Service List】Get': get.md
+  - '【Service List】Create': add.md
+  - '【Service List】Modify': modify.md
+  - '【Service List】Delete': delete.md
+  - '【Service List】Export': export.md
+  - '【Service Performance】List': performance-list.md
+  - '【Service Performance】Get': performance-get.md
+  - '【Service Performance】Export': performance-export.md

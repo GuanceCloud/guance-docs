@@ -1,39 +1,36 @@
 ---
 title     : 'Memcached'
-summary   : 'Collect memcached metrics data'
+summary   : 'Collect metrics data from Memcached'
 tags:
-  - 'CACHING'
-  - 'MIDDLEWARE'
+  - 'Cache'
+  - 'Middleware'
 __int_icon      : 'icon/memcached'
 dashboard :
   - desc  : 'Memcached'
     path  : 'dashboard/en/memcached'
 monitor   :
-  - desc  : 'N/A'
-    path  : '-' 
+  - desc  : 'Memcached'
+    path  : 'monitor/en/memcached' 
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Memcached collector can collect the running status metrics from Memcached instances, and collect the metrics to the Guance Cloud to help monitor and analyze various abnormal situations of Memcached.
+The Memcached collector gathers instance runtime status metrics from Memcached instances and sends the metrics to Guance, helping to monitor and analyze various abnormal conditions in Memcached.
 
-## Config {#config}
+## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- Memcached version >= `1.5.0`. Already tested version:
+- Memcached version >= `1.5.0`. Tested versions:
     - [x] 1.5.x
     - [x] 1.6.x
-
-### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `memcached.conf.sample` and name it `memcached.conf`. Examples are as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `memcached.conf.sample` and rename it to `memcached.conf`. Example:
     
     ```toml
         
@@ -58,17 +55,17 @@ Memcached collector can collect the running status metrics from Memcached instan
       # ...
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.memcached.tags]` if needed:
+By default, all collected data will append the global election tag, and you can also specify other tags through `[inputs.memcached.tags]` in the configuration:
 
 ``` toml
  [inputs.memcached.tags]
@@ -88,18 +85,18 @@ For all of the following data collections, the global election tags will added a
 |  ----  | --------|
 |`server`|The host name from which metrics are gathered|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`accepting_conns`|Whether or not server is accepting conns|int|count|
+|`accepting_conns`|Whether or not server is accepting connections|int|count|
 |`auth_cmds`|Number of authentication commands handled, success or failure|int|count|
 |`auth_errors`|Number of failed authentications|int|count|
 |`bytes`|Current number of bytes used to store items|int|B|
 |`bytes_read`|Total number of bytes read by this server from network|int|B|
 |`bytes_written`|Total number of bytes sent by this server to network|int|B|
-|`cas_badval`|Number of CAS  for which a key was found, but the CAS value did not match|int|count|
+|`cas_badval`|Number of CAS operations for which a key was found, but the CAS value did not match|int|count|
 |`cas_hits`|Number of successful CAS requests|int|count|
 |`cas_misses`|Number of CAS requests against missing keys|int|count|
 |`cmd_flush`|Cumulative number of flush requests|int|count|
@@ -113,7 +110,7 @@ For all of the following data collections, the global election tags will added a
 |`decr_hits`|Number of successful `decr` requests|int|count|
 |`decr_misses`|Number of `decr` requests against missing keys|int|count|
 |`delete_hits`|Number of deletion requests resulting in an item being removed|int|count|
-|`delete_misses`|umber of deletions requests for missing keys|int|count|
+|`delete_misses`|Number of deletion requests for missing keys|int|count|
 |`evicted_unfetched`|Items evicted from LRU that were never touched by get/incr/append/etc|int|count|
 |`evictions`|Number of valid items removed from cache to free memory for new items|int|count|
 |`expired_unfetched`|Items pulled from LRU that were never touched by get/incr/append/etc before expiring|int|count|
@@ -132,7 +129,7 @@ For all of the following data collections, the global election tags will added a
 |`total_items`|Total number of items stored since the server started|int|count|
 |`touch_hits`|Number of keys that have been touched with a new expiration time|int|count|
 |`touch_misses`|Number of items that have been touched and not found|int|count|
-|`uptime`|Number of secs since the server started|int|count|
+|`uptime`|Number of seconds since the server started|int|count|
 
 
 
@@ -146,7 +143,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The host name from which metrics are gathered|
 |`slab_id`|The id of the current slab|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -155,7 +152,7 @@ For all of the following data collections, the global election tags will added a
 |`crawler_reclaimed`|Number of items which freed by the LRU Crawler|int|count|
 |`direct_reclaims`|Number of worker threads which had to directly pull LRU tails to find memory for a new item|int|count|
 |`evicted`|Number of the items which had to be evicted from the LRU before expiring|int|count|
-|`evicted_nonzero`|Number of the `onzero` items which had an explicit expire time set had to be evicted from the LRU before expiring|int|count|
+|`evicted_nonzero`|Number of the `nonzero` items which had an explicit expire time set had to be evicted from the LRU before expiring|int|count|
 |`evicted_time`|Seconds since the last access for the most recent item evicted from this class|int|s|
 |`evicted_unfetched`|Number of the valid items evicted from the LRU which were never touched after being set|int|count|
 |`expired_unfetched`|Number of the expired items reclaimed from the LRU which were never touched after being set|int|count|
@@ -184,7 +181,7 @@ For all of the following data collections, the global election tags will added a
 |`server`|The host name from which metrics are gathered|
 |`slab_id`|The id of the current slab|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -195,16 +192,14 @@ For all of the following data collections, the global election tags will added a
 |`chunk_size`|The amount of space each chunk uses|int|B|
 |`chunks_per_page`|How many chunks exist within one page|int|count|
 |`cmd_set`|Number of set requests stored data in this slab class|int|count|
-|`decr_hits`|Number of `decrs` commands modified this slab class|int|count|
+|`decr_hits`|Number of `decr` commands modified this slab class|int|count|
 |`delete_hits`|Number of delete commands succeeded in this slab class|int|count|
 |`free_chunks`|Chunks not yet allocated to items or freed via delete|int|count|
 |`free_chunks_end`|Number of free chunks at the end of the last allocated page|int|count|
 |`get_hits`|Number of get requests were serviced by this slab class|int|count|
-|`incr_hits`|Number of `incrs` commands modified this slab class|int|count|
+|`incr_hits`|Number of `incr` commands modified this slab class|int|count|
 |`total_chunks`|Total number of chunks allocated to the slab class|int|count|
 |`total_malloced`|Total amount of memory allocated to slab pages|int|B|
 |`total_pages`|Total number of pages allocated to the slab class|int|count|
 |`touch_hits`|Number of touches serviced by this slab class|int|count|
 |`used_chunks`|How many chunks have been allocated to items|int|count|
-
-

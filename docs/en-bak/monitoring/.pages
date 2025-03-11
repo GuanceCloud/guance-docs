@@ -1,0 +1,10 @@
+nav:
+  - index.md
+  - 'Monitors': monitor
+  - 'Intelligent Monitoring': intelligent-monitoring
+  - 'SLO': slo.md
+  - 'Mute Management': silent-management.md
+  - 'Alert Strategies': alert-setting.md
+  - 'Notification Targets': notify-object.md
+  - 'Event Notification Templates': event-template.md
+  - 'Internal Principles of Monitor': monitor-internal.md

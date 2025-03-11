@@ -1,146 +1,139 @@
-# Create Issues
+# Create Issue
 ---
 
-
-As the final landing unit of Incidents, Issue takes the role of integrating the information of exception source, description and related members in the current workspace. Guance defines the phenomenon observed by any member as an Issue, and notifies the relevant member to track and process it. This article will introduce **the main creation entry of Issue and related operations**.
+An Issue is used to integrate information about the source of anomalies, descriptions, and related members within a workspace. Any abnormal phenomena observed by any member will be defined as an Issue and automatically notify relevant members for tracking and handling.
 
 ## Concepts {#concepts}
 
 | Field | Description |
 | --- | --- |
-| Title | The Issue header. |
-| Channel | Default is to `All`, with support for adding custom channels. |
-| Title | That is, the title of the Issue. |
-| Description | Provide a detailed description of the current Issue's phenomenon, support for sending notifications by typing `@member` in the text box or adding `#channel` to deliver the current Issue to the corresponding channel. |
-| Level | Optional; you can choose the default severity level configuration, where the levels of urgency are in the following order: P0 > P1 > P2; manual modification is supported;<br/>Custom levels can also be selected [Custom Level](#level). |
-| Source | Include the following sources: dashboards, unresolved incidents, events, explorers, monitors. |
-| Assignee | When a new Issue is created and an assignee is specified, the Guance platform will send an email notification to the assignee.<br/>You can choose a **member or team** from the current workspace as the assignee; you can also manually enter an **external email address** and press enter to add it as needed. |
-| Attachments | Support adding uploads of images, videos, text (CSV/TXT/JSON/PDF, etc.) **on the Issue details page**;<br/>Support the configuration of associated links. |
+| Channel | Defaults to "All," supports custom addition of other channels. |
+| Title | The title of the Issue. |
+| Description | Detailed description of the current Issue's phenomenon, supports notifying via `@member` in the text box or adding `#channel` to deliver the current Issue to the corresponding channel. |
+| Priority | Optional; default priority levels can be selected, with urgency levels being: P0 > P1 > P2; supports manual modification;<br/>you can also choose [custom priorities](#level). |
+| Source | Includes the following sources: Dashboard, Unresolved Incidents, Events, Explorer, Monitors. |
+| Assignee | When creating an Issue, <<< custom_key.brand_name >>> sends email notifications to the assignee.<br/>You can select **members or teams** from the current workspace as assignees; you can also manually input **external emails** and add them by pressing Enter. |
+| Attachments | Supports uploading images, videos, text (CSV/TXT/JSON/PDF, etc.) in the **Issue Details Page**;<br/>supports configuring associated links. |
+| Status | The status of the Issue.<br/>`open`: Not started. Default status when an Issue is created.<br/>`working`: In progress. Issue has been accepted by the assignee and is being handled.<br/>`pending`: Waiting. Issue is determined to be unsolvable in a short time.<br/>`resolved`: Resolved. Issue has been resolved.<br/>`closed`: Closed. Issue does not need to be solved or is deemed normal. |
 
 
-## Create a New Issue
 
-There are two ways to create an Issue: manually and automatically.
+## Create Issue
 
+Creating an Issue supports two methods: manual creation and automatic creation.
 
-### Create Manually {#manual}
+### Manual Creation {#manual}
 
-Guance enables you to quickly manually create Issue based on icons in Incidents or in function modules at the explorer and view levels.
+#### Incident
 
-#### Incidents
-    
-Enter **Incidents > New Issue**.
+Go to **Incident**, click **Create Issue**.
 
+#### Dashboard {#dashboards}
 
-#### Dashboards {#dashboards}
+Go to **Use Cases > Dashboard > Settings**, click **Create Issue**;
 
-Enter **Scenes > Dashboards > Settings** and click **New Issue**;
-
-Automatically display the name of the current dashboard as the Issue source name. Click **Source** to automatically jump to the corresponding dashboard.
+The name of the current dashboard will automatically be set as the source name for this Issue. Clicking **Source** will redirect to the corresponding dashboard, if it doesn't exist, it will redirect to the **Use Cases** default page.
 
 ![](img/issue-cpu.png)
 
-#### Explorers 
+#### Explorer 
 
-Enter Guance workspace, and you can click the button ![](img/Enter the Guance workspace, and you can click the button in the lower right corner **on the pages of major explorer-level functional modules** to create a new Issue.
+In the <<< custom_key.brand_name >>> workspace, you can click the button at the bottom right corner on various Explorer-level feature pages to create an Issue.
 
-For example, in **Logs > Explorer**, click the icon in the lower right corner to enter the new page.
-
-Hover over the source to display the origin of this Issue. Clicking will automatically redirect you to the corresponding explorer. Guance filters and displays according to the time range and filter search conditions saved in the explorer when the Issue was created.
+For example, in **Logs > Explorer**, clicking the **Create Issue** icon at the bottom right will take you to the creation page.
+ 
+Hovering over the source will display the origin of that Issue. Clicking it will redirect to the corresponding Explorer. <<< custom_key.brand_name >>> filters based on the time range and search conditions saved when the Issue was created.
 
 ![](img/exception-issue-2.png)
 
-You can also enter the detail page of a log in the **Explorer** and similarly click the button in the lower right corner to create a new Issue. The page automatically shows the current explorer detail page as the source of this Issue. Clicking **Source** will automatically redirect you to the corresponding explorer detail page; if the data no longer exists, it will redirect to the **Explorer**'s default display state.
+
+You can also click into the details page of a log under **Explorer**, and similarly click the button at the bottom right to create an Issue. The page will automatically show the current Explorer details page as the source of the Issue. Clicking **Source** will redirect to the corresponding Explorer details page, if the data no longer exists, it will redirect to the default display state of the **Explorer**.
 
 ![](img/issue-detail.png)
 
+#### Event {#event}
 
-#### Events
+Entry 1: Hover over an event list, then click the **Issue** link that appears on the left.
 
-Entry 1: Hover your mouse over a specific event list, and you can click to enter the **Issue** that appears on the left side.
-
-The page will automatically display the title of the event as the name of the source for this Issue. Clicking on **Source** will automatically redirect you to the corresponding event detail page; if the event no longer exists, it will redirect to the default display page for **Events**.
+The title of the event will automatically be set as the source name for the Issue. Clicking **Source** will redirect to the corresponding event details page, if the event no longer exists, it will redirect to the default entry page for **Events**.
 
 ![](img/exception-issue-4.png)
 
-Entry 2: Enter the detail page of a specific event and click on **Create Issue** in the lower right corner. It will automatically display the title of the event as the name of the source for this Issue. Clicking on **Source** will automatically redirect you to the corresponding event detail page; if the event no longer exists, it will redirect to the default display page for **Events**.
+
+ 
+Entry 2: Click into the details page of an event, then click **Create Issue** at the bottom right. The title of the event will automatically be set as the source name for the Issue. Clicking **Source** will redirect to the corresponding event details page, if the event no longer exists, it will redirect to the default entry page for **Events**.
 
 ![](img/exception-issue-5.png)
 
-If an anomaly tracking Issue has associated event information that was synchronously created by a monitor, the number of associated events will be directly displayed in the list for that Issue. Clicking on it will allow you to jump directly to the event explorer to see all related events.
 
-**Note**: Whether it is directly triggering anomaly tracking or adding in the Issue's comments, both are included in the count of associated events here.
+If an Incident Issue has associated events created by a monitor, the number of related events will be displayed directly in the list. Clicking it will redirect to the event viewer to see all related events.
+
+**Note**: This includes both directly triggered Incidents and those added in Issue comments.
 
 ![](img/issue-event-1116.png)
 
-
-
-
-### Create Utomatically {#others}
+### Automatic Creation {#others}
 
 <img src="../img/issue-monitor.png" width="80%" >
 
-When you configure the monitor, you can select the associated channel. When the monitor generates an abnormal event alert, an Issue will be automatically created. Take configuring [Threshold Detection](../monitoring/monitor/threshold-detection.md#steps) as an example:
+When configuring a **Monitor**, you can choose to associate a **Channel**. When the monitor generates an incident alert, it will automatically create an Issue. For example, when [configuring threshold detection](../monitoring/monitor/threshold-detection.md#steps):
 
-1. The **Status** of Issue created by event trigger is **Open** by default, and the **Level** is unknown by default;
+1. Issues created by incidents are defaulted to Open status and Unknown priority;
 
-2. The **Source** is the current monitor;
+2. The source is the current monitor;
 
-3. Enter the **event title**, which defaults to the Issue title;
+3. Input the event title, which defaults to the Issue title;
 
-4. Enter the **Event Content**, which defaults to Issue description;
+4. Input the event content, which defaults to the Issue description;
 
-5. In **Event Notice > Channel**, click the Channel drop-down box to select multiple current channels or create new channels. After selection, when the event is created, the automatically created Issue will be posted to the channel you selected at this time for display.
+5. In **Event Notification > Associate Incident**, click the enable button and choose the priority, channel, and assignee as needed. After selection, once the event is created, the automatically created Issue will be delivered to the selected channel, and an email notification will be sent to the Issue assignee.
 
-6. When the event notification rule configuration of the monitor is completed, if an abnormal event occurs under the monitor, Issue will be created synchronously, and you can go to **Incidents** > the **Channel** you selected to view it.
+
+6. Once the event notification rule for the monitor is configured, if there are incidents generated by the monitor, they will synchronously create Incident Issues, which can be viewed in **Incident > Selected Channel**.
 
 ???+ warning "Configuration Notes"
 
-    - To include `@` members in the event description, you can click the `@` button at the top of the content box, enter `@` to select notify members in the drop-down box below. When selected, a mailbox notification is automatically sent to the member when the event creation is completed.  
-    - Notifying members only works on synchronized Incident issues. Please refer to the corresponding alert policy configuration for a list of alert notifications for normal monitor events.
-    - The default channel is **All** channels in **Incidents**.
-    - If you select the by grouping condition in **Monitor > Detection Metric** corresponding to the current event, and the Issue status associated with the current monitor is Open or Pending, then multiple events generated from the same source will not create a new Issue, but will be appended to the reply of the existing Issue.
+    - If you need to `@member` in the event description, you can click the `@` button above the content box, input `@` in the content box, or directly select from the dropdown below the `@`. Once selected, when the event is created, an email notification will be sent to the member.
+    - @ notifications only work for the synchronized Incident Issues, for regular monitor event alerts, please refer to the corresponding alert strategy configuration.
+    - The default channel is the **All** channel in Incidents.
+    - If you have selected a `by` grouping condition in the **Monitor > Detection Metrics** and the associated Issue status is Open or Pending, subsequent events from the same source will not create new Issues but will be appended to the replies of existing Issues.
 
 
 
+## <u>Example</u>
 
-## Example
+1. In **Logs > Explorer**, filter logs with `status:unknown`. Click the button at the bottom right to create an Issue.
 
-1. In **Logs > Explorer**, filter the log data with `status:unknown`. Click the button in the lower right corner to create a new Issue.
+2. Set the title of the Issue to "Test Data" and the priority to P2;
 
-2. Enter the title of the Issue as "Test Data" and set the severity level to P2.
+3. In the description, besides entering text, tag relevant members who will receive an email notification for this Issue; you can also enter channels in the format `#incident data` for association;
 
-3. In the description, in addition to entering text, mention relevant members, who will receive notifications of this Issue in their email; you can also associate channels by entering in the form of `#AnomalyData` in the description.
+4. Select the Issue priority;
 
-4. Select the Issue severity level.
+5. Choose the assignee for the Issue as needed; the assignee will receive an email notification for this Issue;
 
-5. Choose the assignee for the Issue as needed; the assignee will receive a notification of this Issue in their email.
-
-6. After saving, you can view it in **Anomaly Tracking > Channel** or the associated channels.
+6. After saving, you can view the Issue in **Incident > Channel** or the associated channel.
 
 ![](img/issue-des.png)
 
-## Issue Auto-Discovery {#auto}
 
-If the **Issue Auto-Discovery** feature is enabled in APM/RUM, the system will automatically detect errors and generate Issues according to the configured detection frequency. The generated Issues will be delivered to the configured channels with relevant tags.
+## Issue Auto Discovery {#auto}
+
+If **Issue Auto Discovery** is enabled in [APM](../application-performance-monitoring/error.md#issue) or [RUM](../real-user-monitoring/explorer/error.md#issue), the system will automatically discover errors according to the configured detection frequency and generate Issues. Generated Issues will be delivered to the configured channel with relevant tags.
 
 ![](img/issue-auto.png)
 
-Issues created through **Issue Auto-Discovery** will use the combination of dimensions as the unique ID. If there is already an Issue with the same combination of dimensions in history, a new Issue will not be created; instead, the content will be appended to the historical Issue's reply area for updating. Generally, the status can be identified by special tags such as "New Issue," "Repeated Issue," and "Regression Issue."
+Issues created through **Issue Auto Discovery** use combined dimensions as unique IDs. If a similar combination dimension already exists historically, a new Issue will not be created but rather the content will be appended to the reply section of the historical Issue for updates. Generally, special tags like "New Issue," "Duplicate Issue," and "Recurrent Issue" help identify the status.
 
 ![](img/issue-auto-1.png)
 
-1. Creator: Displayed as "Issue Auto-Discovery," indicating its automatically generated attribute.
-2. Combination Dimensions: New grouping information of combination dimensions is displayed on the Issue card page and detail page.
-3. Special Tags: Automatically discovered Issues generally have three different special tags: "New Issue," "Recurring Issue," and "Regression Issue."
-    - New Issue: If there is no historical Issue with the same combination of dimensions, an Issue is created and marked as "New Issue" on the right.
-    - Repeated Issue: If there is already a historical Issue with the same combination of dimensions and the status is Open or Pending, indicating the problem has recurred, the historical Issue is marked as "Recurring Issue" on the right.
-    - Regression Issue: If there is already a historical Issue with the same combination of dimensions and the status is Resolved, indicating the problem has reappeared after being resolved, the historical Issue is marked as "Regression Issue" on the right.
+- Creator: Displays as "Issue Auto Discovery," indicating its auto-generated nature.  
+- Combined Dimensions: New combined dimension group information displayed on the Issue card page and detail page.  
+- Special Tags: Auto-discovered Issues generally have three types of special tags:  
+    - New Issue: If no historical Issue with the same combined dimension exists, a new Issue is created and marked as "New Issue" on the right side;  
+    - Duplicate Issue: If a historical Issue with the same combined dimension exists and its status is Open or Pending, it indicates the issue reappeared, and the historical Issue is marked as "Duplicate Issue" on the right side;
+    - Recurrent Issue: If a historical Issue with the same combined dimension exists and its status is Resolved, it indicates the issue resurfaced after resolution, and the historical Issue is marked as "Recurrent Issue" on the right side.
 
 ![](img/auto-issue-1.png)
 
-
-
-
-
-
+![](img/auto-issue-2.png)

@@ -1,31 +1,31 @@
-# Associated with Java
+# Java Log Correlation with Trace Data
 ---
 
-The `Java` application log associates trace data through the following steps:
+`Java` application logs need to be correlated with trace data through the following steps:
 
-1. Open log in application;
-2. Datakit starts [trace data collection](../../../integrations/ddtrace.md) and configures the [Pipeline script](../../../management/overall-pipeline.md) for log cutting and then start Datakit;
+1. Enable logging in the application;  
+2. Enable [trace data collection](../../../integrations/ddtrace.md) in Datakit, configure log parsing [Pipeline scripts](../../../pipeline/index.md), and start Datakit;  
 3. Start the `Java` application.
 
-## Log Maven Import
+## Maven Dependency for Logs
 
 ```
- 						<dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>1.1.3</version>
-            </dependency>
-            <dependency>
-                <groupId>net.logstash.logback</groupId>
-                <artifactId>logstash-logback-encoder</artifactId>
-                <version>4.5.1</version>
-            </dependency>
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.1.3</version>
+</dependency>
+<dependency>
+    <groupId>net.logstash.logback</groupId>
+    <artifactId>logstash-logback-encoder</artifactId>
+    <version>4.5.1</version>
+</dependency>
 ```
 
-## Log Profile
+## Log Configuration File
 
 ```
-  <!--dataflux monitoring log-->
+  <!--Dataflux monitoring logs-->
     <appender name="ALL_DATAFLUX" class="ch.qos.logback.core.FileAppender">
         <file>${USER_HOME}/platform_dataflux.log</file>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
@@ -35,9 +35,9 @@ The `Java` application log associates trace data through the following steps:
     </root>
 ```
 
-## Datakit Logging.conf Config
+## datakit logging.conf Configuration
 
-Microservice Example: for Path, find Devops to mount Log volumes.
+Microservices example, mount log volumes via operations and maintenance paths:
 
 ```
 [[inputs.logging]]
@@ -118,9 +118,9 @@ Microservice Example: for Path, find Devops to mount Log volumes.
   [inputs.logging.tags]
 ```
 
-## Open Java Application
+## Starting the Java Application
 
-Open the Java application with the following command:
+Use the following command to start the Java application:
 
 ```shell
 java -javaagent:/your/path/dd-java-agent.jar \
@@ -132,7 +132,8 @@ java -javaagent:/your/path/dd-java-agent.jar \
 -Ddd.agent.port=9529 \
 -jar /your/path/app.jar
 ```
-## Configure the Pipeline Script
+
+## Configuring Pipeline Scripts
 
 The collected log format is as follows:
 
@@ -140,7 +141,7 @@ The collected log format is as follows:
 {"@timestamp":"2021-06-24T14:17:53.563+08:00","@version":1,"message":"<=> invoke action [CheckModule@saveDfBillToDbSchedule] take time : 72ms ","logger_name":"com.cloudcare.web.container.interceptor.LoggerInterceptor","thread_name":"qtp454424866-39","level":"DEBUG","level_value":10000,"HOSTNAME":"LAPTOP-IA9RA81K","request_host":"127.0.0.1:8106","action_name":"CheckModule@saveDfBillToDbSchedule","request_id":"60d423840fe1874814490456","request_remote_host":"192.168.241.1","response_error_code":"Worker.NotFound","dd.service":"billing","dd.env":"staging","dd.span_id":"5577585360079661786","dd.trace_id":"6724368348029357447","dd.version":"1.0","tags":["operation"]}
 ```
 
-Log data also needs to be cut and converted before it can be associated with trace data, which can be realized by configuring Pipeline script as follows:
+Log data needs to be parsed and transformed before it can be correlated with trace data. This can be achieved by configuring a Pipeline script. The script is as follows:
 
 ```
 json(_, message)
@@ -160,7 +161,7 @@ json(_, `@timestamp`, time)
 default_time(time)
 ```
 
-The data cut by the Pipeline script is as follows, and the log data is associated with the trace data through field information such as `trace_id` and `span_id`.
+After processing with the Pipeline script, the data appears as follows. By using fields such as `trace_id` and `span_id`, the log data is correlated with the trace data.
 
 ```
 {
@@ -172,5 +173,4 @@ The data cut by the Pipeline script is as follows, and the log data is associate
     "trace_id": "6724368348029357447",
     "version": "1.0"
 }
-
 ```

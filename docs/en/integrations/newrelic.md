@@ -1,35 +1,35 @@
 ---
-title     : 'New Relic'
-summary   : 'Receive data from New Relic Agent'
+title: 'New Relic'
+summary: 'Receive data from New Relic Agent'
 tags:
-  - 'APM'
   - 'NEWRELIC'
-  - 'TRACING'
-__int_icon      : ''
-dashboard :
-  - desc  : 'N/A'
-    path  : '-'
-monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - 'Trace'
+__int_icon: ''
+dashboard:
+  - desc: 'N/A'
+    path: '-'
+monitor:
+  - desc: 'N/A'
+    path: '-'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-New Relic's .Net Agent is an open source project based on the .Net technology framework, which can be used to conduct comprehensive performance observations of apps based on the .NET technology framework. It can also be used for all languages compatible with the .NET technology framework such as: C#, VB.NET, CLI.
+The New Relic .Net Agent is an open-source project based on the .Net technology framework, used for comprehensive performance monitoring of .NET applications. It can also be used with all languages compatible with the .NET technology framework, such as C#, VB.NET, CLI.
 
 ---
 
 ## Configuration {#config}
 
-### Collector Config {#input-config}
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Enter the `conf.d/newrelic` directory under the DataKit installation directory, copy `newrelic.conf.sample` and name it `newrelic.conf`. Examples are as follows:
+    Navigate to the `conf.d/newrelic` directory under the DataKit installation directory, copy `newrelic.conf.sample` and rename it to `newrelic.conf`. Example configuration:
 
     ```toml
         
@@ -39,14 +39,14 @@ New Relic's .Net Agent is an open source project based on the .Net technology fr
       endpoints = ["/agent_listener/invoke_raw_method"]
     
       ## Keep rare tracing resources list switch.
-      ## If some resources are rare enough(not presend in 1 hour), those resource will always send
+      ## If some resources are rare enough (not present in 1 hour), those resources will always send
       ## to data center and do not consider samplers and filters.
       # keep_rare_resource = false
     
       ## Ignore tracing resources map like service:[resources...].
-      ## The service name is the full service name in current application.
-      ## The resource list is regular expressions uses to block resource names.
-      ## If you want to block some resources universally under all services, you can set the
+      ## The service name is the full service name in the current application.
+      ## The resource list uses regular expressions to block resource names.
+      ## If you want to block some resources universally under all services, set the
       ## service name as "*". Note: double quotes "" cannot be omitted.
       # [inputs.newrelic.close_resource]
         # service1 = ["resource1", "resource2", ...]
@@ -54,8 +54,8 @@ New Relic's .Net Agent is an open source project based on the .Net technology fr
         # "*" = ["close_resource_under_all_services"]
         # ...
     
-      ## Sampler config uses to set global sampling strategy.
-      ## sampling_rate used to set global sampling rate.
+      ## Sampler config sets global sampling strategy.
+      ## sampling_rate sets global sampling rate.
       # [inputs.newrelic.sampler]
         # sampling_rate = 1.0
     
@@ -64,27 +64,29 @@ New Relic's .Net Agent is an open source project based on the .Net technology fr
         # key2 = "value2"
         # ...
     
-      ## Threads config controls how many goroutines an agent cloud start to handle HTTP request.
+      ## Threads config controls how many goroutines an agent can start to handle HTTP requests.
       ## buffer is the size of jobs' buffering of worker channel.
-      ## threads is the total number fo goroutines at running time.
+      ## threads is the total number of goroutines at runtime.
       # [inputs.newrelic.threads]
         # buffer = 100
         # threads = 8
     
-      ## Storage config a local storage space in hard dirver to cache trace data.
+      ## Storage config sets up a local storage space on the hard drive to cache trace data.
       ## path is the local file path used to cache data.
-      ## capacity is total space size(MB) used to store data.
+      ## capacity is the total space size (MB) used to store data.
       # [inputs.newrelic.storage]
         # path = "./newrelic_storage"
         # capacity = 5120
     
     ```
 
-    After configuration, [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, the collector can be enabled through [ConfigMap method to inject collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
+
 <!-- markdownlint-enable -->
 
 After completing the configuration, restart `Datakit` and `IIS`
@@ -94,53 +96,53 @@ PS> datakit service -R
 PS> iisreset
 ```
 
-### Preconditions {#requrements}
+### Prerequisites {#requirements}
 
-- Domain name preparation and certificate generation and installation
+- Domain preparation and certificate generation/installation
 - [Sign up for a New Relic account](https://newrelic.com/signup?via=login){:target="_blank"}
-- Install New Relic Agent. The current supported version is 6.27.0
-- Install .Net Framework. The current supported version is 3.0
+- Install the supported version of the New Relic Agent, currently version 6.27.0
+- Install the supported version of .Net Framework, currently version 3.0
 
-#### Install and configure New Relic .NET Agent {#install-and-configure-new-relic-dotnet-agent}
+#### Install and Configure New Relic .NET Agent {#install-and-configure-new-relic-dotnet-agent}
 
-First confirm the `DotNet Framework` version currently installed on `Windows OS`, run `cmd` and enter `reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP"` to view all versions installed on the current OS.
+First, confirm the installed `DotNet Framework` version on your `Windows OS`. Run `cmd` and input `reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP"` to check all installed versions on the current OS.
 
-Then install New Relic Agent:
+Then proceed with installing the New Relic Agent:
 
-- You can [log in to your personal `New Relic` account](https://one.newrelic.com){:target="_blank"} to install:
+- You can [log into your personal `New Relic` account](https://one.newrelic.com){:target="_blank"} for installation:
 
-After entering the account, click the Create Data `+ Add Data` subdirectory under the directory column on the left, and then select `.Net` in the `Application monitoring` in the `Data source` subdirectory on the right and follow the installation guide to install it. .
+After logging in, click on `+ Add Data` under the left-hand menu, then choose `.Net` under the `Application monitoring` section in the `Data source` subdirectory and follow the installation guide.
 
-- It can also be installed via the installer:
+- Alternatively, you can install using the installer:
 
-Open [download directory](https://download.newrelic.com/dot_net_agent/6.x_release/){:target="_blank"} to download `dotnet agent` version 6.27.0 and select the corresponding installation program.
+Open the [download directory](https://download.newrelic.com/dot_net_agent/6.x_release/){:target="_blank"} and download the `dotnet agent` version 6.27.0, choosing the appropriate installer.
 
-Configure `New Relic Agent`
+Configure the `New Relic Agent`:
 
-- Configure necessary environment variables
+- Set necessary environment variables
 
-Right-click the `Windows` logo in the lower left corner of the desktop, select System, select Advanced System Settings, select Environment Variables, and check whether the System Variables list contains the following environment variable configuration:
+Right-click the `Windows` logo in the bottom-left corner of the desktop, select System, then Advanced system settings, and finally Environment Variables. Check if the following environment variables are configured in the System variables list:
 
 <!-- markdownlint-disable MD046 -->
-    - `COR_ENABLE_PROFILING`: Numeric value 1 enables by default
-    - `COR_PROFILER`: character value, the default is `ID` automatically filled in by the system
-    - `CORECLR_ENABLE_PROFILING`: Numeric value 1 enables by default
-    - `NEW_RELIC_APP_NAME`: character value, fill in the name of the observed `APP` (optional)
-    - `NEWRELIC_INSTALL_PATH`: `New Relic Agent` installation path
+    - `COR_ENABLE_PROFILING`: Numeric value 1 (default enabled)
+    - `COR_PROFILER`: String value, defaults to the system auto-filled `ID`
+    - `CORECLR_ENABLE_PROFILING`: Numeric value 1 (default enabled)
+    - `NEW_RELIC_APP_NAME`: String value, enter the name of the monitored `APP` (optional)
+    - `NEWRELIC_INSTALL_PATH`: Path where the `New Relic Agent` is installed
 <!-- markdownlint-enable -->
 
-- Configure `New Relic` through configuration file
+- Configure `New Relic` via the configuration file
 
-Open `newrelic.config` in the `New Relic Agent` installation directory. Replace `{example value}` in the following example with the real value, and fill in other values according to the examples.
+Open the `newrelic.config` file in the `New Relic Agent` installation directory and replace `{example value}` with actual values. Fill in other values according to the example:
 
 ```xml
 <?xml version="1.0"?>
 <!-- Copyright (c) 2008-2017 New Relic, Inc.  All rights reserved. -->
 <!-- For more information see: https://newrelic.com/docs/dotnet/dotnet-agent-configuration -->
-<configuration xmlns="urn:newrelic-config" agentEnabled="true" agentRunID="{agent id (You can make your own or leave it blank)}">
-  <service licenseKey="{license key}" ssl="true" host="{www.your-domain-name.com}" port="{DataKit Port}" />
+<configuration xmlns="urn:newrelic-config" agentEnabled="true" agentRunID="{agent id (can be specified or left blank)}">
+  <service licenseKey="{real license key}" ssl="true" host="{www.your-domain-name.com}" port="{Datakit port number}" />
   <application>
-    <name>{Detected APP name}</name>
+    <name>{monitored APP name}</name>
   </application>
   <log level="debug" />
   <transactionTracer enabled="true" transactionThreshold="apdex_f" stackTraceThreshold="500" recordSql="obfuscated" explainEnabled="false" explainThreshold="500" />
@@ -163,21 +165,21 @@ Open `newrelic.config` in the `New Relic Agent` installation directory. Replace 
 </configuration>
 ```
 
-#### Configure host {#configure-host-for-newrelic}
+#### Configure Host for NewRelic {#configure-host-for-newrelic}
 
-Since `New Relic Agent` needs to configure `HTTPS` to complete data transmission, first complete the [certificate application] (certificate.md#self-signed-certificate-with-openssl) before configuring the host. Due to the `New Relic Agent` startup process The certificate validity verification needs to be completed. Here, the self-signing of `CA` and the issuance of the self-signed `CA` certificate need to be completed. After completing the issuance of the certificate authentication chain, refer to [GuanceCloud Access NewRelic .NET Probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"} and [Windows Server How to import root and intermediate certificates?](https://baijiahao.baidu.com/s?id=1738111820379111942&wfr=spider&for=pc){:target="_blank"} to deploy the certificate.
+Since the `New Relic Agent` requires HTTPS for data transmission, you must first complete the [certificate application](certificate.md#self-signed-certificate-with-openssl). As the `New Relic Agent` needs to verify the certificate's validity during startup, you need to issue a self-signed CA and a certificate signed by this CA. After issuing the certificate chain, refer to [Guance Integration with NewRelic .NET Probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"} and [How to Import Root and Intermediate Certificates on Windows Server?](https://baijiahao.baidu.com/s?id=1738111820379111942&wfr=spider&for=pc){:target="_blank"} for deploying the certificates.
 
-After completing the certificate deployment, you need to configure the `hosts` file accordingly to meet the local ability to resolve domain names. The `hosts` configuration is as follows:
+After deploying the certificates, configure the `hosts` file to resolve domain names locally. The `hosts` configuration should look like this:
 
 ```config
 127.0.0.1    www.your-domain-name.com
 ```
 
-Where `www.your-domain-name.com` is the domain name specified in the `service.host` item in the `newrelic.config` configuration file
+Here, `www.your-domain-name.com` is the domain specified in the `newrelic.config` file's `service.host` field.
 
-## Metric {#metric}
+## Metrics {#metric}
 
-All the following data collection will add a global tag named `host` by default (the tag value is the host name of DataKit). You can also specify other tags through `[inputs.newrelic.tags]` in the configuration:
+All collected data will have a global tag named `host` (tag value is the hostname of the DataKit host) appended by default. Additional tags can be specified in the configuration using `[inputs.newrelic.tags]`:
 
 ``` toml
 [inputs.newrelic.tags]
@@ -212,7 +214,7 @@ All the following data collection will add a global tag named `host` by default 
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -220,10 +222,10 @@ All the following data collection will add a global tag named `host` by default 
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
 |`parent_id`|Parent span ID of current span|string|-|
-|`resource`|Resource name produce current span|string|-|
-|`span_id`|Span id|string|-|
-|`start`|start time of span.|int|usec|
-|`trace_id`|Trace id|string|-|
+|`resource`|Resource name that produces the current span|string|-|
+|`span_id`|Span ID|string|-|
+|`start`|Start time of span.|int|usec|
+|`trace_id`|Trace ID|string|-|
 
 
 
@@ -231,11 +233,11 @@ All the following data collection will add a global tag named `host` by default 
 
 ### Where is the New Relic license key? {#where-license-key}
 
-If you install from the `New Relic` official website, the `license key` will be filled in automatically. If you install it manually, you will be asked to fill in the `license key` during the installation process. The `license key` is in [Create Account](https ://newrelic.com/signup?via=login){:target="_blank"} or [create data](newrelic.md#install-and-configure-new-relic-dotnet-agent), a suggestion to save will appear.
+If you follow the official New Relic website instructions for installation, the `license key` will be automatically filled. If you manually install the `license key`, it will be required during the installation process. The `license key` appears when [creating an account](https://newrelic.com/signup?via=login){:target="_blank"} or [creating data](newrelic.md#install-and-configure-new-relic-dotnet-agent). It is recommended to save it.
 
-### TLS version incompatible {#tls-version}
+### TLS Version Incompatibility {#tls-version}
 
-During the deployment of `New Relic Agent`, if no data is reported, and an `ERROR` message similar to the following is seen in the `New Relic` log:
+If you encounter no data reporting during deployment of the `New Relic Agent` and see similar `ERROR` messages in the `New Relic` logs:
 
 ```log
 NewRelic ERROR: Unable to connect to the New Relic service at collector.newrelic.com:443 : System.Net.WebException:
@@ -250,12 +252,12 @@ The underlying connection was closed: An unexpected error occurred on a receive.
 The client and server cannot communicate, because they do not possess a common algorithm.
 ```
 
-Please refer to the documentation[No data appears after disabling TLS 1.0](https://docs.newrelic.com/docs/apm/agents/net-agent/troubleshooting/no-data-appears-after-disabling-tls-10/){:target="_blank"} to troubleshoot the issue
+Refer to the document [No data appears after disabling TLS 1.0](https://docs.newrelic.com/docs/apm/agents/net-agent/troubleshooting/no-data-appears-after-disabling-tls-10/){:target="_blank"} for troubleshooting.
 
 ## References {#newrelic-references}
 
-- [Official Document](https://docs.newrelic.com/){:target="_blank"}
-- [Code Warehouse](https://github.com/newrelic/newrelic-dotnet-agent){:target="_blank"}
+- [Official Documentation](https://docs.newrelic.com/){:target="_blank"}
+- [Code Repository](https://github.com/newrelic/newrelic-dotnet-agent){:target="_blank"}
 - [Download](https://download.newrelic.com/){:target="_blank"}
-- [GuanceCloud Access NewRelic .NET Probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"}
-- [How to import root certificates and intermediate certificates on Windows servers?](https://baijiahao.baidu.com/s?id=1738111820379111942&wfr=spider&for=pc){:target="_blank"}
+- [Guance Integration with NewRelic .NET Probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"}
+- [How to Import Root and Intermediate Certificates on Windows Server?](https://baijiahao.baidu.com/s?id=1738111820379111942&wfr=spider&for=pc){:target="_blank"}

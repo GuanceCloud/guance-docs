@@ -1,28 +1,28 @@
 # Video
 ---
 
-## Introduction
+In the dashboard, you can enhance the delivery of information by adding video content through a video URL.
 
-Guance supports adding videos to the view, which can be used for tutorials, explanations and more. Just fill in the video address and you can preview the video details in real time on top.
+## Use Cases
 
-## Application Scene
+1. Displaying instructional videos for different scenarios;  
+2. Providing video explanations for items that require special instructions.
 
-Video charts of Guance are used to display videos. It can be used in the following scene.
+## Chart Configuration
 
-- Showing instructional videos for different scenes
-- Video descriptions for videos that require special explanatory hints
+> For more details, refer to [Chart Configuration](./chart-config.md).
 
-## Chart Style
-| Options | Description |
-| --- | --- |
-| Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
-| Volume | Set the video volume level |
-| Auto Play | Set if the video plays automatically |
-| Loop | Sets whether the video will loop or not |
+### Playback Settings
 
-## Example Diagram
+1. Volume: Set the volume level of the video.    
+2. Auto Play: Set whether the video should play automatically.    
+3. Loop Play: Set whether the video should loop playback.     
 
-The following is an illustrative video example.
+<!--
+## Example Image
+
+The following image shows an example of an explanatory video:
 
 ![](../img/video.png)
 
+-->

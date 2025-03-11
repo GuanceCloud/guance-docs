@@ -2,54 +2,50 @@
 
 ---
 
-<br />**get /api/v1/snapshots/list**
+<br />**GET /api/v1/snapshots/list**
 
 ## Overview
-Get a snapshot list of the current workspace.
+Retrieve the snapshot list for the current workspace
 
 
 
-
-## Query Request Parameter
+## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| type | string |  | Type filter<br>Allow null: False <br> |
-| search | string |  | Search for snapshot name<br>Allow null: False <br> |
-| pageIndex | integer |  | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer |  | Quantity returned per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:---------------------|:---------|:-----------|:-------------------------|
+| type | string | No | Type filter<br>Can be empty: False <br> |
+| search | string | No | Search snapshot name<br>Can be empty: False <br> |
+| pageIndex | integer | No | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | No | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Supplementary Description of Parameters
+## Additional Parameter Explanation
 
 
-*Data description*
+*Data Explanation*
 
-**1. Type Description of Snapshot**
+**1. Snapshot Type Explanation**
 
-|key|Description|
-|---|----|
-|logging|Log explorer|
-|keyevent|Event explorer|
-|tracing|Link explorer|
-|object|Infrastructure explorer|
-|dialing_task|Cloud testing explorer|
-|security|Scheck explorer|
-|rum|APM explorer|
-|measurement|Metrics explorer|
-|scene_dashboard|Scene view|
-|dashboard|User-defined view|
-
+| Key | Description |
+|-----|-------------|
+| logging | Log Explorer |
+| keyevent | Event Explorer |
+| tracing | Trace Explorer |
+| object | Infrastructure Explorer |
+| dialing_task | Dial Testing Explorer |
+| security | Security Check Explorer |
+| rum | RUM PV Explorer |
+| measurement | Metrics Explorer |
+| scene_dashboard | Scene View |
+| dashboard | User-defined View |
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
-
 
 
 
@@ -59,7 +55,7 @@ curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
     "code": 200,
     "content": [
         {
-            "accountUUID": "acnt_d69cb12e694211eb8464ea24b4040175",
+            "accountUUID": "acnt_xxxx32",
             "content": {
                 "routeName": "Log",
                 "routeParams": {
@@ -71,16 +67,16 @@ curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
                 }
             },
             "createAt": 1629714466,
-            "creator": "acnt_d69cb12e694211eb8464ea24b4040175",
+            "creator": "acnt_xxxx32",
             "deleteAt": -1,
             "id": 435,
             "name": "fa",
             "status": 0,
             "type": "logging",
             "updateAt": 1629714466,
-            "updator": "acnt_d69cb12e694211eb8464ea24b4040175",
-            "uuid": "snap_783467fbefc240ed8a33cfb964a78065",
-            "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+            "updator": "acnt_xxxx32",
+            "uuid": "snap_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",
@@ -95,7 +91,3 @@ curl 'https://openapi.guance.com/api/v1/snapshots/list?pageIndex=1&pageSize=2' \
     "traceId": "TRACE-EF64E702-8660-4D45-94B9-F058FCB00E17"
 } 
 ```
-
-
-
-

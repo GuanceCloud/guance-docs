@@ -1,29 +1,50 @@
-# Event
+# Alert Statistics Chart
 ---
 
-The alert events of anomaly detection, the alert statistics chart is divided into two parts, namely the statistics chart and the alert list.
+Displays unresolved alert events in a list format, allowing for quick identification and response to urgent issues in the system.
 
-- Statistics Chart: Group events by level and count the number of events at each level, support clicking on the statistics chart to query the details of the event;
-- Alert List: Display the alert events that have not been recovered within the selected time range.
+<img src="../../img/warning.png" width="70%" >
 
-![](../img/warning.png)
+The alert events based on anomaly detection are divided into two sections in the alert statistics chart:
 
-## Chart Query
+- Statistics Chart: Groups events by severity level and counts the number of events at each level;
+- Alert List: Displays all unresolved alert events within the selected time range.
 
-- Search: Enter keywords to query event content;
-- Filter: Supports adding tags to filter log data.
 
-## Basic Settings
 
-| Option | Description |
-| --- | --- |
-| Title | Set the title name for the chart, after setting, it will be displayed in the upper left corner of the chart, and hiding is supported. |
-| Description | Add a description to the chart, after setting, a [i] prompt will appear after the chart title, if not set, it will not be displayed. |
-| Display Items | Display all, only statistics chart or only alert list. |
+You can query and locate events by entering keywords or further add `by` conditions for data aggregation and display.
 
-## Advanced Settings
+In the alert list, hovering over an event allows you to choose to [create an Issue related to that event](../../events/event-explorer/unrecovered-events.md#issue) or [recover the event directly](../../events/event-explorer/unrecovered-events.md#recover).
 
-| Option | Description |
-| --- | --- |
-| Lock Time | That is, fix the time range of the current chart query data, which is not restricted by the global time component. After the setting is successful, the upper right corner of the chart will display the user-set time, such as [xx minutes], [xx hours], [xx days]. If the lock time interval is 30 minutes, then no matter what time range view is queried when adjusting the time component, it will only display the latest 30 minutes of data. |
 
+## Chart Configuration
+
+> For more details, refer to [Chart Configuration](./chart-config.md).
+
+### Display Settings
+
+:material-numeric-1-circle: Display Items: Choose which parts of the current chart to display, including:
+
+- All
+- Statistics Chart Only
+- Alert List Only
+
+:material-numeric-2-circle: Pagination Quantity: The number of unresolved events displayed in the alert list on the left side, with options of 10, 20, 50, or 100 events per page; the system default is 50 events per page.
+
+
+
+## Further Reading
+
+<font size=2>
+
+
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Unrecovered Event Explorer</font>](../../events/event-explorer/unrecovered-events.md)
+
+</div>
+
+
+
+</font>

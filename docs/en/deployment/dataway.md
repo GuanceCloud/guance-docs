@@ -1,26 +1,24 @@
-<!-- 不要在 dataflux-doc 仓库直接修改本文件，该文件由 Dataway 项目自动导出 -->
-
 # Dataway
 ---
 
 ## Introduction {#intro}
 
-DataWay is the data gateway of the observation cloud, and the collector needs to pass through the DataWay gateway to report data to the observation cloud
+DataWay is the data gateway of <<< custom_key.brand_name >>>. All data reported by collectors to <<< custom_key.brand_name >>> must go through the DataWay gateway.
 
 ## Dataway Installation {#install}
 
-- **New Dataway**
+- **Create Dataway**
 
-On the Data Gateways page in the observation cloud management console, click Create Dataway. Enter a name and binding address, and then click Create.
+In the <<< custom_key.brand_name >>> management console on the "Data Gateway" page, click “Create Dataway”. Enter a name and bind address, then click “Create”.
 
-After the creation is successful, a new Dataway is automatically created and the installation script for the Dataway is generated.
+After successful creation, a new Dataway will be automatically created along with the installation script for Dataway.
 
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    The binding address is the Dataway gateway address, which must be filled in as a complete HTTP address, such as `http(s)://1.2.3.4:9528`, including the protocol, host address and port, the host address can generally use the IP address of the Dataway machine deployed or specified as a domain name, and the domain name needs to be resolved.
+    The bind address is the Dataway gateway address. It must be a complete HTTP address, such as `http(s)://1.2.3.4:9528`, including protocol, host address, and port. The host address can generally be the IP address of the machine where Dataway is deployed or can be specified as a domain name which needs proper DNS resolution.
 
-    Note: Make sure that the collector can access the address, otherwise the data collection will not be successful)
+    Note: Ensure that the collector can access this address; otherwise, data collection will not succeed.
 <!-- markdownlint-enable -->
 
 - **Install Dataway**
@@ -32,24 +30,24 @@ After the creation is successful, a new Dataway is automatically created and the
     DW_KODO=http://kodo_ip:port \
        DW_TOKEN=<tkn_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX> \
        DW_UUID=<YOUR_UUID> \
-       bash -c "$(curl https://static.guance.com/dataway/install.sh)"
+       bash -c "$(curl https://static.<<< custom_key.brand_main_domain >>>/dataway/install.sh)"
     ```
 
-    After the installation is complete, in the installation directory, *dataway.yaml* will be generated, the content of which can be manually modified and take effect by restarting the service.
+    After installation, in the installation directory, a *dataway.yaml* file will be generated. Its content is as follows and can be manually modified to take effect after restarting the service.
 
-    ??? info "*dataway.yaml*"
+    ??? info "*dataway.yaml* (Click to expand)"
 
         ```yaml
         # ============= DATAWAY CONFIG =============
         
-        # Dataway UUID, we can get it on during create a new dataway
+        # Dataway UUID, we can get it during the creation of a new dataway
         uuid:
         
         # It's the workspace token, most of the time, it's
         # system worker space's token.
         token:
         
-        # secret_token used under sinker mode, and to check if incomming datakit
+        # secret_token used under sinker mode, and to check if incoming datakit
         # requests are valid.
         secret_token:
         
@@ -57,15 +55,15 @@ After the creation is successful, a new Dataway is automatically created and the
         # the workspace with the token above
         enable_internal_token: false
         
-        # is empty token allowed? If ok, the data/request will direct to
+        # Is empty token allowed? If ok, the data/request will direct to
         # the workspace with the token above
         enable_empty_token: false
         
-        # Is dataway cascaded? For cascaded Dataway, it's remote_host is
+        # Is dataway cascaded? For cascaded Dataway, its remote_host is
         # another Dataway and not Kodo.
         cascaded: false
         
-        # kodo(next dataway) related configures
+        # kodo(next dataway) related configurations
         remote_host:
         http_timeout: 30s
         
@@ -77,7 +75,7 @@ After the creation is successful, a new Dataway is automatically created and the
         max_conns_per_host: 0
         sni: ""
         
-        # dataway API configures
+        # dataway API configurations
         bind: 0.0.0.0:9528
         
         # disable 404 page
@@ -130,7 +128,7 @@ After the creation is successful, a new Dataway is automatically created and the
         #sinker:
         #  etcd:
         #    urls:
-        #    - http://localhost:2379 # one or multiple etcd host
+        #    - http://localhost:2379 # one or multiple etcd hosts
         #    dial_timeout: 30s
         #    key_space: "/dw_sinker" # subscribe to the etcd key
         #    username: "dataway"
@@ -141,55 +139,71 @@ After the creation is successful, a new Dataway is automatically created and the
 
 === "Kubernetes"
 
-    Download [*dataway.yaml*](https://static.guance.com/dataway/dataway.yaml){:target="_blank"}, install:
+    Download [*dataway.yaml*](https://static.<<< custom_key.brand_main_domain >>>/dataway/dataway.yaml){:target="_blank"} and install:
 
     ```shell
-    $ wget https://static.guance.com/dataway/dataway.yaml -O dw-deployment.yaml
+    $ wget https://static.<<< custom_key.brand_main_domain >>>/dataway/dataway.yaml -O dw-deployment.yaml
     $ kubectl apply -f dw-deployment.yaml
     ```
 
-    In *dw-deployment.yaml*, you can modify the Dataway configuration through environment variables, see [here] (dataway.md#img-envs).
+    In *dw-deployment.yaml*, you can modify Dataway configurations via environment variables; refer to [here](dataway.md#img-envs).
 
+    You can also mount an external *dataway.yaml* via ConfigMap but must mount it as */usr/local/cloudcare/dataflux/dataway/dataway.yaml*:
+
+    ```yaml
+    containers:
+      volumeMounts:
+        - name: dataway-config
+          mountPath: /usr/local/cloudcare/dataflux/dataway/dataway.yaml
+          subPath: config.yaml
+    volumes:
+    - configMap:
+        defaultMode: 256
+        name: dataway-config
+        optional: false
+      name: dataway-config
+    ```
 ---
 
-???+ Note "Notes"
+???+ note "Notes"
 
-    - Can only run on Linux systems
-    - When the host is installed, the Dataway installation path is */usr/local/cloudcare/dataflux/dataway*
+    - Dataway only runs on Linux systems (currently only Linux arm64/amd64 binaries are released)
+    - During host installation, the Dataway installation path is */usr/local/cloudcare/dataflux/dataway*
+    - Kubernetes defaults to setting resource limits of 4000m/4Gi, which can be adjusted based on actual conditions. The minimum requirement is 100m/512Mi
 <!-- markdownlint-enable -->
 
-- **Verify Dataway installation**
+- **Verify Dataway Installation**
 
-After installation, wait for a while to refresh the "Data Gateway" page, if you see the version number in the "Version Information" column of the data gateway you just added, it means that the Dataway has been successfully connected to the observation cloud center, and front-end users can access data through it.
+After installation, wait a moment and refresh the "Data Gateway" page. If you see the version number in the "Version Information" column of the newly added data gateway, it indicates that this Dataway has successfully connected to the <<< custom_key.brand_name >>> center, and front-end users can start connecting data through it.
 
-After Dataway is successfully connected to the observation cloud center, log in to the observation cloud console, view all Dataway addresses on the "Integration" / DataKit page, select the required Dataway gateway address, and obtain the DataKit installation command to execute on the server to start collecting data.
+Once Dataway successfully connects to the <<< custom_key.brand_name >>> center, log in to the <<< custom_key.brand_name >>> console, go to the "Integration"/"DataKit" page, view all Dataway addresses, select the required Dataway gateway address, obtain the DataKit installation instructions and execute them on the server to start collecting data.
 
 ## Manage DataWay {#manage}
 
 ### Delete DataWay {#delete}
 
-On the "Data Gateway" page of the observation cloud management background, select the DataWay to be deleted, click "Configure", and click the "Delete" button in the lower left corner of the pop-up Edit DataWay dialog box.
+In the <<< custom_key.brand_name >>> management console on the "Data Gateway" page, choose the DataWay you need to delete, click “Configure”, in the popped-up DataWay edit dialog box, click the “Delete” button at the bottom left.
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    After deleting DataWay, you also need to log in to the server where the DataWay gateway is deployed to stop the operation of DataWay, and then delete the installation directory to completely delete the DataWay.
+    After deleting DataWay, you still need to log in to the server where the DataWay gateway is deployed to stop the operation of DataWay and delete the installation directory to completely remove DataWay.
 <!-- markdownlint-enable -->
 
 ### Upgrade DataWay {#upgrade}
 
-On the Data Gateways page in the observation cloud management background, if an upgradeable version exists for DataWay, an upgrade prompt appears in the version information.
+On the <<< custom_key.brand_name >>> management console "Data Gateway" page, if there is an upgradable version for DataWay, an upgrade prompt will appear in the version information section.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Upgrade"
 
     ```shell
-    DW_UPGRADE=1 bash -c "$(curl https://static.guance.com/dataway/install.sh)"
+    DW_UPGRADE=1 bash -c "$(curl https://static.<<< custom_key.brand_main_domain >>>/dataway/install.sh)"
     ```
 
-=== "Kubernetes upgrade"
+=== "Kubernetes Upgrade"
 
-    Replace the image version directly:
+    Directly replace the image version:
 
     ```yaml
     - image: pubrepo.jiagouyun.com/dataflux/dataway:<VERSION>
@@ -198,105 +212,104 @@ On the Data Gateways page in the observation cloud management background, if an 
 
 ### Dataway Service Management {#manage-service}
 
-When the host installs Dataway, you can use the following command to manage the Dataway service:
+For host-installed Dataway, use the following commands to manage the Dataway service.
 
 ``` shell
 # Start
 $ systemctl start dataway
 
-# Reboot
+# Restart
 $ systemctl restart dataway
 
 # Stop
 $ systemctl stop dataway
 ```
 
-Kubernetes can restart the corresponding pod.
+For Kubernetes, simply restart the corresponding Pod.
 
-## Environment variable {#dw-envs}
+## Environment Variables {#dw-envs}
 
-### Host installation supports environment variable {#install-envs}
+### Host Installation Supported Environment Variables {#install-envs}
 
-> The method of installing directly on the host is no longer recommended, and new configuration items are also not supported to be configured via command-line parameters. If it is not possible to change the deployment method, it is suggested to manually modify the corresponding configurations after the installation (upgrade) is complete. For default configurations, please refer to the default configuration examples provided above.
+> We no longer recommend host installation, and new configuration items are no longer supported via command-line parameters. If you cannot change the deployment method, it is suggested to manually modify the corresponding configurations after installation (upgrade). Default configurations are shown in the default configuration example above.
 
-When installing a host, you can inject the following environment variables into the installation command:
+During host installation, you can inject the following environment variables into the installation command:
 
-| Env                   | Type      | Required | Description                                                                                                                              | Example Value |
-| ---                   | ---       | ---      | ---                                                                                                                                      | ---           |
-| DW_BIND               | string    | No       | Dataway HTTP API binding address, default is `0.0.0.0:9528`                                                                              |               |
-| DW_CASCADED           | boolean   | No       | Whether Dataway is cascaded                                                                                                              | `true`        |
-| DW_HTTP_CLIENT_TRACE  | boolean   | No       | When Dataway acts as an HTTP client, enabling this can collect related metrics, which will be output in its Prometheus metrics           | `true`        |
-| DW_KODO               | string    | Yes      | Kodo address, or the address of the next Dataway, in the form of `http://host:port`                                                      |               |
-| DW_SECRET_TOKEN       | string    | No       | When the Sinker feature is enabled, you can set this Token for security                                                                  |               |
-| DW_TOKEN              | string    | Yes      | Generally, it is the data Token of the system workspace                                                                                  |               |
-| DW_UPGRADE            | boolean   | No       | Set this to 1 during an upgrade                                                                                                          |               |
-| DW_UUID               | string    | Yes      | Dataway UUID, this is generated by the system workspace when a new Dataway is created                                                    |               |
-| DW_TLS_CRT            | file-path | No       | Specify the directory of the HTTPS/TLS crt file [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                         |               |
-| DW_TLS_KEY            | file-path | No       | Specify the directory of the HTTPS/TLS key file [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                         |               |
-| DW_PROM_EXPORTOR_BIND | string    | No       | Specify the HTTP port for Dataway's own metrics exposure (default 9090) [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0) |               |
-| DW_PPROF_BIND         | string    | No       | Specify the HTTP port for Dataway's own pprof (default 6060) [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0)            |               |
-| DW_DISK_CACHE_CAP_MB  | int       | No       | Specify the disk cache size (unit MB), default is 65535MB [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0)               |               |
+| Env                   | Type      | Required | Description                                                                                                               | Example Value |
+| ---                   | ---       | ---      | ---                                                                                                                | ---      |
+| DW_BIND               | string    | N        | Dataway HTTP API bind address, default `0.0.0.0:9528`                                                                     |          |
+| DW_CASCADED           | boolean   | N        | Whether Dataway is cascaded                                                                                                   | `true`   |
+| DW_HTTP_CLIENT_TRACE  | boolean   | N        | Enable some related metrics collection when Dataway acts as an HTTP client, these metrics will ultimately be output in Prometheus metrics                 | `true`   |
+| DW_KODO               | string    | Y        | Kodo address or next Dataway address, e.g., `http://host:port`                                                          |          |
+| DW_TOKEN              | string    | Y        | Generally the data Token of the system workspace                                                                                     |          |
+| DW_UPGRADE            | boolean   | N        | Set to 1 for upgrades                                                                                                 |          |
+| DW_UUID               | string    | Y        | Dataway UUID, generated by the system workspace when creating a new Dataway                                                        |          |
+| DW_TLS_CRT            | file-path | N        | Specify HTTPS/TLS crt file path [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                       |          |
+| DW_TLS_KEY            | file-path | N        | Specify HTTPS/TLS key file path [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                       |          |
+| DW_PROM_EXPORTOR_BIND | string    | N        | Specify Dataway's own metrics exposure HTTP port (default 9090) [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0) |          |
+| DW_PPROF_BIND         | string    | N        | Specify Dataway's own pprof HTTP port (default 6060) [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0)     |          |
+| DW_DISK_CACHE_CAP_MB  | int       | N        | Specify disk cache size (in MB), default 65535MB [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0)         |          |
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    Sinker-related settings must be manually modified after installation. Currently, it is not supported to specify Sinker configurations during the installation process. [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0-brk)
+    Sinker-related settings need to be manually modified after installation. Currently, Sinker configurations cannot be specified during installation. [:octicons-tag-24: Version-1.5.0](dataway-changelog.md#cl-1.5.0-brk)
 <!-- markdownlint-enable -->
 
-### Docker image environment variable {#img-envs}
+### Image Environment Variables {#img-envs}
 
 When Dataway runs in a Kubernetes environment, it supports the following environment variables.
 
 <!-- markdownlint-disable MD046 -->
-???+ warning "Compatible with lagacy dataway.yaml"
+???+ warning "Compatibility with existing dataway.yaml"
 
-    Some old Dataway's configure imported by ConfigMap(and mount to install path with the name of *dataway.yaml*).
-    After Dataway image started, if detect the file *dataway.yaml*, all the configures from `DW_*` are ignored and only
-    apply the lagacy *dataway.yaml*. We can remove the ConfigMap on *dataway.yaml* to recover these environment configures.
+    Since some old Dataways are configured via ConfigMap (the filename mounted in the container is usually *dataway.yaml*),
+    if the Dataway image detects an existing ConfigMap-mounted file in the installation directory, the following `DW_*` environment variables will not take effect.
+    Removing the existing ConfigMap mount allows these environment variables to take effect.
 
-    If these environment configures applied, there was a hidden file `.dataway.ayml`(view them via `ls -a`) under
-    install path, we can `cat` it to check if all these environment configures applied ok.
+    If the environment variables are effective, a hidden (viewable with `ls -a`) *.dataway.yaml* file will exist in the Dataway installation directory. You can check the effectiveness of the environment variables by using `cat` on this file.
 <!-- markdownlint-enable -->
 
 #### HTTP Server Settings {#env-apis}
 
-| Env                         | Type      | Required | Description                                                                                                                                                | Example Value |
-| ---                         | ---       | ---      | ---                                                                                                                                                        | ---           |
-| DW_REMOTE_HOST              | string    | Yes      | Kodo address, or the next Dataway address, in the form of `http://host:port`                                                                               |               |
-| DW_WHITE_LIST               | string    | No       | Dataway client IP whitelist, separated by English `,`                                                                                                      |               |
-| DW_HTTP_TIMEOUT             | string    | No       | Dataway request timeout setting for Kodo or the next Dataway, default is 30s                                                                               |               |
-| DW_BIND                     | string    | No       | Dataway HTTP API binding address, default is `0.0.0.0:9528`                                                                                                |               |
-| DW_API_LIMIT                | int       | No       | Dataway API rate limit setting, for example, if set to 1000, each specific API is only allowed to be requested 1000 times within 1 second, default is 100K |               |
-| DW_HEARTBEAT                | string    | No       | Dataway heartbeat interval with the center, default is 60s                                                                                                 |               |
-| DW_MAX_HTTP_BODY_BYTES      | int       | No       | Maximum HTTP Body size allowed by Dataway API (**unit bytes**), default is 64MB                                                                            |               |
-| DW_MAX_CONNS_PER_HOST       | int       | N        | Linut TCP connections between Dataway and Kodo[^1]                                        |          |
-| DW_TLS_INSECURE_SKIP_VERIFY | boolean   | No       | Ignore HTTPS/TLS certificate errors                                                                                                                        | `true`        |
-| DW_HTTP_CLIENT_TRACE        | boolean   | No       | Dataway, acting as an HTTP client, can enable the collection of some related metrics, which will ultimately be output in its Prometheus metrics            | `true`        |
-| DW_ENABLE_TLS               | boolean   | No       | Enable HTTPS [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                                                                              |               |
-| DW_TLS_CRT                  | file-path | No       | Specify the directory of the HTTPS/TLS crt file [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                           |               |
-| DW_TLS_KEY                  | file-path | No       | Specify the directory of the HTTPS/TLS key file [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                           |               |
-| DW_SNI                      | string    | N        | Specify current Dataway's SNI [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)                                                             |               |
-| DW_DISABLE_404PAGE          | boolean   | N        | Disable 404 page[:octicons-tag-24: Version-1.6.1](dataway-changelog.md#cl-1.6.1)                                                                           |               |
+| Env                           | Type      | Required | Description                                                                                                                            | Example Value |
+| ---                           | ---       | ---      | ---                                                                                                                             | ---      |
+| DW_REMOTE_HOST                | string    | Y        | Kodo address or next Dataway address, e.g., `http://host:port`                                                                       |          |
+| DW_WHITE_LIST                 | string    | N        | Dataway client IP whitelist, separated by English `,`                                                                                       |          |
+| DW_HTTP_TIMEOUT               | string    | N        | Timeout setting for Dataway's requests to Kodo or the next Dataway, default 30s                                                                         |          |
+| DW_HTTP_MAX_IDLE_CONN_PERHOST | int       | N        | Maximum idle connection setting for Dataway's requests to Kodo, default value is CPU cores[:octicons-tag-24: Version-1.6.2](dataway-changelog.md#cl-1.6.2) |          |
+| DW_HTTP_MAX_CONN_PERHOST      | int       | N        | Maximum connection setting for Dataway's requests to Kodo, default unlimited[:octicons-tag-24: Version-1.6.2](dataway-changelog.md#cl-1.6.2)                    |          |
+| DW_BIND                       | string    | N        | Dataway HTTP API bind address, default `0.0.0.0:9528`                                                                                  |          |
+| DW_API_LIMIT                  | int       | N        | API rate limiting setting for Dataway, e.g., setting it to 1000 means each specific API can be requested up to 1000 times per second, default 100K                                   |          |
+| DW_HEARTBEAT                  | string    | N        | Heartbeat interval between Dataway and the center, default 60s                                                                                              |          |
+| DW_MAX_HTTP_BODY_BYTES        | int       | N        | Maximum allowed HTTP Body size for Dataway API (**unit bytes**), default 64MB                                                                     |          |
+| DW_TLS_INSECURE_SKIP_VERIFY   | boolean   | N        | Ignore HTTPS/TLS certificate errors                                                                                                         | `true`   |
+| DW_HTTP_CLIENT_TRACE          | boolean   | N        | When Dataway acts as an HTTP client, enable some related metrics collection, these metrics will ultimately be output in Prometheus metrics                              | `true`   |
+| DW_ENABLE_TLS                 | boolean   | N        | Enable HTTPS [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)                                                     |          |
+| DW_TLS_CRT                    | file-path | N        | Specify HTTPS/TLS crt file path [:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                    |          |
+| DW_TLS_KEY                    | file-path | N        | Specify HTTPS/TLS key file path[:octicons-tag-24: Version-1.4.0](dataway-changelog.md#cl-1.4.0)                                     |          |
+| DW_SNI                        | string    | N        | Specify the current Dataway SNI information[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)                                       |          |
+| DW_DISABLE_404PAGE            | boolean   | N        | Disable 404 page[:octicons-tag-24: Version-1.6.1](dataway-changelog.md#cl-1.6.1)                                                   |          |
 
-[^1]: This limite will cause Dataway's performance decline. Under high payload, we should increase CPU limit or add more Dataway instances.
+[^1]: This restriction is to avoid Dataway containers/Pods being limited to approximately 20,000 connections due to system limitations. Increasing the limit will affect the efficiency of Dataway data uploads. When Dataway traffic is high, consider increasing the CPU count for individual Dataways or horizontally scaling Dataway instances.
 
 ##### HTTP TLS Settings {#http-tls}
 
-To generate a TLS certificate with a one-year validity period, you can use the following OpenSSL command:
+To generate a TLS certificate valid for one year, you can use the following OpenSSL command:
 
 ```shell
-# Generate a TLS certificate with a one-year validity
+# Generate a TLS certificate valid for one year
 $ openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out tls.crt -keyout tls.key
 ...
 ```
 
-After executing this command, the system will prompt you to enter some necessary information, including your country, region, city, organization name, department name, and your email address. This information will be included in your certificate.
+After executing this command, the system will prompt you to enter some necessary information, including your country, region, city, organization name, department name, and email address. This information will be included in your certificate.
 
-After completing the information input, you will generate two files: *tls.crt* (certificate file) and *tls.key* (private key file). Please keep your private key file secure and safe.
+After completing the information input, two files will be generated: *tls.crt* (certificate file) and *tls.key* (private key file). Safely store your private key file and ensure its security.
 
-In order for the application to use these TLS certificates, you need to set the absolute paths of these two files to the application's environment variables. Here is an example of setting environment variables:
+To make the application use these TLS certificates, you need to set the absolute paths of these two files in the application's environment variables. Below is an example of setting environment variables:
 
-> `DW_ENABLE_TLS` must be turned on first, and then the other two ENVs (`DW_TLS_CRT/DW_TLS_KEY`) will take effect. [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)
+> Must first enable `DW_ENABLE_TLS`, then the other two ENV (`DW_TLS_CRT/DW_TLS_KEY`) will take effect. [:octicons-tag-24: Version-1.4.1](dataway-changelog.md#cl-1.4.1)
 
 ```yaml
 env:
@@ -308,204 +321,321 @@ env:
   value: "/path/to/your/tls.key"
 ```
 
-Replace `/path/to/your/tls.crt` and `/path/to/your/tls.key` with the actual paths to your `tls.crt` and `tls.key` files, respectively.
+Replace `/path/to/your/tls.crt` and `/path/to/your/tls.key` with the actual paths where you store `tls.crt` and `tls.key`.
 
-After setting up the environment variables, you can test whether TLS is functioning correctly with the following command:
+After setting, you can use the following command to test whether TLS is effective:
 
 ```shell
-curl -k https://localhost:9528
+$ curl -k http://localhost:9528
 ```
 
-If successful, you should see an ASCII art message indicating "It's working!" If the certificates are missing, you might encounter an error in the Dataway logs similar to:
+If successful, it will display an ASCII Art message saying `It's working!`. If the certificate does not exist, there will be an error in the Dataway logs similar to the following:
 
 ```text
 server listen(TLS) failed: open /path/to/your/tls.{crt,key}: no such file or directory
 ```
 
-In this case, Dataway would not start, and the `curl` command would also result in an error:
+At this point, Dataway cannot start, and the above curl command will also report an error:
 
 ```shell
+$ curl -vvv -k http://localhost:9528
 curl: (7) Failed to connect to localhost port 9528 after 6 ms: Couldn't connect to server
 ```
 
-Ensure that the paths to the TLS certificate and key are correctly specified and that the files have the appropriate permissions for the application to read them.
+#### Log Settings {#env-logging}
 
-#### Logging Settings {#env-logging}
-
-| Env          | Type  | Required | Description                | Value |
-| ---          | ---   | ---      | ---                        | ---   |
-| DW_LOG       | string| N        | Log path, default to *log* |       |
-| DW_LOG_LEVEL | string| N        | The default is `info`      |       |
-| DW_GIN_LOG   | string| N        | The default is *gin.log*   |       |
+| Env          | Type   | Required | Description                   | Example Value |
+| ---          | ---    | ---      | ---                    | ---      |
+| DW_LOG       | string | N        | Log path, default *log* |          |
+| DW_LOG_LEVEL | string | N        | Default `info`          |          |
+| DW_GIN_LOG   | string | N        | Default *gin.log*       |          |
 
 #### Token/UUID Settings {#env-token-uuid}
 
-| Env                      | Type    | Required | Description                                                                                             | Value |
-| ---                      | ---     | ---      | ---                                                                                                     | ---   |
-| DW_UUID                  | string  | Y        | Dataway UUID, this will generate in the system workspace when creating a new Dataway                    |       |
-| DW_TOKEN                 | string  | Y        | Generally the token of the system workspace                                                             |       |
-| DW_SECRET_TOKEN          | string  | N        | When the sinker function is enabled, you can set the token                                              |       |
-| DW_ENABLE_INTERNAL_TOKEN | boolean | N        | `__internal__` is allowed as the client token, and the Token of the system workspace is used by default |       |
-| DW_ENABLE_EMPTY_TOKEN    | boolean | N        | It is allowed to upload data without a token, and the token  of the system workspace is used by default |       |
+| Env                      | Type    | Required | Description                                                                     | Example Value |
+| ---                      | ---     | ---      | ---                                                                      | ---      |
+| DW_UUID                  | string  | Y        | Dataway UUID, generated by the system workspace when creating a new Dataway              |          |
+| DW_TOKEN                 | string  | Y        | Generally the data upload Token of the system workspace                                       |          |
+| DW_SECRET_TOKEN          | string  | N        | Can set this Token when enabling Sinker functionality                                 |          |
+| DW_ENABLE_INTERNAL_TOKEN | boolean | N        | Allow using `__internal__` as the client Token, default uses the system workspace's Token |          |
+| DW_ENABLE_EMPTY_TOKEN    | boolean | N        | Allow uploading data without a Token, default uses the system workspace's Token              |          |
 
 #### Sinker Settings {#env-sinker}
 
-| Env                         | Type      | Required | Description                                                                               | Value |
-| ---                         | ---       | ---      | ---                                                                                       | ---   |
-| DW_CASCADED                 | string    | N        | Whether the Dataway is cascading                                                          | "on"  |
-| DW_SINKER_ETCD_URLS         | string    | N        | etcd address lists, separated by `,`, e.g. `http://1.2.3.4:2379,http://1.2.3.4:2380`      |       |
-| DW_SINKER_ETCD_DIAL_TIMEOUT | string    | N        | etcd connection timeout, default 30s                                                      |       |
-| DW_SINKER_ETCD_KEY_SPACE    | string    | N        | The name of the etcd key where the sinker configuration is located (default `/dw_sinker`) |       |
-| DW_SINKER_ETCD_USERNAME     | string    | N        | etcd username                                                                             |       |
-| DW_SINKER_ETCD_PASSWORD     | string    | N        | etcd password                                                                             |       |
-| DW_SINKER_FILE_PATH         | file-path | N        | Specify the sinker rule configuration via a local file                                    |       |
+| Env                         | Type      | Required | Description                                                                     | Example Value |
+| ---                         | ---       | ---      | ---                                                                      | ---      |
+| DW_SECRET_TOKEN             | string    | N        | Can set this Token when enabling Sinker functionality                                   |          |
+| DW_CASCADED                 | string    | N        | Whether Dataway is cascaded                                                         | `true`   |
+| DW_SINKER_ETCD_URLS         | string    | N        | List of etcd addresses, separated by `,`, e.g., `http://1.2.3.4:2379,http://1.2.3.4:2380` |          |
+| DW_SINKER_ETCD_DIAL_TIMEOUT | string    | N        | Etcd connection timeout, default 30s                                                  |          |
+| DW_SINKER_ETCD_KEY_SPACE    | string    | N        | Key name for Sinker configuration in etcd (default `/dw_sinker`)                     |          |
+| DW_SINKER_ETCD_USERNAME     | string    | N        | Etcd username                                                              |          |
+| DW_SINKER_ETCD_PASSWORD     | string    | N        | Etcd password                                                                |          |
+| DW_SINKER_FILE_PATH         | file-path | N        | Specify sinker rule configuration via a local file                                       |          |
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    If both local files and etcd are specified, the sinker rule in the local file takes precedence.
+    If both local file and etcd methods are specified, the local file's Sinker rules will take precedence.
 <!-- markdownlint-enable -->
 
-#### Prometheus metrics expose {#env-metrics}
+#### Prometheus Metrics Exposure {#env-metrics}
 
-| Env              | Type   | Required | Description                                                             | Value |
-| ---              | ---    | ---      | ---                                                                     | ---   |
-| DW_PROM_URL      | string | N        | URL Path for Prometheus metrics (default `/metrics`)                    |       |
-| DW_PROM_LISTEN   | string | N        | The Prometheus indicator exposes the address (default `localhost:9090`) |       |
-| DW_PROM_DISABLED | boolean| N        | Disable Prometheus indicator exposure                                   | "on"  |
+| Env              | Type    | Required | Description                                             | Example Value |
+| ---              | ---     | ---      | ---                                              | ---      |
+| DW_PROM_URL      | string  | N        | URL Path for Prometheus metrics (default `/metrics`)|          |
+| DW_PROM_LISTEN   | string  | N        | Address for exposing Prometheus metrics (default `localhost:9090`) |          |
+| DW_PROM_DISABLED | boolean | N        | Disable Prometheus metrics exposure                         | `true`   |
 
-#### Disk cache settings {#env-diskcache}
+#### Disk Cache Settings {#env-diskcache}
 
-| Env                           | Type      | Required | Description                                                                                                                                                                                                                        | Value                                         |
-| ---                           | ---       | ---      | ---                                                                                                                                                                                                                                | ---                                           |
-| DW_DISKCACHE_DIR              | file-path | N        | Set the cache directory, **This directory is generally plugged in**                                                                                                                                                                | *path/to/your/cache*                          |
-| DW_DISKCACHE_DISABLE          | boolean   | N        | Disable disk caching, **If caching is not disabled, delete the environment variable**                                                                                                                                              | "on"                                          |
-| DW_DISKCACHE_CLEAN_INTERVAL   | string    | N        | Cache cleanup interval (default 30s)                                                                                                                                                                                               | Duration string                               |
-| DW_DISKCACHE_EXPIRE_DURATION  | string    | N        | Cache expiration time (default 24h)                                                                                                                                                                                                | Duration string, such as `72h` for three days |
-| DW_DISKCACHE_CAPACITY_MB      | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) Set the available disk space size for caching, unit MB, default is 20GB                                                                                           | Specify `1024` for 1GB                        |
-| DW_DISKCACHE_BATCH_SIZE_MB    | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) Set the maximum size of a single disk cache file, unit MB, default is 64MB                                                                                        | Specify `1024` for 1GB                        |
-| DW_DISKCACHE_MAX_DATA_SIZE_MB | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) Set the maximum size of a single cache content (e.g., a single HTTP body), unit MB, default is 64MB, any single data packet exceeding this size will be discarded | Specify `1024` for 1GB                        |
-
+| Env                           | Type      | Required | Description                                                                                                                                                                  | Example Value                           |
+| ---                           | ---       | ---      | ---                                                                                                                                                                           | ---                                |
+| DW_DISKCACHE_DIR              | file-path | N        | Set cache directory, **this directory is generally mounted storage**                                                                                                                                  | *path/to/your/cache*               |
+| DW_DISKCACHE_DISABLE          | boolean   | N        | Disable disk cache, **if not disabling cache, remove this environment variable**                                                                                                                    | `true`                             |
+| DW_DISKCACHE_CLEAN_INTERVAL   | string    | N        | Cache cleanup interval, default 30s                                                                                                                                                | Duration string                    |
+| DW_DISKCACHE_EXPIRE_DURATION  | string    | N        | Cache expiration time, default 168h (7d)                                                                                                                                         | Duration string, e.g., `72h` indicating three days |
+| DW_DISKCACHE_CAPACITY_MB      | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) Set available disk space size, unit MB, default 20GB                                                           | Specifying `1024` is 1GB                 |
+| DW_DISKCACHE_BATCH_SIZE_MB    | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) Set maximum size of a single disk cache file, unit MB, default 64MB                                                     | Specifying `1024` is 1GB                 |
+| DW_DISKCACHE_MAX_DATA_SIZE_MB | int       | N        | [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0) Set maximum size of a single cache content (e.g., single HTTP body), unit MB, default 64MB, exceeding this size will drop the single data packet | Specifying `1024` is 1GB                 |
 
 <!-- markdownlint-disable MD046 -->
-???+ warning
+???+ tips
 
-    Set `DW_DISKCACHE_DISABLE` to disable diskcache globally.
+    Setting `DW_DISKCACHE_DISABLE` disables disk cache.
 <!-- markdownlint-enable -->
 
-#### Performance related {#env-perfmance}
+#### Performance-Related Settings {#env-perfmance}
 
 [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)
 
-| Env                      | Type | Required | Description                                                                                                                             | Example Value |
-| ---                      | ---  | ---      | ---                                                                                                                                     | ---           |
-| DW_COPY_BUFFER_DROP_SIZE | int  | No       | Any buffer exceeding the specified size (in bytes) will be immediately cleared to avoid excessive memory consumption. Default is 256KiB | 524288        |
+| Env                      | Type | Required | Description                                                                                       | Example Value |
+| ---                      | ---  | ---      | ---                                                                                        | ---      |
+| DW_COPY_BUFFER_DROP_SIZE | int  | N        | Immediately clear HTTP body buffers exceeding the specified size (unit bytes) to avoid excessive memory consumption. Default value 256KB | 524288   |
 
 ## Dataway API List {#apis}
 
-> Details of each API below are to be added.
+> Details of the following APIs are pending.
 
 ### `GET /v1/ntp/` {#v1-ntp}
 
 [:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)
 
-- API description: Get current dataway unix timestamp(unit: second)
+- API Description: Get the current Unix timestamp (in seconds) of Dataway
 
 ### `POST /v1/write/:category` {#v1-write-category}
 
-- API description: Receive various collection data uploaded by Datakit
+- API Description: Receive various types of collected data uploaded by Datakit
 
 ### `GET /v1/datakit/pull` {#v1-datakit-pull}
 
-- API description: Handles Datakit pull center configuration (blacklist/pipeline) requests
+- API Description: Handle Datakit's pull request for central configurations (blacklist/Pipeline)
 
 ### `POST /v1/write/rum/replay` {#v1-write-rum-replay}
 
-- API description: Receive Session Replay data uploaded by Datakit
+- API Description: Receive Session Replay data uploaded by Datakit
 
 ### `POST /v1/upload/profiling` {#v1-upload-profiling}
 
-- API description: Receive profiling data uploaded by Datakit
+- API Description: Receive Profiling data uploaded by Datakit
 
 ### `POST /v1/election` {#v1-election}
 
-- API description: Handles election requests for Datakit
+- API Description: Handle Datakit's election request
 
 ### `POST /v1/election/heartbeat` {#v1-election-heartbeat}
 
-- API description: Handles election heartbeat requests for Datakit
+- API Description: Handle Datakit's election heartbeat request
 
 ### `POST /v1/query/raw` {#v1-query-raw}
 
-- API description: Handles DQL query requests initiated by the Datakit side
+Handle DQL query requests. A simple example is as follows:
+
+``` text
+POST /v1/query/raw?token=<workspace-token> HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "workspace-token",
+    "queries": [
+        {
+            "query": "M::cpu LIMIT 1"
+        }
+    ],
+    "echo_explain": <true/false>
+}
+```
+
+Response example:
+
+```json
+{
+  "content": [
+    {
+      "series": [
+        {
+          "name": "cpu",
+          "columns": [
+            "time",
+            "usage_iowait",
+            "usage_total",
+            "usage_user",
+            "usage_guest",
+            "usage_system",
+            "usage_steal",
+            "usage_guest_nice",
+            "usage_irq",
+            "load5s",
+            "usage_idle",
+            "usage_nice",
+            "usage_softirq",
+            "global_tag1",
+            "global_tag2",
+            "host",
+            "cpu"
+          ],
+          "values": [
+            [
+              1709782208662,
+              0,
+              7.421875,
+              3.359375,
+              0,
+              4.0625,
+              0,
+              0,
+              0,
+              1,
+              92.578125,
+              0,
+              0,
+              null,
+              null,
+              "WIN-JCHUL92N9IP",
+              "cpu-total"
+            ]
+          ]
+        }
+      ],
+      "points": null,
+      "cost": "24.558375ms",
+      "is_running": false,
+      "async_id": "",
+      "query_parse": {
+        "namespace": "metric",
+        "sources": {
+          "cpu": "exact"
+        },
+        "fields": {},
+        "funcs": {}
+      },
+      "index_name": "",
+      "index_store_type": "",
+      "query_type": "guancedb",
+      "complete": false,
+      "index_names": "",
+      "scan_completed": false,
+      "scan_index": "",
+      "next_cursor_time": -1,
+      "sample": 1,
+      "interval": 0,
+      "window": 0
+    }
+  ]
+}
+```
+
+Explanation of the response results:
+
+- Real data is located in the inner `series` field
+- `name` indicates the Measurement name (for this query, it is the CPU metric; if it is log data, this field does not exist)
+- `columns` indicate the names of the returned result columns
+- `values` contain the column results corresponding to `columns`
+
+---
+
+<!-- markdownlint-disable MD046 -->
+???+ info
+
+    - The token in the URL request parameter can differ from the token in the JSON body. The former is used to verify the validity of the query request, while the latter determines the target workspace for the data.
+    - The `queries` field can contain multiple queries, each of which can carry additional fields. Refer to [here](../datakit/apis.md#api-raw-query) for the list of specific fields.
+<!-- markdownlint-enable -->
+
+---
 
 ### `POST /v1/workspace` {#v1-workspace}
 
-- API description: Handles workspace query requests initiated by Datakit
+- API Description: Handle workspace query requests initiated by Datakit
 
 ### `POST /v1/object/labels` {#v1-object-labels}
 
-- API description: Handles requests to modify object labels
+- API Description: Handle object Label modification requests
 
 ### `DELETE /v1/object/labels` {#v1-delete-object-labels}
 
-- API description: Handles delete object Label requests
+- API Description: Handle object Label deletion requests
 
 ### `GET /v1/check/:token` {#v1-check-token}
 
-- API description: Detect if tokken is legitimate
+- API Description: Check if the token is valid
 
-## Dataway metrics collection {#collect-metrics}
+## Dataway Metric Collection {#collect-metrics}
 
 <!-- markdownlint-disable MD046 -->
-???+ warning "HTTP client metrics collection"
+???+ warning "HTTP Client Metric Collection"
 
-    If you want to collect metrics for Dataway HTTP requests to Kodo (or Dataway next hop), you need to manually enable the `http_client_trace` configuration. You can also specify `DW_HTTP_CLIENT_TRACE=true` during the installation phase.
+    To collect metrics for Dataway's HTTP requests to Kodo (or the next-hop Dataway), you need to manually enable the `http_client_trace` configuration or specify the environment variable `DW_HTTP_CLIENT_TRACE=true`.
 
 === "Host Deployment"
 
-    Dataway itself exposes Prometheus metrics, which can be collected through Datakit's built-in `prom` collector, which is configured as follows:
+    Dataway exposes Prometheus metrics, which can be collected by Datakit's built-in `prom` collector. An example configuration for the collector is as follows:
 
     ```toml
     [[inputs.prom]]
       ## Exporter URLs.
       urls = [ "http://localhost:9090/metrics", ]
-
       source = "dataway"
-
       election = true
-
-      ## Dataway metric set fixed to dw, do not change
-      measurement_name = "dw"
+      measurement_name = "dw" # The metric set for Dataway is fixed as "dw", do not change it
+    [inputs.prom.tags]
+      service = "dataway"
     ```
 
 === "Kubernetes"
 
-    You can add annotations on pods (requires [Datakit 1.14.2] (../datakit/changelog.md#cl-1.14.2) or above):
+    If the cluster has Datakit deployed (version [Datakit 1.14.2](../datakit/changelog.md#cl-1.14.2) or higher), you can enable Prometheus metrics exposure in Dataway (Dataway's default POD yaml already includes this):
 
     ```yaml
-    annotations:
+    annotations: # The following annotation is added by default
        datakit/prom.instances: |
          [[inputs.prom]]
-           url = "http://$IP:9090/metrics" # Here the port (default 9090) is as appropriate
+           url = "http://$IP:9090/metrics" # This port (default 9090) depends on the situation
            source = "dataway"
-           measurement_name = "dw" # pinned to this metric set
-           interval = "30s"
+           measurement_name = "dw" # Fixed as this metric set
+           interval = "10s"
+           disable_instance_tag = true
 
-           [inputs.prom.tags]
-             namespace = "$NAMESPACE"
-             pod_name = "$PODNAME"
-             node_name = "$NODENAME"
+         [inputs.prom.tags]
+           service = "dataway"
+           instance = "$PODNAME"
+
+    ...
+    env:
+    - name: DW_PROM_LISTEN
+      value: "0.0.0.0:9090" # This port should match the port in the above URL
     ```
+
 <!-- markdownlint-enable -->
 
-If the collection is successful, search for `dataway` in the "Scene"/"Built-in View" of the observation cloud to see the corresponding monitoring view.
+---
+
+If collection is successful, search for `dataway` in <<< custom_key.brand_name >>>'s "Scenarios"/"Built-in Views" to see the corresponding monitoring view.
 
 ### Dataway Metric List {#metrics}
 
-The following are the indicators exposed by Dataway, which can be obtained by requesting `http://localhost:9090/metrics`, and you can view (3s) a specific indicator in real time by following the following command:
+Below are the metrics exposed by Dataway. By requesting `http://localhost:9090/metrics`, you can obtain these metrics. You can use the following command to monitor (every 3 seconds) a specific metric in real-time:
 
-> If some metrics cannot be queried, it may be caused by the relevant business module not running.
+> Some metrics may not be found because the relevant business modules have not yet started. Some new metrics only exist in the latest versions, so the version information of each metric is not listed here. Refer to the metrics list returned by the `/metrics` interface for accurate information.
 
 ```shell
 watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
@@ -514,7 +644,7 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |TYPE|NAME|LABELS|HELP|
 |---|---|---|---|
 |SUMMARY|`dataway_http_api_elapsed_seconds`|`api,method,status`|API request latency|
-|SUMMARY|`dataway_http_api_body_buffer_utilization`|`api`|API body buffer utillization(Len/Cap)|
+|SUMMARY|`dataway_http_api_body_buffer_utilization`|`api`|API body buffer utilization (Len/Cap)|
 |SUMMARY|`dataway_http_api_body_copy`|`api`|API body copy|
 |SUMMARY|`dataway_http_api_resp_size_bytes`|`api,method,status`|API response size|
 |SUMMARY|`dataway_http_api_req_size_bytes`|`api,method,status`|API request size|
@@ -527,90 +657,90 @@ watch -n 3 'curl -s http://localhost:9090/metrics | grep -a <METRIC-NAME>'
 |COUNTER|`dataway_http_api_signed_total`|`api,method`|API signature count|
 |SUMMARY|`dataway_http_api_cached_bytes`|`api,cache_type,method,reason`|API cached body bytes|
 |SUMMARY|`dataway_http_api_reusable_body_read_bytes`|`api,method`|API re-read body on forking request|
-|SUMMARY|`dataway_http_api_recv_points`|`api`|API /v1/write/:category recevied points|
+|SUMMARY|`dataway_http_api_recv_points`|`api`|API /v1/write/:category received points|
 |SUMMARY|`dataway_http_api_send_points`|`api`|API /v1/write/:category send points|
 |SUMMARY|`dataway_http_api_cache_points`|`api,cache_type`|Disk cached /v1/write/:category points|
 |SUMMARY|`dataway_http_api_cache_cleaned_points`|`api,cache_type,status`|Disk cache cleaned /v1/write/:category points|
 |COUNTER|`dataway_http_api_forked_total`|`api,method,token`|API request forked total|
 |GAUGE|`dataway_http_info`|`cascaded,docker,http_client_trace,listen,max_body,release_date,remote,version`|Dataway API basic info|
 |GAUGE|`dataway_last_heartbeat_time`|`N/A`|Dataway last heartbeat with Kodo timestamp|
-|GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage(%)|
+|GAUGE|`dataway_cpu_usage`|`N/A`|Dataway CPU usage (%)|
 |GAUGE|`dataway_mem_stat`|`type`|Dataway memory usage stats|
-|SUMMARY|`dataway_http_api_copy_buffer_drop_total`|`max`|API copy buffer dropped(too large cached buffer) count|
+|SUMMARY|`dataway_http_api_copy_buffer_drop_total`|`max`|API copy buffer dropped (too large cached buffer) count|
 |GAUGE|`dataway_open_files`|`N/A`|Dataway open files|
 |GAUGE|`dataway_cpu_cores`|`N/A`|Dataway CPU cores|
 |GAUGE|`dataway_uptime`|`N/A`|Dataway uptime|
-|COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count(Linux only)|
+|COUNTER|`dataway_process_ctx_switch_total`|`type`|Dataway process context switch count (Linux only)|
 |COUNTER|`dataway_process_io_count_total`|`type`|Dataway process IO count|
-|SUMMARY|`dataway_http_api_copy_buffer_drop_total`|`max`|API copy buffer dropped(too large cached buffer) count|
+|SUMMARY|`dataway_http_api_copy_buffer_drop_total`|`max`|API copy buffer dropped (too large cached buffer) count|
 |COUNTER|`dataway_process_io_bytes_total`|`type`|Dataway process IO bytes count|
 |SUMMARY|`dataway_http_api_dropped_expired_cache`|`api,method`|Dropped expired cache data|
 |SUMMARY|`dataway_httpcli_tls_handshake_seconds`|`server`|HTTP TLS handshake cost|
 |SUMMARY|`dataway_httpcli_http_connect_cost_seconds`|`server`|HTTP connect cost|
 |SUMMARY|`dataway_httpcli_got_first_resp_byte_cost_seconds`|`server`|Got first response byte cost|
 |SUMMARY|`http_latency`|`api,server`|HTTP latency|
-|COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
+|C|COUNTER|`dataway_httpcli_tcp_conn_total`|`server,remote,type`|HTTP TCP connection count|
 |COUNTER|`dataway_httpcli_conn_reused_from_idle_total`|`server`|HTTP connection reused from idle count|
 |SUMMARY|`dataway_httpcli_conn_idle_time_seconds`|`server`|HTTP connection idle time|
 |SUMMARY|`dataway_httpcli_dns_cost_seconds`|`server`|HTTP DNS cost|
 |SUMMARY|`dataway_sinker_rule_cost_seconds`|`N/A`|Rule cost time seconds|
-|SUMMARY|`dataway_sinker_cache_key_len`|`N/A`|cache key length(bytes)|
-|SUMMARY|`dataway_sinker_cache_val_len`|`N/A`|cache value length(bytes)|
+|SUMMARY|`dataway_sinker_cache_key_len`|`N/A`|Cache key length (bytes)|
+|SUMMARY|`dataway_sinker_cache_val_len`|`N/A`|Cache value length (bytes)|
 |COUNTER|`dataway_sinker_pull_total`|`event,source`|Sinker pulled or pushed counter|
 |GAUGE|`dataway_sinker_rule_cache_miss`|`N/A`|Sinker rule cache miss|
 |GAUGE|`dataway_sinker_rule_cache_hit`|`N/A`|Sinker rule cache hit|
 |GAUGE|`dataway_sinker_rule_cache_size`|`N/A`|Sinker rule cache size|
 |GAUGE|`dataway_sinker_rule_error`|`error`|Rule errors|
 |GAUGE|`dataway_sinker_default_rule_hit`|`info`|Default sinker rule hit count|
-|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last applied time(Unix timestamp)|
+|GAUGE|`dataway_sinker_rule_last_applied_time`|`source`|Rule last applied time (Unix timestamp)|
 |COUNTER|`diskcache_put_bytes_total`|`path`|Cache Put() bytes count|
 |COUNTER|`diskcache_get_total`|`path`|Cache Get() count|
 |COUNTER|`diskcache_wakeup_total`|`path`|Wakeup count on sleeping write file|
 |COUNTER|`diskcache_seek_back_total`|`path`|Seek back when Get() got any error|
 |COUNTER|`diskcache_get_bytes_total`|`path`|Cache Get() bytes count|
-|GAUGE|`diskcache_capacity`|`path`|Current capacity(in bytes)|
-|GAUGE|`diskcache_max_data`|`path`|Max data to Put(in bytes), default 0|
-|GAUGE|`diskcache_batch_size`|`path`|Data file size(in bytes)|
-|GAUGE|`diskcache_size`|`path`|Current cache size(in bytes)|
-|GAUGE|`diskcache_open_time`|`no_fallback_on_error,no_lock,no_pos,no_sync,path`|Current cache Open time in unix timestamp(second)|
-|GAUGE|`diskcache_last_close_time`|`path`|Current cache last Close time in unix timestamp(second)|
+|GAUGE|`diskcache_capacity`|`path`|Current capacity (in bytes)|
+|GAUGE|`diskcache_max_data`|`path`|Max data to Put (in bytes), default 0|
+|GAUGE|`diskcache_batch_size`|`path`|Data file size (in bytes)|
+|GAUGE|`diskcache_size`|`path`|Current cache size (in bytes)|
+|GAUGE|`diskcache_open_time`|`no_fallback_on_error,no_lock,no_pos,no_sync,path`|Current cache open time in Unix timestamp (second)|
+|GAUGE|`diskcache_last_close_time`|`path`|Current cache last close time in Unix timestamp (second)|
 |GAUGE|`diskcache_datafiles`|`path`|Current un-read data files|
-|SUMMARY|`diskcache_get_latency`|`path`|Get() time cost(micro-second)|
-|SUMMARY|`diskcache_put_latency`|`path`|Put() time cost(micro-second)|
+|SUMMARY|`diskcache_get_latency`|`path`|Get() time cost (micro-second)|
+|SUMMARY|`diskcache_put_latency`|`path`|Put() time cost (micro-second)|
 |COUNTER|`diskcache_dropped_bytes_total`|`path`|Dropped bytes during Put() when capacity reached.|
 |COUNTER|`diskcache_dropped_total`|`path,reason`|Dropped files during Put() when capacity reached.|
-|COUNTER|`diskcache_rotate_total`|`path`|Cache rotate count, mean file rotate from data to data.0000xxx|
-|COUNTER|`diskcache_remove_total`|`path`|Removed file count, if some file read EOF, remove it from un-read list|
+|COUNTER|`diskcache_rotate_total`|`path`|Cache rotate count, meaning file rotation from data to data.0000xxx|
+|COUNTER|`diskcache_remove_total`|`path`|Removed file count, if some file read EOF, remove it from the un-read list|
 |COUNTER|`diskcache_put_total`|`path`|Cache Put() count|
 
-#### Metrics under Docker {#metrics-within-docker}
+#### Metrics Collection in Docker Mode {#metrics-within-docker}
 
-There are two modes for non-Kubernetes, host mode and Docker mode. This section will specifically discuss the differences in metrics collection when installing in Docker.
+Host installation has two modes: one is host installation, and the other is through Docker. Here we specifically explain the differences in metrics collection when installed via Docker.
 
-When installed in docker, the HTTP port that exposes metrics will be mapped to port 19090 on the host machine (by default). In this case, the metrics collection address is `http://localhost:19090/metrics`.
+When installed via Docker, the exposed HTTP port for metrics will be mapped to the host's port 19090 (by default). At this point, the metrics collection address is `http://localhost:19090/metrics`.
 
-If a different port is specified, the installer will add 10000 to the specified port during installation. Therefore, the specified port should not exceed 45535.
+If a different port is specified separately, then during Docker installation, it will add 10000 to the specified port, so ensure the specified port does not exceed 45535.
 
-In addition, when installed in Docker mode, a profile collection port will also be exposed, which is mapped to port 16060 on the host machine by default. The mechanism is also to add 10000 to the specified port.
+Additionally, when installing via Docker, the profile collection port will also be exposed, defaulting to port 16060 on the host. This mechanism also adds 10000 to the specified port.
 
-### Dataway's Own Log Collection and Processing {#logging}
+### Dataway Self-Logging Collection and Processing {#logging}
 
-Dataway's own logs are divided into two categories: one is the gin log, and the other is the Dataway's own log. The following Pipeline can separate them:
+Dataway's own logs are divided into two categories: one is Gin logs, and the other is application logs. The following Pipeline can separate them:
 
 ```python
 # Pipeline for dataway logging
 
-# Testing sample loggin
+# Testing sample logging
 '''
-2023-12-14T11:27:06.744+0800	DEBUG	apis	apis/api_upload_profile.go:272	save profile file to disk [ok] /v1/upload/profiling?token=****************a4e3db8481c345a94fe5a
-[GIN] 2021/10/25 - 06:48:07 | 200 |   30.890624ms |  114.215.200.73 | POST     "/v1/write/logging?token=tkn_5c862a11111111111111111111111"
+2023-12-14T11:27:06.744+0800    DEBUG   apis     apis/api_upload_profile.go:272   save profile file to disk [ok] /v1/upload/profiling?token=****************a4e3db8481c345a94fe5a
+[GIN] 2021/10/25 - 06:48:07 | 200 |   30.890624ms |  114.215.200.73 | POST     "/v1/write/logging?token=tkn_5c862a11111111111111111111111111"
 '''
 
 add_pattern("TOKEN", "tkn_\\w+")
 add_pattern("GINTIME", "%{YEAR}/%{MONTHNUM}/%{MONTHDAY}%{SPACE}-%{SPACE}%{HOUR}:%{MINUTE}:%{SECOND}")
 grok(_,"\\[GIN\\]%{SPACE}%{GINTIME:timestamp}%{SPACE}\\|%{SPACE}%{NUMBER:dataway_code}%{SPACE}\\|%{SPACE}%{NOTSPACE:cost_time}%{SPACE}\\|%{SPACE}%{NOTSPACE:client_ip}%{SPACE}\\|%{SPACE}%{NOTSPACE:method}%{SPACE}%{GREEDYDATA:http_url}")
 
-# gin logging
+# Gin logging
 if cost_time != nil {
   if http_url != nil  {
     grok(http_url, "%{TOKEN:token}")
@@ -639,7 +769,7 @@ if cost_time != nil {
   exit()
 }
 
-# app logging
+# App logging
 if cost_time == nil {
   grok(_,"%{TIMESTAMP_ISO8601:timestamp}%{SPACE}%{NOTSPACE:status}%{SPACE}%{NOTSPACE:module}%{SPACE}%{NOTSPACE:code}%{SPACE}%{GREEDYDATA:msg}")
   if level == nil {
@@ -651,7 +781,7 @@ if cost_time == nil {
   }
   lowercase(level)
 
-  # if debug level enabled, drop most of them
+  # If debug level is enabled, drop most of them
   if status == 'debug' {
     if sample(0.1) { # drop 90% debug log
       drop()
@@ -677,22 +807,22 @@ if cost_time == nil {
 
 ## Dataway Bug Report {#bug-report}
 
-Dataway exposes its own metrics and profiling collection endpoints, allowing us to gather this information for troubleshooting purposes.
+Dataway exposes metrics and profiling collection endpoints, which we can collect to facilitate issue troubleshooting.
 
-> The following information collection should based on actual configured ports and addresses. These listed commands are based on default configurations.
+> The following information collection uses actual configured ports and addresses. The commands below use default parameters.
 
 ```shell title="dw-bug-report.sh"
 br_dir="dw-br-$(date +%s)"
 mkdir -p $br_dir
 
-echo "Save bug report to ${br_dir}"
+echo "save bug report to ${br_dir}"
 
-# Modify the following configurations according to your actual situation
-dw_ip="localhost" # The IP address where Dataway's metrics/profile is exposed
-metric_port=9090  # The port where metrics are exposed
-profile_port=6060 # The port where profiling information is exposed
+# Modify these configurations based on actual conditions
+dw_ip="localhost" # IP address where Dataway exposes metrics/profile
+metric_port=9090  # Port for exposing metrics
+profile_port=6060 # Port for exposing profiles
 dw_yaml_conf="/usr/local/cloudcare/dataflux/dataway/dataway.yaml"
-dw_dot_yaml_conf="/usr/local/cloudcare/dataflux/dataway/.dataway.yaml"
+dw_dot_yaml_conf="/usr/local/cloudcare/dataflux/dataway/.dataway.yaml" # Present in container installations
 
 # Collect runtime metrics
 curl -v "http://${dw_ip}:${metric_port}/metrics" -o $br_dir/metrics
@@ -700,7 +830,7 @@ curl -v "http://${dw_ip}:${metric_port}/metrics" -o $br_dir/metrics
 # Collect profiling information
 curl -v "http://${dw_ip}:${profile_port}/debug/pprof/allocs" -o $br_dir/allocs
 curl -v "http://${dw_ip}:${profile_port}/debug/pprof/heap" -o $br_dir/heap
-curl -v "http://${dw_ip}:${profile_port}/debug/pprof/profile" -o $br_dir/profile # This command will take about 30 seconds to run
+curl -v "http://${dw_ip}:${profile_port}/debug/pprof/profile" -o $br_dir/profile # This command runs for about 30 seconds
 
 cp $dw_yaml_conf $br_dir/dataway.yaml.copy
 cp $dw_dot_yaml_conf $br_dir/.dataway.yaml.copy
@@ -716,26 +846,26 @@ $ sh dw-bug-report.sh
 ...
 ```
 
-After execution, a file similar to *dw-br-1721188604.tar.gz* will be generated. You can then retrieve this file for further use.
+After execution, a file similar to *dw-br-1721188604.tar.gz* will be generated. You can retrieve this file for further analysis.
 
 ## FAQ {#faq}
 
-### Request Entity Too Large Issue {#too-large-request-body}
+### Too Large Request Body Issue {#too-large-request-body}
 
 [:octicons-tag-24: Version-1.3.7](dataway-changelog.md#cl-1.3.7)
 
-Dataway has a default setting for the size of the request body (default is 64MB), but when the request body is too large, the client will receive an HTTP 413 error (`Request Entity Too Large`). If the request body is within a reasonable range, you can appropriately increase this value (unit is bytes):
+Dataway has a default setting for request body size (default 64MB). When the request body is too large, the client receives an HTTP 413 error (`Request Entity Too Large`). If the request body is within a reasonable range, you can appropriately increase this value (unit bytes):
 
-- Set the environment variable `DW_MAX_HTTP_BODY_BYTES` for Kubernetes Pod install
-- In *dataway.yaml*, set `max_http_body_bytes` for host install
+- Set the environment variable `DW_MAX_HTTP_BODY_BYTES`
+- In *dataway.yaml*, set `max_http_body_bytes`
 
-If there is a request that is too large during runtime, it is reflected in both metrics and logs:
+If a large request packet appears during operation, it will be reflected in both metrics and logs:
 
-- The metric `dataway_http_too_large_dropped_total` exposes the number of discarded large requests
-- Search the Dataway logs with `cat log | grep 'drop too large request'`. The logs will output the details of the HTTP request Header, which is helpful for further understanding the client situation
+- The metric `dataway_http_too_large_dropped_total` exposes the number of dropped large requests
+- Search Dataway logs `cat log | grep 'drop too large request'`, which outputs HTTP request headers for further understanding of the client situation
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    In the disk cache module, there is also a maximum data block write limit (default 64MB). If you increase the maximum request body configuration, you should also adjust this configuration accordingly ([`ENV_DISKCACHE_MAX_DATA_SIZE`](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}), to ensure that large requests can be correctly written to the disk cache.
+    In the disk cache module, there is also a maximum data block write limit (default 64MB). If you increase the maximum request body configuration, adjust this configuration accordingly ([`ENV_DISKCACHE_MAX_DATA_SIZE`](https://github.com/GuanceCloud/cliutils/tree/main/diskcache#%E9%80%9A%E8%BF%87-env-%E6%8E%A7%E5%88%B6%E7%BC%93%E5%AD%98-option){:target="_blank"}) to ensure that large requests can be correctly written to disk cache.
 <!-- markdownlint-enable -->

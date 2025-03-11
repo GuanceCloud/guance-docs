@@ -1,77 +1,119 @@
 # Mute Management
 ---
 
-Guance provides **Mute Management** feature, which allows you to manage all mute rules for different monitors, intelligent inspections, custom inspections, SLOs, and alert strategies in the current workspace. After setting the mute, the mute targets will not send alert notifications to any alert notification targets during the mute period. Mute means that the events that meet the conditions will not send alerts, but the events will still occur.
+You can manage the muting of different monitors, intelligent inspections, user-defined inspections, SLOs, and all rules of alert strategies within the current workspace. Here, mute refers to: **events that meet the mute rule will not send alert notifications, but event data will still be generated**. After setting mute, the muted object **will not send alert notifications to any notification targets during the mute period**.
 
-## Setup
 
-![](img/monitor07.png)
+## Create
 
-:material-numeric-1-circle-outline: Select the Mute Scope
+1. Enter the name of the mute rule, and input the description of the rule as needed;
+2. Select [mute scope](#scope);
+3. Define [mute time](#time);
+4. Configure corresponding [notification targets](#target) for the mute rule;
+5. Add additional information, indicating the reason or source of the mute, obtaining information from various monitoring scenarios from a practical business perspective;
+6. Click save.
 
-- It mainly includes four dimensions:
+### Mute Scope {#scope}
 
-| Mute Dimension | Description |
-| --- | --- |
-| By Monitors | Select the monitors that need to be muted; multiple selections are allowed. |
-| By Alert Strategies | Select the alert strategies, and if the monitors belong to the selected alert strategies, they will be muted; multiple selections are allowed. |
-| By Monitor Tags | Select the tags, and if the monitors belong to the selected tags, they will be muted; multiple selections are allowed. |
-| Custom | You can select the monitors to be muted based on any dimension; multiple selections are allowed; <br/>You can select the related monitors, intelligent inspections, custom inspections, SLOs, and alert strategies as mute targets, and click :material-arrow-right-top-bold: to go to the details page to view the details. |
+It mainly includes four dimensions:
 
-- Event Attributes: You can filter the tags by selecting the fields provided in the drop-down list; you can also manually enter `key` and `value` for binding; support tag filtering conditions for mute.
+<div class="grid" markdown>
 
-> For more details, see [How to Understand the Event Properties in Mute Rules](#faq).
+=== "Based on Monitoring Rules"
 
-After entering the mute scope, there are several situations for **tags**:
+    Select the monitoring rules that need to be muted, including 【Monitors】【Intelligent Monitoring】【Intelligent Inspections】【SLO】; multiple selections are allowed. The selected monitoring rules will not send alert notifications during the mute period, but events will still be generated.      
+
+=== "Based on Alert Strategies"
+
+    Monitoring rules associated with alert strategies will not send alert notifications during the mute period, but events will still be generated; multiple selections are allowed.           
+
+=== "Based on Monitor Labels"
+
+    Select labels; if a monitor belongs to the selected label, it will be muted; multiple selections are allowed.
+
+=== "Custom"
+
+    Select monitors to be muted based on any dimension; multiple selections are allowed;<br/>you can select related monitors, intelligent inspections, user-defined inspections, SLOs, and alert strategies as mute objects, click :material-arrow-right-top-bold: to jump to the details page to view details.          
+
+</div>
+
+---
+
+#### Advanced Filtering
+
+The detection results of monitoring rules are recorded as events, and all event attribute fields can be used as filtering conditions to further filter the mute scope.
+
+Event attributes can be filtered using tags provided by the dropdown list fields, or you can manually enter `key`, `value` for binding.
+
+The format of the filtering conditions is as follows: `attribute:value`, `attribute:*value*`, `-attribute:value`, `-attribute:*value*`. Different fields are combined with AND, and multiple values of the same field are combined with OR. You can freely combine AND and OR for different fields.
+
+After entering the filtering conditions, there are several situations regarding **tags**:
 
 ![](img/logic.png)
 
-:material-numeric-2-circle-outline: Define Mute Time
+*Example:*
 
-Mute time represents that no alert message will be sent within the set time range.
+Assuming the premise is that monitors exist grouped by host, service. In advanced filtering, we configure the filtering condition `host:cn-hangzhou AND service:guance`. If both combinations `host:cn-hangzhou AND service:guance` and `host:cn-shanghai AND service:guance` trigger thresholds and generate events simultaneously, only `host:cn-hangzhou AND service:guance` will be muted, while `host:cn-shanghai AND service:guance` will still send alert notifications.
 
-| Time Settings | Description |
-| --- | --- |
-| Only Once | You can customize the time zone, start time, and end time for the alert mute, and you can also quickly set it to 1 hour/6 hours/12 hours/1 day/1 week. |
-| Repeat | Select the mute time period, cycle, and expiration time to repeat the mute according to your settings. |
+> More examples can be found in [Understanding Event Attributes in Mute Rules](./faq.md).
 
-**Note**: Adjusting the [global time zone](../management/index.md#zone) does not affect the mute time set here.
 
-:material-numeric-3-circle-outline: Configure Notification Targets
+### Mute Time {#time}
 
-| Notification Settings | Description |
-| --- | --- |
-| Notification Object | Each mute task can be configured with related [notification targets](notify-object.md). You can configure one or more notification targets for the generation and modification of mute rules; it can be set through email, bots (WeCom, DingTalk, Lark) or Webhook. |
-| Notification Content | After setting the notification target, you need to customize the relevant notification content to ensure that the notified person can understand the mute details. It can contain up to 256 characters. |
-| Notification Time | After setting the notification target, you need to set the time to trigger the notification, supporting immediate triggering, triggering 15 minutes before the mute starts, triggering 30 minutes before the mute starts, and triggering 1 hour before the mute starts. |
+That is, no alert messages will be sent during the set time range.
 
-## Rule List
+**Note**: Adjusting the [global timezone](../management/index.md#zone) does not affect the mute time settings here.
 
-In the rule list, you can view all the mute rules in the current workspace, including their mute scope, mute type, repeat frequency, mute time, and operator.
+<div class="grid" markdown>
 
-**Note**: The mute rule management list only displays the mute rules that have not expired.
+=== "Once Only"
 
-![](img/monitor08.png)
+    You can customize the timezone, start time, and end time for alert muting, or quickly set it to 1 hour, 6 hours, 12 hours, 1 day, 1 week.
 
-You can also perform the following operations on mute rules:
+=== "Repeat"
 
-- Search: Support keyword search related mute rules based on the mute scope. 
+    1. Select timezone;
+    2. Choose the start time and duration of the mute;
+    3. Select the mute cycle starting from a certain moment, including daily, weekly, monthly;
+    4. Choose the end time of the mute, i.e., expiration time. You can choose to repeat indefinitely according to the above times or repeat until a specific moment.
 
-- Edit: Support re-editing the mute task through editing. 
+    Click the **Mute Schedule** in the top right corner to preview the current mute time configuration.
 
-- Delete: Support deleting mute tasks, and the deleted mute scope will restore the alert status. 
+    ![](img/time-preview.png)
 
-- Disable/Enable: Support disabling/enabling mute tasks:
+</div>
 
-    - Enable: The mute rule will be executed according to the normal process;
-    
-    - Disable: The mute rule will not take effect; if a mute notification policy is set and the selected "xx minutes" before the mute is started and the mute notification operation has not been executed, the notification will not be triggered;
-    - :warning: Disabling/enabling mute rules will generate operation audit events, which can be viewed in the Guance workspace **Management > Audit**. 
+---
 
-## FAQ {#faq}
+## Notification Targets {#target}
 
-:octicons-question-16: How to understand **Event Attributes** in mute rules?
+When configuring the current mute rule, you can specify notification targets and customize notification content so that recipients clearly understand the specific information of the mute rule. Additionally, you can set the specific time for notification triggers, including sending immediately after the mute rule takes effect or sending 15 minutes, 30 minutes, 1 hour before the mute starts.
 
-When a monitor generates an abnormal event, an alert notification will be sent. At this time, it supports to mute alerting based on the **event dimension**:
+## Manage Rules
 
-When setting the mute rule, you can configure event attributes to set tags for the current mute rule. For example, if four hosts A, B, C and D all generate abnormal events, but you do not want to receive alert notifications from host C, you can enter `host:C` in the event attributes. At this time, when the monitor captures the alert of an abnormal event, it will filter and send alert notifications only for hosts A, B, and D that have been configured.
+In the mute rule list, you can view all mute rules within the current workspace, including their mute scope, status information, mute type, repetition frequency, mute time, etc.
+
+???- abstract "Three Mute States"
+
+    Pending: Not yet at the effective time of the mute;
+
+    In Progress: Within the mute time range, matched events are in a muted state and will not send external alert notifications;
+
+    Expired: The mute time has passed, and the mute rule has expired.
+
+You can manage the list via the following operations.
+
+1. Search: Search for related mute rules based on keywords of the mute scope.
+2. Settings: Adjust display columns, including rule name, status, mute scope, mute type, repetition, description, mute time;
+
+3. Disable/Enable: Disabling or enabling mute rules will generate operation audit events, which can be viewed under workspace **Management > [Audit Events](../management/operation-audit.md)**.
+
+    - Enable: Mute rules follow the normal execution process;
+    - Disable: Mute rules do not take effect; if a mute notification strategy is set, and the chosen option is "xx minutes" before the start and the mute notification action has not been executed, the notification will not be executed.
+
+4. Edit: Re-edit the mute task;
+
+5. Operation Audit: Click to jump to view the operation records related to this mute rule;
+6. Delete: Deleted mute scopes will revert to an alert state;
+
+7. Quick Filter: Filter based on five fields: status, enabled/disabled, mute type, creator, and updater.

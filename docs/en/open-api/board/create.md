@@ -2,13 +2,12 @@
 
 ---
 
-<br />**post /api/v1/dashboards/create**
+<br />**POST /api/v1/dashboards/create**
 
 ## Overview
-Create an empty dashboard, or create a dashboard according to `the dashboard template`
+Create an empty dashboard, or create a dashboard based on a `dashboard template`.
 Rules:
-  - Disable the creation of dashboards with the same name
-  - The `name` field in the parameter overrides`title` in `templateInfo`
+  - The `name` field in the parameters will override the `title` in `templateInfo`
 
 
 
@@ -16,79 +15,87 @@ Rules:
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| name | string | Y | 仪表板名称<br>Allow null: False <br>最大长度: 128 <br> |
-| extend | json |  | 仪表板的额外数据, 默认为{}<br>例子: {} <br>Allow null: False <br> |
-| mapping | array |  | 视图变量的字段映射信息，默认为 []<br>例子: [{'class': 'host_processes', 'field': 'create_time', 'mapping': 'username', 'datasource': 'object'}] <br>Allow null: False <br> |
-| tagNames | array |  | 关联的 tag 列表<br>Allow null: False <br> |
-| templateInfo | json |  | 仪表板模板数据<br>例子: {} <br>Allow null: False <br>允许空字符串: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| name | string | Y | Dashboard name<br>Allow null: False <br>Maximum length: 128 <br> |
+| desc | string |  | Description<br>Example: Description1 <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 2048 <br> |
+| identifier | string |  | Identifier ID -- Added on 2024.12.25<br>Example: xxxx <br>Allow null: False <br>Allow empty string: True <br>Maximum length: 128 <br> |
+| extend | json |  | Additional data for the dashboard, defaults to {}<br>Example: {} <br>Allow null: False <br> |
+| mapping | array |  | Field mapping information for view variables, defaults to []<br>Example: [{'class': 'host_processes', 'field': 'create_time', 'mapping': 'username', 'datasource': 'object'}] <br>Allow null: False <br> |
+| tagNames | array |  | List of associated tags<br>Allow null: False <br> |
+| templateInfo | json |  | Dashboard template data<br>Example: {} <br>Allow null: False <br>Allow empty string: False <br> |
+| specifyDashboardUUID | string |  | Specify the UUID for the new dashboard, must start with `dsbd_custom_` followed by 32 lowercase letters or numbers<br>Example: dsbd_custom_xxxx32 <br>Allow null: False <br>Allow empty string: False <br>$matchRegExp: ^dsbd_custom_[a-z0-9]{32}$ <br> |
+| isPublic | int |  | Whether it is publicly displayed, 1 for public, 0 for private, -1 indicates custom<br>Example: 1 <br>Allow null: False <br> |
+| openPermissionSet | boolean |  | Deprecated as of 2024-11-27, no longer effective. Use `isPublic` set to -1 to indicate custom permission configuration.<br>Allow null: False <br> |
+| permissionSet | array |  | Custom operation permission configuration when `isPublic` is -1, can configure (role (except owner), member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>Allow null: False <br> |
+| readPermissionSet | array |  | Custom read permission configuration when `isPublic` is -1, can configure (role (except owner), member UUID, team UUID)<br>Example: ['wsAdmin', 'acnt_xxxx', 'group_yyyy'] <br>Allow null: False <br> |
 
-## Parameter Supplement
+## Parameter Supplemental Explanation
 
 Parameter description:
 
-The basic structure of template includes: view structure (including chart structure, view variable structure and chart grouping structure)
+The basic structure of the template includes: view structure (including chart structure, view variable structure, chart grouping structure)
 
-**Description of the Body Structure of `templateInfo`**
+**`templateInfo` main structure explanation**
 
-|  Parameter Name                |   Type  | Required  |          Description          |
+| Parameter Name                | type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-|title             |string | Must |  View Title Name |
-|summary             |string |  |  Summary information for templates |
-|dashboardType       |string |  |  Abandoned, default to `CUSTOM` |
-|dashboardExtend     |json |  |  View additional data information |
-|dashboardMapping    |array[json] |  |  Field mapping configuration list for view variables |
-|iconSet             |json |   |  Dashboard icon information |
-|iconSet.url             |json |   |  Link address of medium icon in dashboard |
-|iconSet.icon             |json |   |  Link address of small icon in dashboard |
-|icon             |string |   |  Dashboard small icon file name |
-|thumbnail             |string |   |  Dashboard medium icon file name |
-|main             |json |   |  Dashboard content structure |
-|main.type    |string     |   | Template type, which is a system field and can be ignored|
-|main.vars    |array[json]     |   | View variable configuration list |
-|main.vars[#]    |json     |   | View variable configuration structure |
-|main.groups    |array[string]     |   | List of chart group names |
-|main.charts    |array[json]     |   | Chart configuration list for view |
-|main.charts[#]    |json     |   | Chart configuration structure |
+| title             |string | Required | View title name |
+| summary             |string |  | Template summary information |
+| identifier    |string |  | Template identifier ID -- Added on 2024.12.25 |
+| dashboardType       |string |  | Deprecated, defaults to `CUSTOM` |
+| dashboardExtend     |json |  | Additional data information for the view |
+| dashboardMapping    |array[json] |  | Configuration list for view variable field mappings |
+| iconSet             |json |   | Dashboard icon information |
+| iconSet.url             |json |   | URL address for medium-sized icons in the dashboard |
+| iconSet.icon             |json |   | URL address for small icons in the dashboard |
+| icon             |string |   | Small icon filename for the dashboard |
+| thumbnail             |string |   | Medium-sized icon filename for the dashboard |
+| main             |json |   | Dashboard content structure |
+| main.type    |string     |   | Template type, this field is a system field and can be ignored |
+| main.vars    |array[json]     |   | View variable configuration list |
+| main.vars[#]    |json     |   | View variable configuration structure |
+| main.groups    |array[string]     |   | List of chart group names |
+| main.charts    |array[json]     |   | View chart configuration list |
+| main.charts[#]    |json     |   | Chart configuration structure |
 
 
 
-**Subject Structure Description of `dashboardMapping[#]`**
+**`dashboardMapping[#]` main structure explanation**
 
-|  Parameter Name                |   Type  | Required  |          Description          |
+| Parameter Name                | type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
 
 
-**Subject Structure Description of `main.charts[#]`**
+**`main.charts[#]` main structure explanation**
 
-|  Parameter Name                |   Type  | Required  |          Description          |
+| Parameter Name                | type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-|name             |string | Must |  Chart name |
-|type             |string | Must |  Chart type |
-|pos              |json |  |  Position structure of chart |
-|pos.i              |string |  |   |
-|pos.h              |string |  |  Height |
-|pos.w              |string |  |  Width |
-|pos.x              |string |  |  x-axis coordinates |
-|pos.y              |string |  |  y-axis coordinates |
-|group              |json[string] |  |  Packet information |
-|group.name         |string |  |  Grouping name, no grouping is allowed to be null |
-|queries          |array[json] | Must |  Chart query query statement structure list |
+| name             |string | Required | Chart name |
+| type             |string | Required | Chart type |
+| pos              |json |  | Chart position structure |
+| pos.i              |string |  |   |
+| pos.h              |string |  | Height |
+| pos.w              |string |  | Width |
+| pos.x              |string |  | X-axis coordinate |
+| pos.y              |string |  | Y-axis coordinate |
+| group              |json[string] |  | Group information |
+| group.name         |string |  | Group name, can be null if no group |
+| queries          |array[json] | Required | List of chart query statement structures |
 
 
-**`sequence diagram` structure `main.charts[#].type=sequence`; The main structure parameters are as follows: **
+**For `Time Series Charts` structure `main.charts[#].type=sequence`, the main structure parameters are as follows: **
 
-|  Parameter Name                |   Type  | Required  |          Description          |
+| Parameter Name                | type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
-|name             |string | Must |  Chart name |
-|type             |string | Must |  Chart type |
-|pos             |string | Must |  Chart type |
-|queries          |array[json] | Must |  Chart query query statement structure list |
+| name             |string | Required | Chart name |
+| type             |string | Required | Chart type |
+| pos             |string | Required | Chart type |
+| queries          |array[json] | Required | List of chart query statement structures |
 
 
-**Subject Structure Description of `main.vars[#]`**
+**`main.vars[#]` main structure explanation**
 
-|  Parameter Name                |   Type  | Required  |          Description          |
+| Parameter Name                | type  | Required  | Description          |
 |-----------------------|----------|----|------------------------|
 
 
@@ -96,12 +103,11 @@ The basic structure of template includes: view structure (including chart struct
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"name": "x5T8APwi", "templateInfo": {"dashboardBindSet": [], "dashboardExtend": {}, "dashboardMapping": [], "dashboardOwnerType": "node", "dashboardType": "CUSTOM", "iconSet": {}, "main": {"charts": [{"extend": {"settings": {"chartType": "bar", "colors": [{"color": "#3ab8ff", "key": "count(trace_id){\"status\": \"ok\"}"}, {"color": "#f97575", "key": "count(trace_id){\"status\": \"error\"}"}], "openStack": true, "options": {"yAxis": {"axisLabel": {"color": "#666"}, "axisLine": {"show": true}, "axisTick": {"show": false}, "splitLine": {"show": false}, "splitNumber": 1}}, "xAxisShowType": "time"}}, "group": {"name": null}, "name": "请求数", "pos": null, "queries": [{"checked": true, "datasource": "dataflux", "qtype": "dql", "query": {"density": "lower", "filter": [{"logic": "and", "name": "service", "op": "=", "value": "front-api"}], "groupBy": " by `status`", "groupByTime": "auto", "q": "T::re(`.*`):(count(`trace_id`)){ `service` = 'front-api' } [::auto] by `status`"}, "unit": "", "uuid": "6aed3c00-7a99-11ec-8689-536665ee3a48"}], "type": "sequence"}], "groups": [], "type": "template", "vars": []}, "summary": "", "tagInfo": [], "tags": [], "thumbnail": "", "title": "lwc-链路资源"}}' \
---compressed \
---insecure
+--data-raw '{"name": "x5T8APwi", "templateInfo": {"dashboardBindSet": [], "dashboardExtend": {}, "dashboardMapping": [], "dashboardOwnerType": "node", "dashboardType": "CUSTOM", "iconSet": {}, "main": {"charts": [{"extend": {"settings": {"chartType": "bar", "colors": [{"color": "#3ab8ff", "key": "count(trace_id){\"status\": \"ok\"}"}, {"color": "#f97575", "key": "count(trace_id){\"status\": \"error\"}"}], "openStack": true, "options": {"yAxis": {"axisLabel": {"color": "#666"}, "axisLine": {"show": true}, "axisTick": {"show": false}, "splitLine": {"show": false}, "splitNumber": 1}}, "xAxisShowType": "time"}}, "group": {"name": null}, "name": "Request Count", "pos": null, "queries": [{"checked": true, "datasource": "dataflux", "qtype": "dql", "query": {"density": "lower", "filter": [{"logic": "and", "name": "service", "op": "=", "value": "front-api"}], "groupBy": " by `status`", "groupByTime": "auto", "q": "T::re(`.*`):(count(`trace_id`)){ `service` = 'front-api' } [::auto] by `status`"}, "unit": "", "uuid": "6aed3c00-7a99-11ec-8689-536665ee3a48"}], "type": "sequence"}], "groups": [], "type": "template", "vars": []}, "summary": "", "tagInfo": [], "tags": [], "thumbnail": "", "title": "lwc-Link Resource"}}' \
+--compressed 
 ```
 
 
@@ -115,7 +121,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
         "chartGroupPos": [],
         "chartPos": [
             {
-                "chartUUID": "chrt_57e4b4a3f18c4d5ea705c893adeaaf49",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 0,
@@ -125,7 +131,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_bc6448e0e8bd4931abc24dfeb4ebde44",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 1,
@@ -135,7 +141,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_b32f5173a6f6490dad2a94bb396dfc09",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 2,
@@ -145,7 +151,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_87c97cfc44374f398fe57ec6c440835b",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 3,
@@ -155,7 +161,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_e03caef30cd8475e88f9453fff165381",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 4,
@@ -165,7 +171,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
                 }
             },
             {
-                "chartUUID": "chrt_280a547f6f6b4ec3832bb7c3e769249b",
+                "chartUUID": "chrt_xxxx32",
                 "pos": {
                     "h": 9,
                     "i": 5,
@@ -177,7 +183,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
         ],
         "createAt": 1641953280.0015242,
         "createdWay": "manual",
-        "creator": "acnt_a5d6130c19524a6b9fe91d421eaf8603",
+        "creator": "acnt_xxxx32",
         "dashboardBindSet": [],
         "deleteAt": -1,
         "extend": {},
@@ -187,20 +193,20 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
         },
         "id": null,
         "mapping": [],
-        "name": "CPU 监控视图-lwctest",
+        "name": "CPU Monitoring View-lwctest",
         "ownerType": "node",
         "status": 0,
         "tag_info": [
             {
-                "id": "tag_e48c1d03a3d044808ab0e074086c0c72",
-                "name": "测试"
+                "id": "tag_xxxx32",
+                "name": "Test"
             }
         ],
         "type": "CUSTOM",
         "updateAt": 1641953280.0015464,
-        "updator": "acnt_a5d6130c19524a6b9fe91d421eaf8603",
-        "uuid": "dsbd_9285271961be40069ddfa27af07a3538",
-        "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+        "updator": "acnt_xxxx32",
+        "uuid": "dsbd_xxxx32",
+        "workspaceUUID": "wksp_xxxx32"
     },
     "errorCode": "",
     "message": "",
@@ -208,7 +214,3 @@ curl 'https://openapi.guance.com/api/v1/dashboards/create' \
     "traceId": "TRACE-97C1194E-40E6-43A3-B6DF-6637D96BECDB"
 } 
 ```
-
-
-
-

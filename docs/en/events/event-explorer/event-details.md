@@ -1,97 +1,146 @@
 # Event Details
 ---
 
+In the [Unrecovered Events Explorer](./unrecovered-events.md) or the [All Events Explorer](./event-list.md), click any event to view its details, including basic attributes, extended fields, alert notifications, history, related events, and associated SLOs.
 
-In the event Explorer or uncovered event Explorer before recovery, click on any event to view event details, including basic properties, extended fields, alert notifications, history records, associated events and SLOs.
-
-
+<!--
 On the event details page, you can:
 
-- Click on the **Monitor** option in the top right corner to view and adjust the [monitoring configuration](https://www.notion.so/monitoring/monitor/index.md);
-- Click on the **Export** button in the top right corner to choose between **Export JSON file** and **Export PDF file** options, in order to obtain all the key data associated with the current event.
+- Click **Jump to Monitor** in the top-right corner to view and adjust [monitor configurations](../../monitoring/monitor/index.md);
+- Click the **Export** button in the top-right corner to export the current event's key data as a **JSON file** or a **PDF file**.
+-->
 
-## Information {#attribute}
+## Basic Attributes {#attribute}
 
-
-Display the detection dimensions, detection metrics, historical trends and event content for viewing events.
+Displays the detection dimensions, metrics, historical trends, and event content of the viewed event.
 
 ![](../img/5.event_8.png)
 
-:material-numeric-1-circle-outline: Detection Dimension: Guance supports query of all detection dimensions.
+:material-numeric-1-circle-outline: Detection Dimensions: You can query all detection dimensions by clicking; this will display related detection content.
 
-<img src="../../img/event-1.png" width="70%" >
+| Action      | Description               |
+| ----------- | ------------------------- |
+| Filter Field Value | Adds this tag to the event explorer to view all event data related to the host. |
+| Inverse Filter Field Value | Adds this tag to the event explorer to view all event data from other hosts except this one. |
+| Copy | Copies the tag content to the clipboard. |
 
-:material-numeric-2-circle-outline: Detection Metrics: Query statement for detection metrics configured in the monitor.
+<img src="../../img/event-1.png" width="80%" >
 
-:material-numeric-3-circle-outline: Historical Trend: The historical trend of detection result values for currently unresolved events. Click **Get Chart Query** to obtain the current query.
+**Note**: If you click on a single detection dimension, actions based on that dimension are displayed; if you click on a blank area, it triggers all detection dimensions.
 
-## Extend Fields {#event-extension}
+:material-numeric-2-circle-outline: Event Content: The event content description defined on the monitor configuration page as described in [Event Content](../../monitoring/monitor/mutation-detection.md#event-content).
+
+:material-numeric-3-circle-outline: Detection Metrics: The query statement for the metrics configured in the monitor.
+
+:material-numeric-4-circle-outline: Historical Trends: The historical trend of the detection results for the current unrecovered event. Click **Get Chart Query** to obtain the current query statement.
+
+<img src="../../img/event-query.png" width="80%" >
+
+## Extended Fields {#event-extension}
+
+You can manage the attribute fields included in this event data through the following operations:
+
+![](../img/event-extension-1.gif)
+
+1. In the search bar, enter the field name or value to quickly locate;
+
+2. After selecting the field alias, it will appear after the field name; choose as needed.
+
+3. On the event details page, you can view the relevant field attributes of the current event under **Extended Fields**:
+
+| <div style="width: 110px">Field</div>      | Property                          |
+| ----------- | ------------------------------------ |
+| Filter Field Value | Adds this field to the explorer search bar to view all data related to this field, which can be filtered in the [Trace Explorer](../../application-performance-monitoring/explorer/explorer-analysis.md) to view the list of related traces. |
+| Inverse Filter Field Value | Adds this field to the explorer search bar to view all data except those related to this field. |
+| Copy | Copies the field to the clipboard. |
 
 ![](../img/event-extension.png)
 
-:material-numeric-1-circle-outline: In the search bar, you can enter the field name or value to quickly locate it.
+## Alert Notifications {#alarm}
 
-:material-numeric-2-circle-outline: After selecting the field alias, you can view it next to the field name. You can choose as needed.
+Displays information such as notification target type, notification target name, and whether the notification was successfully sent. Click to expand and view detailed information about the alert notification object, with support for hover-to-copy.
 
-:material-numeric-3-circle-outline: You can view the relevant field attributes of the current event.
+![](../img/5.event_10.png)
 
-| Fields      | Attributes                          |
-| ----------- | ------------------------------------ |
-| Filter      | Add this field to the explorer to view all data related to this field. You can use the link explorer to filter and view the list of links related to this field. <font size=2>*See Figure 1.*</font>                       |
-| Reverse filter      | Add this field to the explorer to view other data excluding this field.                          |
-| Copy      | Copy this field to the clipboard.                          |
+- If the alert is muted, it will display "Muted";
+- If the alert is normally sent, it will display the corresponding notification target icon, hovering over which shows the specific notification target name.
 
+**Note**: During the mute period, alert notifications will not be resent to the related targets.
 
-## Alerting {#alarm}
-
-Display information such as the type and name of notification object and whether the notification was sent successfully. Click to expand and display detailed information about the alert notification object, supporting hover to copy.
-
-- If the alert is in mute mode, it will be displayed as Mute.
-- If the alert is sent normally, the corresponding notification object label will be displayed. Hover to display the specific notification object name.
-
-**Note**: During the mute period, the alert notification will not be sent repeatedly to the relevant objects.
-
-## History {#history}
-
-Display the host of the detection object, the abnormal/recovery time and the duration.
-
-![](../img/5.event_11.png)
-
-
-## Related Events {#relevance}
-
-Support to view associated events by filtering fields and selected time components.
-
-![](../img/5.event_12.png)
-
-
-## Related Dashboards {#relevance}
-
-If an associated dashboard is configured in the monitor, you can view the associated dashboard.
-
-![](../img/5.event_13.png)
-
-
-
-## Related SLO {#relevance}
-
-If an SLO is configured in the monitor, you can view the associated SLO, including SLO name, monitor, compliance rate, error budget, target and other information.
-
-![](../img/5.event_14.png)
 
 <!--
 
-## 智能巡检事件详情页
+### Status & Trend
 
-若事件来源于智能巡检事件，您可以在事件详情页查看智能巡检的事件详情，如以下示意图是 Pod 的智能巡检，您可以在事件详情查看事件概览、异常 Pod 、container 状态、错误日志等信息。
+Displays the status distribution trend, DQL functions, and window function line charts of the event.
 
-> 更多详情，可参考 [智能巡检](../monitoring/bot-obs/index.md)。
+- Status Distribution: Shows the event status (critical, major, warning, data gap) within the selected time range (default is the last 6 hours);
+- DQL Query Statement: Custom query statements based on anomaly detection rules returning real-time metric data, default showing the last 6 hours of real-time metric data;
+- Window Function: Based on anomaly detection rules, using the selected time range as the window (record set) and detection frequency as the offset, re-executes statistical calculations for each record, returning real-time anomaly detection metric data used to trigger alerts. Defaults to displaying the last 6 hours of real-time anomaly detection metric data.
 
-![](../img/5.event_16.png)
+![](img/image.png)
 
-同时您也可以查看为该智能巡检添加的 Kubernets 指标视图（关联字段：`df_dimension_tags`）。
+???+ warning "<<< custom_key.brand_name >>> supports selecting a time range to view event data"
 
-> 更多详情，可参考 [绑定内置视图](../scene/built-in-view/bind-view.md)。
+    - When the selected time range is less than or equal to 6 hours, **Status Distribution**, **DQL Functions**, and **Window Functions** will display data and metric trends within the current time range;
+    - When the selected time range is greater than 6 hours, **Status Distribution** and **DQL Functions** will display data within the current time range, and a resizable slider (minimum support 15 minutes, maximum support 6 hours) will appear. By moving the slider, you can view the **Window Function** corresponding to the selected time range.
 
-![](../img/5.event_17.png)
 -->
+
+## History {#history}
+
+Displays the detected host, abnormal/recovery times, and duration.
+
+![](../img/5.event_11.png)
+
+Clicking on a data entry opens the corresponding explorer and automatically queries and filters based on its `df_fault_id`.
+
+![](../img/3.event_13.1.png)
+
+<!--
+### Related Information {#relevance}
+
+Displays information related to triggering the current event, such as viewing logs that triggered the event. This **Related Information** only supports events generated by four types of monitors: **log detection, security check anomaly detection, process anomaly detection, and synthetic testing anomaly detection**.
+
+**Note**: If log detection includes multiple expression queries, the related information supports tab switching for multiple expression queries. For example, if there are two expression queries A and B, the related information contains two tabs A and B for switching views.
+
+![](../img/3.event_13.png)
+
+-->
+
+## Related Events {#relevance}
+
+Supports viewing related events within a certain time frame based on four filtering fields.
+
+| Filtering Field      | Description           |
+| :------- | :----------- |
+| Same Fault ID      | `df_fault_id`; a special ID marking the entire process from when an anomaly event is triggered until it returns to normal.           |
+| Same Monitor      | `df_monitor_checker_id`           |
+| Same Detection Dimension      | `df_dimension_tags`           |
+| Same Level      | `df_status`           |
+
+![](../img/5.event_12.gif)
+
+## Related SLO {#relevance}
+
+If SLO is configured in the monitor, you can view the associated SLO, including SLO name, monitor, achievement rate, error budget, and target information.
+
+![](../img/5.event_14.png)
+
+## Related Dashboards {#relevance}
+
+If dashboards are configured in the monitor, you can view the associated dashboards.
+
+![](../img/5.event_13.png)
+
+## Related Queries {#related-query}
+
+In the related queries section, you can view all queries associated with the current event.
+
+![](../img/5.event_9.png)
+
+## Bind Built-in Views {#inner_view}
+
+<<< custom_key.brand_name >>> supports binding or deleting built-in views (user views) to the event details page. Clicking "Bind Built-in View" adds a new view to the current event details page.
+
+<img src="../../img/event-view.png" width="70%" >

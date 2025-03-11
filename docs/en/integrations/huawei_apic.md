@@ -1,86 +1,80 @@
 ---
-title: 'HUAWEI API Gateway'
+title: 'Huawei Cloud API'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the APIervation cloud.'
-__int_icon: 'icon/huawei_API'
+summary: 'Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance'
+__int_icon: 'icon/huawei_apic'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD APIC Dedicated Gateway Dashboard'
-    path: 'dashboard/zh/huawei_API'
+  - desc: 'HUAWEI APIC Exclusive Plan Gateway Monitoring View'
+    path: 'dashboard/zh/huawei_api'
 
 monitor:
-  - desc: 'HUAWEI CLOUD APIC Monitor'
-    path: 'monitor/zh/huawei_API'
+  - desc: 'Huawei Cloud APIC Monitor'
+    path: 'monitor/zh/huawei_api'
 
 ---
 
-
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD API Gateway
+# Huawei Cloud API
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the **APIervation** cloud.
+Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance
 
-
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
-,
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+We recommend enabling the Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with script installation.
 
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
+### Install Script
 
-### Installation script
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
+To synchronize Huawei Cloud API monitoring data, we install the corresponding collection script: "Guance Integration (Huawei Cloud - **APIG** Collection)" (ID: `guance_huaweicloud_apig`)
 
-To synchronize the monitoring data of  HUAWEI CLOUD API resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-APIG Collect）」(ID：`guance_huaweicloud_apig`)
+Click [Install], then enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
+After the script is installed, find the script "Guance Integration (Huawei Cloud - **APIG** Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs`, replace the region after `regions` with your actual region, and change `region_projects` under `monitor_configs` to the actual region and Project ID. Click Save and Publish.
 
-After the script is installed,Find the script in「Development」in Func「HUAWEI CLOUD-APIG Collect」,Expand to modify this script,find`collector_configs`-`regions`,Change the region to your actual region,Then find `region_projects` under `monitor_configs`,Change to the actual locale and Project ID.Click Save Publish again
+Additionally, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click [Execute] to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」.tap【Run】,It can be executed immediately once, without waiting for a periodic time.After a while, you can view task execution records and corresponding logs.
+By default, we collect some configurations, see the metrics section for details [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-apig/){:target="_blank"}
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-apig/){:target="_blank"}
+### Verification
 
+1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. In the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. In the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
-### Verify
+## Metrics {#metric}
+After configuring Huawei Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Huawei Cloud Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-apig/apig-ug-180427085.html){:target="_blank"}
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the **APIervation** cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the **APIervation** cloud platform, press 「Metrics」 to check whether monitoring data exists
+| Metric ID                                | Metric Name | Metric Meaning                                               | Value Range     | Measurement Object        | Monitoring Period (Raw Metric) |
+|--------------------------------------|-------|------------------------------------------------------------|----------|---------------|--------------------|
+| `requests`                           | API Call Count | Counts the number of times the API interface is called. | ≥0       | Exclusive Plan API Gateway Instance | 1 minute                |
+| `error_4xx`                          | 4xx Error Count | Counts the number of times the API interface returns a 4xx error. | ≥0       | Exclusive Plan API Gateway Instance | 1 minute                |
+| `error_5xx`                          | 5xx Error Count | Counts the number of times the API interface returns a 5xx error | ≥0       | Exclusive Plan API Gateway Instance | 1 minute                |
+| `throttled_calls`                    | Throttled Call Count | Counts the number of throttled calls to the API. | ≥0       | Exclusive Plan API Gateway Instance | 1 minute                |
+| `avg_latency`                        | Average Latency (ms) | Measures the average response delay time of the API interface | ≥0 Unit: ms | Exclusive Plan API Gateway Instance | 1 minute                |
+| `max_latency`                        | Maximum Latency (ms) | Measures the maximum response delay time of the API interface | ≥0 Unit: ms | Exclusive Plan API Gateway Instance | 1 minute                |
+| `req_count`                          | API Call Count | This metric counts the number of times the API interface is called | ≥0 | Single API | 1 minute                |
+| `req_count_2xx`                      | 2xx Call Count | This metric counts the number of times the API interface returns a 2xx status | ≥0 | Single API | 1 minute                |
+| `req_count_4xx`                      | 4xx Error Count | This metric counts the number of times the API interface returns a 4xx error | ≥0 | Single API | 1 minute                |
+| `req_count_5xx`                      | 5xx Error Count | This metric counts the number of times the API interface returns a 5xx error | ≥0 | Single API | 1 minute                |
+| `req_count_error`               | Total Error Count | This metric counts the total number of errors returned by the API interface | ≥0 | Single API | 1 minute                |
+| `avg_latency`             | Average Latency (ms) | This metric measures the average response delay time of the API interface | ≥0 Unit: ms | Single API | 1 minute                |
+| `max_latency`                 | Maximum Latency (ms) | This metric measures the maximum response delay time of the API interface | ≥0 Unit: ms | Single API | 1 minute                |
+| `input_throughput`                 | Input Throughput | This metric measures the request traffic of the API interface | ≥0 Unit: Byte/KB/MB/GB | Single API | 1 minute                |
+| `output_throughput`       | Output Throughput | This metric measures the response traffic of the API interface | ≥0 Unit: Byte/KB/MB/GB | Single API | 1 minute                |
 
-## Metric {#metric}
-Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/usermanual-apig/apig-ug-180427085.html){:target="_blank"}
+## Objects {#object}
 
-| Metric ID| Metric Name            | Metric Meaning                                                | Value range     | Measurement object       | Monitoring cycle (original metric) |
-|-------------------------------------|---------------------------| -------------------------------------------------------- |----------| --------------- | -------------------- |
-| `requests`                          | Number of interface calls | Count the number of times the API interface has been called.| ≥0       | Exclusive version API gateway instance              | 1 minute                |
-| `error_4xx`                         | 4xx abnormal times        | Count the number of 4xx errors returned by the measurement API interface.   | ≥0       | Exclusive version API gateway instance              | 1 minute                |
-| `error_5xx`                         | 5xx abnormal times        | Count the number of times the measurement API interface returns 5xx errors | ≥0       | Exclusive version API gateway instance              | 1 minute                |
-| `throttled_calls`                   | Number of calls controlled by flow                  | Count the number of calls to the measurement API that have been flow-controlled    | ≥0       | Exclusive version API gateway instance     | 1 minute                |
-| `avg_latency`                       | Average latency milliseconds                   | Statistical measurement of average response delay time of API interfaces    | ≥0 Unit: milliseconds| Exclusive version API gateway instance      | 1 minute                |
-| `max_latency`                       | Maximum Delay Milliseconds                   |Statistical measurement of the maximum response delay time of the API interface|  ≥0 Unit: milliseconds  | Exclusive version API gateway instance      | 1 minute                |
-| `req_count`                         | Number of interface calls                    | This metric is used to count and measure the number of API interface calls              |≥0|Single API     | 1 minute                |
-| `req_count_2xx`                     | 2xx calls                   | This metric is used to measure the number of times API interface calls 2xx         | ≥ 0  | Single API       | 1 minute                |
-| `req_count_4xx`                     | 4xx abnormal times                   | This metric is used to count the number of 4xx errors returned by the measurement API interface          | ≥ 0 | Single API      | 1 minute                |
-| `req_count_5xx`                     | 5xx abnormal times                   | This metric is used to count the number of times the API interface returns 5xx errors      | ≥ 0  | Single API      | 1 minute                |
-| `req_count_error`              | Number of anomalies                      | This metric is used to measure the total number of errors in the API interface | ≥ 0| Single API  | 1 minute                |
-| `avg_latency`            | Average latency milliseconds                   | This metric is used to measure the average response delay time of API interfaces| ≥0 Unit: milliseconds | Single API      | 1 minute                |
-| `max_latency`                | Maximum Delay Milliseconds                   | This metric is used to measure the maximum response delay time of API interfaces | ≥0 Unit: milliseconds | Single API      | 1 minute                |
-| `input_throughput`                | Inflow flow                      | This metric is used for statistical measurement of API interface request traffic | ≥0.Unit：Byte/KB/MB/GB| Single API | 1 minute                |
-| `output_throughput`      | Outflow flow                      | This metric is used for statistical measurement of API interface return traffic | ≥0.Unit：Byte/KB/MB/GB | Single API          | 1 minute                |
-
-
-## Object {#object}
-
-The collected HUAWEI CLOUD API object data structure can see the object data from 「Infrastructure-Custom」
+The structure of collected Huawei Cloud API object data can be viewed in "Infrastructure - Custom"
 
 ``` json
 {
@@ -100,6 +94,6 @@ The collected HUAWEI CLOUD API object data structure can see the object data fro
 }
 ```
 
-> *notice：`tags`The fields in this section may change with subsequent updates*
+> *Note: Fields in `tags` may change with subsequent updates.*
 >
-> Tips 1：`instance_name` value is the name for unique identification
+> Tip 1: The value of `instance_name` is the name, used for unique identification.

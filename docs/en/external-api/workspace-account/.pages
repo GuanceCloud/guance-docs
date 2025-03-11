@@ -1,0 +1,2 @@
+nav:
+  - '【Workspace Members】Transfer the owner of a specified workspace (the old owner’s account will be directly removed from the current workspace)': transfer-owner.md

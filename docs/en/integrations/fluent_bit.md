@@ -1,28 +1,28 @@
 ---
 title     : 'Fluent Bit'
-summary   : 'FluentBit log collection, accepting log text data reported to the Guance'
+summary   : 'Collect logs via Fluent Bit'
 __int_icon: 'icon/fluentbit'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Fluent Bit log
+# Fluent Bit Logs
 <!-- markdownlint-enable -->
 
-FluentBit log collection, accepting log text data reported to the Guance.
+FluentBit log collection involves receiving log text data and reporting it to Guance.
 
-## Installation Deployment {#config}
+## Installation and Deployment {#config}
 
 ### 1 Prerequisites
 
-- Check if the Fluentd data is collected normally
+- Check if FluentBit data is being collected correctly
 
 ### 2 DataKit Collector Configuration
 
 #### 2.1 [Install DataKit](../datakit/datakit-install.md)
 
-#### 2.2 Enabled logstreaming collector
+#### 2.2 Enable the logstreaming collector
 
-Enter `conf.d/log` in the [DataKit installation directory](./datakit_dir.md) and copy `logstreaming.conf.sample` to `logstreaming.conf`.
+Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample`, and rename it to `logstreaming.conf`.
 
 > `cp logstreaming.conf.sample logstreaming.conf`
 
@@ -30,9 +30,10 @@ Enter `conf.d/log` in the [DataKit installation directory](./datakit_dir.md) and
 
 [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-### 3  FluentBit Configuration
 
-Adjust the `OUTPUT` of FluentBit
+### 3 FluentBit Configuration
+
+Mainly adjust the `OUTPUT` section of FluentBit:
 
 ``` toml
 [OUTPUT]
@@ -45,18 +46,17 @@ Adjust the `OUTPUT` of FluentBit
     URI /v1/write/logstreaming?source=fluent-bit-log
 ```
 
-Explanation of FluentBit's `OUTPUT` parameter
+Explanation of FluentBit's `OUTPUT` parameters:
 
-- Name：fixed `http`
-- Host：DataKit host
-- Port: DataKit port，default `9529`
-- Format：use `json` for output data type
-- Header：request header
-- URI：DataKit `logstreaming` url
+- Name: Fixed as `http`
+- Host: The host where DataKit resides
+- Port: DataKit port number, default `9529`
+- Format: Output in `json` format
+- Header: Request headers
+- URI: Receiving address for DataKit `logstreaming`
 
-For the configuration and parameter instructions of `logstreaming`, please refer to the document [logstreaming](./logstreaming.md).
+For more information on the configuration and parameters of `logstreaming`, refer to the [logstreaming](./logstreaming.md) documentation.
 
+### 4 Verification
 
-### 4 Check
-
-After FluentBit collects the log, it will be sent to DataKit through `OUTPUT` and the log information can be viewed through the Guance platform.
+Once FluentBit collects the logs, it will send them through the `OUTPUT` to DataKit, and you can view the log information via the platform.

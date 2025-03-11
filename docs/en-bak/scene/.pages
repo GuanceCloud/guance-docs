@@ -1,0 +1,10 @@
+nav:
+  - index.md
+  - 'Dashboards': dashboard
+  - 'Service Management': service-manag.md
+  - 'Regular Reports': report.md
+  - 'Notes': note.md
+  - 'Explorers': explorer
+  - 'Inner Views': built-in-view
+  - 'View Variables': view-variable.md
+  - 'Visual Charts': visual-chart

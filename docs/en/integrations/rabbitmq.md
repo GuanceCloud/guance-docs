@@ -1,9 +1,9 @@
 ---
 title     : 'RabbitMQ'
-summary   : 'Collect RabbitMQ metrics'
+summary   : 'Collect metrics data from RabbitMQ'
 tags:
-  - 'MESSAGE QUEUES'
-  - 'MIDDLEWARE'
+  - 'Message Queue'
+  - 'Middleware'
 __int_icon      : 'icon/rabbitmq'
 dashboard :
   - desc  : 'RabbitMQ'
@@ -13,29 +13,28 @@ monitor   :
     path  : 'monitor/en/rabbitmq'
 ---
 
-
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-RabbitMQ collector monitors RabbitMQ by collecting data through the plug-in `rabbitmq-management` and can:
+The RabbitMQ collector gathers data by using the `rabbitmq-management` plugin to monitor RabbitMQ. It can:
 
-- RabbitMQ overview, such as connections, queues, total messages, and so on.
-- Track RabbitMQ queue information, such as queue size, consumer count and so on.
-- Rack RabbitMQ node information, such as `socket` `mem`.
-- Tracking RabbitMQ exchange information such as `message_publish_count`.
+- Provide an overview of RabbitMQ, such as the number of connections, queues, total messages, etc.
+- Track RabbitMQ queue information, such as queue size and consumer count.
+- Track RabbitMQ node information, such as used `socket`, `mem`, etc.
+- Track RabbitMQ exchange information, such as `message_publish_count`, etc.
 
 ## Configuration {#config}
 
-### Preconditions {#reqirement}
+### Prerequisites {#reqirement}
 
-- RabbitMQ version >= `3.8.14`; Already tested version:
+- RabbitMQ version >= `3.8.14`; tested versions:
     - [x] 3.11.x
     - [x] 3.10.x
     - [x] 3.9.x
     - [x] 3.8.x
 
-- Install `rabbitmq`, take `Ubuntu` as an example
+- Install `rabbitmq` on `Ubuntu` for example
 
     ```shell
     sudo apt-get update
@@ -43,13 +42,13 @@ RabbitMQ collector monitors RabbitMQ by collecting data through the plug-in `rab
     sudo service rabbitmq-server start
     ```
 
-- Start `REST API plug-ins`
+- Enable `REST API plug-ins`
 
     ```shell
     sudo rabbitmq-plugins enable rabbitmq_management
     ```
 
-- Create user, for example:
+- Create a user, for example:
 
     ```shell
     sudo rabbitmqctl add_user guance <SECRET>
@@ -58,13 +57,12 @@ RabbitMQ collector monitors RabbitMQ by collecting data through the plug-in `rab
     ```
 
 ### Collector Configuration {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/rabbitmq` directory under the DataKit installation directory, copy `rabbitmq.conf.sample` and name it `rabbitmq.conf`. Examples are as follows:
-
-
-
+    Navigate to the *conf.d/rabbitmq* directory under the DataKit installation directory, copy `rabbitmq.conf.sample` and rename it to `rabbitmq.conf`. Example configuration:
+    
     ```toml
         
     [[inputs.rabbitmq]]
@@ -103,15 +101,16 @@ RabbitMQ collector monitors RabbitMQ by collecting data through the plug-in `rab
     
     ```
     
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
-## Metric {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.rabbitmq.tags]` if needed:
+## Metrics {#metric}
+
+By default, all collected data will append global election tags, or you can specify other tags through `[inputs.rabbitmq.tags]` in the configuration:
 
 ``` toml
  [inputs.rabbitmq.tags]
@@ -122,7 +121,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
 ### `rabbitmq_overview`
 
 - Tags
@@ -130,12 +128,12 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name`|RabbitMQ cluster name|
-|`host`|Hostname of RabbitMQ running on.|
-|`rabbitmq_version`|RabbitMQ version|
-|`url`|RabbitMQ url|
+|`cluster_name`|Name of the RabbitMQ cluster|
+|`host`|Hostname where RabbitMQ is running|
+|`rabbitmq_version`|Version of RabbitMQ|
+|`url`|URL of RabbitMQ|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -169,8 +167,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `rabbitmq_queue`
 
 - Tags
@@ -178,14 +174,14 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name`|RabbitMQ cluster name|
-|`host`|Hostname of RabbitMQ running on.|
-|`node_name`|RabbitMQ node name|
-|`queue_name`|RabbitMQ queue name|
-|`url`|RabbitMQ host URL|
-|`vhost`|RabbitMQ queue virtual hosts|
+|`cluster_name`|Name of the RabbitMQ cluster|
+|`host`|Hostname where RabbitMQ is running|
+|`node_name`|Name of the RabbitMQ node|
+|`queue_name`|Name of the RabbitMQ queue|
+|`url`|URL of the RabbitMQ host|
+|`vhost`|Virtual hosts of the RabbitMQ queue|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -214,8 +210,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `rabbitmq_exchange`
 
 - Tags
@@ -224,16 +218,16 @@ For all of the following data collections, the global election tags will added a
 | Tag | Description |
 |  ----  | --------|
 |`auto_delete`|If set, the exchange is deleted when all queues have finished using it|
-|`cluster_name`|RabbitMQ cluster name|
+|`cluster_name`|Name of the RabbitMQ cluster|
 |`durable`|If set when creating a new exchange, the exchange will be marked as durable. Durable exchanges remain active when a server restarts. Non-durable exchanges (transient exchanges) are purged if/when a server restarts.|
-|`exchange_name`|RabbitMQ exchange name|
-|`host`|Hostname of RabbitMQ running on.|
+|`exchange_name`|Name of the RabbitMQ exchange|
+|`host`|Hostname where RabbitMQ is running|
 |`internal`|If set, the exchange may not be used directly by publishers, but only when bound to other exchanges. Internal exchanges are used to construct wiring that is not visible to applications|
-|`type`|RabbitMQ exchange type|
-|`url`|RabbitMQ host URL|
-|`vhost`|RabbitMQ exchange virtual hosts|
+|`type`|Type of the RabbitMQ exchange|
+|`url`|URL of the RabbitMQ host|
+|`vhost`|Virtual hosts of the RabbitMQ exchange|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -257,8 +251,6 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
 ### `rabbitmq_node`
 
 - Tags
@@ -266,12 +258,12 @@ For all of the following data collections, the global election tags will added a
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name`|RabbitMQ cluster name|
-|`host`|Hostname of RabbitMQ running on.|
-|`node_name`|RabbitMQ node name|
-|`url`|RabbitMQ url|
+|`cluster_name`|Name of the RabbitMQ cluster|
+|`host`|Hostname where RabbitMQ is running|
+|`node_name`|Name of the RabbitMQ node|
+|`url`|URL of RabbitMQ|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -292,26 +284,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
-
-
-## Custom Object {#object}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Custom Objects {#object}
 
 
 
@@ -321,7 +294,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
-- tag
+- Tags
 
 
 | Tag | Description |
@@ -332,7 +305,7 @@ For all of the following data collections, the global election tags will added a
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metric list
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -344,37 +317,39 @@ For all of the following data collections, the global election tags will added a
 
 
 
-## Log Collection {#logging}
+## Logging {#logging}
+
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    DataKit must be installed on the host where RabbitMQ is located to collect RabbitMQ logs.
+    DataKit must be installed on the same host as RabbitMQ to collect RabbitMQ logs.
+<!-- markdownlint-enable -->
 
-To collect the RabbitMQ log, open `files` in RabbitMQ.conf and write to the absolute path of the RabbitMQ log file. For example:
+To collect RabbitMQ logs, you can enable the `files` section in *rabbitmq.conf* and specify the absolute path of the RabbitMQ log file. For example:
 
 ```toml
-    [[inputs.rabbitmq]]
-      ...
-      [inputs.rabbitmq.log]
-        files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
+[[inputs.rabbitmq]]
+  ...
+  [inputs.rabbitmq.log]
+    files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
 ```
 
-When log collection is turned on, a log with a log `source` of `rabbitmq` is generated by default.
-<!-- markdownlint-enable -->
-### Log Pipeline Function Cut Field Description {#pipeline}
+After enabling log collection, the default log source (`source`) will be `rabbitmq`.
 
-- RabbitMQ universal log cutting
+### Log Pipeline Field Splitting Explanation {#pipeline}
 
-Example of common log text:
+- General RabbitMQ Log Splitting
 
-```log
+Example of a general log entry:
+
+``` log
 2021-05-26 14:20:06.105 [warning] <0.12897.46> rabbitmqctl node_health_check and its HTTP API counterpart are DEPRECATED. See https://www.rabbitmq.com/monitoring.html#health-checks for replacement options.
 ```
 
-The list of cut fields is as follows:
+Split fields list:
 
-| Field Name | Field Value                             | Description                         |
-| ---    | ---                                | ---                          |
-| status | warning                            | Log level                     |
-| msg    | <0.12897.46>...replacement options | Log level                     |
-| time   | 1622010006000000000                | Nanosecond timestamp (as row protocol time) |
+| Field Name | Field Value                             | Description           |
+| ---        | ---                                     | ---                   |
+| status     | warning                                 | Log level             |
+| msg        | <0.12897.46>...replacement options      | Log message content   |
+| time       | 1622010006000000000                     | Nanosecond timestamp  |

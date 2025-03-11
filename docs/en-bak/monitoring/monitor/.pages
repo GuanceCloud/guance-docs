@@ -1,0 +1,20 @@
+nav:
+  - index.md
+  - 'Templates': template.md
+  - 'Custom Templates': custom-template.md
+  - 'Threshold Detection': threshold-detection.md
+  - 'Log Detection': log-detection.md
+  - 'Change Detection': mutation-detection.md
+  - 'Interval Detection': interval-detection.md
+  - 'Outlier Detection': outlier-detection.md
+  - 'Scheck Anomaly Detection': security_checker.md
+  - 'Process Anomaly Detection': processes-detection.md
+  - 'Infrastructure Active Detection': infrastructure-detection.md
+  - 'APM Metric Detection': application-performance-detection.md
+  - 'RUM Metric Detection': real-user-detection.md
+  - 'Testing Anomaly Detection': usability-detection.md
+  - 'Network Anomaly Detection': network-detection.md
+  - 'Third-party Event Detection': third-party-event-detection.md 
+  - 'Operators': operator-description.md
+  - 'Truth Table': table-description.md
+  - 'Event Levels': event-level-description.md

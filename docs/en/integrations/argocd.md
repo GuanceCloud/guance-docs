@@ -1,12 +1,12 @@
 ---
 title     : 'ArgoCD'
-summary   : 'Collect Argo CD service status, application status, logs, and link information'
+summary   : 'Collect Argo CD service status, application status, logs, and tracing information'
 __int_icon: 'icon/argocd'
 dashboard :
   - desc  : 'ArgoCD Monitoring View'
     path  : 'dashboard/en/argocd'
 monitor   :
-  - desc  : 'ArgoCD'
+  - desc  : 'AutoMQ'
     path  : 'monitor/en/argocd'
 ---
 
@@ -14,26 +14,24 @@ monitor   :
 # ArgoCD
 <!-- markdownlint-enable -->
 
-Argo CD exposes metrics through the Prometheus protocol, which can be used to monitor the status of Argo CD services and applications. Argo CD is mainly exposed to three types of metrics:
+Argo CD exposes metrics via the Prometheus protocol. These metrics can be used to monitor the status of Argo CD services and applications. Argo CD primarily exposes three types of metrics:
 
-- Application Controller Metrics：Argo CD application related metrics, such as number of applications, Argo CD status, etc.
-- API Server Metrics：Argo CD API request metrics, such as number of requests, response codes, etc.
-- Repo Server Metrics：Repo Server related metrics, such as the number of Git requests, Git response time, etc.
+- Application Controller Metrics: Metrics related to Argo CD applications, such as the number of applications and Argo CD status.
+- API Server Metrics: Metrics for Argo CD API requests, such as request counts and response codes.
+- Repo Server Metrics: Metrics related to the Repo Server, such as Git request counts and Git response times.
 
 
-## Installation Configuration{#config}
+## Configuration {#config}
 
-### Preconditions
+### Prerequisites
 
-- [x] Installed K8S
-- [x] Installed ArgoCD
-- [x] Installed [DataKit](../datakit/datakit-daemonset-deploy.md)
+- [x] Install K8S environment
+- [x] Install ArgoCD
+- [x] Install [DataKit](../datakit/datakit-daemonset-deploy.md)
 
-### Metric
+### Enable KubernetesPrometheus in DataKit
 
-#### DataKit 开启 KubernetesPrometheus
-
-- Mount KubernetesPrometheus
+- MountPath configuration to mount the KubernetesPrometheus configuration file into the container
 
 ```yaml
           - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
@@ -42,7 +40,7 @@ Argo CD exposes metrics through the Prometheus protocol, which can be used to mo
             readOnly: true
 ```
 
-- Add `Kubernetes prometheus.conf` to the configmap file of `datakit. yaml`
+- Add `kubernetesprometheus.conf` to the `datakit.yaml` ConfigMap
 
 ```yaml
 kubernetesprometheus.conf: |-
@@ -109,17 +107,17 @@ kubernetesprometheus.conf: |-
     
 ```
 
-#### Restart DataKit
+- Restart DataKit
 
 [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 ### Tracing
 
-Argo CD 2.4 [#7539](https://github.com/argoproj/argo-cd/pull/7539) add support for the OpenTelemetry protocol, which allows link data to be obtained through exposed 'otlp' addresses.
+Argo CD 2.4 [#7539](https://github.com/argoproj/argo-cd/pull/7539) added support for the OpenTelemetry protocol, allowing trace data to be obtained through the exposed `otlp` address.
 
-#### DataKit opens the OpenTelemetry collector
+#### Enable OpenTelemetry Collector in DataKit
 
-- Modify DataKit ConfigMap
+- Modify the DataKit ConfigMap
 
 ```yaml
 apiVersion: v1
@@ -141,7 +139,7 @@ data:
        addr = "0.0.0.0:4317"
 ```
 
-- Mount
+- Mounting
 
 ```yaml
 apiVersion: apps/v1
@@ -167,8 +165,7 @@ spec:
         ...
 ```
 
-- DataKit enables port '4317'
-
+- Enable `4317` port in DataKit
 
 ```yaml
 apiVersion: v1
@@ -190,11 +187,12 @@ spec:
       targetPort: 4317
 ```
 
-[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
+After making these changes, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-#### ArgoCD Enable 'otlp' Reporting
 
-- Created `argocd-cmd-params-cm.yaml`
+#### Enable `otlp` Reporting in ArgoCD
+
+- Create `argocd-cmd-params-cm.yaml`
 
 ```yaml
 apiVersion: v1
@@ -209,7 +207,7 @@ data:
   otlp.address: datakit-service.datakit:4317
 ```
 
-Then execute the following command：
+Then execute the following command:
 
 ```shell
 kubectl apply -f argocd-cmd-params-cm.yaml
@@ -217,20 +215,20 @@ kubectl apply -f argocd-cmd-params-cm.yaml
 
 - Restart ArgoCD
 
-Restart the ArgoCD link to take effect.
+Traces will only take effect after restarting ArgoCD.
 
 
-### Logging
+### Logs
 
-After installing the DataKit collector, the logs output by Argo CD Pod will be collected by default, and no other configuration is required.
+After installing the DataKit collector, it will automatically collect logs from Argo CD Pods by default, with no additional configuration required.
 
-## Metric {#metric}
+## Metrics {#metric}
 
 ### `argocd-server`
 
 | Metric | Description |
 | -- | -- |
-| `process_start_time_seconds` | The start time of the process since unix epoch in seconds in the API Server |
+| `process_start_time_seconds` | The start time of the process since the Unix epoch in seconds in the API Server |
 | `go_goroutines`| The number of `goroutines` that currently exist in the API Server|
 | `grpc_server_handled_total` | The total number of RPCs completed on the server regardless of success or failure |
 | `grpc_server_started_total`| The total number of RPCs started on the server |
@@ -257,7 +255,6 @@ After installing the DataKit collector, the logs output by Argo CD Pod will be c
 | Metric | Description |
 | -- | -- |
 | `argocd_git_request_total` | Count of Git Ls-Remote Requests |
-| `argocd_git_request_duration_seconds_bucket`| Git Ls-Remote Requests Performance |
+| `argocd_git_request_duration_seconds_bucket`| Performance of Git Ls-Remote Requests |
 
-
-For more metrics, refer to [the official ArgoCD document](https://argo-cd.readthedocs.io/en/stable/operator-manual/metrics/)
+For more metrics, refer to the [official ArgoCD documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/metrics/)

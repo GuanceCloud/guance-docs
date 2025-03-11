@@ -1,23 +1,23 @@
 ---
 title     : 'OpenTelemetry Golang'
-summary   : 'Tracing Golang applications with OpenTelemetry'
+summary   : 'Integration of OpenTelemetry Golang'
 tags      :
   - 'GOLANG'
   - 'OTEL'
-  - 'APM'
-  - 'TRACING'
+  - 'Tracing'
 __int_icon: 'icon/opentelemetry'
 ---
 
-In this paper, the common Web-side three-tier architecture mode is used to realize the link tracing and observability of OTEL.
 
-Before using OTEL to send Trace to Datakit, make sure you have [configured the collector](opentelemetry.md).
+This article demonstrates the implementation of OTEL tracing and observability in a common three-tier web architecture.
 
-## Next, implement in pseudo code {#code}
+Before sending Trace data to Datakit using OTEL, please ensure you have [configured the collector](opentelemetry.md).
 
-Simulation scenario: A user's login request flows through various modules on the server and is returned to the client. Add link tracking and marking in each process, and finally log in to the Guance Cloud platform to check the processing time and service status of each module in this process.
+## Next, implement with pseudocode {#code}
 
-Process introduction: The user requests to the web layer, after analysis, send to the service layer, need to query the database of the dao layer, and finally return the results to the user.
+Scenario simulation: A user's login request flows through various modules on the server side and returns to the client. Tracing is added at each stage and marked, allowing you to view the processing time and service status of each module on the Guance platform.
+
+Process introduction: User requests reach the web layer, are parsed, and sent to the service layer. The service layer needs to query the database via the DAO layer, and finally returns the result to the user.
 
 ``` go
 package main
@@ -63,7 +63,7 @@ func initProvider() func() {
     // microk8s), it should be accessible through the NodePort service at the
     // `localhost:30080` endpoint. Otherwise, replace `localhost` with the
     // endpoint of your cluster. If you run the app inside k8s, then you can
-    // probably connect directly to the service through dns
+    // probably connect directly to the service through DNS
     conn, err := grpc.DialContext(ctx, "10.200.14.226:4317", grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithBlock())
     handleErr(err, "failed to create gRPC connection to collector")
     // Set up a trace exporter
@@ -93,9 +93,9 @@ func initProvider() func() {
 
 var tracer = otel.Tracer("tracer_user_login")
 
-// web handler process request data
+// web handler processes request data
 func user(w http.ResponseWriter, r *http.Request) {
-    // ... receving client request
+    // ... receive client request
     log.Println("doing user")
     // labels represent additional key-value descriptors that can be bound to a
     // metric observer or recorder.
@@ -116,7 +116,7 @@ func user(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte("ok"))
 }
 
-// service invoke service to handle biz.
+// service calls the service layer to handle business logic
 func service(ctx context.Context) {
     log.Println("service")
     ctx1, iSpan := tracer.Start(ctx, "Sample-service")
@@ -131,7 +131,7 @@ func dao(ctx context.Context) {
     ctxD, iSpan := tracer.Start(ctx, "Sample-dao")
     <-time.After(time.Second / 2)
 
-    // create a child span for query etc.
+    // Create a child span for database operations
     _, sqlSpan := tracer.Start(ctxD, "do_sql")
     sqlSpan.SetStatus(codes.Ok, "is ok") //
     <-time.After(time.Second)
@@ -157,17 +157,15 @@ func main() {
 }
 ```
 
-## View Effect {#view}
+## View Results {#view}
 
-Log in to [Guance Cloud](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"} and then view `application performance monitoring` -> `links` -> Click on a single `link`
+Log in to [Guance](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"} and navigate to «APM -> Traces -> Click on a single trace»
 
-![OTEL-go-example"](imgs/otel-go-example.png)
+![not-set](imgs/otel-go-example.png)
 
-In the flame diagram, you can see the execution time, call flow and so on in each module.
+In the flame graph, you can see the execution time and call flow of each module.
 
----
+## References {#more-readings}
 
-## Reference {#more-readings}
-
-- Source sample [GitHub-OpenTelemetry-go](https://github.com/open-telemetry/opentelemetry-go/tree/main/example/otel-collector){:target="_blank"}
-- [Doc](https://opentelemetry.io/docs/instrumentation/go/getting-started/){:target="_blank"}
+- [Golang OpenTelemetry Code Example](https://github.com/open-telemetry/opentelemetry-go/tree/main/example/otel-collector){:target="_blank"}
+- [Official Documentation](https://opentelemetry.io/docs/instrumentation/go/getting-started/){:target="_blank"}

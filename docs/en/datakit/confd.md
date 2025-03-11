@@ -1,37 +1,35 @@
-# Distribute Configuration through Configuration Center
+# Distributing Configuration via Configuration Center
 ---
 
 ## Introduction to Configuration Center {#intro}
 
-The idea of configuration center is to put all kinds of configurations, parameters and switches in a centralized place for unified management and provide a set of standard interfaces.
-When each service needs to obtain configuration, it will configure the interface pull of the center. When various parameters in the configuration center are updated, it can also inform each service to synchronize the latest information in real time, so that it can be dynamically updated.
+The idea behind the configuration center is to centrally manage all configurations, parameters, and switches in a project through a unified interface. When services need to obtain configurations, they can pull them from the configuration center's API. When parameters in the configuration center are updated, it can notify services to synchronize the latest information in real time, enabling dynamic updates.
 
-Adopting "centralized configuration management" can solve the traditional problem of "too scattered configuration files". All configurations are centralized in the configuration center, which does not need to bring one for each project, thus greatly reducing the development cost.
+Adopting "centralized configuration management" effectively solves the traditional problem of "dispersed configuration files." All configurations are managed in one place, reducing development costs significantly.
 
-Adopting "separation of configuration and application" can solve the problem that the traditional "configuration file can't distinguish the environment". Configuration does not follow the environment. When different environments have different requirements, it can be obtained from the configuration center, which greatly reduces the operation and maintenance deployment cost.
+Using "separation of configuration and application" effectively addresses the traditional issue of "configuration files not distinguishing environments." Configurations do not follow environments; when different environments have different requirements, they can be obtained from the configuration center, greatly reducing deployment costs.
 
-With the function of "real-time update", it is used to solve the problem of traditional "static configuration". When the online system needs to adjust the parameters, it only needs to be dynamically modified in the configuration center.
+The "real-time update" feature resolves the traditional problem of "static configuration." When online systems need parameter adjustments, changes can be made dynamically in the configuration center.
 
-Datakit supports multiple configuration centers, such as `etcd-v3` `consul` `redis` `zookeeper` `file`, and can work together with multiple configuration centers at the same time.
-When the configuration center data changes, DataKit can automatically change the configuration, add or delete collectors, and relevant collectors are restarted as necessary.
+Datakit supports multiple configuration centers such as `etcd-v3`, `consul`, `redis`, `zookeeper`, `aws secrets manager`, `nacos`, and `file`, and can use multiple configuration centers simultaneously. When data in the configuration center changes, Datakit can automatically update configurations, add or remove collectors, and restart related collectors as necessary.
 
 ## Introducing Configuration Center {#Configuration-Center-Import}
 
 <!-- markdownlint-disable MD046 -->
-=== "`datakit.conf` introduced"
+=== "Host Installation"
 
-    DataKit introduces resources in the configuration center by modifying `/datakit/conf.d/datakit.conf`. For example:
-    
+    Datakit introduces configuration center resources by modifying `/datakit/conf.d/datakit.conf`. For example:
+
     ```
-    # Other existing configuration information...
+    # Other existing configuration information
     [[confds]]
       enable = true
       backend = "zookeeper"
-      nodes = ["IP address:2181","IP address2:2181"...]
+      nodes = ["IP:2181","IP2:2181"...]
     [[confds]]
       enable = true
       backend = "etcdv3"
-      nodes = ["IP address:2379","IP address2:2379"...]
+      nodes = ["IP:2379","IP2:2379"...]
       # client_cert = "optional"
       # client_key = "optional"
       # client_ca_keys = "optional"
@@ -41,13 +39,13 @@ When the configuration center data changes, DataKit can automatically change the
     [[confds]]
       enable = true
       backend = "redis"
-      nodes = ["IP address:6379","IP address2:6379"...]
+      nodes = ["IP:6379","IP2:6379"...]
       # client_key = "optional"
-      # separator = "optional|0 by default"
+      # separator = "optional|default is 0"
     [[confds]]
       enable = true
       backend = "consul"
-      nodes = ["IP address:8500","IP address 2:8500"...]
+      nodes = ["IP:8500","IP2:8500"...]
       # scheme = "optional"
       # client_cert = "optional"
       # client_key = "optional"
@@ -55,35 +53,45 @@ When the configuration center data changes, DataKit can automatically change the
       # basic_auth = "optional"
       # username = "optional"
       # password = "optional"
-    # Not recommended  
     [[confds]]
-      enable = false
-      backend = "file"
-      file = ["/file1access/file1","/file2 路径/文件 2"...]
-    # Other existing configuration information...
+      enable = true
+      backend = "aws"
+      region = "cn-north-1"
+      # Access key ID    : must use the key file /root/.aws/config or ENV
+      # Secret access key: must use the key file /root/.aws/config or ENV
+      circle_interval = 60
+    [[confds]]
+      enable = true
+      backend = "nacos"
+      nodes = ["http://IP:8848","https://IP2:8848"...]
+      # username = "optional"
+      # password = "optional"
+      circle_interval = 60 
+      confd_namespace =    "confd namespace ID"
+      pipeline_namespace = "pipeline namespace ID"
+    # Other existing configuration information
     ```
-    
-    Multiple `datacenter` backends can be configured at the same time, and the data configuration information of each backend is merged and injected into DataKit. Any back-end information changes will be detected by DataKit, and DataKit will automatically update the relevant configuration and restart the corresponding collector.
+    ???+ attention
 
-=== "Kubernetes introduced"
+        If multiple configuration center backends are configured, only the first configuration will take effect.
 
-    Because of the particularity of Kubernetes environment, the installation/configuration mode with environment variable passing is the simplest.
-    
-    When installing in Kubernetes, you need to set the following environment variables to bring Confd configuration information into it:
-    
-    See [Kubernetes document](datakit-daemonset-deploy.md#env-confd) for more details.
+=== "Kubernetes"
 
-=== "Introduced during program installation"
-
-    If you need to define some DataKit configuration during the installation phase, you can add environment variables to the installation command, just append them before DK_DATAWAY. Such as:
+    Due to the special nature of Kubernetes environments, using environment variables for installation/configuration is the simplest method.
     
+    When installing in Kubernetes, you need to set the following environment variables to include configuration information. Refer to [Kubernetes Documentation](datakit-daemonset-deploy.md#env-confd)
+
+=== "Introducing During Program Installation"
+
+    If you need to define some Datakit configurations during installation, you can add environment variables before the installation command, prefixed with `DK_DATAWAY`. For example:
+
     ```shell
     # Linux/Mac
-    DK_CONFD_BACKEND=etcdv3 DK_CONFD_BACKEND_NODES=[127.0.0.1:2379] DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
-    
+    DK_CONFD_BACKEND=etcd3 DK_CONFD_BACKEND_NODES=[127.0.0.1:2379] DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+
     # Windows
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_CONFD_BACKEND="etcdv3";
+    $env:DK_CONFD_BACKEND="etcd3";
     $env:DK_CONFD_BACKEND_NODES="[127.0.0.1:2379]";
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
@@ -91,47 +99,39 @@ When the configuration center data changes, DataKit can automatically change the
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
-    
-    The two environment variables are formatted as:
-    
+
+    The format for setting environment variables is:
+
     ```shell
-    # Windows: multiple environment variables are divided by semicolons
+    # Windows: Multiple environment variables are separated by semicolons
     $env:NAME1="value1"; $env:Name2="value2"
-    
-    # Linux/Mac: multiple environment variables are divided by spaces
+
+    # Linux/Mac: Multiple environment variables are separated by spaces
     NAME1="value1" NAME2="value2"
     ```
-    
-    See [host installation documentation](datakit-install.md#env-confd) for more information.
+
+    Refer to [Host Installation Documentation](datakit-install.md#env-confd)
+
 <!-- markdownlint-enable -->
 
-## Collector Turned on by Default {#default-enabled-inputs}
-After DataKit is installed, a batch of host-related collectors will be turned on by default without manual configuration, such as:
+## Default Enabled Collectors {#default-enabled-inputs}
+After installing DataKit, a batch of host-related collectors are enabled by default and do not require manual configuration, such as `cpu`, `disk`, `diskio`, `mem`, etc. Refer to [Collector Configuration](datakit-input-conf.md#default-enabled-inputs)
 
-`cpu`, `disk`, `diskio`, `mem` and so on. See [Collector Configuration](datakit-input-conf.md#default-enabled-inputs) for details.
+The configuration center can modify these collector configurations but cannot delete or stop them. To delete default collectors, open the `datakit.conf` file under the Datakit *conf.d* directory and remove the collector from `default_enabled_inputs`.
 
-Configuration Center can modify the configuration of these collectors, but cannot delete or stop these collectors.
+## Singleton Operation Control for Collectors {#input-singleton}
 
-If you want to delete the default collector, you can open the `datakit.conf` file in the DataKit conf.d directory and delete the collector in default_enabled_inputs.
+Some collectors are allowed to run as singletons, such as all default enabled collectors and `netstat`. Others can run multiple instances, like `nginx` and `nvidia_smi`.
 
-Self can neither delete, stop, nor modify the configuration.
-
-## Collector Singleton Run Control {#input-singleton}
-
-Some collectors only need to run singletons, such as all default open collectors, netstat, etc. Some can be run in multiple instances, such as `nginx`, `nvidia_smi`... and so on.
-
-In the collector configuration of single case operation, only the data ranked first is accepted, and the latter is automatically discarded.
+For singleton-running collector configurations, only the first loaded configuration (sorted by filename) will take effect.
 
 ## Data Format {#data-format}
 
-Datakit configuration information is stored in the data center as a Key-Value.
+Datakit configuration information is stored in the configuration center in Key-Value format. The Key prefix must be `/datakit/`, for example, `/datakit/XXX`, where `XXX` should be unique. It is recommended to use the corresponding collector name, such as `/datakit/netstat`.
 
-The prefix of Key must be `/datakit/`, such as  `/datakit/XXX` , `XXX` is not duplicated. It is recommended to use the corresponding collector name, such as `/datakit/netstat`.
+The Value content is the complete content of various configuration files in the *conf.d* subdirectory. For example:
 
-The contents of Value are the full contents of the various configuration files in the conf. d subdirectory. For example:
-
-```go
-`
+```toml
 [[inputs.netstat]]
   ##(optional) collect interval, default is 10 seconds
   interval = '10s'
@@ -139,18 +139,15 @@ The contents of Value are the full contents of the various configuration files i
 [inputs.netstat.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
-`
 ```
 
-file mode: the contents of the. conf file are the contents of the original conf file.
+In `file` mode, the file content is the same as the original *.conf* file content.
 
-<!-- markdownlint-disable MD013 -->
-## How the Configuration Center Updates the Configuration {#update-config}
-<!-- markdownlint-enable -->
+## How Configuration Center Updates Configuration (Example in Golang) {#update-config}
 
-### zookeeper {#update-zookeeper}
+### Zookeeper {#update-zookeeper}
 
-```go
+```golang
 import (
     "github.com/samuel/go-zookeeper/zk"
 )
@@ -162,10 +159,25 @@ func zookeeperDo(index int) {
         fmt.Println("conn, _, err := zk.Connect error: ", err)
     }
     defer conn.Close()
-    // Create a first-level directory node
+    // Create top-level directory node
+    add(conn, "/datakit", "")
+    // Create second-level directory node
     add(conn, "/datakit/confd", "")
+    add(conn, "/datakit/pipeline", "")
+    // Create third-level directory node
+    add(conn, "/datakit/pipeline/metrics", "")
+    add(conn, "/datakit/pipeline/metric", "")
+    add(conn, "/datakit/pipeline/network", "")
+    add(conn, "/datakit/pipeline/keyevent", "")
+    add(conn, "/datakit/pipeline/object", "")
+    add(conn, "/datakit/pipeline/custom_object", "")
+    add(conn, "/datakit/pipeline/logging", "")
+    add(conn, "/datakit/pipeline/tracing", "")
+    add(conn, "/datakit/pipeline/rum", "")
+    add(conn, "/datakit/pipeline/security", "")
+    add(conn, "/datakit/pipeline/profiling", "")
     // Create a node
-    key := "/datakit/confd/netstat"
+    key := "/datakit/confd/netstat.conf"
     value := `
 [[inputs.netstat]]
   ##(optional) collect interval, default is 10 seconds
@@ -175,11 +187,9 @@ func zookeeperDo(index int) {
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 `
-
     add(conn, key, value)
 }
 
-// add
 func add(conn *zk.Conn, path, value string) {
     if path == "" {
         return
@@ -190,33 +200,32 @@ func add(conn *zk.Conn, path, value string) {
     acls := zk.WorldACL(zk.PermAll)
     s, err := conn.Create(path, data, flags, acls)
     if err != nil {
-        fmt.Println("creat error: ", err)
+        fmt.Println("creation error: ", err)
         modify(conn, path, value)
         return
     }
-    fmt.Println("successfully created", s)
+    fmt.Println("created successfully", s)
 }
 
-// modify
 func modify(conn *zk.Conn, path, value string) {
     if path == "" {
         return
     }
     var data = []byte(value)
-    _, sate, _ := conn.Get(path)
-    s, err := conn.Set(path, data, sate.Version)
+    _, state, _ := conn.Get(path)
+    s, err := conn.Set(path, data, state.Version)
     if err != nil {
-        fmt.Println("modify error: ", err)
+        fmt.Println("modification error: ", err)
         return
     }
-    fmt.Println("successfully modified", s)
+    fmt.Println("modified successfully", s)
 }
 
 ```
 
 ### etcd-v3 {#update-etcdv3}
 
-```go
+``` golang
 import (
     etcdv3 "go.etcd.io/etcd/client/v3"
 )
@@ -227,10 +236,11 @@ func etcdv3Do(index int) {
         DialTimeout: 5 * time.Second,
     })
     if err != nil {
-        fmt.Println(" error: ", err)
+        fmt.Println("error: ", err)
     }
     defer cli.Close()
-    key := "/datakit/confd/netstat"
+    key := "/datakit/confd/host/netstat.conf"
+    // key := "/datakit/pipeline/metric/netstat.p"
     value := `
 [[inputs.netstat]]
   ##(optional) collect interval, default is 10 seconds
@@ -243,34 +253,34 @@ func etcdv3Do(index int) {
 
     // put
     ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-    _, err = cli.Put(ctx, key, data)
+    _, err = cli.Put(ctx, key, value)
     cancel()
     if err != nil {
-        fmt.Println(" error: ", err)
+        fmt.Println("error: ", err)
     }
 }
 ```
 
-### redis {#update-redis}
+### Redis {#update-redis}
 
-```go
+``` golang
 import (
     "github.com/go-redis/redis/v8"
 )
 
 func redisDo(index int) {
-    // initialize context
+    // Initialize context
     ctx := context.Background()
 
-    // initialize redis client end
+    // Initialize Redis client
     rdb := redis.NewClient(&redis.Options{
         Addr:     ip + ":6379",
         Password: "654123", // no password set
         DB:       0,        // use default DB
     })
 
-    // operate redis
-    key := "/datakit/confd/netstat"
+    // Operate on Redis
+    key := "/datakit/confd/host/netstat.conf"
     value := `
 [[inputs.netstat]]
   ##(optional) collect interval, default is 10 seconds
@@ -281,13 +291,12 @@ func redisDo(index int) {
   # more_tag = "some_other_value"
 `
 
-    // write
     err := rdb.Set(ctx, key, value, 0).Err()
     if err != nil {
         panic(err)
     }
 
-    // publish Subscription
+    // Publish/subscribe
     n, err := rdb.Publish(ctx, "__keyspace@0__:/datakit*", "set").Result()
     if err != nil {
         fmt.Println(err)
@@ -297,27 +306,27 @@ func redisDo(index int) {
 }
 ```
 
-### consul {#update-consul}
+### Consul {#update-consul}
 
-```go
+``` golang
 import (
     "github.com/hashicorp/consul/api"
 )
 
 func consulDo(index int) {
-    // create terminal
+    // Create client
     client, err := api.NewClient(&api.Config{
         Address: "http://" + ip + ":8500",
     })
     if err != nil {
-        fmt.Println(" error: ", err)
+        fmt.Println("error: ", err)
     }
 
-    // get a KV handle
+    // Get KV handle
     kv := client.KV()
   
-    // note that datakit is not preceded by /
-    key := "datakit/confd/netstat"
+    // Note: No leading slash before datakit
+    key := "/datakit/confd/host/netstat.conf"
     value := `
 [[inputs.netstat]]
   ##(optional) collect interval, default is 10 seconds
@@ -327,25 +336,24 @@ func consulDo(index int) {
   # some_tag = "some_value"
   # more_tag = "some_other_value"
 `
-
-    // write data
-    p := &api.KVPair{Key: key, Value: []byte(data), Flags: 32}
+    // Write data
+    p := &api.KVPair{Key: key, Value: []byte(value), Flags: 32}
     _, err = kv.Put(p, nil)
     if err != nil {
-        fmt.Println(" error: ", err)
+        fmt.Println("error: ", err)
     }
 
-    p1 := &api.KVPair{Key: key1, Value: []byte(data), Flags: 32}
+    p1 := &api.KVPair{Key: key1, Value: []byte(value), Flags: 32}
     _, err = kv.Put(p1, nil)
     if err != nil {
-        fmt.Println(" error: ", err)
+        fmt.Println("error: ", err)
     }
 }
 ```
 
-### aws secrets manager  {#update-aws}
+### AWS Secrets Manager  {#update-aws}
 
-```go
+```golang
 import (
     "github.com/aws/aws-sdk-go-v2/aws"
     "github.com/aws/aws-sdk-go-v2/config"
@@ -354,20 +362,20 @@ import (
     "github.com/aws/smithy-go"
 )
 
-func consulDo(index int) {
-    // creat terminal
+func awsSecretsManagerDo(index int) {
+    // Create client
     region := "cn-north-1"
     config, err := config.LoadDefaultConfig(context.TODO(),
-        config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(《AccessKeyID》, 《SecretAccessKey》, "")),
+        config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(<<AccessKeyID>>, <<SecretAccessKey>>, "")),
         config.WithRegion(region),
     )
-    // will use secret file like ~/.aws/config
+    // Will use secret file like ~/.aws/config
     // config, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(region))
     if err != nil {
         fmt.Printf("ERROR config.LoadDefaultConfig : %v\n", err)
     }
 
-    // obtain a KV handle
+    // Get KV handle
     conn := secretsmanager.NewFromConfig(config)
   
     key := "/datakit/confd/host/netstat.conf"
@@ -382,7 +390,7 @@ func consulDo(index int) {
   # more_tag = "some_other_value"
 `
 
-    // write in data
+    // Write data
     input := &secretsmanager.CreateSecretInput{
         // Description:  aws.String(""),
         Name:         aws.String(key),
@@ -391,38 +399,33 @@ func consulDo(index int) {
 
     result, err := conn.CreateSecret(context.TODO(), input)
     if err != nil {
-        fmt.Println(" error: ", err)
+        fmt.Println("error: ", err)
     }
 }
 ```
 
 ### Nacos {#update-nacos}
 
-1. Log in to the `nacos` management page through the URL.
-2. Create two spaces: `/datakit/confd` and `/datakit/pipeline`.
-3. Group names are created in the style of `datakit/conf.d` and `datakit/pipeline`.
-4. `dataID` is created according to the rules of `.conf` and `.p` files. (The suffix cannot be omitted).
-5. Add/delete/change `dataID` through the management page.
+1. Log in to the Nacos management page via the URL.
+1. Create two namespaces: `/datakit/confd` and `/datakit/pipeline`.
+1. Create group names according to the `datakit/conf.d` and `datakit/pipeline` subdirectories.
+1. Create `dataID` following the rules for `.conf` and `.p` files. Do not omit the suffix.
+1. Add, delete, or modify `dataID` via the management page.
 
-## Updating Pipeline in Configuration Center  {#update-config-pipeline}
+## Updating Pipeline in Configuration Center {#update-config-pipeline}
 
-Refer to [how Configuration Center updates configuration](confd.md#update-config)
+Refer to [How Configuration Center Updates Configuration](confd.md#update-config)
 
-Change the key name `datakit/confd` to `datakit/pipeline`, plus the `type/file name`.
+Change the key name `datakit/confd` to `datakit/pipeline` and add the "type/filename". For example, the key `datakit/pipeline/logging/nginx.p` contains the Pipeline text.
 
-For example,  `datakit/pipeline/logging/nginx.p`.
+Updating Pipeline supports etcdV3/Consul/Redis/Zookeeper/AWS Secrets Manager/Nacos.
 
-The key value is the text of the Pipeline.
+## Backend Data Source Software Version Notes {#backend-version}
 
-Update Pipeline supports etcd-v3 consul redis zookeeper, not file backend.
+During development and testing, the following versions of backend data source software were used.
 
-<!-- markdownlint-disable MD013 -->
-## Backend Data Source Software Version Description {#backend-version}
-<!-- markdownlint-enable -->
-
-In the process of development and testing, the back-end data source software uses the following version.
-
-- REDIS: v6.0.16
-- ETCD: v3.3.0
-- CONSUL: v1.13.2
-- ZOOKEEPER: v3.7.0
+- Redis     : v6.0.16
+- etcd      : v3.3.0
+- Consul    : v1.13.2
+- Zookeeper : v3.7.0
+- Nacos     : v2.1.2

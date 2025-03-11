@@ -1,0 +1,8 @@
+nav:
+  - 'List Alert Strategies': list.md
+  - 'Create an Alert Strategy': add.md
+  - 'Create an Alert Strategy v2': add-v2.md
+  - 'Get an Alert Strategy': get.md
+  - 'Modify an Alert Strategy': modify.md
+  - 'Modify an Alert Strategy v2': modify-v2.md
+  - 'Delete an Alert Strategy': delete.md

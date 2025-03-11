@@ -1,73 +1,81 @@
 ---
-title: 'Aliyun Kafka'
+title: 'Alibaba Cloud KafKa'
 tags: 
-  - "Alibaba Cloud"
-summary: "AliCloud Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams."
+  - Alibaba Cloud
+summary: 'Alibaba Cloud KafKa includes instance disk usage, instance and topic message production volume, message production frequency, message consumption volume, and message consumption frequency. These metrics reflect the reliability of Kafka in handling large-scale message transmission and real-time data streams.'
 __int_icon: 'icon/aliyun_kafka'
 dashboard:
-  - desc: 'aliyun Kafka Dashboard'  
-    path: 'dashboard/zh/aliyun_kafka'
+  - desc: 'Alibaba Cloud Kafka built-in views'
+    path: 'dashboard/en/aliyun_kafka/'
 monitor:
-  - desc: 'aliyun Kafka Monitor'
-    path: 'monitor/zh/aliyun_kafka/'
-
+  - desc: 'Alibaba Cloud KafKa monitor'
+    path: 'monitor/en/aliyun_kafka/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun Kafka
+
+# Alibaba Cloud **KafKa**
 <!-- markdownlint-enable -->
 
-Aliyun Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams.
+Alibaba Cloud `KafKa` includes instance disk usage, instance and topic message production volume, message production frequency, message consumption volume, and message consumption frequency. These metrics reflect the reliability of Kafka in handling large-scale message transmission and real-time data streams.
 
-## Config {#config}
+
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling Guance integration - expansion - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-### Installation script
-
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of Kafka, install the corresponding data collection script: "Guance Integration (aliyun - Kafka)" (ID: `guance_aliyun_kafka`).
-
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
-
-Click [Deploy Startup Scripts], the system will automatically create the `Startup` script set and automatically configure the corresponding startup scripts.
-
-You can see the corresponding auto-trigger configuration in "Management / Auto-trigger Configuration" after you turn it on. Click "Execute" to execute the task immediately without waiting for the regular time. Wait for a while, you can check the record and log of the executed task.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Installation Script
 
-1. Check whether the automatic triggering configuration exists for the corresponding task in "Management / Crontab Config". Additionally, you can review task records and logs to identify any exceptions.
-2. On the Guance platform, go to "Infrastructure / Custom" to verify the presence of asset information.
-3. Press "Metrics" on the Guance platform to confirm the availability of monitoring data.
+> Note: Please prepare the required Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+
+To synchronize monitoring data for the community edition of Alibaba Cloud `KafKa`, we install the corresponding collection script: Guance Integration (Alibaba Cloud - `KafKa` Collection) (ID: `startup__guance_aliyun_Kafka`)
+
+After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
+
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+
+Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+By default, we collect some configurations; see the Metrics section for details.
+
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+
+
+### Verification
+
+1. In 「Manage / Automatic Trigger Configuration」confirm that the corresponding automatic trigger configuration exists for the task and check the task records and logs for any anomalies.
+2. On the Guance platform, under 「Infrastructure / Custom」check if asset information exists.
+3. On the Guance platform, under 「Metrics」check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-Configure AliCloud-Cloud Monitor, the default set of metrics are as follows, you can configure the way to collect more metrics [AliCloud Cloud Monitor metrics details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud CloudMonitor, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud CloudMonitor Metric Details](https://cms.console.aliyun.com/metric-meta/acs_kafka/kafka?spm=a2c4g.11186623.0.0.2524166d7ZAGWy){:target="_blank"}
 
-| Metric Id                      | Metric Name                    | Dimensions        | Statistics      | Unit     |
-| -------------------- | ------------------- | ------------------------------------------------------- | ---- | ---------- |
-| instance_disk_capacity_Maximum | instance_disk_capacity_Maximum | userId,instanceId | Average,Maximum | KBytes/s |
-| instance_message_input         | instance_message_input         | userId,instanceId | Average,Maximum | messages |
-| instance_message_num_inp       | instance_message_num_inp       | userId,instanceId | Average,Maximum | messages |
-| instance_message_output        | instance_message_output        | userId,instanceId | Average,Maximum | messages |
-| instance_reqs_input            | instance_reqs_input            | userId,instanceId | Average,Maximum | Count    |
-| instance_reqs_output           | instance_reqs_output           | userId,instanceId | Average,Maximum | Count    |
+| Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
+| ---- | ---- | ---- | ---- | ---- |
+| instance_disk_capacity_Maximum | V2 Instance Disk Usage | userId,instanceId | Maximum | % |
+| instance_message_input | Instance Message Production Volume | userId,instanceId | Value | bytes/s |
+| instance_message_num_input | Instance Message Production Count | userId,instanceId | Value | countSecond |
+| instance_message_output | Instance Message Consumption Volume | userId,instanceId | Value | bytes/s |
+| instance_reqs_input | Instance Message Send Frequency | userId,instanceId | Value | countSecond   |
+| instance_reqs_output | Instance Message Consumption Frequency | userId,instanceId | Value | countSecond |
+| topic_message_input | Topic Message Production Volume | userId,instanceId | Value | bytes/s |
+| topic_message_num_input | Topic Message Production Count | userId,instanceId | Value | countSecond |
+| topic_message_output | Topic Message Consumption Volume | userId,instanceId | Value | bytes/s |
+| topic_reqs_input | Topic Message Send Frequency | userId,instanceId | Value | countSecond |
+| topic_reqs_output | Topic Message Consumption Frequency | userId,instanceId | Value | countSecond |
+
+
 
 ## Objects {#object}
 
-The collected Aliyun Kafka object data structure can be viewed from "Infrastructure / Custom".
+The object data structure collected from Alibaba Cloud KafKa can be viewed under 「Infrastructure - Custom」
 
 ```json
-
-
 {
   "measurement": "aliyun_kafka",
   "tags": {
@@ -95,4 +103,3 @@ The collected Aliyun Kafka object data structure can be viewed from "Infrastruct
   }
 }
 ```
-
