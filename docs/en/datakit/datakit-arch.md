@@ -14,6 +14,8 @@ The DataKit network model mainly consists of three layers, which can be simply s
   <figcaption> DataKit Basic Network Model </figcaption>
 </figure>
 
+<!-- markdownlint-disable MD029 -->
+
 1. DataKit primarily collects various different metrics at regular intervals and sends the data to DataWay via HTTP(s) periodically and quantitatively. Each DataKit is configured with a corresponding token to identify different users.
 
 > Note: If the user's internal network environment does not have external network requests enabled, you can use [Nginx as a proxy layer](../integrations/proxy.md#nginx-proxy), or you can achieve traffic proxying through the built-in [Proxy collector](../integrations/proxy.md) in DataKit.

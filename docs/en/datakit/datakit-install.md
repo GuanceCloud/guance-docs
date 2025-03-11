@@ -538,7 +538,7 @@ Besides collection, DataKit performs the following file read/write operations:
 
 - Its own log files
 
-On Linux, located in */var/log/datakit/*; on Windows, in *C:\Program Files\datakit*. 
+On Linux, located in */var/log/datakit/*; on Windows, in *C:\Program Files\datakit*.
 
 Log files rotate automatically when they reach a specified size (default 32MB) and have a maximum rotation limit (default 5 + 1 shards).
 

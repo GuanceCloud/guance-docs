@@ -1,6 +1,8 @@
 # Offline Deployment
 ---
 
+<!-- markdownlint-disable MD029 -->
+
 In some cases, the target machine does not have public network access. The following method can be used to install DataKit offline.
 
 ## Proxy Installation {#install-via-proxy}
@@ -623,7 +625,6 @@ docker image inspect pubrepo.guance.com/datakit/datakit:1.68.1 |grep Architectur
 
     }
     ```
-<!-- markdownlint-enable -->
 
 4. Execute commands on other intranet machines.
 
