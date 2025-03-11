@@ -136,6 +136,8 @@ After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#mana
 
 ## Data Caching {#cache}
 
+<!-- markdownlint-disable MD029 -->
+
 1. Fetch the entire `items` table from MySQL and store it in memory. After exporting data from Zabbix, use the `itemid` to query the `items` table, so the entire table is stored using `map[itemid]itemc`.
 
 ```text

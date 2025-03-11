@@ -478,6 +478,8 @@ chmod +x datakit_tools.sh
 
 ### Proxy Installation {#k8s-install-via-proxy}
 
+<!-- markdownlint-disable MD029 -->
+
 **If the internal network has a machine that can access the external network, you can deploy an NGINX server on this node to act as an image retrieval proxy.**
 
 1. Download the *datakit.yaml* file

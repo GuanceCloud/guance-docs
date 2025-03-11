@@ -1107,4 +1107,3 @@ Configuration Explanation:
 - [DataKit Host Installation](datakit-install.md)
 - [DataKit DaemonSet Installation](datakit-daemonset-deploy.md)
 - [DataKit Line Protocol Filters](datakit-filter.md)
-```

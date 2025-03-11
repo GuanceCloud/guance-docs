@@ -206,9 +206,10 @@ Collector configurations fall into two categories:
 
 - Host installation: Add collector configurations directly in the *conf.d* directory.
 - Kubernetes installation:
-  - Use ConfigMap to mount configurations.
-  - Modify via environment variables (higher priority than ConfigMap).
-  - Use Annotations (highest priority).
+
+    - Use ConfigMap to mount configurations.
+    - Modify via environment variables (higher priority than ConfigMap).
+    - Use Annotations (highest priority).
 
 If both default and ConfigMap configurations specify the same collector, behavior is undefined and may trigger singleton issues.
 

@@ -44,6 +44,7 @@ Currently available regions are **cn-northwest-1, us-west-2, ap-southeast-1**. O
 #### Step One: Authorize Account ID {#accredit-id}
 
 Open the Amazon console via the following links:
+
 - [China Region](https://console.amazonaws.cn/console/home){:target="_blank"}
 - [Overseas Region](https://console.aws.amazon.com/console/home){:target="_blank"}
 

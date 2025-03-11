@@ -1,5 +1,7 @@
 # Changelog
 
+<!-- markdown-link-check-disable -->
+
 ## 1.68.1 (2025/02/28) {#cl-1.68.1}
 
 This release is a hotfix, including some additional minor features. The contents are as follows:

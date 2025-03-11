@@ -323,6 +323,8 @@ These resources use Address IP (multiple) for the collection address, correspond
 
 The following example creates a Service and Deployment and uses KubernetesPrometheus to collect data from the corresponding Pod. Steps are as follows:
 
+<!-- markdownlint-disable MD029 -->
+
 1. Create Service and Deployment
 
 ```yaml

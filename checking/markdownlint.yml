@@ -142,7 +142,7 @@ MD027: true
 MD028: true
 
 # MD029/ol-prefix - Ordered list item prefix
-MD029: false
+MD029: true
   # List style
   #style: "one_or_ordered"
 
@@ -247,7 +247,7 @@ MD046:
   style: "fenced"
 
 # MD047/single-trailing-newline - Files should end with a single newline character
-MD047: false
+MD047: true
 
 # MD048/code-fence-style - Code fence style
 MD048:

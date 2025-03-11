@@ -1227,4 +1227,3 @@ Response: {
 - [API Access Configuration](datakit-conf.md#config-http-server)
 - [API Rate Limiting Configuration](datakit-conf.md#set-http-api-limit)
 - [API Security Control](../integrations/rum.md#security-setting)
-```
