@@ -161,7 +161,6 @@ Taking Kubernetes `1.24` as an example, to enable audit log policy:
         - group: "autoscaling.alibabacloud.com"
     # Default level for all other requests.
     - level: Metadata
-```
 
 <!-- markdownlint-enable -->
 

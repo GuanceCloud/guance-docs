@@ -129,11 +129,15 @@ The collected Alibaba Cloud PolarDB MySQL object data structure can be viewed in
 
 ### Slow Query Statistics
 
+<!-- markdownlint-disable MD024 -->
 #### Prerequisites
+<!-- markdownlint-enable -->
 
 > Note: This script depends on the collection of PolarDB instance objects. If PolarDB custom object collection is not configured, the slow log script cannot collect slow log data.
 
+<!-- markdownlint-disable MD024 -->
 #### Install Script
+<!-- markdownlint-enable -->
 
 In addition to the previous setup, you need to install another script for collecting **PolarDB slow query statistics logs**.
 

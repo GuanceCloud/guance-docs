@@ -1934,7 +1934,6 @@ By configuring `pod_include_metric` and `pod_exclude_metric`, you can control wh
     ```
 
     This method allows flexible control over the scope of Pod metrics collected by DataKit, avoiding unnecessary data collection to optimize system performance and resource utilization.
-```
 
 ### :material-chat-question: NODE_LOCAL Requires New Permissions {#rbac-nodes-stats}
 
