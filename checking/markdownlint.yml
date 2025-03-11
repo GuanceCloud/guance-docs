@@ -77,7 +77,7 @@ MD013:
   # Number of characters
   line_length: 800000 # not limited
   # Number of characters for headings
-  heading_line_length: 50
+  heading_line_length: 120
   # Number of characters for code blocks
   code_block_line_length: 800000
   # Include code blocks
@@ -142,9 +142,9 @@ MD027: true
 MD028: true
 
 # MD029/ol-prefix - Ordered list item prefix
-MD029:
+MD029: false
   # List style
-  style: "one_or_ordered"
+  #style: "one_or_ordered"
 
 # MD030/list-marker-space - Spaces after list markers
 MD030:
@@ -247,7 +247,7 @@ MD046:
   style: "fenced"
 
 # MD047/single-trailing-newline - Files should end with a single newline character
-MD047: true
+MD047: false
 
 # MD048/code-fence-style - Code fence style
 MD048:

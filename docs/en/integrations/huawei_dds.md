@@ -207,6 +207,7 @@ After data synchronization is successful, you can view the data in the Guance pl
 > - `fields.datastore`
 > - `fields.groups`
 > - `fields.actions`
+>
 ```
 
 After data synchronization is successful, you can view the data in the Guance platform under 「Infrastructure / Custom (Objects)」.
@@ -222,5 +223,3 @@ After data synchronization is successful, you can view the data in the Guance pl
 > - `fields.datastore`
 > - `fields.groups`
 > - `fields.actions`
-
-This completes the translation. If there are any additional sections or details you need translated, please let me know!
