@@ -441,8 +441,7 @@ Tested versions:
 |`admission_wait_queue_length_sql_root_start`|Length of wait queue.|float|count|
 |`admission_wait_queue_length_sql_root_start_locking_normal_pri`|Length of wait queue.|float|count|
 |`admission_wait_queue_length_sql_root_start_normal_pri`|Length of wait queue.|float|count|
-|`admission_wait_queue_length_sql_sql_response`|[OpenMetrics v1 & v2] Length of Distributed SQL wait queue.|float| Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+|`admission_wait_queue_length_sql_sql_response`|[OpenMetrics v1 & v2] Length of Distributed SQL wait queue.|float|count|
 |`admission_wait_queue_lengths_sql_root_start`|[OpenMetrics v1 & v2] Length of SQL root start wait queue.|float|count|
 |`admission_wait_sum_kv`|[OpenMetrics v1] Total KV wait time in microseconds.|float|count|
 |`admission_wait_sum_kv_count`|[OpenMetrics v2] Total KV wait time in microseconds.|float|count|
@@ -880,8 +879,6 @@ Tested versions:
 |`jobs_import_resume_retry_error`|Number of import jobs which failed with a retryable error.|float|count|
 |`jobs_key_visualizer_currently_idle`|Number of key_visualizer jobs currently considered Idle and can be freely shut down.|float|count|
 |`jobs_key_visualizer_currently_paused`|Number of key_visualizer jobs currently considered Paused.|float|count|
-|`jobs_key_visualizer_currently_running`|Number of key_visualizer jobs currently running in| Metric | Description | Type | Unit |
-| ---- | ---- | :---: | :----: |
 |`jobs_key_visualizer_currently_running`|Number of key_visualizer jobs currently running in Resume or OnFailOrCancel state.|float|count|
 |`jobs_key_visualizer_expired_pts_records`|Number of expired protected timestamp records owned by key_visualizer jobs.|float|count|
 |`jobs_key_visualizer_fail_or_cancel_completed`|Number of key_visualizer jobs which successfully completed their failure or cancellation process.|float|count|
@@ -1143,8 +1140,6 @@ Tested versions:
 |`kvadmission_flow_controller_regular_wait_duration_sum`|Latency histogram for time regular requests spent waiting for flow tokens.|float|ns|
 |`kvadmission_flow_handle_elastic_requests_admitted`|Number of elastic requests admitted by the flow handle.|float|count|
 |`kvadmission_flow_handle_elastic_requests_errored`|Number of elastic requests that errored out while waiting for flow tokens, at the handle level.|float|count|
-| Metric | Description | Type | Unit |
-| ---- | ---- | :---: | :----: |
 |`kvadmission_flow_handle_elastic_requests_waiting`|Number of elastic requests waiting for flow tokens, at the handle level.|float|count|
 |`kvadmission_flow_handle_elastic_wait_duration_bucket`|Latency histogram for time elastic requests spent waiting for flow tokens, at the handle level.|float|ns|
 |`kvadmission_flow_handle_elastic_wait_duration_count`|Latency histogram for time elastic requests spent waiting for flow tokens, at the handle level.|float|ns|
@@ -1395,8 +1390,6 @@ Tested versions:
 |`raft_process_workingnanos_count`|[OpenMetrics v2] Nanoseconds spent in store.processRaft() working.|float|ns|
 |`raft_quota_pool_percent_used_bucket`|Histogram of proposal quota pool utilization (0-100) per leaseholder per metrics interval.|float|count|
 |`raft_quota_pool_percent_used_count`|Histogram of proposal quota pool utilization (0-100) per leaseholder per metrics interval.|float|count|
-|`raft_quota_pool_percent_used_sum`|Histogram of proposal quota pool utilization (0-100)| Metric | Description | Type | Unit |
-| ---- | ---- | :---: | :----: |
 |`raft_quota_pool_percent_used_sum`|Histogram of proposal quota pool utilization (0-100) per leaseholder per metrics interval.|float|count|
 |`raft_rcvd_app`|[OpenMetrics v1] Number of MsgApp messages received by this store.|float|count|
 |`raft_rcvd_app_count`|[OpenMetrics v2] Number of MsgApp messages received by this store.|float|count|
@@ -1667,8 +1660,6 @@ Tested versions:
 |`schedules_scheduled_schema_telemetry_executor_started`|Number of scheduled-schema-telemetry-executor jobs started.|float|count|
 |`schedules_scheduled_schema_telemetry_executor_succeeded`|Number of scheduled-schema-telemetry-executor jobs succeeded.|float|count|
 |`schedules_scheduled_sql_stats_compaction_executor_failed`|Number of `scheduled-sql-stats-compaction-executor` jobs failed.|float|count|
-|`schedules_scheduled| Metric | Description | Type | Unit |
-| ---- | ---- | :---: | :----: |
 |`schedules_scheduled_sql_stats_compaction_executor_started`|Number of `scheduled-sql-stats-compaction-executor` jobs started.|float|count|
 |`schedules_scheduled_sql_stats_compaction_executor_succeeded`|Number of `scheduled-sql-stats-compaction-executor` jobs succeeded.|float|count|
 |`seconds_until_enterprise_license_expiry`|Seconds until enterprise license expiry (0 if no license present or running without enterprise features).|float|count|
@@ -1979,8 +1970,6 @@ Tested versions:
 |`sql_stats_mem_max_bucket`|Memory usage for fingerprint storage.|float|B|
 |`sql_stats_mem_max_count`|Memory usage for fingerprint storage.|float|B|
 |`sql_stats_mem_max_sum`|Memory usage for fingerprint storage.|float|B|
-|`sql_stats_reported_mem_current`|Current memory usage for reported fingerprint storage.|float|| Metric | Description | Type | Unit |
-| ---- | ---- | :---: | :----: |
 |`sql_stats_reported_mem_current`|Current memory usage for reported fingerprint storage.|float|B|
 |`sql_stats_reported_mem_max`|Memory usage for reported fingerprint storage.|float|B|
 |`sql_stats_reported_mem_max_bucket`|Memory usage for reported fingerprint storage.|float|B|
@@ -2251,4 +2240,3 @@ Tested versions:
 |`valbytes`|[OpenMetrics v1 & v2] Number of bytes taken up by values.|float|B|
 |`valcount`|[OpenMetrics v1 & v2] Count of all values.|float|count|
 
-This completes the translation of the metrics section for CockroachDB. If you need any further assistance or additional sections translated, please let me know!
