@@ -1,108 +1,106 @@
-# Users Define Their Own Rule Files and Lib Libraries
+# User-defined Rule Files and Libraries
+
 ---
 
 - Version: 1.0.7-5-gb83de2d
-- Release date: 2022-08-30 03:31:26
-- Accessible operating system: windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
+- Release Date: 2022-08-30 03:31:26
+- Supported Operating Systems: windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64
 
-## Introduction to scheck Rules
-*Introduction to lua rules*:
+## scheck Rule Introduction
+*Lua Rule Introduction*:
 
-The rule script consists of two files: the lua file and the manifest file, both of which must exist at the same time, and the file prefix is the same.
+The rule script consists of two files: a Lua file and a manifest file. Both files must exist simultaneously, and they must share the same prefix!
 
-- `<rule-name>.lua`: This is a rule-judging script, implemented based on lua syntax. But it cannot reference or reference standard lua libraries, using only built-in lua libraries and built-in functions.
+- `<rule-name>.lua`: This is the evaluation script for the rule, implemented using Lua syntax. However, it cannot reference or use standard Lua libraries; only built-in Lua libraries and functions can be used.
 
-- `<rule-name>.manifest`: This is the rule manifest file. When the corresponding lua script detects a problem (result == true), there is a set of corresponding behavior definitions in the manifest file
+- `<rule-name>.manifest`: This is the rule manifest file. When the corresponding Lua script detects an issue (result == true), a set of predefined actions in the manifest file will be triggered.
 
-### Manifest File Field Description
+### Manifest File Field Descriptions
 
-| manifest Field | Field Description | Configuration Description |
+| Manifest Field | Description | Configuration Notes |
 | :--- | :---- | :---- |
-| id | Name | Add the functional name of the script according to the id rule. |
-| category | system | You can use several types: system,os,net,file,db,docker... |
-| level | Alarm level | You can use several types: debug,info,warn,error |
-| title | Rule header name | It is generally named after the function of this rule. |
-| desc | Description | Show and specify the operation results of the rules in words. |
-| cron | Customize the interval between runs | See: [write a cron example](#编写cron) |
-| disabled | Switch | Optional fields: true or false |
-| os_arch | Supported operating systems | Array type; you can select: "windows" "linux" |
+| id | Name | Named according to the functionality of the script, prefixed by the ID |
+| category | system | Multiple types can be used: system, os, net, file, db, docker... |
+| level | Alert Level | Options include: debug, info, warn, error |
+| title | Rule Title | Typically named based on the rule's functionality |
+| desc | Description | Provides detailed information about the rule's execution results |
+| cron | Custom Execution Interval | Refer to: [Cron Examples](#writing-cron) |
+| disabled | Toggle | Optional field: true or false |
+| os_arch | Supported Operating Systems | Array type, options: "windows", "linux" |
 
+scheck's built-in rules are located in the `rules.d` directory under the installation path.
 
- scheck built-in rules are in the installation directory `rules.d`
+## User-defined Exclusive Rules and Lua Libraries
+This example demonstrates creating a rule that periodically checks the hostname:
 
-## User-defined Proprietary Rules and Lua Libraries
-Take a rule that looks at the hostname at regular intervals as an example:
-
-1、 Write a lua file
-Create a file named 10001-hostname.lua under the user directory `custom.rules.d`. The code is as follows:
+1. Create a Lua File
+Create a file named `10001-hostname.lua` in the user directory `custom.rules.d`. The code is as follows:
 ``` lua
 local function check()
     local cache_key = "hostname"
-    local old = get_cache(cache_key) --get_cache(key) 是go内置函数 用于lua脚本缓存，搭配set_cache(cache_key, current)使用
+    local old = get_cache(cache_key) -- get_cache(key) is a Go built-in function used for caching in Lua scripts, paired with set_cache(cache_key, current)
     if old == nil then
-        local current = hostname()   -- go内置函数 获取主机名
+        local current = hostname()   -- Go built-in function to retrieve the hostname
         set_cache(cache_key, current)
         return
     end
-    local current =  hostname()
+    local current = hostname()
     if old ~= current then
-        trigger({Content=current})   -- go内置函数 用于将消息发送到datakit或者本机日志中
+        trigger({Content=current})   -- Go built-in function to send messages to datakit or local logs
         set_cache(cache_key, current)
     end
 end
 check()
 ```
 
-> Note: scheck expects user-defined [rule names](#lua规则命名规范) o follow the same specification.
+> Note: scheck expects user-defined rule names to follow this [naming convention](#lua-naming-convention)
 
-2、 Write a manifest file
-Create a file named `10001-hostname.manifest` under the user directory `custom.rules.d`. The contents are as follows:
+2. Create a Manifest File
+Create a file named `10001-hostname.manifest` in the user directory `custom.rules.d`. The content is as follows:
 
 ``` toml
 id="10001-hostname"
 category="system"
 level="info"
-title="主机名被修改"
-desc="主机名被修改成： {{.Content}}"
+title="Hostname Modified"
+desc="Hostname changed to: {{.Content}}"
 cron="0 */1 * * *"
-# 开关
+# Toggle
 disabled=false
 os_arch=["Linux"]
 
 ```
 
-The current rule manifest file is configured to execute every minute.
+The current manifest configuration sets the rule to execute every minute.
 
-
-3、 Restart the server
+3. Restart the Server
 
 ```shell
 systemctl restart scheck.service
 ```
 
-4、 Send a message
+4. Send Messages
 
-After restarting the server, the script is executed every minute, and the hostname can be modified after one minute.
+After restarting the server, the script will run every minute. You can change the hostname after one minute.
 
-The static hostname is saved in the /etc/hostname file and can be modified by name.
+The static hostname is stored in `/etc/hostname`, which can be modified using the command:
 
 ``` shell
-   hostnamectl set-hostname  myclient1
+hostnamectl set-hostname myclient1
 ```
 
-5、 Observation
+5. Monitor
 
-Log in to the [Guance](https://www.guance.com) Console->Navigation Bar->Scheck: Check the installation sheck information and find a message that the host name has been modified
+Log in to the [<<< custom_key.brand_name >>>](https://www.guance.com) console -> Navigation Bar -> Security Check: View inspection information and find a message indicating the hostname has been changed.
 
-   ![](img/image-hostname.png)
+![](img/image-hostname.png)
 
+## Rule Library
+*Lua Library Files and User-defined Libraries*:
 
-## Rule Base
-*lua library files and user-defined libraries*:
+scheck's built-in Lua library files are located in the `rules.d/libs` directory under the installation path. The function list and API documentation can be viewed [online](../scheck/funcs.md).
 
-scheck's own lua reference library file is in the installation directory `rules.d/libs`, and the function list and interface documentation can be [viewed online](../scheck/funcs.md).
-
-The manifest file is not required for the lib library file, and the reference in lua needs to be declared once, for example, the reference to directorymonitor in libs needs to be declared once:
+Library files do not require a manifest file. In Lua, you need to declare the library once when referencing it, such as requiring `directorymonitor` from `libs`:
 
 ```lua
 local directorymonitor = require("directorymonitor")
@@ -114,20 +112,19 @@ end
 check()
 ```
 
-> Note: Users cannot modify the lib library and lua rule files that come with scheck, and the rule files will be overwritten every time the service is installed, updated and restarted.
+> Note: Users should not modify scheck's built-in libraries or Lua rule files. Each installation update and service restart will overwrite the rule files.
 
+User-defined rules and libraries can be placed in the `custom.rules.d` directory. If there are custom Lua libraries, place them in the `custom.rules.d/libs` directory.
 
-User-defined rules and library files can be placed in the `custom.rules.d`, and if there are custom lua reference library files, they can be placed in the `custom.rules.d/libs` directory.
-
-When pointing to another path, you only need to modify the configuration file `scheck.conf`:
+If pointing to another path, simply modify the configuration file `scheck.conf`:
 
 ``` toml
 [system]
-  # ##(Required) The directory in which the system holds the instrumentation scripts
+  # ##(Required) Directory where system detection scripts are stored
   rule_dir = "/usr/local/scheck/rules.d"
-  # ##Customized catalog
+  # ##Custom directory
   custom_dir = "/usr/local/scheck/custom.rules.d"
-  #Optional user-defined lua library unavailable rule_dir system defaults to libs in user directory
+  # Optional User-defined Lua library directory, default is libs under the user directory
   custom_rule_lib_dir = "/usr/local/scheck/custom.rules.d/libs"
 ```
 Then restart the service.
@@ -135,38 +132,39 @@ Then restart the service.
 -------------------
 # Appendix
 
-## Naming Convention for Lua Rules
+## Lua Rule Naming Convention
 
-The lua that comes with scheck is named by type, and the ID before the name indicates that it belongs to a certain rule type.
+scheck's built-in Lua rules are named based on their type, with the ID prefix indicating the rule category.
 
-User rule names should begin with a number and should not be less than 10000 for example: 10001-xxx.lua
+User-defined rule names should start with a number greater than or equal to 10000, for example: `10001-xxx.lua`.
 
-scheck comes with its own rule naming convention:
+scheck's naming conventions for built-in rules:
 
 | ID Range | Rule Type |
 | :---: | :----: |
-| 0000 | System cache |
+| 0000 | System Cache |
 | 0001~0199 | System |
 | 0200~0299 | Network |
-| 0300~0310 | Container correlation |
+| 0300~0310 | Container-related |
 | 0500~0510 | Database |
-| 10000以上 | User-defined |
+| 10000 and above | User-defined |
 
-> If user-defined lua is not named according to the naming convention, the rule would fail to load.
+> User-defined Lua rules that do not follow the naming convention will fail to load.
 
-## Manifest File Sets the Timing Cron Field
-Scheck supports two operation modes: interval execution and long-term type. Fixed-time execution is not supported at present!
+## Setting the Cron Field in Manifest Files
+Scheck supports two execution modes: interval-based and long-running. Fixed-time execution is currently not supported!
 
-### Interval Execution Cron
+### Interval-based Cron
 ```shell
-cron="* */1 * * *"  # Execute it every minute
-cron="* * */1 * *"  # Execute it every hour
-cron="* * * */1 *"  # Execute it every day
+cron="* */1 * * *"  # Executes every minute
+cron="* * */1 * *"  # Executes every hour
+cron="* * * */1 *"  # Executes daily
 ```
-### Long-term Rule
+
+### Long-running Rules
 
 ```shell
 cron="disable" or cron=""  
 ```
 
-The long-term rule will be implemented all the time, and the message will be reported in 1 second when it is triggered. For example, the file changes.
+Long-running rules will continuously execute and report messages within one second when triggered. For example, when a file changes.

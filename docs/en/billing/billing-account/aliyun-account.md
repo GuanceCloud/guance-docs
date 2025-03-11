@@ -1,89 +1,93 @@
 # Alibaba Cloud Account Settlement
 ---
 
-Alibaba Cloud account refers to recharge settlement directly through Alibaba Cloud account, and one Alibaba Cloud account supports expense settlement associated with multiple workspaces and workspaces of multiple sites. This article will introduce <u>how to open Alibaba Cloud account settlement in Guance Commercial Plan</u>. 
+This involves directly topping up and settling accounts through an Alibaba Cloud account. One Alibaba Cloud account supports associating multiple workspaces, across multiple sites, for fee settlement.
 
-> Refer to the doc [Register Commercial Plan](../../billing/commercial-register.md) for information on how to launch a Commercial Plan.
+## When Selecting Commercial Plan for the First Purchase of <<< custom_key.brand_name >>>
 
-## Select Alibaba Cloud Account for Settlement
+![Bill by Alibaba Cloud](../../img/bill-by-ali.png)
 
-When registering or upgrading the Commercial Plan of Guance, you can select **Alibaba Cloud Account Settlement**, or you can click **Billing Center > Workspace Management** in the workspace of Guance, click **Change Settlement Method**, and select **Alibaba Cloud Account Settlement** in the pop-up dialog box.
+1. [Enter the registration process](../../plans/commercial-register.md);
+2. On step three, when selecting the activation method, choose [Activation via Alibaba Cloud Market](#purchase);
+3. Enter the workspace name and select the workspace language;
+4. Fill in the account ID and product instance ID;
+5. Check the box to agree with the terms;
+6. Click activate.
 
-![](../img/9.upgrade_7-0629.png)
+During this step, the system will synchronize and create a Billing Center account for you. Later on, you can log into the billing center platform using the username/password used during registration (i.e., the username/password used in the first step of registering the <<< custom_key.brand_name >>> account) to view detailed billing information.
 
-## Open Guance in Alibaba Cloud Market
+### Activation via Alibaba Cloud Marketplace {#purchase}
 
-On the **Change Settlement Method, click and go to Alibaba Cloud to open the Guance service free of charge. On Alibaba Cloud's heart selection platform, click **Open Now**.
+Log in to the [Alibaba Cloud Preferred Platform](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF), and click **Activate Now**.
+
+![Marketplace Guance](../../img/market-guance.png)
+
+Prompt **Activate Pay-as-you-go Service**, agree to the terms, and click **Activate**.
+
+![Marketplace Guance Step 1](../../img/market-guance-1.png)
+
+Display **Activation Request Submitted**.
+
+![Marketplace Guance Step 2](../../img/market-guance-2.png)
+
+Click **Confirm** to be redirected to the marketplace page where you can view the activated <<< custom_key.brand_name >>> instance.
+
+![Marketplace Instance](../../img/10.aliyun_market_1.png)
+
+Click **Activate Now**.
 
 ![](../img/6.aliyun_6.png)
 
+## Changing Settlement Method via the Billing Center Platform
 
-Click **Open Now** again, and prompt **Open Service Paid-per-use**. After agreeing to the agreement, click **Open**.
+1. Log into the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com);
+2. Enter workspace management;
+3. Select the workspace and click the change button on the right;
+4. Choose **Alibaba Cloud Account Settlement**;
+5. First [go to Alibaba Cloud to activate](#purchase) <<< custom_key.brand_name >>> service;
+6. After purchasing, obtain the [account ID](#id) and [product instance ID](#entity-id);
+7. Click confirm.
 
-![](../img/6.aliyun_9.png)
+![Billing Center Change 2](../../img/bill-by-center-2.png)
 
-At the prompt **Open Application Submitted** dialog box, click **Confirm**.
+![Billing Center Change 3](../../img/bill-by-center-3.png)
 
-![](../img/6.aliyun_10.png)
+### How to Obtain the Account ID {#uid}
 
-After confirming the opening application, jump directly to the list of purchased services of Alibaba Cloud to view the purchased Guance services.
+#### Alibaba Cloud Main Account
 
-Note: Alibaba Cloud account needs real-name authentication to purchase Guance service.
-
-![](../img/6.aliyun_13.png)
-
-Return to the **Guance Billing Center**, prompt **Confirm Opening**, and click OK.
-
-![](../img/6.aliyun_12.png)
-
-## Enter Alibaba Cloud User ID and Product Instance ID
-
-In the Change Settlement Mode dialog box, enter [user ID](#uid) and [Instance ID](#entity-id), and click **OK** to open the settlement mode of Alibaba Cloud account.
-
-![](../img/9.upgrade_7-0629.png)
-
-## How to Get Alibaba User ID {#uid}
-
-### Alibaba Cloud Master Account
-
-Log in to [Alibaba Cloud](https://www.aliyun.com) through the main account, enter Alibaba Cloud Studio, hover over the account avatar in the upper right corner, copy the Account ID in the drop-down list, and fill in the Ali User ID in the dialog box of changing settlement method.
+Log in to [Alibaba Cloud](https://www.aliyun.com) using the main account, enter the Alibaba Cloud console, click the account avatar at the top right corner, and you can find the account ID.
 
 ![](../img/6.aliyun_2.png)
 
-Or you can get the UID of Alibaba Cloud's main account directly from the Account ID on the right side of the studio, and fill in the **User ID** in the dialog box of changing settlement method.
 
-![](../img/20.aliyun_1.png)
+<!--
 
 ### Alibaba Cloud RAM Sub-Account
 
-Log in to [Alibaba Cloud](https://www.aliyun.com) through RAM, enter Alibaba Cloud Studio, hover the mouse over the account avatar in the upper right corner, copy the main account UID after @ in RAM account in the drop-down list, and fill in the Ali User ID in the dialog box of changing settlement method.
+Log in to [Alibaba Cloud](https://www.aliyun.com) via RAM, enter the Alibaba Cloud console, click the account avatar at the top right corner, and you can find the main account UID after the @ in the RAM account.
 
 ![](../img/20.aliyun_3.png)
+-->
 
-Or you can get the UID of Alibaba Cloud's main account directly from the RAM account on the right side of the studio, and fill in the Ali User ID in the dialog box of changing settlement method.
 
-![](../img/20.aliyun_2.png)
 
-## How to Get Item Instance ID {#entity-id}
+## How to Obtain the Product Instance ID {#entity-id}
 
-After Alibaba Cloud selects and confirms the opening application, Guance directly jumps to the list of services purchased by Alibaba Cloud. Under the purchased Guance services, you can view the instance ID of the goods, copy this instance ID, and fill in the commodity instance ID in the dialog box of changing settlement method.
+After confirming the activation request on Alibaba Cloud Preferred, <<< custom_key.brand_name >>> will redirect you to the list of purchased services on Alibaba Cloud. Below the purchased <<< custom_key.brand_name >>> service, you can view the **Instance ID** of the product. Copy this **Instance ID** and fill it into the **Product Instance ID** field in the change settlement method dialog box.
 
 ![](../img/10.aliyun_market_5.png)
 
+## Cancel Subscription to <<< custom_key.brand_name >>> on Alibaba Cloud {#cancel}
 
-
-## Unsubscribe from Guance at Alibaba Cloud
-
-I. Log in to Alibaba Cloud, open the menu in the upper left corner of Alibaba Cloud Studio, and click to enter **Cloud Market > Purchased Services**.
+1. In the Alibaba Cloud console, click into **Cloud Market > Purchased Services**;
+2. Under **Purchased Services**, you can view the <<< custom_key.brand_name >>> instance that was subscribed to. Click the **Close** button at the top right corner of the instance;
+3. In the pop-up **Business Closure** dialog box, click **Confirm**. Once confirmed, you will see that the instance status has changed to **Closed**, indicating that the subscription to <<< custom_key.brand_name >>> has been canceled on Alibaba Cloud.
 
 ![](../img/10.aliyun_market_1.png)
 
-II. In **Purchased Services**, you can view Guance instance with subscription, and click **Close** in the upper right corner of the instance.
-
 ![](../img/1.aliyun_cancel_2.png)
-
-III. In the pop-up **Business Closed** dialog box, after clicking **Confirm**, you can see that the instance has been closed, indicating that you have unsubscribed from Guance in Alibaba Cloud.
 
 ![](../img/1.aliyun_cancel_3.png)
 
-<font color=coral>**Note:**</font> After Alibaba Cloud cancels its subscription to the Guance service, it will bind all workspaces of the account settlement in the Guance Billing Center, delete the associated cloud account, modify the current cloud account settlement to the Billing Center account settlement of the Guance Billing Center, and notify the user by mail.
+**Note**: After canceling the <<< custom_key.brand_name >>> service subscription, the <<< custom_key.brand_name >>> Billing Center will unbind all associated workspaces from this account and switch to the <<< custom_key.brand_name >>> Billing Center account settlement method. You will also receive an email notification regarding this change.

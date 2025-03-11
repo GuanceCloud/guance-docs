@@ -13,7 +13,7 @@ HTTP 拨测允许您向应用程序的 API 接口发送 HTTP 请求，以验证�
 <img src="../../img/api_test_http.png" width="70%" >
 
 
-### :material-numeric-1-circle: 定义请求格式
+### 1、定义请求格式
 
 1. URL：同时支持输入 HTTP 或者 HTTPS 的 URL，包括四种请求方式 `GET`、`POST`、`PUT` 和 `HEAD`；  
 2. 高级设置：根据实际情况进行高级设置，包括请求设置、请求体内容、证书、代理、隐私；  
@@ -57,7 +57,7 @@ HTTP 拨测允许您向应用程序的 API 接口发送 HTTP 请求，以验证�
 </div>
 
 
-### :material-numeric-2-circle: 可用判断 {#test}
+### 2、可用判断 {#test}
 
 #### 默认模式
 
@@ -81,7 +81,7 @@ HTTP 拨测允许您向应用程序的 API 接口发送 HTTP 请求，以验证�
 ```
 body = load_json(response["body"])
 
-if body["code"] == "200" {
+if body["code"] == 200 {
   result["is_failed"] = false
 } else {
   result["is_failed"] = true
@@ -93,12 +93,12 @@ if body["code"] == "200" {
 
 > 更多阅读，可参考 [自定义拨测任务](../../integrations/dialtesting_json.md#post_script)。
 
-### :material-numeric-3-circle: 选择拨测节点
+### 3、选择拨测节点
 
 目前<<< custom_key.brand_name >>>已覆盖全球 14 个拨测节点。您可以选择中国地区或海外地区（仅限商业版及以上用户）的一个或多个节点，快速开启站点服务质量监测。
 
 
-### :material-numeric-4-circle: 选择拨测频率
+### 4、选择拨测频率
 
 选择拨测任务的执行频率，支持以下选项：
 

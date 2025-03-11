@@ -1,44 +1,35 @@
 ---
 title     : 'DDTrace Golang'
-summary   : 'Tracing Golang application with DDTrace'
+summary   : 'Integration of DDTrace with Golang'
 tags      :
   - 'DDTRACE'
   - 'GOLANG'
-  - 'APM'
-  - 'TRACING'
+  - 'Tracing'
 __int_icon: 'icon/ddtrace'
 ---
 
-There are two ways to instrument your Go application:
+There are currently two ways to instrument code: **compile-time instrumentation** and **manual instrumentation with code changes**.
 
-## 1. Compile-time Instrumentation {#compile-time}
+Intrusive instrumentation **requires modifying existing code**, but in general, common business code does not require significant changes. Only the relevant `import` packages need to be replaced.
 
-- **Ensures maximum coverage** of your tracing instrumentation.
-- **Does not require source code modifications**, making it ideal for integrating at the CI/CD level.
+To enable APM at compile time with DDTrace, you need to install [orchestrion](https://github.com/DataDog/orchestrion){:target="_blank"}
 
-## 2. Manual Instrumentation {#manual}
+Below are the instructions for both methods.
 
-Use `dd-trace-go` in conjunction with our integration packages to automatically generate spans for libraries of your choosing. This option:
+## Compile-Time Instrumentation {#compilation-automatically}
 
-- **Gives you complete control** over which parts of your application are traced.
-- **Requires modifying the application’s source code**.
+Requirements:
 
----
+- Go version must be **1.18+**
+- The project must use **Go Modules**.
 
-### Requirements {#requirements}
-
-- Applications must be managed using Go modules. Module vendoring is supported.
-- Go Tracer requires **Go 1.18+**.
-
----
-
-### Install Orchestrion {#install-orchestrion}
+Install Orchestrion
 
 ```shell
 go install github.com/DataDog/orchestrion@latest
 ```
 
-If the installation fails, try cloning the project locally and compiling it again.
+If installation fails, try cloning the repository locally and then building it.
 
 ```shell
 git clone https://github.com/DataDog/orchestrion.git
@@ -47,23 +38,15 @@ go build
 cp orchestrion $GOPATH/bin/
 ```
 
-Register Orchestrion in your project’s **go.mod**:
+Run the command from the root directory of your project to generate a go file locally.
 
 ```shell
 orchestrion pin
 ```
 
-```shell
-# commit changelog
-git add go.mod go.sum orchestrion.tool.go
-git commit -m "chore: enable orchestrion"
-```
+You can compile your project using one of the following three methods:
 
-### Usage {#usage}
-
-Use one of these methods to enable Orchestrion in your build process:
-
-1 **Prepend `orchestrion` to your usual go commands**:
+1 **Before the `go build` command**:
 
 ```shell
 orchestrion go build .
@@ -71,7 +54,7 @@ orchestrion go run .
 orchestrion go test ./...
 ```
 
-2 **Add the `-toolexec="orchestrion toolexec"` argument to your go commands**:
+2 **Using the `-toolexec` method**:
 
 ```shell
 go build -toolexec="orchestrion toolexec" .
@@ -79,7 +62,7 @@ go run -toolexec="orchestrion toolexec" .
 go test -toolexec="orchestrion toolexec" ./...
 ```
 
-3 **Modify the `$GOFLAGS` environment variable to inject `Orchestrion`, and use go commands normally**:
+3 **Modify the environment variable `$GOFLAGS`**:
 
 ```shell
 # Make sure to include the quotes as shown below, as these are required for
@@ -90,14 +73,18 @@ go run .
 go test ./...
 ```
 
-### More Documentation {#docs}
+After compilation, the executable can trigger traces and upload them during runtime.
+
+Modifying various configurations using environment variables is similar to other languages; refer to the documentation below for environment variable configuration.
+
+### Additional Documentation {#docs}
 
 - [Tracing Go Applications](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/go/?tab=compiletimeinstrumentation){:target="_blank"}
 - [GitHub Orchestrion](https://github.com/DataDog/orchestrion){:target="_blank"}
 
 ---
 
-## Manual instrumentation {#dependence}
+## Manual Instrumentation {#Manual-dependence}
 
 Install the DDTrace Golang SDK:
 
@@ -111,7 +98,7 @@ Install the profiling library
 go get gopkg.in/DataDog/dd-trace-go.v1/profiler
 ```
 
-Other libraries related to components, as needed, for example:
+Other libraries related to components depend on your needs, for example:
 
 ```shell
 go get gopkg.in/DataDog/dd-trace-go.v1/contrib/gorilla/mux
@@ -119,11 +106,11 @@ go get gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http
 go get gopkg.in/DataDog/dd-trace-go.v1/contrib/database/sql
 ```
 
-We can learn more about available tracing SDKs from the [Github plugin library](https://github.com/DataDog/dd-trace-go/tree/main/contrib){:target="_blank"} or [Datadog's related support documentation](https://docs.datadoghq.com/tracing/trace_collection/compatibility/go/#integrations){:target="_blank"}.
+You can find more available tracing SDKs from the [Github Plugin Library](https://github.com/DataDog/dd-trace-go/tree/main/contrib){:target="_blank"} or [Datadog Support Documentation](https://docs.datadoghq.com/tracing/trace_collection/compatibility/go/#integrations){:target="_blank"}.
 
 ## Code Examples {#examples}
 
-### Simple HTTP Server {#sample-http-server}
+### Simple HTTP Service {#sample-http-server}
 
 ``` go hl_lines="8-10 15-16 20-38" linenums="1" title="http-server.go"
 package main
@@ -151,6 +138,7 @@ func main() {
     profiler.WithProfileTypes(
       profiler.CPUProfile,
       profiler.HeapProfile,
+
       // The profiles below are disabled by
       // default to keep overhead low, but
       // can be enabled as needed.
@@ -190,16 +178,16 @@ Compile and run
 === "Windows"
 
     ```powershell
-    go build http-server.go -o http-server
+    go build http-server.go -o http-server.exe
     $env:DD_AGENT_HOST="localhost"; $env:DD_TRACE_AGENT_PORT="9529"; .\http-server.exe
     ```
 <!-- markdownlint-enable -->
 
 ### Manual Tracing {#manual-tracing}
 
-The following code demonstrates trace data collection for a file opening operation.
+The following code demonstrates collecting trace data for a file opening operation.
 
-In the `main()` entry code, set the basic trace parameters and start tracing:
+In the `main()` entry point, set up basic trace parameters and start tracing:
 
 ``` go hl_lines="8-9 14-17 40-45 57-66" linenums="1" title="main.go"
 package main
@@ -221,13 +209,13 @@ func main() {
         tracer.WithGlobalTag("project", "add-ddtrace-in-golang-project"),
     )
 
-    // end of app exit, make sure tracer stopped
+    // Ensure tracer stops when the app exits
     defer tracer.Stop()
 
     tick := time.NewTicker(time.Second)
     defer tick.Stop()
 
-    // your-app-main-entry...
+    // Your application's main entry point...
     for {
         runApp()
         runAppWithError()
@@ -244,7 +232,7 @@ func runApp() {
     span := tracer.StartSpan("get.data")
     defer span.Finish(tracer.WithError(err))
 
-    // Create a child of it, computing the time needed to read a file.
+    // Create a child span to compute the time needed to read a file.
     child := tracer.StartSpan("read.file", tracer.ChildOf(span.Context()))
     child.SetTag(ext.ResourceName, os.Args[0])
 
@@ -260,7 +248,7 @@ func runAppWithError() {
     // Start a root span.
     span := tracer.StartSpan("get.data")
 
-    // Create a child of it, computing the time needed to read a file.
+    // Create a child span to compute the time needed to read a file.
     child := tracer.StartSpan("read.file", tracer.ChildOf(span.Context()))
     child.SetTag(ext.ResourceName, "somefile-not-found.go")
 
@@ -271,7 +259,7 @@ func runAppWithError() {
 
     // Perform an error operation.
     if _, err = ioutil.ReadFile("somefile-not-found.go"); err != nil {
-        // error handle
+        // Handle error
     }
 }
 ```
@@ -294,108 +282,106 @@ Compile and run
     ```
 <!-- markdownlint-enable -->
 
-After running the program for a while, you can see trace data similar to the following in GuanceCloud:
+After running the program for some time, you should see trace data similar to the following in Guance:
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/golang-ddtrace-example.png){  width="800"}
-  <figcaption>Golang program trace data display</figcaption>
+  ![](https://static.guance.com/images/datakit/golang-ddtrace-example.png){ width="800"}
+  <figcaption>Display of Golang Program Trace Data</figcaption>
 </figure>
 
 ## Supported Environment Variables {#start-options}
 
-The following environment variables are supported to specify some configuration parameters of DDTrace when starting the program, and their basic form is:
+The following environment variables can be used to specify DDTrace configuration parameters when starting the program. Their basic form is:
 
 ```shell
 DD_XXX=<env-value> DD_YYY=<env-value> ./my-app
 ```
 
-For more environment variable support, see [DDTrace-Go Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/){:target="_blank"}.
+For more supported environment variables, see the [DDTrace-Go Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/){:target="_blank"}
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    These environment variables will be overridden by the corresponding fields injected with `WithXXX()` in the code, so the configuration injected by the code has a higher priority. These ENVs only take effect when the corresponding fields are not specified in the code.
+    These environment variables will be overridden by corresponding fields injected via `WithXXX()` in the code, so configurations injected via code have higher priority. These ENV variables only take effect when the corresponding fields are not specified in the code.
 <!-- markdownlint-enable -->
 
 - **`DD_VERSION`**
 
-    Sets the application version, such as `1.2.3`, `2022.02.13`
+    Set the application version, e.g., `1.2.3`, `2022.02.13`
 
 - **`DD_SERVICE`**
 
-    Sets the application service name
+    Set the service name for the application
 
 - **`DD_ENV`**
 
-    Sets the current environment of the application, such as `prod`, `pre-prod`, etc.
+    Set the current environment for the application, e.g., `prod`, `pre-prod`
 
 - **`DD_AGENT_HOST`**
 
-    **Default**: `localhost`
+    **Default value**: `localhost`
 
-    Sets the IP address of DataKit, and the trace data generated by the application will be sent to Datakit
+    Set the IP address of DataKit, to which the trace data generated by the application will be sent
 
 - **`DD_TRACE_AGENT_PORT`**
 
-    Sets the DataKit trace data receiving port. Here you need to manually specify the [DataKit HTTP port](datakit-conf.md#config-http-server) (usually 9529)
+    Set the port that DataKit uses to receive trace data. You need to manually specify the [HTTP port of DataKit][4] (usually 9529)
 
 - **`DD_DOGSTATSD_PORT`**
 
     Default value: `8125`
-    If you want to receive StatsD data generated by DDTrace, you need to manually enable the [StatsD collector](../integrations/statsd.md) on Datakit
+    If you want to collect StatsD metrics generated by DDTrace, you need to manually enable the [StatsD collector in DataKit][5]
 
 - **`DD_TRACE_SAMPLING_RULES`**
 
-    **Default**: `nil`
+    **Default value**: `nil`
 
-    Here a JSON array is used to represent the sampling settings (sampling rate application is in array order), where `sample_rate` is the sampling rate, and the value range is `[0.0, 1.0]`.
+    This uses a JSON array to represent sampling settings (sampling rates are applied in the order of the array), where `sample_rate` is the sampling rate, with values ranging from `[0.0, 1.0]`.
 
-    **Example 1**: Set the global sampling rate to 20%: `DD_TRACE_SAMPLING_RULES='[{"sample_rate": 0.2}]' ./my-app`
+    **Example 1**: Set global sampling rate to 20%: `DD_TRACE_SAMPLING_RULES='[{"sample_rate": 0.2}]' ./my-app`
 
-    **Example 2**: Service name wildcard `app1.*`, and the span name is `abc`, set the sampling rate to 10%, otherwise, set the sampling rate to 20%: `DD_TRACE_SAMPLING_RULES='[{"service": "app1.*", "name": "b", "sample_rate": 0.1}, {"sample_rate": 0.2}]' ./my-app`
+    **Example 2**: For services named `app1.*` and spans named `abc`, set the sampling rate to 10%, otherwise set it to 20%: `DD_TRACE_SAMPLING_RULES='[{"service": "app1.*", "name": "b", "sample_rate": 0.1}, {"sample_rate": 0.2}]' ./my-app`
 
 - **`DD_TRACE_SAMPLE_RATE`**
 
-    **Default**: `nil`
+    **Default value**: `nil`
 
-    Enable the above sampling rate switch
+    Enable the above sampling rate setting
 
 - **`DD_TRACE_RATE_LIMIT`**
 
-    Sets the number of span samples per second for each Golang process. If `DD_TRACE_SAMPLE_RATE` is already turned on, the default is 100
+    Set the number of spans sampled per second for each Golang process. If `DD_TRACE_SAMPLE_RATE` is enabled, the default is 100
 
 - **`DD_TAGS`**
 
-    **Default**: `[]`
+    **Default value**: `[]`
 
-    Here you can inject a set of global tags, which will appear in each span and profile data. Multiple tags can be separated by spaces and commas, such as `layer:api,team:intake`, `layer:api team:intake`
+    Inject a set of global tags that will appear in each span and profile data. Multiple tags can be separated by spaces and commas, e.g., `layer:api,team:intake` or `layer:api team:intake`
 
 - **`DD_TRACE_STARTUP_LOGS`**
 
-    **Default**: `true`
+    **Default value**: `true`
 
-    Enable DDTrace-related configuration and diagnostic logs
+    Enable logs related to DDTrace configuration and diagnostics
 
 - **`DD_TRACE_DEBUG`**
 
-    **Default**: `false`
+    **Default value**: `false`
 
-    Enable DDTrace-related debug logs
+    Enable debugging logs related to DDTrace
 
 - **`DD_TRACE_ENABLED`**
 
-    **Default**: `true`
+    **Default value**: `true`
 
-    Enable trace switch. If this switch is manually turned off, no trace data will be generated
+    Enable the trace switch. If this switch is manually turned off, no trace data will be generated
 
 - **`DD_SERVICE_MAPPING`**
 
-    **Default**: `null`
-    Dynamically rename service names, service name mappings can be separated by spaces and commas, such as `mysql:mysql-service-name,postgres:postgres-service-name`, `mysql:mysql-service-name postgres:postgres-service-name`
+    **Default value**: `null`
+    Dynamically rename service names. Service mappings can be separated by spaces and commas, e.g., `mysql:mysql-service-name,postgres:postgres-service-name` or `mysql:mysql-service-name postgres:postgres-service-name`
 
 ---
 
-<!-- markdownlint-disable MD053 -->
 [4]: datakit-conf.md#config-http-server
 [5]: ../integrations/statsd.md
-<!-- markdownlint-enable -->

@@ -1,0 +1,58 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: df-kodo
+#   namespace: forethought-kodo
+# spec:
+#   rules:
+#   - host: df-kodo.dataflux.cn
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: kodo-nginx
+#           servicePort: http
+#         path: /
+#         pathType: ImplementationSpecific
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: df-kodo
+  namespace: forethought-kodo
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: df-kodo.dataflux.cn
+    http:
+      paths:
+      - backend:
+          service:
+            name: kodo-nginx
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kodo-nginx
+  namespace: forethought-kodo
+spec:
+  ports:
+  - name: https
+    nodePort: 31841
+    port: 443
+    protocol: TCP
+    targetPort: 80
+  - name: http
+    nodePort: 31385
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: deployment-forethought-kodo-kodo-nginx
+  sessionAffinity: None
+  type: NodePort

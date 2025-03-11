@@ -1,15 +1,15 @@
 ---
-title     : 'Health Check'
-summary   : 'Regularly check the host process and network health status'
+title: 'Host Health Check'
+summary: 'Periodically check the health status of host processes and network'
 tags:
-  - 'HOST'
-__int_icon      : 'icon/healthcheck'
-dashboard :
-  - desc  : 'N/A'
-    path  : '-'
-monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - 'Host'
+__int_icon: 'icon/healthcheck'
+dashboard:
+  - desc: 'Not available'
+    path: '-'
+monitor:
+  - desc: 'Not available'
+    path: '-'
 ---
 
 [:octicons-tag-24: Version-1.24.0](../datakit/changelog.md#cl-1.24.0)
@@ -20,7 +20,7 @@ monitor   :
 
 ---
 
-The health check collector can regularly monitor the health of processes and networks (such as TCP and HTTP) of the main computer. If it doesn't meet the health requirements, DataKit will collect corresponding information and report the metric data.
+The health check collector can periodically monitor the health status of host processes and networks (such as TCP and HTTP). If it does not meet the health requirements, DataKit will collect the corresponding information and report metric data.
 
 ## Configuration {#config}
 
@@ -30,8 +30,8 @@ The health check collector can regularly monitor the health of processes and net
 
 === "Host Installation"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `host_healthcheck.conf.sample` and name it `host_healthcheck.conf`. Examples are as follows:
-    
+    Enter the `conf.d/host` directory under the DataKit installation directory, copy `host_healthcheck.conf.sample`, and rename it to `host_healthcheck.conf`. An example is as follows:
+
     ```toml
         
     [[inputs.host_healthcheck]]
@@ -78,7 +78,7 @@ The health check collector can regularly monitor the health of processes and net
           ## HTTP timeout
           # timeout = "30s"
           
-          ## Ignore tls validation 
+          ## Ignore TLS validation 
           # ignore_insecure_tls = false
     
           ## HTTP headers
@@ -93,32 +93,32 @@ The health check collector can regularly monitor the health of processes and net
       # ...
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    You can also modify the configuration parameters via environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
+
     - **ENV_INPUT_HEALTHCHECK_INTERVAL**
     
-        Collect interval
+        Collector repeat interval duration
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `interval`
+        **Collector Configuration Field**: `interval`
     
-        **Default**: 10s
+        **Default Value**: 10s
     
     - **ENV_INPUT_HEALTHCHECK_PROCESS**
     
-        Check process
+        Check processes
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `process`
+        **Collector Configuration Field**: `process`
     
         **Example**: [{"names":["nginx","mysql"],"min_run_time":"10m"}]
     
@@ -126,9 +126,9 @@ The health check collector can regularly monitor the health of processes and net
     
         Check TCP
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `tcp`
+        **Collector Configuration Field**: `tcp`
     
         **Example**: [{"host_ports":["10.100.1.2:3369","192.168.1.2:6379"],"connection_timeout":"3s"}]
     
@@ -136,27 +136,27 @@ The health check collector can regularly monitor the health of processes and net
     
         Check HTTP
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `http`
+        **Collector Configuration Field**: `http`
     
         **Example**: [{"http_urls":["http://local-ip:port/path/to/api?arg1=x&arg2=y"],"method":"GET","expect_status":200,"timeout":"30s","ignore_insecure_tls":false,"headers":{"Header1":"header-value-1","Hedaer2":"header-value-2"}}]
     
     - **ENV_INPUT_HEALTHCHECK_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If the configuration file has tags with the same name, they will be overwritten.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: {"some_tag":"some_value","more_tag":"some_other_value"}
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.host_healthcheck.tags]`:
+All collected data below will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. You can also specify additional tags through `[inputs.host_healthcheck.tags]` in the configuration:
 
 ```toml
  [inputs.host_healthcheck.tags]
@@ -164,10 +164,6 @@ For all of the following data collections, a global tag named `host` is appended
   # more_tag = "some_other_value"
   # ...
 ```
-
-<!-- markdownlint-disable MD024 -->
-
-
 
 
 
@@ -185,7 +181,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`process`|The name of the process|
 |`type`|The type of the exception|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -212,7 +208,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`port`|The port|
 |`type`|The type of the exception|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
@@ -237,12 +233,9 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|System hostname|
 |`url`|The URL|
 
-- Metrics
+- Fields
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`exception`|Exception value, 1 or 0|int|-|
-
-
-

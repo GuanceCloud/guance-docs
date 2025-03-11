@@ -1,38 +1,33 @@
-# Export One/More Monitors
+# Export One or Multiple Checkers
 
 ---
 
-<br />**post /api/v1/monitor/check/export**
+<br />**POST /api/v1/checker/export**
 
 ## Overview
-Export one/more monitor configurations based on the specified inspector UUID list.
+Export the configuration of one or multiple checkers based on the specified checker UUID list.
 
+## Body Request Parameters
 
+| Parameter Name | Type   | Required | Description              |
+|:--------------|:-------|:---------|:-------------------------|
+| checkers      | array  | Y        | Array of checker_uuids<br>Allow empty: False <br> |
 
+## Additional Parameter Notes
 
-## Body Request Parameter
+**Related API: Import One or Multiple Checkers**
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| checkers | array | Y | checker_uuid array<br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-
-
+The `checkers` parameter in the import checkers API is the content of `content.checkers` returned by the successful export of checkers.
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/export' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"checkers": ["rul_f61a4470adf34d6789184979dab61147", "rul_6b1427d9c3a8430fbcd691b79381cbe9"]}' \
---compressed \
---insecure
+--data-raw '{"checkers": ["rul_xxxx32", "rul_xxxx32"]}' \
+--compressed 
 ```
-
-
 
 
 ## Response
@@ -148,8 +143,8 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/export' \
                         "instanceId"
                     ],
                     "interval": 300,
-                    "message": ">等级：{{df_status}}  \n>实例：{{instanceId}}  \n>内容：RDS Mysql 每秒慢查询数为 {{ Result }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常",
-                    "name": "阿里云 RDS Mysql 每秒慢查询数过高",
+                    "message": ">Level: {df_status}  \n>Instance: {instanceId}  \n>Content: RDS Mysql slow queries per second is {{ Result }}%  \n>Suggestion: Log in to Alibaba Cloud console to check if there are any abnormalities with RDS",
+                    "name": "Alibaba Cloud RDS Mysql Slow Queries per Second Too High",
                     "noDataInterval": 0,
                     "recoverNeedPeriodCount": 1,
                     "targets": [
@@ -158,10 +153,10 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/export' \
                             "dql": "M::`aliyun_acs_rds_dashboard`:(LAST(`MySQL_SlowQueries_Average`))  BY `instanceId`"
                         }
                     ],
-                    "title": "阿里云 RDS Mysql 实例 ID 为 {{instanceId}} 每秒慢查询数过高",
+                    "title": "Alibaba Cloud RDS Mysql Instance ID {instanceId} Slow Queries per Second Too High",
                     "type": "simpleCheck"
                 },
-                "monitorName": "阿里云 RDS Mysql 检测库"
+                "monitorName": "Alibaba Cloud RDS Mysql Monitoring Database"
             }
         ]
     },
@@ -171,7 +166,3 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/export' \
     "traceId": "TRACE-80D11C67-BFB0-4040-8670-0237C9E0AA0E"
 } 
 ```
-
-
-
-

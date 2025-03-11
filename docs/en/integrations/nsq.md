@@ -1,16 +1,16 @@
 ---
-title     : 'NSQ'
-summary   : 'Collect NSQ metrics'
+title: 'NSQ'
+summary: 'Collect metrics data from NSQ'
 tags:
-  - 'MESSAGE QUEUES'
-  - 'MIDDLEWARE'
-__int_icon      : 'icon/nsq'
-dashboard :
-  - desc  : 'NSQ'
-    path  : 'dashboard/en/nsq'
-monitor   :
-  - desc  : 'NSQ'
-    path  : 'monitor/en/nsq'
+  - 'Message Queue'
+  - 'Middleware'
+__int_icon: 'icon/nsq'
+dashboard:
+  - desc: 'NSQ'
+    path: 'dashboard/en/nsq'
+monitor:
+  - desc: 'NSQ'
+    path: 'monitor/en/nsq'
 ---
 
 
@@ -18,15 +18,14 @@ monitor   :
 
 ---
 
-Collect NSQ operation data and report it to Guance Cloud in the form of indicators.
+Collect NSQ runtime data and report it to Guance as metrics.
+
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- NSQ installed（[NSQ official website](https://nsq.io/){:target="_blank"}）
-
-- Recommend NSQ version >= 1.0.0, already tested version:
+We recommend using NSQ version >= 1.0.0. Tested versions include:
 
 - [x] 1.2.1
 - [x] 1.1.0
@@ -34,10 +33,11 @@ Collect NSQ operation data and report it to Guance Cloud in the form of indicato
 
 ### Collector Configuration {#input-config}
 
-=== "Host Installation"
 <!-- markdownlint-disable MD046 -->
-    Go to the `conf.d/nsq` directory under the DataKit installation directory, copy `nsq.conf.sample` and name it `nsq.conf`. Examples are as follows:
+=== "Host Installation"
 
+    Navigate to the `conf.d/nsq` directory under the DataKit installation directory, copy `nsq.conf.sample`, and rename it to `nsq.conf`. An example configuration is as follows:
+    
     ```toml
         
     [[inputs.nsq]]
@@ -68,22 +68,23 @@ Collect NSQ operation data and report it to Guance Cloud in the form of indicato
     
     ```
     
-    The NSQ collector is available in two configurations, `lookupd` and `nsqd`, as follows:
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    ???+ tip "NSQ collector provides two configuration methods: `lookupd` and `nsqd`"
     
-    - `lookupd`: Configure the `lookupd` address of the NSQ cluster, and the collector will automatically discover the NSQ Server and collect data, which is more scalable.
-    - `nsqd`: Configure a fixed list of NSQ Daemon (`nsqd`) addresses for which the collector collects only NSQ Server data
-    
-    The above two configuration methods are mutually exclusive, and `lookupd` has higher priority, so it is recommended to use `lookupd` configuration method.
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+        - `lookupd`: Configure the `lookupd` address of the NSQ cluster, and the collector will automatically discover NSQ Servers and collect data, offering better scalability.
+        - `nsqd`: Configure a fixed list of NSQ Daemon (`nsqd`) addresses, and the collector will only collect data from the listed NSQ Servers.
+        
+        These two configuration methods are mutually exclusive. **The `lookupd` method has higher priority and is recommended**.
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
-## Metric {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.nsq.tags]` if needed:
+## Metrics {#metric}
+
+By default, all collected data will append global election tags. You can also specify additional tags in the configuration using `[inputs.nsq.tags]`:
 
 ``` toml
  [inputs.nsq.tags]
@@ -94,10 +95,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
-
 ### `nsq_topics`
 
-Metrics of all topics in the NSQ cluster
+Metrics for all topics in the NSQ cluster.
 
 - Tags
 
@@ -107,7 +107,7 @@ Metrics of all topics in the NSQ cluster
 |`channel`|Channel name|
 |`topic`|Topic name|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -124,9 +124,10 @@ Metrics of all topics in the NSQ cluster
 
 
 
+
 ### `nsq_nodes`
 
-Metrics of all nodes in the NSQ cluster.
+Metrics for all nodes in the NSQ cluster.
 
 - Tags
 
@@ -136,7 +137,7 @@ Metrics of all nodes in the NSQ cluster.
 |`host`|Hostname|
 |`server_host`|Service address, that is `host:ip`.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -150,16 +151,9 @@ Metrics of all nodes in the NSQ cluster.
 
 
 
-## Custom Object {#object}
 
 
-
-
-
-
-
-
-
+## Custom Objects {#custom_object}
 
 
 
@@ -176,10 +170,10 @@ Metrics of all nodes in the NSQ cluster.
 |`col_co_status`|Current status of collector on Nsq(`OK/NotOK`)|
 |`host`|The server host address|
 |`ip`|Connection IP of the Nsq|
-|`name`|Object uniq ID|
+|`name`|Object unique ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -187,6 +181,3 @@ Metrics of all nodes in the NSQ cluster.
 |`display_name`|Displayed name in UI|string|-|
 |`uptime`|Current Nsq uptime|int|s|
 |`version`|Current version of Nsq|string|-|
-
-
-

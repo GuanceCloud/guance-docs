@@ -1,83 +1,88 @@
 ---
-title: 'Volcengine ECS'
+title: 'VolcEngine ECS'
 tags: 
-  - Volcengine
-summary: 'The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances.'
+  - VolcEngine
+summary: 'The displayed Metrics of VolcEngine ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These Metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage.'
 __int_icon: 'icon/volcengine_ecs'
 dashboard:
-  - desc: 'Volcengine ECS'
+  - desc: 'VolcEngine ECS View'
     path: 'dashboard/en/volcengine_ecs/'
+
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Volcengine` ECS
+# VolcEngine ECS
 <!-- markdownlint-enable -->
 
 
-The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances.
+The displayed Metrics of VolcEngine ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These Metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage.
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance Integration - Extension - DataFlux Func (Automata): All prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-### Installation script
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-> Tip：Please prepare `Volcenine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+### Installation Script
 
-To synchronize the monitoring data of **ECS** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcenine` -**ECS** Collect）」(ID：`guance_volcengine_ecs`)
+> Note: Please prepare a VolcEngine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-Click "Install" and enter the corresponding parameters: `Volcenine` AK, `Volcenine` account name.
+To synchronize monitoring data for ECS cloud resources, we install the corresponding collection script: "Guance Integration (VolcEngine-ECS Collection)" (ID: `guance_volcengine_ecs`)
 
-tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
+After clicking [Install], enter the corresponding parameters: VolcEngine AK, VolcEngine account name.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and automatically configure the corresponding startup scripts.
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click [Execute] to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
-
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing information, enable the cloud billing collection script.
 
 
-## Metric  {#metric}
-Configure `Volcenine` Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcenine` Cloud Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ECS){:target="_blank"}
+By default, we collect some configurations; see the Metrics section for details.
 
-| `MetricName` | `Subnamespace` | Description | MetricUnit | Dimension |
-|-------------|---------------|-----------------------|------------|-----------|
-| `Instance_CpuBusy` | Instance | Out-of-band CPU Utilization | Percent | ResourceID |
-| `Instance_DiskReadBytes` | Instance | Out-of-band Disk Read Bandwidth | Bytes/Second(IEC) | ResourceID |
-| `Instance_DiskWriteBytes` | Instance | Out-of-band Disk Write Bandwidth | Bytes/Second(IEC) | ResourceID |
-| `Instance_DiskReadIOPS` | Instance | Out-of-band Disk Read IOPS | Count/Second | ResourceID |
-| `Instance_DiskWriteIOPS` | Instance | Out-of-band Disk Write IOPS | Count/Second | ResourceID |
-| `Instance_NetTxBits` | Instance | Out-of-band Network Egress Rate | Bits/Second(IEC) | ResourceID |
-| `Instance_NetRxBits` | Instance | Out-of-band Network Ingress Rate | Bits/Second(IEC) | ResourceID |
-| `Instance_NetTxPackets` | Instance | Out-of-band Network Packets Sent Rate | Packet/Second | ResourceID |
-| `Instance_NetRxPackets` | Instance | Out-of-band Network Packets Received Rate | Packet/Second | ResourceID |
-| `CpuTotal` | Instance | CPU Utilization | Percent | ResourceID |
-| `MemoryUsedSpace` | Instance | Used Memory Amount | Bytes(IEC) | ResourceID |
-| `MemoryUsedUtilization` | Instance | Memory Utilization Rate | Percent | ResourceID |
-| `LoadPerCore1m` | Instance | vCPU Load (1-minute Average) | None | ResourceID |
-| `LoadPerCore5m` | Instance | vCPU Load (5-minute Average) | None | ResourceID |
-| `LoadPerCore15m` | Instance | vCPU Load (15-minute Average) | None | ResourceID |
-| `NetworkInPackages` | Instance | Network Ingress Packet Rate | Packet/Second | `ResourceID` |
-| `NetworkOutPackages` | Instance | Network Egress Packet Rate | Packet/Second | ResourceID |
-| `NetTcpConnection` | Instance | Total TCP Connections | Count | ResourceID |
-| `NetworkInRate` | Instance | Network Ingress Rate | Bits/Second(IEC) | ResourceID |
-| `NetworkOutRate` | Instance | Network Egress Rate | Bits/Second(IEC) | ResourceID |
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
-## Object  {#object}
-The collected `Volcenine` Cloud **ECS** object data structure can see the object data from 「Infrastructure-Custom」
+
+### Verification
+
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the appropriate automatic trigger configurations. You can also check the task records and logs to ensure there are no anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, under "Metrics", check if the corresponding monitoring data exists.
+
+## Metrics {#metric}
+After configuring VolcEngine Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration. [VolcEngine Cloud Monitoring Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ECS){:target="_blank"}
+
+> Note: The monitoring plugin needs to be installed in the VolcEngine ECS console.
+
+|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
+| ---- |-------------------------------------| :----: |:----: |:----: |
+|`Instance_CpuBusy` |`Instance` |Out-of-band CPU Utilization |Percent | ResourceID|
+|`Instance_DiskReadBytes` |`Instance` |Out-of-band Disk Read Bandwidth |Bytes/Second(IEC) | ResourceID|
+|`Instance_DiskWriteBytes` |`Instance` |Out-of-band Disk Write Bandwidth |Bytes/Second(IEC) | ResourceID|
+|`Instance_DiskReadIOPS` |`Instance` |Out-of-band Disk Read IOPS |Count/Second | ResourceID|
+|`Instance_DiskWriteIOPS` |`Instance` |Out-of-band Disk Write IOPS |Count/Second | ResourceID|
+|`Instance_NetTxBits` |`Instance` |Out-of-band Network Outbound Rate |Bits/Second(IEC) | ResourceID|
+|`Instance_NetRxBits` |`Instance` |Out-of-band Network Inbound Rate |Bits/Second(IEC) | ResourceID|
+|`Instance_NetTxPackets` |`Instance` |Out-of-band Network Send Packet Rate |Packet/Second | ResourceID|
+|`Instance_NetRxPackets` |`Instance` |Out-of-band Network Receive Packet Rate |Packet/Second | ResourceID|
+|`CpuTotal` |`Instance` |CPU Usage |Percent | ResourceID|
+|`MemoryUsedSpace` |`Instance` |Used Memory |Bytes(IEC) | ResourceID|
+|`MemoryUsedUtilization` |`Instance` |Memory Usage |Percent | ResourceID|
+|`LoadPerCore1m` |`Instance` |vCPU Load (1-minute Average) |None | ResourceID|
+|`LoadPerCore5m` |`Instance` |vCPU Load (5-minute Average) |None | ResourceID|
+|`LoadPerCore15m` |`Instance` |vCPU Load (15-minute Average) |None | ResourceID|
+|`NetworkInPackages` |`Instance` |Network Inbound Packet Rate |Packet/Second | ResourceID|
+|`NetworkOutPackages` |`Instance` |Network Send Packet Rate |Packet/Second | ResourceID|
+|`NetTcpConnection` |`Instance` |TOTAL |Count | ResourceID|
+|`NetworkInRate` |`Instance` |Network Inbound Rate |Bits/Second(IEC) | ResourceID|
+|`NetworkOutRate` |`Instance` |Network Outbound Rate |Bits/Second(IEC) | ResourceID|
+
+
+## Objects {#object}
+The collected VolcEngine ECS object data structure can be viewed under "Infrastructure - Custom".
 
 ``` json
 [
@@ -105,7 +110,7 @@ The collected `Volcenine` Cloud **ECS** object data structure can see the object
       "KeyPairId": "kp-xx",
       "KeyPairName": "xxx-test",
       "MemorySize": "2048",
-      "OsName": "CentOS Stream 9 64",
+      "OsName": "CentOS Stream 9 64-bit",
       "OsType": "Linux",
       "ProjectName": "default",
       "RegionId": "cn-beijing",
@@ -119,4 +124,3 @@ The collected `Volcenine` Cloud **ECS** object data structure can see the object
   }
 ]
 ```
-

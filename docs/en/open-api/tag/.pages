@@ -1,0 +1,6 @@
+nav:
+  - 'Get Global Label List': list.md
+  - 'Get Label Information': get.md
+  - 'Add Label': create.md
+  - 'Modify Label': modify.md
+  - 'Delete Label': delete.md

@@ -2,22 +2,21 @@
 
 ---
 
-<br />**post /api/v1/snapshots/\{snapshot_uuid\}/delete**
+<br />**POST /api/v1/snapshots/{snapshot_uuid}/delete**
 
 ## Overview
-Delete the specified snapshot configuration according to `snapshot_uuid`.
+Delete the specified snapshot configuration based on `snapshot_uuid`
 
 
 
+## Route Parameters
 
-## Routing Parameters
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| snapshot_uuid | string | Y | 快照UUID<br> |
+| Parameter Name    | Type   | Required | Description              |
+|:--------------|:-----|:------|:----------------|
+| snapshot_uuid | string | Y | Snapshot UUID<br> |
 
 
-## Supplementary Description of Parameters
+## Additional Parameter Notes
 
 
 
@@ -25,12 +24,11 @@ Delete the specified snapshot configuration according to `snapshot_uuid`.
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/snapshots/snap_f21905829a2946a7a22dc5e2b9280b26/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/snapshots/snap_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
---compressed \
---insecure
+--compressed 
 ```
 
 
@@ -47,7 +45,3 @@ curl 'https://openapi.guance.com/api/v1/snapshots/snap_f21905829a2946a7a22dc5e2b
     "traceId": "TRACE-478399EF-25DA-4B91-9543-FFAC521E77B1"
 } 
 ```
-
-
-
-

@@ -73,6 +73,7 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 
 === "其他"
 
+    - [主机注入](../../datakit/datakit-install.md#apm-instrumentation)
     - [Skywalking](../../integrations/skywalking.md)    
     - [Jaeger](../../integrations/jaeger.md)     
     - [Zipkin](../../integrations/zipkin.md)    
@@ -84,108 +85,7 @@ DataKit 目前支持采集 `DDTrace`、`Apache Jaeger`、`OpenTelemetry`、`Skyw
 
 </div>
 
-<!--
-#### 采集器配置   
 
-#### [DDTrace](../../integrations/ddtrace.md) 
-
-
-<div class="grid cards" markdown>
-
--   :fontawesome-brands-python: __[Python](../../integrations/ddtrace-python.md)__
-
-
-
--   :material-language-ruby: __[Ruby](../../integrations/ddtrace-ruby.md)__
-
-
-
--   :fontawesome-brands-golang: __[Golang](../../integrations/ddtrace-golang.md)__
-
-
-
--   :material-language-php: __[PHP](../../integrations/ddtrace-php.md)__
-
-
-
--   :fontawesome-brands-node-js: __[NodeJS](../../integrations/ddtrace-nodejs.md)__
-
-
-
--   __[C++](../../integrations/ddtrace-cpp.md)__
-
-
-
--   :material-language-java: __[Java](../../integrations/pinpoint-java.md)__
-
-    --- 
-    
-    该代码语言中还包含以下信息：
-
-    1. [DDTrace JMX](../../integrations/ddtrace-jmxfetch.md)
-    
-    2. [扩展功能](../../integrations/ddtrace-ext-java.md)
-
-
-</div>
-
-
-#### [OpenTelemetry](../../integrations/opentelemetry.md)      
-    
-
-<div class="grid cards" markdown>
-
-
--   :octicons-history-16: __[更新历史](../../integrations/otel-ext-changelog.md)__
-
-
--   :fontawesome-brands-python: __[Python](../../integrations/opentelemetry-python.md)__
-
-
-
--   :material-language-ruby: __[Java](../../integrations/opentelemetry-java.md)__
-
-
-
--   :fontawesome-brands-golang: __[Golang](../../integrations/opentelemetry-go.md)__
-    
-</div>
-
-
-#### [Pinpoint](../../integrations/pinpoint.md)       
-
-<div class="grid cards" markdown>
-
--   :material-language-ruby: __[Java](../../integrations/pinpoint-java.md)__
-
-
--   :fontawesome-brands-golang: __[Golang](../../integrations/pinpoint-go.md)__
-    
-</div>
-    
-                           
-
-#### [Skywalking](../../integrations/skywalking.md)    
-#### [Jaeger](../../integrations/jaeger.md)     
-#### [Zipkin](../../integrations/zipkin.md)    
-#### [New Relic](../../integrations/newrelic.md)    
-#### [eBPF Tracing](../../integrations/ebpftrace.md)     
-#### [OpenLIT](../../integrations/openlit.md)     
-#### [CAT](../../integrations/cat.md)     
-#### [Tracing Propagator](../../integrations/tracing-propagator.md)     
-
-
-
-### 采集步骤
-
-1. [安装主机 DataKit](../../datakit/datakit-install.md) 或者 [安装 Kubernetes DataKit](../../datakit/datakit-daemonset-deploy.md)；  
-2. 在 DataKit 中开启链路数据接收服务；  
-3. 通过在业务系统中集成 Zipkin 或 Jaeger 或 Skywalking 等开源链路数据采集的 SDK，将数据上报到 DataKit 的链路追踪服务的 Endpoint；  
-4. DataKit 会将数据自动清洗为<<< custom_key.brand_name >>>本身的链路数据格式，并上报到<<< custom_key.brand_name >>>中心；  
-5. 在<<< custom_key.brand_name >>>的控制台进行链路分析和查看服务相关性能指标。
-
-![](../img/1.apm-1.png)
--->
 
 ## 字段说明
 

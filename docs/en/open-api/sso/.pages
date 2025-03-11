@@ -1,0 +1,12 @@
+nav:
+  - 'Get SAML SSO Login Configuration': saml-get.md
+  - 'Get SAML SSO Login Configuration List': saml-list.md
+  - 'Add SAML SSO Login Configuration': saml-create.md
+  - 'Update SAML SSO Login Configuration': saml-modify.md
+  - 'Delete SAML SSO Login Configuration': saml-delete.md
+  - 'Enable/Disable SAML SSO Login Configuration': saml-set-disable.md
+  - 'Get SAML Mapping List': list.md
+  - 'Create Mapping Rule': add.md
+  - 'Modify Mapping Rule': modify.md
+  - 'Delete Mapping Rule': delete.md
+  - 'Enable/Disable SAML Mapping': set-disable.md

@@ -95,7 +95,7 @@ icon: zy/integrations
         }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
   			width: 32px;
-  			min-width: 32px;
+        min-width: 32px;
   			height: 32px;
   			border-style: none;
   		}
@@ -10090,7 +10090,7 @@ icon: zy/integrations
   				if (e.target.classList.contains('integration-tags-group-item')) {
   					const curTag = e.target;
   					const activeTag = header.querySelector('.integration-tags-group-item.tag-active');
-                    const tagAllContainer = header.querySelector('.integration-tags-group-item');
+            const tagAllContainer = header.querySelector('.integration-tags-group-item');
   					if (curTag !== activeTag) {
   						tagValue = curTag.dataset.tag;
   						curTag.classList.add('tag-active');

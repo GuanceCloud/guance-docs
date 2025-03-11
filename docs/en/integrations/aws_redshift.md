@@ -2,17 +2,19 @@
 title: 'AWS Redshift'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .'
+summary: 'The core performance Metrics of AWS Redshift include query performance, disk space usage, CPU utilization, database connections, and disk I/O operations. These are key Metrics for evaluating and optimizing the performance of a data warehouse.'
 __int_icon: 'icon/aws_redshift'
 dashboard:
-  - desc: 'AWS Redshift Dashboard'
+
+  - desc: 'Built-in Views for AWS Redshift'
     path: 'dashboard/en/aws_redshift'
+
 monitor:
   - desc: 'AWS Redshift Monitor'
     path: 'monitor/en/aws_redshift'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_redshift'
 ---
 
@@ -21,70 +23,71 @@ cloudCollector:
 # AWS Redshift
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .
+
+The core performance Metrics of AWS Redshift include query performance, disk space usage, CPU utilization, database connections, and disk I/O operations. These are key Metrics for evaluating and optimizing the performance of a data warehouse.
 
 
-
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-### Installation script
-
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of EC2 cloud resources, we install the corresponding collection script: `ID:guance_aws_ec2`
-
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Installation Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance  platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance  platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
+To synchronize Redshift monitoring data, install the corresponding collection script: 「Guance integration (AWS-Redshift Collection)」(ID: `guance_aws_redshift`)
 
-### Redshift Metric
+After clicking 【Install】, enter the required parameters: Amazon AK, Amazon account name.
 
-| Metric Name | Description | Unit | Dimension  |
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup script accordingly.
+
+Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+
+
+We default collect some configurations, details can be found in the Metrics section [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding automatic trigger configuration exists for the task. You can also check the task records and logs to ensure there are no anomalies.
+2. On the Guance platform, go to 「Infrastructure / Custom」to check if asset information exists.
+3. On the Guance platform, go to 「Metrics」to check if the corresponding monitoring data exists.
+
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default Measurement set is as follows. More Metrics can be collected via configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
+
+### Redshift Metrics
+
+| Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| CPUUtilization | CPU Utilization Percentage. For clusters, this metric represents the sum of the CPU utilization values of all nodes (leader and compute nodes) | % | ClusterIdentifier |
-| HealthStatus | Operational status check of the cluster | 1: healthy or 0: unhealthy | ClusterIdentifier |
-| MaintenanceMode  | Whether the cluster is in maintenance mode | 1：ON or 0：OFF | ClusterIdentifier |
-| PercentageDiskSpaceUsed | Percentage of used disk space | % | ClusterIdentifier |
+| CPUUtilization | Percentage of CPU used. For clusters, this metric represents the sum of CPU utilization values for all nodes (leader node and compute nodes). | % | ClusterIdentifier |
+| HealthStatus | Cluster health check status | 1: Normal or 0: Abnormal | ClusterIdentifier |
+| MaintenanceMode | Whether the cluster is in maintenance mode | 1: ON or 0: OFF | ClusterIdentifier |
+| PercentageDiskSpaceUsed | Percentage of disk space used | % | ClusterIdentifier |
 | DatabaseConnections | Number of database connections in the cluster | count | ClusterIdentifier |
 | CommitQueueLength | Number of transactions waiting to commit at a given point in time | count | ClusterIdentifier |
-| ConcurrencyScalingActiveClusters | Number of concurrent extended clusters actively processing queries at any given time | count | ClusterIdentifier |
-| NetworkReceiveThroughput | The rate at which a node or cluster receives data | byte/s | ClusterIdentifier |
-| NetworkTransmitThroughput | The rate at which a node or cluster writes data | byte/s | ClusterIdentifier |
-| MaxConfiguredConcurrencyScalingClusters | Maximum number of concurrently expanding clusters configured from the parameter group | count | ClusterIdentifier |
-| NumExceededSchemaQuotas | Number of schemas over quota | count | ClusterIdentifier |
+| ConcurrencyScalingActiveClusters | Number of concurrent scaling clusters actively processing queries at any given time | count | ClusterIdentifier |
+| NetworkReceiveThroughput | Rate at which data is received by nodes or clusters | byte/s | ClusterIdentifier |
+| NetworkTransmitThroughput | Rate at which data is written by nodes or clusters | byte/s | ClusterIdentifier |
+| MaxConfiguredConcurrencyScalingClusters | Maximum number of concurrent scaling clusters configured from parameter groups | count | ClusterIdentifier |
+| NumExceededSchemaQuotas | Number of schemas exceeding quotas | count | ClusterIdentifier |
 | ReadIOPS | Average number of disk read operations per second | count/s | ClusterIdentifier |
-| ReadLatency | Average time required for disk read I/O operations | second  | ClusterIdentifier |
+| ReadLatency | Average time taken for disk read I/O operations | seconds | ClusterIdentifier |
 | ReadThroughput | Average number of bytes read from disk per second | byte | ClusterIdentifier |
-| TotalTableCount | Number of user tables open at a given point in time | count | ClusterIdentifier |
+| TotalTableCount | Number of user tables open at a specific point in time | count | ClusterIdentifier |
 | WriteIOPS | Average number of disk write operations per second | count/s | ClusterIdentifier |
-| WriteLatency | Average time required for disk write I/O operations | second | ClusterIdentifier |
+| WriteLatency | Average time taken for disk write I/O operations | seconds | ClusterIdentifier |
 | WriteThroughput | Average number of bytes written to disk per second | byte | ClusterIdentifier |
 
 
-## Object {#object}
+## Objects {#object}
 
-The collected AWS Redshift object data structure can see the object data from 「Infrastructure - Customization」
-
+The structure of AWS Redshift object data collected from Amazon AWS, which can be viewed under 「Infrastructure - Custom」
 
 ```json
 {
@@ -116,13 +119,14 @@ The collected AWS Redshift object data structure can see the object data from �
     "PendingModifiedValues"             : "{\"MasterUserPassword\": \"****\"}",
     "PubliclyAccessible"                : false,
     "VpcSecurityGroups"                 : "[{\"Status\": \"active\", \"VpcSecurityGroupId\": \"sg-467a\"}]",
-    "message"                           : "{Instance JSON data}"
+    "message"                           : "{instance JSON data}"
   }
 }
 
 ```
 
-> *Note: Fields in `tags`, `fields` are subject to change with subsequent updates.*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The `tags.name` value is the instance ID, which serves as a unique identifier.
-> Tip 2: `fields.message`, `fields.NetworkInterfaces`, and `fields.BlockDeviceMappings` are JSON serialized strings.
+> Note 1: The value of `tags.name` is the instance ID, used for unique identification.
+>
+> Note 2: `fields.message`, `fields.network_interfaces`, `fields.blockdevicemappings` are JSON serialized strings.

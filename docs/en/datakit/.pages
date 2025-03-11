@@ -2,50 +2,53 @@ nav:
   - index.md
   - changelog.md
 
-  - 'DataKit Intro':
-    - 'Intro to Overall Architecture': datakit-arch.md
+  - 'Introduction to DataKit':
+    - datakit-arch.md
 
   - 'DataKit Installation':
     - 'Host Installation': datakit-install.md
-    - 'Containers':
+    - 'Container Installation':
       - 'Kubernetes': datakit-daemonset-deploy.md
       - 'Docker': datakit-docker-deploy.md
       - 'AWS ECS Fargate': ecs-fargate.md
       - 'AWS EKS': datakit-eks-deploy.md
-    - 'Offline Installation': datakit-offline-install.md
     - 'Batch Installation': datakit-batch-deploy.md
+    - 'Offline Installation': datakit-offline-install.md
 
   - 'Using DataKit':
     - Service Management: datakit-service-how-to.md
-    - Status Management: datakit-monitor.md
+    - Status Check: datakit-monitor.md
     - 'Update': datakit-update.md
     - 'DQL Query': datakit-dql-how-to.md
     - 'Other Commands': datakit-tools-how-to.md
-    - 'Trouble Shooting':
-      - 'No data collected': why-no-data.md
-      - 'Bug report': bug-report-how-to.md
-      - 'Datakit Metrics': datakit-metrics.md
+    - 'Troubleshooting':
+      - 'No Data Troubleshooting': why-no-data.md
+      - 'Bug Report Analysis': bug-report-how-to.md
+      - 'DataKit Metrics': datakit-metrics.md
     - 'Virtual Internet Access':
-      - 'Alibaba Cloud': aliyun-access.md
-    - 'Performance': datakit-performance.md
+      - 'Alibaba Cloud Access': aliyun-access.md
+      - 'Huawei Cloud Access': huaweicloud-access.md
+      - 'AWS Access': aws-access.md
+    - 'Performance Display': datakit-performance.md
 
   - 'DataKit Configuration':
-    - 'Major Configuration': datakit-conf.md
+    - 'Main Configuration': datakit-conf.md
     - 'Collector Configuration': datakit-input-conf.md
     - 'Election Configuration': election.md
     - 'Proxy Configuration': datakit-proxy.md
-    - 'Operator Configuration': datakit-operator.md
-    - 'Other Configurations':
+    - 'DataKit Operator': datakit-operator.md
+    - 'Other Configuration Methods':
       - 'Configuration Overview': k8s-config-how-to.md
       - 'DCA': dca.md
       - 'Git': git-config-how-to.md
-      - 'Configuration Support': confd.md
+      - 'Helm Configuration': datakit-helm.md
+      - 'Configuration Center Support': confd.md
 
-  - 'DataKit Dev Manual':
+  - 'DataKit Development Manual':
     - development.md
     - datakit-filter.md
     - datakit-port.md
     - apis.md
     - common-tags.md
-    - 'Documentation':
+    - 'Documentation Writing':
       - mkdocs-howto.md

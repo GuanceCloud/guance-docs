@@ -1,12 +1,12 @@
 ---
 title     : 'Logstash'
-summary   : 'Collecting logging through Logstash'
+summary   : 'Collect log information via Logstash'
 __int_icon: 'icon/logstash'
 dashboard :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -15,36 +15,34 @@ monitor   :
 # Logstash
 <!-- markdownlint-enable -->
 
-Collecting logging through Logstash.
+Collect log information via Logstash.
 
-## Configuration {#config}
+## Installation and Deployment {#config}
 
-### DataKit enable the `logstreaming` collector
+### Enable the `logstreaming` Collector in DataKit
 
-- Enable `logstreaming` collector
+- Enable the `logstreaming` collector
 
-Open the DataKit `logstreaming` plug-in and copy the sample file , Rename it `logstreaming.conf`.
+Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample`, and rename it to `logstreaming.conf`.
 
 ```toml
 [inputs.logstreaming]
   ignore_url_tags = true
 ```
 
-For a detailed introduction to the `logstreaming` collector, please refer to [the official document](logstreaming.md)
+For a detailed introduction to the `logstreaming` collector, refer to the [official documentation](logstreaming.md)
 
 - Restart DataKit
 
-[Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
+    [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
+### Adjust Logstash Configuration
 
-### Logstash configuration adjustment
-
-DataKit uses the `logstreaming` collector to collect log information reported by Logstash, so Logstash needs to point the `output` address to the receiving address of the `logstreaming` collector.
-
+DataKit uses the `logstreaming` collector to collect log information reported by Logstash, so Logstash needs to point its `output` address to the receiving address of the `logstreaming` collector.
 
 ```yaml
     ....
-## Send the collected data to DataKit
+## Send collected data to DataKit
 output {  
     http {
         http_method => "post"
@@ -54,12 +52,9 @@ output {
 }
 ```
 
-- `url` ：The address is the DataKit collector address, adjusted according to the actual situation.
-- `source`：Identify the data source, which is the `measurement` of the protocol. For example, `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
+- `url`: The address should be the DataKit collector address, adjust according to actual conditions.
+- `source`: Identifies the data source, i.e., the `measurement` of the line protocol. For example, `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
 
-Regarding the introduction of `logstreaming` collector parameters, please refer to [the official document](logstreaming.md#args)
+For a detailed introduction to the parameters of the `logstreaming` collector, refer to the [official documentation](logstreaming.md#args)
 
-
-
-After the adjustment is completed, restart Logstash to make its configuration effective.
-
+After making adjustments, restart Logstash to apply the configuration changes.

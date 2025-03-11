@@ -2,37 +2,25 @@
 
 ---
 
-<br />**get /api/v1/dashboards/\{dashboard_uuid\}/export**
+<br />**GET /api/v1/dashboards/\{dashboard_uuid\}/export**
 
 ## Overview
-Export the specified dashboard as a view template structure based on `dashboard_uuid`.
+Export the specified dashboard as a view template structure based on the `dashboard_uuid`.
 
+## Route Parameters
 
+| Parameter Name       | Type   | Required | Description              |
+|:-------------------|:------|:-------|:-------------------------|
+| dashboard_uuid     | string | Y      | View UUID                |
 
-
-## Routing Parameters
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| dashboard_uuid | string | Y | View UUID<br> |
-
-
-## Supplementary Description of Parameters
-
-
-
-
+## Additional Parameter Notes
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_88b11831870a4446894034668043eb89/export' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/dsbd_xxxx32/export' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
-
-
-
 
 ## Response
 ```shell
@@ -78,7 +66,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_88b11831870a444689403466
                     "name": "cpu_idle",
                     "pos": {
                         "h": 11,
-                        "i": "chrt_2e650ef84b1a4eb389011fd95f7db11e",
+                        "i": "chrt_xxxx32",
                         "w": 11,
                         "x": 0,
                         "y": 0
@@ -120,11 +108,11 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_88b11831870a444689403466
         "summary": "",
         "tagInfo": [
             {
-                "id": "tag_07a3a85d01474c1585add18bfb1b5cde",
+                "id": "tag_xxxx32",
                 "name": "openapi"
             },
             {
-                "id": "tag_977d40b3f40c4d3f8e90956698b57c48",
+                "id": "tag_xxxx32",
                 "name": "test"
             }
         ],
@@ -138,7 +126,3 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_88b11831870a444689403466
     "traceId": "TRACE-B8114512-09F0-49F3-BC4E-6723FF37613D"
 } 
 ```
-
-
-
-

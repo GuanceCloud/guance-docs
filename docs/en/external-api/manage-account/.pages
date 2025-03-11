@@ -1,0 +1,7 @@
+nav:
+  - '【Manage backend account】List': list.md
+  - '【Manage backend account】Create': create.md
+  - '【Manage backend account】Get details': get.md
+  - '【Manage backend account】Modify': modify.md
+  - '【Manage backend account】Enable/Disable': set-disable.md
+  - '【Manage backend account】Delete': delete.md

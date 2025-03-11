@@ -1,14 +1,14 @@
 ---
 title     : 'vSphere'
-summary   : 'Collect vSphere metrics'
+summary   : 'Collect metrics data from vSphere'
 tags:
   - 'VMWARE'
 __int_icon      : 'icon/vsphere'
 dashboard :
   - desc  : 'vSphere'
-    path  : 'dashboard/en/vsphere'
+    path  : 'dashboard/zh/vsphere'
 monitor   :
-  - desc  : '-'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -22,22 +22,22 @@ monitor   :
 
 ---
 
-This collector gathers resource usage metrics from vSphere clusters, including resources such as CPU, memory, and network, and reports this data to the Guance Cloud.
+This collector gathers resource usage metrics from the vSphere cluster, including CPU, memory, and network resources, and reports these data to Guance.
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requirements}
 
-- Create a vSphere account:
+- Create User
 
-In the vCenter management interface, create a user `datakit` and assign `read-only` permissions, applying these to the resources that need to be monitored. If monitoring of all child objects is required, you can select the `Propagate to children` option.
+Create a user `datakit` in the vCenter management interface and assign it `read-only` permissions, then apply it to the resources that need monitoring. If you need to monitor all sub-objects, you can check the `Propagate to children` option.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/vmware` directory under the DataKit installation directory, copy `vsphere.conf.sample` and name it `vsphere.conf`. Examples are as follows:
+    Enter the `conf.d/vmware` directory under the DataKit installation directory, copy `vsphere.conf.sample` and rename it to `vsphere.conf`. Example configuration:
     
     ```toml
         
@@ -52,7 +52,7 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
       username = "datakit@corp.local"
       password = "secret"
     
-      ## timeout applies to any of the api request made to vcenter
+      ## Timeout applies to any of the API requests made to vcenter
       timeout = "60s"
     
       ## VMs
@@ -175,11 +175,11 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
       datacenter_metric_exclude = [ "*" ] ## Datacenters are not collected by default.
       datacenter_instances = false ## false by default
     
-      ## number of objects to retrieve per query for realtime resources (vms and hosts)
+      ## number of objects to retrieve per query for real-time resources (vms and hosts)
       ## set to 64 for vCenter 5.5 and 6.0 (default: 256)
       # max_query_objects = 256
     
-      ## number of metrics to retrieve per query for non-realtime resources (clusters and datastores)
+      ## number of metrics to retrieve per query for non-real-time resources (clusters and datastores)
       ## set to 64 for vCenter 5.5 and 6.0 (default: 256)
       # max_query_metrics = 256
     
@@ -204,16 +204,16 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
     
     ```
     
-    After configuration, restart DataKit.
+    After configuring, restart DataKit.
 
 === "Kubernetes"
 
-    The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector through [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.vsphere.tags]`:
+By default, all data collected will append a global tag named `host` (the tag value is the hostname where DataKit resides), and additional tags can be specified via `[inputs.vsphere.tags]`:
 
 ``` toml
  [inputs.vsphere.tags]
@@ -225,11 +225,9 @@ For all of the following data collections, a global tag named `host` is appended
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - Not all of the metrics listed below are collected; for specifics, refer to the explanations in the [Data Collection Levels](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-25800DE4-68E5-41CC-82D9-8811E27924BC.html){:target="_blank"}
+    Not all metrics listed below are collected; refer to the [Data Collection Level](https://docs.vmware.com/cn/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-25800DE4-68E5-41CC-82D9-8811E27924BC.html){:target="_blank"} for detailed information.
 
 <!-- markdownlint-enable -->
-
-
 
 
 ### `vsphere_cluster`
@@ -246,7 +244,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|The host of the vCenter|
 |`moid`|The managed object id|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -282,6 +280,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
 ### `vsphere_datastore`
 
 
@@ -296,7 +295,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|The host of the vCenter|
 |`moid`|The managed object id|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -322,6 +321,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
 ### `vsphere_host`
 
 
@@ -338,7 +338,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`instance`|The name of the instance|
 |`moid`|The managed object id|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -521,8 +521,9 @@ For all of the following data collections, a global tag named `host` is appended
 |`sys_resourceCpuMaxLimited1_latest`|CPU maximum limited over 1 minute of the system resource group.|int|percent|
 |`sys_resourceCpuMaxLimited5_latest`|CPU maximum limited over 5 minutes of the system resource group.|int|percent|
 |`sys_resourceCpuRun1_latest`|CPU running average over 1 minute of the system.|int|percent|
-|`sys_resourceCpuRun5_latest`|CPU running average over 5 minutes of the system resource group.|int|percent|
-|`sys_resourceCpuUsage_average`|Amount of CPU used by the Service Console and other applications during the interval by the Service Console and other applications.|int|-|
+|`sys_resourceCpuRun5_latest`|CPU running average over 5 minutes of the system resource group.|| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`sys_resourceCpuUsage_average`|Amount of CPU used by the Service Console and other applications during the interval.|int|-|
 |`sys_resourceFdUsage_latest`|Number of file descriptors used by the system resource group.|int|-|
 |`sys_resourceMemAllocMax_latest`|Memory allocation limit (in KB) of the system resource group.|int|KB|
 |`sys_resourceMemAllocMin_latest`|Memory allocation reservation (in KB) of the system resource group.|int|KB|
@@ -538,6 +539,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`sys_uptime_latest`|Total time elapsed since last system startup|int|s|
 |`virtualDisk_busResets_sum`|Number of SCSI-bus reset commands issued.|int|-|
 |`virtualDisk_commandsAborted_sum`|Number of SCSI commands aborted|int|-|
+
 
 
 
@@ -560,7 +562,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`moid`|The managed object id|
 |`vm_name`|The name of the resource|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -717,8 +719,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
 <!-- markdownlint-disable MD024 -->
-## Object {#object}
+## Objects {#object}
 
 
 
@@ -751,7 +754,7 @@ The object of the cluster.
 |  ----  | --------|
 |`name`|The name of the cluster|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -783,7 +786,7 @@ The object of the datastore.
 |`type`|Type of file system volume, such as `VMFS` or NFS|
 |`url`|The unique locator for the datastore|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -813,7 +816,7 @@ The object of the ESXi host.
 |`name`|The name of the ESXi host|
 |`vendor`|The hardware vendor identification|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -844,7 +847,7 @@ The object of the virtual machine.
 |`name`|The name of the virtual machine|
 |`template`|Flag to determine whether or not this virtual machine is a template.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -920,7 +923,7 @@ The event of the vSphere.
 |`status`|The status of the logging|
 |`user_name`|The user who caused the event|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -928,4 +931,3 @@ The event of the vSphere.
 |`chain_id`|The parent or group ID.|int|-|
 |`event_key`|The event ID.|int|-|
 |`message`|A formatted text message describing the event. The message may be localized.|string|-|
-

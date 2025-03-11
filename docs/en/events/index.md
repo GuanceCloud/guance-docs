@@ -4,93 +4,136 @@ icon: zy/events
 # Events
 ---
 
-Guance supports a one-stop view and audit of all event data. You can monitor and query events triggered by all sources in real-time, and also quickly identify anomalies and efficiently analyze abnormal data by aggregating related events and matching associated events.
+<<< custom_key.brand_name >>> provides a comprehensive event management and auditing platform, allowing real-time monitoring and unified querying of event data from various sources. By aggregating and correlating events, you can quickly pinpoint anomalies and perform efficient data analysis.
 
-![](img/4.event_3.png)
-
-## Where are events from?
-
-- All alert events triggered based on the configured [Monitor](../monitor/monitor/index.md);
-- Based on the configuration, all alert events triggered by [Intelligent Monitoring](../monitoring/intelligent-monitoring/index.md);
-- All alert events triggered based on the configured [Auto Detection](../monitoring/bot-obs/index.md);
-- All alert events triggered based on configured [SLO](../monitoring/slo.md);
-- [Audit](../management/operation-audit.md) events based on system operations;
-- Support for writing custom events through the OpenAPI of events. For more details, see [Creating Event API](../open-api/keyevent/create.md).
-
-## Use Cases
-
-- Unified event management
-- Event visualization query and analysis
-- Associated event query
-
-## Features
-
-|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Learn more**</font>                         |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [Unrecovered Events](unrecovered-events.md){ .md-button .md-button--primary } | [All Events](event-list.md){ .md-button .md-button--primary } |
-| [Intelligent Monitoring](inte-monitoring-event.md){ .md-button .md-button--primary } | [Events Triggered by Monitors](../monitoring/monitor/index.md){ .md-button .md-button--primary } |
+Under the **Events** feature module, you can monitor system anomalies and service quality degradation issues through modules such as monitors, intelligent inspections, SLOs, etc. **All monitoring activities result in event records**, which are then aggregated into the event analysis module for in-depth analysis and processing. This one-stop approach ensures that you have a full understanding of the system's health and can respond promptly to any potential issues.
 
 
-## Field Description
+## Where Do Events Come From?
 
-| Fields                 | Description                                                  |
+- Alerts triggered by [Monitors](../monitoring/monitor/monitor-rule.md#content) and [Intelligent Monitoring](../monitoring/intelligent-monitoring/index.md) based on configuration rules;
+- All alert events triggered by configured [Intelligent Inspections](../monitoring/bot-obs/index.md);
+- All alert events triggered by configured [SLOs](../monitoring/slo.md);
+- [Audit Events](../management/operation-audit.md) triggered by system operations;
+- Custom events written via [OpenAPI](../open-api/keyevent/create.md).
+
+
+## Viewing Event Records
+
+- [Explorer > Unrecovered Events Explorer](./event-explorer/unrecovered-events.md): All unrecovered events within the last 48 hours in the current workspace, i.e., events with a status of not normal (`df_status != ok`).
+- [Explorer > All Events Explorer](./event-explorer/event-list.md): Includes all events from sources such as monitors, intelligent inspections, SLOs, audit events, and OpenAPI custom events. Each alert record triggered by a **Monitor** detection rule is an event.
+- [Intelligent Monitoring](./inte-monitoring-event.md): Includes all events triggered by intelligent monitoring configurations. Each alert record generated after triggering is an event.
+
+
+## Event Content
+
+Taking events triggered by configured monitor rules as an example, the final event content mainly includes the information entered at [Create Rule > Event Notification](../monitoring/monitor/monitor-rule.md#notice).
+
+As shown in the figure below, the event title is defined as `Log Detection - Multi Index`, and the DQL query statement and variables are filled in the event content. <<< custom_key.brand_name >>> will automatically generate and display the final event record based on the actual monitored data.
+
+![](img/event-monitor.png)
+
+When this rule detects an anomaly, you can view the relevant event content by navigating to Events > Event Details.
+
+![](img/event-monitor-1.png)
+
+
+### Event Field Descriptions {#fields}
+
+The final event record will include the following fields:
+
+| <div style="width: 210px">Field</div>                   | Description                                                         |
 | :--------------------- | :----------------------------------------------------------- |
-| `date` / `timestamp`   | Generation time                                              |
-| `df_date_range`        | Event date range                                             |
-| `df_check_range_start` | Detection range start time                                   |
-| `df_check_range_end`   | Detection range end time                                     |
-| `df_issue_start_time`  | The time of the first failure of the current round           |
-| `df_issue_duration`    | The duration of this round of failures (from `df_issue_start_time` to this event) |
-| `df_source`            | Event source, including monitor, user, system, custom, audit |
-| `df_status`            | Event status, including `ok`, `info`, `warning`, `error`, `critical`, `nodata`, `nodata_ok`, `nodata_as_ok`, `manual_ok` |
-| `df_sub_status`        | Event status details. e.g. <br/>`ok`：Events recover from warning, error, critical, and other failure states<br/>`nodata_ok`：Event returns to normal from nodata state<br/>`nodata_as_ok`：Event nodata status is regarded as returning to normal<br/>`manual_ok`：Events of user active recovery |
-| `df_event_id`          | Event ID                                                     |
-| `df_title`             | Event title                                                  |
-| `df_message`           | Event message                                                |
+| `date` / `timestamp`   | Generation time. Unit: seconds                                             |
+| `df_date_range`        | Time range. Unit: seconds                                             |
+| `df_check_range_start` | Start time of the check range. Unit: seconds                                     |
+| `df_check_range_end`   | End time of the check range. Unit: seconds                                     |
+| `df_issue_start_time`  | The first occurrence time of the issue in this round. Unit: seconds                               |
+| `df_issue_duration`    | Duration of the issue in this round, unit: seconds (from `df_issue_start_time` to this event) |
+| `df_source`            | Event source. Including monitor, user, system, custom, audit          |
+| `df_status`            | Event status. Including ok, info, warning, error, critical, nodata, nodata_ok, nodata_as_ok, manual_ok |
+| `df_sub_status`        | Detailed event status (supplement to `df_status`)                        |
+| `df_event_id`          | Unique event ID                                                  |
+| `df_title`             | Title                            |
+| `df_message`           | Description                                 |
 
 
-- When `df_source = monitor`, the following additional fields exist:
+- When `df_source = monitor`, additional fields exist:
 
-| Fields                         | Description                                                  |
+| <div style="width: 210px">Field</div>                           | Description                                                         |
 | :----------------------------- | :----------------------------------------------------------- |
-| `df_dimension_tags`            | Event detection dimension tags, e.g.  `{"host":"web01"}`     |
-| `df_monitor_id`                | alert policy ID                                              |
-| `df_monitor_name`              | alert policy name                                            |
-| `df_monitor_type`              | Monitor Type. e.g.<br/>`custom`：Events generated by self-built monitoring<br/>`slo`：SLO event<br/>`bot_obs`：Auto detection event |
-| `df_monitor_checker`           | Monitor checker type. e.g. `custom_metric/custom_logcustom_apm/…` |
-| `df_monitor_checker_sub`       | Monitor checker stage. e.g. `nodata/check`                   |
-| `df_monitor_checker_id`        | Monitor cherker ID                                           |
-| `df_monitor_checker_name`      | Monitor checker name                                         |
-| `df_monitor_checker_value`     | Detection result value when the event is generated           |
-| `df_monitor_checker_ref`       | Association monitor<br/>This tag is used to filter events that are detected by the same DQL statement |
-| `df_monitor_checker_event_ref` | Associate Monitor Events <br/>This tag is used to filter events for the same object generated by the same monitor |
-| `df_monitor_ref_key`           | The association Key of the self-built patrol, through which the events generated by the self-built patrol are associated |
-| `df_event_detail`              | Full details of the incident                                 |
-| `df_user_id`                   | For manual recovery, the operator user ID                    |
-| `df_user_name`                 | For manual recovery, the operator user name                  |
-| `df_user_email`                | For manual recovery, the operator user mailbox               |
-| `df_exec_mode`                 | Exec mode,e.g.<br/>corontab: Automatic trigger, timed execution<br/>async: Invoked asynchronously, executed manually |
+| `df_dimension_tags`            | Detection dimension tags, e.g., `{"host":"web01"}`                           |
+| `df_monitor_id`                | Alert strategy ID                                                  |
+| `df_monitor_name`              | Alert strategy name                                                   |
+| `df_monitor_type`              | Type: custom monitoring events are `custom`, SLO events are `slo`, intelligent inspection events are fixed as `bot_obs` |
+| `df_monitor_checker`           | Execution function name, e.g., `custom_metric`                           |
+| `df_monitor_checker_sub`       | Detection phase: `nodata` if during data gap detection, `check` if during normal detection |
+| `df_monitor_checker_id`        | Monitor ID                                                    |
+| `df_monitor_checker_name`      | Monitor name                                                   |
+| `df_monitor_checker_value`     | Abnormal value when the event occurred                                           |
+| `df_monitor_checker_value_dumps`     | Abnormal value when the event occurred (JSON serialized)<br />Convenient for deserialization to obtain the original value                                           |
+| `df_monitor_checker_value_with_unit`     | Abnormal value when the event occurred (optimal unit)            |
+| `df_monitor_checker_ref`       | Monitor association, only associated with fields related to the DQL statement configured for detection              |
+| `df_monitor_checker_event_ref` | Monitor event association, only associated with fields related to `df_dimension_tags` and `df_monitor_checker_id` |
+| `df_monitor_ref_key`           | Self-built inspection association key, used to correspond with self-built inspections                       |
+| `df_fault_id`     | Fault ID for this round, taken from the `df_event_id` of the first fault event                      |
+| `df_fault_status`     | Fault status for this round, redundant fields of `df_status` and `df_sub_status`, indicating whether it is OK, values:<br />ok: Normal<br />fault: Fault          |
+| `df_fault_start_time`     | Start time of the fault in this round.               |
+| `df_fault_duration`     | Duration of the fault in this round, unit: seconds (from `df_issue_start_time` to this event)          |
+| `df_event_detail`              | Event detection details                                                 |
+| `df_event_report`              | Intelligent monitoring report data                                       |
+| `df_user_id`                   | User ID of the operator when manually recovered                                    |
+| `df_user_name`                 | Username of the operator when manually recovered                                     |
+| `df_user_email`                | Email of the operator when manually recovered                                   |
+| `df_crontab_exec_mode`                 | Execution mode, options.<br><li>Automatic trigger (i.e., scheduled execution) `crontab` <br><li> Asynchronous call (i.e., manual execution) `manual` |
+| `df_site_name`                | Current <<< custom_key.brand_name >>> site name                                   |
+| `df_workspace_name`                | Workspace name                                   |
+| `df_workspace_uuid`                | Workspace UUID                             |
+| `df_label`                | Monitor label, labels specified in the monitor are stored in this field UUID                             |
+| `df_alert_policy_ids`                | Alert policy IDs (list)                            |
+| `df_alert_policy_names`                | Alert policy names (list)                             |
+| `df_matched_alert_policy_rules`                | Alert policy names and all matched rule names (list)                             |
+| `df_channels`                | List of incident channels associated with the event                             |
+| `df_at_accounts`                | @account information                             |
+| `df_at_accounts_nodata`                | @account information (data gap)                             |
+| `df_message_at_accounts`                | Detailed information list of `@users` in the fault alert message                             |
+| `df_nodata_message_at_accounts`                | Detailed information list of `@users` in the data gap alert message       |
+| `df_workspace_declaration`                | Attribute claims of the workspace       |
+| `df_matched_alert_members`                | List of all matching alert notification members when sending alerts by member       |
+| `df_matched_alert_upgrade_members`                | List of all matching alert upgrade notification members when sending alerts by member       |
+| `df_matched_alert_member_groups`                | List of all matching member group names when sending alerts by member       |
+| `df_charts`                | Chart information appended when charts are added in the monitor configuration and this alert event requires sending a message       |
+| `df_alert_info`                | Alert notification information       |
+| `df_is_silent`                | Whether the event is muted, value is string `"true"` / `"false"`       |
+| `df_sent_target_types`                | List of unique alert notification object types sent for this event       |
 
-- When df_source = audit, the following additional fields exist:
+- When `df_source = audit`, additional fields exist:
 
-| Fields          | Description                                            |
-| :-------------- | :----------------------------------------------------- |
-| `df_user_id`    | the operator user ID                                   |
-| `df_user_name`  | the operator user name                                 |
-| `df_user_email` | the operator user mailbox                              |
-| {Other Fields}  | Other fields based on specific audit data requirements |
+| Field            | Description                           |
+| :-------------- | :----------------------------- |
+| `df_user_id`    | Operator user ID                  |
+| `df_user_name`  | Operator username                   |
+| `df_user_email` | Operator user email                 |
+| {Other Fields}      | Other fields based on specific audit data requirements |
 
-- When df_source = user, the following additional fields exist:
+- When `df_source = user`, additional fields exist:
 
-| Fields          | Description                                             |
-| :-------------- | :------------------------------------------------------ |
-| `df_user_id`    | the operator user ID                                    |
-| `df_user_name`  | the operator user name                                  |
-| `df_user_email` | the operator user mailbox                               |
-| {Other Fields}  | Other fields that generate events based on user actions |
+| Field            | Description                             |
+| :-------------- | :------------------------------- |
+| `df_user_id`    | Creator user ID                    |
+| `df_user_name`  | Creator username                     |
+| `df_user_email` | Creator user email                   |
+| {Other Fields}      | Other fields based on user actions that generate events |
 
-## Event Storage Policy
 
-Guance provides three data storage time choices for event data: 14 days, 30 days and 60 days. If you choose the data storage time of 30 days, events generated from different sources will be stored in 30 days. You can adjust as required in **Management > Settings > Change Data Storage Strategy**.
+## Further Reading
 
-> See [Data Storage Strategy](../billing/billing-method/data-storage.md) for more data storage policies.
+<font size=2>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Event Data Sharding Practice: Implementation Based on Dataway Sink**</font>](./event_data_sharding.md)
+
+</div>
+
+</font>

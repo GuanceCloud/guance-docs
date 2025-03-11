@@ -1,119 +1,118 @@
-# 云账号管理
+# Cloud Account Management
 
-企业在运营过程中，往往需要使用多个云服务账号来满足不同的业务需求。然而，当这些云服务出现故障时，分散的管理方式可能会导致效率低下，增加企业的运营成本。
+During the operation of a business, it often requires multiple cloud service accounts to meet various business needs. However, when these cloud services experience issues, decentralized management can lead to inefficiencies and increase operational costs.
 
-观测云的云账号管理功能将企业所有的云服务账号集中起来进行统一管理，并借由账号下某些配置的唯一性来进行区分。通过配置集成采集器，针对每个账号下的云服务进行独立管理，从而实现对业务数据的精细化控制。
+<<< custom_key.brand_name >>>'s cloud account management feature consolidates all of the company's cloud service accounts for unified management, distinguishing them by the uniqueness of certain configurations under each account. By configuring integrated collectors, each cloud service under an account is managed independently, thereby achieving fine-grained control over business data.
 
-这种管理方式不仅能简化企业的云服务管理流程，还有助于快速定位和解决服务故障，从而显著降低企业的管理成本，并提高故障响应速度。
+This management approach not only simplifies the cloud service management process but also helps in quickly identifying and resolving service issues, significantly reducing management costs and improving fault response speed.
 
-**注意**：当前功能仅支持**工作空间拥有者、管理者**进行相关配置。
+**Note**: This feature is currently available only to **workspace owners and administrators** for configuration.
 
-## 添加云账号授权 {#cloud-authorize}
+## Add Cloud Account Authorization {#cloud-authorize}
 
-<font size=2>**注意**：目前仅支持 AWS 云账号，其他云账号即将上线，敬请期待。</font>
+<font size=2>**Note**: Currently, only AWS cloud accounts are supported. Support for other cloud accounts will be available soon.</font>
 
-AWS 账号类型有两种认证方式：Access Keys、角色授权。
+AWS account types have two authentication methods: Access Keys and Role Authorization.
 
 <img src="../img/cloud-account.png" width="60%" >
 
-
-### 基于 Access Keys {#ak}
+### Based on Access Keys {#ak}
 
 <img src="../img/cloud-account-1.png" width="60%" >
 
-1. 选择地区：按需选择中国区与海外区；
-2. 账号 ID：必须为 12 个字符；
-3. 输入 AWS 侧的 Access Key 与 Secret Key；
-4. 填入账户别名；将用于在观测云中展示，后续此账号收集的数据会自动加上此标签；
-5. 点击**测试**按钮，测试通过后方可创建成功。
+1. Select Region: Choose between China and overseas regions as needed;
+2. Account ID: Must be 12 characters;
+3. Enter the AWS Access Key and Secret Key;
+4. Enter the account alias; this will be used for display in <<< custom_key.brand_name >>>, and subsequent data collected from this account will automatically include this tag;
+5. Click the **Test** button; creation will succeed only after passing the test.
 
-### 基于角色授权 {#ra}
+### Based on Role Authorization {#ra}
 
 <img src="../img/cloud-account-2.png" width="60%" >
 
-1. 选择地区：按需选择中国区与海外区；
-2. 账号 ID：必须为 12 个字符；
-3. 输入 AWS 侧的 Access Key 与 Secret Key；
-4. 填入该账号下的角色名称；
-5. 输入账户别名；将用于在观测云中展示，后续此账号收集的数据会自动加上此标签；
-6. 点击保存即可。还可点击**测试**按钮，校验当前云账号信息。
+1. Select Region: Choose between China and overseas regions as needed;
+2. Account ID: Must be 12 characters;
+3. Enter the AWS Access Key and Secret Key;
+4. Enter the role name under this account;
+5. Input the account alias; this will be used for display in <<< custom_key.brand_name >>>, and subsequent data collected from this account will automatically include this tag;
+6. Click Save. You can also click the **Test** button to validate the current cloud account information.
 
-## 账号列表
+## Account List
 
-创建成功的云账号均会在此展示。您可进行以下操作：
+Successfully created cloud accounts will be displayed here. You can perform the following operations:
 
-- 右上角基于**类型**进行快速筛选；
-- 直接在搜索栏输入云账号别名进行搜索定位；
-- 通过设置按钮直接进行删除操作；
+- Quickly filter by **type** using the options in the top-right corner;
+- Search for a cloud account alias directly in the search bar to locate it;
+- Delete the account directly via the settings button;
 
 <img src="../img/cloud-account-3.png" width="60%" >
 
-- 点击进入某条账号信息，进行再次编辑。
+- Click into a specific account to edit it again.
 
 <img src="../img/cloud-account-4.png" width="80%" >
 
-## 配置集成
+## Configuration Integration
 
-当云账号创建成功，即表示该账号向观测云成功授权。您接下来在该云账号下可按需安装集成，开始采集数据。
+Once a cloud account is successfully created, it means that the account has been authorized to <<< custom_key.brand_name >>>. You can then install integrations as needed under this cloud account to start collecting data.
 
-**注意**：不同的集成所需要授权的资源不同，请根据集成文档要求授予相应的权限给到云账号，否则有可能会出现集成安装成功，但数据采集会失败的情况。
+**Note**: Different integrations require different resource authorizations. Please grant the necessary permissions to the cloud account according to the integration documentation requirements. Otherwise, even if the integration installation succeeds, data collection may fail.
 
-???+ abstract "安装前提"
+???+ abstract "Prerequisites"
 
-    已开通 [DataFlux Func 托管版](../dataflux-func/index.md#steps)。
+    [DataFlux Func (Automata)](../dataflux-func/automata.md) must be enabled.
 
-    若未开通 DataFlux Func 托管版，请先前往开通。
+    If DataFlux Func (Automata) is not enabled, please enable it first.
 
     ![](img/cloud-inte-3.png)
 
-点击进入云账号信息详情页 > 集成，您可查看当前账号下所有相关的集成。
+Click into the cloud account details page > Integrations, where you can view all related integrations under the current account.
 
 ![](img/cloud-inte.png)
 
-点击右侧**安装**，进入自动安装页面：
+Click **Install** on the right side to enter the automatic installation page:
 
 ![](img/cloud-inte-1.png)
 
-1. 云账号自动填入；
-2. 按需选择适用的地域类型；
-3. 观测云会自动识别当前集成脚本包含的指标，您可按需删减；
-4. 过滤器目前支持 `=`、`in` 运算。
+1. The cloud account is automatically filled in;
+2. Select the applicable region type as needed;
+3. <<< custom_key.brand_name >>> will automatically identify the metrics included in the current integration script, which you can modify as needed;
+4. Filters currently support `=` and `in` operations.
 
-点击安装。安装成功后，请继续脚本安装。
+Click Install. After successful installation, continue with script installation.
 
 ![](img/cloud-inte-2.png)
 
-### 集成侧直接安装
+### Direct Installation from Integration Side
 
-???+ abstract "前提"
+???+ abstract "Prerequisites"
 
     ![](img/cloud-inte-4.png)
 
-    1. 开通 DataFlux Func 托管版；  
-    2. 在管理中[已配置云账号授权](#cloud-authorize)。
+    1. Enable DataFlux Func (Automata);
+    2. [Cloud account authorization has been configured](#cloud-authorize) in management.
 
-除在**管理 > 云账号管理**这一路径下安装集成外，您也可以前往**集成**直接安装.
+In addition to installing integrations via the **Management > Cloud Account Management** path, you can also go directly to **Integrations** to install.
 
-在单个集成安装页面下，您可以配置多个云账号。
+On the single integration installation page, you can configure multiple cloud accounts.
 
 ![](img/cloud-inte-3.png)
 
-点击添加云账号，您可勾选其他需要配置的云账号，并配置地域、指标、过滤器。
+Click Add Cloud Account, select other cloud accounts that need configuration, and configure regions, metrics, and filters.
 
 ![](img/cloud-inte-5.png)
 
-点击安装，云账号将覆盖更新为当前的最新配置。
+Click Install, and the cloud account configuration will be updated to the latest settings.
 
-## 删除/卸载集成
+## Deleting/Uninstalling Integrations
 
-- 在云账号管理列表页，点击 :octicons-gear-24:，即可删除云账号。删除后将不会再继续采集此云账号下所有配置的集成，但不会影响已采集到的数据。
+- On the cloud account management list page, click :octicons-gear-24:, to delete the cloud account. After deletion, no further data will be collected from any integrations configured under this cloud account, but previously collected data will remain unaffected.
 
 ![](img/cloud-inte-7.png)
 
-- 在云账号详情页 > 集成，点击卸载后，将不会再继续采集此集成，但不会回影响已采集的数据。
+- In the cloud account details page > Integrations, clicking Uninstall will stop further data collection from this integration, but previously collected data will remain unaffected.
 
 ![](img/cloud-inte-8.png)
 
-- 在集成侧，点击卸载后，所有 AWS 云账户将不会再继续采集此集成数据。如果只需要某个云账号不再继续采集，可前往云账号配置中操作。
+- On the integration side, clicking Uninstall will stop further data collection from all AWS cloud accounts. If you only want to stop data collection from a specific cloud account, you can do so in the cloud account configuration.
 
 ![](img/cloud-inte-6.png)

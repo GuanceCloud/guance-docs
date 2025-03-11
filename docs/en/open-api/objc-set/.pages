@@ -1,0 +1,6 @@
+nav:
+  - '【Object Classification Configuration】List': list.md
+  - '【Object Classification Configuration】Create': create.md
+  - '【Object Classification Configuration】Modify': modify.md
+  - '【Object Classification Configuration】Delete': delete.md
+  - '【Object Classification Configuration】Export': export.md

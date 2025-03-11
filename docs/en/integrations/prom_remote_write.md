@@ -1,15 +1,15 @@
 ---
 title     : 'Prometheus Remote Write'
-summary   : 'Receive metrics via Prometheus Remote Write'
+summary   : 'Collect metrics data via Prometheus Remote Write'
 tags:
-  - 'THIRD PARTY'
+  - 'External Data Ingestion'
   - 'PROMETHEUS'
-__int_icon      : 'icon/prometheus'
+__int_icon: 'icon/prometheus'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -18,30 +18,31 @@ monitor   :
 
 ---
 
-Monitor Prometheus Remote Write data and report it to Guance Cloud.
+Listen to Prometheus Remote Write data and report it to Guance.
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-Note that for some earlier versions of `vmalert`, the setting `default_content_encoding = "snappy"` needs to be turned on in the collector's configuration file.
+Note that for some early versions of `vmalert`, you need to enable the setting `default_content_encoding = "snappy"` in the collector's configuration file.
 
-Turn on the Prometheus Remote Write feature and add the following configuration in Prometheus.yml:
+Enable the Prometheus Remote Write function by adding the following configuration to *prometheus.yml*:
 
 ```yml
 remote_write:
  - url: "http://<datakit-ip>:9529/prom_remote_write"
 
-# If want add some tag, ( __source will not in tag, only show in Datakit expose metrics)
+# If you want to add some tags, ( __source will not be included in tags, only shown in Datakit exposed metrics)
 # remote_write:
 # - url: "http://<datakit-ip>:9529/prom_remote_write?host=1.2.3.4&foo=bar&__source=<your_source>" 
 ```
 
 ### Collector Configuration {#input-config}
+
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/prom` directory under the DataKit installation directory, copy `prom_remote_write.conf.sample` and name it `prom_remote_write.conf`. Examples are as follows:
+    Navigate to the `conf.d/prom` directory under the DataKit installation directory, copy `prom_remote_write.conf.sample` and rename it to `prom_remote_write.conf`. An example is as follows:
     
     ```toml
         
@@ -49,7 +50,7 @@ remote_write:
       ## Path to listen to.
       path = "/prom_remote_write"
     
-      ## accepted methods
+      ## Accepted methods
       methods = ["PUT", "POST"]
       
       ## If the data is decoded incorrectly, you need to set the default HTTP body encoding;
@@ -60,8 +61,8 @@ remote_write:
       ## Part of the request to consume.  Available options are "body" and "query".
       # data_source = "body"
     
-      ## output source
-      # specify this to output collected metrics to local file
+      ## Output source
+      # specify this to output collected metrics to a local file
       # if not specified, metrics is sent to datakit io
       # if specified, you can use 'datakit --prom-conf /path/to/this/conf' to debug collected data
       # output = "/abs/path/file"
@@ -72,27 +73,27 @@ remote_write:
     
       ## Metric name filter
       # Regex is supported.
-      # Only metric matches one of the regex can pass through. No filter if left empty.
+      # Only metrics matching one of the regexes can pass through. No filter if left empty.
       # metric_name_filter = ["gc", "go"]
     
       ## Measurement name filter
       # Regex is supported.
-      # Only measurement matches one of the regex can pass through. No filter if left empty.
+      # Only measurements matching one of the regexes can pass through. No filter if left empty.
       # This filtering is done before any prefixing rule or renaming rule is applied.
       # measurement_name_filter = ["kubernetes", "container"]
     
-      ## metric name prefix
-      ## prefix will be added to metric name
+      ## Metric name prefix
+      ## Prefix will be added to metric name
       # measurement_prefix = "prefix_"
     
-      ## metric name
-      ## metric name will be divided by "_" by default.
-      ## metric is named by the first divided field, the remaining field is used as the current metric name
-      ## metric name will not be divided if measurement_name is configured
+      ## Metric name
+      ## Metric name will be divided by "_" by default.
+      ## Metric is named by the first divided field, the remaining field is used as the current metric name
+      ## Metric name will not be divided if measurement_name is configured
       ## measurement_prefix will be added to the start of measurement_name
       # measurement_name = "prom_remote_write"
     
-      ## max body size in bytes, default set to 500MB
+      ## Max body size in bytes, default set to 500MB
       # max_body_size = 0
     
       ## Optional username and password to accept for HTTP basic authentication.
@@ -100,23 +101,23 @@ remote_write:
       # basic_username = ""
       # basic_password = ""
     
-      ## If both blacklist and whitelist, all list will cancel.
-      ## tags to ignore (blacklist)
+      ## If both blacklist and whitelist are configured, all lists will be canceled.
+      ## Tags to ignore (blacklist)
       # tags_ignore = ["xxxx"]
     
-      ## tags to ignore with regex (blacklist)
+      ## Tags to ignore with regex (blacklist)
       # tags_ignore_regex = ["xxxx"]
     
-      ## tags whitelist
+      ## Tags whitelist
       # tags_only = ["xxxx"]
     
-      ## tags whitelist with regex
+      ## Tags whitelist with regex
       # tags_only_regex = ["xxxx"]
     
       ## Indicate whether tags_rename overwrites existing key if tag with the new key name already exists.
       overwrite = false
     
-      ## tags to rename
+      ## Tags to rename
       [inputs.prom_remote_write.tags_rename]
       # old_tag_name = "new_tag_name"
       # more_old_tag_name = "other_new_tag_name"
@@ -139,84 +140,85 @@ remote_write:
         prefix = "etcd_server_"
         name = "etcd_server"
     
-      ## custom tags
+      ## Custom tags
       [inputs.prom_remote_write.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 <!-- markdownlint-enable -->
-### Add, Ignore and Rename Tags {#tag-ops}
 
-We can label the collected metrics by configuring `tags`, as follows:
+### Tag Processing {#tag-ops}
+
+You can add tags to the collected metrics by configuring `tags`, as follows:
 
 ```toml
-  ## custom tags
+  ## Custom tags
   [inputs.prom_remote_write.tags]
   some_tag = "some_value"
   more_tag = "some_other_value"
 ```
 
-If both blacklist and whitelist, all list will cancel.
+Note: If both blacklist and whitelist are configured, they will both be ignored.
 
-We can apply blacklist on the tag to ignore it:
+You can ignore certain tags on metrics by configuring `tags_ignore` (blacklist), as follows:
 
 ```toml
-  ## tags to ignore
+  ## Tags to ignore
   tags_ignore = ["xxxx"]
 ```
 
-We can apply regex match blacklist on the tag to ignore it:
+You can ignore tags on metrics using regex by configuring `tags_ignore_regex` (blacklist), as follows:
 
 ```toml
-  ## tags to ignore with regex
+  ## Tags to ignore with regex
   tags_ignore_regex = ["xxxx"]
 ```
 
-We can apply whitelists on tags:
+You can configure a whitelist of tags on metrics by configuring `tags_only`, as follows:
 
 ```toml
-  ## tags white list
+  ## Tags white list
   # tags_only = ["xxxx"]
 ```
 
-We can apply regex match whitelist on tags:
+You can configure a whitelist of tags on metrics using regex by configuring `tags_only_regex`, as follows:
 
 ```toml
-  ## tags white list with regex
+  ## Tags white list with regex
   # tags_only_regex = ["xxxx"]
 ```
 
-We can rename some of the tag names that an indicator already has by configuring `tags_rename`, as follows:
+You can rename existing tags on metrics by configuring `tags_rename`, as follows:
 
 ```toml
-  ## tags to rename
+  ## Tags to rename
   [inputs.prom_remote_write.tags_rename]
   old_tag_name = "new_tag_name"
   more_old_tag_name = "other_new_tag_name"
 ```
 
-In addition, when the renamed tag key is the same as the existing tag key: You can configure whether to overwrite the existing tag key by `overwrite`.
+Additionally, when renaming a tag key that already exists, you can configure whether to overwrite the existing tag key using `overwrite`.
 
-> Note: For [DataKit global tag key](../datakit/datakit-conf.md#update-global-tag), renaming them is not supported here.
+> Note: For [global tag keys in DataKit](../datakit/datakit-conf.md#update-global-tag), renaming them here is not supported.
 
-## Metric {#metric}
+## Metrics {#metric}
 
-The standard set is based on the measurements sent by Prometheus.
+The metrics set follows the metrics set sent by Prometheus.
 
-## Configuring Prometheus Remote Write {#remote-write-relabel}
+## Configuring Prometheus Remote Write Metric Filtering {#remote-write-relabel}
 
-When using Prometheus to push metrics to Datakit via remote write, an excessive number of metrics may lead to a surge in data on storage. In such cases, we can utilize Prometheus's own relabeling feature to select specific metrics.
+When using Prometheus to push metrics to DataKit via remote write, too many metrics may lead to an explosion of data in storage. In such cases, we can use Prometheus's relabel feature to select specific metrics.
 
-To configure `remote_write` to another service and only send a specified list of metrics in Prometheus, we need to set up the `remote_write` section in the Prometheus configuration file (usually `prometheus.yml`) and specify the `match[]` parameter to define the metrics to be sent.
+In Prometheus, to configure `remote_write` to another service and send only specified metrics, we need to set the `remote_write` section in Prometheus's configuration file (usually `prometheus.yml`) and specify the `match[]` parameter to define the metrics to send.
 
-Here is a configuration example showing how to send a specific list of metrics to a remote write endpoint:
+Here’s an example configuration that shows how to send a specific list of metrics to a remote write endpoint:
 
 ```yaml
 remote_write:
@@ -229,31 +231,31 @@ remote_write:
 
 In this configuration:
 
-- `url`: The URL of the remote write service.
-- `write_relabel_configs`: A list for relabeling and filtering the metrics to be sent.
-    - `source_labels`: Specifies the source labels used for matching and relabeling.
-    - `regex`: A regular expression to match the metric names to be retained.
-    - `action`: Specifies whether to keep (`keep`) or drop (`drop`) the metrics that match the regular expression.
+- `url`: The URL of the remote write service
+- `write_relabel_configs`: A list used to relabel and filter the metrics to send
+    - `source_labels`: Specifies the source labels to match and relabel
+    - `regex`: A regular expression to match the metric names to retain
+    - `action`: Specifies whether metrics matching the regex should be kept (`keep`) or dropped (`drop`)
 
-In the example above, only metrics with names matching `my_metric`, `another_metric`, or `yet_another_metric` will be sent to the remote write endpoint. All other metrics will be ignored.
+In the above example, only metrics named `my_metric`, `another_metric`, or `yet_another_metric` will be sent to the remote write endpoint. All other metrics will be ignored.
 
 Finally, reload or restart the Prometheus service to apply the changes.
 
-## Command Line Debug Measurements {#debug}
+## Debugging Metrics Set via Command Line {#debug}
 
-DataKit provides a simple tool for debugging `prom.conf`. If you constantly adjust the configuration of `prom.conf`, you can achieve the goal of collecting only Prometheus metrics that meet certain name rules.
+DataKit provides a simple tool to debug `prom.conf`. By continuously adjusting the `prom.conf` configuration, you can achieve the goal of collecting Prometheus metrics that match certain naming rules.
 
-Datakit supports direct debugging of the collector configuration files from the command line. Configure the `output` entry of `prom_remote_write.conf` under `conf.d/prom`, configure it as a local file path, and then `prom_remote_write.conf` writes the collected data to the file without uploading it to the center.
+DataKit supports debugging the collector configuration file directly from the command line. Configure the `output` item in `prom_remote_write.conf` under `conf.d/prom` to a local file path. The collected data will then be written to the file instead of being uploaded to the central server.
 
-Restart Datakit for the configuration file to take effect:
+Restart DataKit to apply the configuration:
 
 ```shell
 datakit service -R
 ```
 
-The *prom_remote_write* collector will then write the collected data to the local file indicated by the output.
+At this point, the *prom_remote_write* collector will write the collected data to the local file specified by `output`.
 
-We can debug *prom_remote_write.conf* by executing the following command.
+Run the following command to debug *prom_remote_write.conf*:
 
 ```shell
 datakit debug --prom-conf prom_remote_write.conf
@@ -261,11 +263,11 @@ datakit debug --prom-conf prom_remote_write.conf
 
 Parameter description:
 
-- `prom-conf`: Specify the configuration file and look for the  `prom_remote_write.conf` file in the current directory by default. If it is not found, it will look for the corresponding file in the *<datakit-install-dir\>/conf.d/prom* directory.
+- `prom-conf`: Specifies the configuration file, defaults to searching for `prom_remote_write.conf` in the current directory; if not found, it looks for the corresponding file in the *[datakit-install-dir]/conf.d/prom* directory.
 
-Output sample:
+Example output:
 
-```not-set
+``` not-set
 ================= Line Protocol Points ==================
 
  prometheus,instance=localhost:9090,job=prometheus,monitor=codelab-monitor target_scrapes_sample_out_of_order_total=0 1634548272855000000
@@ -308,12 +310,11 @@ Total time series: 155
 Total line protocol points: 487
 Total measurements: 6 (prometheus, promhttp, up, scrape, go, node)
 ```
-<!-- markdownlint-disable MD007 -->
-Output description:
+
+Output explanation:
 
 - Line Protocol Points: Generated line protocol points
 - Summary: Summary results
-    - Total time series: Number of timelines
-    - Total line protocol points: Line protocol points
-    - Total measurements: The number of measurements and their names.
-<!-- markdownlint-enable -->
+    - Total time series: Number of time series
+    - Total line protocol points: Number of line protocol points
+    - Total measurements: Number of measurements and their names.

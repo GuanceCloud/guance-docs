@@ -2,7 +2,7 @@
 title: 'AWS ElastiCache Serverless'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'Use the script packages in the Script Market of Guance to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/aws_elasticache_serverless'
 dashboard:
   - desc: 'AWS ElastiCache Serverless'
@@ -14,70 +14,69 @@ dashboard:
 # AWS ElastiCache Serverless
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+
+Use the script packages in the Script Market of Guance to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the hosted version of Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself,[Refer to](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of ElastiCache Redis cloud resources, we install the corresponding collection script: `ID:guance_aws_elasticache_serverless`
-
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click[Run],you can immediately execute once, without waiting for a regular time.After a while,you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Install Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-## Metric {#metric}
+To synchronize monitoring data from AWS ElastiCache Serverless cloud resources, install the corresponding collection script: "Guance Integration (AWS-ElastiCache Collection)" (ID: `guance_aws_elasticache_serverless`)
 
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/AmazonElastiCache/latest/red-ug/serverless-metrics.html){:target="_blank"}
+After clicking 【Install】, enter the required parameters: Amazon AK, Amazon account name.
 
-### Serverless Metrics
-| metric name | descriptive | unit |
-| -- | -- | -- |
-|BytesUsedForCache|The total number of bytes used by the data stored in your cache.|Bytes|
-|ElastiCacheProcessingUnits|The total number of lastCacheProcessingUnits (`ECPU`) consumed by executing requests on the cache|Count|
-|SuccessfulReadRequestLatency|Delay in successfully reading requests.|Microseconds|
-|SuccessfulWriteRequestLatency|Delay in successfully writing requests|Microseconds|
-|`TotalCmdsCount`|The total number of all commands executed in the cache|Count|
-|`CacheHitRate`|Indicates the hit rate of the cache. This is calculated using the cache_hits and cache_misses statistics Count data as follows：cache_hits /(cache_hits + cache_misses).|Percent|
-|`CacheHits`|Number of successful read-only key lookups in cache.|Count|
-|`CurrConnections`|Number of cached client connections.|Count|
-|`ThrottledCmds`|The number of requests throttled by ElastiCache due to the workload scaling speed exceeding the speed that ElastiCache can scale.|Count|
-|NewConnections|The total number of connections accepted by the server during this period.|Count|
-|`CurrItems`|Number of items in cache.|Count|
-|`CurrVolatileItems`|Number of items in cache with TTL.|Count|
-|NetworkBytesIn|Total bytes transferred in to cache|Bytes|
-|NetworkBytesOut|Total bytes transferred out of cache|Bytes|
-|IamAuthenticationExpirations|The total number of expired Redis connections authenticated by IAM. You can find more information about using IAM for authentication in the user guide.|Count|
-|IamAuthenticationThrottling|The total number of throttled IAM-authenticated Redis AUTH or HELLO requests. You can find more information about Authenticating with IAM in the user guide.|Count|
-|KeyAuthorizationFailures|The total number of failed attempts by users to access keys they don’t have permission to access. We suggest setting an alarm on this to detect unauthorized access attempts.|Count|
-|The total number of failed attempts to authenticate to Redis using the AUTH command. We suggest setting an alarm on this to detect unauthorized access attempts.|Count|
-|CommandAuthorizationFailures|The total number of failed attempts by users to run commands they don’t have permission to call. We suggest setting an alarm on this to detect unauthorized access attempts.|Count|
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
 
-## Object {#object}
+Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-Collected AWS ElastiCache Redis object data structure, you can see the object data from the "Infrastructure - Customize"
+By default, we collect some configurations; for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. Confirm in 「Manage / Automatic Trigger Configuration」that the corresponding task has the automatic trigger configuration. You can also check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+
+## Metrics {#metric}
+After configuring Amazon CloudWatch, the default metric set is as follows. More metrics can be collected through configuration. [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/AmazonElastiCache/latest/red-ug/serverless-metrics.html){:target="_blank"}
+
+### Serverless Cache Metrics
+| Metric | Description | Unit |
+| --- | --- | --- |
+| BytesUsedForCache | Total number of bytes used by data stored in the cache. | Bytes |
+| ElastiCacheProcessingUnits | Total number of ElastiCache Processing Units (`ECPU`) consumed by requests on the cache. | Count |
+| SuccessfulReadRequestLatency | Latency of successful read requests. | Microseconds |
+| SuccessfulWriteRequestLatency | Latency of successful write requests. | Microseconds |
+| `TotalCmdsCount` | Total number of commands executed on the cache. | Count |
+| `CacheHitRate` | Represents the cache hit rate. This is calculated using cache_hits and cache_misses as follows: cache_hits /(cache_hits + cache_misses). | Percentage |
+| `CacheHits` | Number of successful read-only key lookups in the cache. | Count |
+| `CurrConnections` | Number of client connections to the cache. | Count |
+| `ThrottledCmds` | Number of requests throttled by ElastiCache due to the workload expanding faster than ElastiCache can scale. | Count |
+| NewConnections | Total number of connections accepted by the server during this period. | Count |
+| `CurrItems` | Number of items in the cache. | Count |
+| `CurrVolatileItems` | Number of items in the cache with TTL. | Count |
+| NetworkBytesIn | Total number of bytes transmitted to the cache. | Bytes |
+| NetworkBytesOut | Total number of bytes transmitted from the cache. | Bytes |
+| IamAuthenticationExpirations | Total number of expired IAM-authenticated Redis connections. For more information about authenticating with IAM, see the user guide. | Count |
+| IamAuthenticationThrottling | Total number of throttled IAM-authenticated Redis AUTH or HELLO requests. For more information about authenticating with IAM, see the user guide. | Count |
+| KeyAuthorizationFailures | Number of failed attempts to access keys that the user does not have permission to access. We recommend setting up alerts to detect unauthorized access attempts. | Count |
+| AuthenticationFailures | Total number of failed authentication attempts using the AUTH command to authenticate with Redis. We recommend setting up alerts to detect unauthorized access attempts. | Count |
+| CommandAuthorizationFailures | Number of failed attempts to run commands that the user does not have permission to call. We recommend setting up alerts to detect unauthorized access attempts. | Count |
+
+## Objects {#object}
+
+Data structure of the collected AWS ElastiCache Serverless objects can be viewed under 「Infrastructure - Custom」
 
 ```json
 {
@@ -106,7 +105,8 @@ Collected AWS ElastiCache Redis object data structure, you can see the object da
   }
 ```
 
-> *Note: Fields in `tags`, `fields` are subject to change with subsequent updates.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The `tags.name` value is the instance ID, which serves as a unique identifier.
-> Tip 2: `fields.message`, `fields.NetworkInterfaces`, and `fields.BlockDeviceMappings` are JSON serialized strings.
+> Note 1: The value of `tags.name` is the instance ID, used for unique identification.
+>
+> Note 2: `fields.message`, `fields.network_interfaces`, `fields.blockdevicemappings` are JSON serialized strings.

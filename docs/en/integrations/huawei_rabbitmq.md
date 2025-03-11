@@ -1,116 +1,118 @@
 ---
-title: 'HUAWEI DMS RabbitMQ'
+title: 'Huawei Cloud DMS RabbitMQ'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.'
 __int_icon: 'icon/huawei_rabbitmq'
 dashboard:
-  - desc: 'HUAWEI CLOUD RocketMQ Monitoring View'
-    path: 'dashboard/zh/huawei_rabbitmq/'
+  - desc: 'Huawei Cloud RocketMQ built-in view'
+    path: 'dashboard/en/huawei_rabbitmq/'
 
 monitor:
-  - desc: 'HUAWEI CLOUD RocketMQ Monitor'
-    path: 'monitor/zh/huawei_rabbitmq/'
+  - desc: 'Huawei Cloud RocketMQ monitor'
+    path: 'monitor/en/huawei_rabbitmq/'
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD DMS RabbitMQ
+# Huawei Cloud DMS RabbitMQ
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically. Please continue with the script installation.
+It is recommended to enable the Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
 
+> It is recommended to deploy the GSE version.
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, you can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize the monitoring data of  HUAWEI CLOUD RocketMQ cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD- RabbitMQ）」(ID：`guance_huaweicloud_rabbitmq`)
+To synchronize the monitoring data of RabbitMQ cloud resources, we install the corresponding collection script: "Guance Integration (Huawei Cloud - RabbitMQ)" (ID: `guance_huaweicloud_rabbitmq`)
 
-Click  [ Install ]  and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
+After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
-tap [ Deploy startup Script ] ,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create the `Startup` script set and configure the startup script accordingly.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」. Click [ Run ] ,you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
+After the script installation is complete, find the script "Guance Integration (Huawei Cloud - RabbitMQ)" under "Development" in Func, expand and modify this script, find `collector_configs`, change the region after `regions` to your actual region, then find `monitor_configs` under `region_projects`, change it to the actual region and Project ID. Click Save and Publish.
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+Additionally, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-rabbitmq/){:target="_blank"}
+We default collect some configurations, details see the Metrics section.
 
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them  [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/eu/usermanual-rabbitmq/rabbitmq-ug-180413002.html){:target="_blank"}
+[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-rabbitmq/){:target="_blank"}
 
 
-| **MetricID**            |          **Metric Name**   | **Metric Meaning** | **Value Range**      | **Measured Object** | **Monitoring Period (Raw Metric)** |
+### Verification
+
+1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any abnormalities.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring Huawei Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Huawei Cloud Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-rabbitmq/rabbitmq-ug-180413002.html){:target="_blank"}
+
+| **Metric ID**            |          **Metric Name**   | **Metric Meaning** | **Value Range**      | **Measurement Object** | **Monitoring Period (Original Metric)** |
 | ---- | :----: | ------ | ------ | ---- | ---- |
-| connections |        connection count        | This metric is used to count the total number of connections in the RabbitMQ instance. unit：Count | >= 0               | RabbitMQ instance | 1 minute               |
-| channels                        |        channel count        | This metric is used to count the total number of channels in the RabbitMQ instance. unit：Count | 0~2047             | RabbitMQ instance | 1 minute               |
-| queues                          |        queue count        | This metric is used to count the total number of queues in the RabbitMQ instance. unit：Count | 0~1200             | RabbitMQ instance | 1 minute               |
-| consumers                       |       consumer count       | This metric is used to count the total number of consumers in the RabbitMQ instance. unit：Count | 0~1200             | RabbitMQ instance | 1 minute               |
-| messages_ready                  |     consumable message count     | This metric is used to count the total number of consumable messages in the RabbitMQ instance. unit：Count | 0~10000000         | RabbitMQ instance | 1 minute               |
-| messages_unacknowledged         |     unacknowledged message count     | This metric is used to count the total number of messages that have been consumed but not yet acknowledged in the RabbitMQ instance. unit：Count | 0~10000000         | RabbitMQ instance | 1 minute               |
-| publish                         |       message production rate       | Monitor real-time message production rate in a RabbitMQ instance. unit：Count/s | 0~25000            | RabbitMQ instance | 1 minute               |
-| deliver                         | message consumption rate（manual acknowledgment） | Monitor real-time message consumption rate in a RabbitMQ instance.（manual acknowledgment）. unit：Count/s | 0~25000            | RabbitMQ instance | 1 minute               |
-| deliver_no_ack                  | message consumption rate（auto-acknowledgment） | Monitor real-time message consumption rate in a RabbitMQ instance.（auto-acknowledgment）. unit：Count/s | 0~50000            | RabbitMQ instance | 1 minute               |
-| connections_states_running      |  Number of connections in the running state  | This metric is used to count the total number of connections in the entire instance with the states of starting/tuning/opening/running. unit：Count**Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| connections_states_flow         |   Number of connections in the flow state   | This metric is used to count the total number of connections in the entire instance with the state of "flow." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| connections_states_block        | Number of connections in the block state | This metric is used to count the total number of connections in the entire instance with the state of "blocking" or "blocked." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| connections_states_close        | Number of connections in the close state | This metric is used to count the total number of connections in the entire instance with the state of "closing" or "closed." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| channels_states_running         |   Number of channels in the running state   | This metric is used to count the total number of channels in the entire instance with the state of "starting," "tuning," "opening," or "running." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| channels_states_flow            |   Number of channels in the flow state   | This metric is used to count the total number of channels in the entire instance with the state of "flow." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| channels_states_block           | Number of channels in the block state | This metric is used to count the total number of channels in the entire instance with the state of "blocking/blocked." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| channels_states_close           | Number of channels in the close state | This metric is used to count the total number of channels in the entire instance with the state of "closing/closed." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| queues_states_running           |   Number of queues in the running state   | This metric is used to count the total number of queues in the entire instance with the state of "running." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| queues_states_flow              |   Number of queues in the flow state   | This metric is used to count the total number of queues in the entire instance with the state of "flow." unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ instance | 1 minute               |
-| fd_used                         |      Number of file handles      | This metric is used to count the current number of file descriptors used by the RabbitMQ process on the node. unit：Count | 0~65535            | RabbitMQ Instance Node | 1 minute               |
-| socket_used                     |     Number of socket connections     | This metric is used to count the current number of Socket connections used by the RabbitMQ process on the node. unit：Count | 0~50000            | RabbitMQ Instance Node | 1 minute               |
-| proc_used                       |     Number of Erlang processes     | This metric is used to count the current number of Erlang processes used by the RabbitMQ process on the node. unit：Count | 0~1048576          | RabbitMQ Instance Node | 1 minute               |
-| mem_used                        |       Memory usage       | This metric is used to measure the current memory usage of the RabbitMQ process on the node. unit：Byte | 0~32000000000      | RabbitMQ Instance Node | 1 minute               |
-| disk_free                       |     Available storage space     | This metric is used to measure the current available storage space on the node. unit：Byte | 0~500000000000     | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_alive**                  |     Node's status     | This metric indicates the liveness status of the RabbitMQ node. **Explanation：**This monitoring item is supported for instances purchased on and after April 2020..  | 1：Alive 0：offline | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_disk_usage**             |    Disk capacity utilization    | This metric is used to measure the disk capacity utilization of the RabbitMQ node's virtual machine. unit：% **Explanation：**This monitoring item is supported for instances purchased on and after April 2020..  | 0~100%             | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_cpu_usage**              | CPU usage rate | This metric is used to measure the CPU utilization of the RabbitMQ node's virtual machine. unit：% **Explanation：**This monitoring item is supported for instances purchased on and after April 2020..  | 0~100%             | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_cpu_core_load**          | Average CPU load per core | Monitor the memory usage rate of the RabbitMQ node's virtual machine. **Explanation：**This monitoring item is supported for instances purchased on and after April 2020..  | >0                 | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_memory_usage**           |      Memory usage rate      | Monitor the memory usage of the RabbitMQ node's virtual machine. unit：% **Explanation：**This monitoring item is supported for instances purchased on and after April 2020..  | 0~100%             | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_disk_read_await**        |  Average disk read operation time  | This metric is used to measure the average duration of each read IO operation on the disk during the measurement period. unit：ms **Explanation：**This monitoring item is supported for instances purchased on and after June 2020. | >0                 | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_disk_write_await**       |  Average disk write operation time  | This metric is used to measure the average duration of each write IO operation on the disk during the measurement period. unit：ms **Explanation：**This monitoring item is supported for instances purchased on and after June 2020. | >0                 | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_node_bytes_in_rate**     |      Network incoming traffic      | This metric is used to measure the network inbound traffic per second on the RabbitMQ node. unit：Byte/s **Explanation：**This monitoring item is supported for instances purchased on and after June 2020. | >0                 | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_node_bytes_out_rate**    |      Network outgoing traffic      | This metric is used to measure the network outbound traffic per second on the RabbitMQ node. unit：Byte/s **Explanation：**This monitoring item is supported for instances purchased on and after June 2020..  | >0                 | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_node_queues**            |      Number of queues on the node      | This metric is used to count the number of queues on the RabbitMQ node. unit：count  **Explanation：**This monitoring item is supported for instances purchased on and after June 2020..  | >0                 | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_memory_high_watermark**  |    Memory high watermark status    | This metric indicates whether the RabbitMQ node has triggered the memory high watermark. If triggered, it will block all producers in the cluster. **Explanation：**This monitoring item is supported for instances purchased on and after June 2020..  | 1：Triggered 0：Not Triggered | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_disk_insufficient**      |    Disk high watermark status    | This metric indicates whether the RabbitMQ node has triggered the disk high watermark. If triggered, it will block all producers in the cluster. **Explanation：**This monitoring item is supported for instances purchased on and after June 2020. | 1：Triggered 0：Not Triggered | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_disk_read_rate**         |      Disk read traffic      | This metric measures the disk read byte size per second on the RabbitMQ node. unit：KB/s **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| **rabbitmq_disk_write_rate**        |      Disk write traffic      | This metric measures the disk write byte size per second on the RabbitMQ node. unit：KB/s **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_unacknowledged   |   Number of unacknowledged messages in the queue   | This metric counts the number of consumed but unacknowledged messages in the queue. unit：Count | 0~10000000         | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_ready            |   Number of consumable messages in the queue   | This metric counts the number of messages in the queue that are available for consumption. unit：Count | 0~10000000         | RabbitMQ Instance Node | 1 minute               |
-| queue_consumers                 |      Number of consumers      | This metric counts the number of consumers subscribed to the queue. unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_publish_rate     |       Production rate       | This metric is used to count the number of incoming messages per second to the queue. unit：Count/s **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_ack_rate         | Consumption rate（manual acknowledgment） | This metric is used to count the number of messages delivered to the clients and acknowledged per second for the queue. unit：Count/s **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_deliver_get_rate |       Consumption speed       | This metric is used to count the number of messages sent out from the queue per second. unit：Count/s **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_redeliver_rate   |       Retransmission rate       | This metric is used to count the number of messages that are retransmitted from the queue per second. unit：Count/s **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_persistent       |  Total number of messages（Persistence）  | This metric is used to count the total number of persistent messages in the queue (it will always be 0 for transient queues). unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_messages_ram              |   Total Messages（Memory）   | This metric is used to count the total number of messages residing in memory in the queue. unit：Count **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_memory                    | Erlang Process Memory Consumption (in bytes) | This metric is used to count the number of memory bytes consumed by Erlang processes associated with the queue, including the stack, heap, and internal structures. unit：Byte **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
-| queue_message_bytes             |     Total Message Size     | This metric is used to calculate the total size of all messages in the queue (in bytes). unit：Byte **Explanation：**Supported for instances purchased on or after May 16th, 2022. | >= 0               | RabbitMQ Instance Node | 1 minute               |
+| `connections` |        Connections        | This metric counts the total number of connections in the **RabbitMQ** instance. Unit: Count      | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `channels`                      |        Channels        | This metric counts the total number of channels in the **RabbitMQ** instance. Unit: Count      | 0~2047             | **RabbitMQ** Instance | 1 minute                    |
+| `queues`                        |        Queues        | This metric counts the total number of queues in the **RabbitMQ** instance. Unit: Count      | 0~1200             | **RabbitMQ** Instance | 1 minute                    |
+| `consumers`                     |       Consumers       | This metric counts the total number of consumers in the **RabbitMQ** instance. Unit: Count    | 0~1200             | **RabbitMQ Instance** | 1 minute                    |
+| `messages_ready`                |     Ready Messages     | This metric counts the total number of ready messages in the **RabbitMQ** instance. Unit: Count | 0~10000000         | **RabbitMQ** Instance | 1 minute                    |
+| `messages_unacknowledged`       |     Unacknowledged Messages     | This metric counts the total number of consumed but unacknowledged messages in the **RabbitMQ** instance. Unit: Count | 0~10000000         | **RabbitMQ** Instance | 1 minute                    |
+| `publish`                       |       Publish Rate       | This metric counts the real-time message publish rate in the **RabbitMQ** instance. Unit: Count/s        | 0~25000            | **RabbitMQ** Instance | 1 minute                    |
+| `deliver`                       | Consume Rate (Manual Ack) | This metric counts the real-time message consume rate (manual acknowledgment) in the **RabbitMQ** instance. Unit: Count/s | 0~25000            | **RabbitMQ** Instance | 1 minute                    |
+| `deliver_no_ack`                | Consume Rate (Auto Ack) | This metric counts the real-time message consume rate (automatic acknowledgment) in the **RabbitMQ** instance. Unit: Count/s | 0~50000            | **RabbitMQ** Instance | 1 minute                    |
+| `connections_states_running`    |  Number of Running Connections  | This metric counts the total number of connections in the entire instance that are in starting/tuning/opening/running state. Unit: Count**Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `connections_states_flow`       |   Number of Flow State Connections   | This metric counts the total number of connections in the entire instance that are in flow state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `connections_states_block`      |  Number of Blocking/Blocked Connections   | This metric counts the total number of connections in the entire instance that are in blocking/blocked state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `connections_states_close`      |  Number of Closing/Closed Connections   | This metric counts the total number of connections in the entire instance that are in closing/closed state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `channels_states_running`       |   Number of Running Channels   | This metric counts the total number of channels in the entire instance that are in starting/tuning/opening/running state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `channels_states_flow`          |   Number of Flow State Channels   | This metric counts the total number of channels in the entire instance that are in flow state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `channels_states_block`         |  Number of Blocking/Blocked Channels   | This metric counts the total number of channels in the entire instance that are in blocking/blocked state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `channels_states_close`         |  Number of Closing/Closed Channels   | This metric counts the total number of channels in the entire instance that are in closing/closed state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `queues_states_running`         |   Number of Running Queues   | This metric counts the total number of queues in the entire instance that are in running state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `queues_states_flow`            |   Number of Flow State Queues   | This metric counts the total number of queues in the entire instance that are in flow state. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | **RabbitMQ** Instance | 1 minute                    |
+| `fd_used`                       |      File Handles      | This metric counts the number of file handles used by the current node of **RabbitMQ**. Unit: Count | 0~65535            | **RabbitMQ** Instance Node | 1 minute                    |
+| `socket_used`                   |     Socket Connections     | This metric counts the number of socket connections used by the current node of **RabbitMQ**. Unit: Count | 0~50000            | **RabbitMQ** Instance Node | 1 minute                    |
+| `proc_used`                     |     Erlang Processes     | This metric counts the number of Erlang processes used by the current node of **RabbitMQ**. Unit: Count | 0~1048576          | **RabbitMQ** Instance Node | 1 minute                    |
+| `mem_used`                      |       Memory Usage       | This metric counts the memory usage of the current node of **RabbitMQ**. Unit: Byte           | 0~32000000000      | **RabbitMQ** Instance Node | 1 minute                    |
+| `disk_free`                     |     Available Storage Space     | This metric counts the available storage space of the current node. Unit: Byte           | 0~500000000000     | **RabbitMQ** Instance Node | 1 minute                    |
+| `rabbitmq_alive`                |     Node Alive Status     | Indicates whether the **RabbitMQ** node is alive. **Note:** Instances purchased on or after April 2020 support this metric. | 1: Alive 0: Offline     | **RabbitMQ** Instance Node | 1 minute                    |
+| `rabbitmq_disk_usage`           |    Disk Capacity Usage    | Counts the disk capacity usage rate of the **RabbitMQ** node VM. Unit: % **Note:** Instances purchased on or after April 2020 support this metric. | 0~100%             | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_cpu_usage`            |      CPU Usage       | Counts the CPU usage rate of the **RabbitMQ** node VM. Unit: % **Note:** Instances purchased on or after April 2020 support this metric. | 0~100%             | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_cpu_core_load`        |     Average CPU Core Load      | Counts the average load per core of the **RabbitMQ** node VM CPU. **Note:** Instances purchased on or after April 2020 support this metric. | >0                 | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_memory_usage`         |      Memory Usage      | Counts the memory usage rate of the **RabbitMQ** node VM. Unit: % **Note:** Instances purchased on or after April 2020 support this metric. | 0~100%             | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_disk_read_await`      |  Average Disk Read Operation Time  | This metric counts the average duration of each read IO operation during the measurement period. Unit: ms **Note:** Instances purchased on or after June 2020 support this metric. | >0                 | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_disk_write_await`     |  Average Disk Write Operation Time  | This metric counts the average duration of each write IO operation during the measurement period. Unit: ms **Note:** Instances purchased on or after June 2020 support this metric. | >0                 | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_node_bytes_in_rate`   |      Network Inbound Traffic      | Counts the network inbound traffic of the **RabbitMQ** node per second. Unit: Byte/s **Note:** Instances purchased on or after June 2020 support this metric. | >0                 | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_node_bytes_out_rate`  |      Network Outbound Traffic      | Counts the network outbound traffic of the **RabbitMQ** node per second. Unit: Byte/s **Note:** Instances purchased on or after June 2020 support this metric. | >0                 | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_node_queues`          |      Number of Node Queues      | This metric counts the number of queues in the **RabbitMQ** node. Unit: Count  **Note:** Instances purchased on or after June 2020 support this metric. | >0                 | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_memory_high_watermark` |    High Watermark Memory Status    | Indicates whether the **RabbitMQ** node triggers high watermark memory, which blocks all producers in the cluster when triggered. **Note:** Instances purchased on or after June 2020 support this metric. | 1: Triggered 0: Not Triggered | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_disk_insufficient`    |    High Watermark Disk Status    | Indicates whether the **RabbitMQ** node triggers high watermark disk, which blocks all producers in the cluster when triggered. **Note:** Instances purchased on or after June 2020 support this metric. | 1: Triggered 0: Not Triggered | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_disk_read_rate`       |      Disk Read Throughput      | Counts the read bytes per second from the node's disk. Unit: KB/s **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Node | 1 minute                    |
+| `rabbitmq_disk_write_rate`      |      Disk Write Throughput      | Counts the write bytes per second to the node's disk. Unit: KB/s **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Node | 1 minute                    |
+| `queue_messages_unacknowledged` |   Unacknowledged Messages in Queue   | This metric counts the number of consumed but unacknowledged messages in the queue. Unit: Count          | 0~10000000         | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_messages_ready`          |   Ready Messages in Queue   | This metric counts the number of ready messages in the queue. Unit: Count              | 0~10000000         | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_consumers`               |      Number of Consumers      | This metric counts the number of consumers subscribed to the queue. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_messages_publish_rate`   |       Publish Rate       | This metric counts the number of messages flowing into the queue per second. Unit: Count/s **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_messages_ack_rate`       | Consume Rate (Manual Ack) | This metric counts the number of messages delivered to clients and acknowledged per second in the queue. Unit: Count/s **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_messages_deliver_get_rate` |       Consume Rate       | This metric counts the number of messages flowing out of the queue per second. Unit: Count/s **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_messages_redeliver_rate` |       Redelivery Rate       | This metric counts the number of redelivered messages per second in the queue. Unit: Count/s **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_messages_persistent`     |  Total Persistent Messages  | This metric counts the total number of persistent messages in the queue (always 0 for transient queues). Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_messages_ram`            |   Total Messages in RAM   | This metric counts the total number of messages residing in RAM in the queue. Unit: Count **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_memory`                  | Erlang Process Consumed Bytes | This metric counts the memory bytes consumed by the Erlang process associated with the queue, including stack, heap, and internal structures. Unit: Byte **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
+| `queue_message_bytes`           |     Total Message Size     | This metric counts the total size of all messages in the queue (bytes). Unit: Byte **Note:** Instances purchased on or after May 16, 2022 support this metric. | >= 0               | RabbitMQ Instance Queue | 1 minute                    |
 
-## Object {#object}
+## Objects {#object}
 
-The collected HUAWEI CLOUD ELB object data structure can see the object data from 「Infrastructure-custom-defined」
+After data synchronization is successful, you can view the data in the "Infrastructure / Custom (Objects)" section of Guance.
 
 ```json
 {
@@ -129,7 +131,7 @@ The collected HUAWEI CLOUD ELB object data structure can see the object data fro
   },
   "fields": {
     "access_user"               : "rabbit_mh",
-    "available_zones"           : "[Instance JSON data]",
+    "available_zones"           : "[Instance JSON Data]",
     "connect_address"           : "192.xxx.0.xxx",
     "created_at"                : "1687143955266",
     "description"               : "",
@@ -142,31 +144,31 @@ The collected HUAWEI CLOUD ELB object data structure can see the object data fro
     "storage_space"             : 83,
     "total_storage_space"       : 100,
     "used_storage_space"        : 0,
-    "message"                   : "{Instance JSON data}"
+    "message"                   : "{Instance JSON Data}"
   }
 }
 
 ```
 
+Partial field descriptions are as follows:
 
-| Field                | Type   | Description                                                  |
+| Field                 | Type   | Description                                                         |
 | :------------------- | :----- | :----------------------------------------------------------- |
-| `specification`      | String | Instance Specification. For single-node RabbitMQ instances, it returns the VM specification. For RabbitMQ cluster instances, it returns the VM specification and the number of nodes. |
-| `charging_mode`      | String | Billing Mode: 1 indicates pay-as-you-go, and 0 indicates subscription (monthly/yearly) billing. |
-| `available_zones`    | String | The Availability Zone where the instance node is located. It returns the "Availability Zone ID". |
-| `maintain_begin`     | String | The start time of the maintenance window, in the format "HH:mm:ss". |
-| `maintain_end`       | String | The end time of the maintenance window, in the format "HH:mm:ss". |
-| `created_at`         | String | The completion creation time in timestamp format, which represents the total milliseconds offset from Greenwich Mean Time (GMT) on January 1, 1970, to the specified time. |
-| `resource_spec_code` | String | Resource specification identifier `dms.instance.rabbitmq.single.c3.2u4g`：RabbitMQ Standalone,vm Specification 2u4g `dms.instance.rabbitmq.single.c3.4u8g`：RabbitMQ Standalone,vm Specification 4u8g `dms.instance.rabbitmq.single.c3.8u16g`：RabbitMQ Standalone,vm Specification 8u16g `dms.instance.rabbitmq.single.c3.16u32g`：RabbitMQStandalone,vm Specification 16u32g `dms.instance.rabbitmq.cluster.c3.4u8g.3`：RabbitMQ Cluster ,vm Specification 4u8g,3 Nodes  `dms.instance.rabbitmq.cluster.c3.4u8g.5`：RabbitMQ Cluster ,vm Specification 4u8g,5 Nodes  `dms.instance.rabbitmq.cluster.c3.4u8g.7`：RabbitMQ Cluster ,vm Specification 4u8g,7 Nodes  `dms.instance.rabbitmq.cluster.c3.8u16g.3`：RabbitMQ Cluster ,vm Specification 8u16g,3 Nodes  `dms.instance.rabbitmq.cluster.c3.8u16g.5`：RabbitMQ Cluster ,vm Specification 8u16g,5 Nodes  `dms.instance.rabbitmq.cluster.c3.8u16g.7`：RabbitMQ Cluster ,vm Specification 8u16g,7 Node  `dms.instance.rabbitmq.cluster.c3.16u32g.3`：RabbitMQ Cluster ,vm Specification 16u32g,3 Node  `dms.instance.rabbitmq.cluster.c3.16u32g.5`：RabbitMQ Cluster ,vm Specification 16u32g,5 Nodes  `dms.instance.rabbitmq.cluster.c3.16u32g.7`：RabbitMQ Cluster ,vm Specification 16u32g,7 Node |
+| `specification`      | String | Instance specification. For single-node RabbitMQ instances, returns the VM specification. For clustered RabbitMQ instances, returns the VM specification and number of nodes. |
+| `charging_mode`      | String | Billing mode, 1 indicates pay-as-you-go, 0 indicates subscription billing.                |
+| `available_zones`    | String | Availability zone where the instance node resides, returns the "availability zone ID".                       |
+| `maintain_begin`     | String | Start time of the maintenance window, format HH:mm:ss                           |
+| `maintain_end`       | String | End time of the maintenance window, format HH:mm:ss                           |
+| `created_at`         | String | Completion creation time. Format is a timestamp indicating the deviation in milliseconds from Greenwich Mean Time (GMT) January 1, 1970, 00:00:00 to the specified time. |
+| `resource_spec_code` | String | Resource specification identifier `dms.instance.rabbitmq.single.c3.2u4g`: Single-node RabbitMQ, VM specification 2u4g `dms.instance.rabbitmq.single.c3.4u8g`: Single-node RabbitMQ, VM specification 4u8g `dms.instance.rabbitmq.single.c3.8u16g`: Single-node RabbitMQ, VM specification 8u16g `dms.instance.rabbitmq.single.c3.16u32g`: Single-node RabbitMQ, VM specification 16u32g `dms.instance.rabbitmq.cluster.c3.4u8g.3`: Clustered RabbitMQ, VM specification 4u8g, 3 nodes `dms.instance.rabbitmq.cluster.c3.4u8g.5`: Clustered RabbitMQ, VM specification 4u8g, 5 nodes `dms.instance.rabbitmq.cluster.c3.4u8g.7`: Clustered RabbitMQ, VM specification 4u8g, 7 nodes `dms.instance.rabbitmq.cluster.c3.8u16g.3`: Clustered RabbitMQ, VM specification 8u16g, 3 nodes `dms.instance.rabbitmq.cluster.c3.8u16g.5`: Clustered RabbitMQ, VM specification 8u16g, 5 nodes `dms.instance.rabbitmq.cluster.c3.8u16g.7`: Clustered RabbitMQ, VM specification 8u16g, 7 nodes `dms.instance.rabbitmq.cluster.c3.16u32g.3`: Clustered RabbitMQ, VM specification 16u32g, 3 nodes `dms.instance.rabbitmq.cluster.c3.16u32g.5`: Clustered RabbitMQ, VM specification 16u32g, 5 nodes `dms.instance.rabbitmq.cluster.c3.16u32g.7`: Clustered RabbitMQ, VM specification 16u32g, 7 nodes |
 
 
 
-> *notice：`tags`,`fields`The fields in this section may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tips 1：`tags.name`The value is the instance ID for unique identification
+> Tip 1: The value of `tags.name` is the instance ID, serving as a unique identifier.
 >
-> Tips 2：
+> Tip 2:
 >
-> - `fields.message`,`fields.listeners` are JSON-serialized strings.
-> - `tags.operating_status`represents the operating status of the load balancer. It can have the values "ONLINE" and "FROZEN".
-
+> - `fields.message` and `fields.listeners` are JSON serialized strings.
+> - `tags.operating_status` represents the operational status of the load balancer. Possible values include ONLINE and FROZEN.

@@ -1,21 +1,58 @@
 nav:
   - index.md
-  - 'Public Request Parameter': public-request-params.md
+  - 'Public Request Parameters': public-request-params.md
   - 'Public Response Structure': public-response-params.md
-  - 'Signature Certification': signature-certification.md
-  - 'Use Limit': api-limit.md
+  - 'Signature Authentication': signature-certification.md
+  - 'Usage Limits': api-limit.md
   - 'Request Example': example.md
-  - 'Public Error Definition': error-definition.md
-  - 'Dashboard': board
-  - 'Notes': notes
-  - 'Event': keyevent
+  - 'Common Error Definitions': error-definition.md
+  - 'Use Case - Dashboard': board
+  - 'Use Case - Notes': notes
+  - 'Use Case - Explorer': viewer
+  - 'Use Case - Built-in Views': inner-dashboard
+  - 'Use Case - Service Management': service-manage
+  - 'Events': keyevent
+  - 'Incident - Channels': channel
+  - 'Incident - Issue': issue
+  - 'Incident - Schedules': notification-schedule
+  - 'Incident - Configuration Management - Notification Policies': issue-notification-policy
+  - 'Incident - Configuration Management - Issue Discovery': issue-auto-discovery
   - 'Infrastructure': objects
-  - 'Alarm Policy Management': monitor
-  - 'Monitor': checker
-  - 'Intelligent Inspection': self-built-checker
-  - 'Mute Configuration': mute
-  - 'Workspace Member': workspace-member
+  - 'Infrastructure - Resource Catalog': objc-set
+  - 'Logs - Pattern Query': logmine
+  - 'Logs - Index': log-index-cfg
+  - 'Logs - Data Forwarding': log-backup-cfg
+  - 'Logs - Data Access': logging-query-rule
+  - 'Metrics - Get Measurement Information': metric
+  - 'Metrics - Aggregate and Generate Metrics': aggs-to-metric
+  - 'RUM PV - Application': rum-cfg-set
+  - 'RUM PV - SourceMap': rum-sourcemap
+  - 'Synthetic Tests - Test Tasks': dialing-task
+  - 'Synthetic Tests - User-defined Node Management': dialing-region
+  - 'Monitoring - Checkers': checker
+  - 'Monitoring - SLO': slo
+  - 'Monitoring - Intelligent Inspection': self-built-checker
+  - 'Monitoring - Mute Configuration': mute
+  - 'Monitoring - Alert Strategies': alert-policy
+  - 'Monitoring - Alert Strategies - Custom Notification Dates': alert-policy-notice-date
+  - 'Monitoring - Notification Targets Management': notify-object
+  - 'Management - Field Management': field-cfg
+  - 'Management - Global Tags': tag
+  - 'Management - Member Management': workspace-member
+  - 'Management - Member Management - Role Permissions': permission
+  - 'Management - Member Management - Team Management': member-group
+  - 'Management - Member Management - SSO Management': sso
+  - 'Management - Member Management - SSO Management - Custom Mapping Rules (Deployment Plan)': custom-login-mapping
+  - 'Management - Role Management': role
+  - 'Management - API Key Management': workspace-ak
+  - 'Management - Blacklist': blacklist
+  - 'Management - Pipeline': pipeline
+  - 'Management - Data Access': data-query-rule
+  - 'Management - Sensitive Data Masking': workspace-data-mask
   - 'Workspace': workspace
-  - 'Snapshot': snapshot
-  - 'Func': outer-function
-  - 'Notify Object': notify-object
+  - 'Workspace - Attribute Claims': workspace-declaration
+  - 'Snapshot Management': snapshot
+  - 'DQL Data Query': query-data
+  - 'Func Functions': outer-function
+  - 'Billing Analysis': billing
+  - 'Login Token': offline-token

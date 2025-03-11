@@ -1,508 +1,552 @@
-# Powerful Explorers
+# Explorer
 ---
 
-Explorers of Guance can be used in features including Infrastructure, Events, Logs, APM, RUM, CI Visibility, Synthetic Tests, Security Check, etc. 
-
-As one of the important tools for data observability, Explorers of Guance provide a variety of search and filter methods and supports combined use to obtain the final data results. This article will introduce major explorer features to help you quickly and accurately retrieve data and locate faults.
+The <<< custom_key.brand_name >>> Explorer can be used within various functional modules such as infrastructure, events, logs, APM, RUM, CI visualization, Synthetic Tests, Security Check. As one of the important tools for data observability, the Explorer provides multiple search and filtering methods and supports combining them to obtain final data results. This document will detail the features of the Explorer to help you quickly and accurately retrieve data and locate issues.
 
 ## Search {#search}
 
-Search generally consists of <u>terms and operators</u>. Wildcard query is supported, `?` means matching any character and `*` matching 0 or more characters; To combine multiple terms into a complex query, you can use [Boolean operator](#bool).
+### Text Search {#text}
 
-Terms can be words or phrases. For example:
+A search typically consists of two parts: <u>terms</u> and <u>operators</u>. Wildcard queries are supported, where `*` matches 0 or more arbitrary characters, and `?` matches exactly one arbitrary character. To combine multiple terms into a complex query, Boolean operators (AND/OR/NOT) can be used. The Explorer uses the [query_string()](../../dql/funcs.md#query_string) query syntax.
 
-- Word: guance;  
-- Phrase: "guance test"  
+Terms can be single words or phrases. For example:
 
-<font color=coral>**Note:**</font> Using double quotation marks can convert a group of words into phrases.
+- Single word: guance;
+- Multiple words: guance test; (equivalent to guance AND test)
+- Phrase: "guance test"; (using double quotes converts a group of words into a phrase)
 
-
-<u>*Query sample (here, the example enters the search content for the explorer):*</u>
+*Search Query Example:*
 
 ![](../img/0620.gif)
 
-```
-# Word
-guance  // Precise search
-guanc[e   // There is a special character writing example (no need to add/escape)   
-
-# Word wildcard search (for performance reasons, Guance does not support prefix * writing for the time being, and if there is wildcard search, the following writing is supported)
-guance*
-gua?ce*  
-gua*ce
-
-# Phrase (the contents enclosed in double quotation marks are collectively referred to as phrases, and the contents of double quotation marks in this way will initiate a matching search as a whole)
-"guance test"  // Query full-text index field, there is a match result of "guance test" content
-"guance 127.0.0.1" // Sample writing when special characters exist
-```
-
 ### JSON Search {#json}
 
-<font color=coral>**Precondition**</font>: Sites "China 1 (Hangzhou)", "China 3 (Zhangjiakou)" and "China 4 (Guangzhou)" are supported. Workspace needs to be created after `June 23, 2022`. JSON search function <u>only supports log explorer</u> at present.
+**Prerequisites:**
 
-- By default, the content of `message` is retrieved accurately, and it is required that `message` is in JSON format, which is not supported by log content in other formats; 
-- The json search format is: `@key:value`, or `@ key1.key2: value` for multi-level json available "." inheritance, as shown in the figure.
+1. Workspace created after June 23, 2022;
+2. Used in the log Explorer.
+
+By default, it performs an exact search on the content of `message`, which must be in **JSON format**. Other formats of log content are not supported by this search method. The search format is `@key:value`. If it's multi-level JSON, use `.` to connect keys, i.e., `@key1.key2:value`.
 
 ![](../img/7.log_json.png)
 
-<u>*JSON search example:*</u>
+*Scenario Example:*
 
 ```
-message is as follows:
+Message content:
 {
-    __namespace:tracing,
-    cluster_name_k8s:k8s-demo,
-    meta:{    
-        service:ruoyi-mysql-k8s,
-        name:mysql.query,
-        resource:select dict_code, dict_sort, dict_label, dict_value, dict_type, css_class, list_class, is_default, status, create_by, create_time, remark 
+    __namespace: tracing,
+    cluster_name_k8s: k8s-demo,
+    meta: {
+        service: ruoyi-mysql-k8s,
+        name: mysql.query,
+        resource: select dict_code, dict_sort, dict_label, dict_value, dict_type, css_class, list_class, is_default, status, create_by, create_time, remark 
                 from sys_dict_data
  }
 }
 
 # Query cluster_name_k8s = k8s-demo
-@cluster_name_k8s:k8s-demo     // Precise search
-@cluster_name_k8s:k?s*        // Wildcard search
+@cluster_name_k8s:k8s-demo     // Exact match
+@cluster_name_k8s:k?s*        // Fuzzy match
 
-# Query service = ruoyi-mysql-k8s under meta
-@meta.service:ruoyi-mysql-k8s   // Precise search
-@meta.service:ruoyi?mysql*   // Wildcard search
+# Query meta.service = ruoyi-mysql-k8s
+@meta.service:ruoyi-mysql-k8s   // Exact match
+@meta.service:ruoyi?mysql*   // Fuzzy match
 ```
 
-## Filter {#filter}
+<!--
+**Note**: When the search content contains `.`, such as `trace.id`, if directly input as `@key1.key2:value`, the system will treat `trace` and `id` as two separate keys. In this case, input in the format `@\"key1.xxx\":value`.
+-->
+## Filtering {#filter}
 
-In the explorer, you can filter the format of `tags/attributes`, splicing them in the order of `field operator values`.
+In the Explorer, you can filter data by `field name` and `field value`.
 
-<font color=coral>**Note:**</font> The biggest difference between filtering and searching is whether there is a <u>colon spacer</u> in the input content. If there is a colon spacer, it will be judged as a filtering condition. If not, it will be a search condition (if there is a double quotation mark in the search content, it can be changed into a phrase).
+**Note**: The main difference between filtering and searching is whether there is a <u>: colon separator</u> in the input content. If it exists, it is treated as a filtering condition; otherwise, it is treated as a search condition.
 
-### Field
+### Operator Explanation {#operator}
 
-You can view the official field information provided by Guance by default on the **[Management > Field Management](../../management/field-management.md)** page.
+Different types of fields support different operators, as shown below:
 
-### Operator
-
-Guance supports filtering for <u>string OR numeric type fields</u>.
-
-- String field operator: `=` `≠` `wildcard` `not wildcard` `exist` `not exist`;  
-- Numeric field operator: `=` `≠` `>` `>=` `<` `<=` `[xx TO xx]` `exist` `not exist`.
+- String field operators: `=`, `≠`, `match`, `not match`, `wildcard`, `not wildcard`, `exist`, `not exist`, `regexp`, `not regexp`;
+- Numeric field operators: `=`, `≠`, `>`, `>=`, `<`, `<=`, `[xx TO xx]`, `exist`, `not exist`.
 
 ![](../img/0620-1.png)
 
-| Operator      | Description                  |
-| ----------- | ---------------- |
-| `=`     | Equal, example: `key:value`, `=` and `≠` can be combined with the following other operators.                  |
-| `≠`      | Not equal, example: `-key:value`, `=` and `≠` can be combined with the following other operators.                  |
-| `wildcard`      | [Wildcard match](#wildcard), example: `key:value*`. Reverse filtering is achieved by superimposing `≠`.                 |
-| `exist`      | Exist, filter all data that exists with the current key. The result is returned. Example: `key:*`. Reverse filtering is realized by superimposing `≠`.                 |
-| `>`      | Greater than, example: `key:>value`. Reverse filtering is realized by superimposing `≠`.                  |
-| `>=`      | Greater than or equal, example: `key:>=value`. Reverse filtering is realized by superimposing `≠`.                  |
-| `<`      | Less than, example: `key:<value`. Reverse filtering is realized by superimposing `≠`.                  |
-| `<=`      | Less than or equal to, example: `key:<=value`. Reverse filtering is realized by superimposing `≠`.                  |
-| `[xx - xx]`      | Duration, example: `key:[1 - 100]`. Reverse filtering is realized by superimposing `≠`.                 |
+| Operator | Description |
+| -------- | ----------- |
+| `=`      | Equals, example: `attribute:value`                   |
+| `≠`      | Not equals, example: `-attribute:value`               |
+| `match`  | Contains, example: `attribute:~value`                  |
+| `not match` | Does not contain, example: `-attribute:~value`                  |
+| `wildcard` | Contains, using wildcards for fuzzy queries, example: `attribute:*value*`         |
+| `not wildcard` | Does not contain, using wildcards for reverse fuzzy queries, example: `attribute:*value*`    |
+| `exist`  | Exists, filters data that has the specified field, example: `attribute:*`                  |
+| `not exist` | Does not exist, filters data that does not have the specified field, example: `-attribute:*`        |
+| `regexp` | Regular expression match, using regular expressions to match target strings, example: `attribute:/value.*/`               |
+| `not regexp` | Reverse regular expression match, using target strings to match regular expressions, example: `-attribute:/value.*/`                  |
+| `>`      | Greater than, example: `attribute:>value`                |
+| `>=`     | Greater than or equal to, example: `attribute:>=value`                  |
+| `<`      | Less than, example: `attribute:<value`                  |
+| `<=`     | Less than or equal to, example: `attribute:<=value`               |
+| `[xx - xx]` | Range, example: `attribute:[1 - 100]`               |
 
-#### Wildcard {#wildcard}
+### Wildcard Explanation {#wildcard}
 
-`?` or `*` wildcard query is supported, `?` means matches any character, `*` matches zero or multiple characters:
+Supports `*` or `?` wildcard queries, where `*` matches 0 or more arbitrary characters, and `?` matches exactly one arbitrary character.
 
 ```
 Value: guanceyun
 
-# Only the suffix * matching is used. This scenario is suitable for the case where the string of a certain value prefix is fixed and accurate, and the second half changes dynamically
-key:guance*    // * matches yun
+# Using only suffix * matching, suitable when the prefix string is fixed and precise, and the latter part changes dynamically
+attribute:guance*    // * matches yun
 
-# Use only ? match, this scenario is suitable for cases where only a few fixed-position characters are dynamically updated
-key:gua?ceyun   // ? matches n
+# Using only ? matching, suitable when only individual fixed position characters change dynamically
+attribute:gua?ceyun   // ? matches n
 
-# ? * overlay use
-key:gua?ce*   // ? matches n, * matches yun
+# Combining ? and *
+attribute:gua?ce*   // ? matches n, * matches yun
 
-# * mixed use
-key:gua*e*   // the first * matches nc, and the second * matches yun
+# Mixing *
+attribute:gua*e*   // First * matches nc, second * matches yun
 ```
 
+## Special Character Handling {#character}
 
-### Value
+Some characters have special meanings in the Explorer, such as `space` used to separate multiple words. Therefore, if the search content includes any of the following characters, special handling is required: `space`, `:`, `"`, `“`, `\`, `(`, `)`, `[`, `]`, `{`, `}`.
 
-AND and OR operator combination queries are supported.
+### :material-numeric-1-circle: Convert text to a phrase
+
+1. Enclose the text in `"` double quotes to convert it into a phrase.
+2. In this format, the quoted content is matched as a whole, and wildcards do not apply.
+3. If the text contains `\` or `"`, this method cannot be used for searching; please use [Method Two](#method-two).
+
+*Example: Searching the field name `cmdline`, with the field value `nginx: worker process`:*
+
+- Search
 
 ```
-# Precise search
-key:(value1 AND value2 OR value3)
-
-# Contain wildcard match    
-key:(value1 OR test* OR value3)
-
-# Contain * exist      
-key:(value1 OR * OR value3)          // Equivalent to key:* 
-key:(value1 AND *)                  // Equivalent to key:value1
-key:(value1 AND * OR value3)        // Equivalent to key:(value1 OR value3)
+"nginx: worker process"   // Successful retrieval, exact match of words
 ```
 
-## Boolean Operator {#bool}
+```
+"nginx * process"   // Failed retrieval, because * inside double quotes is not considered a wildcard
+```
 
-The form of `AND/OR/NOT` supports further <u>combination of association search</u>.
+- Filter
+
+```
+cmdline:"nginx: worker process"   // Successful retrieval, exact match of words
+```
+
+```
+cmdline:"nginx: worker*"  // Failed retrieval, because * inside double quotes is not considered a wildcard
+```
+
+### :material-numeric-2-circle: Escape special characters {#method-two}
+
+1. Add `\` before special characters.
+2. If the search text itself contains `\`, the handling differs between search and filter modes: In search mode, add three `\` before the character for escaping; in filter mode, add one `\`.
+
+*Example: Searching the field name `cmdline`, with the field value `E:\software_installer\vm\vmware-authd.exe`:*
+
+- Search
+
+```
+E\:\\\\software_installer\\\\vm\\\\vmware-authd.exe     // Successful retrieval, exact match of words
+```
+
+```
+E\:\\\\software_installer*exe     // Successful retrieval, wildcard fuzzy match
+```
+
+- Filter
+
+```
+cmdline:E\:\\software_installer\\vm\\vmware-authd.exe    // Successful retrieval, exact match of words
+```
+
+```
+cmdline:E\:\\software_installer*exe    // Successful retrieval, wildcard fuzzy match
+```
+
+## Boolean Operators {#bool}
+
+Supports combining searches and filters using `AND/OR/NOT`.
 
 ![](../img/13.search_4.png)
 
-| Logical Relation | Description                                    | Notes |
-| -------- | --------------------------------- | --- |
-| a AND b  | Take the intersection of the query results before and after | By default, AND is used for connection between search AND filter conditions. `AND` can use `Spaces`, that is, `a` AND `b` = `a` `b`.   |
-| a OR b   | Take the union of the query results before and after        | The returned result should contain either a or b keyword. Example: `a` OR `b:value`.  |
-| NOT c    | Exclude current query results          | NOT is mostly used in search writing, and the exclusion logic at screening is replaced by `≠`. |
+| Logical Relationship | Description                                    | Note |
+| -------------------- | ---------------------------------------------- | ---- |
+| a AND b              | Intersection of both query results            | Search and filter conditions are connected by AND by default. `AND` can be replaced by a space, i.e., `a` AND `b` = `a` `b`. |
+| a OR b               | Union of both query results                   | Returns results containing either keyword a or b. Example: `a` OR `b:value` |
+| NOT c                | Excludes current query results                | NOT is mainly used in search syntax. For exclusion logic in filters, use `≠` instead. |
 
-## Search/Filter Notes
+## Search/Filter Precautions
 
 ### Grouping
 
-Use parentheses `()` to prioritize the data query criteria, i.e. the query logic in `()` takes precedence over the filter criteria if there is a selected part of the search in the query `()`. The query priority within `()` is still executed as `NOT > AND > OR`.
+Use parentheses `()` to increase the priority of data query conditions. Conditions within `()` are evaluated first. Inside `()`, the evaluation order remains `NOT > AND > OR`.
 
 ### Handwriting Mode
 
-<font color=coral>**Note:**</font> The new version of DQL handwriting mode previously supported by **Log > Explorer** will be offline after it goes online.
-
-This handwriting mode covers all explorers (<u>except dashboard/custom explorer</u>). In the new mode, UI interaction is supported to add search, filter conditions and handwriting mode can be switched freely, and no changes will be made to the content before mode switching, thus realizing real-time switching and restoration of UI and handwriting input.
-
-
+Supports switching the search box to "handwriting mode". This feature covers all Explorers except dashboards and custom Explorers. In the new mode, users can switch freely between UI interaction and handwriting input for adding search and filter conditions, without changing any previous content. Real-time switching between UI and handwritten input is truly achieved.
 
 ## Analysis Mode {#analysis}
 
-In the explorer analysis column, multi-dimensional analysis and statistics based on <u>1 to 3 tags</u> are supported to reflect the distribution characteristics and trends of data in different dimensions and at different times.
+In the analysis panel of the Explorer, you can perform multi-dimensional aggregation queries and statistical analyses based on data to reflect distribution characteristics and trends across different dimensions and time periods.
 
-**Data display:**
-
-- **Data point**: Data point refers to the coordinate point where the data value is located. The line chart and area chart of the timing chart will be automatically aggregated into data points according to the time range you choose, and the number of data points will <u>not exceed 360 points</u>; The number of data points in the histogram shall <u>not exceed 60</u>.
-- **Data range**: Data range refers to the value range of each data point, that is, the coordinate point of the current data point is pushed forward to the coordinate point of the previous data point as the interval range, and the data value in this range is taken.
+Click **Analysis** to enter the data chart analysis mode, including time series charts, top lists, pie charts, and treemaps. You can also choose different time intervals to display data.
 
 ![](../img/5.log_analysis.gif)
 
-## Quick Filter {#quick-filter}
+**Data Display Explanation:**
 
-### Custom Filter Fields
+- Data Point: A data point refers to the coordinate point of a data value. Time series line and area charts automatically aggregate data points based on the selected time range, with no more than 360 points. Bar charts have no more than 60 data points.
+- Data Range: The range of values for each data point, calculated as the interval between the current data point and the previous one, taking the value within this range.
 
-It supports editing **Quick Filter** to add new **Fields** in the explorer. Two configuration modes are supported: spatial filter items and personal filter items.
+> In chart analysis mode, refer to [Operations](../../logs/explorer.md#charts) to manage charts.
 
-Preset fields in shortcut filtering is available. The newly added fields default to the field type in field management. If there is no field type in field management, it defaults to text format.
+## Quick Filters {#quick-filter}
 
-=== "Spatial Filter Items"
+The Explorer supports editing **Quick Filters** to add new **filter fields**. There are two configuration methods: <u>workspace-level filter items and personal-level filter items</u>.
 
-    It is configured by the <u>Administrator and Owner</u>. Click :fontawesome-solid-gear: to configure the space-level filter items. You can add and delete fields, edit field aliases and adjust field order.
+Quick Filters support preset fields. Newly added fields default to the field type in field management. If not present in field management, they default to text format.
 
-    <font color=coral>**Note:**</font> All members of the workspace can view space-level filter items, but permissions of standard members and below cannot edit, delete and move locations.
+<div class="grid" markdown>
+
+=== "Workspace-Level Filter Items"
+
+    Configured by administrators/owners. Click the gear icon :octicons-gear-24: next to Quick Filters and choose to configure workspace-level filter items. Supports adding new fields, editing field aliases, adjusting field order, and deleting fields.
+
+    **Note**: Workspace-level filter items are viewable by all workspace members, but ordinary and standard members cannot edit, delete, or move them.
 
     ![](../img/5.explorer_search_7.png)
 
-=== "Individual Filter Items"
+=== "Personal-Level Filter Items"
 
-    <u>All members</u> can configure shortcut filter items based on local browser. Click :material-pencil: to configure personal filter items. You can add and delete fields, edit field aliases and adjust field order.
+    All members can configure browser-local quick filters. Click the pencil icon :material-pencil: next to Quick Filters to configure personal-level filter items. Supports adding new fields, editing field aliases, adjusting field order, and deleting fields.
 
-    <font color=coral>**Note:**</font> Individual-level filters are available only to the current individual, not to other members of the workspace.
+    **Note**: Personal-level filter items are visible only to the current user and not to other workspace members.
 
-    ![](../img/5.explorer_search.png)
+    ![](../img/5.explorer_search_8.gif)
 
-### Operating Instructions
+</div>
+
+- Click the icon shown to collapse the Quick Filters column:
+
+<img src="../../img/expand.png" width="60%" >
+
+- Click the icon shown to quickly add the field to the data list, and click again to remove it.
+
+<img src="../../img/12.quick_filter_4.png" width="60%" >
+
+### Related Operations
+
+<div class="grid" markdown>
 
 === "Select All"
 
-    By default, the label values of all shortcut filter items are checked, indicating that no filtering has been performed.
+    By default, all Quick Filter labels are checked, indicating no filtering has been applied.
 
-=== "Empty Filter"
+=== "Clear Filters"
 
-    Click the **Clear Filter** button in the upper right corner of the shortcut filter item to cancel the value filter of this label, that is, restore all selection.
+    Click the **Clear Filters** button in the upper right corner of Quick Filters to cancel the label value filtering, restoring the full selection.
 
-=== "Cancel/Check"
+=== "Uncheck/Check"
 
-    Click the check box in front of the shortcut filter item label value to **Cancel** or **Check** the value. By default, uncheck the previous check box indicates that the value is reversed, and continue to uncheck other check boxes indicates reversed multiple selection.
+    Click the checkbox in front of the Quick Filter label value to **uncheck** or **check** it. By default, unchecking the checkbox indicates selecting the opposite value. Continue unchecking other checkboxes to perform reverse multi-selection.
 
-    ![](../img/12.quick_filter_1.gif)
+    ![](../img/12.quick_filter_1.png)
 
-=== "Check this only/Uncheck"
+=== "Select Only This Item/Uncheck"
 
-    **Check this only** indicates that this value is selected positively, and continue to check other values indicates multiple positive selection; When a value is positively selected, click **Unselect** on the row where the value is located again to cancel all filtering.
+    Click the row of the label value to indicate positive single selection **Select Only This Item**. Continue checking other checkboxes to perform positive multi-selection. When positively single-selecting a value, clicking the row again **Unchecks** and cancels all filters.
 
-    ![](../img/12.quick_filter_1.1.gif)
+    ![](../img/12.quick_filter_1.1.png)
 
-=== "Positive Election & Anti-Election"
+=== "Positive & Negative Selection"
 
-    If a label has both positive and negative selection states, it is inoperable in shortcut filtering.
+    If a label has both positive and negative states simultaneously, it is grayed out and not operable in Quick Filters.
 
     ![](../img/12.quick_filter_2.png)
 
-=== "Quick Filter Item Search"
+=== "Quick Filter Search"
 
-    When the shortcut filter item has more than 10 labeled fields, fuzzy search according to **Field Name** or **Display Name** is supported.
+    When Quick Filters exceed 10 label fields, support fuzzy search by **field name** or **display name**.
 
-    ![](../img/12.quick_filter.png)
+    ![](../img/12.quick_filter_5.1.png)
 
 === "Field Value Search"
 
-    If the shortcut filter item exceeds 10 field attribute values, it supports real-time search of input text and supports clicking fuzzy matching and reverse fuzzy matching for filtering.
+    If Quick Filters exceed 10 field attribute values, support real-time text input for fuzzy matching and reverse fuzzy matching.
 
     ![](../img/12.quick_filter_3.png)
 
-=== "Field Value Quantity Statistics Ranking {#top5}"
+=== "Top 5 Values"
 
-    Click :fontawesome-solid-gear: and select **Query TOP 5 Value** to view the statistical quantity percentage of the top five field attribute values of the current filter item. In the ranking list, it is supported to view the quantity statistics and to click the buttons of **Filter** and **Reverse Filter** to carry out data filtering query on the field attribute values of the current ranking in the form of `key: value`.
+    Click the gear icon :octicons-gear-24: in the upper right corner of Quick Filters, then choose **Top 5 Values** to view the top five field attribute value statistics percentages. In the leaderboard, support mouse hover to view statistics, and click **Positive Filter** or **Negative Filter** buttons to filter data by `key:value`.
 
     ![](../img/8.explorer_1.png)
 
-=== "Add/Remove Display Columns"
+=== "Dimension Analysis"
 
-    Click :fontawesome-solid-gear: to **Add/Remove Columns**. The custom added personal filter item fields support editing display names and deleting fields.
+    Clicking switches the current Explorer to analysis mode, automatically adding the field to the "Analysis Dimension" for querying.
 
-    ![](../img/12.quick_filter_4.gif)
+    ![](../img/analysis-mode.gif)
 
 === "Duration"
 
-    If the shortcut filter in the explorer includes the Duration field, you can manually adjust the maximum/minimum values for query analysis. 
-    
-    <font color=coral>**Note:**</font>
+    If the Quick Filters include a `duration` field, you can manually adjust the maximum/minimum values for query analysis. Notes:
 
-    - The **Duration** of the shortcut filter defaults to the minimum value of the progress bar, and the maximum value is the minimum and maximum duration in the link data list;
-    - Dragging the progress bar to adjust the maximum/minimum value, and the values in the input box change synchronously;
-    - Manual input of maximum/minimum value is supported, press enter key or click outside the input box for filtering search;
-    - When the input is not standard, the input box turns red, and no search is carried out. The correct format is pure "number" or "number + ns/μ s/ms/s/min";
-    - If no unit is entered for search, the default is to directly fill in "s" after the entered number and then filter the search;
-    - If you enter units manually, search directly.
+    - The default minimum and maximum values of **Duration** in Quick Filters are the smallest and largest durations in the trace data list.
+    - Support dragging the slider to adjust maximum/minimum values, with the input box values synchronizing changes.
+    - Support manually entering maximum/minimum values, pressing Enter or clicking outside the input box to filter search.
+    - Input boxes turn red if the format is incorrect, preventing search. Correct format: pure "number" or "number+ns/μs/ms/s/min".
+    - If no unit is entered, "s" is appended to the number for filtering.
+    - If a unit is manually entered, direct search occurs.
 
     ![](../img/9.apm_explorer_6.png)
 
-## Filtering History {#filter-history}
+</div>
 
-Filtering History, where you can view filter and searching history, can be applied to different explorers in the current workspace.
+## Filter History {#filter-history}
 
-- Open filtering history: you can quickly open filter history by clicking the expansion icon in the lower-right corner of the explorer, or directly through the shortcut key (`Mac OS: shift + cmd + k/Windows: shift + ctrl + k`);
-- Close filtering history: click the close button `x` or use the `esc` button to close the filter history.
+<<< custom_key.brand_name >>> supports viewing filter and search history in **Filter History**, which can be applied across different Explorers in the current workspace.
 
-<font color=coral>**Note:**</font> Filtering history only supports saving the current user's search criteria in the local browser.
+- Open Filter History: Access by clicking the icon next to the search bar at the top of the Explorer, or use the shortcut `(Mac OS: shift+cmd+k / Windows: shift+ctrl+k)` to quickly open Filter History.
+- Collapse Filter History: Click the close button `x` or press `esc` to collapse Filter History.
 
-![](../img/1.filter_history_2.png)
+![](../img/logexplorer-1.png)
 
-### Operating Instructions
+**Note**: Filter History is only viewable locally in the current user's browser.
 
-Guance saves up to 100 search criteria in the explorer filter history. You can switch keys (↑ ↓) up and down on the keyboard to switch and select search criteria, and then click the keyboard `enter` to add to the filter.
+### Operation Instructions
 
-- Fixed to Filter: The mouse is placed on the screening history, and the top search criteria can be set through the **Fixed to Filter** button on the right;
-- Add to Filter: Click search criteria to add to the explorer for filtering, which supports multiple choices;
-- Cancel Filter: After adding to the filter, click **Search Criteria** again to cancel the filter.
+In the Explorer's Filter History, up to 100 filter/search conditions can be viewed. Use the keyboard arrow keys (↑ ↓) to switch between conditions, and press `enter` to add them to the filter.
 
-![](../img/1.filter_history_1.png)
+- Pin to Filter: Hover over a condition in Filter History and click the "Pin to Filter" button to pin filter/search conditions.
+- Add to Filter: Click a filter/search condition to add it to the Explorer for filtering, supporting multi-selection.
+- Remove Filter: After adding to the filter, click the condition again to remove the filter.
 
-- Apply filter history in different explorers: Filter history is saved in the log explorer and can be used directly in other explorers.
+![](../img/linkexplorer-1.png)
 
-<!--
-![](../img/filter_history.gif)
--->
+- Apply Filter History in Different Explorers: When browsing `-source: default` in **Logs > Explorer** (as shown above), you can directly use the same filter/search conditions in other Explorers like Traces.
 
+![](../img/linkexplorer.png)
 
-## Time Control {#time}
+## Auto Refresh {#refresh}
 
-Guance supports controlling the data display range of the current explorer through time control. You can manually enter the time range, quickly select the built-in time range of the current explorer, or set the time range by customization.
+Helps quickly obtain real-time data in the Explorer.
 
-### Enter Time Range Manually
+Available frequencies: 5s, 10s, 30s, 1m, 5m, 30m, 1h.
 
-The time control supports interval display by default, and you can click the time control to view the format of manually input time range, including **Dynamic Time** and **Static Time**. After input, **Enter** or **Click any blank area** can filter and view the corresponding data according to the input time range.
+To disable auto-refresh, choose Off (disabled).
+
+![](../img/refresh-1.png)
+
+**Note**: All Explorers share one refresh configuration.
+
+## Time Widget {#time}
+
+<<< custom_key.brand_name >>> supports controlling the data display range of the current Explorer via the Time Widget. Users can manually enter time ranges or quickly select built-in time ranges or set custom time ranges.
+
+### Manually Enter Time Range
+
+The Time Widget defaults to interval display, supporting clicking the widget to manually enter time ranges, including **dynamic time** and **static time**. Press Enter or click anywhere outside to filter data according to the entered time range.
 
 ![](../img/12.time_1.png)
 
 === "Dynamic Time"
 
-    The dynamic time range supports four units: seconds, minutes, hours and days, such as 1s, 1m, 1h, 1d, etc. Input 30s as shown in the following figure.
+    Dynamic time ranges support seconds, minutes, hours, and days, e.g., 1s, 1m, 1h, 1d, etc. Entering 20m as shown below.
 
-    Enter, then return the data in the last 20 minutes, that is, the explorer displays the last 20 minutes.
+    ![](../img/7.timestamp_6.png)
 
-    <img src="../../img/7.timestamp_6.1.png" width="70%" >
+    Press Enter to return to the last 20 minutes, displaying data from the last 20 minutes in the Explorer.
 
-=== "Static Time"
+    ![](../img/7.timestamp_6.1.png)
 
-    The standard time format supports the following writing methods. The time format is accurate to the second level. Spaces are allowed before and after the spacers `~`, `-`, `,`, and commas must be English commas.
+=== "Static Date Time"
 
-    -  `2022/08/04 09:30:00~2022/08/04 10:00:00` 
-    -  `2022/08/04 09:30:00-2022/08/04 10:00:00` 
-    -  `2022/08/04 09:30:00,2022/08/04 10:00:00` 
+    Standard date-time format supports multiple write-ups, with time precision down to seconds. Interval separators `~`, `-`, `,` allow spaces before and after, and commas must be English commas.
 
-    Click on the time control, you can directly input and modify the standard time format and display the corresponding data according to the current time range after **Enter**.
+    - `2022/08/04 09:30:00~2022/08/04 10:00:00`
+    - `2022/08/04 09:30:00-2022/08/04 10:00:00`
+    - `2022/08/04 09:30:00,2022/08/04 10:00:00`
 
-    <img src="../../img/7.timestamp_7.png" width="70%" >
+    Click the Time Widget to directly input and modify the standard time format. Press Enter to display data according to the current time range.
 
-=== "Timestamp Static Time"
+    ![](../img/7.timestamp_7.png)
 
-    The timestamp range supports the following writing methods. The timestamp supports millisecond input. Spaces are allowed before and after the spacers `~`, `-`, `,`, and commas must be English commas.
+=== "Static Timestamp Time"
 
-    - `1659576600000~1659578400000` 
-    - `1659576600000-1659578400000` 
-    - `1659576600000,1659578400000` 
+    Timestamp ranges support multiple write-ups, with millisecond precision. Interval separators `~`, `-`, `,` allow spaces before and after, and commas must be English commas.
 
-    Click the time control and enter the start and end timestamps as shown in the following figure.
+    - `1659576600000~1659578400000`
+    - `1659576600000-1659578400000`
+    - `1659576600000,1659578400000`
 
-    **Enter** and return to the time range. Filter out the corresponding data according to this time range and display it in the explorer.
+    Click the Time Widget to input start and end timestamps as shown below.
 
-    ![](../img/7.timestamp_5.1.gif)
+    ![](../img/7.timestamp_5.png)
 
-=== "Notes"
+    Press Enter to return the time range and display corresponding data in the Explorer.
 
-    - If the format does not conform to the input requirements, the correct time range cannot be returned, such as the start time is later than the end time, and the format input does not conform to `hours:minutes:seconds`.
+    ![](../img/7.timestamp_5.1.png)
 
-    <img src="../../img/7.timestamp_8.png" width="80%" >
+=== "Precautions"
 
-    - The prompt box of the time control and the text input box are linked in real time. If the input time range <u>exceeds 4 digits</u> (including time interval, absolute time and timestamp), the prompt box of the time control displays `-`.
+    - If the format does not meet requirements, it will not return the correct time range, such as start time later than end time or incorrect `hour:minute:second` format input.
 
-    <img src="../../img/7.timestamp_9.png" width="80%" >
+    ![](../img/7.timestamp_8.png)
 
-    Display the time range after Enter.
+    - The tooltip and text input box of the Time Widget are linked in real-time. If the input time range exceeds four digits (including time intervals, absolute times, and timestamps), the Time Widget tooltip shows `-`.
 
-    <img src="../../img/7.timestamp_10.png" width="80%" >
+    ![](../img/7.timestamp_9.png)
 
-### Quick Filter Time Range
+    Press Enter to show the time range.
 
-You can click **More** in the time control to quickly select the corresponding time range for data viewing. A variety of shortcut filter time ranges are preset in the time control, including "last 15 minutes, last 1 hour, last 1 day, etc." in the drop-down list and "30s, 45m, 3d, etc." in the dynamic time.
+    ![](../img/7.timestamp_10.png)
 
-The dynamic time can be linked with the content of the input box in real time, and the data content of the corresponding time range can be viewed by clicking. 
+### Quick Select Time Range
 
+You can click **More** in the Time Widget to quickly select corresponding time ranges for data viewing. The Time Widget presets multiple quick select time ranges, including drop-down options like "Last 15 Minutes, Last 1 Hour, Last 1 Day," and dynamic times like "30s, 45m, 3d."
 
-![](../img/0706.timestamp.gif)
+![](../img/12.time_1.png)
+
+Hovering over dynamic times will link in real-time with the input box content. Click to view data within the corresponding time range.
+
+![](../img/12.time_3.png)
 
 ### Custom Time Range
 
-In addition to the preset time range, you can click **Custom Time** in the time control to select a time range, including date and specific time, and click **Apply** to filter data according to the customized time range.
+Besides preset time ranges, you can click **Custom Time** in the Time Widget to select a time range, including dates and specific times. Click **Apply** to filter data according to the custom time range.
 
 ???+ warning 
 
-    - The start and end times of the custom time range should be entered in the format `Hours:Minutes:Seconds`, such as `15:01:09`.
-    - The start time of the custom time range cannot be later than the end time.
-    - Query records of custom time range can be viewed in **Custom Time Query History**, and up to 20 recent historical absolute time records can be viewed. Click any historical record to quickly filter and view the corresponding data content.
+    - Start and end times for custom time ranges must follow the `hour:minute:second` format, e.g., `15:01:09`;  
+    - The start time for custom time ranges cannot be later than the end time;  
+    - Custom time range query records can be viewed in **Custom Time Query History**, supporting up to the last 20 absolute time records. Click any historical record to quickly filter and view corresponding data.
 
 ![](../img/12.time_4.png)
 
-### Time Range of URL {#url}
+### URL Time Range {#url}
 
-In addition to the time range selection provided by the time control, Guance also supports directly modifying the time range of the `time` parameter of the current workspace explorer in the URL of the browser for data query. Four units of seconds, minutes, hours and days are supported, such as time=30s, time=20m, time=6h, time=2d, etc. 
-
-As shown in the following figure, modify `time=2h` in the browser, and the explorer displays the data of the last 2 hours.
+In addition to the time range selection provided by the Time Widget, <<< custom_key.brand_name >>> supports modifying the `time` parameter in the browser URL to query data in the current workspace Explorer. It supports seconds, minutes, hours, and days units, e.g., time=30s, time=20m, time=6h, time=2d, etc. As shown below, modifying `time=2h` in the browser displays data from the last 2 hours in the Explorer.
 
 ???+ warning 
 
-    - Each unit can only be used independently, not in combination.
-    - When selected or entered in the browser for a time range greater than or equal to 1d, the explorer automatically stops playing mode.
+    - Each unit can only be used independently, not combined;  
+    - When the selected or browser-input time range is greater than or equal to 1d, the Explorer stops playback mode automatically.
 
 ![](../img/4.url_1.png)
 
 ### Lock Time Range {#fixed}
 
-Guance supports in time control by clicking ![](../img/12.time_fix_2.png) to lock the icon and set a fixed query time range, and all Explorers/Dashboards default to the current time range.
+<<< custom_key.brand_name >>> supports locking a fixed query time range by clicking the :octicons-pin-24: lock icon in the Time Widget. Once set, all Explorers/Dashboards default to displaying data within the locked time range.
 
-As shown in the following figure, if the lock time is "last 45 minutes", all Explorers/Dashboards will query and display the data of "last 45 minutes" according to the current lock time.
+As shown below, if the locked time is "Last 45 Minutes," all Explorers/Dashboards will display data for "Last 45 Minutes."
 
 ![](../img/12.time_fix_1.png)
 
 ### Set Time Zone {#zone}
 
-Guance supports setting the current display time zone in the time control, thereby switching to the corresponding workspace time zone to view the data.
+<<< custom_key.brand_name >>> supports setting the current displayed time zone in the **Time Widget** to switch to the corresponding workspace time zone for data viewing.
 
 ![](../img/12.time_zone_1.png)
 
-Enter **time control > Change t9ijme settings**:
+Enter **Time Widget > Time Zone Settings**, in the **Modify Time Zone** window:
 
-- The default display is **Browser Time**, that is, the time detected by the local browser;       
-- After Owner or Administrator sets **[Workspace Time Zone](../../management/index.md#workspace)**, members can select the configured workspace time zone.
+- Default display is "Browser Time," i.e., the local browser-detected time;
+- After the owner or administrator sets "[Workspace Time Zone](../../management/index.md#workspace)" settings, members can choose configured workspace time zones.
 
-<img src="../../img/zone.png" width="70%" >
+![](../img/zone.png)
 
-???+ warning
+???+ warning 
 
-    - Only Owner and Administrator of the current workspace have **Workspace Time Zone** configuration permissions;
+    - Only Owners and Administrators of the current workspace have **Workspace Time Zone** configuration permissions;
 
-    - After setting the new time zone, all workspaces where your current account is located will be displayed according to the set time zone.
+    - After setting a new time zone, all workspaces under your account will display data according to the newly set time zone. Please operate with caution.
 
-You can also modify it in **[Account Management](../../management/index.md#zone)**.
+You can also modify it in **[Account Management](../../management/index.md#personal#zone)**.
 
-### Explorer Auto Refresh
 
-In Guance workspace, click **Account** to turn on/off **Explorer Auto Refresh**.
+## Display Columns {#columns}
 
-- Open: The data of the explorer is automatically refreshed according to the default data refresh time of 30 seconds of the time control. For example, if you select the last 15 minutes, refresh once according to 30 seconds to display the data of the last 15 minutes.
-- Close: When the time control of the explorer enters, turn off the automatic refresh for 30 seconds. If you select the last 15 minutes, the content data of the absolute time of the 15 minutes will be displayed without automatic refresh. You can click the **Play** button to refresh and view the data of the last 15 minutes.
+The Explorer supports choosing the number of rows to expand and view log data:
 
-<font color=coral>**Note:**</font> Explorer automatic refresh only works for local browsers.
-
-<img src="../../img/7.timestamp_1.png" width="70%" >
-
-Click the **Pause** button to exit the real-time data refresh mode and lock the current time range to absolute time.
-
-<!--
-For example, if the time range is selected as "last 15 minutes", when the **Pause** button is clicked, the overall time range of the explorer is adjusted forward to 15 minutes.
-
-![](../img/7.timestamp_7.png)
--->
-
-## Display Column {#columns}
-
-Explorers support:
-
--  selecting the number of rows to display to expand the view log Message data;  
--  clicking **Column** to add, edit, delete and drag display columns;  
--  selecting and adding display columns by switching keys up and down on the keyboard;  
--  searching keywords in **Column**;  
--  customizing display columns as preset fields in **Column**. After cutting fields and reporting data through Pipeline, the reported data can be directly displayed.
+- Customize adding, editing, deleting, and dragging display columns;
+- Use keyboard arrow keys (↑ ↓) to select and add display columns;
+- Search fields by keywords;
+- Define display columns as preset fields, allowing direct display of reported data after Pipeline slicing and reporting.
 
 ![](../img/7.log_column_4.png)
 
-### Add Column
+### Time Column {#time-column}
 
-In the explorer display column, matching search for input fields is supported and the first searched field is selected by default. You can select and addi display columns by switching keys up and down (↑ ↓) on the keyboard.
+If the Explorer has a time column, you can directly check it in the display column configuration to choose whether to show it in the list.
 
-
-If the input field does not exist, it prompts **Create and add** display column, which will be used as default field after creation, and the reported data can be directly displayed after cutting the field and reporting the data through Pipeline.
-
-![](../img/0706.column.gif)
+<img src="../../img/time_column.png" width="80%" >
 
 
-### Operating Instructions
+### Adding Display Columns
 
-In the explorer list, when the mouse is placed on the display column, you can click the **Settings** button of the display column, which supports the following operations:
+In the dropdown menu for adding display columns, select fields to add to the display columns. Or directly search for and locate the target field.
 
-| Operations      | Description                          |
-| ----------- | ------------------------------------ |
-| Ascending/descending      | Display the value of the current field in ascending or descending order.                          |
-| Move column to left/right      | Move column to left or right. If moving is not supported, this operation will not be displayed.                          |
-| Add columns to the left/right      | Add a new display column to the left or right based on the current column. Search is supported. If adding is not supported, this operation will not be displayed.                          |
-| Replace Column      | Replace the current displayed column at the current position. Search is supported. If replacement column is not supported, this operation will not be displayed.                          |
-| Add to shortcut filter      | If there is no current display column in the shortcut filter on the left, click to add the display column as a new shortcut filter item, and click :fontawesome-solid-gear: of the shortcut filter item to remove the display column.                          |
-| Add to Grouping      | Display the contents of the grouping explorer based on the currently displayed column as a grouping field.                          |
-| Remove Column      | Remove the currently displayed column.                          |
+If the target field is not found in the dropdown menu, you can directly input the field name in "Add Display Columns" and press Enter to complete the addition.
 
+<img src="../../img/7.log_column_1.png" width="80%" >
+
+
+### Display Column Operations
+
+In the Explorer list's [Standard Mode](../../logs/manag-explorer.md#mode), hover over the display column and click the settings button to perform the following operations on the display column.
 
 ![](../img/8.showlist_3.png)
 
-If the contents of the displayed column are not completely displayed, it is supported to hover on the dividing line on the right side of the displayed column and double-click to expand the contents, as shown in the `source` column in the following figure.
+| Operation | Description |
+| --------- | ------------ |
+| Sort Asc/Desc | Sort the current field values in ascending or descending order. |
+| Move Left/Right | Move the current display column left or right. |
+| Add Column Left/Right | Add a new display column to the left or right of the current column. |
+| Replace Column | Replace the current display column at its current position. |
+| Add to Filter | If the quick filter on the left does not have the current display column, click to add it as a new quick filter item. |
+| Enter [Analysis Mode](#analysis) | Directly use this field in the filtering section of Analysis Mode. |
+| Remove Column | Remove the current display column. |
 
-![](../img/8.showlist_4.gif)
 
 ## Save Snapshot {#snapshot}
 
-In Explorers, You can perform a series of operations as mentioned above and **Save Snapshot** of the data content displayed by the current explorer. 
+You can perform searches and filters on the currently displayed data, select a time range, add view columns, and then click the snapshot icon in the upper left corner of the Explorer to save the current displayed data content.
 
-> For more details on snapshot usage, refer to the documentation [Snapshot](../function-details/snapshot.md).
+> For more details on snapshot usage, refer to [Snapshots](./snapshot.md).
 
-![](../img/snapshot_1.png)
-
+<img src="../../img/6.snapshot_1.png" width="60%" >
 
 
 ## Export {#export}
 
-In the explorer, you can search and filter the currently displayed data, select the time range, add viewing columns and other operations, and then click the **Settings** button on the right side of the explorer to export the data content currently displayed in the explorer.
+In the Explorer, you can perform searches and filters on the currently displayed data, select a time range, add view columns, and then click the :octicons-gear-24: on the right side of the Explorer to export the currently displayed data content. You can **export to CSV file**, **export to dashboard**, or **export to notebook** for data viewing and analysis.
 
- It supports **Export to CSV File**, **Export to Dashboard** and **Export to Notes** for data viewing and analysis.
+<img src="../../img/3.explorer_export_1.png" width="70%" >
 
-![](../img/3.explorer_export_1.png)
+If you need to export a specific data entry, open the detail page of that entry and click the :material-tray-arrow-up: icon in the upper right corner.
 
+<img src="../../img/export-log-0808.png" width="70%" >
 
+### Export to CSV File {#csv}
 
-## Chart {#chart}
+![](../img/export-explorer.png)
 
-- Chart Export: In the explorer chart, you can click :material-tray-arrow-up: to export or copy the chart to the dashboard and notes;
-- Chart Time Interval: In the explorer chart, you can select the chart time interval to view the corresponding chart data.
+You can choose to export 1k, 5k, 10k, 50k, or 100k data entries.
+
+## Charts {#chart}
+
+- Chart Export: In the Explorer chart, you can hover over the chart and click **Export** to export or copy the chart to a dashboard or notebook for display and analysis.
+- Chart Time Interval: In the Explorer chart, you can choose the time interval to view the corresponding chart data.
 
 ![](../img/4.explorer_chart_1.png)
 
+- Collapse/Expand Chart:
 
-
+![](../img/expand-distribution.gif)

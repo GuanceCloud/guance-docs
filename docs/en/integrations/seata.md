@@ -1,12 +1,12 @@
 ---
 title     : 'Seata'
-summary   : 'Collect information about Seata-related metrics'
+summary   : 'Collect Seata related Metrics information'
 __int_icon: 'icon/seata'
 dashboard :
-  - desc  : 'Seata'
+  - desc  : 'Seata Monitoring View'
     path  : 'dashboard/en/seata'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'None'
     path  : '-'
 ---
 
@@ -14,16 +14,15 @@ monitor   :
 # Seata
 <!-- markdownlint-enable -->
 
-## Configuration {#config}
+## Deployment {#config}
 
+Seata supports enabling Metrics data collection and outputting it to the Prometheus monitoring system in TC.
 
-Seata supports Metrics data collection on TC and output to Prometheus monitoring system.
+### Enable Seata Metrics
 
-### Open Seata Metrics
+- Configure TC to enable Metrics. Turn on the Metrics configuration items in TC. The Seata Server already includes the Metrics (`seata-metrics-all`) dependency, but it is disabled by default. You need to enable the Metrics collection configuration. (**This step is very important**)
 
-- Configure Metrics on TC and Metrics on TC. Seata Server already contains Metrics ( `seata-metrics-all`) dependencies, but it is off by default and needs to turn on metrics collection configuration. (**This step is very important)**  
-
- `Seata 1.5.0+` Use `application.yaml`
+For `Seata 1.5.0+`, use `application.yaml`
 
 ```shell
 seata:
@@ -32,14 +31,13 @@ seata:
     registry-type: compact
     exporter-list: prometheus
     exporter-prometheus-port: 9898
-
 ```
 
- `Seata <1.5.0` Turn on `metrics`
+For `Seata <1.5.0`, enable `metrics`
 
-GitHub address configuration: [https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example](https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example)
+GitHub configuration address: [https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example](https://github.com/seata/seata/blob/1.4.2/server/src/main/resources/file.conf.example)
 
-Server-side configuration `metrics`
+Configure `metrics` on the server side
 
 [file.conf]
 
@@ -47,7 +45,7 @@ Server-side configuration `metrics`
 metrics {
   enabled = true
   registryType = "compact"
-  # multi exporters use comma divided
+  # multiple exporters separated by commas
   exporterList = "prometheus"
   exporterPrometheusPort = 9898
 }
@@ -59,13 +57,13 @@ metrics {
 registry {
     type = "nacos"
     nacos {
-      application = "application name"
+      application = "Application Name"
       serverAddr = "xxxx:port"
-      group = "group name"
+      group = "group"
       namespace = "namespace"
       cluster = "default"
-      username = "username"
-      password = "password"
+      username = "fill according to actual"
+      password = "fill according to actual"
     }
 }
 config {
@@ -76,7 +74,7 @@ config {
 }
 ```
 
-- Visit [http://tc-server-ip:9898/metrics](http://tc-server-ip:9898/metrics) to see if metrics data is accessible  
+- Access [http://tc-server-ip:9898/metrics](http://tc-server-ip:9898/metrics) to check if you can access the metrics data
 
 ```shell
 # HELP seata seata
@@ -92,34 +90,38 @@ seata_transaction{meter="timer",role="tc",statistic="max",status="committed",} 1
 seata_transaction{meter="timer",role="tc",statistic="average",status="committed",} 151.66666666666666 1551946035372
 ```
 
-Similar data above proves that `metric` was successfully turned on. (If some Transaction states do not occur, such as `rollback`, then the corresponding Metrics metric does not exist (output)
+Receiving data similar to the above proves that `metrics` has been successfully enabled. (If certain transaction statuses have not occurred, such as `rollback`, then the corresponding Metrics indicators will not exist (output)).
 
+### Enable DataKit Collector
 
-### Open DataKit Collector
-
-- Open the DataKit Prometheus plug-in and create `seata-prom.conf`
+- Enable the DataKit Prometheus plugin and create `seata-prom.conf`
 
 ```shell
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample seata-prom.conf
 ```
 
-- Modify `seata-prom.conf` Profile
+- Modify the `seata-prom.conf` configuration file
 
 ```toml
 [[inputs.prom]]
   urls = ["http://ip:9898/metrics"]
-
+  ## Ignore request errors for URLs
   ignore_req_err = false
-
-  source = "seata"
+  ## Collector alias
+  source = "Resource Name"
   metric_types = []
-
+  ## Filter metrics, collect only seata_* metrics
   metric_name_filter = ["seata_*"]
   measurement_prefix = "seata_"
-
+  ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
   interval = "10s"
-
+  ## TLS configuration
+  tls_open = false
+  ## Custom Tags
+  [inputs.prom.tags]
+  app = "Custom App Name"
+  # more_tag = "some_other_value"
 ```
 
 - Restart DataKit
@@ -128,14 +130,14 @@ cp prom.conf.sample seata-prom.conf
 systemctl restart datakit
 ```
 
-## Metric {#metric}
+## Metric Details {#metric}
 
-| Metric | Description |
+| **Metrics** | **Description** |
 | --- | --- |
-| `seata.transaction` (role=tc, meter=counter, status=active/committed/rollback)| current active/committed/rollback transaction count |
-| `seata.transaction` (role=tc, meter=summary, statistic=count, status=committed/rollback)| current committed/rollback transaction count|
-| `seata.transaction` (role=tc, meter=summary, statistic=tps, status=committed/rollback)| current committed/rollback transaction count . TPS(transaction per second) |
-| `seata.transaction` (role=tc, meter=timer, statistic=total, status=committed/rollback)| current committed/rollback transaction total count |
-| `seata.transaction` (role=tc, meter=timer, statistic=count, status=committed/rollback)| current committed/rollback transaction count |
-| `seata.transaction` (role=tc, meter=timer, statistic=average, status=committed/rollback)| current committed/rollback transaction average duration |
-| `seata.transaction` (role=tc, meter=timer, statistic=max, status=committed/rollback)| current committed/rollback transaction max duration |
+| `seata.transaction`(role=tc,meter=counter,status=active/committed/rollback) | Total number of active/committed/rolled back transactions currently |
+| `seata.transaction`(role=tc,meter=summary,statistic=count,status=committed/rollback) | Number of committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=summary,statistic=tps,status=committed/rollback) | TPS (transactions per second) of committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=total,status=committed/rollback) | Total time consumed by committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=count,status=committed/rollback) | Number of committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=average,status=committed/rollback) | Average time consumed by committed/rolled back transactions in the current period |
+| `seata.transaction`(role=tc,meter=timer,statistic=max,status=committed/rollback) | Maximum time consumed by committed/rolled back transactions in the current period |

@@ -3,44 +3,46 @@ skip: 'not-searchable-on-index-page'
 title: 'Datakit Tracing Overview'
 ---
 
-The third-party Tracing data currently supported by Datakit includes:
+Currently, Datakit supports third-party Tracing data from:
 
 - DDTrace
 - Apache Jaeger
 - OpenTelemetry
 - SkyWalking
 - Zipkin
+- Cat
+- PinPoint
 
 ---
 
 ## Datakit Tracing Frontend {#datakit-tracing-frontend}
 
-Tracing Frontend is an API that receives data from a variety of different types of Trace, typically via HTTP or gRPC from a variety of Trace SDKs. When DataKit receives this data, it converts it into a [unified Span structure](datakit-tracing-struct.md). It is then sent to [Backend](datakit-tracing.md#datakit-tracing-backend) for processing.
+The Tracing Frontend refers to the APIs that receive various types of Trace data. These APIs generally accept data sent by various Trace SDKs via HTTP or gRPC. After receiving this data, DataKit converts it into a [unified Span structure](datakit-tracing-struct.md) and then sends it to the [Backend](datakit-tracing.md#datakit-tracing-backend) for processing.
 
-In addition to transforming the Span structure, Tracing Frontend also completes the configuration of the filter unit and arithmetic unit in [Tracing Backend](datakit-tracing.md#datakit-tracing-backend).
+In addition to converting Span structures, the Tracing Frontend also configures the filtering and computing units in the [Tracing Backend](datakit-tracing.md#datakit-tracing-backend).
 
-## Tracing Data Collection Common Configuration {#tracing-common-config}
+## General Configuration for Tracing Data Collection {#tracing-common-config}
 
-The tracer generation in the configuration file refers to the currently configured Tracing Agent, and all supported Tracing Agents can use the following configuration:
+In the configuration file, `tracer` refers to the currently configured Tracing Agent. All supported Tracing Agents can use the following configuration:
 
 ```toml
-  ## customer_tags is a list of keys contains keys set by client code like span.SetTag(key, value)
+  ## customer_tags is a list of keys set by client code like span.SetTag(key, value)
   ## that want to send to data center. Those keys set by client code will take precedence over
   ## keys in [inputs.tracer.tags]. DOT(.) IN KEY WILL BE REPLACED BY DASH(_) WHEN SENDING.
   customer_tags = ["key1", "key2", ...]
 
   ## Keep rare tracing resources list switch.
-  ## If some resources are rare enough(not presend in 1 hour), those resource will always send
-  ## to data center and do not consider samplers and filters.
+  ## If some resources are rare enough (not present in 1 hour), those resources will always be sent
+  ## to data center and not consider samplers and filters.
   keep_rare_resource = false
 
-  ## By default every error presents in span will be send to data center and omit any filters or
-  ## sampler. If you want to get rid of some error status, you can set the error status list here.
+  ## By default, every error in a span will be sent to data center and omit any filters or
+  ## sampler. If you want to ignore some error statuses, you can set the error status list here.
   omit_err_status = ["404"]
 
   ## Ignore tracing resources map like service:[resources...].
-  ## The service name is the full service name in current application.
-  ## The resource list is regular expressions uses to block resource names.
+  ## The service name is the full service name in the current application.
+  ## The resource list is regular expressions used to block resource names.
   ## If you want to block some resources universally under all services, you can set the
   ## service name as "*". Note: double quotes "" cannot be omitted.
   [inputs.tracer.close_resource]
@@ -48,7 +50,7 @@ The tracer generation in the configuration file refers to the currently configur
     service2 = ["resource1", "resource2", ...]
     "*" = ["close_resource_under_all_services"]
 
-  ## Sampler config uses to set global sampling strategy.
+  ## Sampler config used to set global sampling strategy.
   ## sampling_rate used to set global sampling rate.
   [inputs.tracer.sampler]
     sampling_rate = 1.0
@@ -57,9 +59,9 @@ The tracer generation in the configuration file refers to the currently configur
     key1 = "value1"
     key2 = "value2"
 
-  ## Threads config controls how many goroutines an agent cloud start.
+  ## Threads config controls how many goroutines an agent can start.
   ## buffer is the size of jobs' buffering of worker channel.
-  ## threads is the total number fo goroutines at running time.
+  ## threads is the total number of goroutines at running time.
   ## timeout is the duration(ms) before a job can return a result.
   [inputs.tracer.threads]
     buffer = 100
@@ -67,64 +69,75 @@ The tracer generation in the configuration file refers to the currently configur
     timeout = 1000
 ```
 
-- `customer_tags`: By default, Datakit only picks up the Tags it is interested in (that is, the fields other than message that can be seen in the Guance Cloud link details),
-  If users are interested in other tags reported on the link, they can add a notification Datakit to this configuration to pick them up. This configuration takes precedence over  `[inputs.tracer.tags]`。
-- `keep_rare_resource`: If a link from a Resource has not been present within the last hour, the system considers it a rare link and reports it directly to the Data Center.
-- `omit_err_status`: By default, data is reported directly to the Data Center if there is a Span with Error status in the link, and Datakit can be told to ignore links with some HTTP Error Status (for example, 429 too many requests) if the user needs to ignore it.
-- `[inputs.tracer.close_resource]`: Users can configure this to close a Resource link with [span_type](datakit-tracing-struct.md) as Entry.
-- `[inputs.tracer.sampler]`: Configure the global sampling rate for the current Datakit, [configuration sample](datakit-tracing.md#samplers).
-- `[inputs.tracer.tags]`: Configure Datakit Global Tags with a lower priority than `customer_tags` 。
-- `[inputs.tracer.threads]`: Configure the thread queue of the current Tracing Agent to control the CPU and Memory resources available during data processing.
-    - buffer: The cache of the work queue. The larger the configuration, the greater the memory consumption. At the same time, the request sent to the Agent has a greater probability of queuing successfully and returning quickly, otherwise it will be discarded and return a 429 error.
-    - threads: The maximum number of threads in the work queue. The larger the configuration, the more threads started, the higher the CPU consumption. Generally, it is configured as the number of CPU cores.
-    - timeout: The task timed out, the larger the configuration, the longer the buffer.
+- `customer_tags`: By default, Datakit only picks up tags it is interested in (i.e., fields visible in Guance trace details except for message).
+
+  If users are interested in other tags reported on the trace, they can add them to this configuration to inform Datakit to pick them up. This configuration has a higher priority than `[inputs.tracer.tags]`.
+
+- `keep_rare_resource`: If a trace from a specific Resource has not appeared in the last hour, the system considers this trace rare and reports it directly to the Data Center.
+- `omit_err_status`: By default, if a span contains an Error status, the data is directly reported to the Data Center. Users can ignore certain HTTP Error Statuses (e.g., 429 too many requests) by configuring this option to instruct Datakit to ignore such errors.
+- `[inputs.tracer.close_resource]`: Users can configure this to close Entry-type Resources with [span_type](datakit-tracing-struct.md).
+- `[inputs.tracer.sampler]`: Configure the global sampling rate for the current Datakit, [configuration example](datakit-tracing.md#samplers).
+- `[inputs.tracer.tags]`: Configure Datakit Global Tags, which have a lower priority than `customer_tags`.
+- `[inputs.tracer.threads]`: Configure the thread queue for the current Tracing Agent to control CPU and Memory usage during data processing.
+    - buffer: Worker channel buffer size. A larger buffer increases memory consumption but allows more requests to successfully enqueue and return quickly; otherwise, they will be discarded and return a 429 error.
+    - threads: Maximum number of goroutines. A higher number starts more threads and increases CPU usage. Typically, it should be set to the number of CPU cores.
+    - timeout: Task timeout. A longer timeout occupies the buffer for a longer period.
 
 ## Datakit Tracing Backend {#datakit-tracing-backend}
 
-The Datakit backend is responsible for manipulating the link data as configured, and currently supported operations include Tracing Filters and Samplers.
+The Datakit backend is responsible for operating on trace data according to the configuration. Currently supported operations include Tracing Filters and Samplers.
 
 ### Datakit Filters {#filters}
 
-- `user_rule_filter`: Datakit default filter, triggered by user behavior.
-- `omit_status_code_filter`: When `omit_err_status = ["404"]` is configured, an error with a status code of 404 in a link under the HTTP service will not be reported to the Data Center.
-- `penetrate_error_filter`: Datakit default filter, triggered by link error.
-- `close_resource_filter`: Configured in `[inputs.tracer.close_resource]`, the service name is the full service name or `*`, and the resource name is the regular expression of the resource.
-    - Example 1: Configuration such as `login_server = ["^auth\_.*\?id=[0-9]*"]`, then the `login_server` service name `resource` looks like `auth_name?id=123` will be closed
-    - Example 2: If configured as `"*" = ["heart_beat"]`, the `heart_beat` resource on all services under the current Datakit will be closed.
-- `keep_rare_resource_filter`: When `keep_rare_resource = true` is configured, links determined to be rare will be reported directly to the Data Center.
+- `user_rule_filter`: Default Datakit filter triggered by user actions.
+- `omit_status_code_filter`: When `omit_err_status = ["404"]` is configured, traces containing HTTP status code 404 errors will not be reported to the Data Center.
+- `penetrate_error_filter`: Default Datakit filter triggered by trace errors.
+- `close_resource_filter`: Configured in `[inputs.tracer.close_resource]`, where the service name is either the full service name or `*`, and the resource name is a regular expression.
+    - Example 1: Configuring `login_server = ["^auth\_.*\?id=[0-9]*"]` means that traces under the `login_server` service with resources like `auth_name?id=123` will be closed.
+    - Example 2: Configuring `"*" = ["heart_beat"]` means that all services under the current Datakit will close `heart_beat` resources.
+- `keep_rare_resource_filter`: When `keep_rare_resource = true` is configured, traces deemed rare will be directly reported to the Data Center.
 
-Filters (Sampler is also a Filter) in the current version of Datakit are executed in a fixed order:
+The execution order of Filters (Samplers are also Filters) in the current Datakit version is fixed:
 
 > error status penetration --> close resource filter --> omit certain http status code list --> rare resource keeper --> sampler <br>
-> Each Datakit Filter has the ability to terminate the execution link, meaning that filters that meet the termination conditions will not execute subsequent filters.
+> Each Datakit Filter can terminate the trace execution chain if it meets the termination condition, preventing subsequent Filters from executing.
 
 ### Datakit Samplers {#samplers}
 
-Currently, Datakit respects client sampling priority, [DDTrace Sampling Rules](https://docs.datadoghq.com/tracing/faq/trace_sampling_and_storage){:target="_blank"}。
+Currently, Datakit respects the client-side sampling priority configuration, [DDTrace Sampling Rules](https://docs.datadoghq.com/tracing/faq/trace_sampling_and_storage){:target="_blank"}.
 
-- Case one
+- Scenario One
 
-Take DDTrace as an example. If the sampling priority tags is configured in the DDTrace lib sdk or client and the client sampling rate is 0.3 through the environment variable (DD_TRACE_SAMPLE_RATE) or the startup parameter (dd.trace.sample.rate) and the Datakit sampling rate (inputs.tracer.sampler) is not specified, the amount of data reported to the Data Center is approximately 30% of the total.
+For DDTrace, if the DDTrace lib SDK or client is configured with sampling priority tags and the client sampling rate is set to 0.3 via environment variables (DD_TRACE_SAMPLE_RATE) or startup parameters (dd.trace.sample.rate) without specifying a Datakit sampling rate (`inputs.tracer.sampler`), the data volume reported to the Data Center will be approximately 30% of the total.
 
-- Case two
+- Scenario Two
 
-If the customer only configures the Datakit sampling rate (inputs.tracer.sampler), for example: sampling_rate = 0.3, then the Datakit reports about 30% of the total data to the Data Center.
+If only the Datakit sampling rate (`inputs.tracer.sampler`) is configured, for example, `sampling_rate = 0.3`, the data volume reported to the Data Center by this Datakit will be approximately 30% of the total.
 
-**Note**: In the case of multi-service multi-Datakit distributed deployment, configuring Datakit sampling rate needs to be uniformly configured to the same sampling rate to achieve sampling effect.
+**Note** In a multi-service, multi-Datakit distributed deployment scenario, the Datakit sampling rate must be uniformly configured to achieve the desired sampling effect.
 
-- Case three
+- Scenario Three
 
-That is, the client sampling rate is configured as A and the Datakit sampling rate is configured as B, where A and B are greater than 0 and less than 1. In this case, the amount of data reported to Data Center is about A\* B% of the total amount.
+If both the client sampling rate A and the Datakit sampling rate B are configured, where A and B are greater than 0 and less than 1, the data volume reported to the Data Center will be approximately A * B % of the total.
 
-**Note**: In the case of multi-service multi-Datakit distributed deployment, configuring Datakit sampling rate needs to be uniformly configured to the same sampling rate to achieve sampling effect.
+**Note** In a multi-service, multi-Datakit distributed deployment scenario, the Datakit sampling rate must be uniformly configured to achieve the desired sampling effect.
 
-## Span Structure Description {#about-span-structure}
+## Span Structure Explanation {#about-span-structure}
 
-Business explanation of how Datakit uses the [DatakitSpan](datakit-tracing-struct.md) data structure
+Explanation of how Datakit uses the [DatakitSpan](datakit-tracing-struct.md) data structure.
 
-- Refer to [Datakit Tracing Structure](datakit-tracing-struct.md) for a detailed description of the Datakit Tracing data structure.
-- Multiple Datakit Span data are placed in a Datakit Trace to form a Tracing data uploaded to the Data Center and ensure that all Spans have only one TraceID.
-- For DDTrace, DDTrace data with the same TraceID may be reported in batches.
-- In a production environment (multi-service, multi-Datakit deployment), a complete piece of Trace data is uploaded to the Data Center in batches, not in the order of invocation.
-- `parent_id = 0` is root span.
-- `span_type = entry` is the caller of the first resource on the service, the first span on the current service.
+- For detailed explanations of the Datakit Tracing data structure, refer to [Datakit Tracing Structure](datakit-tracing-struct.md).
+- Multiple Datakit Span data are grouped into a Datakit Trace and uploaded to the Data Center, ensuring all Spans have one and only one TraceID.
+- For DDTrace, data with the same TraceID may be reported in batches.
+- In production environments (multi-service, multi-Datakit deployments), complete Trace data is uploaded to the Data Center in batches, not necessarily in the order of calls.
+- `parent_id = 0` indicates the root span.
+- `span_type = entry` indicates the first resource caller on the service, i.e., the first span on the current service.
+
+## FAQ {#faq}
+
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: Why does the Span status remain OK even when there are HTTP 4xx errors in the trace? {#faq-logging}
+
+The Span status in the trace system monitors the execution state of the target business system. Most of the time, the target system corresponds to the user's business system, not the transport layer, network layer, or lower-level systems. Although HTTP is part of the business layer, 4xx errors do not enter the user's business layer but belong to the client side of the HTTP protocol stack. Therefore, the API corresponding to the user's business layer correctly identifies this client error, so the Span status remains OK.
+
+<!-- markdownlint-enable -->

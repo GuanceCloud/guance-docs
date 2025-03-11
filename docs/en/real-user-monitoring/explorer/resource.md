@@ -1,20 +1,18 @@
-# Resource
+# Resource (资源)
 ---
 
-![](../img/1.rum_resource_2.png)
-
-You can view various information about the resources loaded on the web page, including status codes, request methods, resource addresses and loading time.
+View information about various resources loaded on the webpage, including status codes, request methods, resource addresses, and loading times.
 
 In the Resource Explorer, you can:
 
-- Track user access requests for each resource, including status codes, request methods, resource addresses, and loading time.
-- Analyze the performance of user access to business applications by combining related resource requests, resource errors, logs, and other data, helping to quickly identify and optimize code issues in the application.
+- Track each resource's user access requests, including status codes, request methods, resource addresses, and loading times;
+- Combine related resource requests, resource errors, logs, and other data to comprehensively analyze the performance of user access to business applications, helping to quickly identify and optimize code issues in the application.
+
 
 ## Details Page
 
-You can view the performance details of the resources accessed by users, including properties, performance details, associated traces, associated errors, associated logs, etc., and support viewing performance details by filtering and searching. 
+By clicking on the details page of the data in the list, you can view detailed performance information about user access operations, including source, extended fields, performance details, associated traces, associated errors, associated logs, etc.
 
-> For more details page introduction, see [Options in Details Page](view.md).
+> For more details, refer to [Details Page Operations](view.md).
 
-
-
+![](../img/resource.gif)

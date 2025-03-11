@@ -1,299 +1,355 @@
-# Access to Exclusive Plan in Alibaba Cloud Market
+# Alibaba Cloud Market开通 <<< custom_key.brand_name >>> Exclusive Plan
 ---
 
-This article will introduce how to use the exclusiven plan of Guance after purchasing it in Alibaba Cloud Market. Refer to the doc [Register Commercial Plan](../billing/commercial-register.md).
+This document will introduce the relevant activation and usage operations for purchasing the <<< custom_key.brand_name >>> Exclusive Plan on Alibaba Cloud Market.
 
-## Perchase Guance Exclusive Plan
 
-Open [Guance Exclusive Plan in Alibaba Cloud market](https://market.aliyun.com/products/56838014/cmgj00060481.html) and click **Getting Started**.
+## Step One: Purchase <<< custom_key.brand_name >>> Exclusive Plan
+
+1. Log in to Alibaba Cloud, enter [Alibaba Cloud Market <<< custom_key.brand_name >>> Exclusive Plan](https://market.aliyun.com/products/56838014/cmgj00060481.html), and click **Activate Now**.
 
 ![](img/7.aliyun_sls.png)
 
-### Log in to Alibaba Cloud
 
-If you are not logged in to Alibaba Cloud, prompt your account to log in.
+2. A prompt appears saying **Activate Pay-As-You-Go Service**. After agreeing to the agreement, click **Activate**.
 
-![](img/6.aliyun_7.png)
+<img src="../img/6.aliyun_9.png" width="45%" >
 
-### Open Guance Pay-per-use Service
+3. Go to the console after activation.
 
-After logging in to Alibaba Cloud, return to Alibaba Cloud Selection, click **Getting Started** again, and prompt **Open Pay-per-use Service**. After agreeing to the agreement, click **Open**.
+<img src="../img/6.aliyun_10.png" width="45%" >
 
-![](img/6.aliyun_9.png)
+## Step Two: Direct Login to <<< custom_key.brand_name >>>
 
-At the prompt **Open Application Submitted** dialog box, click **Confirm**.
-
-![](img/6.aliyun_10.png)
-
-## Drop-free Guance Exclusive Plan
-
-After confirming the opening application, jump directly to the list of services purchased by Alibaba Cloud to view the purchased instance of the Exclusive Plan of Guance.
-
-<font color=coral>**Note:**</font> Alibaba Cloud account needs real-name authentication to purchase Guance service.
+After confirming the activation request, you will be redirected to the list of purchased services on Alibaba Cloud to view the purchased <<< custom_key.brand_name >>> Exclusive Plan instance.
 
 ![](img/7.aliyun_sls_1.png)
 
-Click No Login on the right side of the instance. In the pop-up dialog box, click OK.
+Click **Direct Login** on the right side of the instance. In the pop-up dialog box, click **Confirm**.
 
 ![](img/7.aliyun_sls_2.png)
 
-Prompt **Register Guance Commercial Plan Immediately** and **Existing Billing Center account**, bind it.
+On the <<< custom_key.brand_name >>> side, if the current Alibaba Cloud account ID is not bound to a <<< custom_key.brand_name >>> Billing Center account, two scenarios may occur:
+
+:material-numeric-1-circle-outline: [No Billing Center Account](#method): You need to register a <<< custom_key.brand_name >>> account and a Billing Center account to achieve cloud account binding for settlement;
+
+:material-numeric-2-circle-outline: [Has Billing Center Account](#bond): You can directly bind the Billing Center account to achieve cloud account settlement.
 
 ![](img/10.aliyun_market_2.png)
 
-### Register Guance Commercial Plan
 
-If you have never had a Guance account, you can click **Register Guance Commercial Plan** to register.
+???+ warning "What is a Billing Center Account?"
 
-#### Enter Basic Information
+    The Billing Center account is an independent account within the <<< custom_key.brand_name >>> Billing Center platform used for managing Commercial Plan billing. It allows a single account to be associated with multiple workspaces for unified billing processing.
 
-On the basic information page, select the site, enter the registration information, and click next.
+    Refer to the overall process as follows:
+
+    <img src="../img/17.process_1.png" width="60%" >
+
+
+### Register <<< custom_key.brand_name >>> Commercial Plan {#method}
+
+If you do not have a Billing Center account, click Next to automatically redirect to the registration page. Complete the registration process to obtain a <<< custom_key.brand_name >>> account and a Billing Center account.
+
+1. Fill in basic information;
+2. Fill in company information;
+3. Choose activation method: Enter workspace name, select workspace language, input [Account ID](#uid), [Product Instance ID](#entity-id);
+4. Click **Confirm**;
+5. Review and agree to the <<< custom_key.brand_name >>> Platform User Service Agreement, then click **Next**.
+
+![](img/4.register_language_1.png)
 
 ???+ warning
 
-    - The joint solution of Guance and SLS only supports China-Hangzhou and China-Zhangjiakou sites, and cannot be changed once the SLS data storage scheme is selected;
-    - The entered user name is also used to register the account of the Guance Billing Center. The user name account of the Billing Center will check its uniqueness and cannot be modified once registered;
-
-![](img/7.aliyun_sls_3.png)
-
-#### Enter Enterprise Information
-
-On the Enterprise Information page, enter enterprise information and click **Register**.
-
-![](img/11.account_center_4.png)
-
-#### Select Opening Method
-
-In **Select Opening Method**, fill in **Workspace Name**, and Guance will automatically obtain **Alibaba User ID** and **Commodity Instance ID**.
-
-![](img/10.aliyun_market_4.png)
+    - <<< custom_key.brand_name >>>, SLS joint solution only supports “China Region-Hangzhou”, “China Region-Zhangjiakou” sites. Once you choose the SLS data storage solution, it cannot be changed;
+    - The entered **username** is also used to register the <<< custom_key.brand_name >>> Billing Center account. The Billing Center username will check for uniqueness and cannot be modified once registered;
 
 
+#### Bind Alibaba Cloud Account
 
-Click OK, view and agree to Guance platform user service agreement, and click Next.
+On the **Bind Alibaba Cloud Account** page, <<< custom_key.brand_name >>> provides two authorization methods to ensure your data security: **RAM Account Authorization**, **Third-party Quick Authorization**.
 
-![](img/1.sls_7.png)
+![](img/billing-6.png)
 
-On the page of **Bind Alibaba Cloud Account**, download and obtain SLS authorization file, create Alibaba Cloud RAM account in [Alibaba Cloud studio](https://www.aliyun.com/), and obtain AccessKey ID and AccessKey Secret information of this account. Refer to the doc [RAM Account Authorization](../billing/billing-method/sls-grant.md).
+##### RAM Account Authorization
+
+Choose **RAM Account Authorization**, download the SLS authorization file, and create an Alibaba Cloud RAM account on the [Alibaba Cloud Console](https://www.aliyun.com/) to get the AccessKey ID, AccessKey Secret information.
+
+> For detailed operations on authorizing a RAM account using the SLS authorization file, refer to [RAM Account Authorization](../plans/sls-grant.md).
 
 ![](img/1.sls_4.jpeg)
 
-Fill in AccessKey ID and AccessKey Secret and verify them. If the verification passes, you can proceed to the next step; If the verification fails, **This AK is invalid, please fill it in again** will be prompted.
+Fill in the AccessKey ID, AccessKey Secret, and verify. If verification passes, proceed to the next step.
 
 ![](img/1.sls_6.jpeg)
 
-#### Opening Successfully
+##### Third-party Quick Authorization
 
-After the verification is passed, click **Confirm Opening** and prompt **Successfully Open the Commercial Plan of Guance**.
+Choose **Third-party Quick Authorization**, click **Proceed to Authorization**. You will be redirected to Alibaba Cloud, log in, and perform the authorization operation;   
+
+![](img/billing-auth.png)
+
+Click **Agree to Authorization**, a **Service Provider UID Verification** window pops up. UID can be obtained by clicking **Service Provider Permissions Page**.
+
+![](img/index-2.png)
+
+Enter the UID and click Confirm. Automatically redirect to **Alibaba Cloud Market > Purchased Services**, at this point authorization is complete.
+
+Return to the <<< custom_key.brand_name >>> **Bind Alibaba Cloud Account** page, click **Verify**. After successful verification, click **Confirm Activation**.
+
+???+ warning "Some Issues You May Encounter"
+    
+    - <<< custom_key.brand_name >>> Exclusive Plan uses SLS storage. If your cloud account<u>has not activated Alibaba Cloud Log Service SLS</u>, it will not be able to use the log storage service normally；
+  
+    - Cross-account role authorization operations require<u>Alibaba Cloud main account</u> or<u>sub-account authorized with RAM Access Control GetRole, GetPolicy, CreatePolicy, CreatePolicyVersion, CreateRole, UpdateRole, AttachPolicyToRole permissions</u>;
+
+    - During verification, if verifying a sub-account, it will automatically locate to the main account of that sub-account and fetch the project and Logstore under the main account;  
+    
+    - If verification fails, check if cloud resource access authorization has been completed. Go to **Alibaba Cloud RAM Console > RAM Access Control > Roles/Authorization** to view;
+
+    ![](img/ex.png)
+
+    ![](img/ex-1.png)
+
+
+Step Four: Successful Activation
+
+After successful verification, click **Confirm Activation**, a prompt will appear indicating **<<< custom_key.brand_name >>> Commercial Plan Activated Successfully**.
 
 ![](img/1.sls_8.png)
 
-### Bind Guance Workspace
+### Binding <<< custom_key.brand_name >>> Workspace
 
-After registering the Guance account, you can return to the bound Guance workspace. Click **Existing Billing Center account, bind it**.
+If you already have a <<< custom_key.brand_name >>> account, you can click **Already Have Billing Center Account, Bind Now** to see how to quickly bind the Alibaba Cloud account for settlement.
 
-![](img/10.aliyun_market_2.png)
+![](img/15.aliyun_register_1.png)
 
-Prompt **How to quickly bind Alibaba Cloud account for settlement**.
+Click **Understood**, start binding <<< custom_key.brand_name >>> workspace. Before binding the workspace, you need to bind the <<< custom_key.brand_name >>> Billing Center account first.
 
-![](img/12.aliyun_4.png)
+#### Bind <<< custom_key.brand_name >>> Billing Center Account
 
-Click OK to start binding the Guance workspace. Before binding the workspace, you need to bind the Billing Center account of Guance.
+- Site: Choose the site for creating subsequent workspaces;
+- Username: If you already have a <<< custom_key.brand_name >>> Billing Center account, you can directly input the <<< custom_key.brand_name >>> Billing Center account **Username**, verify via email for binding;
+- Registration: If you do not yet have a <<< custom_key.brand_name >>> Billing Center account, you can register first.
 
-#### Bind Guance Billing Center account
+![](img/10.market_aliyun_1.png)
 
-##### Existing Billing Center account
+#### Bind <<< custom_key.brand_name >>> Workspace
 
-Enter the user name of the Guance Billing Center account and bind it through email verification.
+=== "Bind Existing Workspace"
 
-![](img/7.aliyun_sls_4.png)
+    If there are existing bindable workspaces under your <<< custom_key.brand_name >>> Billing Center account, click **Bind** and confirm binding in the pop-up dialog box.
 
-##### No Billing Center account yet
+    **Note**: All listed here are SLS storage spaces. If your account has not created an SLS storage workspace, you can choose to create a workspace.
 
-If you don't have a Guance Billing Center account yet, you can click **Register** to register a new Guance Billing Center account.
+    ![](img/15.aliyun_register_6.1.png)
 
-![](img/12.aliyun_6.png)
+    Redirect to the **Bind <<< custom_key.brand_name >>> Workspace** page, showing binding success.
 
-#### Bind Guance Workspace
+    ![](img/15.aliyun_register_6.png)
 
-After successful binding, enter the binding Guance workspace page. If there is a workspace stored by SLS under your account, the system will automatically obtain and list it.
+    Click **Confirm**, showing activation success.
 
-![](img/7.aliyun_sls_5.png)
+    ![](img/15.aliyun_register_7.png)
 
-##### Bind Existing Workspace
+=== "Create Workspace"
 
-You can select the workspace to bind, click Bind on the right, and enter the email address and verification code in the pop-up dialog box.
+    If you have registered a <<< custom_key.brand_name >>> account but have not yet created a workspace, click **Create Workspace** first.
 
-> Note: All listed here are SLS storage spaces. If your account has not created a workspace for SLS storage, you can select **Create Workspace**.
+    ![](img/1-1-commercial-aliyun.png)
 
-![](img/1-aliyun-1109.png)
+    Input workspace name, select workspace language, input the email used during <<< custom_key.brand_name >>> account registration, and verify via email to create.
 
-After clicking **Confirm**, it will be prompted that it is bound.
+    **Note**: The workspace is a collaboration space for <<< custom_key.brand_name >>> data insights. The workspace language option affects templates for events, alerts, SMS, etc., within the workspace. If English is chosen, the corresponding templates will default to English templates. Once created, the template language of this workspace cannot be modified, please choose carefully.
 
-![](img/2-aliyun-sls.png)
+    ![](img/15.aliyun_register_5.png)
 
+    After successfully creating the workspace, you need to bind the Alibaba Cloud account. You can download the SLS authorization file to create AK/AKS in the Alibaba Cloud console and authorize, then fill in the AK/AKS information in the following dialog box for verification.
 
+    ![](img/15.aliyun_register_sls_2.png)
 
-Click OK to prompt that the binding is successful.
+    After successful AK/AKS information verification and confirmation of activation, it will automatically redirect to the **Bind <<< custom_key.brand_name >>> Workspace** page, showing the workspace **Bound**.
 
-![](img/3-aliyun-1109.png)
+    ![](img/15.aliyun_register_6.png)
 
-Click OK to return to the login Guance.
+    Click **Confirm**, redirecting to the **Successfully Bound <<< custom_key.brand_name >>> Workspace** page.
 
-![](img/7.aliyun_sls_9.png)
+    ![](img/15.aliyun_register_7.png)
 
-##### Create a Workspace
+=== "Register <<< custom_key.brand_name >>> Account"
 
-If you have not created a workspace, you can click **Create Workspace**, enter the name of the workspace and the email address used when registering the Guance account, and create it.
+    If you have never used <<< custom_key.brand_name >>> services before, please register a <<< custom_key.brand_name >>> account and create a workspace first.
 
-> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+    ![](img/1-2-commercial-aliyun.png)
 
-![](img/4.register_language_11.png)
+    Click **Register <<< custom_key.brand_name >>> Account**, input relevant information, and register via email verification.
 
-##### Register Guance Account
+    **Note**: The workspace is a collaboration space for <<< custom_key.brand_name >>> data insights. The workspace language option affects templates for events, alerts, SMS, etc., within the workspace. If English is chosen, the corresponding templates will default to English templates. Once created, the template language of this workspace cannot be modified, please choose carefully.
 
-If the Guance account is not registered, you can click Register Guance Account, enter relevant information, and register through mobile phone number verification.
+    ![](img/15.aliyun_register_3.png)
 
-> - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance Billing Center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the Billing Center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the Billing Center. After the binding is completed, the user name cannot be modified. Please operate carefully.
 
-![](img/4.register_language_10.png)
+### Start Using <<< custom_key.brand_name >>>
 
-### Start Using Guance
+After completing the registration, you can start using <<< custom_key.brand_name >>> Exclusive Plan.
 
-After registration, you can watch the introduction video of Guance, or you can click **Start installing DataKit and configure the first DataKit**.
+#### Sync SLS Data
 
-![](img/1-free-start-1109.png)
+<<< custom_key.brand_name >>> supports you to synchronize and view other SLS data under your Alibaba Cloud account through [binding log indexes](../logs/multi-index.md#sls).
 
-#### Synchronize SLS Data
+## How to Obtain Account ID {#uid}
 
-Guance enables you to view other sls data under Alibaba Cloud account synchronously through binding log index. For more details, please refer to the doc [Binding Index](../logs/multi-index/index.md#sls).
+### Alibaba Cloud Main Account
 
-## FAQ on Guance Exclusive Plan 
+Log in to [Alibaba Cloud](https://www.aliyun.com) with the main account, enter the Alibaba Cloud console, click the account avatar in the upper-right corner to find the account ID.
 
-### Open Guance Exclusive Plan
+![](../img/6.aliyun_2.png)
 
-**1.How to open Exclusive Plan of Guance (SLS storage)?**
+<!--
 
-You can open the Guance Exclusive Plan according to this document. The Guance Exclusive Plan only supports SLS storage mode. For more storage modes, please refer to the doc [Data Storage Strategy](../billing/billing-method/data-storage.md#options).
+### Alibaba Cloud RAM Sub-Account
 
-**2.If the workspace that has used the Commercial Plan of Guance has been opened, can the Exclusive Plan of Guance be opened again?**
+Log in to [Alibaba Cloud](https://www.aliyun.com) via RAM, enter the Alibaba Cloud console, click the account avatar in the upper-right corner to find the main account UID after @ in the RAM account.
 
-Yes, open the exclusive product entrance of **Alibaba Cloud Market > Guance**, and build a new SLS workspace.
+![](../img/20.aliyun_3.png)
+-->
 
-**3.If the workspace of the Commercial Plan of Guance has been opened, can it be switched to the Exclusive Plan of Guance?**
+## How to Obtain Product Instance ID {#entity-id}
 
-No, the biggest difference between Commercial Plan and SLS Exclusive Plan lies in the location of data storage at the back end. Once the workspace is opened, the index storage ownership cannot be changed. Therefore, no matter what settlement method is the successful Commercial Plan opened before, it cannot be converted into the Exclusive Plan workspace of SLS.
+After <<< custom_key.brand_name >>> confirms the activation request on Alibaba Cloud Heart Selection, it directly redirects to the list of purchased services on Alibaba Cloud. Under the purchased <<< custom_key.brand_name >>> service, you can view the **Instance ID** of the product. Copy this **Instance ID** and fill it into the **Product Instance ID** field in the change settlement method dialog box.
 
-**4.Can the free workspace created when registering be upgraded to the Exclusive Plan of Guance?**
+![](../img/10.aliyun_market_5.png)
 
-No, at present, it only supports opening SLS Exclusive Plan workspace through Alibaba Cloud Market-Guance Exclusive Plan product portal, and the normal upgrade process does not support opening SLS Exclusive Plan workspace.
 
-### Data viewing problem after opening Exclusive Plan of Guance
+## FAQ
 
-**1.Why does SLS have logs, but they can't be displayed in Guance?**
+### Version
 
-The Default index must have logs, that is, logs collected by Guance DataKit, before Guance log explorer can see the logs of SLS.
+:material-chat-question: Can a workspace already opened with <<< custom_key.brand_name >>> Commercial Plan be reopened with <<< custom_key.brand_name >>> Exclusive Plan?
 
-**2.Why does the SLS log input appear empty when it is reported?**
+Yes, you can activate it through the **Alibaba Cloud Market > <<< custom_key.brand_name >>> Exclusive Plan** product entry, creating a new SLS workspace.
 
-As the SLS content field is content, Guance uses message, which needs to be solved by field mapping.
+:material-chat-question: Can a workspace already opened with <<< custom_key.brand_name >>> Commercial Plan be switched to <<< custom_key.brand_name >>> Exclusive Plan?
 
-**3.How can the data of SLS console be judged as the user himself or the access data of Guance?**
+No, the main difference between Commercial Plan and SLS Exclusive Plan lies in the backend data storage location. Once a workspace is opened, the index storage location cannot be changed. Therefore, regardless of the previous settlement method of the successfully opened Commercial Plan, it cannot be converted into an SLS Exclusive Plan workspace.
 
-You can judge by the name of the project. If the name of the project is in the format of `guance-wksp-workspace ID`, it can be considered as the resource and data index created when the Exclusive Plan of Guance SLS is opened. If there is a viewing requirement, you can get <workspace ID> from the workspace-management-basic settings page and find the corresponding data viewing in the SLS studio.
+:material-chat-question: Can a Free Plan workspace created during registration be upgraded to <<< custom_key.brand_name >>> Exclusive Plan?
 
-**4.Can the free workspace created when registering be upgraded to the Exclusive Plan of Guance?**
+No, currently only support opening an SLS Exclusive Plan workspace through the Alibaba Cloud Market - <<< custom_key.brand_name >>> Exclusive Plan product entry. Normal upgrade procedures do not support opening an SLS Exclusive Plan workspace.
 
-The user's own SLS stored data can be viewed and analyzed in the workspace of Guance. At present, it only supports viewing and analyzing the bound index data, and does not support association analysis with other functional module data for the time being. Refer to the doc [Binding Index](../logs/multi-index/index.md#sls) for information on how to bind indexes.
+### Data Viewing
 
-### Guance Exclusive Plan Data Storage
+:material-chat-question: Why does SLS have logs, but they are not displayed in <<< custom_key.brand_name >>>?
 
-**1.How does the Guance Exclusive Plan store data?**
+The Default index must contain logs, i.e., logs collected by <<< custom_key.brand_name >>> DataKit. Only then can <<< custom_key.brand_name >>> Log Viewer display SLS logs.
 
-Data such as metrics, logs, backup logs, availability monitoring, CI, security check and events of the Exclusive Plan of Guance are stored in SLS. Besides the above data, infrastructure, application performance monitoring and user access monitoring data are currently ES clusters with Guance.
+:material-chat-question: Why does the content show as empty after reporting SLS logs?
 
-- Metrics: Metricstore for SLS
-- Logs, Availability Monitor, CI, Scheck, Events: Logstore of SLS Standard type
-- Backup log: Logstore of type SLS Query
+Since the content field in SLS is `content` while <<< custom_key.brand_name >>> uses `message`, you need to resolve this through field mapping.
 
-> Note: Because the SLS data expiration policy only supports TTL expiration custom cleanup, Guance's practice of reducing the number of timeseries by adjusting the data preservation policy of measurement does not take effect in the SLS exclusive workspace.
+:material-chat-question: How can I determine whether the data in the SLS console is from the user or <<< custom_key.brand_name >>> integration?
 
-**2.Can I change the data storage area of the Exclusive Plan of Guance?**
+You can judge by the project name. If the project name is in the format `guance-wksp-WorkspaceID`, it can be considered as resources and data indexes created by <<< custom_key.brand_name >>> when activating the SLS Exclusive Plan. If you need to view, you can get the **Workspace ID** from the **Workspace > Management > Basic Settings** page and find the corresponding data in the SLS console.
 
-No, Guance will create Project and Metricstore and Logstore data indexes in the same Region of SLS according to the Region where the user currently selects the open site. Unless you re-create a new SLS Exclusive Edition workspace, the data storage Region cannot be changed. At present, the Exclusive Plan of Guance only supports China 1 (Hangzhou) site and China 3 (Zhangjiakou) site.
+:material-chat-question: Can users' own SLS stored data be viewed using <<< custom_key.brand_name >>>?
 
-- China 1 (Hangzhou) site opens SLS Exclusive Plan, and the data will be saved in SLS cn-hangzhou Region;
-- China 3 (Zhangjiakou) site opens SLS Exclusive Plan, and the data will be saved in SLS cn-zhangjiakou Region;
+Users' own SLS stored data can be viewed and analyzed in <<< custom_key.brand_name >>>'s workspace. Currently, it only supports viewing and analyzing bound index data and does not support correlation analysis with data from other feature modules.
 
-### Guance Exclusive Plan Billing
+> For details on how to bind indexes, refer to [Binding Indexes](../logs/multi-index.md#sls).
 
-**1.After opening the Exclusive Plan of guance, how to charge the log data collected by using Guance collector DataKit?**
+### Data Storage
 
-The log data collected through DataKit is charged according to Guance log charging logic, which can be found in the doc [billing method](../billing/billing-method/index.md).
+:material-chat-question: How does <<< custom_key.brand_name >>> Exclusive Plan store data?
 
-**2.If the log data in SLS, how to charge the log data viewed, searched and filtered in Guance studio through the binding log index function provided by Guance?**
+<<< custom_key.brand_name >>> Exclusive Plan stores metrics, logs, backup logs, Synthetic Tests, CI, Security Check, incidents, etc., in SLS. Infrastructure, APM, RUM data currently reside in <<< custom_key.brand_name >>> ES cluster except for the above data.
 
-SLS log data obtained through index binding, the cost is still charged according to sls. For how to bind indexes, please refer to the doc [Binding Index](../logs/multi-index/index.md#sls).
+- Metrics: SLS's Metricstore;
+- Logs, Synthetic Tests, CI visualization, Security Check, incidents: SLS Standard type Logstore;
+- Backup logs: SLS Query type Logstore.
 
-If you want to perform data processing, delivery and streaming reading operations from external network access points, the log service charges processing calculation fees, data delivery fees and external network reading traffic fees. For details, please refer to the doc [Billing Items](https://help.aliyun.com/document_detail/107745.htm?spm=a2c4g.11186623.0.0.1d086860NWfUQP#concept-xzl-hjg-vgb).
+**Note**: Since SLS's data expiration policy only supports TTL-based automatic deletion, <<< custom_key.brand_name >>>'s approach of reducing Time Series counts by adjusting measurement retention policies does not apply to SLS Exclusive Plan workspaces.
 
-**3.If the stored-value card in the Billing Center can be used for bill payment of the Exclusive Plan of Guance? How to pay for the Exclusive Plan of Guance?**
+:material-chat-question: Can the region for <<< custom_key.brand_name >>> Exclusive Plan data storage be changed?
 
-Yes, the prerequisite for the Exclusive Plan of Guance is to use Alibaba Cloud account for settlement. For cloud account settlement, the deduction order of Guance pay-by-volume bills is: ordinary vouchers, full reduction vouchers, stored-value cards and cash balance of cloud accounts. SMS and dial-up consumption can only be paid by using stored-value cards and cash balances of cloud accounts.
+No, <<< custom_key.brand_name >>> synchronizes Project and Metricstore creation in the same Region as the selected site when opening the SLS Exclusive Plan. Unless creating a new SLS Exclusive Plan workspace, the data storage Region cannot be changed. Currently, <<< custom_key.brand_name >>> Exclusive Plan only supports “China Region 1 (Hangzhou)” and “China Region 3 (Zhangjiakou)” sites.
 
-### Guance Exclusive Plan Function Query
+- Opening SLS Exclusive Plan in China Region 1 (Hangzhou) site stores data in SLS “cn-hangzhou” Region;
+- Opening SLS Exclusive Plan in China Region 3 (Zhangjiakou) site stores data in SLS “cn-zhangjiakou” Region;
 
-**1.Why can't some query functions be used?**
+### Billing
 
-The language of SLS storage is promql, and some functions cannot be used. For more information about sls functions, refer to the doc [DQL Functions](../dql/funcs.md#sls).
+:material-chat-question: After activating <<< custom_key.brand_name >>> Exclusive Plan, how are logs collected by <<< custom_key.brand_name >>> DataKit billed?
 
-**2. Show Function Tag Related**
+Logs collected by DataKit are charged according to <<< custom_key.brand_name >>> log [billing method](../billing-method/index.md).
 
-The four functions, `show_tag_key`, `show_tag_value`, `show_tag_key_cardinality`, and `show_tag_value_cardinality`, only support querying data for the last 5 minutes, that is, if there is no data for the last 5 minutes, the result of these show functions is 0. The following scenarios exist in the current Guance workspace using the show tag function:
+:material-chat-question: If logs in SLS are viewed, searched, and filtered through <<< custom_key.brand_name >>> provided index binding function in the <<< custom_key.brand_name >>> console, how are these logs billed?
 
-- Functions such as `show_tag_key`, `show_tag_value` are used in view variables
-- Metric management page sideslip details page displays label data
-- Drop-down list after `group by` when all charts configure metric data query, or filter criteria are added
+Logs obtained through [index binding](../logs/multi-index.md#sls) from SLS are still billed according to SLS.
 
-**3. Does SLS metric query support one DQL to query multiple metric data?**
+If you perform data processing, delivery, or stream reading from external internet endpoints, Log Service charges for processing computation, data delivery fees, and external internet read traffic fees.
 
-Not supported and queries are not supported `*`.
+> For more details, refer to [Billing Items](https://help.aliyun.com/document_detail/107745.htm?spm=a2c4g.11186623.0.0.1d086860NWfUQP#concept-xzl-hjg-vgb).
 
-**4.If there is a large log in the log data, why may there be incomplete data display?**
+:material-chat-question: Can prepaid cards previously purchased in the Billing Center be used to pay <<< custom_key.brand_name >>> Exclusive Plan bills? How does <<< custom_key.brand_name >>> Exclusive Plan payment work?
 
-At present, only the complete message can be returned according to the query of docid and default list page, and the message will be truncated under other complex filtering conditions, which is determined by the internal implementation of SLS.
+Yes, the prerequisite for <<< custom_key.brand_name >>> Exclusive Plan is using Alibaba Cloud account settlement. For cloud account settlement, <<< custom_key.brand_name >>> charges in pay-as-you-go order: general coupons, discount coupons, prepaid cards, cloud account balance. SMS and dial testing pay-as-you-go consumption can only be paid using prepaid cards and cloud account balance.
 
-### Guance Exclusive Plan Field Filter
+### Function Queries
 
-**1.Why can't you filter fields after opening the Exclusive Plan of Guance?**
+:material-chat-question: Why are some query functions unavailable?
 
-Guance will automatically create a field index for log data containing the same fields for field filtering, but if the amount of data is small, automatic creation will not be triggered. In this case, you cannot query data through field filtering in Guance, and you can solve this problem by reporting more log data containing the same fields.
+SLS storage uses promql language, which results in some functions being unavailable.
 
-> Note: If the time interval between the data reported when the field index is not created and the data reported when the field index is created is too long, It may cause the data reported when the field index is not created to be unable to pass the field filtering query. For example, two pieces of data of the same field were reported yesterday, and the field index was not created. Today, 100 pieces of data of the same field as yesterday were reported, and the field index was automatically created. During the field filtering, the two pieces of data reported yesterday may not be found.
+> For more about SLS function information, refer to [DQL Functions](../dql/funcs.md#sls).
 
-### Difference between Exclusive Plan and Commercial Plan of Guance
+:material-chat-question: Show function tag related
 
-**1. Why is SLS Exclusive Log Search not highlighted?**
+`show_tag_key`, `show_tag_value`, `show_tag_key_cardinality`, `show_tag_value_cardinality` these four functions only support querying data from the last 5 minutes. If no data was generated in the last 5 minutes, these show functions will return 0. The following scenarios in the current <<< custom_key.brand_name >>> workspace use show tag functions:
 
-As the SLS log search highlighting function is temporarily closed to the public and only supports the SLS studio, there will be no highlighting effect when some keywords are matched to the log on the current Guance.
+- View variables using `show_tag_key`, `show_tag_value` functions;
+- Display tag data on the metric management page slide-out detail page;
+- When configuring chart metrics queries, the drop-down list after `group by` or adding filter conditions.
 
-**2. Does the SLS Exclusive Workspace support deleting a single measurement?**
+:material-chat-question: Does SLS metric query support querying multiple metric data with one DQL query?
 
-Not supported, only deleting all measurements is supported at present.
+No, it does not support querying `*`.
 
-**3. Why can't the newly reported field data in SLS exclusive workspace support filtering and sorting?**
+:material-chat-question: Why might large log data result in incomplete data display?
 
-The current SLS field index will have a delay time of 1 minute. For example, it takes 1 minute to cut out a new field through Pipeline before searching for a new field, and the data within that 1 minute delay still cannot be filtered and searched; ES cuts out new fields that can be searched immediately. This problem also affects the use of functions such as Generate Metrics and other chart queries.
+Currently, only the complete message can be guaranteed based on docid and default list page queries. Other complex filtering conditions will truncate the message, determined by the internal implementation of SLS.
 
-**4. Does the SLS Exclusive Workspace support index merging?**
+### Field Filtering
 
-Not supported. SLS Exclusive Workspace has multiple indexes on by default. For multiple indexes, refer to the doc [Log Index](../logs/multi-index/index.md). By default, index merging is turned on in the commercial workspace to reduce the generation of indexes.
+:material-chat-question: Why can't field filtering be performed after activating <<< custom_key.brand_name >>> Exclusive Plan?
 
-**5. Why is the SLS Exclusive Workspace Log Time Sequence out of order?**
+<<< custom_key.brand_name >>> automatically creates field indexes for log data containing the same fields for field filtering, but if the data volume is small, it won't trigger automatic creation. In such cases, you cannot query data using field filtering in <<< custom_key.brand_name >>>. You can solve this by submitting more log data containing the same fields.
 
-As the SLS date field is accurate to the second level, and the log data time of Guance is to the millisecond level, the log sorting in the SLS workspace may have abnormal ascending and descending order. By default, only the data in a single page can be ordered, and the global order across pages is not guaranteed.
+**Note**: If the time interval between data submission before and after field index creation is too long, it may lead to data submitted before field index creation not being queryable via field filtering. For example, if you submitted 2 log entries with the same fields yesterday without creating field indexes and today submitted 100 log entries with the same fields, automatically creating field indexes, during field filtering, you might not find the 2 log entries submitted yesterday.
 
-**6. Why do SLS time series data write duplicates?**
+### Exclusive Plan VS Commercial Plan
 
-SLS time series data will be written repeatedly in the same timestamp data, which is caused by the characteristic problem of SLS.
+:material-chat-question: Why does SLS Exclusive Plan log search lack highlighting?
+
+Because the SLS log search highlighting feature is temporarily not open to the public and only available in the SLS console, currently <<< custom_key.brand_name >>> does not have the highlighting effect when searching for logs matching certain keywords.
+
+:material-chat-question: Does SLS Exclusive Plan workspace support deleting individual measurement sets?
+
+No, currently only supports deleting all measurement sets.
+
+:material-chat-question: Why does newly reported field data in SLS Exclusive Plan workspace not support filtering and sorting?
+
+Currently, SLS field indexes have a 1-minute delay. For example, if you extract new fields via Pipeline, you need to wait 1 minute before searching for the new fields, and data within that 1-minute delay remains unsearchable and unsortable. This issue also affects the use of "Generate Metrics" and other chart query features.
+
+:material-chat-question: Does SLS Exclusive Plan workspace support index merging?
+
+No, SLS Exclusive Plan workspace defaults to multi-index. Commercial Plan workspace defaults to index merging to reduce index generation.
+
+> For details on multi-index, refer to [Log Index](../logs/multi-index/index.md).
+
+:material-chat-question: Why is the log time sequence disordered in SLS Exclusive Plan workspace?
+
+Due to SLS date fields being precise to the second level, while <<< custom_key.brand_name >>> log data times are precise to the millisecond level, log sorting within the SLS workspace may appear abnormal in ascending/descending order. By default, only data within a single page can be ordered, not across pages globally.
+
+:material-chat-question: Why does SLS time series data write duplicates?
+
+SLS time series data can duplicate writes at the same timestamp, caused by SLS characteristics.

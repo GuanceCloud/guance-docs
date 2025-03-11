@@ -1,24 +1,26 @@
-# Scheck Anomaly Detection
+# Security Check Anomaly Detection
 ---
 
-Security Check is used to monitor vulnerabilities, anomalies, and risks in the workspace's systems, containers, networks, and more. You can trigger alarms by setting the occurrence frequency of detection indicators to promptly identify and manage security threats.
-
-## Use Case
-
-Support monitoring vulnerabilities, anomalies, and risks in Network, Storage, Database, System, Webserver and Container.
-
-## Setup
+Used to monitor potential vulnerabilities, anomalies, and risks in systems, containers, networks, and other components within the workspace. You can configure alerts by setting the trigger frequency of detection metrics to promptly identify and manage security threats.
 
 
-### Step 1: Detection Configuration
+## Use Cases
+
+Supports monitoring vulnerabilities, anomalies, and risks in Network, Storage, Database, System, Webserver, and Container.
+
+## Detection Configuration
 
 ![](../img/monitor27.png)
 
-:material-numeric-1-circle-outline: **Detection Frequency:** The execution frequency of detection rules, including 1m/5m/15/30m/1h/6h (5m is selected by default).
+### Detection Frequency
 
-:material-numeric-2-circle-outline: **Detection Interval:** The time range of detection index query when each task is executed. The optional detection interval will be different due to the influence of detection frequency. 
+The execution frequency of the detection rules; the default is 5 minutes.
 
-| Detection Frequency | Detection Interval (Drop-down Option) |
+### Detection Interval
+
+The time range for querying detection metrics. Depending on the detection frequency, different intervals are available.
+
+| Detection Frequency | Detection Interval (Dropdown Options) |
 | --- | --- |
 | 1m | 1m/5m/15m/30m/1h/3h |
 | 5m | 5m/15m/30m/1h/3h |
@@ -26,65 +28,58 @@ Support monitoring vulnerabilities, anomalies, and risks in Network, Storage, Da
 | 30m | 30m/1h/3h/6h |
 | 1h | 1h/3h/6h/12h/24h |
 | 6h | 6h/12h/24h |
+| 12h | 12h/24h |
+| 24h | 24h |
 
-:material-numeric-3-circle-outline: **Detection Metrics:** Monitor the number of check events containing the set fields in the Security Check within a certain time range; adding label filtering pairs for screening is supported.
+### Detection Metrics
+
+Monitors the number of inspection events within a specified time range that include the configured fields in the **Security Check**. Supports adding label filters for screening.
 
 | Field | Description |
 | --- | --- |
-| Type | Event classification, support: `network`，`storage`，`database`，`system`，`webserver`，`container` |
+| Category | Event classification, supports: `network`, `storage`, `database`, `system`, `webserver`, `container` |
 | Host | Hostname |
-| Level | Check event level, support: `info`，`warning`，`critical` |
-| Tag | Based on the metric label, the data of detection metric is screened and the detection data range is limited. Support to add one or more label filters, and support fuzzy matching and fuzzy mismatching filters. |
-| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. *(For example, if the instrumentation dimensions `host` and `host_ip` are selected, the instrumentation object can be `{host: host1, host_ip: 127.0.0.1}`.)* |
+| Level | Inspection event level, supports: `info`, `warn`, `critical` |
+| Tags | Filters detection metric data using tags based on metrics, limiting the scope of detected data. Supports adding one or more tag filters with fuzzy match and fuzzy mismatch conditions. |
+| Detection Dimensions | Any string type (`keyword`) field in the configuration can be selected as a detection dimension. Currently, up to three fields can be chosen. By combining multiple detection dimensions, a specific detection object can be determined. <<< custom_key.brand_name >>> will evaluate whether the statistical metrics of a detection object meet the threshold conditions. If met, an event is generated.<br />* (For example, selecting detection dimensions `host` and `host_ip` results in a detection object like `{host: host1, host_ip: 127.0.0.1}`).*
+
+### Trigger Conditions
+
+Set trigger conditions for alert levels: you can configure any one of critical, major, minor, or normal trigger conditions.
+
+Configure trigger conditions and severity levels. When query results contain multiple values, an event is generated if any value meets the trigger condition.
+
+> For more details, refer to [Event Level Description](event-level-description.md).
+
+If **Continuous Trigger Judgment** is enabled, you can configure the conditions to trigger events after multiple consecutive judgments. The maximum limit is 10 times.
 
 
-:material-numeric-4-circle-outline:  **Trigger Condition:** Set the trigger condition of alert level; You can configure any of the following trigger conditions: Critical, Error, Warning, No Data, or Information.
+???+ abstract "Alert Levels"
 
-![](../img/monitor58.png)
+	1. **Critical (Red), Major (Orange), Minor (Yellow) Alert Levels**: Based on configured condition operators.
+  
 
-Configure the trigger condition and severity. When the query result is multiple values, an event will be generated if any value meets the trigger condition.
+    2. **Normal (Green) Alert Level**: Based on configured detection frequency, as follows:
 
-> See [Event Levels](event-level-description.md). 
+    - Each execution of a detection task counts as 1 detection. For example, if the detection frequency is set to 5 minutes, then 1 detection = 5 minutes.  
+    - You can customize the number of detections. For example, if the detection frequency is 5 minutes, then 3 detections = 15 minutes.  
 
-I. Alert levels: Critical (red), Important (orange), Warning (yellow): Based on the configured conditions using [operators](operator-description.md). 
+    After the detection rule takes effect, if abnormal events such as critical, major, or minor occur, and the data returns to normal within the configured custom detection period, a recovery alert event is generated.
 
-II. Alert levels: OK (green), Information (blue): Based on the configured number of detections, as explained below:
+### Data Gaps
 
-- One test is performed for each test task, if "test frequency = 5 minutes", then one test = 5 minutes
-- You can customize the number of tests, such as "Test frequency = 5 minutes", then 3 tests = 15 minutes
+You can configure seven strategies for handling data gaps.
 
-| Level | Description |
-| --- | --- |
-| OK | After the detection rule takes effect, if the result of an urgent, important, or warning abnormal event returns to normal within the configured number of custom detections, a recovery alert event is generated. <br/>:warning: Recovery alert events are not affected by [Mute Alerting](../alert-setting.md). If no detection count is set for recovery alert events, the alert event will not recover and will always appear in the Events > Unrecovered Events List. |
-| Information | Events are generated even for normal detection results. |
+1. Link to the detection interval time range and determine the query result for the most recent minutes of the detection metric, **no event triggered**;
+
+2. Link to the detection interval time range and determine the query result for the most recent minutes of the detection metric, **query result treated as 0**; this result will be compared against the threshold configured in the **Trigger Conditions** to determine if an anomaly event should be triggered.
+
+3. Customize the fill-in value for the detection interval, **trigger data gap events, critical events, major events, minor events, and recovery events**; when choosing this configuration strategy, it is recommended that the custom data gap time >= detection interval time. If the configured time <= detection interval time, there may be simultaneous satisfaction of data gap and anomaly conditions, in which case only the data gap processing result will be applied.
 
 
-III. Alert level: No Data (gray): The no data state supports three configuration strategies: Trigger No-Data Event, Trigger Recovery Event, and Untrigger Event.
+### Information Generation
 
-### Step 2: Event Notification
+Enabling this option generates "information" events for detection results that do not match the above trigger conditions and writes them into the system.
 
-![](../img/monitor15.png)
 
-:material-numeric-5-circle-outline: **Event Title:** Set the event name of the alert trigger condition; support the use of [preset template variables](../event-template.md).
-
-**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
-
-:material-numeric-6-circle-outline: **Event Content**: The content of the event notification sent when the trigger conditions are met. Support inputting text in Markdown format, previewing effects, the use of preset [associated links](link-description.md) and the use of preset [template variables](../event-template.md).
-
-**Note**: Different alert notification objects support different Markdown syntax. For example, WeCom does not support unordered lists.
-
-:material-numeric-7-circle-outline: **Alert Strategy**: After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification targets. The [Alert Strategy](../alert-setting.md) includes the event level that needs to be notified, the notification targets and the mute alerting period.
-
-:material-numeric-8-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
-
-### Step 3: Association
-
-![](../img/monitor13.png)
-
-:material-numeric-9-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
-
-### Example
-
-Detect whether there are abnormal problems in the system.
-
-![](../img/example09.png)
+**Note**: If trigger conditions, data gaps, and information generation are all configured, the following priority order applies: data gaps > trigger conditions > information event generation.

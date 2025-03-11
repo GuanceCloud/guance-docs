@@ -1,0 +1,18 @@
+nav:
+  - index.md
+  - 'Memory leak Intelligent Inspection': memory-leak.md
+  - 'Disk utilization Intelligent Inspection': disk-usage.md
+  - 'Host Restart Intelligent Inspection': host-restart.md
+  - 'APM Intelligent Inspection': apm.md
+  - 'Alibaba Cloud Asset Intelligent Inspection': cloudasset.md
+  - 'Cloud Account Billing Inspection Intelligent Integration': cloudfee-instance.md
+  - 'Alibaba Cloud Preemptible Instance Survival Intelligent Inspection': spot-alive.md
+  - 'Idle Resources Intelligent Inspection': idle-resources.md
+  - 'Cloud Idle Resources Intelligent Inspection': cloud-idle-resources.md
+  - 'AWS Cloudtrail Exception Event Intelligent Inspection': aws_ak_errorlog.md
+  - 'Workspace Asset Intelligent Inspection': workspace-weekly-report.md
+  - 'RUM Log Error Intelligent Inspection': rum_errors.md
+  - 'RUM Performance Intelligent Integration': rum-performance.md
+  - 'MySQL Performance Intelligent Inspection': mysql-performance.md
+  - 'Server Application Error Intelligent Inspection': apm-errors.md
+  - 'Kubernetes': Kubernetes

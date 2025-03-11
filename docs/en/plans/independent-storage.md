@@ -1,28 +1,26 @@
-# Independent Storage Plan
+# Exclusive Storage Plan
 ---
 
-## Overview
+<<< custom_key.brand_name >>> provides a SaaS version with exclusive data storage, offering better data isolation and security; you can also adjust the ratio of cold and hot data to achieve faster data processing performance.
 
-The SaaS version provided by Guance has its own data storage environment, which enables you to enjoy better data isolation and security; You can also adjust the size ratio of hot and cold data to achieve faster data processing performance.
+## Exclusive Storage Plan Costs
 
-## Independent Storage Plan Expenses
+The <<< custom_key.brand_name >>> Exclusive Storage Plan offers users higher performance and security. Compared to the <<< custom_key.brand_name >>> Commercial Plan, it is relatively more expensive. Based on <<< custom_key.brand_name >>>'s basic billing, the reference prices for the Exclusive Storage Plan are as follows:
 
-The independent storage plan of Guance provides users with higher performance and security, which is relatively more expensive than the Commercial Plan of Guance. Taking the basic billing of Guance as an example, the reference price of the independent storage version is as follows:
+**Note**: The prices listed below are for reference only. Actual settlement prices will be determined based on specific requirements.
 
-<font color=coral>**Note:**</font> The following prices are for reference only, and the actual settlement price is determined according to the specific needs.
+| **Billing Item** | **Billing Unit** | **Price** | **Exclusive Storage Reference Price** |
+| ---------------- | ---------------- | --------- | ------------------------------------- |
+| DataKit          | Per unit         | $0.45     | $0.60                                |
+| Time Series      | Per 1,000 entries| $0.45     | $0.60                                |
+| Network (Host)   | Per unit         | $0.30     | $0.45                                |
+| Backup Log Capacity | Per GB        | $0.007    | $0.01                               |
+| Synthetic Tests  | Per 10,000 tests | $0.15     | $0.22                               |
+| Triggers         | Per 10,000 calls | $0.15     | $0.22                               |
+| SMS              | Per 10 messages  | $0.15     | $0.22                               |
 
-| **Billing Item**   | **Billing Unit** | **Price** | **Independent Storage Reference Price** |
-| ------------ | ------------ | -------- | -------- |
-| DataKit      | per 1       | 3 yuan     | 4 yuan     |
-| Timelines       |  per 1,000   | 3 yuan     | 4 yuan     |
-| Network (host) | per 1      | 2 yuan     | 3 yuan     |
-| Backup log capacity | per 1 GB      | 0.007 yuan | 0.01 yuan |
-| Usability dialing test   | per 10,000    | 1 yuan     | 1.5 yuan     |
-| Task calls     | per 10,000    | 1 yuan     | 1.5 yuan     |
-| SMS         | per 10     | 1 yuan     | 1.5 yuan     |
+> For more <<< custom_key.brand_name >>> billing information, refer to [Usage Billing Method](../billing-method/index.md).
 
-> See [Billing Methods](../billing/billing-method/index.md) for more information.
+## How to Obtain the Exclusive Storage Plan
 
-## How to Get Independent Storage Plan
-
-Guance appreciates your trust and support and is committed to providing you with the best possible service and protection. If you want to obtain the independent storage plan of Guance or have any other questions, you can contact your account manager.
+If you would like to obtain the <<< custom_key.brand_name >>> Exclusive Storage Plan or have any other questions, please contact your customer manager.

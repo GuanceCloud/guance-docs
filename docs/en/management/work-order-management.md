@@ -1,77 +1,92 @@
-# Tickets
+# Ticket Management
 ---
 
-To address any issues encountered in Guance, you can seek advice and guidance by submitting a ticket. This includes difficulties in resolving problems during usage, inquiries about purchases and costs, and suggestions for requirements and improvements to Guance. Once a ticket is received, the official team will promptly handle and provide feedback.
+If you encounter any issues while using <<< custom_key.brand_name >>>, you can submit a ticket for consultation and suggestions. For example, if you face problems that are difficult to resolve during usage, have questions related to purchasing or billing, or wish to provide feedback or suggestions to <<< custom_key.brand_name >>>, the official team will promptly handle and respond to your tickets.
 
-The ticket system is **based on the workspace level**, so submitted tickets will not disappear due to the addition or removal of a member. In the ticket list, you can view all the tickets within the current workspace and understand the problems encountered and the feedback given.
+The ticket system is **workspace-based**, meaning submitted tickets will not be deleted due to the addition or removal of members. In the ticket list, you can view all tickets within the current workspace to understand past issues and feedback.
 
-Guance provides 5x8 hours of ticket service. Once the customer support team receives a ticket, they will handle it as soon as possible.
+<<< custom_key.brand_name >>> provides 5*8 hours of ticket service time. Customer service personnel will process your ticket as soon as possible after receiving it.
 
-Click on the **Help > Tickets** in the lower-left corner to access the ticket management portal:
+> For more details, see [Support Plans](https://www.guance.com/support).
 
-<img src="../img/ticket-entry.png" width="50%">
+Click on the bottom-left corner **Help > Ticket Management** to access the ticket management entry:
 
-## Submit a Ticket
+![Ticket Entry](../img/ticket-entry.png)
 
-On the ticket management page, you can directly click on **Submit Ticket**, select the type of ticket, and enter the title and description of the ticket to create it. Attachments can also be uploaded.
+## Submitting a Ticket
+
+On the ticket management page, you can directly click **Submit Ticket**, select the ticket type, enter the title and description of the ticket, and create it. You can also upload attachments.
 
 ![](img/1.work_order_1.png)
 
 ### Ticket Types
 
-The ticket types include **MFA Unbinding**, **Owner Account Change**, **Purchase Consultation**, **Help Documentation**, **Requirement Suggestion**, **Bug Report**, **Usage Problem**, and **Other**. You can select the corresponding type based on the ticket issue for faster assignment and resolution.
+Ticket types include **Unbind MFA**, **Change Owner Account**, **Purchase Inquiry**, **Help Documentation**, **Feature Request**, **Bug Report**, **Usage Issues**, and **Others**. Choose the appropriate type based on your issue to facilitate faster allocation and processing.
 
-<img src="../img/ticket-type.png" width="50%">
+![Ticket Types](../img/ticket-type.png)
 
-**Notes**:
+**Note**:
 
-- When the ticket type is Owner Account Change, you need to download the application form, fill in the required information, stamp it with the company seal, and upload it as an attachment. Incomplete application information will not be accepted.
+- When the ticket type is "Change Owner Account," you need to download the application form, fill in the required information, and affix the company seal before uploading the attachment. If the application information is incomplete, it will not be processed.
 
-<img src="../img/1.work_order_3.png" width="50%">
+![Change Owner Account](../img/1.work_order_3.png)
 
-- When the ticket type is MFA Unbinding, email verification is required.
+- When the ticket type is "Unbind MFA," email verification is required.
 
-<img src="../img/1.work_order_2.png" width="50%">
+![Unbind MFA](../img/1.work_order_2.png)
 
 ### Ticket Status {#state}
 
 | Ticket Status | Description |
-| --- | --- |
-| Allocating | The status of the ticket after it is submitted by the user. |
-| Pending | The status of the ticket after it is accepted by the ticket handler. |
-| Feedback | The status of the ticket after the ticket handler sends a message, excluding the fixed automatic reply. When the user provides further feedback, the ticket will be changed to Waiting for Feedback. |
-| Closed | The status of the ticket after 48 hours of feedback. The ticket submitter can manually close the ticket at any time. |
-| Cancled | The ticket can be canceled when it is in Waiting for Assignment status. |
+| ------------- | ----------- |
+| Waiting for Assignment | The status of a ticket immediately after submission by the user. |
+| Waiting for Feedback | The status of a ticket after it has been accepted for processing. |
+| Feedback Provided | The status of a ticket after the handler sends a message, excluding fixed automatic replies. If the user provides further feedback, the ticket will revert to "Waiting for Feedback." |
+| Closed | The status of a ticket that has remained in "Feedback Provided" for over 7 days. Users can manually close tickets at any time. |
+| Canceled | The status of a ticket that can be canceled while in the "Waiting for Assignment" state. |
 
 ### Attachments
 
-You can upload attachments according to the needs of the ticket issue. Attachments support the following formats: `.png`, `.gif`, `.jpg`, `.jpeg`, `.bmp`, `.doc`, `.docx`, `.pdf`, `.xlsx`, `.xls`, `.txt`, `.zip`, and `.rar`. Each attachment cannot exceed 8MB, and up to 5 attachments can be uploaded at a time.
+You can upload attachments as needed for ticket issues. Supported formats include `.png`, `.gif`, `.jpg`, `.jpeg`, `.bmp`, `.doc`, `.docx`, `.pdf`, `.xlsx`, `xls`, `.txt`, `.zip`, `.rar`. Each attachment cannot exceed 8MB, and up to 5 attachments can be uploaded at once.
 
 ## Ticket List
 
-All tickets submitted by members within the current workspace will be displayed in the **All Tickets** list, allowing you to clearly see the status of each ticket.
+All tickets submitted by members within the current workspace will be displayed in the **All Tickets** list, where you can clearly see the status of each ticket.
 
 ![](img/ticketforall.png)
 
-In **My Tickets**, you can view a summary of the tickets you have submitted **across all workspaces**.
+In the **My Tickets** list, you can view a summary of tickets you have submitted across all workspaces.
 
-**Note**: If you exit Workspace A or Workspace A is dissolved, the tickets from Workspace A will not be displayed in **My Tickets**.
+**Note**: If a user leaves workspace A or if workspace A is dissolved, tickets from workspace A will not be shown in **My Tickets**.
 
 ![](img/ticketformine.png)
 
-You can filter the tickets based on ticket type or status. In the search box, you can enter the ticket number or title to quickly locate a ticket.
+### Related Operations
+
+- Filter tickets based on ticket type or status; use the search box to quickly locate tickets by entering the ticket number or title:
 
 ![](img/ticketformine-op.png)
 
+- Tickets can be exported in bulk:
+
+![](img/ticketexport.png)
+
+- After closing a ticket, you can rate and review the ticket:
+
+![](img/ticket-rate.png)
+
 ## Ticket Details
 
-Clicking on any ticket allows you to view detailed information such as the status, type, submitter, and associated workspace. On the details page, you can communicate with Guance and upload attachments.
+Clicking on any ticket allows you to view detailed information such as the ticket's status, type, submitter, and associated workspace. In the details page, you can communicate with <<< custom_key.brand_name >>> and upload attachments during the conversation.
 
-- For tickets in Waiting for Assignment status, users can revoke the ticket. After revocation, the ticket will be closed and the status will be set as Canceled, and no further messages can be replied to.
+- For tickets waiting for assignment, users can cancel the ticket. If needed, they can choose to restart the ticket later;
 
-<img src="../img/1.work_order_7.png" width="70%">
+![Cancel Ticket](../img/1.work_order_7.png)
 
-- For tickets with Feedback Received status, users can close the ticket. The status will be set as Closed. Once a ticket is closed, it cannot be reopened, and no further messages can be replied to.
+![Restart Ticket](../img/1.work_order_7_1.png)
 
-<img src="../img/1.work_order_8.png" width="70%">
+- For tickets with feedback provided, users can close the ticket. If there is no customer feedback within 7 days, the ticket will automatically close. Once closed, tickets cannot be reopened or replied to.
 
+**Note**: After [account cancellation](./index.md#cancel), any un-closed tickets submitted under the account will be automatically closed.
+
+![Close Ticket](../img/1.work_order_8.png)

@@ -1,0 +1,6 @@
+nav:
+  - 'List Data Forwarding Rules': list.md
+  - 'Get a Single Data Forwarding Rule': get.md
+  - 'Create a Single Data Forwarding Rule': add.md
+  - 'Modify a Single Data Forwarding Rule': modify.md
+  - 'Delete Data Forwarding Rules': batch-delete.md

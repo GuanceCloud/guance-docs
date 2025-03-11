@@ -1,123 +1,152 @@
-# Access to Guance Commercial Plan in Alibaba Cloud Market
+# Activate <<< custom_key.brand_name >>> Commercial Plan on Alibaba Cloud Marketplace
 ---
 
-This article will introduce how to launch the Commercial Plan of Guance after purchasing Guance Service in Alibaba Cloud Market. For direct registration of Commercial Plan, refer to the doc [Register Commercial Plan](../billing/commercial-register.md).
+After purchasing the <<< custom_key.brand_name >>> Commercial Plan product on Alibaba Cloud, you will be redirected to the <<< custom_key.brand_name >>> login page via Alibaba Cloud.
 
-> Note: If you need to open SLS storage in Guance, you can get [access to Guance Exclusive Plan in Alibaba Cloud market](../billing/commercial-aliyun-sls.md).
 
-## Purchase Guance
+## Step One: Purchase <<< custom_key.brand_name >>> {#purchase}
 
-Open [Alibaba Cloud Market Guance](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF), click **Getting Started**.
+Log in and go to [Alibaba Cloud Marketplace <<< custom_key.brand_name >>>](https://market.aliyun.com/products/56838014/cmgj00053362.html?spm=5176.19720258.J_3207526240.210.62c176f4i6AFbF), click **Activate Now**.
 
 ![](img/2-commercial-1107.png)
 
-Prompt **Open Pay-per-use Service**, and click Open after agreeing to the agreement.
+A prompt for **Activating Pay-as-you-go Service** appears. Agree to the terms and click **Activate**.
 
 ![](img/3-commercial-1107.png)
 
-Display **Application for Opening Submitted**.
+It shows **Activation Request Submitted**.
 
 ![](img/4-commercial-1107.png)
 
-Click OK to jump to the cloud market page, and you can view the Guance instance with subscription.
+Click **Confirm** to be redirected to the Marketplace page where you can view the activated <<< custom_key.brand_name >>> instance.
 
 ![](img/10.aliyun_market_1.png)
 
-## Access to Guance Commercial Plan
+## Step Two: Start Using <<< custom_key.brand_name >>> {#all-steps}
 
-In **Purchased Services**, you can view the Guance instance with subscription, and click **No Login** on the right side of the instance.
+In **Marketplace > Purchased Services**, you can view the activated <<< custom_key.brand_name >>> instance. Click the **Login Directly** button on the right side to go directly to <<< custom_key.brand_name >>>.
 
-![](img/12.aliyun_2.png)
+<img src="../img/free-login-ali.png" width="70%" >
 
-In the pop-up dialog box, click OK, and prompt **Register Guance Commercial Plan immediately** and **Exist Billing Center account, bind it**.
+On the <<< custom_key.brand_name >>> side, if the current Alibaba Cloud account ID is not linked to a <<< custom_key.brand_name >>> Billing Center account, two scenarios may occur:
+
+:material-numeric-1-circle-outline: [No Billing Center Account](#register): You need to register a <<< custom_key.brand_name >>> account and a Billing Center account to achieve cloud account binding and settlement;
+
+:material-numeric-2-circle-outline: [Has Billing Center Account](#bond): You can directly bind the Billing Center account to achieve cloud account settlement.
+
 
 ![](img/10.aliyun_market_2.png)
 
-### Sign up for Guance Commercial Plan
+???+ warning "What is a Billing Center Account?"
 
-If you don't have a Guance account yet, you can click Register Guance Commercial Plan. Refer to the doc [Register Commercial Plan](../billing/commercial-register.md) for information on how to register a Commercial Plan.
+    A Billing Center account is an independent account within the <<< custom_key.brand_name >>> Billing Center platform used to manage Commercial Plan billing. It allows a single account to link multiple workspaces for unified billing management.
+
+    The overall process is as follows:
+
+    <img src="../img/17.process_1.png" width="60%" >
+
+### No Billing Center Account {#register}
+
+If you do not have a Billing Center account, click next, which will automatically redirect you to the registration page. After completing the registration process, you will receive both a <<< custom_key.brand_name >>> account and a Billing Center account.
+
+1. Fill in basic information;
+2. Fill in company information;
+3. Choose activation method: enter workspace name, select workspace language, input [Account ID](#uid), [Product Instance ID](#entity-id);
+4. Click **Activate** to complete registration.
 
 ![](img/10.aliyun_market_3.png)
 
-### Bind Guance Workspace
+### Has Billing Center Account {#bond}
 
-If you already have a Guance account, you can click **Exist Billing Center account, bind it** and prompt **How to quickly bind Alibaba Cloud account for settlement**.
+If you already have a Billing Center account, click next to go directly to the binding page:
 
-![](img/12.aliyun_4.png)
+![](img/15.aliyun_register_1.png)
 
-Click OK to start binding the Guance workspace. Before binding the workspace, you need to bind the Billing Center account of Guance.
+**Note**: The site in the upper right corner of this page is unrelated to the Billing Center binding process and only affects the site when creating a workspace. This cannot be changed later.
 
-#### Bind Guance Billing Center account
+#### :material-numeric-1-circle: Bind Billing Center Account
 
-##### Exist Billing Center account
+Enter the username of the Billing Center account and verify via email to bind it;
 
-If you already have a Guance Billing Center account, enter the user name of the Guance Billing Center account and bind it through email verification.
+<img src="../img/10.market_aliyun_1.png" width="70%" >
 
-![](img/1-aliyun-commercial.png)
+#### :material-numeric-2-circle: Bind Workspace {#bind-workspace}
 
-##### No Billing Center account Yet
+##### Create Workspace {#create-workspace}
 
-If you don't have a Guance Billing Center account yet, you can click **Register** to register a new Guance Billing Center account.
+If your Billing Center account does not yet have an associated workspace, you need to create one first. Since <<< custom_key.brand_name >>> console and Billing Center are two separate platforms, you need to confirm whether you have registered for <<< custom_key.brand_name >>> and have a <<< custom_key.brand_name >>> account.
 
-![](img/12.aliyun_6.png)
+![](img/no-workspace.png)
 
-After successful binding, enter the binding Guance workspace page.
+:material-numeric-1-circle-outline: If you have already registered for a <<< custom_key.brand_name >>> account and still need to create a workspace, go to **Create Workspace > Have <<< custom_key.brand_name >>> Account**.
 
-#### Bind Workspace
+<img src="../img/1-1-commercial-aliyun.png" width="65%" >
+
+1. Enter workspace name;
+2. Select workspace language;
+3. Input the email used during <<< custom_key.brand_name >>> account registration;
+4. Enter verification code;
+5. Agree to terms;
+6. Click create, and the workspace will be created successfully.
+
+<img src="../img/15.aliyun_register_5.png" width="65%" >
+
+After the workspace is successfully created, you will automatically return to the binding page, showing **Bound**.
+
+<img src="../img/15.aliyun_register_6.png" width="65%" >
+
+
+:material-numeric-2-circle-outline: If you have not used <<< custom_key.brand_name >>> services before, please register for a <<< custom_key.brand_name >>> account first. Go to **Create Workspace > No <<< custom_key.brand_name >>> Account**.
+
+<img src="../img/1-2-commercial-aliyun.png" width="65%" >
+
+1. Enter workspace name;
+2. Select workspace language;
+3. Input username;
+4. Input and confirm login password;
+5. Input email;
+6. Enter verification code;
+7. Optionally fill in phone number;
+8. Agree to terms;
+9. Click register and create workspace.
+
+<img src="../img/15.aliyun_register_3.png" width="65%" >
+
+After the workspace is successfully created, you will automatically return to the **Bind <<< custom_key.brand_name >>> Workspace** page, showing **Bound**.
 
 ##### Bind Existing Workspace
 
-If you have a Guance associated workspace under the Guance Billing Center account, you can bind it directly.
+If there are existing workspaces under your <<< custom_key.brand_name >>> Billing Center account that can be bound, click **Bind** directly.
 
-![](img/7.aliyun_sls_5.png)
+1. Select the workspace you want to bind and click bind;
+2. Click confirm on the new page;
+3. It will now show as bound.
 
-Select the workspace and click Bind on the right, and enter the email address and verification code in the pop-up dialog box.
+![](img/15.aliyun_register_6.1.png)
 
-![](img/1-aliyun-1109.png)
+## Step Three: Activation Successful
 
-Click **Confirm** to jump to the Bind Guance Workspace page, prompting that it is bound.
+After successfully binding the workspace, click confirm, and you will be redirected to the login page. Enter your username and password to access the workspace and start using <<< custom_key.brand_name >>>.
 
-![](img/2-aliyun-sls.png)
+## How to Obtain Account ID {#uid}
 
-Click OK to show that the opening was successful.
+### Alibaba Cloud Main Account
 
-![](img/3-aliyun-1109.png)
+Log in with the main account to [Alibaba Cloud](https://www.aliyun.com), enter the Alibaba Cloud console, and click the account avatar in the upper right corner to find the account ID.
 
-##### Create a Workspace
+![](../img/6.aliyun_2.png)
 
-If you have registered your Guance account but have not yet created a workspace, please click **Create Workspace** first.
+<!--
 
-![](img/1-1-commercial-aliyun.png)
+### Alibaba Cloud RAM Sub-account
 
-Enter the workspace name and the mailbox used when registering the Guance account, and create it through mailbox verification.
+Log in to [Alibaba Cloud](https://www.aliyun.com) via RAM, enter the Alibaba Cloud console, and click the account avatar in the upper right corner to find the UID after @ in the RAM account.
 
-> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+![](../img/20.aliyun_3.png)
+-->
 
-![](img/4.register_language_11.png)
+## How to Obtain Product Instance ID {#entity-id}
 
-After the workspace is successfully created, it automatically jumps to the Bind Guance Workspace page.
+After confirming the activation request for <<< custom_key.brand_name >>> on Alibaba Cloud, you will be redirected to the list of purchased services. Under the purchased <<< custom_key.brand_name >>> service, you can view the **Instance ID** of the product. Copy this **Instance ID** and enter it into the **Product Instance ID** field in the change settlement method dialog box.
 
-![](img/5-commercial-1108.png)
-
-Click OK to jump to the page **Successfully bind the following Guance workspace**.
-
-![](img/6-commercial-1108.png)
-
-##### Register Guance Account
-
-If you have not used the Guance service before, please register the Guance account and create a workspace first.
-
-![](img/1-2-commercial-aliyun.png)
-
-Click **Register Guance Account**, enter relevant information, and register through mobile phone number verification.
-
-> - Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-> - User name: used to register [Guance studio account](https://auth.guance.com/businessRegister), and will automatically register [Guance Billing Center account](https://boss.guance.com/) with the same user name for you, thus carrying out the subsequent expense settlement process. The user name account of the Billing Center will check its uniqueness and cannot be modified once registered; it is supported to bind the user name and account of the Billing Center. After the binding is completed, the user name cannot be modified. Please operate carefully.
-
-![](img/4.register_language_10.png)
-
-## Start Using Guance
-
-After registration, you can watch the introduction video of Guance, or you can click **Start installing DataKit and configure the first DataKit**.
-
-![](img/1-free-start-1109.png)
+![](../img/10.aliyun_market_5.png)

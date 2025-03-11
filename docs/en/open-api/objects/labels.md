@@ -2,38 +2,31 @@
 
 ---
 
-<br />**post /api/v1/object/hosts/label/list**
+<br />**POST /api/v1/object/hosts/label/list**
 
 ## Overview
-Get the list of `label` (labels are cached, usually for no more than 5 minutes).
+Retrieve the list of `labels` (labels are cached, usually with a cache duration not exceeding 5 minutes)
 
+## Body Request Parameters
 
+| Parameter Name | Type   | Required | Description             |
+|:--------------|:-------|:--------|:-----------------------|
+| source        | string | Y       | Data source<br>Can be empty: False <br> |
+| names         | array  |         | List of object names<br>Can be empty: False <br> |
+| timeRange     | array  |         | Time range<br>Can be empty: False <br> |
 
-
-## Body Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| source | string | Y | Data source<br>Allow null: False <br> |
-| names | array |  | List of object names<br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/object/hosts/label/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"source": "HOST"}' \
---compressed \
---insecure
+--compressed
 ```
-
-
 
 
 ## Response
@@ -43,7 +36,7 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
     "content": {
         "10-23-190-37": {
             "labels": [
-                "哈哈",
+                "haha",
                 "lwctest"
             ]
         },
@@ -92,7 +85,7 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
         "zy-dataflux-func-demo": {
             "labels": [
                 "test",
-                "特尔为"
+                "terwei"
             ]
         }
     },
@@ -102,7 +95,3 @@ curl 'https://openapi.guance.com/api/v1/object/hosts/label/list' \
     "traceId": "TRACE-5EFC56C8-F4E7-4E55-BDCE-B128B81B4DCA"
 } 
 ```
-
-
-
-

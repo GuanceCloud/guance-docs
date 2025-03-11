@@ -1,17 +1,17 @@
 # AWS Bucket Authorization
 
-Go to **Amazon S3 > Buckets > Permissions > Bucket Policy**, click **Edit**:
+Enter **Amazon S3 > Buckets > Permissions > Bucket Policy**, and click **Edit**:
 
 ![](img/s3-bucket.png)
 
-Fill in the following JSON:
+Enter the following JSON:
 
 ```
 {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "Guanceyun Access",
+            "Sid": "Guance Access",
             "Effect": "Allow",
             "Principal": {
                 "AWS": "arn:aws-cn:iam::294654068288:root" // 294654068288 Account-ID

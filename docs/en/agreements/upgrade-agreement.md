@@ -1,218 +1,216 @@
-# Guance Commercial Plan Service Agreement
+# <<< custom_key.brand_name >>> Commercial Plan Service Agreement
 ---
 
-[Chinese Version](upgrade-agreement-zh.md)
+[English Version](upgrade-agreement-en.md)
 
-Effective : October 26, 2024
+Effective Date: October 26, 2024
 
-## Prompt Terms
+## Terms and Conditions Overview
 
-Welcome to sign the Guance Product Service Agreement (hereinafter referred to as this Service Agreement) with Guance Information Technology Co., Limited (hereinafter referred to as "Guance") and use Guance Service!
+Welcome to this "<<< custom_key.brand_name >>> Product Service Agreement" (hereinafter referred to as "this Agreement") with Shanghai Guance Future Information Technology Co., Ltd. (hereinafter referred to as "<<< custom_key.brand_name >>>"). This document governs your use of the <<< custom_key.brand_name >>> services!
 
-The indexed keywords listed before the terms of this Service Agreement are only for the purpose of helping you understand the purpose expressed in the terms, and do not affect or limit the meaning or interpretation of the terms of this Service Agreement. In order to safeguard your own rights and interests, it is recommended that you carefully read the specific statements of each clause.
+The index keywords listed before each clause are intended to help you understand the main points of the clause without affecting or limiting the meaning or interpretation of the terms of this agreement. To protect your rights, it is recommended that you read each clause carefully.
 
-[Careful Reading] You should read this Service Agreement carefully before agreeing to it. Please read carefully and fully understand the contents of each clause, especially the exemption or limitation of liability clauses, the application of law and dispute resolution clauses. These clauses will be marked in bold or underlined, and you should focus on reading them. If you have any questions about the agreement, you can consult customer service and relevant business departments.
+**[Read Carefully]** Before agreeing to this Agreement, you should carefully read this Agreement. Please read all clauses carefully, especially those that exempt or limit liability, legal applicability, and dispute resolution clauses. These clauses will be marked in bold or underlined, and you should focus on reading them. If you have any questions about the Agreement, you can consult customer service and relevant business departments.
 
-[Signing Action] When you read and click Agree to this Service Agreement or choose to accept this Service Agreement through other methods, you have fully read, understood and accepted all the contents within and reached an agreement with Guance. This Service Agreement shall enter into force as of the date on which you click on the Web page to confirm or choose to accept this Service Agreement through other methods. In the course of reading this Service Agreement, if you disagree with it or any of its terms, please do not sign up.
- 
+**[Contract Action]** When you read and click to agree to this Agreement or choose to accept this Agreement in any other way, it means that you have fully read, understood, and accepted all the contents of this Agreement and reached a consensus with "<<< custom_key.brand_name >>>". This Agreement comes into effect from the date you confirm or accept this Agreement through the web page or in any other way. During the reading process, if you do not agree with this Agreement or any of its terms, please do not proceed with the contract action.
+
 ## Service Terms
 
-### 1.Subject and scope of agreement
+### 1. Contracting Parties and Scope of Agreement
 
-This Service Agreement is signed between you and Guance Information Technology Co., Limited for your use of "Commercial Plan" of the one-stop data monitoring cloud platform of Guance.
+This service agreement is a service agreement signed between you and Shanghai Guance Future Information Technology Co., Ltd. regarding your use of the <<< custom_key.brand_name >>> one-stop data monitoring cloud platform [Commercial Plan].
 
-### 2.Service Content
+### 2. Service Content
 
-"Service" in this clause refers to "commercial plan" service of one-stop data monitoring cloud platform of Guance displayed by Guance website (https://www.guance.one/) and client (hereinafter referred to as "Guance website" individually or collectively), which you apply for and Guance agrees to provide to you. (For details, please refer to the service contents and pricing methods on relevant pages of Guance website.) 
+In this clause, "Service" refers to: The services displayed on the <<< custom_key.brand_name >>> website and client (hereinafter collectively referred to as "<<< custom_key.brand_name >>> website") which you apply for and <<< custom_key.brand_name >>> agrees to provide you with the <<< custom_key.brand_name >>> one-stop data monitoring cloud platform [Commercial Plan] service. (For specific details, see the service content and pricing on <<< custom_key.brand_name >>>'s website.)
 
-### 3.Service Fee
+### 3. Service Fees
 
-3.1 The Guance Billing Center will automatically generate and send your monthly usage bill of Guance products to inform you of your monthly consumption.
+3.1 The <<< custom_key.brand_name >>> Billing Center will automatically generate and send you a monthly usage bill for <<< custom_key.brand_name >>> products, informing you of your monthly consumption.
 
-3.2 Guance One-stop Data Monitoring Cloud Platform is one of the products of Guance Billing Center, and its use fee will be paid through your wallet of Guance Billing Center.
+3.2 As part of the <<< custom_key.brand_name >>> Billing Center's products, the usage fees for the <<< custom_key.brand_name >>> one-stop data monitoring cloud platform will be paid through your <<< custom_key.brand_name >>> Billing Center wallet.
 
-3.2.1 You will use the wallet function opened by the Guance Billing Center for each enterprise member to settle accounts, and the wallet will include the account balance formed by your recharge.
+3.2.1 You will settle using the wallet function opened by <<< custom_key.brand_name >>> Billing Center for each corporate member. The wallet contains account balances formed by your recharge.
 
-3.2.2 You can use the account balance of the Guance Billing Center to purchase Guance products. Guance will settle daily according to your usage of Guance products, and deduct your account balance according to the corresponding expenses.
+3.2.2 You can use <<< custom_key.brand_name >>> Billing Center account balance to purchase <<< custom_key.brand_name >>> products. <<< custom_key.brand_name >>> will settle daily based on your usage of <<< custom_key.brand_name >>> products and deduct the corresponding amount from your account balance.
 
-3.2.3 You recharge your account through the corresponding payment methods of the client (including but not limited to mobile phones, websites and other third-party payment channels) (please see the recharge page for specific payment methods). When recharging, you can also enjoy the recharging discount granted by the Guance Billing Center (if any, please refer to the Recharging Agreement for details).
+3.2.3 You can recharge your account via various payment methods provided by the client (including but not limited to mobile, website, and other third-party payment channels). During recharging, you may also enjoy the recharge discounts offered by <<< custom_key.brand_name >>> Billing Center (if applicable, see the recharge agreement for details).
 
-3.2.4 When your account balance is used up, you have entered the suspension state, and Guance has the right to temporarily cancel your qualification for using Guance products.
+3.2.4 When your account balance is exhausted, you will enter a suspended state, and <<< custom_key.brand_name >>> has the right to temporarily revoke your <<< custom_key.brand_name >>> product usage qualification.
 
-3.2.5 When you enter the suspension state for more than "15" days (including "15" days), you have been in the arrears state, and Guance has the right to take one or more of the following measures at the same time:
+3.2.5 If your suspension status lasts more than 15 days (including 15 days), you will enter an overdue payment status. <<< custom_key.brand_name >>> has the right to take one or more of the following measures:
 
-I. Guance has the right to temporarily disqualify you from using Guance products.
+i. <<< custom_key.brand_name >>> has the right to temporarily revoke your <<< custom_key.brand_name >>> product usage qualification.
 
-II. Guance has the right to issue a notice of termination to you and unilaterally terminate these Service Agreement, and requires you to pay 20% of the payable fees as liquidated damages for termination.
+ii. <<< custom_key.brand_name >>> has the right to issue a termination notice and unilaterally terminate this service agreement and require you to pay 20% of the due amount as a breach of contract penalty.
 
-III. From the date when Guance sends the notice of termination to you, you shall also pay a late payment fee of 0.5% of the fees payable to Guance every day.
+iii. From the date <<< custom_key.brand_name >>> issues the termination notice to you, you must also pay 0.5% of the due amount per day as late fees.
 
-IV. For the relevant data of your Guance, Guance has the right to process, delete and destroy it. That is, the relevant data of your Guance will be cleaned up.
+iv. For your data related to <<< custom_key.brand_name >>>, <<< custom_key.brand_name >>> has the right to handle and delete it, meaning your data on <<< custom_key.brand_name >>> will be cleared.
 
-V. Guance allows you to unlock the pause state through the Billing Center. After unlocking, you can continue to use Guance. At this time, the relevant data of Guance before unlocking will not be accessible.
+v. <<< custom_key.brand_name >>> allows you to unlock the suspended state through the Billing Center. After unlocking, you can continue using <<< custom_key.brand_name >>>, but the data prior to unlocking will not be accessible.
 
-3.2.6 You can subscribe to Guance service through the cloud marketplace of the cloud service provider that Guance cooperates with, and use your cloud account to settle fees. If you cancel your subscription, we will send you fee details for unsettled fees incurred before then through the email address you provided when registering your Guance account, and reserve the right to recover unpaid accounts.
+3.2.6 You can subscribe to <<< custom_key.brand_name >>> services through the cloud market of the cloud service providers cooperating with <<< custom_key.brand_name >>> and settle the fees using your cloud account. If you cancel the subscription, we will send you a detailed statement of unsettled fees via the email address you provided when registering for <<< custom_key.brand_name >>> accounts, and we reserve the right to pursue unpaid invoices.
 
-3.3 Invoice Request 
+3.3 Invoice Application
 
-After you receive a monthly bill or purchase a prepaid card in the Guance Bliiing Center, you can contact Guance sales staff or submit a ticket in the Guance Billing Center to apply for an invoice or receipt. When applying for an invoice, you need to provide accurate billing information. After Guance receives the invoice application, it will complete the invoicing within 5 working days after receiving the payment, and the invoice or receipt will be sent directly to the email address you submitted when applying.
+After receiving the monthly bill or purchasing prepaid cards on <<< custom_key.brand_name >>> Billing Center, you can contact <<< custom_key.brand_name >>> sales personnel or submit a ticket on <<< custom_key.brand_name >>> Billing Center to apply for an invoice. When applying for an invoice, you need to provide accurate invoicing information, supporting electronic invoices, and tax rates determined according to national tax laws. <<< custom_key.brand_name >>> will complete invoicing within 5 working days after receiving the application and payment, and send the invoice directly to the email address you provided when applying.
 
-### 4.Your Rights and Obligations
+### 4. Your Rights and Obligations
 
-4.1 After successfully ordering the Guance service, you have the right to require Guance to provide you with services according to this Service Agreement and the service descriptions and technical specifications displayed on relevant pages of the Guance website.
+4.1 After successfully subscribing to <<< custom_key.brand_name >>> services, you have the right to request <<< custom_key.brand_name >>> to provide services according to this service agreement and the service descriptions, technical specifications, etc., displayed on the <<< custom_key.brand_name >>> website.
 
-4.2 You shall pay the corresponding service fee according to the prompt on the website page of the Guance Billing Center and the agreement within it.
+4.2 You should pay the corresponding service fees according to the prompts on the <<< custom_key.brand_name >>> Billing Center website and the provisions of this service agreement.
 
-4.3 Your use of Guance Product Service shall be in accordance with this Service Agreement.
+4.3 Your use of <<< custom_key.brand_name >>> products and services should comply with this service agreement.
 
-4.4 You are responsible for the integrity and confidentiality of the data stored on the Guance platform and the commands and passwords for entering and managing various products and services on the Guance platform. The loss and consequences caused by the loss or leakage of the above data, commands and passwords due to improper maintenance or confidentiality shall be borne by you.
+4.4 You are responsible for the integrity and confidentiality of your data stored on the <<< custom_key.brand_name >>> platform, as well as the passwords and access codes for entering and managing various products and services on the <<< custom_key.brand_name >>> platform. Any losses or consequences resulting from improper maintenance or confidentiality breaches of the above data, passwords, or access codes shall be borne by you.
 
-4.5 You must keep access log records of your website in accordance with the provisions of the Personal Data (Privacy) Ordinance and other laws and regulations, including the published information content and its publishing time, Internet address (IP), domain name, etc., and relevant organizations should cooperate to provide them when inquiring according to law. You will bear the corresponding legal responsibilities caused by failing to keep relevant records as required.
+4.5 You must retain access logs of your website as required by laws and regulations such as the Cybersecurity Law and the Internet Information Service Management Measures, including the content of published information, publishing time, internet addresses (IP), domain names, etc. You should cooperate with relevant authorities when they legally query these records. You will bear the corresponding legal liabilities for failing to retain such records as required.
 
-4.6 You should be responsible for the source and content of your users' business data, and Guance prompts you to carefully judge the legality of the data source and content. You will bear the corresponding results and responsibilities caused by the violation of laws and regulations by your users' business data content.
+4.6 You are responsible for the source and content of your user business data. <<< custom_key.brand_name >>> advises you to prudently judge the legality of the data source. You will bear the corresponding consequences and responsibilities if your user business data violates laws, regulations, departmental rules, or national policies.
 
-4.7 You should also carefully read and abide by the corresponding service instructions, technical specifications, use procedures, operation documents and other contents displayed on the website page of Guance (hereinafter referred to as "Operation Guidelines"), and operate according to relevant operation guidelines. You will bear the consequences caused by violating relevant operational guidelines; Meanwhile, Guance solemnly reminds you, please grasp the risks and operate carefully.
+4.7 You understand and agree that the national secrets of the People's Republic of China are protected by law, and you have the obligation to keep the national secrets of the People's Republic of China confidential; you should comply with the requirements of relevant confidentiality laws and regulations when using <<< custom_key.brand_name >>> services and must not endanger the security of the national secrets of the People's Republic of China.
 
-### 5.Rights and Obligations of Guance
+4.8 You should carefully read and follow the service descriptions, technical specifications, usage procedures, operation manuals, etc., displayed on the <<< custom_key.brand_name >>> website (collectively referred to as "operation guidelines"), and operate accordingly. You will bear the consequences of violating the relevant operation guidelines; meanwhile, <<< custom_key.brand_name >>> earnestly reminds you to operate cautiously and manage risks.
 
-5.1 Guance shall provide services as agreed in this Service Agreement.
+### 5. Rights and Obligations of <<< custom_key.brand_name >>>
 
-5.2 During the service period, Guance will provide you with the following after-sales services:
+5.1 <<< custom_key.brand_name >>> should provide services according to the terms of this agreement.
 
-5.2.1 Guance will provide "5"×"8" telephone and online work order consultation service to answer your questions in use;
+5.2 During the service period, <<< custom_key.brand_name >>> will provide you with the following after-sales services:
 
-5.2.2 Guance will provide you with fault support services, and you should declare faults through online work orders; Guance will provide timely support for failures caused by your non-human operation, except for your human reasons and/or force majeure and other matters beyond the control of Guance.
+5.2.1 <<< custom_key.brand_name >>> will provide 5×8 telephone and online ticket consultation services to answer your questions during use;
 
-5.3 You can also obtain other paid after-sales services through Guance. For details, please refer to the paid after-sales service contents on relevant pages of Guance website and "Guance SaaS Service Level Agreement".
+5.2.2 <<< custom_key.brand_name >>> will provide fault support services. You should report faults through online tickets; <<< custom_key.brand_name >>> will promptly provide support for non-human-induced faults, except for reasons attributable to you, force majeure, or matters beyond <<< custom_key.brand_name >>>'s control.
 
-5.4 You understand that Guance cannot guarantee that the services it provides are flawless (Guance Platform products cannot guarantee the absolute security of your hardware or software), but Guance promises to continuously improve the service quality and service level. Therefore, you agree that even if there are defects in the services provided by Guance, the above defects are inevitable at the technical level of the industry at that time, and they will not be regarded as breaches of Guance. You agree to work with Guance to solve the above defects.
+5.3 You can also obtain other paid after-sales services from <<< custom_key.brand_name >>>. For details, see the chargeable after-sales service content and [<<< custom_key.brand_name >>> SaaS Service Level Agreement] on <<< custom_key.brand_name >>>'s website.
 
-5.5 Some services of Guance may have account authorization management function, that is, you can authorize all or part of your operation authority on the service to one or more authorized accounts designated by you. In this case, all operations under any authorized account will be regarded as your actions through your own account, and you will bear corresponding responsibilities and service fees arising therefrom.
+5.4 You understand that <<< custom_key.brand_name >>> cannot guarantee that the services provided are completely flawless (the <<< custom_key.brand_name >>> platform products cannot guarantee absolute security of your hardware or software), but <<< custom_key.brand_name >>> commits to continuously improving service quality and level. Therefore, you agree: even if <<< custom_key.brand_name >>> provides flawed services, but such flaws are unavoidable at the current industry technology level, they will not be considered as <<< custom_key.brand_name >>>'s breach of contract. You agree to work with <<< custom_key.brand_name >>> to resolve the above-mentioned flaws.
 
-5.6 You should understand and acknowledge that the functions and services related to security protection, management and monitoring of Guance services provided by Guance, although these services have been tested in detail by Guance, cannot guarantee that they are fully compatible with all software and hardware systems, nor can they guarantee the complete accuracy of their software and services. In case of incompatibility and software errors, you should immediately turn off or stop using relevant functions, and contact Guance in time for technical support.
- 
-### 6.User Business Data
+5.5 Some <<< custom_key.brand_name >>> services may have account authorization management functions, meaning you can authorize one or more designated authorized accounts with full or partial operational permissions. All operations performed under any authorized account will be deemed as actions taken through your own account, and you will bear the corresponding responsibilities and service charges.
 
-6.1 Guance understands and recognizes that the data you process, store, upload, download, distribute and process by other means through Guance Platform are all your user business data, and you fully own your user business data.
+5.6 You should understand and acknowledge that although <<< custom_key.brand_name >>> has thoroughly tested the security protection, management, and monitoring functions and services provided by <<< custom_key.brand_name >>>, they may not be fully compatible with all software and hardware systems, nor can they guarantee complete accuracy. If there are compatibility issues or software errors, you should immediately close or stop using the relevant functions and promptly contact <<< custom_key.brand_name >>> for technical support.
 
-6.2 For user business data, Guance will not make any unauthorized use and disclosure except to implement your service requirements; Except in the following cases:
+### 6. User Business Data
 
-6.2.1 When the relevant state organs inquire or access the user's business data according to law, Guance has the obligation to provide cooperation according to the requirements of relevant laws, regulations or policy documents and disclose it to third parties or administrative and judicial institutions;
+6.1 <<< custom_key.brand_name >>> understands and acknowledges that the data processed, stored, uploaded, downloaded, distributed, or handled in any other way through the <<< custom_key.brand_name >>> platform, are your user business data, which you fully own.
 
-6.2.2 You and Guance reach a separate consensus.
+6.2 Regarding user business data, <<< custom_key.brand_name >>> will only use and disclose it as required by your service requests, unless otherwise agreed:
 
-6.3 You can delete and change your user business data by yourself. If you release the service or delete data, Guance will delete your data and no longer retain it according to your instructions. You should be careful about deleting and changing data.
+6.2.1 In cases where national authorities legally query or inspect user business data, <<< custom_key.brand_name >>> has the obligation to provide cooperation and disclose to third parties or administrative, judicial institutions as required by relevant laws and regulations or policy documents;
 
-6.4 When the service period expires, the service is terminated prematurely (including premature termination by mutual agreement, premature termination caused by other reasons, etc.) or you are in arrears, Guance will only continue to store your user business data (if any) within a certain buffer period (subject to the time limit specified in the exclusive terms, product documents and service descriptions applicable to the Guance platform service) unless expressly stipulated by laws and regulations or otherwise agreed by both parties. When the buffer period expires, Guance will delete all user business data, including all cached or backed-up copies, and will no longer retain any of your user business data.
+6.2.2 You and <<< custom_key.brand_name >>> reach a separate agreement.
 
-6.5 Once the user's business data is deleted, it cannot be recovered; You shall bear the consequences and responsibilities arising from the deletion of the data, and you understand and agree that Guance has no obligation to continue to retain, export or return the user's business data.
+6.3 You can independently perform operations such as deleting, modifying, etc., on your user business data. If you release services or delete data, <<< custom_key.brand_name >>> will delete your data and no longer retain it according to your instructions. You should operate cautiously regarding data deletion and modification.
 
-6.6 Guance abides by its security commitment to users and protects the data stored by users on the Guance platform according to applicable laws.
+6.4 When the service period expires, the service is terminated early (including mutual agreement for early termination, other reasons leading to early termination, etc.), or you incur overdue payments, unless otherwise specified by law, regulations, supervisory authority requirements, or mutually agreed upon, <<< custom_key.brand_name >>> will store your user business data (if any) for a certain buffer period (subject to the exclusive terms, product documentation, service descriptions, etc., specified by the <<< custom_key.brand_name >>> platform). After the buffer period expires, <<< custom_key.brand_name >>> will delete all user business data, including all cached or backup copies, and no longer retain any of your user business data.
 
-### 7.Intellectual Property
+6.5 Once user business data is deleted, it cannot be restored; you should bear the consequences and responsibilities arising from the deletion of data. You understand and agree that <<< custom_key.brand_name >>> does not have the obligation to retain, export, or return user business data.
 
-7.1 The intellectual property rights of any information, technology or technical support, software and services provided by one party to the other party under this service agreement belong to the provider or its legal right holder; Except with the express consent of the provider or the legal obligee, the other party has no right to copy, disseminate, transfer, license or provide others with the above knowledge achievements, otherwise it shall bear corresponding responsibilities.
+6.6 <<< custom_key.brand_name >>> adheres to its commitment to user security and protects the data stored on the <<< custom_key.brand_name >>> platform according to applicable laws.
 
-7.2 You should ensure that the materials submitted by Guance, the use of Guance service and the results generated by its use do not infringe the legitimate rights and interests of any third party. Guance should ensure that the services provided to you do not infringe the legitimate rights and interests of any third party.
+### 7. Intellectual Property
 
-7.3 If a third-party organization or individual questions or complains about the ownership of intellectual property rights of related materials involved in your use of Guance services, or question or complain about the ownership of intellectual property rights of Guance services you use, both you and Guance have the responsibility to issue relevant intellectual property certification materials and cooperate with each other in handling relevant complaints. The breaching party shall be responsible for the settlement of any claim, action or possible action against it arising therefrom, bear the costs and losses, and exonerate the other party from liability.
+7.1 Under this agreement, any materials, technologies, or technical support, software, services, etc., provided by one party to the other belong to the provider or its legitimate rights holder; unless the provider or legitimate rights holder explicitly agrees, the other party has no right to copy, disseminate, transfer, license, or provide the aforementioned intellectual achievements to others, and should bear the corresponding responsibility otherwise.
 
-### 8.Confidentiality Clause
+7.2 You should ensure that the materials submitted to <<< custom_key.brand_name >>>, the use of <<< custom_key.brand_name >>> services, and the results generated from using <<< custom_key.brand_name >>> services do not infringe on the legitimate rights and interests of any third party. <<< custom_key.brand_name >>> should ensure that the services provided to you do not infringe on the legitimate rights and interests of any third party.
 
-8.1 Confidential information referred to in this clause means business secrets (including financial secrets), technical secrets, business know-how and/or other confidential information and materials obtained by one party (hereinafter referred to as "the receiving party") from the other party (hereinafter referred to as "the disclosing party") or arising from the performance of this agreement by both parties. Scope of the Confidential Information include product information, product planning, pricing, financial and marketing planning, business strategy, customer information, customer data, research and development, software, hardware, technical specifications, design, special formulas, special algorithms, etc. This clause shall take effect regardless of the form or carrier of the above information and materials, and whether the disclosing party indicates its confidentiality orally, graphically or in writing at the time of disclosure.
+7.3 If a third party institution or individual questions the ownership of intellectual property rights related to the materials used in your use of <<< custom_key.brand_name >>> services, or questions the ownership of intellectual property rights of <<< custom_key.brand_name >>> services, both you and <<< custom_key.brand_name >>> are responsible for providing relevant intellectual property proof materials and cooperating with the handling of complaints. For claims, lawsuits, or potential lawsuits arising from this, the breaching party should resolve the issue, bear the costs and losses, and indemnify the other party.
 
-8.2 Both parties shall take appropriate measures to properly preserve the confidential information provided by the other party, and the measures shall be no less prudent than when protecting their own confidential information. The Confidential Information shall only be used by the Parties for purposes or purposes related to this Service Agreement.
+### 8. Confidentiality Clause
 
-8.3 Both parties guarantee that the Confidential Information shall only be known to the responsible persons and employees of each party engaged in the business, and strictly restrict the employees who have access to the Confidential Information from complying with the confidentiality obligations of this clause.
+8.1 The confidential information referred to in this service agreement includes commercial secrets (including financial secrets), technical secrets, business know-how, and/or other information and materials that need to be kept confidential (including product information, product plans, prices, financial and marketing plans, business strategies, customer information, customer data, research and development, software, hardware, technical descriptions, designs, special formulas, special algorithms, etc.) obtained by one party (hereinafter referred to as the "recipient") from the other party (hereinafter referred to as the "discloser") or generated during the performance of this agreement, regardless of the form or carrier of the information and materials, and whether the discloser indicated their confidentiality at the time of disclosure.
 
-8.4 The above restrictions of this clause shall not apply to the following situations:
+8.2 Both parties should take appropriate measures to properly preserve the confidential information provided by the other party, with a level of caution no less than what they would use to protect their own confidential information. Both parties may only use the confidential information for purposes or objectives related to this agreement.
 
-8.4.1 The Confidential Information is lawfully owned by the Recipient at or before the date of signing this Agreement;
+8.3 Both parties should ensure that confidential information is only known to the responsible persons and employees involved in the business within their respective organizations, and strictly restrict the employees who come into contact with the confidential information to comply with the confidentiality obligations stipulated in this clause.
 
-8.4.2 The Confidential Information has been made public or is available in the public domain at the time of notification to the recipient;
+8.4 The restrictions mentioned in this clause do not apply to the following situations:
 
-8.4.3 The Confidential Information is obtained by the receiving party from a third party with which the receiving party has no obligation of confidentiality or non-disclosure;
+8.4.1 At the time of signing this agreement or before, the confidential information was already legally owned by the recipient;
 
-8.4.4 The Confidential Information has been made public or can be obtained from the public domain without violating the responsibilities agreed in this Agreement;
+8.4.2 The confidential information was publicly available or could be obtained from public sources when notified to the recipient;
 
-8.4.5 The Confidential Information is independently developed by the recipient or its affiliates or subsidiaries and does not benefit from information obtained by the notifying party or its affiliates or subsidiaries;
+8.4.3 The confidential information was obtained by the recipient from a third party without a confidentiality or non-disclosure obligation;
 
-8.4.6 The Confidential Information is disclosed by the receiving party at the request of a court or other legal or administrative authority (through oral questions, inquiries, requests for information or documents, subpoenas, civil or criminal investigations or other proceedings);
+8.4.4 The confidential information has become public or can be obtained from public sources without violating the terms of this agreement;
 
-8.4.7 In order to apply for a certain business qualification from administrative departments, trade associations and other institutions, obtain a certain certification, or meet national and industry standards/certifications, the recipient shall submit materials or explain the disclosed information to the aforementioned institutions in combination with the other party's situation. In the case, the recipient shall adhere to the principle of minimum disclosure if necessary and require the institutions that have been informed of confidential information to keep confidential according to the standards not lower than those in this Service Agreement.
+8.4.5 The confidential information was independently developed by the recipient or its affiliates and did not benefit from information obtained from the discloser or its affiliates;
 
-8.5 Both you and Guance should try their best to protect the above confidential information from disclosure. Once the disclosure of the above confidential information is found, both parties shall cooperate to take all reasonable measures to avoid or mitigate the damage consequences. If losses are caused to the other party, compensation shall be made for the direct economic losses caused to the other party.
+8.4.6 The recipient discloses confidential information in response to a court or other legal or administrative authority’s request (through oral questioning, inquiry, request for documents or files, subpoena, civil or criminal investigation, or other procedures);
 
-### 9.Opening, Termination and Change of Services
+8.4.7 The recipient needs to disclose information to administrative agencies, industry associations, or other institutions to apply for business qualifications, obtain certification, or comply with national or industry standards/certifications, in which case the recipient should adhere to the principle of minimal necessary disclosure and require the institutions to maintain confidentiality at a standard no lower than this agreement.
 
-9.1 After you read and click to agree to this agreement or choose to accept this agreement in other ways, the Guance platform service will be opened. After opening, you can use the service by obtaining the key and password for logging in and using the service sent by Guance. The service period starts from the time of opening (not from the time when you obtain the key and password for logging in and using the service);
+8.5 Both you and <<< custom_key.brand_name >>> should make every effort to prevent the leakage of the above-mentioned confidential information. Once a leakage event is discovered, both parties should cooperate to take all reasonable measures to avoid or mitigate the damage. If any loss is caused thereby, the party at fault should compensate for the direct economic losses suffered by the other party.
 
-9.2 Unless otherwise agreed or you have not settled other payables, you can use Guance platform service after opening the service; You should ensure that your account balance is sufficient to continue to use the service until the termination specified by law or agreed upon in these Terms of Service.
+### 9. Activation, Termination, and Modification of Services
 
-9.3 In case of any of the following circumstances, the service period shall be terminated ahead of schedule:
+9.1 After reading and clicking to agree to this agreement or choosing to accept this agreement in any other way, <<< custom_key.brand_name >>> platform services will be activated. After activation, you will receive login keys and passwords sent by <<< custom_key.brand_name >>> to use the services, and the service period will start from the time of activation (not from the time you receive the login keys and passwords); 
 
-9.3.1 Both parties agree to terminate in advance through consultation;
+9.2 Unless otherwise agreed or you have outstanding payments, you can use <<< custom_key.brand_name >>> platform services immediately after activation. You should ensure sufficient account balance to continue using the services until the termination conditions specified by law or this service agreement occur.
 
-9.3.2 If you seriously violate this Service Agreement (including, you seriously violate relevant laws and regulations, or you seriously violate any commitment under this agreement, etc.), Guance has the right to terminate the service in advance until all your data is erased;
+9.3 The service period will terminate prematurely under any of the following circumstances:
 
-9.3.3 You understand and fully recognize that, Guance has established (and will be continuously improved according to the development of technology) necessary technical measures to defend against network security hazards or behaviors (hereinafter referred to as such behaviors) including computer viruses, network intrusions and attacks and damages (including DDoS). However, in view of the limitations and relativity of network security technology and the unpredictability of these behaviors, Guance may decide to suspend or terminate the service if your website encounters such behaviors and brings harm to Guance or other networks or servers of Guance (including local, foreign and international networks and servers, etc.), or affect the smooth connection between the observation cloud and the Internet or between Guance and specific networks, servers and inside Guance. If the service is terminated, the service fee will be calculated according to the actual service month (less than one month by day).
+9.3.1 Both parties agree to terminate the service prematurely;
 
-9.3.4 Guance may terminate this service agreement by notifying you on the Guance website or sending you an in-website notice or a written notice 30 days in advance.
+9.3.2 You seriously violate this agreement (including serious violations of relevant laws and regulations, or any commitments made under this agreement), <<< custom_key.brand_name >>> has the right to terminate the service and clear all your data;
 
-9.4 You understand and acknowledge that, Guance does not guarantee permanent provision of Guance platform services for the purpose of upgrading technology and service system and adjusting business strategy or cooperate with changes in laws, regulations and policies. And it has the right to change the form, specification or other aspects of the provided service (such as the price and billing mode of the service). Before terminating the service or making the above changes, Guance will try its best and give advance notice in one or more ways such as website announcement, in-station letter, mail or SMS.
- 
-### 10.Liability for Breach of Contract
+9.3.3 You understand and fully recognize that although <<< custom_key.brand_name >>> has established (and will continue to improve according to technological developments) necessary technical measures to defend against computer viruses, network intrusions, and attacks (including DDoS) that pose threats to network security, given the limitations and unpredictability of cybersecurity technology, if your website encounters such behaviors causing harm to <<< custom_key.brand_name >>> or <<< custom_key.brand_name >>>'s other networks or servers (including local, remote, and international networks and servers), <<< custom_key.brand_name >>> may decide to suspend or terminate the service. If the service is terminated, the service fee will be calculated based on the actual months of service provided (less than one month will be calculated by days).
 
-10.1 If you violate any of the promises, warranties, service usage rules or obligations in this Service Agreement, or if Guance believes that your usage behavior is abnormal according to its judgment, Guance has the right to unilaterally take one or more of the following measures according to its independent judgment: 
-(1) Restrict or suspend the use of the Service; 
-(2) Terminate the provision of services and terminate this Agreement; 
-(3) Investigate your legal responsibility; 
-(4) Other treatment measures deemed suitable by Guance. You will bear the user losses caused by Guance taking measures such as suspending service and terminating service according to the above agreement.
+9.3.4 <<< custom_key.brand_name >>> may announce or notify you through the <<< custom_key.brand_name >>> website or written notice 30 days in advance to terminate this service agreement.
 
-10.2 If you violate the relevant laws and regulations or the provisions of this Service Agreement and relevant rules, resulting in any loss of Guance, claims from other users, any third party or penalties from any administrative department, you shall fully compensate Guance, other users or relevant third parties for their actual losses, including reasonable lawyer fees.
+9.4 You understand and acknowledge that for technical upgrades, service system upgrades, or adjustments to operating strategies to comply with significant national technical or legal policy changes, <<< custom_key.brand_name >>> does not guarantee permanent provision of <<< custom_key.brand_name >>> platform services and has the right to change the form, specifications, or other aspects (such as price and billing model) of the services provided. Before terminating the service or making such changes, <<< custom_key.brand_name >>> will make every effort to notify you in advance through website announcements, internal messages, emails, or SMS.
 
-10.3 You understand and agree that due to the particularity of computers and the Internet, the following situations are not Guance breaches:
+### 10. Liability for Breach of Contract
 
-10.3.1 When Guance configures, maintains and upgrades the system and server, it needs to interrupt the service for a short time;
+10.1 If you violate any content of the commitments, guarantees, service usage rules, or obligations stipulated in this agreement, or if <<< custom_key.brand_name >>> determines based on its judgment that your usage behavior is abnormal, <<< custom_key.brand_name >>> has the right to take one or more of the following measures based on the severity of the situation: (1) restrict or suspend the use of the service; (2) terminate the service and this agreement; (3) pursue your legal responsibility; (4) other measures that <<< custom_key.brand_name >>> deems appropriate. Any losses incurred by you due to <<< custom_key.brand_name >>> taking measures such as suspending or terminating the service will be borne by you.
 
-10.3.2 Slow access to your website due to blocked access on the network.
+10.2 If your violation of relevant laws and regulations or this agreement, related rules causes any loss, claim, or penalty to <<< custom_key.brand_name >>>, you should fully compensate <<< custom_key.brand_name >>>, other users, or relevant third parties for actual losses, including reasonable attorney fees.
 
-10.4 If you cannot use the service normally for 72 consecutive hours due to Guance, you may terminate receiving the service, except for reasons not within the control of Guance.
+10.3 You understand and agree that the following situations do not constitute a breach of contract by <<< custom_key.brand_name >>>:
 
-10.5 Under no circumstances shall Guance be liable for any indirect, consequential, disciplinary, accidental or special damage, including the loss of profits you suffer from using Guance Services (even if you have been informed of the possibility of such loss).
+10.3.1 <<< custom_key.brand_name >>> interrupts the service for a short period while configuring, maintaining, or upgrading the system and servers;
 
-### 11.Notification
+10.3.2 Due to Internet congestion, your website's access speed decreases.
 
-11.1 When you use the Guance service, you should provide Guance with real and effective contact information (including your email address, contact telephone number, contact address, etc.). If the contact information changes, you have the obligation to update the relevant information in time and keep it in a contactable state. The member account number (including sub-account number) of your receiving station mail and system message is also your effective contact information.
+10.4 If <<< custom_key.brand_name >>> causes you to be unable to normally use the service for 72 consecutive hours due to <<< custom_key.brand_name >>>'s reasons, you can terminate the service, except for reasons not controlled by <<< custom_key.brand_name >>>.
 
-11.2 Guance will deliver various notices to you on one or more of the above contact information, and the contents of such notices may have significant beneficial or adverse effects on your rights and obligations, so please pay close attention to them in time.
+10.5 Under any circumstances, <<< custom_key.brand_name >>> shall not be liable for any indirect, consequential, punitive, incidental, or special damages, including profit loss incurred by you using <<< custom_key.brand_name >>> services (even if you have been informed of the possibility of such losses).
 
-11.3 Guance will send a notice to you through the above contact information, in which written notices sent electronically, including announcements, sending mobile phone short messages to the contact telephone number provided by you, sending e-mails to the e-mail address provided by you, sending system messages to your account number and in-station letter information, will be deemed as delivery after successful sending; A written notice sent by paper carrier shall be deemed to have been delivered on the fifth (5) natural day after it is mailed according to the contact address provided.
+### 11. Notifications
 
-11.4 You should ensure that the contact information provided is accurate, valid and updated in real time. If the legal documents cannot be delivered or are not delivered in time due to inaccurate contact information provided or failure to inform the changed contact information in time, you will bear the possible legal consequences.
- 
-### 12.Force Majeure
+11.1 When using <<< custom_key.brand_name >>> services, you should provide <<< custom_key.brand_name >>> with true and effective contact information (including your email address, phone number, mailing address, etc.). If your contact information changes, you have the obligation to update the information in a timely manner and keep it reachable. Your member account (including sub-accounts) for receiving internal messages and system notifications is also considered valid contact information.
 
-12.1 If the performance of these Terms of Service is impossible, unnecessary or meaningless due to force majeure or other unexpected events, the party suffering from force majeure or unexpected events shall not be liable.
+11.2 <<< custom_key.brand_name >>> will deliver various notices to one or several of your contact methods, and the content of these notices may significantly impact your rights and obligations. Please ensure you stay updated with these notices.
 
-12.2 Force majeure and unexpected events refer to objective events that cannot be foreseen, overcome or avoided and have a significant impact on one or both parties, which includes natural disasters such as floods, earthquakes, plagues and other social events such as wars, turmoil, government actions, telecommunication trunk line interruption, hackers, network congestion, technical adjustment of telecommunication administration and government control.
- 
-### 13.Application of Law and Dispute Resolution
+11.3 Notices sent electronically by <<< custom_key.brand_name >>>, including announcements, SMS messages to your provided phone number, emails to your provided email address, system messages, and internal messages to your account, are considered delivered upon successful sending. Paper-based notices are considered delivered on the fifth natural day after posting to the provided address.
 
-13.1 The formation, entry into force, interpretation, amendment, supplement, termination, execution and dispute resolution of this Service Agreement shall be governed by the laws of Hong Kong.
+11.4 You should ensure that the contact information you provide is accurate and up-to-date. If legal documents cannot be delivered or are not delivered in a timely manner due to inaccurate or untimely updated contact information, you will bear the legal consequences thereof.
 
-13.2 Disputes arising from your use of and in connection with the Guance Platform Services shall be resolved by Guance through negotiation with you. If negotiation fails, either party may bring a lawsuit to the Hong Kong court.
- 
-### 14.Supplementary Provision
+### 12. Force Majeure
 
-14.1 The service description, price description and order page (including special terms and conditions of products, service description, operation documents, etc.) of Guance on relevant pages of its website, are an integral part of this service agreement. In case of inconsistencies, the order of (1) Service Description, Price Description, Other Order Pages, (2) Special Terms, and (3) General Terms and Conditions of this Service Agreement shall apply.
+12.1 If performance of this service agreement becomes impossible, unnecessary, or meaningless due to force majeure or other unforeseen events, the party suffering from the force majeure or unexpected event shall not be held liable.
 
-14.2 If the content of this service agreement changes, Guance shall prompt you to modify the content by announcing it on the appropriate page of its website 30 days in advance; If you continue to use Guance service, it will be deemed that you accept the relevant modifications made by Guance.
+12.2 Force majeure and unexpected events refer to objective events that cannot be foreseen, overcome, or avoided and have a significant impact on one or both parties, including natural disasters such as floods, earthquakes, epidemics, and social events such as wars, riots, government actions, interruptions of telecommunications trunk lines, hacker attacks, network congestion, adjustments by telecommunications departments, and government controls.
 
-14.3 Guance has the right to transfer all or part of its rights and obligations under this Service Agreement to its affiliated companies upon prior notice.
+### 13. Applicable Law and Dispute Resolution
 
-14.4 Waiver of the rights under this Agreement by Guance in the event of your negligence or breach of contract shall not be construed as a waiver of your other or subsequent negligence or breach of contract of the same kind.
+13.1 The establishment, effectiveness, interpretation, revision, supplementation, termination, execution, and dispute resolution of this agreement shall be governed by the laws of the People's Republic of China (excluding Hong Kong, Macao, and Taiwan regions).
 
-14.5 Any provision of this Service Agreement shall be deemed nullified, invalid or unenforceable, and this provision shall be deemed divisible and shall not affect the validity and enforceability of the remaining provisions of this Agreement.
+13.2 Any disputes arising from your use of <<< custom_key.brand_name >>> platform services or related to <<< custom_key.brand_name >>> platform services shall be resolved through negotiation between <<< custom_key.brand_name >>> and you. If negotiations fail, either party may bring the dispute to the People's Court of Pudong New Area, Shanghai.
 
-14.6 The warranty clauses, confidentiality clauses, intellectual property clauses, applicable laws and dispute resolution clauses under this Service Agreement shall not be invalidated by the termination of this Agreement.
+### 14. Miscellaneous
+
+14.1 The service descriptions, price explanations, and order confirmation pages (including product-specific terms, service descriptions, operation manuals, etc.) on <<< custom_key.brand_name >>>'s website are integral parts of this agreement. In case of inconsistencies, the order of precedence shall be: (1) service descriptions, price explanations, and other order confirmation pages, (2) specific terms, (3) general terms of this agreement.
+
+14.2 If the content of this agreement changes, <<< custom_key.brand_name >>> should announce the modifications on the appropriate sections of the <<< custom_key.brand_name >>> website 30 days in advance. If you continue to use <<< custom_key.brand_name >>> services, it will be deemed that you accept the modifications made by <<< custom_key.brand_name >>>.
+
+14.3 <<< custom_key.brand_name >>> has the right to transfer all or part of its rights and obligations under this agreement to its affiliated companies after notifying you in advance.
+
+14.4 <<< custom_key.brand_name >>> waiving its rights under this agreement due to your negligence or breach does not constitute a waiver of your other or future similar negligence or breach.
+
+14.5 If any clause of this agreement is deemed void, invalid, or unenforceable, that clause shall be severable and shall not affect the validity and enforceability of the remaining clauses.
+
+14.6 The warranty clauses, confidentiality clauses, intellectual property clauses, applicable law, and dispute resolution clauses under this agreement remain effective even after the termination of this agreement.

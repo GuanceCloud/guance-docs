@@ -1,56 +1,54 @@
-# Comparison of DQL with Other Query Languages
+# DQL VS Other Query Languages
 ---
 
 <a name="1ad93e28"></a>
-# Preface
+## Preface
 
-DQL is a unified query language for Guance. In order to facilitate everyone to learn this language, we select several different query languages to compare with it, so that everyone can understand and use DQL quickly.
+DQL is <<< custom_key.brand_name >>>'s unified query language. To facilitate learning this language, we will compare it with several other query languages below to help users understand and use DQL more quickly.
 
-Here we choose [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/), [LogQL](https://grafana.com/docs/loki/latest/logql/) and well-known SQL statements as a comparison, and make a comparison of the basic use of each query language.
+Here, we have chosen [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/), [LogQL](https://grafana.com/docs/loki/latest/logql/), and the well-known SQL statements for comparison, highlighting the basic usage of each query language.
 
-> Note: SQL has powerful ability to add, delete, check and change, so only its query function is taken here for comparison.
+**Note:** SQL has powerful capabilities for insert, delete, update, and select operations; here we only focus on its query functionality for comparison.
 
 
-PromQL is a kind of query language used in [Prometheus](https://prometheus.io/) to query its time series data; LogQL is a log query language for [Grafana Loki](https://grafana.com/oss/loki/). Similar to PromQL, it uses the syntax structure design of PromQL for reference. SQL is one of the most commonly used query languages in our daily life, and its syntax structure is quite different from the former two (different databases are similar, taking MySQL as an example here).
+PromQL is a query language used in [Prometheus](https://prometheus.io/) for querying time series data; LogQL is a log query language used in [Grafana Loki](https://grafana.com/oss/loki/), which borrows the syntax structure from PromQL and closely resembles it. SQL, on the other hand, is a widely-used general-purpose query language whose syntax differs significantly from the first two (variations exist among different databases, but they are largely similar; here we use MySQL as an example).
 
-The initial syntax structure of DQL is similar to PromQL. With the continuous expansion of business, DQL itself has gradually evolved different query functions. It integrates the basic syntax structure of PromQL, but at the same time draws lessons from some syntax structures and semantic expressions of SQL statements, aiming at making it easier for everyone to write some more complex queries.
+Initially, DQL's syntax was similar to PromQL. As business needs expanded, DQL evolved to include various query functionalities. It combines the basic syntax of PromQL with elements from SQL to make it easier for users to write more complex queries.
 
-The following will explain the differences of each query language from the following aspects:
+The following sections will explain the differences between these query languages in terms of:
 
-- Basic grammatical structure
-- Commonly Supported Predefined Functions
-- Commonly used query writing
+- Basic Syntax Structure
+- Supported Common Predefined Functions
+- Common Query Writing Styles
 
 <a name="de3e31ea"></a>
-## Basic Grammatical Structure
+## Basic Syntax Structure
 | Query Language | Basic Structure |
 | --- | --- |
-| PromQL | `Metric {conditional filter list} [tart time:end time]` |
+| PromQL | `Metrics {filter conditions} [start_time:end_time]` |
 | LogQL | `{stream-selector} log-pipeline` |
 | SQL | `SELECT <column-clause> <FROM-clause> <WHERE-clause> <GROUP-BY-clause> ...` |
-| DQL | `namespace::measurement:(column-clause) [time-range-clause] { WHERE-clause } GROUP-BY-clause ORDER-BY-clause` |
+| DQL | `namespace::Measurement:(column-clause) [time-range-clause] { WHERE-clause } GROUP-BY-clause ORDER-BY-clause` |
 
-
-Detailed Explanation
+Below, we provide detailed explanations.
 
 <a name="PromQL"></a>
 ### PromQL
 
-In Prometheuse, related metrics are organized in discrete form. In its query, you can directly find the corresponding metrics, such as:
+In Prometheus, related metrics are organized in a discrete manner. In its queries, you can directly search for specific metrics, such as:
 
 ```python
 http_requests_total{environment="prometheus", method!="GET"}
 ```
 
-Here you look for the metric `http_requests_total` and filter the data by specifying its label constraints (`environment` and `method`).
+This query searches for the metric `http_requests_total`, filtering the data by specifying label conditions (`environment` and `method`).
 
-> Note: PromeQL calls the label constraint here Label Matchers. It can be simply understood as a kind of where conditional filtering.
-
+**Note:** PromQL refers to these label conditions as Label Matchers. You can simply think of them as where clause filters.
 
 <a name="LogQL"></a>
 ### LogQL
 
-As the name implies, LogQL is mainly used for log content queries, such as:
+As the name suggests, LogQL is primarily used for querying log content, such as:
 
 ```python
 {container="query-frontend", namespace="loki-dev"}
@@ -59,14 +57,14 @@ As the name implies, LogQL is mainly used for log content queries, such as:
 	| duration > 10s and throughput_mb < 500
 ```
 
-Here in `{...}` , LogQL is called Stream Selector, which is intended to delimit the data query (similar to the `FROM ...` part of SQL); The second part is called Log Pipeline, which mainly deals with the extraction and filtering of log information.
+Here, `{...}` is called a Stream Selector in LogQL, which defines the data query scope (similar to the `FROM ...` part in SQL); the latter part is called a Log Pipeline, which mainly processes log information extraction and filtering.
 
-It can be seen that the `{...}` in LogQL, like Label Matchers in PromQL, can also be understood as a kind of where conditional filtering.
+From this, we can see that the `{...}` in LogQL serves the same purpose as Label Matchers in PromQL, both of which can be understood as where clause filters.
 
 <a name="SQL"></a>
 ### SQL
 
-For the most well-known query language, if you want to achieve the above two effects, the simple translation is as follows (because of the different storage structures, only the general meaning is expressed here):
+For the most familiar query language, achieving similar effects would look like this (due to different storage structures, this is just an approximate translation):
 
 ```sql
 SELECT * FROM `loki-dev`
@@ -78,15 +76,15 @@ SELECT * FROM `loki-dev`
 <a name="DQL"></a>
 ### DQL
 
-DQL is essentially a query translator, and its background does not directly manage the storage and organization of data. So theoretically it can support any type of storage engine, such as information data storage (MySQL/Oracle/ES/Redis, etc.), file storage (HBASE/S3/OSS, etc.). At present, DQL is mainly used for querying the following types of data:
+DQL is essentially a query translator that does not directly manage data storage and organization. Therefore, theoretically, it can support any type of storage engine, such as information data storage (MySQL/Oracle/ES/Redis, etc.), file storage (HBASE/S3/OSS, etc.). Currently, DQL is mainly used for querying the following types of data:
 
-- Timing Data
+- Time Series Data
 - Log Data
 - Object Data
-- Application Performance Tracking (APM) Data
-- User Behavior Detection (RUM) Data
+- APM Data
+- RUM Data
 - Critical Event Data
-- Safety Inspection Data
+- Security Check Data
 - ...
 
 For example:
@@ -95,57 +93,57 @@ For example:
 metric::cpu:(usage_system, usage_user) { usage_idle > 0.9 } [2d:1d:1h] BY hostname
 ```
 
-Here, `metric` specifies the time series data to be queried (understood simply as a DB in MySQL), and  `cpu` is one of the metrics sets (similar to Table in MySQL), and specifies looking for two of the fields `usage_system` and `usage_user`; ; Then, `{...}` denotes the filter criteria, and finally,  `[...]` denotes the time range of the query: the period from the day before yesterday to yesterday, with an aggregation interval of 1h.
+Here, `metric` specifies the time series data to be queried (similar to a DB in MySQL), and `cpu` is a type of Measurement (similar to a Table in MySQL), specifying two fields `usage_system` and `usage_user`. The `{...}` indicates filter conditions, and `[...]` specifies the time range for the query: from two days ago to yesterday, aggregated every hour.
 
 More examples:
 
 ```
-# Query the pod object in K8s
+# Query K8s pod objects (object)
 object::kubelet_pod:(name, age) { cpu_usage > 30.0 } [10m] BY namespace
 
-# Find the log named my_service application (message field)
+# Find logs for the application named my_service (message field)
 logging::my_service:(message) [1d]
 
-# Look at span data for duration > 1000us in the application performance trace (T is tracing) and group them by operation
+# View span data in APM tracing with duration > 1000us, grouped by operation
 T::my_service { duration > 1000 } [10m] BY operation
 ```
 
 <a name="b69c48c4"></a>
-## Horizontal Contrast
+## Horizontal Comparison
 
 <a name="48b7e96a"></a>
-### Comparison of Basic Functions
-| Query Language | Main Areas | Support Timing Query | Support Log Query | Support Time Range Lookup | Support group by Aggregation |
+### Basic Function Comparison
+| Query Language | Main Domain | Supports Time Series Queries | Supports Log Queries | Supports Time Range Search | Supports Group By Aggregation |
 | --- | --- | --- | --- | --- | --- |
-| PromQL | Prometheuse Metric Query | Available | Unavailable | Available | [Available](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators) |
-| LogQL | Mainly used for querying logs | Support generating metrics from logs | Available | Available | [Available](https://grafana.com/docs/loki/latest/logql/#aggregation-operators) |
-| SQL | Universal Query Language | [Certain databases](https://www.timescale.com/)<br />support sequential storage | Unavailable | Unavailable | Unavailable |
-| DQL | Data Query of Guance Platform | Available | Available | Available | Available |
+| PromQL | Prometheus Metrics Query | Supported | Not Supported | Supported | [Supported](https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators) |
+| LogQL | Primarily for Log Queries | Supports Generating Metrics from Logs | Supported | Supported | [Supported](https://grafana.com/docs/loki/latest/logql/#aggregation-operators) |
+| SQL | General Query Language | [Some Databases](https://www.timescale.com/)<br />Support Time Series Storage | Not Suitable | Supported | Supported |
+| DQL | <<< custom_key.brand_name >>> Full Platform Data Query | Supported | Supported | Supported | Supported |
 
 
 <a name="8d81dc5d"></a>
-### Tool Support
-| Query Language | Annotation | Supporting HTTP API or not | Suprooting Pipeline Cutting or not | Supporting Command Line or not |
+### Peripheral Tool Support
+| Query Language | Comment Style | HTTP API Support | Pipeline Cutting Support | Command Line Support |
 | --- | --- | --- | --- | --- |
-| PromQL | `# Single-Line Comments` | [Available](https://prometheus.io/docs/prometheus/latest/querying/api/) | Unavailable | [promql-cli](https://github.com/nalbury/promql-cli) |
-| LogQL | `# Single-Line Comments` | [Available](https://grafana.com/docs/loki/latest/api/) | Available | [logcli](https://grafana.com/docs/loki/latest/getting-started/logcli/) |
-| SQL | `-- Single-Line Comments`<br /> or `/* Multiline Comment */` | Unavailable | Unavailable | Various SQL client-side, we won't explore it in this article. |
-| DQL | `# Single-Line Comments` | [Available](../datakit/apis.md) | Unavailable (pre-cut on the DataKit side) | Need to [Install DataKit](../datakit/datakit-install.md)<br />; re-execute[query](../datakit/datakit-dql-how-to.md) |
+| PromQL | `# Single-line comment` | [Supported](https://prometheus.io/docs/prometheus/latest/querying/api/) | Not Supported | [promql-cli](https://github.com/nalbury/promql-cli) |
+| LogQL | `# Single-line comment` | [Supported](https://grafana.com/docs/loki/latest/api/) | Supported | [logcli](https://grafana.com/docs/loki/latest/getting-started/logcli/) |
+| SQL | `-- Single-line comment`<br /> or `/* Multi-line comment */` | Not Supported | Not Supported | Various SQL Clients, no further details |
+| DQL | `# Single-line comment` | [Supported](../datakit/apis.md) | Not Supported (Pre-cut in DataKit) | Need to [install DataKit](../datakit/datakit-install.md)<br />, then execute [queries](../datakit/datakit-dql-how-to.md) |
 
 
 <a name="1b8fbe0e"></a>
 ### Data Processing Function Support
 
-- [List of functions supported by PromQL](https://prometheus.io/docs/prometheus/latest/querying/functions/#functions)
-- [List of functions supported by LogQL](https://grafana.com/docs/loki/latest/logql/#metric-queries)
-- [List of functions supported by MySQL](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html)
-- [List of functions supported by DQL](../dql/funcs.md)
+- [PromQL Supported Function List](https://prometheus.io/docs/prometheus/latest/querying/functions/#functions)
+- [LogQL Supported Function List](https://grafana.com/docs/loki/latest/logql/#metric-queries)
+- [MySQL Supported Function List](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html)
+- [DQL Supported Function List](../dql/funcs.md)
 
 <a name="c05ceae0"></a>
-## Comparison of Writing Methods of Common Query Statements
+## Common Query Statement Comparisons
 
 <a name="cecdfda9"></a>
-### General Data Query and Filtering
+### Ordinary Data Query and Filtering
 
 ```
 # LogQL
@@ -155,7 +153,7 @@ T::my_service { duration > 1000 } [10m] BY operation
   | logfmt
   | duration > 30s or status_code!="200"
 
-# PromQL（PromQL probably does not support ordinary OR filtering.）
+# PromQL (PromQL roughly does not support OR filtering in the conventional sense)
 http_requests_total{ cluster='ops-tools1', job!='query=frontend', duration > 30s }
 
 # SQL
@@ -164,28 +162,29 @@ SELECT * FROM dev
   job='query=frontend' AND
   (duration > 30000000000 OR stataus_code != 200)
 
-# DQL：It can be seen from the statement structure that the semantic organization of DQL is close to that of SQL.
+# DQL: From the statement structure, DQL's semantic organization is closer to SQL
 L::dev {
   cluster='ops-tools',
   job='query=frontend',
   message != match("out of order")
-  (duraton > 30s OR stataus_code != 200) # DQL supports nested structure filtering}
+  (duraton > 30s OR stataus_code != 200) # DQL supports nested structure filtering
+}
 ```
 
-The following is a list of how to write various DQL statements:
+Below are various DQL statement examples:
 
 ```
-# Where-clause can be concatenated by AND, which is semantically equivalent to `,'.
+# where-clause can be chained with AND, AND is semantically equivalent to `,'
 L::dev {
   cluster='ops-tools' AND
   job='query=frontend' AND
   message != match("out of order") AND
   (duraton > 30s OR stataus_code != 200)}
 
-# Support AS aliases/support Chinese variables.
-metric::cpu:(usage_system AS system usage, usage_user AS user usage)
+# Supports AS alias / supports Chinese variables
+metric::cpu:(usage_system AS system_usage, usage_user AS user_usage)
 
-# Where-cluase supports array-list IN filtering.
+# where-clause supports array-list IN filtering
 L::dev {
   cluster='ops-tools' AND
   job IN [ 'query=frontend', 'query=backend'] AND
@@ -193,18 +192,18 @@ L::dev {
   (duraton > 30s OR stataus_code != 200)
 }
 
-# Support base64 value transfer: Avoid headache escape for some complex strings (such as multiple lines).
+# Supports base64 value passing: For complex strings (like multiline), avoid tedious escaping
 T::dev {
   cluster='ops-tools' AND
   resourec IN [
-    'some-raw-string', # ordinary string
-    b64'c2VsZWN0ICoKZnJvbSBhYmMKd2hlcmUgeCA+IDAK' # base64 string
+    'some-raw-string', # Plain string
+    b64'c2VsZWN0ICoKZnJvbSBhYmMKd2hlcmUgeCA+IDAK' # Base64 string
   ]
 }
 ```
 
 <a name="5e769752"></a>
-### Query with Aggregation and Filtering
+### Aggregated Queries with Filtering
 
 ```python
 # LogQL
@@ -213,34 +212,30 @@ sum by (org_id) ({source="ops-tools",container="app-dev"} |= "metrics.go" | logf
 # PromQL
 histogram_quantile(0.9, sum by (job, le) (rate(http_request_duration_seconds_bucket[10m])))
 
-# DQL (Note that ops-tools need to be added with `` on both sides, otherwise it will be resolved into a subtraction expression)
+# DQL (Note: `ops-tools` should be enclosed in backticks to prevent parsing as subtraction)
 L::`ops-tools`:(bytes_processed) {filename = "metrics.go", container="app-dev"} [2m] BY sum(orig_id)
 ```
 
 <a name="fb1fdfb2"></a>
-### Browse Data Status
+### Browsing Data Situations
 
 ```python
-# LogQL/PromQL have not found similar query function yet.
+# LogQL/PromQL do not seem to have similar query functions
 
 # MySQL
 show tables;
 show databases;
 
 # DQL
-show_measurement()    # View the list of time series measurements
-show_object_source()  # View object classification list
-show_rum_source()     # View the RUM data classification list
-show_logging_source() # View log classification list
+show_measurement()    # View list of time series Mearsurements
+show_object_source()  # View list of object classes
+show_rum_source()     # View list of RUM data classes
+show_logging_source() # View list of log classes
 ```
 
 <a name="25f9c7fa"></a>
 ## Summary
 
-The above content makes some fundamental introduction to several common query languages. Each language has its specific application field, and its functional differences are obvious. As far as DQL is concerned, its original intention is to provide a query scheme with mixed storage, which is the biggest difference between DQL and other query languages in this paper. Although DQL does not have a separate storage engine, its scalability is unmatched by several others, which is also in line with its positioning of hybrid storage query.
+The above content provides a basic introduction to several common query languages. Each language has its specific application domain, and their functionalities differ significantly. For DQL, its design aims to provide a hybrid storage query solution, which is its biggest distinction compared to the other query languages mentioned. Although DQL does not have a standalone storage engine, its extensibility sets it apart from the others, aligning with its hybrid storage query positioning.
 
-At present, DQL is still actively developing and improving, and there is still much room for improvement in function and performance. At present, DQL is fully used in all data queries of Guance, and its function, performance and stability have been verified for a long time. With the iteration of the whole product of Guance, the integrity of DQL itself will gradually evolve to meet the needs of the product side and the majority of developers.
-
-
----
-
+Currently, DQL is actively being developed and improved. There is still considerable room for enhancing its functionality and performance. All data queries in <<< custom_key.brand_name >>> currently use DQL comprehensively, and its functionality, performance, and stability have been validated over a long period. As <<< custom_key.brand_name >>> products continue to iterate, the completeness of DQL will evolve to meet the needs of the product and developers.

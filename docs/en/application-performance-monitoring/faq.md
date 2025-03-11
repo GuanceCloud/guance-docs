@@ -1,69 +1,60 @@
-# FAQ
-
+# Frequently Asked Questions
 ---
 
-## How to collect APM data?
+## How to Collect APM Data?
 
-Guance's trace data collection currently supports collectors using the Opentracing protocol. After opening the trace data reception service in DataKit, by completing the collector's embedding in the code, DataKit will automatically complete the data format conversion and collection, and finally report to Guance. DataKit currently supports the collection of third-party Tracing data such as `DDTrace`, `Apache Jaeger`, `OpenTelemetry`, `Skywalking`, `Zipkin`.
+<<< custom_key.brand_name >>> currently supports collectors using the Opentracing protocol for trace data collection. After enabling the trace data reception service in DataKit, by completing the instrumentation in the code, DataKit will automatically handle the data format conversion and collection, ultimately reporting it to the <<< custom_key.brand_name >>> center. DataKit currently supports collecting tracing data from third-party tools such as `DDTrace`, `Apache Jaeger`, `OpenTelemetry`, `Skywalking`, and `Zipkin`.
 
-> For more operations, see [APM](../application-performance-monitoring/index.md).
+> For more operations, refer to [APM](../application-performance-monitoring/index.md).
 
+## How to Collect Profile Data?
 
-## How to collect Profile data?
+Profile supports collecting dynamic performance data of applications running in different language environments like Java, Python, and Go, helping users identify CPU, memory, and IO performance issues.
 
-Profile supports the collection of dynamic performance data during the operation of applications in different language environments such as Java, Python, and Go, helping users view CPU, memory, IO performance issues.
+> For collection configuration, refer to [Profile Collection Configuration](../integrations/profile.md).
 
-> For collection configuration, see [Profile Collection Configuration](../integrations/profile.md).
+## How to Correlate Log Data?
 
+<<< custom_key.brand_name >>> supports injecting `span_id`, `trace_id`, `env`, `service`, and `version` into logs to correlate with APM. After correlation, specific logs associated with requests can be viewed within APM.
 
-## How to associate log data?
+> For operational steps, refer to [Java Log Correlation](../application-performance-monitoring/collection/connect-log/java.md) or [Python Log Correlation](../application-performance-monitoring/collection/connect-log/python.md).
 
-Guance supports the association of APM by injecting `span_id`, `trace_id`, `env`, `service`, `version` into the log. After the association, you can view the specific log associated with the request in the APM.
+## How to Correlate User Access Data?
 
-> For operation steps, see [Java Log Associated trace data](../application-performance-monitoring/collection/connect-log/java.md) or [Python Log Associated trace data](../application-performance-monitoring/collection/connect-log/python.md).
+User access monitoring through collectors like `ddtrace`, `zipkin`, `skywalking`, `jaeger`, and `opentelemetry` can track complete front-to-back-end request data for a web application. Using RUM data from the frontend and injecting `trace_id` into the backend allows for quick identification of call stacks.
 
+> For operational steps, refer to [Correlate Web Application Access](../application-performance-monitoring/collection/connect-web-app.md).
 
-## How to associate user access data?
+## How to Configure Sampling for APM Data?
 
-RUM can track a complete front-end to back-end request data of a web application through `ddtrace`, `zipkin`, `skywalking`, `jaeger`, `opentelemetry` collectors, using RUM data from the front end and `trace_id` injected into the back end, you can quickly locate the call stack.
+By default, <<< custom_key.brand_name >>> collects APM data in full volume. You can save storage space by setting the sampling rate in your code or during collector configuration.
 
-> For operation steps, see [Associated Web Application Access](../application-performance-monitoring/collection/connect-web-app.md).
+> If you are using Python, refer to [Configuring APM Sampling](../application-performance-monitoring/collection/sampling.md); if you are using Java, refer to [DDTrace Sampling](../integrations/ddtrace.md).
 
+## How Long Can APM Data Be Retained?
 
-## How to configure application performance data sampling?
+<<< custom_key.brand_name >>> offers three retention periods for APM data: 3 days, 7 days, and 14 days. You can adjust this in **Management > Settings > Change Data Storage Policy** according to your needs.
 
-By default, Guance collects application performance data in full. You can save data storage by setting the sampling rate in the code or when configuring the collector.
+> For more data storage policies, refer to [Data Storage Policies](../billing-method/data-storage.md).
 
-> If you use Python, see [How to Configure APM Sampling](../application-performance-monitoring/collection/sampling.md); if you use Java, see [ddtrace Sampling](../integrations/ddtrace.md).
+## How to Calculate APM Monitoring Costs?
 
+<<< custom_key.brand_name >>> supports pay-as-you-go billing based on demand. APM billing counts the number of `trace_id`s in the current workspace, using a tiered pricing model.
 
-## How long can application performance data be stored?
+> For more billing rules, refer to [Billing Method](../billing-method/index.md).
 
-Guance provides 3 days, 7 days, 14 days three data storage duration options, you can adjust in **Management > Settings > Change Data Storage Strategy** according to your needs.
+## How to Configure the Service List?
 
-> For more data storage strategies, see [Data Storage Policy](../billing/billing-method/data-storage.md).
+The service list allows you to configure ownership, dependencies, associated analysis, documentation, etc., for different services, helping teams efficiently build and manage large-scale end-to-end distributed applications. You can open the service list for configuration by selecting any **Service** and clicking the operation button on the right side under **APM > Services**.
 
+> For more details, refer to [Service List](./service-manag/service-list.md).
 
-## How to calculate the cost of APM?
+## How to Quickly Identify Issues via Error Traces?
 
-Guance supports on-demand purchase and pay-as-you-go billing. The billing of APM counts the number of `trace_id` under the current space and uses a gradient billing mode.
+<<< custom_key.brand_name >>> supports quickly filtering error traces in the [Explorer](../application-performance-monitoring/explorer/explorer-analysis.md), or directly viewing similar error trends and distributions in the [Incident Explorer](../application-performance-monitoring/error.md) to help quickly pinpoint performance issues.
 
-> For more billing rules, see [Billing Methods](../billing/billing-method/index.md).
+## If the Above FAQs Do Not Resolve Your Issue, How to Get Online Support?
 
+<<< custom_key.brand_name >>> provides online ticket support.
 
-## How to configure the service list?
-
-The service list supports you to configure the ownership, dependency, associated analysis, help documentation, etc. of different services, helping the team to efficiently build and manage large-scale end-to-end distributed applications. You can go to **APM > Service**, select any **Options** button on the right, you can open the service list for configuration.
-
-> For more details, see [Service List](../application-performance-monitoring/service-catalog.md).
-
-
-## How to quickly find problems through error links?
-
-Guance supports quickly filtering error links in [Link Viewer](https://www.notion.so/application-performance-monitoring/explorer.md), or directly viewing the history trend and distribution of similar errors in the link in [Error Tracking Viewer](https://www.notion.so/application-performance-monitoring/error.md), helping to quickly locate performance problems.
-
-## If the above common problems cannot solve your problem, how to get online support?
-
-Guance provides online ticket support.
-
-> For more details, see [Support Center](../billing/cost-center/support-center.md).
+> For more details, refer to [Support Center](../billing-center/support-center.md).
