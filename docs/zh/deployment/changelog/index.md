@@ -1,5 +1,23 @@
 # 版本历史
 
+## 1.106.193（2025 年 03 月 08 日） {#1.106.193}
+
+pubrepo.guance.com/dataflux/1.106.193:launcher-2ce6b5a-1741359234
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.106.193.tar.gz
+    - MD5: `c4d91656b7cdd641beb6094c567e6160`
+
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.106.193.tar.gz
+    - MD5: `8e011cfb7d9321f9194ac160aad92067`
+
+### 部署版更新 {#feature0308}
+
+- 修复一些 bug
+
+更多产品功能更新说明，请参考产品功能 [更新日志 -> 2025 年 2 月 27 日](../../release-notes/index.md#20250227)
+
 ## 1.106.192（2025 年 03 月 05 日） {#1.106.192}
 
 pubrepo.guance.com/dataflux/1.106.192:launcher-d438422-1741176806
