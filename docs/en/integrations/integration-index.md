@@ -6,6 +6,7 @@ icon: zy/integrations
 
 ---
 
+
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
   <div>
@@ -10091,7 +10092,7 @@ Alibaba Cloud MongoDB single-node instance metrics display, including CPU usage,
   				originList.forEach(item => {
   					const { tags, name, summary, dom } = item;
   					const show =
-  						((!tags && !tag) || tags.map(v=v&&v.toLowerCase()).includes(tag&&tag.toLowerCase())) && (!name || name.includes(search) || summary.includes(search) || tags.includes(search));
+  						((!tags && !tag) || tags.map(v=>v&&v.toLowerCase()).includes(tag&&tag.toLowerCase())) && (!name || name.includes(search) || summary.includes(search) || tags.includes(search));
   					dom.style.display = show ? 'block' : 'none';
   					// 如果是搜索触发 需重新计算tags
   					if (isSearch && show && tags) {
