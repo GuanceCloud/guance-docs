@@ -13,7 +13,7 @@
 
 ## 开始配置
 
-### :material-numeric-1-circle: 定义转换步骤
+### 1、定义转换步骤
 
 默认提供两个步骤类型：[View](./explorer/view.md) 和 [Action](./explorer/action.md)。
 
@@ -33,7 +33,7 @@
 |       |   contains        |  |
 
 
-### :material-numeric-2-circle: 过滤用户范围
+### 2、过滤用户范围
 
 通过城市、环境、版本、浏览器、会话时长、会话首个页面路径等筛选条件确定 `session` 数据范围。
 
