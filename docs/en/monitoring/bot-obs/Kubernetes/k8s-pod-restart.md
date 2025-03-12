@@ -8,7 +8,7 @@ Kubernetes helps users automatically schedule and scale containerized applicatio
 
 ## Prerequisites
 
-1. Enable "[Container Data Collection](https://docs.guance.com/datakit/container/)" in <<< custom_key.brand_name >>>
+1. Enable "[Container Data Collection](<<< homepage >>>/datakit/container/)" in <<< custom_key.brand_name >>>
 2. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
 4. Create an [API Key](../../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> under "Management / API Key Management"
 

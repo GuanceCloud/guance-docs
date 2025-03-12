@@ -145,7 +145,7 @@ kubectl apply -f datakit.yaml
 
 ???+ "Prerequisites"
 
-     1. Install DataKit on your host [Install DataKit](https://docs.guance.com/datakit/datakit-install/) 
+     1. Install DataKit on your host [Install DataKit](<<< homepage >>>/datakit/datakit-install/) 
     
      2. If you are unfamiliar with Pipeline knowledge, please refer to the [Log Pipeline User Manual](../logs/manual.md)
 
@@ -269,7 +269,7 @@ spec:
 
 ???+ "Prerequisites"
 
-     1. Install DataKit on your host [Install DataKit](https://docs.guance.com/datakit/datakit-install/)
+     1. Install DataKit on your host [Install DataKit](<<< homepage >>>/datakit/datakit-install/)
     
      2. Enable ddtrace collector on DataKit [Enable ddtrace collector](../integrations/ddtrace.md), inject using K8S `ConfigMap`
 
@@ -322,7 +322,7 @@ spec:
 
 - Display on Page
 
-![img](https://docs.guance.com/application-performance-monitoring/img/9.apm_explorer_1.png)
+![img](<<< homepage >>>/application-performance-monitoring/img/9.apm_explorer_1.png)
 
 ### Configure Availability Monitoring
 

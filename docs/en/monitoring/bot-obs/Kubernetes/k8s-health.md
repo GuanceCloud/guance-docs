@@ -7,7 +7,7 @@ Nowadays, Kubernetes has swept through the entire container ecosystem, acting as
 
 ## Prerequisites
 
-1. Enable "Container Data Collection" in <<< custom_key.brand_name >>> [Container Data Collection](https://docs.guance.com/datakit/container/)
+1. Enable "Container Data Collection" in <<< custom_key.brand_name >>> [Container Data Collection](<<< homepage >>>/datakit/container/)
 2. Set up a self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
 4. Create an API Key for operations in <<< custom_key.brand_name >>> under "Management / API Key Management" [API Key](../../../management/api-key/open-api.md)
 

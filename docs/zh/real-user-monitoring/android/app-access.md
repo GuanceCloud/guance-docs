@@ -2068,7 +2068,7 @@ getInfoFromNet(info){
 
 ### 应对市场隐私审核 {#adpot-to-privacy-audits}
 #### 隐私声明
-[前往查看](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[前往查看](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 #### 方式 1: SDK AndroidID 配置
 SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在应用市场上架，需要通过如下方式对应市场隐私审核。
 

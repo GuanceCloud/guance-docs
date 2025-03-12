@@ -2068,7 +2068,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 #### Method 1: SDK AndroidID Configuration
 To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
 
@@ -2411,7 +2411,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -2771,7 +2771,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -3131,7 +3131,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -3491,7 +3491,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -3851,7 +3851,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -4211,7 +4211,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -4763,7 +4763,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -5123,7 +5123,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -5483,7 +5483,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -5887,7 +5887,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 

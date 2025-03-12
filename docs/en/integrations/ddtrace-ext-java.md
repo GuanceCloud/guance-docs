@@ -82,7 +82,7 @@ Minimum supported DDTrace version: [v1.12.1](ddtrace-ext-changelog.md#cl-1.12.1-
 
 Specific functions refer to business-defined functions to retrieve corresponding input parameters. These functions need to be defined through specific parameters. Currently, DDTrace provides two ways to declare specific functions for tracing:
 
-1. Using startup parameter `-Ddd.trace.methods` or by introducing SDK using `@Trace` annotation, refer to [Class or Method Injection Trace](https://docs.guance.com/best-practices/insight/ddtrace-skill-param/#trace){:target="_blank"}
+1. Using startup parameter `-Ddd.trace.methods` or by introducing SDK using `@Trace` annotation, refer to [Class or Method Injection Trace](<<< homepage >>>/best-practices/insight/ddtrace-skill-param/#trace){:target="_blank"}
 
 After declaring via the above methods, the corresponding methods will be marked for tracing, generating corresponding Span information that includes function (method) input parameters (parameter name, type, value).
 

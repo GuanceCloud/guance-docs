@@ -15,7 +15,7 @@ Sending trace data from Huawei Cloud ASM to Guance for viewing and analysis.
 ## Configuration {#config}
 
 ### Preparation
-To use ASM, you need to purchase a CCE cluster and deploy the `datakit` [`daemonset`](https://docs.guance.com/datakit/datakit-daemonset-deploy/).
+To use ASM, you need to purchase a CCE cluster and deploy the `datakit` [`daemonset`](<<< homepage >>>/datakit/datakit-daemonset-deploy/).
 
 ### Creation of ASM
 Service Mesh => Purchase Mesh => Basic Edition
@@ -50,7 +50,7 @@ Access `http://124.70.68.49/productpage` to check if the service is working prop
 
 #### Enable OpenTelemetry Collector
 
-Refer to the [OpenTelemetry collector integration documentation](https://docs.guance.com/datakit/opentelemetry/).
+Refer to the [OpenTelemetry collector integration documentation](<<< homepage >>>/datakit/opentelemetry/).
 
 - Add to ConfigMap
 
@@ -136,7 +136,7 @@ Click on a trace to view detailed information.
 ### Sending Metrics Data to Guance
 #### Metric Collection Configuration
 
-1. Enable `Prometheus Exporter` data collection in DataKit. Refer to [**Prometheus Exporter**](https://docs.guance.com/integrations/prom/#__tabbed_1_2). The ConfigMap is as follows:
+1. Enable `Prometheus Exporter` data collection in DataKit. Refer to [**Prometheus Exporter**](<<< homepage >>>/integrations/prom/#__tabbed_1_2). The ConfigMap is as follows:
 
    ``` yaml
        prom.conf: |

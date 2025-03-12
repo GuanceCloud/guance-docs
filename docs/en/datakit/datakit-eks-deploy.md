@@ -21,7 +21,7 @@ Use the Amazon EKS addon to deploy DataKit on an Amazon EKS cluster.
 - Subscribe to [Guance Container Agent](https://aws.amazon.com/marketplace/pp/prodview-tdwkw3qcsimso?sr=0-2&ref_=beagle&applicationId=AWSMPContessa){:target="_blank"} on the AWS Marketplace.
 - You have access to an [Amazon EKS cluster](https://aws.amazon.com/eks/){:target="_blank"}.
 - You need to obtain `DK_DATAWAY` in advance. You can also follow the instructions below:
-    - Go to the [Guance](https://en.guance.com/){:target="_blank"} website, refer to the [registration](https://docs.guance.com/en/billing/commercial-register/){:target="_blank"} guide to become a Guance user.
+    - Go to the [Guance](https://en.guance.com/){:target="_blank"} website, refer to the [registration](<<< homepage >>>/en/billing/commercial-register/){:target="_blank"} guide to become a Guance user.
     - Click on the "Integration" menu, then select the "DataKit" tab, and copy the `DK_DATAWAY` parameter as shown in the image:
 
 <figure markdown>
@@ -128,7 +128,7 @@ datakit  datakit  1  2024-01-12 14:50:07.880846 +0800 CST  deployed  datakit-1.2
 - Install the following tools: [Helm 3.7.1](https://github.com/helm/helm/releases/tag/v3.7.1){:target="_blank"}, [kubectl](https://kubernetes.io/docs/tasks/tools/){:target="_blank}, and [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"}.
 - You have access to an [Amazon EKS cluster](https://aws.amazon.com/eks/){:target="_blank"}.
 - You need to obtain `DK_DATAWAY` in advance. You can also follow the instructions below:
-    - Go to the [Guance](https://en.guance.com/){:target="_blank"} website, refer to the [registration](https://docs.guance.com/en/billing/commercial-register/){:target="_blank"} guide to become a Guance user.
+    - Go to the [Guance](https://en.guance.com/){:target="_blank"} website, refer to the [registration](<<< homepage >>>/en/billing/commercial-register/){:target="_blank"} guide to become a Guance user.
     - Click on the "Integration" menu, then select the "DataKit" tab, and copy the `DK_DATAWAY` parameter as shown in the image:
 
 <figure markdown>

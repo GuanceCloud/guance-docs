@@ -64,7 +64,7 @@ Refer to [Container Environment Variables](datakit-daemonset-deploy.md#using-k8-
 ```yaml
 # @param extraEnvs - array - optional
 # extra env Add env for customization
-# more, see: https://docs.guance.com/datakit/datakit-daemonset-deploy/#using-k8-env
+# more, see: <<< homepage >>>/datakit/datakit-daemonset-deploy/#using-k8-env
 # You can add more than one parameter  
 extraEnvs:
  - name: ENV_NAMESPACE
@@ -231,7 +231,7 @@ helm uninstall datakit -n datakit
       #
       pullPolicy: Always
 
-    # https://docs.guance.com/datakit/datakit-daemonset-deploy/
+    # <<< homepage >>>/datakit/datakit-daemonset-deploy/
 
     git_repos:
       # Use Git management for DataKit input
@@ -239,7 +239,7 @@ helm uninstall datakit -n datakit
 
       # @param git_url - string - required
       # You can set git@github.com:path/to/repository.git or http://username:password@github.com/path/to/repository.git.
-      # see https://docs.guance.com/best-practices/insight/datakit-daemonset/#git
+      # see <<< homepage >>>/best-practices/insight/datakit-daemonset/#git
       git_url: "-"
 
       # @param git_key_path - string - optional
@@ -264,7 +264,7 @@ helm uninstall datakit -n datakit
       is_use_key: false
 
     # If true, Datakit installs ipdb.
-    # ref: https://docs.guance.com/datakit/datakit-tools-how-to/#install-ipdb
+    # ref: <<< homepage >>>/datakit/datakit-tools-how-to/#install-ipdb
     iploc:
       enable: true
       image:
@@ -280,7 +280,7 @@ helm uninstall datakit -n datakit
 
     # @param extraEnvs - array - optional
     # extra env Add env for customization
-    # more, see: https://docs.guance.com/datakit/datakit-daemonset-deploy/#using-k8-env
+    # more, see: <<< homepage >>>/datakit/datakit-daemonset-deploy/#using-k8-env
     # You can add more than one parameter
     extraEnvs:
      - name: ENV_NAMESPACE

@@ -8,7 +8,7 @@ Kubernetes 帮助用户自动调度和扩展容器化应用程序，但现代 Ku
 
 ## 前置条件
 
-1. 在<<< custom_key.brand_name >>>中开启「 [容器数据采集 ](https://docs.guance.com/datakit/container/)」
+1. 在<<< custom_key.brand_name >>>中开启「 [容器数据采集 ](<<< homepage >>>/datakit/container/)」
 2. 自建 [DataFlux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../../dataflux-func/index.md)
 4. 在<<< custom_key.brand_name >>>「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../../management/api-key/open-api.md)
 

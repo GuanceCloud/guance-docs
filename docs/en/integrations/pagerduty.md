@@ -16,8 +16,8 @@ When our application or system encounters an incident, it usually needs to be ha
 ### Preparation
 
 1. Deploy a [DataFlux Func (Automata)](https://func.guance.com/#/) to generate an authorization link.
-2. Create a [webhook custom notification target](https://docs.guance.com/monitoring/notify-object/#4-webhook) (the webhook URL should be the authorization link URL of DataFlux Func).
-3. Properly configure the [monitor](https://docs.guance.com/monitoring/monitor/).
+2. Create a [webhook custom notification target](<<< homepage >>>/monitoring/notify-object/#4-webhook) (the webhook URL should be the authorization link URL of DataFlux Func).
+3. Properly configure the [monitor](<<< homepage >>>/monitoring/monitor/).
 4. In PagerDuty, create a **Service** with an **Integration** of type **Events API V2**.
 
 ### Deployment Process

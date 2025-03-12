@@ -16,8 +16,8 @@ When our application or system encounters an incident, it usually needs to be ha
 ### Preparation
 
 1. Deploy a [DataFlux Func (Automata)](https://func.guance.com/#/) to generate an authorization link.
-2. Create a [custom webhook notification target](https://docs.guance.com/monitoring/notify-object/#4-webhook) (the webhook URL should be the authorization link URL of DataFlux Func).
-3. Correctly configure the [monitor](https://docs.guance.com/monitoring/monitor/).
+2. Create a [custom webhook notification target](<<< homepage >>>/monitoring/notify-object/#4-webhook) (the webhook URL should be the authorization link URL of DataFlux Func).
+3. Correctly configure the [monitor](<<< homepage >>>/monitoring/monitor/).
 
 ### Deployment Process
 

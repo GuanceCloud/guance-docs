@@ -51,4 +51,4 @@ You may already be using dashboards to visualize key performance metrics from yo
 
 In this article, we explored some useful tips to help you get the most value from service level objectives in <<< custom_key.brand_name >>>. SLOs, together with your infrastructure metrics, distributed tracing, logs, synthetic tests, and network data, help ensure the best possible end-user experience. <<< custom_key.brand_name >>>'s built-in collaboration features not only make it easy to define SLOs but also easily share insights with stakeholders inside and outside the organization.
 
-Check out our [documentation](https://docs.guance.com/) to start defining and managing your SLOs. If you haven't tried <<< custom_key.brand_name >>> yet, you can start a free trial immediately.
+Check out our [documentation](<<< homepage >>>/) to start defining and managing your SLOs. If you haven't tried <<< custom_key.brand_name >>> yet, you can start a free trial immediately.

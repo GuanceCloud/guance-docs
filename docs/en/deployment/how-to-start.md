@@ -93,6 +93,6 @@ In the workspace members list, click "Add User" in the top-right corner, select 
 
 ![](img/12.deployment_13.png)
 #### Log in to <<< custom_key.brand_name >>>
-Open the <<< custom_key.brand_name >>> Deployment Plan access URL, and you can log in with the created user to start using all <<< custom_key.brand_name >>> features. For detailed feature usage, refer to the [<<< custom_key.brand_name >>> Help Manual](https://docs.guance.com/).
+Open the <<< custom_key.brand_name >>> Deployment Plan access URL, and you can log in with the created user to start using all <<< custom_key.brand_name >>> features. For detailed feature usage, refer to the [<<< custom_key.brand_name >>> Help Manual](<<< homepage >>>/).
 
 ![](img/12.deployment_14.png)

@@ -50,4 +50,4 @@
 #### 使用 <<< custom_key.brand_name >>> SLO 确保服务可靠性
 在这篇文章中，我们研究了一些有用的技巧，它们将帮助您从 <<< custom_key.brand_name >>> 中的服务级别目标中获得最大价值。SLO 与您的基础设施指标、分布式跟踪、日志、综合测试和网络数据一起，帮助您确保提供最佳的最终用户体验。<<< custom_key.brand_name >>> 的内置协作功能不仅可以轻松定义 SLO，还可以轻松地与组织内外的利益相关者分享见解。
 
-查看我们的[文档](https://docs.guance.com/)，开始定义和管理您的 SLO。如果您还没有使用 <<< custom_key.brand_name >>>，您可以立即开始免费试用。
+查看我们的[文档](<<< homepage >>>/)，开始定义和管理您的 SLO。如果您还没有使用 <<< custom_key.brand_name >>>，您可以立即开始免费试用。

@@ -14,7 +14,7 @@ __int_icon: icon/aliyun_edas
 
 ### Prerequisites
 
-- Install DataKit on each ECS in **EDAS** <[Install DataKit](https://docs.guance.com/datakit/datakit-install/){:target="_blank"}>
+- Install DataKit on each ECS in **EDAS** <[Install DataKit](<<< homepage >>>/datakit/datakit-install/){:target="_blank"}>
 
 ### Installation and Configuration
 

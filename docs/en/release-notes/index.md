@@ -16,7 +16,7 @@ This document records the update content of <<< custom_key.brand_name >>> for ea
 
     <table>
       <tr>
-        <th><a href="https://docs.guance.com/datakit/changelog/" target="_blank">DataKit</a></th>
+        <th><a href="<<< homepage >>>/datakit/changelog/" target="_blank">DataKit</a></th>
       </tr>
     </table>
 
@@ -27,11 +27,11 @@ This document records the update content of <<< custom_key.brand_name >>> for ea
         <th colspan="5">SDK</th>
       </tr>
       <tr>
-        <td><a href="https://docs.guance.com/real-user-monitoring/web/sdk-changelog/" target="_blank">Web</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/miniapp/sdk-changelog/" target="_blank">Mini Program</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/android/sdk-changelog/" target="_blank">Android</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/ios/sdk-changelog/" target="_blank">iOS</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/react-native/sdk-changelog/" target="_blank">React Native</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/web/sdk-changelog/" target="_blank">Web</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/miniapp/sdk-changelog/" target="_blank">Mini Program</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/android/sdk-changelog/" target="_blank">Android</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/ios/sdk-changelog/" target="_blank">iOS</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/react-native/sdk-changelog/" target="_blank">React Native</a></td>
       </tr>
     </table>
 

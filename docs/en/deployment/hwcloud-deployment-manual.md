@@ -19,7 +19,7 @@ This document primarily describes the deployment on Huawei Cloud, introducing th
 
 ### 1.3 Deployment Architecture
 
-[![img](https://docs.guance.com/deployment/img/23.install-step.png)](https://docs.guance.com/deployment/img/23.install-step.png)
+[![img](<<< homepage >>>/deployment/img/23.install-step.png)](<<< homepage >>>/deployment/img/23.install-step.png)
 
 ## 2 Resource List
 
@@ -185,4 +185,4 @@ Choose whether to use the public or private network kubeconfig based on whether 
 
 ## 5 Start Installation
 
-After completing the operations, refer to the manual [Start Installation](https://docs.guance.com/deployment/launcher-install/){:target="_blank"}
+After completing the operations, refer to the manual [Start Installation](<<< homepage >>>/deployment/launcher-install/){:target="_blank"}

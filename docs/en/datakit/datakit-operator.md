@@ -493,8 +493,8 @@ Ultimately, you can view the logs in the Guance log platform.
 
 #### Prerequisites {#async-profiler-prerequisites}
 
-- Cluster has installed [Datakit](https://docs.guance.com/datakit/datakit-daemonset-deploy/){:target="_blank"}.
-- Enable the [profile](https://docs.guance.com/datakit/datakit-daemonset-deploy/#using-k8-env){:target="_blank"} collector.
+- Cluster has installed [Datakit](<<< homepage >>>/datakit/datakit-daemonset-deploy/){:target="_blank"}.
+- Enable the [profile](<<< homepage >>>/datakit/datakit-daemonset-deploy/#using-k8-env){:target="_blank"} collector.
 - Linux kernel parameter [kernel.perf_event_paranoid](https://www.kernel.org/doc/Documentation/sysctl/kernel.txt){:target="_blank"} value is set to 2 or lower.
 
 <!-- markdownlint-disable MD046 -->

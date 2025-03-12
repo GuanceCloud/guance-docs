@@ -556,8 +556,8 @@ graph TD
   %% node definitions
   no_data[No Data];
   debug_fail{No Result};
-  monitor[View <a href='https://docs.guance.com/datakit/datakit-monitor/'>Monitor</a>];
-  debug_input[<a href='https://docs.guance.com/datakit/why-no-data/#check-input-conf'>Debug Collector Configuration</a>];
+  monitor[View <a href='<<< homepage >>>/datakit/datakit-monitor/'>Monitor</a>];
+  debug_input[<a href='<<< homepage >>>/datakit/why-no-data/#check-input-conf'>Debug Collector Configuration</a>];
   read_faq[Review FAQ];
   dql[DQL Query];
   beyond_usage[Is Data Over Quota?];
@@ -567,8 +567,8 @@ graph TD
   check_time[Check Machine Time];
   check_token[Check Workspace Token];
   check_version[Check Datakit Version];
-  dk_service_ok[<a href='https://docs.guance.com/datakit/datakit-service-how-to/'>Is Datakit Service Normal?</a>];
-  check_changelog[<a href='https://docs.guance.com/datakit/changelog'>Check Changelog for Fixes</a>];
+  dk_service_ok[<a href='<<< homepage >>>/datakit/datakit-service-how-to/'>Is Datakit Service Normal?</a>];
+  check_changelog[<a href='<<< homepage >>>/datakit/changelog'>Check Changelog for Fixes</a>];
   is_input_ok[Is Collector Running Normally?];
   is_input_enabled[Is Collector Enabled?];
   enable_input[Enable Collector];
@@ -596,7 +596,7 @@ graph TD
   is_input_ok -->|Yes| dataway_upload_ok -->|Yes| dql;
   is_input_ok --> filtered --> sinked;
 
-  trouble_shooting[<a href='https://docs.guance.com/datakit/why-no-data/#bug-report'>Collect Information</a>];
+  trouble_shooting[<a href='<<< homepage >>>/datakit/why-no-data/#bug-report'>Collect Information</a>];
 
   debug_fail --> trouble_shooting;
   trouble_shooting --> ligai;

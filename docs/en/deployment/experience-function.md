@@ -36,6 +36,6 @@ In the workspace members list, click "Add User" at the top right corner, select 
 ![](img/12.deployment_13.png)
 ## Log in to <<< custom_key.brand_name >>>
 
-Open the <<< custom_key.brand_name >>> access URL, and you can log in with the created user to start using all <<< custom_key.brand_name >>> features in the corresponding workspace. For detailed usage instructions, please refer to the [<<< custom_key.brand_name >>> Help Manual](https://docs.guance.com/).
+Open the <<< custom_key.brand_name >>> access URL, and you can log in with the created user to start using all <<< custom_key.brand_name >>> features in the corresponding workspace. For detailed usage instructions, please refer to the [<<< custom_key.brand_name >>> Help Manual](<<< homepage >>>/).
 
 ![](img/12.deployment_14.png)

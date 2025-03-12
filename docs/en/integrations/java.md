@@ -130,7 +130,7 @@ Different APM tools configure the log `pattern` differently. Here’s an example
 
 ## Reference Documentation {#faq}
 
-[**DDTrace Log**](https://docs.guance.com/best-practices/insight/ddtrace-skill-log/)
+[**DDTrace Log**](<<< homepage >>>/best-practices/insight/ddtrace-skill-log/)
 
 [**springboot-ddtrace-server**](https://github.com/lrwh/observable-demo/blob/main/springboot-ddtrace-server/src/main/resources/logback-spring.xml)
 
