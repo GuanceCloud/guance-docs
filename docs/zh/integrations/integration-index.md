@@ -6,7 +6,6 @@ icon: zy/integrations
 
 ---
 
-
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
   <div>
@@ -116,9 +115,12 @@ icon: zy/integrations
   			font-weight: 600;
   			line-height: 20px;
   			height: 20px;
-  			text-overflow: ellipsis;
-  			overflow: hidden;
-  			white-space: nowrap;
+  			display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
   			margin-left: 10px;
   			color: #222;
   		}
@@ -10118,7 +10120,7 @@ icon: zy/integrations
   				originList.forEach(item => {
   					const { tags, name, summary, dom } = item;
   					const show =
-  						((!tags && !tag) || tags.includes(tag)) && (!name || name.includes(search) || summary.includes(search) || tags.includes(search));
+  						((!tags && !tag) || tags.map(v=v&&v.toLowerCase()).includes(tag&&tag.toLowerCase())) && (!name || name.includes(search) || summary.includes(search) || tags.includes(search));
   					dom.style.display = show ? 'block' : 'none';
   					// 如果是搜索触发 需重新计算tags
   					if (isSearch && show && tags) {
@@ -10139,7 +10141,7 @@ icon: zy/integrations
   						const tags = Object.entries(tagObj).reduce(
                                 (acc, cur) => {
                                     const [key, value] = cur;
-                                    const keyIndex = limitTags.indexOf(key);
+                                    const keyIndex = limitTagsToLower.indexOf(key&&key.toLowerCase());
                                     if (keyIndex > -1) {
                                         acc.push({ label: `${key} (${value})`, value: key, index: keyIndex });
                                     }
