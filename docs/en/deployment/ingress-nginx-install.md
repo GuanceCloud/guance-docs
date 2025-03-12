@@ -30,7 +30,7 @@ For deploying the Kubernetes Ingress component, refer to [https://github.com/kub
 
       ```shell
       helm install ingress-nginx ingress-nginx \
-          --repo https://pubrepo.guance.com/chartrepo/dataflux-chart \
+          --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/dataflux-chart \
           -n ingress-nginx --create-namespace
       ``` 
 
@@ -38,7 +38,7 @@ For deploying the Kubernetes Ingress component, refer to [https://github.com/kub
 
       ```shell
       helm install ingress-nginx ingress-nginx \
-          --repo https://pubrepo.guance.com/chartrepo/dataflux-chart \
+          --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/dataflux-chart \
           --version 4.1.4 \
           -n ingress-nginx --create-namespace
       ``` 

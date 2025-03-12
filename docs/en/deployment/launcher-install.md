@@ -29,7 +29,7 @@
     - Installation
     
       ```shell
-      helm install launcher launcher --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+      helm install launcher launcher --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/launcher -n launcher \
         --create-namespace  \
         --set ingress.hostName=<Hostname>,storageClassName=<StorageClass>
       ```
@@ -39,7 +39,7 @@
         `<Hostname>` is the Launcher ingress domain name, `<StorageClass>` is the storage class name. You can get it by executing `kubectl get sc`.
     
         ```
-        helm install launcher launcher --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+        helm install launcher launcher --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/launcher -n launcher \
            --create-namespace  \
            --set ingress.hostName="launcher.dataflux.cn",storageClassName=df-nfs-storage        
         ```

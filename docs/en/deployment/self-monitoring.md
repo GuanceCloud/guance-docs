@@ -527,7 +527,7 @@ In <<< custom_key.brand_name >>> data reporting, fill in the DataWay/OpenWay add
 https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> *Note: If Func data reporting fails, you can refer to the [DataFlux Func Documentation](https://func.guance.com/doc/ui-guide-management-module-system-setting/){:target="_blank"}*
+> *Note: If Func data reporting fails, you can refer to the [DataFlux Func Documentation](https://<<< custom_key.func_domain >>>/doc/ui-guide-management-module-system-setting/){:target="_blank"}*
 
 ## Verification Methods
 

@@ -2,7 +2,7 @@
 
 ## 1.106.192 (March 5, 2025) {#1.106.192}
 
-pubrepo.guance.com/dataflux/1.106.192:launcher-d438422-1741176806
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.106.192:launcher-d438422-1741176806
 
 ### Offline Image Package Download
 
@@ -20,7 +20,7 @@ For more product feature updates, please refer to the [Change Log -> February 27
 
 ## 1.105.191 (February 27, 2025) {#1.105.191}
 
-pubrepo.guance.com/dataflux/1.105.191:launcher-b3bee84-1740751379
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.105.191:launcher-b3bee84-1740751379
 
 ### Offline Image Package Download
 
@@ -34,7 +34,7 @@ For more product feature updates, please refer to the [Change Log -> February 27
 
 ## 1.104.190 (February 19, 2025) {#1.104.190}
 
-pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.104.190:launcher-f574b1d-1740401808
 
 ### Offline Image Package Download
 
@@ -74,7 +74,7 @@ For more product feature updates, please refer to the [Change Log -> February 19
 
 ## 1.103.189 (January 16, 2025) {#1.103.189}
 
-pubrepo.guance.com/dataflux/1.103.189:launcher-d4a5efc-1737455050
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.103.189:launcher-d4a5efc-1737455050
 
 ### Offline Image Package Download
 
@@ -131,7 +131,7 @@ Optimized auto-generated Pipeline: Supports interactive parsing of Pipelines usi
 
 ## 1.102.188 (January 8, 2025) {#1.102.188}
 
-pubrepo.guance.com/dataflux/1.102.188:launcher-0bd0be5-1736856269
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.102.188:launcher-0bd0be5-1736856269
 
 ### Offline Image Package Download
 

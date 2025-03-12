@@ -250,7 +250,7 @@ window.DEPLOYCONFIG = {
     ...
     "rumDatawayUrl": "https://rum-openway.guance.com",
     "datakitScriptUrl": "https://static.<<< custom_key.brand_main_domain >>>/datakit",
-    "datakitHelmUrl": "https://pubrepo.guance.com",
+    "datakitHelmUrl": "https://pubrepo.<<< custom_key.brand_main_domain >>>",
     "passPublicNetwork": 1,
     "isOverseas": 0,
     "maxTraceSpanLimit": 10000,
@@ -274,7 +274,7 @@ window.DEPLOYCONFIG = {
 | ------------------------- | ---- | ------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | rumDatawayUrl             |      | 字符串              | "https://rum-openway.guance.com"                   | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                                                 |
 | datakitScriptUrl          |      | 字符串              | "https://static.<<< custom_key.brand_main_domain >>>/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                                          |
-| datakitHelmUrl            |      | 字符串              | "https://pubrepo.guance.com"                       | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                                             |
+| datakitHelmUrl            |      | 字符串              | "https://pubrepo.<<< custom_key.brand_main_domain >>>"                       | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                                             |
 | passPublicNetwork         |      | 数值                | 1                                                  | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                                          |
 | isOverseas                |      | 数值                | 0                                                  | 配置此<<< custom_key.brand_name >>>站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                      |
 | maxTraceSpanLimit         |      | 数值                | 10000                                              | 链路的火焰图中最大的 Span 条数，默认值：10000                                                                                                                           |

@@ -176,7 +176,7 @@ spec:
         #- name: ENV_IPDB
         #  value: iploc
         # # ---iploc-end
-        image: pubrepo.guance.com/datakit/datakit:1.64.0
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.64.0
         imagePullPolicy: IfNotPresent
         name: datakit
         ports:

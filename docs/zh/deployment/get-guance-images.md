@@ -73,7 +73,7 @@
     安装 launcher 时，添加 `imageSecrets.url`，`imageSecrets.username`，`imageSecrets.password` 参数。
 
     ```shell hl_lines='4'
-    helm install launcher launcher  --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+    helm install launcher launcher  --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/launcher -n launcher \
     --create-namespace  \
     --set ingress.hostName=<Hostname>,storageClassName=<Stroageclass> \
     --set imageSecrets.url=<warehouseaddress>,imageSecrets.username=<warehouse username>,imageSecrets.password=<warehouse passwd>

@@ -322,8 +322,8 @@ velero -h
     ```
     velero install \
         --provider aws \
-        --image pubrepo.guance.com/googleimages/velero:v1.13.0 \    
-        --plugins pubrepo.guance.com/googleimages/velero-plugin-for-aws:v1.9.0 \
+        --image pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero:v1.13.0 \    
+        --plugins pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero-plugin-for-aws:v1.9.0 \
         --bucket $BUCKET \
         --backup-location-config region=$REGION \
         --snapshot-location-config region=$REGION \
@@ -349,13 +349,13 @@ velero -h
     ```
     velero install \
       --provider alibabacloud \
-      --image pubrepo.guance.com/googleimages/velero:v1.13.0 \
+      --image pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero:v1.13.0 \
       --bucket $BUCKET \
       --secret-file ./credentials-velero \
       --use-volume-snapshots=false \
       --backup-location-config region=$REGION \
       --prefix $BUCKETPATH \
-      --plugins pubrepo.guance.com/googleimages/velero-plugin-alibabacloud:v1.9.6-581f313-aliyun
+      --plugins pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero-plugin-alibabacloud:v1.9.6-581f313-aliyun
     ```
 
 #### 验证 {#check-velero}

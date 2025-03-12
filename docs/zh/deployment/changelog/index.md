@@ -2,7 +2,7 @@
 
 ## 1.106.193（2025 年 03 月 08 日） {#1.106.193}
 
-pubrepo.guance.com/dataflux/1.106.193:launcher-2ce6b5a-1741359234
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.106.193:launcher-2ce6b5a-1741359234
 
 ### 离线镜像包下载
 
@@ -20,7 +20,7 @@ pubrepo.guance.com/dataflux/1.106.193:launcher-2ce6b5a-1741359234
 
 ## 1.106.192（2025 年 03 月 05 日） {#1.106.192}
 
-pubrepo.guance.com/dataflux/1.106.192:launcher-d438422-1741176806
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.106.192:launcher-d438422-1741176806
 
 ### 离线镜像包下载
 
@@ -38,7 +38,7 @@ pubrepo.guance.com/dataflux/1.106.192:launcher-d438422-1741176806
 
 ## 1.105.191（2025 年 02 月 27 日） {#1.105.191}
 
-pubrepo.guance.com/dataflux/1.105.191:launcher-b3bee84-1740751379
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.105.191:launcher-b3bee84-1740751379
 
 ### 离线镜像包下载
 
@@ -52,7 +52,7 @@ pubrepo.guance.com/dataflux/1.105.191:launcher-b3bee84-1740751379
 
 ## 1.104.190（2025 年 02 月 19 日） {#1.104.190}
 
-pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.104.190:launcher-f574b1d-1740401808
 
 ### 离线镜像包下载
 
@@ -92,7 +92,7 @@ pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
 
 ## 1.103.189（2025 年 01 月 16 日） {#1.103.189}
 
-pubrepo.guance.com/dataflux/1.103.189:launcher-d4a5efc-1737455050
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.103.189:launcher-d4a5efc-1737455050
 
 ### 离线镜像包下载
 
@@ -150,7 +150,7 @@ APM 添加服务时，新增[主机自动注入](../../application-performance-m
 
 ## 1.102.188（2025 年 01 月 08 日） {#1.102.188}
 
-pubrepo.guance.com/dataflux/1.102.188:launcher-0bd0be5-1736856269
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.102.188:launcher-0bd0be5-1736856269
 
 ### 离线镜像包下载
 

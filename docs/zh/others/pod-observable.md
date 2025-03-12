@@ -30,7 +30,7 @@
 注意：添加完 DataKit Helm 仓库后，必须执行升级操作 `helm repo update` 。
 
 ```
-$ helm repo add datakit  https://pubrepo.guance.com/chartrepo/datakit
+$ helm repo add datakit  https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 $ helm repo update 
 ```
 

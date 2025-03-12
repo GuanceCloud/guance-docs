@@ -247,7 +247,7 @@ window.DEPLOYCONFIG = {
     ...
     "rumDatawayUrl": "https://rum-openway.guance.com",
     "datakitScriptUrl": "https://static.<<< custom_key.brand_main_domain >>>/datakit",
-    "datakitHelmUrl": "https://pubrepo.guance.com",
+    "datakitHelmUrl": "https://pubrepo.<<< custom_key.brand_main_domain >>>",
     "passPublicNetwork": 1,
     "isOverseas": 0,
     "maxTraceSpanLimit": 10000,
@@ -270,7 +270,7 @@ window.DEPLOYCONFIG = {
 | ------------------------------------- | -------- | ------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | rumDatawayUrl                         |          | String              | "https://rum-openway.guance.com"                          | Dedicated DataWay URL for reporting RUM data, displayed on the RUM integration configuration page                                                                              |
 | datakitScriptUrl                      |          | String              | "https://static.<<< custom_key.brand_main_domain >>>/datakit" | Default download domain for DataKit installation script. Modify this configuration if using internal static resources                                                          |
-| datakitHelmUrl                        |          | String              | "https://pubrepo.guance.com"                              | DataKit Helm repository URL. Modify this configuration if using a self-built image repository                                                                                  |
+| datakitHelmUrl                        |          | String              | "https://pubrepo.<<< custom_key.brand_main_domain >>>"                              | DataKit Helm repository URL. Modify this configuration if using a self-built image repository                                                                                  |
 | passPublicNetwork                     |          | Number              | 1                                                         | Whether the client computer accessing the Studio site has public network access, 0: No, 1: Yes                                                                                 |
 | isOverseas                           |          | Number              | 0                                                         | Whether this <<< custom_key.brand_name >>> site is deployed overseas, affecting the display of world map and China map components in RUM                                       |
 | maxTraceSpanLimit                    |          | Number              | 10000                                                     | Maximum number of Spans in the flame graph for traces, default value: 10000                                                                      |

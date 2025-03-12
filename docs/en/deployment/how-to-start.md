@@ -42,7 +42,7 @@ After installation is complete, wait a moment and refresh the "Data Gateway" pag
 
 #### Register Deployment Plan Account
 
-Open the registration URL for the Deployment Plan ([https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private)) and follow the prompts to register a Deployment Plan account.
+Open the registration URL for the Deployment Plan ([https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private](https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private)) and follow the prompts to register a Deployment Plan account.
 
 ![](img/6.deployment_3.png)
 

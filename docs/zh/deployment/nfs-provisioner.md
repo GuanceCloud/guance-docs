@@ -44,7 +44,7 @@ Kubernetes  nfs subdir external provisioner  组件部署参考 [https://github.
     
     ```bash
     helm install nfs-provisioner nfs-subdir-external-provisioner \
-        --repo https://pubrepo.guance.com/chartrepo/dataflux-chart \
+        --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/dataflux-chart \
         --set nfs.server=192.168.100.105 \
         --set nfs.path=/nfsdata \
         --set storageClass.name=df-nfs-storage \

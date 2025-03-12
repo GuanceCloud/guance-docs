@@ -111,7 +111,7 @@ volumeBindingMode: WaitForFirstConsumer
 ### 4. Download Charts Package
 
 ```shell
-helm pull opensearch-cluster --repo https://pubrepo.guance.com/chartrepo/dataflux-chart --untar
+helm pull opensearch-cluster --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/dataflux-chart --untar
 ```
 
 ### 5. Modify Value Configuration

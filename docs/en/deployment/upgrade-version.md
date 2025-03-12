@@ -11,7 +11,7 @@ After upgrading from the <<< custom_key.brand_name >>> Free Plan to the commerci
 
 ### Select Upgrade Version
 
-On the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin), click "Upgrade Commercial Plan". In the "Version Upgrade" section, select "Commercial Plan - Pay-As-You-Go", and click "Upgrade Immediately".
+On the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), click "Upgrade Commercial Plan". In the "Version Upgrade" section, select "Commercial Plan - Pay-As-You-Go", and click "Upgrade Immediately".
 
 ![](img/6.deployment_10.png)
 
@@ -66,14 +66,14 @@ In the <<< custom_key.brand_name >>> Launcher "<<< custom_key.brand_name >>> Act
 
 ### Precautions
 
-After upgrading your account to the "Commercial Plan - Pay-As-You-Go" on the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin), <<< custom_key.brand_name >>> will provide a 7-day free trial period. During this period, you can activate the Commercial Plan by replacing the Free Plan License with a Commercial Plan License in the <<< custom_key.brand_name >>> Launcher "<<< custom_key.brand_name >>> Activation" dialog box.
+After upgrading your account to the "Commercial Plan - Pay-As-You-Go" on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), <<< custom_key.brand_name >>> will provide a 7-day free trial period. During this period, you can activate the Commercial Plan by replacing the Free Plan License with a Commercial Plan License in the <<< custom_key.brand_name >>> Launcher "<<< custom_key.brand_name >>> Activation" dialog box.
 
-- If you do not activate the Commercial Plan within 7 days, your account on the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin) will automatically revert to a Free Plan account.
-- If you activate the Commercial Plan after 7 days, <<< custom_key.brand_name >>> will charge according to the "Commercial Plan - Pay-As-You-Go" billing method, and your account on the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin) will automatically upgrade to a Commercial Plan account.
+- If you do not activate the Commercial Plan within 7 days, your account on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) will automatically revert to a Free Plan account.
+- If you activate the Commercial Plan after 7 days, <<< custom_key.brand_name >>> will charge according to the "Commercial Plan - Pay-As-You-Go" billing method, and your account on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) will automatically upgrade to a Commercial Plan account.
 
 ## Upgrade to Subscription-Based Version
 
-On the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin), click "Upgrade Commercial Plan", in the "Version Upgrade" section, select "Commercial Plan - Subscription-Based", and click "Apply Immediately".
+On the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), click "Upgrade Commercial Plan", in the "Version Upgrade" section, select "Commercial Plan - Subscription-Based", and click "Apply Immediately".
 
 <!--
 ![](img/13.deployment_10.png)
@@ -85,7 +85,7 @@ Fill in your requirements and contact information in the "Remarks" section, and 
 
 ## Upgrade to License-Based Version
 
-On the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin), click "Upgrade Commercial Plan", in the "Version Upgrade" section, select "Commercial Plan - License-Based", and click "Apply Immediately".
+On the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), click "Upgrade Commercial Plan", in the "Version Upgrade" section, select "Commercial Plan - License-Based", and click "Apply Immediately".
 <!--
 ![](img/13.deployment_12.png)
 -->
