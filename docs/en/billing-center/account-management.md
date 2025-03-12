@@ -34,7 +34,7 @@ Enter the new phone number you wish to update, then obtain and enter the verific
 
 ### Log in to the Billing Center
 
-After changing the new email or phone number, you can directly log in to the [Billing Center](https://boss.guance.com/#/signin) using the new email or phone number.
+After changing the new email or phone number, you can directly log in to the [Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) using the new email or phone number.
 
 ![](img/7.account_6.png)
 

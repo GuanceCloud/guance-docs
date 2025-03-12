@@ -6,7 +6,7 @@ For a comparison of the differences between the [Guance Free Plan and Commercial
 ## Prerequisites
 
 - Register for a [Guance Console](https://console.guance.com/) account and use the Free Plan workspace.
-- Register for a [Guance Billing Center](https://boss.guance.com/) account to connect with subsequent billing functions.
+- Register for a [Guance Billing Center](https://<<< custom_key.boss_domain >>>/) account to connect with subsequent billing functions.
 
 ## Upgrading from Free Plan to Commercial Plan
 
@@ -29,7 +29,7 @@ On the **Plan Upgrade** page, click **Upgrade**. Guance supports on-demand purch
 
 ### Bind Billing Center Account
 
-Enter the username of an account already registered with the [Guance Billing Center](https://boss.guance.com/) for binding. This section will validate the **username**, so please enter the **username** of an account that has been activated in the Guance Billing Center.
+Enter the username of an account already registered with the [Guance Billing Center](https://<<< custom_key.boss_domain >>>/) for binding. This section will validate the **username**, so please enter the **username** of an account that has been activated in the Guance Billing Center.
 
 ![](img/0626.png)
 

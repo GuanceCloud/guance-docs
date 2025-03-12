@@ -8,7 +8,7 @@ AWS CloudTrail is a service used for tracking, logging, and monitoring activitie
 
 ## Prerequisites
 
-1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
 2. Create an [API Key](../../management/api-key/open-api.md) for performing operations in <<< custom_key.brand_name >>> under "Management / API Key Management"
 
 > **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as the current <<< custom_key.brand_name >>> SaaS deployment [same operator, same region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,7 +17,7 @@ AWS CloudTrail is a service used for tracking, logging, and monitoring activitie
 
 In the self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-hosted Inspection (AWS CloudTrail Anomaly Detection)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 > Note: First, configure CloudWatchLogs collection for CloudTrail on AWS, then enable the "<<< custom_key.brand_name >>> Integration (AWS-CloudWatchLogs)" in Func.
 
@@ -116,7 +116,7 @@ When new anomaly events appear within the past hour.
 
 **4. What to do if previously normal scripts encounter errors during inspection**
 
-Update the referenced script set in the DataFlux Func Script Market. You can check the update records of the script market via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) for timely updates.
+Update the referenced script set in the DataFlux Func Script Market. You can check the update records of the script market via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) for timely updates.
 
 **5. During script upgrade, why does the Startup script set remain unchanged**
 

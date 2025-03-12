@@ -8,7 +8,7 @@ Service inspections should ensure that services are operating normally, promptly
 
 ## Prerequisites
 
-1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
 2. In <<< custom_key.brand_name >>> "Management / API Key Management," create an [API Key](../../management/api-key/open-api.md) for performing operations
 
 > **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with the current used <<< custom_key.brand_name >>> SaaS in [the same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,7 +17,7 @@ Service inspections should ensure that services are operating normally, promptly
 
 In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-built Inspection (Weekly/Monthly Report)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -68,7 +68,7 @@ In DataFlux Func, after configuring the required filtering conditions for inspec
 account = {
     "api_key_id": "<Guance API key ID>",
     "api_key": "<Guance API key>",
-    "guance_node": "<Guance Node [About Guance Node](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/)>"
+    "guance_node": "<Guance Node [About Guance Node](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/)>"
 }
 
 # Hosts that do not need to be checked
@@ -169,7 +169,7 @@ If there is no anomaly analysis in the inspection report, check the current `dat
 
 **3. Why might previously running scripts fail during inspection**
 
-Update the referenced script sets in the DataFlux Func Script Market. You can view the update records via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
+Update the referenced script sets in the DataFlux Func Script Market. You can view the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
 
 **4. Why might the corresponding script set remain unchanged during inspection script upgrades**
 

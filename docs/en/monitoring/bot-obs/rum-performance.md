@@ -8,7 +8,7 @@ Real User Monitoring (RUM) is an application performance monitoring technology d
 ## Prerequisites
 
 1. <<< custom_key.brand_name >>>「[User Analysis](../../real-user-monitoring/index)」already has integrated applications.
-2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
 4. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>>「Manage / API Key Management」
 
 > **Note**: If you are considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current <<< custom_key.brand_name >>> SaaS deployment [same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,7 +17,7 @@ Real User Monitoring (RUM) is an application performance monitoring technology d
 
 In your self-hosted DataFlux Func, install 「 <<< custom_key.brand_name >>> Self-hosted Inspection (RUM Performance)」from the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the desired inspection scenario in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) connection, then choose to deploy and start the script.
+Select the desired inspection scenario in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) connection, then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -155,7 +155,7 @@ If the configured front-end application experiences LCP metrics > 2.5s, FID metr
 
 **4. What should I do if previously running scripts encounter errors during inspection**
 
-Update the referenced script set in the DataFlux Func Script Market. Check the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) for updates to the script market to facilitate timely script updates.
+Update the referenced script set in the DataFlux Func Script Market. Check the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) for updates to the script market to facilitate timely script updates.
 
 **5. What should I do if the script set in Startup remains unchanged during inspection script upgrade**
 

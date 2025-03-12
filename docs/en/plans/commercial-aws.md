@@ -128,7 +128,7 @@ Click **Confirm**, displaying activation success.
 
 ![](img/15.aws_market_register_15.png)
 
-You can view the activated billing method under **Workspace Management** in the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin).
+You can view the activated billing method under **Workspace Management** in the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin).
 
 ![](img/15.aws_market_register_16.png)
 
@@ -168,7 +168,7 @@ If you do not have a <<< custom_key.brand_name >>> account, you can click **Regi
 
     ![](img/15.aws_market_register_7.png)
 
-    You can log in to the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin) with the newly registered account to view the activated billing method under **Workspace Management**.
+    You can log in to the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) with the newly registered account to view the activated billing method under **Workspace Management**.
 
     ![](img/15.aws_market_register_10.png)
 
@@ -209,7 +209,7 @@ Click **Understood** to start binding <<< custom_key.brand_name >>> workspace. B
 
     ![](img/15.aws_market_register_15.png)
 
-    You can view the activated billing method under **Workspace Management** in the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin).
+    You can view the activated billing method under **Workspace Management** in the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin).
 
     ![](img/15.aws_market_register_16.png)
 

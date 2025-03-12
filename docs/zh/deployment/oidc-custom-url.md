@@ -279,7 +279,7 @@ def callback_url_format(**kwargs):
 
 ```
 
-注意，需要为 `redirect_uri_format`、`login_auth_url_format`、`callback_url_format` 三个函数[开启授权链接](https://func.guance.com/doc/script-market-guance-issue-feishu-integration/#funcapi)
+注意，需要为 `redirect_uri_format`、`login_auth_url_format`、`callback_url_format` 三个函数[开启授权链接](https://<<< custom_key.func_domain >>>/doc/script-market-guance-issue-feishu-integration/#funcapi)
 
 
 

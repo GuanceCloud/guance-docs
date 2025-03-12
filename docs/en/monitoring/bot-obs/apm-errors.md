@@ -9,7 +9,7 @@ When server-side errors occur, we need to detect and alert early so that develop
 ## Prerequisites
 
 1. <<< custom_key.brand_name >>>「[APM](../../application-performance-monitoring/collection/index)」already has integrated applications
-2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
 4. In <<< custom_key.brand_name >>>「Manage / API Key Management」, create an [API Key](../../management/api-key/open-api.md) for performing operations
 
 > **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed in the [same operator and region](../../../getting-started/necessary-for-beginners/select-site/) as the current SaaS deployment of <<< custom_key.brand_name >>>.
@@ -18,7 +18,7 @@ When server-side errors occur, we need to detect and alert early so that develop
 
 In your self-hosted DataFlux Func, install 「<<< custom_key.brand_name >>> Self-Hosted Inspection (APM Errors)」via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-In the DataFlux Func Script Market, select the required inspection scenario, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+In the DataFlux Func Script Market, select the required inspection scenario, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -158,7 +158,7 @@ Server-side application error inspection scans for new application errors in the
 
 **4. What should I do if a previously working script fails during inspection**
 
-Update the referenced script set in the DataFlux Func Script Market. You can review the update records via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to keep the scripts up-to-date.
+Update the referenced script set in the DataFlux Func Script Market. You can review the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to keep the scripts up-to-date.
 
 **5. Why does the Startup script set not change during script upgrade**
 

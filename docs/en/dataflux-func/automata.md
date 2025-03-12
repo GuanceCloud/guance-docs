@@ -92,7 +92,7 @@ If you previously activated DataFlux Func (Automata), after the application expi
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func Deployment Plan__ </font>](https://func.guance.com/doc/maintenance-guide-requirement/)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func Deployment Plan__ </font>](https://<<< custom_key.func_domain >>>/doc/maintenance-guide-requirement/)
 
 </div>
 
@@ -104,7 +104,7 @@ If you previously activated DataFlux Func (Automata), after the application expi
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func Documentation Library__ </font>](https://func.guance.com/doc/)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func Documentation Library__ </font>](https://<<< custom_key.func_domain >>>/doc/)
 
 
 </div>

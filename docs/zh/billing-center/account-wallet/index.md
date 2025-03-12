@@ -85,7 +85,7 @@
 
 ### 购买预购卡
 
-登录到<<< custom_key.brand_name >>> [费用中心](https://boss.guance.com) ，点击**管理预购卡**，即可进入预购卡管理购买页面。
+登录到<<< custom_key.brand_name >>> [费用中心](https://<<< custom_key.boss_domain >>>) ，点击**管理预购卡**，即可进入预购卡管理购买页面。
 
 ![](../img/10.price_3.png)
 

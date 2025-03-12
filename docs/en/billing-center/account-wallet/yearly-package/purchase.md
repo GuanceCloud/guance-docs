@@ -6,7 +6,7 @@
 <a name="SFSA6"></a>
 ## 1. Upgrade to Commercial Plan
 
-After purchasing a plan and upgrading to the Commercial Plan in the <<< custom_key.brand_name >>> workspace, click on “Enter Billing Center” in the top-right corner to access the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com). For instructions on how to upgrade to the Commercial Plan, refer to the document [Paid Plans and Billing](../../../../billing/index.md).<br />![](../../../img/11.account_center_10.png)
+After purchasing a plan and upgrading to the Commercial Plan in the <<< custom_key.brand_name >>> workspace, click on “Enter Billing Center” in the top-right corner to access the <<< custom_key.brand_name >>> [Billing Center](https://<<< custom_key.boss_domain >>>). For instructions on how to upgrade to the Commercial Plan, refer to the document [Paid Plans and Billing](../../../../billing/index.md).<br />![](../../../img/11.account_center_10.png)
 <a name="tr5vY"></a>
 ## 2. Purchase Plan Packages
 

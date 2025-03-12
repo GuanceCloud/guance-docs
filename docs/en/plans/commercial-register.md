@@ -24,15 +24,31 @@ On the [<<< custom_key.brand_name >>> official website](https://<<< custom_key.b
 - When registering for the Commercial Plan, you can set up the corresponding [billing method](../billing/billing-account/index.md) based on the selected site, which can be modified as needed later.
 
 
-| Site           | Login URL                              | Operator               |
-| -------------- | -------------------------------------- | ---------------------- |
-| China Region 1 (Hangzhou) | [https://auth.guance.com/](https://auth.guance.com/login/pwd) | Alibaba Cloud (China Hangzhou) |
-| China Region 2 (Ningxia) | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) | AWS (China Ningxia) |
-| China Region 4 (Guangzhou) | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | Huawei Cloud (China Guangzhou) |
-| China Region 6 (Hong Kong) | [https://cn6-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | Alibaba Cloud (International) |
-| Overseas Region 1 (Oregon) | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS (US Oregon) |
-| Europe Region 1 (Frankfurt) | [https://eu1-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | AWS (Frankfurt) |
-| Asia-Pacific Region 1 (Singapore) | [https://ap1-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | AWS (Singapore) |
+<<<% if custom_key.brand_key == 'truewatch' %>>>
+
+| Site    | Login URL          | Provider             |
+| ----------------- | ----------------------------- | --------------------- |
+| us1 (Oregon) | [https://us1-auth.<<< custom_key.brand_main_domain >>>/](https://us1-auth.<<< custom_key.brand_main_domain >>>/) | AWS (US Oregon) |
+| eu1 (Frankfurt)   | [https://eu1-auth.<<< custom_key.brand_main_domain >>>/](https://eu1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS (Frankfurt) |
+| ap1 (Singapore)   | [https://ap1-auth.<<< custom_key.brand_main_domain >>>/](https://ap1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS (Singapore) |
+| za1 (South Africa)   | [https://za1-auth.<<< custom_key.brand_main_domain >>>/](https://za1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | Huawei Cloud (South Africa) |
+| id1 (Jakarta)   | [https://id1-auth.<<< custom_key.brand_main_domain >>>/](https://id1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | Tencent Cloud (Jakarta) |
+
+<<<% else %>>>
+
+| Site    | Login URL          | Provider             |
+| ----------------- | ----------------------------- | --------------------- |
+| cn1 (Hangzhou)   | [https://auth.<<< custom_key.brand_main_domain >>>/](https://auth.<<< custom_key.brand_main_domain >>>/login/pwd) | Alibaba Cloud (China Hangzhou) |
+| cn2 (Ningxia)   | [https://aws-auth.<<< custom_key.brand_main_domain >>>/](https://aws-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS (China Ningxia) |
+| cn4 (Guangzhou)   | [https://cn4-auth.<<< custom_key.brand_main_domain >>>/](https://cn4-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | Huawei Cloud (China Guangzhou) |
+| cn6 (Hong Kong)   | [https://cn6-auth.<<< custom_key.brand_main_domain >>>/](https://cn6-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | Alibaba Cloud (International) |
+| us1 (Oregon) | [https://us1-auth.<<< custom_key.brand_main_domain >>>/](https://us1-auth.<<< custom_key.brand_main_domain >>>/) | AWS (US Oregon) |
+| eu1 (Frankfurt)   | [https://eu1-auth.<<< custom_key.brand_main_domain >>>/](https://eu1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS (Frankfurt) |
+| ap1 (Singapore)   | [https://ap1-auth.<<< custom_key.brand_main_domain >>>/](https://ap1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS (Singapore) |
+| za1 (South Africa)   | [https://za1-auth.<<< custom_key.brand_main_domain >>>/](https://za1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | Huawei Cloud (South Africa) |
+| id1 (Jakarta)   | [https://id1-auth.<<< custom_key.brand_main_domain >>>/](https://id1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | Tencent Cloud (Jakarta) |
+
+<<<% endif %>>>
 
 
 ## Step 2: Corporate Information {#corporate}
@@ -134,7 +150,7 @@ In the pop-up window, [subscribe on the Microsoft Azure Marketplace](./commercia
 
 ### Synchronize Creation of Billing Center Account {#sync}
 
-The **initial username and password for the [Billing Center](https://boss.guance.com/) are the same as those for <<< custom_key.brand_name >>> (i.e., the username/password you entered in Step 1)**. The account systems of the two platforms are independent; modifying the username/password on one platform will not affect the other.
+The **initial username and password for the [Billing Center](https://<<< custom_key.boss_domain >>>/) are the same as those for <<< custom_key.brand_name >>> (i.e., the username/password you entered in Step 1)**. The account systems of the two platforms are independent; modifying the username/password on one platform will not affect the other.
 
 By selecting this option during the above activation methods, you can have your Billing Center account created synchronously.
 

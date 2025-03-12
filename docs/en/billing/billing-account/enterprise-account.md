@@ -19,7 +19,7 @@ At this step, the system will create a Billing Center account for you, indicatin
 
 ## Changing Settlement in the Billing Center Platform
 
-1. Log in to the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com);
+1. Log in to the <<< custom_key.brand_name >>> [Billing Center](https://<<< custom_key.boss_domain >>>);
 2. Go to Workspace management;
 3. Select the workspace and click the change button on the right;
 4. Choose **Billing Center Settlement**;

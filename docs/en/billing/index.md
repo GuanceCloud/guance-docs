@@ -87,7 +87,7 @@ View the number of data forwardings for all data forwarding rules in the current
 <<< custom_key.brand_name >>> has two independently operating but interconnected account systems that together enable usage-based billing and payment processes for **Commercial Plan users**:
 
 - [<<< custom_key.brand_name >>> Console](https://console.guance.com/) account, which can track the data intake scale and detailed billing of the current workspace and synchronize it with the designated Billing Center account.
-- [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/) account, which can be bound via `Workspace ID` to achieve **unified billing management at the workspace level** and offers multiple billing settlement options.
+- [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) account, which can be bound via `Workspace ID` to achieve **unified billing management at the workspace level** and offers multiple billing settlement options.
 
 ![](img/billing-index-1.png)
 

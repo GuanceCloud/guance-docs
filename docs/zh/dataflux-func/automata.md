@@ -95,7 +95,7 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func 部署版__ </font>](https://func.guance.com/doc/maintenance-guide-requirement/)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func 部署版__ </font>](https://<<< custom_key.func_domain >>>/doc/maintenance-guide-requirement/)
 
 </div>
 
@@ -107,7 +107,7 @@ DataFlux Func 托管版采用按月收费的模式，在费用到期前，您仍
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func 文档库__ </font>](https://func.guance.com/doc/)
+- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; __DataFlux Func 文档库__ </font>](https://<<< custom_key.func_domain >>>/doc/)
 
 
 </div>

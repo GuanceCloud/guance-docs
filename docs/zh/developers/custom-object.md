@@ -12,12 +12,12 @@
 资源目录数据上报需要先安装并连通 DataKit 和 DataFlux Func ，再通过 DataFlux Func 上报数据到 DataKit，最终 DataKit 上报数据到<<< custom_key.brand_name >>>工作空间。
 
 - [安装 DataKit](../datakit/datakit-install.md)
-- [安装 DataFlux Func](https://func.guance.com/doc/quick-start/)
-- [连接 DataFlux Func 和 DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)
+- [安装 DataFlux Func](https://<<< custom_key.func_domain >>>/doc/quick-start/)
+- [连接 DataFlux Func 和 DataKit](https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/)
 
 ## 上报资源目录数据
 
 DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数来完成上报资源目录数据。
 
 - 关于 DataFlux Func 函数调用的接口说明可参考文档 [DataKit API](../datakit/apis.md)。
-- 关于 DataFlux Func 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](https://func.guance.com/doc/practice-write-data-via-datakit/)。
+- 关于 DataFlux Func 如何写入数据到 DataKit 的说明可参考文档 [通过DataKit 写入数据](https://<<< custom_key.func_domain >>>/doc/practice-write-data-via-datakit/)。

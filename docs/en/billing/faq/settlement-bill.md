@@ -14,7 +14,7 @@ Please contact your account manager.
 
 ### How can the Free Plan be directly upgraded to the Commercial Plan and use US dollar settlement under domestic sites?
 
-You can go to [Billing Center](https://boss.guance.com/) > Workspace Management > Bind Workspace Entry to bind and upgrade directly. After upgrading, if you need to change the currency for settlement, please contact your account manager.
+You can go to [Billing Center](https://<<< custom_key.boss_domain >>>/) > Workspace Management > Bind Workspace Entry to bind and upgrade directly. After upgrading, if you need to change the currency for settlement, please contact your account manager.
 
 ### How can the Commercial Plan switch from RMB settlement to US dollar settlement under domestic sites?
 

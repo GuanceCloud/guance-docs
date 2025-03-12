@@ -102,7 +102,7 @@ Upgrade Notes:
 ### Prerequisites
 
 - Register a [<<< custom_key.brand_name >>> Console](https://console.guance.com/) account and have a Free Plan workspace;
-- Synchronize the creation of a [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/) account to connect with subsequent billing functions.
+- Synchronize the creation of a [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) account to connect with subsequent billing functions.
 
 ???- abstract "What is a Billing Center account?"
 

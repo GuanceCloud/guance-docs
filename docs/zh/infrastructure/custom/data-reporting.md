@@ -34,7 +34,7 @@
 
 ![](../img/3.object_more_api_function_1.png)
 
-> 更多 Func 安装，可参考[快速开始](https://func.guance.com/doc/quick-start/)。
+> 更多 Func 安装，可参考[快速开始](https://<<< custom_key.func_domain >>>/doc/quick-start/)。
 
 ## 连接 DataFlux Func 和 DataKit
 
@@ -52,7 +52,7 @@ sudo datakit --restart
 
 ![](../img/21.lab_rum_3.png)
 
-> 更多详情，可参考 [连接并操作 DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)。
+> 更多详情，可参考 [连接并操作 DataKit](https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/)。
 
 ## 上报资源目录数据
 
@@ -60,7 +60,7 @@ DataFlux Func 和 DataKit 连通以后，可以在 DataFlux Func 中撰写函数
 
 > 关于 DataFlux Func 函数调用的接口说明，可参考 [DataKit API](../../datakit/apis.md)；   
 > 
-> 关于 DataFlux Func 如何写入数据到 DataKit 的说明，可参考 [通过 DataKit 写入数据](https://func.guance.com/doc/practice-write-data-via-datakit/)。
+> 关于 DataFlux Func 如何写入数据到 DataKit 的说明，可参考 [通过 DataKit 写入数据](https://<<< custom_key.func_domain >>>/doc/practice-write-data-via-datakit/)。
 
 ## 示例说明
 

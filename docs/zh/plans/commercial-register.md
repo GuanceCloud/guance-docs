@@ -23,17 +23,31 @@
 
 - 注册商业版的同时，您可以根据所选择的站点，设置对应的[结算方式](../billing/billing-account/index.md)，后续可按需修改。
 
+<<<% if custom_key.brand_key == 'truewatch' %>>>
 
 | 站点    | 登录地址 URL    |  运营商 |
 | ----------------- | ---------------- | ------------------ |
-| 中国区1（杭州）   | [https://auth.guance.com/](https://auth.guance.com/login/pwd) |阿里云（中国杭州） |
-| 中国区2（宁夏）   | [https://aws-auth.guance.com/](https://aws-auth.guance.com/login/pwd) |AWS（中国宁夏） |
-| 中国区4（广州）   | [https://cn4-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 华为云（中国广州） |
-| 中国区6（香港）   | [https://cn6-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | 阿里云（国际站） |
-| 海外区1（俄勒冈） | [https://us1-auth.guance.com/](https://us1-auth.guance.com/) | AWS（美国俄勒冈） |
-| 欧洲区1（法兰克福）   | [https://eu1-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | AWS（法兰克福） |
-| 亚太区1（新加坡）   | [https://ap1-auth.guance.com/](https://cn4-auth.guance.com/login/pwd) | AWS（新加坡） |
+| 美洲区1（俄勒冈） | [https://us1-auth.<<< custom_key.brand_main_domain >>>/](https://us1-auth.<<< custom_key.brand_main_domain >>>/) | AWS（美国俄勒冈） |
+| 欧洲区1（法兰克福）   | [https://eu1-auth.<<< custom_key.brand_main_domain >>>/](https://eu1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS（法兰克福） |
+| 亚太区1（新加坡）   | [https://ap1-auth.<<< custom_key.brand_main_domain >>>/](https://ap1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS（新加坡） |
+| 非洲区1（南非）   | [https://za1-auth.<<< custom_key.brand_main_domain >>>/](https://za1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | 华为云（南非） |
+| 印尼区1（雅加达）   | [https://id1-auth.<<< custom_key.brand_main_domain >>>/](https://id1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | 腾讯云（雅加达） |
 
+<<<% else %>>>
+
+| 站点    | 登录地址 URL    |  运营商 |
+| ----------------- | ---------------- | ------------------ |
+| 中国区1（杭州）   | [https://auth.<<< custom_key.brand_main_domain >>>/](https://auth.<<< custom_key.brand_main_domain >>>/login/pwd) |阿里云（中国杭州） |
+| 中国区2（宁夏）   | [https://aws-auth.<<< custom_key.brand_main_domain >>>/](https://aws-auth.<<< custom_key.brand_main_domain >>>/login/pwd) |AWS（中国宁夏） |
+| 中国区4（广州）   | [https://cn4-auth.<<< custom_key.brand_main_domain >>>/](https://cn4-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | 华为云（中国广州） |
+| 中国区6（香港）   | [https://cn6-auth.<<< custom_key.brand_main_domain >>>/](https://cn6-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | 阿里云（国际站） |
+| 美洲区1（俄勒冈） | [https://us1-auth.<<< custom_key.brand_main_domain >>>/](https://us1-auth.<<< custom_key.brand_main_domain >>>/) | AWS（美国俄勒冈） |
+| 欧洲区1（法兰克福）   | [https://eu1-auth.<<< custom_key.brand_main_domain >>>/](https://eu1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS（法兰克福） |
+| 亚太区1（新加坡）   | [https://ap1-auth.<<< custom_key.brand_main_domain >>>/](https://ap1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | AWS（新加坡） |
+| 非洲区1（南非）   | [https://za1-auth.<<< custom_key.brand_main_domain >>>/](https://za1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | 华为云（南非） |
+| 印尼区1（雅加达）   | [https://id1-auth.<<< custom_key.brand_main_domain >>>/](https://id1-auth.<<< custom_key.brand_main_domain >>>/login/pwd) | 腾讯云（雅加达） |
+
+<<<% endif %>>>
 
 ## 第二步：企业信息 {#corporate}
 
@@ -137,7 +151,7 @@
 
 ### 同步创建费用中心账号 {#sync}
 
-[费用中心](https://boss.guance.com/)的**初始用户名和密码同<<< custom_key.brand_name >>>（即您在第一步中所填写的用户名/密码）**，两个平台账号体系相互独立，后续修改用户名/密码，不会影响另外一个平台。
+[费用中心](https://<<< custom_key.boss_domain >>>/)的**初始用户名和密码同<<< custom_key.brand_name >>>（即您在第一步中所填写的用户名/密码）**，两个平台账号体系相互独立，后续修改用户名/密码，不会影响另外一个平台。
 
 在以上开通方式中，勾选此选项，即可为您同步创建费用中心账号。
 

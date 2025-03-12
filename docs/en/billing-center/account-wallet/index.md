@@ -83,7 +83,7 @@ After successfully submitting the activation code, you can view the activated vo
 
 ### Purchase Prepaid Cards
 
-Log in to the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com), click **Manage Prepaid Cards**, and you will enter the prepaid card management and purchase page.
+Log in to the <<< custom_key.brand_name >>> [Billing Center](https://<<< custom_key.boss_domain >>>), click **Manage Prepaid Cards**, and you will enter the prepaid card management and purchase page.
 
 ![](../img/10.price_3.png)
 

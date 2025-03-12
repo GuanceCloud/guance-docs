@@ -12,9 +12,9 @@ This document primarily introduces how to use the script package 「<<< custom_k
 
 ## 1. Prerequisites
 
-- [Install DataFlux Func](https://func.guance.com/doc/quick-start/) 
+- [Install DataFlux Func](https://<<< custom_key.func_domain >>>/doc/quick-start/) 
 
-- [Install Script Packages](https://func.guance.com/doc/script-market-basic-usage/) 
+- [Install Script Packages](https://<<< custom_key.func_domain >>>/doc/script-market-basic-usage/) 
 
 ## 2. Quick Start
 
@@ -136,7 +136,7 @@ GUANCE_NODE = 'aws'
 # Omitted...
 ~~~
 
-> For available values of `GUANCE_NODE`, refer to [Available <<< custom_key.brand_name >>> Nodes](https://func.guance.com/doc/ui-guide-development-module-guance-node/)
+> For available values of `GUANCE_NODE`, refer to [Available <<< custom_key.brand_name >>> Nodes](https://<<< custom_key.func_domain >>>/doc/ui-guide-development-module-guance-node/)
 
 <!-- 
 The available values of `GUANCE_NODE` are as follows:

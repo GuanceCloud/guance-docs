@@ -34,7 +34,7 @@ Return to the Huawei Cloud **Purchased Services List** to view the purchased <<<
 
 ## Changing Settlement on the Billing Center Platform
 
-1. Log into the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com);
+1. Log into the <<< custom_key.brand_name >>> [Billing Center](https://<<< custom_key.boss_domain >>>);
 2. Enter workspace management;
 3. Select the workspace and click the change button on the right;
 4. Choose **Huawei Cloud Account Settlement**;

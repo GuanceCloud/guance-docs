@@ -12,9 +12,9 @@ DataFlux Func 是一款函数开发、管理、执行平台。简单易用、无
 
 ## 1. 前提条件
 
-- [安装 DataFlux Func](https://func.guance.com/doc/quick-start/) 
+- [安装 DataFlux Func](https://<<< custom_key.func_domain >>>/doc/quick-start/) 
 
-- [安装脚本包](https://func.guance.com/doc/script-market-basic-usage/) 
+- [安装脚本包](https://<<< custom_key.func_domain >>>/doc/script-market-basic-usage/) 
 
 ## 2. 快速开始
 
@@ -136,7 +136,7 @@ GUANCE_NODE = 'aws'
 # 下略。..
 ~~~
 
-> 关于 `GUANCE_NODE` 可选值，可参考 [可用的<<< custom_key.brand_name >>>节点](https://func.guance.com/doc/ui-guide-development-module-guance-node/)
+> 关于 `GUANCE_NODE` 可选值，可参考 [可用的<<< custom_key.brand_name >>>节点](https://<<< custom_key.func_domain >>>/doc/ui-guide-development-module-guance-node/)
 
 <!-- 
 `GUANCE_NODE`可选值如下：

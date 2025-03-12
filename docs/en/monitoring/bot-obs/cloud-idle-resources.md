@@ -8,7 +8,7 @@ Cloud computing, as a brand-new IT service model, has developed rapidly and prov
 
 ## Prerequisites
 
-1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
 2. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> under 「Manage / API Key Management」
 
 > **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the current SaaS <<< custom_key.brand_name >>> in the [same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,7 +17,7 @@ Cloud computing, as a brand-new IT service model, has developed rapidly and prov
 
 In your self-hosted DataFlux Func, install the 「<<< custom_key.brand_name >>> Self-built Inspection (Idle Cloud Resource Inspection)」from the 「Script Market」and configure the <<< custom_key.brand_name >>> API Key to complete the activation.
 
-In the DataFlux Func Script Market, select the inspection scenario you need to initiate, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+In the DataFlux Func Script Market, select the inspection scenario you need to initiate, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 > Note: If inspecting idle resources from different cloud providers, additional collectors need to be enabled.
 >
@@ -125,7 +125,7 @@ When it detects that within the past 48 hours, the average hourly CPU utilizatio
 
 **4. What should be done if a previously normally running script encounters errors during inspection**
 
-Please update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script updates.
+Please update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate immediate script updates.
 
 **5. What should be done if the script set in Startup remains unchanged during script upgrade**
 

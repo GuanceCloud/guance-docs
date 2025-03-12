@@ -9,7 +9,7 @@
 ## Prerequisites
 
 1. <<< custom_key.brand_name >>> "[APM](../../application-performance-monitoring/collection/index.md)" already has integrated applications.
-2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
 4. In <<< custom_key.brand_name >>> "Manage / API Key Management," create an [API Key](../../management/api-key/open-api.md) for operations.
 
 > **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the current <<< custom_key.brand_name >>> SaaS [in the same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -18,7 +18,7 @@
 
 In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-hosted Check (APM Performance)" from the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Choose the desired check scenario in the DataFlux Func Script Market, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) settings, then select deploy to start the script.
+Choose the desired check scenario in the DataFlux Func Script Market, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) settings, then select deploy to start the script.
 
 ![image](../img/create_checker.png)
 
@@ -195,7 +195,7 @@ Supports viewing related events through filter fields and selected Time Widget i
 
 **4. What should be done if previously running scripts encounter errors during checks**
 
-Update the referenced script sets in the DataFlux Func Script Market. You can view the update records of the script market through the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates of the scripts.
+Update the referenced script sets in the DataFlux Func Script Market. You can view the update records of the script market through the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates of the scripts.
 
 **5. Why does the corresponding script set remain unchanged during script upgrade**
 

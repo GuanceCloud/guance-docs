@@ -10,8 +10,8 @@
 ## 前置条件
 
 - 安装 DataKit（[DataKit 安装文档](../datakit/datakit-install.md)）
-- 安装 DataFlux Func ([DataFlux Func 安装文档](https://func.guance.com/doc/quick-start/)）
-- 连接 DataFlux Func 和 DataKit ([连接并操作DataKit](https://func.guance.com/doc/practice-connect-to-datakit/)）
+- 安装 DataFlux Func ([DataFlux Func 安装文档](https://<<< custom_key.func_domain >>>/doc/quick-start/)）
+- 连接 DataFlux Func 和 DataKit ([连接并操作DataKit](https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/)）
 
 
 

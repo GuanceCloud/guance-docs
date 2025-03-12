@@ -8,7 +8,7 @@ For increasingly complex application architectures, the current trend is for mor
 
 ## Prerequisites
 
-1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
 2. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> "Management / API Key Management"
 
 > **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with the current used <<< custom_key.brand_name >>> SaaS [in the same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,7 +17,7 @@ For increasingly complex application architectures, the current trend is for mor
 
 In your self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-hosted Security Check (MySQL Performance)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the required security check scenario from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) settings, then choose to deploy and start the script.
+Select the required security check scenario from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) settings, then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -161,7 +161,7 @@ Events are generated if the CPU utilization of the configured host exceeds 95% f
 
 **4. What should I do if a previously working script encounters errors during the security check**
 
-Update the referenced script set in the DataFlux Func Script Market. You can view the update history of the script market through the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates.
+Update the referenced script set in the DataFlux Func Script Market. You can view the update history of the script market through the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates.
 
 **5. Why does the script set in Startup not change during the upgrade of the security check script**
 

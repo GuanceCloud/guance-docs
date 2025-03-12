@@ -43,7 +43,7 @@ Case Study:
 ## What Payment Methods Does Guance Support?
 
 
-:material-numeric-1-circle: Enter the [Billing Center](https://boss.guance.com/), directly use the Billing Center account for payment. You only need to recharge or purchase prepaid cards in the Billing Center account to complete the bill payment.
+:material-numeric-1-circle: Enter the [Billing Center](https://<<< custom_key.boss_domain >>>/), directly use the Billing Center account for payment. You only need to recharge or purchase prepaid cards in the Billing Center account to complete the bill payment.
 
 :material-numeric-1-circle: Cloud provider accounts are supported for settlement, currently supporting Huawei Cloud, Alibaba Cloud, AWS, and Microsoft Azure.
 
@@ -84,7 +84,7 @@ Workspaces are created under the console account, and when workspaces undergo fe
 
 The Guance console account is used for logging into the official website: https://<<< custom_key.brand_main_domain >>>. **The unique identifier for the account is the email address**.
 
-The Billing Center account can be viewed in **Guance Workspace > Paid Plans & Billing**. If there is a Billing Center account, the settlement account will display normally; or log in directly to the Billing Center platform: https://boss.guance.com. **The unique identifier for the Billing Center account is the username**.
+The Billing Center account can be viewed in **Guance Workspace > Paid Plans & Billing**. If there is a Billing Center account, the settlement account will display normally; or log in directly to the Billing Center platform: https://<<< custom_key.boss_domain >>>. **The unique identifier for the Billing Center account is the username**.
 
 
 :material-chat-question: I have activated the Free Plan of Guance, how do I upgrade to the Commercial Plan?

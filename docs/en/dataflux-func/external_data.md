@@ -12,7 +12,7 @@ Using DataFlux Func, you can integrate various data sources such as MySQL into <
 
 ## Prerequisites
 
-You need to select and download the corresponding installation package, [Quick Start](https://func.guance.com/doc/quick-start/) to deploy the Func platform.
+You need to select and download the corresponding installation package, [Quick Start](https://<<< custom_key.func_domain >>>/doc/quick-start/) to deploy the Func platform.
 
 After deployment, wait for initialization to complete, then log in to the platform.
 
@@ -25,10 +25,10 @@ Navigate to Development > Connectors > Add Connector page:
 <img src="../img/get_func.png" width="70%" >
 
 1. Select the connector type;
-2. Customize the [ID](https://func.guance.com/doc/development-guide-basic-conception/#2) of this connector, e.g., `guance_test`;
+2. Customize the [ID](https://<<< custom_key.func_domain >>>/doc/development-guide-basic-conception/#2) of this connector, e.g., `guance_test`;
 3. Add a title. This title will be displayed synchronously in the <<< custom_key.brand_name >>> workspace;
 4. Enter a description for the connector as needed;
-5. Select the <<< custom_key.brand_name >>> [node](https://func.guance.com/doc/ui-guide-development-module-guance-node/);
+5. Select the <<< custom_key.brand_name >>> [node](https://<<< custom_key.func_domain >>>/doc/ui-guide-development-module-guance-node/);
 6. Add [API Key ID and API Key](#api-key-how_to_get_api_key);
 7. Test connectivity as needed;
 8. Click Save.
