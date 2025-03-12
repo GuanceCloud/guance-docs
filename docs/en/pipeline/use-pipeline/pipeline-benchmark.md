@@ -1,10 +1,11 @@
-# Performance Benchmarks and Optimization
+
+# Performance Benchmarks and Optimizations
 
 ---
 
-## Testing Environment {#env}
+## Test Environment {#env}
 
-- Operating System: Ubuntu 22.04.1 LTS
+- OS: Ubuntu 22.04.1 LTS
 - CPU: 12th Gen Intel(R) Core(TM) i7-12700H
 - Memory: 40GB DDR5-4800
 - DataKit: v1.9.1
@@ -29,9 +30,9 @@ Test data:
 }
 ```
 
-Extraction using functions `json()` and `load_json()`
+Use the functions `json()` and `load_json()` functions to extract:
 
-- `load_json()`
+- `load_json`
 
 ```python
 data = load_json(_)
@@ -48,7 +49,7 @@ add_key(status, data["status"])
 add_key(cost, data["cost"])
 ```
 
-- `json()`
+- `json`
 
 ```python
 json(_, tcpSeq, tcpSeq)
@@ -64,6 +65,7 @@ json(_, status, status)
 json(_, cost, cost)
 ```
 
+
 Benchmark results:
 
 ```not-set
@@ -71,17 +73,17 @@ BenchmarkScript/load_json()-20            202762          5674 ns/op        2865
 BenchmarkScript/json()-20                  31024         41463 ns/op       21144 B/op        455 allocs/op
 ```
 
-The results show that using the `load_json()` function significantly reduces processing time compared to the `json()` function. The script runtime decreased from 41.46us to 5.67us.
+As a result, using the `load_json()` function compared to the `json()` function greatly reduces the time spent on processing test data, and the running time of a single script is reduced from 41.46us to 5.67us.
 
 ## Grok Benchmark {#benchmark-grok}
 
-Using nginx access logs as test data:
+Take nginx access logs as test data:
 
 ```not-set
 192.168.158.20 - - [19/Jun/2021:04:04:58 +0000] "POST /baxrrrrqc.php?daxd=a%20&d=1 HTTP/1.1" 404 118 "-" "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; fr; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8"
 ```
 
-Two scripts were used to test the performance impact of different Grok patterns, with the main optimization being the replacement of `IPORHOST` with `NOTSPACE`:
+Use the following two scripts to test. The test content is to compare the performance impact of different Grok modes on the grok function. The main optimization is to replace `IPORHOST` with `NOTSPACE`:
 
 - Script before optimization
 
@@ -93,6 +95,7 @@ cast(bytes, "int")
 
 default_time(time)
 ```
+
 
 - Script after optimization
 
@@ -112,4 +115,4 @@ BenchmarkScript/grok_nginx-20            19292       67006 ns/op        3828 B/o
 BenchmarkScript/grok_p1-20              139440        7860 ns/op        3665 B/op         42 allocs/op
 ```
 
-The results show that replacing the Grok pattern `IPORHOST` with `NOTSPACE` reduced the execution time for a single script from 67us to 7.86us.
+As a result, after replacing the Grok mode `IPORHOST` with `NOTSPACE`, in the processing of test data, the execution time of a single script was reduced from 67us to 7.86us.

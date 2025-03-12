@@ -1,17 +1,18 @@
 ---
 title     : 'DDTrace NodeJS'
-summary   : 'DDTrace NodeJS Integration'
+summary   : 'Tracing NodeJS applications with DDTrace'
 tags      :
   - 'DDTRACE'
   - 'NODEJS'
-  - 'Tracing'
+  - 'APM'
+  - 'TRACING'
 __int_icon: 'icon/ddtrace'
 ---
 
 
 ## Install Dependencies {#dependence}
 
-Install the DDTrace NodeJS extension. For complete APM integration steps, refer to the [Datadog NodeJS Integration Documentation](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/nodejs/){:target="_blank"}.
+To install the DDTrace extension for NodeJS, follow the complete APM integration steps in the [Datadog NodeJS Integration Documentation](https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/dd_libraries/nodejs/){:target="_blank"}.
 
 ## NodeJS v12+ {#node-12}
 
@@ -25,18 +26,18 @@ npm install dd-trace --save
 npm install dd-trace@latest-node10
 ```
 
-> Note: You must import and initialize the DDTrace library before any NodeJS code or modules are loaded. If the DDTrace library is not properly initialized, it may not receive tracing data.
+> Note: You must import and initialize the DDTrace library before any NodeJS code or any Module is loaded. If the DDTrace library is not properly initialized, it may not receive trace data.
 
 ## Example {#example}
 
-In a pure JavaScript environment:
+In an environment that only runs JavaScript:
 
 ```nodejs
 // This line must come before importing any instrumented module.
 const tracer = require("dd-trace").init();
 ```
 
-For environments using TypeScript and bundlers that support ECMAScript Module syntax, you need to initialize DDTrace in a different file:
+For environments that use TypeScript and bundlers and support ECMAScript Module syntax, you need to initialize DDTrace in a different file:
 
 ```nodejs
 //
@@ -54,7 +55,7 @@ tracer.init(); // initialized in a different file to avoid hoisting.
 export default tracer;
 ```
 
-Additionally, if the default configuration is sufficient or DDTrace has been successfully configured via environment variables, you can directly import the module in your code:
+Additionally, if the default configuration is sufficient or DDTrace is successfully configured via environment variables, you can directly import the module in your code:
 
 ```typescript
 import "dd-trace/init";
@@ -70,36 +71,36 @@ DD_AGENT_HOST=localhost DD_TRACE_AGENT_PORT=9529 node server
 
 ## Environment Variable Support {#envs}
 
-Below is a list of common ENV support. For a complete list of supported ENV variables, refer to the [Datadog Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/nodejs/){:target="_blank"}
+The following lists common ENV support. For a complete list of ENV support, see [Datadog Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/nodejs/){:target="_blank"}.
 
 - **DD_ENV**
 
-    Sets the environment variable for the service
+    Sets the environment variable for the service.
 
 - **DD_VERSION**
 
-    APP version number
+    The version number of the APP.
 
 - **DD_SERVICE**
 
-    Used to set the application's service name, defaults to the `name` field in *package.json*
+    Used to set the application's service name, defaults to the `name` field in *package.json*.
 
 - **DD_SERVICE_MAPPING**
 
-    Defines service name mappings to rename services in Tracing.
+    Defines service name mappings for renaming services in Tracing.
 
 - **DD_TAGS**
 
-    Adds default Tags to each Span
+    Adds default Tags to each Span.
 
 - **DD_TRACE_AGENT_HOSTNAME**
 
-    Hostname where Datakit listens, defaults to localhost
+    The hostname where Datakit is listening, default is localhost.
 
 - **DD_TRACE_AGENT_PORT**
 
-    Port number where Datakit listens, defaults to 9529
+    The port number where Datakit is listening, default is 9529.
 
 - **DD_TRACE_SAMPLE_RATE**
 
-    Sets the sampling rate from 0.0(0%) ~ 1.0(100%)
+    Sets the sampling rate from 0.0 (0%) to 1.0 (100%).

@@ -1,27 +1,27 @@
-# DataKit Update
+
+# DataKit Upgrade
 ---
 
-DataKit supports both manual and automatic update methods.
+DataKit supports both manual and automatic upgrade.
 
-## Additional Supported Environment Variables {#extra-envs}
+## Additional Supported Environment Variable {#extra-envs}
 
-Currently, the upgrade command also supports environment variables consistent with the installation command [environment variables supported by the installation command](datakit-install.md#extra-envs), starting from version [1.62.1](changelog.md#cl-1.62.1).
+From version [1.62.0](changelog.md#cl-1.62.0) onwards, the upgrade command also supports the same environment variables as the install command. For more details, refer to the [environment variables supported by the install command](datakit-install.md#extra-envs).
 
-## Prerequisites {#req}
+## Preconditions {#req}
 
-- Remote updates require DataKit version >= 1.5.9
-- Automatic updates require DataKit version >= 1.1.6-rc1
-- Manual updates have no version requirements
+- Automatic upgrade require DataKit version >= 1.1.6-rc1
+- There is no version requirement for manual upgrade
 
-## Manual Update {#manual}
+## Manually Upgrade {#manual}
 
-Run the following commands to check the current DataKit version. If a newer version is available online, it will prompt the corresponding update command, for example:
+Directly execute the following command to view the current DataKit version. If the latest version is available online, the corresponding upgrade
+command will be prompted, such as:
 
-> - If [DataKit < 1.2.7](changelog.md#cl-1.2.7), use `datakit --version` here.
-> - If DataKit < 1.2.0, please [use the update command directly](changelog.md#cl-1.2.0-break-changes)
-
+> - For remote upgrade, you must upgrade Datakit to [1.5.9](changelog.md#cl-1.5.9)+
+> - If [DataKit < 1.2.7](changelog.md#cl-1.2.7), you can only use `datakit --version`
+> - If DataKit < 1.2.0, [use the upgrade command directly](changelog.md#cl-1.2.0-break-changes)
 <!-- markdownlint-disable MD046 -->
-
 === "Linux/macOS"
 
     ``` shell
@@ -66,13 +66,10 @@ Run the following commands to check the current DataKit version. If a newer vers
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
-<!-- markdownlint-enable -->
-
 ---
 
-If the current DataKit is in proxy mode, the automatic update prompt command will automatically include proxy settings:
+If the DataKit is currently in proxy mode, the proxy settings will be automatically added to the prompt command of automatic upgrade:
 
-<!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
 
     ```shell
@@ -92,7 +89,7 @@ If the current DataKit is in proxy mode, the automatic update prompt command wil
 
 > Note: The service does not support Datakit installed in k8s.
 
-During the Datakit installation process, a remote update service is installed by default, specifically for upgrading the Datakit version. For older versions of Datakit, you can specify additional parameters in the Datakit upgrade command to install this service:
+During the installation of Datakit, an additional remote update service is installed by default, which is specifically used to upgrade the Datakit version. If you are using an older version of Datakit, you can specify additional parameters in the Datakit upgrade command to install this service:
 
 <!-- markdownlint-disable MD046 -->
 
@@ -106,20 +103,20 @@ During the Datakit installation process, a remote update service is installed by
 
 === "Offline Update"
 
-    [:octicons-tag-24: Version-1.38.0](changelog.md#cl-1.38.0)
+    [:octicons-tag-24: Version-1.38.1](changelog.md#cl-1.38.1)
 
-    If you have [offline synchronized the Datakit installation package](datakit-offline-install.md#offline-advanced), assuming the offline package URL is `http://my.static.com/datakit`, then the upgrade command here is:
+    If you have [synchronized the Datakit installation package offline](datakit-offline-install.md#offline-advanced), assuming the offline installation package address is `http://my.static.com/datakit`, the upgrade command here is
 
     ```shell hl_lines="3"
     DK_UPGRADE=1 \
       DK_UPGRADE_MANAGER=1 \
-      DK_INSTALLER_BASE_URL="http://my.static.com/datakit" \
+      DK_INSTALLER_BASE_URL="http://my.static.com/datakit"  \
       bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 ???+ attention
 
-    By default, the service binds to address `0.0.0.0:9542`. If this address is occupied, you can specify an alternative:
+    The service will bind to the `0.0.0.0:9542` address by default. If this address/port is occupied, you can specify an alternative:
 
     ```shell hl_lines="3"
     DK_UPGRADE=1 \
@@ -130,47 +127,47 @@ During the Datakit installation process, a remote update service is installed by
 
 ---
 
-Since the service provides an HTTP API, it has the following optional parameters ([:octicons-tag-24: Version-1.38.0](changelog.md#cl-1.38.0)):
+Since the service provides an HTTP API, it has the following parameters available ([:octicons-tag-24: Version-1.38.1](changelog.md#cl-1.38.1)):
 
-- **`version`**: Upgrade or downgrade Datakit to the specified version (for offline installations, ensure the specified version has been synchronized).
-- **`force`**: If the current Datakit has not started or behaves abnormally, we can force its upgrade and restart the service using this parameter.
+- **`version`**: Upgrade/Downgrade Datakit to a specified version number (if it's an offline installation, ensure that the specified version's resources has been synchronized)
+- **`force`**: If the current Datakit is not running or behaving abnormally, you can use this parameter to force an upgrade and start Datakit service
 
-We can manually call its interface to perform a remote update, or achieve remote updates through DCA.
+You can manually call APIs to achieve remote updates, or use DCA to achieve remote updates.
 
-=== "Manual Call"
+=== "Manual Invocation"
 
     ```shell
-    # Upgrade to the latest Datakit version
+    # Update to the latest Datakit version
     curl -XPOST "http://<datakit-ip>:9542/v1/datakit/upgrade"
 
     {"msg":"success"}
 
-    # Upgrade to a specific Datakit version
+    # Update to a specific Datakit version
     curl -XPOST "http://<datakit-ip>:9542/v1/datakit/upgrade?version=3.4.5"
 
-    # Force upgrade a Datakit version
+    # Force upgrade the Datakit
     curl -XPOST "http://<datakit-ip>:9542/v1/datakit/upgrade?force=1"
     ```
 
 === "DCA"
 
-    Refer to the [DCA documentation](../dca/index.md).
+    See [DCA Documentation](../dca/index.md).
 
 ---
 
 ???+ info
 
-    - The upgrade process may take longer depending on network bandwidth (basically equivalent to manually calling the Datakit upgrade command). Please wait patiently for the API response. If interrupted midway, **the behavior is undefined**.
-    - During the upgrade process, if the specified version does not exist, the request will return an error (e.g., version `3.4.5` does not exist):
+    - The upgrade process may take a long time depending on network bandwidth (essentially equivalent to manually invoking the Datakit upgrade command), please wait patiently for the API to return. If interrupted midway, **its behavior is undefined**.
+    - During the upgrade process, if the specified version does not exist, the request will return an error (version `3.4.5` does not exist):
 
     ```json
     {
       "error_code": "datakit.upgradeFailed",
-      "message": "unable to download script file http://my.static.com/datakit/install-3.4.5.sh: resonse status: 404 Not Found"
+      "message": "unable to download script file http://my.static.com/datakit/install-3.4.5.sh:  resonse status: 404 Not Found"
     }
     ```
 
-    - If the current Datakit is not running, it will return an error:
+    - If Datakit is not running, it will return an error(we can specify **force** to fix that):
 
     ```json
     {
@@ -180,46 +177,68 @@ We can manually call its interface to perform a remote update, or achieve remote
     ```
 <!-- markdownlint-enable -->
 
-## Offline Update {#offline-upgrade}
+## Offline Upgrade {#offline-upgrade}
 
-Refer to the relevant sections in [Offline Installation](datakit-offline-install.md).
+Please refer to [Offline Install](datakit-offline-install.md) related sections.
 
 ## FAQ {#faq}
 
-### Differences Between Update and Install {#upgrade-vs-install}
+### Differences Between Updating and Installing {#upgrade-vs-install}
 
-To upgrade to a newer version of Datakit, you can choose to:
+To upgrade to a newer version of Datakit, you can do so by:
 
-- Reinstall
-- [Execute the upgrade command](datakit-update.md#manual)
+- Reinstallation
+- [Executing the upgrade command](datakit-update.md#manual)
 
-On hosts where Datakit is already installed, it is recommended to upgrade to a newer version via the upgrade command rather than reinstalling. If you reinstall, all configurations inside [*datakit.conf*](datakit-conf.md#maincfg-example) will be reset to default settings, such as global tag configurations, port settings, etc. This may not be what you expect.
+On a host where Datakit is already installed, it is recommended to upgrade to a newer version using the upgrade command rather than reinstalling. If you reinstall, all configurations in [*datakit.conf*](datakit-conf.md#maincfg-example) will be reset to their default settings, such as global tag configurations, port settings, and so on. This may not be desirable.
 
-However, regardless of whether you reinstall or execute the upgrade command, all collection-related configurations will not change.
+However, whether you reinstall or execute the upgrade command, all the collectors(inputs) configurations are not reset to default.
 
-### Handling Version Check Failures {#version-check-failed}
+### DataKit Version Downgrade {#downgrade}
 
-During DataKit installation/upgrade, the installer checks the current running DataKit version to ensure it matches the upgraded version.
+If the new version is unsatisfactory and eager to roll back the recovery function of the old version, you can directly reverse upgrade in the following ways:
+<!-- markdownlint-disable MD046 -->
+=== "Linux/macOS"
 
-However, in some cases, the old version of the DataKit service may not have uninstalled successfully, causing the detected version to still be the old one:
+    ```shell
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install1.2.3.sh)"
+    ```
+=== "Windows"
+
+    ```powershell
+    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
+    $env:DK_UPGRADE="1";
+    Set-ExecutionPolicy Bypass -scope Process -Force;
+    Import-Module bitstransfer;
+    start-bitstransfer  -source https://static.guance.com/datakit/install1.2.3.ps1 -destination .install.ps1;
+    powershell ./.install.ps1;
+    ```
+<!-- markdownlint-enable -->
+The version number here can be found on the [DataKit release history](changelog.md) page. Currently, only rollback to [1.2.0](changelog.md#cl-1.2.0) is supported, and previous rc versions do not recommend rollback. After rolling back the version, you may encounter some configurations that are only available in the new version, which cannot be resolved in the rolled back version. For the time being, you can only manually adjust the configuration to adapt to the old version of DataKit.
+
+### Version Detection Failed Processing {#version-check-failed}
+
+During the DataKit installation/upgrade process, the installer detects the currently running version of the DataKit to ensure that the version is the upgraded version.
+
+However, in some cases, the older version of the DataKit service did not uninstall successfully, resulting in the detection process discovering that the current running DataKit version number is still the older version number:
 
 ```shell
 2022-09-22T21:20:35.967+0800    ERROR   installer  installer/main.go:374  checkIsNewVersion: current version: 1.4.13, expect 1.4.16
 ```
 
-In this case, you can forcefully stop the old version of DataKit and restart it:
+At this point, we can force the old version of DataKit to stop and restart the DataKit:
 
 ``` shell
-datakit service -T # Stop the service
-datakit service -S # Start the new service
+datakit service -T # Stop service
+datakit service -S # Start a new service
 
-# If that doesn't work, uninstall and reinstall the DataKit service
-datakit service -U # Uninstall the service
-datakit service -I # Reinstall the service
+# If not, uninstall the DataKit service and then reinstall the service
+datakit service -U # uninstall service
+datakit service -I # reinstall service
 
-# After completing the above operations, confirm that the DataKit version is the latest
+# After the above operations are completed, confirm whether the next DataKit version is the latest version
 
-datakit version # Ensure the currently running DataKit is the latest version
+datakit version # Confirm that the current running DataKit is the latest version
 
        Version: 1.4.16
         Commit: 1357544bd6
@@ -229,30 +248,3 @@ Golang Version: go version go1.18.3 linux/amd64
       Uploader: zy-infra-gitlab-prod-runner/root/xxx
 ReleasedInputs: checked
 ```
-
-### Updating to a Specific Version {#downgrade}
-
-If you need to upgrade or roll back to a specific version, you can do so using the following commands:
-
-<!-- markdownlint-disable MD046 -->
-=== "Linux/macOS"
-
-    ```shell
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.guance.com/datakit/install-3.4.5.sh)"
-    ```
-
-=== "Windows"
-
-    ```powershell
-    Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_UPGRADE="1";
-    Set-ExecutionPolicy Bypass -scope Process -Force;
-    Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.guance.com/datakit/install-3.4.5.ps1 -destination .install.ps1;
-    powershell ./.install.ps1;
-    ```
-<!-- markdownlint-enable -->
-
-The `<version>` in the above commands can be found on the [DataKit release history](changelog.md) page.
-
-To roll back the DataKit version, only versions after [1.2.0](changelog.md#cl-1.2.0) are supported; earlier rc versions are not recommended for rollback.

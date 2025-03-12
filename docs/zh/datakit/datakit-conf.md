@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.68.1）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.69.0）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -646,7 +646,7 @@ $ systemctl status datakit
     - 非 root 用户改资源限制配置时，必须重装 service。
     - CPU 核心数限制会影响 Datakit 部分子模块的 worker 数配置（一般是 CPU 核心数的整数倍）。比如数据上传 worker 就是 CPU 核心数 * 2。而单个上传 worker 会占用默认 10MB 的内存用于数据发送，故 CPU 核心数如果开放较多，会影响 Datakit 整体内存的占用
     - [:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8) 开始支持 cgroup v2。如果不确定 cgroup 版本，可通过命令 `mount | grep cgroup` 来确认。
-    - [:octicons-tag-24: Version-1.68.0](changelog.md#cl-1.68.0) 支持在 *daktait.conf* 中配置 CPU 核心数限制，且弃用原来的百分比配置方式。百分比配置方式会因为不同主机的 CPU 核心数不同而出现 CPU 配额不同，在采集压力相同的情况下，可能会导致一些异常行为。老版本 Datakit 升级上来的时候，在升级命令中指定 `DK_LIMIT_CPUCORES` 环境变量即可。升级命令如果不指定，仍然沿用之前的百分比配置方式。如果重新安装 Datakit，则直接采用 CPU 核心数限额方式。
+    - [:octicons-tag-24: Version-1.68.0](changelog-2025.md#cl-1.68.0) 支持在 *daktait.conf* 中配置 CPU 核心数限制，且弃用原来的百分比配置方式。百分比配置方式会因为不同主机的 CPU 核心数不同而出现 CPU 配额不同，在采集压力相同的情况下，可能会导致一些异常行为。老版本 Datakit 升级上来的时候，在升级命令中指定 `DK_LIMIT_CPUCORES` 环境变量即可。升级命令如果不指定，仍然沿用之前的百分比配置方式。如果重新安装 Datakit，则直接采用 CPU 核心数限额方式。
 <!-- markdownlint-enable -->
 
 ### 选举配置 {#election}

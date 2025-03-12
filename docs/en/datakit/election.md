@@ -1,3 +1,4 @@
+
 # DataKit Election
 ---
 
@@ -5,22 +6,22 @@
 
 ---
 
-When there is only one target object in the cluster (such as Kubernetes), but multiple DataKits are deployed in bulk with identical configurations and enabled collection for this central object, to avoid duplicate collection, we can enable the election feature of DataKit.
+When there is only one collected object (such as Kubernetes) in the cluster, but in the case of batch deployment, the configuration of multiple DataKits is exactly the same, and the collection of the central object is turned on. In order to avoid repeated collection, we can turn on the election function of DataKits.
 
 DataKit has two election modes:
 
-- **Self-Election of DataKit**: In the same election namespace, the elected DataKit is responsible for all collections, while other DataKits remain pending. The advantage is simple configuration without needing to deploy additional applications; the disadvantage is higher resource usage on the elected DataKit as all collectors run on this single DataKit, increasing system resource consumption.
-- **Collector Task Election [:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0)**: Only applicable to Kubernetes environments, by deploying the [DataKit Operator](datakit-operator.md#datakit-operator-overview-and-install) program, tasks are distributed among DataKit collectors. The advantage is more balanced resource usage across DataKits; the disadvantage is that an additional program must be deployed within the cluster.
+- DataKit self-election: In the same election namespace, the elected DataKit is responsible for all data collection, while other DataKit are in a pending state. The advantage is that the configuration is simple and there is no need to deploy additional applications. However, the disadvantage is that the elected DataKit has a higher resource utilization as all collectors run on this DataKit, which increases system resource usage.
+- Collector task election[:octicons-tag-24: Version-1.7.0](changelog.md#cl-1.7.0): This mode is only applicable to Kubernetes environment. By deploying the [DataKit Operator](datakit-operator.md#datakit-operator-overview-and-install) program, task distribution can be achieved among various collectors of DataKit. The advantage is that the resource utilization of each DataKit is more balanced. However, the disadvantage is that an additional program needs to be deployed in the cluster.
 
 ## Collector Task Election Mode {#plugins-election}
 
 ### Deploy DataKit Operator {#install-operator}
 
-The collector election mode requires DataKit Operator version v1.0.5 or higher. Refer to the deployment documentation [here](datakit-operator.md#datakit-operator-install).
+The collector election mode requires the use of the DataKit Operator v1.0.5+ program. Refer to [here](datakit-operator.md#datakit-operator-install) for the deployment document.
 
 ### Election Configuration {#plugins-election-config}
 
-Add an environment variable `ENV_DATAKIT_OPERATOR` in the DataKit installation YAML, with the value being the DataKit Operator address, for example:
+Add an environment variable `ENV_DATAKIT_OPERATOR` with the value of the DataKit Operator address in DataKit's installation YAML file, for example:
 
 ```yaml
       containers:
@@ -29,100 +30,100 @@ Add an environment variable `ENV_DATAKIT_OPERATOR` in the DataKit installation Y
           value: https://datakit-operator.datakit.svc:443
 ```
 
-The default DataKit Operator service address is `datakit-operator.datakit.svc:443`.
+The default service address of DataKit Operator is `datakit-operator.datakit.svc:443`.
 
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    The priority of collector task election is higher than DataKit self-election. If a valid DataKit Operator address is configured, task election will be prioritized; otherwise, self-election will be used.
+    The priority of collector task election is higher than that of DataKit self-election. If a usable DataKit Operator address is configured, task election will be used first, otherwise DataKit self-election will be used.
 
-## Self-Election Mode of DataKit {#self-election}
+## DataKit Self Election {#self-election}
 
 ### Election Configuration {#config}
 
-<!-- markdownlint-disable MD046 -->
-=== "*datakit.conf*"
+=== "`datakit.conf`"
 
-    Edit `conf.d/datakit.conf`, the election-related configuration is as follows:
+    Edit `conf.d/datakit.conf`, and the election-related configuration is as follows:
     
     ```toml
     [election]
-      # Enable election
+      # Open the election
       enable = false
-
-      # Set the election namespace (default is "default")
+    
+      # Set the namespace of the election (default)
       namespace = "default"
     
-      # Allow appending election space tags to data
+      # tag that allows election space to be appended to data
       enable_namespace_tag = false
     
-      ## election.tags: Global tags related to election
+      ## election.tags: Election-related global tags
       [election.tags]
         #  project = "my-project"
         #  cluster = "my-cluster"
     ```
     
-    To distinguish elections between multiple DataKits, such as 10 DataKits and another 8 DataKits, configure different namespaces for each group. DataKits in the same namespace participate in the same election.
+    You can configure the DataKit namespace if you want to separate elections for multiple DataKits, such as these 10 DataKits and the other 8 DataKits, without interfering with each other. DataKits in the same namespace participate in the same election.
     
-    After enabling election, if `enable_election_tag = true` is also enabled ([:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)), then the tag `election_namespace = <your-namespace-name>` will be automatically added to the collected data.
+    After the election is opened, if `enable_election_tag = true`（[:octicons-tag-24: Version-1.4.7](changelog.md#cl-1.4.7)） is opened at the same time, tag: `election_namespace = <your-namespace-name>` is automatically added to the data collected by the election class.
     
-    After enabling election in `conf.d/datakit.conf`, set `election = true` in the collectors that need to participate in the election (currently supported collectors have an `election` item in their configuration files).
-
-    Note: Collectors that support election but are configured as `election = false` do not participate in the election, and their collection behavior and tag settings are unaffected by the election; if *datakit.conf* disables election but the collector enables it, the collection behavior and tag settings are the same as when election is disabled.
+    After the election is opened in `conf.d/datakit.conf`, configure `election = true` in the collectors that need to participate in the election. (Currently, all collectors that support the election have `election` entries in their configuration files.)
+    
+    Note: Collectors that support elections but are configured as `election = false` do not participate in elections, and their collection behavior and tag settings are not affected by elections; If `datakit.conf`` closes the election, but the collector opens the election, its collection behavior and tag setting are the same as those of closing the election.
 
 === "Kubernetes"
 
-    Refer to [here](datakit-daemonset-deploy.md#env-elect)
-<!-- markdownlint-enable -->
+    See [here](datakit-daemonset-deploy.md#env-elect)
 
-### View Election Status {#status}
+### Viewing Election Status {#status}
 
-After configuring the election, you can check the current DataKit's election status through [monitoring](datakit-monitor.md#view). In the `Basic Info` section, you will see lines like:
+After the election is configured, you can check the current election status of Datakit by [viewing the monitor](datakit-monitor.md#view). In the `Basic Info` section, there will be a line like this:
 
 ```not-set
 Elected default::success|MacBook-Pro.local(elected: 4m40.554909s)
 ```
 
-Where:
+Here's what each part means:
 
-- `default` indicates the namespace in which the current DataKit participates in the election. A workspace can have multiple election-specific namespaces.
-- `success` indicates that the current DataKit has election enabled and the election was successful.
-- `MacBook-Pro.local` indicates the hostname of the DataKit that was elected in the current namespace. If this hostname belongs to the current DataKit, it will show the duration since it was elected as leader (`elected: 4m40.554909s`) [:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8)
+- `default` indicates the election-namespace in which the current Datakit participates in the election. A workspace can have multiple election-namespaces dedicated to elections.
+- `success` indicates that the current Datakit has election enabled and has been chosen as the leader.
+- `MacBook-Pro.local` shows the hostname of the Datakit that was elected in the current namespace. If this hostname is the same as the current Datakit, the duration for which it has been the leader will be displayed afterward (`elected: 4m40.554909s`) [:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8)
 
-If the display is as follows, it means the current DataKit was not elected but shows which host was elected:
+If it is displayed as follows, it means that the current Datakit was not elected, but it will show which one was elected:
 
 ```not-set
 Elected default::defeat|host-abc
 ```
 
-Where:
+Here's the breakdown:
 
-- `default` indicates the namespace in which the current DataKit participates in the election, as above.
-- `defeat` indicates that the current DataKit participated in the election but failed. Other possible states include:
+- `default` indicates the namespace in which the current Datakit is participating in the election, as explained above.
+- `defeat` indicates that the current Datakit has election enabled but was not successful. In addition to this, there are several other possible statuses:
 
-    - **disabled**: Election functionality is not enabled.
-    - **success**: Election completed successfully.
-    - **banned**: Election is enabled, but this DataKit is not on the whitelist [:octicons-tag-24: Version-1.35.0](../datakit/changelog.md#cl-1.35.0)
+    - **disabled**: The election feature is not enabled.
+    - **success**: The election was successfully completed.
+    - **banned**: The election feature is enabled, but it is not on the whitelist allowed for election [:octicons-tag-24: Version-1.35.0](../datakit/changelog.md#cl-1.35.0)
 
-- `host-abc` indicates the hostname of the DataKit that was elected in the current namespace.
+- `host-abc` shows the hostname of the Datakit that was elected in the current namespace.
 
 ### Election Principle {#how}
 
-Taking MySQL as an example, in the same cluster (such as K8s cluster), assume there are 10 DataKits and 2 MySQL instances, and all DataKits have election enabled (in DaemonSet mode, each DataKit's configuration is the same) along with the MySQL collector:
+Take MySQL as an example. In the same cluster (such as k8s cluster), suppose there are 10 DataKits, 2 MySQL instances, and all DataKits have elections turned on (in DaemonSet mode, the configuration of each DataKit is the same) and MySQL collector:
 
-- Once a DataKit is elected, all MySQL (and other election-based collectors) data collection will be handled by this DataKit, regardless of whether the targets are one or multiple, the winner takes all. Other unelected DataKits remain on standby.
-- Guance will monitor if the elected DataKit is functioning normally. If it fails, it will forcibly remove this DataKit, and other standby DataKits will take its place.
-- DataKits that do not participate in the election (possibly outside the current cluster) and are configured with MySQL collection will still collect MySQL data, unaffected by the election.
-- The scope of the election is at the "workspace + namespace" level. Within a single "workspace + namespace," only one DataKit can be elected at a time.
-    - Regarding workspaces, in *datakit.conf*, this is represented by the `token` URL parameter in the Dataway address string. Each workspace has its corresponding token.
-    - Regarding election namespaces, in *datakit.conf*, this is represented by the `namespace` configuration item. A workspace can have multiple namespaces configured.
+- Once a DataKit is elected, all MySQL data collection (the same is true for other election types) will be collected by the DataKit, regardless of whether the collected objects are one or more, and the winner takes all. Other DataKits that are not selected are on standby.
+- Guance Cloud will test whether the currently leader DataKit is alive(via heartbeat). If it is abnormal, the DataKit will be kicked off forcibly, and one of other DataKits in standby state will replace it.
+- DataKit that does not open the election (it may not be in the current cluster). If MySQL collection is also configured, it will still collect MySQL data without election constraints.
+- The scope of the election is at the level of `workspace + election-namespace` . In a single `workspace + election-namespace`, only one DataKit can be selected as the leader at a time.
+    - With regard to workspaces, in *datakit.conf*, it is represented by the `token` URL parameter in the DataWay address string, and each workspace has its corresponding token.
+    - The namespace for the election, in *datakit.conf*, is represented by the `namespace` configuration item. Multiple namespaces from different Datakits can be configured within one workspace.
 
-### Global Tag Settings for Election-Based Collectors {#global-tags}
+<!-- markdownlint-disable MD013 -->
+### Election Class Collector's Global Tag Settings {#global-tags}
+<!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD046 -->
-=== "*datakit.conf*"
+=== "`datakit.conf`"
 
-    When election is enabled in `conf.d/datakit.conf`, data collected by election-enabled collectors will attempt to append the `global_election_tag` from *datakit.conf*:
+    Under the condition of `conf.d/datakit.conf` opening the election, all the data collected by the collector that opened the election will try to append the global-env-tag in `datakit.conf`:
     
     ```toml
     [election]
@@ -130,10 +131,11 @@ Taking MySQL as an example, in the same cluster (such as K8s cluster), assume th
         # project = "my-project"
         # cluster = "my-cluster"
     ```
+    
+    If the original data has the corresponding tags, the tag in the original data will prevail and will not be overwritten here.
+    
+    If the election is not turned on, the data collected by the election collector will be accompanied by the `global_host_tags` configured in `datakit.conf` (same as the non-election collector): [:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8).
 
-    If the original data already contains these tags, they will not be overwritten.
-
-    If election is not enabled, data collected by election-based collectors will carry the `global_host_tags` configured in *datakit.conf* (the same as non-election-based collectors): [:octicons-tag-24: Version-1.4.8](changelog.md#cl-1.4.8)
 
     ```toml
     [global_host_tags]
@@ -143,7 +145,7 @@ Taking MySQL as an example, in the same cluster (such as K8s cluster), assume th
 
 === "Kubernetes"
 
-    For election configuration in Kubernetes, refer to [here](datakit-daemonset-deploy.md#env-elect), and for global tag settings, refer to [here](datakit-daemonset-deploy.md#env-common).
+    See [here](datakit-daemonset-deploy.md#env-elect) for the configuration of elections in Kubernetes and [here](datakit-daemonset-deploy.md#env-common) for the setting of global tags.
 <!-- markdownlint-enable -->
 
 ## Election Whitelist {#election-whitelist}
@@ -153,26 +155,26 @@ Taking MySQL as an example, in the same cluster (such as K8s cluster), assume th
 <!-- markdownlint-disable MD046 -->
 === "*datakit.conf*"
 
-    For standalone host installations, the election whitelist is configured via the `datakit.conf` file:
+    For host installations, the election whitelist is configured through the `datakit.conf` file:
 
     ```toml
     [election]
 
-      # Whitelist list, if empty, all hosts/nodes can participate in the election
+      # election whitelist. If list empty, all host/node are allowed for election.
       node_whitelist = ["host-name-1", "host-name-2", "..."]
     ```
 
 === "Kubernetes"
 
-    Refer to [here](datakit-daemonset-deploy.md#env-elect)
+    See [here](datakit-daemonset-deploy.md#env-elect)
 <!-- markdownlint-enable -->
 
-## Supported Collectors for Election {#inputs}
+## Collection List Supporting Election {#inputs}
 
-Currently, the following collectors support election:
+The list of collectors currently supporting elections is as follows:
 
 - [Apache](../integrations/apache.md)
-- [Elasticsearch](../integrations/elasticsearch.md)
+- [ElasticSearch](../integrations/elasticsearch.md)
 - [GitLab](../integrations/gitlab.md)
 - [InfluxDB](../integrations/influxdb.md)
 - [Container](../integrations/container.md)
@@ -187,17 +189,17 @@ Currently, the following collectors support election:
 - [Solr](../integrations/solr.md)
 - [TDengine](../integrations/tdengine.md)
 
-> In fact, more collectors support election, and this list may not be up-to-date. Refer to the specific collector's documentation for accurate information.
+> In fact, there are more collectors that support elections, and this information may not be up-to-date. Please refer to the specific documentation of the collector for the most accurate information.
 
 ## FAQ {#faq}
 
-### :material-chat-question: `host` Field Issue {#host}
+### :material-chat-question: `host` Field Problem {#host}
 
-For objects collected by election-participating collectors, such as MySQL, the DataKit collecting the data might change (due to election rotation), so by default, the collected data does not include the `host` tag to avoid Time Series growth. We recommend adding an extra `tags` field in the MySQL collector configuration:
+For objects collected by collectors participating in elections, such as MySQL, because the DataKit collecting their data may change (election rotation occurs), by default, the data collected by such collectors will not take the tag `host` to avoid timeline growth. We recommend adding an additional `tags` field to the MySQL collector configuration:
 
 ```toml
 [inputs..tags]
   host = "real-mysql-instance-name"
 ```
 
-This way, when DataKit undergoes election rotation, it will continue to use the `host` field configured in the tags.
+This way, the `host` field configured in tags will continue to be used when the DataKit has an election rotation.

@@ -1,9 +1,10 @@
-# Query Data via DQL
+
+# Query Data Through DQL
 ---
 
-DataKit supports executing DQL queries in an interactive manner. In interactive mode, DataKit features auto-completion for statements:
+DataKit supports interactive execution of DQL queries. In interactive mode, DataKit comes with statement completion function:
 
-> Use `datakit help dql` to get more command-line parameter help.
+> More command-line parameter help is available through DataKit help dql.
 
 ```shell
 datakit dql      # or datakit -Q
@@ -11,37 +12,37 @@ datakit dql      # or datakit -Q
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/dk-dql-gif.gif){ width="800" }
-  <figcaption> Example of Interactive DQL Execution </figcaption>
+  <figcaption> Example of DQL Interaction Execution </figcaption>
 </figure>
 
-Tips:
+Tips：
 
-- Input `echo_explain` to see the backend query statement.
-- To avoid displaying too many `nil` results, you can toggle with `disable_nil/enable_nil`.
-- Supports fuzzy search for query statements; for example, typing `echo` or `exp` will bring up suggestions for `echo_explain`, and you can select from the dropdown using the Tab key.
-- DataKit automatically saves the history of previously executed DQL queries (up to 5000 entries), which you can navigate using the up and down arrow keys.
+- Enter `echo_explain` to see the back-end query statement
+- To avoid displaying too many `nil` uery results, you can switch it through `disable_nil/enable_nil`.
+- Support fuzzy search of query statement. For example, `echo_explain` only needs to input `echo` or `exp` to pop up a prompt, Drop-down prompt can be selected through Tab
+- DataKit automatically saves the previous DQL query history (up to 5000 queries), which can be selected by the up and down arrow keys
 
-> Note: On Windows, run `datakit dql` in Powershell.
+> Note: Under Windows, execute `datakit dql` in Powershell.
 
-## Execute a Single DQL Query {#dql-once}
+## Execute DQL query {#dql-once}
 
-Regarding DQL queries, DataKit supports running a single DQL statement:
+With regard to DQL queries, DataKit supports the ability to run a single DQL statement:
 
 ```shell
-# Execute a single query statement
+# Execute one query statement at a time
 datakit dql --run 'cpu limit 1'
 
-# Write the execution result to a CSV file
+# Write the execution results to the CSV file
 datakit dql --run 'O::HOST:(os, message)' --csv="path/to/your.csv"
 
-# Force overwrite an existing CSV file
+# Force overwrite of existing CSV files
 datakit dql --run 'O::HOST:(os, message)' --csv /path/to/xxx.csv --force
 
-# Display the query results in the terminal while writing to a CSV file
+# When the result is written into CSV, the query result is also displayed at the terminal
 datakit dql --run 'O::HOST:(os, message)' --csv="path/to/your.csv" --vvv
 ```
 
-Example of the exported CSV file format:
+Example of exported CSV file style:
 
 ```shell
 name,active,available,available_percent,free,host,time
@@ -52,26 +53,26 @@ mem,2014437376,2077097984,24.18060302734375,73502720,achen.local,1635242544382
 
 Note:
 
-- The first column is the name of the queried Measurement.
-- Subsequent columns represent the corresponding data fields of the collector.
-- If a field is empty, the corresponding column will also be empty.
+- The first column is the measurement name of the query.
+- The following columns are the data corresponding to the collector.
+- When the field is empty, the corresponding column is also empty.
 
-## JSONify DQL Query Results {#json-result}
+## DQL Query Leading to JSON Result {#json-result}
 
-Output results in JSON format. However, in JSON mode, some statistical information such as the number of returned rows and time taken will not be included (to ensure JSON can be parsed directly).
+Output results in JSON, but there is no statistics in JSON mode, such as the number of rows returned and time consumption (to ensure that JSON can be parsed directly).
 
 ```shell
 datakit dql --run 'O::HOST:(os, message)' --json
 
-# If the field value is a JSON string, it will be automatically beautified (note: the `--auto-json` option is invalid in JSON mode (`--json`))
+# Automatically do json beautification if the field value is a json string (note: in json mode (that is,--json), the `--auto-json` option is invalid).
 datakit dql --run 'O::HOST:(os, message)' --auto-json
 -----------------[ r1.HOST.s1 ]-----------------
-message ----- json -----  # JSON starts here, where `message` is the field name
+message ----- json -----  # JSON is clearly marked at the beginning, where message is the field name.
 {
   "host": {
     "meta": {
       "host_name": "www",
-  ....                    # Long text omitted here
+  ....                    # Omit long text here
   "config": {
     "ip": "10.100.64.120",
     "enable_dca": false,
@@ -79,16 +80,16 @@ message ----- json -----  # JSON starts here, where `message` is the field name
     "api_token": "tkn_f2b9920f05d84d6bb5b14d9d39db1dd3"
   }
 }
------ end of json -----   # JSON ends here
+----- end of json -----   # There is a clear sign at the end of JSON
      os 'darwin'
    time 2021-09-13 16:56:22 +0800 CST
 ---------
 8 rows, 1 series, cost 4ms
 ```
 
-## Query Data from Specific Workspaces {#query-on-wksp}
+## Query Data for a Specific Workspace {#query-on-wksp}
 
-Query data from other workspaces by specifying different Tokens:
+Query the data of other workspaces by specifying different Token:
 
 ```shell
 datakit dql --run 'O::HOST:(os, message)' --token <your-token>

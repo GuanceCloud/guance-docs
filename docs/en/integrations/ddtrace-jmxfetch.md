@@ -1,62 +1,69 @@
 ---
 title     : 'DDTrace JMX'
-summary   : 'DDTrace JMX Integration'
+summary   : 'Export JVM metrics with DDTrace JMX'
 tags      :
   - 'DDTRACE'
   - 'JAVA'
-  - 'Tracing'
 __int_icon: 'icon/ddtrace'
 ---
 
 ## JMXFetch {#ddtrace-jmxfetch}
 
-When DDTrace runs as an agent, it does not require users to specifically open a JMX port. If no port is opened, the agent will randomly open a local port.
+When DDTrace is run in agent form, the user does not need to specifically open the jmx port. If the port is not opened, the agent will randomly open a local port.
 
-JMXFetch collects metrics from JMX servers and sends them in the form of statsD data structures. It is integrated into *dd-java-agent* by default.
+JMXFetch collects metrics from the JMX server and sends them out in the form of a statsD data structure. Itself integrated in *dd-java-agent*.
 
-By default, it collects JVM information such as JVM CPU, memory, threads, classes, etc. For more details, see the [Metrics list](jvm.md#metric).
+By default, JVM information will be collected: JVM CPU, Mem, Thread, Class, etc. Specific [metric set list](jvm.md#metric)
 
-By default, the collected metrics are sent to `localhost:8125`. Ensure that the [statsd collector](statsd.md) is enabled.
+By default, the collected indicator information is sent to `localhost:8125`. Make sure [turn on statsd collector](statsd.md) is enabled.
 
-In a Kubernetes environment, you need to configure the StatsD host and port:
+If it is a k8s environment, you need to configure StatsD host and port:
 
 ```shell
 DD_JMXFETCH_STATSD_HOST=datakit_url
 DD_JMXFETCH_STATSD_PORT=8125
 ```
 
-You can enable specific collectors using `dd.jmxfetch.<INTEGRATION_NAME>.enabled=true`.
+You can use `dd.jmxfetch.<INTEGRATION_NAME>.enabled=true` to enable the specified collector.
 
-Before filling in `INTEGRATION_NAME`, you can refer to the [supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"}.
+Before filling in `INTEGRATION_NAME`, you can check [Default supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"}
 
-For example, for Tomcat:
+You can use `dd.jmxfetch.<INTEGRATION_NAME>.enabled=true` to enable the specified collector.
+
+Before filling in `INTEGRATION_NAME`, you can check [Default supported third-party software](https://docs.datadoghq.com/integrations/){:target="_blank"}
+
+For example tomcat:
+
+## custom metrics {#custom_metric}
 
 ```shell
 -Ddd.jmxfetch.tomcat.enabled=true
 ```
 
-## How to Collect Metrics via Custom Configuration {#custom-metric}
+<!-- markdownlint-disable MD013 -->
+## How to collect metrics through custom configuration {#custom-metric}
+<!-- markdownlint-enable -->
 
-Custom JVM thread state metrics
+How to collect metrics through custom configuration.
 
 - `jvm.total_thread_count`
 - `jvm.peak_thread_count`
 - `jvm.daemon_thread_count`
 
-> Starting from version v1.17.3-guance, these three metrics are built-in with `dd-java-agent` and do not require additional configuration. However, this custom method can still be used to configure other MBean metrics.
+> `dd-java-agent` has built-in these three indicators starting from v1.17.3-guance, and no additional configuration is required. However, other MBean indicators can still be configured in this customized way.
 
-To collect custom metrics, you need to add a configuration file:
+Custom indicators need to add configuration files:
 
-1. Create a directory */usr/local/ddtrace/conf.d* (the path can vary, but pay attention to permissions).
-1. In this directory, create a configuration file named *guance.d/conf.yaml*, which must be in YAML format.
-1. The configuration for *conf.yaml* is shown below.
+1. mkdir `/usr/local/ddtrace/conf.d`, Other directories can be used.
+2. Create a configuration file under the folder `guance.d/conf.yaml`.
+3. `conf.yaml` at end of doc.
 
-My service name is `tmall.jar`, and the combined startup parameters are:
+My service name is `tmall.jar` and the merged startup parameters are:
 
 ```shell
 java -javaagent:/usr/local/dd-java-agent.jar \
   -Dcom.sun.management.jmxremote.host=127.0.0.1 \
-  -Dcom.sun.management.jmxremote.port=9012 \
+  -Dcom.sun.manaagement.jmxremote.port=9012 \
   -Dcom.sun.management.jmxremote.ssl=false \
   -Dcom.sun.management.jmxremote.authenticate=false \
   -Ddd.jmxfetch.config.dir="/usr/local/ddtrace/conf.d/" \
@@ -64,7 +71,7 @@ java -javaagent:/usr/local/dd-java-agent.jar \
   -jar tmall.jar
 ```
 
-The *conf.yaml* configuration file is as follows:
+The conf.yaml configuration file is as follows:
 
 ```yaml
 init_config:

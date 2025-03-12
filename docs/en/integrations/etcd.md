@@ -1,8 +1,8 @@
 ---
 title     : 'etcd'
-summary   : 'Collect metrics data from etcd'
+summary   : 'Collect etcd metrics'
 tags:
-  - 'Middleware'
+  - 'MIDDLEWARE'
 __int_icon      : 'icon/etcd'
 dashboard :
   - desc  : 'etcd'
@@ -10,7 +10,7 @@ dashboard :
   - desc  : 'etcd-k8s'
     path  : 'dashboard/en/etcd-k8s'    
 monitor   :
-  - desc  : 'None'            # Missing monitoring view examples
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -19,13 +19,13 @@ monitor   :
 
 ---
 
-The etcd collector can gather many metrics from etcd instances, such as the status of etcd servers and network conditions, and send these metrics to DataFlux for you to monitor and analyze various anomalies in etcd.
+The tcd collector can take many metrics from the etcd instance, such as the status of the etcd server and network, and collect the metrics to DataFlux to help you monitor and analyze various abnormal situations of etcd.
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requirements}
 
-etcd version >= 3, tested versions:
+etcd version >= 3, Already tested version:
 
 - [x] 3.5.7
 - [x] 3.4.24
@@ -33,13 +33,13 @@ etcd version >= 3, tested versions:
 
 ### Collector Configuration {#input-config}
 
-To enable etcd, the default metrics endpoint is `http://localhost:2379/metrics`, which can also be customized in the configuration file.
+Open etcd, the default metrics interface is `http://localhost:2379/metrics`, or you can modify it in your configuration file.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/etcd` directory under the DataKit installation directory, copy `etcd.conf.sample` and rename it to `etcd.conf`. Example configuration:
-    
+    Go to the `conf.d/etcd` directory under the DataKit installation directory, copy `etcd.conf.sample` and name it `etcd.conf`. Examples are as follows:
+
     ```toml
         
     [[inputs.etcd]]
@@ -68,15 +68,15 @@ To enable etcd, the default metrics endpoint is `http://localhost:2379/metrics`,
       # interval = "30s"
     
     ```
-
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
 
 
@@ -96,12 +96,12 @@ To enable etcd, the default metrics endpoint is `http://localhost:2379/metrics`,
 |`grpc_type`|GRPC type.|
 |`host`|Hostname.|
 |`instance`|Instance.|
-|`server_go_version`|Server Go version.|
+|`server_go_version`|Server go version.|
 |`server_id`|Server ID.|
 |`server_version`|Server version.|
 |`version`|Version.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -255,5 +255,3 @@ To enable etcd, the default metrics endpoint is `http://localhost:2379/metrics`,
 |`promhttp_metric_handler_requests_total`|Total number of scrapes by HTTP status code.|float|count|
 
 
-</input_content>
-</example>

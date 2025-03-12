@@ -1,63 +1,58 @@
-# Data Point Rule Policy
+
+# Pointer Filters
 ---
 
-This document mainly describes the basic usage and precautions of DataKit Filter.
+This document mainly describes the basic use and considerations of DataKit Filter.
 
 ## Introduction {#intro}
 
-DataKit Filter is used to screen collected data points, filtering out unwanted data or formulating corresponding rule policies based on the characteristics of these data points. Its functionality is somewhat similar to Pipeline but has some differences:
+DataKit Filter is used to filter the collected points and filter out some unwanted data, or define some policies for successive handling. Its function is similar to Pipeline, but there is a difference:
 
-| Data Processing Component | Supports Local Configuration     | Supports Central Issuance     | Supports Data Discard     | Supports Data Rewrite     | Usage Method                                                        |
-| ----         | ----             | ----             | ----             | ----             | ----                                                            |
-| Pipeline     | :material-check: | :material-check: | :material-check: | :material-check: | Configure Pipeline within collectors or write Pipeline in Guance Studio   |
-| Filter       | :material-check: | :material-check: | :material-check: | :octicons-x-16:  | Write Pipeline in Guance Studio or configure filter in *datakit.conf* |
+| Data Processing Component | Support Local Configuration | Distributed by Support Center | Support Data Discarding | Support data rewriting | Instruction                                                                         |
+| ----                      | ----                        | ----                          | ----                    | ----                   | ----                                                                                |
+| Pipeline                  | :material-check:            | :material-check:              | :material-check:        | :material-check:       | By configuring Pipeline in the collector or writing Pipeline in Guance Cloud Studio |
+| Filter                    | :material-check:            | :material-check:              | :material-check:        | :octicons-x-16:  | Write Pipeline in Guance Cloud Studio or configure filter in DataKit.conf           |
 
-From the table, it can be seen that compared to Pipeline, if only a simple part of the data needs to be filtered out, then Filter is a more convenient tool for data screening.
+It can be seen from the table that Filter is a more convenient data filtering tool than Pipeline if only some data is simply filtered out.
 
-## Specific Usage Methods of Filter {#howto}
+## How to use Filter {#howto}
 
-The main function of the Filter is data screening, which is determined by certain filtering conditions. Data that meets the filtering criteria will be discarded.
+The main function of Filter is data filtering, which is based on judging the collected data through certain screening conditions, and the data that meets the screening conditions will be discarded.
 
-The basic syntax pattern of the filter is:
+The basic syntax pattern for filters is:
 
-``` not-set
+```txt
 { conditions [AND/OR conditons] }
 ```
 
-Where `conditions` can also be a combination of various other conditions. Here are some filter examples:
+Among them, `conditions` can be a combination of other conditions. Here are some examples of filters:
 
 ```python
-# This one generally targets log data, used to judge all log types, filtering out keys key1/key2 that meet the criteria
-# Note, both key1 and key2 are tags or fields in the data point
+# This article is generally aimed at log data. It is used to determine all log types and filter out key1/key2 that meet the requirements
+# Note that key1 and key2 here are both tag or field in the row protocol field
 { source = re('.*')  AND ( key1 = "abc" OR key2 = "def") }
 
-# This one generally targets Tracing data, used for services named app1, filtering out keys key1/key2 that meet the criteria
+# This one typically for Tracing data, is used for a service named app1 that filters out eligible key1/key2
 { service = "app-1"  AND ( key1 = "abc" OR key2 = "def") }
 ```
 
-### Scope of Data Handled by Filters {#spec}
+### Data Range for Filter Action {#spec}
 
-Since most of the data collected by DataKit is reported as data points, all filters operate on data points. Filters support data screening on the following data:
+As (most) data collected by DataKit is reported in the form of data point, all filters work on top of data point. Filters support data filtering on the following data:
 
-- Measurement Name: For different types of data, the business affiliation of mearsurements varies, as follows:
+- Measurement name: For different types of data, the business attribution of measurement is different, as follows:
+    - For time series data (M), a `measurement` tag is injected into its tag list when the filter is running, so you can write a metric set-based filter as follows:`{  measurement = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`.
+    - For object data (O), when the filter runs, a `class` tag is injected into its tag list, so an object-based filter can be written like this: `{  class = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
+    - For log data (L), when the filter runs, a `source` tag is injected into its tag list, so an object-based filter can be written like this: `{  trace = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
 
-    - For Time Series data (M), when the filter runs, a `measurement` tag is injected into its tag list, so you can write a filter based on mearsurements like this: `{measurement = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
-    - For Object data (O), when the filter runs, a `class` tag is injected into its tag list, so you can write an object-based filter like this: `{class = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
-    - For Log data (L), when the filter runs, a `source` tag is injected into its tag list, so you can write an object-based filter like this: `{source = re('abc.*') AND ( tag1='def' and field2 = 3.14)}`
+> If there is a tag named `measurement/class/source` **in the original tag, the tag values of the original measurement/class/source will not exist during the filter running**
 
-> Note: If there was already a tag named `measurement/class/source` in the original tags, then **the original measurement/class/source tag values will not exist during the filter's execution**
+- Tag: All data types can be filtered on their tags.
+- Field: Filtering can be performed on all data types on their Field.
 
-- Tag (Label): Filtering can be performed on Tags for all data types.
-- Field (Metric): Filtering can be performed on Fields for all data types.
+### Manual Configuration of Filter in DataKit {#manual}
 
-<!-- markdownlint-disable MD046 -->
-???+ attention
-    In RUM data, a root span might be triggered on Tracing data, which is generated **centrally**. The purpose is to avoid creating a span out of thin air due to missing root spans in the chain data triggered by RUM (to maintain the integrity of the chain). Since this span does not pass through Datakit, it cannot be discarded via the filter. Similarly, this data cannot undergo Pipeline processing.
-<!-- markdownlint-enable -->
-
-### Manually Configuring Filter in DataKit {#manual}
-
-In `datakt.conf`, you can manually configure blacklist filtering, as shown below:
+In `datakt.conf`, you can manually configure blacklist filtering, as shown in the following example:
 
 ```toml
 [io]
@@ -98,41 +93,39 @@ In `datakt.conf`, you can manually configure blacklist filtering, as shown below
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    Filters are only suitable for debugging; for daily use, it is recommended to use the web-based blacklist mode. Once a filter is configured in *datakit.conf*, the blacklists configured in Guance Studio will no longer take effect.
+    Filters in *datakit.conf* developped for debugging, you should use web-side Blacklist for production usage. Once the filter is configured in *datakit.conf*, the Blacklist configured in web-side will **no longer take effect**.
 
-    Additionally, the blacklist feature will be phased out in the future. The best way to filter data is still through Pipeline’s `drop()` function.
+    PS: Blacklist will be deprecated in the future, we recommend use Pipeline `drop()` to drop unwanted data.
 <!-- markdownlint-enable -->
 
-The configuration here must follow these rules:
+The configuration here should follow the following rules:
 
-- A specific set of filters **must specify the type of data it filters**
-- Do not configure multiple entries for the same data type (i.e., multiple logging filters), otherwise *datakit.conf* will fail to parse and cause DataKit to fail to start.
-- Under a single data type, multiple filters can be configured (as in the example for metrics).
-- For syntactically incorrect filters, DataKit ignores them by default, making them ineffective without affecting other DataKit functionalities.
+- A specific set of filters that must **specify the type of data it filters**
+- Do not configure multiple entries for the same data type (i.e. multiple sets of logging filters are configured), otherwise *datakit.conf* will parse an error and cause the DataKit to fail to start
+- Under a single data type, multiple filters can be configured (metric in the above example)
+- Filters with syntax errors are ignored by DataKit by default, which will not take effect, but will not affect other functions of DataKit
 
 ## Basic Syntax Rules for Filters {#syntax}
 
-### Basic Syntax Rules {#basic}
+### Basic Grammar Rules {#basic}
 
-The basic syntax rules for filters are consistent with those of Pipeline; refer to [here](../pipeline/use-pipeline/pipeline-platypus-grammar.md).
+The basic syntax rules of filter are basically the same as Pipeline, see [here](../pipeline/use-pipeline/pipeline-platypus-grammar.md).
 
-### Operators {#operator}
+### Operator {#operator}
 
-Supports basic numerical comparison operations:
+Support basic numerical comparison operations:
 
-- Equality check
-
+- Judge equality
     - `=`
     - `!=`
 
-- Numerical size check
-
+- Judge the value
     - `>`
     - `>=`
     - `<`
     - `<=`
 
-- Parentheses expressions: Used for logical combinations between any relations, such as
+- Parenthesis expression: Used for logical combination between arbitrary relationships, such as:
 
 ```python
 { service = re('.*') AND ( abc IN [1,2,'foo', 2.3] OR def MATCH ['foo.*', 'bar.*']) }
@@ -141,68 +134,69 @@ Supports basic numerical comparison operations:
 - Built-in constants
 
     - `true/false`
-    - `nil/null`: Represents null values, see explanation below
+    - `nil/null`: null value, see following usage about them
 
-- Matching and List Operations
+In addition, the following list operations are supported:
 
-| Operator              | Supported Data Types   | Description                                                   | Example                              |
-| ----                | ----           | ----                                                   | ----                              |
-| `IN`, `NOTIN`       | List of numerical lists   | Checks if the specified field exists in the list, supporting mixed types in the list           | `{ abc IN [1,2, "foo", 3.5]}`     |
-| `MATCH`, `NOTMATCH` | List of regular expressions | Checks if the specified field matches the regular expressions in the list, supporting only string types | `{ abc MATCH ["foo.*", "bar.*"]}` |
+| Operator            | Support Numeric Types   | Description                                                                                   | Example                           |
+| ----                | ----                    | ----                                                                                          | ----                              |
+| `IN`, `NOTIN`       | Numeric list            | Whether the specified field is in a list, and multi-type cluttering is supported in the list  | `{ abc IN [1,2, "foo", 3.5]}`     |
+| `MATCH`, `NOTMATCH` | Regular expression list | Whether the specified field matches the regular in the list, which only supports string types | `{ abc MATCH ["foo.*", "bar.*"]}` |
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - Only basic data types such as strings, integers, and floats can appear in the list; no other expressions are supported. 
-
-    `IN/NOTIN/MATCH/NOTMATCH` keywords are **case-insensitive**, meaning `in` and `IN` and `In` have the same effect. However, the case of other operands is sensitive, for example, the following filter expressions mean different things:
-
+    - **Only ordinary data types** such as string, integer, floating point can appear in the list. Other expressions are not supported.
+    
+    The keywords `IN/NOTIN/MATCH/NOTMATCH` **are case insensitive**, meaning `in`, `IN` and `In` have the same effect. In addition, other operands are case sensitive, for example, the following filters express different meanings:
+    
     ``` python
-    { abc IN [1,2, "foo", 3.5]} # Whether field abc (tag or field) is in the list
-    { abc IN [1,2, "FOO", 3.5]} # FOO is not equivalent to foo
-    { ABC IN [1,2, "foo", 3.5]} # ABC is not equivalent to abe
+    { abc IN [1,2, "foo", 3.5]} # whether field abc（tag or field）is in the list
+    { abc IN [1,2, "FOO", 3.5]} # FOO is not equal to foo
+    { ABC IN [1,2, "foo", 3.5]} # ABC is not equal to abe 
     ```
+    
+    In data point, all fields of **and their values are case-sensitive**.
 
-    In data points, **all fields and their values are case-sensitive**.
-
-    - Constant expression writing:
+    - Identity/Non-identity Expression Syntax:
 
     ```python
-    # Always true
-    { 1 = 1}
-    { 'abc' = 'abc'}
+    # Identity
+    { 1 == 1}
+    { 'abc' == 'abc'}
 
-    # Always false
-    { true = false  }
-    { 'abc' = 'ABC' } # String case sensitivity
+    # Non-identity
+    { true != false }
+    { 'abc' != 'ABC' }  # String comparison is case-sensitive
     ```
+
 <!-- markdownlint-enable -->
 
-### nil/null Usage {#nil}
+### Usage of nil/null {#nil}
 
-`nil/null` is used to indicate that certain fields do not exist. They can be used in `=/!=/IN/NOTIN` operations:
+`nil/null` is used to indicate the non-existence of certain fields, and can be used in `=/!=/IN/NOTIN` operations:
 
 ```python
-{ some_tag_or_field != nil }                     # A certain field exists
-{ some_tag_or_field = nil }                      # A certain field does not exist
-{ some_tag_or_field IN ["abc", "123", null] }    # A certain field either does not exist or equals specified values
-{ some_tag_or_field NOTIN ["abc", "123", null] } # A certain field is not null and not equal to specified values
+{ some_tag_or_field != nil }                     # The field exists
+{ some_tag_or_field = nil }                      # The field does not exist
+{ some_tag_or_field IN ["abc", "123", null] }     # The field either does not exist or can only equal specified values
+{ some_tag_or_field NOTIN ["abc", "123", null] }  # The field is not null and not equal to specified values
 ```
 
-Here `nil/null` is case-insensitive and can be written as `NULL/Null/NIL/Nil`.
+Here, `nil/null` is not case sensitive and can be written in various forms such as `NULL/Null/NIL/Nil`.
 
-## Usage Examples {#usage}
+## Usage Example {#usage}
 
-Using the `datakit monitor -V` command allows you to view the filtering situation:
+You can view the filtering using the `datakit monitor -V` command:
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/filter-monitor.png){ width="800" }
-  <figcaption>Viewing Filter Filtering Situation</figcaption>
+  <figcaption>View filter filtering</figcaption>
 </figure>
 
 ### Network {#n}
 
-You need to enable the [eBPF collector](../integrations/ebpf.md). Suppose we want to filter out network communications with target port `443`. The configuration file can be written as follows:
+The [eBPF collector](../integrations/ebpf.md) needs to be turned on. Suppose we want to filter out network traffic with destination port `443`, the configuration file can read as follows:
 
 ```toml
 [io]
@@ -213,11 +207,11 @@ You need to enable the [eBPF collector](../integrations/ebpf.md). Suppose we wan
     ]
 ```
 
-Using the `curl` command to trigger network communication `curl https://www.baidu.com:443`, you can see that network communications with target port `443` are filtered out.
+Using the `curl` command to trigger the network traffic `curl https://www.baidu.com:443`, you can see that the network traffic with the target port `443` has been filtered out.
 
 ### Profiling {#p}
 
-Configuration file as follows:
+The configuration file is as follows:
 
 ```toml
 [io]
@@ -228,9 +222,9 @@ Configuration file as follows:
     ]
 ```
 
-Start 2 profilers:
+Open 2 Profiling:
 
-``` shell
+```shell
 DD_ENV=testing DD_SERVICE=python-profiling-manual DD_VERSION=7.8.9 python3 profiling_test.py
 DD_ENV=testing DD_SERVICE=2-profiling-python DD_VERSION=7.8.9 python3 profiling_test.py
 ```
@@ -258,11 +252,11 @@ while True:
     time.sleep(1)
 ```
 
-You can see that `python-profiling-manual` has been filtered out.
+You can see that `python-profiling-manual` is filtered out.
 
-### Security Check {#s}
+### Scheck {#s}
 
-Suppose we want to filter out logs with level `warn`, the configuration can be written as follows:
+Suppose we want to filter out log level `warn`, the configuration can be written as follows:
 
 ```toml
 [io]
@@ -273,13 +267,13 @@ Suppose we want to filter out logs with level `warn`, the configuration can be w
     ]
 ```
 
-After some time, you can see that logs with level `warn` have been filtered out in the center.
+After a while, you can see in the center that the log level `warn` is filtered out.
 
 ### RUM {#r}
 
->Note: If you have installed AdBlock-like ad blockers, they may intercept central reporting. You can temporarily disable AdBlock-like plugins during testing.
+>Warm Tip: If you install AdBlock advertising plugin, you may report interception to the center. You can temporarily close the AdBlock class plug-in while testing.
 
-We can visit the website using three browsers: Chrome, Firefox, Safari. Suppose we want to filter out visits from Chrome, the configuration file can be written as follows:
+We can use three browsers, Chrome, Firefox and Safari, to access the website. Suppose we want to filter out the access of Chrome browser, and the configuration file can read as follows:
 
 ```toml
 [io]
@@ -290,11 +284,11 @@ We can visit the website using three browsers: Chrome, Firefox, Safari. Suppose 
     ]
 ```
 
-#### Configuring Local Nginx {#nginx}
+#### Configure Local Nginx {#nginx}
 
-Configure local test domain `/etc/hosts`: `127.0.0.1 www.mac.my`
+Configure the local test domain name `/etc/hosts`: `127.0.0.1 www.mac.my`
 
-Web page source code `index.html`:
+Web file source `index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -310,12 +304,12 @@ Web page source code `index.html`:
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
       applicationId: 'appid_JtcMjz7Kzg5n8eifTjyU6w',
-      datakitOrigin: 'http://127.0.0.1:9529', // Protocol (including: //), domain name (or IP address) [and port number]
+      datakitOrigin: 'http://127.0.0.1:9529', // Protocol (including://), domain name (or IP address) [and port number]
       env: 'production',
       version: '1.0.0',
       trackInteractions: true,
-      traceType: 'ddtrace', // Optional, default is ddtrace, currently supports ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent 6 types
-      allowedTracingOrigins: ['http://www.mac.my:8080', 'http://www.mac.my', 'http://mac.my:8080', 'http://127.0.0.1:9529/'],  // Optional, list of all requests where trace collector headers can be injected. Can be request origins or regex patterns
+      traceType: 'ddtrace', // It is not required and defaults to ddtrace. Currently, it supports 6 types: ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header and w3c_traceparent
+      allowedTracingOrigins: ['http://www.mac.my:8080', 'http://www.mac.my', 'http://mac.my:8080', 'http://127.0.0.1:9529/'],  // It is not required and allows all requests to be injected into the header header required by the trace collector. It can be the origin of the request or it can be regular
     })
 </script>
 <body>
@@ -324,11 +318,11 @@ Web page source code `index.html`:
 </html>
 ```
 
-Subsequently, visiting with the above three browsers, you can see that Chrome access records do not increase.
+Then, using the above three browsers, we can see that Chrome's access record has not increased.
 
 ### KeyEvent {#e}
 
-KeyEvent can be tested via API. Suppose we want to filter out `source` as `user` and `df_date_range` as `10`, the configuration file is as follows:
+KeyEvent is tested in the form of an API. Suppose we want to filter out `source` for `user`, `df_date_range` for `10`, and the configuration file is as follows:
 
 ```toml
 [io]
@@ -339,34 +333,34 @@ KeyEvent can be tested via API. Suppose we want to filter out `source` as `user`
     ]
 ```
 
-Then use curl for POST requests:
+Then use curl to make a POST request:
 
 ```shell
 curl --location --request POST 'http://localhost:9529/v1/write/keyevent' \
 --header 'Content-Type: text/plain' \
---data-raw 'user create_time=1656383652424,df_date_range="10",df_event_id="event-21946fc19eaf4c5cb1a698f659bf74cd",df_message="【xxx】(xxx@xx.com) entered workspace",df_status="info",df_title="【xxx】(xxx@xx.com) entered workspace",df_user_id="acnt_a5d6130c19524a6b9fe91d421eaf8603",user_email="xxx@xx.com",user_name="xxx" 1658040035652416000'
+--data-raw 'user create_time=1656383652424,df_date_range="10",df_event_id="event-21946fc19eaf4c5cb1a698f659bf74cd",df_message="【xxx】(xxx@xx.com)进入了工作空间",df_status="info",df_title="【xxx】(xxx@xx.com)进入了工作空间",df_user_id="acnt_a5d6130c19524a6b9fe91d421eaf8603",user_email="xxx@xx.com",user_name="xxx" 1658040035652416000'
 
 curl --location --request POST 'http://localhost:9529/v1/write/keyevent' \
 --header 'Content-Type: text/plain' \
---data-raw 'user create_time=1656383652424,df_date_range="9",df_event_id="event-21946fc19eaf4c5cb1a698f659bf74ca",df_message="【xxx】(xxx@xx.com) entered workspace",df_status="info",df_title="【xxx】(xxx@xx.com) entered workspace",df_user_id="acnt_a5d6130c19524a6b9fe91d421eaf8603",user_email="xxx@xx.com",user_name="xxx" 1658040035652416000'
+--data-raw 'user create_time=1656383652424,df_date_range="9",df_event_id="event-21946fc19eaf4c5cb1a698f659bf74ca",df_message="【xxx】(xxx@xx.com)进入了工作空间",df_status="info",df_title="【xxx】(xxx@xx.com)进入了工作空间",df_user_id="acnt_a5d6130c19524a6b9fe91d421eaf8603",user_email="xxx@xx.com",user_name="xxx" 1658040035652416000'
 ```
 
-You can see in Datakit monitor that entries with `df_date_range` as `10` have been filtered out.
+You can see in the DataKit monitor that the `df_date_range` for `10` is filtered out.
 
 ### Custom Object {#co}
 
-Custom Object can be tested via API. Suppose we want to filter out `class` as `aliyun_ecs` and `regionid` as `cn-qingdao`, the configuration file is as follows:
+The Custom Object is tested in the form of an API. Suppose we want to filter out `class` as `aliyun_ecs`, `regionid` as `cn-qingdao`, and the configuration file is as follows:
 
 ```toml
 [io]
   ...
   [io.filters]
-    custom_object = [ # Filtering for CustomObject
+    custom_object = [ # 针对 CustomObject 过滤
       "{ class='aliyun_ecs' AND regionid='cn-qingdao' }",
     ]
 ```
 
-Then use curl for POST requests:
+Then use curl to make a POST request:
 
 ```shell
 curl --location --request POST 'http://localhost:9529/v1/write/custom_object' \
@@ -378,15 +372,17 @@ curl --location --request POST 'http://localhost:9529/v1/write/custom_object' \
 --data-raw 'aliyun_ecs,name="ecs_name",host="ecs_host" instanceid="ecs_instanceid",os="ecs_os",status="ecs_status",creat_time="ecs_creat_time",publicip="1.1.1.1",regionid="cn-qinghai",privateip="192.168.1.12",cpu="ecs_cpu",memory=204800000000'
 ```
 
-You can see in Datakit monitor that entries with `regionid` as `cn-qingdao` have been filtered out.
+You can see in the DataKit monitor that `regionid` for `cn-qingdao` is filtered out.
 
 ## FAQ {#faq}
 
-### :material-chat-question: Viewing Synchronized Filters {#debug-filter}
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: View Synchronized Filters {#debug-filter}
+<!-- markdownlint-enable -->
 
 [:octicons-tag-24: Version-1.4.2](changelog.md#cl-1.4.2)
 
-For filters synchronized from the center, DataKit records them in *[Datakit Installation Directory]/data/.pull*, which can be directly viewed
+For filters synchronized from the center, DataKit records a copy to *<DataKit Installation Directory\>/data/.pull*, which can be viewed directly.
 
 ```shell
 $ cat .filters  | jq
@@ -402,4 +398,4 @@ $ cat .filters  | jq
 }
 ```
 
-The `filters` field in this JSON is the fetched filter, which currently contains only the blacklist for logs.
+Here, the `filters` field in JSON is the filter that is pulled, and there is only a blacklist for logs at present.

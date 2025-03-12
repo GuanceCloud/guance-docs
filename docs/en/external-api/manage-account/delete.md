@@ -27,9 +27,3 @@
 ```shell
  
 ```
-
-
-
-
-</input_content>
-</translated_content>
