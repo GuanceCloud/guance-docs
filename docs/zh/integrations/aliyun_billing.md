@@ -3,7 +3,7 @@ title: '阿里云 云账单'
 tags: 
   - 阿里云
 summary: '采集阿里云云账单信息'
-__int_icon: 'icon/aliyun'
+__int_icon: 'icon/aliyun_billing'
 dashboard:
   - desc: '云账单分析视图'
     path: 'dashboard/zh/Intelligent_analysis_cloud_billing/'

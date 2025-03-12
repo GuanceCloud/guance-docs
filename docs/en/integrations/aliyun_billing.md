@@ -3,7 +3,7 @@ title: 'Alibaba Cloud Billing'
 tags: 
   - Alibaba Cloud
 summary: 'Collect Alibaba Cloud billing information'
-__int_icon: 'icon/aliyun'
+__int_icon: 'icon/aliyun_billing'
 dashboard:
   - desc: 'Cloud Billing Analysis View'
     path: 'dashboard/en/Intelligent_analysis_cloud_billing/'
