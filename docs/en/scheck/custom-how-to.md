@@ -89,7 +89,7 @@ hostnamectl set-hostname myclient1
 
 5. Observation
 
-Log in to the [<<< custom_key.brand_name >>>](https://www.guance.com) console -> Navigation Bar -> Security Check: View inspection information and find a message indicating that the hostname has been modified.
+Log in to the [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) console -> Navigation Bar -> Security Check: View inspection information and find a message indicating that the hostname has been modified.
 
    ![](img/image-hostname.png)
 

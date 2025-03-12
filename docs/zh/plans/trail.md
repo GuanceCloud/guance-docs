@@ -50,7 +50,7 @@
 
 ## 开通体验版 {#register-trail}
 
-在[<<< custom_key.brand_name >>>官网](https://www.guance.com/)，点击[**免费开始**](https://auth.guance.com/businessRegister)，填写相关信息后即可成为<<< custom_key.brand_name >>>用户。
+在[<<< custom_key.brand_name >>>官网](https://<<< custom_key.brand_main_domain >>>/)，点击[**免费开始**](https://auth.guance.com/businessRegister)，填写相关信息后即可成为<<< custom_key.brand_name >>>用户。
 
 ### 第一步：基本信息
 

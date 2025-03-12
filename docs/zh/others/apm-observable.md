@@ -8,7 +8,7 @@
 本文档将使用 Python 应用，介绍如何通过 ddtrace 实现 APM 可观测。
 ## 前置条件
 
-您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md)。
+您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md)。
 
 ## 方法/步骤
 

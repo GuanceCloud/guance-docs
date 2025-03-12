@@ -40,7 +40,7 @@ After creating a tracking task, it is enabled by default. You can view performan
 
 2. If you haven't started using <<< custom_key.brand_name >>> yet, please complete the following steps first:
 
- - [Register for a <<< custom_key.brand_name >>> account](https://www.guance.com/);
+ - [Register for a <<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/);
  - [Install DataKit](../datakit/datakit-install.md);
  - [Enable RUM collector](../integrations/rum.md);
  - [Integrate Web application](web/app-access.md).

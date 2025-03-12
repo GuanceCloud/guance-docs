@@ -8,7 +8,7 @@ Guance's APM supports all APM tools based on the Opentracing protocol, such as d
 This document will use a Python application to introduce how to achieve observability using ddtrace for APM.
 ## Prerequisites
 
-You need to first create a [Guance account](https://www.guance.com/), and install DataKit on your host [Install DataKit](../datakit/datakit-install.md).
+You need to first create a [Guance account](https://<<< custom_key.brand_main_domain >>>/), and install DataKit on your host [Install DataKit](../datakit/datakit-install.md).
 
 ## Method/Steps
 

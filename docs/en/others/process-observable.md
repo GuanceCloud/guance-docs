@@ -7,7 +7,7 @@
 
 ## Prerequisites
 
-- You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/)
+- You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/)
 - Install DataKit ([DataKit Installation Documentation](../datakit/datakit-install.md))
 - Supported operating systems: `windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 

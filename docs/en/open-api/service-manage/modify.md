@@ -105,7 +105,7 @@ type = "slack"
 slack = "#test"
 
 [[Repos]]  # Repository configuration, fill in provider and expected display text corresponding to repository link
-link = "https://www.guance.com"
+link = "https://<<< custom_key.brand_main_domain >>>"
 name = "guance"
 provider = "Guance"
 
@@ -141,7 +141,7 @@ DashboardUUIDs = ["dsbd_xxxx32"]
 curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/sman_xxxx32/modify' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-binary '{"serviceCatelog": "\n[Team]    # Team\nservice = \"test_02\"    # Required\ntype = \"db\"  # Required, current service type\nteam = \"Development Group\"   # Current service team UUID\ncolour = \"#40C922\"   # Current service color information\n\n[[Team.oncall]]  # Contact configuration\nname = \"Guance\"\ntype = \"email\"\nemails = [\"test1@guance.com\", \"test3@guance.com\"]\n\n[[Team.oncall]]  # Contact configuration\nname = \"zhuyun\"\ntype = \"mobile\"\nmobiles = [\"xxxxxxx5786\", \"xxxxxxx4231\"]\n\n[[Team.oncall]]  # Contact configuration\nname = \"test\"\ntype = \"slack\"\nslack = \"#test\"\n\n[[Repos]]  # Repository configuration, fill in provider and expected display text corresponding to repository link\nlink = \"https://www.guance.com\"\nname = \"guance\"\nprovider = \"Guance\"\n\n[[Repos]]  # Repository configuration\nlink = \"https://func.guance.com\"\nname = \"func\"\nprovider = \"Guance\"\n\n\n[[Docs]]  # Help, fill in content provider and expected display text corresponding to help link\nlink = \"https://www.docs.guance.com\"\nname = \"guance\"\nprovider = \"Guance\"\n\n[[Docs]]  # Help\nlink = \"https://func.guance.com/doc\"\nname = \"func\"\nprovider = \"Guance\"\n\n\n[Related]  # Associated configuration\nAppId = \"a138bcb0_47ef_11ee_9d75_31ea50b9d85a\"\nTags = [\"test\"]\nDashboardUUIDs = [\"dsbd_xxxx32\"]\n\n\n"}' \
+  --data-binary '{"serviceCatelog": "\n[Team]    # Team\nservice = \"test_02\"    # Required\ntype = \"db\"  # Required, current service type\nteam = \"Development Group\"   # Current service team UUID\ncolour = \"#40C922\"   # Current service color information\n\n[[Team.oncall]]  # Contact configuration\nname = \"Guance\"\ntype = \"email\"\nemails = [\"test1@guance.com\", \"test3@guance.com\"]\n\n[[Team.oncall]]  # Contact configuration\nname = \"zhuyun\"\ntype = \"mobile\"\nmobiles = [\"xxxxxxx5786\", \"xxxxxxx4231\"]\n\n[[Team.oncall]]  # Contact configuration\nname = \"test\"\ntype = \"slack\"\nslack = \"#test\"\n\n[[Repos]]  # Repository configuration, fill in provider and expected display text corresponding to repository link\nlink = \"https://<<< custom_key.brand_main_domain >>>\"\nname = \"guance\"\nprovider = \"Guance\"\n\n[[Repos]]  # Repository configuration\nlink = \"https://func.guance.com\"\nname = \"func\"\nprovider = \"Guance\"\n\n\n[[Docs]]  # Help, fill in content provider and expected display text corresponding to help link\nlink = \"https://www.docs.guance.com\"\nname = \"guance\"\nprovider = \"Guance\"\n\n[[Docs]]  # Help\nlink = \"https://func.guance.com/doc\"\nname = \"func\"\nprovider = \"Guance\"\n\n\n[Related]  # Associated configuration\nAppId = \"a138bcb0_47ef_11ee_9d75_31ea50b9d85a\"\nTags = [\"test\"]\nDashboardUUIDs = [\"dsbd_xxxx32\"]\n\n\n"}' \
   --compressed
 ```
 

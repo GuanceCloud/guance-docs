@@ -82,7 +82,7 @@ Workspaces are created under the console account, and when workspaces undergo fe
 
 :material-chat-question: How do I check if I have a Guance console account and a Billing Center account?
 
-The Guance console account is used for logging into the official website: https://www.guance.com. **The unique identifier for the account is the email address**.
+The Guance console account is used for logging into the official website: https://<<< custom_key.brand_main_domain >>>. **The unique identifier for the account is the email address**.
 
 The Billing Center account can be viewed in **Guance Workspace > Paid Plans & Billing**. If there is a Billing Center account, the settlement account will display normally; or log in directly to the Billing Center platform: https://boss.guance.com. **The unique identifier for the Billing Center account is the username**.
 

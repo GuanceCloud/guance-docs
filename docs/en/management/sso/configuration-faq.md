@@ -45,7 +45,7 @@ When configuring SAML in the Identity Provider, you need to configure email mapp
 
 :material-chat-question: **After configuring the email mapping claim in the Identity Provider, I still cannot perform single sign-on in <<< custom_key.brand_name >>>. How do I resolve this?**
 
-The associated email mapping field defined by <<< custom_key.brand_name >>> matches the email rules of the Identity Provider using regular expressions. If the configured Identity Provider email rule does not match the supported email regular expression of <<< custom_key.brand_name >>>, single sign-on will fail. You can [contact <<< custom_key.brand_name >>> support](https://www.guance.com/#home) for assistance.
+The associated email mapping field defined by <<< custom_key.brand_name >>> matches the email rules of the Identity Provider using regular expressions. If the configured Identity Provider email rule does not match the supported email regular expression of <<< custom_key.brand_name >>>, single sign-on will fail. You can [contact <<< custom_key.brand_name >>> support](https://<<< custom_key.brand_main_domain >>>/#home) for assistance.
 
 ![](../img/contact-us.png)
 

@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
+您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)。
 
 ## 方法/步骤
 

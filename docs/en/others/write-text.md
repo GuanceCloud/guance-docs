@@ -94,22 +94,22 @@ Effect as shown below:
 Markdown supports creating hyperlinks using square brackets `[]` and parentheses `()`. The link description is placed inside the square brackets, and the URL is placed inside the parentheses. The format is as follows:
 
 ```
-[<<< custom_key.brand_name >>>](https://www.guance.com)
+[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 ```
 
 Effect as shown below:
 
-[<<< custom_key.brand_name >>>](https://www.guance.com)
+[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 
 Markdown also supports directly displaying URLs using angle brackets `<>`. The format is as follows:
 
 ```
-<https://www.guance.com>
+<https://<<< custom_key.brand_main_domain >>>>
 ```
 
 Effect as shown below:
 
-[https://www.guance.com](https://www.guance.com)
+[https://<<< custom_key.brand_main_domain >>>](https://<<< custom_key.brand_main_domain >>>)
 
 ## 7. Images
 

@@ -14,7 +14,7 @@ icon: zy/management
 
 您可以通过创建或者被邀请的方式加入一个或多个工作空间。
 
-在以任何方式加入工作空间之前，需要先[注册<<< custom_key.brand_name >>>账号](https://auth.guance.com/businessRegister)。[注册完成](../plans/commercial-huaweiyun.md)后，您可以通过[<<< custom_key.brand_name >>>官网](https://www.guance.com/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到<<< custom_key.brand_name >>>控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
+在以任何方式加入工作空间之前，需要先[注册<<< custom_key.brand_name >>>账号](https://auth.guance.com/businessRegister)。[注册完成](../plans/commercial-huaweiyun.md)后，您可以通过[<<< custom_key.brand_name >>>官网](https://<<< custom_key.brand_main_domain >>>/)，点击**登录**，选择注册站点，输入登录账号和密码，登录到<<< custom_key.brand_name >>>控制台。系统会默认为您创建一个工作空间，并赋予**拥有者**权限。
 
 
 在现有的工作空间内，您可以从以下两个入口创建其他工作空间：

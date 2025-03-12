@@ -62,7 +62,7 @@
 | 已开通      | 表示已完成一键开通 Func 托管版流程。             |
 | 方案变更中      | 表示正在修改域名或修改规格。              |
 | 升级中      | 表示正在升级当前应用服务。               |
-| 操作失败      | 表示在开通流程中存在操作问题，您可以**查看错误反馈**或直接[联系我们](https://www.guance.com/aboutUs/introduce#contact)。           |
+| 操作失败      | 表示在开通流程中存在操作问题，您可以**查看错误反馈**或直接[联系我们](https://<<< custom_key.brand_main_domain >>>/aboutUs/introduce#contact)。           |
 
 #### 重置密码
 

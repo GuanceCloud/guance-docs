@@ -2,7 +2,7 @@
 
 ---
 
-小程序主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[<<< custom_key.brand_name >>>](https://www.guance.com/)。
+小程序主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)。
 
 ## 功能简介
 

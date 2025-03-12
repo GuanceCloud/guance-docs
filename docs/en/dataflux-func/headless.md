@@ -81,7 +81,7 @@ Your application may have five statuses:
 | Activated      | Indicates that the RUM Headless one-click activation process is completed.             |
 | Changing Plan      | Indicates that the service address or specifications are being modified.              |
 | Upgrading      | Indicates that the current application service is being upgraded.               |
-| Operation Failed      | Indicates that there was an issue during the activation process. You can **view error feedback** or [contact us](https://www.guance.com/aboutUs/introduce#contact).           |
+| Operation Failed      | Indicates that there was an issue during the activation process. You can **view error feedback** or [contact us](https://<<< custom_key.brand_main_domain >>>/aboutUs/introduce#contact).           |
 
 ### Application Expiration
 

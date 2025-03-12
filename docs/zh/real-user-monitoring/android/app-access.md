@@ -1075,7 +1075,7 @@ android{
 
 	// 最后，在请求结束之后，发送请求相关的数据指标
 	ResourceParams params = new ResourceParams();
-	params.setUrl("https://www.guance.com");
+	params.setUrl("https://<<< custom_key.brand_main_domain >>>");
 	params.setResponseContentType(response.header("Content-Type"));
 	params.setResponseConnection(response.header("Connection"));
 	params.setResponseContentEncoding(response.header("Content-Encoding"));
@@ -1117,7 +1117,7 @@ android{
 
 	//最后，在请求结束之后，发送请求相关的数据指标
 	val params = ResourceParams()
-	params.url = "https://www.guance.com"
+	params.url = "https://<<< custom_key.brand_main_domain >>>"
 	params.responseContentType = response.header("Content-Type")
 	arams.responseConnection = response.header("Connection")
 	params.responseContentEncoding = response.header("Content-Encoding")
@@ -1324,7 +1324,7 @@ android{
 === "Java"
 
 	```java
-	String url = "https://www.guance.com";
+	String url = "https://<<< custom_key.brand_main_domain >>>";
 	String uuid = "uuid";
 	// 获取链路头参数
 	Map<String, String> headers = FTTraceManager.get().getTraceHeader(uuid, url);
@@ -1361,7 +1361,7 @@ android{
 === "Kotlin"
 
 	```kotlin
-	val url = "https://www.guance.com"
+	val url = "https://<<< custom_key.brand_main_domain >>>"
 	val uuid ="uuid"
 	//获取链路头参数
 	val headers = FTTraceManager.get().getTraceHeader(uuid, url)

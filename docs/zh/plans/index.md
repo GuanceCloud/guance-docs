@@ -82,7 +82,7 @@ icon: zy/plans
                                         
 :material-chat-question: 如何确定自己有没有<<< custom_key.brand_name >>>控制台账号和费用中心账号？
 
-<<< custom_key.brand_name >>>控制台账号用于官网登录：https://www.guance.com。**账号的唯一凭证是邮箱**。
+<<< custom_key.brand_name >>>控制台账号用于官网登录：https://<<< custom_key.brand_main_domain >>>。**账号的唯一凭证是邮箱**。
 
 费用中心账号可在**<<< custom_key.brand_name >>>工作空间 > 付费计划与账单**查看。如有费用中心帐号，则结算账号可以正常显示；或者直接登录费用中心平台：https://boss.guance.com。**费用中心账号的唯一凭证是用户名**。
 

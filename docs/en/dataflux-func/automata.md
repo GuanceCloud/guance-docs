@@ -60,7 +60,7 @@ Your application may have five possible statuses:
 | Activated     | Indicates that the one-click activation process for Func (Automata) is completed. |
 | Changing Plan | Indicates that the domain or specifications are being modified.             |
 | Upgrading     | Indicates that the current application service is being upgraded.            |
-| Operation Failed | Indicates that there was an issue during the activation process. You can **View Error Feedback** or [contact us](https://www.guance.com/aboutUs/introduce#contact). |
+| Operation Failed | Indicates that there was an issue during the activation process. You can **View Error Feedback** or [contact us](https://<<< custom_key.brand_main_domain >>>/aboutUs/introduce#contact). |
 
 #### Reset Password
 

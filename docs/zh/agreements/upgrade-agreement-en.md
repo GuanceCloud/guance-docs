@@ -23,7 +23,7 @@ This Service Agreement is signed between you and Shanghai Futuroscope Informatio
 
 ### 2. Service Content
 
-"Service" in this clause refers to "commercial plan" service of one-stop data monitoring cloud platform of Guance displayed by Guance website (https://www.guance.com/) and client (hereinafter referred to as "Guance website" individually or collectively), which you apply for and Guance agrees to provide to you. (For details, please refer to the service contents and pricing methods on relevant pages of Guance website.)
+"Service" in this clause refers to "commercial plan" service of one-stop data monitoring cloud platform of Guance displayed by Guance website (https://<<< custom_key.brand_main_domain >>>/) and client (hereinafter referred to as "Guance website" individually or collectively), which you apply for and Guance agrees to provide to you. (For details, please refer to the service contents and pricing methods on relevant pages of Guance website.)
  
 ### 3. Service Fee
  

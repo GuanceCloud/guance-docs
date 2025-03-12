@@ -7,7 +7,7 @@
 - The association between the account and the workspace will be cleared and cannot be recovered (even if you register and use <<< custom_key.brand_name >>> again with the same email or phone number);
 - Any open tickets submitted by the account will be closed within 7 business days.
 
-The <<< custom_key.brand_name >>> account cancellation terms (hereinafter referred to as "these terms") govern your voluntary cancellation of your <<< custom_key.brand_name >>> account (domestic domain: www.guance.com; international domain: www.guance.one) and all related matters.
+The <<< custom_key.brand_name >>> account cancellation terms (hereinafter referred to as "these terms") govern your voluntary cancellation of your <<< custom_key.brand_name >>> account (domestic domain: <<< custom_key.brand_main_domain >>>; international domain: www.guance.one) and all related matters.
 
 Please read, understand, and agree to all the content of these terms before submitting an account cancellation request. If you have any questions, please contact <<< custom_key.brand_name >>> customer service.
 

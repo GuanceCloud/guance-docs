@@ -50,7 +50,7 @@ Differences in supported services between the Free Plan and Commercial Plan:
 
 ## Registering for the Free Plan {#register-trail}
 
-On the [<<< custom_key.brand_name >>> website](https://www.guance.com/), click [**Get Started Free**](https://auth.guance.com/businessRegister), fill in the relevant information, and you can become a <<< custom_key.brand_name >>> user.
+On the [<<< custom_key.brand_name >>> website](https://<<< custom_key.brand_main_domain >>>/), click [**Get Started Free**](https://auth.guance.com/businessRegister), fill in the relevant information, and you can become a <<< custom_key.brand_name >>> user.
 
 ### Step 1: Basic Information
 

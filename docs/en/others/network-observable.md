@@ -5,11 +5,11 @@
 
 Whether running on local servers or cloud environments, modern services and applications heavily rely on network performance. Network stability is crucial for business systems. If a critical business application fails and becomes unusable, you may need to sift through logs, check the system, access programs, review processes, debug services, and more to find the fault point, which can consume valuable time.
 
-Therefore, comprehensive visibility into the network becomes a key part of monitoring the operational status and performance of applications. However, as your applications scale up and become more complex, achieving this visibility becomes challenging. [<<< custom_key.brand_name >>>](https://www.guance.com/) will provide full observability for host networks.
+Therefore, comprehensive visibility into the network becomes a key part of monitoring the operational status and performance of applications. However, as your applications scale up and become more complex, achieving this visibility becomes challenging. [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) will provide full observability for host networks.
 
 ## Prerequisites
 
-- You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com);
+- You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>);
 - Install DataKit on your host [Install DataKit](../datakit/datakit-install.md);
 
 ## Method Steps
