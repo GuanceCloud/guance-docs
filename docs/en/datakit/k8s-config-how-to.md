@@ -1,54 +1,54 @@
 # Overview of DataKit Configuration in Kubernetes Environment
 ---
 
-In a Kubernetes (k8s) environment, multiple configuration methods for collectors can exist, which may confuse users when configuring collectors due to differences between these methods. This article briefly introduces best practices for configuring DataKit in a K8s environment.
+In K8s environment, because there may be many configuration modes of collectors, it is easy to confuse the differences between different configuration modes in the process of configuring collectors. This paper briefly introduces the best practices of configuration in K8s environment.
 
-## Configuration Methods in K8s Environment {#intro}
+## Configuration Mode in K8s Environment {#intro}
 
-The current version (>1.2.0) of DataKit supports the following configuration methods:
+The current version (> 1.2. 0) of DataKit supports the following configurations:
 
-- Configuration via [conf](datakit-daemonset-deploy.md#configmap-setting)
-- Configuration via [ENV](datakit-daemonset-deploy.md#using-k8-env)
-- Configuration via [Annotation](../integrations/container-log.md#logging-with-annotation-or-label)
-- Configuration via [CRD](../integrations/kubernetes-crd.md)
-- Configuration via [Git](datakit-conf.md#using-gitrepo)
-- Configuration via [DCA](dca.md)
+- Configure with [conf](datakit-daemonset-deploy.md#configmap-setting)
+- Configure with [ENV](datakit-daemonset-deploy.md#using-k8-env)
+- Configure with [Annotation](../integrations/container-log.md#logging-with-annotation-or-label)
+- Configure with [CRD](../integrations/kubernetes-crd.md)
+- Configure with [Git](datakit-conf.md#using-gitrepo)
+- Configure with [DCA](dca.md)
 
-If further categorized, these methods can be divided into two types:
+If further summarized, it can be divided into two types:
 
-- Configuration based on DataKit
+- DataKit-based configuration
     - conf
     - ENV
     - Git
     - DCA
-- Configuration based on **the entity being collected**
+- Configuration based on **collected entity**
     - Annotation
 
-Given the existence of multiple configuration methods and their priority relationships, the following sections will explain each method in order of increasing priority.
+Because there are so many different configuration modes, there are priority relationships among different configuration modes, which are decomposed one by one in the order of priority from low to high.
 
-### Configuration via ConfigMap {#via-configmap-conf}
+### ConfigMap {#via-configmap-conf}
 
-When DataKit runs in a K8s environment, it behaves similarly to running on a host, as it still reads collector configurations from the _.conf_ directory. Therefore, injecting collector configurations via ConfigMap is entirely feasible and sometimes the only way, such as enabling the MySQL collector in the current DataKit version, which can only be done by injecting a ConfigMap.
+When DataKit runs in the K8s environment, it is actually not much different from running on the host, and it will still read the collector configuration in the _.conf_ directory. Therefore, it is completely feasible to inject collector configuration through ConfigMap, and sometimes it is even the only way. For example, in the current DataKit version, MySQL collector can only be opened by injecting ConfigMap.
 
-### Configuration via ENV {#via-env-config}
+### Configure via ENV {#via-env-config}
 
-In K8s, when starting DataKit, you can inject many environment variables into its YAML file. In addition to controlling DataKit's behavior through environment variables, some collectors also support injecting **specific environment variables** named generally as follows:
+In K8s, when we start DataKit, we can [inject many environment variables](datakit-daemonset-deploy.md#using-k8-env) into its yaml. In addition to the fact that DataKit's behavior can be intervened by injecting environment variables, some collectors also support injecting **specific environment variables**, which are generally named as follows:
 
 ```shell
 ENV_INPUT_XXX_YYY
 ```
 
-Here, `XXX` refers to the collector name, and `YYY` refers to specific configuration fields within that collector's configuration. For example, `ENV_INPUT_CPU_PERCPU` adjusts whether the [CPU collector](../integrations/cpu.md) collects metrics for each CPU core (by default, this option is disabled).
+Here `XXX` refers to the collector name, and `YYY` is a specific configuration field in the collector configuration, such as `ENV_INPUT_CPU_PERCPU` to adjust whether [CPU collector](../integrations/cpu.md) _collects metrics per CPU core_ (by default, this option is turned off by default, that is, CPU metrics per core are not collected)
 
-Note that not all collectors currently support ENV injection. Collectors that do support ENV injection are generally [enabled by default](datakit-input-conf.md#default-enabled-inputs). Collectors enabled via ConfigMap also support ENV injection (depending on the specific collector), and **ENV injection takes precedence by default**.
+It should be noted that not all collectors support ENV injection at present. The collector that supports ENV injection is generally [the collector that is turned on by default](datakit-input-conf.md#default-enabled-inputs). The collector opened through ConfigMap also supports ENV injection (see if the collector supports it), and **the default is based on ENV injection**.
 
-> The method of injecting environment variables generally applies only to the K8s mode; the host installation method does not support injecting environment variables.
+> Environment variable injection mode, generally only applied in K8s mode, host installation mode cannot inject environment variables at present.
 
-### Configuration via Annotation {#annotation}
+### Configure through Annotation {#annotation}
 
-Currently, the scope of Annotation-based configuration is narrower than that of ENV. It is mainly used to **mark the entity being collected**, such as enabling or disabling collection for certain entities (including log and metric collection).
+At present, Annotation configuration is more narrowly supported than ENV. It is mainly used to **mark the collected entity**, such as _whether it is necessary to turn on/off the collection of an entity (including log collection, indicator collection, etc.)_
 
-Using Annotations to configure collectors is relatively special. For instance, in the container (Pod) log collector, if you want to disable log collection for all logs (`container_exclude_log = [image:*]`) but enable log collection for specific Pods, you can add Annotations to those specific Pods:
+The scenario of interfering with collector configuration through Annotation is quite special. For example, in the container (Pod) log collector, if collecting all logs is prohibited (in the container collector, `container_exclude_log = [image:*]`), but you only want to turn on log collection for certain Pods, you can append Annotation to certain Pods to mark them:
 
 ```yaml
 apiVersion: apps/v1
@@ -63,53 +63,53 @@ spec:
       labels:
         app: testing-log
       annotations:
-        datakit/logs: |    # <-------- Add a specific Key Annotation here
+        datakit/logs: |    # <-------- 此处追加特定 Key 的 Annotation
           [
             {
-              "source": "testing-source",   # Set the source for this Pod's logs
-              "service": "testing-service", # Set the service for this Pod's logs
-              "pipeline": "test.p"          # Set the Pipeline for this Pod's logs
+              "source": "testing-source",   # 设置该 Pod 日志的 source
+              "service": "testing-service", # 设置该 Pod 日志的 service
+              "pipeline": "test.p"          # 设置该 Pod 日志的 Pipeline
             }
           ]
-    ...
+...
 ```
 
-> Note: Currently, Annotation-based configuration does not support mainstream collectors (only [Prometheus](../integrations/prom.md) is supported). More collectors will be added in the future.
+> Note: Currently, the Annotation mode does not support the mainstream collector opening (currently only [Prom](../integrations/prom.md)) is supported). More collectors will be added later.
 
-So far, the main configuration methods for DataKit in a K8s environment are these three, with their priorities increasing in order: conf has the lowest priority, followed by ENV, and then Annotation has the highest priority.
+So far, in DataKit, there are only three mainstream configuration modes in K8s environment, and their priorities are gradually improved, that is, conf mode has the lowest priority, ENV takes the second place, and Annotation mode has the highest priority.
 
 - Configuration via CRD
 
-CRD is a widely used configuration method in Kubernetes. Compared to Annotation, CRD does not require modifying the deployment of the entity being collected, making it less intrusive. See the [DataKit CRD usage documentation](../integrations/kubernetes-crd.md) for more details.
+CRD is a widely used configuration method of Kubernetes. Compared with Annotation, CRD does not need to change the deployment of collected objects, and it is less invasive. See [DataKit CRD Usage Documentation](../integrations/kubernetes-crd.md).
 
-### Git Configuration Method {#git}
+### Git configuration {#git}
 
-The Git method is supported in both host and K8s modes. Essentially, it is a conf configuration, but its conf files are not in the default _conf.d_ directory but rather in the _gitrepo_ directory under the DataKit installation directory. If Git mode is enabled, the default _conf.d_ directory's **collector configurations will no longer take effect** (except for the main configuration _datakit.conf_), but the original _pipeline_ and _pythond_ directories remain valid. This shows that Git is primarily used to manage various text configurations on DataKit, including collector configurations, Pipeline scripts, and Python scripts.
+Git mode is supported in both host mode and K8s mode, and is essentially a conf configuration, except that its conf file is not in the default _conf. d_ directory, but in the _gitrepo_ directory of the DataKit installation directory. If Git mode is turned on, the default **collector configuration in the _conf.d_ directory is no longer valid** (except for the main configuration of _datakit.conf_), but the original _pipeline_ directory and _pythond_ directory are still valid. As you can see from this, Git is mainly used to manage various text configurations on DataKit, including various collector configurations, Pipeline scripts and Python scripts.
 
-> Note: The main DataKit configuration (_datakit.conf_) cannot be managed via Git.
+> Note: The DataKit master configuration (_datakit.conf_) cannot be managed by Git.
+<!-- markdownlint-disable MD013 -->
+#### Configuration of Default Collector in Git Mode {#def-inputs-under-git}
+<!-- markdownlint-enable -->
+In Git mode, there is a very important feature, that is, **conf files of [default collector](datakit-input-conf.md#default-enabled-inputs) are stealthy**, whether in K8s mode or host mode, so it needs some extra work to manage these collector configuration files with Git, otherwise it will cause them to be **collected repeatedly**.
 
-#### Default Collector Configuration in Git Mode {#def-inputs-under-git}
+In Git mode, if you want to adjust the configuration of the default collector (you don't want to turn it on or configure it accordingly), there are several ways:
 
-In Git mode, one important characteristic is that the **conf files of [default enabled collectors](datakit-input-conf.md#default-enabled-inputs) are hidden**, regardless of whether it is in K8s or host mode. Therefore, managing these default enabled collector configuration files with Git requires additional work to prevent them from being **duplicated**.
+- You can remove them from _datakit.conf_ or _datakit.yaml_ . **At this time, they are not the collectors turned on by default**.
+- If you want to modify the configuration of a specific collector, there are several ways:
+    - Manage their conf through Git
+    - Through the ENV injection mentioned above (depending on whether the collector supports ENV injection)
+    - If the collector supports Annotation tags, it can also be adjusted in this way.
 
-In Git mode, if you need to adjust the configuration of default collectors (either to disable them or make corresponding changes), there are several ways:
+### DCA Configuration {#dca}
 
-- Remove them from _datakit.conf_ or _datakit.yaml_. **At this point, they will no longer be default enabled collectors.**
-- To modify specific collector configurations, you can:
-    - Manage their conf files via Git.
-    - Use ENV injection as mentioned earlier (depending on whether the collector supports ENV injection).
-    - If the collector supports Annotation marking, you can also adjust it via this method.
-
-### DCA Configuration Method {#dca}
-
-The [DCA](dca.md) configuration method is somewhat similar to Git, as both only affect DataKit's collector configurations, Pipeline configurations, and Pythond configurations. However, DCA's functionality is less powerful than Git and is generally used for managing files on a few DataKit instances.
+The [DCA](dca.md) configuration is actually a bit like Git, and they all affect the `conf/pipeline/python` file configuration on the DataKit. Just for DCA, its function is not as powerful as Git, and it is generally only used to manage files on several DataKits in a small scope.
 
 ## Summary {#summary}
 
-This concludes the basic introduction to the various configuration methods available for DataKit. For specific collectors, refer to their respective documentation to determine which configuration methods they support.
+So far, several configuration modes on DataKit have been basically introduced. Whether the specific collector supports specific configuration modes still needs to refer to the collector documents.
 
-## Further Reading {#more-readings}
+## Extended Reading {#more-readings}
 
 - [DataKit Configuration](datakit-conf.md)
 - [DataKit Collector Configuration](datakit-input-conf.md)
-- [Installing DataKit via DaemonSet](datakit-daemonset-deploy.md)
+- [DaemonSet Installs DataKit](datakit-daemonset-deploy.md)

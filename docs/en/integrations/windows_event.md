@@ -1,32 +1,33 @@
 ---
-title     : 'Windows Events'
-summary   : 'Collecting event logs from Windows'
+title     : 'Windows Event'
+summary   : 'Collect event logs in Windows'
 tags:
   - 'WINDOWS'
 __int_icon      : 'icon/winevent'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
+
 
 :fontawesome-brands-windows:
 
 ---
 
-The collection of Windows Event Logs involves gathering application, security, system, and other types of Windows event logs.
+Windows Event Log Collection is used to collect applications, security, systems and so on.
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requrements}
 
 - Windows version >= Windows Server 2008 R2
 
 ### Collector Configuration {#input-config}
 
-Navigate to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample`, and rename it to `windows_event.conf`. An example is shown below:
+Go to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample` and name it `windows_event.conf`. Examples are as follows:
 
 ```toml
 
@@ -61,11 +62,11 @@ Navigate to the `conf.d/windows` directory under the DataKit installation direct
   # ...
 ```
 
-After configuring, restart DataKit to apply changes.
+After configuration, restart DataKit.
 
 ## Logging {#logging}
 
-By default, all data collected will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify additional tags in the configuration using `[inputs.windows_event.tags]`:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.windows_event.tags]`:
 
 ``` toml
  [inputs.windows_event.tags]
@@ -97,10 +98,10 @@ By default, all data collected will append a global tag named `host` (the tag va
 |`total_message`|Full text of the event|
 |`version`|Version|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
-Please note that the metrics list currently does not contain any specific entries.
+

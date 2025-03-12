@@ -1,14 +1,14 @@
 ---
 title     : 'NFS'
-summary   : 'NFS Metrics Collection'
+summary   : 'Collect metrics of NFS'
 tags:
-  - 'Host'
+  - 'HOST'
 __int_icon      : 'icon/nfs'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor:
-  - desc: 'Not available'
+  - desc: 'N/A'
     path: '-'
 ---
 
@@ -16,18 +16,18 @@ monitor:
 
 ---
 
-NFS metrics collector gathers the following data:
+NFS metrics collector that collects the following data:
 
 - RPC throughput metrics
-- NFS mount point metrics (supports only NFSv3 and v4)
+- NFS mount point metrics (NFSv3 and v4 only)
 - NFSd throughput metrics
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requirements}
 
-- Correctly configured NFS client environment
-- NFS client correctly mounted to the server's shared directory
+- The NFS client environment is properly configured.
+- The NFS client is properly mounted to the server's shared directory.
 
 ### Collector Configuration {#input-config}
 
@@ -35,8 +35,8 @@ NFS metrics collector gathers the following data:
 
 === "Host Installation"
 
-    Enter the `conf.d/host` directory under the DataKit installation directory, copy `nfs.conf.sample` and rename it to `nfs.conf`. Example configuration:
-    
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `nfs.conf.sample` and name it `nfs.conf`. Examples are as follows:
+
     ```toml
         
     [[inputs.nfs]]
@@ -62,118 +62,120 @@ NFS metrics collector gathers the following data:
     
     ```
     
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
 
     - **ENV_INPUT_NFS_INTERVAL**
     
-        Collector repeat interval duration
+        采集器重复间隔时长
     
-        **Field Type**: Duration
+        **字段类型**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **采集器配置字段**: `interval`
     
-        **Default Value**: `10s`
+        **默认值**: `10s`
     
     - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_RW_BYTES**
     
-        Enable detailed byte read/write information for NFS mount points
+        开启 NFS 挂载点的详细字节读写信息
     
-        **Field Type**: Boolean
+        **字段类型**: Boolean
     
-        **Collector Configuration Field**: `enable_mount_stats_rw_bytes`
+        **采集器配置字段**: `enable_mount_stats_rw_bytes`
     
-        **Default Value**: `false`
+        **默认值**: `false`
     
     - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_TRANSPORT**
     
-        Enable transport information between NFS mount points and the server
+        开启 NFS 挂载点与服务端的传输信息
     
-        **Field Type**: Boolean
+        **字段类型**: Boolean
     
-        **Collector Configuration Field**: `enable_mount_stats_transport`
+        **采集器配置字段**: `enable_mount_stats_transport`
     
-        **Default Value**: `false`
+        **默认值**: `false`
     
     - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_EVENT**
     
-        Enable NFS event statistics
+        开启 NFS 事件统计信息
     
-        **Field Type**: Boolean
+        **字段类型**: Boolean
     
-        **Collector Configuration Field**: `enable_mount_stats_event`
+        **采集器配置字段**: `enable_mount_stats_event`
     
-        **Default Value**: `false`
+        **默认值**: `false`
     
     - **ENV_INPUT_NFS_ENABLE_MOUNT_STATS_OPERATIONS**
     
-        Enable transport information for given NFS operations
+        开启 NFS 给定操作的传输信息
     
-        **Field Type**: Boolean
+        **字段类型**: Boolean
     
-        **Collector Configuration Field**: `enable_mount_stats_operations`
+        **采集器配置字段**: `enable_mount_stats_operations`
     
-        **Default Value**: `false`
+        **默认值**: `false`
     
     - **ENV_INPUT_NFS_NFSD**
     
-        Enable NFSd metrics
+        开启 NFSd 指标
     
-        **Field Type**: Boolean
+        **字段类型**: Boolean
     
-        **Collector Configuration Field**: `nfsd`
+        **采集器配置字段**: `nfsd`
     
-        **Default Value**: `false`
+        **默认值**: `false`
 
 <!-- markdownlint-enable -->
 
-### Enabling NFSd {#nfsd}
+### NFSd Start {#nfsd}
 
-NFSd is the daemon process for NFS service, a key component on the server side that handles NFS requests from clients. If the local machine also acts as an NFS server, enabling this feature will allow you to view statistics such as network, disk I/O, and threads handling NFS requests.
+NFSd is the daemon of the NFS service, a key component on the server side, responsible for handling NFS requests sent by clients. If the local machine is also used as an NFS server, you can enable this metric to view statistics such as network, disk I/O, and threads on which users process NFS requests.
 
-To enable, modify the configuration file.
+If you want to enable it, you need to modify the configuration file.
 
 ```toml
 [[inputs.nfs]]
   ##(optional) collect interval, default is 10 seconds
   interval = '10s'
-  ## Whether to enable NFSd metrics collection
+  ## Whether to enable NFSd metric collection
   nfsd = true
 
 ...
 
 ```
 
-### Enabling Detailed Statistics for NFS Mount Points {#nfs-mountstats}
+### NFS mount point stats Start {#nfs-mountstats}
 
-By default, the enabled `nfs_mountstats` Measurement set only displays statistics on mount point disk usage and NFS runtime. To view R/W, Transport, Event, Operations information of NFS mount points, modify the configuration file.
+The default set of nfs_mountstats metrics only displays statistics about the disk usage and NFS running time of the mount point, and you need to modify the configuration file to view the R/W, Transport, Event, and Operations information of the NFS mount point.
 
 ```toml
 [[inputs.nfs]]
-  
+
   ...
 
-  ## NFS mount point metrics configuration
+  ## NFS mount point metric configuration
   [inputs.nfs.mountstats]
-    ## Enable R/W statistics
-    # rw = true
-    ## Enable transport statistics 
-    # transport = true
+    ## Enable r/w statistics
+    rw = true
+    ## Enable transport statistics
+    transport = true
     ## Enable event statistics
-    # event = true
+    event = true
     ## Enable operation statistics
-    # operations = true
+    operations = true
 
 ...
 
 ```
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All collected data below will append a global tag named `host` (tag value is the hostname where DataKit resides), and additional tags can be specified in the configuration using `[inputs.nfs.tags]`:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.nfs.tags]`:
 
 ``` toml
  [inputs.nfs.tags]
@@ -194,7 +196,7 @@ All collected data below will append a global tag named `host` (tag value is the
 |`method`|Invoked method.|
 |`protocol`|Protocol type.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -220,7 +222,7 @@ All collected data below will append a global tag named `host` (tag value is the
 |`mountpoint`|Where the device is mounted.|
 |`type`|Device type.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -296,7 +298,7 @@ All collected data below will append a global tag named `host` (tag value is the
 |`method`|Invoked method.|
 |`protocol`|Protocol type.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -315,3 +317,5 @@ All collected data below will append a global tag named `host` (tag value is the
 |`server_threads`|Total number of NFSd kernel threads that are running.|int|count|
 |`tcp_packets_total`|Total NFSd network TCP packets (sent+received) by protocol type.|int|count|
 |`udp_packets_total`|Total NFSd network UDP packets (sent+received) by protocol type.|int|count|
+
+

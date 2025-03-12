@@ -47,6 +47,9 @@ monitor   :
       ## exclude some with dev prefix (We collect all devices prefixed with dev by default)
       # exclude_device = ["/dev/loop0","/dev/loop1"]
     
+      ignore_fstypes = '''^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$'''
+      ignore_mountpoints = '''^(/usr/local/datakit/.*|/run/containerd/.*)$'''
+    
       #[inputs.disk.tags]
       #  some_tag = "some_value"
       #  more_tag = "some_other_value"
@@ -71,6 +74,16 @@ monitor   :
     
         **默认值**: 10s
     
+    - **ENV_INPUT_DISK_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **字段类型**: Map
+    
+        **采集器配置字段**: `tags`
+    
+        **示例**: tag1=value1,tag2=value2
+    
     - **ENV_INPUT_DISK_EXTRA_DEVICE**
     
         额外的设备前缀。（默认收集以 dev 为前缀的所有设备）
@@ -91,45 +104,25 @@ monitor   :
     
         **示例**: /dev/loop0,/dev/loop1
     
-    - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
+    - **ENV_INPUT_DISK_IGNORE_MOUNTPOINTS**
     
-        忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）
+        忽略这些挂载点对应的磁盘指标
     
-        **字段类型**: Boolean
+        **字段类型**: String
     
-        **采集器配置字段**: `only_physical_device`
+        **采集器配置字段**: `ignore_mountpoints`
     
-        **默认值**: false
+        **示例**: `^(/usr/local/datakit/.*|/run/containerd/.*)$`
     
-    - **ENV_INPUT_DISK_ENABLE_LVM_MAPPER_PATH**
+    - **ENV_INPUT_DISK_INPUT_DISK_IGNORE_FSTYPES**
     
-        查看设备映射器对应的软链接（如 `/dev/dm-0` -> `/dev/mapper/vg/lv`）
+        忽略这些文件系统对应的磁盘指标
     
-        **字段类型**: Boolean
+        **字段类型**: String
     
-        **采集器配置字段**: `enable_lvm_mapper_path`
+        **采集器配置字段**: `input_disk_ignore_fstypes`
     
-        **默认值**: false
-    
-    - **ENV_INPUT_DISK_MERGE_ON_DEVICE**
-    
-        合并有相同 device 的磁盘
-    
-        **字段类型**: Boolean
-    
-        **采集器配置字段**: `merge_on_device`
-    
-        **默认值**: true
-    
-    - **ENV_INPUT_DISK_TAGS**
-    
-        自定义标签。如果配置文件有同名标签，将会覆盖它
-    
-        **字段类型**: Map
-    
-        **采集器配置字段**: `tags`
-    
-        **示例**: tag1=value1,tag2=value2
+        **示例**: `^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$`
 
 <!-- markdownlint-enable -->
 

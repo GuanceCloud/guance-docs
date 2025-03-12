@@ -1,6 +1,6 @@
 ---
 title     : 'JVM'
-summary   : 'Collect JVM Metrics data'
+summary   : 'Collect the JVM metrics'
 tags:
   - 'JAVA'
 __int_icon      : 'icon/jvm'
@@ -8,7 +8,7 @@ dashboard :
   - desc  : 'JVM'
     path  : 'dashboard/en/jvm'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -17,22 +17,24 @@ monitor   :
 
 ---
 
-Here we provide two methods for collecting JVM metrics, one is DDTrace, and the other method is Jolokia (deprecated). The recommendations for choosing a method are as follows:
+Here, we provide two kinds of JVM metrics collection methods, one is Jolokia (deprecated) and the other is ddtrace. How to choose the way, we have the following suggestions:
 
-- It is recommended to use DDTrace for collecting JVM metrics; Jolokia can also be used but it is more complicated, so it is not recommended.
-- If you are collecting metrics from your own developed Java application's JVM, the DDTrace method is recommended. In addition to collecting JVM metrics, it can also collect APM data.
+- It is recommended to use DDTrace to collect JVM metrics, and Jolokia is also acceptable as it is more cumbersome to use, so it is not recommended.
+- If we collect the JVM metrics of our own Java application, we recommend ddtrace scheme, which can collect the JVM metrics as well as link tracing (APM) data.
 
-## Configuration {#config}
+## Config {#config}
 
-### Collecting JVM Metrics via DDTrace {#jvm-ddtrace}
+## Collect JVM Metrics Through Ddtrace {#jvm-ddtrace}
 
-DataKit has a built-in [StatsD collector](statsd.md) to receive StatsD protocol data sent over the network. Here we use DDTrace to collect JVM metrics and send them to DataKit using the StatsD protocol.
+DataKit has a built-in [statsd collector](statsd.md) for receiving statsd protocol data sent over the network. Here we use ddtrace to collect metrics from the JVM and send them to the DataKit via statsd protocol.
+
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    We recommend using the following StatsD configuration to collect DDTrace JVM metrics. Copy this configuration into the `conf.d/statsd` directory and name it `ddtrace-jvm-statsd.conf`:
-
+    The following statsd configuration is recommended for collecting ddtrace JVM metrics. Copy it to the `conf.d/statsd` directory and name it `ddtrace-jvm-statsd.conf`:
+    
     ```toml
     [[inputs.statsd]]
       protocol = "udp"
@@ -49,7 +51,7 @@ DataKit has a built-in [StatsD collector](statsd.md) to receive StatsD protocol 
         "datadog_tracer_:ddtrace",
       ]
     
-      # The following configurations do not need attention
+      # There is no need to pay attention to the following configurations...
     
       delete_gauges = true
       delete_counters = true
@@ -89,20 +91,20 @@ DataKit has a built-in [StatsD collector](statsd.md) to receive StatsD protocol 
 
 === "Kubernetes"
 
-    Currently, the collector configuration can be injected via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
 ---
 
-Explanation of the above configuration:
+For configuration instructions here:
 
-- `service_address` is set to `:8125`, indicating that DDTrace sends JVM metrics to this target address.
-- `drop_tags` drops the `runtime-id` tag because it may cause Time Series explosion. If you need this field, remove it from `drop_tags`.
-- `metric_mapping` maps the original metrics from DDTrace with prefixes `jvm_` and `datadog_tracer_` to two categories: `jvm` and `ddtrace`.
+- `service_address` set here to `:8125`, which is the destination address where ddtrace sends out jvm metrics.
+- `drop_tags` here discards `runtime-id` here because it could cause the timeline to explode. If you really need this field, just remove it from `drop_tags`.
+- `metric_mapping`: In the original data sent by ddtrace, there are two types of metrics, their metrics names begin with `jvm_` and `datadog_tracer_` respectively, so we unify them into two types of metrics, one is `jvm` and the other is `ddtrace` self-running metrics.
 
-### Starting the Java Application {#start-app}
+### Start Java Application {#start-app}
 
-A viable deployment method for JVM is as follows:
+A feasible JVM deployment method is as follows:
 
 ```shell
 java -javaagent:dd-java-agent.jar \
@@ -123,39 +125,39 @@ java -javaagent:dd-java-agent.jar \
 
 Note:
 
-- For downloading the `dd-java-agent.jar` package, refer to [here](ddtrace.md).
-- It is recommended to specify the following fields:
-    - `service.name` indicates which application the JVM data comes from.
-    - `env` indicates which environment the JVM data comes from (e.g., `prod/testing/preprod`).
+- For the download of the `dd-java-agent.jar` package, see [here](ddtrace.md)
+- It is recommended to name the following fields:
+    - `service.name` is used to indicate which application the JVM data comes from
+    - `env` is used to indicate which environment of an application the JVM data comes from (e.g. `prod/test/preprod`, etc.)
 
-- Explanation of several options:
-    - `-Ddd.jmxfetch.check-period` represents the collection frequency in milliseconds.
-    - `-Ddd.jmxfetch.statsd.host=127.0.0.1` specifies the connection address for the StatsD collector on DataKit.
-    - `-Ddd.jmxfetch.statsd.port=8125` specifies the UDP port for the StatsD collector on DataKit, defaulting to 8125.
-    - `-Ddd.trace.health.xxx` configures the collection and sending of DDTrace metrics.
-    - To enable APM, add the following parameters (DataKit HTTP address):
+- The meaning of several options here:
+    - `-Ddd.jmxfetch.check-period` denotes the collection frequency, in milliseconds
+    - `-Ddd.jmxfetch.statsd.host=127.0.0.1` indicates the connection address of the statsd collector on the DataKit
+    - `-Ddd.jmxfetch.statsd.port=8125` indicates the UDP connection port for the statsd collector on the DataKit, which defaults to 8125
+    - `-Ddd.trace.health.xxx` ddtrace own metrics data collection and sending settings
+    - If you want to turn on link tracing (APM), you can append the following two parameters (DataKit HTTP address)
         - `-Ddd.agent.host=localhost`
         - `-Ddd.agent.port=9529`
 
-After enabling, you can collect JVM metrics exposed by DDTrace.
+When turned on, you can collect jvm metrics exposed by DDTrace.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    The actual collected metrics should follow [DataDog's documentation](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/java/#data-collected){:target="_blank"}.
+    The actual collected indicators are based on [DataDog's doc](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/java/#data-collected){:target="_blank"}.
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+### Metric {#metric}
 
 - Tags
 
-Each metric includes the following tags (actual tags depend on Java startup parameters and StatsD configuration):
+Each metric has the following tags (the actual tags are affected by Java startup parameters and statsd configuration).
 
 | Tag Name        | Description          |
 | ----          | --------      |
-| `env`         | Corresponds to `DD_ENV` |
-| `host`        | Hostname        |
-| `instance`    | Instance          |
+| `env`         | corresponding `DD_ENV` |
+| `host`        | hostname        |
+| `instance`    | example          |
 | `jmx_domain`  |               |
 | `metric_type` |               |
 | `name`        |               |
@@ -163,9 +165,9 @@ Each metric includes the following tags (actual tags depend on Java startup para
 | `type`        |               |
 | `version`     |               |
 
-- Metric List
+- Metrics
 
-| Metric                        | Description                                                                                                                          | Data Type | Unit   |
+| Metrics                        | Description                                                                                                                          | Data Type | Unit   |
 | ----                        | ----                                                                                                                          | :---:    | :----: |
 | `heap_memory`               | The total Java heap memory used                                                                                               | int      | B      |
 | `heap_memory_committed`     | The total Java heap memory committed to be used                                                                               | int      | B      |
@@ -183,32 +185,33 @@ Each metric includes the following tags (actual tags depend on Java startup para
 | `gc_major_collection_time`  | The approximate major garbage collection time elapsed. Set `new_gc_metrics: true` to receive this metric                      | int      | ms     |
 | `gc_minor_collection_time`  | The approximate minor garbage collection time elapsed. Set `new_gc_metrics: true` to receive this metric                      | int      | ms     |
 
-Key explanation for these metrics: `gc_major_collection_count` `gc_minor_collection_count` `gc_major_collection_time` `gc_minor_collection_time`:
+Focus on explaining the following indicators: `gc_major_collection_count` `gc_minor_collection_count` `gc_major_collection_time` `gc_minor_collection_time`:
 
-These metrics are of type `counter`, meaning they are counters. During collection, each time a metric is collected, it is subtracted from the previous result and divided by time, indicating the rate of change per second rather than the actual value in the JVM MBean.
+The indicator type is composed of three components of `counter`. During the collection process, each time the indicator is collected, it will be subtracted from the previous result and divided by time.
+These indicators are the rate of change per second, which is not actually the case. The value in the `MBean` in the `JVM`.
 
-### Collecting JVM Metrics via Jolokia {#jvm-jolokia}
+## Collect JVM Metrics Through Jolokia  {#jvm-jolokia}
 
-The JVM collector can gather many metrics through JMX and send them to Guance for analysis of Java runtime conditions.
+JVM collector can take many metrics through JMX, and collect metrics into Guance Cloud to help analyze Java operation.
 
-### Configuration {#jolokia-config}
+### Jolokia Config {#jolokia-config}
 
-### Prerequisites {#jolokia-requirements}
+### Preconditions {#jolokia-requirements}
 
-Install or download [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The Jolokia jar file is already downloaded in the `data` directory under the DataKit installation directory. Start the Java application using the following command:
+Install or download  [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The downloaded Jolokia jar package is already available in the `data` directory under the DataKit installation directory. Open the Java application by:
 
 ```shell
 java -javaagent:/path/to/jolokia-jvm-agent.jar=port=8080,host=localhost -jar your_app.jar
 ```
 
-Tested versions:
+Already tested version:
 
 - [x] JDK 20
 - [x] JDK 17
 - [x] JDK 11
 - [x] JDK 8
 
-Navigate to the `conf.d/jvm` directory under the DataKit installation directory, copy `jvm.conf.sample` and rename it to `jvm.conf`. An example configuration is as follows:
+Go to the `conf.d/jvm` directory under the DataKit installation directory, copy `jvm.conf.sample` and name it `jvm.conf`. Examples are as follows:
 
 ```toml
 [[inputs.jvm]]
@@ -226,7 +229,7 @@ Navigate to the `conf.d/jvm` directory under the DataKit installation directory,
   # tls_key  = "/var/private/client-key.pem"
   # insecure_skip_verify = false
 
-  ## Monitor Interval
+  ## Monitor Intreval
   # interval   = "60s"
 
   # Add agents URLs to query
@@ -271,11 +274,11 @@ Navigate to the `conf.d/jvm` directory under the DataKit installation directory,
   # ...
 ```
 
-After configuring, restart DataKit.
+After configuration, restart DataKit.
 
-### Jolokia Metrics {#jolokia-metric}
+### Jolokia Metric {#jolokia-metric}
 
-By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit is running), and additional tags can be specified in the configuration through `[inputs.jvm.tags]`:
+For all the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.jvm.tags]`:
 
 ``` toml
  [inputs.jvm.tags]
@@ -294,9 +297,9 @@ By default, all collected data will append a global tag named `host` (the tag va
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent URL path.|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -317,9 +320,9 @@ By default, all collected data will append a global tag named `host` (the tag va
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent URL path.|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -348,16 +351,16 @@ By default, all collected data will append a global tag named `host` (the tag va
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent URL path.|
+|`jolokia_agent_url`|Jolokia agent url path.|
 |`name`|The name of GC generation.|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`CollectionCount`|The number of GC that have occurred.|int|count|
-|`CollectionTime`|The approximate GC collection time elapsed.|int|ms|
+|`CollectionTime`|The approximate GC collection time elapsed.|int|B|
 |`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
 |`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
 |`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
@@ -373,17 +376,21 @@ By default, all collected data will append a global tag named `host` (the tag va
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent URL path.|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`DaemonThreadCount`|The count of daemon threads.|int|count|
-|`PeakThreadCount`|The peak count of threads.|int|count|
-|`ThreadCount`|The count of threads.|int|count|
-|`TotalStartedThreadCount`|The total count of started threads.|int|count|
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
+|`DaemonThreadCount`|The count of daemon thread.|int|count|
+|`PeakThreadCount`|The peak count of thread.|int|count|
+|`ThreadCount`|The count of thread.|int|count|
+|`TotalStartedThreadCount`|The total count of started thread.|int|count|
 
 
 
@@ -395,16 +402,20 @@ By default, all collected data will append a global tag named `host` (the tag va
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent URL path.|
+|`jolokia_agent_url`|Jolokia agent url path.|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`LoadedClassCount`|The count of loaded classes.|int|count|
-|`TotalLoadedClassCount`|The total count of loaded classes.|int|count|
-|`UnloadedClassCount`|The count of unloaded classes.|int|count|
+|`CollectionUsagecommitted`|The amount of memory in bytes that is committed for the Java virtual machine to use.|float|B|
+|`CollectionUsageinit`|The amount of memory in bytes that the Java virtual machine initially requests from the operating system for memory management.|float|B|
+|`CollectionUsagemax`|The maximum amount of memory in bytes that can be used for memory management.|float|B|
+|`CollectionUsageused`|The amount of used memory in bytes.|float|B|
+|`LoadedClassCount`|The count of loaded class.|int|count|
+|`TotalLoadedClassCount`|The total count of loaded class.|int|count|
+|`UnloadedClassCount`|The count of unloaded class.|int|count|
 
 
 
@@ -416,10 +427,10 @@ By default, all collected data will append a global tag named `host` (the tag va
 | Tag | Description |
 |  ----  | --------|
 |`host`|The hostname of the Jolokia agent/proxy running on.|
-|`jolokia_agent_url`|Jolokia agent URL path.|
+|`jolokia_agent_url`|Jolokia agent url path.|
 |`name`|The name of space.|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -430,17 +441,17 @@ By default, all collected data will append a global tag named `host` (the tag va
 |`CollectionUsageused`|The amount of used memory in bytes.|float|B|
 |`PeakUsagecommitted`|The total peak Java memory pool committed to be used.|int|B|
 |`PeakUsageinit`|The initial peak Java memory pool allocated.|int|B|
-|`PeakUsagemax`|The maximum peak Java memory pool available.|int|B|
+|`PeakUsagemax`|The maximum peak Java  memory pool available.|int|B|
 |`PeakUsageused`|The total peak Java memory pool used.|int|B|
 |`Usagecommitted`|The total Java memory pool committed to be used.|int|B|
 |`Usageinit`|The initial Java memory pool allocated.|int|B|
-|`Usagemax`|The maximum Java memory pool available.|int|B|
+|`Usagemax`|The maximum Java  memory pool available.|int|B|
 |`Usageused`|The total Java memory pool used.|int|B|
 
 
 
-## Further Reading {#more-readings}
+## More Readings {#more-readings}
 
-- [DDTrace Java Example](ddtrace-java.md)
+- [DDTrace Java example](ddtrace-java.md)
 - [SkyWalking](skywalking.md)
-- [OpenTelemetry Java Example](opentelemetry-java.md)
+- [OpenTelemetry Java example](opentelemetry-java.md)

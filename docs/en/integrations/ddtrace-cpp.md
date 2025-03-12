@@ -1,47 +1,49 @@
 ---
 title     : 'DDTrace C++'
-summary   : 'DDTrace C++ Integration'
+summary   : 'Tracing C++ Application with DDTrace'
 tags      :
-  - 'Tracing'
+  - 'APM'
+  - 'TRACING'
   - 'C/C++'
 __int_icon: 'icon/ddtrace'
 ---
 
-To apply DDTrace in C++ code, you need to modify the business code. There are no corresponding SDK integrations for common middleware and libraries, so **you must manually instrument the existing business code**.
 
-## Install Libraries and Dependencies {#dependence}
+To apply DDTrace in C++ code, you need to modify the business code, and there is no corresponding SDK integration for common middleware and libraries, **manual instrumentation is required in existing business code**.
+
+## Install Library and Dependencies {#dependence}
 
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
 
     - Download the DDTrace-C++ SDK
-    
+
     ```shell
     git clone https://github.com/DataDog/dd-opentracing-cpp
     ```
-    
+
     - Compile and install the SDK
-    
+
     ```shell
     # Install dependencies
     cd dd-opentracing-cpp && sudo scripts/install_dependencies.sh
-    
+
     # Compile and install
     mkdir .build && cd .build && cmake .. && make && make install
     ```
 
-    If you encounter issues while compiling the SDK, you can temporarily use the [header files][5] and [dynamic libraries][6] prepared by Guance for testing.
+    If there are problems during the compilation of the SDK, you can temporarily use the [header files][5] and [dynamic libraries][6] prepared by GuanceCloud for testing.
 
 === "Windows"
 
-    Coming Soon...
+    coming soon...
 
-???+ attention "cmake Installation"
+???+ attention "cmake installation"
 
-    cmake may not be able to install a higher version via yum or apt-get. It is recommended to download the latest version directly from its [official website][3]{:target="_blank"}. You can also use the [source code][1] or [Windows binaries][2] hosted by Guance.
-    
+    cmake may not be able to install a higher version through yum or apt-get, it is recommended to directly download the latest version from its [official website][3]{:target="_blank"}. You can also directly use the [source code][1] or [Windows binary][2] hosted by GuanceCloud.
+
     ```shell
-    # Install cmake from source
+    # Install cmake from source code
     wget https://static.guance.com/gfw/cmake-3.24.2.tar.gz
     tar -zxvf cmake-3.24.2.tar.gz
     ./bootstrap --prefix=/usr/local
@@ -66,14 +68,14 @@ To apply DDTrace in C++ code, you need to modify the business code. There are no
 
 ## C++ Code Example {#simple-example}
 
-The following C++ code demonstrates basic trace instrumentation operations, simulating a business operation that reads a local disk file.
+The following C++ code demonstrates basic trace instrumentation, simulating a business operation that reads a local disk file.
 
 ```cpp linenums="1" hl_lines="1-2 13-14 40-43 53" title="demo.cc"
 #include <datadog/opentracing.h>
 #include <datadog/tags.h>
 
 #include <stdarg.h>
-#include <memory> 
+#include <memory>
 #include <chrono>
 #include <fstream>
 #include <string>
@@ -86,7 +88,7 @@ auto tracer = datadog::opentracing::makeTracer(tracer_options);
 
 std::ifstream::pos_type filesize(const char* filename) {
     std::ifstream in(filename, std::ifstream::ate | std::ifstream::binary);
-    return in.tellg(); 
+    return in.tellg();
 }
 
 std::string string_format(const std::string fmt_str, ...) {
@@ -123,70 +125,70 @@ int main(int argc, char* argv[]) {
 
     tracer->Close();
     return 0;
-} 
+}
 ```
 
-### Build and Run {#build-run}
+### Compile and Run {#build-run}
 
 ```shell
 LD_LIBRARY_PATH=/usr/local/lib64 g++ -std=c++14 -o demo demo.cc -ldd_opentracing -I ./dd-opentracing-cpp/deps/include
 LD_LIBRARY_PATH=/usr/local/lib64 DD_AGENT_HOST=localhost DD_TRACE_AGENT_PORT=9529 ./demo
 ```
 
-You can place *libdd_opentracing.so* and the corresponding header files in any directory and adjust the `LD_LIBRARY_PATH` and `-I` parameters accordingly.
+You can place *libdd_opentracing.so* and the corresponding header files in any directory, then adjust `LD_LIBRARY_PATH` and `-I` parameters accordingly.
 
-After running the program for some time, you can see similar trace data in Guance as shown below:
+After running the program for a while, you can see trace data similar to the following in GuanceCloud:
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/cpp-ddtrace-example.png){ width="800"}
+  ![](https://static.guance.com/images/datakit/cpp-ddtrace-example.png){  width="800"}
   <figcaption>C++ trace data display</figcaption>
 </figure>
 
-## Supported Environment Variables {#envs}
+## Environment Variable Support {#envs}
 
-## Environment Variable Support {#start-options}
+## Supported Environment Variables {#start-options}
 
-The following environment variables support specifying some configuration parameters for DDTrace when starting the program. The basic form is:
+The following environment variables are supported to specify some configuration parameters of DDTrace when starting the program, and their basic form is:
 
 ```shell
 DD_XXX=<env-value> DD_YYY=<env-value> ./demo
 ```
 
-Commonly used ENV variables are listed below. For more ENV support, refer to the [DDTrace documentation][7]{:target="_blank"}.
+Some commonly used ENVs are as follows. For more ENV support, please refer to [DDTrace Documentation][7]{:target="_blank"}.
 
 - **`DD_VERSION`**
 
-    Set the application version, such as `1.2.3`, `2022.02.13`.
+    Sets the application version, such as `1.2.3`, `2022.02.13`
 
 - **`DD_AGENT_HOST`**
 
-    **Default value**: `localhost`
+    **Default**: `localhost`
 
-    Set the DataKit address.
+    Sets the DataKit address
 
 - **`DD_TRACE_AGENT_PORT`**
 
-    Set the port for receiving DataKit trace data. Here you need to specify the [DataKit HTTP port][4] (usually 9529).
+    Sets the DataKit trace data receiving port. Here you need to manually specify the [DataKit HTTP port][4] (usually 9529)
 
 - **`DD_ENV`**
 
-    Set the current environment of the application, such as prod, pre-prod, etc.
+    Sets the current environment of the application, such as prod, pre-prod, etc.
 
 - **`DD_SERVICE`**
 
-    Set the application service name.
+    Sets the application service name
 
 - **`DD_TRACE_SAMPLING_RULES`**
 
-    This uses a JSON array to represent sampling settings (sampling rates are applied in the order of the array), where `sample_rate` is the sampling rate, with values ranging from `[0.0, 1.0]`.
+    Here a JSON array is used to represent the sampling settings (sampling rate application is in array order), where `sample_rate` is the sampling rate, and the value range is `[0.0, 1.0]`.
 
-    **Example One**: Set the global sampling rate to 20%: `DD_TRACE_SAMPLE_RATE='[{"sample_rate": 0.2}]' ./my-app`
+    **Example 1**: Set the global sampling rate to 20%: `DD_TRACE_SAMPLE_RATE='[{"sample_rate": 0.2}]' ./my-app`
 
-    **Example Two**: For services matching `app1.*` and spans named `abc`, set the sampling rate to 10%, otherwise set it to 20%: `DD_TRACE_SAMPLE_RATE='[{"service": "app1.*", "name": "b", "sample_rate": 0.1}, {"sample_rate": 0.2}]' ./my-app`
+    **Example 2**: Service name wildcard `app1.*`, and the span name is `abc`, set the sampling rate to 10%, otherwise, set the sampling rate to 20%: `DD_TRACE_SAMPLE_RATE='[{"service": "app1.*", "name": "b", "sample_rate": 0.1}, {"sample_rate": 0.2}]' ./my-app`
 
 - **`DD_TAGS`**
 
-    Inject a set of global tags, which will appear in each span and profile data. Multiple tags can be separated by spaces or commas, e.g., `layer:api,team:intake`, `layer:api team:intake`
+    Here you can inject a set of global tags, which will appear in each span and profile data. Multiple tags can be separated by spaces and commas, such as `layer:api,team:intake`, `layer:api team:intake`
 
 <!-- markdownlint-disable MD053 -->
 [1]: https://static.guance.com/gfw/cmake-3.24.2.tar.gz

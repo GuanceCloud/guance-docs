@@ -1,69 +1,72 @@
 ---
-title     : 'Custom Dial Testing Tasks'
-summary   : 'Customize dial testing collectors to tailor dial testing tasks'
+title     : 'Customize Dialtesting'
+summary   : 'Customize your dialtesting task with local configurations'
 tags:
-  - 'Dial Testing'
-  - 'Network'
+  - 'TESTING'
+  - 'NETWORK'
 __int_icon      : 'icon/dialtesting'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : '暂无'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : '暂无'
     path  : '-'
 ---
 
-
-In certain situations, it may not be possible to connect to the SAAS dial testing service. In such cases, we can define dial testing tasks using a local JSON file.
+In some cases, you may not be able to connect to SAAS's dialing task service. In this case, we can define the dialing task through the local JSON file.
 
 ## Configuration {#config}
 
 ### Configure Collector {#config-inputs}
-
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/network` directory under the DataKit installation directory, copy `dialtesting.conf.sample`, and rename it to `dialtesting.conf`. An example is as follows:
-
+    Go to the `conf.d/network` directory under the DataKit installation directory, copy `dialtesting.conf.sample` and name it `dialtesting.conf`. Examples are as follows:
+    
     ```toml
     [[inputs.dialtesting]]
       server = "file://</path/to/your/local.json>"
-
-      # Note: Taking Linux as an example, assuming your json directory is /some/path/my.json, then
+    
+      # Note: Taking Linux as an example, assuming your json directory is /some/path/my.json, then the
       # server should be written as file:///some/path/my.json
-
-      # Note: It is recommended to fill in all the following tags (do not modify these tag keys) for complete display of dial test results on the page.
+    
+      # Note that the following tag suggestions are filled in one by one (do not modify the tag key here), so that the complete dialing test results can be displayed on the page.
       [inputs.dialtesting.tags] 
-        country  = "<specify-datakit-country>"  # Country where DataKit is deployed
-        province = "<specify-datakit-province>" # Province where DataKit is deployed
-        city     = "<specify-datakit-city>"     # City where DataKit is deployed
-        isp      = "<specify-datakit-ISP>"      # Network service provider of DataKit
-        region   = "<your-region>"              # You can specify any region name
+        country  = "<specify-datakit-country>"  # Countries where DataKit is deployed
+        province = "<specify-datakit-province>" # Provices where DataKit is deployed
+        city     = "<specify-datakit-city>"     # Cities where DataKit is deployed
+        isp      = "<specify-datakit-ISP>"      # Specify the network service provider where DataKit is located
+        region   = "<your-region>"              # You can specify a region name at will
     ```
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
-
 ---
 
-### Configure Dial Testing Task {#config-task}
+The specific country/region and ISP selection can be selected as shown in the following figure (note that you don't really create a new "self-built node", just provide an alternative source here):
 
-Currently, dial testing supports four types of tests: HTTP, TCP, ICMP, WEBSOCKET services. The JSON format is as follows:
+<figure markdown>
+![](https://static.guance.com/images/datakit/dialtesting-select-country-city-isp.png){ width="800" }
+</figure>
+
+### Configure the Dial Test Task {#config-task}
+
+At present, the dialing test task supports four dialing test types, namely HTTP, TCP, ICMP and WEBSOCKET services. The JSON format is as follows:
 
 ```json
 {
-  "<Dial Testing Type>": [
-    {Dial Testing Task 1},
-    {Dial Testing Task 2},
+  "<Dial Test Type>": [
+    {Dial test task 1},
+    {Dial test task 2},
        ...
-    {Dial Testing Task n},
+    {Dial test task n},
   ]
 }
 ```
 
-Here is a specific dial testing example:
+The following is a specific dialing test example:
 
 ```json
 {
@@ -126,41 +129,40 @@ Here is a specific dial testing example:
 }
 ```
 
-> After editing this JSON, it's recommended to validate the JSON format using some [online tools](https://www.json.cn/){:target="_blank"}. If the JSON format is incorrect, the dial testing will not work.
+> After editing this JSON, it is recommended to find some（[online tools](https://www.json.cn/){:target="_blank"} or [this tool](https://jsonformatter.curiousconcept.com/#){:target="_blank"}）to verify that the JSON format is correct. If the JSON format is incorrect, the dialing test will not take effect.
 
-After configuring, restart DataKit.
+After configuration, restart DataKit.
 
-### Dial Testing Task Field Definitions {#field-def}
+### Test Task Field Definition {#field-def}
 
-Dial testing task fields include "common fields" and "additional fields" specific to each type of dial testing task.
+The dialing task fields include "public fields" and "additional fields" for specific dialing tasks.
 
-#### Common Fields {#pub}
+#### Public Field {#pub}
 
-The common fields for dial testing tasks are defined as follows:
+The public fields of dialing test tasks are defined as follows:
 
-| Field                 | Type   | Required | Description                                                                                 |
+| Field                 | Type   | Whether Required | Description                                                                                 |
 | :---                 | ---    | ---      | ---                                                                                  |
-| `name`               | string | Y        | Name of the dial testing service                                                                         |
-| `status`             | string | Y        | Status of the dial testing service, e.g., `OK/stop`                                                           |
-| `frequency`          | string | Y        | Frequency of dial testing                                                                             |
-| `success_when_logic` | string | N        | Logical relationship between `success_when` conditions, e.g., `and/or`, default is `and`                         |
-| `success_when`       | object | Y        | See below                                                                             |
-| `advance_options`    | object | N        | See below                                                                             |
-| `post_url`           | string | N        | URL to send dial testing results to the workspace pointed by this Token. If not filled, it sends to the current DataKit workspace |
-| `tags_info`           | string | N        | Custom tags for dial testing tasks, e.g., `t1,t2` |
-| `workspace_language`  | string | N        | Language of the current workspace, e.g., `zh`, `en` |
+| `name`               | string | Y        | Dial test service name                                                                         |
+| `status`             | string | Y        | Dial test service status, such as "OK"/"stop"                                                         |
+| `frequency`          | string | Y        | Dial frequency                                                                             |
+| `success_when_logic` | string | N        | The logical relationship between success_when conditions, such as "and"/"or", defaults to "and"                             |
+| `success_when`       | object | Y        | See below for details                                                                             |
+| `advance_options`    | object | N        | See below for details                                                                             |
+| `post_url`           | string | N        | Send the dialing test result to the workspace pointed by the Token, and if it is not filled in, send it to the workspace where the current DataKit is located |
+| `tags_info`           | string | N        | Custom tags, such as `t1,t2` |
+| `workspace_language`  | string | N        | Workspace language, such as `zh`，`en` |
 
-#### HTTP Dial Testing {#http}
+#### HTTP Dial Test {#http}
 
-Additional fields
+Extra field:
 
-| Field              | Type   | Required | Description                                    |
+| Field              | Type   | Whether Required | Description                                    |
 | :---              | ---    | ---      | ---                                     |
 | `method`          | string | Y        | HTTP request method                           |
-| `url`             | string | Y        | Complete HTTP request URL                    |
-| `post_script`     | string | N        | Pipeline script used for result judgment and variable extraction                    |
+| `url`             | string | Y        | Complete HTTP request address                   |
 
-Overall JSON structure:
+The overall JSON structure is as follows:
 
 ```json
 {
@@ -174,8 +176,7 @@ Overall JSON structure:
       "frequency": "10s",
       "success_when_logic": "and",
       "success_when": ...,
-      "advance_options": ...,
-      "post_script":...,
+      "advance_options": ...
     },
     {
       ... another HTTP dialtesting
@@ -186,20 +187,20 @@ Overall JSON structure:
 
 ##### `success_when` Definition {#http-success-when}
 
-Used to define the criteria for determining whether a dial test succeeds or fails, mainly including the following aspects:
+The judging conditions used to define the success of dialing test mainly include the following aspects:
 
-- HTTP Request Response Body Judgment (`body`)
+- HTTP request returns body judgment（`body`）
 
-| Field              | Type   | Required | Description                                      |
+| Field              | Type   | Whether Required | Description                                      |
 | :---              | ---    | ---      | ---                                       |
-| `is`              | string | N        | Whether the returned body equals the specified field                   |
-| `is_not`          | string | N        | Whether the returned body does not equal the specified field                 |
-| `match_regex`     | string | N        | Whether the returned body contains a substring matching the regular expression   |
-| `not_match_regex` | string | N        | Whether the returned body does not contain a substring matching the regular expression |
+| `is`              | string | N        | Whether the returned body is equal to the specified field                  |
+| `is_not`          | string | N        | Whether the returned body is not equal to the specified field                 |
+| `match_regex`     | string | N        | Whether the returned body contains a substring of the matching regular expression   |
+| `not_match_regex` | string | N        | Whether the returned body does not contain a substring of the matching regular expression|
 | `contains`        | string | N        | Whether the returned body contains the specified substring             |
 | `not_contains`    | string | N        | Whether the returned body does not contain the specified substring           |
 
-For example:
+eg.
 
 ```json
 "success_when": [
@@ -213,22 +214,22 @@ For example:
 ]
 ```
 
-Here, multiple validation rules can be configured for `body`, determined by `success_when_logic`. When set to `and`, **if any rule fails, the current dial test is considered failed**; when set to `or`, **if any rule passes, the current dial test is considered successful**. By default, it is `and`. All verification rules follow this principle.
+Here, `body` can configure multiple verification rules, and the relationship between them is determined by "success_when_logic". When it is configured as `and`, **if any rule is verified, it will be considered that the current dialing test failed**; When it is configured to `or`, **if any rule is verified, it will be considered that the current dialing test is successful**. The default is an `and` relationship. The following verification rules all follow this judgment principle.
 
-> Note that regular expressions must be correctly escaped. In the example, the actual regular expression is `\d\d.*`.
+> Note that the regular is escaped correctly here, and the actual regular expression in the example is `\d\d.*`.
 
-- HTTP Request Response Header Judgment (`header`)
+- HTTP request returns header judgment (`header`)
 
-| Field              | Type   | Required | Description                                                       |
+| Field              | Type   | Whether Required | Description                                                       |
 | :---              | ---    | ---      | ---                                                        |
-| `is`              | string | N        | Whether the specified header field equals the specified value                     |
-| `is_not`          | string | N        | Whether the specified header field does not equal the specified value                   |
-| `match_regex`     | string | N        | Whether the specified header field contains a substring matching the regular expression   |
-| `not_match_regex` | string | N        | Whether the specified header field does not contain a substring matching the regular expression |
-| `contains`        | string | N        | Whether the specified header field contains the specified substring             |
-| `not_contains`    | string | N        | Whether the specified header field does not contain the specified substring           |
+| `is`              | string | N        | The header returned specifies whether the field is equal to the specified value                     |
+| `is_not`          | string | N        | The header returned specifies whether the field is not equal to the specified value.                   |
+| `match_regex`     | string | N        | The header returned specifies whether the field contains a substring of the matching regular expression.   |
+| `not_match_regex` | string | N        | The header returned specifies whether the field does not contain a substring of the matching regular expression. |
+| `contains`        | string | N        | The header returned specifies whether the field contains the specified substring.             |
+| `not_contains`    | string | N        | The header returned specifies whether the field does not contain the specified substring.           |
 
-For example:
+for example:
 
 ```json
 "success_when": [
@@ -244,7 +245,7 @@ For example:
 ]
 ```
 
-Since multiple types of headers can be checked, multiple headers can also be configured:
+Because there may be decisions for multiple types of headers, validation for multiple headers can also be configured here:
 
 ```json
 "success_when": [
@@ -266,18 +267,18 @@ Since multiple types of headers can be checked, multiple headers can also be con
 ]
 ```
 
-- HTTP Request Return Status Code (`status_code`)
+- HTTP request returns status code (`status_code`)
 
-| Field              | Type   | Required | Description                                             |
+| Field              | Type   | Whether Required | Description                                             |
 | :---              | ---    | ---      | ---                                              |
-| `is`              | string | N        | Whether the returned status code equals the specified field                   |
-| `is_not`          | string | N        | Whether the returned status code does not equal the specified field                 |
-| `match_regex`     | string | N        | Whether the returned status code contains a substring matching the regular expression   |
-| `not_match_regex` | string | N        | Whether the returned status code does not contain a substring matching the regular expression |
-| `contains`        | string | N        | Whether the returned status code contains the specified substring             |
-| `not_contains`    | string | N        | Whether the returned status code does not contain the specified substring           |
+| `is`              | string | N        | Whether the status code returned is equal to the specified field                   |
+| `is_not`          | string | N        | Whether the status code returned is not equal to the specified field                 |
+| `match_regex`     | string | N        | Whether the status code returned contains a substring of the matching regular expression   |
+| `not_match_regex` | string | N        | Whether the status code returned does not contain a substring of the matching regular expression |
+| `contains`        | string | N        | Whether the status code returned contains the specified substring             |
+| `not_contains`    | string | N        | Whether the status code returned does not contain the specified substring           |
 
-For example:
+for example:
 
 ```json
 "success_when": [
@@ -291,11 +292,11 @@ For example:
 ]
 ```
 
-> For a specific URL dial test, generally, only one HTTP return is expected, so usually only one validation rule is configured (although multiple rules can be configured).
+> For a certain URL dial test, its HTTP return is usually only one, so only one validation rule is generally configured here (although multiple array configurations are supported).
 
-- HTTP Request Response Time (`response_time`)
+- HTTP request response time (`response_time`)
 
-Only one time value can be filled here. If the response time is less than the specified value, the dial test is considered successful, for example:
+Only one time value can be filled in here. If the response time of the request is less than the specified value, the dialing test is judged to be successful, such as:
 
 ```json
 "success_when": [
@@ -305,52 +306,52 @@ Only one time value can be filled here. If the response time is less than the sp
 ]
 ```
 
-> Note that the time units supported here are `ns` (nanoseconds), `us` (microseconds), `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours). For HTTP dial tests, generally use `ms` unit.
+> Note that the time units specified here are `ns` (nanoseconds)/`us` (microseconds) /`ms` (milliseconds) /`s` (seconds) /`m` (minutes) /`h` (hours). For HTTP dial testing, `ms` units are generally used.
 
-The above criteria can be combined, with their relationships determined by `success_when_logic`. When set to `and`, **if any rule fails, the current dial test is considered failed**; when set to `or`, **if any rule passes, the current dial test is considered successful**. By default, it is `and`. For example:
+Several kinds of judgment basis listed above can be used in combination, and the relationship between them is determined by "success_when_logic". When it is configured as `and`, **if any rule is verified, it is considered that the current dialing test fails**; When it is configured to `or`, **if any rule is verified, it will be considered that the current dialing test is successful**; The default is an `and` relationship. Such as:
 
 ```json
 "success_when": [
   {
     "response_time": "1000ms",
-    "header": { HTTP header related judgment },
-    "status_code": [ HTTP status code related judgment ],
-    "body": [ HTTP body related judgment ]
+    "header": { HTTP header 相关判定 },
+    "status_code": [ HTTP 状态码相关判定 ],
+    "body": [ HTTP body 相关判定 ]
   }
 ]
 ```
 
 ##### `advance_options` Definition {#http-advance-options}
 
-Advanced options are primarily used to adjust specific dial testing behaviors, mainly including the following aspects:
+Advanced options are mainly used to adjust specific dialing behavior, mainly in the following aspects:
 
-- HTTP Request Options (`request_options`)
+- HTTP Request Option (`request_options`）
 
-| Field              | Type              | Required | Description                       |
+| Field              | Type              | Whether Required | Description                       |
 | :---              | ---               | ---      | ---                        |
-| `follow_redirect` | bool              | N        | Whether to support redirection         |
-| `headers`         | map[string]string | N        | Specify a group of Headers for HTTP requests |
-| `cookies`         | string            | N        | Specify the request Cookie          |
-| `auth`            | object            | N        | Specify the request authentication         |
+| `follow_redirect` | bool              | N        | Whether redirect jump is supported         |
+| `headers`         | map[string]string | N        | Specify a set of headers on an HTTP request |
+| `cookies`         | string            | N        | Specify the requested Cookie          |
+| `auth`            | object            | N        | Specify the authentication method of the request         |
 
-Among them, `auth` only supports basic username/password authentication, defined as follows:
+Among them, `auth` only supports ordinary username and password authentication, which is defined as follows:
 
-| Field       | Type   | Required | Description       |
+| Field       | Type   | Whether Required | Description       |
 | :---       | ---    | ---      | ---        |
-| `username` | string | Y        | Username     |
-| `password` | string | Y        | Password |
+| `username` | string | Y        | User name     |
+| `password` | string | Y        | User name and password |
 
-Example of `request_options`:
+`request_options` example:
 
 ```json
 "advance_options": {
   "request_options": {
     "auth": {
-        "username": "Zhang San",
+        "username": "zhangsan",
         "password": "fawaikuangtu"
       },
     "headers": {
-      "X-Prison-Breaker": "Zhang San",
+      "X-Prison-Breaker": "zhangsan",
       "X-Prison-Break-Password": "fawaikuangtu"
     },
     "follow_redirect": false
@@ -358,34 +359,34 @@ Example of `request_options`:
 }
 ```
 
-- HTTP Request Body (`request_body`)
+- HTTP Request Body（`request_body`）
 
-| Field        | Type   | Required | Description                                    |
+| Field        | Type   | Whether Required | Description                                    |
 | :---        | ---    | ---      | ---                                     |
-| `body_type` | string | N        | Body type, i.e., the value of the request header `Content-Type` |
+| `body_type` | string | N        | Body type, that is, the value of the request header `Content-Type` |
 | `body`      | string | N        | Request Body                               |
 
-Example of `request_body`:
+`request_body` example:
 
 ```json
 "advance_options": {
   "request_body": {
     "body_type": "text/html",
-    "body": "Fill in the request body, note various complex escapes"
+    "body": "Fill in the request body, and pay attention to various complicated escapes here"
   }
 }
 ```
 
-- HTTP Request Certificate (`certificate`)
+- HTTP Request a Certificate (`certificate`)
 
-| Field                              | Type   | Required | Description             |
+| Field                              | Type   | Whether Required | Description             |
 | :---                              | ---    | ---      | ---              |
 | `ignore_server_certificate_error` | bool   | N        | Whether to ignore certificate errors |
-| `private_key`                     | string | N        | Private key              |
+| `private_key`                     | string | N        | key              |
 | `certificate`                     | string | N        | Certificate             |
-| `ca`                              | string | N        | Not currently used       |
+| `ca`                              | string | N        | Temporarily unused       |
 
-Example of `certificate`:
+`certificate` example:
 
 ```json
 "advance_options": {
@@ -397,9 +398,9 @@ Example of `certificate`:
 }
 ```
 
-Example of `private_key`:
+`private_key` example:
 
-```not-set
+```txt
 -----BEGIN PRIVATE KEY-----
 MIIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -430,9 +431,9 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxNn+/x
 -----END PRIVATE KEY-----
 ```
 
-Example of `certificate`:
+Here is an example of `certificate`:
 
-```not-set
+```txt
 -----BEGIN CERTIFICATE-----
 MIIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -456,20 +457,20 @@ InEHyg==
 -----END CERTIFICATE-----
 ```
 
-On Linux, you can generate this key pair using the following command:
+Under Linux, this pair of keys can be generated by the following command:
 
 ```shell
 openssl req -newkey rsa:2048 -x509 -sha256 -days 3650 -nodes -out example.crt -keyout example.key
 ```
 
-- HTTP Request Proxy (`proxy`)
+- HTTP Request broker (`proxy`)
 
-| Field      | Type              | Required | Description                                 |
+| Field      | Type              | Whether Required | Description                                 |
 | :---      | ---               | ---      | ---                                  |
-| `url`     | string            | N        | Proxy URL, e.g., `http://1.2.3.4:4321` |
-| `headers` | map[string]string | N        | Specify a group of Headers for HTTP requests           |
+| `url`     | string            | N        | The URL of the proxy, such as `http://1.2.3.4:4321` |
+| `headers` | map[string]string | N        | Specify a set of headers on an HTTP request           |
 
-Example of `proxy`:
+`proxy` example:
 
 ```json
 "advance_options": {
@@ -484,34 +485,35 @@ Example of `proxy`:
 }
 ```
 
-##### `post_script` Definition {#post_script}
+#### `post_script` Definition {#post_script}
 
-`post_script` is a [Pipeline](../pipeline/use-pipeline/index.md) script used to judge the dial test results and extract variables from it.
+`post_script` is a [Pipeline](../pipeline/use-pipeline/index.md) script used to evaluate the result of the test and extract variables from it.
 
-##### Injected Variables {#inject-variables}
+##### inject variables {#inject-variables}
 
-To facilitate `post_script` processing of HTTP responses and judging test results while extracting variables, some predefined variables can be used when writing scripts. Specifically:
+To facilitate the processing of HTTP responses by `post_script` and to enable the determination of test results and the extraction of variables, certain predefined variables can be utilized when composing the script. These are detailed as follows:
 
-- `response`: Response object
-
-| Field              | Type   | Description                                    |
-| :---              | ---    | ---                                     |
-| `status_code`     | number | Response status code                           |
-| `header`          | json | Response headers, formatted as `{"header1": ["value1", "value2"]}`|
-| `body`            | string | Response content|
-
-- `result`: Test result
+- `response`: the response object of the HTTP request
 
 | Field              | Type   | Description                                    |
 | :---              | ---    | ---                                     |
-| `is_failed`     | bool | Whether it failed                           |
-| `error_message`     | string | Reason for failure                           |
+| `status_code`     | number | status code                           |
+| `header`          | json | response header `{"header1": ["value1", "value2"]}`|
+| `body`            | string | response body                           |
 
-- `vars`: Extracted variables
+- `result`： the test result
 
-JSON object, key is variable name, value is variable value, e.g., `vars["token"] = "123"`
+| Field              | Type   | Description                                    |
+| :---              | ---    | ---                                     |
+| `is_failed`     | bool | failed or not                        |
+| `error_message`     | string | error message                           |
+
+- `vars`: the variable object to store the extracted variables
+
+A JSON object where the key represents the variable name and the value represents the variable value. For example: `vars["token"] = "123"`
 
 ##### Example {#example}
+
 
 ```javascript
 
@@ -527,71 +529,73 @@ if body["code"] == "200" {
 
 ```
 
-In the script above, first use `load_json` to parse the response content into a JSON object, then check if the response status code is 200. If it is 200, extract the token from the response content and set it in `vars`; otherwise, set `result`'s `is_failed` to true, and `error_message` to the message in the response content.
+In the above example, the response content is initially parsed into a JSON object using `load_json`. Subsequently, it checks whether the response status code is 200. If it is, the token from the response content is extracted and assigned to the variable `vars`. If the status code is not 200, the `is_failed` attribute of `result` is set to true, and the `error_message` is assigned the message from the response content.
 
-#### TCP Dial Testing {#tcp}
 
-##### Additional Fields {#tcp-extra}
+#### TCP Dial Test {#tcp}
 
-| Field              | Type   | Required | Description                                    |
+##### Extra Field {#tcp-extra}
+
+| Field              | Type   | Whether Required | Description                                    |
 | :---              | ---    | ---      | ---                                     |
-| `host`          | string | Y        | TCP host address                           |
-| `port`             | string | Y        | TCP port                    |
+| `host`          | string | Y        | TCP Host address                           |
+| `port`             | string | Y        | TCP Port                    |
 | `timeout`             | string | N        | TCP connection timeout                    |
-| `message`       | string | N        | Message sent over TCP                |
+| `message`       | string | N        | TCP message sent |
 
-Complete JSON structure:
+The complete JSON structure is as follows:
 
 ```json
 {
-    "TCP": [
+  "TCP": [
+    {
+      "name": "tcp-test",
+      "host": "www.baidu.com",
+      "port": "80",
+      "message": "hello",
+      "timeout": "10ms",
+      "enable_traceroute": true,
+      "post_url": "https://<your-dataway-host>?token=<your-token>",
+      "status": "OK",
+      "frequency": "60s",
+      "success_when_logic": "and",
+      "success_when": [
         {
-            "name": "tcp-test",
-            "host": "www.baidu.com",
-            "port": "80",
-            "message": "hello",
-            "timeout": "10ms",
-            "enable_traceroute": true,
-            "post_url": "https://<your-dataway-host>?token=<your-token>",
-            "status": "OK",
-            "frequency": "60s",
-            "success_when_logic": "and",
-            "success_when": [
-                {
-                    "response_time":[ 
-                        {
-                            "is_contain_dns": true,
-                            "target": "10ms"
-                        }
-                    ],
-                    "response_message": [
-                        {
-                            "is": "hello"
-                        }
-                    ],
-                    "hops": [
-                        {
-                            "op": "eq",
-                            "target": 20
-                        }
-                    ]
-                }
-            ]
+          "response_time":[ 
+            {
+              "is_contain_dns": true,
+              "target": "10ms"
+            }
+          ],
+          "response_message": [
+              {
+                  "is": "hello"
+              }
+          ],
+          "hops": [
+            {
+              "op": "eq",
+              "target": 20
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
 ##### `success_when` Definition {#tcp-success-when}
 
-- TCP Response Time Judgment (`response_time`)
+- TCP Response Time Determination (`response_time`)
 
-`response_time` is an array of objects, each object has parameters as follows:
+`response_time` is an array object with the following parameters for each object:
 
-| Field              | Type   | Required | Description                                                       |
+| Field              | Type   | Whether Required | Description                                                       |
 | :---              | ---    | ---      | ---                                                        |
-| `target`          | string | Y        | Determine if the response time is less than this value                     |
-| `is_contain_dns`  | bool | N        | Indicate whether the response time includes DNS resolution time                     |
+| `target`          | string | Y        | Determining whether the response time is less than the value                     |
+| `is_contain_dns`  | bool | N        | Indicates whether the response time includes DNS resolution time                     |
+
 
 ```json
 "success_when": [
@@ -606,20 +610,20 @@ Complete JSON structure:
 ]
 ```
 
-- Returned Message Judgment (`response_message`)
+- Return a message decision (`response_message`）
 
-`response_message` is an array of objects, each object has parameters as follows:
+`response_message` is an array object with the following parameters for each object:
 
-| Field              | Type   | Required | Description                                                |
+| Field              | Type   | Whether Required | Description                                                |
 | :---              | ---    | ---      | ---                                                 |
-| `is`              | string | N        | Whether the returned message equals the specified field                   |
-| `is_not`          | string | N        | Whether the returned message does not equal the specified field                 |
-| `match_regex`     | string | N        | Whether the returned message contains a substring matching the regular expression   |
-| `not_match_regex` | string | N        | Whether the returned message does not contain a substring matching the regular expression |
+| `is`              | string | N        | Whether the returned message is equal to the specified field                   |
+| `is_not`          | string | N        | Whether the returned message is not equal to the specified field                 |
+| `match_regex`     | string | N        | Whether the returned message contains a substring of the matching regular expression   |
+| `not_match_regex` | string | N        | Whether the returned message does not contain a substring of the matching regular expression |
 | `contains`        | string | N        | Whether the returned message contains the specified substring             |
 | `not_contains`    | string | N        | Whether the returned message does not contain the specified substring           |
 
-For example:
+for example:
 
 ```json
 "success_when": [
@@ -633,14 +637,15 @@ For example:
 ]
 ```
 
-- Network Hops (`hops`)
+- Network hop count (`hops`)
 
-`hops` is an array of objects, each object has parameters as follows:
+`hops` is an array object with the following parameters for each object:
 
-| Field              | Type   | Required | Description                                      |
+| Field              | Type   | Whether Required | Description                                      |
 | :---              | ---    | ---      | ---                                       |
-| `op`              | string | Y        | Comparison relation, values can be `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
-| `target`          | float | Y        | Target value                 |
+| `op`              | string | Y        | Compare relation, retrievable `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
+| `target`          | float | Y        | Decision value                 |
+
 
 ```json
 "success_when": [
@@ -655,75 +660,76 @@ For example:
 ]
 ```
 
-#### ICMP Dial Testing {#icmp}
 
-##### Additional Fields {#icmp-extra}
+#### ICMP Dial Test {#icmp}
 
-| Field              | Type   | Required | Description                                    |
+##### Extra Field {#icmp-extra}
+
+| Field              | Type   | Whether Required | Description                                    |
 | :---              | ---    | ---      | ---                                     |
 | `host`            | string | Y        | Host address                           |
 | `packet_count`    | int |   N         | Number of ICMP packets sent  
 | `timeout`             | string | N    | Connection timeout
 
-Complete JSON structure:
+The complete JSON structure is as follows:
 
-```json
+``` json
 {
-    "ICMP": [
+  "ICMP": [
+    {
+      "name": "icmp-test",
+      "host": "www.baidu.com",
+      "timeout": "10ms",
+      "packet_count": 3,
+      "enable_traceroute": true,
+      "post_url": "https://<your-dataway-host>?token=<your-token>",
+      "status": "OK",
+      "frequency": "10s",
+      "success_when_logic": "and",
+      "success_when": [
         {
-            "name": "icmp-test",
-            "host": "www.baidu.com",
-            "timeout": "10ms",
-            "packet_count": 3,
-            "enable_traceroute": true,
-            "post_url": "https://<your-dataway-host>?token=<your-token>",
-            "status": "OK",
-            "frequency": "10s",
-            "success_when_logic": "and",
-            "success_when": [
-                {
-                    "response_time": [
-                        {
-                            "func": "avg",
-                            "op": "leq",
-                            "target": "50ms"
-                        }
-                    ],
-                    "packet_loss_percent": [
-                        {
-                            "op": "leq",
-                            "target": 20
-                        }
-                    ],
-                    "hops": [
-                        {
-                            "op": "eq",
-                            "target": 20
-                        }
-                    ],
-                    "packets": [
-                        {
-                            "op": "geq",
-                            "target": 1
-                        }
-                    ]
-                }
-            ]
+          "response_time": [
+            {
+              "func": "avg",
+              "op": "leq",
+              "target": "50ms"
+            }
+          ],
+          "packet_loss_percent": [
+            {
+              "op": "leq",
+              "target": 20
+            }
+          ],
+          "hops": [
+            {
+              "op": "eq",
+              "target": 20
+            }
+          ],
+          "packets": [
+            {
+              "op": "geq",
+              "target": 1
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
 ##### `success_when` Definition {#icmp-success-when}
 
-- ICMP Packet Loss Rate (`packet_loss_percent`)
+- ICMP packet loss rate (`packet_loss_percent`)
 
-Specific value, an array of objects, each object has parameters as follows:
+Fill in the specific value as an array object, and each object parameter is as follows:
 
-| Field              | Type   | Required | Description                                      |
+| Field              | Type   | Whether Required | Description                                      |
 | :---              | ---    | ---      | ---                                       |
-| `op`              | string | Y        | Comparison relation, values can be `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
-| `target`          | float | Y        | Target value                 |
+| `op`              | string | Y        | Compare relationship retrievable `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
+| `target`          | float | Y        | Decision value                 |
 
 ```json
 "success_when": [
@@ -738,15 +744,15 @@ Specific value, an array of objects, each object has parameters as follows:
 ]
 ```
 
-- ICMP Response Time (`response_time`)
+- ICMP response time (`response_time`)
 
-Specific time, an array of objects, each object has parameters as follows:
+Fill in the specific time as an array object, and each object parameter is as follows:
 
-| Field              | Type   | Required | Description                                      |
+| Field              | Type   | Whether Required | Description                                      |
 | :---              | ---    | ---      | ---                                       |
-| `func`            | string | Y        | Statistical type, values can be `avg,min,max,std`|
-| `op`              | string | Y        | Comparison relation, values can be `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
-| `target`          | string | Y        | Target value                 |
+| `func`            | string | Y        | Statistical type, take the value `avg,min,max,std`|
+| `op`              | string | Y        | Comparison relation, take value `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
+| `target`          | string | Y        | Decision value                 |
 
 ```json
 "success_when": [
@@ -762,14 +768,15 @@ Specific time, an array of objects, each object has parameters as follows:
 ]
 ```
 
-- Network Hops (`hops`)
+- Network hop count (`hops`)
 
-`hops` is an array of objects, each object has parameters as follows:
+`hops` is an array object with the following parameters for each object:
 
-| Field              | Type   | Required | Description                                      |
+| Field              | Type   | Whether Required | Description                                      |
 | :---              | ---    | ---      | ---                                       |
-| `op`              | string | Y        | Comparison relation, values can be `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
-| `target`          | float | Y        | Target value                 |
+| `op`              | string | Y        | Compare relationships, retrievable `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
+| `target`          | float | Y        | Decision value                 |
+
 
 ```json
 "success_when": [
@@ -784,14 +791,15 @@ Specific time, an array of objects, each object has parameters as follows:
 ]
 ```
 
-- Captured Packets (`packets`)
+- Number of packets grabbed (`packets`)
 
-`packets` is an array of objects, each object has parameters as follows:
+`packets` is an array object with the following parameters for each object:
 
-| Field              | Type   | Required | Description                                      |
+| Field              | Type   | Whether Required | Description                                      |
 | :---              | ---    | ---      | ---                                       |
-| `op`              | string | Y        | Comparison relation, values can be `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
-| `target`          | float | Y        | Target value                 |
+| `op`              | string | Y        | Compare relationship retrievable `eq(=),lt(<),leq(<=),gt(>),geq(>=)`|
+| `target`          | float | Y        | Decision value                 |
+
 
 ```json
 "success_when": [
@@ -806,78 +814,79 @@ Specific time, an array of objects, each object has parameters as follows:
 ]
 ```
 
-#### WEBSOCKET Dial Testing {#ws}
+#### WEBSOCKET Dial Test {#ws}
 
-##### Additional Fields {#ws-extra}
+##### Extra Field {#ws-extra}
 
-| Field              | Type   | Required | Description                                    |
+| Field              | Type   | Whether Required | Description                                    |
 | :---              | ---    | ---      | ---                                     |
-| `url`          | string | Y        | Websocket connection URL, e.g., ws://localhost:8080  |
-| `message`       | string | Y        | Message sent after websocket connection is established                |
+| `url`          | string | Y        | Websocket connection address, such as ws://localhost:8080  |
+| `message`       | string | Y        | Websocket message sent after successful connection                |
 
-Complete JSON structure:
+The complete JSON structure is as follows:
 
 ```json
 {
-    "WEBSOCKET": [
+  "WEBSOCKET": [
+    {
+      "name": "websocket-test",
+      "url": "ws://localhost:8080",
+      "message": "hello",
+      "post_url": "https://<your-dataway-host>?token=<your-token>",
+      "status": "OK",
+      "frequency": "10s",
+      "success_when_logic": "and",
+      "success_when": [
         {
-            "name": "websocket-test",
-            "url": "ws://localhost:8080",
-            "message": "hello",
-            "post_url": "https://<your-dataway-host>?token=<your-token>",
-            "status": "OK",
-            "frequency": "10s",
-            "success_when_logic": "and",
-            "success_when": [
-                {
-                    "response_time": [
-                        {
-                            "is_contain_dns": true,
-                            "target": "10ms"
-                        }
-                    ],
-                    "response_message": [
-                        {
-                            "is": "hello1"
-                        }
-                    ],
-                    "header": {
-                        "status": [
-                            {
-                                "is": "ok"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "advance_options": {
-                "request_options": {
-                    "timeout": "10s",
-                    "headers": {
-                        "x-token": "aaaaaaa",
-                        "x-header": "111111"
-                    }
-                },
-                "auth": {
-                    "username": "admin",
-                    "password": "123456"
-                }
+          "response_time": [
+            {
+              "is_contain_dns": true,
+              "target": "10ms"
             }
+          ],
+          "response_message": [
+            {
+              "is": "hello1"
+            }
+          ],
+          "header": {
+            "status": [
+              {
+                "is": "ok"
+              }
+            ]
+          }
         }
-    ]
+      ],
+      "advance_options": {
+        "request_options": {
+          "timeout": "10s",
+          "headers": {
+            "x-token": "aaaaaaa",
+            "x-header": "111111"
+          }
+        },
+        "auth": {
+          "username": "admin",
+          "password": "123456"
+        }
+      }
+    }
+  ]
 }
 ```
 
 ##### `success_when` Definition {#ws-success-when}
 
-- Response Time Judgment (`response_time`)
+- Response time judgment (`response_time`)
 
-`response_time` is an array of objects, each object has parameters as follows:
+`response_time` is an array object with the following parameters for each object:
 
-| Field             | Type   | Required | Description                              |
+| Field             | Type   | Whether Required | Description                              |
 | :---             | ---    | ---      | ---                               |
-| `target`         | string | Y        | Determine if the response time is less than this value          |
-| `is_contain_dns` | bool   | N        | Indicate whether the response time includes DNS resolution time |
+| `target`         | string | Y        | Determining whether the response time is less than the value          |
+| `is_contain_dns` | bool   | N        | Indicates whether the response time includes DNS resolution time |
+
 
 ```json
 "success_when": [
@@ -892,20 +901,20 @@ Complete JSON structure:
 ]
 ```
 
-- Returned Message Judgment (`response_message`)
+- Return a message decision (`response_message`）
 
-`response_message` is an array of objects, each object has parameters as follows:
+`response_message` is an array object with the following parameters for each object:
 
-| Field              | Type   | Required | Description                                                |
+| Field              | Type   | Whether Required | Description                                                |
 | :---              | ---    | ---      | ---                                                 |
-| `is`              | string | N        | Whether the returned message equals the specified field                   |
-| `is_not`          | string | N        | Whether the returned message does not equal the specified field                 |
-| `match_regex`     | string | N        | Whether the returned message contains a substring matching the regular expression   |
-| `not_match_regex` | string | N        | Whether the returned message does not contain a substring matching the regular expression |
+| `is`              | string | N        | Whether the returned message is equal to the specified field                   |
+| `is_not`          | string | N        | Whether the returned message is not equal to the specified field                 |
+| `match_regex`     | string | N        | Whether the returned message contains a substring of the matching regular expression   |
+| `not_match_regex` | string | N        | Whether the returned message does not contain a substring of the matching regular expression |
 | `contains`        | string | N        | Whether the returned message contains the specified substring             |
 | `not_contains`    | string | N        | Whether the returned message does not contain the specified substring           |
 
-For example:
+for example:
 
 ```json
 "success_when": [
@@ -919,20 +928,20 @@ For example:
 ]
 ```
 
-- Request Response Header Judgment (`header`)
+- Request to return header judgment（`header`）
 
-`header` is a dictionary-type object, each element of which is an array of objects, with parameters as follows:
+`header` is a dictionary type object whose value for each object element is an array object with the following parameters:
 
-| Field              | Type   | Required | Description                                                       |
+| Field              | Type   | Whether Required | Description                                                       |
 | :---              | ---    | ---      | ---                                                        |
-| `is`              | string | N        | Whether the specified header field equals the specified value                     |
-| `is_not`          | string | N        | Whether the specified header field does not equal the specified value                   |
-| `match_regex`     | string | N        | Whether the specified header field contains a substring matching the regular expression   |
-| `not_match_regex` | string | N        | Whether the specified header field does not contain a substring matching the regular expression |
-| `contains`        | string | N        | Whether the specified header field contains the specified substring             |
-| `not_contains`    | string | N        | Whether the specified header field does not contain the specified substring           |
+| `is`              | string | N        | The header returned specifies whether the field is equal to the specified value                     |
+| `is_not`          | string | N        | The header returned specifies whether the field is not equal to the specified value                   |
+| `match_regex`     | string | N        | The header returned specifies whether the field contains a substring of the matching regular expression  |
+| `not_match_regex` | string | N        | The header returned specifies whether the field does not contain a substring of the matching regular expression |
+| `contains`        | string | N        | The header returned specifies whether the field contains the specified substring             |
+| `not_contains`    | string | N        | The header returned specifies whether the field does not contain the specified substring           |
 
-For example:
+for example:
 
 ```json
 "success_when": [
@@ -950,12 +959,12 @@ For example:
 
 ##### `advance_options` Definition {#ws-advance-options}
 
-- Request Options (`request_options`)
+- Request option (`request_options`)
 
-| Field              | Type              | Required | Description                       |
+| Field              | Type              | Whether Required | Description                       |
 | :---              | ---               | ---      | ---                        |
 | `timeout` | string              | N        | Connection timeout         |
-| `headers` | map[string]string | N        | Specify a group of Headers for requests |
+| `headers` | map[string]string | N        |  Specify a set of headers on request |
 
 ```json
 "advance_options": {
@@ -968,14 +977,14 @@ For example:
 }
 ```
 
-- Authentication Information (`auth`)
+- Authentication information (`auth`)
 
-Supports basic username and password authentication (Basic access authentication).
+Support for common user name and password authentication (Basic access authentication)。
 
-| Field       | Type   | Required | Description       |
+| Field       | Type   | Whether Required | Description       |
 | :---       | ---    | ---      | ---        |
-| `username` | string | Y        | Username     |
-| `password` | string | Y        | Password |
+| `username` | string | Y        | user name     |
+| `password` | string | Y        | user name and password |
 
 ```json
 "advance_options": {

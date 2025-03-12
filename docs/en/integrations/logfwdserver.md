@@ -1,33 +1,37 @@
 ---
-title: 'Log Forward'
-summary: 'Collect log data within Pods via sidecar method'
+title     : 'Log Forward Server'
+summary   : 'Collect log data in Pod through sidecar method'
 tags:
   - 'KUBERNETES'
-  - 'Logs'
-  - 'Containers'
-__int_icon: 'icon/logfwd'
-dashboard:
-  - desc: 'Not available'
-    path: '-'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+  - 'LOG'
+  - 'CONTAINER'
+__int_icon      : 'icon/logfwd'
+dashboard :
+  - desc  : 'N/A'
+    path  : '-'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
 ---
 
 :material-kubernetes:
 
 ---
 
-logfwdserver will enable the websocket function and work with logfwd to receive and process the data sent by logfwd.
+## Introduction {#intro}
 
-For the usage of logfwd, refer to [this link](logfwd.md).
+Logfwdserver will turn on the websocket function, which is used together with logfwd, and is responsible for receiving and processing the data sent by logfwd.
+
+See [here](logfwd.md) for the use of logfwd.
 
 ## Configuration {#config}
+
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logfwdserver.conf.sample` and rename it to `logfwdserver.conf`. An example is as follows:
+    Go to the `conf.d/log` directory under the DataKit installation directory, copy `logfwdserver.conf.sample` and name it `logfwdserver.conf`. Examples are as follows:
     
     ```toml
         
@@ -39,10 +43,10 @@ For the usage of logfwd, refer to [this link](logfwd.md).
       # more_tag = "some_other_value"
     
     ```
-
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration through [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->

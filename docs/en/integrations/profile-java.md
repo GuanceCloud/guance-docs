@@ -1,167 +1,72 @@
 ---
 title     : 'Profiling Java'
-summary   : 'Java Profiling Integration'
+summary   : 'Profling Java applications'
 tags:
   - 'JAVA'
   - 'PROFILE'
 __int_icon: 'icon/profiling'
 ---
 
-DataKit supports two collectors to gather Java profiling data, [`dd-trace-java`](https://github.com/DataDog/dd-trace-java){:target="_blank"} and [async-profiler](https://github.com/async-profiler/async-profiler){:target="_blank"}.
 
-## `dd-trace-java` {#ddtrace}
+Datakit now supports two Java profiling tools: [dd-trace-java](https://github.com/DataDog/dd-trace-java){:target="_blank"} and [async-profiler](https://github.com/async-profiler/async-profiler){:target="_blank"}.
 
-Download `dd-trace-java` from the page [`dd-trace-java`](https://github.com/DataDog/dd-trace-java/releases){:target="_blank"}.
+## dd-trace-Java {#ddtrace}
 
-<!-- markdownlint-disable MD046 -->
-???+ Note
-
-    DataKit currently supports `dd-trace-java 1.19.x` and below versions. Higher versions have not been tested, and compatibility is unknown. If you encounter any compatibility issues, please provide feedback.
-<!-- markdownlint-enable -->
-
-`dd-trace-java` currently integrates two analysis engines: [`Datadog Profiler`](https://github.com/datadog/java-profiler){:target="_blank"} and JDK built-in [`JFR (Java Flight Recorder)`](https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/about.htm){:target="_blank"}. Each engine has specific requirements for platforms and JDK versions, as listed below:
+Firstly Download dd-trace-Java from [https://github.com/DataDog/dd-trace-java/releases](https://github.com/DataDog/dd-trace-java/releases){:target="_blank"} .
 
 <!-- markdownlint-disable MD046 -->
-=== "Datadog Profiler"
+???+ Note "Requirements"
 
-    The `Datadog Profiler` currently only supports Linux systems with the following JDK version requirements:
 
-    - OpenJDK 8u352+, 11.0.17+, 17.0.5+ (including builds from [`Eclipse Adoptium`](https://projects.eclipse.org/projects/adoptium){:target="_blank"}, [`Amazon Corretto`](https://aws.amazon.com/cn/corretto/){:target="_blank"}, [`Azul Zulu`](https://www.azul.com/downloads/?package=jdk#zulu){:target="_blank"})
-    - Oracle JDK 8u352+, 11.0.17+, 17.0.5+
-    - OpenJ9 JDK 8u372+, 11.0.18+, 17.0.6+
+    Datakit is now compatible with dd-trace-Java 1.15.x and below, the compatibility with higher version is unknown. please feel free to send your feedback to us if you encounter any incompatibility.
+    
+    Required JDK version:
 
-=== "Java Flight Recorder"
-
-    - OpenJDK 11+
-    - Oracle JDK 11+
-    - OpenJDK 8 (version 1.8.0.262/8u262+)
-    - Oracle JDK 8 (commercial features need to be enabled)
-
-    ???+ Note
-
-        `JFR` is a commercial feature in Oracle JDK 8 and is disabled by default. To enable it, add parameters `-XX:+UnlockCommercialFeatures -XX:+FlightRecorder` when starting the project. Starting from JDK 11, `JFR` has become an open-source project and is no longer a commercial feature of Oracle JDK.
+    - OpenJDK 11.0.17+, 17.0.5+
+    - Oracle JDK 11.0.17+, 17.0.5+
+    - OpenJDK 8 version 8u352+
 <!-- markdownlint-enable -->
 
-
-Enable profiling
+Run Java Code
 
 ```shell
 java -javaagent:/<your-path>/dd-java-agent.jar \
-    -XX:FlightRecorderOptions=stackdepth=256 \
-    -Ddd.agent.host=127.0.0.1 \
-    -Ddd.trace.agent.port=9529 \
     -Ddd.service.name=profiling-demo \
     -Ddd.env=dev \
     -Ddd.version=1.2.3  \
     -Ddd.profiling.enabled=true  \
-    -Ddd.profiling.ddprof.enabled=true \
-    -Ddd.profiling.ddprof.cpu.enabled=true \
-    -Ddd.profiling.ddprof.wall.enabled=true \
-    -Ddd.profiling.ddprof.alloc.enabled=true \
-    -Ddd.profiling.ddprof.liveheap.enabled=true \
-    -Ddd.profiling.ddprof.memleak.enabled=true \
+    -XX:FlightRecorderOptions=stackdepth=256 \
+    -Ddd.trace.agent.port=9529 \
     -jar your-app.jar 
 ```
 
-Parameter descriptions:
-
-| Parameter Name                                       | Corresponding Environment Variable                               | Description                                                                     |
-|-------------------------------------------|---------------------------------------|------------------------------------------------------------------------|
-| `-Ddd.profiling.enabled`                  | DD_PROFILING_ENABLED                  | Whether to enable profiling functionality                                                      |
-| `-Ddd.profiling.allocation.enabled`       | DD_PROFILING_ALLOCATION_ENABLED       | Whether to enable `JFR` engine memory allocation sampling, which may impact performance; it's recommended to use `Datadog Profiler` with higher JDK versions       |
-| `-Ddd.profiling.heap.enabled`             | DD_PROFILING_HEAP_ENABLED             | Whether to enable `JFR` engine heap object sampling                                                   |
-| `-Ddd.profiling.directallocation.enabled` | DD_PROFILING_DIRECTALLOCATION_ENABLED | Whether to enable `JFR` engine JVM direct memory allocation sampling                                             |
-| `-Ddd.profiling.ddprof.enabled`           | DD_PROFILING_DDPROF_ENABLED           | Whether to enable `Datadog Profiler` analysis engine                                           |
-| `-Ddd.profiling.ddprof.cpu.enabled`       | DD_PROFILING_DDPROF_CPU_ENABLED       | Whether to enable `Datadog Profiler` CPU analysis                                         |
-| `-Ddd.profiling.ddprof.wall.enabled`      | DD_PROFILING_DDPROF_WALL_ENABLED      | Whether to enable `Datadog Profiler` Wall time collection, this option affects the correlation between Trace and Profile, it is recommended to enable it |
-| `-Ddd.profiling.ddprof.alloc.enabled`     | DD_PROFILING_DDPROF_ALLOC_ENABLED     | Whether to enable `Datadog Profiler` memory analysis                                        |
-| `-Ddd.profiling.ddprof.liveheap.enabled`  | DD_PROFILING_DDPROF_LIVEHEAP_ENABLED  | Whether to enable `Datadog Profiler` Heap analysis                                     |
-| `-Ddd.profiling.ddprof.memleak.enabled`   | DD_PROFILING_DDPROF_MEMLEAK_ENABLED   | Whether to enable `Datadog Profiler` memory leak sampling analysis                                     |
-
-After running the program, related data should be viewable on the Guance platform within approximately one minute.
-
-### Generating Performance Metrics {#metrics}
-
-Since [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39.0), DataKit has supported extracting a set of JVM runtime-related metrics from the output information of `dd-trace-java`. This set of metrics is placed under the `profiling_metrics` measurement set. Below are some of these metrics explained:
-
-| Metric Name                                | Description                                                           | Unit         |
-|-------------------------------------|--------------------------------------------------------------|------------|
-| prof_jvm_cpu_cores                  | Total number of CPU cores consumed by the application                                              | core       |      |
-| prof_jvm_alloc_bytes_per_sec        | Total size of memory allocated per second                                                  | byte       |     |
-| prof_jvm_allocs_per_sec             | Number of times memory is allocated per second                                                   | count      |   |
-| prof_jvm_alloc_bytes_total          | Total memory allocated during a single profiling period                                      | byte       |
-| prof_jvm_class_loads_per_sec        | Number of class loading operations executed per second                                                 | count      |
-| prof_jvm_compilation_time           | Total JIT compilation time during a single profiling period (dd-trace defaults to a 60-second collection cycle) | nanosecond |
-| prof_jvm_context_switches_per_sec   | Number of thread context switches per second                                                  | count      |
-| prof_jvm_direct_alloc_bytes_per_sec | Size of direct memory allocated per second                                                  | byte       |
-| prof_jvm_throws_per_sec             | Number of exceptions thrown per second                                                     | count      |
-| prof_jvm_throws_total               | Total number of exceptions thrown during a single profiling period                                     | count      |
-| prof_jvm_file_io_max_read_bytes     | Maximum number of bytes read in a single file operation during a single profiling period                              | byte       |
-| prof_jvm_file_io_max_read_time      | Maximum duration of a single file read operation during a single profiling period                                | nanosecond |
-| prof_jvm_file_io_max_write_bytes    | Maximum number of bytes written in a single file operation during a single profiling period                               | byte       |
-| prof_jvm_file_io_max_write_time     | Maximum duration of a single file write operation during a single profiling period                                | nanosecond |
-| prof_jvm_file_io_read_bytes         | Total number of bytes read from files during a single profiling period                                   | byte       |
-| prof_jvm_file_io_time               | Total time spent on file I/O operations during a single profiling period                                 | nanosecond |
-| prof_jvm_file_io_read_time          | Total time spent on file reads during a single profiling period                                   | nanosecond |
-| prof_jvm_file_io_write_time         | Total time spent on file writes during a single profiling period                                   | nanosecond |
-| prof_jvm_avg_gc_pause_time          | Average duration of GC-induced program interruptions                                          | nanosecond |
-| prof_jvm_max_gc_pause_time          | Maximum duration of GC-induced program interruptions during a single profiling period                             | nanosecond |
-| prof_jvm_gc_pauses_per_sec          | Number of GC-induced program interruptions per second                                             | count      |
-| prof_jvm_gc_pause_time              | Total duration of GC-induced program interruptions during a single profiling period                            | nanosecond |
-| prof_jvm_lifetime_heap_bytes        | Total size of live heap objects                                               | byte       |
-| prof_jvm_lifetime_heap_objects      | Total number of live heap objects                                                    | count      |
-| prof_jvm_locks_max_wait_time        | Longest lock contention wait time during a single profiling period                                | nanosecond |
-| prof_jvm_locks_per_sec              | Number of lock contentions per second                                                    | count      |
-| prof_jvm_socket_io_max_read_time    | Maximum duration of a single socket read operation during a single profiling period                        | nanosecond |
-| prof_jvm_socket_io_max_write_bytes  | Maximum number of bytes sent in a single socket write operation during a single profiling period                           | byte       |
-| prof_jvm_socket_io_max_write_time   | Maximum duration of a single socket write operation during a single profiling period                       | nanosecond |
-| prof_jvm_socket_io_read_bytes       | Total number of bytes received via sockets during a single profiling period                             | byte       |
-| prof_jvm_socket_io_read_time        | Total time spent on socket reads during a single profiling period                                   | nanosecond |
-| prof_jvm_socket_io_write_time       | Total time spent on socket writes during a single profiling period                                   | nanosecond |
-| prof_jvm_socket_io_write_bytes      | Total number of bytes sent via sockets during a single profiling period                            | byte       |
-| prof_jvm_threads_created_per_sec    | Number of threads created per second                                                     | count      |
-| prof_jvm_threads_deadlocked         | Number of threads in deadlock state                                                   | count      |
-| prof_jvm_uptime_nanoseconds         | Duration since the program started                                                      | nanosecond |
-
-
-<!-- markdownlint-disable MD046 -->
-???+ tips
-
-    This feature is enabled by default. If you do not need it, you can modify the collector configuration file `<DATAKIT_INSTALL_DIR>/conf.d/profile/profile.conf` and set the configuration item `generate_metrics` to false, then restart DataKit.
-
-    ```toml
-    [[inputs.profile]]
-
-    ## set false to stop generating apm metrics from ddtrace output.
-    generate_metrics = false
-    ```
-<!-- markdownlint-enable -->
+After a minute or two, you can visualize your profiles on the [profile](https://console.guance.com/tracing/profile){:target="_blank"}.
 
 ## Async Profiler {#async-profiler}
 
-Async Profiler is an open-source Java performance analysis tool based on HotSpot API that can collect stack traces and memory allocations during program execution.
+async-profiler is an open source Java profiler Based on HotSpot API, it can collect information such as stack and memory allocation during program operation.
 
-Async Profiler can collect several types of events:
+async-profiler can trace the following kinds of events:
 
 - CPU cycles
-- Hardware and software performance counters such as Cache Misses, Branch Misses, Page Faults, Context Switches, etc.
-- Java heap allocations
-- Contended Lock Attempts, including Java object monitors and ReentrantLocks
+- Hardware and Software performance counters like cache misses, branch misses, page faults, context switches etc.
+- Allocations in Java Heap
+- Contented lock attempts, including both Java object monitors and ReentrantLocks
 
-### Async Profiler Installation {#install}
+### Install async-profiler {#install}
 
-???+ node "Version Requirements"
-    DataKit currently supports `async-profiler v2.9` and below versions. Higher versions have not been tested, and compatibility is unknown.
+???+ node "Requirements"
+    Datakit is now compatible with async-profiler v2.9 and below, higher version compatibility is unknown.
 
-The official website provides installation packages for different platforms (example for v2.8.3):
+The official website provides download for different platform binaries：
 
 - Linux x64 (glibc): [async-profiler-2.8.3-linux-x64.tar.gz](https://github.com/async-profiler/async-profiler/releases/download/v2.8.3/async-profiler-2.8.3-linux-x64.tar.gz){:target="_blank"}
 - Linux x64 (musl): [async-profiler-2.8.3-linux-musl-x64.tar.gz](https://github.com/async-profiler/async-profiler/releases/download/v2.8.3/async-profiler-2.8.3-linux-musl-x64.tar.gz){:target="_blank"}
 - Linux arm64: [async-profiler-2.8.3-linux-arm64.tar.gz](https://github.com/async-profiler/async-profiler/releases/download/v2.8.3/async-profiler-2.8.3-linux-arm64.tar.gz){:target="_blank"}
 - macOS x64/arm64: [async-profiler-2.8.3-macos.zip](https://github.com/async-profiler/async-profiler/releases/download/v2.8.3/async-profiler-2.8.3-macos.zip){:target="_blank"}
-- File format converter: [converter.jar](https://github.com/async-profiler/async-profiler/releases/download/v2.8.3/converter.jar){:target="_blank"}
+- format converter：[converter.jar](https://github.com/async-profiler/async-profiler/releases/download/v2.8.3/converter.jar){:target="_blank"}
 
-Download the corresponding installation package and extract it. Below is an example for Linux x64 (glibc) (other platforms are similar):
+Download archive and extract as below(Linux x64):
 
 ```shell
 $ wget https://github.com/async-profiler/async-profiler/releases/download/v2.8.3/async-profiler-2.8.3-linux-x64.tar.gz 
@@ -171,22 +76,21 @@ $ cd async-profiler-2.8.3-linux-x64 && ls
   build  CHANGELOG.md  LICENSE  profiler.sh  README.md
 ```
 
-### Using Async-Profiler {#usage}
+### Use async-profiler {#usage}
 
-- Set `perf_events` Parameters
+- Set Linux kernel option `perf_events`
 
-For Linux kernel versions 4.6 and later, if non-root users need to start processes using `perf_events`, two system runtime variables need to be set as follows:
+As of Linux 4.6, capturing kernel call stacks using perf_events from a non-root process requires setting two runtime variables. You can set them using sysctl or as follows:
 
 ```shell
 sudo sysctl kernel.perf_event_paranoid=1
 sudo sysctl kernel.kptr_restrict=0 
 ```
 
-- Install Debug Symbols (for collecting memory allocation events)
-
-If you need to collect memory allocation (`alloc`) related events, you must install Debug Symbols. Oracle JDK already includes these symbols, so this step can be skipped. For OpenJDK, installation is required. Refer to the following instructions:
-
+- Install Debug Symbols
 <!-- markdownlint-disable MD046 -->
+If memory allocation (` allocate `) related events need to be collected, it is required to install Debug Symbols. Oracle JDK already has these symbols built-in, so this step can be skipped. OpenJDK needs to be installed, and the installation method is as follows:
+
 === "Debian/Ubuntu"
 
     ```shell
@@ -200,19 +104,18 @@ If you need to collect memory allocation (`alloc`) related events, you must inst
     ```shell
     sudo debuginfo-install java-1.8.0-openjdk
     ```
-<!-- markdownlint-enable -->
 
-On Linux platforms, you can check if the installation was successful using `gdb`:
+The gdb tool can be used to verify if the debug symbols are properly installed . For example on Linux:
 
 ```shell
 gdb $JAVA_HOME/lib/server/libjvm.so -ex 'info address UseG1GC'
 ```
 
-If the output contains `Symbol "UseG1GC" is at 0xxxxx` or `No symbol "UseG1GC" in current context`, the installation was successful.
+This command's output will either contain Symbol "UseG1GC" is at 0xxxxx or No symbol "UseG1GC" in current context.
+<!-- markdownlint-enable -->
+- Check Java process PID
 
-- View Java Process ID
-
-Before collecting data, you need to find the PID of the Java process (you can use the `jps` command):
+Before collection, you need to know the Java process's PID（use `jps` command）
 
 ```shell
 $ jps
@@ -221,9 +124,9 @@ $ jps
 8983 Computey
 ```
 
-- Collect Java Process Data
+- Profile Java process
 
-Choose a Java process to profile (e.g., process 8983), and execute the `profiler.sh` script in the directory to collect data:
+Run `profiler.sh` and specify Java process PID：
 
 ```shell
 ./profiler.sh -d 10 -f profiling.html 8983 
@@ -231,105 +134,94 @@ Choose a Java process to profile (e.g., process 8983), and execute the `profiler
 Profiling for 10 seconds
 Done
 ```
+<!-- markdownlint-disable MD046 -->
+After about 10s, there will generate a file named `profiling.html` in current dir, you can use browser to open it.
+<!-- markdownlint-enable -->
+### Combine DataKit with async-profiler {#async-datakit}
 
-After about 10 seconds, a file named `profiling.html` will be generated in the current directory. Open this file in a browser to view the flame graph.
+Requirements:
 
-### Integrating DataKit and Async-Profiler {#async-datakit}
+- [Install DataKit](../datakit/datakit-install.md).
 
-Preparations
+- [Enable Profile Inputs](profile.md)
 
-- [Prepare DataKit Service](../datakit/datakit-install.md), version DataKit >= 1.4.3
+- Set your service name（optional）
 
-Assume the default address is `http://localhost:9529`. If not, change it to the actual DataKit service address.
-
-- [Enable Profile Collector](profile.md)
-
-- Inject Service Name (`service`) into Java Application (optional)
-
-By default, it automatically obtains the program name as `service` and reports it to Guance. If customization is needed, inject the service name when starting the program:
+By default, the program name will be automatically obtained as a 'service' to report the Guance Cloud. If customization is needed, the service name can be injected when the program starts:
 
 ```shell
 java -Ddk.service=<service-name> ... -jar <your-jar>
 ```
 
-Integration methods can be divided into two categories:
+There are two integration methods：
 
-- [Automation Script (Recommended)](profile-java.md#script)
-- [Manual Operation](profile-java.md#manual)
-- [Usage in Kubernetes Environment](../datakit/datakit-operator.md#inject-async-profiler)
+- [automate（Recommend）](profile-java.md#script)
+- [manual](profile-java.md#manual)
 
-#### Automation Script {#script}
+#### automate by script {#script}
 
-An automation script can conveniently integrate async-profiler and DataKit. Follow these steps to use it.
+Automated scripts can easily integrate async profiler and DataKit, use as follows:
 
-- Create a Shell Script
-
-In the current directory, create a new file named `collect.sh` and input the following content:
-
+- create shell script
 <!-- markdownlint-disable MD046 -->
-???- note "collect.sh (click to expand)"
+Create a file named "collect.sh" in current dir, type follow text：
 
+
+???- note "collect.sh"(click to expand)
     ```shell
     set -e
-    
     LIBRARY_VERSION=2.8.3
-    
-    # Allowed JFR file size for upload to DataKit (6 MB), do not modify
+
     MAX_JFR_FILE_SIZE=6000000
-    
-    # DataKit service address
+
     datakit_url=http://localhost:9529
     if [ -n "$DATAKIT_URL" ]; then
         datakit_url=$DATAKIT_URL
     fi
-    
-    # Full URL for uploading profiling data
+
     datakit_profiling_url=$datakit_url/profiling/v1/input
     
-    # Application environment
+
     app_env=dev
     if [ -n "$APP_ENV" ]; then
         app_env=$APP_ENV
     fi
-    
-    # Application version
+
     app_version=0.0.0
     if [ -n "$APP_VERSION" ]; then
         app_version=$APP_VERSION
     fi
-    
-    # Hostname
+
     host_name=$(hostname)
     if [ -n "$HOST_NAME" ]; then
         host_name=$HOST_NAME
     fi
-    
-    # Service name
+
     service_name=
     if [ -n "$SERVICE_NAME" ]; then
         service_name=$SERVICE_NAME
     fi
     
-    # Profiling duration in seconds
+    # profiling duration, in seconds
     profiling_duration=10
     if [ -n "$PROFILING_DURATION" ]; then
         profiling_duration=$PROFILING_DURATION
     fi
     
-    # Profiling event
+    # profiling event
     profiling_event=cpu
     if [ -n "$PROFILING_EVENT" ]; then
         profiling_event=$PROFILING_EVENT
     fi
     
-    # Java application process IDs to be collected, can customize the Java process to be collected, e.g., filter by process name
+    # 采集的 java 应用进程 ID, 此处可以自定义需要采集的 java 进程，比如可以根据进程名称过滤
     java_process_ids=$(jps -q -J-XX:+PerfDisableSharedMem)
     if [ -n "$PROCESS_ID" ]; then
         java_process_ids=`echo $PROCESS_ID | tr "," " "`
     fi
     
     if [[ $java_process_ids == "" ]]; then
-        printf "Warning: no Java program found, exit now\n"
+        printf "Warning: no java program found, exit now\n"
         exit 1
     fi
     
@@ -429,17 +321,14 @@ In the current directory, create a new file named `collect.sh` and input the fol
     if [ ! -d $runtime_dir ]; then
         mkdir $runtime_dir
     fi
-    
-    # Parallel collection of profiling data
+
     for process_id in $java_process_ids; do
         printf "profiling process %d\n" $process_id
         profile_collect $process_id > $runtime_dir/$process_id.log 2>&1 &
     done
-    
-    # Wait for all tasks to complete
+
     wait
-    
-    # Output task execution logs
+
     for process_id in $java_process_ids; do
         log_file=$runtime_dir/$process_id.log
         if [ -f $log_file ]; then
@@ -451,46 +340,42 @@ In the current directory, create a new file named `collect.sh` and input the fol
     ```
 <!-- markdownlint-enable -->
 
-- Execute the Script
+- Execute script
 
 ```shell
 bash collect.sh
 ```
 
-After the script completes, the collected profiling data will be reported to the Guance platform via DataKit. You can view it shortly in "APM"-"Profile".
+After the script is executed, the collected profiling data will be reported to the GuanceCloud platform through DataKit, which can be viewed later in the "APM" - "Profile" page.
 
-The script supports the following environment variables:
+available env：
 
-- `DATAKIT_URL`        : DataKit URL address, default is `http://localhost:9529`
-- `APP_ENV`            : Current application environment, like `dev/prod/test`
-- `APP_VERSION`        : Current application version
-- `HOST_NAME`          : Hostname
-- `SERVICE_NAME`       : Service name
-- `PROFILING_DURATION` : Sampling duration in seconds
-- `PROFILING_EVENT`    : Events to collect, such as `cpu/alloc/lock`
-- `PROFILING_TAGS`     : Additional custom Tags, comma-separated key-value pairs, like `key1:value1,key2:value2`
-- `PROCESS_ID`         : Java process ID(s) to collect, multiple IDs separated by commas, like `98789,33432`
+- `DATAKIT_URL`        ：DataKit URL address, default: `http://localhost:9529`
+- `APP_ENV`            ：current env, for example: `dev/prod/test`
+- `APP_VERSION`        ：your application version
+- `HOST_NAME`          ：hostname
+- `SERVICE_NAME`       ：your service name
+- `PROFILING_DURATION` ：duration, in seconds
+- `PROFILING_EVENT`    ：events, for example: `cpu/alloc/lock`
+- `PROFILING_TAGS`     ：set custom tags, split by comma if multiples, e.g., `key1:value1,key2:value2`
+- `PROCESS_ID`         ：target process PID, for example: `98789,33432`
 
 ```shell
 DATAKIT_URL=http://localhost:9529 APP_ENV=test APP_VERSION=1.0.0 HOST_NAME=datakit PROFILING_EVENT=cpu,alloc PROFILING_DURATION=60 PROFILING_TAGS="tag1:val1,tag2:val2" PROCESS_ID=98789,33432 bash collect.sh
 ```
 
-#### Manual Operation {#manual}
+## manually collect {#manual}
 
-Compared to automation scripts, manual operations offer higher flexibility to meet various scenario needs.
+Compared to automated scripts, manual operations have higher degrees of freedom and can meet the needs of different scenarios
 
-- Collect profiling file (*jfr* format)
-
-First, use `async-profiler` to collect profiling information from the Java process and generate a *jfr* formatted file. For example:
+- generate profiling file, format in "jfr"
 
 ```shell
 ./profiler.sh -d 10 -o jfr -f profiling.jfr jps
 ```
-
-- Prepare Metadata File
-
-Write a profiling metadata file, such as `event.json`:
-
+<!-- markdownlint-disable MD046 -->
+- prepare "event.JSON" file
+<!-- markdownlint-enable -->
 ```json
 {
     "tags_profiler": "library_version:2.8.3,library_type:async_profiler,process_id:16718,host:host_name,service:profiling-demo,env:dev,version:1.0.0",
@@ -501,25 +386,23 @@ Write a profiling metadata file, such as `event.json`:
 }
 ```
 
-Field meanings:
+fields：
 
-- `tags_profiler`: Profiling data tags, can include custom tags
-    - `library_version`: Current `async-profiler` version
-    - `library_type`: Profiler library type, i.e., `async-profiler`
-    - `process_id`: Java process ID
-    - `host`: Hostname
-    - `service`: Service name
-    - `env`: Application environment type
-    - `version`: Application version
-    - Other custom tags
-- `start`: Profiling start time
-- `end`: Profiling end time
-- `family`: Language type
-- `format`: File format
+- `tags_profiler`: profiling tags,
+    - `library_version`:  `async-profiler` version
+    - `library_type`: profiler name
+    - `process_id`: Java process PID
+    - `host`: hostname
+    - `service`: your service name
+    - `env`: your service env
+    - `version`: your app version
+    - others
+- `start`: profiling start time
+- `end`: profiling end time
+- `family`: language
+- `format`: format
 
-- Upload to DataKit
-
-Once both files, `profiling.jfr` and `event.json`, are ready, they can be uploaded to DataKit via HTTP POST request as follows:
+- upload to DataKit
 
 ```shell
 $ curl http://localhost:9529/profiling/v1/input \
@@ -527,8 +410,4 @@ $ curl http://localhost:9529/profiling/v1/input \
   -F "event=@event.json;filename=event.json;type=application/json"
 ```
 
-When the response format is `{"content":{"ProfileID":"xxxxxxxx"}}`, it indicates a successful upload. DataKit will generate a profiling record and store the jfr file in the backend storage for subsequent analysis.
-
-#### Usage in Kubernetes Environment {#under-k8s}
-
-Please refer to [Using `datakit-operator` to Inject `async-profiler`](../datakit/datakit-operator.md#inject-async-profiler){:target="_blank"}.
+If the http response body contains `{"content":{"ProfileID":"xxxxxxxx"}}` indicate successfully uploading.

@@ -1,220 +1,110 @@
+
 # DataKit Development Manual
 ---
 
 ## How to Add a Collector {#add-input}
 
-Assume you are adding a new collector named `zhangsan`. Generally, follow these steps:
+Assuming that a new collector `zhangsan` is added, the following steps are generally followed:
 
-- Create a new module `zhangsan` under `plugins/inputs`, and create an `input.go`.
-- In `input.go`, define a new struct.
+- Add the module `zhangsan` under `plugins/inputs` and create an `input.go`
+- Create a new structure in `input.go`
 
 ```golang
 // Uniformly named Input
 type Input struct {
-    // Collection interval
-    Interval datakit.Duration
-    // User-defined tags
-    Tags map[string]string
-    // (Optional) Cache for collected metrics, must be re-made in each collection cycle
-    collectCache []*point.Point
-    // (Optional) Cache for collected logs, must be re-made in each collection cycle
-    loggingCache []*point.Point
-    // Operating system type
-    platform string
-    // Trigger stopping the collector
-    semStop *cliutils.Sem
-    // (Optional) Related to election functionality
-    Election bool `toml:"election"`
-    // (Optional) Related to election functionality, json:"-" is used to prevent misjudgment during comparison
-    pause bool `json:"-"`
-    // (Optional) Related to election functionality, json:"-" is used to prevent misjudgment during comparison
-    pauseCh chan bool `json:"-"`
+  // Some configurable fields
+  ...
+
+  // Generally, each collector can add a user-defined tag
+  Tags   map[string]string
 }
 ```
 
-- This struct implements several interfaces. For specific examples, refer to the `demo` collector:
-
-```golang
-// Classification of the collector, for example, MySQL collector belongs to the `db` category
-Catalog() string                  
-// Entry function of the collector, generally this is where data collection occurs, and data is sent to the `io` module
-Run()                             
-// Sample configuration of the collector
-SampleConfig() string             
-// Auxiliary structure for generating collector documentation
-SampleMeasurement() []Measurement 
-// Supported operating systems for the collector
-AvailableArchs() []string 
-// Read environment variables  
-ReadEnv(envs map[string]string)  
-// (Optional) Singleton pattern, collectors with this feature can only have one instance
-Singleton()
-// Trigger stopping the collector
-Terminate()
-// (Optional) Election functionality, set this collector not to collect data.
-Pause() error
-// (Optional) Election functionality, set this collector to start collecting data.
-Resume() error
-// (Optional) Election functionality, set whether this collector participates in elections.
-ElectionEnabled() bool
-```
-
-<!-- markdownlint-disable MD046 -->
-???+ attention
-
-    Since new collector features are continuously added, new collectors should implement all interfaces in `plugins/inputs/inputs.go`.
-<!-- markdownlint-enable -->
-
-- Suggested structure for the `Run()` method:
+- The structure implements the following interfaces, for example, see `demo` collector:
 
 ```Golang
-func (ipt *Input) Run() {
-
-    // (Optional) ... Connect resources, prepare resources
-
-    tick := time.NewTicker(ipt.Interval.Duration)
-    defer tick.Stop()
-
-    // Main collection loop
-    for {
-        select {
-        // case ipt.pause = <-ipt.pauseCh: // Only needed for election
-        case <-datakit.Exit.Wait():
-            return
-        case <-ipt.semStop.Wait():
-            // ... Other close connection, resource operations
-            return
-        default:
-        }
-
-        start := time.Now()
-        // if ipt.pause { // Code needed for election
-        //     l.Debugf("not leader, skipped") // Code needed for election
-        // } else { // Code needed for election
-        // Collect data
-        ipt.collectCache = make([]inputs.Measurement, 0) // Can also be placed in Collect()
-        ipt.loggingCache = make([]*point.Point, 0)       // Can also be placed in Collect()
-        if err := ipt.Collect(); err != nil {
-            l.Errorf("Collect: %s", err)
-            metrics.FeedLastError(inputName, err.Error())
-        }
-
-        // ... Upload metrics and logs
-
-        // } // Code needed for election
-
-        // Control loop interval
-        <-tick.C
-    }
-}
+Catalog() string                  // Collector classifications, such as MySQL collectors, belong to the `db` classification
+Run()                             // Collector entry function, which usually collects data here and sends the data to the `io` module
+SampleConfig() string             // Sample collector configuration file
+SampleMeasurement() []Measurement // Auxiliary structure of collector document generation
+AvailableArchs() []string         // Operating system applicable to collector
 ```
 
-- Add the following initialization entry in `input.go`:
+> As some collector features are constantly being added, ==new collectors should implement all interfaces in plugins/inputs/inputs.go as much as possible==
+
+- In `input.go`, add the following module initialization entry:
 
 ```Golang
 func init() {
-    inputs.Add("zhangsan", func() inputs.Input {
-        return &Input{
-            // Here initialize a bunch of default configuration parameters for this collector
-            platform:       runtime.GOOS,
-            Interval:       datakit.Duration{Duration: time.Second * 10},
-            semStop:        cliutils.NewSem(),
-            Tags:           make(map[string]string),
-            // (Optional) Election functionality
-            pauseCh:  make(chan bool, inputs.ElectionPauseChannelLength),
-            // (Optional) Election functionality
-            Election: true,
-        }
-    })
+  inputs.Add("zhangsan", func() inputs.Input {
+    return &Input{
+      // Here you can initialize a bunch of default configuration parameters for this collector
+    }
+  })
 }
 ```
 
-- To enable election functionality, besides the above differences, modify the following positions:
-
-`LineProto()` needs modification
-
-```golang
-func (m *zhangsanMeasurement) LineProto() (*point.Point, error) {
-    // Use this without election
-    return point.NewPoint(m.name, m.tags, m.fields, point.MOpt())
-
-    // Use this with election
-    return point.NewPoint(m.name, m.tags, m.fields, point.MOptElectionV2(m.election))
-}
-```
-
-`AvailableArchs()` needs modification to display the "Election" icon in the documentation
-
-```golang
-func (*Input) AvailableArchs() []string { return datakit.AllOSWithElection }
-```
-
-The configuration file *zhangsan.conf* for this collector should include
-
-```golang
-election = true
-```
-
-- In `plugins/inputs/all/all.go`, add the `import`:
+- Add `import` in `plugins/inputs/all/all.go`
 
 ```Golang
 import (
-    ... // Other existing collectors
-    _ "gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/zhangsan"
+  ... // Other existing collectors
+  _ "gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/zhangsan"
 )
 ```
 
-- Execute `make lint`: Perform code checks
-  
-- Execute `make ut`: Run all test cases
+- Add collectors to the top-level directory `checked.go`:
 
-- After compiling, replace the existing DataKit binary with the newly compiled one, for example on Mac:
+```Golang
+allInputs = map[string]bool{
+  "zhangsan":       false, // Note that it is initially set to false, and then changed to true when the collector is released
+  ...
+}
+```
+
+- Perform compilation and replace the existing DataKit with the compiled binary. Take the Mac platform as an example:
 
 ```shell
 $ make
 $ tree dist/
 dist/
 └── datakit-darwin-amd64
-    └── datakit          # Replace the existing datakit binary, usually located at /usr/local/datakit/datakit
+    └── datakit          # Replace this dakakit with the existing datakit binary, typically /usr/local/datakit/datakit
 
-sudo datakit service -T                                         # Stop the running datakit
-sudo truncate -s 0 /var/log/datakit/log                         # Clear logs
-sudo cp -r dist/datakit-darwin-amd64/datakit /usr/local/datakit # Overwrite the binary
-sudo datakit service -S                                         # Restart datakit
-datakit monitor                                                 # Monitor datakit's operation
+sudo datakit service -T                                         # stop existing datakit
+sudo truncate -s 0 /var/log/datakit/log                         # Empty the log
+sudo cp -r dist/datakit-darwin-amd64/datakit /usr/local/datakit # Overlay binary
+sudo datakit service -S                                         # restart datakit
 ```
 
-- At this point, there should be a `zhangsan.conf.sample` in the */usr/local/datakit/conf.d/<Catalog\>/* directory. Note that *<Catalog\>* here is the return value of the interface `Catalog() string`.
-- Enable the `zhangsan` collector by copying `zhangsan.conf.sample` to `zhangsan.conf`. Modify it as necessary (e.g., username, directory configuration), then restart DataKit.
-- Check the collector status using the following commands:
+- At this point, you typically have a `zhangsan.conf.sample` in the */usr/local/datakit/conf.d/<Catalog\>/* directory. Note that the `<Catalog>` here is the return value of the interface `Catalog() string` above.
+- Open the `zhangsan` collector, make a copy of `zhangsan.conf` from `zhangsan.conf.sample`, modify the corresponding configuration (such as user name, directory configuration, etc.), and restart DataKit
+- Check the collector condition by executing the following command:
 
 ```shell
-sudo datakit check --config # Check if the collector configuration file is normal
-datakit -M --vvv            # Check the operation status of all collectors
+sudo datakit check --config # Check whether the collector configuration file is normal
+datakit -M --vvv            # Check the operation of all collectors
 ```
 
-- Add the `man/docs/en/zhangsan.md` document. Refer to `demo.md` and use its template.
+- If the collector function is complete, add `man/manuals/zhangsan.md` document, this can refer to `demo.md`, install the template inside to write
 
-- For metrics in the document, by default list all collectable metrics sets and their respective metrics. If certain metrics or metric sets have prerequisites, explain them in the document.
-    - If a metric set requires specific conditions, explain it in the `MeasurementInfo.Desc` of the metric set.
-    - If a specific metric within a metric set has prerequisites, explain it in the `FieldInfo.Desc`.
+- For measurements in the document, the default is to list all the measurements that can be collected and their respective metrics in the document. Some special measurements or metrics, if there are preconditions, need to be explained in the document.
+    - If a metric set needs to meet certain conditions, it should be described in `MeasurementInfo.Desc` of measurement
+    - If there is a specific precondition for a metric in the measurement, it should be described on `FieldInfo.Desc`.
 
-- It is recommended to run `./b.sh` for testing version compilation and release, which can then be handed over to the testing team.
-
-## Compilation Environment Setup {#setup-compile-env}
-
+## Compile Environment Build {#setup-compile-env}
 <!-- markdownlint-disable MD046 -->
 === "Linux"
 
     #### Install Golang
     
-    Current Go version [1.18.3](https://golang.org/dl/go1.18.3.linux-amd64.tar.gz){:target="_blank"}
+    the current Go version [1.18.3](https://golang.org/dl/go1.18.3.linux-amd64.tar.gz){:target="_blank"}
     
-    #### CI Configuration
+    #### CI Settings
     
-    > Assume go is installed in /root/golang directory
+    > Assume go is installed in the /root/golang directory
     
-    - Set up directories
+    - Setting the directory
     
     ```
     # Create Go project path
@@ -230,14 +120,14 @@ datakit -M --vvv            # Check the operation status of all collectors
     
     export GOPROXY=https://goproxy.io
     
-    # Assume golang is installed in /root
+    # Assume that golang is installed in the /root directory
     export GOROOT=/root/golang-1.18.3
     # Clone go code into GOPATH
     export GOPATH=/root/go
     export PATH=$GOROOT/bin:~/go/bin:$PATH
     ```
     
-    Create a set of environment variables in `~/.ossenv`, fill in OSS Access Key and Secret Key for version release:
+    Create a set of environment variables under `~/.ossenv` and fill in OSS Access Key and Secret Key for release:
     
     ```shell
     export RELEASE_OSS_ACCESS_KEY='LT**********************'
@@ -247,23 +137,29 @@ datakit -M --vvv            # Check the operation status of all collectors
     export RELEASE_OSS_HOST='oss-cn-hangzhou-internal.aliyuncs.com'
     ```
     
-    #### Install Common Tools
+    #### Install `packr2`
     
-    - `tree`
-    - `make`
-    - [`goyacc`](https://gist.github.com/tlightsky/9a163e59b6f3b05dbac8fc6b459a43c0){:target="_blank"}: `go install golang.org/x/tools/cmd/goyacc@master`
-    - [`golangci-lint`](https://golangci-lint.run/usage/install/#local-installation){:target="_blank"}: `go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2`
-    - `gofumpt`: `go install mvdan.cc/gofumpt@v0.1.1`
-    - `wget`
-    - Docker
-    - `curl`
-    - [LLVM](https://apt.llvm.org/){:target="_blank"}: Version >= 10.0
-    - Clang: Version >= 10.0
-    - Linux kernel headers (>= 5.4.0-99-generic): `apt-get install -y linux-headers-$(uname -r)` 
+    Install [`packr2`](https://github.com/gobuffalo/packr/tree/master/v2){:target="_blank"}
+    
+    `go install github.com/gobuffalo/packr/v2/packr2@v2.8.3`
+    
+    #### Install common tools
+    
+    - tree
+    - make
+    - [goyacc](https://gist.github.com/tlightsky/9a163e59b6f3b05dbac8fc6b459a43c0){:target="_blank"}: `go install golang.org/x/tools/cmd/goyacc@master`
+    - [golangci-lint](https://golangci-lint.run/usage/install/#local-installation){:target="_blank"}: `go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2`
+    - gofumpt: `go install mvdan.cc/gofumpt@v0.1.1`
+    - wget
+    - docker
+    - curl
+    - [llvm](https://apt.llvm.org/){:target="_blank"}: version >= 10.0
+    - clang: version >= 10.0
+    - Linux kernel（>= 5.4.0-99-generic）header file: `apt-get install -y linux-headers-$(uname -r)` 
     - [cspell](https://cspell.org/){:target="_blank"}: `npm install -g cspell@6.31.1`
     - [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli){:target="_blank"}: `npm install -g markdownlint-cli@0.34.0`
 
-    #### Install Third-party Libraries
+    #### Installing third-party libraries
     
     - `gcc-multilib`
     
@@ -274,59 +170,57 @@ datakit -M --vvv            # Check the operation status of all collectors
     # Centos: TODO
     ```
 
-    - IBM Db2 ODBC/CLI driver (only for Linux). Refer to the [IBM Db2 integration documentation](../integrations/db2.md#reqirement){:target="_blank"}.
+    - IBM Db2 ODBC/CLI driver (Linux only). The guide is in [IBM Db2 integration document](../integrations/db2.md#reqirement){:target="_blank"}。
 
 === "Mac"
 
-    Not supported yet
+    not supported
 
 === "Windows"
 
-    Not supported yet
+    not supported
 <!-- markdownlint-enable -->
+## Install, Upgrade and Test {#install-upgrade-testing}
 
-## Installation and Upgrade Testing {#install-upgrade-testing}
+After DataKit released new features, we had better do a full set of testing, including installation, upgrade and other processes. All existing DataKit installation files are stored on OSS. Let's use another isolated OSS bucket to do installation and upgrade tests.
 
-When releasing new DataKit features, it is best to perform comprehensive tests, including installation and upgrade processes. All current DataKit installation files are stored on OSS. We will use another isolated OSS bucket for installation and upgrade testing.
+Try this *default OSS path*：`oss://df-storage-dev/` (East China region). The following AK/SK can be obtained if necessary:
 
-Try this *preset OSS path*: `oss://df-storage-dev/` (East China region). The following AK/SK can be applied for if needed:
-
-> You can download the [OSS Browser](https://help.aliyun.com/document_detail/209974.htm?spm=a2c4g.11186623.2.4.2f643d3bbtPfN8#task-2065478){:target="_blank"} client tool to view files in OSS.
+> Available for download [OSS Browser](https://help.aliyun.com/document_detail/209974.htm?spm=a2c4g.11186623.2.4.2f643d3bbtPfN8#task-2065478){:target="_blank"} client tool to view files in OSS.
 
 - AK: `LTAIxxxxxxxxxxxxxxxxxxxx`
 - SK: `nRr1xxxxxxxxxxxxxxxxxxxxxxxxxx`
 
-In this OSS bucket, each developer has a subdirectory to store their Datakit test files. The specific script is in the source code *scripts/build.sh*. Copy it to the root directory of the Datakit source code, make slight modifications, and it can be used for local compilation and release.
+In this OSS bucket, we specify that each developer has a subdirectory for storing their DataKit test files. The specific script is in the source code `scripts/build.sh`. Copy it to DataKit source root directory, and slightly modify, can be used for local compilation and publishing.
 
-### Running DataKit in Custom Directory {#customize-workdir}
+### Custom Directory Running DataKit {#customize-workdir}
 
-By default, Datakit runs as a service in a specified directory (*/usr/local/datakit* on Linux). However, through additional methods, you can customize the Datakit working directory, allowing it to run non-service mode and read configurations and data from a specified directory, mainly for debugging DataKit functionalities during development.
+DataKit runs in the specified directory (/usr/local/DataKit under Linux) as ==service== by default, but you can customize the DataKit working directory to run in a non-service mode and read configuration and data from the specified directory in an additional way, which is mainly used to debug the functions of DataKit during development.
 
-- Update the latest code (dev branch)
-- Compile
-- Create the expected DataKit working directory, e.g., `mkdir -p ~/datakit/conf.d`
-- Generate the default *datakit.conf* configuration file. For Linux, execute
+1. Update the latest code (dev branch)
+2. Compile
+3. Create the expected DataKit working directory, such as `mkdir -p ~/datakit/conf.d`
+4. Generate the default `datakit.conf` configuration file. Take Linux as an example, execute
 
 ```shell
 ./dist/datakit-linux-amd64/datakit tool --default-main-conf > ~/datakit/conf.d/datakit.conf
 ```
 
-- Modify the generated *datakit.conf*:
+1. Modify the `datakit.conf` generated above:
+    - Fill in `default_enabled_inputs` and add the list of collectors you want to open, typically `cpu,disk,mem` and so on
+    - `http_api.listen` change the address
+    - Change the token in `dataway.urls`
+    - Change the logging directory/level if necessary
 
-    - Fill in `default_enabled_inputs`, add the list of collectors you want to enable, generally `cpu,disk,mem`, etc.
-    - Change the `http_api.listen` address
-    - Modify the token in `dataway.urls`
-    - Adjust the logging directory/level if necessary
-
-- Start DataKit, for Linux, use: `DK_DEBUG_WORKDIR=~/datakit ./dist/datakit-linux-amd64/datakit`
-- You can add an alias in your local bash so you can run `ddk` after compiling DataKit:
+2. Start the DataKit, taking Linux as an example: `DK_DEBUG_WORKDIR=~/datakit ./dist/datakit-linux-amd64/datakit`
+3. You can add a new alias to your local bash so that you can just run `ddk` each time you compile the DataKit (that is, Debugging-DataKit)
 
 ```shell
 echo 'alias ddk="DK_DEBUG_WORKDIR=~/datakit ./dist/datakit-linux-amd64/datakit"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-This way, DataKit does not run as a service and can be stopped directly with Ctrl+C
+In this way, the DataKit does not run as a service, and you can end the DataKit directly by ctrl+c
 
 ```shell
 $ ddk
@@ -336,15 +230,15 @@ $ ddk
  - using env:   export GIN_MODE=release
   - using code:  gin.SetMode(gin.ReleaseMode)
 
-    [GIN-debug] GET    /stats                    --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func1 (4 handlers)
-    [GIN-debug] GET    /monitor                  --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func2 (4 handlers)
-    [GIN-debug] GET    /man                      --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func3 (4 handlers)
-    [GIN-debug] GET    /man/:name                --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func4 (4 handlers)
-    [GIN-debug] GET    /restart                  --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func5 (4 handlers)
-    ...
+  [GIN-debug] GET    /stats                    --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func1 (4 handlers)
+  [GIN-debug] GET    /monitor                  --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func2 (4 handlers)
+  [GIN-debug] GET    /man                      --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func3 (4 handlers)
+  [GIN-debug] GET    /man/:name                --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func4 (4 handlers)
+  [GIN-debug] GET    /restart                  --> gitlab.jiagouyun.com/cloudcare-tools/datakit/http.HttpStart.func5 (4 handlers)
+  ...
 ```
 
-You can also use `ddk` to run some command-line tools directly:
+You can also execute some command-line tools directly with ddk:
 
 ```shell
 # Install IPDB
@@ -352,32 +246,34 @@ ddk install --ipdb iploc
 
 # Query IP information
 ddk debug --ipinfo 1.2.3.4
-        city: Brisbane
-    province: Queensland
-     country: AU
-         isp: unknown
-          ip: 1.2.3.4
+      city: Brisbane
+  province: Queensland
+   country: AU
+       isp: unknown
+        ip: 1.2.3.4
 ```
 
 ## Testing {#testing}
 
-Testing in Datakit is mainly divided into two categories: integration tests and unit tests. Essentially, there isn't much difference between them. Integration tests just require more external environments.
+There are 2 types of testing in Datakit，one is integration testing, another is unit testing. There is no essential difference between them, but for integration testing, we have to set more environments.
 
-Running `make ut` generally runs all test cases. These test cases include both integration and unit tests. For integration tests, Docker participation is required. Here's an example of running tests during development.
+Most of the time, we just run `make ut` for all testing, and we have to setup a Docker(remote or local) to help these integration testings. Here we show a example to do these:
 
-- Configure a remote Docker, or use a locally installed Docker. If using a remote Docker, [configure its remote connection capability](https://medium.com/@ssmak/how-to-enable-docker-remote-api-on-docker-host-7b73bd3278c6){:target="_blank"}.
-- Make a shell alias to start `make ut`:
+- Configure a remote Docker and enable it's [remote function](https://medium.com/@ssmak/how-to-enable-docker-remote-api-on-docker-host-7b73bd3278c6){:target="_blank"}. For local Docker, nothing required to configure.
+
+- Make a shell alias, start `make ut` within it:
 
 ```shell
 alias ut='REMOTE_HOST=<YOUR-DOCKER-REMOTE-HOST> make ut'
 ```
 
-Additional configurations:
+Sometimes we need to configure more for integration testing:
 
-- If you want to exclude some packages from testing (they may temporarily fail), add the corresponding package name after `make ut`, for example: `UT_EXCLUDE="gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/snmp"`
-- If you want to send test metrics to Guance, add a Dataway URL and the corresponding workspace token, like `DATAWAY_URL="https://openway.guance.com/v1/write/logging?token=<YOUR-TOKEN>"`
+- If we need to exclude some testing on package, we can add `UT_EXCLUDE` in the alias: `UT_EXCLUDE="gitlab.jiagouyun.com/cloudcare-tools/datakit/internal/plugins/inputs/snmp"`
 
-A complete example is as follows:
+- We can post the testing result to Guance Cloud, add a Dataway and the token: `DATAWAY_URL="https://openway.guance.com/v1/write/logging?token=<YOUR-TOKEN>"`
+
+The complete example:
 
 ```shell
 alias ut='REMOTE_HOST=<YOUR-DOCKER-REMOTE-HOST> make ut UT_EXCLUDE="<package-name>" DATAWAY_URL="https://openway.guance.com/v1/write/logging?token=<YOUR-TOKEN>"'
@@ -385,35 +281,35 @@ alias ut='REMOTE_HOST=<YOUR-DOCKER-REMOTE-HOST> make ut UT_EXCLUDE="<package-nam
 
 ## Release {#release}
 
-DataKit release includes two parts:
+The DataKit release consists of two parts:
 
 - DataKit version release
-- Yuque documentation release
+- Document release
 
-### DataKit Version Release {#release-dk}
+### DataKit Release {#release-dk}
 
-Current DataKit version releases are implemented in GitLab. Once code from a specific branch is pushed to GitLab, it triggers the corresponding version release, see *.gitlab-ci.yml*.
+The current release of DataKit is implemented in GitLab, which triggers the release of a specific branch of code once it is pushed to GitLab, as shown in *.gitlab-ci.yml*.
 
-Before version 1.2.6 (inclusive), DataKit version releases relied on the output of `git describe --tags`. Starting from version 1.2.7, DataKit versions no longer depend on this mechanism but are manually specified. Steps are as follows:
+In versions prior to 1.2. 6 inclusive, the DataKit release relied on the output of the command `git describe --tags`. Since 1.2. 7, DataKit versions no longer rely on this mechanism, but by manually specifying the version number, the steps are as follows:
 
-> Note: Currently, `script/build.sh` still relies on `git describe --tags`, this is only a version acquisition strategy issue and does not affect the main flow.
+> Note: The current reliance on `git describe --tags` in script/build.sh is just a version acquisition policy issue and does not affect the main process.
 
-- Edit *.gitlab-ci.yml*, modify the `VERSION` variable inside, such as:
+- Edit *.gitlab-ci.yml* to modify the `VERSION`  variable inside, such as:
 
 ```yaml
     - make production GIT_BRANCH=$CI_COMMIT_BRANCH VERSION=1.2.8
 ```
 
-Each version release requires manually editing *.gitlab-ci.yml* to specify the version number.
+Each release, you need to manually edit *.gitlab-ci.yml* to specify the version number.
 
-- After the version release is completed, add a tag to the code
+- Add a tag to the code after the release is complete
 
 ```shell
 git tag -f <same-as-the-new-version>
 git push -f --tags
 ```
 
-> Note: Mac version releases can currently only be done on amd64 architecture Macs due to CGO being enabled, preventing Mac version releases on GitLab. The implementation is as follows:
+> Note: At present, the release of Mac version can only be released on Mac based on amd64 architecture. Because CGO is turned on, the Mac version of DataKit cannot be released on GitLab. It is implemented as follows:
 
 ```shell
 make production_mac VERSION=<the-new-version>
@@ -422,144 +318,144 @@ make pub_production_mac VERSION=<the-new-version>
 
 ### DataKit Version Number Mechanism {#version-naming}
 
-- Stable version: Its version number is `x.y.z`, where `y` must be even.
-- Unstable version: Its version number is `x.y.z`, where `y` must be odd.
+- Stable version: Its version number is `x.y.z`, where `y` must be an even number
+- Non-stable version: its version number is `x.y.z`, where `y` must be cardinality
 
-### Documentation Release {#release-docs}
+### Document Publishing {#release-docs}
 
-Documentation can only be released from the development machine and requires installing [MkDocs](https://www.mkdocs.org/){:target="_blank"}. The process is as follows:
+Documentation can only be published on the development machine by installing [`mkdocs`](https://www.mkdocs.org/){:target="_blank"}. The process is as follows:
 
-- Execute *mkdocs.sh* (for more command-line options, run `./mkdocs.sh -h`)
+- Execute `mkdocs.sh`
 
-``` shell
-./mkdocs.sh
+```shell
+./mkdocs.sh <the-new-version>
 ```
 
-If no version is specified, it defaults to the latest tag name.
+If no version is specified, the latest tag name is used as the version number.
 
-> Note: For online code releases, ensure consistency with the **current stable version** of online DataKit to avoid confusion for users.
+> Note that if it is an online code release, it is best to ensure that it is consistent with **the current stable version number of online DataKit**, otherwise it will cause user trouble.
 
-## Coding Standards {#coding-rules}
+## About the Code Specification {#coding-rules}
 
-We do not emphasize specific coding standards here. Existing tools can help standardize our coding habits. Currently, we introduce the *golint* tool to individually inspect existing code:
+We don't emphasize the specific code specification here. Existing tools can help us standardize our own code habits. At present, golint tools are introduced to check the existing code separately:
 
 ```golang
 make lint
 ```
 
-Various modification suggestions can be seen in `check.err`. For false positives, we can explicitly disable them with `//nolint`:
+You can see various modification suggestions in check.err. For false positives, we can use `//nolint` to explicitly turn off:
 
 ```golang
-// Obviously, 16 is the largest single-byte hexadecimal number, but lint's gomnd reports an error:
+// Obviously, 16 is the largest single-byte hexadecimal number, but gomnd in lint will report an error:
 // mnd: Magic number: 16, in <return> detected (gomnd)
-// But here we can add a suffix to suppress this check
+// But a suffix can be added here to mask this check
 func digitVal(ch rune) int {
-    switch {
-    case '0' <= ch && ch <= '9':
-        return int(ch - '0')
-    case 'a' <= ch && ch <= 'f':
-        return int(ch - 'a' + 10)
-    case 'A' <= ch && ch <= 'F':
-        return int(ch - 'A' + 10)
-    }
+  switch {
+  case '0' <= ch && ch <= '9':
+    return int(ch - '0')
+  case 'a' <= ch && ch <= 'f':
+    return int(ch - 'a' + 10)
+  case 'A' <= ch && ch <= 'F':
+    return int(ch - 'A' + 10)
+  }
 
-    // larger than any legal digit val
-    return 16 //nolint:gomnd
+  // larger than any legal digit val
+  return 16 //nolint:gomnd
 }
 ```
 
-> When to use `nolint`, refer to [here](https://golangci-lint.run/usage/false-positives/){:target="_blank"}
+> When to use `nolint`, see [here](https://golangci-lint.run/usage/false-positives/){:target="_blank"}
 
-However, we do not recommend frequently adding `//nolint:xxx,yyy` to ignore warnings. The following situations can use lint:
+However, we do not recommend frequently adding `//nolint:xxx,yyy` to cover. Lint can be used in the following situations:
 
-- Well-known magic numbers, such as 1024 representing 1K, 16 being the largest single-byte value.
-- Some irrelevant security warnings, for example, running a command in the code with parameters passed externally. Although the lint tool mentions it, it is necessary to consider potential security issues.
+- Some well-known magic numbers in-such as 1024 for 1K and 16 for the maximum single-byte value.
+- Security alerts that are really irrelevant, such as running a command in your code, but the command parameters are passed in from outside, but since the lint tool mentions them, it is necessary to consider whether there are possible security issues.
 
 ```golang
 // cmd/datakit/cmds/monitor.go
 cmd := exec.Command("/bin/bash", "-c", string(body)) //nolint:gosec
 ```
 
-- Other places where checking might indeed need to be disabled, handle cautiously.
+- Other places that may really need to be closed for inspection should be treated with caution.
 
-## Diagnosing DATA RACE Issues {#data-race}
+## Troubleshoot DATA RACE {#data-race}
 
-There are many DATA RACE issues in DataKit. These can be detected by adding specific options during DataKit compilation to automatically detect DATA RACE in the compiled binary during runtime.
+There are many DATA RACE problems in DataKit. These problems can be solved by adding a specific option when compiling DataKit, so that the compiled binary can automatically detect the code with DATA RACE during runtime.
 
-Compiling DataKit with automatic DATA RACE detection requires the following conditions:
+To compile a DataKit with automatic detection of DATA RACE, the following conditions must be met:
 
-- CGO must be enabled, so only `make local` can be used (default execution of `make` is sufficient).
-- Must pass the Makefile variable: `make RACE_DETECTION=on`
+- CGO must be turned on, so you can only make local (make by default).
+- You must pass in the Makefile variable: `make RACE_DETECTION=on`
 
-The compiled binary will be slightly larger, but this is negligible. We only need to test it locally. Automatic DATA RACE detection has a characteristic: it can only detect when the code reaches a specific section, so it is recommended to always compile with `RACE_DETECTION=on` during daily testing to discover all code causing DATA RACE as early as possible.
+The compiled binary will increase a little, but it doesn't matter. We just need to test it locally. DATA RACE automatic detection has a feature, which can only be detected when the code runs to a specific code. Therefore, it is recommended that you automatically compile with `RACE_DETECTION=on` when testing your own functions daily, so as to find all the codes that cause DATA RACE as soon as possible.
 
-### DATA RACE Does Not Necessarily Cause Data Corruption {#data-race-mess}
+### DATA RACE Doesn't Really Cause Data Disorder {#data-race-mess}
 
-When running a binary with DATA RACE detection, if two goroutines access the same data and one of them performs a write operation, a warning message similar to the following will be printed:
+When a binary runtime with DATA RACE detection function encounters goroutines >=2 accessing the same data, and one of the goroutines executes write logic, it will print out code similar to the following on the terminal:
 
 ```shell hl_lines="8 9 10 11"
 ==================
 WARNING: DATA RACE
 Read at 0x00c000d40160 by goroutine 33:
   gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/github.com/GuanceCloud/cliutils/dialtesting.(*HTTPTask).GetResults()
-      /Users/tanbiao/go/src/gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/github.com/GuanceCloud/cliutils/dialtesting/http.go:208 +0x103c
-    ...
+    /Users/tanbiao/go/src/gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/github.com/GuanceCloud/cliutils/dialtesting/http.go:208 +0x103c
+  ...
 
 Previous write at 0x00c000d40160 by goroutine 74:
   gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/github.com/GuanceCloud/cliutils/dialtesting.(*HTTPTask).Run.func2()
-      /Users/tanbiao/go/src/gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/github.com/GuanceCloud/cliutils/dialtesting/http.go:306 +0x8c
-    ...
+    /Users/tanbiao/go/src/gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/github.com/GuanceCloud/cliutils/dialtesting/http.go:306 +0x8c
+  ...
 ```
 
-From these two pieces of information, you can determine that two pieces of code are operating on the same data object, with at least one performing a Write operation. However, note that this prints only WARNING information, meaning this code may not necessarily cause data problems. The final problem still needs manual verification, for example, the following code will not have data problems:
+From these two pieces of information, we can know that the two codes work together on a data object, and at least one of them is a Write operation. However, it should be noted that only WARNING information is printed here, which means that this code does not necessarily lead to data problems, and the final problems need to be identified manually. For example, the following codes will not have data problems:
 
 ```golang
 
 a = setupObject()
 
 go func() {
-    for {
-        updateObject(a)
-    }
+  for {
+    updateObject(a)
+  }
 }()
 ```
 
-## Diagnosing DataKit Memory Leaks {#mem-leak}
+## Troubleshooting DataKit Memory Leaks {#mem-leak}
 
-[:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) has pprof functionality enabled by default.
+> [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) enabled pprof by default.
 
-Edit *datakit.conf*, add the following configuration field at the top to enable DataKit's remote pprof functionality:
+Edit DataKit.conf and add the following configuration fields at the top to turn on the DataKit remote pprof function:
 
 ```toml
 enable_pprof = true
 ```
 
-> If installing Datakit via DaemonSet, inject the environment variable:
+> If you install DataKit for DaemonSet, you can inject environment variables:
 
 ```yaml
-- name: ENV_ENABLE_PPROF
-  value: true
+        - name: ENV_ENABLE_PPROF
+          value: true
 ```
 
-Restart DataKit for changes to take effect.
+Restart DataKit to take effect.
 
-### Obtain pprof Files {#get-pprof}
+### Get Pprof File {#get-pprof}
 
 ```shell
-# Download the current active memory pprof file of DataKit
+# Download the current DataKit active memory pprof file
 wget http://<datakit-ip>:6060/debug/pprof/heap
 
-# Download the total allocated memory pprof file of DataKit (including already freed memory)
+# 下 Download the current DataKit Total Allocated Memory pprof file (including memory that has been freed)
 wget http://<datakit-ip>:6060/debug/pprof/allocs
 ```
 
-> The port 6060 is fixed and cannot be modified for now.
+> Port 6060 here is fixed and cannot be modified for the time being
 
-Alternatively, visiting `http://<datakit-ip>:6060/debug/pprof/heap?=debug=1` via web can also view some memory allocation information.
+Also accessed via the web `http://<datakit-ip>:6060/debug/pprof/heap?=debug=1`. You can also see some memory allocation information.
 
-### View pprof Files {#use-pprof}
+### View Pprof File {#use-pprof}
 
-After downloading locally, run the following command. In interactive mode, you can enter `top` to view the top 10 memory hotspots:
+After downloading to the local, run the following command. After entering the interactive command, you can enter top to view the top10 hot spots of memory consumption:
 
 ```shell
 $ go tool pprof heap 
@@ -567,7 +463,7 @@ File: datakit
 Type: inuse_space
 Time: Feb 23, 2022 at 9:06pm (CST)
 Entering interactive mode (type "help" for commands, "o" for options)
-(pprof) top                            <------ View top 10 memory hotspots
+(pprof) top                            <------ View top 10 memory hot spots
 Showing nodes accounting for 7719.52kB, 88.28% of 8743.99kB total
 Showing top 10 nodes out of 108
 flat  flat%   sum%        cum   cum%
@@ -582,27 +478,27 @@ flat  flat%   sum%        cum   cum%
 513.31kB  5.87% 82.43%   513.31kB  5.87%  gitlab.jiagouyun.com/cloudcare-tools/datakit/vendor/k8s.io/apimachinery/pkg/conversion.ConversionFuncs.AddUntyped
 512.28kB  5.86% 88.28%   512.28kB  5.86%  encoding/pem.Decode
 (pprof) 
-(pprof) pdf                            <------ Output as PDF, i.e., profile001.pdf will be generated in the current directory
+(pprof) pdf                            <------ Output as pdf, that is, profile001. pdf will be generated in the current directory
 Generating report in profile001.pdf
 (pprof) 
-(pprof) web                            <------ Directly view in the browser, same effect as PDF
+(pprof) web                            <------ View it directly in the browser, and the effect is the same as PDF
 ```
 
-> Use `go tool pprof -sample_index=inuse_objects heap` to view object allocation situations, refer to `go tool pprof -help` for more details.
+> You can see the allocation of objects by `go tool pprof -sample_index=inuse_objects heap`, and consult `go tool pprof -help` for details.
 
-Similarly, you can view the total allocated memory pprof file `allocs`. The PDF effect looks something like this:
+In the same way, you can view the total allocated memory pprof file `allocs`. The effect of PDF is roughly as follows:
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/datakit-pprof-pdf.png){ width="800" }
 </figure>
 
-For more usage methods of pprof, refer to [here](https://www.freecodecamp.org/news/how-i-investigated-memory-leaks-in-go-using-pprof-on-a-large-codebase-4bec4325e192/){:target="_blank"}.
+For more ways to use pprof, see [here](https://www.freecodecamp.org/news/how-i-investigated-memory-leaks-in-go-using-pprof-on-a-large-codebase-4bec4325e192/){:target="_blank"}.
 
-## DataKit Auxiliary Functions {#assist}
+## DataKit Accessibility {#assist}
 
-In addition to the auxiliary functions listed in the [official documentation](datakit-tools-how-to.md), DataKit supports other functionalities mainly used during development.
+In addition to some of the accessibility features listed in the [official document](datakit-tools-how-to.md), DataKit supports other features that are used primarily during development.
 
-### Check Sample Configurations {#check-sample-config}
+### Check Sample Config is Correct {#check-sample-config}
 
 ```shell
 datakit check --sample
@@ -610,16 +506,16 @@ datakit check --sample
 checked 52 sample, 0 ignored, 51 passed, 0 failed, 0 unknown, cost 10.938125ms
 ```
 
-### Export Documentation {#export-docs}
+### Export Document {#export-docs}
 
-Export existing DataKit documentation to a specified directory, specifying the documentation version, replacing `TODO` with `-`, and ignoring the `demo` collector
+Exports the existing DataKit document to the specified directory, specifies the document version, replaces the document marked `TODO` with `-` and ignores the collector `demo`.
 
 ```shell
 man_version=`git tag -l | sort -nr | head -n 1` # Get the most recently released tag version
 datakit doc --export-docs /path/to/doc --version $man_version --TODO "-" --ignore demo
 ```
 
-## Further Reading {#more-readings}
+## More Readings {#more-readings}
 
-- [DataKit Monitor Explorer](datakit-monitor.md)
-- [Overall Architecture of DataKit](datakit-arch.md)
+- [DataKit Monitor observer](datakit-monitor.md)
+- [Introduction on DataKit to the overall architecture](datakit-arch.md)

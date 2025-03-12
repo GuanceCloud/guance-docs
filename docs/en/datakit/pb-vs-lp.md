@@ -10,57 +10,57 @@ Due to historical reasons, Datakit internally uses InfluxDB's line protocol as t
 <measurement>,<tag-list> <field-list> timestamp
 ```
 
-The line protocol refers to representing a specific data point with one line of text like this. For example, the following data point represents a basic disk usage situation:
+The so-called line protocol uses a line of text like this to represent a specific data point, such as the following data point that represents a basic disk usage situation:
 
 ```txt
 disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064064000
 ```
 
-Here, `disk` is the measurement set, `device` and `fstype` are two tags, followed by a series of specific metrics for this point. The last large integer represents a Unix timestamp in nanoseconds.
+Here, `disk` is the measurement, `device` and `fstype` are two tags, followed by a series of specific metrics at this point, and the last large integer represents the Unix timestamp in nanoseconds.
 
-Values ending with `i` indicate signed integers. This data point represents specific disk usage details. Besides `i`, it also supports:
+The values ending with `i` indicate signed integers. The data point above represents the specific usage of the disk. In addition to `i`, it also supports:
 
-- Floating-point (like `used_percent`, which does not have a type suffix)
-- Unsigned integers (suffix `u`)
+- Floating point (such as `used_percent` here, with no type suffix)
+- Unsigned integers (suffixed with `u`)
 - Strings
 - Booleans
 
-If there are multiple data points, they are represented on separate lines (hence the name "line protocol"):
+If there are multiple data points, they are represented on separate lines (hence the name line protocol):
 
-```text
-disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064064000
+``` text
+disk,device=/dev/disk3s1s1,fstype=apfs free=167050518528i,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064064000
 disk,device=/dev/disk3s6,fstype=apfs free=167050518528i,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064243000
 disk,device=/dev/disk3s2,fstype=apfs free=167050518528i,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064254000
 disk,device=/dev/disk3s4,fstype=apfs free=167050518528i,total=494384795648i,used=327334277120i,used_percent=66.21042556354438 1685509141064260000
 ```
 
-The line protocol, due to its readability and basic data expression capabilities, initially met our needs.
+Line protocol, due to its strong readability and basic data expression capabilities, met our initial needs.
 
 ## Protobuf {#pb}
 
-As data collection deepened, we faced two issues:
+As data collection continues to deepen, we are facing two problems:
 
-- The data types supported by the line protocol were somewhat limited. For instance, it did not support array-type fields.
+- The data types that line protocol can represent are somewhat limited; for example, it does not support array-type fields.
 
-During process collection, we needed to gather lists of open ports for processes, which could only be represented through JSON embedded in strings. Binary data was almost unsupported.
+In the collection of processes, we need to collect the list of ports opened by the process, which can only be represented by embedding JSON within a string. For binary data, it is basically unsupported.
 
-- The official InfluxDB line protocol SDK was poorly designed and had some performance issues:
+- The official InfluxDB line protocol SDK is poorly designed and has some performance issues:
 
-    - After constructing a data point (Point), any secondary operations (such as Pipeline) required re-parsing the Point, leading to CPU and memory waste.
-    - Poor encoding/decoding performance affected data processing under high throughput.
+    - After the data point (Point) is constructed, secondary operations on it (such as Pipeline) require the Point to be unpacked again, causing a waste of CPU/memory.
+    - The performance of encoding/decoding is not good, which affects data processing under high throughput conditions.
 
 ---
 
-Based on these reasons, we abandoned the line protocol data structure (v1) and adopted a completely custom data structure (v2), using Protobuf for transmission. Compared to version v1, v2 supports more features:
+For the above reasons, we have abandoned the line protocol data structure (v1) and have instead adopted a completely custom data structure (v2), which is then transmitted using Protobuf. Compared to version v1, v2 supports more features:
 
-- Fully customizable data types, free from InfluxDB's constraints on Points. We added support for array/map/binary types.
+- The data types are fully customized, free from the constraints of InfluxDB's Point, and we have added support for arrays/map/binary, etc.
 
-    - With binary support, we can directly add binary files to Points, such as appending Profile files to profile data points.
-    - Protobuf's [JSON structure](apis.md#api-v1-write-body-pbjson-protocol) can be used directly in HTTP requests, whereas the line protocol lacks a corresponding JSON format, forcing developers to familiarize themselves with the line protocol.
+    - With binary support, we can directly add binary files in the Point, such as appending the corresponding Profile file directly in the profile data point.
+    - Protobuf's [JSON structure](apis.md#api-v1-write-body-pbjson-protocol) can be directly used for HTTP requests, while line protocol does not provide a corresponding JSON form, causing developers to passively become familiar with the line protocol.
 
-- Constructed data points can still be freely modified without encapsulation.
-- In terms of encoded size, since the line protocol is entirely text-based, gzip compression results in slightly smaller sizes (within 0.1% difference for a 1MB payload). Protobuf performs well in this aspect too.
-- Protobuf has higher encoding/decoding efficiency. Benchmarks show that encoding efficiency is approximately X10, and decoding efficiency is about X5:
+- The constructed data points are not encapsulated and can still be freely modified.
+- In terms of encoding volume, since the line protocol is entirely in text form, after gzip compression, its volume is slightly smaller (the difference within 0.1% for a 1MB payload), and Protobuf is not weak in this regard.
+- Protobuf has higher encoding/decoding efficiency. Benchmarks show that the encoding efficiency is about 10 times higher, and the decoding efficiency is about 5 times higher:
 
 ```shell
 # Encoding
@@ -75,22 +75,18 @@ BenchmarkDecode/decode-pb
 BenchmarkDecode/decode-pb-10 393 3044680 ns/op 3052845 B/op 70025 allocs/op
 ```
 
-Based on the improvements in v2 across various aspects, we conducted basic tests on observability, and both memory and CPU usage showed significant improvements:
+Based on the improvements of v2 in various aspects, we have conducted some basic tests on our observability, and there are obvious improvements in memory and CPU usage:
 
-On medium to low load Datakits, the performance difference between v2 and v1 is very noticeable:
+On Datakit with medium to low load, the performance difference between v2 and v1 is very obvious:
 
-<figure markdown>
-  ![not-set](https://static.guance.com/images/datakit/lp-vs-pb/v1-v2-mid-pressure.png)
-</figure>
+![not-set](https://static.guance.com/images/datakit/lp-vs-pb/v1-v2-mid-pressure.png)
 
-At 10:30 AM, switching from v2 to v1 resulted in noticeable increases in CPU and memory usage. On high-load Datakits, the performance difference is also evident:
+At 10:30, when switching from v2 to v1, it can be seen that CPU and memory have a noticeable increase. On Datakit with high load, the performance difference is also obvious:
 
-<figure markdown>
-  ![not-set](https://static.guance.com/images/datakit/lp-vs-pb/v1-v2-high-pressure.png)
-</figure>
+![not-set](https://static.guance.com/images/datakit/lp-vs-pb/v1-v2-high-pressure.png)
 
-At 23:45, switching to v2 resulted in significantly lower sys/heap memory compared to switching to v1 at 10:30 AM the next day. In terms of CPU, switching to v1 at 10:30 AM caused an increase, but it was not very significant because the main CPU usage in high-load Datakits is not related to data encoding.
+At 23:45, when switching to v2, the sys/heap memory is much lower compared to 10:30 the next day when switching to v1. In terms of CPU, after switching to v1 at 10:30, there is an increase in CPU, but it is not very obvious, mainly because the main CPU of the high-load Datakit is not in data encoding.
 
 ## Conclusion {#conclude}
 
-Compared to v1, v2 offers significant performance improvements and greater extensibility. Additionally, v2 supports encoding in v1 format to maintain compatibility with older deployment versions and development habits. In Datakit, we can combine the use of [point-pool](datakit-conf.md#point-pool) to achieve better memory/CPU performance.
+Compared to v1, v2 not only has significant performance improvements but is also no longer limited in terms of extensibility. At the same time, v2 also supports encoding in the form of v1 to be compatible with old deployment versions and development habits. In Datakit, we can use [point-pool](datakit-conf.md#point-pool) to achieve better memory/CPU performance.

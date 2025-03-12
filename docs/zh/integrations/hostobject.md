@@ -36,14 +36,11 @@ monitor   :
     ## Setting enable_net_virtual_interfaces to true will collect network virtual interfaces stats for linux.
     # enable_net_virtual_interfaces = true
     
-    ## absolute path to the configuration file
+    ## Absolute path to the configuration file
     # config_path = ["/usr/local/datakit/conf.d/datakit.conf"]
     
-    ##############################
-    # Disk related options
-    ##############################
-    ## Deprecated
-    # ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "autofs", "squashfs", "aufs"]
+    # Do not collect disks that with these file systems
+    ignore_fstypes = '''^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$'''
     
     ## We collect all devices prefixed with dev by default,If you want to collect additional devices, it's in extra_device add
     # extra_device = []
@@ -123,15 +120,25 @@ monitor   :
     
         **默认值**: false
     
-    - **ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE**
+    - **ENV_INPUT_HOSTOBJECT_IGNORE_FSTYPES**
     
-        忽略非物理磁盘（如网盘、NFS），任意非空字符串
+        磁盘列表采集时忽略特定的文件系统
     
-        **字段类型**: Boolean
+        **字段类型**: String
     
-        **采集器配置字段**: `only_physical_device`
+        **采集器配置字段**: `ignore_fstypes`
     
-        **默认值**: false
+        **默认值**: `^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$`
+    
+    - **ENV_INPUT_HOSTOBJECT_IGNORE_MOUNTPOINTS**
+    
+        磁盘列表采集时忽略特定的挂载点
+    
+        **字段类型**: String
+    
+        **采集器配置字段**: `ignore_mountpoints`
+    
+        **默认值**: `^(/usr/local/datakit/.*|/run/containerd/.*)$
     
     - **ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE**
     
@@ -141,7 +148,7 @@ monitor   :
     
         **采集器配置字段**: `exclude_device`
     
-        **示例**: /dev/loop0,/dev/loop1
+        **示例**: `/dev/loop0,/dev/loop1`
     
     - **ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE**
     
@@ -231,7 +238,7 @@ monitor   :
     
         **采集器配置字段**: `cloud_meta_token_url`
     
-        **示例**: `{"aws":"xxx", "aliyun":"yyy"}`
+        **示例**: `{"aws":"xxx","aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 

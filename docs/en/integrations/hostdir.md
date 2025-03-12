@@ -1,29 +1,30 @@
 ---
-title     : 'File Directory'
-summary   : 'Collect metrics data from file directories'
+title     : 'Host Directory'
+summary   : 'Collect metrics from file directories'
 tags:
-  - 'Host'
+  - 'HOST'
 __int_icon      : 'icon/hostdir'
 dashboard :
-  - desc  : 'File Directory'
+  - desc  : 'Host Directory'
     path  : 'dashboard/en/hostdir'
 monitor   :
-  - desc  : 'Not Available'
+  - desc  : 'N/A'
     path  : '-'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The host directory collector is used for collecting data from directory files, such as the number of files and the total size of all files.
+Host directory collector is used to collect directory files, such as the number of files, all file sizes, etc.
 
 ## Configuration {#config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `hostdir.conf.sample`, and rename it to `hostdir.conf`. Example:
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `hostdir.conf.sample` and name it `hostdir.conf`. Examples are as follows:
     
     ```toml
         
@@ -42,17 +43,17 @@ The host directory collector is used for collecting data from directory files, s
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following metric sets will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. You can also specify additional tags in the configuration using `[inputs.hostdir.tags]`:
+For all of the following metric sets, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.hostdir.tags]`:
 
 ``` toml
  [inputs.hostdir.tags]
@@ -75,18 +76,20 @@ All the following metric sets will append a global tag named `host` (tag value i
 |`host_directory`|The start Dir.|
 |`mount_point`|Mount point.|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`dir_count`|The number of directories.|int|count|
+|`dir_count`|The number of Dir.|int|count|
 |`file_count`|The number of files.|int|count|
 |`file_size`|The size of files.|int|B|
 |`free`|Free disk size in bytes.|int|B|
 |`inodes_free`|Free inode.|int|count|
 |`inodes_total`|Total inode.|int|count|
-|`inodes_used`|Used inode (only this dir used).|int|count|
-|`inodes_used_percent`|Inode used percentage (only this dir used in total inode).|float|percent|
+|`inodes_used`|Used inode(only this dir used).|int|count|
+|`inodes_used_percent`|Inode used percent(only this dir used in total inode).|float|percent|
 |`total`|Total disk size in bytes.|int|B|
-|`used_percent`|Used disk size percentage (only this dir used in total size).|float|percent|
+|`used_percent`|Used disk size in percent(only this dir used in total size).|float|percent|
+
+

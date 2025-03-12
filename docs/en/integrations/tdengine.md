@@ -1,33 +1,34 @@
 ---
-title: 'TDengine'
-summary: 'Collect Metrics data from TDengine'
+title     : 'TDengine'
+summary   : 'Collect TDengine metrics'
 tags:
-  - 'Database'
-__int_icon: 'icon/tdengine'
-dashboard:
-  - desc: 'TDengine'
-    path: 'dashboard/en/tdengine'
-monitor:
-  - desc: 'Not available'
-    path: '-'
+  - 'DATA STORES'
+__int_icon      : 'icon/tdengine'
+dashboard :
+  - desc  : 'TDengine'
+    path  : 'dashboard/en/tdengine'
+monitor   :
+  - desc  : 'N/A'
+    path  : '-'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-TDengine is a high-performance, distributed, SQL-supported time series database (Database). Before enabling the collector, please familiarize yourself with [TDengine basic concepts](https://docs.taosdata.com/concept/){:target="_blank"}
+TDEngine is a high-performance, distributed, SQL-enabled time series Database (Database). Familiarize yourself with the [basic concepts of TDEngine](https://docs.taosdata.com/concept/){:target="_blank"} before opening the collector.
 
-The TDengine collector requires the connection to `taos_adapter` to function properly. The taosAdapter has been part of the TDengine server software starting from version v2.4.0.0. This document mainly provides a detailed introduction to the Measurement set.
+TDengine collector needs to connect `taos_adapter` can work normally, taosAdapter from TDengine v2.4. 0.0 version comes to becoming a part of TDengine server software, this paper is mainly a detailed introduction of measurement.
 
-## Configuration {#config}
-
-### Collector Configuration {#input-config}
+## Configuration  {#config}
 
 <!-- markdownlint-disable MD046 -->
+### Collector Config {#input-config}
+
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `tdengine.conf.sample` and rename it to `tdengine.conf`. Example:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `tdengine.conf.sample` and name it `tdengine.conf`. Examples are as follows:
     
     ```toml
         
@@ -46,25 +47,27 @@ The TDengine collector requires the connection to `taos_adapter` to function pro
     
       ## add tag (optional)
       [inputs.tdengine.tags]
-      ## Different clusters can be distinguished by tag. Such as testing, product, local, default is 'testing'
+      ## Different clusters can be distinguished by tag. Such as testing,product,local ,default is 'testing'
       # cluster_name = "testing"
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
+    
     After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
-
-???+ tip
-
-    - Ensure the port is open before connecting to taoAdapter. The connecting user must have read permissions.
-    - If connection still fails, [refer to this guide](https://docs.taosdata.com/2.6/train-faq/faq/){:target="_blank"}.
+    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+<!-- markdownlint-disable MD046 -->
+???+ tip
+
+    Please make sure the port is open before connecting to the taoAdapter. And the connecting user needs to have read permission.
+    If the connection still fails, [please refer to](https://docs.taosdata.com/2.6/train-faq/faq/){:target="_blank"}
+<!-- markdownlint-enable -->
+
+## Metric {#metric}
 
 
 
@@ -87,7 +90,7 @@ The TDengine collector requires the connection to `taos_adapter` to function pro
 |`version`|Version|
 |`vgroup_id`|VGroup ID|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -138,4 +141,4 @@ The TDengine collector requires the connection to `taos_adapter` to function pro
 
 
 
-> - Some tables in the database do not have a `ts` field; DataKit will use the current collection time.
+> - Some tables in the database do not have the `ts` field, and Datakit uses the current collection time.

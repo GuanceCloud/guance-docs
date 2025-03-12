@@ -1,44 +1,46 @@
 ---
-title: 'DataKit Self-Monitoring Metrics Collection'
-summary: 'Collecting DataKit runtime metrics'
+title: 'DataKit metrics'
+summary: 'Collect DataKit metrics'
 tags:
-  - 'Host'
+  - 'HOST'
 __int_icon: 'icon/dk'
 dashboard:
-  - desc: 'Built-in DataKit Views'
+  - desc: 'DataKit dashboard'
     path: 'dashboard/en/dk'
-  - desc: 'Built-in DataKit Dial Testing Views'
+  - desc: 'DataKit dial test built-in dashboard'
     path: 'dashboard/en/dialtesting'
 
 monitor:
-  - desc: 'None'
+  - desc: 'N/A'
     path: '-'
 ---
 
-
-:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker: · [:octicons-tag-24: Version-1.11.0](../datakit/changelog.md#cl-1.11.0)
+:fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker: · [:octicons-tag-24: Version-1.10.0](../datakit/changelog.md#cl-1.10.0)
 
 ---
 
-The DataKit collector is used to collect basic information about its own operation, including runtime environment information, CPU usage, memory usage, and various core module metrics.
+This Input used to collect Datakit exported metrics, such as runtime/CPU/memory and various other metrics of each modules.
 
 ## Configuration {#config}
 
-After starting DataKit, it will expose some [Prometheus Metrics](../datakit/datakit-metrics.md) by default. No additional actions are required, and this collector is enabled by default, replacing the previous `self` collector.
+After Datakit startup, it will expose a lot of [Prometheus metrics](../datakit/datakit-metrics.md), and the input `dk` can scrap
+these metrics.
+
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Deployment"
+=== "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `dk.conf.sample`, and rename it to `dk.conf`. An example is shown below:
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `dk.conf.sample` and name it `dk.conf`. Examples are as follows:
 
     ```toml
         
     [[inputs.dk]]
     
-      # See https://docs.guance.com/datakit/datakit-metrics/#metrics for all metrics exported by DataKit.
+      # See https://docs.guance.com/datakit/datakit-metrics/#metrics for all metrics exported by Datakit.
       metric_name_filter = [
-        ### Collect all metrics (these may collect over 300 metrics of DataKit)
-        ### If you want to collect all, make this rule the first in the list.
+        ### Collect all metrics(these may collect 300+ metrics of Datakit)
+        ### if you want to collect all, make this rule the first in the list.
         # ".*",
     
         "datakit_http.*",       # HTTP API
@@ -72,7 +74,7 @@ After starting DataKit, it will expose some [Prometheus Metrics](../datakit/data
       # keep empty to collect all types(count/gauge/summary/...)
       metric_types = []
     
-      # collection frequency
+      # collect frequency
       interval = "30s"
     
     [inputs.dk.tags]
@@ -81,52 +83,52 @@ After starting DataKit, it will expose some [Prometheus Metrics](../datakit/data
     
     ```
 
-    After configuring, restart DataKit.
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
     - **ENV_INPUT_DK_ENABLE_ALL_METRICS**
     
-        Collect all metrics; any non-empty string
+        Collect all metrics, any string
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: ``-``
+        **input.conf**: ``-``
     
         **Example**: true
     
-        **Default Value**: `-`
+        **Default**: `-`
     
     - **ENV_INPUT_DK_ADD_METRICS**
     
-        Append the list of metrics; available metric names can be found [here](../datakit/datakit-metrics.md)
+        Additional metrics, Available metrics list [here](../datakit/datakit-metrics.md)
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: ``-``
+        **input.conf**: ``-``
     
         **Example**: `["datakit_io_.*", "datakit_pipeline_.*"]`
     
-        **Default Value**: `-`
+        **Default**: `-`
     
     - **ENV_INPUT_DK_ONLY_METRICS**
     
-        Enable only specified metrics
+        Only enable metrics
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: ``-``
+        **input.conf**: ``-``
     
         **Example**: `["datakit_io_.*", "datakit_pipeline_.*"]`
     
-        **Default Value**: `-`
+        **Default**: `-`
 
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-DataKit's self-monitoring metrics are primarily Prometheus metrics. Refer to the documentation [here](../datakit/datakit-metrics.md) for more details.
+Datakit exported Prometheus metrics, see [here](../datakit/datakit-metrics.md) for full metric list.
