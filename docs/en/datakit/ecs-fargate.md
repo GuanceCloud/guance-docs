@@ -1,4 +1,5 @@
-# Integration with AWS ECS Fargate
+
+# Integrated with AWS ECS Fargate
 ---
 
 ## Prerequisites {#req}
@@ -7,44 +8,44 @@
 
 ## Overview {#intro}
 
-Datakit can be integrated into the AWS ECS Fargate environment, and data collection can be enabled with simple configuration.
+Datakit can be integrated with AWS ECS Fargate environment with simple configuration to enable data collection.
 
-The data that can be collected from ECS Fargate includes:
+The following data can be collected from ECS Fargate:
 
-- Container metrics and object data, including basic container information, CPU and memory usage, etc.
-- Receiving APM data sent by other containers within the current Task.
-- Enabling log streaming to receive container log data.
+- Container metrics and object data, including container's basic information, CPU and memory usage, etc.
+- APM data sent by other containers receiving the current task
+- Enabled logstreaming to receive container log data
 
-The ECS Fargate task metadata endpoint (Task metadata Endpoint) can only be used internally within task definitions, so a Datakit container needs to be deployed in each task definition.
+The Task Metadata Endpoint of ECS Fargate can only be used internally within the task definitions, so a Datakit container needs to be deployed in each task definition.
 
-The only required configuration is to add an environment variable `ENV_ECS_FARGATE` set to `"on"`, and Datakit will automatically switch to this collection mode.
+The only configuration required is to add an environment variable `ENV_ECS_FARGATE` with the value `"on"` to Datakit, and Datakit will automatically switch to this collection mode.
 
 ## Deployment and Configuration {#config}
 
-In most cases, you just need to integrate Datakit as a container in the task definition and specify the necessary task role in the task definition. This can be divided into 3 steps, as follows:
+In most cases, you just need to integrate Datakit into the task definition as a container and specify the required task roles. It can be divided into 3 steps as follows:
 
-1. Create or modify the [IAM policy](https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html){:target="_blank"}, Datakit requires at least the following 3 permissions:
+1. Create or modify an [IAM policy](https://docs.aws.amazon.com/zh_cn/IAM/latest/UserGuide/introduction.html){:target="_blank"}. Datakit requires at least the following 3 permissions:
 
-    - `ecs:ListClusters` to list available clusters
-    - `ecs:ListContainerInstances` to list instances in the cluster
-    - `ecs:DescribeContainerInstances` to describe instances and add metrics about running resources and tasks
+    - `ecs:ListClusters` to list available clusters.
+    - `ecs:ListContainerInstances` to list instances in a cluster.
+    - `ecs:DescribeContainerInstances` to describe instances to add metrics about running resources and tasks.
 
-1. Add the Datakit container in the task definition. Example configuration items are as follows:
+1. In the task definition, add a Datakit container with the following sample configuration:
 
     - Name: `datakit`
     - Image: `pubrepo.guance.com/datakit/datakit:<specified version>`
-    - Essential container: `"No"`
-    - Port mapping, container port: `9529` (configure as needed, default is 9529)
-    - Resource allocation limits: 2vCPU CPU, 4GB memory limit
+    - Essential container: `No`
+    - Port mapping, container port: `9529` (configure as needed, defaults to `9529`)
+    - Resource allocation limit: CPU 2vCPU, Memory limit 4GB
 
 1. Configure Datakit using environment variables. The necessary environment variables are as follows:
 
     - `ENV_ECS_FARGATE`: `on`
-    - `ENV_DATAWAY`: `https://openway.guance.com?token=<YOUR-WORKSPACE-TOKEN>`
+    - `ENV_DATAWAY`: `https://openway.guance.com?token=<your-token>`
     - `ENV_HTTP_LISTEN`: `0.0.0.0:9529`
     - `ENV_DEFAULT_ENABLED_INPUTS`: `dk,container,ddtrace`
 
-This is an example of a task definition for running Datakit and trace:
+This is an example of a running Datakit and trace task definition:
 
 ```json
 {

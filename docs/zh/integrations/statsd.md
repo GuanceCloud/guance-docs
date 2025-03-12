@@ -63,6 +63,9 @@ DD_JMXFETCH_STATSD_PORT=8125
     
       protocol = "udp"
     
+      ## Address to host unix listener on, linux only
+      service_unix_address = "/var/run/datakit/statsd.sock"
+    
       ## Address and port to host UDP listener on
       service_address = ":8125"
     

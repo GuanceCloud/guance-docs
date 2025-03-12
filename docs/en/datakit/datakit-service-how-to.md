@@ -1,23 +1,24 @@
+
 # DataKit Service Management
 ---
 
-[DataKit Installation](datakit-install.md) After installation, it is necessary to provide some basic introductions for the installed DataKit.
+After [DataKit installation](datakit-install.md), it is necessary to do some basic introduction to the installed DataKit.
 
-## DataKit Directory Introduction {#install-dir}
+## DataKit Introduction {#install-dir}
 
-DataKit currently supports three major platforms: Linux/Windows/Mac:
+DataKit currently supports three major platforms, Linux/Windows/Mac:
 
-| Operating System                           | Architecture        | Installation Path                                                                 |
-| ------------------------------------------ | ------------------- | --------------------------------------------------------------------------------- |
-| Linux kernel 2.6.23 or higher              | amd64/386/arm/arm64 | `/usr/local/datakit`                                                              |
-| macOS 10.13 or higher[^1]                  | amd64               | `/usr/local/datakit`                                                              |
-| Windows 7, Server 2008R2 or higher         | amd64/386           | 64-bit: `C:\Program Files\datakit`<br />32-bit: `C:\Program Files (x86)\datakit` |
+| Operating System                            | Structure                | Installation Path                                                                   |
+| :--------                           | :---                | :-----                                                                     |
+| Linux kernel version 2.6. 23 or later        | amd64/386/arm/arm64 | `/usr/local/datakit`                                                       |
+| macOS 10.13 or later [^1]          | amd64               | `/usr/local/datakit`                                                       |
+| Windows 7, Server 2008R2 Or above | amd64/386           | 64 bit: `C:\Program Files\datakit`<br />32 bit: `C:\Program Files(32)\datakit` |
 
 [^1]: Golang 1.18 requires macOS-amd64 version 10.13.
 
-After installation, the DataKit directory structure looks like this:
+After installation, the list of DataKit directories is roughly as follows:
 
-``` not-set
+```txt
 ├── [4.4K]  conf.d
 ├── [ 160]  data
 ├── [ 64M]  datakit
@@ -27,87 +28,72 @@ After installation, the DataKit directory structure looks like this:
 └── [1.2K]  log       # Windows platform
 ```
 
-Where:
+Among them:
 
-- `conf.d`: Contains configuration examples for all collectors. The main DataKit configuration file *datakit.conf* is located in this directory.
-- `data`: Stores data files required by DataKit, such as IP address databases.
-- `datakit`: The main DataKit program; on Windows, it is *datakit.exe*.
-- `externals`: Some collectors are not integrated into the main DataKit program and reside here.
-- `pipeline`: Contains scripts used for text processing.
-- `gin.log`: DataKit can accept external HTTP data input, and this log file acts as an HTTP access-log.
-- `log`: DataKit runtime logs (on Linux/Mac platforms, DataKit runtime logs are in the `/var/log/datakit` directory).
-
+- `conf.d`: Store configuration examples for all collectors. The DataKit main configuration file `datakit.conf` is located in the directory.
+- `data`: Store data files needed for DataKit to run, such as IP address database, etc.
+- `datakit`: DataKit main program, `datakit.exe` in Windows
+- `externals`: Part of the collector is not integrated in the DataKit main program, it's all here.
+- `pipeline` holds script code for text processing.
+- `gin.log`: DataKit can receive external HTTP data input, and this log file is equivalent to HTTP access-log.
+- `log`: Datakit run log (under Linux/Mac platform, DataKit run log is in */var/log/datakit* directory).
 <!-- markdownlint-disable MD046 -->
-???+ tip "Check Kernel Version"
+???+ tip "View kernel version"
 
-    - Linux/Mac: `uname -r`
-    - Windows: Run the `cmd` command (hold down the Win key + `r`, type `cmd` and press Enter), then type `winver` to get system version information.
+    - Linux/Mac：`uname -r`
+    - Windows: Execute the `cmd` command (hold down the Win key + `r`, enter `cmd` carriage return) and enter `winver` to get system version information
 <!-- markdownlint-enable -->
-
 ## DataKit Service Management {#manage-service}
 
-You can manage DataKit directly using the following commands:
+DataKit can be directly managed using the following command:
 
 ```shell
-# Linux/Mac may require sudo
-datakit service -T # stop
-datakit service -S # start
-datakit service -R # restart
+# Linux/Mac may need to add sudo
+# stop
+datakit service -T
+# start
+datakit service -S
+# restart
+datakit service -R
 ```
-
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    You can view more help information with `datakit help service`.
+    You can view more help information through `datakit help service`.
 <!-- markdownlint-enable -->
+### Service Management Failure Handling {#when-service-failed}
 
-### Handling Service Management Failures {#when-service-failed}
+Sometimes a service operation may fail due to a bug in some DataKit components (for example, the service does not stop after `datakit service -T`), which can be enforced as follows.
 
-Sometimes, due to bugs in certain components of DataKit, service operations may fail (e.g., after running `datakit service -T`, the service does not stop). In such cases, you can handle it forcefully as follows.
-
-On Linux, if the above commands fail, you can use the following commands instead:
+Under Linux, if the above command fails, the following command can be used instead:
 
 ```shell
 sudo service datakit stop/start/restart
 sudo systemctl stop/start/restart datakit
 ```
 
-On Mac, you can use the following commands instead:
+Under Mac, you can use the following command instead:
 
 ```shell
 # Start DataKit
 sudo launchctl load -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
-# Or
+# or
 sudo launchctl load -w /Library/LaunchDaemons/com.guance.datakit.plist
 
 # Stop DataKit
 sudo launchctl unload -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
-# Or
+# or
 sudo launchctl unload -w /Library/LaunchDaemons/com.guance.datakit.plist
 ```
 
-### Uninstalling and Reinstalling the Service {#uninstall-reinstall}
+### Service Uninstall and Reinstall {#uninstall-reinstall}
 
-You can uninstall or reinstall the DataKit service directly using the following commands:
+You can uninstall or restore the DataKit service directly using the following command:
 
-> Note: Uninstalling DataKit here will not delete related DataKit files.
+> Note: Uninstalling the DataKit here does not delete the DataKit-related files.
 
 ```shell
 # Linux/Mac shell
 datakit service -I # re-install
 datakit service -U # uninstall
 ```
-
-## FAQ {#faq}
-
-### :material-chat-question: Failure to Start on Windows {#windows-start-fail}
-
-DataKit runs as a service on Windows, writing many Event logs upon startup. As logs accumulate, the following error may occur:
-
-``` not-set
-Start service failed: The event log file is full.
-```
-
-This error prevents DataKit from starting. You can resolve it by [adjusting the Windows Event settings](https://stackoverflow.com/a/13868216/342348){:target="_blank"} (using Windows Server 2016 as an example):
-
-![Modify Windows Event Settings](https://static.guance.com/images/datakit/set-windows-event-log.gif)

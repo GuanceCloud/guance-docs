@@ -1,27 +1,29 @@
 ---
-title: 'Lsblk'
-summary: 'Collect metrics data from block devices'
+title     : 'Lsblk'
+summary   : 'Collect metrics of block device'
 tags:
-  - 'Host'
-__int_icon: 'icon/disk'
-dashboard:
-  - desc: 'lsblk'
-    path: 'dashboard/lsblk'
+  - 'HOST'
+__int_icon      : 'icon/disk'
+dashboard :
+  - desc  : 'Lsblk'
+    path  : 'dashboard/lsblk'
 ---
 
 :fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
 ---
 
-The lsblk collector is used to collect information from block devices on Linux hosts, such as device name, major/minor device numbers, available filesystem size, filesystem type, used filesystem size, percentage of filesystem usage, and mount points.
+Lsblk collector is used for Linux host block device information collection, such as device name, primary and secondary device number, filesystem available size, filesystem type, filesystem used size, filesystem usage percentage, device mount location, etc.
 
 ## Configuration {#config}
 
 <!-- markdownlint-disable MD046 -->
 
+### Collector Configuration {#input-config}
+
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `lsblk.conf.sample`, and rename it to `lsblk.conf`. Example configuration:
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `lsblk.conf.sample` and name it `lsblk.conf`. Examples are as follows:
 
     ```toml
         
@@ -34,47 +36,49 @@ The lsblk collector is used to collect information from block devices on Linux h
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    Environment variables can also be used to modify configuration parameters (requires adding to ENV_DEFAULT_ENABLED_INPUTS):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
     - **ENV_INPUT_LSBLK_INTERVAL**
     
-        Interval for repeated collection
+        Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **input.conf**: `interval`
     
-        **Default Value**: `10s`
+        **Default**: `10s`
     
     - **ENV_INPUT_LSBLK_EXCLUDE_DEVICE**
     
-        Prefixes of devices to exclude. (By default, all devices with the prefix `dev` are collected)
+        Excluded device prefix. (By default, collect all devices with dev as the prefix)
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: `exclude_device`
+        **input.conf**: `exclude_device`
     
         **Example**: /dev/loop0,/dev/loop1
 
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All collected data will have a global tag named `host` appended by default (tag value is the hostname where DataKit resides), and additional tags can be specified in the configuration using `[inputs.lsblk.tags]`:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.lsblk.tags]`:
 
-```toml
+``` toml
  [inputs.lsblk.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
 ```
+
+
 
 ### `lsblk`
 
@@ -99,7 +103,7 @@ All collected data will have a global tag named `host` appended by default (tag 
 |`uuid`|Filesystem UUID.|
 |`vendor`|Device vendor.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -110,3 +114,5 @@ All collected data will have a global tag named `host` appended by default (tag 
 |`fsused`|Used space on the filesystem.|int|B|
 |`rq_size`|Request queue size.|int|B|
 |`size`|Size of the device.|int|B|
+
+

@@ -1,31 +1,31 @@
 ---
-title: 'Solr'
-summary: 'Collect metrics data from Solr'
+title     : 'Solr'
+summary   : 'Collect Solr metrics'
 tags:
-  - 'Database'
-__int_icon: 'icon/solr'
-dashboard:
-  - desc: 'Solr'
-    path: 'dashboard/en/solr'
-monitor:
-  - desc: 'Solr'
-    path: 'monitor/en/solr'
+  - 'DATA STORES'
+__int_icon      : 'icon/solr'
+dashboard :
+  - desc  : 'Solr'
+    path  : 'dashboard/en/solr'
+monitor   :
+  - desc  : 'Solr'
+    path  : 'monitor/en/solr'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-The Solr collector is used to collect statistical information such as Solr Cache and Request Times.
+Solr collector, which collects statistics of Solr Cache, Request Times, and so on.
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requrements}
 
-- DataKit uses the Solr Metrics API to collect metrics data, supporting Solr version 7.0 and above.
-- It can also be used for Solr 6.6, but the metrics data may not be complete.
+DataKit uses the Solr Metrics API to collect metrics data and supports Solr 7.0 and above. Available for Solr 6.6, but the indicator data is incomplete.
 
-Tested versions:
+Already tested version:
 
 - [x] 8.11.2
 - [x] 7.0.0
@@ -35,12 +35,12 @@ Tested versions:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `solr.conf.sample` and rename it to `solr.conf`. An example configuration is as follows:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `solr.conf.sample` and name it  `solr.conf`. Examples are as follows:
     
     ```toml
         
     [[inputs.solr]]
-      ## (optional) collection interval, default is 10 seconds
+      ##(optional) collect interval, default is 10 seconds
       interval = '10s'
     
       ## specify a list of one or more Solr servers
@@ -64,29 +64,29 @@ Tested versions:
     
     
     ```
-    
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
 ---
 
-If you need to collect Solr logs, you can enable `files` in *solr.conf* and specify the absolute path of the Solr log file. For example:
+To collect Solr's log, open `files` in Solr.conf and write to the absolute path of the Solr log file. For example:
 
 ```toml
 [inputs.solr.log]
-    # enter the absolute path
+    # fill in the absolute path
     files = ["/path/to/demo.log"]
 ```
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following data collected will append the global election tag by default. You can also specify other tags through `[inputs.solr.tags]` in the configuration:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.solr.tags]` if needed:
 
-```toml
+``` toml
  [inputs.solr.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -109,7 +109,7 @@ All the following data collected will append the global election tag by default.
 |`instance`|Instance name, generated based on server address.|
 |`name`|Cache name.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -127,7 +127,7 @@ All the following data collected will append the global election tag by default.
 |`max_ram`|Maximum heap that should be used by the cache beyond which keys will be evicted.|int|MB|
 |`ram_bytes_used`|Actual heap usage of the cache at that particular instance.|int|B|
 |`size`|Number of entries in the cache at that particular instance.|int|count|
-|`warmup`|Warm-up time for the registered index searcher. This time is taken into account for the "auto-warming" of caches.|int|ms|
+|`warmup`|Warm-up time for the registered index searcher. This time is taken in account for the "auto-warming" of caches.|int|ms|
 
 
 
@@ -145,7 +145,7 @@ All the following data collected will append the global election tag by default.
 |`host`|System hostname.|
 |`instance`|Instance name, generated based on server address.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -160,7 +160,7 @@ All the following data collected will append the global election tag by default.
 |`p99`|Request processing time in milliseconds for the request which belongs to the 99th Percentile.|float|ms|
 |`p999`|Request processing time in milliseconds for the request which belongs to the 99.9th Percentile.|float|ms|
 |`rate_15min`|Requests per second received over the past 15 minutes.|float|req/s|
-|`rate_1min`|Requests per second received over the past 1 minute.|float|req/s|
+|`rate_1min`|Requests per second received over the past 1 minutes.|float|req/s|
 |`rate_5min`|Requests per second received over the past 5 minutes.|float|req/s|
 |`rate_mean`|Average number of requests per second received|float|req/s|
 |`stddev`|Stddev of all the request processing time.|float|ms|
@@ -180,7 +180,7 @@ All the following data collected will append the global election tag by default.
 |`host`|System hostname.|
 |`instance`|Instance name, generated based on server address.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -192,19 +192,19 @@ All the following data collected will append the global election tag by default.
 
 
 
-## Logging {#logging}
+## Log Collection {#logging}
 
-Example of log parsing:
+Example of cutting logs:
 
 ```log
 2013-10-01 12:33:08.319 INFO (org.apache.solr.core.SolrCore) [collection1] webapp.reporter
 ```
 
-Parsed fields:
+Cut fields:
 
-| Field Name     | Field Value                          |
-| -------------- | ------------------------------------ |
-| `Reporter`     | `webapp.reporter`                    |
-| `status`       | `INFO`                               |
-| `thread`       | `org.apache.solr.core.SolrCore`      |
-| `time`         | `1380630788319000000`                |
+| Field Name | Field Value                   |
+| ---------- | ----------------------------- |
+| Reporter   | webapp.reporter               |
+| status     | INFO                          |
+| thread     | org.apache.solr.core.SolrCore |
+| time       | 1380630788319000000           |
