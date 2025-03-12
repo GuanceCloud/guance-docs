@@ -1,31 +1,29 @@
-# Integration Document Consolidation
-
+# Integrated Document Merge
 ---
 
-This document primarily describes how to merge existing integration documents into Datakit's documentation. The current integration documents can be found [here](https://www.yuque.com/dataflux/integrations){:target="_blank"}.
-
+This document focuses on how to incorporate existing integration documents into DataKit's documentation. The existing integration documentation is at [here](https://www.yuque.com/dataflux/integrations){:target="_blank"}.
 <!-- markdownlint-disable MD046 -->
 ???+ Attention
 
-    Documents related to DataKit integrations should not be directly modified in *dataflux-doc/docs/integrations*, as the export of Datakit's own documentation overwrites this directory, which could result in manually added documents being overwritten.
+    Documents related to DataKit integration are not recommended to be modified directly in *dataflux-doc/docs/integrations*, because DataKit's own document export is overwritten to this directory, which may cause documents manually added to *dataflux-doc/docs/integrations* to be overwritten.
 <!-- markdownlint-enable -->
+Noun definition:
 
-Definitions:
+- Document library: Refers to the new document library `dataflux-doc`
 
-- Documentation Repository: Refers to the new documentation repository `dataflux-doc`
+There are several possibilities for merging the integration document into the DataKit document:
 
-After a preliminary review, there are several possibilities for merging integration documents into Datakit documentation:
+- Merge integration documents: Extend existing collector documents directly, such as [CPU integration documents](https://www.yuque.com/dataflux/integrations/fyiw75){:target="_blank"}, which can be merged directly into the collector's cpu.md (man/manuals/cpu.md)
 
-- Merging Integration Documents: Existing collector documents can be expanded directly, for example, the [CPU Integration Document](https://www.yuque.com/dataflux/integrations/fyiw75){:target="_blank"}, which can be merged into the cpu.md (man/manuals/cpu.md) file.
-- Adding New Datakit Documents: If Datakit does not have corresponding documents, new ones need to be created manually in Datakit.
+- Add a DataKit document: If there is no corresponding document in the DataKit, you need to add a document in the DataKit manually
 
-The following sections will describe how to merge these documents based on the above scenarios.
+The following will explain how to merge for the above situations.
 
-## Merging Integration Documents {#merge}
+## Merge Integration Document {#merge}
 
-Most of the content from existing Datakit documents is already present; what is mainly missing are screenshots and scenario navigation. Additionally, environment configurations and metric information are mostly covered. Therefore, when merging, only some screenshots need to be added:
+In the existing DataKit documents, most of the contents in the integrated documents are already available, but the main missing information is screenshot information and scene navigation. In addition, the environment configuration and metric information are basically available. Therefore, when merging, you only need to add some screenshot information:
 
-- Obtain screenshot URLs from the existing Yuque integration documents and download them directly into the current integration documentation repository:
+- In the integrated document of the existing language sparrow, get the link address of the screenshot and download it directly from the current integrated document library:
 
 ```shell
 cd dataflux-doc/docs/integrations
@@ -35,42 +33,42 @@ wget http://yuque-img-url.png -O imgs/input-xxx-2.png
 ...
 ```
 
-> Note: Do not download images into the documentation directory of the Datakit project.
+> Note: Do not download images to the same documentation directory as the DataKit project.
 
-For specific collectors, there may be multiple screenshots. It is recommended to use a consistent naming convention for saving these images. All images should be saved in the *imgs* directory of the integration documentation repository with `input-` as the prefix and numbered accordingly.
+For a specific collector, there may be multiple screenshots here. It is recommended to save these pictures with a fixed naming convention, that is, all the pictures are saved in the *imgs* directory of the integrated document library, and each collector-related picture is prefixed with `input-` and named according to the number.
 
-After downloading the images, add them to the Datakit documentation. For specifics, refer to the existing CPU collector example (man/manuals/cpu.md).
+After downloading the picture, add it to the DataKit document, as shown in the existing CPU collector sample (man/manuals/cpu.md).
 
 - Compile DataKit
 
-Since changes are made to Datakit's own documentation, compilation is required for the changes to take effect. For compiling Datakit, see [here](https://github.com/GuanceCloud/datakit/blob/github-mirror/README.zh_CN.md){:target="_blank"}.
+As the document of DataKit itself is modified, it needs to be compiled to take effect. DataKit compilation, see [here](https://github.com/GuanceCloud/datakit/blob/github-mirror/README.zh_CN.md){:target="_blank"}.
 
-If you encounter difficulties during compilation, you can temporarily ignore it and submit the modifications as a merge request to the Datakit repository. The development team can handle the compilation and synchronization to the documentation repository.
+If the compilation process is difficult, you can ignore it for the time being, and directly submit the above changes to the merge request to the DataKit repository, which can be compiled by the development side for the time being and finally synchronized to the document library.
 
-## Adding New Datakit Documents {#add}
+## Add DataKit Doc {#add}
 
-For integration documents that do not have direct collector support in Datakit, the process is simpler. Using Resin from the existing integration library as an example, the steps are outlined below.
+For integration documents that are not supported by direct collectors in DataKit, it will be easier to add them. Let's take resin in the existing integration library as an example to illustrate the above process.
 
-- Obtain the Markdown source from the existing Yuque page and save it to the *man/manuals/* directory
+- Get the markdown text from the existing page of the language sparrow and save it to the *man/manuals/* directory
 
-By appending "markdown" to the URL of the Resin integration page, [you can access its Markdown source](https://www.yuque.com/dataflux/integrations/resin/markdown){:target="_blank"}. Select all and copy, then save it as *man/manuals/resin.md*.
+Add markdown directly to the URL of the resin integration page, [visit to get its original markdown text](https://www.yuque.com/dataflux/integrations/resin/markdown){:target="_blank"}, select all copies, and save them to *man/manuals/resin.md*.
 
-After downloading, adjust the formatting inside, removing unnecessary HTML decorations (refer to the current *resin.md* for guidance). Additionally, download all images (similar to the CPU example) and save them, then reference these images in the new *resin.md*.
+After downloading, modify the layout, specifically, remove some unnecessary html decorations (see how the current resin.md is changed), and download all those pictures (as in the CPU example above), save them, and then reference them in the new resin.md.
 
-- Modify the directory structure in *man/manuals/integrations.pages* and add the corresponding document
+- Modify the directory structure in *man/manuals/integrations.pages* to add corresponding documents
 
-Since Resin is a type of Web server, in the existing *integrations.pages* file, place it alongside Nginx/Apache:
+Because resin is a kind of web server, we put it with nginx/apache in the existing *integrations.pages* file:
 
 ```yaml
-- "Web Server"
+- 'Web server'
   - 'Nginx': nginx.md
   - apache.md
   - resin.md
 ```
 
-- Modify the *mkdocs.sh* script
+- Modify `mkdocs.sh` script
 
-Modify the *mkdocs.sh* script to add the new document to the export list:
+Modify the `mkdocs.sh` script to add the new document to the export list:
 
 ```shell
 cp man/manuals/resin.md $integration_docs_dir/
@@ -78,34 +76,32 @@ cp man/manuals/resin.md $integration_docs_dir/
 
 ## Document Generation and Export {#export}
 
-In the existing Datakit repository, running *mkdocs.sh* directly will compile and publish the documents. Currently, *mkdocs.sh* exports the documents into two separate directories, syncing them to the *datakit* and *developers* directories in the documentation repository.
+In DataKit's existing repository, you can implement the two steps of compiling and publishing by directly executing `mkdocs.sh`. In `mkdocs.sh`, the document is currently exported directly into two copies, synchronized to the DataKit and integrations directories of the document library.
 
-To insert images into the documents, place them in the respective *imgs* directories under *datakit* and *integrations*. Refer to [the previous examples](integrations-to-dk-howto.md#merge) for image referencing.
+If you want to insert pictures into your document, you can place them in the *imgs* directories of DataKit and integrations, respectively. For how to reference pictures, refer to [example above](integrations-to-dk-howto.md#merge).
 
-Below are the specific steps for local operations in the documentation repository.
+Let's talk about the local operation mode of the document library. The main steps are as follows.
 
-- Clone the existing documentation repository and install dependencies
+- Clone existing document libraries and install corresponding dependencies
 
-```shell
+``` shell
 cd ~/ && mkdir -p git && cd git
 git clone ssh://git@gitlab.jiagouyun.com:40022/zy-docs/dataflux-doc.git
 cd dataflux-doc
-pip install -r requirements.txt # You might need to update your pip version
+pip install -r requirements.txt # You may be asked to update the pip version during the period
 ```
-
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    After installing MKDocs, you may need to set `$PATH`. On Mac, the setup might look like this (find the `mkdocs` binary location):
-
-    ```shell
+    After `mkdocs` is installed, you may need to set $PATH, and the setting of Mac may be like this (you can find the binary location of `mkdocs` under find):
+    
+    ``` shell
     PATH="/System/Volumes/Data/Users/<user-name>/Library/Python/3.8/bin:$PATH"
     ```
 <!-- markdownlint-enable -->
+- Familiar with `mkdocs.sh`
 
-- Familiarize yourself with *mkdocs.sh*
+There is a `mkdocs.sh` script in the DataKit root directory, which exports all DataKit documents, copies them to different directories in the document library and finally starts the local document service.
 
-In the root directory of Datakit, there is a *mkdocs.sh* script responsible for exporting all Datakit documents and copying them to different directories in the documentation repository, finally starting the local documentation service.
-
-- Access `http://localhost:8000` to view the documents locally.
-- After debugging is complete, submit a Merge Request to the `mkdocs` branch of the Datakit project.
+- Visit local <http://localhost:8000>
+- After debugging, submit the Merge Request to the `mkdocs` branch of the DataKit project

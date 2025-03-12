@@ -1,14 +1,12 @@
 ---
 title     : 'Pipeline Offload'
-summary   : 'Receive data to be processed from DataKit Pipeline Offload'
-__int_icon: 'icon/ploffload'
-tags      :
-  - 'PIPELINE'
+summary   : 'Receive pending data offloaded from the datakit pipeline'
+__int_icon      : 'icon/ploffload'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -16,9 +14,9 @@ monitor   :
 
 ---
 
-The PlOffload collector is used to receive data to be processed from the DataKit Pipeline Offload feature.
+The PlOffload collector is used to receive pending data offloaded from the DataKit Pipeline Offload function.
 
-This collector registers a route on the http service started by DataKit: `/v1/write/ploffload/:category`, where the `category` parameter can be `logging`, `network`, etc. It is mainly used for asynchronously processing data after receiving it, caching data to disk when the Pipeline script does not process data in time.
+The collector will register the route on the http service enabled by DataKit: `/v1/write/ploffload/:cagetory`, where the `category` parameter can be `logging`, `network`, etc. It is mainly used to process data asynchronously after receiving it, and cache the data to disk after the Pipeline script fails to process the data in time.
 
 ## Configuration  {#config}
 
@@ -26,10 +24,10 @@ This collector registers a route on the http service started by DataKit: `/v1/wr
 
 <!-- markdownlint-disable MD046 -->
 
-=== "Host Deployment"
+=== "host installation"
 
-    Navigate to the `conf.d/ploffload` directory under the DataKit installation directory, copy `ploffload.conf.sample` and rename it to `ploffload.conf`. An example is as follows:
-
+    Go to the `conf.d/ploffload` directory under the DataKit installation directory, copy `ploffload.conf.sample` and name it `ploffload.conf`. Examples are as follows:
+    
     ```toml
         
     [inputs.ploffload]
@@ -42,27 +40,27 @@ This collector registers a route on the http service started by DataKit: `/v1/wr
         # capacity = 5120
     
     ```
-
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    After configuration, [restart Datakit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    In Kubernetes, configuration parameters can be modified via environment variables:
+    Kubernetes supports modifying configuration parameters in the form of environment variables:
 
-    | Environment Variable Name                  | Corresponding Configuration Item | Parameter Example          |
-    | :----------------------------------------- | --------------------------------- | --------------------------- |
-    | `ENV_INPUT_PLOFFLOAD_STORAGE_PATH`         | `storage.path`                    | `./ploffload_storage`       |
-    | `ENV_INPUT_PLOFFLOAD_STORAGE_CAPACITY`     | `storage.capacity`                | `5120`                      |
+    | Environment Variable Name              | Corresponding Configuration Parameter Item | Parameter             |
+    | :------------------------------------- | ------------------------------------------ | --------------------- |
+    | `ENV_INPUT_PLOFFLOAD_STORAGE_PATH`     | `storage.path`                             | `./ploffload_storage` |
+    | `ENV_INPUT_PLOFFLOAD_STORAGE_CAPACITY` | `storage.capacity`                         | `5120`                |
 
 <!-- markdownlint-enable -->
 
 ### Usage {#usage}
 
-After configuration is complete, change the value of the `pipeline.offload.receiver` item in the main configuration file `datakit.yaml` of the DataKit that needs to offload data to `ploffload`.
+After the configuration is completed, you need to change the value of the configuration item `pipeline.offload.receiver` in the `datakit.yaml` main configuration file of the datakit to be unloaded to `ploffload`.
 
-Check if the `listen` configuration item under `[http_api]` in the main DataKit configuration file has the host address set to `0.0.0.0` (or LAN IP, WAN IP). If it is `127.0.0.0/8`, external access will not be possible, and modifications are needed.
+Please check whether the host address of the `listen` configuration item under `[http_api]` in the DataKit main configuration file is `0.0.0.0` (or LAN IP or WAN IP). If it is `127.0.0.0/8`, then Not accessible externally and needs to be modified.
 
-If you need to enable disk cache functionality, uncomment the `storage` related configurations in the collector configuration, such as modifying it to:
+If you need to enable the disk cache function, you need to cancel the `storage` related comments in the collector configuration, such as modifying it to:
 
 ```toml
 [inputs.ploffload]

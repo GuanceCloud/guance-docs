@@ -1,18 +1,13 @@
 ---
 skip: 'not-searchable-on-index-page'
+title: 'Guance OTEL Plugins ChangeLog'
 ---
 
-# Changelog
+## Intro {#intro}
 
----
+The native OTEL agent does not fully support some well-known mainstream frameworks. On this basis, we have made some improvements to support more mainstream frameworks and key data tracking.
 
-> *Authors: Liu Rui, Song Longqi*
-
-## Introduction {#intro}
-
-The native OTEL agent has inadequate support for some mainstream frameworks. On this basis, we have made some improvements to support more mainstream frameworks and critical data tracing.
-
-The current OTEL has added extensions for the following technology stacks:
+Currently, OTEL has added the following technology stack extensions:
 
 <!-- markdownlint-disable MD046 MD030 -->
 <div class="grid cards" markdown>
@@ -29,72 +24,56 @@ The current OTEL has added extensions for the following technology stacks:
 </div>
 <!-- markdownlint-enable -->
 
-## Changelog {#changelog}
-
-<!--
-
-The changelog can refer to the basic paradigm of Datakit:
-
-## 1.2.3(2022/12/12) {#cl-1.2.3}
-This release mainly includes the following updates:
-
-### New Features {#cl-1.2.3-new}
-### Bug Fixes {#cl-1.2.3-fix}
-### Enhancements {#cl-1.2.3-opt}
-### Compatibility Changes {#cl-1.2.3-brk}
-
---->
+## changelog {#changelog}
 
 ## 1.28.0-guance (2023/7/7) {#cl-1.28.0-guance}
 
-### New Features {#cl-1.28.0-guance-new}
+### new {#cl-1.28.0-guance-new}
 
-- Merge the latest branch from OpenTelemetry
+- Merge open-telemetry v1.28.0
 
 ---
 
 ## 1.26.3-guance (2023/7/7) {#cl-1.26.3-guance}
 
-### New Features {#cl-1.26.3-guance-new}
+### new {#cl-1.26.3-guance-new}
 
-- Add [guance-exporter](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/17){:target="_blank"}
+- Support [guance-exporter](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/17){:target="_blank"}
 
 ---
 
 ## 1.26.2-guance (2023/6/15) {#cl-1.26.2-guance}
-Download the jar file for this version: [v1.26.2-guance](https://static.guance.com/dd-image/opentelemetry-javaagent-1.26.2-guance.jar){:target="_blank"}
+download this version jar: [v1.26.2-guance](https://static.guance.com/dd-image/opentelemetry-javaagent-1.26.2-guance.jar)
 
-### New Features {#cl-1.26.2-guance-new}
+### new {#cl-1.26.2-guance-new}
 
-- [Add DB statement desensitization](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/15){:target="_blank"}
-
----
+- [DB Obfuscation](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/15){:target="_blank"}
 
 ## 1.26.1-guance (2023/6/9) {#cl-1.26.1-guance}
 
-### New Features {#cl-1.26.1-guance-new}
+### new {#cl-1.26.1-guance-new}
 
-- Non-intrusive support for capturing method input parameters [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/12){:target="_blank"}
-- Integration with Alibaba Cloud HSF framework [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/12){:target="_blank"}
+- The non-intrusive method supports obtaining the input parameter information of a specific method [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/12){:target="_blank"}
+- Alibaba Cloud HSF framework integration [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/12){:target="_blank"}
 
 ---
 
 ## 1.26.0-guance (2023/6/1) {#cl-1.26.0-guance}
 
-### New Features {#cl-1.26.0-guance-new}
+### new {#cl-1.26.0-guance-new}
 
-- Merge the latest OpenTelemetry branch v1.26.0
-- Support for Dameng Database [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/5){:target="_blank"}
+- Merge OpenTelemetry tag v1.26.0
+- Support Damned database [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/5){:target="_blank"}
 
 ---
 
 ## 1.25.0-guance (2023/5/10) {#cl-1.25.0-guance}
 
-### New Features {#cl-1.25.0-guance-new}
+### new {#cl-1.25.0-guance-new}
 
-- Merge the latest OpenTelemetry branch v1.25.0
-- Support for xxl-job 2.3 [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/1){:target="_blank"}
-- Add support for Alibaba Dubbo and Dubbox frameworks [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/2){:target="_blank"}
-- Support for Thrift [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/3){:target="_blank"}
+- Merge OpenTelemetry tag v1.25.0
+- Support xxl-job 2.3 [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/1){:target="_blank"}
+- Support Alibaba Dubbo and Dubbox framework integration [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/2){:target="_blank"}
+- Support thrift [GitHub-Issue](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/issues/3){:target="_blank"}
 
 ---

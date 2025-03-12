@@ -1,150 +1,148 @@
-# View Datakit's Monitor
+
+# View Monitor for Datakit
 ---
 
-Datakit provides relatively comprehensive basic observability information output. By viewing Datakit’s monitor output, we can clearly understand the current operational status of Datakit.
+Datakit provides relatively complete output of basic observable information. By looking at the monitor output of Datakit, we can clearly know the current operation of Datakit.
 
 ## View Monitor {#view}
 
-Execute the following command to obtain the operational status of the local Datakit.
+Execute the following command to get the running status of the native Datakit.
 
-``` shell
+```shell
 datakit monitor
 ```
-
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    You can view more monitor options via `datakit help monitor`.
+    You can see more monitor options through the `datakit help monitor`.
 <!-- markdownlint-enable -->
+The Datakit Basic Monitor page information is shown in the following figure:
 
-The basic Monitor page information for Datakit is shown in the figure below:
+![`onitor-basic-v1`](https://static.guance.com/images/datakit/monitor-basic-v1.png)
 
-![not-set](https://static.guance.com/images/datakit/monitor-basic-v1.png)
+The elements in this diagram can be manipulated by mouse or keyboard. Blocks selected by the mouse are highlighted in bilateral boxes (as shown in the `Basic Info` block in the upper left corner of the above figure), and can also be browsed through the mouse wheel or the up and down arrow keys of the keyboard (or J/K of vim).
 
-Elements in this diagram can be operated using a mouse or keyboard. The block selected by the mouse will be highlighted with double borders (as shown in the `Basic Info` block in the upper left corner of the above image). Additionally, you can browse using the mouse scroll wheel or the up/down arrow keys on the keyboard (or vim's J/K).
+The information of each UI block in the above figure is:
 
-Each UI block in the above image contains the following information:
+- `Basic Info` is used to display basic information about Datakit, such as the version number, hostname, and runtime duration. From here, we can get a basic understanding of the current status of Datakit. Here are a few fields highlighted for individual explanation:
+    - `Uptime`: The startup time of Datakit.
+    - `Version`: The current version number of Datakit.
+    - `Build`: The release date of Datakit.
+    - `Branch`: The current code branch of Datakit, which is usually `master`.
+    - `Build Tag`: The compilation options for Datakit; for the [Lite version](datakit-install.md#lite-install), this is `lite`.
+    - `OS/Arch`: The current hardware and software platform of Datakit.
+    - `Hostname`: The current hostname.
+    - `Resource Limit`: Displays the current resource limit configurations for Datakit, where `mem` refers to the maximum memory limit, and `cpu` refers to the usage limit range (if displayed as `-`, it means the current cgroup is not set).
+    - `Elected`: Shows the election status, see [here](election.md#status) for details.
+    - `From`: The current Datakit address being monitored, such as `http://localhost:9529/metrics`.
+    - `Proxy`: The current proxy server being used.
 
-- `Basic Info` displays basic information about Datakit, such as version number, hostname, runtime duration, etc. From here, we can get a basic understanding of the current state of Datakit. Here are a few fields explained separately:
-    - `Uptime`: Datakit’s startup time
-    - `Version`: Current version number of Datakit
-    - `Build`: Release time of Datakit
-    - `Branch`: Current code branch of Datakit, usually `master`
-    - `Build Tag`: Compilation options for Datakit, [Lite Edition](datakit-install.md#lite-install) shows `lite`
-    - `OS/Arch`: Current software and hardware platform of Datakit
-    - `Hostname`: Current hostname
-    - `Resource Limit`: Displays the current resource limit configuration of Datakit, where `mem` refers to the maximum memory limit, and `cpu` refers to the usage rate limit range (if displayed as `-`, it means that the current cgroup is not set)
-    - `Elected`: Displays election status, see [here](election.md#status)
-    - `From`: The address of the Datakit currently being monitored, such as `http://localhost:9529/metrics`
-    - `Proxy`: The proxy server currently in use
+- `Runtime Info` is used to display the basic runtime consumption of Datakit (mainly memory, CPU and Golang runtime), including:
 
-- `Runtime Info` displays basic runtime consumption of Datakit (mainly memory, CPU, and Golang runtime), including:
+    - `Goroutines`: The number of Goroutine currently running.
+    - `Total/Heap`: The memory occupied by the Golang virtual memory(`sys-alloc`) and the memory currently in use(`heap-alloc`) [^go-mem].
+    - `RSS/VMS`: The RSS memory usage and VMS.
+    - `GC Paused`: The time and number of times the GC (garbage collection) has consumed since Datakit started.
+    - `OpenFiles`: The number of files currently open (on some platforms, it may display as `-1`, indicating that the feature is not supported).
 
-    - `Goroutines`: The number of Goroutines currently running
-    - `Total/Heap`: Memory used by the Golang VM and the memory currently in use (*excluding external collectors*)[^go-mem]
-    - `RSS/VMS`: RSS memory usage and VMS (*excluding external collectors*)
-    - `GC Paused`: Time and frequency consumed by GC (garbage collection) since Datakit started
-    - `OpenFiles`: Number of currently open files (may show as `-1` on some platforms, indicating that the feature is unsupported)
+[^go-mem]: Note that the memory usage displayed here is specific to the Golang virtual machine and does not include the memory used by external collectors that may be running.
 
-[^go-mem]: For more information on Runtime Info, refer to the [Golang official documentation](https://pkg.go.dev/runtime#ReadMemStats){:target="_blank"}
+- `Enabled Inputs` displays a list of open collectors:
 
-- `Enabled Inputs` displays the list of enabled collectors, including:
+    - `Input`: Refer to the collector(input) name, which is fixed and cannot be modified
+    - `Count`: Refer to the number of the collector turned on
+    - `Crashed`: Refer to the number of crashes of the collector
 
-    - `Input`: Refers to the collector name, which is fixed and cannot be modified
-    - `Count`: Refers to the number of instances of this collector that are enabled
-    - `Crashed`: Refers to the number of times this collector has crashed
+- `Inputs Info`: It is used to show the running status of each collector. There is more information here:
 
-- `Inputs Info`: Displays the collection status of each collector. There is a lot of information here, broken down as follows:
-    - `Input`: Refers to the collector name. In some cases, this name is customized by the collector (e.g., Log collector/Prom collector)
-    - `Cat`: Refers to the type of data collected by the collector (M(Metrics)/L(Logs)/O(Object)...)
-    - `Feeds`: Refers to the number of times the collector has updated data (collected) since startup
-    - `P90Lat`: Refers to the blocking duration (P90) when reporting data points; if the time is longer, it indicates slower data transmission [:octicons-tag-24: Version-1.36.0](../datakit/changelog.md#cl-1.36.0)
-    - `P90Pts`: Number of points collected by the collector (P90) [:octicons-tag-24: Version-1.36.0](../datakit/changelog.md#cl-1.36.0)
-    - `Filtered`: Number of points filtered out by the blacklist
-    - `Last Feed`: Last time data was updated (collected) relative to the current time
-    - `Avg Cost`: Average cost per collection
-    - `Errors`: Number of collection errors (not displayed if there are none)
+    - `Input`: Refer to the collector name. In some cases, this name is collector-specific (such as Log Collector/Prom Collector)
+    - `Cat`: Refer to the type of data collected by the collector (M (metrics)/L (logs)/O (objects...)
+    - `Feeds`: Total updates(collects) since Datakit started
+    - `P90Lat`: Feed latency(blocked on queue) time(p90). The longer the duration, the slower the upload workers [:octicons-tag-24: Version-1.36.0](../datakit/changelog.md#cl-1.36.0)
+    - `P90Pts`: Points(P90) collected of the collector [:octicons-tag-24: Version-1.36.0](../datakit/changelog.md#cl-1.36.0)
+    - `Last Feed`: Time of last update(collect), relative to current time
+    - `Avg Cost`: Average cost of each collect
+    - `Errors`: Collect error count(if no error, empty here)
 
-- The bottom text prompt informs how to exit the current Monitor program and shows the current Monitor refresh frequency.
+- The prompt text at the bottom tells you how to exit the current Monitor program and displays the current Monitor refresh rate.
 
 ---
 
-If the verbose option (`-V`) is specified when running Monitor, additional information will be output, as shown in the figure below:
+If the verbose option (`-V`) is specified when Monitor is run, additional information is output, as shown in the following figure:
 
-![not-set](https://static.guance.com/images/datakit/monitor-verbose-v1.png)
+![`monitor-verbose-v1`](https://static.guance.com/images/datakit/monitor-verbose-v1.png)
 
-- `Goroutine Groups` displays the Goroutine groups present in Datakit (the number of Goroutines in these groups <= the number of `Goroutines` in the panel above)
-- `HTTP APIs` displays the API call situation in Datakit
-- `Filter` displays the blacklisting filter rules pull status in Datakit
-- `Filter Rules` displays the filtering status for each type of blacklist
-- `Pipeline Info` displays the Pipeline runtime status
-- `WAL Info` displays the usage status of the WAL queue [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
+- `Goroutine Groups` shows the existing Goroutine Groups in the Datakit (the number of Goroutines in the group < = the number of `Goroutines` in the panel above).
+- `HTTP APIs`: HTTP API request info
+- `Filter`: Pull of blacklist filtering rules
+- `Filter Rules`: Filtering of each type of blacklist
+- `Pipeline Info`: Pipeline running info
+- `WAL Info` WAL Queue Usage [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
-    The WAL queue consists of two parts: a small memory queue and a default 2GB disk queue. Here, `mem` refers to the number of points processed by the memory queue, `disk` refers to the number of points processed by the disk queue, and `drop` refers to the number of points discarded by the disk queue (e.g., when the disk queue is full). Total refers to the total number of points.
+    The WAL queue consists of two parts: a small in-memory queue and a default 2GB disk queue. Here, `mem` refers to the number of points processed by the in-memory queue, `disk` refers to the number of points processed by the disk queue, and `drop` refers to the number of points discarded by the disk queue (for example, when the disk queue is full). Total refers to the total number of points.
 
-- `Point Upload Info` displays the runtime status of the data upload channel [^point-upload-info-on-160]
-- `DataWay APIs` displays the call status of the Dataway API
+- `Point Upload Info` Displays the operation of the data upload channel [^point-upload-info-on-160].
+- `DataWay APIs` Displays the invocation situation of Dataway APIs.
 
-[^point-upload-info-on-160]: [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) updates this section; previous versions may have slightly different displays here.
+[^point-upload-info-on-160]: [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) There have been updates here, and previous versions may show slightly different information.
 
 ## FAQ {#faq}
-
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to display the operational status of a specific Datakit module? {#specify-module}
+### :material-chat-question:How to show only the operation of the specified module? {#specify-module}
 <!-- markdownlint-enable -->
-
-You can specify a list of module names (multiple modules separated by English commas): [:octicons-tag-24: Version-1.5.7](changelog.md#cl-1.5.7)
+You can specify a list of module names (multiple modules are separated by English commas): [:octicons-tag-24: Version-1.5.7](changelog.md#cl-1.5.7)
 
 ```shell
 datakit monitor -M inputs,filter
 # or
 datakit monitor --module inputs,filter
 
-# Also, you can use abbreviations of module names
+# use thd module abbreviation
 datakit monitor -M in,f
 ```
-
-### :material-chat-question: How to display the operational status of specific collectors? {#specify-inputs}
-
-You can specify a list of collector names (multiple collectors separated by English commas):
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: How to show only the operation of the specified collector? {#specify-inputs}
+<!-- markdownlint-enable -->
+You can specify a list of collector names (multiple collectors are separated by English commas):
 
 ```shell
 datakit monitor -I cpu,mem
 # or
 datakit monitor --input cpu,mem
 ```
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: How to display too long text? {#too-long}
+<!-- markdownlint-enable -->
+When some collectors report errors, their error information will be very long and incomplete in the table.
 
-### :material-chat-question: How to display too long texts? {#too-long}
-
-When certain collectors generate error messages, they can be very long and not fully displayed in the table. You can set the column width to display complete information:
+Complete information can be displayed by setting the column width of the display:
 
 ```shell
 datakit monitor -W 1024
 # or
 datakit monitor --max-table-width 1024
 ```
-
-### :material-chat-question: How to change the Monitor refresh frequency? {#freq}
-
-You can change the refresh frequency by setting it:
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: How to change the Monitor refresh rate? {#freq}
+<!-- markdownlint-enable -->
+It can be changed by setting the refresh frequency:
 
 ```shell
 datakit monitor -R 1s
 # or
 datakit monitor --refresh 1s
 ```
-
 <!-- markdownlint-disable MD046 -->
-???+ info
+???+ attention
 
-    Note the units here must be one of the following: s (seconds), m (minutes), h (hours). If the time range is less than 1s, it will refresh at 1s intervals.
+    Note that the units here must be the following: s (seconds)/m (minutes)/h (hours). If the time range is less than 1s, refresh according to 1s. 
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to monitor other Datakits? {#remote-monitor}
+### :material-chat-question: How to Monitor other DataKits? {#remote-monitor}
 <!-- markdownlint-enable -->
 
-You can specify the Datakit address to view its monitor data:
+We can specify other Datakit's IP to show it's monitor:
 
 ```shell
 datakit monitor --to <remote-ip>:9529
@@ -153,5 +151,5 @@ datakit monitor --to <remote-ip>:9529
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    By default, monitor data cannot be accessed from non-localhost addresses. You can [manually add it to the API whitelist](datakit-conf.md#public-apis).
+    By default, metrics data used by monitor are not accessible for non-localhost, we can [add API `/metrics` to API white list](datakit-conf.md#public-apis).
 <!-- markdownlint-enable -->

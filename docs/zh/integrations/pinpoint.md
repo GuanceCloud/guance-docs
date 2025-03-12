@@ -248,6 +248,7 @@ Pinpoint APM 链路数据较为复杂：
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|

@@ -67,6 +67,9 @@ monitor   :
       ## Enable open files field, default is false
       enable_open_files = false
     
+      ## only collect container-based process(object and metric)
+      only_container_processes = false
+    
       # Extra tags
       [inputs.host_processes.tags]
       # some_tag = "some_value"
@@ -132,6 +135,36 @@ monitor   :
         **采集器配置字段**: `tags`
     
         **示例**: tag1=value1,tag2=value2
+    
+    - **ENV_INPUT_HOST_PROCESSES_ONLY_CONTAINER_PROCESSES**
+    
+        只采集容器进程的指标和对象
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `only_container_processes`
+    
+        **默认值**: false
+    
+    - **ENV_INPUT_HOST_PROCESSES_METRIC_INTERVAL**
+    
+        指标采集间隔
+    
+        **字段类型**: Duration
+    
+        **采集器配置字段**: `metric_interval`
+    
+        **默认值**: 30s
+    
+    - **ENV_INPUT_HOST_PROCESSES_object_interval**
+    
+        对象采集间隔
+    
+        **字段类型**: Duration
+    
+        **采集器配置字段**: `object_interval`
+    
+        **默认值**: 300s
 
 <!-- markdownlint-enable -->
 
@@ -175,9 +208,19 @@ Collect process metrics, including CPU/memory usage, etc.
 |`cpu_usage`|CPU usage, the percentage of CPU occupied by the process since it was started. This value will be more stable (different from the instantaneous percentage of `top`)|float|percent|
 |`cpu_usage_top`|CPU usage, the average CPU usage of the process within a collection cycle|float|percent|
 |`mem_used_percent`|Memory usage percentage|float|percent|
+|`nonvoluntary_ctxt_switches`|From /proc/[PID]/status. Context switches that nonvoluntary drop the CPU. Linux only|int|count|
 |`open_files`|Number of open files (only supports Linux)|int|count|
+|`page_children_major_faults`|Linux from */proc/[PID]/stat*. The number of major page faults for this process. Linux only|int|B|
+|`page_children_minor_faults`|Linux from */proc/[PID]/stat*. The number of minor page faults for this process. Linux only|int|B|
+|`page_major_faults`|Linux from */proc/[PID]/stat*. The number of major page faults. Linux only|int|B|
+|`page_minor_faults`|Linux from */proc/[PID]/stat*. The number of minor page faults. Linux only|int|B|
+|`proc_read_bytes`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Read bytes from disk|int|B|
+|`proc_syscr`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Count of `read()` like syscall`. Linux&Windows only|int|count|
+|`proc_syscw`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Count of `write()` like syscall`. Linux&Windows only|int|count|
+|`proc_write_bytes`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Written bytes to disk|int|B|
 |`rss`|Resident Set Size (resident memory size)|int|B|
 |`threads`|Total number of threads|int|count|
+|`voluntary_ctxt_switches`|From /proc/[PID]/status. Context switches that voluntary drop the CPU, such as `sleep()/read()/sched_yield()`. Linux only|int|count|
 
 
 
@@ -207,7 +250,6 @@ Collect data on process objects, including process names, process commands, etc.
 |  ----  | --------|
 |`container_id`|Container ID of the process, only supported Linux|
 |`host`|Host name|
-|`listen_ports`|The port the process is listening onW|
 |`name`|Name field, consisting of `[host-name]_[pid]`|
 |`process_name`|Process name|
 |`state`|Process status, currently not supported on Windows|
@@ -221,15 +263,26 @@ Collect data on process objects, including process names, process commands, etc.
 |`cmdline`|Command line parameters for the process|string|-|
 |`cpu_usage`|CPU usage, the percentage of CPU occupied by the process since it was started. This value will be more stable (different from the instantaneous percentage of `top`)|float|percent|
 |`cpu_usage_top`|CPU usage, the average CPU usage of the process within a collection cycle|float|percent|
+|`listen_ports`|The port the process is listening on|string|-|
 |`mem_used_percent`|Memory usage percentage|float|percent|
 |`message`|Process details|string|-|
+|`nonvoluntary_ctxt_switches`|From /proc/[PID]/status. Context switches that nonvoluntary drop the CPU. Linux only|int|count|
 |`open_files`|Number of open files (only supports Linux, and the `enable_open_files` option needs to be turned on)|int|count|
+|`page_children_major_faults`|Linux from */proc/[PID]/stat*. The number of major page faults of it's child processes. Linux only|int|B|
+|`page_children_minor_faults`|Linux from */proc/[PID]/stat*. The number of minor page faults of it's child processes. Linux only|int|B|
+|`page_major_faults`|Linux from */proc/[PID]/stat*. The number of major page faults. Linux only|int|B|
+|`page_minor_faults`|Linux from */proc/[PID]/stat*. The number of minor page faults. Linux only|int|B|
 |`pid`|Process ID|int|-|
+|`proc_read_bytes`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Read bytes from disk|int|B|
+|`proc_syscr`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Count of `read()` like syscall`. Linux&Windows only|int|count|
+|`proc_syscw`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Count of `write()` like syscall`. Linux&Windows only|int|count|
+|`proc_write_bytes`|Linux from */proc/[PID]/io*, Windows from `GetProcessIoCounters()`. Written bytes to disk|int|B|
 |`rss`|Resident Set Size (resident memory size)|int|B|
 |`start_time`|process start time|int|msec|
 |`started_duration`|Process startup time|int|sec|
 |`state_zombie`|Whether it is a zombie process|bool|-|
 |`threads`|Total number of threads|int|count|
+|`voluntary_ctxt_switches`|From /proc/[PID]/status. Context switches that voluntary drop the CPU, such as `sleep()/read()/sched_yield()`. Linux only|int|count|
 |`work_directory`|Working directory (Linux only)|string|-|
 
 

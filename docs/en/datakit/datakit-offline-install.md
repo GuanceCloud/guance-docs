@@ -1,23 +1,22 @@
+
 # Offline Deployment
 ---
 
-<!-- markdownlint-disable MD029 -->
+In some cases, the target machine does not have a public access exit, so you can install DataKit offline as follows.
 
-In some cases, the target machine does not have public network access. The following method can be used to install DataKit offline.
+## Agent Installation {#install-via-proxy}
 
-## Proxy Installation {#install-via-proxy}
+If there is a machine in the intranet that can access the external, a proxy can be deployed at the node to proxy the access traffic of the intranet machine through the machine.
 
-If the internal network has a machine that can access the external network, you can deploy a proxy on this node to route the internal network machine's traffic through this machine.
-
-Currently, DataKit has a built-in proxy collector; it can also achieve the same purpose using Nginx’s forward proxy feature. The basic network structure is as follows:
+At present, DataKit has a inner proxy collector; The same goal can also be achieved through Nginx forward proxy function. The basic network structure is as follows:
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/dk-nginx-proxy.png){ width="700"}
 </figure>
 
-### Prerequisites {#requrements}
+### Preconditions {#requrements}
 
-- Install a DataKit on a machine with public network access via [standard installation method](datakit-install.md), and enable the [proxy](../integrations/proxy.md) collector on this DataKit. Assume the IP of the DataKit where the proxy collector is located is 1.2.3.4, with the following configuration:
+- Install a DataKit on a machine with a public network exit [in the normal installation mode](datakit-install.md), and turn on the proxy collector on the DataKit, assuming that the [proxy](../integrations/proxy.md) collector is located in Datakit IP 1.2. 3.4, with the following configuration:
 
 ```toml
 [[inputs.proxy]]
@@ -27,22 +26,21 @@ Currently, DataKit has a built-in proxy collector; it can also achieve the same 
   port = 9530
 ```
 
-- Or prepare an Nginx configured for forward proxy.
-
-<!-- markdownlint-disable MD046 MD034 -->
+- Or Nginx ready to configure the forward proxy
+<!-- markdownlint-disable MD046 -->
 === "Linux/Mac"
 
-    - Using DataKit Proxy
+    - Use the DataKit proxy
     
-    Add environment variable `HTTPS_PROXY="1.2.3.4:9530"`, the installation command is as follows:
+    Add the environment variable `HTTPS_PROXY="1.2.3.4:9530"`, and the installation command is as follows:
     
     ```shell
     DK_DATAWAY=https://openway.guance.com?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L https://static.guance.com/datakit/install.sh)"'
     ```
-
-    - Using Nginx Proxy
     
-    Add environment variable `DK_PROXY_TYPE="nginx"; DK_NGINX_IP="1.2.3.4";`, the installation command is as follows:
+    - Using the Nginx proxy
+    
+    Add the environment variable `DK_PROXY_TYPE="nginx"; DK_NGINX_IP="1.2.3.4";`, and the installation command is as follows:
     
     ```shell
     DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NGINX_IP=1.2.3.4 HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L https://static.guance.com/datakit/install.sh)"'
@@ -50,9 +48,9 @@ Currently, DataKit has a built-in proxy collector; it can also achieve the same 
 
 === "Windows"
 
-    - Using DataKit Proxy
+    - Using the DataKit proxy
     
-    Add environment variable `$env:HTTPS_PROXY="1.2.3.4:9530"`, the installation command is as follows:
+    Add the environment variable `$env:HTTPS_PROXY="1.2.3.4:9530"`, and the installation command is as follows:
     
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
@@ -63,10 +61,10 @@ Currently, DataKit has a built-in proxy collector; it can also achieve the same 
     start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
-
-    - Using Nginx Proxy
     
-    Add environment variable `$env:DK_PROXY_TYPE="nginx"; $env:DK_NGINX_IP="1.2.3.4";`, the installation command is as follows:
+    - Using the Nginx proxy
+    
+    Add the environment variable `$env:DK_PROXY_TYPE="nginx"; $env:DK_NGINX_IP="1.2.3.4";`, and the installation command is as follows:
     
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
@@ -78,82 +76,78 @@ Currently, DataKit has a built-in proxy collector; it can also achieve the same 
     start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
-
-    > Note: Other installation parameter settings are the same as [standard installation](datakit-install.md).
-<!-- markdownlint-enable -->
+    
+    > Note: Other setup parameter settings are the same as [normal setup](datakit-install.md).
 
 ---
+<!-- markdownlint-enable -->
 
-## Fully Offline Installation {#offline}
+## Full Offline Installation {#offline}
 
-When the environment has no Internet access at all, the installation package must be downloaded from the public network to the intranet via methods like USB drives.
+When there is no external network in the environment, the installation package can only be downloaded from the public network to the internal network by moving the hard disk (U disk).
 
-There are two strategies for fully offline installation:
+There are two strategies to choose from for full offline installation:
 
-- Simple Mode: Directly copy files from the USB drive to each host and install DataKit. However, simple mode currently **does not support** setting configurations through [environment variables during installation](datakit-install.md#extra-envs).
-- Advanced Mode: Deploy an Nginx server within the intranet to build a file server replacing static.guance.com
+- Simple mode: Directly copy the files in the U disk to each host and install DataKit. However, Simple Mode currently does **not support** [setting through environment variables](datakit-install.md#extra-envs) during installation.
+- Advanced mode: Deploy a Nginx on the intranet and build a file server with Nginx instead of static.guance.com.
 
 ### Simple Mode {#offline-simple}
 
-The URLs of the following files can be downloaded using wget or by entering the corresponding URL in a browser.
-
+The address of the following files can be downloaded through wget and other download tools, or directly enter the corresponding URL to download in the browser.
 <!-- markdownlint-disable MD046 -->
 ???+ Attention
 
-    Safari may change the file extension (e.g., downloading `.tar.gz` as `.tar`), leading to installation failure. It is recommended to use Chrome.
+    When downloading from Safari browser, the suffix name may be different (for example, downloading the `. tar.gz ` file to `. tar `), which will cause the installation to fail. It is recommended to download with Chrome browser. 
 <!-- markdownlint-enable -->
+- Download the packet [data.tar.gz](https://static.guance.com/datakit/data.tar.gz) first, which is the same for every platform.
 
-- First, download the data package [data.tar.gz](https://static.guance.com/datakit/data.tar.gz), which is the same for all platforms.
-
-- Then download other required installation programs:
-
+- Then download more installers as below:
 <!-- markdownlint-disable MD046 -->
-=== "Windows 32-bit"
+=== "Windows 32 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-386.exe){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-386-1.68.1.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-windows-386-1.68.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-386-1.69.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-windows-386-1.69.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-386.tar.gz){:target="_blank"}
 
-=== "Windows 64-bit"
+=== "Windows 64 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-windows-amd64.exe){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-amd64-1.68.1.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-windows-amd64-1.68.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-windows-amd64-1.69.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-windows-amd64-1.69.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-windows-amd64.tar.gz){:target="_blank"}
 
-=== "Linux X86 32-bit"
+=== "Linux X86 32 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-386){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-386-1.68.1.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-386-1.68.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-386-1.69.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-386-1.69.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-386.tar.gz){:target="_blank"}
 
-=== "Linux X86 64-bit"
+=== "Linux X86 64 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-amd64){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-amd64-1.68.1.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-amd64-1.68.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-amd64-1.69.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-amd64-1.69.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz){:target="_blank"}
-    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.68.1.tar.gz){:target="_blank"}
+    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.69.0.tar.gz){:target="_blank"}
 
-=== "Linux Arm 32-bit"
+=== "Linux Arm 32 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm-1.68.1.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-arm-1.68.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm-1.69.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-arm-1.69.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm.tar.gz){:target="_blank"}
 
-=== "Linux Arm 64-bit"
+=== "Linux Arm 64 bit"
 
     - [`Installer`](https://static.guance.com/datakit/installer-linux-arm64){:target="_blank"}
-    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm64-1.68.1.tar.gz){:target="_blank"}
-    - [`Datakit-Lite`](https://static.guance.com/datakit/datakit_lite-linux-arm64-1.68.1.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit-linux-arm64-1.69.0.tar.gz){:target="_blank"}
+    - [`Datakit`](https://static.guance.com/datakit/datakit_lite-linux-arm64-1.69.0.tar.gz){:target="_blank"}
     - [`Upgrader`](https://static.guance.com/datakit/dk_upgrader-linux-arm64.tar.gz){:target="_blank"}
-    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-arm64-1.68.1.tar.gz){:target="_blank"}
+    - [`APM Auto Instrumentation`](https://static.guance.com/datakit/datakit-apm-inject-linux-arm64-1.69.0.tar.gz){:target="_blank"}
 <!-- markdownlint-enable -->
-
-After downloading, you should have the following files (where `<OS-ARCH>` refers to specific platform installation packages):
+After downloading, you should have a few files as below (`<OS-ARCH>` here refers to the platform-specific installation package):
 
 - `datakit-<OS-ARCH>.tar.gz`
 - `dk_upgrader-<OS-ARCH>.tar.gz`
@@ -161,93 +155,94 @@ After downloading, you should have the following files (where `<OS-ARCH>` refers
 - `data.tar.gz`
 - `datakit-apm-inject-linux-<ARCH>.tar.gz`
 
-Copy these files to the corresponding machines (via USB drive or `scp` commands).
+Copy these files to the corresponding machine (via USB flash drive or `scp` and other commands).
 
 <!-- markdownlint-disable MD046 -->
 ???+ Attention
 
-    Ensure all files are completely downloaded. They may not be reusable across different versions. For example, the installer program behaves differently between different versions of DataKit because it might adjust the default configuration of DataKit, and the configurations of different DataKit versions have varying degrees of changes. It is best to use the installer program corresponding to version 1.2.3 when installing or upgrading DataKit version 1.2.3.
+    It is crucial to download each of these files completely. They may not be reusable between different versions. For example, the installer program behaves differently across various Datakit versions because it may adjust the default configurations of Datakit, which can have varying degrees of additions and deletions. It is best to use the installer program corresponding to version 1.2.3 of Datakit for the installation or upgrade of Datakit 1.2.3.
 <!-- markdownlint-enable -->
 
 #### Installation {#simple-install}
 
-> If installing the lite version of DataKit offline, specify the installation package with the `_lite` suffix, such as `datakit_lite-linux-amd64-1.68.1.tar.gz`.
+> If you are performing an offline install of the lite version of Datakit, you need to specify the installation package with a `_lite` suffix, such as `datakit_lite-linux-amd64-1.69.0.tar.gz`.
+
 
 <!-- markdownlint-disable MD046 -->
 === "Linux"
 
-    Run with root privileges:
-
+    To run with root privileges:
+    
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.68.1.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs datakit-linux-amd64-1.69.0.tar.gz,dk_upgrader-linux-amd64.tar.gz,data.tar.gz
     ```
 
 === "Windows"
 
-    Run PowerShell with administrator privileges:
-
+    You need to run the Powershell with administrator privileges to execute:
+    
     ```powershell
-    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.68.1.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --dataway "https://openway.guance.com?token=<YOUR-TOKEN>" --srcs .\datakit-windows-amd64-1.69.0.tar.gz,.\dk_upgrader-windows-amd64.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
-
 #### Upgrade {#simple-upgrade}
 
-> If upgrading the lite version of DataKit offline, specify the installation package with the `_lite` suffix, such as `datakit_lite-linux-amd64-1.68.1.tar.gz`.
+> If you are performing an offline upgrade of the lite version of Datakit, you need to specify the installation package with a `_lite` suffix, such as `datakit_lite-linux-amd64-1.69.0.tar.gz`.
 
 <!-- markdownlint-disable MD046 -->
 === "Linux"
 
-    Run with root privileges:
+    To run with root privileges:
 
     ```shell
     chmod +x installer-linux-amd64
-    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.68.1.tar.gz,data.tar.gz
+    ./installer-linux-amd64 --offline --upgrade --srcs datakit-linux-amd64-1.69.0.tar.gz,data.tar.gz
     ```
 
 === "Windows"
 
-    Run PowerShell with administrator privileges:
+    You need to run the Powershell with administrator privileges to execute:
 
     ```powershell
-    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.68.1.tar.gz,.\data.tar.gz
+    .\installer-windows-amd64.exe --offline --upgrade --srcs .\datakit-windows-amd64-1.69.0.tar.gz,.\data.tar.gz
     ```
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip "How to Specify More Configuration Parameters for Offline Installation"
 
-    During non-offline installation, we can specify some default parameters using [environment variables `DK_XXX=YYY`](datakit-install.md#extra-envs). These default parameters are applied through *install.sh* (or *install.ps1* on Windows). However, these environment variables do not work for the installation program *installer-xxx*. We can only add these options using the command-line parameters of *installer-xxx*. To see the supported parameters, run:
+    During online installation, we can specify some default parameters through [environment variables `DK_XXX=YYY`](datakit-install.md#extra-envs). These default parameters actually take effect through the *install.sh* script (on Windows, it's *install.ps1*). However, these environment variables are ineffective for the installation program *installer-xxx*. We can only use the command-line arguments of *installer-xxx* to add these options. By using the following command, we can find out the parameters supported by the installation program:
 
     ```shell
     ./installer-linux-amd64 --help
     ```
 
-    For example, specifying the Dataway address is done using `--dataway`. Additionally, these extra command-line parameters only take effect during installation mode and not during (offline) mode.
+    For example, the Dataway address we specified above is set through the `--dataway` option. Additionally, these extra command-line parameter settings are only effective in installation mode and do not take effect in (offline) upgrade mode.
+
 <!-- markdownlint-enable -->
 
 ### Advanced Mode {#offline-advanced}
 
-Currently, DataKit installs from public addresses, with all binaries and installation scripts downloaded from the static.guance.com site. For machines that cannot access this site, you can deploy a file server within the intranet to replace static.guance.com.
+DataKit is currently installed on the public web, and all binary data and installation scripts are downloaded from the static.guance.com site. For machines that cannot access the site, you can replace the static.guance.com site by deploying a file server on the intranet.
 
-The network topology for advanced mode is as follows:
+The network traffic topology of advanced mode is as follows:
 
 <figure markdown>
   ![](https://static.guance.com/images/datakit/nginx-file-server.png){ width="700"}
 </figure>
 
-Prepare a machine accessible within the intranet, install Nginx on it, and download (or copy via USB) the necessary files for DataKit installation to the Nginx server so that other machines can download the installation files from the Nginx file server to complete the installation.
+Prepare a machine that can be accessed on the intranet, install Nginx on the machine, and download (or copy) the files required for DataKit installation to the Nginx server, so that other machines can download the installation files from the Nginx file server to complete the installation.
 
-- Setting up the Nginx File Server {#nginx-config}
+- Setting up the Nginx file server {#nginx-config}
 
-Add the following configuration in *nginx.conf*:
+Add configuration in nginx.conf
 
-``` nginx
+```txt
 server {
     listen 8080;
     server_name _;
-    ## Map to the root directory
+    ## Map to the following directory
     location / {
         root /;
         autoindex on;
@@ -258,14 +253,14 @@ server {
 }
 ```
 
-Restart Nginx:
+Restart Nginx：
 
 ```shell
-nginx -t        # Test configuration
-nginx -s reload # Reload configuration
+nginx -t        # test configuration
+nginx -s reload # reload configuration
 ```
 
-- Download files to the */datakit* directory on the Nginx server, here is an example using wget to download the installation package for the Linux AMD64 platform:
+- Download the files to the */datakit* directory where the Nginx server is located, taking wget downloading the Linux AMD64 platform installation package as an example:
 
 ```shell
 #!/bin/bash
@@ -275,14 +270,14 @@ mkdir -p /datakit/apm_lib
 wget -P /datakit https://static.guance.com/datakit/install.sh
 wget -P /datakit https://static.guance.com/datakit/version
 wget -P /datakit https://static.guance.com/datakit/data.tar.gz
-wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.68.1
-wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.68.1.tar.gz
-wget -P /datakit https://static.guance.com/datakit/datakit_lite-linux-amd64-1.68.1.tar.gz
+wget -P /datakit https://static.guance.com/datakit/installer-linux-amd64-1.69.0
+wget -P /datakit https://static.guance.com/datakit/datakit-linux-amd64-1.69.0.tar.gz
+wget -P /datakit https://static.guance.com/datakit/datakit_lite-linux-amd64-1.69.0.tar.gz
 wget -P /datakit https://static.guance.com/datakit/dk_upgrader-linux-amd64.tar.gz
-wget -P /datakit https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.68.1.tar.gz
+wget -P /datakit https://static.guance.com/datakit/datakit-apm-inject-linux-amd64-1.69.0.tar.gz
 wget -P /datakit/apm_lib https://static.guance.com/dd-image/dd-java-agent.jar
 
-# Download other toolkits: sources are installation packages used for enabling RUM sourcemap functionality. If this feature is not enabled, you may choose not to download them.
+# Download other toolkits: sources is the installation package used to turn on the RUM sourcemap function. If this function is not turned on, you can choose not to download it.
 sources=(
   "/datakit/sourcemap/jdk/OpenJDK11U-jdk_x64_mac_hotspot_11.0.16_8.tar.gz"
   "/datakit/sourcemap/jdk/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.15_10.tar.gz"
@@ -313,13 +308,13 @@ done
 <!-- markdownlint-disable MD046 -->
 ???+ Attention
 
-    The download link for the `Installer` program on Windows needs to include the **.exe** suffix, such as [*https://static.guance.com/datakit/installer-windows-386-1.68.1.exe*](https://static.guance.com/datakit/installer-windows-386-1.68.1.exe) and
-    [*https://static.guance.com/datakit/installer-windows-amd64-1.68.1.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.68.1.exe).
+    You must append suffix **.exe** to the download link of `Installer` on Windows, for example: [*https://static.guance.com/datakit/installer-windows-386-1.69.0.exe*](https://static.guance.com/datakit/installer-windows-386-1.69.0.exe) for Windows 32bit and
+    [*https://static.guance.com/datakit/installer-windows-amd64-1.69.0.exe*](https://static.guance.com/datakit/installer-windows-amd64-1.69.0.exe) for Windows 64bit.
 <!-- markdownlint-enable -->
 
-#### Installation {#advance-install}
+#### Install {#advance-install}
 
-On intranet machines, set `DK_INSTALLER_BASE_URL` to point to the Nginx file server:
+On the intranet machine, point it to the Nginx file server by setting `DK_INSTALLER_BASE_URL`:
 
 <!-- markdownlint-disable MD046 MD034 -->
 === "Linux/Mac"
@@ -342,26 +337,26 @@ On intranet machines, set `DK_INSTALLER_BASE_URL` to point to the Nginx file ser
     ```
 <!-- markdownlint-enable -->
 
-At this point, the offline installation is complete. Note that `HTTPS_PROXY` is additionally set to support proxies.
+So far, the offline installation is complete. Note that HTTPS_PROXY is additionally set here.
 
 ---
 
 #### Upgrade {#advance-upgrade}
 
-If there is a new version of DataKit, download it in the same way and execute the following command to upgrade:
-
-<!-- markdownlint-disable MD046 MD034 -->
+If there is a new version of DataKit, you can download it as above and execute the following command to upgrade:
+<!-- markdownlint-disable MD046 -->
 === "Linux/Mac"
 
     ```shell
-    DK_INSTALLER_BASE_URL=http://[Nginx-Server]:8080/datakit DK_UPGRADE=1 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
+    DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit" \
+    DK_UPGRADE=1 bash -c "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
+    $env:DK_INSTALLER_BASE_URL="http://<nginxServer>:8080/datakit";
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_INSTALLER_BASE_URL="http://[Nginx-Server]:8080/datakit";
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
@@ -369,36 +364,33 @@ If there is a new version of DataKit, download it in the same way and execute th
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
-
 ## Kubernetes Offline Deployment {#k8s-offline}
 
-### Script-Assisted Installation {#Auxiliary-installation}
+### Bash Script Assisted Installation {#Auxiliary-installation}
 
-Here we provide a simple script to help complete passwordless login, file distribution, and image decompression tasks.
-
+Here is a simple script to help you complete the tasks of password free login, file distribution and image decompression.
 <!-- markdownlint-disable MD046 -->
-???- note "*datakit_tools.sh* (click to expand)"
-
+???- note "`datakit_tools.sh` (Stand-alone open)"
     ```shell
     #!/bin/bash
-    # Please modify the IP of the hosts to be passwordless
+    # Please modify the host IP to be password-free
     host_ip=(
       10.200.14.112
       10.200.14.113
       10.200.14.114
     )
-    # Please modify the login password
+    # Please change the login password
     psd='123.com'
 
     menu() {
-      echo -e "\e[33m------Please select the operation you need------\e[0m"
-      echo -e "\e[33m1、Set SSH remote passwordless login\e[0m"
-      echo -e "\e[33m2、Remote file transfer\e[0m"
-      echo -e "\e[33m3、Remote image decompression\e[0m"
-      read -p "Please enter the option number：" num
+      echo -e "\e[33m------Please select the required operation------\e[0m"
+      echo -e "\e[33m1. Set SSH remote keyless login\e[0m"
+      echo -e "\e[33m2. Scp remote transfer file\e[0m"
+      echo -e "\e[33m3. Remote decompression image\e[0m"
+      read -p "Please enter an option:" num
     }
 
-    # Remote passwordless
+    # Send ssh-copy-id to the host
     SSH-COPY(){
     yum install -y expect
     ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
@@ -416,7 +408,7 @@ Here we provide a simple script to help complete passwordless login, file distri
     }
 
     SCP(){
-    read  -p "Please enter the filenames to transfer (multiple files can be entered)：" file_name
+    read  -p "Please enter the file name to transfer (multiple files can be passed in): " file_name
     for i in ${host_ip[@]}
       do
       for j in ${file_name[@]}
@@ -428,8 +420,8 @@ Here we provide a simple script to help complete passwordless login, file distri
     }
 
     SSH(){
-    read -p "Please enter the filename to decompress：" file_name
-    # Remote image decompression
+    read -p "Please enter the file name to extract: " file_name
+    # Remotely unzip image packets
     for i in ${host_ip[@]}
       do
         echo -e "\e[33m------${i}------\e[0m"
@@ -454,65 +446,59 @@ Here we provide a simple script to help complete passwordless login, file distri
       ;;
     *)
             
-      echo -e "\e[31m Please enter a number {1|2|3}:\e[0m"
-      echo -e "\e[31m Please enter a number {1|2|3}:\e[0m"
+      echo -e "\e[31mPlease enter the number in the option{1|2|3}\e[0m"
     esac
     }
 
     menu
     CASE
-    read -p "Do you want to continue executing list operations? [y/n]：" a
+    read -p "Do you want to continue with the list operation? [y/n]：" a
     while [ "${a}" == "y" ]
       do
         menu 
         CASE
-        read -p "Do you want to continue executing list operations? [y/n]：" a
+        read -p "Do you want to continue with the list operation? [y/n]：" a
         continue
     done
     ```
-<!-- markdownlint-enable -->
 
 ```shell
-# Modify the host IP and login password in the script, then follow the prompts to complete the operations.
+# You need to modify the host IP and login password in the script, and then complete the operation according to the guidance.
 chmod +x datakit_tools.sh
 ./datakit_tools.sh
 ```
+<!-- markdownlint-enable -->
+### Agent Installation {#k8s-install-via-proxy}
 
-### Proxy Installation {#k8s-install-via-proxy}
+**If there is a machine in the intranet that can connect to the internet, you can deploy a nginx server on this node to use as the image acquisition.**
 
-<!-- markdownlint-disable MD029 -->
-
-**If the internal network has a machine that can access the external network, you can deploy an NGINX server on this node to act as an image retrieval proxy.**
-
-1. Download the *datakit.yaml* file
+- Download `datakit.yaml` and DataKit image files
 
 ```shell
 wget https://static.guance.com/datakit/datakit.yaml -P /home/guance/
 ```
 
-2. Download and pack the Datakit image
+- Download the DataKit image and make it into a package
 
 ```shell
-# Pull and pack amd image
-docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.68.1
-docker save -o datakit-amd64-1.68.1.tar pubrepo.guance.com/datakit/datakit:1.68.1
-mv datakit-amd64-1.68.1.tar /home/guance
+# Pull the image of the amd64 architecture and make it into an image package
+docker pull --platform amd64 pubrepo.guance.com/datakit/datakit:1.69.0
+docker save -o datakit-amd64-1.69.0.tar pubrepo.guance.com/datakit/datakit:1.69.0
+mv datakit-amd64-1.69.0.tar /home/guance
 
-# Pull and pack arm image
-docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.68.1
-docker save -o datakit-arm64-1.68.1.tar pubrepo.guance.com/datakit/datakit:1.68.1
-mv datakit-arm64-1.68.1.tar /home/guance
+# Pull the image of the arm64 architecture and make it into an image package
+docker pull --platform arm64 pubrepo.guance.com/datakit/datakit:1.69.0
+docker save -o datakit-arm64-1.69.0.tar pubrepo.guance.com/datakit/datakit:1.69.0
+mv datakit-arm64-1.69.0.tar /home/guance
 
-# Check if the image architecture is correct
-docker image inspect pubrepo.guance.com/datakit/datakit:1.68.1 |grep Architecture
+# Check whether the image architecture is correct
+docker image inspect pubrepo.guance.com/datakit/datakit:1.69.0 |grep Architecture
 
 ```
 
-3. Modify NGINX configuration for proxy
-
+- Modify Nginx configuration agent
 <!-- markdownlint-disable MD046 -->
-???- note "/etc/nginx/nginx.conf (click to expand)"
-
+???- note "/etc/nginx/nginx.conf"
     ```shell
     #user  nobody;
     worker_processes  1;
@@ -625,55 +611,55 @@ docker image inspect pubrepo.guance.com/datakit/datakit:1.68.1 |grep Architectur
 
     }
     ```
-
-4. Execute commands on other intranet machines.
+<!-- markdownlint-enable -->
+- Other intranet machines execute commands.
 
 ```shell
 wget http://<nginx-server-ip>:8080/datakit.yaml 
-wget http://<nginx-server-ip>:8080/datakit-amd64-1.68.1.tar 
+wget http://<nginx-server-ip>:8080/datakit-amd64-1.69.0.tar 
 ```
 
-5. Command to decompress the image
+- Unzip image command
 
 ```shell
 # docker 
-docker load -i /k8sdata/datakit/datakit-amd64-1.68.1.tar
+docker load -i /k8sdata/datakit/datakit-amd64-1.69.0.tar
 
 # containerd
-ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.68.1.tar
+ctr -n=k8s.io image import /k8sdata/datakit/datakit-amd64-1.69.0.tar
 
 ```
 
-6. Start the Datakit container
+- Start DataKit container
 
 ```shell
 kubectl apply -f datakit.yaml
 ```
 
-### Fully Offline Installation {#k8s-offilne-all}
+### Full Offline Installation {#k8s-offilne-all}
 
-When the environment has no Internet access at all, the installation package must be transferred from the public network to the intranet via methods like USB drives.
+When there is no external network in the environment, the installation package needs be downloaded from the public network to the internal network through mobile hard disk (U disk).
 
-- Command to decompress the image
+- Unzip image command
 
 ```shell
 # docker 
-docker load -i datakit-amd64-1.68.1.tar
+docker load -i datakit-amd64-1.69.0.tar
 
 # containerd
-ctr -n=k8s.io image import datakit-amd64-1.68.1.tar
+ctr -n=k8s.io image import datakit-amd64-1.69.0.tar
 
 ```
 
-- Execute the startup command on the cluster control machine
+- The cluster controller executes the start command
 
-``` shell
+```shell
 kubectl apply -f datakit.yaml
 ```
 
 - Update command
 
 ```shell
-# Need to decompress the image first
+# You need to decompress the image first
 kubectl patch -n datakit daemonsets.apps datakit -p '{"spec": {"template": {"spec": {"containers": [{"image": "pubrepo.guance.com/datakit/datakit:<version>","name": "datakit"}]}}}}'
 ```

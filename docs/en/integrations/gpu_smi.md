@@ -1,35 +1,35 @@
 ---
 title     : 'GPU'
-summary   : 'Collect NVIDIA GPU Metrics data'
+summary   : 'Collect NVIDIA GPU metrics and logs'
 tags:
-  - 'Host'
+  - 'HOST'
 __int_icon      : 'icon/gpu_smi'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
-Collects data including GPU temperature, clock speed, GPU utilization, memory utilization, and memory usage of each running program on the GPU.
+SMI metric display: including GPU card temperature, clock, GPU occupancy rate, memory occupancy rate, memory occupancy of each running program in GPU, etc.
 
 ## Configuration {#config}
 
-### Install Driver and CUDA Toolkit {#install-driver}
+### Install Driver and CUDA Kit {#install-driver}
 
-Refer to [https://www.nvidia.com/Download/index.aspx](https://www.nvidia.com/Download/index.aspx){:target="_blank"}
+See  [https://www.nvidia.com/Download/index.aspx]( https://www.nvidia.com/Download/index.aspx)
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Navigate to the `conf.d/gpu_smi` directory under the DataKit installation directory, copy `gpu_smi.conf.sample` and rename it to `gpu_smi.conf`. An example is as follows:
-    
+    Go to the `conf.d/gpu_smi` directory under the DataKit installation directory, copy `gpu_smi.conf.sample` and name it `gpu_smi.conf`. Examples are as follows:
+
     ```toml
         
     [[inputs.gpu_smi]]
@@ -76,129 +76,129 @@ Refer to [https://www.nvidia.com/Download/index.aspx](https://www.nvidia.com/Dow
     ```
 
     ???+ attention
-    
-        1. DataKit can collect metrics from remote GPU servers via SSH (local collection configuration will be disabled after enabling remote collection).
-        1. The number of `remote_addrs` can exceed the numbers of `remote_users`, `remote_passwords`, and `remote_rsa_paths`; any missing values will match the first one in the list.
-        1. Collection can be performed using `remote_addrs` + `remote_users` + `remote_passwords`.
-        1. Collection can also be done using `remote_addrs` + `remote_users` + `remote_rsa_paths` (after configuring RSA public key, `remote_passwords` will be ignored).
-        1. After enabling remote collection, elections must be enabled (to prevent multiple DataKits from uploading duplicate data).
-        1. For security considerations, you can change the SSH port or create a dedicated account specifically for GPU remote collection.
-    
+
+        1. DataKit can remotely collect GPU server indicators through SSH (when remote collection is enabled, the local configuration will be invalid).
+        1. The number of `remote_addrs` configured can be more than the number of `remote_users` `remote_passwords` `remote_rsa_paths`.If not enough, it will match the first value.
+        1. Can be collected through `remote_addrs`+`remote_users`+`remote_passwords`.
+        1. It can also be collected through `remote_addrs`+`remote_users`+`remote_rsa_paths`. (`remote_passwords` will be invalid after configuring the RSA public key).
+        1. After turning on remote collection, elections must be turned on. (Prevent multiple DataKit from uploading duplicate data).
+        1. For security reasons, you can change the SSH port number or create a dedicated account for GPU remote collection.
+
     After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or set [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    Environment variables are also supported to modify configuration parameters (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
     - **ENV_INPUT_GPUSMI_INTERVAL**
     
-        Collector repeat interval duration
+        Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **input.conf**: `interval`
     
-        **Default Value**: 10s
+        **Default**: 10s
     
     - **ENV_INPUT_GPUSMI_TIMEOUT**
     
-        Timeout duration
+        Timeout
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `timeout`
+        **input.conf**: `timeout`
     
-        **Default Value**: 5s
+        **Default**: 5s
     
     - **ENV_INPUT_GPUSMI_BIN_PATH**
     
-        Path to executable file
+        The binPath
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `bin_path`
+        **input.conf**: `bin_path`
     
         **Example**: `["/usr/bin/nvidia-smi"]`
     
     - **ENV_INPUT_GPUSMI_PROCESS_INFO_MAX_LEN**
     
-        Maximum number of resource-consuming GPU processes to collect
+        Maximum number of GPU processes that consume the most resources
     
-        **Field Type**: Int
+        **Type**: Int
     
-        **Collector Configuration Field**: `process_info_max_len`
+        **input.conf**: `process_info_max_len`
     
-        **Default Value**: 10
+        **Default**: 10
     
     - **ENV_INPUT_GPUSMI_DROP_WARNING_DELAY**
     
-        Card drop warning delay
+        GPU card drop warning delay
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `gpu_drop_warning_delay`
+        **input.conf**: `gpu_drop_warning_delay`
     
-        **Default Value**: 5m
+        **Default**: 5m
     
     - **ENV_INPUT_GPUSMI_ENVS**
     
-        Path to dependent libraries
+        The envs of LD_LIBRARY_PATH
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `envs`
+        **input.conf**: `envs`
     
         **Example**: ["LD_LIBRARY_PATH=/usr/local/corex/lib/:$LD_LIBRARY_PATH"]
     
     - **ENV_INPUT_GPUSMI_REMOTE_ADDRS**
     
-        Remote GPU servers
+        If use remote GPU servers
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_addrs`
+        **input.conf**: `remote_addrs`
     
         **Example**: ["192.168.1.1:22","192.168.1.2:22"]
     
     - **ENV_INPUT_GPUSMI_REMOTE_USERS**
     
-        Remote login names
+        Remote login name
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_users`
+        **input.conf**: `remote_users`
     
         **Example**: ["user_1","user_2"]
     
     - **ENV_INPUT_GPUSMI_REMOTE_PASSWORDS**
     
-        Remote login passwords
+        Remote password
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_passwords`
+        **input.conf**: `remote_passwords`
     
         **Example**: ["pass_1","pass_2"]
     
     - **ENV_INPUT_GPUSMI_REMOTE_RSA_PATHS**
     
-        Path to private key files
+        Remote rsa paths
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_rsa_paths`
+        **input.conf**: `remote_rsa_paths`
     
         **Example**: ["/home/your_name/.ssh/id_rsa"]
     
     - **ENV_INPUT_GPUSMI_REMOTE_COMMAND**
     
-        Remote execution command
+        Remote command
     
-        **Field Type**: String
+        **Type**: String
     
-        **Collector Configuration Field**: `remote_command`
+        **input.conf**: `remote_command`
     
         **Example**: "`nvidia-smi -x -q`"
     
@@ -206,27 +206,27 @@ Refer to [https://www.nvidia.com/Download/index.aspx](https://www.nvidia.com/Dow
     
         Enable election
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `election`
+        **input.conf**: `election`
     
-        **Default Value**: true
+        **Default**: true
     
     - **ENV_INPUT_GPUSMI_TAGS**
     
-        Custom tags. If there are tags with the same name in the configuration file, they will be overwritten.
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
-## Metrics Fields {#metric}
+## Metric {#metric}
 
-All collected data will append the global election tag by default, or you can specify other tags through `[inputs.gpu_smi.tags]` in the configuration:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.gpu_smi.tags]` if needed:
 
 ``` toml
  [inputs.gpu_smi.tags]
@@ -234,6 +234,8 @@ All collected data will append the global election tag by default, or you can sp
   # more_tag = "some_other_value"
   # ...
 ```
+
+
 
 ### `gpu_smi`
 
@@ -251,7 +253,7 @@ All collected data will append the global election tag by default, or you can sp
 |`pstate`|GPU performance level|
 |`uuid`|UUID|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -282,61 +284,61 @@ All collected data will append the global election tag by default, or you can sp
 
 ## DCGM Metrics Collection {#dcgm}
 
-- Supported Operating Systems: :fontawesome-brands-linux: :material-kubernetes:
+- Operating system support: :fontawesome-brands-linux: :material-kubernetes:
 
-DCGM metrics include GPU card temperature, clock speed, GPU utilization, memory utilization, etc.
+DCGM indicator display: including GPU card temperature, clock, GPU occupancy rate, memory occupancy rate, etc.
 
 ### DCGM Configuration {#dcgm-config}
 
-#### DCGM Prerequisites {#dcgm-precondition}
+#### DCGM Metrics Preconditions {#dcgm-precondition}
 
-Install `dcgm-exporter`, refer to the [NVIDIA official website](https://github.com/NVIDIA/dcgm-exporter){:target="_blank"}
+Install `dcgm-exporter`, refer to [NVIDIA official website](https://github.com/NVIDIA/dcgm-exporter){:target="_blank"}
 
-#### DCGM Collection Configuration {#dcgm-input-config}
+#### DCGM Metrics Configuration {#dcgm-input-config}
 
-Navigate to the `conf.d/prom` directory under the DataKit installation directory, copy `prom.conf.sample` and rename it to `prom.conf`. An example is as follows:
+Go to the `conf.d/Prom` directory under the DataKit installation directory, copy `prom.conf.sample` and name it `prom.conf`. Examples are as follows:
 
 ```toml
 [[inputs.prom]]
   ## Exporter URLs
   urls = ["http://127.0.0.1:9400/metrics"]
 
-  ## Ignore request errors to URLs
+  ## Error ignoring request to url
   ignore_req_err = false
 
   ## Collector alias
   source = "dcgm"
 
-  ## Output source for collected data
-  ## Configuring this can write the collected data to a local file instead of sending it to the center
-  ## Later, you can directly debug the locally saved metrics using the datakit debug --prom-conf /path/to/this/conf command
-  ## If URL is configured as a local file path, then --prom-conf takes precedence over debugging the output path data
+  ## Collection data output source
+  ## Configure this to write collected data to a local file instead of typing the data to the center
+  ## You can debug the locally saved metric set directly with the datakit debug --prom-conf /path/to/this/conf command
+  ## If url has been configured as the local file path, then --prom-conf takes precedence over debugging the data in the output path
   # output = "/abs/path/to/file"
 
-  ## Upper limit for the size of collected data, in bytes
-  ## When outputting data to a local file, you can set an upper limit for the size of collected data
-  ## If the size of the collected data exceeds this limit, the data will be discarded
-  ## The default upper limit for the size of collected data is 32MB
+  ## Maximum size of data collected in bytes
+  ## When outputting data to a local file, you can set the upper limit of the size of the collected data
+  ## If the size of the collected data exceeds this limit, the collected data will be discarded
+  ## The maximum size of collected data is set to 32MB by default
   # max_file_size = 0
 
-  ## Filter metric types, optional values are counter/gauge/histogram/summary/untyped
-  ## By default, only counter and gauge types of metrics are collected
-  ## If empty, no filtering is applied
+  ## Metrics type filtering, optional values are counter, gauge, histogram, summary and untyped
+  ## Only counter and gauge metrics are collected by default
+  ## If empty, no filtering is performed
   # metric_types = ["counter", "gauge"]
 
-  ## Metric name filter: metrics that meet the conditions will be retained
-  ## Supports regex, multiple configurations can be made, i.e., meeting any one condition suffices
-  ## If empty, no filtering is applied, and all metrics are retained
+  ## Metric Name Filter: Eligible metrics will be retained
+  ## Support regular can configure more than one, that is, satisfy one of them
+  ## If blank, no filtering is performed and all metrics are retained
   # metric_name_filter = ["cpu"]
 
-  ## Prefix for measurement names
-  ## Configuring this can add a prefix to the measurement names
+  ## Measurement name prefix
+  ## Configure this to prefix the measurement name
   measurement_prefix = "gpu_"
 
   ## Measurement name
-  ## By default, the measurement name will be split by underscores ("_"), with the first field becoming the measurement name and the rest becoming the current metric name
-  ## If measurement_name is configured, the metric name will not be split
-  ## The final measurement name will have the measurement_prefix added
+  ## By default, the measurement name will be cut with an underscore "_". The first field after cutting will be the measurement name, and the remaining fields will be the current metric name
+  ## If measurement_name is configured, the metric name is not cut
+  ## The final measurement name is prefixed with measurement_prefix
   measurement_name = "dcgm"
 
   ## TLS configuration
@@ -345,23 +347,23 @@ Navigate to the `conf.d/prom` directory under the DataKit installation directory
   # tls_cert = "/tmp/peer.crt"
   # tls_key = "/tmp/peer.key"
 
-  ## Set to true to enable election functionality
+  ## Set to true to turn on election
   election = true
 
-  ## Filter tags, multiple tags can be configured
+  ## Filter tags, configurable multiple tags
   ## Matching tags will be ignored, but the corresponding data will still be reported
   # tags_ignore = ["xxxx"]
 
   ## Custom authentication method, currently only supports Bearer Token
-  ## Only one of token or token_file needs to be configured
+  ## token and token_file: Just configure one of them
   # [inputs.prom.auth]
     # type = "bearer_token"
     # token = "xxxxxxxx"
     # token_file = "/tmp/token"
 
-  ## Custom measurement names
-  ## Metrics containing the specified prefix can be grouped into one measurement
-  ## Custom measurement name configuration takes precedence over measurement_name
+  ## Custom measurement name
+  ## You can group metrics that contain the prefix prefix into one measurement
+  ## Custom measurement name configuration priority measurement_name Configuration Items
   # [[inputs.prom.measurements]]
     # prefix = "cpu_"
     # name = "cpu"
@@ -370,30 +372,32 @@ Navigate to the `conf.d/prom` directory under the DataKit installation directory
     # prefix = "mem_"
     # name = "mem"
 
-  ## For data matching the following tag-related conditions, discard these data without collecting them
+  ## For data that matches the following tag, discard the data and do not collect it
   # [inputs.prom.ignore_tag_kv_match]
     # key1 = [ "val1.*", "val2.*"]
     # key2 = [ "val1.*", "val2.*"]
 
-  ## Add extra headers to HTTP requests during data retrieval (e.g., Basic authentication)
+  ## Add additional request headers to HTTP requests for data fetches
+  ## Example basic authentication
   # [inputs.prom.http_headers]
     # Authorization = “Basic bXl0b21jYXQ="
 
-  ## Rename prom data tag keys
+  ## Rename tag key in prom data
   [inputs.prom.tags_rename]
     overwrite_exist_tags = false
     [inputs.prom.tags_rename.mapping]
     Hostname = "host"
     # tag1 = "new-name-1"
     # tag2 = "new-name-2"
+    # tag3 = "new-name-3"
 
-  ## Send collected metrics as logs to the center
-  ## Leave the service field empty to set the service tag to the measurement name
+  ## Call the collected metrics to the center as logs
+  ## When the service field is left blank, the service tag is set to measurement name
   [inputs.prom.as_logging]
     enable = false
     service = "service_name"
 
-  ## Custom Tags
+  ## Customize Tags
   # [inputs.prom.tags]
     # some_tag = "some_value"
     # more_tag = "some_other_value"
@@ -410,9 +414,9 @@ After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#mana
 | Tag                           | Description                                |
 | ----                          | --------                                   |
 | gpu                           | GPU id.                                    |
-| device                        | Device.                                    |
+| device                        | device.                                    |
 | modelName                     | GPU model.                                 |
-| Hostname                      | Host name.                                 |
+| Hostname                      | host name.                                 |
 | host                          | Instance endpoint.                         |
 | UUID                          | UUID.                                      |
 | DCGM_FI_NVML_VERSION          | `NVML` Version.                            |
@@ -424,7 +428,7 @@ After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#mana
 | DCGM_FI_DEV_INFOROM_IMAGE_VER | `Inforom` image version.                   |
 | DCGM_FI_DEV_VBIOS_VERSION     | `VBIOS` version of the device.             |
 
-- Metrics List
+- Metrics
 
 | Metric                                        | Unit    | Description |
 | ---                                           | ---     | ---         |
@@ -475,8 +479,6 @@ After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#mana
 | DCGM_FI_PROF_PIPE_FP64_ACTIVE                 | gauge   | Ratio of cycles the fp64 pipes are active (in %). |
 | DCGM_FI_PROF_PIPE_FP32_ACTIVE                 | gauge   | Ratio of cycles the fp32 pipes are active (in %). |
 | DCGM_FI_PROF_PIPE_FP16_ACTIVE                 | gauge   | Ratio of cycles the fp16 pipes are active (in %). |
-| DCGM_FI_PROF_PCIE_TX_BYTES                    | gauge   | The rate of data transmitted over the PCIe bus - including both protocol headers and data payloads - in bytes per second. |
-| DCGM_FI_PROF_PCIE_RX_BYTES                    | gauge   | The rate of data received over the PCIe bus - including both protocol headers and data payloads - in bytes per second. |
+| DCGM_FI_PROF_PCIE_TX_BYTES                    | gauge   | The rate of data transmitted over the PCIe bus - including both protocol headers and data payloads - in bytes per .second. |
+| DCGM_FI_PROF_PCIE_RX_BYTES                    | gauge   | The rate of data received over the PCIe bus - including both protocol headers and data payloads - in bytes per .second. |
 | DCGM_FI_DRIVER_VERSION                        | label   | Driver Version. |
-</example>
-</example>
