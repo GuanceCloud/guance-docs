@@ -256,6 +256,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../aliyun_billing"
+  				data-tags="Alibaba Cloud"
+  				data-name="Alibaba Cloud Billing"
+  				data-summary="Collect Alibaba Cloud billing information"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aliyun/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Alibaba Cloud Billing</div>
+                            <div title="Collect Alibaba Cloud billing information" class="fth-integration-desc">Collect Alibaba Cloud billing information</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../aliyun_cdn"
   				data-tags="Alibaba Cloud"
   				data-name="Alibaba Cloud CDN"
@@ -2257,6 +2287,36 @@ Alibaba Cloud MongoDB single-node instance metrics display, including CPU usage,
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Lambda Extension</div>
                             <div title="Collect data using AWS Lambda Extension" class="fth-integration-desc">Collect data using AWS Lambda Extension</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../azure_load_balancer"
+  				data-tags="AZURE"
+  				data-name="Azure Load Balancer"
+  				data-summary="Collect Azure Load Balancer metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_load_balancer/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Azure Load Balancer</div>
+                            <div title="Collect Azure Load Balancer metric data" class="fth-integration-desc">Collect Azure Load Balancer metric data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

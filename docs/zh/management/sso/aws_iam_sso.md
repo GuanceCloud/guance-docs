@@ -54,6 +54,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 
 <img src="../../img/aws_iam_sso-6.png" width="70%" >
 
+
 ## 3、编辑属性映射
 
 属性映射是 SAML 集成的核心配置，用于将 AWS 用户属性传递至<<< custom_key.brand_name >>>。
@@ -64,6 +65,13 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 2. 配置完毕后点击保存更改。
 
 <img src="../../img/aws_iam_sso-18.png" width="70%" >
+
+### 附加角色属性
+
+1. 定义需要映射到角色的用户或组属性，如 `groups`；
+2. 定义映射到此字符串值的属性，如 `roles`；
+3. 保存当前修改。
+4. 后续前往<<< custom_key.brand_name >>>配置[角色映射](./role_mapping.md)。
 
 ## 4、分配用户和组访问权限
 
