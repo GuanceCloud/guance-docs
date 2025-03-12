@@ -5,7 +5,7 @@
 <br />**GET /api/v1/workspace/role/sensitive_mask_fields**
 
 ## 概述
-获取当前工作空间功能菜单
+获取空间角色敏感数据脱敏字段
 
 
 

@@ -4,3 +4,4 @@ nav:
   - '修改一个拨测任务': modify.md
   - '获取拨测任务列表': list.md
   - '获取拨测任务详情': get.md
+  - '获取官方默认节点列表': default-region-list.md

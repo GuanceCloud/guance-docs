@@ -31,7 +31,7 @@
 | durationSet.tracing | string |  | tracing的duration<br>例子: 7d <br>允许为空: False <br> |
 | durationSet.rum | string |  | rum的duration<br>例子: 7d <br>允许为空: False <br> |
 | durationSet.apm | string |  | apm的duration(合并索引情况下有效)<br>例子: 7d <br>允许为空: False <br> |
-| ownerUuid | string | Y | command<br>允许空字符串: False <br>例子: uuid-001 <br> |
+| ownerUuid | string | Y | 工作空间拥有者<br>允许空字符串: False <br>例子: uuid-001 <br> |
 | language | string |  | 语言信息<br>允许为空: True <br>允许空字符串: True <br>可选值: ['zh', 'en'] <br> |
 
 ## 参数补充说明

@@ -15,14 +15,14 @@ icon: zy/external-api
 
 ## 支持Endpoint
 
-| 部署类型  | 节点名       | Endpoint                |
-|-------|-----------|-------------------------|
-| 私有部署版 | 私有部署版     | 以实际部署的 Endpoint 为准, 一般为`http://external-api.dataflux.cn` |
+| 部署类型  | 节点名       | Endpoint                                                  |
+|-------|-----------|-----------------------------------------------------------|
+| 私有部署版 | 私有部署版     | 以实际部署的 Endpoint 为准, 一般为`https://external-api.dataflux.cn` |
 
 ## API 文档配置
 
 1. 接口文档地址固定为: \<Endpoint>/v1/doc <br/>
-例如: http://external-api.dataflux.cn/v1/doc
+例如: https://external-api.dataflux.cn/v1/doc
 
 3. API 文档开关配置位于 launcher 中的 core (命名空间：forethought-core) 配置中。具体配置如下
 ```yaml

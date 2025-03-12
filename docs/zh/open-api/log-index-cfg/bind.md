@@ -14,6 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
+| extend | json |  | 前端自定义数据<br>允许为空: True <br> |
 | name | string | Y | 索引名字<br>例子: xxx <br>允许为空: False <br> |
 | storeType | string | Y | 存储类型<br>例子: xxx <br>允许为空: False <br> |
 | exterStoreName | string | Y | 与name互为映射的外部存储的名字(SLS 类型对应 StoreName, 火山云的TLS对应 topic_name)<br>允许为空: False <br> |
