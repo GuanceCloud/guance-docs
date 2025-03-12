@@ -116,9 +116,12 @@ icon: zy/integrations
   			font-weight: 600;
   			line-height: 20px;
   			height: 20px;
-  			text-overflow: ellipsis;
-  			overflow: hidden;
-  			white-space: nowrap;
+  			display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
   			margin-left: 10px;
   			color: #222;
   		}
@@ -179,7 +182,7 @@ icon: zy/integrations
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">{{$idoc.Name}}</div>
+                            <div title="{{$idoc.Name}}" class="fth-integration-name">{{$idoc.Name}}</div>
                             <div title="{{$idoc.Summary}}" class="fth-integration-desc">{{$idoc.Summary}}</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
@@ -200,148 +203,153 @@ icon: zy/integrations
   	<script>
   		!(function () {
             const limitTags = ['阿里云', '腾讯云', '华为云', '火山引擎','谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
+            const limitTagsToLower=limitTags.map(v=>v.toLowerCase())
             const tagAll = { label: '全部', value: '' };
   			const debounce = (fn, delay, immediate) => {
-  				let timeout = null;
-  				let result = undefined;
-  				const that = this;
-  				const debounced = function (that, ...args) {
-  					if (timeout) clearTimeout(timeout);
-  					if (immediate) {
-  						const canNow = !timeout;
-  						timeout = setTimeout(() => {
-  							timeout = null;
-  						}, delay);
-  						if (canNow) result = fn.apply(this, args);
-  					} else {
-  						timeout = setTimeout(() => {
-  							result = fn.apply(this, args);
-  						}, delay);
-  					}
-  					return result;
-  				};
-  				debounced.cancel = () => {
-  					clearTimeout(timeout);
-  					timeout = null;
-  				};
-  				return debounced;
-  			};
-  			const container = document.querySelector('.integration-doc-container');
-  			const search = container.querySelector('.integration-search-intput');
-  			const header = container.querySelector('.fth-integration-list-header');
-  			const content = container.querySelector('.fth-integration-list-content');
-  			let originList = [];
-  			const debounceSearchFn = debounce(searchIntegration, 300);
-  			let searchValue = '';
-  			let tagValue = '';
-  			const inputChange = function (e) {
-  				const value = this.value;
-  				searchValue = value && value.toLowerCase();
-  				tagValue = '';
-  				debounceSearchFn();
-  			};
-  			const tagChange = function (e) {
-  				if (e.target.classList.contains('integration-tags-group-item')) {
-  					const curTag = e.target;
-  					const activeTag = header.querySelector('.integration-tags-group-item.tag-active');
-            const tagAllContainer = header.querySelector('.integration-tags-group-item');
-  					if (curTag !== activeTag) {
-  						tagValue = curTag.dataset.tag;
-  						curTag.classList.add('tag-active');
-  					} else {
+                let timeout = null;
+                let result = undefined;
+                const that = this;
+                const debounced = function (that, ...args) {
+                    if (timeout) clearTimeout(timeout);
+                    if (immediate) {
+                        const canNow = !timeout;
+                        timeout = setTimeout(() => {
+                            timeout = null;
+                        }, delay);
+                        if (canNow) result = fn.apply(this, args);
+                    } else {
+                        timeout = setTimeout(() => {
+                            result = fn.apply(this, args);
+                        }, delay);
+                    }
+                    return result;
+                };
+                debounced.cancel = () => {
+                    clearTimeout(timeout);
+                    timeout = null;
+                };
+                return debounced;
+            };
+            const container = document.querySelector('.integration-doc-container');
+            const search = container.querySelector('.integration-search-intput');
+            const header = container.querySelector('.fth-integration-list-header');
+            const content = container.querySelector('.fth-integration-list-content');
+            let originList = [];
+            const debounceSearchFn = debounce(searchIntegration, 300);
+            let searchValue = '';
+            let tagValue = '';
+            const inputChange = function (e) {
+                const value = this.value;
+                searchValue = value && value.toLowerCase();
+                tagValue = '';
+                debounceSearchFn();
+            };
+            const tagChange = function (e) {
+                if (e.target.classList.contains('integration-tags-group-item')) {
+                    const curTag = e.target;
+                    const activeTag = header.querySelector('.integration-tags-group-item.tag-active');
+                    const tagAllContainer = header.querySelector('.integration-tags-group-item');
+                    if (curTag !== activeTag) {
+                        tagValue = curTag.dataset.tag;
+                        curTag.classList.add('tag-active');
+                    } else {
                         if (activeTag === tagAllContainer) {
                             return;
                         }
-  						tagValue = tagAll.value;
-                       tagAllContainer && tagAllContainer.classList.add('tag-active');
-  					}
-  					if (activeTag) {
-  						activeTag.classList.remove('tag-active');
-  					}
-  					searchIntegration('tag');
-  				}
-  			};
-  
-  			//   根据 tag 和 search 搜索内容
-  			function searchIntegration(type) {
-  				// type 两种类型 'tag' 'search'
-  				const search = searchValue;
-  				const tag = tagValue;
-  				const tagObj = {};
-  				const isSearch = type !== 'tag';
-  				originList.forEach(item => {
-  					const { tags, name, summary, dom } = item;
-  					const show =
-  						((!tags && !tag) || tags.includes(tag)) && (!name || name.includes(search) || summary.includes(search) || tags.includes(search));
-  					dom.style.display = show ? 'block' : 'none';
-  					// 如果是搜索触发 需重新计算tags
-  					if (isSearch && show && tags) {
-  						const tagsArr = tags.split(',');
-  						tagsArr.forEach(v => {
-  							if (tagObj[v]) {
-  								tagObj[v] += 1;
-  							} else {
-  								tagObj[v] = 1;
-  							}
-  						});
-  					}
-  				});
-  				if (isSearch) {
-  					tagValue = '';
-  					const tagContainer = header.querySelector('.integration-tags-group');
-  					if (Object.keys(tagObj).length) {
-  						const tags = Object.entries(tagObj).reduce(
-                                (acc, cur) => {
-                                    const [key, value] = cur;
-                                    const keyIndex = limitTags.indexOf(key);
-                                    if (keyIndex > -1) {
-                                        acc.push({ label: `${key} (${value})`, value: key, index: keyIndex });
-                                    }
-                                    return acc;
-                                },
-                                [{ ...tagAll, index: -1 }]
-                            )
+                        tagValue = tagAll.value;
+                        tagAllContainer && tagAllContainer.classList.add('tag-active');
+                    }
+                    if (activeTag) {
+                        activeTag.classList.remove('tag-active');
+                    }
+                    searchIntegration('tag');
+                }
+            };
+
+            //   根据 tag 和 search 搜索内容
+            function searchIntegration(type) {
+                // type 两种类型 'tag' 'search'
+                const search = searchValue;
+                const tag = tagValue;
+                const tagObj = {};
+                const isSearch = type !== 'tag';
+                originList.forEach(item => {
+                    const { tags, name, summary, dom } = item;
+                    const show =
+                        ((!tags && !tag) || tags.toLowerCase().includes(tag && tag.toLowerCase())) && (!name || name.includes(search) || summary.includes(search) || tags.toLowerCase().includes(search));
+                    dom.style.display = show ? 'block' : 'none';
+                    // 如果是搜索触发 需重新计算tags
+                    if (isSearch && show && tags) {
+                        let tagsArr = tags.split(',');
+                        tagsArr = tagsArr.forEach(v => {
+                            const index = limitTagsToLower.indexOf(v.toLowerCase())
+
+                            if (index > -1) {
+                                const curTag = limitTags[index]
+                                if (tagObj[curTag]) {
+                                    tagObj[curTag] += 1;
+                                } else {
+                                    tagObj[curTag] = 1;
+                                }
+                            }
+                        })
+                    }
+                });
+                if (isSearch) {
+                    tagValue = '';
+                    const tagContainer = header.querySelector('.integration-tags-group');
+                    if (Object.keys(tagObj).length) {
+                        const tags = Object.entries(tagObj).reduce(
+                            (acc, cur) => {
+                                const [key, value] = cur;
+                                const keyIndex = limitTagsToLower.indexOf(key && key.toLowerCase());
+                                if (keyIndex > -1) {
+                                    acc.push({ label: `${key} (${value})`, value: key, index: keyIndex });
+                                }
+                                return acc;
+                            },
+                            [{ ...tagAll, index: -1 }]
+                        )
                             .sort((a, b) => a.index - b.index)
-  
-  						tagContainer.innerHTML = tags.map(
+
+                        tagContainer.innerHTML = tags.map(
                             (tag) =>
-                                `<div class="integration-tags-group-item ${
-                                tag.label === tagAll.label ? 'tag-active' : ''
+                                `<div class="integration-tags-group-item ${tag.label === tagAll.label ? 'tag-active' : ''
                                 }" data-tag="${tag.value}">${tag.label}</div>`
-                            ).join('');
-  					} else {
-  						tagContainer.innerHTML = '';
-  					}
-  				}
-  			}
-  			header.querySelector('.integration-search-input').addEventListener('input', inputChange);
-  			header.addEventListener('click', tagChange);
-  			content.addEventListener('click', e => {
-  				let ele = e.target;
-  				let i = 0;
-  				while (i < 5) {
-  					if (ele.classList.contains('fth-integration-list-item')) {
-  						const href = ele.dataset.href;
-  						href && window.open(href);
-  						break;
-  					}
-  					i++;
-  					ele = ele.parentNode;
-  				}
-  			});
-  			function init() {
-  				const list = container.querySelectorAll('.fth-integration-list-item');
-  				list.forEach(item => {
-  					const { tags: tagsStr, name: nameStr, summary: summaryStr } = item.dataset || {};
-  					const tags = tagsStr || '';
-  					const name = (nameStr && nameStr.toLowerCase()) || '';
-  					const summary = summaryStr ? summaryStr.toLowerCase() : '';
-  					originList.push({ tags, name, summary, dom: item });
-  				});
-  				searchIntegration();
-  			}
-  			init();
-  		})();
+                        ).join('');
+                    } else {
+                        tagContainer.innerHTML = '';
+                    }
+                }
+            }
+            header.querySelector('.integration-search-input').addEventListener('input', inputChange);
+            header.addEventListener('click', tagChange);
+            content.addEventListener('click', e => {
+                let ele = e.target;
+                let i = 0;
+                while (i < 5) {
+                    if (ele.classList.contains('fth-integration-list-item')) {
+                        const href = ele.dataset.href;
+                        href && window.open(href);
+                        break;
+                    }
+                    i++;
+                    ele = ele.parentNode;
+                }
+            });
+            function init() {
+                const list = container.querySelectorAll('.fth-integration-list-item');
+                list.forEach(item => {
+                    const { tags: tagsStr, name: nameStr, summary: summaryStr } = item.dataset || {};
+                    const tags = tagsStr || '';
+                    const name = (nameStr && nameStr.toLowerCase()) || '';
+                    const summary = summaryStr ? summaryStr.toLowerCase() : '';
+                    originList.push({ tags, name, summary, dom: item });
+                });
+                searchIntegration();
+            }
+            init();
+        })();
   	</script>
   </div>
 </html>
