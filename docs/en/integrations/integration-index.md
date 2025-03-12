@@ -267,12 +267,12 @@ icon: zy/integrations
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun/icon.png"
+									src="../icon/aliyun_billing/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Alibaba Cloud Billing</div>
+                            <div title="Alibaba Cloud Billing" class="fth-integration-name">Alibaba Cloud Billing</div>
                             <div title="Collect Alibaba Cloud billing information" class="fth-integration-desc">Collect Alibaba Cloud billing information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
@@ -2318,7 +2318,7 @@ Alibaba Cloud MongoDB single-node instance metrics display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Azure Load Balancer</div>
+                            <div title="Azure Load Balancer" class="fth-integration-name">Azure Load Balancer</div>
                             <div title="Collect Azure Load Balancer metric data" class="fth-integration-desc">Collect Azure Load Balancer metric data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
