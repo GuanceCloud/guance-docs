@@ -507,7 +507,7 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
               value: "true"
             - name: INFLUXDB_HTTP_AUTH_ENABLED
               value: "true"
-            image: pubrepo.guance.com/googleimages/influxdb:1.7.8
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/influxdb:1.7.8
             imagePullPolicy: IfNotPresent
             name: influxdb
             ports:

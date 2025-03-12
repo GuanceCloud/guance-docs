@@ -229,7 +229,7 @@ Save openes.yaml and deploy it.
           enableServiceLinks: true
           initContainers:
           - name: fsgroup-volume
-            image: "pubrepo.guance.com/googleimages/busybox:1.35.0"
+            image: "pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0"
             command: ['sh', '-c']
             args:
               - 'chown -R 1000:1000 /usr/share/opensearch/data'
@@ -487,7 +487,7 @@ Save es.yaml and deploy it.
               defaultMode: 0444 
           initContainers:
           - name: fix-permissions
-            image: pubrepo.guance.com/googleimages/busybox:1.35.0
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0
             imagePullPolicy: IfNotPresent
             command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
             securityContext:
@@ -496,13 +496,13 @@ Save es.yaml and deploy it.
             - name: data
               mountPath: /usr/share/elasticsearch/data
           - name: increase-vm-max-map
-            image: pubrepo.guance.com/googleimages/busybox:1.35.0
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0
             imagePullPolicy: IfNotPresent
             command: ["sysctl", "-w", "vm.max_map_count=262144"]
             securityContext:
               privileged: true
           - name: increase-fd-ulimit
-            image: pubrepo.guance.com/googleimages/busybox:1.35.0
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0
             imagePullPolicy: IfNotPresent
             command: ["sh", "-c", "ulimit -n 65536"]
             securityContext:
@@ -733,7 +733,7 @@ kubectl delete -n middleware pvc data-es-cluster-0
                 workload.user.cattle.io/workloadselector: deployment-middleware-kibana
             spec:
               containers:
-              - image: pubrepo.guance.com/googleimages/kibana:7.13.2
+              - image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kibana:7.13.2
                 imagePullPolicy: IfNotPresent
                 env:
                 - name: ELASTICSEARCH_URL

@@ -86,7 +86,7 @@ In the <<< custom_key.brand_name >>> workspace **Management > Member Management*
 
 ![](img/11.role_upgrade_1.png)
 
-- If you are the Administrator role of the current workspace, when promoting a member, you need to notify the <<< custom_key.brand_name >>> Billing Center administrator to [log in to the Billing Center](https://boss.guance.com/) for operation;
+- If you are the Administrator role of the current workspace, when promoting a member, you need to notify the <<< custom_key.brand_name >>> Billing Center administrator to [log in to the Billing Center](https://<<< custom_key.boss_domain >>>/) for operation;
 - If you are the Owner role of the current workspace, you can directly click **Go to Billing Center Review** and operate without logging into the <<< custom_key.brand_name >>> Billing Center.
 
 ![](img/11.role_upgrade_2.png)

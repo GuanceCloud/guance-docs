@@ -128,7 +128,7 @@
 
 ![](img/15.aws_market_register_15.png)
 
-您可以在 [<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)，**工作空间管理**查看已开通的结算方式。
+您可以在 [<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)，**工作空间管理**查看已开通的结算方式。
 
 ![](img/15.aws_market_register_16.png)
 
@@ -168,7 +168,7 @@
 
     ![](img/15.aws_market_register_7.png)
 
-    您可以使用刚才注册的账号登录到 [<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)，在**工作空间管理**查看已开通的结算方式。
+    您可以使用刚才注册的账号登录到 [<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)，在**工作空间管理**查看已开通的结算方式。
 
     ![](img/15.aws_market_register_10.png)
 
@@ -209,7 +209,7 @@
 
     ![](img/15.aws_market_register_15.png)
 
-    您可以在 [<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)，**工作空间管理**查看已开通的结算方式。
+    您可以在 [<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)，**工作空间管理**查看已开通的结算方式。
 
     ![](img/15.aws_market_register_16.png)
 

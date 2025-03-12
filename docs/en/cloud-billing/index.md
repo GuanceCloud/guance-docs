@@ -17,12 +17,12 @@ Finally, the intelligent monitoring system for cloud billing offers real-time tr
 
 Before using the cloud billing analysis feature and ultimately collecting and reporting data, you need to enable the following collectors on DataFlux Func:
 
-- Collector —— [Alibaba Cloud - Cloud Billing (Instance Level)](https://func.guance.com/doc/script-market-guance-aliyun-billing-by-instance/)
-- Collector —— [Tencent Cloud - Cloud Billing (Instance Level)](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/)
-- Collector —— [Huawei Cloud - Cloud Billing (Instance Level)](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/)
-- Collector —— [AWS - Cloud Billing (Instance Level)](https://func.guance.com/doc/script-market-guance-aws-billing-by-instance/)
-- Collector —— [Microsoft Azure - Cloud Billing (Instance Level)](https://func.guance.com/doc/script-market-guance-azure-billing-by-instance/)
-- Collector —— [Volc Engine - Cloud Billing (Instance Level)](https://func.guance.com/doc/script-market-guance-volcengine-billing-by-instance/)
+- Collector —— [Alibaba Cloud - Cloud Billing (Instance Level)](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-billing-by-instance/)
+- Collector —— [Tencent Cloud - Cloud Billing (Instance Level)](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-billing-by-instance/)
+- Collector —— [Huawei Cloud - Cloud Billing (Instance Level)](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-billing-by-instance/)
+- Collector —— [AWS - Cloud Billing (Instance Level)](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-billing-by-instance/)
+- Collector —— [Microsoft Azure - Cloud Billing (Instance Level)](https://<<< custom_key.func_domain >>>/doc/script-market-guance-azure-billing-by-instance/)
+- Collector —— [Volc Engine - Cloud Billing (Instance Level)](https://<<< custom_key.func_domain >>>/doc/script-market-guance-volcengine-billing-by-instance/)
 
 ## Explorer
 

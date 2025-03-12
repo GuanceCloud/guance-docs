@@ -504,7 +504,7 @@ Save influxdb.yaml and deploy it.
               value: "true"
             - name: INFLUXDB_HTTP_AUTH_ENABLED
               value: "true"
-            image: pubrepo.guance.com/googleimages/influxdb:1.7.8
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/influxdb:1.7.8
             imagePullPolicy: IfNotPresent
             name: influxdb
             ports:

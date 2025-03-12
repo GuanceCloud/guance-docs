@@ -33,7 +33,7 @@ In the <<< custom_key.brand_name >>> workspace, click **Integration > Extensions
 
 ![](../img/3.object_more_api_function_1.png)
 
-> For more information on Func installation, refer to [Quick Start](https://func.guance.com/doc/quick-start/).
+> For more information on Func installation, refer to [Quick Start](https://<<< custom_key.func_domain >>>/doc/quick-start/).
 
 ## Connecting DataFlux Func and DataKit
 
@@ -51,7 +51,7 @@ sudo datakit --restart
 
 ![](../img/21.lab_rum_3.png)
 
-> For more details, refer to [Connecting and Operating DataKit](https://func.guance.com/doc/practice-connect-to-datakit/).
+> For more details, refer to [Connecting and Operating DataKit](https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/).
 
 ## Reporting Resource Catalog Data
 
@@ -59,7 +59,7 @@ After connecting DataFlux Func and DataKit, you can write functions in DataFlux 
 
 > For API documentation on DataFlux Func function calls, refer to [DataKit API](../../datakit/apis.md);
 >
-> For instructions on how DataFlux Func writes data to DataKit, refer to [Writing Data via DataKit](https://func.guance.com/doc/practice-write-data-via-datakit/).
+> For instructions on how DataFlux Func writes data to DataKit, refer to [Writing Data via DataKit](https://<<< custom_key.func_domain >>>/doc/practice-write-data-via-datakit/).
 
 ## Example Explanation
 

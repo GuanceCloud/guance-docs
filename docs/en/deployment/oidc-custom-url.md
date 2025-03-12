@@ -269,4 +269,4 @@ def callback_url_format(**kwargs):
     return result
 ```
 
-Note that authorization links must be [enabled](https://func.guance.com/doc/script-market-guance-issue-feishu-integration/#funcapi) for the `redirect_uri_format`, `login_auth_url_format`, and `callback_url_format` functions.
+Note that authorization links must be [enabled](https://<<< custom_key.func_domain >>>/doc/script-market-guance-issue-feishu-integration/#funcapi) for the `redirect_uri_format`, `login_auth_url_format`, and `callback_url_format` functions.

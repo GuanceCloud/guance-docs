@@ -2,7 +2,7 @@
 
 ---
 
-Send log data of different levels (`corresponding source: browser_log` Metrics type log data) actively from Web browsers or JavaScript clients to [<<< custom_key.brand_name >>>](https://www.guance.com/).
+Send log data of different levels (`corresponding source: browser_log` Metrics type log data) actively from Web browsers or JavaScript clients to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/).
 
 
 - Custom log data collection, integrating SDK into client applications to collect different log data for various scenarios;

@@ -24,7 +24,7 @@ This involves directly recharging and settling accounts through an Amazon Cloud 
 
 ## Changing Billing in the Billing Center Platform
 
-1. Log in and enter the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com);
+1. Log in and enter the <<< custom_key.brand_name >>> [Billing Center](https://<<< custom_key.boss_domain >>>);
 2. Go to Workspace Management;
 3. Select the workspace and click the change button on the right;
 4. Choose **Amazon Cloud Account Billing**;
@@ -42,7 +42,7 @@ This involves directly recharging and settling accounts through an Amazon Cloud 
 
 This means binding multiple workspaces under the same Amazon Cloud account for billing.
 
-1. Enter the [<<< custom_key.brand_name >>> Billing Center](https://boss.guance.com/#/signin) > Workspace Management;
+1. Enter the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) > Workspace Management;
 2. Click **Change Billing Method**;
 3. Under **Registered Cloud Account Billing**, select the Amazon Cloud account you wish to bind;
 4. Click **Confirm** to complete the binding.

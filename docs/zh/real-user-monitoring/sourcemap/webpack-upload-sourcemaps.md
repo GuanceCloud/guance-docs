@@ -56,7 +56,7 @@ interface Options {
   filepaths: Array<string> | string
 
   /**
-   * <<< custom_key.brand_name >>>平台生成的openApi Key，生成方式参考（https://docs.guance.com/management/api-key/open-api/#_1）
+   * <<< custom_key.brand_name >>>平台生成的openApi Key，生成方式参考（<<< homepage >>>/management/api-key/open-api/#_1）
    */
   apiKey: string
 

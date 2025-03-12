@@ -11,7 +11,7 @@ API Testing involves periodic availability monitoring of websites, domains, back
 
 ## Prerequisites
 
-You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/).
+You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/).
 
 ## Methods/Steps
 

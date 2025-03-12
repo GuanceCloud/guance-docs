@@ -7,7 +7,7 @@ This article uses Nginx logs as an example to introduce how to enable log monito
 
 ## Prerequisites
 
-You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/), and install DataKit on your host machine [Install DataKit](../datakit/datakit-install.md).
+You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/), and install DataKit on your host machine [Install DataKit](../datakit/datakit-install.md).
 
 ## Method/Steps
 

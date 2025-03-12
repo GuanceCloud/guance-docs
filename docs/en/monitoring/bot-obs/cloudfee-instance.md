@@ -8,7 +8,7 @@ Cloud account instance-level billing inspection helps users manage anomaly cost 
 
 ## Prerequisites
 
-1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or enable [DataFlux Func (Automata)](../../dataflux-func/index.md)
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or enable [DataFlux Func (Automata)](../../dataflux-func/index.md)
 2. Create an [API Key](../../management/api-key/open-api.md) in <<< custom_key.brand_name >>> under "Management / API Key Management" for performing operations.
 
 > **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with your current <<< custom_key.brand_name >>> SaaS on the [same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,9 +17,9 @@ Cloud account instance-level billing inspection helps users manage anomaly cost 
 
 ## Enable Inspection
 
-In your self-hosted DataFlux Func, install and enable ["<<< custom_key.brand_name >>> Integration (Huawei Cloud - Billing Collection - Instance Level)"](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/), ["<<< custom_key.brand_name >>> Integration (Alibaba Cloud - Billing Collection - Instance Level)"](https://func.guance.com/doc/script-market-guance-aliyun-billing/), and ["<<< custom_key.brand_name >>> Integration (Tencent Cloud - Billing Collection - Instance Level)"](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/). Collect data for more than 15 days, then install "<<< custom_key.brand_name >>> Self-hosted Inspection (Billing - Instance Level)" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
+In your self-hosted DataFlux Func, install and enable ["<<< custom_key.brand_name >>> Integration (Huawei Cloud - Billing Collection - Instance Level)"](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-billing-by-instance/), ["<<< custom_key.brand_name >>> Integration (Alibaba Cloud - Billing Collection - Instance Level)"](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-billing/), and ["<<< custom_key.brand_name >>> Integration (Tencent Cloud - Billing Collection - Instance Level)"](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-billing-by-instance/). Collect data for more than 15 days, then install "<<< custom_key.brand_name >>> Self-hosted Inspection (Billing - Instance Level)" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-In the DataFlux Func script market, select the inspection scenario you want to enable, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+In the DataFlux Func script market, select the inspection scenario you want to enable, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -111,7 +111,7 @@ If the inspection report lacks anomaly analysis, check the data collection statu
 
 **3. What if previously running scripts encounter errors during inspection**
 
-Update the referenced script sets in the DataFlux Func script market. You can review the update records via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates.
+Update the referenced script sets in the DataFlux Func script market. You can review the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates.
 
 **4. Under what circumstances will cloud account instance-level billing inspection events be generated**
 

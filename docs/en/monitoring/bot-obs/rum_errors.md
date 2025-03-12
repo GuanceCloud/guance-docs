@@ -8,7 +8,7 @@ Frontend error log inspection helps identify new error messages (clustered Error
 ## Prerequisites
 
 1. An integrated application already exists under <<< custom_key.brand_name >>> "[User Access Monitoring](../../real-user-monitoring/index)"
-2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or activation of [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activation of [DataFlux Func (Automata)](../../dataflux-func/index.md)
 4. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> "Management / API Key Management"
 
 > **Note**: If you are considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and in the same region as your current <<< custom_key.brand_name >>> SaaS deployment [in the same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,7 +17,7 @@ Frontend error log inspection helps identify new error messages (clustered Error
 
 In the self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Custom Inspection (New RUM Error Types)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Choose the required inspection scenario from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select Deploy to start the script.
+Choose the required inspection scenario from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select Deploy to start the script.
 
 ![image](../img/create_checker.png)
 
@@ -142,7 +142,7 @@ If there is no anomaly analysis in the inspection report, check the current `dat
 
 **3. During the inspection process, why do previously normal scripts show abnormal errors?**
 
-Update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates of the script.
+Update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates of the script.
 
 **4. Why does the script set in Startup not change during the upgrade of the inspection script?**
 

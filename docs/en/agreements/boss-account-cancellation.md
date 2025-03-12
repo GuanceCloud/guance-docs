@@ -3,7 +3,7 @@
 
 **[Special Note] Canceling your <<< custom_key.brand_name >>> Billing Center account is an irreversible operation. After cancellation, you will no longer be able to log in to the <<< custom_key.brand_name >>> Billing Center using this account, and all your data in <<< custom_key.brand_name >>> Billing Center will be deleted and cannot be recovered (even if you register and use <<< custom_key.brand_name >>> Billing Center again with the same email or phone number).**
 
-The <<< custom_key.brand_name >>> Billing Center account cancellation terms (hereinafter referred to as "these terms") govern your voluntary cancellation of your <<< custom_key.brand_name >>> Billing Center (domestic domain: boss.guance.com; international domain: bill.guance.one) account and related matters.
+The <<< custom_key.brand_name >>> Billing Center account cancellation terms (hereinafter referred to as "these terms") govern your voluntary cancellation of your <<< custom_key.brand_name >>> Billing Center (domestic domain: <<< custom_key.boss_domain >>>; international domain: bill.guance.one) account and related matters.
 
 Please read, understand, and agree to all the contents of these terms before submitting an account cancellation request. If you have any questions, please contact <<< custom_key.brand_name >>> customer service.
 

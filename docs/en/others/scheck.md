@@ -10,7 +10,7 @@ In general, one of the most critical tasks in operations and maintenance is insp
 
 ## Prerequisites
 
-- You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com);
+- You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>);
 - Install DataKit on your host [Install DataKit](../datakit/datakit-install.md);
 
 ## Method Steps

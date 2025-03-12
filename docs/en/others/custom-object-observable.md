@@ -10,8 +10,8 @@ In addition to hosts, containers, and processes, “<<< custom_key.brand_name >>
 ## Prerequisites
 
 - Install DataKit ([DataKit Installation Documentation](../datakit/datakit-install.md))
-- Install DataFlux Func ([DataFlux Func Installation Documentation](https://func.guance.com/doc/quick-start/))
-- Connect DataFlux Func and DataKit ([Connect and Operate DataKit](https://func.guance.com/doc/practice-connect-to-datakit/))
+- Install DataFlux Func ([DataFlux Func Installation Documentation](https://<<< custom_key.func_domain >>>/doc/quick-start/))
+- Connect DataFlux Func and DataKit ([Connect and Operate DataKit](https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/))
 
 
 

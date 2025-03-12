@@ -24,7 +24,7 @@
 
 ## 在费用中心平台更改结算
 
-1. 登录进入<<< custom_key.brand_name >>>[费用中心](https://boss.guance.com)；
+1. 登录进入<<< custom_key.brand_name >>>[费用中心](https://<<< custom_key.boss_domain >>>)；
 2. 进入工作空间管理；
 3. 选择工作空间，点击右侧的更改按钮；
 4. 选择**亚马逊云账号结算**；
@@ -47,7 +47,7 @@
 
 即表示在同一个亚马逊云账号下绑定多个工作空间进行结算。
 
-1. 进入[<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin) > 工作空间管理；
+1. 进入[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin) > 工作空间管理；
 2. 点击**更改结算方式**；
 3. 在**已登记云账号结算**，选择需要绑定的亚马逊云账号；
 4. 点击**确定**即可绑定成功。

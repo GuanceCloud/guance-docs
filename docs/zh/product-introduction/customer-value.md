@@ -35,7 +35,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **<<< custom_key.brand_name >>> VS 开源自建**</font>](https://www.guance.com/whitepaper/guanceVSopensource
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **<<< custom_key.brand_name >>> VS 开源自建**</font>](https://<<< custom_key.brand_main_domain >>>/whitepaper/guanceVSopensource
 )
 
 </div>

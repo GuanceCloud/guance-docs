@@ -36,6 +36,6 @@
 ![](img/12.deployment_13.png)
 ## 登录<<< custom_key.brand_name >>>
 
-打开<<< custom_key.brand_name >>>访问地址，即可使用以上创建的用户登录到对应的工作空间开始使用<<< custom_key.brand_name >>>的所有功能。详细功能使用介绍可参考 [<<< custom_key.brand_name >>>帮助手册](https://docs.guance.com/)。
+打开<<< custom_key.brand_name >>>访问地址，即可使用以上创建的用户登录到对应的工作空间开始使用<<< custom_key.brand_name >>>的所有功能。详细功能使用介绍可参考 [<<< custom_key.brand_name >>>帮助手册](<<< homepage >>>/)。
 
 ![](img/12.deployment_14.png)

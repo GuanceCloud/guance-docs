@@ -65,6 +65,8 @@ extra:
     brand_key: guance
     brand_name: 观测云
     brand_main_domain: guance.com
+    boss_domain: boss.guance.com
+    func_domain: func.guance.com
 
   alternate:
     - name: 中文

@@ -87,7 +87,7 @@
 
 ![](img/11.role_upgrade_1.png)
 
-- 若您是当前工作空间的 Administrator 角色，为成员进行提权时，则需要通知<<< custom_key.brand_name >>>费用中心管理员 [登录费用中心](https://boss.guance.com/) 进行操作；   
+- 若您是当前工作空间的 Administrator 角色，为成员进行提权时，则需要通知<<< custom_key.brand_name >>>费用中心管理员 [登录费用中心](https://<<< custom_key.boss_domain >>>/) 进行操作；   
 - 若您是当前工作空间的 Owner 角色，则可直接点击**前往费用中心审核**，免登录到<<< custom_key.brand_name >>>费用中心进行操作。  
 
 ![](img/11.role_upgrade_2.png)

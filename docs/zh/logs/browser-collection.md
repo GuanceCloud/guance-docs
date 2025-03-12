@@ -2,7 +2,7 @@
 
 ---
 
-通过 Web 浏览器或者 Javascript 客户端主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[<<< custom_key.brand_name >>>](https://www.guance.com/)。
+通过 Web 浏览器或者 Javascript 客户端主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)。
 
 
 - 自定义日志数据采集，通过 SDK 接入客户端应用中，针对不同场景采集不同日志数据；

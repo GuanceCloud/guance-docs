@@ -109,7 +109,7 @@ Application Performance Monitoring (APM) capabilities in the market are indispen
 
 : Zipkin is a distributed trace system that collects timestamped data to complete system monitoring and discover service-level system issues. Zipkin provides an integrated solution for data collection and querying, allowing you to jump directly from logs to traces in Zipkin's UI via a TraceID and provides retrieval capabilities based on various data.
 
-[Datakit](https://docs.guance.com/datakit/datakit-tracing/){:target="_blank"}
+[Datakit](<<< homepage >>>/datakit/datakit-tracing/){:target="_blank"}
 
 : Unlike the aforementioned trace systems, Datakit does not generate any program execution state data (Span) or alter the data organization form. Datakit listens on network ports to receive trace data from major mainstream trace systems. Datakit’s trace module not only provides out-of-the-box capabilities but is almost zero-configured, allowing users to seamlessly transition from other trace systems to Datakit.
 

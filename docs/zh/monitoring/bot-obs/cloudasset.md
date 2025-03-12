@@ -7,9 +7,9 @@
 
 ## 前置条件
 
-1. 自建 [DataFlux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
+1. 自建 [DataFlux Func <<< custom_key.brand_name >>>特别版](https://<<< custom_key.func_domain >>>/#/) ，或者开通 [DataFlux Func 托管版](../../dataflux-func/index.md)
 3. 在<<< custom_key.brand_name >>>「管理 / API Key 管理」中创建用于进行操作的 [API Key](../../management/api-key/open-api.md)
-5. 开启对应需要检测的「<<< custom_key.brand_name >>>自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
+5. 开启对应需要检测的「<<< custom_key.brand_name >>>自建巡检（阿里云）」中对象的[采集器(如: 阿里云 ECS)](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/)
 7. 在自建的 DataFlux Func 中，编写自建巡检处理函数
 
 > **注意**：如果考虑采用云服务器来进行 DataFlux Func 离线部署的话，请考虑跟当前使用的<<< custom_key.brand_name >>> SaaS 部署在[同一运营商同一地域](../../../getting-started/necessary-for-beginners/select-site/)。
@@ -89,11 +89,11 @@
 
 **2.阿里云资产巡检收集的相关指标集怎么看**
 
-可以参考阿里云集成文档中[（如: 阿里云 ECS）](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)的上报数据格式中的指标集进行数据查看
+可以参考阿里云集成文档中[（如: 阿里云 ECS）](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/)的上报数据格式中的指标集进行数据查看
 
 **3.在巡检过程中发现以前正常运行的脚本出现异常错误**
 
-请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://func.guance.com/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
+请在 DataFlux Func 的脚本市场中更新所引用的脚本集，可以通过[**变更日志**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/)来查看脚本市场的更新记录方便即时更新脚本。
 
 
 

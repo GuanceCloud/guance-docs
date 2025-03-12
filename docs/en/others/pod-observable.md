@@ -7,7 +7,7 @@
 
 ## Prerequisites
 
-You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/).
+You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/).
 
 ## Methods/Steps
 
@@ -30,7 +30,7 @@ To install DataKit using Helm for collecting Kubernetes resources, you need to i
 Note: After adding the DataKit Helm repository, you must run the upgrade command `helm repo update`.
 
 ```
-$ helm repo add datakit https://pubrepo.guance.com/chartrepo/datakit
+$ helm repo add datakit https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 $ helm repo update 
 ```
 

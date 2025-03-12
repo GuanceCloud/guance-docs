@@ -19,7 +19,7 @@ This article focuses on configuring links within the [Explorer], [Dashboards], a
 If you haven't registered a tree-node-{"name":"datakit-daemonset.md","path":"/zh/best-practices/insight/datakit-daemonset.md","type":"file","repo":"Guance integration","birthtime":1700705887402.8657,"mtime":1700705887402.8657,"level":5,"marked":false} account or your workspace lacks data, follow these steps to complete data collection:
 
 1. [Log in to <<< custom_key.brand_name >>> Console](https://auth.guance.com/login/pwd) (if you don’t have an account, [register here](https://auth.guance.com/register));
-2. [Install the DataKit collector](https://docs.guance.com/datakit/datakit-install/);
+2. [Install the DataKit collector](<<< homepage >>>/datakit/datakit-install/);
 3. Navigate to the [Integrations] page in the console to enable the corresponding data collectors.
 
 ![](../images/Integration.png)

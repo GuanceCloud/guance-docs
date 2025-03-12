@@ -319,7 +319,7 @@ volumeBindingMode: WaitForFirstConsumer
         spec:
           containers:
           - name: arbitrator
-            image: "pubrepo.guance.com/googleimages/tdengine:2.6.0.18"
+            image: "pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/tdengine:2.6.0.18"
             command: ["tarbitrator"]
             ports:
             - name: tcp6042
@@ -362,7 +362,7 @@ volumeBindingMode: WaitForFirstConsumer
             tdengine: "true"
           containers:
             - name: tdengine
-              image: "pubrepo.guance.com/googleimages/tdengine:2.6.0.18"
+              image: "pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/tdengine:2.6.0.18"
               imagePullPolicy: IfNotPresent
               ports:
               - name: tcp0

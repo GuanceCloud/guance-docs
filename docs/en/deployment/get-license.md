@@ -6,7 +6,7 @@ The <<< custom_key.brand_name >>> Deployment Plan provides teachers, students, c
 
 ### Register for a Deployment Plan Account
 
-Directly open the registration page for the Deployment Plan ([https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private)) and follow the instructions to register for a Deployment Plan account.
+Directly open the registration page for the Deployment Plan ([https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private](https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private)) and follow the instructions to register for a Deployment Plan account.
 
 ![](img/6.deployment_3.png)
 

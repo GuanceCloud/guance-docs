@@ -54,7 +54,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                     "provider": "Guance"
                 },
                 {
-                    "link": "https://func.guance.com/doc",
+                    "link": "https://<<< custom_key.func_domain >>>/doc",
                     "name": "func",
                     "provider": "Guance"
                 }
@@ -70,12 +70,12 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
             },
             "Repos": [
                 {
-                    "link": "https://www.guance.com",
+                    "link": "https://<<< custom_key.brand_main_domain >>>",
                     "name": "Guance",
                     "provider": "Guance"
                 },
                 {
-                    "link": "https://func.guance.com",
+                    "link": "https://<<< custom_key.func_domain >>>",
                     "name": "func",
                     "provider": "Guance"
                 }

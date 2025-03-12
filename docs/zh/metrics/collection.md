@@ -11,5 +11,5 @@
 采集指标有两种方式：
 
 1. 登录控制台，进入**集成**页面，安装 DataKit 后，开启需要采集指标的采集器；
-2. 通过 [DataKit API](../datakit/apis.md) 自定义[写入指标数据](https://func.guance.com/doc/practice-write-data-via-datakit/)。
+2. 通过 [DataKit API](../datakit/apis.md) 自定义[写入指标数据](https://<<< custom_key.func_domain >>>/doc/practice-write-data-via-datakit/)。
 

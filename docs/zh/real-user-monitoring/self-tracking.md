@@ -42,7 +42,7 @@
 
 2、若您还未开始使用<<< custom_key.brand_name >>>，可以先完成以下步骤：
 
- - [注册<<< custom_key.brand_name >>>账号](https://www.guance.com/)；  
+ - [注册<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)；  
  - [安装 DataKit](../datakit/datakit-install.md)；  
  - [开启用户访问监测采集器](../integrations/rum.md)；  
  - [接入 Web 应用](web/app-access.md)。

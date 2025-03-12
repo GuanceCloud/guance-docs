@@ -5,7 +5,7 @@
 
 **提醒您：在使用<<< custom_key.brand_name >>>各项服务前，请您务必仔细阅读并透彻理解本声明。**
 
-您可以选择不使用<<< custom_key.brand_name >>>服务，但如果您使用<<< custom_key.brand_name >>>服务，您的使用行为将被视为对本声明全部内容的认可。<<< custom_key.brand_name >>>指由上海观测未来信息技术有限公司（简称 “<<< custom_key.brand_name >>>”）运营的网站，域名为 www.guance.com 。
+您可以选择不使用<<< custom_key.brand_name >>>服务，但如果您使用<<< custom_key.brand_name >>>服务，您的使用行为将被视为对本声明全部内容的认可。<<< custom_key.brand_name >>>指由上海观测未来信息技术有限公司（简称 “<<< custom_key.brand_name >>>”）运营的网站，域名为 <<< custom_key.brand_main_domain >>> 。
 
 鉴于 “<<< custom_key.brand_name >>>” 提供的部分服务属于电子公告牌（BBS）服务，<<< custom_key.brand_name >>>上关于<<< custom_key.brand_name >>>会员或其发布的相关信息（包括但不限于用户名称、公司名称、 联系人及联络信息，相关图片、视讯等）的信息均是由会员自行提供，会员依法应对其提供的任何信息承担全部责任。任何单位或个人认为<<< custom_key.brand_name >>>网页内容（包括但不限于<<< custom_key.brand_name >>>会员发布的商品信息）可能涉嫌侵犯其合法权益，应该及时向 “<<< custom_key.brand_name >>>” 提出书面权利通知，并提供身份证明、权属证明、具体链接（URL）及详细侵权情况证明。 “<<< custom_key.brand_name >>>” 在收到上述法律文件后，将会依法尽快移除相关涉嫌侵权的内容。<<< custom_key.brand_name >>>转载作品（包括论坛内容）出于传递更多信息之目的，并不意味 “<<< custom_key.brand_name >>>” （包括 “<<< custom_key.brand_name >>>” 关联企业）赞同其观点或证实其内容的真实性。
 

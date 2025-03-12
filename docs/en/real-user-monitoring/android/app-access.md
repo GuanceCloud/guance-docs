@@ -1076,7 +1076,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 	// Finally, after the request ends, send related data metrics of the request
 	ResourceParams params = new ResourceParams();
-	params.setUrl("https://www.guance.com");
+	params.setUrl("https://<<< custom_key.brand_main_domain >>>");
 	params.setResponseContentType(response.header("Content-Type"));
 	params.setResponseConnection(response.header("Connection"));
 	params.setResponseContentEncoding(response.header("Content-Encoding"));
@@ -1118,7 +1118,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 	// Finally, after the request ends, send related data metrics of the request
 	val params = ResourceParams()
-	params.url = "https://www.guance.com"
+	params.url = "https://<<< custom_key.brand_main_domain >>>"
 	params.responseContentType = response.header("Content-Type")
 	params.responseConnection = response.header("Connection")
 	params.responseContentEncoding = response.header("Content-Encoding")
@@ -1325,7 +1325,7 @@ Configure `FTTraceConfig` to enable `enableAutoTrace` to automatically add trace
 === "Java"
 
 	```java
-	String url = "https://www.guance.com";
+	String url = "https://<<< custom_key.brand_main_domain >>>";
 	String uuid = "uuid";
 	// Get trace header parameters
 	Map<String, String> headers = FTTraceManager.get().getTraceHeader(uuid, url);
@@ -1362,7 +1362,7 @@ Configure `FTTraceConfig` to enable `enableAutoTrace` to automatically add trace
 === "Kotlin"
 
 	```kotlin
-	val url = "https://www.guance.com"
+	val url = "https://<<< custom_key.brand_main_domain >>>"
 	val uuid ="uuid"
 	// Get trace header parameters
 	val headers = FTTraceManager.get().getTraceHeader(uuid, url)
@@ -2068,7 +2068,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 #### Method 1: SDK AndroidID Configuration
 To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
 
@@ -2411,7 +2411,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -2771,7 +2771,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -3131,7 +3131,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -3491,7 +3491,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -3851,7 +3851,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -4211,7 +4211,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -4763,7 +4763,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -5123,7 +5123,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -5483,7 +5483,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 
@@ -5887,7 +5887,7 @@ To avoid conflicts between custom fields and SDK data, it is recommended to pref
 ### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
 
 #### Privacy Statement
-[Go to view](https://docs.guance.com/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 
 #### Method 1: SDK AndroidID Configuration
 

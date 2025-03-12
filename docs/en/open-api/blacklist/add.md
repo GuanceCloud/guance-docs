@@ -63,7 +63,7 @@ When generating filtering conditions for the blacklist, the key of the `source` 
 | values    | array  | N | Specific query condition values |
 
 **4. Operation Description**
-Refer to Line Protocol Filters [https://docs.guance.com/datakit/datakit-filter/](https://docs.guance.com/datakit/datakit-filter/)
+Refer to Line Protocol Filters [<<< homepage >>>/datakit/datakit-filter/](<<< homepage >>>/datakit/datakit-filter/)
 
 | Key | Description |
 |---|----|

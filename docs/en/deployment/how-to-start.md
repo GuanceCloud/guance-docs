@@ -42,7 +42,7 @@ After installation is complete, wait a moment and refresh the "Data Gateway" pag
 
 #### Register Deployment Plan Account
 
-Open the registration URL for the Deployment Plan ([https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private)) and follow the prompts to register a Deployment Plan account.
+Open the registration URL for the Deployment Plan ([https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private](https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private)) and follow the prompts to register a Deployment Plan account.
 
 ![](img/6.deployment_3.png)
 
@@ -93,6 +93,6 @@ In the workspace members list, click "Add User" in the top-right corner, select 
 
 ![](img/12.deployment_13.png)
 #### Log in to <<< custom_key.brand_name >>>
-Open the <<< custom_key.brand_name >>> Deployment Plan access URL, and you can log in with the created user to start using all <<< custom_key.brand_name >>> features. For detailed feature usage, refer to the [<<< custom_key.brand_name >>> Help Manual](https://docs.guance.com/).
+Open the <<< custom_key.brand_name >>> Deployment Plan access URL, and you can log in with the created user to start using all <<< custom_key.brand_name >>> features. For detailed feature usage, refer to the [<<< custom_key.brand_name >>> Help Manual](<<< homepage >>>/).
 
 ![](img/12.deployment_14.png)

@@ -177,4 +177,4 @@ DataKit parameter configuration varies based on the reporting protocol.
 
 [OpenTelemetry-Java Extended Configuration](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md)
 
-[Enhanced Opentelemetry Agent](https://docs.guance.com/integrations/otel-ext-changelog/)
+[Enhanced Opentelemetry Agent](<<< homepage >>>/integrations/otel-ext-changelog/)

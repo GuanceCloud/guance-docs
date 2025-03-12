@@ -73,7 +73,7 @@ To obtain the public address for <<< custom_key.brand_name >>> images, visit the
     When installing launcher, add the `imageSecrets.url`, `imageSecrets.username`, and `imageSecrets.password` parameters.
 
     ```shell hl_lines='4'
-    helm install launcher launcher  --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+    helm install launcher launcher  --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/launcher -n launcher \
     --create-namespace  \
     --set ingress.hostName=<Hostname>,storageClassName=<Stroageclass> \
     --set imageSecrets.url=<warehouseaddress>,imageSecrets.username=<warehouse username>,imageSecrets.password=<warehouse passwd>

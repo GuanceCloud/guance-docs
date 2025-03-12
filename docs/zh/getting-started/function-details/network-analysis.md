@@ -7,7 +7,7 @@
 
 但是，如果掌握了正确的网络流量分析，梳理好网络流量业务链，您就可以快速定位故障点，确定数据包丢失位置。省去了排障过程中对没有问题的中间件设备的确认过程，大大节约了时间，可以更快的修复故障。
 
-所以对网络的全面可见性成为监控应用程序运行状态和性能的关键部分，但随着您的应用程序规模不断扩大，越来越复杂，获得这种可见性就变得具有挑战性。[<<< custom_key.brand_name >>>](https://www.guance.com/) 将为提供主机网络的全面可观测。
+所以对网络的全面可见性成为监控应用程序运行状态和性能的关键部分，但随着您的应用程序规模不断扩大，越来越复杂，获得这种可见性就变得具有挑战性。[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) 将为提供主机网络的全面可观测。
 
 ### 2、网络分析的功能范围
 
@@ -18,7 +18,7 @@
 
 ## 前置条件
 
-您需要先创建一个 [<<< custom_key.brand_name >>>账号](https://www.guance.com)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启 [eBPF](../../integrations/ebpf.md) 集成的运行，采集网络数据。
+您需要先创建一个 [<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启 [eBPF](../../integrations/ebpf.md) 集成的运行，采集网络数据。
 
 ## 利用网络可观测定位解决我们的问题
 

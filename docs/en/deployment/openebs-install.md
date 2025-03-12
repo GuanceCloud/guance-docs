@@ -29,7 +29,7 @@ OpenEBS dynamic local PV extends the functionality provided by Kubernetes local 
     Execute the command to install:
     
     ```shell
-    helm install localpv localpv-provisioner --repo https://pubrepo.guance.com/chartrepo/dataflux-chart -n kube-system
+    helm install localpv localpv-provisioner --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/dataflux-chart -n kube-system
     ```
 
     Output result:

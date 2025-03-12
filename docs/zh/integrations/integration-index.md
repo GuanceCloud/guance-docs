@@ -267,12 +267,12 @@ icon: zy/integrations
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun/icon.png"
+									src="../icon/aliyun_billing/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">阿里云 云账单</div>
+                            <div title="阿里云 云账单" class="fth-integration-name">阿里云 云账单</div>
                             <div title="采集阿里云云账单信息" class="fth-integration-desc">采集阿里云云账单信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
@@ -2318,7 +2318,7 @@ icon: zy/integrations
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Azure Load Balancer</div>
+                            <div title="Azure Load Balancer" class="fth-integration-name">Azure Load Balancer</div>
                             <div title="采集 Azure Load Balancer 指标数据" class="fth-integration-desc">采集 Azure Load Balancer 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>

@@ -43,7 +43,7 @@
 
 ## 在费用中心平台更改结算
 
-1. 登录进入<<< custom_key.brand_name >>>[费用中心](https://boss.guance.com)；
+1. 登录进入<<< custom_key.brand_name >>>[费用中心](https://<<< custom_key.boss_domain >>>)；
 2. 进入工作空间管理；
 3. 选择工作空间，点击右侧的更改按钮；
 4. 选择**阿里云账号结算**；

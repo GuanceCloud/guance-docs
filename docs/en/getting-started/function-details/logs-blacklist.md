@@ -5,7 +5,7 @@
 
 ## Prerequisites
 
-You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com), and then [install DataKit](../../datakit/datakit-install.md) on your host to enable the relevant integrations for data collection.
+You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>), and then [install DataKit](../../datakit/datakit-install.md) on your host to enable the relevant integrations for data collection.
 
 ## Purpose of the Log Blacklist
 

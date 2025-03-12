@@ -14,7 +14,7 @@ The following sections introduce how to register and log into an account and ent
 
 You can join one or more workspaces by creating or being invited.
 
-Before joining any workspace in any way, you need to [register for a <<< custom_key.brand_name >>> account](https://auth.guance.com/businessRegister). After [registration is complete](../plans/commercial-huaweiyun.md), you can go to the [<<< custom_key.brand_name >>> official website](https://www.guance.com/), click **Login**, select the registration site, enter your login account and password, and log in to the <<< custom_key.brand_name >>> console. The system will create a workspace for you by default and grant you **Owner** permissions.
+Before joining any workspace in any way, you need to [register for a <<< custom_key.brand_name >>> account](https://auth.guance.com/businessRegister). After [registration is complete](../plans/commercial-huaweiyun.md), you can go to the [<<< custom_key.brand_name >>> official website](https://<<< custom_key.brand_main_domain >>>/), click **Login**, select the registration site, enter your login account and password, and log in to the <<< custom_key.brand_name >>> console. The system will create a workspace for you by default and grant you **Owner** permissions.
 
 Within an existing workspace, you can create other workspaces from the following two entry points:
 

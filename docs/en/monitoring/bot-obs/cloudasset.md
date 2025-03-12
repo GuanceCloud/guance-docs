@@ -7,9 +7,9 @@ To provide additional data access capabilities for <<< custom_key.brand_name >>>
 
 ## Prerequisites
 
-1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
+1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
 3. Create an [API Key](../../management/api-key/open-api.md) in <<< custom_key.brand_name >>> under «Management / API Key Management» for operations.
-5. Enable the corresponding objects in «<<< custom_key.brand_name >>> Self-built Inspection (Alibaba Cloud)» and configure collectors (e.g., Alibaba Cloud ECS) [Collector](https://func.guance.com/doc/script-market-guance-aliyun-ecs/)
+5. Enable the corresponding objects in «<<< custom_key.brand_name >>> Self-built Inspection (Alibaba Cloud)» and configure collectors (e.g., Alibaba Cloud ECS) [Collector](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/)
 7. Write self-built inspection processing functions in the self-hosted DataFlux Func.
 
 > **Note**: If you are considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current <<< custom_key.brand_name >>> SaaS deployment [same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
@@ -89,8 +89,8 @@ In DataFlux Func, set the automatic trigger time for the inspection function via
 
 **2. How to view the collected metrics for Alibaba Cloud assets**
 
-Refer to the [Alibaba Cloud integration documentation](https://func.guance.com/doc/script-market-guance-aliyun-ecs/) for the data format of reported metrics.
+Refer to the [Alibaba Cloud integration documentation](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/) for the data format of reported metrics.
 
 **3. What to do if a previously working script encounters an error during inspection**
 
-Update the referenced script set in the DataFlux Func script market. You can check the update records via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
+Update the referenced script set in the DataFlux Func script market. You can check the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.

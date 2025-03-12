@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
+您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)。
 
 ## 方法/步骤
 
@@ -30,7 +30,7 @@
 注意：添加完 DataKit Helm 仓库后，必须执行升级操作 `helm repo update` 。
 
 ```
-$ helm repo add datakit  https://pubrepo.guance.com/chartrepo/datakit
+$ helm repo add datakit  https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 $ helm repo update 
 ```
 

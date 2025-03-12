@@ -8,8 +8,8 @@ Kubernetes helps users automatically schedule and scale containerized applicatio
 
 ## Prerequisites
 
-1. Enable "[Container Data Collection](https://docs.guance.com/datakit/container/)" in <<< custom_key.brand_name >>>
-2. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
+1. Enable "[Container Data Collection](<<< homepage >>>/datakit/container/)" in <<< custom_key.brand_name >>>
+2. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
 4. Create an [API Key](../../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> under "Management / API Key Management"
 
 > **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current SaaS deployment of <<< custom_key.brand_name >>>.
@@ -18,7 +18,7 @@ Kubernetes helps users automatically schedule and scale containerized applicatio
 
 In your self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-built Inspection (K8S-Pod Restart Detection)" from the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../../img/create_checker.png)
 
@@ -165,7 +165,7 @@ Based on the percentage of restarted pods in cluster_name + namespace, if this m
 
 **4. What to do if previously normal scripts encounter errors during inspection**
 
-Update the referenced script sets in the DataFlux Func Script Market. You can check the update records via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
+Update the referenced script sets in the DataFlux Func Script Market. You can check the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
 
 **5. No changes in the Startup script set during inspection script upgrades**
 

@@ -48,7 +48,7 @@ On the <<< custom_key.brand_name >>> Billing Center top-up page, select the paym
 
 Vouchers can be used for <<< custom_key.brand_name >>> pay-as-you-go charges and cloud account charges. They are divided into regular vouchers and discount vouchers. Regular vouchers can be obtained through allocation, while discount vouchers are automatically allocated when purchasing prepaid cards to a certain extent.
 
-**Note**: Prepaid cards cannot be refunded once purchased. For more details, please visit [<<< custom_key.brand_name >>> official website's large customer discount plan](https://www.guance.com/billing#business#China) and contact a sales advisor for purchase.
+**Note**: Prepaid cards cannot be refunded once purchased. For more details, please visit [<<< custom_key.brand_name >>> official website's large customer discount plan](https://<<< custom_key.brand_main_domain >>>/billing#business#China) and contact a sales advisor for purchase.
 
 ![](../img/pre-paid.png)
 
@@ -83,7 +83,7 @@ After successfully submitting the activation code, you can view the activated vo
 
 ### Purchase Prepaid Cards
 
-Log in to the <<< custom_key.brand_name >>> [Billing Center](https://boss.guance.com), click **Manage Prepaid Cards**, and you will enter the prepaid card management and purchase page.
+Log in to the <<< custom_key.brand_name >>> [Billing Center](https://<<< custom_key.boss_domain >>>), click **Manage Prepaid Cards**, and you will enter the prepaid card management and purchase page.
 
 ![](../img/10.price_3.png)
 

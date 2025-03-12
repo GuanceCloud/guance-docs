@@ -144,7 +144,7 @@ This option includes all teams and workspace members within the current workspac
 
 > Webhook custom notification sending content type supports JSON format only. For detailed information on each field, refer to [Event Generation](../events/index.md#fields).
 >
-> For more detailed practical documentation on custom Webhooks, refer to [<<< custom_key.brand_name >>> Webhook Custom Alert Notification Integration](https://func.guance.com/doc/practice-guance-alert-webhook-integration/).
+> For more detailed practical documentation on custom Webhooks, refer to [<<< custom_key.brand_name >>> Webhook Custom Alert Notification Integration](https://<<< custom_key.func_domain >>>/doc/practice-guance-alert-webhook-integration/).
 
 
 
@@ -181,7 +181,7 @@ After setting up operation permissions for notification targets, your current wo
 
 To further meet your actual business needs, in addition to the default notification targets provided by the system, you can integrate external notification channels via third-party **Func** and send alert information directly to local **DataFlux Func**.
 
-> For specific operation steps, refer to [Integration with User-defined Notification Targets](https://func.guance.com/doc/practice-guance-self-build-notify-function/).
+> For specific operation steps, refer to [Integration with User-defined Notification Targets](https://<<< custom_key.func_domain >>>/doc/practice-guance-self-build-notify-function/).
 
 
 ## Management List

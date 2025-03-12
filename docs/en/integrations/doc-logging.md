@@ -312,8 +312,8 @@ Log collection is a complex system involving numerous detail handling and optimi
 Additional links:
 
 - [Glob Pattern Introduction](https://en.wikipedia.org/wiki/Glob_(programming)){:target="_blank"}
-- [Datakit Automatic Multi-line Configuration](https://docs.guance.com/integrations/logging/#auto-multiline){:target="_blank"}
-- [Datakit Pipeline Processing](https://docs.guance.com/datakit/pipeline/){:target="_blank"}
+- [Datakit Automatic Multi-line Configuration](<<< homepage >>>/integrations/logging/#auto-multiline){:target="_blank"}
+- [Datakit Pipeline Processing](<<< homepage >>>/datakit/pipeline/){:target="_blank"}
 - [Docker Truncation Discussion for Logs Exceeding 16KiB](https://github.com/moby/moby/issues/34855){:target="_blank"}
 - [Docker Truncation Source Code for Logs Exceeding 16KiB](https://github.com/nalind/docker/blob/master/daemon/logger/copier.go#L13){:target="_blank"}
 - [Docker Logging Driver](https://docs.docker.com/config/containers/logging/local/){:target="_blank"}

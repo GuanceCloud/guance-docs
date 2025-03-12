@@ -16,7 +16,7 @@ icon: zy/release-notes
 
     <table>
       <tr>
-        <th><a href="https://docs.guance.com/datakit/changelog/" target="_blank">DataKit</a></th>
+        <th><a href="<<< homepage >>>/datakit/changelog/" target="_blank">DataKit</a></th>
       </tr>
     </table>
 
@@ -27,17 +27,22 @@ icon: zy/release-notes
         <th colspan="5">SDK</th>
       </tr>
       <tr>
-        <td><a href="https://docs.guance.com/real-user-monitoring/web/sdk-changelog/" target="_blank">Web</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/miniapp/sdk-changelog/" target="_blank">小程序</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/android/sdk-changelog/" target="_blank">Android</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/ios/sdk-changelog/" target="_blank">iOS</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/react-native/sdk-changelog/" target="_blank">React Native</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/web/sdk-changelog/" target="_blank">Web</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/miniapp/sdk-changelog/" target="_blank">小程序</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/android/sdk-changelog/" target="_blank">Android</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/ios/sdk-changelog/" target="_blank">iOS</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/react-native/sdk-changelog/" target="_blank">React Native</a></td>
       </tr>
     </table>
 
 </div>
 
 ## 2025 年 3 月 12 日 {#20250312}
+
+### Breaking Changes {#breakingchanges0312}
+
+[事件](../events/index.md) `df_alert_info` 字段定义调整，新增告警策略未匹配原因说明，仍然需要通过 `isIgnored` 做过滤判断获取实际对外发送的通知对象。
+
 
 ### 功能更新 {#feature0312}
 

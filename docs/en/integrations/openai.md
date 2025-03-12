@@ -42,7 +42,7 @@ Install the DataKit data collector within the Guance workspace. Click on Integra
 For more information, please refer to:
 
 - <https://func.guance.com/doc/practice-connect-to-datakit/>
-- <https://docs.guance.com/datakit/datakit-service-how-to/>
+- <<<< homepage >>>/datakit/datakit-service-how-to/>
 
 ### Install Script
 

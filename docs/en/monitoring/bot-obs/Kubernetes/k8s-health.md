@@ -7,8 +7,8 @@ Nowadays, Kubernetes has swept through the entire container ecosystem, acting as
 
 ## Prerequisites
 
-1. Enable "Container Data Collection" in <<< custom_key.brand_name >>> [Container Data Collection](https://docs.guance.com/datakit/container/)
-2. Set up a self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
+1. Enable "Container Data Collection" in <<< custom_key.brand_name >>> [Container Data Collection](<<< homepage >>>/datakit/container/)
+2. Set up a self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
 4. Create an API Key for operations in <<< custom_key.brand_name >>> under "Management / API Key Management" [API Key](../../../management/api-key/open-api.md)
 
 > **Note**: If you are considering using cloud servers for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current <<< custom_key.brand_name >>> SaaS deployment [Same Operator and Region](../../../../getting-started/necessary-for-beginners/select-site/).
@@ -17,7 +17,7 @@ Nowadays, Kubernetes has swept through the entire container ecosystem, acting as
 
 In your self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-built Inspection (K8S Health Inspection)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the required inspection scenario in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose Deploy to start the script.
+Select the required inspection scenario in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose Deploy to start the script.
 
 ![image](../../img/create_checker.png)
 
@@ -171,7 +171,7 @@ When there is no anomaly analysis in the inspection report, check the current `d
 
 **3. What to do if previously running scripts fail during inspection**
 
-Update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [Change Log](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely updates to the script.
+Update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [Change Log](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates to the script.
 
 **4. Why does the script set not change during inspection script upgrades**
 

@@ -7,7 +7,7 @@ Whether running in local servers or cloud environments, modern services and appl
 
 However, with proper network traffic analysis and a clear understanding of the business chain, you can quickly pinpoint issues and identify where data packets are being lost. This saves time by avoiding unnecessary confirmation of middleware devices that are not problematic, significantly reducing troubleshooting time and enabling faster issue resolution.
 
-Therefore, comprehensive visibility into the network is crucial for monitoring the operational status and performance of applications. However, as your applications grow larger and more complex, achieving this visibility becomes challenging. [<<< custom_key.brand_name >>>](https://www.guance.com/) will provide comprehensive observability for host networks.
+Therefore, comprehensive visibility into the network is crucial for monitoring the operational status and performance of applications. However, as your applications grow larger and more complex, achieving this visibility becomes challenging. [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) will provide comprehensive observability for host networks.
 
 ### 2. Scope of Network Analysis Features
 
@@ -18,7 +18,7 @@ Therefore, comprehensive visibility into the network is crucial for monitoring t
 
 ## Prerequisites
 
-You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/), and install [DataKit](../../datakit/datakit-install.md) on your hosts. Enable the [eBPF](../../integrations/ebpf.md) integration to collect network data.
+You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/), and install [DataKit](../../datakit/datakit-install.md) on your hosts. Enable the [eBPF](../../integrations/ebpf.md) integration to collect network data.
 
 ## Solving Problems with Network Observability
 

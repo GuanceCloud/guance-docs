@@ -312,8 +312,8 @@ Datakit 会定期检查当前正在采集的文件是否发生 rotate，检查�
 补充链接：
 
 - [glob 模式介绍](https://en.wikipedia.org/wiki/Glob_(programming)){:target="_blank"}
-- [Datakit 自动多行配置](https://docs.guance.com/integrations/logging/#auto-multiline){:target="_blank"}
-- [Datakit Pipeline 处理](https://docs.guance.com/datakit/pipeline/){:target="_blank"}
+- [Datakit 自动多行配置](<<< homepage >>>/integrations/logging/#auto-multiline){:target="_blank"}
+- [Datakit Pipeline 处理](<<< homepage >>>/datakit/pipeline/){:target="_blank"}
 - [Docker 截断超过 16KiB 日志的讨论](https://github.com/moby/moby/issues/34855){:target="_blank"}
 - [Docker 截断超过 16KiB 的源码](https://github.com/nalind/docker/blob/master/daemon/logger/copier.go#L13){:target="_blank"}
 - [Docker logging driver](https://docs.docker.com/config/containers/logging/local/){:target="_blank"}

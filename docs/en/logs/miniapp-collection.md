@@ -2,7 +2,7 @@
 
 ---
 
-The mini program actively sends log data of different levels (`corresponding source: browser_log` Metrics type log data) to [<<< custom_key.brand_name >>>](https://www.guance.com/).
+The mini program actively sends log data of different levels (`corresponding source: browser_log` Metrics type log data) to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/).
 
 ## Feature Overview
 

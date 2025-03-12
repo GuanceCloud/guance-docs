@@ -7,7 +7,7 @@ Effective notifications can bridge the gap with users, enabling timely, efficien
 
 ## Prerequisites
 
-You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com), and install DataKit on your host [Install DataKit](../../datakit/datakit-install.md) to enable relevant integrations and collect data.
+You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>), and install DataKit on your host [Install DataKit](../../datakit/datakit-install.md) to enable relevant integrations and collect data.
 
 ## Custom Grouping
 

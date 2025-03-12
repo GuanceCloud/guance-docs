@@ -146,7 +146,7 @@ Content-Type: application/json
 
 > Webhook 自定义通知发送内容的类型仅支持使用 JSON 格式，各字段的详情可参考 [事件产生](../events/index.md#fields)。
 >
-> 有关 Webhook 自定义更详细的实践文档，可参考 [<<< custom_key.brand_name >>> Webhook 自定义告警通知集成](https://func.guance.com/doc/practice-guance-alert-webhook-integration/)。
+> 有关 Webhook 自定义更详细的实践文档，可参考 [<<< custom_key.brand_name >>> Webhook 自定义告警通知集成](https://<<< custom_key.func_domain >>>/doc/practice-guance-alert-webhook-integration/)。
 
 
 
@@ -187,7 +187,7 @@ Content-Type: application/json
 
 为进一步满足您实际业务的需求，除了系统默认提供的通知对象外，还支持通过第三方 **Func** 接入外部通知渠道，将告警信息直接发送至本地 **DataFlux Func**。
 
-> 具体操作步骤，可参考 [对接自建通知对象](https://func.guance.com/doc/practice-guance-self-build-notify-function/)。
+> 具体操作步骤，可参考 [对接自建通知对象](https://<<< custom_key.func_domain >>>/doc/practice-guance-self-build-notify-function/)。
 
 
 ## 管理列表

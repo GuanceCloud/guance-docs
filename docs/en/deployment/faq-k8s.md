@@ -48,7 +48,7 @@ Install the latest versions of Sealos and the k8s cluster.
 wget https://mirror.ghproxy.com/https://github.com/labring/sealos/releases/download/v4.3.7/sealos_4.3.7_linux_arm64.tar.gz \
    && tar zxvf sealos_4.3.7_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
 # k8s cluster   
-sealos run pubrepo.guance.com/googleimages/kubernetes:v1.25.16-4.3.7 pubrepo.guance.com/googleimages/helm:v3.8.2 pubrepo.guance.com/googleimages/calico:v3.24.1  --single  --debug
+sealos run pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kubernetes:v1.25.16-4.3.7 pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/helm:v3.8.2 pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/calico:v3.24.1  --single  --debug
 ```
 
 ## 5 Sealos Installation Reports Port Conflict, 'Port: 10249 Occupied'

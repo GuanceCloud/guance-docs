@@ -7,7 +7,7 @@ The Pipeline supports parsing log data of different formats through writing Pipe
 
 ## Prerequisites
 
-1. You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/), and install DataKit on your host [Install DataKit](../../datakit/datakit-install.md);
+1. You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/), and install DataKit on your host [Install DataKit](../../datakit/datakit-install.md);
 2. Enable the log collector and turn on the Pipeline function in the configuration file;
 
 ## Custom Pipeline Script File

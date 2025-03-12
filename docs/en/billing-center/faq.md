@@ -3,7 +3,7 @@
 
 :material-chat-question: Voucher Distribution Method
 
-Direct Distribution: The voucher will be directly credited to your Billing Center account. You can log in to the [Billing Center](https://boss.guance.com/) > Account Overview > Voucher Balance to check it.
+Direct Distribution: The voucher will be directly credited to your Billing Center account. You can log in to the [Billing Center](https://<<< custom_key.boss_domain >>>/) > Account Overview > Voucher Balance to check it.
 
 :material-chat-question: Voucher Usage Scope
 

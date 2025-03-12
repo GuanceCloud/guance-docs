@@ -193,7 +193,7 @@ Similarly, the `users` function is also added to the span information.
 
 The above sections introduce how DDTrace and OpenTelemetry can trace specific business functions without modifying the code. They also provide SDK methods, which involve some code changes but offer more flexibility.
 
-- DDTrace uses the `@Trace` annotation to configure business Spans. Refer to the [link](https://docs.guance.com/best-practices/insight/ddtrace-skill-api/#2) for actual usage and dependencies.
+- DDTrace uses the `@Trace` annotation to configure business Spans. Refer to the [link](<<< homepage >>>/best-practices/insight/ddtrace-skill-api/#2) for actual usage and dependencies.
 - OpenTelemetry uses the `@WithSpan` annotation to configure business Spans. Refer to the [link](https://github.com/lrwh/observable-demo/blob/main/springboot-opentelemetry-otlp-server/src/main/java/com/zy/observable/otel/controller/OtelController.java){:target="_blank"}
 
 For SDK methods, we won't delve into detailed analysis here.

@@ -7,7 +7,7 @@ Due to the fluctuating market price of preemptible instances based on supply and
 
 ## Prerequisites
 
-1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
 3. Create an API Key for operations in <<< custom_key.brand_name >>> "Management / API Key Management" [API Key](../../management/api-key/open-api.md)
 
 > **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as the current SaaS deployment of <<< custom_key.brand_name >>>.
@@ -16,7 +16,7 @@ Due to the fluctuating market price of preemptible instances based on supply and
 
 In the self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-ECS Collection)" and "<<< custom_key.brand_name >>> Custom Inspection (Alibaba Cloud Preemptible Instance Survival Detection)" from the script market, and configure the <<< custom_key.brand_name >>> API Key to complete the activation.
 
-In the DataFlux Func script market, select the inspection scenario you want to enable, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/) then choose to deploy and start the script.
+In the DataFlux Func script market, select the inspection scenario you want to enable, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
@@ -99,7 +99,7 @@ If there is no anomaly analysis in the inspection report, check the data collect
 
 **3. Script errors occur during inspection that previously ran normally**
 
-Update the referenced script set in the DataFlux Func script market. You can view the update records of the script market via the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate timely script updates.
+Update the referenced script set in the DataFlux Func script market. You can view the update records of the script market via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely script updates.
 
 **4. No changes in the script set in Startup during the upgrade of inspection scripts**
 

@@ -6,11 +6,11 @@ If you want to use locally configured functions in **Time Series Graph > Advance
 
 ### Step One: Create a <<< custom_key.brand_name >>> Connector
 
-> Refer to [Create <<< custom_key.brand_name >>> Connector](https://func.guance.com/doc/practice-guance-self-build-notify-function/#31)
+> Refer to [Create <<< custom_key.brand_name >>> Connector](https://<<< custom_key.func_domain >>>/doc/practice-guance-self-build-notify-function/#31)
 
 ### Step Two: Write Advanced Functions
 
-> Refer to [Write Self-built Notification Function](https://func.guance.com/doc/practice-guance-self-build-notify-function/#32)
+> Refer to [Write Self-built Notification Function](https://<<< custom_key.func_domain >>>/doc/practice-guance-self-build-notify-function/#32)
 
 ![](../img/local.png)
 

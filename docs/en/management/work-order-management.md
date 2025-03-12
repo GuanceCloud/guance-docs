@@ -7,7 +7,7 @@ The ticket system is **workspace-based**, meaning submitted tickets will not be 
 
 <<< custom_key.brand_name >>> provides 5*8 hours of ticket service time. Customer service personnel will process your ticket as soon as possible after receiving it.
 
-> For more details, see [Support Plans](https://www.guance.com/support).
+> For more details, see [Support Plans](https://<<< custom_key.brand_main_domain >>>/support).
 
 Click on the bottom-left corner **Help > Ticket Management** to access the ticket management entry:
 
