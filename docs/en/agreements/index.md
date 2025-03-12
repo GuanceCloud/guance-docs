@@ -1,9 +1,7 @@
 ---
 icon: zy/agreements
 ---
-# Agreements
+# Related Agreements
 ---
 
-Related agreements include service agreements, legal agreements, data security confidentiality agreements and others in Guance. 
-
-
+Related agreements include the Service Agreement, Legal Disclaimer, Data Security and Confidentiality Agreement, <<< custom_key.brand_name >>> Mobile App Privacy Policy, etc.

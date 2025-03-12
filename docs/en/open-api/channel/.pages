@@ -1,0 +1,6 @@
+nav:
+  - 'Get Channel List': quick-list.md
+  - 'Create a Channel': add.md
+  - 'Modify Channel Information': modify.md
+  - 'Delete Channel Information': delete.md
+  - 'Subscribe to Channel': subscribe.md

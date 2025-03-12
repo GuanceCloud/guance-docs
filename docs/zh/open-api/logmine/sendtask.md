@@ -29,7 +29,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/logmine/send_task' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logmine/send_task' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"namespace":"logging","conditions":"index in [`default`]","highlight":true,"timeRange":[1683534635416,1683535535416],"analysisField":"message"}' \

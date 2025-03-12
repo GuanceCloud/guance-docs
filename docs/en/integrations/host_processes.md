@@ -1,14 +1,14 @@
 ---
 title     : 'Process'
-summary   : 'Collect host process metrics'
+summary   : 'Collect metrics and object data from processes'
 tags:
-  - 'HOST'
+  - 'Host'
 __int_icon      : 'icon/process'
 dashboard :
-  - desc  : 'process'
+  - desc  : 'Process'
     path  : 'dashboard/en/process'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'None'
     path  : '-'
 ---
 
@@ -17,42 +17,45 @@ monitor   :
 
 ---
 
-The process collector can monitor various running processes in the system, acquire and analyze various metrics when the process is running, Including memory utilization rate, CPU time occupied, current state of the process, port of process monitoring, etc. According to various index information of process running, users can configure relevant alarms in Guance Cloud, so that users can know the state of the process, and maintain the failed process in time when the process fails.
+The Process Collector can monitor various running processes in the system in real-time, obtaining and analyzing metrics such as memory usage rate, CPU time consumed, current process state, ports listened by the process, etc. Based on these metrics, users can configure relevant alerts in Guance to understand the status of the processes and promptly maintain faulty processes when issues occur.
 
 <!-- markdownlint-disable MD046 -->
+
 ???+ attention
 
-    Process collectors (whether objects or metrics) may consume a lot on macOS, causing CPU to soar, so you can turn them off manually. At present, the default collector still turns on the process object collector (it runs once every 5min by default).
+    The Process Collector (whether for objects or metrics) may consume a lot of resources on macOS, leading to high CPU usage. It can be manually disabled. Currently, the default collector still enables the process object collector (default run every 5 minutes).
+
 <!-- markdownlint-enable MD046 -->
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- The process collector does not collect process metrics by default. To collect metrics-related data, set `open_metric` to `true` in `host_processes.conf`. For example:
+- The Process Collector does not collect process metrics by default. To collect metric-related data, set `open_metric` to `true` in `host_processes.conf`. For example:
 
 ```toml
 [[inputs.host_processes]]
     ...
-     open_metric = true
+    open_metric = true
 ```
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
+
 === "Host Installation"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `host_processes.conf.sample` and name it `host_processes.conf`. Examples are as follows:
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `host_processes.conf.sample`, and rename it to `host_processes.conf`. Example:
 
     ```toml
         
     [[inputs.host_processes]]
-      # Only collect these matched process' metrics. For process objects
-      # these white list not applied. Process name support regexp.
+      # Only collect metrics from these matched processes. For process objects
+      # these white list not applied. Process name supports regexp.
       # process_name = [".*nginx.*", ".*mysql.*"]
     
-      # Process minimal run time(default 10m)
-      # If process running time less than the setting, we ignore it(both for metric and object)
+      # Minimum process run time (default 10m)
+      # If the process running time is less than the setting, we ignore it (both for metric and object)
       min_run_time = "10m"
     
       ## Enable process metric collecting
@@ -72,70 +75,71 @@ The process collector can monitor various running processes in the system, acqui
     
     ```
 
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    Environment variables can also be used to modify configuration parameters (add to ENV_DEFAULT_ENABLED_INPUTS as default collectors):
 
     - **ENV_INPUT_HOST_PROCESSES_OPEN_METRIC**
     
-        Enable process metric collecting
+        Enable process metric collection
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `open_metric`
+        **Collector Configuration Field**: `open_metric`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_HOST_PROCESSES_PROCESS_NAME**
     
-        Whitelist of process
+        Process name whitelist
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `process_name`
+        **Collector Configuration Field**: `process_name`
     
         **Example**: `.*datakit.*,guance`
     
     - **ENV_INPUT_HOST_PROCESSES_MIN_RUN_TIME**
     
-        Process minimal run time
+        Minimum process runtime
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `min_run_time`
+        **Collector Configuration Field**: `min_run_time`
     
-        **Default**: 10m
+        **Default Value**: 10m
     
     - **ENV_INPUT_HOST_PROCESSES_ENABLE_LISTEN_PORTS**
     
-        Enable listen ports tag
+        Enable listening ports tag
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_listen_ports`
+        **Collector Configuration Field**: `enable_listen_ports`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_HOST_PROCESSES_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If the configuration file has the same named tags, they will be overridden.
     
-        **Type**: Map
+        **Field Type**: Map
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: tag1=value1,tag2=value2
-<!-- markdownlint-enable MD046 -->
 
-## Metric {#metric}
+<!-- markdownlint-enable -->
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.host_processes.tags]`:
+## Metrics {#metric}
 
-``` toml
+By default, all collected data will append a global tag named `host` (tag value is the hostname where DataKit resides). Additional tags can be specified using `[inputs.host_processes.tags]` in the configuration:
+
+```toml
  [inputs.host_processes.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -143,10 +147,6 @@ For all of the following data collections, a global tag named `host` is appended
 ```
 
 <!-- markdownlint-disable MD024 -->
-
-
-
-
 
 
 ### `host_processes`
@@ -158,13 +158,13 @@ Collect process metrics, including CPU/memory usage, etc.
 
 | Tag | Description |
 |  ----  | --------|
-|`container_id`|Container ID of the process, only supported Linux|
+|`container_id`|Container ID of the process, only supported on Linux|
 |`host`|Host name|
 |`pid`|Process ID|
 |`process_name`|Process name|
 |`username`|Username|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -179,16 +179,7 @@ Collect process metrics, including CPU/memory usage, etc.
 
 
 
-
-
-
-
-## Object {#object}
-
-
-
-
-
+## Objects {#object}
 
 
 
@@ -202,15 +193,15 @@ Collect data on process objects, including process names, process commands, etc.
 
 | Tag | Description |
 |  ----  | --------|
-|`container_id`|Container ID of the process, only supported Linux|
+|`container_id`|Container ID of the process, only supported on Linux|
 |`host`|Host name|
-|`listen_ports`|The port the process is listening onW|
+|`listen_ports`|Ports listened by the process|
 |`name`|Name field, consisting of `[host-name]_[pid]`|
 |`process_name`|Process name|
 |`state`|Process status, currently not supported on Windows|
 |`username`|Username|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -223,12 +214,11 @@ Collect data on process objects, including process names, process commands, etc.
 |`open_files`|Number of open files (only supports Linux, and the `enable_open_files` option needs to be turned on)|int|count|
 |`pid`|Process ID|int|-|
 |`rss`|Resident Set Size (resident memory size)|int|B|
-|`start_time`|process start time|int|msec|
+|`start_time`|Process start time|int|msec|
 |`started_duration`|Process startup time|int|sec|
 |`state_zombie`|Whether it is a zombie process|bool|-|
 |`threads`|Total number of threads|int|count|
 |`work_directory`|Working directory (Linux only)|string|-|
-
 
 
 <!-- markdownlint-enable -->

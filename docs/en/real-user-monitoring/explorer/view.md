@@ -1,89 +1,100 @@
-# View
+# View (Page)
 ---
 
-ou can view the user's browsing environment, trace their actions, analyze the response time of their actions, and understand the performance metrics of the backend application's call chain.
+You can view user access environments, trace back user operation paths, break down response times for user operations, and understand the performance metrics of a series of backend application calls triggered by user operations.
 
-In the View explorer, you can:
+In the View Explorer, you can:
 
-- Track user access data for each page, including load time and duration.
-- Analyze the performance of user access to the business application by combining data such as resource requests, resource errors, and logs, to quickly identify and optimize code issues in the application.
+- Track user access data for each page, including loading time, dwell time, etc.;
+- Combine data related to resource requests, resource errors, logs, etc., associated with each page to comprehensively analyze the performance of business applications during user visits. This helps quickly identify and optimize code issues in the application.
+
 
 ## Explorer
 
+In the View Explorer, you can quickly view the page URL, page load type, page load time, user dwell time, etc., during user visits.
+
 ![](../img/12.rum_explorer_2.png)
-
-In the View explorer, you can quickly view the page address, page load type, page load time, and user duration during user access.
-
 
 ## Details Page
 
-Click on the data in the list to view the performance details of the accessed page, including attributes, sources, performance, link, error and associated logs.
+Click on the details page of the data you want to view in the list. You can see detailed performance information about the pages users visited, including attributes, sources, performance details, trace details, error details, related logs, etc.
 
 ![](../img/12.rum_explorer_1.5.png)
 
-### Source
+### Sources
 
-In the **Source** section, you can view the session details for the current View, and filter/copy the current Session ID.
+The **Sources** section allows you to view session details for the current View, filter or copy the current Session ID.
 
 ![](../img/12.rum_explorer_2.6.png)
 
 ### Performance
 
-The **Performance** page helps you view the front-end page performance when users access a specific application. This includes page load time, content rendering time, interaction time, input delay, etc. In the example below, the CLS (Cumulative Layout Shift) metric is 0.0006 seconds, indicating that the page is excellent.
+The **Performance** page helps you view frontend page performance when users access specific applications, including page load time, content rendering time, interaction time, input delay, etc. As shown in the following figure, the LCP (Largest Contentful Paint) metric reached 8.4 seconds, while the recommended time is within 2.5 seconds, indicating that the page load speed is slow and needs optimization.
 
 ![](../img/12.rum_explorer_2.2.png)
 
+For events on the current page, you can choose to display the most recent 50, 100, 200 entries, or all entries:
 
-### Attributes
+<img src="../../img/12.rum_explorer_2.5.png" width="70%" >
 
-Attributes define the nature and characteristics of data objects, and define the value of each attribute.
+### Extended Fields
 
-:material-numeric-1-circle-outline: In the search bar, you can enter the field name or value to quickly search and locate.
+Properties are characteristics and features of data objects, defining the value of each property.
 
-:material-numeric-2-circle-outline: After selecting the field alias, you can view it after the field name. You can choose as needed.
+:material-numeric-1-circle-outline: In the search bar, you can enter field names or values to quickly search and locate;
 
-:material-numeric-3-circle-outline: On the link details page, you can view the related field attributes of the current link in the **Attributes** section:
+:material-numeric-2-circle-outline: After checking the field alias, you can view it after the field name as needed;
 
-| <div style="width: 110px">Options</div> | Description |
-| --- | --- |
-| Filter | Add the field to the explorer to view all data related to the field. |
-| Reverse Filter  | Add the field to the explorer to view data other than the field. |
-| Add to columns | Add the field to the explorer list for viewing. |
-| Copy | Copy the field to the clipboard. |
+:material-numeric-3-circle-outline: In the trace details page, you can view relevant field properties of the current trace under **Extended Fields**:
+
+| Action         | Description                                                                 |
+| --------------- | ----------------------------------------------------------------------------- |
+| Filter Field Values | Add this field to the explorer to view all data related to this field.       |
+| Reverse Filter Field Values | Add this field to the explorer to view all data except this field.      |
+| Add to Display Columns | Add this field to the explorer list for viewing.                           |
+| Copy           | Copy this field to the clipboard.                                             |
 
 ![](../img/view-explorer.gif)
 
-### Related Fetch/XHR
+### Associated Fetch/XHR
 
-When switching to **Fetch/XHR**, you can view every network request made to the backend application during user access, including the time of occurrence, the link of the request, and the duration.
+Switching to **Fetch/XHR**, you can view every network request made by the user to the backend application during their visit, including the occurrence time, request trace, and duration.
 
 ![](../img/4.rum_view_3.png)
 
-If there is a corresponding `trace_id` for the network request, there will be a small icon indicating it before the request. Clicking on it will jump to the details page of the corresponding link.
+If a network request has a corresponding `trace_id`, there will be a small icon prompt before the request. Clicking it will redirect you to the details page of the corresponding trace.
 
 ![](../img/view-1.gif)
 
-### Related Errors
+Clicking on a data row, you can choose to view the related trace or resource for that data:
 
-When switching to **Errors**, you can view the error data information, error type, and error occurrence time that occurred during the user's visit.
+![](../img/4.rum_view_3_1.png)
 
-![](../img/12.rum_explorer_2.4.png)
+### Associated Errors
 
-Clicking on the error information will jump to the details page of the corresponding error.
+Switching to **Errors**, you can view error data information, error types, and error occurrence times that appeared during the user's visit.
 
-> For more error details, refer to the [Error Explorer](error.md).
+<img src="../../img/12.rum_explorer_2.4.png" width="80%" >
 
-### Related Logs
+Clicking on an error message will redirect you to the details page of the corresponding error.
 
-Through the **Logs** section at the bottom of the details page, you can view the logs and the number of logs based on the current user's visit within the <font color=coral>last 1 hour</font>. You can perform keyword searches, multi-tag filtering, and time sorting on these related logs.
+> For more error details, refer to [Error Explorer](error.md).
 
-- If you need to view more detailed log information: you can click on the log content to jump to the corresponding log details page, or jump to **Logs** to view all logs related to that host.
-- If you need to view more log fields or more complete log content: you can customize the **Max Display Rows** and **Display Columns** through the associated log explorer.
+### Associated Logs
 
-**Note**: For a smoother user querying experience, Guance automatically saves the user's browsing settings in the **Logs** (including "Max Display Rows" and "Display Columns"), so that the **Related Logs** are consistent with the **Logs**. However, any custom adjustments made in the **Related Logs** will not be saved after leaving the page.
+Through the **Logs** at the bottom of the details page, you can view logs and log counts based on the current user visit for the **last hour** and perform keyword searches, multi-label filtering, and time sorting on these related logs.
+
+- To view more detailed log information: You can click on the log content to jump to the corresponding log details page or click **Jump** to **Logs** to view all logs related to the host.
+- To view more log fields or more complete log content: You can customize and adjust the **maximum number of displayed rows** and **display columns** through the associated log explorer.
+
+**Note**: To enhance user query experience, <<< custom_key.brand_name >>> defaults to saving user browsing settings in **Logs** (including "maximum number of displayed rows", "display columns") immediately so that **Associated Logs** remains consistent with **Logs**. However, custom adjustments made in **Associated Logs** are not saved after exiting the page.
 
 ![](../img/4.rum_view_7.png)
 
-### Bind Views
+### Binding Views
 
-Guance supports binding or deleting inner views (user views) to the details page. Click on [**Bind View**](../../scene/inner-view/bind-view.md) to add a new view to the current details page.
+<<< custom_key.brand_name >>> supports setting bindings or deleting built-in views (user views) to the details page. Clicking to bind a built-in view adds a new view to the current details page.
+
+> For more details, refer to the documentation [Binding Built-in Views](../../scene/built-in-view/bind-view.md).
+
+![](../img/1.rum_view_6.png)

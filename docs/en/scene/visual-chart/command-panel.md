@@ -1,23 +1,41 @@
 # Command Panel
 ---
 
-## Introduction
+The command component consists of command buttons that support clicking to navigate to specific scenes or views, opening specified links, and executing specified commands, achieving interactive effects within the view.
 
-The command component, which is composed of command buttons, supports clicking to jump to a specified scene, view, open a specified link and execute a specified command to achieve interactive actions in the view. Users can drag and drop the buttons to adjust the position for layout. The button settings are as follows.
+## Command Button
 
-- Button text: the text content inside the button
-- Button action: supports four kinds of actions: jump to view, jump to scene, open link, and execute command
-- Background color: the color of the button fill
-- Font color: the color of the button font
-- Line color: the color of the button border
+:material-numeric-1-circle: Button: Add text content inside the button.  
 
-## Chart Style
-| Options | Description |
-| --- | --- |
-| Chart title | Set the title name for the chart, it will be shown on the top left of the chart after setting, and support hiding |
+:material-numeric-2-circle: Command: Choose to open a link or execute a command.  
+
+:material-numeric-3-circle: Configuration:
+
+- If **Open Link** is selected, input should be a URL link.
+
+- If any function in **Execute Command** is selected, input the parameters.
+
+:material-numeric-4-circle: Color: Background color, i.e., the color filling the button.
+
+- Text color, i.e., the color of the button text;
+- Border color, i.e., the color of the button border.
+
+### Additional Notes
+
+You can use the Websocket connection mode to synchronize locally Func-defined function scripts to the workspace. In the command panel, you can call the corresponding functions for execution or results.
+
+> For more details, refer to [Advanced Functions](../../dql/advanced-funcs/index.md).
+
+<!--
+## View Charts
+
+In the dashboard, click the **Edit** button on the chart to enter the command panel. Click the button in the top-left corner to view the returned command;
+
+![](../img/command-panel-1.png)
 
 
-## Example diagram
+In the dashboard, you can also click the **Analyze** ![](../img/buttom.png) button on the command panel to click the left-side button in preview mode and view the returned command.
 
-![](../img/command.png)
+![](../img/command-panel-2.png)
 
+-->

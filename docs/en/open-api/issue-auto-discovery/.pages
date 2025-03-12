@@ -1,0 +1,7 @@
+nav:
+  - 'Create auto-discovery configuration': add.md
+  - 'Modify auto-discovery configuration': modify.md
+  - 'Get auto-discovery configuration': get.md
+  - 'List auto-discovery configurations': list.md
+  - 'Disable/Enable auto-discovery configuration': set-disable.md
+  - 'Delete auto-discovery configuration': delete.md

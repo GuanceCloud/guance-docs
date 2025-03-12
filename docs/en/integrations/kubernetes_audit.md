@@ -1,45 +1,46 @@
 ---
-title     : 'Kubernetes Audit'
-summary   : 'Kubernetes Audit'
+title     : 'Kubernetes Audit Log Collection'
+summary   : 'Kubernetes Audit Log Collection'
 __int_icon: 'icon/kubernetes'
+tags      :
+  - 'PROMETHEUS'
+  - 'KUBERNETES'
 dashboard :
-  - desc  : 'kubernetes Audit'
+  - desc  : 'Kubernetes Audit'
     path  : 'dashboard/en/kubernetes_audit'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Kubernetes Audit Log
+# Kubernetes Audit Log Collection
 <!-- markdownlint-enable -->
 
-`Kubernetes Audit` provides security related temporal operation records (including time, source, operation result, user initiating the operation, resources of the operation, and detailed information of the request/response).
+Kubernetes Audit provides security-related time series operation records (including time, source, operation result, user initiating the operation, resources being operated on, and detailed information of requests/responses).
 
-## Configuration{#config}
+## Configuration {#config}
 
-### Preconditions
+### Prerequisites
 
-- [x] Installed K8S
-- [x] Installed [DataKit](../datakit/datakit-daemonset-deploy.md)
+- [x] Install K8S environment
+- [x] Install [DataKit](../datakit/datakit-daemonset-deploy.md)
 
-### Enable audit log strategy
+### Enable Audit Log Policy
 
-❗If enabled, please ignore.
+❗ If already enabled, please ignore
 
-Taking Kubernetes `1.24` as an example, enable the audit log strategy
+Taking Kubernetes `1.24` as an example, to enable audit log policy:
 
 <!-- markdownlint-disable MD031 MD032 MD009 MD034 MD046-->
-
-- Login to the main node server
+- Log in to the master node server
 
 > `cd /etc/kubernetes`
 
-- add audit-policy.yml
+- Create `audit-policy.yml`
 
 ???- info "audit-policy.yml"
-    ```yaml
-        
+    ```yaml        
     # Copyright © 2022 sealos.
     #
     # Licensed under the Apache License, Version 2.0 (the "License");
@@ -160,17 +161,18 @@ Taking Kubernetes `1.24` as an example, enable the audit log strategy
         - group: "autoscaling.alibabacloud.com"
     # Default level for all other requests.
     - level: Metadata
-    ```
+
 <!-- markdownlint-enable -->
-💡The corresponding strategy information can be adjusted according to actual needs.
 
-### Enable audit logs
+💡 Corresponding policy information can be adjusted according to actual needs.
 
-❗If enabled, please ignore.
+### Enable API Server Audit Logs
 
-Enter the directory  `/etc/kubernetes/manifests`,back up `kube-apiserver.yaml`,and the backed up file cannot be placed under`/etc/kubernetes/manifests/`, Adjust the file content
+❗ If already enabled, please ignore
 
-- Add a command under `spec.containers.command`：
+Enter the directory `/etc/kubernetes/manifests`, back up the `kube-apiserver.yaml` file first, and ensure the backup file is not placed under `/etc/kubernetes/manifests/`. Modify the file content:
+
+- Add commands under `spec.containers.command`:
 
 ```yaml
   - command:
@@ -185,8 +187,7 @@ Enter the directory  `/etc/kubernetes/manifests`,back up `kube-apiserver.yaml`,a
     - --audit-policy-file=/etc/kubernetes/audit-policy.yml
 ```
 
-
-- Add a command under `spec.containers.volumeMounts`：
+- Add under `spec.containers.volumeMounts`:
 
 ```yaml
     - mountPath: /etc/kubernetes
@@ -195,7 +196,7 @@ Enter the directory  `/etc/kubernetes/manifests`,back up `kube-apiserver.yaml`,a
       name: audit-log
 ```
 
-- Add a command under `spec.volumes`：
+- Add under `spec.volumes`:
 
 ```yaml
   - hostPath:
@@ -208,22 +209,22 @@ Enter the directory  `/etc/kubernetes/manifests`,back up `kube-apiserver.yaml`,a
     name: audit-log
 ```
 
-- Effect
+- Apply changes
 
-After the API Server is modified, it will automatically restart. Please wait patiently for a few minutes.
+The API Server will automatically restart after changes are made. Wait patiently for a few minutes.
 
 - Verify
 
-Execute the following command to see if a `audit.log` file has been generated, and if so, it indicates that it has taken effect.
+Run the following command to check if the `audit.log` file has been generated. If it exists, it means the configuration has taken effect.
 
 > `ls /var/log/kubernetes`
 
 
-### Collect K8S audit logs
+### Collect K8S Audit Logs
 
-The K8S audit logs are stored in the `/var/log/kubernetes` directory of the corresponding master node, and are collected using the `annotation` method here.
+K8S audit logs are stored in the `/var/log/kubernetes` directory of the corresponding `master` node. Here we use the `annotation` method for collection:
 
-- Created pod: k8s-audit-log.yaml
+- Create pod: `k8s-audit-log.yaml`
 
 ```yaml
 apiVersion: v1
@@ -275,29 +276,27 @@ spec:
   - key: "node-role.kubernetes.io/control-plane"
     operator: "Exists"
     effect: "NoSchedule"
-
 ```
 
-❗Please note that the current pod can only run on the master node.
+❗ Note that this pod can only run on the master node.
 
-- Run
+- Execute
 
-> kubectl apply -f k8s-audit-log.yaml
+```shell
+kubectl apply -f k8s-audit-log.yaml 
+```
 
 - View
 
+After a few minutes, you should be able to view the corresponding logs in Guance. Since the logs are in `json` format, Guance supports searching using the `@+json` field name, such as `@verb:update`.
 
-After a few minutes, you can view the corresponding logs on the observation cloud. Due to its `JSON` format, Observation Cloud supports searching through `@+JSON` field names, such as `@verb: update`.
+### Extract Audit Log Fields
 
+After collecting audit logs, you can extract key fields from the audit logs using Guance's `pipeline` capabilities for further analysis.
 
-
-### Audit log field extraction
-
-After the audit logs are collected, by Guance `pipeline`, key fields of the audit logs can be extracted for further data analysis
-
-- Login Guance console, `log` - `pipeline` - `Created`
+- In Guance, go to `Logs` - `Pipeline` - `Create`
 - Select the corresponding log source `k8s-audit`
-- `Pipeline` name：`kubelet-audit`
+- Pipeline Name: `kubelet-audit`
 - Define parsing rules
 
 ```python
@@ -319,8 +318,7 @@ add_key(sourceIP_0,abc["sourceIPs"][0])
   
 add_key(namespace,abc["objectRef"]["namespace"])
 add_key(node,abc["objectRef"]["name"])
-
 ```
 
-- Click to obtain script test
+- Click to test the script
 - Save

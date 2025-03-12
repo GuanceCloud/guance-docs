@@ -1,9 +1,8 @@
-
-# Pipeline Syntax
+# Pipeline Data Processor Language Definition
 
 ---
 
-The following defines the syntax of the Pipeline data processing language. As different syntaxes are progressively supported, this document will be adjusted and updated to varying degrees.
+Below is the definition of the Pipeline data processor language. As support for different syntaxes gradually increases, this document will undergo adjustments and additions to varying degrees.
 
 ## Basic Rules {#basic-syntax}
 
@@ -11,82 +10,80 @@ The following defines the syntax of the Pipeline data processing language. As di
 
 #### Identifiers {#identifier}
 
-Identifiers are used to identify objects and can represent variables, functions, etc. Identifiers include keywords.
+Identifiers are used to denote objects and can represent a variable, function, etc. Identifiers include keywords.
 
-Custom identifiers must not duplicate the keywords of the Pipeline data processing language.
+Custom identifiers must not conflict with the keywords of the Pipeline data processor language.
 
-Identifiers can be composed of numbers (`0-9`), letters (`A-Z a-z`), and underscores (`_`), but the first character cannot be a number and are case-sensitive:
+Identifiers can consist of digits (`0-9`), letters (`A-Z a-z`), and underscores (`_`), but the first character cannot be a digit and they are case-sensitive:
 
 - `_abc`
 - `abc`
 - `abc1`
 - `abc_1_`
 
-If you need to start with a letter or use characters other than the above, you must use backticks:
+If it is necessary to start with a letter or use characters outside those mentioned within an identifier, backticks should be used:
 
 - `` `1abc` ``
 - `` `@some-variable` ``
 - `` `this-is-a-emoji-👍` ``
 
-#### Special Identifier {#special-identifier}
+#### Special Identifiers {#special-identifier}
 
 To maintain forward compatibility of Pipeline semantics, `_` is an alias for `message`.
 
 #### Keywords {#keyword}
 
-Keywords are words with special meanings, such as `if`, `elif`, `else`, `for`, `in`, `break`, `continue`, etc.
+Keywords have special meanings, such as `if`, `elif`, `else`, `for`, `in`, `break`, `continue`, etc.
 
 ### Comments {#code-comments}
 
-The `#` character is used for line comments; inline comments are not supported.
+The `#` symbol is used for line comments; inline comments are not supported.
 
 ```python
-# This is a single-line comment
-a = 1 # This is a single-line comment
+# This is a comment line
+a = 1 # This is a comment line
 
 """
-This is a (multi-line) string, used to replace comments
+This is a (multi-line) string replacing comments
 """
 a = 2
 
-"string"
+"String"
 a = 3
 ```
 
 ### Data Types {#data-type}
 
-In the DataKit Pipeline data processing language, the value of a variable can dynamically change, but each value has its data type, which can be one of the **basic types** or a **composite type**.
+In the DataKit Pipeline's data processing language, the type of a variable's value can dynamically change, but each value has its own data type. It can be one of the **basic types** or a **composite type**
 
 #### Basic Types {#basic-type}
 
-##### Integer {#int}
+##### Integer Type {#int}
 
-The integer type is 64-bit long, signed, and currently only supports writing integer literals in decimal form, such as `-1`, `0`, `1`, `+19`.
+Integer type length is 64-bit signed, currently only supporting decimal integer literals, such as `-1`, `0`, `1`, `+19`
 
-##### Floating Point {#float}
+##### Floating Point Type {#float}
 
-The floating-point type is 64-bit long, signed, and currently only supports writing floating-point literals in decimal form, such as `-1.00001`, `0.0`, `1.0`, `+19.0`.
+Floating point type length is 64-bit signed, currently only supporting decimal floating-point literals, such as `-1.00001`, `0.0`, `1.0`, `+19.0`
 
-##### Boolean {#bool}
+##### Boolean Type {#bool}
 
-The boolean type has only two values: `true` and `false`.
+Boolean type values are only `true` and `false`
 
-##### String {#str}
+##### String Type {#str}
 
-String values can be enclosed in double or single quotes, and multi-line strings can be written by enclosing the content in triple double or single quotes.
+String values can be enclosed in double quotes or single quotes, and multi-line strings can be written using triple double quotes or triple single quotes
 
-- Double-quoted string `"hello world"`
-- Single-quoted string `'hello world'`
+- Double quote string `"hello world"`
+- Single quote string `'hello world'`
 - Multi-line string
 
 ```python
-"""
-hello
-world
-"""
+"""hello
+world"""
 ```
 
-- Single-quoted multi-line string
+- Single quote form of multi-line string
 
 ```python
 '''
@@ -95,17 +92,17 @@ world
 '''
 ```
 
-##### Nil {#nil}
+##### Nil Type {#nil}
 
-Nil is a special data type representing null. When a variable is used without being assigned, its value is nil.
+Nil is a special data type indicating null. When a variable is used without being assigned a value, its value is nil.
 
 #### Composite Types {#composite-type}
 
-Dictionary and list types differ from basic types in that multiple variables can point to the same map or list object. When assigning, no memory copy of the list or dictionary is performed; instead, a reference is made.
+Dictionary types and list types differ from basic types in that multiple variables can reference the same map or list object. Assignment does not copy lists or dictionaries in memory but references them.
 
 - Dictionary Type
 
-The dictionary type is a key-value structure, where only string types can be used as keys, and there is no restriction on the data type of the value. Its elements in the map can be read and written through index expressions:
+Dictionary type is key-value structured, where only string types can serve as keys, and there are no restrictions on the value data type. Elements in the map can be read and written via index expressions:
 
 ```python
 a = {
@@ -115,16 +112,17 @@ a = {
   "def": true
 }
 
-# Since a["1"] is a list, b is just a reference to the value of a["1"]
+# Since a["1"] is a list, b just references the value of a["1"]
 b = a["1"]
 
-# Now the value of a also becomes 1.1
+# At this point, this value of a also becomes 1.1
 b[0] = 1.1
 ```
 
 - List Type
 
-The list type can store any number of values of any type in the list. Its elements in the list can be read and written through index expressions.
+List types can store any number of values of any type.
+Elements in the list can be read and written via index expressions
 
 ```python
 a = [1, "2", 3.0, false, nil, {"a": 1}]
@@ -134,37 +132,37 @@ a = a[0] # a == 1
 
 ## Quick Start {#quick-start}
 
-- Configure Pipeline in DataKit by writing a Pipeline file as follows, assuming it is named *nginx.p*. Store it in the *[Datakit Installation Directory]/pipeline* directory.
+- Configure Pipeline in DataKit, write the following Pipeline file, assuming it is named *nginx.p*. Save it in the *[Datakit installation directory]/pipeline* directory.
 
 ```python
 # Assume the input is an Nginx log
-# Note that scripts can have comments
+# Note, scripts can add comments
 
-grok(_, "some-grok-patterns")  # Extract using grok on the input text
+grok(_, "some-grok-patterns")  # Extract grok from the input text
 rename('client_ip', ip)        # Rename the ip field to client_ip
-rename("network protocol", protocol)   # Rename the protocol field to "Network Protocol"
+rename("network protocol", protocol)   # Rename the protocol field to "network protocol"
 
-# Convert the timestamp (e.g., 1610967131) to RFC3339 date format: 2006-01-02T15:04:05Z07:00
+# Convert timestamp (like 1610967131) into RFC3339 date format: 2006-01-02T15:04:05Z07:00
 datetime(access_time, "s", "RFC3339")
 
-url_decode(request_url)      # Translate the HTTP request route into plain text
+url_decode(request_url)      # Decode the HTTP request route into plain text
 
-# When the status_code is between 200 and 300, create a new field http_status = "HTTP_OK"
+# When status_code is between 200 ~ 300, create a new field http_status = "HTTP_OK"
 group_between(status_code, [200, 300], "HTTP_OK", "http_status")
 
-# Discard the original content
+# Discard original content
 drop_origin_data()
 ```
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning "Note"
 
-    During the cutting process, avoid [potential issues with tag key naming conflicts](./use-pipeline/pipeline-quick-start.md#naming).
+    During parsing, avoid [possible conflicts with tag keys](./use-pipeline/pipeline-quick-start.md#naming).
 <!-- markdownlint-enable -->
 
-- Configure the corresponding collector to use the above Pipeline.
+- Configure the corresponding collector to use the above Pipeline
 
-Take the logging collector as an example, and configure the `pipeline_path` field. Note that the configuration is the name of the pipeline script, not the path. All referenced pipeline scripts must be stored in the `<DataKit Installation Directory>/pipeline` directory:
+Taking the logging collector as an example, configure the `pipeline_path` field, note that here configured is the script name of the pipeline, not the path. All referenced pipeline scripts must be stored in the `<DataKit installation directory/pipeline>` directory:
 
 ```python
 [[inputs.logging]]
@@ -173,36 +171,37 @@ Take the logging collector as an example, and configure the `pipeline_path` fiel
     # required
     source = "nginx"
 
-    # All scripts must be placed in the /path/to/datakit/pipeline directory
-    # If the gitrepos feature is enabled, the file with the same name in gitrepos will be used first
-    # If the pipeline is not configured, look for a script with the same name as the source in the pipeline directory (e.g., nginx -> nginx.p) as the default pipeline configuration
+    # All scripts must be placed in /path/to/datakit/pipeline directory
+    # If gitrepos feature is enabled, then files with the same name in gitrepos take precedence
+    # If the pipeline is not configured, it looks for a script with the same name as the source
+    # in the pipeline directory (e.g., nginx -> nginx.p) as the default pipeline configuration
     pipeline = "nginx.p"
 
-    ... # Other configurations
+    ... # other configurations
 ```
 
-Restart the collector to cut the corresponding logs.
+Restart the collector to parse the corresponding logs.
 
 <!-- markdownlint-disable MD046 -->
 ???+ abstract
 
-    For information on writing, debugging, and notes on Pipeline, see [How to Write Pipeline Scripts](./use-pipeline/pipeline-quick-start.md).
+    For details on writing, debugging, and precautions for Pipeline scripts, see [How to Write Pipeline Scripts](./use-pipeline/pipeline-quick-start.md).
 <!-- markdownlint-enable -->
 
-## Grok Pattern Classification {#grok}
+## Grok Pattern Categories {#grok}
 
-In DataKit, grok patterns can be divided into two categories:
+Grok patterns in DataKit can be divided into two categories:
 
-- Global Patterns: Pattern files under the *pattern* directory are global patterns that can be used in all Pipeline scripts;
-- Local Patterns: Patterns added in the Pipeline script through the [add_pattern()](pipeline.md#fn-add-pattern) function are local patterns, which are only effective for the current Pipeline script.
+- Global Patterns: Pattern files under the *pattern* directory are global patterns, available to all Pipeline scripts;
+- Local Patterns: Patterns added in Pipeline scripts through the [add_pattern()](pipeline.md#fn-add-pattern) function are local patterns, effective only for the current Pipeline script.
 
-The following uses the Nginx access-log as an example to illustrate how to write the corresponding grok. The original Nginx access log is as follows:
+Using Nginx access-log as an example, let's illustrate how to write corresponding grok patterns. Original nginx access log:
 
 ```log
 127.0.0.1 - - [26/May/2022:20:53:52 +0800] "GET /server_status HTTP/1.1" 404 134 "-" "Go-http-client/1.1"
 ```
 
-Assuming we need to extract client_ip, time (request), http_method, http_url, http_version, and status_code from this access log, the initial grok pattern can be written as:
+Assuming we need to extract client_ip, time (request), http_method, http_url, http_version, status_code from this access log, the initial grok pattern can be written as:
 
 ```python
 grok(_,"%{NOTSPACE:client_ip} %{NOTSPACE} %{NOTSPACE} \\[%{HTTPDATE:time}\\] \"%{DATA:http_method} %{GREEDYDATA:http_url} HTTP/%{NUMBER:http_version}\" %{INT:status_code} %{INT} \"%{NOTSPACE}\" \"%{NOTSPACE}\"")
@@ -215,66 +214,64 @@ group_between(status_code, [500,599], "error", status)
 default_time(time)
 ```
 
-Optimize it a bit more by extracting the corresponding features:
-
+Further optimization by extracting features separately:
 
 ```python
-# The client_ip, http_ident, and http_auth at the beginning of the log constitute a pattern
+# Log header including client_ip, http_ident, http_auth as a pattern
 add_pattern("p1", "%{NOTSPACE:client_ip} %{NOTSPACE} %{NOTSPACE}")
 
-# The http_method, http_url, http_version, and status_code in the middle constitute a pattern,
-# and the data type of status_code is specified as int within the pattern to replace the cast function used later
+# Middle part including http_method, http_url, http_version, status_code as a pattern,
+# and specify the data type int for status_code within the pattern instead of using cast function
 add_pattern("p3", '"%{DATA:http_method} %{GREEDYDATA:http_url} HTTP/%{NUMBER:http_version}" %{INT:status_code:int}')
 
 grok(_, "%{p1} \\[%{HTTPDATE:time}\\] %{p3} %{INT} \"%{NOTSPACE}\" \"%{NOTSPACE}\"")
 
-group_between(status_code, [200, 299], "OK", status)
-group_between(status_code, [300, 399], "notice", status)
-group_between(status_code, [400, 499], "warning", status)
-group_between(status_code, [500, 599], "error", status)
+group_between(status_code, [200,299], "OK", status)
+group_between(status_code, [300,399], "notice", status)
+group_between(status_code, [400,499], "warning", status)
+group_between(status_code, [500,599], "error", status)
 
 default_time(time)
 ```
 
-After optimization, the cutting is more readable compared to the initial single-line pattern. Since the fields parsed by grok default to string type, specifying the data type of the field here can avoid the subsequent use of the [cast()](pipeline.md#fn-cast) function for type conversion.
+After optimization, compared to the initial single-line pattern, the readability is improved. Since grok-extracted fields default to string type, specifying the data type for fields avoids the need for subsequent use of the [cast()](pipeline.md#fn-cast) function for type conversion.
 
 ### Grok Composition {#grok-compose}
 
-Grok essentially involves predefining regular expressions for text matching and extraction, and naming these predefined regular expressions for easy use and nested reference to expand into countless new patterns. For example, DataKit has the following three built-in patterns:
+Essentially, grok predefines some regular expressions for text matching extraction and names these predefined regular expressions for easy use and nested reference expansion into countless new patterns. For example, DataKit has three built-in patterns as follows:
 
 ```python
-_second (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)    # Matches seconds, with _second as the pattern name
-_minute (?:[0-5][0-9])                            # Matches minutes, with _minute as the pattern name
-_hour (?:2[0123]|[01]?[0-9])                      # Matches hour, with _hour as the pattern name
+_second (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)    # Match seconds, _second is the pattern name
+_minute (?:[0-5][0-9])                            # Match minutes, _minute is the pattern name
+_hour (?:2[0123]|[01]?[0-9])                      # Match hours, _hour is the pattern name
 ```
 
-Based on the three built-in patterns above, you can extend your own built-in pattern named `time`:
+Based on the above three built-in patterns, you can expand your own built-in pattern named `time`:
 
 ```python
-# Add time to the pattern directory file, this pattern is a global pattern that can be referenced anywhere
+# Add time to the pattern directory file, this pattern is a global pattern, which can be referenced anywhere
 time ([^0-9]?)%{hour:hour}:%{minute:minute}(?::%{second:second})([^0-9]?)
 
-# You can also add it to the pipeline file through add_pattern(), making this pattern a local pattern, only usable by the current pipeline script
+# You can also add it to the pipeline file through add_pattern(), then this pattern becomes a local pattern, only usable by the current pipeline script
 add_pattern(time, "([^0-9]?)%{HOUR:hour}:%{MINUTE:minute}(?::%{SECOND:second})([^0-9]?)")
 
-# Extract the time field from the original input using grok. Assuming the input is 12:30:59, it will be extracted to {"hour": 12, "minute": 30, "second": 59}
+# Extract the time field from the original input using grok. Assuming the input is 12:30:59, then {"hour": 12, "minute": 30, "second": 59} is extracted
 grok(_, %{time})
 ```
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning "Note"
 
-    - If there is a pattern with the same name, the local pattern takes precedence (i.e., the local pattern overrides the global pattern);
-    - In the pipeline script, [add_pattern()](pipeline.md#fn-add-pattern) must be called before [grok()](pipeline.md#fn-grok), otherwise, it will cause the first data extraction to fail.
+    - If there are same-named patterns, local patterns take precedence (i.e., local patterns override global patterns);
+    - In Pipeline scripts, [add_pattern()](pipeline.md#fn-add-pattern) must be called before [grok()](pipeline.md#fn-grok) functions, otherwise it will cause the first data extraction to fail.
 <!-- markdownlint-enable -->
 
 ### Built-in Pattern List {#builtin-patterns}
 
-DataKit has built-in some commonly used Patterns that can be directly used when we use Grok for cutting:
+DataKit comes with some commonly used patterns, which can be directly used when cutting with Grok:
 
 <!-- markdownlint-disable MD046 -->
 ???- "Built-in Patterns"
-
 
     ``` not-set
     USERNAME             : [a-zA-Z0-9._-]+
@@ -358,63 +355,190 @@ DataKit has built-in some commonly used Patterns that can be directly used when 
     ```
 <!-- markdownlint-enable -->
 
-```python
-# The client_ip, http_ident, and http_auth at the beginning of the log form a pattern
-add_pattern("p1", "%{NOTSPACE:client_ip} %{NOTSPACE} %{NOTSPACE}")
+## if/else Branch {#if-else}
 
-# The http_method, http_url, http_version, and status_code in the middle form a pattern,
-# and the data type of status_code is specified as int within the pattern to replace the cast function used later
-add_pattern("p3", '"%{DATA:http_method} %{GREEDYDATA:http_url} HTTP/%{NUMBER:http_version}" %{INT:status_code:int}')
+Pipeline supports `if/elif/else` syntax, where the statement after `if` only supports conditional expressions, i.e., `<`, `<=`, `==`, `>`, `>=`, and `!=`, and supports parentheses priority and multiple conditional expressions connected by `AND` and `OR`.
 
-grok(_, "%{p1} \\[%{HTTPDATE:time}\\] %{p3} %{INT} \"%{NOTSPACE}\" \"%{NOTSPACE}\"")
-
-group_between(status_code, [200, 299], "OK", status)
-group_between(status_code, [300, 399], "notice", status)
-group_between(status_code, [400, 499], "warning", status)
-group_between(status_code, [500, 599], "error", status)
-
-default_time(time)
-```
-
-After optimization, the parsing is more readable than the initial single-line pattern. Since the fields parsed by grok default to the string type, specifying the data type of the field here can prevent the subsequent use of the [cast()](pipeline.md#fn-cast) function for type conversion.
-
-### Grok Composition {#grok-compose}
-
-Grok essentially involves predefining regular expressions for text matching and extraction, and naming these predefined regular expressions for easy use and nested reference to expand into countless new patterns. For example, DataKit has the following three built-in patterns:
+Expressions on both sides can be existing keys or fixed values (numbers, booleans, strings, and nil), for example:
 
 ```python
-_second (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)    # Matches seconds, with _second as the pattern name
-_minute (?:[0-5][0-9])                            # Matches minutes, with _minute as the pattern name
-_hour (?:2[0123]|[01]?[0-9])                      # Matches hour, with _hour as the pattern name
+# Numeric comparison
+add_key(score, 95)
+
+if score == 100  {
+  add_key(level, "S")
+} elif score >= 90 && score < 100 {
+  add_key(level, "A")
+} elif score >= 60 {
+  add_key(level, "C")
+} else {
+  add_key(level, "D")
+}
+
+# String comparison
+add_key(name, "Zhang San")
+
+if name == "Outlaw Rogue" {
+  # This is impossible, do not defame me
+}
 ```
 
-Based on the three built-in patterns above, you can extend your own built-in pattern named `time`:
+Similar to most programming/script languages, the execution order is determined based on whether the conditions of `if/elif` are met.
+
+Note: If performing numeric comparisons, use `cast()` for type conversion first, for example:
+
+``` python
+# status_code is a string type extracted by grok
+cast(status_code, "int")
+
+if status == 200 {
+  add_key(level, "OK")
+} elif status >= 400 && status < 500 {
+  add_key(level, "ERROR")
+} elif stauts > 500 {
+  add_key(level, "FATAL")
+}
+```
+
+## for Loop {#for-loop}
+Allows iterating over maps, lists, and strings using for, and loop control can be performed using `continue` and `break`
 
 ```python
-# Add time to the pattern directory file; this pattern is a global pattern that can be referenced anywhere
-time ([^0-9]?)%{hour:hour}:%{minute:minute}(?::%{second:second})([^0-9]?)
+# Example 1
+b = "2"
+for a in ["1", "a" ,"2"] {
+  b = b + a
+}
+add_key(b)
+# Processing result
+{
+  "b": "21a2"
+}
 
-# You can also add it to the pipeline file through add_pattern(), making this pattern a local pattern, only usable by the current pipeline script
-add_pattern(time, "([^0-9]?)%{HOUR:hour}:%{MINUTE:minute}(?::%{SECOND:second})([^0-9]?)")
 
-# Extract the time field from the original input using grok. Assuming the input is 12:30:59, it will be extracted to {"hour": 12, "minute": 30, "second": 59}
-grok(_, %{time})
+# Example 2
+d = 0
+map_a = {"a": 1, "b":2}
+for x in map_a {
+  d = d + map_a[x]
+}
+add_key(d)
+# Processing result
+{
+  "d": 3
+}
 ```
 
-<!-- markdownlint-disable MD046 -->
-???+ warning "Note"
+## Pipeline Script Storage Directory {#pl-dirs}
 
-    - If there is a pattern with the same name, the local pattern takes precedence (i.e., the local pattern overrides the global pattern);
-    - In the pipeline script, [add_pattern()](pipeline.md#fn-add-pattern) must be called before [grok()](pipeline.md#fn-grok), otherwise, it will cause the first data extraction to fail.
-<!-- markdownlint-enable -->
+The search priority for Pipeline directories is:
 
-### Built-in Pattern List {#builtin-patterns}
+1. Remote Pipeline directory
+2. Git-managed *pipeline* directory
+3. Built-in *pipeline* directory
 
-DataKit has built-in some commonly used Patterns that can be directly used when we use Grok for parsing:
+Search starts from 1 to 3, returning immediately upon match.
 
-<!-- markdownlint-disable MD046 -->
-???- "Built-in Patterns"
+Absolute paths are not allowed.
 
+### Remote Pipeline Directory {#remote-pl}
+
+Under the `pipeline_remote` directory below the Datakit installation directory, the directory structure is shown as follows:
+
+```shell
+.
+├── conf.d
+├── datakit
+├── pipeline
+│   ├── root_apache.p
+│   └── root_consul.p
+├── pipeline_remote
+│   ├── remote_elasticsearch.p
+│   └── remote_jenkins.p
+├── gitrepos
+│   └── mygitproject
+│       ├── conf.d
+│       ├── pipeline
+│       │   └── git_kafka.p
+│       │   └── git_mongod.p
+│       └── python.d
+└── ...
+```
+
+### Git-managed Pipeline Directory {#git-pl}
+
+Under the *pipeline* directory in the *gitrepos* directory, the directory structure is shown above.
+
+### Built-in Pipeline Directory {#internal-pl}
+
+Under the *pipeline* directory in the Datakit installation directory, the directory structure is shown above.
+
+## Input Data Structure for Scripts {#input-data}
+
+All categories of data are encapsulated into the Point structure before being processed by the Pipeline script, roughly as follows:
+
+``` not-set
+struct Point {
+    Name:    str
+    Tags:    map[str]str
+    Fields:  map[str]any
+    Time:    int64
+}
+```
+
+For example, an nginx log data, collected by the log collector, as input to the Pipeline script would look like:
+
+``` not-set
+Point {
+    Name: "nginx"
+    Tags: map[str]str {
+        "host": "your_hostname"
+    },
+    Fields: map[str]any {
+        "message": "127.0.0.1 - - [12/Jan/2023:11:51:38 +0800] \"GET / HTTP/1.1\" 200 612 \"-\" \"curl/7.81.0\""
+    },
+    Time: 1673495498000123456
+}
+```
+
+Note:
+
+- The `Name` can be modified using the `set_measurement()` function.
+
+- For `Tags` and `Fields`, no key can appear simultaneously in both maps; keys in either can be read using custom identifiers or the `get_key()` function within the pipeline. Modifying the value of a key in `Tags` or `Fields` requires using other **built-in functions**. The **`_`** can be considered an alias for the `message` key.
+
+- After script execution, if there is a key named `time` in `Tags` or `Fields`, it will be deleted; if its value is of type int64, it will be assigned to the Point's time and then deleted. If `time` is a string, you can attempt to use the `default_time()` function to convert it to int64.
+
+## Script Functions {#functions}
+
+Function parameter notes:
+
+- Function parameters include anonymous parameters (`_`) representing the original input text data.
+- JSON paths are expressed directly as `x.y.z` without additional decoration. For instance, given `{"a":{"first":2.3, "second":2, "third":"abc", "forth":true}, "age":47}`, the JSON path `a.third` indicates the target data `abc`.
+- The relative order of all function parameters is fixed, and the engine checks this specifically.
+- All `key` parameters mentioned below refer to keys already initially extracted (via `grok()` or `json()`).
+- Paths for processing JSON support identifier notation, not string literals. Use strings for creating new keys.
+
+### `add_key()` {#fn-add-key}
+
+Prototype: `fn add_key(key, value)`
+
+Description: Adds a field to the point
+
+Parameters:
+
+- `key`: The name of the new key
+- `value`: The value of the key
+
+Example:
+
+```python
+# Input data: {"age": 17, "name": "zhangsan", "height": 180}
+
+# Processing script
+add_key(city, "shanghai")
+
+# Processing result
 {
     "age": 17,
     "height": 180,
@@ -426,19 +550,19 @@ DataKit has built-in some commonly used Patterns that can be directly used when 
 
 ### `add_pattern()` {#fn-add-pattern}
 
-Function Prototype: `fn add_pattern(name: str, pattern: str)`
+Prototype: `fn add_pattern(name: str, pattern: str)`
 
-Function Description: Create a custom grok pattern. Grok patterns have scope limitations; for example, a new scope is created within if-else statements, and the pattern is only valid within this scope. This function cannot override existing grok patterns in the same or higher scope.
+Description: Create a custom grok pattern. Grok patterns have scope limitations, such as generating new scopes within if else statements, making the pattern only valid within that scope. This function cannot overwrite grok patterns that already exist in the same or upper scope.
 
 Parameters:
 
-- `name`: The name of the pattern.
-- `pattern`: The content of the custom pattern.
+- `name`: Pattern name
+- `pattern`: Custom pattern content
 
 Example:
 
 ```python
-# Data to be processed: "11,abc,end1", "22,abc,end1", "33,abc,end3"
+# Input data："11,abc,end1", "22,abc,end1", "33,abc,end3"
 
 # Pipeline script
 add_pattern("aa", "\\d{2}")
@@ -451,10 +575,10 @@ if false {
         add_pattern("cc", "end1")
         grok(_, "%{aa:aa},%{bb:bb},%{cc:cc}")
     } elif aa == "22" {
-        # Using pattern cc here will cause a compilation error: no pattern found for %{cc}
+        # Using pattern cc here will cause compilation failure: no pattern found for %{cc}
         grok(_, "%{aa:aa},%{bb:bb},%{INT:cc}")
     } elif aa == "33" {
-        add_pattern("bb", "[\\d]{5}") # Overriding bb here will fail
+        add_pattern("bb", "[\\d]{5}") # Overriding bb fails here
         add_pattern("cc", "end3")
         grok(_, "%{aa:aa},%{bb:bb},%{cc:cc}")
     }
@@ -482,19 +606,19 @@ if false {
 
 ### `adjust_timezone()` {#fn-adjust-timezone}
 
-Function Prototype: `fn adjust_timezone(key: int, minute: int)`
+Prototype: `fn adjust_timezone(key: int, minute: int)`
 
-Function Parameters:
+Parameters:
 
-- `key`: A nanosecond timestamp, such as the timestamp obtained after processing with the `default_time(time)` function.
-- `minute`: The allowed deviation from the current time in minutes (an integer), with a range of [0, 15], and a default value of 2 minutes.
+- `key`: Nanosecond timestamp, such as the timestamp obtained after processing with the `default_time(time)` function;
+- `minute`: Allowed deviation in minutes (integer) from the current time (range [0, 15], default value 2 minutes).
 
-Function Description: It ensures that the difference between the input timestamp and the current time at the time of function execution is within (-60+minute, minute] minutes; it is not suitable for data with a time difference beyond this range, as it may result in incorrect data acquisition. The calculation process is as follows:
+Description: Adjusts the input timestamp so that the difference between it and the execution time of the function falls within (-60+minute, minute]. Not applicable to data with time differences exceeding this range, as it may lead to incorrect results. Calculation process:
 
-1. Add several hours to the value of key to place it within the current hour.
-2. At this point, calculate the minute difference between the two, with both minute values ranging from [0, 60), and the difference range being (-60,0] and [0, 60).
-3. If the difference is less than or equal to -60 + minute, add one hour; if greater than minute, subtract one hour.
-4. The default value of minute is 2, allowing a difference range of (-58, 2]. For example, if the current time is 11:10 and the log time is 3:12:00.001, the final result will be 10:12:00.001; if the current time is 11:59:1.000 and the log time is 3:01:1.000, the final result will be 12:01:1.000.
+1. Add several hours to the key value to place it within the current hour;
+2. Calculate the minute difference between the two timestamps, where the minute ranges are [0, 60), resulting in a difference range of (-60,0] and [0, 60);
+3. If the difference is less than or equal to -60 + minute, add 1 hour; if greater than minute, subtract 1 hour;
+4. Default minute value is 2, allowing the difference range (-58, 2]. If the current time is 11:10, and the log time is 3:12:00.001, the final result is 10:12:00.001; if the current time is 11:59:1.000, and the log time is 3:01:1.000, the final result is 12:01:1.000.
 
 Example:
 
@@ -511,14 +635,15 @@ Example:
 Script:
 
 ```python
-json(_, time)      # Extract the time field (if the container's timezone is UTC+0000)
-default_time(time) # Convert the extracted time field into a timestamp
-                   # (parse with the local timezone UTC+0800/UTC+0900, etc., for data without a timezone)
+json(_,```python
+json(_, time)      # Extract the time field (if the container timezone is UTC+0000)
+default_time(time) # Convert the extracted time field to a timestamp
+                   # (parse without timezone data using local timezone UTC+0800/UTC+0900, etc.)
 adjust_timezone(time)
-                   # Automatically (re)select the timezone and correct the time deviation
+                   # Automatically (re)select timezone, calibrate time deviation
 ```
 
-Execute `datakit pipeline -P <name>.p -F <input_file_name>  --date`:
+Executing `datakit pipeline -P <name>.p -F <input_file_name>  --date`:
 
 ```json
 # Output 1
@@ -529,35 +654,34 @@ Execute `datakit pipeline -P <name>.p -F <input_file_name>  --date`:
 }
 ```
 
-Local machine time: `2022-07-11T20:55:10.521+08:00`
+Local time: `2022-07-11T20:55:10.521+08:00`
 
-Using only `default_time` to parse according to the default local timezone (UTC+8) results in:
+Using only `default_time` with the default local timezone (UTC+8) for parsing results in:
 
-- Input 1 result: `2022-07-11T12:49:20.937+08:00`
+- Result of Input 1: `2022-07-11T12:49:20.937+08:00`
 
-After using `adjust_timezone`, the result will be:
+After using `adjust_timezone`, you get:
 
-- Input 1 result: `2022-07-11T20:49:20.937+08:00`
+- Result of Input 1: `2022-07-11T20:49:20.937+08:00`
 
 
 ### `agg_create()` {#fn-agg-create}
 
 [:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
-Function Prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
+Prototype: `fn agg_create(bucket: str, on_interval: str = "60s", on_count: int = 0, keep_value: bool = false, const_tags: map[string]string = nil)`
 
-Function Description: Create a metric set for aggregation. Set the aggregation period by `on_interval` or `on_count`, and upload the aggregated data after aggregation. You can choose whether to retain the data from the last aggregation.
+Description: Create a metrics set for aggregation, setting the aggregation period using `on_interval` or `on_count`. After aggregation, upload the aggregated data and choose whether to retain the last aggregation's data.
 
-Function Parameters:
+Parameters:
 
-- `bucket`: A string that serves as the name of the aggregated metric set. If the bucket has already been created, the function will perform no operation.
-- `on_interval`: The default value is `60s`, which sets the aggregation period by time in seconds. The parameter takes effect when the value is greater than `0`. It cannot be used simultaneously with `on_count` set to less than or equal to `0`.
-- `on_count`: The default value is `0`, which sets the aggregation period by the number of processed points. The parameter takes effect when the value is greater than `0`.
-- `keep_value`: The default value is `false`.
-- `const_tags`: Custom tags, default is empty.
+- `bucket`: String type, used as the name of the metrics set created by this function. If the bucket has already been created, no operation is performed;
+- `on_interval`: Default value `"60s"`, sets the aggregation period based on time, unit `s`, effective when greater than `0`; cannot be used simultaneously with `on_count` less than or equal to `0`;
+- `on_count`: Default value `0`, sets the aggregation period based on the number of processed points, effective when greater than `0`;
+- `keep_value`: Default value `false`;
+- `const_tags`: Custom tags, default empty.
 
 Example:
-
 
 ```python
 agg_create("cpu_agg_info", on_interval = "30s")
@@ -568,21 +692,21 @@ agg_create("cpu_agg_info", on_interval = "30s")
 
 [:octicons-tag-24: Version-1.5.10](../datakit/changelog.md#cl-1.5.10)
 
-Function Prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
+Prototype: `fn agg_metric(bucket: str, new_field: str, agg_fn: str, agg_by: []string, agg_field: str)`
 
-Function Description: Based on the names of the fields in the input data, automatically take values to serve as tags for aggregated data, and store this aggregated data in the corresponding bucket.
+Description: Automatically takes values from fields in the input data and uses them as tags for the aggregated data, storing these aggregated data in the corresponding bucket.
 
-Function Parameters:
+Parameters:
 
-- `bucket`: A string that represents the bucket of the metric set created by the function `agg_create`. If the bucket has not been created, the function will not perform any operations.
-- `new_field`: The name of the metric in the aggregated data, with the data type as `float`.
-- `agg_fn`: The aggregation function, which can be one of `"avg"`, `"sum"`, `"min"`, `"max"`, `"set"`.
-- `agg_by`: The names of the fields in the input data that will serve as tags for the aggregated data. The values of these fields must be of string type.
-- `agg_field`: The name of the field in the input data, from which the values are automatically obtained for aggregation.
+- `bucket`: String type, refers to the bucket of the metrics set created by the `agg_create` function. If the bucket hasn't been created, no operation is performed;
+- `new_field`: The metric name in the aggregated data, whose value type is `float`;
+- `agg_fn`: Aggregation function, can be one of `"avg"`,`"sum"`,`"min"`,`"max"`,`"set"`;
+- `agg_by`: Field names from the input data that will serve as tags for the aggregated data; these fields' values must be string types;
+- `agg_field`: Field name from the input data, automatically fetches field values for aggregation.
 
 Example:
 
-Taking log category data as an example:
+For log category data:
 
 Multiple input logs:
 
@@ -612,7 +736,7 @@ cast(field1, "int")
 agg_metric("cpu_agg_info", "agg_field_1", "sum", ["tag1", "host"], "field1")
 ```
 
-Metric output:
+Metrics output:
 
 ``` not-set
 {
@@ -622,16 +746,17 @@ Metric output:
 }
 ```
 
+
 ### `append()` {#fn-append}
 
-Function Prototype: `fn append(arr, elem) arr`
+Prototype: `fn append(arr, elem) arr`
 
-Function Description: Adds an element `elem` to the end of the array `arr`.
+Description: Appends element `elem` to the end of array `arr`.
 
 Parameters:
 
-- `arr`: The array to which the element will be added.
-- `elem`: The element to be added.
+- `arr`: The array to which elements are added.
+- `elem`: The element to add.
 
 Example:
 
@@ -648,22 +773,23 @@ c = append(a, b)
 # c = [1, 2, [3, 4]]
 ```
 
+
 ### `b64dec()` {#fn-b64dec}
 
-Function Prototype: `fn b64dec(key: str)`
+Prototype: `fn b64dec(key: str)`
 
-Function Description: Decode the string data obtained from the specified field using base64.
+Description: Decodes the string data obtained from the specified field using base64.
 
-Function Parameters:
+Parameter:
 
-- `key`: The field to be extracted.
+- `key`: Target field
 
 Example:
 
 ```python
-# Data to be processed {"str": "aGVsbG8sIHdvcmxk"}
+# Input data {"str": "aGVsbG8sIHdvcmxk"}
 json(_, `str`)
-b64enc(`str`)
+b64dec(`str`)
 
 # Processing result
 # {
@@ -671,20 +797,21 @@ b64enc(`str`)
 # }
 ```
 
+
 ### `b64enc()` {#fn-b64enc}
 
-Function Prototype: `fn b64enc(key: str)`
+Prototype: `fn b64enc(key: str)`
 
-Function Description: Encodes the string data obtained from the specified field using base64.
+Description: Encodes the string data obtained from the specified field using base64.
 
-Function Parameters:
+Parameter:
 
-- `key`: The field to be extracted.
+- `key`: Target field
 
 Example:
 
 ```python
-# Data to be processed {"str": "hello, world"}
+# Input data {"str": "hello, world"}
 json(_, `str`)
 b64enc(`str`)
 
@@ -694,21 +821,22 @@ b64enc(`str`)
 # }
 ```
 
+
 ### `cast()` {#fn-cast}
 
-Function Prototype: `fn cast(key, dst_type: str)`
+Prototype: `fn cast(key, dst_type: str)`
 
-Function Description: Convert the value of `key` to a specified type.
+Description: Converts the key value to the specified type.
 
-Function Parameters:
+Parameters:
 
-- `key`: A field that has been extracted.
-- `dst_type`: The target type for conversion, supports `"str", "float", "int", "bool"`, and the target type must be enclosed in double quotes in English.
+- `key`: An already extracted field;
+- `type`: Target conversion type, supporting `\"str\", \"float\", \"int\", \"bool\"`, target type needs to be enclosed in double quotes in English mode.
 
 Example:
 
 ```python
-# Data to be processed: {"first": 1,"second":2,"third":"aBC","forth":true}
+# Input data: {"first": 1,"second":2,"third":"aBC","forth":true}
 
 # Processing script
 json(_, first) 
@@ -720,21 +848,22 @@ cast(first, "str")
 }
 ```
 
+
 ### `cidr()` {#fn-cidr}
 
-Function Prototype: `fn cidr(ip: str, prefix: str) bool`
+Prototype: `fn cidr(ip: str, prefix: str) bool`
 
-Function Description: Determine whether an IP address is within a specific CIDR block.
+Description: Determines if an IP is within a CIDR block.
 
-Function Parameters:
+Parameters:
 
-- `ip`: An IP address.
-- `prefix`: An IP prefix, such as `192.0.2.1/24`.
+- `ip`: IP address
+- `prefix`: IP prefix, e.g., `192.0.2.1/24`
 
 Example:
 
 ```python
-# Data to be processed:
+# Input data:
 
 # Processing script
 
@@ -752,25 +881,25 @@ if cidr(ip, "192.0.2.1/24") {
 
 ### `cover()` {#fn-cover}
 
-Function Prototype: `fn cover(key: str, range: list)`
+Prototype: `fn cover(key: str, range: list)`
 
-Function Description: The function performs data desensitization on the string data obtained from the specified field, based on the given range.
+Description: Masks the specified field's string data according to the specified range.
 
-Function Parameters:
+Parameters:
 
-- `key`: The field to be extracted.
-- `range`: The index range for desensitizing the string (`[start, end]`). Both `start` and `end` support negative indices, which represent a semantic of tracing back from the end of the string. The range can be any reasonable interval; if `end` is greater than the maximum length of the string, it will default to the maximum length.
+- `key`: Target field;
+- `range`: Masking string index range (`[start,end]`). Both start and end support negative indices, indicating counting backward from the end. Valid ranges are allowed, and if end exceeds the maximum length of the string, it defaults to the maximum length.
 
 Example:
 
 ```python
-# Data to be processed {"str": "13789123014"}
-json(_, "str")
-cover("str", [8, 9])
+# Input data {"str": "13789123014"}
+json(_, `str`)
+cover(`str`, [8, 9])
 
-# Data to be processed {"abc": "13789123014"}
-json(_, "abc")
-cover("abc", [2, 4])
+# Input data {"abc": "13789123014"}
+json(_, abc)
+cover(abc, [2, 4])
 ```
 
 
@@ -778,71 +907,71 @@ cover("abc", [2, 4])
 
 [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
-Function Prototype: `fn datetime(key, precision: str, fmt: str, tz: str = "")`
+Prototype: `fn datetime(key, precision: str, fmt: str, tz: str = "")`
 
-Function Description: Convert a timestamp into a specified date format.
+Description: Converts timestamps into specified date formats.
 
-Function Parameters:
+Parameters:
 
-- `key`: The extracted timestamp.
-- `precision`: The precision of the input timestamp (s, ms, us, ns).
-- `fmt`: The date format, which provides built-in date formats and supports custom date formats.
+- `key`: Already extracted timestamp;
+- `precision`: Input timestamp precision (s, ms, us, ns);
+- `fmt`: Date format, providing built-in date formats and supporting custom date formats;
 - `tz`: Timezone (optional parameter), converts the timestamp to the specified timezone, defaulting to the host's timezone.
 
-Built-in Date Formats:
+Built-in date formats:
 
-| Built-in Format | Example Date                         | Description |
-| --------------- | ------------------------------------ | ----------- |
-| "ANSI-C"        | "Mon Jan _2 15:04:05 2006"         |             |
-| "UnixDate"      | "Mon Jan _2 15:04:05 MST 2006"      |             |
-| "RubyDate"      | "Mon Jan 02 15:04:05 -0700 2006"   |             |
-| "RFC822"        | "02 Jan 06 15:04 MST"              |             |
-| "RFC822Z"       | "02 Jan 06 15:04 -0700"            | RFC822 with numeric zone |
-| "RFC850"        | "Monday, 02-Jan-06 15:04:05 MST"   |             |
-| "RFC1123"       | "Mon, 02 Jan 2006 15:04:05 MST"    |             |
-| "RFC1123Z"      | "Mon, 02 Jan 2006 15:04:05 -0700"   | RFC1123 with numeric zone |
-| "RFC3339"       | "2006-01-02T15:04:05Z07:00"        |             |
-| "RFC3339Nano"   | "2006-01-02T15:04:05.999999999Z07:00" |             |
-| "Kitchen"       | "3:04PM"                            |             |
+| Built-in Format | Date                          | Description                      |
+| ---             | ---                           | ---                              |
+| "ANSI-C"        | "Mon Jan _2 15:04:05 2006"    |                                   |
+| "UnixDate"      | "Mon Jan _2 15:04:05 MST 2006"|                                   |
+| "RubyDate"      | "Mon Jan 02 15:04:05 -0700 2006" |                               |
+| "RFC822"        | "02 Jan 06 15:04 MST"         |                                   |
+| "RFC822Z"       | "02 Jan 06 15:04 -0700"      | RFC822 with numeric zone         |
+| "RFC850"        | "Monday, 02-Jan-06 15:04:05 MST" |                               |
+| "RFC1123"       | "Mon, 02 Jan 2006 15:04:05 MST" |                                |
+| "RFC1123Z"      | "Mon, 02 Jan 2006 15:04:05 -0700" | RFC1123 with numeric zone      |
+| "RFC3339"       | "2006-01-02T15:04:05Z07:00"  |                                   |
+| "RFC3339Nano"   | "2006-01-02T15:04:05.999999999Z07:00" |                           |
+| "Kitchen"       | "3:04PM"                      |                                   |
 
-Custom Date Format:
+Custom date formats:
 
-You can customize the output date format through a combination of placeholders.
+You can customize the output date format by combining placeholders
 
-| Character | Example | Description |
-| --------- | ------- | ----------- |
-| a          | %a      | Abbreviated weekday name, e.g., `Wed` |
-| A          | %A      | Full weekday name, e.g., `Wednesday` |
-| b          | %b      | Abbreviated month name, e.g., `Mar` |
-| B          | %B      | Full month name, e.g., `March` |
-| C          | %C      | Century (year / 100) |
-| **d**      | %d      | Day of the month (01 to 31) |
-| e          | %e      | Day of the month with a space as a filler (1 to 31) |
-| **H**      | %H      | Hour in 24-hour format (00 to 23) |
-| I          | %I      | Hour in 12-hour format (01 to 12) |
-| j          | %j      | Day of the year (001 to 365) |
-| k          | %k      | Hour in 24-hour format without leading zeros (0 to 23) |
-| l          | %l      | Hour in 12-hour format without leading zeros (1 to 12), with a space as a filler |
-| **m**      | %m      | Month (01 to 12) |
-| **M**      | %M      | Minute (00 to 59) |
-| n          | %n      | Newline character `\n` |
-| p          | %p      | `AM` or `PM` |
-| P          | %P      | `am` or `pm` |
-| s          | %s      | Seconds since 1970-01-01 00:00:00 UTC |
-| **S**      | %S      | Second (00 to 60) |
-| t          | %t      | Tab character `\t` |
-| u          | %u      | Day of the week (Monday as 1, Sunday as 7) |
-| w          | %w      | Day of the week (Sunday as 0, Saturday as 6) |
-| y          | %y      | Year (00 to 99) |
-| **Y**      | %Y      | Year in decimal |
-| **z**      | %z      | RFC 822/ISO 8601:1988 style timezone (e.g., `-0600` or `+0100`) |
-| Z          | %Z      | Timezone abbreviation, e.g., `CST` |
-| %          | %%      | Represents the character `%` |
+| Character | Example | Description                                                          |
+| ---       | ---     | ---                                                                  |
+| a         | %a      | Abbreviated weekday, like `Wed`                                      |
+| A         | %A      | Full weekday, like `Wednesday`                                       |
+| b         | %b      | Abbreviated month, like `Mar`                                        |
+| B         | %B      | Full month, like `March`                                             |
+| C         | %c      | Century number, current year divided by 100                           |
+| **d**     | %d      | Day of the month; range `[01, 31]`                                   |
+| e         | %e      | Day of the month; range `[1, 31]`, padded with spaces                |
+| **H**     | %H      | Hour using 24-hour clock; range `[00, 23]`                           |
+| I         | %I      | Hour using 12-hour clock; range `[01, 12]`                           |
+| j         | %j      | Day of the year, range `[001, 365]`                                  |
+| k         | %k      | Hour using 24-hour clock; range `[0, 23]`                            |
+| l         | %l      | Hour using 12-hour clock; range `[1, 12]`, padded with spaces        |
+| **m**     | %m      | Month, range `[01, 12]`                                              |
+| **M**     | %M      | Minute, range `[00, 59]`                                             |
+| n         | %n      | Represents newline `\n`                                              |
+| p         | %p      | `AM` or `PM`                                                         |
+| P         | %P      | `am` or `pm`                                                         |
+| s         | %s      | Seconds since 1970-01-01 00:00:00 UTC                                |
+| **S**     | %S      | Second, range `[00, 60]`                                             |
+| t         | %t      | Represents tab `\t`                                                  |
+| u         | %u      | Weekday, Monday is 1, range `[1, 7]`                                 |
+| w         | %w      | Weekday, Sunday is 0, range `[0, 6]`                                 |
+| y         | %y      | Year, range `[00, 99]`                                               |
+| **Y**     | %Y      | Decimal representation of the year                                   |
+| **z**     | %z      | RFC 822/ISO 8601:1988 style timezone (e.g., `-0600` or `+0100`)     |
+| Z         | %Z      | Timezone abbreviation, like `CST`                                     |
+| %         | %%      | Represents the character `%`                                         |
 
-Examples:
+Example:
 
 ```python
-# Data to be processed:
+# Input data:
 #    {
 #        "a":{
 #            "timestamp": "1610960605000",
@@ -878,11 +1007,12 @@ datetime(ts, 'ns', '%m/%d/%y  %H:%M:%S %z', "Asia/Tokyo")
 }
 ```
 
+
 ### `decode()` {#fn-decode}
 
-Function Prototype: `fn decode(text: str, text_encode: str)`
+Prototype: `fn decode(text: str, text_encode: str)`
 
-Function Description: Convert `text` into UTF-8 encoding to address issues with original logs not in UTF-8 encoding. Currently supported encodings are utf-16le/utf-16be/gbk/gb18030 (encoding names must be lowercase).
+Description: Converts `text` to UTF8 encoding to handle non-UTF8 encoded original logs. Currently supports utf-16le/utf-16be/gbk/gb18030 (these encoding names should be lowercase).
 
 ```python
 decode("wwwwww", "gbk")
@@ -893,55 +1023,56 @@ decode("wwwwww", "gbk")
 # }
 ```
 
+
 ### `default_time()` {#fn-defalt-time}
 
-Function Prototype: `fn default_time(key: str, timezone: str = "")`
+Prototype: `fn default_time(key: str, timezone: str = "")`
 
-Function Description: Use the extracted field as the timestamp for the final data.
+Description: Uses the specified field as the final data timestamp.
 
-Function Parameters:
+Parameters:
 
-- `key`: The specified key must be of string type.
-- `timezone`: Specify the timezone for the formatted time text, an optional parameter defaulting to the current system timezone, with timezone examples being `+8/-8/+8:30`.
+- `key`: Specified key, the data type of the key needs to be a string;
+- `timezone`: Specifies the timezone for formatting the extracted time text, optional parameter, default is the current system timezone, timezone examples `+8/-8/+8:30`.
 
-The supported formatted times for the data to be processed include:
+Supported date formats for processing data:
 
 <!-- markdownlint-disable MD038 -->
 | Date Format                                           | Date Format                                                | Date Format                                       | Date Format                          |
-| -----                                              | ----                                                    | ----                                           | ----                              |
-| `2014-04-26 17:24:37.3186369`                      | `May 8, 2009 5:57:51 PM`                                | `2012-08-03 18:31:59.257000000`                | `oct 7, 1970`                     |
-| `2014-04-26 17:24:37.123`                          | `oct 7, '70`                                            | `2013-04-01 22:43`                             | `oct. 7, 1970`                    |
-| `2013-04-01 22:43:22`                              | `oct. 7, 70`                                            | `2014-12-16 06:20:00 UTC`                      | `Mon Jan  2 15:04:05 2006`        |
-| `2014-12-16 06:20:00 GMT`                          | `Mon Jan  2 15:04:05 MST 2006`                          | `2014-04-26 05:24:37 PM`                       | `Mon Jan 02 15:04:05 -0700 2006`  |
-| `2014-04-26 13:13:43 +0800`                        | `Monday, 02-Jan-06 15:04:05 MST`                        | `2014-04-26 13:13:43 +0800 +08`                | `Mon, 02 Jan 2006 15:04:05 MST`   |
-| `2014-04-26 13:13:44 +09:00`                       | `Tue, 11 Jul 2017 16:28:13 +0200 (CEST)`                | `2012-08-03 18:31:59.257000000 +0000 UTC`      | `Mon, 02 Jan 2006 15:04:05 -0700` |
-| `2015-09-30 18:48:56.35272715 +0000 UTC`           | `Thu, 4 Jan 2018 17:53:36 +0000`                        | `2015-02-18 00:12:00 +0000 GMT`                | `Mon 30 Sep 2018 09:09:09 PM UTC` |
-| `2015-02-18 00:12:00 +0000 UTC`                    | `Mon Aug 10 15:44:11 UTC+0100 2015`                     | `2015-02-08 03:02:00 +0300 MSK m=+0.000000001` | `Thu, 4 Jan 2018 17:53:36 +0000`  |
-| `2015-02-08 03:02:00.001 +0300 MSK m=+0.000000001` | `Fri Jul 03 2015 18:04:07 GMT+0100 (GMT Daylight Time)` | `2017-07-19 03:21:51+00:00`                    | `September 17, 2012 10:09am`      |
-| `2014-04-26`                                       | `September 17, 2012 at 10:09am PST-08`                  | `2014-04`                                      | `September 17, 2012, 10:10:09`    |
-| `2014`                                             | `2014:3:31`                                             | `2014-05-11 08:20:13,787`                      | `2014:03:31`                      |
-| `3.31.2014`                                        | `2014:4:8 22:05`                                        | `03.31.2014`                                   | `2014:04:08 22:05`                |
-| `08.21.71`                                         | `2014:04:2 03:00:51`                                    | `2014.03`                                      | `2014:4:02 03:00:51`              |
-| `2014.03.30`                                       | `2012:03:19 10:11:59`                                   | `20140601`                                     | `2012:03:19 10:11:59.3186369`     |
-| `20140722105203`                                   | `2014 年 04 月 08 日 `                                  | `1332151919`                                   | `2006-01-02T15:04:05+0000`        |
-| `1384216367189`                                    | `2009-08-12T22:15:09-07:00`                             | `1384216367111222`                             | `2009-08-12T22:15:09`             |
-| `1384216367111222333`                              | `2009-08-12T22:15:09Z`                                  |
+| -----                                                 | ----                                                       | ----                                              | ----                                 |
+| `2014-04-26 17:24:37.3186369`                        | `May 8, 2009 5:57:51 PM`                                  | `2012-08-03 18:31:59.257000000`                  | `oct 7, 1970`                       |
+| `2014-04-26 17:24:37.123`                            | `oct 7, '70`                                               | `2013-04-01 22:43`                               | `oct. 7, 1970`                      |
+| `2013-04-01 22:43:22`                                | `oct. 7, 70`                                               | `2014-12-16 06:20:00 UTC`                        | `Mon Jan  2 15:04:05 2006`         |
+| `2014-12-16 06:20:00 GMT`                            | `Mon Jan  2 15:04:05 MST 2006`                            | `2014-04-26 05:24:37 PM`                         | `Mon Jan 02 15:04:05 -0700 2006`   |
+| `2014-04-26 13:13:43 +0800`                          | `Monday, 02-Jan-06 15:04:05 MST`                          | `2014-04-26 13:13:43 +0800 +08`                 | `Mon, 02 Jan 2006 15:04:05 MST`    |
+| `2014-04-26 13:13:44 +09:00`                         | `Tue, 11 Jul 2017 16:28:13 +0200 (CEST)`                 | `2012-08-03 18:31:59.257000000 +0000 UTC`       | `Mon, 02 Jan 2006 15:04:05 -0700` |
+| `2015-09-30 18:48:56.35272715 +0000 UTC`             | `Thu, 4 Jan 2018 17:53:36 +0000`                         | `2015-02-18 00:12:00 +0000 GMT`                  | `Mon 30 Sep 2018 09:09:09 PM UTC`  |
+| `2015-02-18 00:12:00 +0000 UTC`                      | `Mon Aug 10 15:44:11 UTC+0100 2015`                      | `2015-02-08 03:02:00 +0300 MSK m=+0.000000001`  | `Thu, 4 Jan 2018 17:53:36 +0000`   |
+| `2015-02-08 03:02:00.001 +0300 MSK m=+0.000000001`   | `Fri Jul 03 2015 18:04:07 GMT+0100 (GMT Daylight Time)`  | `2017-07-19 03:21:51+00:00`                     | `September 17, 2012 10:09am`       |
+| `2014-04-26`                                          | `September 17, 2012 at 10:09am PST-08`                    | `2014-04`                                        | `September 17, 2012, 10:10:09`     |
+| `2014`                                                | `2014:3:31`                                               | `2014-05-11 08:20:13,787`                       | `2014:03:31`                       |
+| `3.31.2014`                                          | `2014:4:8 22:05`                                          | `03.31.2014`                                     | `2014:04:08 22:05`                 |
+| `08.21.71`                                           | `2014:04:2 03:00:51`                                      | `2014.03`                                        | `2014:4:02 03:00:51`              |
+| `2014.03.30`                                         | `2012:03:19 10:11:59`                                     | `20140601`                                       | `2012:03:19 10:11:59.3186369`     |
+| `20140722105203`                                     | `2014 年 04 月 08 日 `                                    | `1332151919`                                     | `2006-01-02T15:04:05+0000`        |
+| `1384216367189`                                      | `2009-08-12T22:15:09-07:00`                               | `1384216367111222`                               | `2009-08-12T22:15:09`             |
+| `1384216367111222333`                               | `2009-08-12T22:15:09Z`                                    |
 <!-- markdownlint-enable -->
 
-JSON Extraction Example:
+JSON extraction example:
 
 ```python
 # Original JSON
 {
-    "time": "06/Jan/2017:16:16:37 +0000",
-    "second": 2,
-    "third": "abc",
-    "forth": true
+    "time":"06/Jan/2017:16:16:37 +0000",
+    "second":2,
+    "third":"abc",
+    "forth":true
 }
 
 # Pipeline script
 json(_, time)      # Extract the time field
-default_time(time) # Convert the extracted time field into a timestamp
+default_time(time) # Convert the extracted time field to a timestamp
 
 # Processing result
 {
@@ -949,7 +1080,7 @@ default_time(time) # Convert the extracted time field into a timestamp
 }
 ```
 
-Text Extraction Example:
+Text extraction example:
 
 ```python
 # Original log text
@@ -957,14 +1088,14 @@ Text Extraction Example:
 
 # Pipeline script
 grok(_, '%{TIMESTAMP_ISO8601:log_time}')   # Extract log time and name the field log_time
-default_time(log_time)                     # Convert the extracted log_time field into a timestamp
+default_time(log_time)                     # Convert the extracted log_time field to a timestamp
 
 # Processing result
 {
   "log_time": 1610358231887000000,
 }
 
-# For data collected by the logging collector, it is best to name the time field as time, otherwise the logging collector will fill it with the current time
+# For logging collected data, it's best to rename the time field to `time`, otherwise the logging collector will fill with the current time
 rename("time", log_time)
 
 # Processing result
@@ -973,19 +1104,21 @@ rename("time", log_time)
 }
 ```
 
+
+
 ### `delete()` {#fn-delete}
 [:octicons-tag-24: Version-1.5.8](../datakit/changelog.md#cl-1.5.8)
 
-Function Prototype: `fn delete(src: map[string]any, key: str)`
+Prototype: `fn delete(src: map[string]any, key: str)`
 
-Function Description: Delete the key in the JSON map.
+Description: Deletes a key from the JSON map.
 
 ```python
 
-# input
+# Input
 # {"a": "b", "b":[0, {"c": "d"}], "e": 1}
 
-# script
+# Script
 j_map = load_json(_)
 
 delete(j_map["b"][-1], "c")
@@ -994,17 +1127,18 @@ delete(j_map, "a")
 
 add_key("j_map", j_map)
 
-# result:
+# Result:
 # {
 #   "j_map": "{\"b\":[0,{}],\"e\":1}",
 # }
 ```
 
+
 ### `drop()` {#fn-drop}
 
-Function Prototype: `fn drop()`
+Prototype: `fn drop()`
 
-Function Description: Discard the entire log and do not upload it.
+Description: Discards the entire log, preventing it from being uploaded.
 
 ```python
 # in << {"str_a": "2", "str_b": "3"}
@@ -1022,54 +1156,60 @@ json(_, str_b)
 # }
 ```
 
+
+
 ### `drop_key()` {#fn-drop-key}
 
-Function Prototype: `fn drop_key(key)`
+Prototype: `fn drop_key(key)`
 
-Function Description: Delete the extracted field.
+Description: Deletes an already extracted field.
 
-Function Parameters:
+Parameter:
 
-- `key`: The name of the field to be deleted
+- `key`: Name of the field to be deleted
 
 Example:
 
 ```python
-# data = `{"age": 17, "name": "zhangsan", "height": 180}`
+# data = `{\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}`
 
-# processing script
+# Processing script
 json(_, age,)
 json(_, name)
 json(_, height)
 drop_key(height)
 
-# processing result
+# Processing result
 {
     "age": 17,
     "name": "zhangsan"
 }
 ```
 
+
+
 ### `drop_origin_data()` {#fn-drop-origin-data}
 
-Function Prototype: `fn drop_origin_data()`
+Prototype: `fn drop_origin_data()`
 
-Function Description: Discard the initial text, which would otherwise be placed in the message field.
+Description: Discards the initial text, otherwise the initial text is placed in the message field.
 
 Example:
 
 ```python
-# Data to be processed: {"age": 17, "name": "zhangsan", "height": 180}
+# Input data: {"age": 17, "name": "zhangsan", "height": 180}
 
-# Delete the message content in the result set
+# Remove the content of the message field from the result set
 drop_origin_data()
 ```
 
+
+
 ### `duration_precision()` {#fn-duration-precision}
 
-Function Prototype: `fn duration_precision(key, old_precision: str, new_precision: str)`
+Prototype: `fn duration_precision(key, old_precision: str, new_precision: str)`
 
-Function Description: Convert the precision of duration by specifying the current and target precisions. Supports conversion between s, ms, us, and ns.
+Description: Converts the precision of a duration, specifying the current and target precisions. Supports conversions between s, ms, us, ns.
 
 ```python
 # in << {"ts":12345}
@@ -1087,44 +1227,46 @@ duration_precision(ts, "ms", "ns")
 
 ### `exit()` {#fn-exit}
 
-Function Prototype: `fn exit()`
+Prototype: `fn exit()`
 
-Function Description: Terminate the parsing of the current log entry. If the `drop()` function has not been called, the already parsed parts will still be output.
+Description: Ends the parsing of the current log line. If the `drop()` function has not been called, it still outputs the parsed parts.
 
 ```python
-# Input << {"str_a": "2", "str_b": "3"}
+# in << {"str_a": "2", "str_b": "3"}
 json(_, str_a)
 if str_a == "2"{
   exit()
 }
 json(_, str_b)
 
-# Extracted data (drop: false, cost: 48.233µs):
+# Extracted data(drop: false, cost: 48.233µs):
 # {
 #   "message": "{\"str_a\": \"2\", \"str_b\": \"3\"}",
 #   "str_a": "2"
 # }
 ```
 
+
+
 ### `geoip()` {#fn-geoip}
 
-Function Prototype: `fn geoip(ip: str)`
+Prototype: `fn geoip(ip: str)`
 
-Function Description: Append additional IP information to the IP address. The `geoip()` function will generate multiple fields, such as:
+Description: Appends more IP information to the IP. `geoip()` adds multiple fields such as:
 
 - `isp`: Internet Service Provider
 - `city`: City
 - `province`: Province
 - `country`: Country
 
-Parameters:
+Parameter:
 
-- `ip`: The extracted IP field, supports both IPv4 and IPv6.
+- `ip`: An already extracted IP field, supporting both IPv4 and IPv6.
 
 Example:
 
 ```python
-# Data to be processed: {"ip":"1.2.3.4"}
+# Input data: {"ip":"1.2.3.4"}
 
 # Processing script
 json(_, ip)
@@ -1141,33 +1283,34 @@ geoip(ip)
 }
 ```
 
+
 ### `get_key()` {#fn-get-key}
 
-Function Prototype: `fn get_key(key)`
+Prototype: `fn get_key(key)`
 
-Function Description: Read the value of the key from the input point, rather than the value of the variable on the stack.
+Description: Reads the value of the key from the input point, rather than the value of the variable on the stack.
 
-Function Parameters:
+Parameter:
 
-- `key_name`: The name of the key.
+- `key_name`: Name of the key.
 
 Example:
 
 ```python
 add_key("city", "shanghai")
 
-# Here you can directly access the value of the key "city" in the point
+# Here you can directly access the value of the same-named key in the point via city
 if city == "shanghai" {
   add_key("city_1", city)
 }
 
-# Due to the right associativity of assignment, first get the value of the key "city",
-# and then create a variable named city
+# Due to right associativity in assignment, it first retrieves the value of the "city" key,
+# then creates a variable named city
 city = city + " --- ningbo" + " --- " +
     "hangzhou" + " --- suzhou ---" + ""
 
 # get_key retrieves the value of "city" from the point
-# If there is a variable named city, it cannot be directly retrieved from the point
+# If there is a variable named city, it prevents direct retrieval from the point
 if city != get_key("city") {
   add_key("city_2", city)
 }
@@ -1182,27 +1325,28 @@ if city != get_key("city") {
 """
 ```
 
+
 ### `grok()` {#fn-grok}
 
-Function Prototype: `fn grok(input: str, pattern: str, trim_space: bool = true) bool`
+Prototype: `fn grok(input: str, pattern: str, trim_space: bool = true) bool`
 
-Function Description: Extract content from the text string `input` using the `pattern`. Return true when the pattern matches the input, otherwise returns false.
+Description: Extracts content from the text string `input` using `pattern`. Returns true if `pattern` matches `input` successfully, otherwise returns false.
 
 Parameters:
 
-- `input`: Text to be extracted, which can be the raw text (`_`) or a previously extracted `key`;
-- `pattern`: Grok expression, which supports specifying the data type of the key: bool, float, int, string (corresponding to ppl's str, can also be written as str), with the default being string;
-- `trim_space`: Delete the leading and trailing whitespace characters in the extracted text, with the default value being true.
+- `input`: Text to extract, can be raw text (`_`) or an already extracted `key`;
+- `pattern`: Grok expression, supports specifying key data types: bool, float, int, string (corresponding to ppl's str, also writable as str), default is string;
+- `trim_space`: Removes leading and trailing whitespace from extracted characters, default value is true.
 
 ```python
-grok(_, pattern)    # Directly use the input text as the original data
-grok(key, pattern)  # Perform another grok on a previously extracted key
+grok(_, pattern)    # Directly uses the input text as the raw data
+grok(key, pattern)  # Re-performs grok on an already extracted `key`
 ```
 
 Example:
 
 ```python
-# Data to be processed: "12/01/2021 21:13:14.123"
+# Input data："12/01/2021 21:13:14.123"
 
 # Pipeline script
 add_pattern("_second", "(?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)")
@@ -1235,20 +1379,21 @@ add_key(grok_match_ok)
 }
 ```
 
+
 ### `group_between()` {#fn-group-between}
 
-Function Prototype: `fn group_between(key: int, between: list, new_value: int|float|bool|str|map|list|nil, new_key)`
+Prototype: `fn group_between(key: int, between: list, new_value: int|float|bool|str|map|list|nil, new_key)`
 
-Function Description: If the value of `key` is within the specified range `between` (note: only a single interval, such as `[0,100]`), a new field can be created and assigned a new value. If no new field is provided, the original field value will be overwritten.
+Description: If the value of `key` falls within the specified range `between` (note: it can only be a single range, such as `[0,100]`), then a new field can be created and assigned a new value. If no new field is provided, it overwrites the original field value.
 
-Example 1:
+Example one:
 
 ```python
-# Data to be processed: {"http_status": 200, "code": "success"}
+# Input data: {"http_status": 200, "code": "success"}
 
 json(_, http_status)
 
-# If the value of the field http_status is within the specified range, change its value to "OK"
+# If the value of the `http_status` field is within the specified range, change its value to "OK"
 group_between(http_status, [200, 300], "OK")
 
 # Processing result
@@ -1257,14 +1402,14 @@ group_between(http_status, [200, 300], "OK")
 }
 ```
 
-Example 2:
+Example two:
 
 ```python
-# Data to be processed: {"http_status": 200, "code": "success"}
+# Input data: {"http_status": 200, "code": "success"}
 
 json(_, http_status)
 
-# If the value of the field http_status is within the specified range, create a new status field with the value "OK"
+# If the value of the `http_status` field is within the specified range, create a new `status` field with the value "OK"
 group_between(http_status, [200, 300], "OK", status)
 
 # Processing result
@@ -1274,53 +1419,51 @@ group_between(http_status, [200, 300], "OK", status)
 }
 ```
 
+
 ### `group_in()` {#fn-group-in}
 
-Function Prototype: `fn group_in(key: int|float|bool|str, range: list, new_value: int|float|bool|str|map|list|nil, new-key = "")`
+Prototype: `fn group_in(key: int|float|bool|str, range: list, new_value: int|float|bool|str|map|list|nil, new-key = "")`
 
-Function Description: If the value of `key` is in the list `in`, a new field can be created and assigned a new value. If no new field is provided, the original field value will be overwritten.
+Description: If the value of `key` is in the list `in`, then a new field can be created and assigned a new value. If no new field is provided, it overwrites the original field value.
 
 Example:
 
 ```python
-# If the value of the field log_level is in the list, change its value to "OK"
+# If the value of the `log_level` field is in the list, change its value to "OK"
 group_in(log_level, ["info", "debug"], "OK")
 
-# If the value of the field http_status is in the specified list, create a new status field with the value "not-ok"
+# If the value of the `http_status` field is in the specified list, create a new `status` field with the value "not-ok"
 group_in(log_level, ["error", "panic"], "not-ok", status)
 ```
 
+
 ### `json()` {#fn-json}
 
-Function Prototype: `fn json(input: str, json_path, newkey, trim_space: bool = true, delete_after_extract = false)`
+Prototype: `fn json(input: str, json_path, newkey, trim_space: bool = true, delete_after_extract = false)`
 
-Function Description: Extract the specified field from JSON and can rename it to a new field.
+Description: Extracts specified fields from JSON and can rename them into new fields.
 
 Parameters:
 
-- `input`: The JSON to be extracted, which can be the raw text (`_`) or a previously extracted `key`;
-- `json_path`: The JSON path information;
-- `newkey`: The new key for the extracted data;
-- `trim_space`: Delete the leading and trailing whitespace characters in the extracted text, with the default value being `true`;
-- `delete_after_extract`: Delete the current object after extraction, and rewrite the extracted object after reserializing; can only be applied to the deletion of map keys and values, not for deleting list elements; the default value is `false`, and no operation is performed[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)).
-
-Directly extract the `x.y` field from the original input JSON and name it as a new field `abc`:
+- `input`: JSON to extract, can be raw text (`_`) or an already extracted `key`;
+- `json_path`: JSON path information;
+- `newkey`: Extracted data written to the new key;
+- `trim_space`: Removes leading and trailing whitespace from extracted characters, default value is `true`;
+- `delete_after_extract`: Deletes the current object after extraction and rewrites the extracted object back after re-serialization; only applicable to deleting keys and values in maps, not for deleting list elements; default value is `false`, no operations are performed [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7).
 
 ```python
-# Direct extraction from the original JSON input
+# Directly extracts the `x.y` field from the original input JSON and can rename it into a new field `abc`
 json(_, x.y, abc)
 
-# For a key that has already been extracted, perform an extraction on `x.y` again, and the extracted field will be named `x.y`
-json(key, x.y)
+# Extracts `x.y` again from an already extracted `key`, with the extracted field named `x.y`
+json(key, x.y) 
 ```
 
-Example 1:
+Example one:
 
 ```python
-# Data to be processed:
-# {
-#     "info": {"age": 17, "name": "zhangsan", "height": 180}
-# }
+# Input data:
+# {"info": {"age": 17, "name": "zhangsan", "height": 180}}
 
 # Processing script:
 json(_, info, "zhangsan")
@@ -1330,54 +1473,52 @@ json(zhangsan, age, "age")
 # Processing result:
 {
   "age": 17,
+  "message":```python
   "message": "{\"info\": {\"age\": 17, \"name\": \"zhangsan\", \"height\": 180}}",
   "name": "zhangsan",
   "zhangsan": "{\"age\":17,\"height\":180,\"name\":\"zhangsan\"}"
 }
 ```
 
-Example 2:
+Example two:
 
 ```python
-# Data to be processed:
-# {
-#     "name": {"first": "Tom", "last": "Anderson"},
-#     "age": 37,
-#     "children": ["Sara", "Alex", "Jack"],
-#     "fav.movie": "Deer Hunter",
-#     "friends": [
-#         {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
-#         {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
-#         {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
-#     ]
-# }
+# Input data:
+#    data = {
+#        "name": {"first": "Tom", "last": "Anderson"},
+#        "age":37,
+#        "children": ["Sara","Alex","Jack"],
+#        "fav.movie": "Deer Hunter",
+#        "friends": [
+#            {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
+#            {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
+#            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
+#        ]
+#    }
 
 # Processing script:
 json(_, name) json(name, first)
 ```
 
-Example 3:
+Example three:
 
 ```python
-# Data to be processed:
-# [
-#     {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
-#     {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
-#     {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
-# ]
-
+# Input data:
+#    [
+#            {"first": "Dale", "last": "Murphy", "age": 44, "nets": ["ig", "fb", "tw"]},
+#            {"first": "Roger", "last": "Craig", "age": 68, "nets": ["fb", "tw"]},
+#            {"first": "Jane", "last": "Murphy", "age": 47, "nets": ["ig", "tw"]}
+#    ]
+    
 # Processing script for JSON array:
 json(_, [0].nets[-1])
 ```
 
-Example 4:
+Example four:
 
 ```python
-# Data to be processed:
-# {
-#     "item": " not_space ",
-#     "item2": {"item3": [123]}
-# }
+# Input data:
+{"item": " not_space ", "item2":{"item3": [123]}}
 
 # Processing script:
 json(_, item2.item3, item, delete_after_extract = true)
@@ -1389,17 +1530,14 @@ json(_, item2.item3, item, delete_after_extract = true)
 }
 ```
 
-Example 5:
+Example five:
 
 ```python
-# Data to be processed:
-# {
-#     "item": " not_space ",
-#     "item2": {"item3": [123]}
-# }
+# Input data:
+{"item": " not_space ", "item2":{"item3": [123]}}
 
 # Processing script:
-# If attempting to delete a list element, the script check will fail
+# If attempting to delete list elements will fail the script check
 json(_, item2.item3[0], item, true, true)
 
 # Local test command:
@@ -1409,26 +1547,25 @@ json(_, item2.item3[0], item, true, true)
 ```
 
 
-
-### `kv_split()` {#fn-kv-split}
+### `kv_split()` {#fn-kv_split}
 
 [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
-Function Prototype: `fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
+Prototype: `fn kv_split(key, field_split_pattern = " ", value_split_pattern = "=", trim_key = "", trim_value = "", include_keys = [], prefix = "") -> bool`
 
-Function Description: Extract all key-value pairs from a string.
+Description: Extracts all key-value pairs from a string.
 
 Parameters:
 
-- `key`: The name of the key;
-- `include_keys`: A list of key names to include, only keys in this list will be extracted; **default is []**, no key is extracted;
-- `field_split_pattern`: The regular expression for string splitting to extract all key-value pairs; default is `" "`;
-- `value_split_pattern`: Used to split the key and value from the key-value pair string, non-recursive; default is `"="`;
-- `trim_key`: Remove all specified characters from the beginning and end of the extracted key; default is `""`;
-- `trim_value`: Remove all specified characters from the beginning and end of the extracted value; default is `""`;
-- `prefix`: Add a prefix string to all keys.
+- `key`: Key name;
+- `include_keys`: List of key names to include, only extracts keys within this list; **default value is `[]`, no keys are extracted**;
+- `field_split_pattern`: String delimiter used to extract all key-value pairs via regex; default value is `" "` (space);
+- `value_split_pattern`: Delimiter used to split keys and values from the key-value pair string, non-recursive; default value is `"="`;
+- `trim_key`: Removes leading and trailing specified characters from the extracted key; default value is `""` (empty string);
+- `trim_value`: Removes leading and trailing specified characters from the extracted value; default value is `""` (empty string);
+- `prefix`: Adds a prefix string to all keys.
 
-Examples:
+Example:
 
 ```python
 # input: "a=1, b=2 c=3"
@@ -1472,6 +1609,7 @@ kv_split(_, trim_value=",", include_keys=["a", "c", "b"])
   "status": "unknown",
   "time": 1678087173651846101
 }
+'''
 ```
 
 ```python
@@ -1486,6 +1624,7 @@ kv_split(_, trim_value=",", include_keys=["a", "c"])
   "status": "unknown",
   "time": 1678087514906492912
 }
+'''
 ```
 
 ```python
@@ -1501,20 +1640,20 @@ kv_split(_, field_split_pattern="\\+", value_split_pattern="[:]{2}",
   "with_prefix_b": "2",
   "with_prefix_c": "3"
 }
-'''
 ```
+
 
 ### `len()` {#fn-len}
 
-Function Prototype: `fn len(val: str|map|list) int`
+Prototype: `fn len(val: str|map|list) int`
 
-Function Description: Calculate the number of bytes in a string, and the number of elements in a map and list.
+Description: Calculates the byte count of a string, or the number of elements in a map or list.
 
-Parameters:
+Parameter:
 
 - `val`: Can be a map, list, or string.
 
-Examples:
+Example:
 
 ```python
 # Example 1
@@ -1526,23 +1665,24 @@ add_key(abc, len("abc"))
 
 # Example 2
 add_key(abc, len(["abc"]))
-# Processing result
+# Result
 {
   "abc": 1,
 }
 ```
 
+
 ### `load_json()` {#fn-load_JSON}
 
-Function Prototype: `fn load_json(val: str) nil|bool|float|map|list`
+Prototype: `fn load_json(val: str) nil|bool|float|map|list`
 
-Function Description: Convert a JSON string into one of map, list, nil, bool, float, and retrieve and modify values through index expressions.
+Description: Converts a JSON string into one of the types: map, list, nil, bool, float, allowing access and modification of values using index expressions.
 
-Parameters:
+Parameter:
 
-- `val`: Must be string type data.
+- `val`: Must be a string type data.
 
-Examples:
+Example:
 
 ```python
 # _: {"a":{"first": [2.2, 1.1], "ff": "[2.2, 1.1]","second":2,"third":"aBC","forth":true},"age":47}
@@ -1552,7 +1692,7 @@ add_key(abc, abc["a"]["first"][-1])
 
 abc["a"]["first"][-1] = 11
 
-# Need to synchronize the data on the stack to the point
+# Need to sync stack data to point
 add_key(abc, abc["a"]["first"][-1])
 
 add_key(len_abc, len(abc))
@@ -1560,20 +1700,21 @@ add_key(len_abc, len(abc))
 add_key(len_abc, len(load_json(abc["a"]["ff"])))
 ```
 
+
 ### `lowercase()` {#fn-lowercase}
 
-Function Prototype: `fn lowercase(key: str)`
+Prototype: `fn lowercase(key: str)`
 
-Function Description: Convert the content of the extracted key to lowercase.
+Description: Converts the content of the extracted key to lowercase.
 
-Function Parameters:
+Parameter:
 
-- `key`: The name of the field to be converted.
+- `key`: The name of the extracted field to be converted.
 
 Example:
 
 ```python
-# Data to be processed: {"first": "HeLLo","second":2,"third":"aBC","forth":true}
+# Input data: {"first": "HeLLo","second":2,"third":"aBC","forth":true}
 
 # Processing script
 json(_, first) lowercase(first)
@@ -1588,14 +1729,14 @@ json(_, first) lowercase(first)
 
 ### `match()` {#fn-match}
 
-Function Prototype: `fn match(pattern: str, s: str) bool`
+Prototype: `fn match(pattern: str, s: str) bool`
 
-Function Description: Use a specified regular expression to match a string, returning true if the match is successful, otherwise false.
+Description: Matches a string with a specified regular expression, returning true if it matches successfully, otherwise false.
 
 Parameters:
 
-- `pattern`: The regular expression.
-- `s`: The string to be matched.
+- `pattern`: Regular expression;
+- `s`: String to be matched.
 
 Example:
 
@@ -1604,9 +1745,9 @@ Example:
 test_1 = "pattern 1,a"
 test_2 = "pattern -1,"
 
-add_key(match_1, match('\\w+\\s[,\\w]+', test_1)) 
+add_key(match_1, match('''\w+\s[,\w]+''', test_1)) 
 
-add_key(match_2, match('\\w+\\s[,\\w]+', test_2)) 
+add_key(match_2, match('''\w+\s[,\w]+''', test_2)) 
 
 # Processing result
 {
@@ -1615,17 +1756,18 @@ add_key(match_2, match('\\w+\\s[,\\w]+', test_2))
 }
 ```
 
+
 ### `mquery_refer_table()` {#fn-mquery-refer-table}
 
-Function Prototype: `fn mquery_refer_table(table_name: str, keys: list, values: list)`
+Prototype: `fn mquery_refer_table(table_name: str, keys: list, values: list)`
 
-Function Description: Query an external reference table using specified keys and append all columns of the first row of the query result to the field.
+Description: Queries an external reference table using multiple keys and appends the first row of the query results as fields.
 
 Parameters:
 
-- `table_name`: The name of the table to be queried.
-- `keys`: A list of multiple column names.
-- `values`: The values corresponding to each column.
+- `table_name`: Name of the table to be queried;
+- `keys`: List of column names;
+- `values`: Corresponding values for each column.
 
 Example:
 
@@ -1634,11 +1776,11 @@ json(_, table)
 json(_, key)
 json(_, value)
 
-# Query and append the data of the current column to the field by default
+# Query and append the current column's data, which defaults to being added as a field
 mquery_refer_table(table, values=[value, false], keys=[key, "col4"])
 ```
 
-Example Result:
+Example result:
 
 ```json
 {
@@ -1655,21 +1797,22 @@ Example Result:
 }
 ```
 
+
 ### `nullif()` {#fn-nullif}
 
-Function Prototype: `fn nullif(key, value)`
+Prototype: `fn nullif(key, value)`
 
-Function Description: If the content of the extracted `key` field is equal to the `value`, this field is deleted.
+Description: If the content of the specified field `key` equals the value `value`, then deletes this field.
 
-Function Parameters:
+Parameters:
 
-- `key`: The specified field.
-- `value`: The target value.
+- `key`: Specified field;
+- `value`: Target value.
 
 Example:
 
 ```python
-# Data to be processed: {"first": 1,"second":2,"third":"aBC","forth":true}
+# Input data: {"first": 1,"second":2,"third":"aBC","forth":true}
 
 # Processing script
 json(_, first) json(_, second) nullif(first, "1")
@@ -1688,25 +1831,27 @@ if first == "1" {
 }
 ```
 
+
+
 ### `parse_date()` {#fn-parse-date}
 
-Function Prototype: `fn parse_date(key: str, yy: str, MM: str, dd: str, hh: str, mm: str, ss: str, ms: str, zone: str)`
+Prototype: `fn parse_date(key: str, yy: str, MM: str, dd: str, hh: str, mm: str, ss: str, ms: str, zone: str)`
 
-Function Description: Convert the values of the date fields passed into the function into a timestamp.
+Description: Converts the provided parts of the date field into a timestamp.
 
-Function Parameters:
+Parameters:
 
-- `key`: The new field to be inserted.
-- `yy` : The year as a numeric string, supports four or two-digit strings, if empty, the current year is taken.
-- `MM`: The month as a string, supports numbers, English, and English abbreviations.
-- `dd`: The day as a string.
-- `hh`: The hour as a string.
-- `mm`: The minute as a string.
-- `ss`: The second as a string.
-- `ms`: The millisecond as a string.
-- `us`: The microsecond as a string.
-- `ns`: The nanosecond as a string.
-- `zone`: The timezone string, in the form of "+8" or "Asia/Shanghai".
+- `key`: New inserted field
+- `yy` : Year digits string, supports four or two-digit numbers, empty string means taking the current year when processing
+- `MM`: Month string, supports numbers, English words, abbreviated English words
+- `dd`: Day string
+- `hh`: Hour string
+- `mm`: Minute string
+- `ss`: Second string
+- `ms`: Millisecond string
+- `us`: Microsecond string
+- `ns`: Nanosecond string
+- `zone`: Timezone string, e.g., “+8” or "Asia/Shanghai"
 
 Example:
 
@@ -1720,13 +1865,14 @@ parse_date(aa, "2021", "12", "12", "10", "10", "34", "100", "Asia/Shanghai") # R
 parse_date(aa, "20", "February", "12", "10", "10", "34", "", "+8") # Result aa=1581473434000000000
 ```
 
+
 ### `parse_duration()` {#fn-parse-duration}
 
-Function Prototype: `fn parse_duration(key: str)`
+Prototype: `fn parse_duration(key: str)`
 
-Function Description: If the value of `key` is a golang duration string (e.g., `123ms`), it automatically parses `key` into an integer in nanoseconds.
+Description: If the value of `key` is a golang duration string (e.g., `123ms`), automatically parses `key` into an integer in nanoseconds.
 
-Currently, the duration units in golang are as follows:
+Currently, golang supports the following duration units:
 
 - `ns` Nanoseconds
 - `us/µs` Microseconds
@@ -1735,9 +1881,9 @@ Currently, the duration units in golang are as follows:
 - `m` Minutes
 - `h` Hours
 
-Function Parameters:
+Parameter:
 
-- `key`: The field to be parsed.
+- `key`: Field to be parsed
 
 Example:
 
@@ -1748,36 +1894,38 @@ parse_duration(abc) # Result abc = 3500000000
 # Supports negative numbers: abc = "-3.5s"
 parse_duration(abc) # Result abc = -3500000000
 
-# Supports floating-point: abc = "-2.3s"
+# Supports floating-point numbers: abc = "-2.3s"
 parse_duration(abc) # Result abc = -2300000000
 ```
 
 
+
 ### `query_refer_table()` {#fn-query-refer-table}
 
-Function Prototype: `fn query_refer_table(table_name: str, key: str, value)`
+Prototype: `fn query_refer_table(table_name: str, key: str, value)`
 
-Function Description: Query an external reference table with the specified key and append all columns of the first row of the query result to the field.
+Description: Queries an external reference table using the specified key and appends the first row of the query results as fields.
 
 Parameters:
 
-- `table_name`: The name of the table to be searched.
-- `key`: The name of the column.
-- `value`: The value corresponding to the column.
+- `table_name`: Name of the table to be queried
+- `key`: Column name
+- `value`: Value corresponding to the column
 
 Example:
 
 ```python
-# Extract the table name, column name, and column value from the input
+# Extract table name, column name, and column value from input
 json(_, table)
 json(_, key)
 json(_, value)
 
-# Query and append the data of the current column, default to add to the data as a field
+# Query and append the current column's data, which defaults to being added as a field
 query_refer_table(table, key, value)
+
 ```
 
-Example Result:
+Example result:
 
 ```json
 {
@@ -1794,33 +1942,34 @@ Example Result:
 }
 ```
 
+
 ### `rename()` {#fn-rename}
 
-Function Prototype: `fn rename(new_key: str, old_key: str)`
+Prototype: `fn rename(new_key, old_key)`
 
-Function Description: Rename a field that has been extracted.
+Description: Renames an already extracted field.
 
 Parameters:
 
-- `new_key`: The new field name.
-- `old_key`: The name of the field that has been extracted.
+- `new_key`: New field name
+- `old_key`: Already extracted field name
 
 Example:
 
 ```python
-# Rename the extracted field 'abc' to 'abc1'
-rename('abc1', 'abc')
+# Rename the already extracted abc field to abc1
+rename('abc1', abc)
 
-# or
+# or 
 
-rename('abc1', 'abc')
+rename(abc1, abc)
 ```
 
 ```python
-# Data to be processed: {"info": {"age": 17, "name": "zhangsan", "height": 180}}
+# Input data: {"info": {"age": 17, "name": "zhangsan", "height": 180}}
 
 # Processing script
-json(_, info.name, "name")
+json(_, info.name, "姓名")
 
 # Processing result
 {
@@ -1828,22 +1977,24 @@ json(_, info.name, "name")
   "zhangsan": {
     "age": 17,
     "height": 180,
-    "name": "zhangsan"
+    "姓名": "zhangsan"
   }
 }
 ```
 
+
+
 ### `replace()` {#fn-replace}
 
-Function Prototype: `fn replace(key: str, regex: str, replace_str: str)`
+Prototype: `fn replace(key: str, regex: str, replace_str: str)`
 
-Function Description: Replace the string data obtained from the specified field with a regular expression.
+Description: Replaces content in the specified field according to a regex pattern.
 
-Function Parameters:
+Parameters:
 
-- `key`: The field to be extracted.
-- `regex`: The regular expression.
-- `replace_str`: The string to be used for replacement.
+- `key`: Target field
+- `regex`: Regular expression
+- `replace_str`: Replacement string
 
 Example:
 
@@ -1852,102 +2003,106 @@ Example:
 json(_, str_abc)
 replace(str_abc, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
 
-# English name: {"str_abc": "zhang san"}
+# English name {"str_abc": "zhang san"}
 json(_, str_abc)
-replace(str_abc, "([a-z]+) \\w*", "$1 ***")
+replace(str_abc, "([a-z]*) \\w*", "$1 ***")
 
-# ID number: {"str_abc": "362201200005302565"}
+# ID card number {"str_abc": "362201200005302565"}
 json(_, str_abc)
 replace(str_abc, "([1-9]{4})[0-9]{10}([0-9]{4})", "$1**********$2")
 
-# Chinese name: {"str_abc": "小阿卡"}
+# Chinese name {"str_abc": "小阿卡"}
 json(_, str_abc)
 replace(str_abc, '([\u4e00-\u9fa5])[\u4e00-\u9fa5]([\u4e00-\u9fa5])', "$1＊$2")
 ```
 
+
+
 ### `sample()` {#fn-sample}
 
-Function Prototype: `fn sample(p: float)`
+Prototype: `fn sample(p)`
 
-Function Description: Select to collect or discard data with a probability of p.
+Description: Selects to collect/discard data based on probability p.
 
-Function Parameter:
+Parameter:
 
-- `p`: The probability that the sample function returns true, with a range of [0, 1].
+- `p`: Probability that the `sample` function returns true, ranging from [0, 1]
 
 Example:
 
 ```python
 # Processing script
-if !sample(0.3) { # sample(0.3) indicates a sampling rate of 30%, that is, there is a 30% chance of returning true, and 70% of the data will be discarded here
-  drop() # Mark the data as discarded
-  exit() # Exit the subsequent processing flow
+if !sample(0.3) { # sample(0.3) indicates a sampling rate of 30%, i.e., returns true with a 30% probability, here discarding 70% of the data
+  drop() # Mark this data for discard
+  exit() # Exit subsequent processing flow
 }
 ```
 
 
 ### `set_measurement()` {#fn-set-measurement}
 
-Function Prototype: `fn set_measurement(name: str, delete_key: bool = false)`
+Prototype: `fn set_measurement(name: str, delete_key: bool = false)`
 
-Function Description: Change the name of the line protocol.
+Description: Changes the name of the line protocol.
 
-Function Parameters:
+Parameters:
 
-- `name`: The value as the measurement name, which can be a string constant or variable.
-- `delete_key`: If there is a tag or field in the point with the same name as the variable, delete it.
+- `name`: Value as measurement name, can accept string literals or variables;
+- `delete_key`: If there is a tag or field with the same name as the variable in the point, it will be deleted.
 
-The mapping relationship of the line protocol name to the field when storing various types of data or other uses:
+Mapping relationship between line protocol name and various data storage fields or other uses:
 
 | Category          | Field Name | Other Uses |
-| ----------------- | ---------- | ---------- |
-| custom_object     | class      | -          |
-| keyevent          | -          | -          |
-| logging           | source     | -          |
+| ---              | ---        | ---       |
+| custom_object     | class      | -         |
+| keyevent          | -          | -         |
+| logging           | source     | -         |
 | metric            | -          | Metric Set Name |
-| network           | source     | -          |
-| object            | class      | -          |
-| profiling         | source     | -          |
-| rum               | source     | -          |
-| security          | rule       | -          |
-| tracing           | source     | -          |
+| network           | source     | -         |
+| object            | class      | -         |
+| profiling         | source     | -         |
+| rum               | source     | -         |
+| security          | rule       | -         |
+| tracing           | source     | -         |
+
 
 ### `set_tag()` {#fn-set-tag}
 
-Function Prototype: `fn set_tag(key: str, value: str)`
+Prototype: `fn set_tag(key, value: str)`
 
-Function Description: Mark the specified field as a tag for output. After being set as a tag, other functions can still operate on this variable. If the key set as a tag is a field that has been extracted, it will not appear in the field, thus avoiding conflicts with existing tag keys in the data.
+Description: Marks the specified field as a tag output. After setting as a tag, other functions can still operate on this variable. If the key marked as a tag is already extracted as a field, it will not appear in the field, preventing conflicts with existing tag keys.
 
-Function Parameters:
+Parameters:
 
-- `key`: The field to be marked as a tag.
-- `value`: Can be a string literal or a variable.
+- `key`: Field to be marked as a tag;
+- `value`: Can be a string literal or variable.
 
 ```python
 # in << {"str": "13789123014"}
-set_tag("str")
-json(_, "str")          # str == "13789123014"
-replace("str", "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
+set_tag(str)
+json(_, str)          # str == "13789123014"
+replace(str, "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
 # Extracted data(drop: false, cost: 49.248µs):
 # {
 #   "message": "{\"str\": \"13789123014\", \"str_b\": \"3\"}",
 #   "str#": "137****3014"
 # }
-# * The character `#` is only a marker for a field as a tag when outputting with datakit --pl <path> --txt <str>
+# * Character `#` is just a marker indicating the field is a tag when using `datakit --pl <path> --txt <str>`
 
 # in << {"str_a": "2", "str_b": "3"}
-json(_, "str_a")
-set_tag("str_a", "3")   # str_a == 3
+json(_, str_a)
+set_tag(str_a, "3")   # str_a == 3
 # Extracted data(drop: false, cost: 30.069µs):
 # {
 #   "message": "{\"str_a\": \"2\", \"str_b\": \"3\"}",
 #   "str_a#": "3"
 # }
 
+
 # in << {"str_a": "2", "str_b": "3"}
-json(_, "str_a")
-json(_, "str_b")
-set_tag("str_a", "str_b") # str_a == str_b == "3"
+json(_, str_a)
+json(_, str_b)
+set_tag(str_a, str_b) # str_a == str_b == "3"
 # Extracted data(drop: false, cost: 32.903µs):
 # {
 #   "message": "{\"str_a\": \"2\", \"str_b\": \"3\"}",
@@ -1956,15 +2111,16 @@ set_tag("str_a", "str_b") # str_a == str_b == "3"
 # }
 ```
 
+
 ### `sql_cover()` {#fn-sql-cover}
 
-Function Prototype: `fn sql_cover(sql_test: str)`
+Prototype: `fn sql_cover(sql_test: str)`
 
-Function Description: Desensitize SQL statements.
+Description: Masks SQL statements.
 
 ```python
 # in << {"select abc from def where x > 3 and y < 5"}
-sql_cover("select abc from def where x > 3 and y < 5")
+sql_cover(_)
 
 # Extracted data(drop: false, cost: 33.279µs):
 # {
@@ -1972,48 +2128,50 @@ sql_cover("select abc from def where x > 3 and y < 5")
 # }
 ```
 
+
 ### `strfmt()` {#fn-strfmt}
 
-Function Prototype: `fn strfmt(key: str, fmt: str, args: ...: int|float|bool|str|list|map|nil)`
+Prototype: `fn strfmt(key, fmt: str, args ...: int|float|bool|str|list|map|nil)`
 
-Function Description: Format the content of the specified fields `arg1, arg2, ...` according to `fmt`, and write the formatted content into the `key` field.
+Description: Formats the content of the specified fields `arg1, arg2, ...` according to `fmt` and writes the formatted content into the `key` field.
 
-Function Parameters:
+Parameters:
 
-- `key`: The field name to write the formatted data to.
-- `fmt`: The format string template.
-- `args`: Variable arguments, which can be multiple extracted fields waiting for formatting.
+- `key`: Specifies the field name where the formatted data is written;
+- `fmt`: Format string template;
+- `args`: Variable arguments, can be multiple extracted fields to be formatted.
 
 Example:
 
 ```python
-# Data to be processed: {"a":{"first":2.3,"second":2,"third":"abc","forth":true},"age":47}
+# Input data: {"a":{"first":2.3,"second":2,"third":"abc","forth":true},"age":47}
 
 # Processing script
-json(_, "a.second")
-json(_, "a.thrid")
-cast("a.second", "int")
-json(_, "a.forth")
-strfmt("bb", "%v %s %v", "a.second", "a.thrid", "a.forth")
+json(_, a.second)
+json(_, a.third)
+cast(a.second, "int")
+json(_, a.forth)
+strfmt(bb, "%v %s %v", a.second, a.third, a.forth)
 ```
+
 
 ### `timestamp()` {#fn-timestamp}
 
-Function Prototype: `fn timestamp(precision: str = "ns") -> int`
+Prototype: `fn timestamp(precision: str = "ns") -> int`
 
-Function Description: Return the current Unix timestamp with the default precision of ns.
+Description: Returns the current Unix timestamp, default precision is ns.
 
-Function Parameters:
+Parameter:
 
-- `precision`: The precision of the timestamp, which can be "ns", "us", "ms", "s", with the default value being "ns".
+- `precision`: Timestamp precision, options are "ns", "us", "ms", "s", default value is "ns".
 
 Example:
 
 ```python
 # Processing script
-add_key("time_now_record", timestamp())
+add_key(time_now_record, timestamp())
 
-datetime("time_now_record", "ns", 
+datetime(time_now_record, "ns", 
     "%Y-%m-%d %H:%M:%S", "UTC")
 
 
@@ -2026,9 +2184,9 @@ datetime("time_now_record", "ns",
 
 ```python
 # Processing script
-add_key("time_now_record", timestamp())
+add_key(time_now_record, timestamp())
 
-datetime("time_now_record", "ns", 
+datetime(time_now_record, "ns", 
     "%Y-%m-%d %H:%M:%S", "Asia/Shanghai")
 
 
@@ -2040,171 +2198,7 @@ datetime("time_now_record", "ns",
 
 ```python
 # Processing script
-add_key("time_now_record", timestamp("ms"))
-
-
-# Processing result
-{
-  "time_now_record": 1678185980578
-}
-```
-
-
-### `set_measurement()` {#fn-set-measurement}
-
-Function Prototype: `fn set_measurement(name: str, delete_key: bool = false)`
-
-Function Description: Change the name of the line protocol.
-
-Function Parameters:
-
-- `name`: The value as the measurement name, which can be a string constant or variable.
-- `delete_key`: If there is a tag or field in the point with the same name as the variable, delete it.
-
-The mapping relationship of the line protocol name to the field when storing various types of data or other uses:
-
-| Category          | Field Name | Other Uses |
-| ----------------- | ---------- | ---------- |
-| custom_object     | class      | -          |
-| keyevent          | -          | -          |
-| logging           | source     | -          |
-| metric            | -          | Metric Set Name |
-| network           | source     | -          |
-| object            | class      | -          |
-| profiling         | source     | -          |
-| rum               | source     | -          |
-| security          | rule       | -          |
-| tracing           | source     | -          |
-
-### `set_tag()` {#fn-set-tag}
-
-Function Prototype: `fn set_tag(key: str, value: str)`
-
-Function Description: Mark the specified field as a tag for output. After being set as a tag, other functions can still operate on this variable. If the key set as a tag is a field that has been extracted, it will not appear in the field, thus avoiding conflicts with existing tag keys in the data.
-
-Function Parameters:
-
-- `key`: The field to be marked as a tag.
-- `value`: Can be a string literal or a variable.
-
-```python
-# in << {"str": "13789123014"}
-set_tag("str")
-json(_, "str")          # str == "13789123014"
-replace("str", "(1[0-9]{2})[0-9]{4}([0-9]{4})", "$1****$2")
-# Extracted data(drop: false, cost: 49.248µs):
-# {
-#   "message": "{\"str\": \"13789123014\", \"str_b\": \"3\"}",
-#   "str#": "137****3014"
-# }
-# * The character `#` is only a marker for a field as a tag when outputting with datakit --pl <path> --txt <str>
-
-# in << {"str_a": "2", "str_b": "3"}
-json(_, "str_a")
-set_tag("str_a", "3")   # str_a == 3
-# Extracted data(drop: false, cost: 30.069µs):
-# {
-#   "message": "{\"str_a\": \"2\", \"str_b\": \"3\"}",
-#   "str_a#": "3"
-# }
-
-# in << {"str_a": "2", "str_b": "3"}
-json(_, "str_a")
-json(_, "str_b")
-set_tag("str_a", "str_b") # str_a == str_b == "3"
-# Extracted data(drop: false, cost: 32.903µs):
-# {
-#   "message": "{\"str_a\": \"2\", \"str_b\": \"3\"}",
-#   "str_a#": "3",
-#   "str_b": "3"
-# }
-```
-
-### `sql_cover()` {#fn-sql-cover}
-
-Function Prototype: `fn sql_cover(sql_test: str)`
-
-Function Description: Desensitize SQL statements.
-
-```python
-# in << {"select abc from def where x > 3 and y < 5"}
-sql_cover("select abc from def where x > 3 and y < 5")
-
-# Extracted data(drop: false, cost: 33.279µs):
-# {
-#   "message": "select abc from def where x > ? and y < ?"
-# }
-```
-
-### `strfmt()` {#fn-strfmt}
-
-Function Prototype: `fn strfmt(key: str, fmt: str, args: ...: int|float|bool|str|list|map|nil)`
-
-Function Description: Format the content of the specified fields `arg1, arg2, ...` according to `fmt`, and write the formatted content into the `key` field.
-
-Function Parameters:
-
-- `key`: The field name to write the formatted data to.
-- `fmt`: The format string template.
-- `args`: Variable arguments, which can be multiple extracted fields waiting for formatting.
-
-Example:
-
-```python
-# Data to be processed: {"a":{"first":2.3,"second":2,"third":"abc","forth":true},"age":47}
-
-# Processing script
-json(_, "a.second")
-json(_, "a.thrid")
-cast("a.second", "int")
-json(_, "a.forth")
-strfmt("bb", "%v %s %v", "a.second", "a.thrid", "a.forth")
-```
-
-### `timestamp()` {#fn-timestamp}
-
-Function Prototype: `fn timestamp(precision: str = "ns") -> int`
-
-Function Description: Return the current Unix timestamp with the default precision of ns.
-
-Function Parameters:
-
-- `precision`: The precision of the timestamp, which can be "ns", "us", "ms", "s", with the default value being "ns".
-
-Example:
-
-```python
-# Processing script
-add_key("time_now_record", timestamp())
-
-datetime("time_now_record", "ns", 
-    "%Y-%m-%d %H:%M:%S", "UTC")
-
-
-# Processing result
-{
-  "time_now_record": "2023-03-07 10:41:12"
-}
-
-```
-
-```python
-# Processing script
-add_key("time_now_record", timestamp())
-
-datetime("time_now_record", "ns", 
-    "%Y-%m-%d %H:%M:%S", "Asia/Shanghai")
-
-
-# Processing result
-{
-  "time_now_record": "2023-03-07 18:41:49"
-}
-```
-
-```python
-# Processing script
-add_key("time_now_record", timestamp("ms"))
+add_key(time_now_record, timestamp("ms"))
 
 
 # Processing result
@@ -2216,23 +2210,23 @@ add_key("time_now_record", timestamp("ms"))
 
 ### `trim()` {#fn-trim}
 
-Function Prototype: `fn trim(key: str, cutset: str = "")`
+Prototype: `fn trim(key, cutset: str = "")`
 
-Function Description: Remove specified characters from the beginning and end of `key`. When `cutset` is an empty string, it defaults to removing all whitespace characters.
+Description: Removes specified characters from the beginning and end of `key`. When `cutset` is an empty string, it defaults to removing all whitespace.
 
-Function Parameters:
+Parameters:
 
-- `key`: A certain field that has been extracted, of string type.
-- `cutset`: Characters that appear at the beginning and end of `key` and are to be removed from the `cutset` string.
+- `key`: An already extracted field of string type;
+- `cutset`: Characters to remove from the beginning and end of `key`.
 
 Example:
 
 ```python
-# Data to be processed: "trim(key, cutset)"
+# Input data："trim(key, cutset)"
 
 # Processing script
-add_key("test_data", "ACCAA_test_DataA_ACBA")
-trim("test_data", "ABC_")
+add_key(test_data, "ACCAA_test_DataA_ACBA")
+trim(test_data, "ABC_")
 
 # Processing result
 {
@@ -2240,221 +2234,227 @@ trim("test_data", "ABC_")
 }
 ```
 
+
 ### `uppercase()` {#fn-uppercase}
 
-Function Prototype: `fn uppercase(key: str)`
+Prototype: `fn uppercase(key: str)`
 
-Function Description: Convert the content of the extracted key to uppercase.
+Description: Converts the content of the extracted key to uppercase.
 
-Function Parameters:
+Parameter:
 
-- `key`: The name of the field that has been extracted and is to be converted to uppercase.
+- `key`: The name of the already extracted field to be converted, converting its content to uppercase.
 
 Example:
 
 ```python
-# Data to be processed: {"first": "hello", "second":2, "third":"aBC", "forth":true}
+# Input data: {"first": "hello","second":2,"third":"aBC","forth":true}
 
 # Processing script
-json(_, "first") uppercase("first")
+json(_, first) uppercase(first)
 
 # Processing result
 {
-  "first": "HELLO"
+   "first": "HELLO"
 }
 ```
+
+
 
 ### `url_decode()` {#fn-url-decode}
 
-Function Prototype: `fn url_decode(key: str)`
+Prototype: `fn url_decode(key: str)`
 
-Function Description: Parse the URL in the extracted `key` into plain text.
+Description: Decodes the URL in the extracted `key` into plain text.
 
-Parameters:
+Parameter:
 
-- `key`: A certain `key` that has been extracted.
+- `key`: An already extracted `key`
 
 Example:
 
 ```python
-# Data to be processed: {"url":"http%3a%2f%2fwww.baidu.com%2fs%3fwd%3d%e6%b5%8b%e8%af%95"}
+# Input data: {"url":"http%3a%2f%2fwww.baidu.com%2fs%3fwd%3d%e6%b5%8b%e8%af%95"}
 
 # Processing script
-json(_, "url") url_decode("url")
+json(_, url) url_decode(url)
 
 # Processing result
 {
-  "message": "{\"url\":\"http%3a%2f%2fwww.baidu.com%2fs%3fwd%3d%e6%b5%8b%e8%af%95\"}",
-  "url": "http://www.baidu.com/s?wd=%E6%B5%8B%E8%AF%95"
+  "message": "{"url":"http%3a%2f%2fwww.baidu.com%2fs%3fwd%3d%e6%b5%8b%e8%af%95"}",
+  "url": "http://www.baidu.com/s?wd=测试"
 }
 ```
+
 
 ### `url_parse()` {#fn-url-parse}
 
-Function Prototype: `fn url_parse(key: str)`
+Prototype: `fn url_parse(key)`
 
-Function Description: Parse the URL of the field named key.
+Description: Parses the URL in the field named `key`.
 
-Function Parameters:
+Parameter:
 
-- `key`: The name of the URL field to be parsed.
+- `key`: Field name of the URL to be parsed.
 
 Example:
 
 ```python
-# Data to be processed: {"url": "https://www.baidu.com"}
+# Input data: {"url": "https://www.baidu.com"}
 
 # Processing script
-json(_, "url")
-m = url_parse("url")
-add_key("scheme", m["scheme"])
+json(_, url)
+m = url_parse(url)
+add_key(scheme, m["scheme"])
 
 # Processing result
 {
-  "url": "https://www.baidu.com",
-  "scheme": "https"
+    "url": "https://www.baidu.com",
+    "scheme": "https"
 }
 ```
 
-The above example extracts the scheme from the URL. In addition to this, you can also extract the host, port, path, and parameters carried in the URL, as shown in the following example:
+The above example extracts the scheme from the URL. Additionally, you can extract host, port, path, and parameters carried in the URL as shown below:
 
 ```python
-# Data to be processed: {"url": "https://www.google.com/search?q=abc&sclient=gws-wiz"}
+# Input data: {"url": "https://www.google.com/search?q=abc&sclient=gws-wiz"}
 
 # Processing script
-json(_, "url")
-m = url_parse("url")
-add_key("sclient", m["params"]["sclient"])  # Parameters carried in the URL are saved under the "params" field
-add_key("h", m["host"])
-add_key("path", m["path"])
+json(_, url)
+m = url_parse(url)
+add_key(sclient, m["params"]["sclient"])    # Parameters carried in the URL are stored under the params field
+add_key(h, m["host"])
+add_key(path, m["path"])
 
 # Processing result
 {
-  "url": "https://www.google.com/search?q=abc&sclient=gws-wiz",
-  "h": "www.google.com",
-  "path": "/search",
-  "sclient": "gws-wiz"
+    "url": "https://www.google.com/search?q=abc&sclient=gws-wiz",
+    "h": "www.google.com",
+    "path": "/search",
+    "sclient": "gws-wiz"
 }
 ```
+
 
 ### `use()` {#fn-use}
 
-Function Prototype: `fn use(name: str)`
+Prototype: `fn use(name: str)`
 
-Parameters:
+Parameter:
 
-- `name`: The name of the script, e.g., abp.p.
+- `name`: Script name, such as abp.p
 
-Function Description: Call another script, which can access all current data in the script being called.
-
+Description: Calls another script, allowing access to all current data in the called script.
 Example:
 
 ```python
-# Data to be processed: {"ip":"1.2.3.4"}
+# Input data: {"ip":"1.2.3.4"}
 
 # Processing script a.p
 use("b.p")
 
 # Processing script b.p
-json(_, "ip")
-geoip("ip")
+json(_, ip)
+geoip(ip)
 
-# Result of executing script a.p
+# Execution result of script a.p
 {
-  "city": "Brisbane",
-  "country": "AU",
-  "ip": "1.2.3.4",
-  "province": "Queensland",
-  "isp": "unknown",
-  "message": "{\"ip\": \"1.2.3.4\"}"
+  "city"     : "Brisbane",
+  "country"  : "AU",
+  "ip"       : "1.2.3.4",
+  "province" : "Queensland",
+  "isp"      : "unknown"
+  "message"  : "{\"ip\": \"1.2.3.4\"}",
 }
 ```
 
+
 ### `user_agent()` {#fn-user-agent}
 
-Function Prototype: `fn user_agent(key: str)`
+Prototype: `fn user_agent(key: str)`
 
-Function Description: Obtain client information from the specified field.
+Description: Extracts client information from the specified field.
 
-Function Parameters:
+Parameter:
 
-- `key`: The field to be extracted.
+- `key`: Target field
 
-The `user_agent()` function will produce multiple fields, such as:
+`user_agent()` generates multiple fields, such as:
 
-- `os`: Operating system.
-- `browser`: Browser.
+- `os`: Operating system
+- `browser`: Browser
 
 Example:
 
 ```python
-# Data to be processed
-{
-  "userAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36",
-  "second": 2,
-  "third": "abc",
-  "forth": true
-}
+# Input data
+#    {
+#        "userAgent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36",
+#        "second"    : 2,
+#        "third"     : "abc",
+#        "forth"     : true
+#    }
 
-json(_, "userAgent") user_agent("userAgent")
+json(_, userAgent) user_agent(userAgent)
 ```
+
 
 ### `xml()` {#fn-xml}
 
-Function Prototype: `fn xml(input: str, xpath_expr: str, key_name)`
+Prototype: `fn xml(input: str, xpath_expr: str, key_name)`
 
-Function Description: Extract fields from XML using an XPath expression.
+Description: Extracts fields from XML using XPath expressions.
 
 Parameters:
 
-- `input`: The XML to be extracted.
-- `xpath_expr`: The XPath expression.
-- `key_name`: The new key where the extracted data will be written.
+- `input`: XML to be extracted;
+- `xpath_expr`: XPath expression;
+- `key_name`: Extracted data written to the new key.
 
-Example 1:
+Example one:
 
 ```python
-# Data to be processed
-<entry>
-  <fieldx>valuex</fieldx>
-  <fieldy>...</fieldy>
-  <fieldz>...</fieldz>
-  <fieldarray>
-    <fielda>element_a_1</fielda>
-    <fielda>element_a_2</fielda>
-  </fieldarray>
-</entry>
+# Input data
+       <entry>
+        <fieldx>valuex</fieldx>
+        <fieldy>...</fieldy>
+        <fieldz>...</fieldz>
+        <fieldarray>
+            <fielda>element_a_1</fielda>
+            <fielda>element_a_2</fielda>
+        </fieldarray>
+    </entry>
 
 # Processing script
-xml(_, '/entry/fieldarray//fielda[1]/text()', "field_a_1")
+xml(_, '/entry/fieldarray//fielda[1]/text()', field_a_1)
 
 # Processing result
 {
   "field_a_1": "element_a_1",  # Extracted element_a_1
-  "message": "The XML content",
+  "message": "\t\t\u003centry\u003e\n        \u003cfieldx\u003evaluex\u003c/fieldx\u003e\n        \u003cfieldy\u003e...\u003c/fieldy\u003e\n        \u003cfieldz\u003e...\u003c/fieldz\u003e\n        \u003cfieldarray\u003e\n            \u003cfielda\u003eelement_a_1\u003c/fielda\u003e\n            \u003cfielda\u003eelement_a_2\u003c/fielda\u003e\n        \u003c/fieldarray\u003e\n    \u003c/entry\u003e",
   "status": "unknown",
   "time": 1655522989104916000
 }
 ```
 
-Example 2:
+Example two:
 
 ```python
-# Data to be processed
-<OrderEvent actionCode="5">
-  <OrderNumber>ORD12345</OrderNumber>
-  <VendorNumber>V11111</VendorNumber>
+# Input data
+<OrderEvent actionCode = "5">
+ <OrderNumber>ORD12345</OrderNumber>
+ <VendorNumber>V11111</VendorNumber>
 </OrderEvent>
 
 # Processing script
-xml(_, '/OrderEvent/@actionCode', "action_code")
-xml(_, '/OrderEvent/OrderNumber/text()', "OrderNumber")
+xml(_, '/OrderEvent/@actionCode', action_code)
+xml(_, '/OrderEvent/OrderNumber/text()', OrderNumber)
 
 # Processing result
 {
   "OrderNumber": "ORD12345",
   "action_code": "5",
-  "message": "The XML content",
+  "message": "\u003cOrderEvent actionCode = \"5\"\u003e\n \u003cOrderNumber\u003eORD12345\u003c/OrderNumber\u003e\n \u003cVendorNumber\u003eV11111\u003c/VendorNumber\u003e\n\u003c/OrderEvent\u003e",
   "status": "unknown",
   "time": 1655523193632471000
 }

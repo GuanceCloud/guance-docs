@@ -32,7 +32,7 @@ Datakit Operator 能够自动化部署应用程序和服务，自动注入 DDTra
 
 ```
 $ kubectl create namespace datakit
-$ wget https://<<< custom_key.static_domain >>>/datakit-operator/datakit-operator.yaml
+$ wget https://static.<<< custom_key.brand_main_domain >>>/datakit-operator/datakit-operator.yaml
 ```
 
 ### 更新配置文件

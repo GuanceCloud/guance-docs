@@ -1,50 +1,50 @@
-# How to Analyze a Datakit Bug Report
+# How to Analyze Datakit Bug Report
 
 ---
 
 ## Introduction to Bug Report {#intro}
 
-As Datakit is typically deployed in user environments, various on-site data are required for troubleshooting. A Bug Report (hereinafter referred to as BR) is used to collect this information while minimizing the operations performed by on-site support engineers or users, thus reducing communication costs.
+Since Datakit is typically deployed in user environments, to troubleshoot issues, it's necessary to gather various on-site data. The Bug Report (referred to as BR hereafter) is used to collect this information while minimizing the need for on-site support engineers or users to perform too many operations, thereby reducing communication costs.
 
-Through BR, we can obtain various on-site data of Datakit during its operation phase, according to the data directory below BR:
+Through BR, we can obtain various on-site data about Datakit during its runtime, categorized as follows:
 
 - *basic*: Basic machine environment information
-- *config*: Various collection-related configurations
+- *config*: Configuration related to various collectors
 - *data*: Central configuration pull status
-- *external*: eBPF related logging and profiles[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
-- *log*: Datakit's own program logs
-- *metrics*: Prometheus metrics exposed by Datakit itself
+- *external*: Primarily logs and Profile data related to eBPF collectors [:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
+- *log*: Datakit program logs
+- *metrics*: Prometheus metrics exposed by Datakit
 - *profile*: Profile data of Datakit itself
-- *pipeline*: Pipeline scripts[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
+- *pipeline*: Pipeline scripts [:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
 
-Below, we will explain how to troubleshoot specific issues encountered through the information already available in these aspects.
+The following sections will explain how to use this information to diagnose specific issues.
 
 ## Viewing Basic Information {#basic}
 
-The BR file name usually follows the format `info-<timestamp-ms>.zip`. With this timestamp (in milliseconds), we can determine the export time of the BR, which is meaningful for subsequent metric troubleshooting.
+BR filenames generally follow the format `info-<timestamp-ms>.zip`. Using this timestamp (in milliseconds), we can determine when the BR was exported, which is useful for subsequent metric analysis.
 
-In the *info* file, the current machine's operating system information is collected, including kernel version, distribution version, hardware architecture, etc. These can assist us in troubleshooting issues.
+In the *info* file, it collects the current machine's operating system information, including kernel version, distribution version, hardware architecture, etc. This information can assist in troubleshooting.
 
-In addition, if Datakit is installed in a container, it will also collect a bunch of user-side environmental variable configurations. All environment variables starting with `ENV_` are for Datakit's main configuration or collector configuration.
+Additionally, if Datakit is containerized, it also collects a set of user-side environment variable configurations. All environment variables starting with `ENV_` are related to Datakit's main configuration or collector configurations.
 
-## Viewing Collector Configuration {#config}
+## Viewing Collector Configurations {#config}
 
-Under the *config* directory, all collector configurations and Datakit's main configuration are collected, with all files suffixed with `.conf.copy`. When troubleshooting data issues, the configuration here is very helpful.
+Under the *config* directory, all collector configurations and the main Datakit configuration are collected, with files ending in `.conf.copy`. These configurations are very helpful when troubleshooting data issues.
 
-## Viewing Pulled Data {#pull}
+## Viewing Central Sync Data {#pull}
 
-Under the *data* directory, there is a hidden file named *.pull*(for newer version, the filename is *pull*), which contains several types of configuration information pulled from the server:
+Under the *data* directory, there is a hidden file named *.pull* (in newer versions, this file is simply named *pull* and no longer hidden). It contains several types of configuration information pulled from the center:
 
 ``` shell
 cat data/.pull | jq
 ```
 
-The result is a JSON, such as:
+The result is a JSON object, like this:
 
 ```json
 {
   "dataways": null,
-  "filters": {       # <--- This is the blacklist list
+  "filters": {       # <--- This is the blacklist
     "logging": [
       "{ ... }"
     ],
@@ -60,134 +60,134 @@ The result is a JSON, such as:
 }
 ```
 
-Sometimes, users report missing data, which is likely due to their configuration's blacklist discarding data. The blacklist rules here can help us troubleshoot this kind of data loss situation.
+Sometimes, users report missing data, which could be due to their configured blacklists discarding the data. These blacklist rules can help us diagnose such data loss.
 
 ## Log Analysis {#logging}
 
 Under the *log* directory, there are two files:
 
-- *log*: This is the program running log of Datakit. The information inside may be incomplete because Datakit will periodically (default 32MB x 5) discard old logs.
+- *log*: This is the Datakit program runtime log. Information may be incomplete because Datakit periodically (default 32MB) discards old logs.
 
-In the *log* file, we can search for the `run ID`, and from then on, it is the log of a newly restarted run. Of course, it might not be found, in which case we can determine that the log has been Rotated.
+In the *log* file, you can search for `run ID`, which marks the start of a new runtime log after a restart. If not found, it indicates that the logs have been rotated.
 
 - *gin.log*: This is the access log recorded by Datakit as an HTTP service.
 
-When collectors like DDTrace are integrated, analyzing *gin.log* is beneficial for troubleshooting the data collection of DDTrace.
+When integrating collectors like DDTrace, analyzing *gin.log* can help diagnose DDTrace data collection issues.
 
-Other log troubleshooting methods can be found [here](why-no-data.md#check-log).
+For other log analysis methods, refer to [this link](why-no-data.md#check-log).
 
-## Metric Analysis {#metrics}
+## Metrics Analysis {#metrics}
 
-Metric analysis is the focus of BR analysis. Datakit itself exposes a lot of [metrics](datakit-metrics.md#metrics). By analyzing these metrics, we can infer various behaviors of Datakit.
+Metrics analysis is a key part of BR analysis. Datakit exposes numerous [self-metrics](datakit-metrics.md#metrics). By analyzing these metrics, we can infer Datakit's behavior.
 
-The following metrics have their own different labels (tags), and by synthesizing these labels, we can better locate problems.
+Each type of metric has different labels (label/tag). Combining these labels helps better pinpoint issues.
 
 ### Data Collection Metrics {#collector-metrics}
 
-There are several key metrics related to collection:
+Key metrics related to data collection include:
 
-- `datakit_inputs_instance`: To know which collectors are enabled
-- `datakit_io_last_feed_timestamp_seconds`: The last time each collector collected data
-- `datakit_inputs_crash_total`: The number of times the collector crashed
-- `datakit_io_feed_cost_seconds`: The duration of feed blocking. If this value is large, it indicates that the network upload(Dataway) may be slow, and blocking the collectors
-- `datakit_io_feed_drop_point_total`: The number of data points discarded during feed (currently, only time series metrics are discarded when blocked)
+- `datakit_inputs_instance`: Indicates which collectors are enabled
+- `datakit_io_last_feed_timestamp_seconds`: Timestamp of the last data collection by each collector
+- `datakit_inputs_crash_total`: Number of collector crashes
+- `datakit_io_feed_cost_seconds`: Feed blocking duration; high values suggest slow network uploads, blocking normal collection
+- `datakit_io_feed_drop_point_total`: Number of dropped data points during feed (currently defaults to dropping time series metrics only during blockage)
 
-By analyzing these metrics, we can roughly restore the running condition of each collector.
+Analyzing these metrics provides insight into the operational status of each collector.
 
 ### Blacklist/Pipeline Execution Metrics {#filter-pl-metrics}
 
-Blacklist/Pipeline is a user-defined data processing module, which has an important impact on data collection:
+Blacklists/Pipelines are user-defined data processing modules that significantly impact data collection:
 
-- The blacklist is mainly used to discard data. The rules written by the user may mistakenly kill some data, leading to incomplete data
-- Pipeline, in addition to processing data, can also discard data (the `drop()` function). During the data processing process, the Pipeline script may consume a lot of time(such as complex regex match), and slow down the collector, thus leading to problems like log skipping[^log-skip].
+- Blacklists discard data, and user-written rules might inadvertently drop some data, leading to incomplete data
+- Pipelines can also drop data using the `drop()` function. During data processing, complex operations (e.g., intricate regular expressions) might consume significant resources, causing delays like log skips[^log-skip].
 
-[^log-skip]: The so-called log skipping refers to the collection speed not keeping up with the log generation speed. When the user's log is set with a rotate mechanism, the first log has not been collected, the second log is not collected in time, and is rotated by the third log that catches up, the second log is skipped here, the collector does not find the existence of the second log at all, and skips it directly to collect the third log file.
+[^log-skip]: Log skips occur when the collection speed cannot keep up with log generation. When log rotation is enabled, if the first log hasn't finished collecting and the second log isn't processed in time, it gets overwritten by the third log, making the second log invisible to the collector, thus skipping it and directly collecting the third log file.
 
-The main metrics involved are as follows[^metric-naming]:
+Key metrics involved include[^metric-naming]:
 
-- `pipeline_drop_point_total`: The number of points dropped by Pipeline
-- `pipeline_cost_seconds`: The time taken for Pipeline to process points. If the time is long (reach to ms), it may lead to collector blocking
-- `datakit_filter_point_dropped_total`: The number of points dropped by the blacklist
+- `pipeline_drop_point_total`: Number of points dropped by Pipeline
+- `pipeline_cost_seconds`: Time spent processing points by Pipeline; long durations (ms-level) can cause collection blockages
+- `datakit_filter_point_dropped_total`: Number of points dropped by blacklists
 
-[^metric-naming]: Different versions of Datakit, the naming of Pipeline-related metrics may be different. Here only the common suffix names are listed.
+[^metric-naming]: Different Datakit versions may name Pipeline-related metrics differently. Only common suffixes are listed here.
 
 ### Data Upload Metrics {#dataway-metrics}
 
-Data upload metrics mainly refer to some HTTP-related metrics of the Dataway reporting module.
+Data upload metrics primarily refer to HTTP-related metrics of the Dataway reporting module.
 
-- `datakit_io_dataway_point_total`: The total number of points uploaded (not necessarily all successfully uploaded)
-- `datakit_io_dataway_http_drop_point_total`: During the upload process, if the data points still fail after retrying, Datakit will discard these data points
-- `datakit_io_dataway_api_latency_seconds`: The time taken to call the Dataway API. If the time is long, it will block the operation of the collector
-- `datakit_io_http_retry_total`: If the number of retries is high, it indicates that the network quality is not very good, and the center may be under a lot of pressure
+- `datakit_io_dataway_point_total`: Total number of uploaded points (not all successful)
+- `datakit_io_dataway_http_drop_point_total`: Points discarded by Datakit after failed retries
+- `datakit_io_dataway_api_latency_seconds`: Latency in calling Dataway API; high latency can block collector operations
+- `datakit_io_http_retry_total`: High retry counts indicate poor network quality or heavy central load
 
 ### Basic Metrics {#basic-metrics}
 
-Basic metrics mainly refer to some other metrics of Datakit, which include:
+Basic metrics mainly refer to business metrics during Datakit's operation:
 
-- `datakit_cpu_usage`: Datakit self CPU usage
-- `datakit_heap_alloc_bytes/datakit_sys_alloc_bytes`: Golang runtime heap/sys memory metrics. If there is an OOM, it is generally the sys memory that exceeds the memory limit
-- `datakit_uptime_seconds`: The duration that Datakit has been running. The startup duration is an important auxiliary metric
-- `datakit_data_overuse`: If the workspace is overdue, Datakit's data reporting will fail, and the value of this metric is 1, otherwise it is 0
-- `datakit_goroutine_crashed_total`: The count of crashed Goroutines. If some key Goroutines crashed, it will affect the behavior of Datakit
+- `datakit_cpu_usage`: CPU consumption
+- `datakit_heap_alloc_bytes/datakit_sys_alloc_bytes`: Golang runtime heap/sys memory metrics; OOM usually occurs when the latter exceeds memory limits
+- `datakit_uptime_seconds`: Duration since Datakit started; important auxiliary metric
+- `datakit_data_overuse`: If the workspace is over quota, Datakit reporting fails, and this metric value is 1, otherwise 0
+- `datakit_goroutine_crashed_total`: Count of crashed Goroutines; critical Goroutine crashes affect Datakit's normal operation
 
-### Monitor Viewing {#monitor-play}
+### Monitor View {#monitor-play}
 
-The built-in monitor command of Datakit can play some key metrics in BR. Compared with viewing pale numbers, it is more friendly:
+Datakit's built-in monitor command can play back key metrics from BR, providing a visual representation. Compared to plain numbers, it offers a more intuitive experience:
 
 ```shell
 $ datakit monitor -P info-1717645398232/metrics
 ...
 ```
 
-Since the default BR will collect three sets of metrics (each set of data is about 10 seconds apart), when the monitor is playing, there will be real-time data updates.
+By default, BR collects three sets of metrics (each differing by about 10 seconds), so monitor playback updates in real-time.
 
 ### Invalid Metrics Issue {#invalid-metrics}
 
-While BR can provide a lot of help when analyzing problems, many times when users find problems, they will restart Datakit and lose the scene, causing the data collected by BR to be invalid.
+While BR provides substantial assistance in issue diagnosis, users often restart Datakit upon discovering problems, invalidating the collected data.
 
-At this time, we can use the built-in [`dk` collector](../integrations/dk.md) of Datakit to collect its own data (it is recommended to add it to the collectors that start by default. The newer version of Datakit[:octicons-tag-24: Version-1.11.0](changelog.md#cl-1.11.0) has already done so), and report it to the user's space, which is equivalent to archiving Datakit's own metrics. And in the `dk` collector, you can further turn on all self-metric collection (this will consume more timelines)
+We recommend using the built-in [`dk` collector](../integrations/dk.md) to collect Datakit's own metrics (suggest adding it to default collectors; newer Datakit versions[:octicons-tag-24: Version-1.11.0](changelog.md#cl-1.11.0) do this by default) and report them to the user's workspace. This archives Datakit's metrics. In the `dk` collector, enabling all self-metrics collection (consuming more Time Series):
 
-- When installed in Kubernetes, turn on all Datakit self-metrics reporting through `ENV_INPUT_DK_ENABLE_ALL_METRICS`
-- For host installation, modify `dk.conf`, and open the first metric comment in `metric_name_filter` (remove the comment `# ".*"`), which is equivalent to allowing all metrics to be collected
+- In Kubernetes installations, enable all Datakit metrics via `ENV_INPUT_DK_ENABLE_ALL_METRICS`
+- For host installations, modify `dk.conf` and uncomment the first metric filter (`# ".*"`) to allow all metric collection
 
-This will collect a copy of all the metrics exposed by Datakit to the user's workspace. In the workspace, search for `datakit` in the 'built-in views' (select 'Datakit(New)') to see the visual effect of these metrics.
+This archives all Datakit-exposed metrics to the user's workspace. In the workspace, search for `datakit` (choose "Datakit(New)") under "Built-in Views" to visualize these metrics.
 
-## Pipeline {#pipeline}
-
-[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
-
-If the user has configured Pipelines, we'll get a copy of these Pipeline scripts in the *pipeline* directory. By examining these Pipelines, we can identify issues with data field parsing; if certain Pipelines are found to be time-consuming, we can also offer optimization suggestions to reduce the resource consumption of the Pipeline scripts.
-
-## External {#external}
+## Pipeline View {#pipeline}
 
 [:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
 
-In the *external* directory, logs and debug information from external collectors (currently primarily eBPF collector) are gathered to facilitate troubleshooting issues related to these external collectors.
+If users configure Pipelines, a copy is saved in the *pipeline* directory. Reviewing these Pipelines helps identify data field parsing issues; if some Pipelines consume excessive time, optimization suggestions can be provided to reduce script overhead.
+
+## External Information {#external}
+
+[:octicons-tag-24: Version-1.33.0](changelog.md#cl-1.33.0)
+
+Under the *external* directory, logs and debug information from external collectors (mainly eBPF collectors) are collected to aid in diagnosing issues related to these collectors.
 
 ## Profile Analysis {#profile}
 
-Profile analysis is mainly aimed at developers. Through the profile in BR, we can analyze the hotspots of memory/CPU consumption of Datakit at the moment of BR. Through these profile analyses, we can guide us to better optimize the existing code or find some potential bugs.
+Profile analysis is primarily for developers. Through BR profiles, we can analyze Datakit's memory/CPU usage hotspots at the time of BR collection. These profiles guide code optimization or reveal potential bugs.
 
-Under the *profile* directory, there are the following files:
+In the *profile* directory, the following files exist:
 
-- *allocs*: The total amount of memory allocated since the start of Datakit. Through this file, we can know where the heavy memory allocation is. Some places may not need to allocate so much memory
-- *heap*: The current (at the moment of collecting BR) distribution of memory usage. If there is a memory leak, it is very likely to be seen here (memory leaks generally occur in modules that do not need so much memory, which is basically easy to find out)
-- *profile*: View the CPU consumption of the current Datakit process. Some unnecessary modules may consume too much CPU (such as high-frequency JSON parsing operations)
+- *allocs*: Total memory allocations since Datakit startup. This file reveals where most memory allocations occur.
+- *heap*: Current memory distribution. Memory leaks are likely visible here (typically in modules that don't require much memory).
+- *profile*: Current CPU consumption of the Datakit process. Unnecessary modules may consume too much CPU (e.g., frequent JSON parsing).
 
-The other files (*block/goroutine/mutex*) are not currently used for troubleshooting.
+Other files (*block/goroutine/mutex*) are not yet used for issue diagnosis.
 
-Through the following command, we can view these profile data in the browser (it is recommended to use Golang above 1.20, its visualization effect is better):
+Use the following command to view these profile data in a browser (preferably with Go 1.20+ for better visualization):
 
 ```shell
 go tool pprof -http=0.0.0.0:8080 profile/heap
 ```
 
-We can do an alias in the shell for easy operation:
+You can create an alias in your shell for easier access:
 
 ```shell
 # /your/path/to/bashrc
 __gtp() {
-    port=$(shuf -i 40000-50000 -n 1) # Random a port between 40000 ~ 50000
+    port=$(shuf -i 40000-50000 -n 1) # Random port between 40000 ~ 50000
 
     go tool pprof -http=0.0.0.0:${port} ${1}
 }
@@ -198,13 +198,12 @@ alias gtp='__gtp'
 source /your/path/to/bashrc
 ```
 
-You can directly use the following command:
+Use the following command directly:
 
 ```shell
 gtp profile/heap
 ```
 
-## Summary {#conclude}
+## Conclusion {#conclude}
 
-Although BR may not be able to solve all problems, it can avoid a lot of communication information differences and misguidance. It is still recommended that everyone provide the corresponding BR when reporting problems. At the same time, the existing BR will continue to improve, by exposing more metrics, collecting more other aspects of environmental information (such as Tracing-related client information, etc.), and further optimizing the experience of troubleshooting problems.
-
+While BR may not solve all problems, it avoids many communication gaps and misdirections. Therefore, it's recommended to provide corresponding BRs when reporting issues. Existing BRs will continue to improve by exposing more metrics and collecting additional environmental information (such as client information related to Tracing) to further enhance the issue diagnosis experience.

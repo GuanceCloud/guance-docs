@@ -1,163 +1,163 @@
-# Internal Principles of Monitor
+# Internal Principles of Monitors
 ---
 
-Due to the limitation of network and system, there are some special treatments in the execution of monitor detection.
+The execution of monitor checks, due to limitations such as network and system constraints, involves some special processing.
 
-## 1. Detect Trigger Time
+## 1. Detection Trigger Time
 
-The user-configured detection frequency is actually internally converted to a Crontab expression, and the monitor is actually started according to this Crontab expression instead of executing every N minutes after creation/saving.
+The detection frequency configured by users is internally converted into a Crontab expression. The monitor actually starts according to this Crontab expression rather than executing every N minutes after creation or saving.
 
-Assuming that the user configures the execution frequency of "Monitor A" to be "5 minutes", the corresponding Crontab expression is `*/5 * * * *`, that is, the actual trigger time is as follows:
+Assuming the user configures a detection frequency of "5 minutes" for "Monitor A," the corresponding Crontab expression would be `*/5 * * * *`, meaning the actual trigger times are as follows:
 
-| Action                | Time       |
-| ------------------- | ---------- |
-| User Create/Save Monitor | `00:00:30` |
-| Monitor trigger detection      | `00:05:00` |
-| Monitor trigger detection      | `00:10:00` |
-| Monitor trigger detection      | `00:15:00` |
-| Monitor trigger detection      | `00:20:00` |
-| ...                 | ...        |
+| Action                  | Time       |
+| ----------------------- | ---------- |
+| User creates/saves monitor | `00:00:30` |
+| Monitor triggers detection | `00:05:00` |
+| Monitor triggers detection | `00:10:00` |
+| Monitor triggers detection | `00:15:00` |
+| Monitor triggers detection | `00:20:00` |
+| ...                     | ...        |
 
-## 2. Calibration of Detection Range
+## 2. Detection Range Calibration
 
-Because the platform carries thousands of detectors configured by all users, the detection processing triggered at the same time point cannot be executed at the same time, and most tasks will enter the queue and wait.
+Since the platform handles thousands of monitors configured by all users, it is impossible for all detection tasks triggered at the same time point to execute simultaneously; most tasks will enter a queue and wait.
 
-Therefore, most detection processing will encounter the situation that "execution should be triggered at T, but it actually executes in T + seconds".
+Therefore, most detection processes encounter the situation where <u>they should have been triggered at time T but actually execute several seconds later</u>.
 
-If the actual execution time is directly used as the end time, and the data is queried according to the detection range, there will inevitably be problems such as repeated detection range or incomplete coverage, such as:
+If the actual execution time is directly used as the end time for querying data based on the detection range, there will inevitably be issues of overlapping or incomplete coverage of the detection range, such as:
 
-> Assuming a detection range of 5 minutes
+> Assuming the detection range is 5 minutes:
 
-| Action              | Time       | Detection Range                |
-| ----------------- | ---------- | ----------------------- |
-| 1. Monitor actual execution | `00:05:10` | `00:00:10` ~ `00:05:10` |
-| 2. Monitor actual execution | `00:10:05` | `00:05:05` ~ `00:10:05` |
-| 3. Monitor actual execution | `00:15:30` | `00:10:30` ~ `00:15:30` |
+| Action                | Time       | Detection Range             |
+| --------------------- | ---------- | --------------------------- |
+| 1. Monitor executes   | `00:05:10` | `00:00:10` ~ `00:05:10`     |
+| 2. Monitor executes   | `00:10:05` | `00:05:05` ~ `00:10:05`     |
+| 3. Monitor executes   | `00:15:30` | `00:10:30` ~ `00:15:30`     |
 
-As described above, the detection ranges of "Action 1" and "Action 2" overlap from `00:05:05` to `00:05:10`.
+In the above scenario, "Action 1" and "Action 2" overlap in the detection range from `00:05:05` ~ `00:05:10`.
 
-Between "Action 2" and "Action 3", the data between `00:10:05` to `00:10:30` is not covered by detection.
+Between "Action 2" and "Action 3," data between `00:10:05` ~ `00:10:30` is not covered by the detection.
 
 ### Current Solution
 
-In order to avoid the fluctuation of detection range caused by queuing delay, the detection range of monitor (i.e., DQL query data range) will be calibrated according to its trigger time, such as:
+To avoid fluctuations in the detection range caused by queuing delays, the detection range (i.e., DQL query data range) of the monitor is calibrated based on its trigger time, such as:
 
-> Assuming a detection range of 5 minutes
+> Assuming the detection range is 5 minutes:
 
-| Action                   | Time       | Detection Range                |
-| ---------------------- | ---------- | ----------------------- |
-| Monitor trigger detection (join the queue) | `00:05:00` |                         |
-| Monitor actual execution (out of the queue) | `00:05:10` | `00:00:00` ~ `00:05:00` |
-| Monitor trigger detection (join the queue) | `00:10:00` |                         |
-| Monitor actual execution (out of the queue) | `00:10:30` | `00:05:00` ~ `00:10:00` |
+| Action                       | Time       | Detection Range             |
+| ---------------------------- | ---------- | --------------------------- |
+| Monitor triggers detection (enqueue) | `00:05:00` |                         |
+| Monitor executes (dequeue)    | `00:05:10` | `00:00:00` ~ `00:05:00`     |
+| Monitor triggers detection (enqueue) | `00:10:00` |                         |
+| Monitor executes (dequeue)    | `00:10:30` | `00:05:00` ~ `00:10:00`     |
 
-It can be seen that no matter how long a detection waits after queuing, its detection range is determined according to the "trigger time", and does not fluctuate according to the actual execution time.
+As can be seen, regardless of how long a detection waits in the queue, its detection range is determined based on the [trigger time] and does not fluctuate based on the actual execution time.
 
-*Note: The above table is only a schematic description of "calibration of detection range", and the actual detection range will also be affected by "drift of detection range*
+**Note**: The above table is only an illustration of "detection range calibration"; the actual detection range may also be affected by "detection range drift."
 
 ## 3. Detection Range Drift
 
-Due to the influence of network delay and data drop delay, data reporting usually has a delay of several seconds or even tens of seconds. The specific performance is that the newly reported data cannot be obtained through DQL query.
+Due to network latency, data landing delays, and other factors, data reporting generally has a delay of several seconds or even tens of seconds. This manifests as newly reported data not being retrievable via DQL queries.
 
-Then, in the detection processing, it is very easy to cause the data in each detection range to be missing, such as:
+Thus, during detection processing, it is very easy for data within each detection range to be missing, such as:
 
-> Assuming a detection range of 5 minutes
+> Assuming the detection range is 5 minutes
 
-| Action                   | Time                                 | Detection Range                |
-| ---------------------- | ------------------------------------ | ----------------------- |
-| Report data A (not yet placed) | `00:09:59`                           |                         |
-| Monitor trigger detection         | `00:10:00`                           | `00:05:00` ~ `00:10:00` |
-| Report data A (placed)          | `00:10:05` (Data timestamp is `00:09:59`） |                         |
-| Monitor trigger detection         | `00:15:00`                           | `00:10:00` ~ `00:15:00` |
+| Action                       | Time                                 | Detection Range             |
+| ---------------------------- | ------------------------------------ | --------------------------- |
+| Data A reported (not landed)  | `00:09:59`                           |                             |
+| Monitor triggers detection   | `00:10:00`                           | `00:05:00` ~ `00:10:00`     |
+| Data A lands                 | `00:10:05` (timestamp `00:09:59`)    |                             |
+| Monitor triggers detection   | `00:15:00`                           | `00:10:00` ~ `00:15:00`     |
 
-It can be seen that although data A has been reported before the detection is executed, it cannot be queried when the monitor detects because it has not been dropped.
+As can be seen, although Data A was reported before the detection execution, it could not be queried by the monitor because it had not yet landed.
 
-At the same time, even if the data A is dropped, the monitor cannot detect the data A in the next round because its data timestamp is earlier.
+Even when Data A eventually lands, since its timestamp is earlier, it cannot be detected by the next round of monitoring.
 
 ### Current Solution
 
-In order to solve the above problems, when all monitors perform detection, they will automatically drift the detection range in an earlier direction for 1 minute, so as to avoid querying the data during the drop period.
+To solve the above problem, all monitors automatically shift the detection range back by 1 minute when performing detections to avoid querying data that is still in the landing period.
 
-Then, the above example will become the following situation:
+Thus, the previous example becomes:
 
-> Assuming a detection range of 5 minutes
+> Assuming the detection range is 5 minutes
 
-| Action                   | Time                                 | Detection Range                            |
-| ---------------------- | ------------------------------------ | -------------------------------------- |
-| Report data A (not yet placed) | `00:09:59`                           |                                        |
-| Monitor trigger detection         | `00:10:00`                           | `00:04:00` ~ `00:09:00`(Drift for 1 min) |
-| Report data A (placed)             | `00:10:05` (Data timestamp is `00:09:59`） |                                        |
-| Monitor trigger detection         | `00:15:00`                           | `00:09:00` ~ `00:14:00`(Drift for 1 min) |
+| Action                       | Time                                 | Detection Range                               |
+| ---------------------------- | ------------------------------------ | --------------------------------------------- |
+| Data A reported (not landed)  | `00:09:59`                           |                                               |
+| Monitor triggers detection   | `00:10:00`                           | `00:04:00` ~ `00:09:00` (shifted 1 minute)   |
+| Data A lands                 | `00:10:05` (timestamp `00:09:59`)    |                                               |
+| Monitor triggers detection   | `00:15:00`                           | `00:09:00` ~ `00:14:00` (shifted 1 minute)   |
 
-It can be seen that although the reported data A has drop delay, it can still be detected in the second round of detection, thus avoiding the lack of detection data caused by drop delay.
+As can be seen, Data A, despite having a landing delay, can still be detected in the second round of detection, thus avoiding data loss due to landing delays.
 
-*Note: If the drop delay exceeds 1 minute, this scheme will fail and the test will not produce the expected effect.*
+*Note: If the landing delay exceeds 1 minute, this solution will fail, and the detection will not produce the expected results.*
 
-## 4. No Data Judgment Logic
+## 4. Data Gap Judgment Logic
 
-Because Guance is a platform based on time series data, unlike non-asset management software, there is an asset list summary table. In fact, we can only think of "existence" with queriable data, and we can't know "which objects don't exist".
+Since <<< custom_key.brand_name >>> is a platform based on time series data, unlike asset management software, it does not have a master list of assets. It can only determine what "exists" based on queryable data and cannot identify what "does not exist."
 
-> Suppose I have a box with pencils and erasers in it.
+> Suppose I have a box containing pencils and erasers.
 >
-> Well, I can say quite clearly, "There are pencils and erasers in the box,"
+> I can clearly state, "The box contains pencils and erasers."
 >
->  But I can't say "there's nothing in the box".
+> But I cannot say, "The box does not contain anything else."
 >
-> Because I don't know "what should have been in the box" (that is, the asset summary)
+> Because I do not know what the box "should contain" (i.e., the asset master list).
 
-Therefore, the "no data detection" in the monitor can only judge the data interruption and recovery in the way of "edge trigger".
+Therefore, the "data gap detection" in monitors can only judge data gaps and recoveries based on "edge triggering."
 
-That is, "I found X in the last round of inquiry, but I couldn't find X in this round of inquiry, so the data of X was broken".
+That is, "In the last round of queries, I found X, but in this round, I did not find X, so X has a data gap."
 
-Such as:
+For example:
 
-> Assuming a detection range of 5 minutes
+> Assuming the detection range is 5 minutes
 
-| `00:00:00` ~ `00:05:00` | `00:05:00` ~ `00:10:00` | Check Result                   |
-| ----------------------- | ----------------------- | -------------------------- |
-| Exist data                 |                         | Data outage                   |
-| Exist data                 | Exist data                    | Continued normal                   |
-|                         | Exist data                    | Data re-reporting               |
-|                         |                         | Persistent lack of data (meaningless judgment) |
+| `00:00:00` ~ `00:05:00` | `00:05:00` ~ `00:10:00` | Judgment Result         |
+| ----------------------- | ----------------------- | ---------------------- |
+| Data present            |                         | Data gap               |
+| Data present            | Data present            | Continuous normal      |
+|                         | Data present            | Data re-reported       |
+|                         |                         | Continuous data gap (meaningless judgment) |
 
-*Note: The above table is only a schematic description of "no data judgment logic", and the actual two-time detection range will also be affected by the configuration of "detection range drift", "detection range" and "no data occurs within N consecutive minutes"*
+**Note**: The above table is only an illustration of "data gap judgment logic"; actual detection ranges may be affected by "detection range drift," "detection range," and configurations like "data gap within N consecutive minutes."
 
-## 5. No Data/No Data Recovery Events
+## 5. Data Gap / Data Gap Recovery Events
 
-When the monitor finds that there are "data broken files" and "data re-reported", "no data event" or "no data recovery event" may occur according to different configurations of users in the monitor.
+When the monitor detects "data gap" or "data re-reporting," depending on different configurations in the monitor, it may generate "data gap events" or "data gap recovery events."
 
-However, in order to avoid meaningless repeated alarms, before generating the above events, it will be judged according to the existing events whether it is necessary to generate corresponding events:
+However, to avoid meaningless repeated alerts, before generating these events, it will check existing events to determine whether to generate corresponding events:
 
-| Last Event            | The Check Result of Test | Result               |
-| --------------------- | ---------------- | ------------------ |
-| No Events/No Data Recovery Events | Data outage         | Generate no data event     |
-| No Events/No Data Events     | Data re-reporting     | Generate no data recovery event |
+| Last Event                | Current Detection Judgment | Result                      |
+| ------------------------- | -------------------------- | --------------------------- |
+| No event/data gap recovery event | Data gap              | Generate data gap event     |
+| No event/data gap event     | Data re-reported          | Generate data gap recovery event |
 
-Therefore, "no data events" and "no data recovery events" always appear in pairs, and there will be no continuous "no data events" or continuous "no data recovery events".
+Therefore, "data gap events" and "data gap recovery events" always occur in pairs and will not appear consecutively.
 
-## X. FAQ
+## X. Common Issues
 
-### The Time Indicated by the Event not Matching the Time When the Event Occurred
+### Event Marked Time Does Not Match Event Generation Time
 
-Event details, alert notice, will be marked with a time, such as: `00:15:00`.
+In event details and alert notifications, a time is marked, such as `00:15:00`.
 
-The marked time here is the monitor's "detection trigger time", that is, the time expressed by Crontab expression, which must be a regular detection frequency multiple.
+This marked time is always the monitor's "detection trigger time," i.e., the time expressed by the Crontab expression, which must be a multiple of the detection frequency.
 
-> Exception: If you manually click Execute in the Monitor list, the corresponding event time is the actual execution time.
+> Exception: If you manually click to execute in the monitor list, the event generation time will be the actual execution time.
 
-### The Time Indicated by the Event not Matching the Actual Fault Data Point Time
+### Event Marked Time Does Not Match Actual Fault Data Point Time
 
-The time indicated by the event is the "detection trigger time" of the monitor, and due to the existence of "detection range drift", it is possible that the actual fault data point time is outside the interval of "detection trigger time-detection range ~ detection trigger time".
+The marked time in events is always the monitor's "detection trigger time," and due to "detection range drift," the actual fault data point time may indeed fall outside the "detection trigger time - detection range ~ detection trigger time" interval.
 
-Because the actual detection range is "detection trigger time-detection range-drift time ~ detection trigger time-drift time"
+Because the actual detection range is "detection trigger time - detection range - drift time ~ detection trigger time - drift time"
 
 This situation is normal.
 
-### Looking at the data directly in Guance found that there should be a fault, but the monitor did not detect the fault
+### Directly Viewing Data in <<< custom_key.brand_name >>> Shows That There Should Be a Fault, but the Monitor Did Not Detect It
 
-The causes of this problem are as follows:
+The reasons for this issue are as follows:
 
-1. Due to the large delay of the reported data entering and dropping, the fault point data cannot be queried when the detection is actually executed.
-2. The DQL query fails when the detection is executed, which causes the detection to be interrupted.
+1. Due to excessive data reporting and landing delays, fault data points cannot be queried when the detection actually executes.
+2. During detection execution, a DQL query failure causes the detection to interrupt.
 
-This situation is beyond the control of the monitor.
+These situations are not within the control of the monitor.

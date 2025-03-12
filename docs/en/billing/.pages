@@ -1,5 +1,4 @@
 nav:
-  - index.md
-  - 'Billing Methods': billing-method
-  - 'Settlement Accounts': billing-account
-  - 'FAQ': faq
+  - index.md 
+  - 'Billing': billing-account
+  - FAQ: faq

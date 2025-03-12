@@ -36,7 +36,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notice/date/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notice/date/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name": "test001", "noticeDates": ["2024/01/01","2024/05/01"]}' \

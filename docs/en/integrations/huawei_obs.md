@@ -1,111 +1,110 @@
 ---
-title: 'HUAWEI OBS'
+title: 'Huawei Cloud OBS'
 tags: 
   - Huawei Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the script packages in the Script Market, such as "Guance Cloud Sync", to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/huawei_obs'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD OBS Monitoring View'
-    path: 'dashboard/zh/huawei_obs'
+  - desc: 'Built-in View for Huawei Cloud OBS'
+    path: 'dashboard/en/huawei_obs'
 
 monitor:
-  - desc: 'HUAWEI CLOUD OBS Monitor'
-    path: 'monitor/zh/huawei_obs'
+  - desc: 'Monitor for Huawei Cloud OBS'
+    path: 'monitor/en/huawei_obs'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD OBS
+# Huawei Cloud OBS
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the observation cloud.
+Use the script packages in the Script Market, such as "Guance Cloud Sync", to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself,Refer to  [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip:Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake,You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of  HUAWEI CLOUD OBS cloud resources, we install the corresponding collection script:「Guance Integration（HUAWEI CLOUD-OBSCollect）」(ID:`guance_huaweicloud_obs`)
-
-Click [Install] and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
-
-Tap [Deploy startup Script],The system automatically creates `Startup` script sets, And automatically configure the corresponding startup script.
-
-After the script is installed,Find the script in「Development」in Func「Guance Integration（HUAWEI CLOUD-OBSCollect）」,Expand to modify this script,find`collector_configs`-`regions`,Change the region to your actual region,Then find `region_projects` under `monitor_configs`,Change to the actual locale and Project ID.Click Save Publish again
-
-In addition, the corresponding automatic trigger configuration is displayed in「Management / Crontab Config」.Tap [Run], It can be executed immediately once, without waiting for a periodic time.After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-obs/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Install Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`)
 
-## Metric {#metric}
-Configure HUAWEI CLOUD - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD Monitor Metrics Details](https://support.huaweicloud.com/intl/en-us/ae-ad-1-usermanual-obs/obs_03_0010.html){:target="_blank"}
+To synchronize Huawei Cloud OBS monitoring data, install the corresponding collection script: "Guance Integration (Huawei Cloud-OBS Collection)" (ID: `guance_huaweicloud_obs`).
 
-| Metric ID                       | Index name                                               | Metric meaning                                                      | Value range    | Measurement object (dimension)         | Monitoring cycle (raw metrics) |
-|------------------------------------|----------------------------------------------------------| ------------------------------------------------------------ | ---------- | ---------------- | -------------------- |
-| `get_request_count`                  | Number of GET class requests                             | This metric is used to count the GET requests of all buckets and objects in buckets. Unit: second       | ≥ 0 counts | bucket               | 1 min               |
-| `put_request_count`                  | Number of PUT class requests                             | This metric counts the number of PUT requests of all buckets and objects in buckets. Unit: second      | ≥ 0 counts | bucket               | 1 min                |
-| `first_byte_latency`                 | Average latency of the first byte of a GET class request | It takes the average time between receiving a complete request and returning a response to a GET operation in a statistical period. Unit: millisecond | ≥ 0 ms     | bucket               | 1 min                |
-| `request_count_4xx`                  | 4xx Number of status codes                               | This metric is used to collect statistics on the number of response requests whose status code is 4xx. Unit: second        | ≥ 0 counts | Bucket interface       | 1 min                |
-| `request_count_5xx`                  | 5xx Number of status codes                               | This metric is used to collect statistics on the number of response requests whose status code is 5xx. Unit: second       | ≥ 0 counts | Bucket interface       | 1 min                |
-| `total_request_latency`              | Average latency of total requests                        | It takes the average time between receiving a complete request and receiving a response in a statistical period for all operations on all buckets. Unit: millisecond | ≥ 0 ms     | Bucket interface       | 1 min                |
-| `request_count_per_second`           | Total TPS                                                | Average number of requests per second in the current statistical period. Unit: second                      | ≥ 0 counts | Bucket interface       | 1 min                |
-| `request_count_get_per_second`       | The GET class requests TPS                               | Average number of GET requests per second in the current statistical period. Unit: second              | ≥ 0 counts | Bucket interface       | 1 min                |
-| `request_count_put_per_second`       | The PUT class requests TPS                               | Average number of PUT requests per second in the current statistical period. Unit: second              | ≥ 0 counts | Bucket interface       | 1 min                |
-| `request_count_delete_per_second`    | The DELETE class requests TPS                            | Average number of requests per second for all DELETE classes in the current statistical period. Unit: second           | ≥ 0 counts | Bucket interface       | 1 min                |
-| `request_success_rate`               | Request success rate                                     | This metric is used to measure the system availability of storage services. Percentage of non-server error requests (return status code: 5xx) in total requests, calculated by: (1-5XX number/total requests)*100% unit: % | ≥ 0,≤100  | Bucket interface domain name   | 1 min                |
-| `effective_request_rate`             | Effective request rate                                   | This metric is used to measure the validity of client requests. Percentage of valid requests in total requests, calculated by: (2XX, 3XX number returned by the client/total requests)*100% Unit: %| ≥ 0,≤100  | Bucket interface       | 1 min                |
-| `request_break_rate`                 | Request interruption rate                                | This metric is used to measure the proportion of failures caused by client interrupt requests. It is calculated by (Number of client interrupt requests/Total number of requests) x 100% Unit: %| ≥ 0,≤100  | Bucket interface       | 1 min                |
-| `request_code_count`                 | Number of HTTP status codes                              | This metric is used to collect statistics on the number of requests that respond to status codes on the server. unit:count | ≥ 0 counts | HTTP status code of the bucket interface | 1 min                |
-| `api_request_count_per_second`       | The interface requested TPS. Procedure                   | Indicates the average number of requests per second for all buckets and objects in buckets in a statistical period.  | ≥ 0 counts | Bucket interface           | 1 min                |
-| `request_count_monitor_2XX`          | 2xx Number of status codes                               | This metric is used to collect statistics on the number of response requests whose status code is 2xx. Unit: second      | ≥ 0 counts | Bucket domain name       | 1 min                |
-| `request_count_monitor_3XX`          | 3xx Number of status codes                               | This metric is used to collect statistics on the number of response requests whose status code is 3xx. Unit: second        | ≥ 0 counts | Bucket domain name       | 1 min                |
-| `download_bytes`                     | Total download bandwidth                                 | This metric is used to measure the size of downloaded objects per second in a statistical period. Unit: byte /s   | ≥ 0 byte/s | Bucket domain name       | 1min                |
-| `download_bytes_extranet`            | `Extranet` download bandwidth                              | This metric is used to measure the total size of `Extranet` downloaded objects per second in the statistical period. Unit: byte /s | ≥ 0 byte/s | Bucket domain name       | 1 min                |
-| `download_bytes_intranet`            | `Intranet` download bandwidth                              | This metric is used to measure the total size of Intranet downloaded objects per second within the statistical period. Unit: byte /s | ≥ 0 byte/s | Bucket domain name       | 1 min                |
-| `upload_bytes`                       | Total upload bandwidth                                   | This metric is used to measure the size of objects uploaded per second in the statistical period. Unit: byte /s   | ≥ 0 byte/s | Bucket domain name       | 1 min                |
-| `upload_bytes_extranet`              | `Extranet` transmission bandwidth                          | This metric is used to measure the average size of objects transferred to the `Extranet` per second in the statistical period. Unit: byte /s | ≥ 0 byte/s | Bucket domain name       | 1 min                |
-| `upload_bytes_intranet`              | `Intranet` upload bandwidth                                | This metric is used to measure the average size of objects uploaded on the `Intranet` per second in the statistical period. Unit: byte /s | ≥ 0 byte/s | Bucket domain name       | 1 min                |
-| `cdn_bytes`                          | cdn Return bandwidth                                     | This metric is used to measure the average size per second of the cdn return request object in a specified period. Currently, only outgoing traffic from the public network is measured. Unit: byte /s | ≥ 0 byte/s | bucket           | 1 min                |
-| `download_traffic`                   | Total download traffic                                   | This metric is used to measure the total size of downloaded objects in a statistical period. Unit: byte            | ≥ 0 byte/s | Bucket domain name       | 1 min                |
-| `download_traffic_extranet`          | `Extranet` download traffic                                | This metric is used to measure the total size of download objects on and off the `Extranet`. Unit: byte         | ≥ 0 bytes  | Bucket domain name       | 1 min                |
-| `download_traffic_intranet`          | `Intranet` download traffic                                | This metric is used to measure the total size of download objects within a specified period. Unit: byte         | ≥ 0 bytes  | Bucket domain name       | 1 min                |
-| `upload_traffic`                     | Total upload traffic                                     | This metric is used to measure the total size of uploaded objects in the statistical period. Unit: byte            | ≥ 0 bytes  | Bucket domain name       | 1 min                |
-| `upload_traffic_extranet`            | `Extranet` traffic                                         | This metric is used to collect the total size of objects uploaded online within and outside a period. Unit: byte      | ≥ 0 bytes  | Bucket domain name       | 1 min                |
-| `upload_traffic_intranet`            | `Intranet` upload traffic                                  | This metric is used to measure the total size of objects uploaded on the `Intranet` in a statistical period. Unit: byte         | ≥ 0 bytes  | Bucket domain name       | 1 min                |
-| `cdn_traffic`                        | cdn Return traffic                                       | This metric is used to collect the total amount of inbound cdn traffic within a period. Currently, only outbound traffic of the public network is collected. Unit: byte | ≥ 0 bytes  | bucket           | 1 min                |
-| `capacity_total`                     | Total storage usage                                      | This metric measures the storage space occupied by all data. Unit: byte    | ≥ 0 bytes | bucket   | 30 minutes               |
-| `capacity_standard`                  | Standard storage usage                                   | This metric measures the storage space used by standard data storage. Unit: byte   | ≥ 0 bytes | bucket   | 30 minutes               |
-| `capacity_infrequent_access`         | Low frequency storage usage                              | This metric measures the capacity of the storage space used for low-frequency data access. Unit: byte | ≥ 0 bytes | bucket   | 30 minutes               |
-| `capacity_archive`                   | Archive storage usage                                    | This metric measures the storage space occupied by archive data. Unit: byte   | ≥ 0 bytes | bucket   | 30 minutes               |
-| `capacity_deep_archive`              | Deep archive storage usage                               | This metric measures the storage space occupied by deep archive data. Unit: byte| ≥ 0 bytes | bucket   | 30 minutes               |
-| `object_num_all`                     | Total number of stored objects                           | The object count is the total number of folders, files of the current version, and files of the historical version in the bucket. Unit: Unit | ≥ 0 counts     | bucket   | 30 minutes               |
-| `object_num_standard_total`          | Total number of standard storage objects                 | This metric measures the total number of objects stored in the standard storage system. The number of objects is the total number of folders, files of the current version, and files of the historical version in the bucket. Unit: Unit | ≥ 0 counts     | bucket   | 30 minutes               |
-| `object_num_infrequent_access_total` | Total number of low frequency storage objects            | This metric measures the total number of objects stored in the low-frequency access storage. The number of objects is the total number of folders, files of the current version, and files of the historical version in the bucket. Unit: Unit| ≥ 0 counts     | bucket   | 30 minutes               |
-| `object_num_archive_total`           | Total number of archived storage objects                 | This metric measures the number of objects stored in the archive storage. The number of objects is the total number of folders, files of the current version, and files of the historical version in the bucket. Unit: Unit | ≥ 0 counts     | bucket   | 30 minutes               |
-| `object_num_deep_archive_total`      | Number of deep archive storage objects                   | This metric measures the total number of objects stored in the deep archive storage. The object number is the total number of folders, files of current version, and files of historical version in the bucket. Unit: Unit | ≥ 0 counts     | bucket   | 30 minutes               |
+Click [Install], then input the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
-## Object {#object}
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
 
-The collected HUAWEI CLOUD OBS object data structure can see the object data from 「Infrastructure-Custom」
+After the script is installed, find the script "Guance Integration (Huawei Cloud-OBS Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs`, replace the regions after `regions` with your actual regions, then find `monitor_configs` under `region_projects` and change it to your actual region and Project ID. Click Save and Publish.
+
+Additionally, view the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click [Execute] to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
+
+By default, we collect some configurations; for details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-obs/){:target="_blank"}
+
+
+### Verification
+
+1. Confirm in "Management / Automatic Trigger Configuration" whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
+2. In the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. In the Guance platform, under "Metrics", check if the corresponding monitoring data exists.
+
+## Metrics {#metric}
+After configuring Huawei Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Huawei Cloud Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-obs/obs_03_0010.html){:target="_blank"}
+
+| Metric ID                          | Metric Name                | Description                                                     | Value Range   | Measurement Object         | Monitoring Period (Original Metric) |
+| ----------------------------------- | --------------------------- | --------------------------------------------------------------- | ------------- | -------------------------- | ----------------------------------- |
+| `get_request_count`                | GET Request Count           | Counts the number of GET requests for all buckets and objects. Unit: count | ≥ 0 counts    | Bucket                     | 1 minute                           |
+| `put_request_count`                | PUT Request Count           | Counts the number of PUT requests for all buckets and objects. Unit: count | ≥ 0 counts    | Bucket                     | 1 minute                           |
+| `first_byte_latency`               | Average First Byte Latency  | Averages the time from receiving a complete GET request to starting the response within a statistical period. Unit: milliseconds | ≥ 0 ms        | Bucket                     | 1 minute                           |
+| `request_count_4xx`                | Number of 4xx Status Codes  | Counts the number of requests with a server response status code of 4xx. Unit: count | ≥ 0 counts    | User Bucket Interface      | 1 minute                           |
+| `request_count_5xx`                | Number of 5xx Status Codes  | Counts the number of requests with a server response status code of 5xx. Unit: count | ≥ 0 counts    | User Bucket Interface      | 1 minute                           |
+| `total_request_latency`            | Average Total Request Latency | Averages the time from receiving a complete request to ending the response for all operations on all buckets within a statistical period. Unit: milliseconds | ≥ 0 ms        | User Bucket Interface      | 1 minute                           |
+| `request_count_per_second`         | Total TPS                   | Average number of requests per second in the current statistical period. Unit: count | ≥ 0 counts    | User Bucket Domain         | 1 minute                           |
+| `request_count_get_per_second`     | GET Request TPS             | Average number of GET requests per second in the current statistical period. Unit: count | ≥ 0 counts    | User Bucket Domain         | 1 minute                           |
+| `request_count_put_per_second`     | PUT Request TPS             | Average number of PUT requests per second in the current statistical period. Unit: count | ≥ 0 counts    | User Bucket Domain         | 1 minute                           |
+| `request_count_delete_per_second`  | DELETE Request TPS          | Average number of DELETE requests per second in the current statistical period. Unit: count | ≥ 0 counts    | User Bucket Domain         | 1 minute                           |
+| `request_success_rate`             | Request Success Rate        | Measures the availability of the storage service. The percentage of non-server error requests (status codes 5xx) out of total requests. Calculation method: (1 - 5XX count / Total Request Count) * 100%. Unit: % | ≥ 0%, ≤100%   | User Bucket Interface Domain | 1 minute                           |
+| `effective_request_rate`           | Effective Request Rate      | Measures the effectiveness of client requests. The percentage of valid requests out of total requests. Calculation method: (Client returns 2XX, 3XX count / Total Request Count) * 100%. Unit: % | ≥ 0%, ≤100%   | User Bucket Interface      | 1 minute                           |
+| `request_break_rate`               | Request Break Rate          | Measures the failure rate due to client interruption of requests. Calculation method: (Client interrupt request count / Total Request Count) * 100%. Unit: % | ≥ 0%, ≤100%   | User Bucket Interface      | 1 minute                           |
+| `request_code_count`               | HTTP Status Code Count      | Counts the number of requests with specific server response status codes. See [HTTP Status Codes](https://support.huaweicloud.com/usermanual-obs/obs_03_0010.html#section5){:target="_blank"}. Unit: count | ≥ 0 counts    | Bucket Interface HTTP Status Code | 1 minute                           |
+| `api_request_count_per_second`     | API Request TPS             | Averages the number of requests per second for a specific interface across all buckets and objects within a statistical period. Supported interface types are listed in [Request Interfaces](https://support.huaweicloud.com/usermanual-obs/obs_03_0010.html#section4){:target="_blank"}. Unit: count | ≥ 0 counts    | Bucket Interface            | 1 minute                           |
+| `request_count_monitor_2XX`        | Number of 2xx Status Codes  | Counts the number of requests with a server response status code of 2xx. Unit: count | ≥ 0 counts    | User Bucket Domain         | 1 minute                           |
+| `request_count_monitor_3XX`        | Number of 3xx Status Codes  | Counts the number of requests with a server response status code of 3xx. Unit: count | ≥ 0 counts    | User Bucket Domain         | 1 minute                           |
+| `download_bytes`                   | Total Download Bandwidth    | Averages the total size of downloaded objects per second within a statistical period. Unit: bytes/s | ≥ 0 byte/s    | User Bucket Domain         | 1 minute                           |
+| `download_bytes_extranet`          | External Network Download Bandwidth | Averages the total size of externally downloaded objects per second within a statistical period. Unit: bytes/s | ≥ 0 byte/s    | User Bucket Domain         | 1 minute                           |
+| `download_bytes_intranet`          | Internal Network Download Bandwidth | Averages the total size of internally downloaded objects per second within a statistical period. Unit: bytes/s | ≥ 0 byte/s    | User Bucket Domain         | 1 minute                           |
+| `upload_bytes`                     | Total Upload Bandwidth      | Averages the total size of uploaded objects per second within a statistical period. Unit: bytes/s | ≥ 0 byte/s    | User Bucket Domain         | 1 minute                           |
+| `upload_bytes_extranet`            | External Network Upload Bandwidth | Averages the total size of externally uploaded objects per second within a statistical period. Unit: bytes/s | ≥ 0 byte/s    | User Bucket Domain         | 1 minute                           |
+| `upload_bytes_intranet`            | Internal Network Upload Bandwidth | Averages the total size of internally uploaded objects per second within a statistical period. Unit: bytes/s | ≥ 0 byte/s    | User Bucket Domain         | 1 minute                           |
+| `cdn_bytes`                        | CDN Origin Fetch Bandwidth  | Averages the size of CDN origin fetch requests per second within a statistical period, currently only public network egress is counted. Unit: bytes/s | ≥ 0 byte/s    | User Bucket                | 1 minute                           |
+| `download_traffic`                 | Total Download Traffic      | Totals the size of downloaded objects within a statistical period. Unit: bytes | ≥ 0 byte/s    | User Bucket Domain         | 1 minute                           |
+| `download_traffic_extranet`        | External Network Download Traffic | Totals the size of externally downloaded objects within a statistical period. Unit: bytes | ≥ 0 bytes     | User Bucket Domain         | 1 minute                           |
+| `download_traffic_intranet`        | Internal Network Download Traffic | Totals the size of internally downloaded objects within a statistical period. Unit: bytes | ≥ 0 bytes     | User Bucket Domain         | 1 minute                           |
+| `upload_traffic`                   | Total Upload Traffic        | Totals the size of uploaded objects within a statistical period. Unit: bytes | ≥ 0 bytes     | User Bucket Domain         | 1 minute                           |
+| `upload_traffic_extranet`          | External Network Upload Traffic | Totals the size of externally uploaded objects within a statistical period. Unit: bytes | ≥ 0 bytes     | User Bucket Domain         | 1 minute                           |
+| `upload_traffic_intranet`          | Internal Network Upload Traffic | Totals the size of internally uploaded objects within a statistical period. Unit: bytes | ≥ 0 bytes     | User Bucket Domain         | 1 minute                           |
+| `cdn_traffic`                      | CDN Origin Fetch Traffic    | Totals the traffic of CDN origin fetch requests within a statistical period, currently only public network egress is counted. Unit: bytes | ≥ 0 bytes     | User Bucket                | 1 minute                           |
+| `capacity_total`                   | Total Storage Usage         | Totals the storage space capacity used by all data. Unit: bytes | ≥ 0 bytes     | User Bucket                | 30 minutes                         |
+| `capacity_standard`                | Standard Storage Usage      | Totals the storage space capacity used by standard storage data. Unit: bytes | ≥ 0 bytes     | User Bucket                | 30 minutes                         |
+| `capacity_infrequent_access`       | Infrequent Access Storage Usage | Totals the storage space capacity used by infrequent access storage data. Unit: bytes | ≥ 0 bytes     | User Bucket                | 30 minutes                         |
+| `capacity_archive`                 | Archive Storage Usage       | Totals the storage space capacity used by archive storage data. Unit: bytes | ≥ 0 bytes     | User Bucket                | 30 minutes                         |
+| `capacity_deep_archive`            | Deep Archive Storage Usage  | Totals the storage space capacity used by deep archive storage data. Unit: bytes | ≥ 0 bytes     | User Bucket                | 30 minutes                         |
+| `object_num_all`                   | Total Number of Stored Objects | Totals the number of all types of stored objects, including folders, current version files, and historical version files within the bucket. Unit: count | ≥ 0 items     | User Bucket                | 30 minutes                         |
+| `object_num_standard_total`        | Total Number of Standard Stored Objects | Totals the number of standard stored objects, including folders, current version files, and historical version files within the bucket. Unit: count | ≥ 0 items     | User Bucket                | 30 minutes                         |
+| `object_num_infrequent_access_total` | Total Number of Infrequent Access Stored Objects | Totals the number of infrequent access stored objects, including folders, current version files, and historical version files within the bucket. Unit: count | ≥ 0 items     | User Bucket                | 30 minutes                         |
+| `object_num_archive_total`         | Total Number of Archive Stored Objects | Totals the number of archive stored objects, including folders, current version files, and historical version files within the bucket. Unit: count | ≥ 0 items     | User Bucket                | 30 minutes                         |
+| `object_num_deep_archive_total`    | Total Number of Deep Archive Stored Objects | Totals the number of deep archive stored objects, including folders, current version files, and historical version files within the bucket. Unit: count | ≥ 0 items     | User Bucket                | 30 minutes                         |
+
+## Objects {#object}
+
+The structure of collected Huawei Cloud OBS object data can be viewed in "Infrastructure - Custom"
 
 ``` json
 {
@@ -118,20 +117,20 @@ The collected HUAWEI CLOUD OBS object data structure can see the object data fro
   },
   "fields": {
     "create_date": "2022/06/16 10:51:16",
-    "message"    : "{Instance JSON data}"
+    "message"    : "{Instance JSON Data}"
   }
 }
 ```
 
-Some parameters are described as follows
+Explanation of some parameters:
 
-bucket_type (Bucket type) The value meaning
+bucket_type (Bucket Type) value meanings
 
-| value     | Instructions         |
+| Value     | Explanation         |
 | :------- | :----------- |
-| `OBJECT` | Object bucket   |
-| `POSIX`  | Parallel file system |
+| `OBJECT` | Object Storage Bucket   |
+| `POSIX`  | Parallel File System |
 
-> *notice:`tags`、`fields`The fields in this section may change with subsequent updates*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tips 1:`tags.name`The value is the bucket name as a unique identifier:`tags.name`The value is the bucket name, used as a unique identification
+> Tip 1: The value of `tags.name` is the bucket name, used as a unique identifier.

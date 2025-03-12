@@ -1,0 +1,325 @@
+nav:
+  - integration-index.md
+  - Public Cloud:
+    - Aliyun:
+      - 'ClickHouse': aliyun_clickhouse_community.md
+      - 'ECS': aliyun_ecs.md
+      - 'EIP': aliyun_eip.md
+      - 'Kafka': aliyun_kafka.md
+      - 'Lindorm': aliyun_lindorm.md
+      - 'MongoDB': aliyun_mongodb.md
+      - 'MySQL' : aliyun_rds_mysql.md
+      - 'MySQL(PolarDB)': aliyun_polardb_mysql.md
+      - 'NAT': aliyun_nat.md
+      - 'OSS': aliyun_oss.md
+      - 'Oracle(PolarDB)': aliyun_polardb_oracle.md
+      - 'PostgreDQL(PolarDB)': aliyun_polardb_postgresql.md
+      - 'PolarDB 1.0': aliyun_polardb_1.0.md
+      - 'PolarDB 2.0': aliyun_polardb_2.0.md
+      - 'RDS(MariaDB)' : aliyun_rds_mariadb.md
+      - 'RDS(PostgreSQL)' : aliyun_rds_postgresql.md
+      - 'Redis Shard': aliyun_redis_shard.md
+      - 'Redis': aliyun_redis.md
+      - 'RocketMQ4' : aliyun_rocketmq4.md
+      - 'RocketMQ5' : aliyun_rocketmq5.md
+      - 'SQLServer': aliyun_rds_sqlserver.md
+      - 'Tair': aliyun_tair.md
+      - 'Site Monitor': aliyun_site.md
+
+    - Huawei: 
+      - 'ASM': huawei_asm.md
+      - 'DCS': huawei_dcs.md
+      - 'CCE': huawei_cce.md
+      - 'CSS(Elasticsearch)': huawei_css_es.md
+      - 'ECS': huawei_ecs.md
+      - 'ELB': huawei_elb.md
+      - 'FunctionGraph': huawei_FunctionGraph.md
+      - 'GaussDB(Cassandra)': huawei_gaussdb_cassandra.md
+      - 'GaussDB(MySQL)': huawei_gaussdb_for_mysql.md
+      - 'GaussDB(Influx)': huawei_gaussdb_influx.md
+      - 'GaussDB(Redis)': huawei_gaussdb_redis.md
+      - 'GaussDBV5': huawei_gaussdb_sys.gaussdbv5.md
+      - 'Kafka': huawei_kafka.md
+      - 'RDS(MySQL)': huawei_rds_mysql.md
+      - 'MongoDB': huawei_mongodb.md
+      - 'OBS': huawei_obs.md
+      - 'RDS(PostgreSQL)': huawei_rds_postgresql.md
+      - 'AS': huawei_SYS.AS.md
+      - 'CBR': huawei_SYS.CBR.md
+      - 'DDMS': huawei_SYS_DDMS.md
+      - 'ROMA': huawei_roma.md
+
+    - AWS: 
+      - 'CloudFront': aws_cloudfront.md
+      - 'DynamoDB': aws_dynamodb.md
+      - 'DynamoDB(DAX)': aws_dynamodb_DAX.md
+      - 'EC2': aws_ec2.md
+      - 'ECS': aws_ecs.md
+      - 'ELB': aws_elb.md
+      - 'EventBridge': aws_eventbridge.md
+      - 'Lambda':
+        - aws_lambda.md
+        - 'Lambda Extention': awslambda.md
+      - 'MediaConvert': aws_mediaconvert.md
+      - 'MemoryDB': aws_memorydb.md
+      - 'MySQL': aws_rds_mysql.md
+      - 'Neptune Cluster': aws_neptune_cluster.md
+      - 'OpenSearch': aws_opensearch.md
+      - 'Redshift': aws_redshift.md
+      - 'Redis': aws_elasticache_redis.md
+      - 'Simple Queue Service': aws_sqs.md
+      - 'S3': aws_s3.md
+      - 'Timestream': aws_timestream.md
+      - 'RabbitMQ': aws_mq_rabbitmq.md
+      - 'ElastiCache Serverless': aws_elasticache_serverless.md
+
+    - Tencent:
+      - 'CDB': tencent_cdb.md
+      - 'CLB(Private)': tencent_clb_private.md
+      - 'CLB(Public)': tencent_clb_public.md
+      - 'COS': tencent_cos.md
+      - 'CVM': tencent_cvm.md
+      - 'KeewiDB': tencent_keewidb.md
+      - 'MariaDB': tencent_mariadb.md
+      - 'Memcached': tencent_memcached.md
+      - 'MongoDB': tencent_mongodb.md
+      - 'Redis': tencent_redis_mem.md
+      - 'Tdsql-C': tencent_tdsql_c_mysql.md
+
+    - Volcengine:
+      - 'ECS': volcengine_ecs.md
+      - 'Mysql': volcengine_mysql.md
+      - 'MongoDB  Replica Set': volcengine_mongodb_replica_set.md
+      - 'MongoDB Sharded Cluster': volcengine_mongodb_sharded_cluster.md
+      - 'VKE': volcengine_vke.md
+      - 'Redis': volcengine_redis.md
+
+  - Host:
+    - Default Collection:
+      - 'DataKit': dk.md 
+      - cpu.md
+      - disk.md
+      - diskio.md
+      - mem.md
+      - swap.md
+      - system.md
+      - net.md
+      - host_processes.md
+      - hostobject.md
+    - Network:
+      - netstat.md
+      - socket.md
+      - eBPF:
+        - ebpf.md
+        - 'eBPF Tracing': ebpftrace.md
+    - hostdir.md
+    - host_healthcheck.md
+    - ssh.md
+    - gpu_smi.md
+    - About Windows:
+      - 'Windows Event': windows_event.md
+      - iis.md
+      - active_directory.md
+      - exchange.md
+
+  - Middleware:
+    - 'Storage':
+      - 'MySQL': mysql.md
+      - cassandra.md
+      - clickhousev1.md
+      - cockroachdb.md
+      - couchbase.md
+      - couchdb.md
+      - doris.md
+      - neo4j.md
+      - oracle.md
+      - 'OceanBase': oceanbase.md
+      - sqlserver.md
+      - postgresql.md
+      - redis.md
+      - redis-sentinel.md
+      - memcached.md
+      - etcd.md
+      - mongodb.md
+      - influxdb.md
+      - tdengine.md
+      - elasticsearch.md
+      - solr.md
+      - minio.md
+      - aerospike.md
+      - tidb.md
+      - couchbase-prom.md
+      - juicefs.md
+      - 'IBM Db2': db2.md
+      - dm_v8.md
+      - dongfangtong_ths.md
+      - opengauss.md
+
+    - 'Messaging Queue':
+      - emqx.md
+      - 'Kafka': kafka.md
+      - automq.md
+      - nsq.md
+      - rabbitmq.md
+      - rocketmq.md
+
+    - 'Web Server':
+      - 'Nginx': nginx.md
+      - apache.md
+      - resin.md
+      - dongfangtong_tweb.md
+      - apisix.md
+      - haproxy.md
+
+    - 'Java':
+      - 'JVM': jvm.md
+      - tomcat.md
+
+    - 'Others':
+      - apollo.md
+      - 'Flink': flinkv1.md
+      - consul.md
+      - coredns.md
+      - 'Jira': monitor_jira.md
+      - nacos.md
+      - jenkins.md
+      - gitlab.md
+      - 'PagerDuty': pagerduty.md
+      - snmp.md
+      - seata.md
+      - netflow.md
+      - seata.md
+      - zookeeper.md
+      - 'Zadigx': zadigx.md
+      - 'openai': openai.md
+      - external.md
+      - zookeeper.md
+      - argocd.md
+      - langchain.md
+      - issue_dingtalk.md
+      - issue_feishu.md
+
+  - CI/CD:
+      - 'Jenkins': jenkins.md
+      - gitlab.md
+
+  - Cloud Native:
+    - 'Metric Collection': container.md
+    - 'Log Collection':
+      - container-log.md
+      - 'Sidecar Log Collection': logfwd.md
+    - 'CRD': kubernetes-crd.md
+    - 'Prometheus':
+      - 'Discovery': kubernetesprometheus.md
+      - 'Exportor': kubernetes-prom.md
+      - 'CRD': kubernetes-prometheus-operator-crd.md
+    - 'NPD': npd.md
+    - kubecost.md
+    - kubernetes_audit.md
+
+  - APM:
+    - 'DDTrace':
+      - ddtrace.md
+      - 'SDK Integration':
+        - 'Java':
+          - ddtrace-java.md
+          - 'DDTrace Injection': ddtrace-attach.md
+          - 'JMX Fetch Metrics': ddtrace-jmxfetch.md
+          - 'DDTrace Extensions':
+            - ddtrace-ext-java.md
+            - 'Changelog': ddtrace-ext-changelog.md
+            - 'OTEL and DDTrace Trace Correlation': ddtrace-128-trace-id.md
+        - 'Golang': ddtrace-golang.md
+        - 'Python': ddtrace-python.md
+        - 'PHP': ddtrace-php.md
+        - 'NodeJS': ddtrace-nodejs.md
+        - 'C++': ddtrace-cpp.md
+        - 'Ruby': ddtrace-ruby.md
+  
+    - 'SkyWalking': skywalking.md
+  
+    - 'OpenTelemetry':
+      - opentelemetry.md
+      - 'SDK Integration':
+        - 'Golang': opentelemetry-go.md
+        - 'Java': opentelemetry-java.md
+      - 'OpenTelemetry Extensions':
+        - 'Changelog': otel-ext-changelog.md
+        - 'SQL Obfuscation': otel-sql-obfuscation.md
+        - 'Java Exporter': otel-guance-exporter.md
+  
+    - 'Zipkin': zipkin.md
+    - 'Jaeger': jaeger.md
+    - 'CAT': cat.md
+    - 'Pinpoint':
+      - pinpoint.md
+      - 'SDK Integration':
+        - 'Java': pinpoint-java.md
+        - 'Golang': pinpoint-go.md
+    - 'New Relic': newrelic.md
+    - 'Profiling':
+      - profile.md
+      - 'Java': profile-java.md
+      - 'Python': profile-python.md
+      - 'Go': profile-go.md
+      - 'C/C++': profile-cpp.md
+      - 'NodeJS': profile-nodejs.md
+      - '.NET': profile-dotnet.md
+      - 'PHP': profile-php.md
+  
+    - 'Tracing Overview':
+      - datakit-tracing.md
+      - 'Tracing Data Structure': datakit-tracing-struct.md
+      - 'Trace Correlation Tools': tracing-propagator.md
+
+  - RUM:
+    - rum.md
+
+  - 'Languages':
+    - 'Java': 
+      - java.md
+      - jmx.md
+      - jvm_jmx_exporter.md
+      - jvm_jolokia.md
+      - jvm_micrometer.md
+      - jvm_statsd.md
+    - dotnet.md
+    - golang.md
+    - nodejs.md
+    - php.md
+
+  - Logs:
+    - 'Log Collection Overview': datakit-logging.md
+    - 'Log Process Overview': datakit-logging-how.md
+    - 'Log Collection':
+      - logging.md
+      - ilogtail.md
+      - 'Socket Access Example': logging_socket.md
+      - fluentd.md
+      - logstash.md
+    - 'Other Log Access':
+      - 'LogStreaming': logstreaming.md
+
+  - 'Synthetic Tests':
+    - dialtesting.md
+    - 'Customize Request Tasks': dialtesting_json.md
+
+  - 'Third-party Data Access':
+    - "Prometheus":
+      - "Exportor": prom.md
+      - "Remote Write": prom_remote_write.md
+      - "Push Gateway": pushgateway.md
+    - 'Graphite': graphite.md
+    - 'Kafka Subscribe': kafkamq.md
+    - 'Zabbix': zabbix_exporter.md
+    - 'Promtail': promtail.md
+    - 'Statsd': statsd.md
+    - 'Filebeat': beats_output.md
+    - 'Cloudprober': cloudprober.md
+    - 'Telegraf': telegraf.md
+    - 'Scheck': sec-checker.md
+
+  - 'Other Collectors':
+    - Sensors: sensors.md
+    - smart.md
+    - ipmi.md

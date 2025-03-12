@@ -61,7 +61,7 @@
 
     - YAML 安装
     
-       Launcher YAML 下载：https://<<< custom_key.static_domain >>>/launcher/launcher.yaml
+       Launcher YAML 下载：https://static.<<< custom_key.brand_main_domain >>>/launcher/launcher.yaml
      
        将上面的 YAML 内容保存为 **launcher.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
     

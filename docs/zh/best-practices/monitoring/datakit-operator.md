@@ -25,7 +25,7 @@ Kubernetes 环境在接入 Java 应用 APM 时，需要使用到 `dd-java-agent.
 下载 `datakit-operator.yaml`，并部署到 Kubernetes 集群中。
 
 ```
-wget https://<<< custom_key.static_domain >>>/datakit-operator/datakit-operator.yaml
+wget https://static.<<< custom_key.brand_main_domain >>>/datakit-operator/datakit-operator.yaml
 kubectl apply -f datakit-operator.yaml
 ```
 

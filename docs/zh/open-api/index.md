@@ -16,17 +16,32 @@ icon: zy/open-api
 
 ## 支持Endpoint
 
+<<<% if custom_key.brand_key == 'truewatch' %>>>
+
+| 节点名       | Endpoint                       |
+|-----------|--------------------------------|
+| 海外区1（俄勒冈） | https://us1-openapi.<<< custom_key.brand_main_domain >>> |
+| 欧洲区1（法兰克福） | https://eu1-openapi.<<< custom_key.brand_main_domain >>> |
+| 亚太区1（新加坡） | https://ap1-openapi.<<< custom_key.brand_main_domain >>> |
+| 非洲区1（南非） | https://za1-openapi.<<< custom_key.brand_main_domain >>> |
+| 印尼区1（雅加达） | https://id1-openapi.<<< custom_key.brand_main_domain >>> |
+
+<<<% else %>>>
+
 | 部署类型  | 节点名       | Endpoint                       |
 |-------|-----------|--------------------------------|
-| SaaS 部署 | 中国区1（杭州）  | https://openapi.guance.com     |
-| SaaS 部署 | 中国区2（宁夏）  | https://aws-openapi.guance.com |
-| SaaS 部署 | 中国区4（广州）  | https://cn4-openapi.guance.com |
+| SaaS 部署 | 中国区1（杭州）  | https://openapi.<<< custom_key.brand_main_domain >>>     |
+| SaaS 部署 | 中国区2（宁夏）  | https://aws-openapi.<<< custom_key.brand_main_domain >>> |
+| SaaS 部署 | 中国区4（广州）  | https://cn4-openapi.<<< custom_key.brand_main_domain >>> |
 | SaaS 部署 | 中国区6（香港）  | https://cn6-openapi.guance.one |
-| SaaS 部署 | 海外区1（俄勒冈） | https://us1-openapi.guance.com |
+| SaaS 部署 | 海外区1（俄勒冈） | https://us1-openapi.<<< custom_key.brand_main_domain >>> |
 | SaaS 部署 | 欧洲区1（法兰克福） | https://eu1-openapi.guance.one |
 | SaaS 部署 | 亚太区1（新加坡） | https://ap1-openapi.guance.one |
+| SaaS 部署 | 非洲区1（南非） | https://za1-openapi.<<< custom_key.brand_main_domain >>> |
+| SaaS 部署 | 印尼区1（雅加达） | https://id1-openapi.<<< custom_key.brand_main_domain >>> |
 | 私有部署版 | 私有部署版     | 以实际部署的 Endpoint 为准             |
 
+<<<% endif %>>>
 
 ## 公共请求头(Header)
 
@@ -67,7 +82,7 @@ icon: zy/open-api
 #### 以获取仪表板列表接口为例
 请求如下
 ```bash
-curl "https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
+curl "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/list?pageIndex=1&pageSize=10" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \
   --compressed \
@@ -99,7 +114,7 @@ curl "https://openapi.guance.com/api/v1/dashboards/list?pageIndex=1&pageSize=10"
 #### 以删除仪表板接口为例
 请求如下
 ```bash
-curl "https://openapi.guance.com/api/v1/dashboards/${dashboard_uuid}/delete" \
+curl "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/${dashboard_uuid}/delete" \
   -X "POST" \
   -H "Content-Type: application/json" \
   -H "DF-API-KEY: ${DF_API_KEY}" \

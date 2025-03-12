@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/logmine/query_task?taskId=task_xxxxxx' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logmine/query_task?taskId=task_xxxxxx' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

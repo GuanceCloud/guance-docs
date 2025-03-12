@@ -1,32 +1,31 @@
 ---
-title     : 'Kafka'
-summary   : 'Collect metrics of Kafka'
+title: 'Kafka'
+summary: 'Collect Kafka Metrics Data'
 tags:
-  - 'MIDDLEWARE'
-  - 'MESSAGE QUEUES'
-__int_icon      : 'icon/kafka'
-dashboard :
-  - desc  : 'Kafka'
-    path  : 'dashboard/en/kafka'
-monitor   :
-  - desc  : 'Kafka'
-    path  : 'monitor/en/kafka'
+  - 'Middleware'
+  - 'Message Queue'
+__int_icon: 'icon/kafka'
+dashboard:
+  - desc: 'Kafka'
+    path: 'dashboard/en/kafka'
+monitor:
+  - desc: 'Kafka'
+    path: 'monitor/en/kafka'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Collect Kafka indicators and logs and report them to Guance Cloud to help you monitor and analyze various abnormal situations of Kafka.
+Collect Kafka metrics and log reports to Guance, helping you monitor and analyze various abnormal situations in Kafka.
 
 ## Configuration {#config}
 
-### Requirements {#requirements}
+### Prerequisites {#requirements}
 
-Install or download [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The downloaded Jolokia jar package is already available in the `data` directory under the DataKit installation directory.
+Install or download [Jolokia](https://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.6.2/jolokia-jvm-1.6.2-agent.jar){:target="_blank"}. The Jolokia jar package is already downloaded in the `data` directory under the DataKit installation directory.
 
-Jolokia is a Java agent of Kafka, which provides an external interface using JSON as data format based on HTTP protocol for DataKit to use. When Kafka starts, first configure the `KAFKA_OPTS` environment variable: (port can be modified to be available according to the actual situation)
+Jolokia acts as a Java agent for Kafka, providing an external interface that uses JSON as the data format based on the HTTP protocol, which is used by DataKit. When starting Kafka, configure the `KAFKA_OPTS` environment variable first (the port can be modified to an available port as needed):
 
 ```shell
 export KAFKA_OPTS="$KAFKA_OPTS -javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=*,port=8080"
@@ -42,15 +41,15 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 
 ???+ attention
 
-    Jolokia not allows change port number in the running state. If found command with `--port` can't change the port, this indicates Jolokia is still in running.
+    Jolokia does not allow changing the port number during runtime. If you find that the `--port` command cannot change the port number, this is the reason.
 
-    If want to change Jolokia port, you must exit Jolokia first and restart it.
+    To modify the Jolokia port number, you must exit Jolokia and then restart it.
 
 ???+ tip
 
-    Exit Jolokia command: `java -jar </path/to/jolokia-jvm-agent.jar> --quiet stop <Kafka-PID>`
+    The command to exit Jolokia is: `java -jar </path/to/jolokia-jvm-agent.jar> --quiet stop <Kafka-PID>`
 
-    For more Jolokia command information can refer to [here](https://jolokia.org/reference/html/agents.html#jvm-agent){:target="_blank"}.
+    For more information about Jolokia commands, refer to [here](https://jolokia.org/reference/html/agents.html#jvm-agent){:target="_blank"}.
 
 <!-- markdownlint-enable -->
 
@@ -59,7 +58,7 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `kafka.conf.sample` and name it `kafka.conf`. Examples are as follows:
+    Enter the `conf.d/db` directory under the DataKit installation directory, copy `kafka.conf.sample`, and rename it to `kafka.conf`. Example configuration is as follows:
     
     ```toml
         
@@ -194,17 +193,17 @@ java -jar </path/to/jolokia-jvm-agent.jar> --host 127.0.0.1 --port=8080 start <K
       # more_tag = "some_other_value"
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.kafka.tags]` if needed:
+All the collected data will append global election tags by default, or you can specify other tags through `[inputs.kafka.tags]` in the configuration:
 
 ``` toml
  [inputs.kafka.tags]
@@ -224,9 +223,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -579,9 +578,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -597,7 +596,7 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 |`IsrExpandsPerSec.Count`||int|count|
 |`IsrExpandsPerSec.EventType`||string|-|
 |`IsrExpandsPerSec.FifteenMinuteRate`||float|-|
-|`IsrExpandsPerSec.FiveMinuteRate`||float|-|
+|`|`IsrExpandsPerSec.FiveMinuteRate`||float|-|
 |`IsrExpandsPerSec.MeanRate`||float|-|
 |`IsrExpandsPerSec.OneMinuteRate`||float|-|
 |`IsrExpandsPerSec.RateUnit`||string|-|
@@ -626,9 +625,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -661,9 +660,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -768,9 +767,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -913,10 +912,10 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`topic`|topic name|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`topic`|Topic name|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -968,11 +967,11 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`partition`|partition number|
-|`topic`|topic name|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`partition`|Partition number|
+|`topic`|Topic name|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -994,9 +993,9 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
+|`jolokia_agent_url`|Jolokia agent URL path|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -1024,10 +1023,10 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`type`|metric type|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -1049,10 +1048,10 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 | Tag | Description |
 |  ----  | --------|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`type`|metric type|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -1068,18 +1067,18 @@ In Kafka cluster mode, a unique controller node will be elected, and only the co
 
 ### `kafka_consumer`
 
-This metrics needs to be collected on the Consumer instance
+These metrics need to be collected on the Consumer instance
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`client_id`|client id|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`type`|metric type|
+|`client_id`|Client ID|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -1155,18 +1154,18 @@ This metrics needs to be collected on the Consumer instance
 
 ### `kafka_producer`
 
-This metrics needs to be collected on the Producer instance
+These metrics need to be collected on the Producer instance
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`client_id`|client id|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`type`|metric type|
+|`client_id`|Client ID|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`type`|Metric type|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -1233,20 +1232,20 @@ This metrics needs to be collected on the Producer instance
 
 ### `kafka_connect`
 
-This metrics needs to be collected on the Connect instance
+These metrics need to be collected on the Connect instance
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`client_id`|client id|
-|`connector`|connector|
-|`jolokia_agent_url`|Jolokia agent url path|
-|`task`|task|
-|`type`|metric type|
+|`client_id`|Client ID|
+|`connector`|Connector|
+|`jolokia_agent_url`|Jolokia agent URL path|
+|`task`|Task|
+|`type`|Metric type|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -1273,7 +1272,7 @@ This metrics needs to be collected on the Connect instance
 |`count`||int|count|
 |`deadletterqueue_produce_failures`||int|count|
 |`deadletterqueue_produce_requests`||int|count|
-|`last_error_timestamp`|The epoch timestamp when this task last encountered an error in millisecond.|int|msec|
+|`last_error_timestamp`|The epoch timestamp when this task last encountered an error in milliseconds.|int|msec|
 |`offset_commit_avg_time_ms`||float|ms|
 |`offset_commit_completion_rate`||float|-|
 |`offset_commit_completion_total`||int|count|
@@ -1317,9 +1316,9 @@ This metrics needs to be collected on the Connect instance
 
 
 
-## Log Collection {#logging}
+## Logging {#logging}
 
-To collect kafka's log, open `files` in kafka.conf and write to the absolute path of the kafka log file. For example:
+If you need to collect Kafka logs, you can enable `files` in `kafka.conf` and enter the absolute path of the Kafka log files. For example:
 
 ```toml
 [[inputs.kafka]]
@@ -1328,51 +1327,51 @@ To collect kafka's log, open `files` in kafka.conf and write to the absolute pat
     files = ["/usr/local/var/log/kafka/error.log","/usr/local/var/log/kafka/kafka.log"]
 ```
 
-When log collection is turned on, a log with a log `source` of `kafka` is generated by default.
+After enabling log collection, by default, logs with a source (`source`) of `kafka` will be generated.
 
->Note: DataKit must be installed on Kafka's host to collect Kafka logs.
+> Note: DataKit must be installed on the same host as Kafka to collect Kafka logs.
 
-Example of cutting logs:
+Example of log segmentation:
 
-```log
+``` log
 [2020-07-07 15:04:29,333] DEBUG Progress event: HTTP_REQUEST_COMPLETED_EVENT, bytes: 0 (io.confluent.connect.s3.storage.S3OutputStream:286)
 ```
 
-The list of cut fields is as follows:
+The segmented field list is as follows:
 
 | Field Name | Field Value                                                 |
 | ------ | ------------------------------------------------------ |
 | msg    | Progress event: HTTP_REQUEST_COMPLETED_EVENT, bytes: 0 |
 | name   | io.confluent.connect.s3.storage.S3OutputStream:286     |
 | status | DEBUG                                                  |
-| time   | 1594105469333000000                                    |
+| time   | 1594105469333                                          |
 
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: Why can't see `kafka_producer` / `kafka_producer` / `kafka_connect` measurements? {#faq-no-data}
+### :material-chat-question: Why can't I see the `kafka_producer` / `kafka_consumer` / `kafka_connect` metric sets? {#faq-no-data}
 
-After Kafka service is started, if you need to collect Producer/Consumer/Connector indicators, you need to configure Jolokia for them respectively.
+After starting the Kafka service, if you need to collect Producer/Consumer/Connector metrics, you need to configure Jolokia for each of them separately.
 
-Referring to [Kafka Quick Start](https://kafka.apache.org/quickstart){:target="_blank"}, configure the `KAFKA_OPTS` environment variable for the example of Producer, as follows:
+Refer to [Kafka Quick Start](https://kafka.apache.org/quickstart){:target="_blank"}, taking Producer as an example, first configure the `KAFKA_OPTS` environment variable, as shown below:
 
 ```shell
 export KAFKA_OPTS="-javaagent:/usr/local/datakit/data/jolokia-jvm-agent.jar=host=127.0.0.1,port=8090"
 ```
 
-Go into the Kafka directory and start a Producer:
+Enter the Kafka directory and start a Producer:
 
 ```shell
 bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
 ```
 
-Copy a Kafka.conf to open multiple Kafka collectors and configure the url:
+Copy out a `kafka.conf` to enable multiple Kafka collectors and configure this URL:
 
 ```toml
   urls = ["http://localhost:8090/jolokia"]
 ```
 
-And remove comments from the fields in the collect producer metrics section:
+Uncomment the fields for collecting Producer metrics:
 
 ```toml
   # The following metrics are available on producer instances.  
@@ -1382,6 +1381,6 @@ And remove comments from the fields in the collect producer metrics section:
     tag_keys   = ["client-id", "type"]
 ```
 
-Restart Datakit, which then collects metrics for the Producer instance.
+Restart Datakit, at this point Datakit can collect Metrics from the Producer instances.
 
 <!-- markdownlint-enable -->

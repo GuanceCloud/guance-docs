@@ -1,172 +1,200 @@
 # Process
 ---
 
-Process data collection will be reported to the Guance console after being successfully reported. In the **Infrastructure > Process**, you can view all process data information in the current workspace **for the last 10 minutes**.
+After process data collection is successful, it will be reported to the <<< custom_key.brand_name >>> console. In **Infrastructure** under **Process**, you can view all process data information within the current workspace for the **last 10 minutes**.
 
 ## Query and Analysis
 
-Enter the Process explorer, and Guance supports you to query process data by searching keywords, adding label filters and sorting.
+Enter the **Process** Explorer, <<< custom_key.brand_name >>> supports querying process data through keyword search, adding label filters, sorting, and other methods.
 
-- Time Widget: The process list supports viewing the process data collected **in the last ten minutes**, and it can be refreshed to the current time range by the "Play" button to retrieve the data list again. Click the time range to view the process playback:
+- Time Widget: The process list supports viewing processes collected within the <u>last ten minutes</u>. By clicking the play button, you can refresh to the current time range and retrieve a new data list. Clicking the time range allows you to view process playback:
 
-    - After dragging, the refresh is paused and the time is displayed as "start time-end time"; The query time range is 5 minutes;
-    
-    - After dragging, the query is historical process data;
-    
-    - After dragging, click the "Play" button or refresh the page to return to viewing the progress "in the last 10 minutes".
+    - After dragging, the refresh pauses, and the time displayed is [start time-end time], with a query time range of 5 minutes;
+
+    - After dragging, historical process data is queried;
+
+    - After dragging, click the play button or refresh the page to return to viewing the most recent 10 minutes of processes.
 
 ![](img/8.process.png)
 
-- [Search and Filter](../getting-started/function-details/explorer-search.md): You can use various search methods such as keyword search and wildcard search. You can also filter values by `tags/attributes`, including forward and reverse filtering, fuzzy and reverse fuzzy matching, existence and non-existence.
+- [Search and Filtering](../getting-started/function-details/explorer-search.md): In the Explorer search bar, various search methods are supported, including keyword search, wildcard search, etc.; filtering by `labels/attributes` values, including positive and negative filtering, among others.
 
-- [Quick Filter](../getting-started/function-details/explorer-search.md#quick-filter): Edit in the quick filter to add new filtering fields and then you can select them for quick filtering.
+- [Quick Filter](../getting-started/function-details/explorer-search.md#quick-filter): Edit quick filters to add new filter fields. After completion, you can select field values for quick filtering.
 
-- [Columns](../getting-started/function-details/explorer-search.md#columns): On the host object list page, you can customize the display columns by adding, editing, deleting and dragging the display columns.
+- [Custom Display Columns](../getting-started/function-details/explorer-search.md#columns): Customize the addition, editing, deletion, and dragging of display columns via **Display Columns**.
 
-- Sorting: Hover to the list menu and click :fontawesome-solid-sort: sort to sort based on the selected label.
+- Sorting: Hover over the list menu and click “ :fontawesome-solid-sort: Sort” to sort based on selected tags in ascending or descending order.
 
-- [Analysis Mode](../getting-started/function-details/explorer-search.md#analysis): You can perform multidimensional analysis and statistics based on <u>1-3 tags</u> to reflect the distribution characteristics of data in different dimensions. It supports various data chart analysis methods, including toplist, pie charts and treemaps.
+- [Analysis Mode](../getting-started/function-details/explorer-search.md#analysis): Supports multi-dimensional analysis and statistics using <u>1-3 labels</u>, reflecting data distribution characteristics across different dimensions. Multiple data chart analysis methods are supported, including Top Lists, pie charts, and treemaps.
 
 ![](img/4.jichusheshi_3.png)
 
-- Data Export: The :material-cog: icon in the upper right corner of the explorer supports exporting the current object list data to CSV files or dashboards and notes.
+- Data Export: The :material-cog: settings icon in the top-right corner of the Explorer supports exporting the current object list data to CSV files or scene dashboards and notes.
 
-    - Export to CSV File: Save current list as CSV file locally.
+    - Export to CSV file: Save the current list as a CSV file locally;
 
-    - Export to Dashboard: Save the current list as Visual Chart to the specified Dashboard.
-    
-    - Export to Notes: Save the current list as Visual Chart to specify Notes.
+    - Export to Dashboard: Save the current list as a **visual chart** to a specified **dashboard**;
 
+    - Export to Note: Save the current list as a **visual chart** to a specified **note**.
 
-If you need to export a certain data, open the details page of that data, and click on the :material-tray-arrow-up: icon in the top right corner.
+If you need to export a specific data entry, open the details page of that entry and click the :material-tray-arrow-up: icon in the top-right corner.
 
 ![](img/process-0809.png)
 
-## Process Details page
+## Process Details Page
 
-Click on the process name in the process list, and you can draw out the details page to view the detailed information of the process object, including the object to which the process belongs, labels, attributes and associated metrics, logs, hosts and networks.
+Clicking on a process name in the process list will slide out a detail page showing detailed information about the process object, including associated objects, Label attributes, additional extended attributes, and related metrics, logs, hosts, networks, etc.
 
 ![](img/8.process_3.png)
 
+### Associated Analysis
 
-
-### Association Analysis
-
-Guance supports correlation analysis for each process. On the process details page, in addition to the basic information of the process, you can also have a one-stop understanding of <u>the corresponding process metrics, logs, hosts, networks, etc., to monitor the process operation more quickly and comprehensively</u>.
+<<< custom_key.brand_name >>> supports associated analysis for each process. On the process detail page, besides basic process information, you can comprehensively monitor the <u>metrics, logs, host, network, etc., related to the process</u>.
 
 #### Host Query
 
-By clicking the Host tab on the Process Details page, you can query data about the hosts associated with the process.
+By clicking the host tag on the process detail page, you can query data related to the host associated with the process.
 
 ![](img/9.process_6.png)
 
-
-| Operate | Description |
+| Action | Description |
 | --- | --- |
-| Filter field value | Add the field to the explorer to view all the data related to the field. |
-| Reverse filter field value | Add this field to the explorer to view other data besides this field. |
-| Add to display column | Add the field to the explorer list for viewing. |
-| Copy | Copy the field to the clipboard.  |
-| View related logs/containers/processes/links/inspection | view all logs/containers/processes/links/inspection related to this host. |
+| Filter Field Value | Add this field to the Explorer to view all data related to this field. |
+| Reverse Filter Field Value | Add this field to the Explorer to view data excluding this field. |
+| Add to Display Columns | Add this field to the Explorer list for viewing. |
+| Copy | Copy this field to the clipboard. |
+| View Related Logs | View all logs related to this host. |
+| View Related Containers | View all containers related to this host. |
+| View Related Processes | View all processes related to this host. |
+| View Related Traces | View all traces related to this host. |
+| View Related Inspections | View all inspection data related to this host. |
 
+#### Associated Metrics/Logs/Host
 
-#### Association Metrics/Logs/Hosts
-
-At the bottom of the details page, you can switch content tabs:
-
-![](img/9.process_5.png)
+In the detail page, switch content tabs to:
 
 <div class="grid" markdown>
 
 === "Metrics"
 
-    You can monitor the performance status of processes in the last 24 hours, including CPU usage, memory usage, and number of open files.
+    You can monitor the performance status of the process <u>within the last 24 hours</u>, including CPU usage, memory usage, number of open files, etc.
 
-    **Note**: Process metric data is not collected automatically by default. You need to manually configure the process collector to enable the collection of process metrics. Once process metric collection is enabled, the metrics shown in the following figure will display data.
+    **Note**: Process metric data collection is not automatically enabled by default and requires manual configuration of the process collector to enable metric collection. Once enabled, the metrics in the image will display data.
 
-    > See [Process](../datakit/host_processes.md) for instructions on how to enable process metric collection. 
+    > For enabling methods, refer to [Processes](../integrations/host_processes.md).
 
 === "Logs"
 
-    You can view the logs and log count related to the process in the last 1 hour, and perform keyword searches, multi-tag filtering and time sorting on these logs.
+    You can view logs and log counts related to the process <u>within the last hour</u> and perform keyword searches, multi-label filtering, and time sorting on these logs.
 
-    - To view more detailed log information: You can click on the log content to jump to the corresponding log details page, or click on **Logs** to view all logs related to the host;
+    - To view more detailed log information: Click the log content to jump to the corresponding log detail page, or click to jump to the **Logs** to view all logs related to the host;
+ 
+    - To view more log fields or complete log content: Adjust the "maximum number of rows displayed" and "display columns" via the associated log Explorer's **Display Columns**.
+    
+    **Note**: For a smoother user experience, <<< custom_key.brand_name >>> saves user browsing settings (including "maximum number of rows displayed" and "display columns") in **Logs** by default to ensure consistency between **Associated Logs** and **Logs**. However, custom adjustments made in **Associated Logs** are not saved after exiting the page.
 
-    - To view more log fields or complete log content: You can customize the "Maximum Displayed Rows" and "Displayed Columns" through the associated log explorer **Columns**.
-
-    **Note**: For a smoother user query experience, Guance automatically saves the user's browsing settings in **Logs** (including "Maximum Displayed Rows" and "Displayed Columns"), to keep the **Associated Logs** consistent with **Logs**. However, any custom adjustments made in **Associated Logs** are not saved after exiting the page.
 
 === "Host"
 
-    You can view the basic information of the associated hosts (with the `host` field) and the performance metric status within the selected time range in the time component.
+    You can view basic information about related hosts (associated field: `host`) and their performance metric status <u>within the selected time widget range</u>.
 
-    ???+ warning "`host`"
+    ???+ warning "Field `host`"
+    
+        To view related hosts in process details, the `host` field must match; otherwise, the related host page will not be visible in process details.
 
-        To view the associated hosts in the process details, the `host` field must be matched. Otherwise, the pages of the associated hosts cannot be viewed in the process details.
+        - Attribute View: Includes basic host information, integration runtime status, and cloud provider information if cloud host collection is enabled;
+  
+        - Metric View: Displays default 24-hour performance metrics for related hosts, such as CPU and memory. Click **Open This View** to [Built-in Views](../scene/built-in-view/bind-view.md), where you can clone and customize host views, saving them as user views accessible from the process detail page.
 
-        - Attribute view: Includes basic information and integration status of the host. If the collection of cloud hosts is enabled, you can also view information from the cloud provider;
+=== "Network"
 
-        - Metric view: You can view the performance metric view of the associated hosts, such as CPU and memory, in the default 24-hour period. Click **Open this view** to go to the [Built-in Views](../scene/built-in-view/bind-view.md), where you can customize and save the host view as a user view, which can be viewed by binding it in the process details page.
+    Network traffic between hosts, Pods, Deployments, and Services can be viewed. After successful network data collection for processes, it will be reported to the <<< custom_key.brand_name >>> console. In **Infrastructure > Process** detail page under **Network**, you can view network data based on hosts or process services.
 
 </div>
 
 ![](img/8.process_1.png)
 
-#### Bind Inner Views
+#### Bind Built-in Views
 
-Guance supports custom binding of inner dashboards to explorers. With the binding function of inner views, you can customize the related contents of process objects and create binding relationships. 
+<<< custom_key.brand_name >>> supports binding built-in views to Explorers. Click to bind a built-in view to add a new view to the current host detail page. You can customize the relevant content of the process object and create a binding relationship.
 
-**Note:** Before [binding a inner view](../scene/built-in-view/bind-view.md), you need to confirm that the view variable in the bound inner view has fields related to the process, such as `process_id`.
+![](img/view-1.png)
+
+**Note**: Before [binding built-in views](../scene/built-in-view/bind-view.md), confirm that the bound built-in view contains fields related to the process, such as `process_id`.
 
 <!--
-
 ### Process Network
 
-Network support is available for viewing network traffic between hosts, Pods, Deployments, and Services. After successful collection of network data, the process network data will be reported to the Guance console. In the **Infrastructure > Processes > Network**, you can view network data based on host or process services.
- 
+Network traffic between hosts, Pods, Deployments, and Services can be viewed. After successful network data collection for processes, it will be reported to the <<< custom_key.brand_name >>> console. In **Infrastructure > Process** detail page under **Network**, you can view network data based on hosts or process services.
 
-#### Parameter Description
+???+ warning
+
+    - Currently only supports Linux systems, and except for CentOS 7.6+ and Ubuntu 16.04, other distributions require a Linux kernel version higher than 4.0.0;
+  
+    - Network traffic data for hosts/process services is saved for the last 48 hours by default, while the Free Plan saves data for the last 24 hours by default;
+  
+    - In the process detail page, clicking into **Network** defaults to retrieving the last 15 minutes of data and does not support automatic refresh, requiring manual refresh for new data;
+   
+    - Currently supports TCP and UDP protocol network performance monitoring. Combined with incoming and outgoing, there are six selection options:  
+       
+        - Incoming + no protocol distinction     
+        - Incoming + TCP protocol   
+        - Incoming + UDP protocol 
+        - Outgoing + no protocol distinction     
+        - Outgoing + TCP protocol     
+        - Outgoing + UDP protocol     
+
+#### Parameter Explanation
 
 | Parameter | Description | Statistical Method |
 | --- | --- | --- |
-| IP/Port | The target is aggregated based on IP+ port and returns up to 100 pieces of data. | Collected by IP/Port Packet |
-| Number of bytes sent | Number of bytes sent to destination by source host/process service | Sum the number of bytes sent by all records |
-| Number of bytes accepted | Number of bytes of destination received by source host/process service | Sum of bytes received by all records |
-| TCP Delay | TCP latency of source host/process service to destination | Average value |
-| TCP Fluctuation | TCP latency fluctuation of source host/process service to target | Average value |
-| TCP Number of connections | Number of TCP connections from source host/process service to destination | Average value |
-| TCP Number of retransmissions | Number of TCP retransmissions from source host/process service to destination | Average value |
-| TCP Number of closures | Number of TCP shutdowns from source host/process service to destination | Average value |
+| IP/Port | Aggregation based on IP+port, returns up to 100 records | Grouped by IP/port |
+| Sent Bytes | Number of bytes sent from source host/process service to target | Sum of all sent byte records |
+| Received Bytes | Number of bytes received by source host/process service from target | Sum of all received byte records |
+| TCP Delay | TCP delay from source host/process service to target | Average value |
+| TCP Jitter | TCP delay fluctuation from source host/process service to target | Average value |
+| TCP Connections | Number of TCP connections from source host/process service to target | Total sum |
+| TCP Retransmissions | Number of TCP retransmissions from source host/process service to target | Total sum |
+| TCP Closures | Number of TCP closures from source host/process service to target | Total sum |
 
 
 #### Network Connection Analysis
 
-Guance supports viewing network connection data on the process details page, including source IP/port, target IP/port, number of bytes sent, number of bytes received, TCP delay and TCP retransmission times. At the same time, you can customize the display fields through the Settings button, or add filters for connection data to filter keyword fields of all string types. If you need to view more detailed network connection data, click on the data to view its corresponding network flow data.
+<<< custom_key.brand_name >>> supports viewing network connection data in the process detail page, including source IP/port, destination IP/port, sent bytes, received bytes, TCP delay, TCP retransmissions, etc.
 
-**Process Network Connection Analysis**
-On the Network of the Process Details page, select the view as "Pid" to see the network connectivity between the process services.
+Additionally, you can customize display fields via the **Settings** button or add filter conditions to string-type `keyword` fields for connection data. If you need more detailed network connection data, click the data to view its corresponding network flow data.
 
-![](img/9.network_5.png)
+**Process Network Connection Analysis**:
 
-**Host Network Connection Analysis**
-On the Process Details page, select "Host" as the view to see the network connectivity between hosts.
+In the network section of the process detail page, selecting the view as "Pid" shows network connections between process services.
 
-![](img/9.network_1.png)
+![](img/7.host_network_3.png)
 
-#### 48-hour Network Data Playback
+**Host Network Connection Analysis**:
 
-In the process network, it supports clicking the time control to select and view the 48-hour network data playback.
+In the network section of the process detail page, selecting the view as "Host" shows network connections between hosts.
 
-- Time range: view the data of 30 minutes before and after the log by default, and view the data of the latest hour by default if the current log occurs;
-- Support any drag time range to view the corresponding network traffic;
-- After dragging, the query is historical network data;
-- After dragging, click the "Play" button or refresh the page to return to view the network data of "Recent 1 Hour".
+![](img/7.host_network_4.png)
+
+#### 48-Hour Network Data Playback
+
+In process network, you can choose to view 48-hour network data playback by clicking the time widget.
+
+- Time Range: Default view of data 30 minutes before and after the log; for current logs, the default view is the last hour;
+
+- Supports arbitrary drag-and-drop to view corresponding network traffic;
+ 
+- After dragging, queries historical network data;
+
+- After dragging, clicking the play button or refreshing the page returns to viewing the last hour of network data.
 
 ![](img/4.process_1.png)
 
 #### Network Flow Data
 
-Guance supports viewing network flow data on the process details page, which is automatically refreshed every 30s. The data of the last 2 days is displayed by default, including time, source IP/port, target IP/port, source host, transmission direction and protocol. At the same time, you can customize the display fields through the Settings button, or add filters for network stream data to filter keyword fields of all string types. If you need to view the associated network flow data, click the data to view other network flow data corresponding to relevant fields such as host, transmission direction and protocol.
+<<< custom_key.brand_name >>> supports viewing network flow data in the process detail page, which auto-refreshes every 30 seconds and displays data from the last two days, including time, source IP/port, destination IP/port, source host, transmission direction, protocol, etc.
+
+Additionally, you can customize display fields via the **Settings** button or add filter conditions to string-type `keyword` fields for network flow data. If you need to view related network flow data, click the data to view corresponding fields such as host, transmission direction, and protocol.
 
 ![](img/9.network_2.png)
 

@@ -153,7 +153,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/dialing_task/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dialing_task/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"type":"http","regions":["reg_xxxx20"],"task":{"frequency":"1m","method":"GET","url":"https://www.baidu.com","name":"test","advance_options":{"request_options":{"follow_redirect":false,"headers":{},"cookies":"","auth":{"username":"","password":""}},"request_body":{"body_type":"","body":""},"secret":{"not_save":false}},"success_when":[{"body":[{"contains":"200"}]}],"success_when_logic":"and"},"tags":["test"]}' \

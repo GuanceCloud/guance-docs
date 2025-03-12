@@ -1,84 +1,81 @@
 ---
-title: 'AliCloud RDS PostgreSQL'
+title: 'Alibaba Cloud RDS PostgreSQL'
 tags: 
   - Alibaba Cloud
-summary: 'AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more.'
+summary: 'Alibaba Cloud RDS PostgreSQL Metrics display, including CPU usage, memory usage, etc.'
 __int_icon: 'icon/aliyun_rds_postgresql'
 dashboard:
-  - desc: 'AliCloud RDS PostgreSQL Dashboard'
-    path: 'dashboard/zh/aliyun_rds_postgresql/'
+  - desc: 'Alibaba Cloud RDS PostgreSQL built-in views'
+    path: 'dashboard/en/aliyun_rds_postgresql/'
 
 monitor:
-  - desc: 'AliCloud RDS PostgreSQL Monitor'
-    path: 'monitor/zh/aliyun_rds_postgresql/'
+  - desc: 'Alibaba Cloud RDS PostgreSQL monitor'
+    path: 'monitor/en/aliyun_rds_postgresql/'
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# AliCloud RDS PostgreSQL
+# Alibaba Cloud RDS PostgreSQL
 <!-- markdownlint-enable -->
 
-AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more.
+Alibaba Cloud RDS PostgreSQL Metrics display, including CPU usage, memory usage, etc.
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
 
-> Recommended deployment of GSE version
+> It is recommended to deploy the GSE version.
 
-### Installation script
+### Installation Script
 
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,,You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize the monitoring data of RDS cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun - RDS Collect）」(ID：`guance_aliyun_rds`)
+To synchronize monitoring data of RDS cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud - RDS Collection)" (ID: `guance_aliyun_rds`)
 
-Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-tap "Deploy startup Script",The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click "Run",you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
+Additionally, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】to immediately execute it without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+By default, we collect some configurations; for details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
+### Verification
 
-### Verify
+1. Confirm in "Management / Automatic Trigger Configuration" whether the corresponding task has the corresponding automatic trigger configuration, and check the task records and logs for any anomalies.
+2. In the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. In the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+## Metrics {#metric}
+After configuring Alibaba Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitoring Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/postgresql?spm=a2c4g.11186623.0.0.252476abya93cJ){:target="_blank"}
 
-## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Aliyun Monitor Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/postgresql?spm=a2c4g.11186623.0.0.252476abya93cJ){:target="_blank"}
-
-| Metric Name  | Descriptive  | Unit  | Dimensions  |
+| Metric Name  | Description  | Unit  | Dimensions  |
 | ---- | :----: | ------ | ------ |
-| PG_DBAge | PG_Database Age | count | instanceId |
-| PG_InactiveSlots | PG_Number of inactive replication slots | count | instanceId |
-| PG_MaxExecutingSQLTime | PG_Slowest SQL Execution Time Consumption | seconds | instanceId |
-| PG_MaxSlotWalDelay | PG_Maximum Copy Slot Delay(MB) | byte | instanceId |
-| PG_ReplayLatency | PG_Slowest Standby Playback Delay(MB) | byte | instanceId |
-| PG_SwellTime | PG_Maximum transaction execution time | seconds | instanceId |
-| active_connections_per_cpu | PG_Average Active Connections per CPU | count | instanceId |
-| conn_usgae | PG_Connections Utilization | % | instanceId |
-| cpu_usage | PG_CPU utilization | % | instanceId |
-| five_seconds_executing_sqls | PG_Five Seconds Slow SQL | count | instanceId |
-| iops_usage | PG_IOPS utilization | % | instanceId |
-| local_fs_inode_usage | PG_INODE utilization rate | % | instanceId |
-| local_fs_size_usage | PG_Disk Space Utilization | % | instanceId |
-| local_pg_wal_dir_size | PG_WAL file size | MB | instanceId |
-| mem_usage | PG_Memory Usage | % | instanceId |
-| one_second_executing_sqls | PG_One Second Slow SQL | count | instanceId |
-| three_seconds_executing_sqls | PG_Three Seconds Slow SQL | count | instanceId |
+| PG_DBAge | PG Database Age | count | instanceId |
+| PG_InactiveSlots | PG Inactive Replication Slots Count | count | instanceId |
+| PG_MaxExecutingSQLTime | PG Slowest SQL Execution Time | seconds | instanceId |
+| PG_MaxSlotWalDelay | PG Maximum Replication Slot Delay (MB) | byte | instanceId |
+| PG_ReplayLatency | PG Slowest Standby Replay Delay (MB) | byte | instanceId |
+| PG_SwellTime | PG Longest Transaction Execution Time | seconds | instanceId |
+| active_connections_per_cpu | PG Average Active Connections per CPU | count | instanceId |
+| conn_usgae | PG Connection Usage Rate | % | instanceId |
+| cpu_usage | PG CPU Usage Rate | % | instanceId |
+| five_seconds_executing_sqls | PG Five-second Slow SQL | count | instanceId |
+| iops_usage | PG IOPS Usage Rate | % | instanceId |
+| local_fs_inode_usage | PG INODE Usage Rate | % | instanceId |
+| local_fs_size_usage | PG Disk Space Usage Rate | % | instanceId |
+| local_pg_wal_dir_size | PG WAL File Size | MB | instanceId |
+| mem_usage | PG Memory Usage Rate | % | instanceId |
+| one_second_executing_sqls | PG One-second Slow SQL | count | instanceId |
+| three_seconds_executing_sqls | PG Three-second Slow SQL | count | instanceId |
 
+## Objects {#object}
 
-## Object {#object}
-
-The collected Aliyun RDS object data structure can see the object data from 「Infrastructure-custom-defined」
+The collected Alibaba Cloud RDS PostgreSQL object data structure can be viewed from "Infrastructure - Custom"
 
 ```json
 {
@@ -92,7 +89,7 @@ The collected Aliyun RDS object data structure can see the object data from 「I
     "DBInstanceId"         : "rm-xxxxx",
     "ZoneId"               : "cn-shanghai-h",
     "RegionId"             : "cn-shanghai",
-    "DBInstanceDescription": "Business system",
+    "DBInstanceDescription": "Business System",
     "LockMode"             : "Unlock",
     "Category"             : "Basic",
     "ConnectionMode"       : "Standard",
@@ -107,41 +104,38 @@ The collected Aliyun RDS object data structure can see the object data from 「I
     "LogSize"          : "10000",
     "BackupLogSize"    : "10000",
     "BackupDataSize"   : "10000",
-    "ConnectionString" : "{Connection address JSON data}",
+    "ConnectionString" : "{connection address JSON data}",
     "DBInstanceStorage": "100",
-    "accounts"         : "{User permission information JSON data}",
-    "databases"        : "{Details of the data library JSON data}",
+    "accounts"         : "{user permission JSON data}",
+    "databases"        : "{database information JSON data}",
     "SSLExpireTime"    : "2022-10-11T08:16:43Z",
-    "message"          : "{Instance JSON data}",
+    "message"          : "{instance JSON data}",
   }
 }
 
 ```
 
+## Logging {#logging}
 
-## Log {#logging}
+### Slow Query Statistics
 
-### Slow query statistics
+#### Prerequisites for Slow Query Statistics
 
-#### The prerequisite for slow query statistics
+> Note 1: The code execution of this script depends on the collection of RDS instance objects. If custom object collection for RDS is not configured, the slow log script cannot collect slow log data.
+> Note 2: Due to a delay of 6~8 hours in Alibaba Cloud's statistical data return, there may be a delay in the collector updating data. For detailed reference, see Alibaba Cloud documentation: Cloud Database RDS Slow Log Statistics.
+> Note 3: This collector supports all versions of MySQL (except Basic Edition MySQL 5.7), SQL Server 2008 R2, MariaDB 10.3 type databases. To collect other types of databases, use the [Alibaba Cloud - RDS Slow Query Detail](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
 
-> Tip 1：The execution of this script depends on RDS instance object collection. If RDS custom object collection is not configured, the slow log script will not be able to collect slow log data.
->
-> Tip 2：Due to the 6 to 8 hours data delay in the statistics returned by Aliyun, there might be a delay in the collector's data updates. For more details, please refer to the Aliyun documentation on "Cloud Database RDS Query Slow Log Statistics."
->
-> Tip 3：This collector supports all versions of MySQL (except for MySQL 5.7 Basic Edition), SQL Server 2008 R2, and MariaDB 10.3 databases. If you want to collect data from other types of databases, please use the [Aliyun-RDS Slow query details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
+#### Installation Script for Slow Query Statistics
 
-#### Slow Query Statistics Installation Script
+On top of the previous setup, you need to install a script for **RDS Slow Query Statistics Log Collection**.
 
-On top of that, you need to install a corresponding collector. **The script for RDS slow query log collection**
+In "Management / Script Market", click and install the corresponding script package:
 
-Click and install the corresponding script package in「Management / Script market」：
+- "Guance Integration (Alibaba Cloud - RDS Slow Query Statistics Log Collection)" (ID: `guance_aliyun_rds_slowlog`)
 
-- 「Guance Integration (AliCloud-RDS Slow Query Detail Log Collection)」(ID：`guance_aliyun_rds_slowlog`)
+After the data is synchronized normally, you can view the data in the "Logs" section of Guance.
 
-Once the data is successfully synchronized, you can view it in the "Logs" section of Observing Cloud.
-
-Examples of reported data are as follows：
+Sample reported data:
 
 ```json
 {
@@ -156,11 +150,11 @@ Examples of reported data are as follows：
     "Engine"               : "MySQL",
     "DBInstanceClass"      : "rds.mysql.s2.large",
     "ZoneId"               : "cn-shanghai-h",
-    "DBInstanceDescription": "Business system"
+    "DBInstanceDescription": "Business System"
   },
   "fields": {
     "SQLHASH"                      : "436f9dd030e0a87920bbcd818b34f271",
-    "SQLText"                      : "{SQL}",
+    "SQLText"                      : "{SQL statement}",
     "CreateTime"                   : "2022-06-05Z",
     "SQLServerTotalExecutionTimes" : 0,
     "MaxExecutionTime"             : 1,
@@ -171,48 +165,46 @@ Examples of reported data are as follows：
     "SQLServerTotalExecutionCounts": 0,
     "MySQLTotalExecutionCounts"    : 0,
     "SQLServerAvgExecutionTime"    : 0,
-    "message"                      : "{Log JSON data}"
+    "message"                      : "{log JSON data}"
   }
 }
 
 ```
 
-The partial parameter explanations are as follows：
+Part of the parameter descriptions are as follows:
 
-| Fields                            | Type | Description                                   |
+| Field                            | Type | Description                                   |
 | :------------------------------ | :--- | :------------------------------------- |
-| `SQLServerTotalExecutionTimes`  | int  | SQL Server Execution Duration (Total, in milliseconds)      |
-| `AvgExecutionTime`              | int  | Execution Time (Average), Unit: Seconds             |
-| `SQLServerAvgExecutionTime`     | int  | Execution Time (Average), Unit: Seconds             |
-| `MySQLTotalExecutionTimes`      | int  | MySQL Execution Time (Total), Unit: Seconds         |
-| `SQLServerTotalExecutionTimes`  | int  | SQL Server Execution Time (Total), Unit: Milliseconds |
-| `SQLServerTotalExecutionCounts` | int  | SQL Server Execution Count (Total)            |
-| `MySQLTotalExecutionCounts`     | int  | MySQL Execution Count (Total)                 |
+| `SQLServerTotalExecutionTimes`  | int  | SQL Server total execution duration (milliseconds)      |
+| `AvgExecutionTime`              | int  | Average execution duration (seconds)             |
+| `SQLServerAvgExecutionTime`     | int  | Average execution duration (seconds)             |
+| `MySQLTotalExecutionTimes`      | int  | MySQL total execution duration (seconds)         |
+| `SQLServerTotalExecutionTimes`  | int  | SQL Server total execution duration (milliseconds) |
+| `SQLServerTotalExecutionCounts` | int  | SQL Server total execution counts            |
+| `MySQLTotalExecutionCounts`     | int  | MySQL total execution counts                 |
 
-> *Attention：The fields `AvgExecutionTime`, `SQLServerAvgExecutionTime`, `SQLServerTotalExecutionTimes`, etc. are only supported by SQL Server instances.*
->
-> *Attention：The fields in `tags` and `fields` may be subject to changes in subsequent updates.*
+> *Note: Fields like `AvgExecutionTime`, `SQLServerAvgExecutionTime`, `SQLServerTotalExecutionTimes`, etc., are only supported by SQL Server instances.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 
-### Slow query details
+### Slow Query Details
 
-#### Prerequisite for slow query of details
+#### Prerequisites for Slow Query Details
 
+> Note: The code execution of this script depends on the collection of RDS instance objects. If custom object collection for RDS is not configured, the slow log script cannot collect slow log data.
 
-> Tip：This script's code execution relies on RDS instance object collection. If RDS custom object collection is not configured, the slow log script will not be able to collect slow log data.
+#### Installation Script for Slow Query Details
 
-#### Slow query details installation script
+On top of the previous setup, you need to install a script for **RDS Slow Query Detail Log Collection**.
 
-On top of that, you need to install a corresponding script for **The script for RDS slow query log collection.**
+In "Management / Script Market", click and install the corresponding script package:
 
-Click and install the corresponding script package in「Management / Script market」：
+- "Guance Integration (Alibaba Cloud - RDS Slow Query Detail Log Collection)" (ID: `guance_aliyun_rds_slowlog_record`)
 
-- 「Guance Integration (AliCloud-RDS Slow Query Detail Log Collection)」(ID：`guance_aliyun_rds_slowlog_record`)
+After the data is synchronized normally, you can view the data in the "Logs" section of Guance.
 
-After the data is successfully synchronized, you can view it in the 「Logs」 section of Observing Cloud.
+Configure [Cloud Database RDS Slow Query Details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
 
-settings[Cloud Database RDS slow query details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
-
-The reported data example is as follows：
+Sample reported data:
 
 ```json
 {
@@ -227,7 +219,7 @@ The reported data example is as follows：
     "Engine"               : "MySQL",
     "DBInstanceClass"      : "rds.mysql.s2.large",
     "ZoneId"               : "cn-shanghai-h",
-    "DBInstanceDescription": "Business system",
+    "DBInstanceDescription": "Business System",
     "HostAddress"          : "xxxx",
     "UserName"             : "xxxx",
     "ClientHostName"       : "xxxx",
@@ -236,7 +228,7 @@ The reported data example is as follows：
   },
   "fields": {
     "SQLHASH"                      : "436f9dd030e0a87920bbcd818b34f271",
-    "SQLText"                      : "{SQL}",
+    "SQLText"                      : "{SQL statement}",
     "QueryTimes"                   : 0,
     "QueryTimesMS"                 : 0,
     "ReturnRowCounts"              : 0,
@@ -245,27 +237,25 @@ The reported data example is as follows：
     "CpuTime"                      : 1,
     "RowsAffectedCount"            : 0,
     "LastRowsAffectedCount"        : 0,
-    "message"                      : "{Log JSON data}"
+    "message"                      : "{log JSON data}"
   }
 }
 
 ```
 
-The partial parameter explanations are as follows：
+Part of the parameter descriptions are as follows:
 
-| Fields                    | Type | Description                       |
+| Field                    | Type | Description                       |
 | :---------------------- | :--- | :------------------------- |
-| `QueryTimes`            | int  | Execution Duration. Unit: Seconds (s)    |
-| `QueryTimesMS`          | int  | Execution Duration. Unit: Milliseconds (ms) |
-| `ReturnRowCounts`       | int  | Number of Rows Returned                  |
-| `ParseRowCounts`        | int  | Number of Rows Parsed                   |
-| `ExecutionStartTime`    | str  | Execution Start Time               |
-| `CpuTime`               | int  | CPU Processing Duration                |
-| `RowsAffectedCount`     | int  | Number of Rows Affected                   |
-| `LastRowsAffectedCount` | int  | Number of Rows Affected by the Last Statement       |
+| `QueryTimes`            | int  | Execution duration (seconds)    |
+| `QueryTimesMS`          | int  | Execution duration (milliseconds) |
+| `ReturnRowCounts`       | int  | Returned row count                   |
+| `ParseRowCounts`        | int  | Parsed row count                   |
+| `ExecutionStartTime`    | str  | Execution start time               |
+| `CpuTime`               | int  | CPU processing duration                |
+| `RowsAffectedCount`     | int  | Affected row count                   |
+| `LastRowsAffectedCount` | int  | Last affected row count       |
 
-> *Attention：The fields `CpuTime`, `RowsAffectedCount`, `LastRowsAffectedCount`, etc. are only supported by SQL Server instances.*
->
-> *Attention：The fields in `tags` and `fields` may be subject to changes in subsequent updates.*
->
-> *Attention：The `fields.message` is a JSON-serialized string.
+> *Note: Fields like `CpuTime`, `RowsAffectedCount`, `LastRowsAffectedCount`, etc., are only supported by SQL Server instances.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
+> Note: `fields.message` is a JSON serialized string.

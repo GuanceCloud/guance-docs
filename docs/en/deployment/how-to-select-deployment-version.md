@@ -1,52 +1,51 @@
-# How to Select a Deployment Version 
+# How to Choose a Deployment Plan
 ---
 
 ## Overview
-The observable platform in Guance system provides a **full-link observable cloud service platform** for customer application systems, and provides a variety of deployment schemes to choose from according to the actual use scenarios and characteristics of customer application systems. Deployment scenarios for Guance can choose from **SaaS Commercial Version**, **SaaS Exclusive Version** and **Local Deployment Version**. 
-## Version Description 
-Three different deployment schemes all adopt the charging mode of charging according to volume, that is, the function itself is free, and they are all based on data charging, which can well adapt to customers with different application scales and pay different fees according to the size of data volume. 
+The "<<< custom_key.brand_name >>>" system observability platform provides a cloud service platform offering **full-stack observability** for customer application systems. Based on the actual usage scenarios and characteristics of customer application systems, multiple deployment options are available for selection. The selectable "<<< custom_key.brand_name >>>" deployment plans include: **SaaS Commercial Plan**, **SaaS Exclusive Plan**, and **On-premises Deployment Plan**.
 
-### SaaS Business Version
-It is a public version of SaaS deployed on the cloud. Customers can use it out of the box and quickly have a powerful system observable platform. They only need to install DataKit and configure relevant data collectors to complete observable access. 
+## Plans 
+All three deployment options adopt a pay-as-you-go billing model, meaning that the functionality itself is free, and charges are based on data usage. This model fits well with customers of different application scales, from small to large, paying fees according to the volume of data.
 
-Compared with the locally deployed version, SaaS version has many advantages:
-**Higher performance:**
-The observable data of Guance are mainly time series metric data (InfluxDB) and log text data (Elasticsearch), which requires a huge amount of data to complete the observable purpose of the system and consumes a lot of system resources. Using resources on the cloud, the cloud provides powerful hardware capability support
+### SaaS Commercial Plan
+This is our SaaS public version deployed in the cloud. Customers can use it out-of-the-box, quickly obtaining a powerful observability platform. They only need to install DataKit and configure relevant data collectors to complete the observability integration.
 
-**More flexible:**
-Compared with the deployed version, users don't need to care about the expansion of resources, and users don't need to pay for the expanded resources. You can focus on your own observable data. 
+Compared to the on-premises deployment plan, the SaaS version has many advantages:
+**Higher Performance:**
+The observable data of "<<< custom_key.brand_name >>>" mainly consists of time series metrics data (InfluxDB) and log text data (Elasticsearch). To achieve system observability, a massive amount of data is required, which consumes significant system resources. Using cloud resources leverages the robust hardware capabilities provided by the cloud.
 
-**Safer:**
-Each user's workspace data is isolated at an independent DB level, and data query is naturally limited in its own DB, so there is no need to worry about data security.
-All data are stored on Alibaba Cloud Storage according to the requirements of Equal Guarantee III. 
+**More Elasticity:**
+Compared to deployment versions, users do not need to worry about resource scaling, nor do they need to pay for additional resources. Users can focus on their own observability data.
 
-**More reliable:**
-We are in a small step and fast walk mode, with fast iterative upgrade speed, problem fix every week, and a new version goes online every two weeks.
-Our SRE team ensures the safe and stable operation of the platform.
+**Greater Security:**
+Each user's workspace data is isolated at the DB level, with queries naturally limited to their own database, ensuring no data security concerns. All data is stored on Alibaba Cloud storage in compliance with Level 3 security requirements.
 
-**More timely expert support:**
-SRC team can respond to customer needs in a timely manner through customer authorization. 
+**Higher Reliability:**
+We adopt an agile development approach with rapid iteration and upgrades. Fixes are made weekly, and a new version is released every two weeks. A large SRE team ensures the platform's secure and stable operation.
 
-**Network Mapping:**
+**Timely Expert Support:**
+The SRC team can respond promptly to customer needs through authorized access.
+
+**Network Topology:**
 
 ![](img/11.deployment_1.png)
 
-### SaaS Exclusive Version
-Similar to SaaS Business Edition, it is also deployed on the cloud, but it is used exclusively by customers and has all the advantages of ** SaaS **business version** **.
-In addition, in the exclusive version, we deploy a set of Guance Cloud for each customer in its own independent Alibaba Cloud account, which is used exclusively by each customer and has higher security level.
-Billing is also based on quantity, but because it is used exclusively by customers and supported by SRC team alone, the price is 20% ~ 30% more expensive than SaaS commercial version. 
+### SaaS Exclusive Plan
+Similar to the SaaS Commercial Plan, this option is also deployed in the cloud but is exclusively used by each customer. It offers all the advantages of the **SaaS Commercial Plan**.
+Additionally, for the exclusive version, we deploy a separate instance of "<<< custom_key.brand_name >>>" within each customer’s independent Alibaba Cloud account, providing higher security levels.
+Billing is also on a pay-as-you-go basis, but due to the exclusive nature and dedicated support from the SRC team, the price is 20% to 30% higher compared to the SaaS Commercial Plan.
 
-**network mapping:**
+**Network Topology:**
 
 ![](img/11.deployment_2.png)
 
-### Local Deployment Version
-Similar to SaaS exclusive version, it is used exclusively by customers, but deployed on customers' local physical machine resources, which requires users to prepare their own service resources, and requires a one-time resource cost, which is about 150,000 server resource cost (depending on the scale of monitored objects).
-Deployment on local physical resources loses all advantages in the cloud, and all security and reliability must be guaranteed by themselves, so resources cannot be flexible.
-In addition, if the user is mixed with the monitored objects on the cloud and under the cloud, Guance is deployed in the local computer room without fixed public network IP, and the cloud operator's special line is needed to pull to the local computer room in order to collect the monitored object data on the cloud into the local Guance system, in which the optical special line is a large cost. 
+### On-premises Deployment Plan
+Similar to the SaaS Exclusive Plan, this option is for exclusive use by the customer but is deployed on the customer's local physical resources. Users must prepare their own service resources and incur a one-time resource cost, approximately $150,000 for server resources (depending on the scale of the monitored objects).
+Deploying on local physical resources means losing all cloud advantages, requiring self-management of security and reliability without elastic resources.
+Furthermore, if the monitored objects are a mix of cloud and on-premises, and "<<< custom_key.brand_name >>>" is deployed in a local data center without a fixed public IP, a dedicated line must be pulled from the cloud operator to the local data center to collect data from cloud-based monitored objects into the local "<<< custom_key.brand_name >>>" system, adding significant costs.
 
-**network mapping:**
+**Network Topology:**
 
 ![](img/11.deployment_3.png)
 
-To sum up, SaaS Business Version is the most convenient, fastest and lowest cost access solution. 
+In summary, the SaaS Commercial Plan is the most convenient, fastest to integrate, and lowest-cost solution.

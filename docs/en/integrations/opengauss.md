@@ -1,12 +1,12 @@
 ---
 title     : 'OpenGauss'
-summary   : 'Collect OpenGaussian metric information'
+summary   : 'Collect OpenGauss Metrics information'
 __int_icon: 'icon/opengauss'
 dashboard :
   - desc  : 'OpenGauss Monitoring View'
     path  : 'dashboard/en/opengauss'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -14,18 +14,17 @@ monitor   :
 # OpenGauss
 <!-- markdownlint-enable -->
 
-## Installation Configuration{#config}
+## Configuration {#config}
 
-### Preconditions
+### Prerequisites
 
-- [x] Installed OpenGauss
+- [x] Install OpenGauss
 
 ### OpenGauss Exporter
 
-OpenGauss has officially opened source [`openGauss prometheus exporter`]( https://gitee.com/opengauss/openGauss-prometheus-exporter),You can obtain metric information by accessing `/metrics`.
+The official OpenGauss has open-sourced the [`openGauss-prometheus-exporter`](https://gitee.com/opengauss/openGauss-prometheus-exporter), which can be used to obtain metrics information by accessing `/metrics`.
 
-Support using Docker mode or compiling binary to run Exporter.
-
+You can run the Exporter using Docker or by compiling it into a binary.
 
 ```shell
 git clone https://gitee.com/opengauss/openGauss-prometheus-exporter.git
@@ -35,24 +34,24 @@ export DATA_SOURCE_NAME="postgresql://login:password@hostname:port/dbname"
 ./bin/opengauss_exporter <flags>
 ```
 
-Parameter usage instructions refer to [official document](https://gitee.com/opengauss/openGauss-prometheus-exporter#flags).
+Refer to the [official documentation](https://gitee.com/opengauss/openGauss-prometheus-exporter#flags) for parameter usage instructions.
 
-After successful operation, the default port of the Exporter is `9187`.
+After successful execution, the default port for the Exporter is `9187`.
 
-### DataKit enable the `prom` collector
+### Enabling DataKit's `prom` Collector
 
-You can directly collect metrics in the format of `prometheus` through the [`prom`](./prom.md) collector.
+You can directly use the [`prom`](./prom.md) collector to collect metrics in Prometheus format.
 
-- Open the DataKit prom plugin and copy the `sample` file
+- Enable the DataKit prom plugin and copy the sample file
 
 ```bash
 cd /usr/local/datakit/conf.d/prom/
 cp prom.conf.sample opengauss-prom.conf
 ```
 
-- Modify `opengauss-prom.conf`
+- Modify the `opengauss-prom.conf` configuration file
 
-Adjust the following content
+Adjust the following content:
 
 ```toml
 [[inputs.prom]]
@@ -67,18 +66,17 @@ Adjust the following content
 
 [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 | Metric | Description |
 | -- | -- |
 | `up` | Service startup status |
-| `database_size_bytes` | database size |
+| `database_size_bytes` | Database size |
 | `stat_database_blks_hit`| Cache hit|
 | `stat_database_blks_read`| Cache read|
 | `lock_count`| Total number of transaction locks|
-| `stat_database_conflicts_confl_bufferpin`| Cache conflicts|
-| `stat_database_conflicts_confl_lock`| lock conflicts|
-| `stat_database_conflicts_confl_snapshot`| snapshot conflicts|
-| `stat_database_conflicts_confl_tablespace`| `tablespace` conflicts|
-
+| `stat_database_conflicts_confl_bufferpin`| Buffer pin conflicts|
+| `stat_database_conflicts_confl_lock`| Lock conflicts|
+| `stat_database_conflicts_confl_snapshot`| Snapshot conflicts|
+| `stat_database_conflicts_confl_tablespace`| Tablespace conflicts|

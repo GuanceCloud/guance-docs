@@ -1,99 +1,140 @@
-# Error
+# Error (Errors)
 ---
 
-You can view the frontend errors sent by the browser during the user's app usage, including error types and error content.
+You can view frontend errors emitted by the browser during user application usage, including error types and error messages.
 
 In the Error Explorer, you can:
 
-- View all error types and their related error details in one place.
-- Use Sourcemap conversion to restore the obfuscated code, making it easier to locate the source code during error troubleshooting and help users solve problems faster.
+- View all error types and their related error details in one place;
+- Through Sourcemap transformation, deobfuscate the code to facilitate error troubleshooting by locating the source code, helping users solve problems faster.
+
 
 ## Explorer List
 
 ### All Errors
 
+In the Error Explorer, you can quickly view page addresses, code error types, and error contents when users access the application.
+
+- Error content Load failed: This means there was no `response` for the request; the default SDK includes Load failed;
+- Error content Network request failed: This means the `response` returned an error.
+
 ![](../img/12.rum_explorer_6.png)
 
-In the Error Explorer, you can quickly view the page address, code error type, error content and more when the user accesses the page.
+### Pattern Analysis {#analysis}
 
-- Load failed: indicate an error without a response, the SDK adds Load failed by default.
-- Network request failed: indicate an error in the response.
+If you need to view frequently occurring errors, you can go to <<< custom_key.brand_name >>> Workspace **RUM PV > Explorer > Error**, and select the **Pattern Analysis** list.
 
+Pattern analysis involves similarity computation based on clustering fields for all error trace data. It fixes the current time period according to the selected time range in the upper right corner and retrieves 10,000 records within that time frame for pattern analysis. Similar errors are aggregated, and common patterns are extracted and counted to help quickly identify abnormal traces and locate issues.
 
-### Patterns {#analysis}
+By default, it aggregates based on the `error_message` field, but you can customize up to 3 clustering fields.
 
 ![](../img/error0725.png)
 
-If you want to view errors with a high frequency of occurrence, you can go to **Explorers > Error** and select the **Patterns** list.
+- In the Pattern Analysis list, you can click any error to view all associated Errors, and clicking a trace will take you to the detail page for analysis;
 
-Pattern calculates and analyzes the similarity of all error chain data based on clustering fields. It fixes the current time period based on the selected time range in the upper right corner and obtains 10,000 data records within that time period for Patterns. It aggregates error chains with high similarity and extracts and counts common patterns to help quickly detect abnormal chains and locate issues.
+- On the Pattern Analysis page, clicking the sorting icon :octicons-triangle-up-16: & :octicons-triangle-down-16:, you can sort documents in ascending/descending order (default is descending).
 
-By default, it aggregates based on the `error_message` field, but you can customize the clustering field and enter up to 3 fields.
+## Detail Page
 
-![](../img/error-message.png)
-
-- In the Patterns list, you can click on any error to view all associated errors. Clicking on a chain takes you to the detail page for analysis.
-- In the Patterns page, you can click on the sorting icon :octicons-triangle-up-16: & :octicons-triangle-down-16: to sort the document count in ascending/descending order (default is descending).
-
-## Details Page
-
-When you click on a data record in the list, you can view the details of the error, including the error details, extended fields, and associated chains.
+Clicking the detail page of the data in the list allows you to view detailed information about the error encountered during user access, including error details, extended fields, and associated traces.
 
 ![](../img/12.rum_explorer_2.5.png)
 
 ### Source
 
-In the **Source** section, you can view the details of the Session / View / Action for the current error. You can filter/copy and view the current Session ID / View ID / Action ID.
+In **Source**, you can view Session / View / Action details for the current Error, and filter/copy the current Session ID / View ID / Action ID.
 
 ### Error Distribution Chart
 
-It aggregates and counts errors with high similarity and automatically selects the corresponding time intervals based on the selected time range in the explorer. It helps you visually view the time points or ranges where errors occur frequently and quickly locate error issues.
+The Error Distribution Chart aggregates similar errors and automatically selects the appropriate time interval based on the selected time range in the Explorer, displaying the distribution trend of errors to help you visually identify frequent error occurrences or time ranges, and quickly locate error issues.
 
 ### Error Details {#error}
 
-Youu can view the specific content of the error.
+In the Error Details, you can view the specific content of the error.
 
-#### Sourcemap Conversion
+#### Sourcemap Transformation
 
-When an application is deployed in a production environment, to prevent code leakage and other security issues, files are typically transformed, compressed, and obfuscated during the packaging process. While these measures ensure code security, they also make the collected error stack information obfuscated, making it difficult to directly locate issues and inconveniencing subsequent bug troubleshooting.
+When applications are released in production environments, to prevent code leakage and other security issues, files are typically transformed and compressed during the packaging process. While these measures ensure code security, they also obfuscate the collected error stack information, making it difficult to directly pinpoint issues and complicating subsequent bug troubleshooting.
 
-Guance provides Sourcemap functionality for applications, supporting the restoration of obfuscated code, making it easier to locate the source code during error troubleshooting and help users solve problems faster.
+<<< custom_key.brand_name >>> provides Sourcemap functionality for applications, supporting deobfuscation of code to facilitate error troubleshooting by locating the source code, helping users solve problems faster.
 
-You can configure Sourcemap through RUM [Sourcemap Configuration](../sourcemap/set-sourcemap.md) or [Datakit Collector Sourcemap Conversion](../../integrations/rum.md#sourcemap). After configuration, you can view the parsed code and original code in the error details.
+> You can configure this via RUM [Sourcemap Configuration](../sourcemap/set-sourcemap.md) or [Datakit Collector Sourcemap Transformation](../../integrations/rum.md#sourcemap). After configuration, you can view the parsed code and original code in the Error Details.
 
-**Note**: Currently, only Web applications support Sourcemap configuration in RUM.
+**Note**: Currently, only Web-type applications support Sourcemap configuration in RUM.
 
-##### Parsed Code
+##### Parsed Code Example
 
-Sourcemap conversion and parsed code example in RUM configuration:
+Example of parsed code after configuring Sourcemap in RUM:
 
 ![](../img/1.rum_error_4.png)
 
-##### Original Code
+##### Original Code Example
 
 ![](../img/1.rum_error_5.png)
 
-
-<!--
-Sourcemap conversion and parsed code example using Datakit Collector configuration:
+Example of parsed code using Datakit Collector Sourcemap transformation:
 
 ![](../img/sourcemap_02.png)
--->
 
+**Note**: If users configure Sourcemap in both RUM and Datakit Collector, the parsed format from RUM configuration will be displayed.
 
-**Note**: If both RUM and Datakit Collector have Sourcemap configured, the parsed format of RUM configuration is displayed.
+### Extended Fields
 
-### Attributes
+:material-numeric-1-circle-outline: In the search bar, you can enter field names or values to quickly search and locate;
 
-:material-numeric-1-circle-outline: In the search bar, you can enter the field name or value to quickly search and locate.
-:material-numeric-2-circle-outline: After selecting the field alias, you can view it after the field name. You can choose as needed.
-:material-numeric-3-circle-outline: On the chain detail page, you can view the relevant field properties of the current chain in the **Attributes** section:
+:material-numeric-2-circle-outline: After checking field aliases, you can view them after the field name; choose as needed.
 
-| <div style="width: 110px">Options</div> | Description |
-| --- | --- |
-| Filter  | Add this field to the explorer to view all data related to this field. You can filter and view the chain list related to this field in the chain explorer.  |
-| Reverse Filter | Add this field to the explorer to view other data except for this field. |
-| Add to Columns | Add this field to the explorer list for viewing. |
-| Copy | Copy this field to the clipboard. |
+:material-numeric-3-circle-outline: In the trace detail page, you can view relevant field attributes of the current trace under **Extended Fields**:
+
+| Field | Property |
+| ------- | ------------------------------------ |
+| Filter Field Value | Adds this field to the Explorer to view all data related to this field, allowing you to filter and view related trace lists in the Trace Explorer. |
+| Reverse Filter Field Value | Adds this field to the Explorer to view all data except those related to this field. |
+| Add to Display Columns | Adds this field to the Explorer list for viewing. |
+| Copy | Copies this field to the clipboard. |
 
 ![](../img/extension-1.gif)
+
+## Issue Auto Discovery {#issue}
+
+Based on data generated from <<< custom_key.brand_name >>> monitoring RUM Errors, when you enable the **Issue Auto Discovery** configuration, the system will statistically analyze corresponding anomaly data based on different grouping dimensions and perform stack trace tracking for subsequent similar issues, ultimately condensing them into Issues. Issues generated through this entry point help you obtain context and root causes of the problem, significantly reducing the average time to resolve issues.
+
+![](../img/auto-issue-rum.png)
+
+:material-numeric-1-circle-outline: Data Source: The enabling entry point on the current configuration page.
+
+:material-numeric-2-circle-outline: Grouping Dimensions: Based on combined configuration fields, including `app_name`, `env`, `version`, `error_type`.
+
+Based on grouping dimensions, additional filtering conditions can be added, and <<< custom_key.brand_name >>> will further query and classify data that meet the criteria.
+
+<img src="../img/issue-filter-rum.png" width="70%" >
+
+:material-numeric-3-circle-outline: Detection Frequency: <<< custom_key.brand_name >>> will query data within the time range based on the selected frequency, which includes 5 minutes, 10 minutes, 15 minutes, 30 minutes, and 1 hour.
+
+:material-numeric-4-circle-outline: Issue Definition: After enabling this configuration, Issues will be presented according to the definitions here. To avoid missing information, [fill in sequentially](../exception/issue.md#concepts).
+
+In the **Title** and **Description** sections of the Issue, the following template variables are supported:
+
+| Variable | Meaning |
+| --- | --- |
+| `count` | Statistical count |
+| `app_name` | Application name |
+| `env` | Environment |
+| `version` | Version |
+| `error_type` | Error type |
+| `error_message` | Error message |
+| `error_stack` | Error stack |
+
+### Viewing Issues {#display}
+
+After saving and enabling the configuration, automatically discovered Issues will be displayed in the **Console > [Incident](../../exception/issue.md#auto)** section.
+
+![](../img/issue-auto.png)
+
+## Further Reading
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Using the Issue Auto Discovery Feature to Quickly Respond to Anomalies**</font>](../../application-performance-monitoring/issue-auto-generate.md)
+
+</div>

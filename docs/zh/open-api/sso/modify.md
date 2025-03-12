@@ -34,7 +34,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/saml/mapping/field/fdmp_xxxx32/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/saml/mapping/field/fdmp_xxxx32/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"ssoUUID":"sso_xxxx32","sourceField":"sd1","sourceValue":"sd1_value1","targetValues":["general","readOnly"]}' \

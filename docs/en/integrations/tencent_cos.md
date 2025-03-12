@@ -2,129 +2,125 @@
 title: 'Tencent Cloud COS'
 tags: 
   - Tencent Cloud
-summary: 'Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the Guance cloud.'
+summary: 'Use the script packages in the Script Market of Guance series to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/tencent_cos'
 dashboard:
 
-  - desc: 'Tencent Cloud COS Monitoring View'
-    path: 'dashboard/zh/tencent_cos'
+  - desc: 'Tencent Cloud COS built-in views'
+    path: 'dashboard/en/tencent_cos'
 
 monitor:
-  - desc: 'Tencent Cloud COS Monitor'
-    path: 'monitor/zh/tencent_cos'
+  - desc: 'Tencent Cloud COS monitor'
+    path: 'monitor/en/tencent_cos'
 
 ---
-
 
 <!-- markdownlint-disable MD025 -->
 # Tencent Cloud COS
 <!-- markdownlint-enable -->
 
-Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+Use the script packages in the Script Market of Guance series to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+If you deploy Func on your own, refer to [Deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-To synchronize the monitoring data of ECS cloud resources, we install the corresponding collection script：「Guance Collection (Tencent Cloud-COS Collection)」(ID：`guance_tencentcloud_cos`)
+
+### Install Script
+
+> Note: Prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+
+To synchronize monitoring data of Tencent Cloud COS cloud resources, we install the corresponding collection script:「Guance Integration (Tencent Cloud-COS Collection)」(ID: `guance_tencentcloud_cos`)
+
+In 「Manage / Script Market」, click 【Install】, then enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
+
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+
+After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
+
+By default, we collect some configurations, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"} for details.
 
 
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+### Verification
 
-Click [Deploy Startup Scripts], the system will automatically create the `Startup` script set and automatically configure the corresponding startup scripts.
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any abnormalities.
+2. On the Guance platform, under 「Infrastructure / Custom」check if there is asset information.
+3. On the Guance platform, under 「Metrics」check if there is corresponding monitoring data.
 
-You can see the corresponding auto-trigger configuration in "Management / Auto-trigger Configuration" after you turn it on. Click "Execute" to execute the task immediately without waiting for the regular time. Wait for a while, you can check the record and log of the executed task.
+## Metrics {#metric}
+After configuring Tencent Cloud COS collection, the default collected metrics set is as follows. You can collect more metrics through configuration [Tencent Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/45140){:target="_blank"}
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+### Request Metrics
 
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists.
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists.
-
-## Metric {#metric}
-Configure Tencent Cloud COS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45140){:target="_blank"}
-
-### Request class
-
-| Metric name           | Chinese Metric name               | Implication                                                     | Unit | Dimensions          |
+| Metric Name           | Metric Description               | Metric Meaning                                                     | Unit | Dimensions          |
 | -------------------- | ------------------------ | ------------------------------------------------------------ | ---- | ------------- |
-| StdReadRequests      | Standard storage read requests           | Number of standard storage type read requests, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
-| StdWriteRequests     | Standard storage write requests           | Number of standard storage type write requests, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
-| MazStdReadRequests   | Multi AZ standard storage read requests     | Number of read requests for multiple AZ standard storage types, with the number of requests calculated based on the number of request commands sent | count   | appid、bucket |
-| MazStdWriteRequests  | Multi AZ standard storage write requests     | Number of write requests to multiple AZ standard storage types, with the number of requests counted based on the number of request commands sent | count   | appid、bucket |
-| IaReadRequests       | Low frequency storage read requests           | Low-frequency storage type read request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
-| IaWriteRequests      | Low frequency storage write requests           | Low-frequency storage type write request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
-| MazIaReadRequests    | Multi AZ low frequency storage read requests     | Multi-AZ low-frequency storage type read request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
-| MazIaWriteRequests   | Multi AZ low frequency storage write requests     | Multi-AZ low-frequency storage type write request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
-| DeepArcReadRequests  | Deep archive storage read requests       | Number of read requests for deep archive storage types, with the number of requests calculated based on the number of request commands sent | count   | appid、bucket |
-| DeepArcWriteRequests | Deep archive storage write requests       | Number of deep archive storage type write requests, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
-| ItReadRequests       | Intelligent tiered storage read requests       | Intelligent hierarchical storage type read request count, the request count is calculated based on the number of request commands sent | count   | appid、bucket |
-| ItWriteRequests      | Intelligent tiered storage write requests       | Intelligent tiered storage type write request count, request count is calculated based on the number of request commands sent | count   | appid、bucket |
-Intelligent tiered storage type write request count, request count is calculated based on the number of request commands sent | count   | appid、bucket |
-| TotalRequests        | Total number of requests                 | Total number of read and write requests for all storage types, with the number of requests calculated based on the number of request commands sent | count   | appid、bucket |
-| GetRequests          | Total number of GET class requests           | Total number of requests for all storage type GET classes, the number of requests is calculated based on the number of request commands sent | count   | appid、bucket |
-| PutRequests          | Total number of PUT class requests           | Total number of requests for all storage type PUT classes, the number of requests is calculated according to the number of request commands sent | count   | appid、bucket |
+| StdReadRequests      | Standard Storage Read Requests   | Number of read requests for standard storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| StdWriteRequests     | Standard Storage Write Requests  | Number of write requests for standard storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| MazStdReadRequests   | Multi-AZ Standard Storage Read Requests | Number of read requests for multi-AZ standard storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| MazStdWriteRequests  | Multi-AZ Standard Storage Write Requests | Number of write requests for multi-AZ standard storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| IaReadRequests       | Infrequent Access Storage Read Requests | Number of read requests for infrequent access storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| IaWriteRequests      | Infrequent Access Storage Write Requests | Number of write requests for infrequent access storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| MazIaReadRequests    | Multi-AZ Infrequent Access Storage Read Requests | Number of read requests for multi-AZ infrequent access storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| MazIaWriteRequests   | Multi-AZ Infrequent Access Storage Write Requests | Number of write requests for multi-AZ infrequent access storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| DeepArcReadRequests  | Deep Archive Storage Read Requests | Number of read requests for deep archive storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| DeepArcWriteRequests | Deep Archive Storage Write Requests | Number of write requests for deep archive storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| ItReadRequests       | Intelligent Tiering Storage Read Requests | Number of read requests for intelligent tiering storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| ItWriteRequests      | Intelligent Tiering Storage Write Requests | Number of write requests for intelligent tiering storage type, calculated by the number of request instructions sent | Count   | appid, bucket |
+| TotalRequests        | Total Requests                  | Total number of read and write requests for all storage types, calculated by the number of request instructions sent | Count   | appid, bucket |
+| GetRequests          | Total GET Requests              | Total number of GET requests for all storage types, calculated by the number of request instructions sent | Count   | appid, bucket |
+| PutRequests          | Total PUT Requests              | Total number of PUT requests for all storage types, calculated by the number of request instructions sent | Count   | appid, bucket |
 
-### Storage class
+### Storage Metrics
 
-| Metric name                   | Chinese Metric name                        | Unit | Dimensions          |
+| Metric Name                   | Metric Description                        | Unit | Dimensions          |
 | ---------------------------- | --------------------------------- | ---- | ------------- |
-| Size                   | Bucket storage capacity                |  B   | Name |
+| Size                         | Bucket Storage Capacity             | B    | Name |
 
 
-### Traffic class
+### Traffic Metrics
 
-| Metric name                    | Chinese Metric name           | Implication                                                 | Unit | Dimensions          |
+| Metric Name                    | Metric Description           | Metric Meaning                                                 | Unit | Dimensions          |
 | ----------------------------- | -------------------- | -------------------------------------------------------- | ---- | ------------- |
-| InternetTraffic               | Internet downstream traffic         | Traffic generated by data downloading from COS to clients over the Internet              | B    | appid、bucket |
-| InternetTrafficUp             | Internet upstream traffic         | Traffic generated by the uploading of data from the client to the COS over the Internet              | B    | appid、bucket |
-| InternalTraffic               | Intranet downstream traffic         | Traffic generated by the data being downloaded from the COS to the client via Tencent Cloud intranet          | B    | appid、bucket |
-| InternalTrafficUp             | Intranet upstream traffic         | Traffic generated by uploading data from client to COS via Tencent Cloud intranet          | B    | appid、bucket |
-| CdnOriginTraffic              | CDN back to source traffic         | Traffic generated by the transmission of data from COS to the edge nodes of Tencent Cloud CDN           | B    | appid、bucket |
-| InboundTraffic                | Total upload traffic of external network and internal network | Traffic generated by data uploaded from clients to COS via Internet, Tencent Cloud intranet  | B    | appid、bucket |
-| CrossRegionReplicationTraffic | Cross-region replication traffic       | Traffic generated by the transfer of data from storage buckets in one geographic region to storage buckets in another geographic region | B    | appid、bucket |
+| InternetTraffic               | External Downstream Traffic | Traffic generated from downloading data from COS to clients over the internet | B    | appid, bucket |
+| InternetTrafficUp             | External Upstream Traffic   | Traffic generated from uploading data from clients to COS over the internet | B    | appid, bucket |
+| InternalTraffic               | Internal Downstream Traffic | Traffic generated from downloading data from COS to clients over Tencent Cloud's internal network | B    | appid, bucket |
+| InternalTrafficUp             | Internal Upstream Traffic   | Traffic generated from uploading data from clients to COS over Tencent Cloud's internal network | B    | appid, bucket |
+| CdnOriginTraffic              | CDN Origin Traffic           | Traffic generated from transferring data from COS to Tencent Cloud CDN edge nodes | B    | appid, bucket |
+| InboundTraffic                | Total Upload Traffic         | Total traffic generated from uploading data from clients to COS over the internet and Tencent Cloud's internal network | B    | appid, bucket |
+| CrossRegionReplicationTraffic | Cross-region Replication Traffic | Traffic generated from transferring data from one region's bucket to another region's bucket | B    | appid, bucket |
 
-### Return code class (computing)
+### Response Code Metrics
 
-| Metric name      | Chinese Metric name     | Implication                                        | Unit | Dimensions          |
+| Metric Name      | Metric Description     | Metric Meaning                                        | Unit | Dimensions          |
 | --------------- | -------------- | ----------------------------------------------- | ---- | ------------- |
-| 2xxResponse     | 2xx status code     | Returns the number of requests with status code 2xx                     | count   | appid、bucket |
-| 3xxResponse     | 3xx status code     | Returns the number of requests with status code 3xx                     | count   | appid、bucket |
-| 4xxResponse     | 4xx status code     | Returns the number of requests with status code 4xx                     | count   | appid、bucket |
-| 5xxResponse     | 5xx status code     | Returns the number of requests with status code 5xx                     | count   | appid、bucket |
-| 2xxResponseRate | 2xx status code ratio | Returns the number of requests with status code 2xx as a percentage of the total number of requests | %    | appid、bucket |
-| 3xxResponseRate | 3xx status code ratio | Returns the number of requests with status code 3xx as a percentage of the total number of requests | %    | appid、bucket |
-| 4xxResponseRate | 4xx status code ratio | Returns the number of requests with status code 4xx as a percentage of the total number of requests | %    | appid、bucket |
-| 5xxResponseRate | 5xx status code ratio | Returns the number of requests with status code 5xx as a percentage of the total number of requests | %    | appid、bucket |
-| 400Response     | 400 status code     | Returns the number of requests with status code 400                     | count   | appid、bucket |
-| 403Response     | 403 status code     | Returns the number of requests with status code 403                     | count   | appid、bucket |
-| 404Response     | 404 status code     | Returns the number of requests with status code 404                     | count   | appid、bucket |
-| 400ResponseRate | 400 status code ratio | Returns the number of requests with status code 400 as a percentage of the total number of requests | %    | appid、bucket |
-| 403ResponseRate | 403 status code ratio | Returns the number of requests with status code 403 as a percentage of the total number of requests | %    | appid、bucket |
-| 404ResponseRate | 404 status code ratio | Returns the number of requests with status code 404 as a percentage of the total number of requests | %    | appid、bucket |
-| 500ResponseRate | 500 status code ratio | Returns the number of requests with status code 500 as a percentage of the total number of requests | %    | appid、bucket |
-| 501ResponseRate | 501 status code ratio | Returns the number of requests with status code 501 as a percentage of the total number of requests | %    | appid、bucket |
-| 502ResponseRate | 502 status code ratio | Returns the number of requests with status code 502 as a percentage of the total number of requests | %    | appid、bucket |
-| 503ResponseRate | 503 status code ratio | Returns the number of requests with status code 503 as a percentage of the total number of requests | %    | appid、bucket |
+| 2xxResponse     | 2xx Status Codes     | Number of requests returning status code 2xx                     | Count   | appid, bucket |
+| 3xxResponse     | 3xx Status Codes     | Number of requests returning status code 3xx                     | Count   | appid, bucket |
+| 4xxResponse     | 4xx Status Codes     | Number of requests returning status code 4xx                     | Count   | appid, bucket |
+| 5xxResponse     | 5xx Status Codes     | Number of requests returning status code 5xx                     | Count   | appid, bucket |
+| 2xxResponseRate | 2xx Status Code Ratio | Percentage of requests returning status code 2xx out of total requests | %    | appid, bucket |
+| 3xxResponseRate | 3xx Status Code Ratio | Percentage of requests returning status code 3xx out of total requests | %    | appid, bucket |
+| 4xxResponseRate | 4xx Status Code Ratio | Percentage of requests returning status code 4xx out of total requests | %    | appid, bucket |
+| 5xxResponseRate | 5xx Status Code Ratio | Percentage of requests returning status code 5xx out of total requests | %    | appid, bucket |
+| 400Response     | 400 Status Code     | Number of requests returning status code 400                     | Count   | appid, bucket |
+| 403Response     | 403 Status Code     | Number of requests returning status code 403                     | Count   | appid, bucket |
+| 404Response     | 404 Status Code     | Number of requests returning status code 404                     | Count   | appid, bucket |
+| 400ResponseRate | 400 Status Code Ratio | Percentage of requests returning status code 400 out of total requests | %    | appid, bucket |
+| 403ResponseRate | 403 Status Code Ratio | Percentage of requests returning status code 403 out of total requests | %    | appid, bucket |
+| 404ResponseRate | 404 Status Code Ratio | Percentage of requests returning status code 404 out of total requests | %    | appid, bucket |
+| 500ResponseRate | 500 Status Code Ratio | Percentage of requests returning status code 500 out of total requests | %    | appid, bucket |
+| 501ResponseRate | 501 Status Code Ratio | Percentage of requests returning status code 501 out of total requests | %    | appid, bucket |
+| 502ResponseRate | 502 Status Code Ratio | Percentage of requests returning status code 502 out of total requests | %    | appid, bucket |
+| 503ResponseRate | 503 Status Code Ratio | Percentage of requests returning status code 503 out of total requests | %    | appid, bucket |
 
-## Object {#object}
+## Objects {#object}
 
-Collected Tencent Cloud COS object data structure, you can see the object data from "Infrastructure - Customize".
+The structure of collected Tencent Cloud COS object data can be viewed under 「Infrastructure - Custom」
 
 ```json
 {
@@ -137,8 +133,7 @@ Collected Tencent Cloud COS object data structure, you can see the object data f
   },
   "fields": {
     "CreationDate": "2022-04-20T03:12:08Z",
-    "message"     : "{Instance JSON data}"
+    "message"     : "{instance JSON data}"
   }
 }
 ```
-

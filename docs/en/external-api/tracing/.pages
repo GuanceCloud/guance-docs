@@ -1,0 +1,3 @@
+nav:
+  - '【Tracing】APM Service List': tracing-list.md
+  - '【Tracing】Service Map (with topology and statistics)': tracing-service-map-v2.md

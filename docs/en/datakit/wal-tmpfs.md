@@ -1,10 +1,10 @@
 # Using tmpfs in WAL
 
-:fontawesome-brands-linux: :material-kubernetes:
+:fontawesome-brands-linux : :material-kubernetes :
 
 ---
 
-In some cases, if the disk performance is insufficient, we can use a portion of memory to meet the disk read/write requirements of WAL.
+In some cases, if disk performance is insufficient, we can use a portion of memory to meet the disk read and write requirements of WAL.
 
 <!-- markdownlint-disable MD046 -->
 === "Linux Host"
@@ -15,7 +15,7 @@ In some cases, if the disk performance is insufficient, we can use a portion of 
         sudo mkdir -p /mnt/wal-ramdisk
         ```
     
-    1. Create a tmpfs disk using 1 GiB of memory space:
+    1. Build a tmpfs disk using 1 GiB of memory:
     
         ```shell
         sudo mount -t tmpfs -o size=1G tmpfs /mnt/wal-ramdisk
@@ -38,22 +38,22 @@ In some cases, if the disk performance is insufficient, we can use a portion of 
 
 === "DaemonSet"
 
-    1. On the Kubernetes Node, create a *ramdisk* directory:
-
+    1. On the Kubernetes Node machine, create a *ramdisk* directory:
+    
         ```shell
-        # Here we change the directory; by default, in datakit.yaml, the Node's /root/datakit_cache
-        # is already mounted to the /usr/local/datakit/cache directory in the Datakit container
+        # Here we changed the directory; by default, datakit.yaml already mounts the Node host's /root/datakit_cache
+        # to the Datakit container's /usr/local/datakit/cache directory
         mkdir -p /root/datakit_cache/ramdisk
         ```
     
     1. Create a 1 GiB tmpfs:
-
+    
         ```shell
         mount -t tmpfs -o size=1G tmpfs /root/datakit_cache/ramdisk
         ```
     
     1. Add the following environment variable in *datakit.yaml*, then restart the Datakit container:
-
+    
         ```yaml
         - name: ENV_DATAWAY_WAL_PATH
           value: /usr/local/datakit/cache/ramdisk
@@ -63,14 +63,14 @@ In some cases, if the disk performance is insufficient, we can use a portion of 
 ---
 
 <!-- markdownlint-disable MD046 -->
-???+ danger "Adjust tmpfs size as needed"
+???+ danger "Adjust tmpfs size as appropriate"
 
-    By default, the disk space for each category in WAL is set to 2 GiB, which is generally sufficient. In a tmpfs scenario, it may not be practical to allocate such a large amount of memory for each category. Here, only 1 GiB (i.e., all data categories share 1 GiB of tmpfs space) of memory is used to meet the disk requirements of WAL. This may be enough under conditions where the data volume is not large and the network (between Datakit and Dataway) is ok.
+    By default, the disk space for each WAL category is set to 2 GiB, which is generally sufficient. In a tmpfs scenario, setting such large memory for each category is impractical, so here we use only 1 GiB (i.e., all data categories share 1 GiB of tmpfs space) to meet the disk requirements of WAL. This may be enough if the data volume is small and network conditions (between Datakit and Dataway) are normal.
 
-    If the host (or Kubernetes Node) restarts, the data in WAL will be lost, but a Datakit restart will not affect this.
+    If the host (or Kubernetes Node) restarts, the data in these WALs will be lost, but restarting Datakit itself will not affect it.
 <!-- markdownlint-enable -->
 
-After setting this up, you will see a *ramdisk* directory in the cache directory. Once Datakit starts, if WAL is generated, you will see various data category disk files in the *ramdisk* directory:
+After setting up, you will see a *ramdisk* directory under the cache directory. Once Datakit starts and WAL data is generated, you can see various disk files corresponding to different data categories in the *ramdisk* directory:
 
 ```shell
 # Enter /usr/local/datakit/cache or /mnt/wal-ramdisk/

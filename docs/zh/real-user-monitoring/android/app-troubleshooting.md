@@ -127,7 +127,6 @@ buildscript {
 
 //以下是正常同步日志
 [FT-SDK]SyncTaskManager com.demo   D  Sync Success-[code:200,response:]
-[FT-SDK]SyncTaskManager com.demo   D  
 
 ```
 
@@ -190,7 +189,7 @@ Plugin ASM 是在 `OkHttpClient.build()` 调用时自动写入，如果在 SDK �
 [FT-SDK]AutoTrack  	com.ft  D  trackOkHttpBuilder    
 ```
 
->如果无法调整初始化数据，可以选择[手动方式](app-access.md#manual-set)接入
+>如果无法调整初始化调用次序，可以选择[手动方式](app-access.md#manual-set)接入
 
 #### 使用 Interceptor 或 EventListener 对数据进行了二次处理 
 Plugin ASM 插入之后，会在原工程代码基础上，会在 `OkHttpClient.Builder()` 加入 `addInterceptor`，分别加入 `FTTraceInterceptor` 和 `FTResourceInterceptor`,其中会使用 http 请求中 body contentLength 参与唯一 id 计算，`Resource` 数据各个阶段数据通过这个 id 进行上下文串联，所以如果集成方在使用 `Okhttp` 时，也加入 `addInterceptor` 并对数据进行二次处理使其发生大小改变，从而导致 id 各阶段计算不一致，导致数据丢失。

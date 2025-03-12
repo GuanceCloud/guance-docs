@@ -2,108 +2,105 @@
 title: 'Tencent Cloud CLB Public'
 tags: 
   - Tencent Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/tencent_clb'
 dashboard:
 
-  - desc: 'Tencent Cloud CLB Public Monitoring View'
-    path: 'dashboard/zh/tencent_clb_public'
+  - desc: 'Built-in view for Tencent Cloud CLB Public'
+    path: 'dashboard/en/tencent_clb_public'
 
 monitor:
   - desc: 'Tencent Cloud CLB Public Monitor'
-    path: 'monitor/zh/tencent_clb_public'
+    path: 'monitor/en/tencent_clb_public'
 
 ---
 
 
 <!-- markdownlint-disable MD025 -->
-# Tencent CLB Public
+# Tencent Cloud CLB Public
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): All prerequisites are automatically installed. Please proceed with script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-### Installation script
-> Tip：Please prepare Tencent Cloud AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of CLB Public cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud CLBCollect）」(ID：`guance_tencentcloud_clb`)
-
-Click 【Install】 and enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.。
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
-
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+If you deploy Func on your own, refer to [Deploy Func on Your Own](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
+### Install Script
 
-## Metric {#metric}
+> Note: Prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-Configure Tencent Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://www.tencentcloud.com/document/product/248/10997){:target="_blank"}
+To synchronize monitoring data for CLB_Public cloud resources, install the corresponding collection script: "Guance Integration (Tencent Cloud CLB Collection)" (ID: `guance_tencentcloud_clb`)
+
+Click [Install], then enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
+
+Click [Deploy Startup Script], and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+
+Additionally, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click [Execute] to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+By default, we collect some configurations. For more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
-| Parameter          | Metric                 | Description                                                     | Unit        | Statistical Granularity             |
-| ------------------- | -------------------------- | ------------------------------------------------------------ | ----------- | -------------------- |
-| `ClientConnum`        | Client-CLB active connections | Number of active connections initiated from the client to the CLB instance or listener at a certain time point in the statistical period. | -         | 10s、60s、300s       |
-| `ClientInactiveConn`  | Client-CLB inactive connections | Number of inactive connections initiated from the client to the CLB instance or listener at a certain time point in the statistical period. | -          | 10s、60s、300s       |
-| `ClientConcurConn`    | Client-CLB concurrent connections | Number of concurrent connections initiated from the client to the CLB instance or listener at a certain time point in the statistical period. | -          | 10s、60s、300s       |
-| `ClientNewConn`       | Client-CLB new connections | Number of new connections initiated from the client to the CLB instance in the statistical period. | -      | 10s、60s、300s       |
-| `ClientInpkg`         | Client-CLB inbound packets | Number of data packets sent from the client to the CLB instance per second in the statistical period. | Count/s | 10s、60s、300s       |
-| `ClientOutpkg`        | Client-CLB outbound packets | Number of data packets sent from the CLB instance to the client per second in the statistical period. | Count/s | 10s、60s、300s       |
-| `ClientAccIntraffic`  | Client-CLB inbound traffic | Volume of inbound traffic from the client to the CLB instance in the statistical period. | MB          | 10s、60s、300s       |
-| `ClientAccOuttraffic` | Client-CLB outbound traffic | Volume of outbound traffic from the CLB instance to the client in the statistical period. | MB          | 10s、60s、300s       |
-| `ClientIntraffic`     | Client-CLB inbound bandwidth | Inbound bandwidth used by the traffic from the client to the CLB instance in the statistical period. | Mbps        | 10s、60s、300s       |
-| `ClientOuttraffic`    | Client-CLB outbound bandwidth | Outbound bandwidth used by the traffic from the CLB instance to the client in the statistical period. | Mbps        | 10s、60s、300s       |
-| `InTraffic`           | CLB-real server inbound bandwidth | Inbound bandwidth used by the traffic from the CLB instance to real servers in the statistical period. | Mbps        | 10s、60s、300s、3600 |
-| `OutTraffic`          | CLB-real server outbound bandwidth | Outbound bandwidth used by the traffic from real servers to the CLB instance in the statistical period. | Mbps        | 10s、60s、300s、3600 |
-| `InPkg`               | CLB-real server inbound packets | Number of data packets sent from the CLB instance to real servers per second in the statistical period. | Count/s | 10s、60s、300s、3600 |
-| `OutPkg`              | CLB-real server outbound packets | Number of data packets sent from real servers to the CLB instance per second in the statistical period. | Count/s | 10s、60s、300s、3600 |
-| `ConNum`              | CLB-real server connections | Number of connections initiated from the CLB instance to real servers in the statistical period. | -          | 60s、300s、3600s     |
-| `NewConn`             | CLB-real server new connections | Number of new connections initiated from the CLB instance to real servers in the statistical period. | Count/min | 60s、300s、3600s     |
-| `DropTotalConns`      | Dropped connections | Number of connections dropped by the CLB instance or listener in the statistical period.This metric is supported by only standard accounts but not traditional accounts. | -          | 60s、300s、3600s     |
-| `IntrafficVipRatio`   | Inbound bandwidth utilization | Utilization of the bandwidth for the client to access the CLB instance over the public network in the statistical period.This metric is supported by only standard accounts but not traditional accounts. It is currently in beta test. To try it out, [submit a ticket](https://console.tencentcloud.com/workorder/category) {:target="_blank"} for application. | %           | 60s、300s、3600s     |
-| `OuttrafficVipRatio`  | Outbound bandwidth utilization | Utilization of the bandwidth for the client to access the CLB instance over the public network in the statistical period.This metric is supported by only standard accounts but not traditional accounts. It is currently in beta test. To try it out, [submit a ticket](https://console.tencentcloud.com/workorder/category) {:target="_blank"} for application. | ％          | 60s、300s、3600s     |
-| `ReqAvg`              | Average request time | Average request time of the CLB instance in the statistical period.This metric is available to layer-7 listeners only. | ms      | 60s、300s、3600s     |
-| `ReqMax`              | Maximum request time | Maximum request time of the CLB instance in the statistical period.This metric is available to layer-7 listeners only. | ms      | 60s、300s、3600s     |
-| `RspAvg`              | Average response time | Average response time of the CLB instance in the statistical period.This metric is available to layer-7 listeners only. | ms      | 60s、300s、3600s     |
-| `RspMax`              | Maximum response time | Maximum response time of the CLB instance in the statistical period.This metric is available to layer-7 listeners only. | ms      | 60s、300s、3600s     |
-| `RspTimeout`          | Timed-out responses | Number of timed-out responses of the CLB instance per minute in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `SuccReq`             | Successful requests per minute | Number of successful requests of the CLB instance per minute in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `TotalReq`            | Requests per second | Number of requests of the CLB instance per second in the statistical period.This metric is available to layer-7 listeners only. | -          | 60s、300s、3600s     |
-| `ClbHttp3xx`          | 3xx status codes returned by CLB | Total number of 3xx status codes returned by the CLB instance and real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `ClbHttp4xx`          | 4xx status codes returned by CLB | Total number of 4xx status codes returned by the CLB instance and real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `ClbHttp5xx`          | 5xx status codes returned by CLB | Total number of 5xx status codes returned by the CLB instance and real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `Http2xx`             | 2xx status codes | Number of 2xx status codes returned by real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `Http3xx`             | 3xx status codes | Number of 3xx status codes returned by real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `Http4xx`             | 4xx status codes | Number of 4xx status codes returned by real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s |
-| `Http5xx`             | 5xx status codes | Number of 5xx status codes returned by real servers in the statistical period.This metric is available to layer-7 listeners only. | Count/min | 60s、300s、3600s     |
-| `UnhealthRsCount`     | Health check exceptions | Number of health check exceptions of the CLB instance in the statistical period. | -          | 60s、300s            |
-| `InDropBits`          | Dropped inbound bandwidth | Bandwidth dropped when the client accesses CLB over the public network within a reference period.This metric is supported by only standard accounts but not traditional accounts. | Byte | 60s、300s、3600s |
-| `OutDropBits`         | Dropped outbound traffic | Bandwidth dropped when the CLB instance accesses the public network in the statistical period.This metric is supported by only standard accounts but not traditional accounts. | Byte | 60s、300s、3600s |
-| `InDropPkts`          | Dropped inbound packets | Number of data packets dropped when the client accesses the CLB instance over the public network in the statistical period.This metric is supported by only standard accounts. | Count/s | 60s、300s、3600s |
-| `OutDropPkts`         | Dropped outbound packets | Number of data packets dropped when the CLB instance accesses the public network in the statistical period.This metric is supported by only standard accounts but not traditional accounts. | Count/s | 60s、300s、3600s |
-| `DropQps`             | Dropped QPS | Number of requests dropped by the CLB instance or listener in the statistical period.This metric is available to layer-7 listeners only and supported by only standard accounts but not traditional accounts. | - | 60s、300s |
+### Verification
 
-## 对象 {#object}
+1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
-The collected Tencent Cloud ECS object data structure can see the object data from 「Infrastructure-Custom」
+## Metrics {#metric}
+After configuring Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Details of Tencent Cloud Cloud Monitoring Metrics](https://cloud.tencent.com/document/product/248/51898){:target="_blank"}
+
+| Metric Name          | Metric Description                                                     | Unit        | Statistical Granularity             |
+| ------------------- | ------------------------------------------------------------ | ----------- | -------------------- |
+| `ClientConnum`        | Number of active connections from client to LB   | Count          | 10s、60s、300s       |
+| `ClientInactiveConn`  | Number of inactive connections from client to LB | Count          | 10s、60s、300s       |
+| `ClientConcurConn`    | Number of concurrent connections from client to LB   | Count          | 10s、60s、300s       |
+| `ClientNewConn`       | Number of new connections from client to LB   | Connections per second     | 10s、60s、300s       |
+| `ClientInpkg`         | Number of inbound packets from client to LB       | Packets per second       | 10s、60s、300s       |
+| `ClientOutpkg`        | Number of outbound packets from client to LB       | Packets per second       | 10s、60s、300s       |
+| `ClientAccIntraffic`  | Amount of inbound traffic from client to LB       | MB          | 10s、60s、300s       |
+| `ClientAccOuttraffic` | Amount of outbound traffic from client to LB       | MB          | 10s、60s、300s       |
+| `ClientIntraffic`     | Inbound bandwidth from client to LB       | Mbps        | 10s、60s、300s       |
+| `ClientOuttraffic`    | Outbound bandwidth from client to LB       | Mbps        | 10s、60s、300s       |
+| `InTraffic`           | Inbound bandwidth from LB to backend RS          | Mbps        | 10s、60s、300s、3600 |
+| `OutTraffic`          | Outbound bandwidth from backend RS to LB          | Mbps        | 10s、60s、300s、3600 |
+| `InPkg`               | Number of inbound packets from LB to backend RS          | Packets per second       | 10s、60s、300s、3600 |
+| `OutPkg`              | Number of outbound packets from backend RS to LB          | Packets per second       | 10s、60s、300s、3600 |
+| `ConNum`              | Number of connections from LB to backend RS          | Count          | 60s、300s、3600s     |
+| `NewConn`             | Number of new connections from LB to backend RS      | Connections per minute     | 60s、300s、3600s     |
+| `DropTotalConns`      | Number of dropped connections                 | Count          | 60s、300s、3600s     |
+| `IntrafficVipRatio`   | Inbound bandwidth utilization               | %           | 60s、300s、3600s     |
+| `OuttrafficVipRatio`  | Outbound bandwidth utilization               | ％          | 60s、300s、3600s     |
+| `ReqAvg`              | Average request time               | Milliseconds        | 60s、300s、3600s     |
+| `ReqMax`              | Maximum request time               | Milliseconds        | 60s、300s、3600s     |
+| `RspAvg`              | Average response time               | Milliseconds        | 60s、300s、3600s     |
+| `RspMax`              | Maximum response time               | Milliseconds        | 60s、300s、3600s     |
+| `RspTimeout`          | Number of response timeouts               | Counts per minute     | 60s、300s、3600s     |
+| `SuccReq`             | Number of successful requests per minute           | Counts per minute     | 60s、300s、3600s     |
+| `TotalReq`            | Number of requests per second                 | Count          | 60s、300s、3600s     |
+| `ClbHttp3xx`          | Number of 3xx status codes returned by CLB      | Counts per minute     | 60s、300s、3600s     |
+| `ClbHttp4xx`          | Number of 4xx status codes returned by CLB      | Counts per minute     | 60s、300s、3600s     |
+| `ClbHttp5xx`          | Number of 5xx status codes returned by CLB      | Counts per minute     | 60s、300s、3600s     |
+| `Http2xx`             | Number of 2xx status codes returned by backend server                 | Counts per minute     | 60s、300s、3600s     |
+| `Http3xx`             | Number of 3xx status codes returned by backend server                 | Counts per minute     | 60s、300s、3600s     |
+| `Http4xx`             | Number of 4xx status codes returned by backend server             | Counts per minute | 60s、300s、3600s |
+| `Http5xx`             | Number of 5xx status codes returned by backend server                 | Counts per minute     | 60s、300s、3600s     |
+| `UnhealthRsCount`     | Number of unhealthy checks             | Count          | 60s、300s            |
+| `InDropBits`          | Dropped inbound bandwidth | Number of dropped requests on LB or listener. This metric is unique to Layer 7 listeners and only supported by standard account types, not traditional account types. Account type judgment method can be found at [Judge Account Type](https://cloud.tencent.com/document/product/1199/49090#judge){:target="_blank"}.| Bytes | 60s、300s、3600s |
+| `OutDropBits`         | Dropped outbound bandwidth | Number of dropped requests on LB or listener. This metric is unique to Layer 7 listeners and only supported by standard account types, not traditional account types. Account type judgment method can be found at [Judge Account Type](https://cloud.tencent.com/document/product/1199/49090#judge){:target="_blank"} | Bytes | 60s、300s、3600s |
+| `InDropPkts`          | Dropped inbound packets | Number of dropped requests on LB or listener. This metric is unique to Layer 7 listeners and only supported by standard account types, not traditional account types. Account type judgment method can be found at [Judge Account Type](https://cloud.tencent.com/document/product/1199/49090#judge){:target="_blank"} | Packets per second | 60s、300s、3600s |
+| `OutDropPkts`         | Dropped outbound packets | Number of dropped requests on LB or listener. This metric is unique to Layer 7 listeners and only supported by standard account types, not traditional account types. Account type judgment method can be found at [Judge Account Type](https://cloud.tencent.com/document/product/1199/49090#judge){:target="_blank"} | Packets per second | 60s、300s、3600s |
+| `DropQps`             | Dropped QPS | Number of dropped requests on LB or listener. This metric is unique to Layer 7 listeners and only supported by standard account types, not traditional account types. Account type judgment method can be found at [Judge Account Type](https://cloud.tencent.com/document/product/1199/49090#judge){:target="_blank"} | Count | 60s、300s |
+
+## Objects {#object}
+The structure of collected Tencent Cloud CLB Public object data, which can be seen in "Infrastructure - Custom"
 
 ```json
 {

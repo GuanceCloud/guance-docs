@@ -1,0 +1,4 @@
+nav:
+  - index.md
+  - 'How to Integrate Session Replay': replay.md
+  - 'Troubleshooting': faq.md

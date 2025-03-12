@@ -1,139 +1,215 @@
 # Chart Links
 ---
 
-## Introduction
+<<< custom_key.brand_name >>> supports both built-in and custom chart links, which can help you navigate from the current chart to a target page and pass data information through corresponding template variables, achieving data联动.
 
-Guance supports built-in association links and custom association links for charts, which can help you jump from the current chart to the target page and transfer data information through the corresponding variable values in the links by modifying template variables to complete data linkage.
+## Variable Explanation
 
-Note: Chart links support relative path addresses.
+<<< custom_key.brand_name >>> supports four types of template variables:
 
-## Variable Description
+- Time Variables
+- Tag Variables
+- View Variables
+- Value Variables
 
-The Guance supports 3 types of template variables, namely, time variables, label variables and view variables.
+### Time Variables {#time}
 
-| Variable Type | Variable | Description |
+| Variable | Description |
+| --- | --- |
+| #{TR} | The time range of the current chart query. For example, if the current query time is `Last 1 hour`, then:<br />Template variable: `&time=#{TR}` is equivalent to `&time=1h` |
+| #{timestamp.start} | The start time of the selected data points in the current chart query. |
+| #{timestamp.end} | The end time of the selected data points in the current chart query. |
+| #{startTime} | If the time is not locked, it represents the start time in the time widget at the top right corner of the current chart.<br />If the time is locked, it represents the start time set in the locked time settings. |
+| #{endTime} | If the time is not locked, it represents the end time in the time widget at the top right corner of the current chart.<br />If the time is locked, it represents the end time set in the locked time settings. |
+
+**Note**: When performing actual queries, you can use the time variables `#{startTime}` and `#{endTime}`, as well as view variables as placeholders. During the actual execution of the chart query, the system will replace these variables with their final values based on global settings.
+
+### Tag Variables
+
+| Variable | Description |
+| --- | --- |
+| #{T} | The set of all grouping tags in the current chart query. For example, if the current chart query is:<br />`M::'datakit':(LAST('cpu_usage')) BY 'host','os'`<br />The query result is: host=abc, os=linux, then:<br />Template variable: `&query=#{T}` is equivalent to `&query=host:abc os:linux` |
+| #{T.name} | The value of a specific tag in the current chart query, where name can be replaced by any tagKey in the query.<br />For example, if the current chart query is:<br />`M::'datakit':(LAST('cpu_usage')) BY 'host', 'os'`<br />The query result is: host=abc, os=linux, then:<br /><li>Template variable `#{T.host} = abc`<br /><li>`&query=hostname:#{T.host}` is equivalent to `&query=hostname:abc` |
+
+### View Variables
+
+| Variable | Description |
+| --- | --- |
+| #{V} | The set of all view variables in the current dashboard.<br />For example, if the current dashboard's view variables are:<br />version=V1.7.0 and region=cn-hangzhou<br />Template variable `&query=#{V}` is equivalent to `&query=version:V1.7.0 region:cn-hangzhou` |
+| #{V.name} | The value of a specific view variable in the current dashboard, where name can be replaced by any variable name.<br />For example, if the current dashboard's view variable version=V1.7.0, then:<br /><li>Template variable `#{V.version} = V1.7.0`<br /><li>`&query=version:#{V.version}` is equivalent to `&query=version:V1.7.0` |
+
+### Value Variables {#z-variate}
+
+| Chart Type | <div style="width: 130px">Variable</div> | Description |
 | --- | --- | --- |
-| Time variable | #{TR} | The time range of the current chart query, e.g. <br />`time=#{TR}` |
-| The label variable | #{T} | All grouping labels of current chart query is to use all grouping labels of current chart query as query criteria.<br />Suppose the current chart query is：<br />`M::`datakit`:(LAST(`cpu_usage`)) { `vserion` = '1.0.0-rc1' } BY `host`, `vserion`, `os``<br />Template Variables：`&tags=#{T} `Same as `&tags={“host","os","linux"}` |
-|  | #{T.name} | name is the name of the group label corresponding to the current chart query automatically recognized by the system.<br />Suppose the current chart query has grouping labels“host"：<br />- Template Variables `#{T.host}`<br />-  `tags={"host":"{T.host}"}`<br /> |
-| View Variables | #{V} | The current set of values of all view variables in the dashboard is the set of all view variables of the current dashboard as query criteria.<br />Assuming that the view variable for the current dashboard is：<br />"version"="V1.7.0" and"region":"cn-hangzhou"<br />template variable ` &tags=#{V} ` same as `&tags={"version": "V1.7.0", "region": "cn-hangzhou"}` |
-|  | #{V.name} | name is the name of the view variable that the system automatically recognizes as existing in the current dashboard.<br />Assuming that the view variable "version" exists in the current dashboard<br />- Template variable `#{V.version}`<br />- `tags={"version":"{V.version}"}`<br /> |
+| Time Series, Summary, Pie Chart, Bar Chart, Top List, Dashboard, Funnel Analysis | #{Value} | The data value returned by the current chart query. For example, if the current chart query is `M::cpu:(AVG(load5s))` and the query result is AVG(load5s)=a, then:<br />Value variable: `&query=#{Value}` is equivalent to `&query=AVG(load5s):a` |
+| Scatter Plot | #{Value.X} | The X-axis data value returned by the current chart query. For example, if the current chart query is:<br />`M::cpu:(AVG(load5s))`<br />And the query result is: X:AVG(load5s)=abc, then:<br />Value variable: `&query=#{Value.X}` is equivalent to `&query=X:abc` |
+|  | #{Value.Y} | The Y-axis data value returned by the current chart query.<br />For example, if the current chart query is:<br />`M::backuplog:(AVG(lru_add_cache_success_count))`<br />And the query result is: Y:AVG(lru_add_cache_success_count)=dca, then:<br />Value variable `&query=Y:#{Value.Y}` is equivalent to `&query=Y:dca` |
+| Bubble Chart | #{Value.X} | The X-axis data value returned by the current chart query. For example, if the current chart query is:<br />`T::RE(.*):(FIRST(duration)) BY service`<br />And the query result is: X:first(duration)=98, then:<br />Value variable: `&query=X:#{Value.X}` is equivalent to `&query=X:98` |
+|  | #{Value.Y} | The Y-axis data value returned by the current chart query.<br />For example, if the current chart query is:<br />`T::RE(.*):(LAST(duration)) BY service`<br />And the query result is: Y:last(duration)=8500, then:<br />Value variable `&query=Y:#{Value.Y}` is equivalent to `&query=Y:8500` |
+|  | #{Value.Size} | The Size data value returned by the current chart query.<br />For example, if the current chart query is:<br />`T::RE(.*):(MAX(duration)) BY service`<br />And the query result is: Size:Max(duration)=1773, then:<br />Value variable `&query=Size:#{Value.Size}` is equivalent to `&query=Size:1773` |
+| Table Chart | #{Value.column_name} | The selected column value in the current chart, where name can be replaced by any column variable name.<br />For example, if the current chart query is:<br />`L::RE(.*):(COUNT(*)) { index = default }`<br />And the query result is: count(*)=40813, then:<br />Value variable `&query=#{Value.count(*)}` is equivalent to `&query=count(*):40813` |
+| Treemap, China Map, World Map, Honeycomb Chart | #{Value.metric_name} | The selected query data value in the current chart, where name can be replaced by any column variable name.<br />For example, if the current chart query is:<br />`L::RE(.*):(MAX(response_time)) { index = default } BY country`<br />And the query result is: max(response_time)=16692, then:<br />Value variable `&query=#{Value.max(response_time)}` is equivalent to `&query=max(response_time):16692` |
 
-There are several common uses of view variables in links.<br />1）`&tags=#{V}`  ，Conditions for passing all view variables in a link<br />2）`&tags={"version":"{V.version}"}`, the condition that only the view variable version is passed in the link<br />3）`&tags={"host": "#{V.host}"}`, the condition to pass the tag host in the link, the host value is the selected value of the current view variable host
-## Built-in links
+## Built-in Links
 
-Built-in links are the default associated links provided by Guance for charts, mainly based on the time range and grouping labels of the current query, to help you view the corresponding logs, processes, containers, links, Built-in links are turned off by default, and can be turned on to display when editing charts.
+These are the default associated links provided by <<< custom_key.brand_name >>> for charts, mainly based on the current query time range and grouping tags, helping you view corresponding logs, processes, containers, traces, and host monitoring views.
 
-![](../img/chart024.png)
+![](../img/6.link_1.png)
 
-- View related logs: query related logs based on the grouping tags of the current query, i.e. add the current grouping tags as filtering criteria, support jumping to the log explorer to view details
-- View Related Containers: Based on the grouping tags of the current query, query related containers, i.e. add the current grouping tags as filtering criteria, support jumping to the container explorer to view details
-- View related processes: Based on the grouping label of the current query, query related processes, that is, add the current grouping label as a filter, support jump to the process explorer to view details
-- View related links: based on the current query grouping label associated query related links, that is, add the current grouping label as a filter condition, support jump to the application performance monitoring explorer view details
+After enabling the display of built-in links, clicking the chart allows you to view associated data.
 
-![](../img/d8.png)
+- View related logs: Based on the grouping tags of the current query, it associates and queries relevant logs, i.e., adding the current grouping tags as filter conditions, supporting navigation to the log viewer for detailed viewing; containers, processes, and traces follow the same principle.
 
-Caution：
+![](../img/6.link_3.png)
 
-- Built-in links** do not support queries where filter conditions exist**. When your chart query has filters, you can customize the links via 「Links」.
-- The built-in links** do not support queries with view variables**. When your chart query has filters, you can customize the link via 「Link」.
+## Custom Links {#custom-link}
 
-## Custom Links
+This involves adding custom links to charts. On the basis of text box input, you can freely combine parameters to generate the final chart association link address to view related data. Custom links are enabled by default after addition and can be directly displayed in the chart preview.
 
-Guance supports adding custom links to charts, which can help you jump from the current chart to the target page and transfer the data information through the template variables by modifying the corresponding variable values in the links. After the custom link is added, the default display is on, and the link can be displayed directly in the chart preview.
+In **Dashboard**, select **Chart > Links**, enter a **Name**, and you can start adding custom links to the chart.
 
-![](../img/chart025.png)
+<img src="../../img/6.link_5.1.png" width="70%" >
 
-In 「Dashboard」 edit mode, select 「Chart」 - 「Link」 to view the available template variables.
+### Link Address
 
-1) Enter the variable template after the URL link, such as<br />`https://console.guance.cn/logndi/log?time=#{TR}&tags={"version":"#{V.version}"}`
+The link address is generated based on parameter configuration on top of the text box input to view related data.
 
-- `https://console.guance.com/logIndi/log/?`for URL links
-- `time=#{TR}&tags={"version"="#{V.version}"}`为The content of the template variable.
+#### Preset Link Explanation
 
-2) Modify the variable template in the URL link, such as
+When adding chart links, <<< custom_key.brand_name >>> provides preset links to help you configure the link address quickly and easily.
 
-- Before using the template variables.
+| Associated Data Type | Preset Link                                  |
+| ------------ | -------------------------------------- |
+| Logs         | `/logIndi/log/all`                                           |
+| Traces       | `/tracing/link/all`                                          |
+| Error Tracking | `/tracing/errorTrack`                                        |
+| Profile      | `/tracing/profile`                                           |
+| Containers   | `/objectadmin/docker_containers?routerTabActive=ObjectadminDocker` |
+| Pods         | `/objectadmin/kubelet_pod?routerTabActive=ObjectadminDocker` |
+| Processes    | `/objectadmin/host_processes?routerTabActive=ObjectadminProcesses` |
+| Dashboard    | `/scene/dashboard/dashboardDetail`                           |
 
-`https://console.guance.com/logIndi/log/? `
+#### Preset Parameter Explanation {#description}
 
-- After using the time variable.
+When adding chart links, based on the preset link you choose, the system provides corresponding available parameters to help you configure the link address quickly and easily.
 
-`https://console.guance.cn/logndi/log?time=#{TR}`
+| Parameter         | Description                                          |
+| ------------ | -------------------------------------------- |
+| time         | Time filter, usable in viewers and dashboards. Link format:<br><li>Pass query time via template variables: `&time=#{TR}` <br><li>Query last 15 minutes: `&time=15m`<br><li>Set specific start and end times: `&time=1675247688602,1676457288602` |
+| variable     | View variable query, generally used in dashboard views.<br/>Link format: `&variable={"host":"guance","service":"kodo"}` |
+| dashboard_id | Dashboard ID, used to specify a dashboard/built-in view.<br/>Link format: `&dashboard_id=dsbd_069b2b90f562123456789123456789` |
+| name         | Name, used to specify dashboard names/note names/custom viewer names, etc.<br/>Link format: `&name=Linux Host Monitoring View` |
+| query         | Tag filtering or text search, generally used for data filtering in viewers. Supports combining tag filters and text searches using `space`, `AND`, `OR`. (Space is equivalent to AND)                                          |
+| cols         | Display columns in the viewer, generally used to specify display columns in the viewer. If not specified, it defaults to system defaults.<br/>Link format: `&cols=time,host,service,message` |
+| w            | Workspace ID, required when navigating across workspaces.<br/>Link format: `&w=wksp_40a73c6c2b024301a0b1d139e1234567` |
 
-- After using the tag variable.
+#### Available Template Variables
 
-`https://console.guance.cn/logndi/log?time=#{TR}&tags=#{T}`
+When adding chart links, the system automatically provides the template variables available for the current configured chart link, which you can directly copy and apply in the link. Examples include #{TR}, #{T}, #{T.host}, #{V}, #{V.host}, etc.
 
-- After using the view variable.
+#### Example Explanation
 
-`https://console.guance.cn/logndi/log?time=#{TR}&tags={"version"="#{V.version}"}`
+Taking linking to the CPU monitoring view of the current workspace as an example, the configuration is as follows:
 
-**Note:**
+`/scene/dashboard/dashboardDetail?dashboard_id=dsbd_e4313axxxxxxxxxxxxxc4198775e&name=CPU Monitoring View&w=wksp_ed134a648xxxxxxxxxxxxx9a9c6115&time=#{TR}&variable=#{V.host}`
 
-- Variables are supported to be entered after the URL link. If the URL link itself already has a time variable, tag variable or view variable, you need to modify it on the variable you have now, otherwise it will cause a conflict.
-- If a variable has more than one parameter separated by `,`, multiple variables are linked with `&`.
+Explanation of the link address:
 
-## Link way
+| Link Component | Parameter Configuration                                         |
+| ---------- | ------------------------------------------------ |
+| Dashboard URL | `/scene/dashboard/dashboardDetail`               |
+| Dashboard ID   | `dashboard_id=dsbd_e4313axxxxxxxxxxxxxc4198775e` |
+| Dashboard Name | `name=CPU Monitoring View`                              |
+| Workspace ID | `w=wksp_ed134a648xxxxxxxxxxxxx9a9c6115`          |
+| Time Variable   | `time=#{TR}`                                     |
+| View Variable   | `variable=#{V.host}`                             |
 
-Guance supports three link opening methods, which are 【New Page】 【Current Page】 and 【Cross out Details Page】.
+???+ warning "Note"
 
-- New page: open the link in a new page
-- Current page: Open the link in the current page
-- Scheduled details page: Slide out the window on the side of the current page to open the link
+    - Variables can be entered after the URL link. If the URL link already contains time variables, tag variables, or view variables, modify them accordingly to avoid conflicts.
+    - If a variable has multiple parameters, separate them with `,`. Use `&` to link multiple variables.
+    - The link address supports relative path addresses.
 
-![](../img/d6.png)
+### Link Opening Methods
 
-## Operation
+<<< custom_key.brand_name >>> supports three methods to open links: **New Tab**, **Current Tab**, and **Slide-out Detail Page**.
 
-Guance supports 「Edit」, 「Delete」 and 「Restore」 operations on chart links
+- New Tab: Opens the link in a new tab.
+- Current Tab: Opens the link in the current tab.
+- Slide-out Detail Page: Slides out a window on the current page to open the link.
 
-- Edit: Support to modify the added links
-- Delete: Delete the current link. Make sure the deleted links cannot be restored.
-- Restore: Support to restore the modified links to their initial default state
+## Operation Instructions
 
-## Example
+<<< custom_key.brand_name >>> supports the following operations on chart links:
 
-Prerequisite: You have already created the chart under the "Guance" dashboard and now you need to add a link to the chart.
+1. Enable/Disable Display: Controls whether to show associated links on the chart.
+2. Edit: Allows modification of added links.
+3. Delete: Deletes the current custom link. Deleted links cannot be recovered, so proceed with caution.
+4. Restore to Default: Restores modified built-in links to their initial default state.
 
-### Link to other views
- <br />**Step 1: Get the URL you need to link to**<br />Open the host monitoring view that needs to be linked in the chart and copy the URL in your browser.
+![](../img/6.link_8.png)
 
-![](../img/d5.png)
+## Scenario Examples
 
-**Step 2: Fill in the chart link**<br />In the chart link, paste the copied link address.
+**Prerequisite**: You have already created a chart in the <<< custom_key.brand_name >>> dashboard and now need to add links to the chart.
 
-**Step 3: Modify the links according to the chart link template variables**<br />Modify the variable values in the link according to the template variable rules of the link, including time variable, label variable and view variable. Open the link by selecting the "Scratch out details page" and fill in the alias "Host monitoring view".
+### Linking to Other Views
 
-![](../img/d4.png)
+<div class="grid" markdown>
 
-**Step 4: Open the link in the chart preview**<br />In the chart preview, click on the chart to bring up the custom link dialog.
+=== "Step One: Add Chart Link"
 
-![](../img/d3.png)
+    In the chart link, enter the name “cpu usage”, add the link address based on preset links and parameters, and choose the opening method as **Slide-out Page**.
 
-Clicking on the configured "Host Monitoring View" link opens the linked view side-by-side. As you can see, the view variables and time range are consistent with the chart.
+    Alternatively, you can directly open the view you want to link in the chart, copy the browser URL, and paste it into the link address, modifying the template variables as needed.
 
-![](../img/2.link_8.png)
+    <img src="../../img/6.link_5.1.png" width="60%" >
 
-### Link to the infrastructure
+=== "Step Two: Open Link in Chart"
 
-**Step 1: Get the URL to be linked**<br />Copy the link URL in the "Guance" infrastructure host.
+    After adding the link, click the chart to bring up the custom link dialog box.
 
-**Step 2: Fill in the chart link**<br />In the chart link, paste the copied link address.
+    ![](../img/6.link_6.png)
 
-**Step 3: Modify the links according to the chart link template variables**<br />Modify the variable values in the link according to the template variable rules of the link, including time variables and view variables (you can also use the tag variable `#{T.host}` here). Open the link by selecting the "Scratch out details page" and fill in the alias "Host infrastructure".
+    Click the configured “cpu usage” link to slide out and open the linked view.
 
-**Step 4: Open the link in the chart preview**<br />In the chart preview, click on the chart to bring up the custom link dialog. Click on the configured "Host Infrastructure" link and you can slide the link sideways to open the content. As you can see, the variable values for hosts remain consistent.
+    ![](../img/6.link_7.png)
 
-![](../img/2.link_11.png)
+</div>
 
-### Link to external help files
+### Linking to Infrastructure
 
-**Step 1: Get the URL you need to link to**<br />Copy the link in the "Guances" help manual for timing charts.
+<div class="grid" markdown>
 
-**Step 2: Fill in the chart link**<br />In the chart link, paste the copied link address. Open the link by selecting the "Cross out details page" option and leave the alias blank.
+=== "Step One: Add Chart Link"
 
-**Step 3: Open the link in the chart preview**<br />In the chart preview, click on the chart to bring up the custom links dialog. Click on the configured external link to slide sideways to open the link content. The chart can be set up according to the linked chronological chart help documentation instructions.
+    In the chart link, enter the name “Infrastructure Host Viewer”, paste the copied link address from the <<< custom_key.brand_name >>> infrastructure host, and add or modify template variable parameters as needed. Choose the opening method as **Slide-out Page**.
 
-![](../img/2.link_14.png)
+    <img src="../../img/6.link_12.1.png" width="60%" >
 
+=== "Step Two: Open Link in Chart"
+
+    After adding the link, click the chart to bring up the custom link dialog box. Click the configured “Infrastructure Host Viewer” link to slide out and open the linked content. Notice that the host variable values remain consistent.
+
+    ![](../img/2.link_11.png)
+
+</div>
+
+### Linking to External Help Documentation
+
+<div class="grid" markdown>
+
+=== "Step One: Add Chart Link"
+
+    In the chart link, enter the name “Link Help Document”, paste the copied URL of the help manual, and choose the opening method as **Slide-out Page**.
+
+    <img src="../../img/6.link_9.png" width="60%" >
+
+=== "Step Two: Open Link in Chart"
+
+    Click the chart to bring up the custom link dialog box. Click the configured external link to slide out and open the linked content. Follow the instructions in the linked help document to configure the chart.
+
+    <img src="../../img/6.link_10.png" width="70%" >
+
+</div>

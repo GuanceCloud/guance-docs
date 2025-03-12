@@ -1,42 +1,33 @@
-# Get a List of Monitors
+# Get Checker List
 
 ---
 
-<br />**get /api/v1/monitor/check/list**
+<br />**GET /api/v1/checker/list**
 
 ## Overview
-List monitors in pages.
+Lists checkers in pages.
 
-
-
-
-## Query Request Parameter
+## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| monitorUUID | commaArray |  | Monitor UUID<br>Allow null: False <br> |
-| checkerUUID | commaArray |  | Check item UUID list<br>Allow null: False <br> |
-| sloUUID | string |  | SLO的UUID<br>Allow null: False <br> |
-| search | string |  | Search rule name<br>Allow null: False <br> |
-| pageIndex | integer |  | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer |  | Quantity returned per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:------------------|:-------|:-----|:----------------|
+| type | string | No | Lists checkers, specify `smartMonitor` for intelligent monitoring.<br>Allow null: False <br>Allow empty string: False <br>Optional values: ['smartMonitor'] <br> |
+| monitorUUID | commaArray | No | Monitor group UUID.<br>Allow null: False <br> |
+| alertPolicyUUID | commaArray | No | Alert policy UUID.<br>Allow null: False <br> |
+| checkerUUID | commaArray | No | Checker UUID list.<br>Allow null: False <br> |
+| sloUUID | string | No | SLO UUID.<br>Allow null: False <br> |
+| search | string | No | Search rule name.<br>Allow null: False <br> |
+| pageIndex | integer | No | Page number.<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer | No | Number of items per page.<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Supplementary Description of Parameters
-
-
-
-
+## Additional Parameter Notes
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
-
-
-
 
 ## Response
 ```shell
@@ -45,7 +36,7 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=
     "content": [
         {
             "createAt": 1642412816,
-            "creator": "acnt_a5d6130c19524a6b9fe91d421eaf8603",
+            "creator": "acnt_xxxx32",
             "crontabInfo": {
                 "crontab": "*/1 * * * *",
                 "id": "cron-h0vvCCHAQMij"
@@ -158,8 +149,8 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=
                     "instanceId"
                 ],
                 "interval": 300,
-                "message": ">等级：{{df_status}}  \n>实例：{{instanceId}}  \n>内容：RDS Mysql 磁盘使用率为 {{ Result |  to_fixed(2) }}%  \n>建议：登录阿里云控制台查看 RDS 是否有异常",
-                "name": "阿里云 RDS Mysql 磁盘使用率过高",
+                "message": ">Level: {df_status}  \n>Instance: {instanceId}  \n>Content: RDS Mysql disk usage is {{ Result |  to_fixed(2) }}%  \n>Suggestion: Log in to the Alibaba Cloud console to check if there are any anomalies with RDS",
+                "name": "Alibaba Cloud RDS Mysql Disk Usage Too High",
                 "noDataInterval": 0,
                 "recoverNeedPeriodCount": 1,
                 "targets": [
@@ -168,17 +159,17 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=
                         "dql": "M::`aliyun_acs_rds_dashboard`:(LAST(`DiskUsage_Average`))  BY `instanceId`"
                     }
                 ],
-                "title": "阿里云 RDS Mysql 实例 ID 为 {{instanceId}} 磁盘使用率过高",
+                "title": "Alibaba Cloud RDS Mysql Instance ID {instanceId} Disk Usage Too High",
                 "type": "simpleCheck"
             },
-            "monitorName": "阿里云 RDS Mysql 检测库",
-            "monitorUUID": "monitor_84cbb7c18f964771b8153fbca1013615",
+            "monitorName": "Alibaba Cloud RDS Mysql Monitoring Database",
+            "monitorUUID": "monitor_xxxx32",
             "status": 0,
             "type": "trigger",
             "updateAt": 1642412816,
             "updator": "",
-            "uuid": "rul_f9f6fbbf41844671b7e5c37791c8cca4",
-            "workspaceUUID": "wksp_2dc431d6693711eb8ff97aeee04b54af"
+            "uuid": "rul_xxxx32",
+            "workspaceUUID": "wksp_xxxx32"
         }
     ],
     "errorCode": "",
@@ -193,7 +184,3 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/list?pageIndex=1&pageSize=
     "traceId": "TRACE-F9E5478C-D157-4CD0-883D-2B2E7AE5A50F"
 } 
 ```
-
-
-
-

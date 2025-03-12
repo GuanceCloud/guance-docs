@@ -1,73 +1,92 @@
-# Alibaba Cloud IDaaS SSO
+# Alibaba Cloud IDaaS Single Sign-On Example
 ---
-
 
 ## Use Case
 
+Alibaba Cloud IDaaS (Yundun) is an identity recognition and access management solution provider. <<< custom_key.brand_name >>> supports SAML 2.0 (Security Assertion Markup Language 2.0) federated identity authentication, which is an open standard used by many identity providers (Identity Provider, IdP). You can integrate Yundun with <<< custom_key.brand_name >>> through SAML 2.0 federated identity authentication to achieve automatic login (single sign-on) into the <<< custom_key.brand_name >>> platform for accessing corresponding workspace resources without creating separate <<< custom_key.brand_name >>> accounts for enterprises/teams.
 
-IDaaS (Alibaba Cloud IDentity as a Service) is a provider of identification and access management solutions. Guance supports federated authentication based on SAML 2.0 (Security Assertion Markup Language 2.0), an open standard used by many identity authentication providers (IdP). You can integrate IDaaS with Guance through SAML 2.0-based federation authentication, so that IDaaS account automatically logs in to the Guance platform to access the corresponding workspace resources, without having to create a separate Guance account for the enterprise/team.
+## Steps {#step1}
 
-## Setup
+1. Create an Application in Alibaba Cloud IDaaS
 
-**Note**: Before creating the application, you need to register your account and create your organization at [IDaaS](https://yundun.console.aliyun.com/).
+**Note**: Before creating the application, you need to register an account and create your organization on the [IDaaS Platform (Yundun)](https://yundun.console.aliyun.com/).
 
-:material-numeric-1-circle: Create Applications
+1) Open the IDaaS console, go to **Add Application > Standard Protocol**, and select to create a SAML 2.0 SSO application. (This example uses the <<< custom_key.brand_name >>> application.)
 
+![](../img/06_aliyun_01.png)
 
-#### 1) Enter the IDaaS console > Add Applications-Standard Protocol" and select Create SSO Applications for SAML 2.0. (Take the guance application as an example here)
+![](../img/06_aliyun_02.png)
 
-![](../img/06_aliyun_01.png)<br />![](../img/06_aliyun_02.png)
+2) After creating the application, click **Manage** to enter the application configuration interface. Before configuring single sign-on, you can configure application accounts and authorization first.
 
-#### 2) After creating the application, click "Management" to enter the application configuration interface. Before configuring single sign-on, you can match the application account and authorization first.
+① Add application accounts
 
-① Add application account<br />![](../img/06_aliyun_03.png)<br />![](../img/06_aliyun_04.png)<br />② This example is authorized to be accessed by all employees by default. If you need special authorization, you can click "Authorization" to change the permission configuration.<br />![](../img/06_aliyun_05.png)
+![](../img/06_aliyun_03.png)
 
+![](../img/06_aliyun_04.png)
 
+② In this example, default authorization allows all members to access. If special authorization is required, click **Authorization** to change the permission settings.
 
-#### 3) After configuring the application account and authorization, click to enter the "SSO" page, navigate to the "Application Configuration Information" module, and click "Download" to obtain the IdP metadata file.
+![](../img/06_aliyun_05.png)
+
+3) After configuring the application accounts and authorization, click to enter the **Single Sign-On** page, locate the **Application Configuration Information** section, and click **Download** to obtain the IdP metadata file.
 
 ![](../img/06_aliyun_06.png)
 
-### 2. Enable SSO in Guance and update the configuration on the IDaaS platform
+2. Enable SSO Single Sign-On in <<< custom_key.brand_name >>> and Update Configuration on IDaaS Platform
 
+1) Enable SSO single sign-on in the <<< custom_key.brand_name >>> workspace under **Management > Member Management > SSO Management** by clicking **Enable**.
 
-#### 1）To enable sso single sign-on in Guance workspace, refer to the doc [new SSO](../../management/sso/index.md).
+> Refer to [Create SSO](../../management/sso/index.md).
 
-Note: For account security reasons, only one SSO is configured in Guance support workspace. If you have previously configured SAML 2.0, we will regard your last updated SAML 2.0 configuration as the final single sign-on authentication entry by default.<br />![](../img/06_aliyun_07.png)
+**Note**: For account security reasons, <<< custom_key.brand_name >>> supports only one SSO configuration per workspace. If you have previously configured SAML 2.0, we will consider the last updated SAML 2.0 configuration as the final single sign-on verification entry.
 
-#### 2）View SSO single sign-on details and download the service provider's Metadata data (you can access the link information through the browser and right-click to save)
+![](../img/1.sso_enable.png)
 
-Note: When configuring SSO login, it is necessary to add "mailbox domain name" for mailbox domain name mapping between Guance and identity provider (user mailbox domain name should be consistent with mailbox domain name added in Guance) to realize single sign-on.<br />![](../img/06_aliyun_08.png)
+2) Upload the **metadata document** downloaded from [Step 1](#step1), configure the **domain (email suffix domain)**, and select the **role** to obtain the identity provider's **entity ID** and **assertion URL**. Download the service provider's Metadata data (you can right-click to save after visiting the link information via browser).
 
+**Note**: The domain is used for email domain mapping between <<< custom_key.brand_name >>> and the identity provider to achieve single sign-on. The email suffix domain must match the domain added in <<< custom_key.brand_name >>>.
 
-#### 3) Update the SSO configuration of the IDaaS side application
+![](../img/1.sso_enable_2.png)
 
-① Import the Metadata file of the service provider (SP) obtained in step <br />② Import Metadata and click "parse" to import the ACS URL and Entity ID parameters below<br />③ Change the configuration at "application account" to "IDaaS account/mailbox"<br />④ Click to expand [advanced configuration]. (Note: Assertion signing will be turned on by default in SaaS environment, and this parameter will be turned off by default in PaaS environment. After configuring application information, this parameter needs to be turned on manually.)<br />⑤ Add "Assertion Attribute", Key = "Email", Value = "user.email"<br />⑥ Click Save Configuration<br />![](../img/06_aliyun_09.png)<br />![](../img/06_aliyun_10.png)
+3. Update the Single Sign-On Configuration on the IDaaS Side
 
-### 3. Get the single sign-on address
+① Import the SP Metadata file obtained in Step 2.
 
+② Click **Parse** to automatically import the ACS URL and Entity ID parameters below.
 
-#### 1) Access Guance through[【SSO】](https://auth.guance.com/login/sso), and enter the email address to get the login link. As shown in the following figure:
+③ Change the **application account** configuration to **IDaaS account / email**.
 
-![](../img/06_aliyun_11.png)<br />![](../img/06_aliyun_12.png)
+④ Expand [Advanced Configuration]. (In SaaS environments, assertion signing is enabled by default; in Deployment Plan (PaaS) environments, this parameter is disabled by default and needs to be manually enabled after configuring the application information.)
 
-#### 2) Click to access the "login address" provided on the SSO login configuration details page. As shown in the following figure:
+⑤ Add a new **Assertion Attribute**, Key = “Email”, Value = “user.email”.
+
+⑥ Click to save the configuration.
+
+![](../img/06_aliyun_09.png)
+
+![](../img/06_aliyun_10.png)
+
+4. Obtain the Single Sign-On URL
+
+1) Visit <<< custom_key.brand_name >>> through [**Single Sign-On**](https://auth.guance.com/login/sso), input the email address to get the login link. As shown in the following image:
+
+![](../img/06_aliyun_11.png)
+
+![](../img/06_aliyun_12.png)
+
+2) Access the **login URL** provided on the SSO login configuration details page. As shown in the following image:
 
 ![](../img/06_aliyun_13.png)
 
+5. Click the link to redirect to the IDaaS platform, input the username and password, and log in to <<< custom_key.brand_name >>> after successful verification. After logging in, as shown in the following images:
 
-### 4. Click "Link" to jump to IDaaS and enter the user name and password. After verification, you can log in to Guance. After logging in, as shown in the following figure:
-
-
-#### 1) IDaaS platform enter user name and password to log in.
+1) Input username and password on the IDaaS platform.
 
 ![](../img/06_aliyun_14.png)
 
-#### 2）After logging in successfully, Guance page is displayed.
+2) After successful login, the <<< custom_key.brand_name >>> page will display.
 
-Note: If multiple workspaces are configured with the same identity provider SSO single sign-on at the same time, users can click the workspace option in the upper left corner of Guance to switch different workspaces to view data after signing on to the workspace through SSO single sign-on. <br />![](../img/06_aliyun_15.png)
+**Note**: If multiple workspaces are configured with the same identity provider SSO single sign-on, users can switch between different workspaces by clicking the workspace options in the top-left corner of <<< custom_key.brand_name >>> after logging in via SSO.
 
-
-
----
-
+![](../img/06_aliyun_15.png)

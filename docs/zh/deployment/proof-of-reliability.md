@@ -19,7 +19,7 @@
 - 下载测试数据，该数据集中含 10000 条日志，单条长度均为 1KB：
 
 ```bash
-wget https://<<< custom_key.static_domain >>>/testing-data/10000-1kb.log
+wget https://static.<<< custom_key.brand_main_domain >>>/testing-data/10000-1kb.log
 ```
 
 - 修改如下脚本，填写上面准备好的 Datakit IP，保存脚本为 *curl-log-streaming.sh*：

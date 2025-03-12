@@ -1,39 +1,34 @@
-# Func List
+# [Func Functions] List
 
 ---
 
-<br />**get /api/v1/outer_function/list**
+<br />**GET /api/v1/outer_function/list**
 
 ## Overview
-List Func allowed by OpenAPI.
+List the Func functions that can be executed via OpenAPI
 
 
+## Query Request Parameters
 
-
-## Query Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name | Type | Required | Description |
 |:-----------|:-------|:-----|:----------------|
-| _fuzzySearch | string |  | Fuzzy search query field<br>Example: Super VIP template <br>Allow null: False <br> |
-| funcId | string |  | Search according to function Id<br>Example: Super VIP template <br>Allow null: False <br> |
-| funcTitle | string |  | Search according to the function title and query in Like mode<br>Example: Super VIP template <br>Allow null: False <br> |
-| funcTags | commaarray |  | Function tags, which are used to filter functions according to tags.<br>Example:  <br>Allow null: False <br> |
-| funcScriptId | string |  | Script collection ID<br>Example:  <br> |
+| _fuzzySearch | string | No | Fuzzy search query field<br>Example: Super VIP Template <br>Allow empty: False <br> |
+| funcId | string | No | Search by function ID<br>Example: Super VIP Template <br>Allow empty: False <br> |
+| funcTitle | string | No | Search by function title using LIKE query<br>Example: Super VIP Template <br>Allow empty: False <br> |
+| funcTags | commaarray | No | Function tags for filtering functions by tag<br>Example:  <br>Allow empty: False <br> |
+| funcScriptId | string | No | Script set ID<br>Example:  <br> |
 
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/outer_function/list' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/outer_function/list' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
 ```
-
 
 
 
@@ -49,8 +44,8 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
                 "your_name"
             ],
             "category": "openapi",
-            "definition": "test(workspace_uuid, workspace_token, your_name='OpenAPI 用户')",
-            "description": "测试接口，主要方便用户测试是否能够通过 OpenAPI 调通 DataFlux Func",
+            "definition": "test(workspace_uuid, workspace_token, your_name='OpenAPI User')",
+            "description": "Test interface, mainly to facilitate user testing of whether they can connect DataFlux Func through OpenAPI",
             "extraConfigJSON": null,
             "id": "guance__openapi.test",
             "integration": null,
@@ -58,7 +53,7 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
                 "workspace_token": {},
                 "workspace_uuid": {},
                 "your_name": {
-                    "default": "OpenAPI 用户"
+                    "default": "OpenAPI User"
                 }
             },
             "name": "test",
@@ -66,10 +61,10 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
             "scriptId": "guance__openapi",
             "scriptSetDescription": null,
             "scriptSetId": "guance",
-            "scriptSetTitle": "观测云支持",
+            "scriptSetTitle": "<<< custom_key.brand_name >>> Support",
             "scriptTitle": null,
             "tagsJSON": null,
-            "title": "测试",
+            "title": "Test",
             "url": "/api/v1/func/guance__openapi.test"
         },
         {
@@ -80,7 +75,7 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
             ],
             "category": "openapi",
             "definition": "report_event(workspace_uuid, workspace_token, data)",
-            "description": "报告事件，通过 DataFlux Func 实现事件写入\n支持自建巡检，以及监控器配套的所有告警处理逻辑\n\n参数：\n    data {dict,list} 上报的事件数据或其列表，结构如下：\n                        {\n                            \\\"title\\\"         : {str}      事件标题，只支持单行文本\n                            \\\"message\\\"       : {str}      事件内容，支持 Markdown\n                            \\\"status\\\"        : {str}      事件级别，可选值为： ok, info, warning, error, critical\n                            \\\"dimension_tags\\\": {str,dict} 事件维度，如：{ 'host': 'web001' } 或其序列化后的字符串\n                        }",
+            "description": "Report event, implemented through DataFlux Func for event writing\nSupports self-built inspections and all alert handling logic accompanying monitors\n\nParameters:\n    data {dict,list} Event data or its list to report, structured as follows:\n                        {\n                            \"title\"         : {str}      Event title, supports single-line text only\n                            \"message\"       : {str}      Event content, supports Markdown\n                            \"status\"        : {str}      Event level, optional values: ok, info, warning, error, critical\n                            \"dimension_tags\": {str,dict} Event dimensions, e.g., { 'host': 'web001' } or its serialized string\n                        }",
             "extraConfigJSON": null,
             "id": "guance__openapi.report_event",
             "integration": null,
@@ -94,10 +89,10 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
             "scriptId": "guance__openapi",
             "scriptSetDescription": null,
             "scriptSetId": "guance",
-            "scriptSetTitle": "观测云支持",
+            "scriptSetTitle": "<<< custom_key.brand_name >>> Support",
             "scriptTitle": null,
             "tagsJSON": null,
-            "title": "报告事件",
+            "title": "Report Event",
             "url": "/api/v1/func/guance__openapi.report_event"
         }
     ],
@@ -107,7 +102,3 @@ curl 'https://openapi.guance.com/api/v1/outer_function/list' \
     "traceId": "TRACE-1B02BD5D-D249-4D56-8762-9D6CB31FF0D1"
 } 
 ```
-
-
-
-

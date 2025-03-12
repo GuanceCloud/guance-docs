@@ -1,15 +1,17 @@
 ---
 title     : 'InfluxDB'
-summary   : 'Collect InfluxDB metrics'
+summary   : 'Collect InfluxDB Metrics data'
 tags:
-  - 'DATA STORES'
+  - 'Database'
 __int_icon      : 'icon/influxdb'
 dashboard :
   - desc  : 'InfluxDB'
     path  : 'dashboard/en/influxdb'
+  - desc  : 'InfluxDB v2'
+    path  : 'dashboard/en/influxdb_v2'
 monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - desc  : 'InfluxDB v2'
+    path  : 'monitor/en/influxdb_v2'
 ---
 
 
@@ -17,15 +19,16 @@ monitor   :
 
 ---
 
-The InfluxDB collector is used to collect the data of the InfluxDB.
+The InfluxDB collector is used to collect data from InfluxDB.
 
-## Configuration {#config}
+## InfluxDB Collector Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-The influxdb collector is only applicable to influxdb v1.x, and the prom collector is required for influxdb v2.x.
+- The InfluxDB collector is only applicable to InfluxDB v1.x.
+- For InfluxDB v2.x, the prom collector should be used for data collection.
 
-Already tested version:
+Tested versions:
 
 - [x] 1.8.10
 
@@ -34,7 +37,7 @@ Already tested version:
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample` and name it `influxdb.conf`. Examples are as follows:
+    Enter the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample`, and rename it to `influxdb.conf`. An example is as follows:
     
     ```toml
         
@@ -77,20 +80,19 @@ Already tested version:
         # more_tag = "some_other_value"
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
-
 
 ### InfluxDB v2.x {#prom-config}
 
 ```toml
 [[inputs.prom]]
-  ## Exporter address
+  ## Exporter HTTP URL.
   url = "http://127.0.0.1:8086/metrics"
 
   metric_types = ["counter", "gauge"]
@@ -135,9 +137,9 @@ Already tested version:
 
 ```
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.influxdb.tags]` if needed:
+By default, all collected data will append a global election tag. Additional tags can be specified in the configuration using `[inputs.influxdb.tags]`:
 
 ``` toml
  [inputs.influxdb.tags]
@@ -549,13 +551,13 @@ For all of the following data collections, the global election tags will added a
 
 
 
-## Log Collection {#logging}
+## Logging {#logging}
 
-To collect the InfluxDB log, open `files` in influxdb.conf and write to the absolute path of the InfluxDB log file. For example:
+To collect InfluxDB logs, you can enable `files` in `influxdb.conf` and specify the absolute path of the InfluxDB log file. For example:
 
 ```toml
 [inputs.influxdb.log]
-    # Fill in the absolute path
+    # Enter the absolute path
     files = ["/path/to/demo.log"] 
     ## grok pipeline script path
     pipeline = "influxdb.p"

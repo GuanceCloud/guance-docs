@@ -1,0 +1,6 @@
+nav:
+  - 'List Schedule': list.md
+  - 'Get Schedule': get.md
+  - 'Create Schedule': add.md
+  - 'Modify Schedule': modify.md
+  - 'Delete Schedule': delete.md

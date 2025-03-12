@@ -1,37 +1,37 @@
 ---
-title     : 'Swap'
-summary   : 'Collect metrics of host swap'
+title: 'Swap'
+summary: 'Collect metrics data from host swap memory'
 tags:
-  - 'HOST'
-__int_icon      : 'icon/swap'
-dashboard :
-  - desc  : 'Swap'
-    path  : 'dashboard/en/swap'
-monitor   :
-  - desc  : 'Host monitoring library'
-    path  : 'monitor/en/host'
+  - 'Host'
+__int_icon: 'icon/swap'
+dashboard:
+  - desc: 'Swap'
+    path: 'dashboard/en/swap'
+monitor:
+  - desc: 'Host Monitoring Library'
+    path: 'monitor/en/host'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
+The Swap collector is used to collect the usage of swap memory on hosts.
+
 ## Configuration {#config}
 
-The swap collector is used to collect the usage of the host swap memory.
+After successfully installing and starting DataKit, the Swap collector will be enabled by default, and there is no need to manually enable it.
 
 <!-- markdownlint-disable MD046 -->
-## Collector Configuration {#input-config}
 
 === "Host Installation"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `swap.conf.sample` and name it `swap.conf`. Examples are as follows:
-    
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `swap.conf.sample`, and rename it to `swap.conf`. An example is as follows:
+
     ```toml
         
     [[inputs.swap]]
-      ##(optional) collect interval, default is 10 seconds
+      ## (optional) collection interval, default is 10 seconds
       interval = '10s'
       ##
     
@@ -42,39 +42,39 @@ The swap collector is used to collect the usage of the host swap memory.
     
     ```
 
-    After configuration, restart DataKit.
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector by injecting configuration through [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [configuring ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    It also supports modifying configuration parameters via environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
+
     - **ENV_INPUT_SWAP_INTERVAL**
-    
-        Collect interval
-    
-        **Type**: Duration
-    
-        **input.conf**: `interval`
-    
-        **Default**: 10s
-    
+
+        Collector repetition interval duration
+
+        **Field Type**: Duration
+
+        **Collector Configuration Field**: `interval`
+
+        **Default Value**: 10s
+
     - **ENV_INPUT_SWAP_TAGS**
-    
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
-    
-        **Type**: Map
-    
-        **input.conf**: `tags`
-    
+
+        Custom tags. If there are tags with the same name in the configuration file, they will override them.
+
+        **Field Type**: Map
+
+        **Collector Configuration Field**: `tags`
+
         **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.swap.tags]`:
+All the following data collections will append a global tag named `host` (the tag value is the hostname where DataKit resides) by default, or you can specify other tags using `[inputs.swap.tags]` in the configuration:
 
 ```toml
 [inputs.swap.tags]
@@ -92,18 +92,19 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|hostname|
+|`host`|Hostname|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`free`|Host swap memory total.|int|B|
+|`free`|Total free swap memory on the host.|int|B|
 |`in`|Moving data from swap space to main memory of the machine.|int|B|
 |`out`|Moving main memory contents to swap disk when main memory space fills up.|int|B|
-|`total`|Host swap memory free.|int|B|
-|`used`|Host swap memory used.|int|B|
-|`used_percent`|Host swap memory percentage used.|float|percent|
+|`total`|Total swap memory on the host.|int|B|
+|`used`|Used swap memory on the host.|int|B|
+|`used_percent`|Percentage of used swap memory on the host.|float|percent|
 
 
+</example>

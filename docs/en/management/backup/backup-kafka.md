@@ -1,50 +1,47 @@
-# 数据转发至 Kafka 消息队列
+# Data Forwarding to Kafka Message Queue
 ---
 
 
-## 开始配置
+## Begin Configuration
 
 
-1、地址：`Host:Port`，多个节点使用逗号间隔。
+1. Address: `Host:Port`, multiple nodes are separated by commas.
 
-2、消息主题：即 Topic 名称。
+2. Message Topic: i.e., the Topic name.
 
-3、安全协议：
+3. Security Protocol: On the Kafka side, SASL can use PLAINTEXT or SSL protocols as the transport layer, corresponding to using SASL_PLAINTEXT or SASL_SSL security protocols. If using the SASL_SSL security protocol, an SSL certificate must be configured.
 
-在 Kafka 侧，SASL 可以使用 PLAINTEXT 或者 SSL 协议作为传输层，相对应的就是使用 SASL_PLAINTEXT 或者 SASL_SSL 安全协议。如果使用 SASL_SSL 安全协议，必须配置 SSL 证书。
-
-=== "PLAINTEXT"
-
-    无需任何安全校验，可直接测试连接。
-
-=== "SASL_PLAINTEXT"
-
-    认证方式默认为 PLAIN，可选 SCRAM-SHA-256 与 SCRAM-SHA-512 两种。
-
-    输入在 Kafka 侧执行安全认证的 username/password，再测试连接。
-
-    ![](../img/kafka-1.png)
-
-=== "SASL_SSL"
-
-    此处[需上传 SSL 证书](https://kafka.apachecn.org/documentation.html#security_ssl)。
-
-    认证方式默认为 PLAIN，可选 SCRAM-SHA-256 与 SCRAM-SHA-512 两种。
-
-    输入在 Kafka 侧执行安全认证的 username/password，再测试连接。
-
-    ![](../img/kafka-2.png)
-
-点击**测试连接**，若上述信息满足规范，则提示测试连接成功；
+4. Click **Test Connection**, if the above information meets the specifications, it will prompt that the test connection was successful. Click OK to save the current rule.
     
-若未通过测试，您需确认：
+???+ warning "If the test fails:"
 
-- 地址是否正确；  
-- 消息主题名称是否正确；  
-- SSL 证书是否正确；  
-- 用户名是否正确；  
-- 密码是否正确。
+    You need to confirm:
 
-4、点击**确定**，即可创建成功。
+    - Whether the address is correct;  
+    - Whether the message topic name is correct;  
+    - Whether the SSL certificate is correct;  
+    - Whether the username is correct;  
+    - Whether the password is correct.
 
 
+### PLAINTEXT
+
+No security verification is required, and you can directly test the connection.
+
+### SASL_PLAINTEXT
+
+The authentication method defaults to PLAIN, with options for SCRAM-SHA-256 and SCRAM-SHA-512.
+
+Enter the username/password used for security authentication on the Kafka side, then test the connection.
+
+![](../img/kafka-1.png)
+
+### SASL_SSL
+
+Here [you need to upload the SSL certificate](https://kafka.apachecn.org/documentation.html#security_ssl).
+
+The authentication method defaults to PLAIN, with options for SCRAM-SHA-256 and SCRAM-SHA-512.
+
+Enter the username/password used for security authentication on the Kafka side, then test the connection.
+
+![](../img/kafka-2.png)

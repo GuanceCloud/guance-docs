@@ -1,0 +1,6 @@
+nav:
+  - 'Notification Targets List': list.md
+  - 'Notification Targets Get': get.md
+  - 'Notification Targets Create': add.md
+  - 'Notification Targets Modify': modify.md
+  - 'Notification Targets Delete': delete.md

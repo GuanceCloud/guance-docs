@@ -2,11 +2,11 @@
 title: 'AWS CloudFront'
 tags: 
   - AWS
-summary: 'Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network.'
 __int_icon: 'icon/aws_cloudfront'
 dashboard:
 
-  - desc: 'AWS CloudFront Monitoring View'
+  - desc: 'Built-in Views for AWS CloudFront'
     path: 'dashboard/en/aws_cloudfront'
 
 monitor:
@@ -14,7 +14,7 @@ monitor:
     path: 'monitor/en/aws_cloudfront'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_cloudfront'
 ---
 
@@ -22,55 +22,53 @@ cloudCollector:
 # AWS CloudFront
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network.
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-hosted Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation script
+### Install Script
 
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+> Note: Prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize the monitoring data of AWS API Gateway cloud resources, we install the corresponding collection script: `ID:guance_aws_cloudfront`
+To synchronize monitoring data from AWS CloudFront cloud resources, we install the corresponding collection script: "Guance Integration (AWS-Gateway Collection)" (ID: `guance_aws_cloudfront`)
 
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
+After clicking 【Install】, enter the required parameters: Amazon AK and Amazon account name.
 
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup scripts accordingly.
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
+Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudfront/){:target="_blank"}
+By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudfront/){:target="_blank"}
 
+### Verification
 
-### Verify
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding tasks have the automatic trigger configuration, and check the task records and logs for any abnormalities.
+2. On the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+## Metrics {#metric}
+After configuring Amazon Cloud Monitoring, the default Measurement set is as follows. You can collect more metrics by configuring [Amazon Cloud Monitoring Metric Details](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional){:target="_blank"}
 
+### Monitoring Metrics
 
-## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional){:target="_blank"}
-
-### monitoring metrics
-
-| English name of the metric      | Meaning                        |
+| Metric Name      | Metric Description             | Meaning                        |
 | --------------- | ---------------------- | --------------------------- |
-| **Requests** | The total number of viewer requests received by CloudFront, for all HTTP methods and for both HTTP and HTTPS requests. |
-| **Bytes downloaded** | The total number of bytes downloaded by viewers for GET, HEAD, and OPTIONS requests. |
-| **Bytes uploaded** | The total number of bytes that viewers uploaded to your origin with CloudFront, using POST and PUT requests. |
-| **4xx error rate** | The percentage of all viewer requests for which the response's HTTP status code is 4xx. |
-| **5xx error rate** | The percentage of all viewer requests for which the response's HTTP status code is 5xx. |
-| **Total error rate** | The percentage of all viewer requests for which the response's HTTP status code is 4xx or 5xx. |
+| **Requests** | Total Requests            | The total number of viewer requests for all HTTP methods and HTTP and HTTPS requests received by CloudFront. |
+| **Bytes downloaded** | Bytes Downloaded | The total number of bytes downloaded by viewers for GET, HEAD, and OPTIONS requests. |
+| **Bytes uploaded** | Bytes Uploaded | The total number of bytes uploaded to your origin via CloudFront using POST and PUT requests by viewers. |
+| **4xx error rate** | 4xx Errors | The percentage of all viewer requests that resulted in HTTP status codes 4xx. |
+| **5xx error rate** | 5xx Errors | The percentage of all viewer requests that resulted in HTTP status codes 5xx. |
+| **Total error rate** | Total Errors | The percentage of all viewer requests that resulted in HTTP status codes 4xx or 5xx. |
 
-## Object {#object}
+## Objects {#object}
 
-Examples of reported data are as follows：
+Example of reported data:
 
 ```json
 {
@@ -93,5 +91,4 @@ Examples of reported data are as follows：
 
 ```
 
-> *Note: The fields in 'tags' and' fields' may change with subsequent updates*
-
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*

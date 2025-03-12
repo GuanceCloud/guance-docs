@@ -150,7 +150,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/objc_cfg/test/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/objc_cfg/test/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"sourceType":"custom_object","objcGroupUUID":"objcg_xxxx","fields":[{"name":"name"}],"templateInfo":{"iconSet":{},"main":[{"class":"custom_object","source":{"key":"test","name":""},"filters":[],"fills":[],"groups":[],"table":{"columns":[],"detail":{"views":[{"keys":{},"viewType":"dashboard","viewName":"NtpQ 监控视图","title":"viewer","required":true,"timerange":"default"}]}}}],"title":"test"}}' \

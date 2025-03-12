@@ -1,40 +1,46 @@
 # SLO
 ---
 
-## Introduction
+You need to directly select the configured SLO monitoring to display the relevant performance data.
 
-SLO charts can directly select the set monitoring SLO for SLO data display.For more details, please refer to the document [What is SLO](../../monitoring/slo.md) 。
+![](../img/slo.png)
 
-## Use Case
+> For more detailed information, refer to [What is SLO](../../monitoring/slo.md).
 
-Guance's SLO charts are used for SLO data presentation. For example, you can view the remaining fault tolerable hours for SLOs with a period of the last month.
 
-## Chart Search
+## Chart Query
 
-The SLO list includes all created SLOs in the current workspace, and the SLO data results are displayed simultaneously by selecting different SLO names.
+SLO List: Includes all SLOs created within the current workspace. By selecting different SLO names, the corresponding SLO data results are displayed synchronously.
 
-## Chart Linking
+## Chart Configuration
 
-Links can help you jump from the current chart to the target page, support adding internal links and external links to the platform, and support modifying the corresponding variable values in the links through template variables to transfer data information over and complete data linkage.Please click [chart-link](chart-link.md) to view the relevant settings.
-## Chart Style
-| Options | Description |
+> For more details, refer to [Chart Configuration](./chart-config.md).
+
+### Display Items
+
+1. Downtime: The time when the monitor was abnormal or the used quota.
+2. Error Budget: Controls whether to display the remaining quota data.
+3. Annual SLA: Controls whether to show the annual SLA data.
+
+<!--
+## Chart Links
+
+Links help you jump from the current chart to the target page; you can add internal and external links; you can also modify the corresponding variable values in the link using template variables to pass data information, completing data linkage.
+
+> For more related settings, refer to [Chart Links](chart-link.md).
+
+## Common Configurations
+
+| Option | Description |
 | --- | --- |
-| Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
+| Title | Set a title for the chart, which will be displayed in the top-left corner of the chart after setting, and supports hiding. |
+| Description | Add a description to the chart. After setting, an [i] prompt will appear after the chart title, and it will not be displayed if not set. |
+| Display Items | Downtime: The time when the monitor was abnormal or the used quota.<br />Error Budget: Controls whether to display the remaining quota data.<br />Annual SLA: Controls whether to show the annual SLA data. |
 
+## Advanced Configurations
 
-## 图表设置
-### 高级设置
-| 选项 | 说明 |
+| Option | Description |
 | --- | --- |
-| Lock Time | Supports locking the time range (last 7 days, last 30 days, last 90 days, last 360 days) of the chart query data, regardless of the global time component. The time set by the user will appear in the upper right corner of the chart after successful setting, such as 【xx minutes】, 【xx hours】, 【xx days】. If the time interval of 30 minutes is locked, then when the time component is adjusted, no matter what time range view is queried, only the last 30 minutes of data will be displayed. |
-| Remaining Limit | For controlling whether to display remaining limit data |
-| Year-round SLA | Control whether to achieve year-round SLA data |
-|Chart Description | Add description information to the chart, after setting, an 【i】 prompt will appear behind the chart title, if not set, it will not be displayed |
-| Workspace | The list of authorized workspaces, you can query and display the workspace data through the chart after you select it.
-
-## Example Chart
-
-The figure below shows the remaining fault tolerant hours for an SLO with a period of the last 7 days.
-
-![](../img/slo001.png)
-
+| Lock Time | Fix the time range for querying data in the current chart, unaffected by the global time component. After successful setup, the user-defined time will appear in the top-right corner of the chart, such as [xx minutes], [xx hours], [xx days]. If the locked time interval is 30 minutes, then regardless of what time range view is queried by adjusting the time component, only the data from the last 30 minutes will be displayed. |
+| Workspace Authorization | The list of authorized workspaces. After selection, you can query and display data from the selected workspace through the chart. |
+-->

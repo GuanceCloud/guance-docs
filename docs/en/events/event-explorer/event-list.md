@@ -1,38 +1,51 @@
-# All Events
+# Event List
 ---
 
-Enter **Events**, click :material-format-list-bulleted: to switch to **All Event Explorers** in the upper left corner, and you can view the list of all events in the current workspace.
+Enter **Events**, switch the top-left :material-format-list-bulleted: to **Event List**, and you can view all events generated under the current workspace.
 
-Here, you can:
+![](../img/all-events.png)
 
-- Use stacked bar charts to count the number of events with different alert levels that occurred at different time points in the current event explorer.
-- Search events based on tags, fields and text, and filter events based on keywords, tags, fields, and associations.
-- Analyze aggregated events based on selected fields.
+In the event list, you can:
 
+1. View the distribution of events in the current event Explorer by stacked bar charts, showing the number of events at different alert levels at different time points;
+2. Perform keyword searches, tag filtering, field filtering, and related searches based on tags, fields, and text;
+3. Conduct multi-dimensional analysis of events based on different analysis fields, including Monitor ID, Monitoring Type, Detection Rule Type, Host, Service, Container Name, Pod Name;
+4. Check the notification status of an event, which includes the following three cases:
+
+| Notification Status | Description |
+| ------- | ----------- |
+| Mute | This means that the alert event is in a muted state. |
+| Silence | This means that the alert event is within a silence period. |
+| Notification Target Identifier | Identifiers such as DingTalk bot, WeCom bot; this means that the alert event was sent normally to the [Notification Targets](../../monitoring/notify-object.md).
 
 ## Query and Analysis
 
-![](../img/5.event_7.png)
+You can manage all data under the event list through the following operations.
 
-- Time Widget: The All Event Explorers displays data from the last 15 minutes by default, and you can also customize the [time range](../../getting-started/function-details/explorer-search.md#time) of the data display.
 
-- Search and Filter: The search bar supports [multiple search and filter methods](../../getting-started/function-details/explorer-search.md).
+1. Time Widget: The event list defaults to displaying data from the last 15 minutes, but you can also customize the [time range](../../getting-started/function-details/explorer-search.md#time).
 
-- Analysis Mode: You can perform multidimensional analysis based on tag fields to reflect aggregated event statistics under different analysis dimensions. Clicking on an aggregated event allows you to view [aggregated event details](event-details.md).
+2. Search and Filter: In the event list search bar, support for [multiple search and filter methods](../../getting-started/function-details/explorer-search.md).
 
-- Quick Filter: You can edit [quick filters](../../getting-started/function-details/explorer-search.md#quick-filter) through the quick filters on the left side of the list to add new filtering fields.
+3. Analysis Mode: You can perform multi-dimensional analysis based on tag fields to reflect aggregated event statistics across different dimensions. Clicking on an aggregated event allows you to view [Aggregated Event Details](event-details.md).
 
-- Filter History: Guance supports saving the search condition history of the explorer `key:value` in the [filter history](../../getting-started/function-details/explorer-search.md#filter-history), which can be applied to different explorers in the current workspace.
+4. Quick Filters: Through the quick filters on the left side of the list, you can edit [Quick Filters](../../getting-started/function-details/explorer-search.md#quick-filter) and add new filter fields.
 
-- Create Monitor: You can directly jump to the [creating page](../../monitoring/monitor/index.md#new) through this link in the current explorer to quickly set up anomaly detection rules for events.
+5. Filter History: <<< custom_key.brand_name >>> supports saving `key:value` search condition history in the [Filter History](../../getting-started/function-details/explorer-search.md#filter-history) for different Explorers in the current workspace.
 
-<img src="../../img/explorer-monitor.png" width="50%" >
+6. Event Export: In the event list, click :octicons-gear-24: to export the current event Explorer data as a CSV file or directly export it to dashboards and notes.
 
-- Export: In the All Event Explorers, click Export to export the data of the current event explorer to CSV, dashboard and notes.
+7. Save Snapshot: In the top-left corner of the event list, click **View Historical Snapshots** to save a snapshot of the current event data. Using the [Snapshot](../../getting-started/function-details/snapshot.md) feature, you can quickly recreate instant copies of data and restore data to a specific point in time and display logic.
 
-- Save Snapshot: In the upper left corner of the All Event Explorers, click View Snapshot History to directly save a snapshot of the current event. With the [snapshot](../../getting-started/function-details/snapshot.md), you can quickly reproduce the copied data and restore it to a certain point in time and a certain data display logic.
+8. Click the Incident icon in the bottom-right corner of the page to quickly [Create an Issue](../../exception/issue.md#manual).
 
-## More Readings
+9. Create Monitor: You can jump directly to the [Monitor Creation Page](../../monitoring/monitor/index.md#new) from the current Explorer to quickly set up anomaly detection rules for events.
+
+<img src="../../img/explorer-monitor.png" width="60%" >
+
+## Further Reading
+
+<font size=2>
 
 <div class="grid cards" markdown>
 
@@ -43,6 +56,8 @@ Here, you can:
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Powerful Explorer</font>](../../getting-started/function-details/explorer-search.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; The Power of Explorer</font>](../../getting-started/function-details/explorer-search.md)
 
 </div>
+
+</font>

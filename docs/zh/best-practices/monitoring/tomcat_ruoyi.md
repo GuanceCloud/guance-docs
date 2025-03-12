@@ -327,7 +327,7 @@ Tomcat 启动完成后，自动解压 `war`应用，进入到`/webapps/ruoyi-adm
 ```
 <head th:fragment=header(title)>
 ...
-<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

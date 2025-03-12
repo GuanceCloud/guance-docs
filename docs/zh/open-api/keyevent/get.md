@@ -31,7 +31,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/events/E_c7jodqs24loo3v53qc30/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/events/E_c7jodqs24loo3v53qc30/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

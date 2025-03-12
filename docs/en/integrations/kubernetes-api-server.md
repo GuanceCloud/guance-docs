@@ -6,7 +6,7 @@ tags      :
   - 'PROMETHEUS'
   - 'KUBERNETES'
 dashboard :
-  - desc  : 'Kubernetes API Server Monitoring View'
+  - desc  : 'Kubernetes API Server monitoring view'
     path  : 'dashboard/en/kubernetes_api_server'
 monitor   :
   - desc  : 'Kubernetes API Server'
@@ -55,11 +55,11 @@ data:
           ca_certs = ["/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"]
 ```
 
-For detailed configuration, refer to Kubernetes Prometheus Discovery.
+For detailed configuration, refer to [Kubernetes Prometheus Discovery](../integrations/kubernetesprometheus.md).
 
 ### Mount Configuration File for DataKit
 
-Modify the DataKit resource file and mount the collection configuration to enable the corresponding collector:
+Modify the DataKit resource file to mount the collection configuration, which will enable the corresponding collector:
 
 ```yaml
 apiVersion: apps/v1
@@ -89,16 +89,15 @@ spec:
 
 The following table lists key metrics and their descriptions:
 
-
-| Metric                                             | Metric Type | Description   |
-|----------------------------------------------------|-------------|--------------------------------------------------------------|
-| `apiserver_request_total`                          | Counter     | Counts requests by verb, dry_run, group, version, resource, scope, component, and code           |
-| `apiserver_current_inflight_requests`              | Gauge       | Current number of read/write requests, categorized by request_kind                               |
-| `apiserver_request_terminations_total`             | Counter     | Counts discarded requests due to self-protection, categorized by code, component, group, resource, scope, subresource, verb, and version |
-| `apiserver_request_duration_seconds_bucket`        | Histogram   | Response latency distribution, categorized by verb, dry_run, group, version, resource, subresource, scope, and component |
-| `etcd_request_duration_seconds_bucket`             | Histogram   | Etcd response latency distribution, categorized by operation and type                           |
-| `apiserver_admission_controller_admission_duration_seconds_bucket` | Histogram | Admission controller latency distribution, categorized by name, operation, rejected, and type  |
-| `apiserver_admission_webhook_admission_duration_seconds_bucket` | Histogram | Admission Webhook response latency distribution, categorized by name, operation, rejected, and type |
-| `workqueue_queue_duration_seconds_bucket`          | Histogram   | Distribution of time requests stay in the work queue, categorized by name                        |
-| `workqueue_work_duration_seconds_bucket`           | Histogram   | Distribution of time taken to process requests in the queue, categorized by name                 |
-| `apiserver_storage_objects`                        | Gauge       | Latest count of resources, categorized by resource                                               |
+| **Metric** | **Metric Type** | **Description** |
+| --- | --- | --- |
+| `apiserver_request_total` | Counter | Counts requests by verb, dry_run, group, version, resource, scope, component, and code |
+| `apiserver_current_inflight_requests` | Gauge | Tracks current read/write request counts by request_kind |
+| `apiserver_request_terminations_total` | Counter | Counts discarded requests due to self-protection by code, component, group, resource, scope, subresource, verb, and version |
+| `apiserver_request_duration_seconds_bucket` | Histogram | Measures response latency distribution by verb, dry_run, group, version, resource, subresource, scope, and component |
+| `etcd_request_duration_seconds_bucket` | Histogram | Measures Etcd response latency distribution by operation and type |
+| `apiserver_admission_controller_admission_duration_seconds_bucket` | Histogram | Measures admission controller latency distribution by name, operation, rejected, and type |
+| `apiserver_admission_webhook_admission_duration_seconds_bucket` | Histogram | Measures admission Webhook response latency distribution by name, operation, rejected, and type |
+| `workqueue_queue_duration_seconds_bucket` | Histogram | Measures request duration in work queues by name |
+| `workqueue_work_duration_seconds_bucket` | Histogram | Measures request processing duration in queues by name |
+| `apiserver_storage_objects` | Gauge | Tracks the latest count of resources by resource |

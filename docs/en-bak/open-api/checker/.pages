@@ -1,0 +1,6 @@
+nav:
+  - 'Get a List of Monitors': list.md
+  - 'Create a monitor': create.md
+  - 'Export One/More Monitors': export.md
+  - 'Import One/More Monitors': import.md
+  - 'Delete One/More Monitors': delete.md

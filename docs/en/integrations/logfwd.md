@@ -1,57 +1,58 @@
 ---
-title     : 'Sidecar for Pod Logging'
-summary   : 'Collect pod logging via Sidecar'
+title: 'Log Sidecar'
+summary: 'Sidecar-based log collection'
 tags:
   - 'KUBERNETES'
-  - 'LOG'
-  - 'CONTAINER'
-__int_icon      : 'icon/kubernetes'
-dashboard :
-  - desc  : 'N/A'
-    path  : '-'
-monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - 'Logs'
+  - 'Container'
+__int_icon: 'icon/kubernetes'
+dashboard:
+  - desc: 'Not available'
+    path: '-'
+monitor:
+  - desc: 'Not available'
+    path: '-'
 ---
 
-":material-kubernetes:"
+:material-kubernetes:
 
 ---
 
-In order to collect the log of application container in Kubernetes Pod, a lightweight log collection client is provided, which is mounted in Pod in sidecar mode and sends the collected log to DataKit.
+To facilitate the collection of application container logs within Kubernetes Pods, a lightweight log collection client is provided, mounted as a sidecar to the Pod, and sends the collected logs to DataKit.
 
-## Use {#using}
+## Usage {#using}
 
-It is divided into two parts, one is to configure DataKit to start the corresponding log receiving function, and the other is to configure and start logfwd collection.
+This process is divided into two parts: one is configuring DataKit to enable the corresponding log reception functionality, and the other is configuring and starting logfwd for collection.
+
+## Configuration {#config}
 
 ### DataKit Configuration {#datakit-conf}
-
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    You need to open [logfwdserver](logfwdserver.md), go to the `conf.d/log` directory under the DataKit installation directory, copy `logfwdserver.conf.sample` and name it  `logfwdserver.conf`. Examples are as follows:
-    
+    You need to first enable [logfwdserver](logfwdserver.md), go to the `conf.d/log` directory under the DataKit installation directory, copy `logfwdserver.conf.sample` and rename it to `logfwdserver.conf`. Example configuration:
+
     ``` toml hl_lines="1"
-    [inputs.logfwdserver] # Note that this is the configuration of logfwdserver
-      ## logfwd receiver listens for addresses and ports
+    [inputs.logfwdserver] # Note this is the logfwdserver configuration
+      ## logfwd receiver listening address and port
       address = "0.0.0.0:9533"
-    
+
       [inputs.logfwdserver.tags]
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [injecting logfwdserver collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting the logfwdserver collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### logfwd Usage and Configuration  {#config}
+### logfwd Usage and Configuration {#config}
 
-The logfwd main configuration is in JSON format, and the following is a configuration example:
+The main configuration for logfwd is in JSON format. Below is an example configuration:
 
 ``` json
 [
@@ -77,36 +78,37 @@ The logfwd main configuration is in JSON format, and the following is a configur
 ]
 ```
 
-Description of configuration parameters:
+Configuration parameter descriptions:
 
-- `datakit_addr` is the DataKit logfwdserver address, typically configured with the environment variables `LOGFWD_DATAKIT_HOST` and `LOGFWD_DATAKIT_PORT`
+- `datakit_addr` is the DataKit logfwdserver address, typically configured using environment variables `LOGFWD_DATAKIT_HOST` and `LOGFWD_DATAKIT_PORT`.
 
-- `loggings` is the primary configuration, an array, and the subitems are basically the same as the [logging](logging.md) collector.
-    - `logfiles` list of log files, you can specify absolute paths, support batch specifying using glob rules, and recommend using absolute paths.
-    - `ignore` file path filtering, using glob rules, the file will not be collected if any filtering condition is met.
-    - `source` data source; if empty, 'default' is used by default.
-    - `service` adds tag; if empty, $source is used by default.
-    - `pipeline` Pipeline script path, if empty $source.p will be used, if $source.p does not exist will not use Pipeline (this script file exists on the DataKit side).
-    - `character_encoding` # Select the code. If there is a misunderstanding in the code and the data cannot be viewed, it will be empty by default. Support `utf-8`, `utf-16le`, `utf-16le`, `gbk`, `gb18030` or ""
-    - `multiline_match` multi-line match, as in the [logging](logging.md) configuration, note that "no escape writing" with 3 single quotes is not supported because it is in JSON format, and regular `^\d{4}` needs to be escaped as `^\\d{4}`
-    - `tags` adds additional `tag` written in a JSON map, such as `{ "key1":"value1", "key2":"value2" }`
+- `loggings` is the main configuration, which is an array where sub-items are similar to the [logging](logging.md) collector.
+    - `logfiles` is a list of log files, absolute paths can be specified, supports glob rules for batch specification, recommended to use absolute paths.
+    - `ignore` filters file paths using glob rules; any matching condition will exclude the file from collection.
+    - `source` specifies the data source; if empty, defaults to 'default'.
+    - `service` adds a tag, if empty, defaults to `$source`.
+    - `pipeline` specifies the Pipeline script path; if empty, uses `$source.p`; if `$source.p` does not exist, no Pipeline is used (this script resides on the DataKit end).
+    - `character_encoding` selects encoding; if incorrect, data may be unreadable. Default is empty. Supports `utf-8/utf-16le/utf-16be/gbk/gb18030`.
+    - `multiline_match` matches multiple lines, same as [logging](logging.md). Note that because it's JSON, triple single quotes for raw strings are not supported; regular expressions like `^\d{4}` need to be escaped as `^\\d{4}`.
+    - `tags` adds extra tags, formatted as a JSON map, e.g., `{ "key1":"value1", "key2":"value2" }`.
 
 Supported environment variables:
 
-| Environment Variable Name        | Configuration Item Meaning                                                                                                  |
-| :---                             | :---                                                                                                                        |
-| `LOGFWD_DATAKIT_HOST`            | Datakit 地址                                                                                                                |
-| `LOGFWD_DATAKIT_PORT`            | Datakit Port                                                                                                                |
-| `LOGFWD_GLOBAL_SOURCE`           | Configure the global source with the highest priority                                                                       |
-| `LOGFWD_GLOBAL_SERVICE`          | Configure the global service with the highest priority                                                                      |
-| `LOGFWD_POD_NAME`                | Specifying pod name adds `pod_name` to tags                                                                                 |
-| `LOGFWD_POD_NAMESPACE`           | Specifying pod namespace adds `namespace` to tags                                                                           |
-| `LOGFWD_ANNOTATION_DATAKIT_LOGS` | Use the annotations `datakit/logs` configuration of the current Pod with higher priority than the logfwd JSON configuration |
-| `LOGFWD_JSON_CONFIG`             | Logfwd main configuration, i.e. the JSON-formatted text above                                                               |
+| Environment Variable | Description                                                                                                              |
+| :---                 | :---                                                                                                                      |
+| `LOGFWD_DATAKIT_HOST`| DataKit address                                                                                                           |
+| `LOGFWD_DATAKIT_PORT`| DataKit port                                                                                                              |
+| `LOGFWD_TARGET_CONTAINER_IMAGE` | Configures the target container image name, e.g., `nginx:1.22`, parses and adds related tags (`image`, `image_name`, `image_short_name`, `image_tag`) |
+| `LOGFWD_GLOBAL_SOURCE` | Configures global source, highest priority                                                                               |
+| `LOGFWD_GLOBAL_SERVICE` | Configures global service, highest priority                                                                              |
+| `LOGFWD_POD_NAME`     | Specifies pod name, adds `pod_name` to tags                                                                               |
+| `LOGFWD_POD_NAMESPACE`| Specifies pod namespace, adds `namespace` to tags                                                                          |
+| `LOGFWD_ANNOTATION_DATAKIT_LOGS` | Uses the current Pod's Annotations `datakit/logs` configuration, higher priority than logfwd JSON configuration     |
+| `LOGFWD_JSON_CONFIG`  | Main logfwd configuration, i.e., the JSON text above                                                                      |
 
-#### Installation and Running {#install-run}
+#### Installation and Operation {#install-run}
 
-The deployment configuration of logfwd in Kubernetes is divided into two parts. One is the configuration of Kubernetes Pod to create `spec.containers`, including injecting environment variables and mounting directories. The configuration is as follows:
+Deployment configuration for logfwd in Kubernetes is split into two parts: one is the `spec.containers` configuration for creating Kubernetes Pods, including injecting environment variables and mounting directories. The configuration is as follows:
 
 ```yaml
 spec:
@@ -157,9 +159,9 @@ spec:
     name: logfwd-config-volume
 ```
 
-The second configuration is the configuration where logfwd actually runs, the JSON-formatted master configuration mentioned earlier, which exists in Kubernetes as a ConfigMap.
+The second configuration is the actual running configuration for logfwd, i.e., the JSON-formatted main configuration mentioned earlier, existing in Kubernetes as a ConfigMap.
 
-According to the logfwd configuration example, modify `config` as it is. The `ConfigMap` format is as follows:
+Based on the logfwd configuration example, modify `config` according to your actual situation. The `ConfigMap` format is as follows:
 
 ```yaml
 apiVersion: v1
@@ -185,11 +187,11 @@ data:
     ]
 ```
 
-By integrating the two configurations into the existing Kubernetes yaml and using `volumes` and `volumeMounts` to share directories within containers, the logfwd container collects log files from other containers.
+Integrate both configurations into the existing Kubernetes YAML and use `volumes` and `volumeMounts` to share directories between containers to allow logfwd to collect logs from other containers.
 
-> Note that you need to use `volumes` and `volumeMounts` to mount and share the log directory of the application container (that is, the `count` container in the example) for normal access in the logfwd container. See `volumes` [doc](https://kubernetes.io/docs/concepts/storage/volumes/){:target="_blank"}
+> Note, use `volumes` and `volumeMounts` to mount and share the log directory of the application container (e.g., the `count` container in the example) so that it can be accessed normally within the logfwd container. Official documentation on `volumes` is available [here](https://kubernetes.io/docs/concepts/storage/volumes/){:target="_blank"}
 
-The complete example is as follows:
+A complete example is as follows:
 
 ```yaml
 apiVersion: v1
@@ -289,7 +291,7 @@ data:
     ]
 ```
 
-### Performance Test {#bench}
+### Performance Testing {#bench}
 
 - Environment:
 
@@ -299,7 +301,7 @@ goarch: amd64
 cpu: Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz
 ```
 
-- Log file contains 1000w nginx logs, file size 2.2 GB:
+- Log file content consists of 10 million nginx logs, file size 2.2GB:
 
 ```not-set
 192.168.17.1 - - [06/Jan/2022:16:16:37 +0000] "GET /google/company?test=var1%20Pl HTTP/1.1" 401 612 "http://www.google.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36" "-"
@@ -307,9 +309,9 @@ cpu: Intel(R) Core(TM) i5-7500 CPU @ 3.40GHz
 
 - Results:
 
-It takes**95 seconds** to read and forward all logs, with an average of 10w logs read per second.
+It took **95 seconds** to read and forward all logs, averaging 100,000 logs per second.
 
-The peak single-core CPU utilization rate was 42%, and the following is the `top` record at that time:
+Peak single-core CPU usage was 42%. Below is the `top` record at that time:
 
 ```shell
 top - 16:32:46 up 52 days,  7:28, 17 users,  load average: 2.53, 0.96, 0.59
@@ -322,13 +324,13 @@ MiB Swap:   2048.0 total,      0.0 free,   2048.0 used.   8793.3 avail Mem
 1850829 root      20   0  715416  17500   8964 R  42.1   0.1   0:10.44 logfwd
 ```
 
-## More Readings {#more-reading}
+## Further Reading {#more-reading}
 
-- [DataKit summary of log collection](datakit-logging.md)
-- [Socket Log access best practices](logging_socket.md)
-- [Log collection configuration for specifying pod in Kubernetes](container-log.md#logging-with-annotation-or-label)
-- [Third-party log access](logstreaming.md)
-- [Introduction of DataKit configuration mode in Kubernetes environment](../datakit/k8s-config-how-to.md)
-- [Install DataKit as DaemonSet](../datakit/datakit-daemonset-deploy.md)
-- [Deploy `logfwdserver` on DataKit](logfwdserver.md)
-- [Proper use of regular expressions to configure](../datakit/datakit-input-conf.md#debug-regex)
+- [DataKit Log Collection Overview](datakit-logging.md)
+- [Best Practices for Socket Log Integration](logging_socket.md)
+- [Specifying Log Collection Configuration for Specific Pods in Kubernetes](container-log.md#logging-with-annotation-or-label)
+- [Third-party Log Integration](logstreaming.md)
+- [Introduction to DataKit Configuration Methods in Kubernetes](../datakit/k8s-config-how-to.md)
+- [Installing DataKit as a DaemonSet](../datakit/datakit-daemonset-deploy.md)
+- [Deploying `logfwdserver` on DataKit](logfwdserver.md)
+- [Correctly Using Regular Expressions for Configuration](../datakit/datakit-input-conf.md#debug-regex)

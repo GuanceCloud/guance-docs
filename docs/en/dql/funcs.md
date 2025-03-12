@@ -1,39 +1,39 @@
 # DQL Functions
 ---
 
+Below is a list of supported DQL functions. All function names are case-insensitive.
 
-The following is a list of functions supported by DQL. All function names are not case sensitive.
+## Concepts
 
-<a name="zj1wD"></a>
-## Nouns
+| Method      | Description                          |
+| ----------- | ------------------------------------ |
+| `M`       | Refers to the Measurement in time series data.    |
+| `L`       | Log data, logically classified by the `source` field. |
+| `BL`    | Backup log data, logically classified by the `source` field. |
+| `O`      | Object data, logically classified by the `class` field.                          |
+| `OH`      | Object historical data, logically classified by the `class` field.                          |
+| `CO`      | Resource Catalog data, logically classified by the `class` field.                          |
+| `COH`      | Resource Catalog historical data, logically classified by the `class` field.                          |
+| `E`      | Event data, logically classified by the `source` field.                          |
+| `T`      | Tracing data, logically classified by the `service` field.                          |
+| `P`      | Profile data, logically classified by the `service` field.                          |
+| `R`      | RUM data, logically classified by the `source` field                          |
+| `S`      | Security Check data, logically classified by the `category` field.                          |
+| `N`      | Network eBPF data, logically classified by the `source` field.                          |
 
-- `M` - Refers to the set of metrics in time series data
-- `L` - Log data, categorized logically by the field `source`
-- `BL` - Back up log data with the field `source` as a logical categorization
-- `O` - Object data, categorized logically by the field `class` 
-- `OH` - Object history data, categorized logically by the field `class`
-- `CO` - Custom object data with the field `class` as a logical categorization
-- `COH` - Customize object history data with the field `class` as a logical categorization
-- `E` - event data, categorized logically by the field `source`
-- `T` - Trace data, categorized logically by the field `service`
-- `R` - RUM data, categorized logically by the field `source`
-- `S` - Security inspection data, with the field `category` as a logical classification
-- `N` - Network eBPF data, categorized logically by the field `source`
 
-<a name="yLjzt"></a>
-## List of SHOW Functions
+## SHOW Function List
 
-<a name="rbyfK"></a>
-### show_object_source()
+### show_object_source() 
 
-- Description: Showing the index collection of `object` data, and this function does not need parameters.
-- Examples
+- Description: Displays the Measurement set of `object` data; this function does not require parameters.
+- Example:
 
 ```python
 # Request
 show_object_source()
 
-# Back
+# Response
 {
   "content": [
     {
@@ -55,33 +55,30 @@ show_object_source()
     }
   ]
 }
+
 ```
 
-<a name="dwq7N"></a>
-### show_object_class()
+### show_object_class() 
 
-- Description: Showing the index collection of object data. This function does not need parameters.
+- Description: Displays the Measurement set of object data; this function does not require parameters,
 
-> Note: This function will be discarded and replaced with `show_object_source()`.
+**Note:** This function will be deprecated, use `show_object_source()` instead.
 
-
-<a name="tjNtB"></a>
 ### show_object_field()
 
-- Explanation: Showing the `fileds`  list of objects.
+- Description: Displays the list of fields for objects:
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| Object Classification Name | Object Type | `string` | No | None | `HOST` |
+| Non-Named Parameter | Description     | Type     | Required | Default | Example   |
+| ---------- | -------- | -------- | -------- | ------ | ------ |
+| Object Class Name | Object type | `string` | No       | None     | `HOST` |
 
-
-- Examples
+- Example:
 
 ```python
 # Request
 show_object_field('servers')
 
-# Back
+# Response
 {
   "content": [
     {
@@ -105,29 +102,30 @@ show_object_field('servers')
     }
   ]
 }
+
 ```
 
-<a name="fHkMg"></a>
-### show_object_label()
+### show_object_label() 
 
-- Description: Showing the label information contained in the object.
+- Description: Displays label information contained in the object:
 
-| Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| `class` | Object Source Type | `string` | Yes |  | `HOST` |
-| `names` | Object Name List | `[]string` | No |  | `['aws', 'aliyun']` |
+| Parameter    | Description         | Type       | Required | Default | Example                |
+| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
+| `class` | Object source type | `string`   | Yes       |        | `HOST`              |
+| `names` | Object name list | `[]string` | No       |        | `['aws', 'aliyun']` |
 
+**Note:**
 
--  Note 
-   - The `names` parameter is optional, and if not passed, it means that all labels of  `class='source_class'` are displayed.
-   - Display label information for up to 1000 objects
--  Examples.
+- The `names` parameter is optional; if not provided, it means displaying all labels where `class='source_class'`;
+- Displays label information for up to 1000 objects.
+
+- Example:
 
 ```python
 # Request
 show_object_label(class="host_processes", names=["ubuntu20-dev_49392"] )
 
-# Back
+# Response
 {
   "content": [
     {
@@ -160,12 +158,12 @@ show_object_label(class="host_processes", names=["ubuntu20-dev_49392"] )
     }
   ]
 }
+
 ```
 
-<a name="9e906471"></a>
 ### Object History
 
-show_object_history_source()
+show_object_history_source() 
 
 show_object_history_field()
 
@@ -175,96 +173,102 @@ show_custom_object_history_source()
 
 show_custom_object_history_field()
 
-<a name="cvnRZ"></a>
-## Logging Data
+## Log (logging) Data
 
-<a name="Frxh7"></a>
 ### show_logging_source()
 
-- Description: Showing the index collection of log data, and this function does not need parameters.
-- Example: `show_logging_source()`, with the same return structure as `show_object_source()`.
+- Description: Displays the Measurement set of log data; this function does not require parameters.
+- Example: `show_logging_source()`, returns the same structure as `show_object_source()`
 
-<a name="BVcof"></a>
 ### show_logging_field()
 
--  Description: Showing all fileds lists under the specified `source`. 
--  Example: `show_logging_field("nginx")`, with the same return structure as `show_object_field(Servers)`.
+- Description: Displays all fields under the specified `source`.
 
-<a name="UNyok"></a>
-## Keyevent
+- Example: `show_logging_field("nginx")`, returns the same structure as `show_object_field(Servers)`
 
-<a name="x9kKg"></a>
+### Backup Logs
+
+show_backup_log_source()
+
+show_backup_log_field()
+
+
+## Events (keyevent)
+
 ### show_event_source()
 
-- Description: Showing a set of metrics for Keyevent data. This function does not require parameters
-- Example: `show_event_source()`, with the same return structure as `show_object_source()`.
+- Description: Displays the Measurement set of Keyevent data; this function does not require parameters.
+- Example: `show_event_source()`, returns the same structure as `show_object_source()`
 
-<a name="BlqWk"></a>
-### show_event_field()
+### show_event_field() 
 
--  Description: Showing all fields lists under the `source` metric. 
--  Example: `show_event_field('datafluxTrigger')`, with the same return structure as `show_object_field()`.
+- Description: Displays all fields under the specified `source` Measurement.
 
-<a name="HdX22"></a>
-## APM Tracing Data
+- Example: `show_event_field('datafluxTrigger')`, returns the same structure as `show_object_field()`
 
-<a name="fx0eL"></a>
+## APM (tracing) Data
+
 ### show_tracing_source()
 
--  Description: Showing a set of metrics for tracing data. This function does not require parameters.
--  Example: `show_tracing_source()`, with the same return structure as `show_object_source()`.
+- Description: Displays the Measurement set of tracing data; this function does not require parameters.
 
-<a name="V1qdG"></a>
+- Example: `show_tracing_source()`, returns the same structure as `show_object_source()`
+
 ### show_tracing_service()
 
-- Description: Showing a set of metrics for tracing data. This function does not require parameters.
+- Description: Displays the Measurement set of tracing data; this function does not require parameters
 
-> Note: This function will be discarded and replaced with `show_tracing_source()`.
+> Note: This function will be deprecated, use `show_tracing_source()` instead
 
+### show_tracing_field() 
 
-<a name="bmxA1"></a>
-### show_tracing_field()
+- Description: Displays all fields under the specified `source`
+- Example: `show_tracing_field('mysql')`, returns the same structure as `show_object_field()`
 
-- Description: Showing all fields lists under the specified source.
-- Example: `show_tracing_field('mysql')`, with the same return structure as `show_object_field()`.
+## Profile Data
 
-<a name="X1sls"></a>
+### show_profiling_source()
+
+- Description: Displays the Measurement set of profiling data; this function does not require parameters
+
+- Example: `show_profiling_source()`, returns the same structure as `show_object_source()`
+
+### show_profiling_field() 
+
+- Description: Displays all fields under the specified `source`
+- Example: `show_profiling_field('mysql')`, returns the same structure as `show_object_field()`
+
 ## RUM Data
 
-<a name="V2FCm"></a>
 ### show_rum_source()
 
-- Description: Showing a set of metrics for RUM data. This function does not require parameters.
-- Example: `show_rum_source()`, with the same return structure as `show_object_source()`.
+- Description: Displays the Measurement set of RUM data; this function does not require parameters
+- Example: `show_rum_source()`, returns the same structure as `show_object_source()`
 
-<a name="WuYLt"></a>
 ### show_rum_type()
 
-- Description: Showing a set of metrics for RUM data. This function does not require parameters.
+- Description: Displays the Measurement set of RUM data; this function does not require parameters
 
-> Note: This function will be discarded and replaced with  `show_rum_source()`.
+> Note: This function will be deprecated, use `show_rum_source()` instead
 
+### show_rum_field() 
 
-<a name="per0T"></a>
-### show_rum_field()
+- Description: Displays all fields under the specified `source_value` Measurement
 
--  Description: Showing all fields lists under the `source_value` metric.
--  Example: `show_rum_field('js_error')`, with the same return structure as `show_object_field()`.
+- Example: `show_rum_field('js_error')`, returns the same structure as `show_object_field()`
 
-<a name="DyXw0"></a>
-## User-defined Object (Custom Object) Data
+## User Resource Catalog (custom object) Data
 
-<a name="rZ6F2"></a>
-### show_cobject_source()
+### show_cobject_source() 
 
-- Description: Shows the metrics collection of custom object data. This function does not require parameters.
-- Example
+- Description: Displays the Measurement set of custom object data; this function does not require parameters
+- Example:
 
 ```python
 # Request
 show_custom_object_source()
 
-# Back
+# Response
 {
   "content": [
     {
@@ -288,24 +292,22 @@ show_custom_object_source()
 }
 ```
 
-<a name="qEzl9"></a>
-### show_custom_object_class()
+### show_custom_object_class() 
 
-- Description: Showing the metrics collection of custom object data, this function does not require parameters.
-> Note: Be discarded, using ` show_custom_object_source () ` instead.
+- Description: Displays the Measurement set of custom object data; this function does not require parameters,
 
+> Note: Deprecated, use `show_custom_object_source()` instead
 
-<a name="wCB9k"></a>
-### show_custom_object_field()
+### show_custom_object_field() 
 
-- Description: Showing all fileds lists under the specified source.
+- Description: Displays all fields under the specified `source`
 - Example
 
 ```python
 # Request
 show_cobject_field('servers')
 
-# Back
+# Response
 {
   "content": [
     {
@@ -329,43 +331,38 @@ show_cobject_field('servers')
     }
   ]
 }
+
 ```
 
-<a name="XsVo3"></a>
-## Network eBPF Data
+## Network eBPF (network) Data
 
-<a name="IpSu4"></a>
 ### show_network_source()
 
-- Description: Showing the index set of network data, this function does not need parameters.
-- Example: `show_network_source()`, with the same return structure as `show_object_source()`.
+- Description: Displays the Measurement set of network data; this function does not require parameters
+- Example: `show_network_source()`, returns the same structure as `show_object_source()`
 
-<a name="ZXXWL"></a>
-### show_network_field()
+### show_network_field() 
 
-- Description: Showing all fileds lists under the specified source.
-- Example: `show_network_field('nginx')`, with the same return structure as `show_object_field()`.
+- Description: Displays all fields under the specified `source`
+- Example: `show_network_field('nginx')`, returns the same structure as `show_object_field()`
 
-<a name="dX3hY"></a>
-## Metric Data
+## Time Series (metric) Data
 
-<a name="tP9jv"></a>
-### show_measurement()
+### show_measurement()  
 
-- Description: Measurement showing timing data
-- Example: `show_measurement()`, with the same return structure as `show_object_source()`.
+- Description: Displays the Measurement set of time series data
+- Example: `show_measurement()`, returns the same structure as `show_object_source()`
 
-<a name="sz2zQ"></a>
 ### show_tag_key()
 
-- Description: Viewing the measurement tag list, and you can specify specific metrics.
+- Description: View tag key list of the Measurement, can specify a specific Measurement
 - Example:
 
 ```python
 # Request
 show_tag_key(from=['cpu'])
 
-# Back
+# Response
 {
   "content": [
     {
@@ -390,20 +387,22 @@ show_tag_key(from=['cpu'])
     }
   ]
 }
+
 ```
 
-<a name="ZpDcu"></a>
-### show_tag_value()
+### show_tag_value() {#show}   
 
--  Note: Returing a list of tag values for the specified tag key in the database.
--  Note: The keyin reference supports regular expression filtering, for example: keyin=re('.*').
--  Example: 
+- Description: Returns the tag value list for a specified tag key in the database
+
+- Note: keyin supports regex filtering, e.g., keyin=re('.*')
+
+- Example
 
 ```python
 # Request
-show_tag_value(from=['cpu'], keyin=['host'])
+show_tag_value(from=['cpu'], keyin=['host'],field=['usage_total'])
 
-# Back
+# Response
 {
   "content": [
     {
@@ -429,26 +428,23 @@ show_tag_value(from=['cpu'], keyin=['host'])
 }
 ```
 
-<a name="bb59s"></a>
-### show_field_key()
+### show_field_key()    
 
-- Description: Viewing the field key list of measurements.
-- Example: `show_field_key(from=['cpu'])`, with the same return structure as `show_object_field()`
+- Description: View field key list of the Measurement
+- Example: `show_field_key(from=['cpu'])`, returns the same structure as `show_object_field()`
 
-<a name="85e1bb5b"></a>
 ## Workspace Information
 
-<a name="30253ee8"></a>
-### show_workspaces()
+### show_workspaces() 
 
-- Description: Viewing the current workspace and its authorized workspace information.
+- Description: View current workspace and authorized workspaces information
 - Example:
 
 ```python
 # Request
 show_workspaces()
 
-# Back
+# Response
 {
   "content": [
     {
@@ -468,14 +464,14 @@ show_workspaces()
               "tokn_bW47smmgQpoZKP5A2xKuj8W2",
               "",
               "",
-              "系统工作空间#"
+              "System Workspace#"
             ],
             [
               "wksp_1fcd93a0766c11ebad5af2b2c21faf74",
               "tkn_1fcd9a08766c11ebad5af2b2c21faf74",
               "1641283729",
               "1641283729",
-              "解决方案中心"
+              "Solution Center"
             ]
           ]
         }
@@ -488,23 +484,19 @@ show_workspaces()
 }
 ```
 
-<a name="fbG4z"></a>
-## List of Aggregate Functions
+## Aggregation Function List
 
-<a name="fokyy"></a>
 ### avg()
 
-- Description: Returning the average value of the field. There is only one parameter, and the parameter type is the field name.
+- Description: Returns the average value of the field. It has only one parameter, which is the field name
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| Field | Field name | Numerical Type | Yes | No | `host` |
-
+| Non-Named Parameter | Description     | Type   | Required | Default | Example   |
+| ---------- | -------- | ------ | -------- | ------ | ------ |
+| field      | Field name | Numeric | Yes       | None     | `host` |
 
 - Applicable: All data types
 
-> Tips：The field `avg(field)` to be applied must be of numeric type. If the field `field` is of string type (e.g. `'10'`), it can be implemented using a type conversion function (e.g. `int()/float()`), such as `avg(int(field))`
-
+> Note: The `avg(field)` field must be numeric type; if the field `field` is string type (e.g., `'10'`), you can use type conversion functions (e.g., `int()/float()`) to achieve this, like `avg(int(field))`
 
 - Example
 
@@ -512,7 +504,7 @@ show_workspaces()
 # Request
 L::nginx:(avg(connect_total)) {__errorCode='200'}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -538,29 +530,28 @@ L::nginx:(avg(connect_total)) {__errorCode='200'}
 }
 ```
 
-<a name="vMKbW"></a>
 ### bottom()
 
-- Description: Back to the minimum n field values.
+- Description: Returns the smallest n field values
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `host` |
-| n | Number Returned | int | Yes | None | 10 |
+| Non-Named Parameter | Description       | Type   | Required | Default | Example   |
+| ---------- | ---------- | ------ | -------- | ------ | ------ |
+| field      | Field name | Field name | Yes       | None     | `host` |
+| n          | Number of returned items | int    | Yes       | None     | 10     |
+
+> Note: `field` cannot be the `time` field
+
+- Applicable: All data types
 
 
-> Note: `field` cannot be a `time` field.
+- Example
 
-
--  Applicable: All data types
--  Example 
-
-```
+```pyhthon
 
 # Request
 L::nginx:(bottom(host, 2)) {__errorCode='200'}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -588,47 +579,41 @@ L::nginx:(bottom(host, 2)) {__errorCode='200'}
     }
   ]
 }
+
 ```
 
-<a name="MXMKw"></a>
 ### top()
 
-- Description: Back to the maximum n field values.
+- Description: Returns the largest n field values
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `host` |
-| n | Number Returned | int | Yes | None | 10 |
+| Non-Named Parameter | Description       | Type   | Required | Default | Example   |
+| ---------- | ---------- | ------ | -------- | ------ | ------ |
+| field      | Field name | Field name | Yes       | None     | `host` |
+| n          | Number of returned items | int    | Yes       | None     | 10     |
 
+> Note: `field` cannot be the `time` field
 
+- Applicable: All data types
+- Example: `L::nginx:(top(host, 2)) {__errorCode='200'}`, returns the same structure as `bottom()`
 
-> Note: `field` cannot be `time`.
-
-
-- Applicable: All
-- Example: `L::nginx:(top(host, 2)) {__errorCode='200'}`, with the same return structure as `bottom()`
-
-<a name="WcWkJ"></a>
 ### count()
 
-- Description: Returning a summary value of a non-empty field value.
+- Description: Returns the total non-null field values
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name/Function Call | Numerical Type | Yes | No | `host` |
+| Non-Named Parameter | Description              | Type   | Required | Default | Example   |
+| ---------- | ----------------- | ------ | -------- | ------ | ------ |
+| field      | Field name/function call | Numeric | Yes       | None     | `host` |
 
+> Note: The field can be a function call, such as `count(distinct(field))`, but this feature is only applicable to `M` data types
 
-> Tips: Field can be a function call, such as `count(distinct(field))`, but this functionality only applies to `M` data types.
-
-
-- Applicable: All
-- Example:
+- Applicable: All data types
+- Example
 
 ```python
 # Request
 L::nginx:(count(host)) {__errorCode='200'}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -652,26 +637,24 @@ L::nginx:(count(host)) {__errorCode='200'}
     }
   ]
 }
-```
 
-<a name="L3Es1"></a>
+```
 ### count_distinct()
 
-- Description: Count the number of different values in the field
+- Description: Counts the number of distinct field values
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `ip` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example |
+| ---------- | -------- | ------ | -------- | ------ | ---- |
+| field      | Field name | Field name | Yes       | None     | `ip` |
 
-
-- Applicable: All
-- Example:
+- Applicable: All data types
+- Example
 
 ```python
 # Request
 L::nginx:(count_distinct(host)) {__errorCode='200'}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -697,27 +680,24 @@ L::nginx:(count_distinct(host)) {__errorCode='200'}
 }
 ```
 
-<a name="sM9lm"></a>
 ### derivative()
 
-- Description: Returning the rate of change of two adjacent points of a field.
+- Description: Returns the rate of change between two adjacent points of the field
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Numeric | Yes       | None     | `usage` |
 
-
-> Note:  `field` must be of numeric type.
-
+> Note: `field` must be numeric type
 
 - Applicable: `M`
-- Example:
+- Example
 
 ```python
 # Request
 M::cpu:(derivative(usage_idle)) limit 2
 
-# Back
+# Response
 {
   "content": [
     {
@@ -747,24 +727,22 @@ M::cpu:(derivative(usage_idle)) limit 2
 }
 ```
 
-<a name="K2Z1r"></a>
 ### difference()
 
 - Description: Difference
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
-
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Numeric | Yes       | None     | `usage` |
 
 - Applicable: `M`
-- Example:
+- Example
 
 ```python
 # Request
 M::cpu:(difference(usage_idle)) limit 2
 
-# Back
+# Response
 {
   "content": [
     {
@@ -794,24 +772,22 @@ M::cpu:(difference(usage_idle)) limit 2
 }
 ```
 
-<a name="P6lhT"></a>
 ### distinct()
 
-- Description: Returns a list of different values for `field`.
+- Description: Returns the list of distinct values of `field`
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Field name | Yes       | None     | `usage` |
 
-
-- Applicable: All
-- Example:
+- Applicable: All data types
+- Example
 
 ```python
 # Request
 R::js_error:(distinct(error_message))
 
-# Back
+# Response
 {
   "content": [
     {
@@ -841,25 +817,35 @@ R::js_error:(distinct(error_message))
 }
 ```
 
-<a name="IVNwj"></a>
 ### distinct_by_collapse()
 
-- Description: Returns a list of different values for `field`.
+- Description: Returns the list of distinct values of `field`
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Field name | Yes       | None     | `usage` |
 
+⚠️ This function can also add named parameters fields, specifying the returned field list
 
--  Applicable: Applicable except `M`. 
--  Note: The list of field values returned by distinguct_by_collapse may not be complete, and this function only traverses part of the data (the default is 1 million * slices) to get different values for field. 
--  Example: 
+For example: 
+
+```
+
+L::`*`:(distinct_by_collapse(`status`, fields=[`__docid`])) {  }
+
+```
+
+- Applicable: Except `M`, all others apply
+
+- Note: `distinct_by_collapse` returns the field values list
+
+- Example
 
 ```python
 # Request
 R::js_error:(distinct_by_collapse(error_message) as d1)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -889,26 +875,24 @@ R::js_error:(distinct_by_collapse(error_message) as d1)
 }
 ```
 
-<a name="aed1ec81"></a>
 ### count_filter()
 
-- Description: Conditional filter aggregation, counting
+- Description: Conditional aggregation filter, count
 - Reference: [Elasticsearch filter aggs](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-filter-aggregation.html)
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `service` |
-| fieldValues | Filtration Range | List | Yes | No | `[['browser', 'df_rum_ios']]` |
+| Non-Named Parameter  | Description     | Type   | Required | Default | Example                          |
+| ----------- | -------- | ------ | -------- | ------ | ----------------------------- |
+| field       | Field name | Field name | Yes       | None     | `service`                     |
+| fieldValues | Filter range | List   | Yes       | None     | `[['browser', 'df_rum_ios']]` |
 
-
-- Applicable: Applicable except `M`.
-- Example:
+- Applicable: Except `M`, all others support
+- Example
 
 ```python
 # Request
 L::`*`:(count_filter(service,['browser', 'df_rum_ios']) as c1 ) by status
 
-# Back
+# Response
 {
   "content": [
     {
@@ -940,27 +924,24 @@ L::`*`:(count_filter(service,['browser', 'df_rum_ios']) as c1 ) by status
 }
 ```
 
-<a name="pPyQl"></a>
 ### first()
 
-- Description: Returning the value with the earliest timestamp.
+- Description: Returns the earliest timestamp value
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Field name | Yes       | None     | `usage` |
 
+> Note `field` cannot be the `time` field, i.e., `first(time)` is meaningless
 
-> Note: `field` cannot be `time`, that is, `first(time)` is meaningless.
-
-
-- Applicable: All
-- Example:
+- Applicable: All data types
+- Example
 
 ```python
 # Request
 L::nginx:(first(host)) {__errorCode='200'}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -986,58 +967,51 @@ L::nginx:(first(host)) {__errorCode='200'}
 }
 ```
 
-<a name="NBT3u"></a>
 ### float()
 
-- Description: Type conversion function, which converts string type data into float value
+- Description: Type conversion function, converts string type data to float numerical
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Field name | Yes       | None     | `usage` |
 
+> Note: This function can only be used within `sum/max/min/avg` as an inner nested function (e.g., `sum(float(usage))`), while `float(fieldName)` is currently unsupported 
 
-> Note: This function can only be used in `sum/max/min/avg` as a nested inner function, such as `sum(float(usage))`. And `float(fieldName)` is not currently supported.
+- Applicable: Except `M`, all others support
 
-
-- Applicable: Applicable except `M`.
-
-<a name="oTljU"></a>
 ### int()
 
-- Description: Type conversion function, which converts string type data into int value.
+- Description: Type conversion function, converts string type data to int numerical
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Field name | Yes       | None     | `usage` |
 
+> Note: This function can only be used within `sum/max/min/avg` as an inner nested function (e.g., `sum(int(usage))`), while `int(usage)` is currently unsupported 
 
-> Note: This function can only be used in `sum/max/min/avg` as a nested inner function, such as `sum(int(usage))`. And `int(usage)` is not currently supported.
+- Applicable: Except `M`, all others support
 
-
-- Applicable: Applicable except `M`.
-
-<a name="jjpGz"></a>
 ### histogram()
 
 - Description: Histogram range aggregation
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
-| start-value | X-axis Minimum Boundary | Numeric Type | Yes | None | 300 |
-| end-value | X-axis Maximum Boundary | Numeric Type | Yes | None | 600 |
-| interval | Interval Range | Numeric Type | Yes | None | 100 |
-| min-doc | No Returing Below this value | Numeric Type | No | None | 10 |
+| Non-Named Parameter  | Description             | Type     | Required | Default | Example    |
+| ----------- | ---------------- | -------- | -------- | ------ | ------- |
+| field       | Numeric           | Field name   | Yes       | None     | `usage` |
+| start-value | Minimum boundary on x-axis    | Numeric type | Yes       | None     | 300     |
+| end-value   | Maximum boundary on x-axis    | Numeric type | Yes       | None     | 600     |
+| interval    | Interval range         | Numeric type | Yes       | None     | 100     |
+| min-doc     | Do not return if below this value | Numeric type | No       | None     | 10      |
 
+- Applicable: Except `M`, all others apply
 
--  Applicable: Applicable except `M`. 
--  Example: 
+- Example
 
 ```python
 # Request
 E::`monitor`:(histogram(date_range, 300, 6060, 100, 1))
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1045,7 +1019,7 @@ E::`monitor`:(histogram(date_range, 300, 6060, 100, 1))
         {
           "name": "monitor",
           "columns": [
-            "time", # The field name is time, but it actually represents the y-axis numeric value
+            "time", # Field name is time, but actually represents y-axis value
             "histogram(date_range, 300, 6060, 100, 1)"
           ],
           "values": [
@@ -1069,40 +1043,36 @@ E::`monitor`:(histogram(date_range, 300, 6060, 100, 1))
 }
 ```
 
-<a name="ZPLxe"></a>
 ### last()
 
-- Description: Returning the most recent timestamp value.
+- Description: Returns the most recent timestamp value
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Field name | Yes       | None     | `usage` |
 
+> Note: `field` cannot be the `time` field
 
-> Note: `field` cannot be `time`.
+- Applicable: All data types
 
+- Example: `L::nginx:(last(host)) {__errorCode='200'}`, returns the same structure as `first()`
 
--  Applicable: All 
--  Example: `L::nginx:(last(host)) {__errorCode='200'}`, with the same return structure as `first()`.
-
-<a name="ZJHef"></a>
 ### log()
 
-- Explanation: Finding logarithm
+- Description: Calculate logarithm
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes | None | `usage` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example    |
+| ---------- | -------- | ------ | -------- | ------ | ------- |
+| field      | Field name | Numeric | Yes       | None     | `usage` |
 
-
-- Applicable:`M`
-- Example:
+- Applicable: `M`
+- Example
 
 ```python
 # Request
 M::cpu:(log(usage_idle, 10)) limit 2
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1130,26 +1100,26 @@ M::cpu:(log(usage_idle, 10)) limit 2
     }
   ]
 }
+
 ```
 
-<a name="C4JMM"></a>
 ### max()
 
-- Description: Returning the maximum field value.
+- Description: Returns the largest field value
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `connect_total` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example            |
+| ---------- | -------- | ------ | -------- | ------ | --------------- |
+| field      | Field name | Numeric | Yes       |        | `connect_total` |
 
+- Applicable: All data types
 
--  Applicable: All 
--  Example: 
+- Example
 
 ```python
 # Request
 L::nginx:(max(connect_total)) {__errorCode='200'}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1175,24 +1145,22 @@ L::nginx:(max(connect_total)) {__errorCode='200'}
 }
 ```
 
-<a name="5290b990"></a>
 ### median()
 
-- Description: Returning the median of an ordered field.
+- Description: Returns the median of the sorted field
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example         |
+| ---------- | -------- | ------ | -------- | ------ | ------------ |
+| field      | Field name | Numeric | Yes       |        | `usage_idle` |
 
-
-- Applicable:`M`
+- Applicable: `M`
 - Example:
 
 ```python
 # Request
 M::`cpu`:(median(`usage_idle`))  by host  slimit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1221,28 +1189,25 @@ M::`cpu`:(median(`usage_idle`))  by host  slimit 1
 }
 ```
 
-<a name="b3nxr"></a>
+
 ### min()
 
-- Description: Returning the smallest field value.
+- Description: Returns the smallest field value
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `connect_total` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example            |
+| ---------- | -------- | ------ | -------- | ------ | --------------- |
+| field      | Field name | Numeric | Yes       |        | `connect_total` |
 
+- Applicable: All data types
+- Example: `L::nginx:(min(connect_total)) {__errorCode='200'}`, returns the same structure as `max()`
 
-- Applicable: All
-- Example: `L::nginx:(min(connect_total)) {__errorCode='200'}`, with the same return structure as `max()`
-
-<a name="3c7c8391"></a>
 ### mode()
 
-- Description: Returning the most frequently occurring value in the field.
+- Description: Returns the most frequent value in the field
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
-
+| Non-Named Parameter | Description     | Type   | Required | Default | Example         |
+| ---------- | -------- | ------ | -------- | ------ | ------------ |
+| field      | Field name | Numeric | Yes       |        | `usage_idle` |
 
 - Applicable: `M`
 - Example:
@@ -1251,7 +1216,7 @@ M::`cpu`:(median(`usage_idle`))  by host  slimit 1
 # Request
 M::`cpu`:(mode(`usage_idle`))  by host  slimit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1280,24 +1245,22 @@ M::`cpu`:(mode(`usage_idle`))  by host  slimit 1
 }
 ```
 
-<a name="FgOnU"></a>
 ### moving_average()
 
-- Explanation: Average movement
+- Description: Moving average
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `connect_total` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example            |
+| ---------- | -------- | ------ | -------- | ------ | --------------- |
+| field      | Field name | Numeric | Yes       |        | `connect_total` |
 
-
-- Applicable: `M`
-- Example:
+- Applicable: `M` 
+- Example
 
 ```python
 # Request
 M::cpu:(moving_average(usage_idle, 2)) limit 2
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1327,24 +1290,22 @@ M::cpu:(moving_average(usage_idle, 2)) limit 2
 }
 ```
 
-<a name="FuvG0"></a>
 ### non_negative_derivative()
 
-- Note: Non-negative rate of change of data
+- Description: Non-negative rate of change of data
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `connect_total` |
-
+| Non-Named Parameter | Description     | Type   | Required | Default | Example            |
+| ---------- | -------- | ------ | -------- | ------ | --------------- |
+| field      | Field name | Numeric | Yes       |        | `connect_total` |
 
 - Applicable: `M`
-- Example:
+- Example
 
 ```python
 # Request
 M::cpu:(non_negative_derivative(usage_idle)) limit 2
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1374,24 +1335,22 @@ M::cpu:(non_negative_derivative(usage_idle)) limit 2
 }
 ```
 
-<a name="v9inl"></a>
 ### percentile()
 
-- Description: Returning the value of a field that is larger than n percent.
+- Description: Returns the nth percentile of the field value
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
-| Percentile | Returns the percentile value ([0, 100.0]） | int | Yes |  | `90` |
+| Non-Named Parameter | Description                         | Type   | Required | Default | Example         |
+| ---------- | ---------------------------- | ------ | -------- | ------ | ------------ |
+| field      | Field name                     | Numeric | Yes       |        | `usage_idle` |
+| Percentile | Return percentile value ([0, 100.0]) | int    | Yes       |        | `90`         |
 
-
-- Example:
+- Example
 
 ```python
 # Request
 M::cpu:(percentile(usage_idle, 5)) limit 2
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1417,15 +1376,13 @@ M::cpu:(percentile(usage_idle, 5)) limit 2
 }
 ```
 
-<a name="c299d4bf"></a>
 ### round()
 
-- Description: Returning the median of an ordered field.
+- Description: Rounds the floating-point number
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
-
+| Non-Named Parameter | Description     | Type   | Required | Default | Example         |
+| ---------- | -------- | ------ | -------- | ------ | ------------ |
+| field      | Field name | Numeric | Yes       |        | `usage_idle` |
 
 - Applicable: `M`
 - Example:
@@ -1434,7 +1391,7 @@ M::cpu:(percentile(usage_idle, 5)) limit 2
 # Request
 M::`cpu`:(round(`usage_idle`))  by host  limit 2 slimit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1467,15 +1424,13 @@ M::`cpu`:(round(`usage_idle`))  by host  limit 2 slimit 1
 }
 ```
 
-<a name="1d91f4d0"></a>
 ### spread()
 
-- Description: Returning the difference between the maximum and minimum values in a field.
+- Description: Returns the difference between the maximum and minimum values of the field
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
-
+| Non-Named Parameter | Description     | Type   | Required | Default | Example         |
+| ---------- | -------- | ------ | -------- | ------ | ------------ |
+| field      | Field name | Numeric | Yes       |        | `usage_idle` |
 
 - Applicable: `M`
 - Example:
@@ -1484,7 +1439,7 @@ M::`cpu`:(round(`usage_idle`))  by host  limit 2 slimit 1
 # Request
 M::`cpu`:(spread(`usage_idle`))  by host  slimit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1506,22 +1461,14 @@ M::`cpu`:(spread(`usage_idle`))  by host  slimit 1
           ]
         }
       ],
-      "cost": "69.823688ms",
-      "raw_query": ""
-    }
-  ]
-}
-```
-
-<a name="89864346"></a>
+      "cost": "69.82368```python
 ### stddev()
 
-- Description: Returning the standard deviation of the field.
+- Description: Returns the standard deviation of the field
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
-
+| Non-Named Parameter | Description     | Type   | Required | Default | Example         |
+| ---------- | -------- | ------ | -------- | ------ | ------------ |
+| field      | Field name | Numeric | Yes       |        | `usage_idle` |
 
 - Applicable: `M`
 - Example:
@@ -1530,7 +1477,7 @@ M::`cpu`:(spread(`usage_idle`))  by host  slimit 1
 # Request
 M::`cpu`:(stddev(`usage_idle`))  by host  slimit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1559,24 +1506,23 @@ M::`cpu`:(stddev(`usage_idle`))  by host  slimit 1
 }
 ```
 
-<a name="fnvlY"></a>
 ### sum()
 
-- Description: Returning the sum of the field values.
+- Description: Returns the sum of field values
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example         |
+| ---------- | -------- | ------ | -------- | ------ | ------------ |
+| field      | Field name | Numeric | Yes       |        | `usage_idle` |
 
+- Applicable: All data types
 
--  Applicable: All 
--  Example: 
+- Example
 
 ```python
 # Request
 L::nginx:(sum(connect_total)) {__errorCode='200'}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1602,29 +1548,26 @@ L::nginx:(sum(connect_total)) {__errorCode='200'}
 }
 ```
 
-<a name="MV6r6"></a>
-## Filter Function
+## Filter Functions
 
-Filter functions are generally used to determine query conditions (that is, in common WHERE statements).
+Filter functions are generally used for query condition judgments (i.e., common WHERE statements in SQL).
 
-<a name="UZ9PR"></a>
 ### exists()
 
-- Note: The specified field must exist in the document.
+- Description: The specified field must exist in the document
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| field | Field Name | Field Name | Yes |  | `usage_idle` |
+| Non-Named Parameter | Description     | Type   | Required | Default | Example         |
+| ---------- | -------- | ------ | -------- | ------ | ------------ |
+| field      | Field name | Numeric | Yes       |        | `usage_idle` |
 
-
-- Applicable: Applicable except `M`.
-- Example:
+- Applicable: Except `M`, all others apply
+- Example
 
 ```python
 # Request
 rum::js_error:(sdk_name, error_message) { sdk_name=exists() } limit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1639,7 +1582,7 @@ rum::js_error:(sdk_name, error_message) { sdk_name=exists() } limit 1
           "values": [
             [
               1609227006093,
-              "Applet SDK",
+              "Mini Program SDK",
               "sdfs is not defined"
             ]
           ]
@@ -1652,24 +1595,23 @@ rum::js_error:(sdk_name, error_message) { sdk_name=exists() } limit 1
 }
 ```
 
-<a name="ygAJc"></a>
 ### match()
 
-- Full-Text Search (Fuzzy Search)
+- Description: Full-text search (fuzzy search)
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| Field Value | Field Values for Queries | `void` | Yes |  | `host1` |
+| Non-Named Parameter | Description         | Type   | Required | Default | Example    |
+| ---------- | ------------ | ------ | -------- | ------ | ------- |
+| Field Value     | Query field value | `void` | Yes       |        | `host1` |
 
+- Applicable: All data types
 
--  Applicable: ALL 
--  Example: 
+- Example:
 
 ```python
 # Request
 rum::js_error:(sdk_name, error_message) { error_message=match('not defined') } limit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1684,7 +1626,7 @@ rum::js_error:(sdk_name, error_message) { error_message=match('not defined') } l
           "values": [
             [
               1609227006093,
-              "Applet SDK",
+              "Mini Program SDK",
               "sdfs is not defined"
             ]
           ]
@@ -1697,23 +1639,19 @@ rum::js_error:(sdk_name, error_message) { error_message=match('not defined') } l
 }
 ```
 
-<a name="h3Dtn"></a>
 ### re()
 
-- Description: Filter queries through regularity.
+- Description: Filters queries using regular expressions
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| Field Value | Field Values for Queries | `void` | Yes |  | `host1` |
+| Non-Named Parameter | Description         | Type   | Required | Default | Example    |
+| ---------- | ------------ | ------ | -------- | ------ | ------- |
+| Field Value     | Query field value | `void` | Yes       |        | `host1` |
 
+- Applicable: All data types
 
-- Applicable: All
+> Note: Regular expression queries have very low performance and are not recommended.
 
-> Note: Regular queries have very low performance and are not recommended.
-
-
-> Tips: Regular syntax for temporal metric (`M`) data is referenced [Here](https://pkg.go.dev/regexp/syntax) and regular syntax for non-temporal metric data is referenced [Here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html).
-
+> Note: For time series (`M`) data, the regex syntax refers to [here](https://pkg.go.dev/regexp/syntax), and for non-time series data, the regex syntax refers to [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html)
 
 - Example:
 
@@ -1721,7 +1659,7 @@ rum::js_error:(sdk_name, error_message) { error_message=match('not defined') } l
 # Request
 rum::js_error:(sdk_name, error_message) { error_message=re('.*not defined.*') } limit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1736,7 +1674,7 @@ rum::js_error:(sdk_name, error_message) { error_message=re('.*not defined.*') } 
           "values": [
             [
               1609227006093,
-              "Applet SDK",
+              "Mini Program SDK",
               "sdfs is not defined"
             ]
           ]
@@ -1749,35 +1687,174 @@ rum::js_error:(sdk_name, error_message) { error_message=re('.*not defined.*') } 
 }
 ```
 
-<a name="WJQGW"></a>
-### queryString()
+### regexp_extract() {#regular-1}
 
-> Note: `queryString()` will be discarded and replaced with an underlined `query_string()`, functionally equivalent.
+- Description: Extracts substrings from the target string that match the regular expression, then returns the first substring that matches the target capture group.
 
+| Non-Named Parameter | Description         | Type   | Required | Default | Example    |
+| ---------- | ------------ | ------ | -------- | ------ | ------- |
+| Field Name     | Query field | `string` | Yes       |        | `message` |
+| Regular Expression     | Regular expression with capture groups | `string` | Yes       |        | `error (\\\\S+)` |
+| Returned Group    | Return nth capturing group | `int` | No     |   0 (indicating the entire matched pattern)     | 1 (indicating the first capturing group in the pattern, etc.) |
 
-<a name="divI3"></a>
-### query_string()
-
-- Description: String query. DQL will use a special syntax parser to parse the input string and query the document.
-
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| Query Criteria | Query Input String | `string` | Yes |  | `info OR warnning` |
-
-
--  Applicable: Applicable except `M`. 
--  Note: It is recommended to use it in general search scenarios.
-
-> Reference：`query_string()` is referenced [Here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html)
-
+- Applicable: Supported except for `M`
 
 - Example:
+
+```python
+# Request
+L::`*`:(regexp_extract(message,'error (\\\\S+)', 1) as m1, count(`*`) as c1) {index='default'} by m1
+
+# Response
+{
+  "content": [
+    {
+      "series": [
+        {
+          "tags": {
+            "m1": "retrieving1"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              7852
+            ]
+          ]
+        },
+        {
+          "tags": {
+            "m1": "retrieving2"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              4
+            ]
+          ]
+        },
+        {
+          "tags": {
+            "m1": "retrieving3"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              1
+            ]
+          ]
+        }
+      ],
+      "points": null,
+      "cost": "968ms",
+      "raw_query": "",
+      "total_hits": 10000
+    }
+  ]
+}
+```
+
+### regexp_extract_all() {#regular-2}
+
+- Description: Extracts substrings from the target string that match the regular expression, and returns a collection of substrings that match the target capture group.
+
+| Non-Named Parameter | Description         | Type   | Required | Default | Example    |
+| ---------- | ------------ | ------ | -------- | ------ | ------- |
+| Field Name     | Query field | `string` | Yes       |        | `message` |
+| Regular Expression     | Regular expression with capture groups | `string` | Yes       |        | `error (\\\\S+) (\\\\S+)` |
+| Returned Group    | Return nth capturing group | `int` | No     |   0 (indicating the entire matched pattern)     | 1 (indicating the first capturing group in the pattern, etc.) |
+
+- Applicable: Supported except for `M`
+
+- Example:
+
+```python
+# Request
+
+L::`*`:(regexp_extract_all(message,'error (\\\\S+) (\\\\S+)', 2) as m1, count(`*`) as c1 ) {index='default'} by m1
+
+# Response
+{
+  "content": [
+    {
+      "series": [
+        {
+          "tags": {
+            "m1": "[]"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              168761
+            ]
+          ]
+        },
+        {
+          "tags": {
+            "m1": "[resource]"
+          },
+          "columns": [
+            "time",
+            "m1"
+          ],
+          "values": [
+            [
+              null,
+              7857
+            ]
+          ]
+        }
+      ],
+      "points": null,
+      "cost": "745ms",
+      "raw_query": "",
+      "total_hits": 10000
+    }
+  ]
+}
+```
+
+
+### queryString()
+
+> Note: `queryString()` will be deprecated, use underscore form `query_string()` instead, which has equivalent functionality.
+
+### query_string()
+
+- Description: String query. DQL uses a special syntax parser to parse input strings and query documents.
+
+| Non-Named Parameter | Description           | Type     | Required | Default | Example               |
+| ---------- | -------------- | -------- | -------- | ------ | ------------------ |
+| Query Condition   | Input query string | `string` | Yes       |        | `info OR warning` |
+
+- Applicable: Supported except for `M`
+
+- Note: Recommended for general search scenarios.
+
+> Reference: `query_string()` query references [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html)
+
+- Example
 
 ```python
 # Request
 L::datakit:(host,message) {message=query_string('/[telegraf|GIN]/ OR /[rum|GIN]/')} limit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1807,45 +1884,40 @@ L::datakit:(host,message) {message=query_string('/[telegraf|GIN]/ OR /[rum|GIN]/
 }
 ```
 
-<a name="w9eNz"></a>
-#### Various uses of query_string()
+#### Various Usage of `query_string()`
 
--  Ordinary full-text query: `field=query_string('field_value')`, with one and only argument indicating the field value of the query, similar to the above function `match()` 
--  Logical combination of query criteria `status=query_string("info OR warnning")` 
--  The following logical operators are supported (**requiring the uppercase string**): 
-   - `AND`
-   - `OR` (default)
-   - Spaces（``）and commas (`,`) in a string indicate `AND` relationships
--  General distribution enquiry 
-   - `message=query_string("error*")`：`*` indicates a match of 0 or more arbitrary characters
-   - `message=query_string("error?")`：`?` Means 1 arbitrary character matches
+- Simple full-text query: `field=query_string('field_value')`, there is only one parameter, indicating the query field value, similar to the function `match()` 
+- Logical combination of query conditions: `status=query_string("info OR warning")`
+- Supported logical operators (need to use uppercase strings):
+  - `AND`
+  - `OR` (default)
+  - Spaces (` `), commas (`,`): both represent `AND` relationship
 
-<a name="frtpW"></a>
+- Wildcard query
+  - `message=query_string("error*")`: `*` matches 0 or more arbitrary characters
+  - `message=query_string("error?")`: `?` matches 1 arbitrary character
+
 ### wildcard()
 
-- Description: General matching inquiry. The wildcard character  `*` indicates a match of 0 or more arbitrary characters; `?` Means 1 arbitrary character matches.
+- Description: Wildcard query. Wildcard character `*` matches 0 or more arbitrary characters; `?` matches 1 arbitrary character
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| Query Criteria | Query Input String | `string` | Yes |  | `info OR warnning` |
+| Non-Named Parameter | Description           | Type     | Required | Default | Example               |
+| ---------- | -------------- | -------- | -------- | ------ | ------------------ |
+| Query Condition   | Input query string | `string` | Yes       |        | `info*` |
 
+- Applicable: Supported except for `M`
 
+> Note: Wildcard queries have lower performance and consume more resources. Left wildcard queries are not enabled by default in DQL.
 
-- Applicable: Applicable except `M`. 
+> Reference: Wildcard query references [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html)
 
-> Note: The performance of wildcard query is low, which will consume more resources.
-
-
-> Reference: is referenced [Here](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html)
-
-
-- Example:
+- Example
 
 ```python
 # Request
-L::datakit:(host,message) {message=wildcard('*write*')} limit 1
+L::datakit:(host,message) {message=wildcard('write*')} limit 1
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1875,37 +1947,35 @@ L::datakit:(host,message) {message=wildcard('*write*')} limit 1
 }
 ```
 
-<a name="NCMKW"></a>
 ### with_labels()
 
-- Description: Query object information through object labels.
+- Description: Queries object information through object labels
 
-| Unnamed Parameter | Description | Type | Is It Required | Default Value | Example |
-| --- | --- | --- | --- | --- | --- |
-| `object_class` | Object Source Type | `string` | Yes |  | `HOST` |
-| `labels` | List of Object Labels | `[]string` | Yes |  | `['aws', 'aliyun']` |
-| `object_name` | Object Name | `string` | NO |  | `ubuntu20-dev` |
-| `key` | The name of the field queried by the label | `string` | NO | `name` | `name` |
-| `max` | Maximum number of objects queried based on tags, currently supported maximum value `1000` | `int` | NO | `1000` | `10` |
+| Parameter           | Description                                                   | Type       | Required | Default | Example                |
+| -------------- | ------------------------------------------------------ | ---------- | -------- | ------ | ------------------- |
+| `object_class` | Object source type                                           | `string`   | Yes       |        | `HOST`              |
+| `labels`       | Object label list                                           | `[]string` | Yes       |        | `['aws', 'aliyun']` |
+| `object_name`  | Object name                                               | `string`   | No       |        | `ubuntu20-dev`      |
+| `key`          | Field name queried based on labels                           | `string`   | No       | `name` | `name`              |
+| `max`          | Maximum number of objects queried based on labels, currently supports up to `1000` | `int`      | No       | `1000` | `10`                |
 
+- Usage
+  - Query objects through labels: `object::HOST:() {name=with_labels(object_class='HOST', labels=['aws'])}`
+  - Query objects through labels, then associate with time series metrics: `M::cpu(user_total){host=with_labels(object_class="HOST", labels=["aws"], key="name", max=10) }`
 
--  Usage 
-   - Query the object by label: `object::HOST:() {name=with_labels(object_class='HOST', labels=['aws'])}`
-   - Query the object by tag and associate it with the time series metric: `M::cpu(user_total){host=with_labels(object_class="HOST", labels=["aws"], key="name", max=10) }`
--  Applicable: `O/CO` 
+- Applicable: `O/CO`
 
-> Note:
+> Note
+  - The maximum number of objects obtained through labels is 1000. If you want to obtain more objects, you can narrow the query time range or add more query conditions.
+  - The `labels` parameter is a string list, where multiple `label` relationships are logical AND (`labels=['l1', 'l2']` means querying objects containing labels `'l1' AND 'l2'`)
 
-
--  The maximum number of objects obtained through labels is 1000. If you want to obtain more objects, you can narrow the query time range or add more query conditions
--  The `labels` parameter is a list of strings, and the relationship between multiple `label`  is logical and (AND), that is, `labels=['l1', 'l2']` indicates that the query object contains labels `'l1' AND 'l2'`.
--  Example: 
+- Example
 
 ```python
 # Request
 object::docker_containers:()  {name=with_labels(object_class='docker_containers', labels=['klgalga'])}
 
-# Back
+# Response
 {
   "content": [
     {
@@ -2001,37 +2071,37 @@ object::docker_containers:()  {name=with_labels(object_class='docker_containers'
 ```
 
 
+## SLS promql Functions {#sls}
 
-## SLS promql Function {#sls}
+The following table compares the support of functions between InfluxDB and SLS promql:
 
-The following is a comparison of the support for the function influxdb versus the SLS promql function:
-
-| func                                                         | influxdb                | SLS promql | Note                               |
+| Function                                                         | InfluxDB                | SLS promql | Remarks                               |
 | :----------------------------------------------------------- | ----------------------- | :--------- | ---------------------------------- |
 | avg                                                          | mean                    | avg        |                                    |
 | count                                                        | count                   | count      |                                    |
-| derivative(Unit rate of change of a column value in a statistical table)                     | derivative              | rate       | SLS does not support by, but you can add another aggregate function by |
+| derivative (calculates the rate of change of a column's values in a table)                     | derivative              | rate       | SLS does not support `by`, but other aggregation functions can be added with `by` |
 | median                                                       | median                  | quantile   |                                    |
 | match                                                        | re                      | like       |                                    |
-| bottom（Count the minimum k non-NULL values of a column）                    | bottom                  | bottomk    |                                    |
-| top(Count the maximum k non-NULL values of a column)                       | top                     | topk       |                                    |
+| bottom (returns k smallest non-null values of a column)                    | bottom                  | bottomk    |                                    |
+| top (returns k largest non-null values of a column)                       | top                     | topk       |                                    |
 | max                                                          | max                     | max        |                                    |
 | min                                                          | min                     | min        |                                    |
-| percentile（Percentage quantile of the value of a column in a statistical table）                   | percentile              | quantile   |                                    |
-| round                                                        | round                   | round      | group by is unavaiable                      |
+| percentile (returns the nth percentile of a column's values in a table)                   | percentile              | quantile   |                                    |
+| round                                                        | round                   | round      | Does not support `group by`                     |
 | stddev                                                       | stddev                  | stddev     |                                    |
 | sum                                                          | sum                     | sum        |                                    |
 | log                                                          | log                     | ln         |                                    |
-| p50(percentile)                                                  | percentile              | quantile   |                                    |
-| p75(percentile                                                 | percentile              | quantile   |                                    |
-| p90(percentile                                                 | percentile              | quantile   |                                    |
-| p99(percentile                                                 | percentile              | quantile   |                                    |
-| count_distinct                                               | count(distinct())       | None         |                                    |
-| difference (count the difference between the value of a column in a table and the corresponding value of the previous row)               | difference              | 无None         |                                    |
-| distinct                                                     | distinct                | None         |                                    |
-| non_negative_derivative (count the unit rate of change of a column value in a table, with only positive values) | non_negative_derivative | None         |                                    |
-| first（the first data in the table）                                      | first                   | None         |                                    |
-| last（the latest piece of data in the table）                                   | last                    | None         |                                    |
-| spread (the difference between the maximum and minimum values of a column in a statistical table/super table)              | spread                  | None         |                                    |
-| mode                                                  | mode                    | None         |                                    |
-| moving_average(Calculate the moving average of K consecutive values) | moving_average          | None         |                                    |
+| p50 (percentile)                                                  | percentile              | quantile   |                                    |
+| p75 (percentile)                                                 | percentile              | quantile   |                                    |
+| p90 (percentile)                                                 | percentile              | quantile   |                                    |
+| p99 (percentile)                                                 | percentile              | quantile   |                                    |
+| count_distinct                                               | count(distinct())       | Not supported         |                                    |
+| difference (difference between a column's value and the previous row's corresponding value)               | difference              | Not supported         |                                    |
+| distinct                                                     | distinct                | Not supported         |                                    |
+| non_negative_derivative (rate of change of a column's values in a table, only positive values) | non_negative_derivative | Not supported         |                                    |
+| first (first row in the table)                                      | first                   | Not supported         |                                    |
+| last (latest row in the table)                                   | last                    | Not supported         |                                    |
+| spread (difference between the maximum and minimum values of a column in a table)              | spread                  | Not supported         |                                    |
+| mode (mode)                                                    | mode                    | Not supported         |                                    |
+| moving_average (computes the moving average over k consecutive values) | moving_average          | Not supported         |                                    |
+```

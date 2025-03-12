@@ -1,147 +1,190 @@
-# Access to Guance Commercial Plan in Huawei Cloud
+# Huawei Cloud Marketplace Subscription to <<< custom_key.brand_name >>> Commercial Plan
 ---
 
-This article will introduce <u>the access to the Guance Commercial Plan  and use Huawei cloud account to settle expenses</u> after subscribing to Guance service in Huawei Cloud KooGallery.
+Subscribing to the <<< custom_key.brand_name >>> service on Huawei Cloud Marketplace mainly involves two steps: [Purchasing <<< custom_key.brand_name >>> Service](#purchase), [Binding Partner Services](#team). After successful subscription, log in to <<< custom_key.brand_name >>> using the link provided by Huawei Cloud.
 
-> If you want to register Commercial Plan directly, see [Register Conmmercial Plan](commercial-register.md).
+## Step 1: Purchase Cloud Services in the Marketplace {#purchase}
 
-## Step 1: [Purchase Cloud Service in KooGallery](./billing-account/huawei-account.md#market)
+Log in to Huawei Cloud > Marketplace and navigate to the [<<< custom_key.brand_name >>> SaaS Edition](https://marketplace.huaweicloud.com/contents/8990a122-f456-43a4-892c-a458be31e336#productid=OFFI845592654693900288) product page.
 
-## Step 2: Bind Organization {#team}
+![](../img/13.huaweicloud_1.png)
 
-Joint Operations Services is a service that needs to be bound after purchasing SaaS products associated with Huawei KooGallery.
+Click **Subscribe Now**. A prompt will appear asking you to agree to the terms before clicking **Subscribe Now** again.
 
-Therefore, after purchasing the Guance SaaS service, you need to <u>bind organizations first</u>.
+![](../img/13.huaweicloud_3.png)
 
-You can complete the affiliate binding of affiliate service organizations by following steps, or refer directly to the Huawei Cloud Documentation [Instructions for the Use of Affiliate SaaS Products](https://support.huaweicloud.com/ug-marketplace/sp_topic_0000212.html).
+A confirmation message stating **SaaS Subscription Task Submitted Successfully** will appear. Click **Return to My Marketplace**.
 
-I. Create Organization
+![](../img/13.huaweicloud_4.png)
 
-In **My KooGallery > Joint Operations Services > Organizations > Organization Management > Create Organization**, fill in the relevant information of the organization in the pop-up dialog box.
+Check the purchased <<< custom_key.brand_name >>> service from the **Purchased Services List** on Huawei Cloud. Refresh the page if your purchase does not immediately appear.
 
-![](./img/13.huaweicloud_7.png)
+**Note**: The Huawei Cloud account must be verified with real-name authentication to purchase <<< custom_key.brand_name >>> services.
 
-The default setting is that yourself is an administrator. After the organization is created, you can see that it has been created under **Managed by Me**. It supports the creation of multiple organizations.
+![](../img/13.huaweicloud_6.png)
 
-![](./img/13.huaweicloud_8.png)
+## Step 2: Bind Partner Services {#team}
 
-II. Add Member
+After purchasing a partner SaaS product from the Huawei Cloud Marketplace, enter the Buyer Center.
 
-In **My KooGallery > Joint Operations Services > Organizations > Organization Management > Add Member**, fill in the relevant information of the organization in the pop-up dialog box.
+1. Click “Start Using” in the "Pending Tasks" pop-up window; or click “My Marketplace > Partner Services” in the left navigation bar to enter the Getting Started Guide page.
+2. Click “Use Now” to enter the partner service page.
+3. Select the role, it is recommended to choose “For Personal Use.”
+4. Click Confirm.
 
-> The "account" and "password" created here will be used to avoid login to the Guance Billing Center registration or Billing Center account login. For wxample, "account number" is filled with "Wendy", the login account number is "Wendy @ gcy".
+> For more details, refer to the [Partner SaaS Product Usage Guide](https://support.huaweicloud.com/ug-marketplace/sp_topic_0000212.html).
 
-![](./img/13.huaweicloud_7.1.png)
+:material-numeric-1-circle: Create an Enterprise: Enter the enterprise name and domain;
 
-III. App Binding
+<img src="../img/13.huaweicloud_7.png" width="60%" >
 
-In **My KooGallery > Joint Operations Services > App Binding > Common Apps**, click the binding organization on the right side of the purchased goods, and select the organization created in the previous step to bind in the pop-up dialog box.
+**Note**:
 
-Note: One order is bound to one organization. Multiple orders for the same commodity cannot be bound to the same organization.
+1. The enterprise name cannot be modified after creation.
+2. The enterprise abbreviation is a unique identifier for the organization. Once created, it cannot be changed. When users log in through the unified login page of the cloud marketplace, the marketplace identifies user information based on the user account and enterprise abbreviation.
+3. The initial enterprise creation process may take 1-3 minutes.
 
-![](./img/13.huaweicloud_9.png)
+:material-numeric-2-circle: Add Members: Fill in employee names, departments, contact information, etc.;
 
-After the binding is successful, go to **App Authorization**.
+<img src="../img/13.huaweicloud_8.png" width="60%" >
 
-![](./img/13.huaweicloud_10.png)
+**Note**:
 
-IV. App Authorization
+1. **The "Account" and "Password" created here will be used to register or log in to the <<< custom_key.brand_name >>> Billing Center.**
+2. On the first addition, Huawei Cloud will automatically fill in the account information (real-name verification information, phone number or email address, Huawei Cloud account name), which can be modified.
+3. Inform the enterprise members of the set account and password offline.
 
-In **My KooGallery > Joint Operations Services > App Authorization**, Click **Authorize** on the right side of purchasing goods. In the pop-up dialog box, select organization members and click **Confirm** to complete the associated organization.
+:material-numeric-3-circle: Authorize Members: Check the member list, check “Agree to Terms,” and click “Confirm Authorization.”
 
-![](./img/13.huaweicloud_12.png)
+<img src="../img/13.huaweicloud_7.1.png" width="60%" >
 
-## Get Started with Guance
+After authorization, provide the login URL, enterprise account name, and password to the employees who will use <<< custom_key.brand_name >>> products.
 
-After the organization is associated, you can view the unified login address of the login-free Guance workspace in **My KooGallery > Joint Operations Services > App Binding > Common Apps**
+:material-numeric-4-circle: Log In to the Application
 
-> Note: After you associate with an organization, you will also receive a short message prompt, including a unified login address and a login account password.
+1. Use the authorized enterprise employee account to log in via the unified login link provided by the cloud marketplace, entering the account and password added when associating the organization.
+2. Change the initial password upon first successful login.
+3. After changing the password successfully, you will be redirected to the <<< custom_key.brand_name >>> product page.
 
-![](./img/13.huaweicloud_14.png)
+<img src="../img/13.huaweicloud_9.png" width="60%" >
 
-Click the login address and enter the account number and password when adding members to the associated organization in the pop-up dialog box, such as "Wendy@gcy", or you can log in directly by using the account password received by SMS.
+<img src="../img/13.huaweicloud_10.png" width="60%" >
 
-![](./img/13.huaweicloud_15.png)
+<img src="../img/13.huaweicloud_12.png" width="60%" >
 
+## Step 3: Start Using <<< custom_key.brand_name >>>
 
-If [Huawei Cloud Account ID ](./billing-account/huawei-account.md#id)is not bound to Guance Billing Center Account, you can jump to the following page after successful login. You can choose:
-    
-- **[Register Guance Commercial Plan Now](commercial-register.md)**；   
-    
-- **Exist Billing Center account, bind it** to log in to the Guance workspace, please refer to the following steps:  
+If the current Huawei Cloud account is already bound to a <<< custom_key.brand_name >>> Billing Center account, click the link to log in directly.
 
-![](./img/huaweicloud-1-register.png)
+![](../img/huawei-login.png)
 
-1. Click **Exist Billing Center account, bind it** and the dynamic diagram of **How to quickly bind Huawei cloud account settlement** appears. Click **OK**.
-    
-![](./img/huawei-register-2.png)
+If the <<< custom_key.brand_name >>> Billing Center account is not yet bound, you will be automatically redirected to the following page:
 
-2）Enter **User Name** and **Email**, and click to go to the next step.
+:material-numeric-1-circle-outline: [No Billing Center Account](#register): You need to register a <<< custom_key.brand_name >>> account and a Billing Center account, then bind the cloud account for billing.
+
+:material-numeric-2-circle-outline: [Have a Billing Center Account](#bond): You can directly bind the Billing Center account for cloud account billing.
+
+![](img/10.aliyun_market_2.png)
+
+???+ warning "What is a Billing Center Account?"
+
+    A Billing Center account is an independent account within the <<< custom_key.brand_name >>> Billing Center platform used to manage Commercial Plan billing. It allows a single account to associate with multiple workspaces for unified billing management.
+
+    The overall process is as follows:
+
+    <img src="../img/17.process_1.png" width="60%" >
+
+### No Billing Center Account {#register}
+
+If you do not have a Billing Center account, click Next to be automatically redirected to the registration page. Complete the registration process to obtain a <<< custom_key.brand_name >>> account and a Billing Center account.
+
+1. Fill in basic information;
+2. Fill in company information;
+3. Choose the opening method: Enter workspace name, select workspace language, input [Huawei Cloud Account ID](#id);
+4. Click **Open** to complete registration.
+
+![](../img/huawei-register-nocloud.png)
+
+### Already Have a Billing Center Account {#bond}
+
+If you already have a Billing Center account, click Next to directly enter the binding page:
+
+![](../img/huawei-register-2.png)
+
+**Note**: The site in the top-right corner of this page is irrelevant to the Billing Center binding process but affects the site selection when creating a workspace later, which cannot be changed afterward.
+
+#### :material-numeric-1-circle: Bind Billing Center Account
+
+Enter the username of the Billing Center account and verify via email to bind it.
 
 ![](./img/huawei-register-3.png)
 
-3）On the **Enterprise Information** page, enter the required information and click **Confirm**.
+#### :material-numeric-2-circle: Bind Workspace
 
-4）Enter the workspace process of binding Guance.
+##### Bind Existing Workspace
 
-=== "Bind Existing Workspace"
+If there are existing workspaces under your <<< custom_key.brand_name >>> Billing Center account that can be bound, click **Bind** directly.
 
-    If you have a workspace that can be bound under the Guance Billing Center account, click **Bind** directly, and confirm the binding in the pop-up dialog box.
+<img src="../img/huawei-bind-3.png" width="65%" >
 
-    ![](img/15.aliyun_register_6.1.png)  
+1. Select the workspace to bind and click Bind;
+2. Click Confirm on the new page;
+3. The binding status will show as Bound.
 
-    Prompt to confirm the window and click **Confirm**.
+##### Create a Workspace
 
-    ![](img/huawei-register-5.png)
+If no workspace is associated with the current Billing Center account, you need to create one. Since <<< custom_key.brand_name >>> Console and Billing Center are separate platforms, confirm whether you have registered for <<< custom_key.brand_name >>> and own a <<< custom_key.brand_name >>> account.
 
-    Jump to **Bind Guance Workspace** page and prompt that it is bound.
+![](img/no-workspace.png)
 
-    ![](img/15.aws_market_register_14.png)
+:material-numeric-1-circle-outline: If you have already registered for a <<< custom_key.brand_name >>> account and need to create a workspace, go to **Create Workspace > Has <<< custom_key.brand_name >>> Account**.
 
-    Click **Confirm**, which shows that the opening is successful.
+<img src="../img/huawei-bind.png" width="65%" >
 
-    ![](img/15.aws_market_register_15.png)
+1. Enter the workspace name;
+2. Select the workspace language;
+3. Input the email used during <<< custom_key.brand_name >>> account registration;
+4. Enter the verification code;
+5. Agree to the terms;
+6. Click Create, and the workspace will be created successfully.
 
+After successful creation, you will return to the binding page showing **Bound**.
 
-=== "Create Workspace"
+![](img/huawei-bind-1.png)
 
-    If you have signed up for the Guance account but have not yet created a workspace, please click **Create Workspace**.
+:material-numeric-2-circle-outline: If you have never used <<< custom_key.brand_name >>> services before, register a <<< custom_key.brand_name >>> account first. Go to **Create Workspace > No <<< custom_key.brand_name >>> Account**.
 
-    ![](img/1-1-commercial-aliyun.png)
+<img src="../img/huawei-bind-2.png" width="65%" >
 
-    Enter the workspace name, select the workspace language, enter the mailbox used when registering the Guance account, and create it through mailbox verification.
+1. Enter the workspace name;
+2. Select the workspace language;
+3. Input the username;
+4. Input and confirm the login password;
+5. Input the email;
+6. Enter the verification code;
+7. Optionally fill in the phone number;
+8. Agree to the terms;
+9. Click Register and Create Workspace.
 
-    > Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+After successful workspace creation, you will return to the **Bind <<< custom_key.brand_name >>> Workspace** page showing **Bound**.
 
-    ![](img/15.aliyun_register_5.png)
+## Step 3: Subscription Successful
 
-    After the workspace is successfully created, automatically jump to the **Bind Guance Workspace** page;
+After successfully binding the workspace, click Confirm. You will be redirected to the login page. Enter your username and password to access the workspace and start using <<< custom_key.brand_name >>>.
 
-    ![](img/15.aliyun_register_6.png)
+## How to Obtain the Huawei Cloud Account ID {#id}
 
-    Click **Confirm** to jump to **Successfully Bind the Following Guance Workspace** page.
+1. Log in to the [Huawei Cloud](https://www.huaweicloud.com) console;
+2. Click on the account avatar in the top-right corner;
+3. In the drop-down menu, click **My Credentials**;
+4. On the API credentials page, view the **Account ID**.
 
-    ![](img/15.aliyun_register_7.png)
+<img src="../img/huaweicloud-id.png" width="65%" >
 
-=== "Register Guance Account"
+<img src="../img/huaweicloud-id-1.png" width="75%" >
 
-    If you have not used the Guance service before, please register the Guance account and create a workspace first.
+## How to Obtain the Huawei Cloud Instance ID {#instanceid}
 
-    ![](img/1-2-commercial-aliyun.png)
+In the Huawei Cloud Marketplace, go to **My Marketplace > Purchased Services**. Enter the product details page, and under **Resource Details**, view the Huawei Cloud Instance ID.
 
-    Click **Register Guance Account**, enter relevant information and register through email verification.
-
-    > Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
-
-    ![](img/15.aliyun_register_3.png)
-
-
-???+ warning
-
-    If [Huawei Cloud Account ID](./billing-account/huawei-account.md#id) has been bound to the Guance Billing Center account, click **Login Link**, and you can directly enter without login.
-
-## Start Using Guance
-
-After registration, you can watch the introduction video of Guance, or you can click **Start Installing DataKit** to install and configure the first DataKit.
-
-![](img/1-free-start-1109.png)
+![](../img/huaweicloud-instanceid.png)

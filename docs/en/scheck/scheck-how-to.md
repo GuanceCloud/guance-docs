@@ -1,26 +1,26 @@
-# SCheck Introduction
+# SCheck Getting Started Guide
 
 - Version: 1.0.7-7-g251eead
 - Release Date: 2023-04-06 11:17:57
 - Supported Operating Systems: windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64
 
-This document mainly introduces how to use the basic functions of SCheck after [SCheck Installation](scheck-install.md), including the following aspects:
+This document primarily introduces how to use the basic features of SCheck after [SCheck Installation](scheck-install.md), covering the following aspects:
 
 ## SCheck Directory Introduction {#dir}
 
 SCheck currently supports two mainstream platforms: Linux and Windows:
 
-| Operating System                            | Architecture        | Installation Path                                                                                |
-| ---------                           | ---                 | ------                                                                                       |
-| Linux kernel 2.6.23 or higher            | amd64/386/arm/arm64 | `/usr/local/scheck`                                                      |
-| Windows 7, Server 2008R2 or higher       | amd64/386           | 64-bit: `C:\Program Files\scheck`<br />32-bit: `C:\Program Files(32)\scheck` |
+| Operating System                            | Architecture                | Installation Path                                                                                     |
+| ------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Linux Kernel 2.6.23 or higher               | amd64/386/arm/arm64          | `/usr/local/scheck`                                                      |
+| Windows 7, Server 2008R2 or higher          | amd64/386                    | 64-bit: `C:\Program Files\scheck`<br />32-bit: `C:\Program Files (x86)\scheck` |
 
-> Tips: Check kernel version
+> Tips: Checking Kernel Version
 
 - Linux: `uname -r`
-- Windows: Open `cmd` command (hold Win key + `r`, enter `cmd` and press Enter), enter `winver` to get system version information
+- Windows: Run `cmd` command (hold down Win key + `r`, type `cmd` and press Enter), then type `winver` to get the system version information
 
-After installation, the SCheck directory list is approximately as follows:
+After installation, the SCheck directory structure is roughly as follows:
 
 ```txt
 ├── [   6]  custom.rules.d
@@ -32,13 +32,13 @@ After installation, the SCheck directory list is approximately as follows:
 
 Where:
 
-- *scheck*: SCheck main program, *scheck.exe* for Windows
+- *scheck*: Main SCheck program, *scheck.exe* on Windows
 - *custom.rules.d*: User-defined directory
 - *rules.d*: SCheck system directory
-- *scheck.conf*: SCheck main configuration file
+- *scheck.conf*: Main SCheck configuration file
 - *version*: SCheck version information
 
-> Note: Under Linux, SCheck running logs are in the */var/log/scheck* directory.
+> Note: On the Linux platform, SCheck logs are located in the `/var/log/scheck` directory.
 
 ## Related Commands {#commands}
 
@@ -66,39 +66,39 @@ Usage of scheck:
   -tpl
         Generate doc document from template file
   -dir
-        use with `-doc` `-tpl` to output files to the specified directory
+        Used with `-doc` `-tpl` to output files to a specified directory
   -luastatus
-        display all lua running status and output to the current directory, file format suitable for Markdown.
+        Display all Lua runtime statuses and output to the current directory in Markdown format.
   -sort
-        use with `-luastatus`, sorting parameters include: name, time, count, default to use count
+        Used with `-luastatus`. Sorting parameters include: name, time, count. Default is count.
      ./scheck -luastatus -sort=time
   -check
-        precompile all lua files in the user directory to check for syntax errors.
+        Precompile all Lua files in the user directory once to check for syntax errors.
   -box
-        display the list of all files loaded into the binary
+        Display all files loaded into the binary
 ```
 
 ## Detection Rules {#rules}
 
-Detection rules are placed in the rule directory: specified by the `rule_dir` in the configuration file or the custom user directory `custom_dir`. Each rule corresponds to two files:
+Detection rules are placed in the rules directory, specified by the `rule_dir` in the configuration file or the user-defined directory `custom_dir`. Each rule corresponds to two files:
 
-1. Script file: Written in [Lua](http://www.lua.org/){:target="_blank"}, must end with the `.lua` suffix.
-2. Manifest file: In [TOML](https://toml.io/en/){:target="_blank"} format, must end with the `.manifest` suffix, see [Manifest File](scheck-how-to.md#manifest).
+1. Script File: Written in [Lua](http://www.lua.org/){:target="_blank"}, must have a `.lua` extension.
+2. Manifest File: Uses [TOML](https://toml.io/en/){:target="_blank"} format, must have a `.manifest` extension, see [Manifest File](scheck-how-to.md#manifest).
 
-The script file and the manifest file **must have the same name**.
+The script file and manifest file **must have the same name**.
 
-SChecker will periodically execute the detection scripts according to the `cron` specified in the manifest file. Each time the Lua script code is executed, it checks whether any security events (such as file changes, new user logins, etc.) are triggered. If triggered, it uses the `trigger()` function to send the event (in line protocol format) to the address specified by the `output` field in the configuration file.
+SChecker periodically executes detection scripts (as specified by the `cron` field in the manifest file). The Lua script checks for relevant security events (e.g., file changes, new user logins) each time it runs. If an event is triggered, it sends the event (in line protocol format) to the address specified by the `output` field in the configuration file using the `trigger()` function.
 
-SChecker defines several Lua extension functions and, to ensure security, disables some Lua packages or functions, only supporting the following Lua built-in packages/functions:
+SChecker defines several Lua extension functions and disables some Lua packages or functions for security reasons. Only the following Lua built-in packages/functions are supported:
 
-- The following basic built-in packages are supported
+- All basic built-in packages are supported:
 
     - `table`
     - `math`
     - `string`
     - `debug`
 
-- In the `os` package, all can be used **except the following functions**:
+- In the `os` package, **the following functions are not allowed**:
 
     - `execute()`
     - `remove()`
@@ -106,59 +106,59 @@ SChecker defines several Lua extension functions and, to ensure security, disabl
     - `setenv()`
     - `setlocale()`
 
-> Adding/modifying rule manifest files and Lua code **does not require restarting the service**, SChecker scans the rule directory every 10 seconds.
+> Adding/modifying manifest files and Lua code does **not require restarting the service**. SChecker scans the rules directory every 10 seconds.
 
 ### Manifest File {#manifest}
 
-The manifest file is a description of the content detected by the current rule, such as file changes, port starts and stops, etc. The final line protocol data will only include the fields in the manifest file. The detailed content is as follows:
+The manifest file describes the content detected by the current rule, such as file changes, port status, etc. The final line protocol data will only contain fields from the manifest file. Details are as follows:
 
 ```toml
-# ---------------- Required fields ----------------
+# ---------------- Required Fields ---------------
 
-# The rule number of the event, such as k8s-pod-001, will be used as the metric name in the line protocol
+# Rule ID for the event, e.g., k8s-pod-001, which will be used as the metric name in the line protocol
 id = ''
 
-# The category of the event, customized according to the business
+# Event category, defined based on business needs
 category = ''
 
-# The danger level of the current event, customized according to the business, such as warn, error
+# Event severity level, defined based on business needs, e.g., warn, error
 level = ''
 
-# The title of the current event, describing the content of the detection, such as "Sensitive file change"
+# Title of the event, describing the detection content, e.g., "Sensitive file changed"
 title = ''
 
-# The content of the current event (supports templates, details below)
+# Description of the event (supports templates, see below)
 desc = ''
 
-# Configure the execution period of the event (using the syntax rules of linux crontab)
+# Execution schedule for the event (using Linux crontab syntax)
 cron = ''
 
-# Platform support
+# Supported platforms
 os_arch = ["Linux", "Windows"]
-# ---------------- Optional fields ----------------
+# ---------------- Optional Fields ---------------
 
-# Disable the current rule
+# Disable this rule
 #disabled = false
 
-# Default to add hostname in tags
+# Defaultly add hostname in tags
 #omit_hostname = false
 
 # Explicitly set hostname
 #hostname = ''
 
-# ---------------- Custom fields ----------------
+# ---------------- Custom Fields ---------------
 
-# Support for adding custom key-value, and the value must be a string
+# Support adding custom key-value pairs, where value must be a string
 #instanceID=''
 ```
 
-### Cron Rules {#cron}
+### Cron Schedule {#cron}
 
-Currently, only interval execution is supported
+Currently, only interval-based execution is supported.
 
 ``` txt
 # ┌───────────── Second
-# │ ┌───────────── Miniute
+# │ ┌───────────── Minute
 # │ │ ┌───────────── Hour
 # │ │ │ ┌───────────── Day-of-Month
 # │ │ │ │ ┌───────────── Month
@@ -168,21 +168,22 @@ Currently, only interval execution is supported
 # * * * * *
 ```
 
-Example:
+Examples:
 
-`*/10 * * * *`: Run every 10 seconds.
-`* */5 * * *`: Run once every 5 minutes.
-`disable`: If set to disable or an empty character, the lua is long-lasting, such as: listening for file changes. Once this type of lua is running, it will not stop.
+`*/10 * * * *`: Runs every 10 seconds.
+`* */5 * * *`: Runs every 5 minutes.
+`disable`: Setting `disable` or an empty string makes the Lua script long-running, e.g., listening for file changes. Once started, these types of Lua scripts do not stop.
+
 
 ### Template Support {#template}
 
-The `desc` string in the manifest file supports setting template variables, with the syntax `{{.<Variable>}}`, for example
+The `desc` string in the manifest file supports template variables with the syntax `{{.<Variable>}}`, for example:
 
 ```txt
-File {{.FileName}} was modified, and the modified content is: {{.Content}}
+File {{.FileName}} was modified, changes are: {{.Content}}
 ```
 
-Indicates that `FileName` and `Diff` are template variables, which will be replaced (including the preceding dot `.`). When calling the `trigger()` function, the variable is replaced. This function can pass in a Lua `table` variable, which contains the replacement values for the template variables. Suppose the following parameters are passed:
+Here, `FileName` and `Content` are template variables that will be replaced (including the preceding dot `.`). When calling the `trigger()` function, you can pass a Lua `table` containing the replacement values for the template variables. For instance, passing the following parameters:
 
 ```lua
 tmpl_vals={
@@ -192,40 +193,40 @@ tmpl_vals={
 trigger(tmpl_vals)
 ```
 
-Then the final `desc` value is:
+The final `desc` value would be:
 
 ```txt
-File /etc/passwd was modified, and the modified content is `delete user demo`
+File /etc/passwd was modified, changes are: delete user demo
 ```
 
-## Test Rules {#test}
+## Testing Rules {#test}
 
 When writing rule code, you can use `scheck --test` to test if the code is correct. Suppose there is a *demo* rule in the *rules.d* directory:
 
 ```shell
-$ scheck --test  ./rules.d/demo
+$ scheck --test ./rules.d/demo
 ```
 
-The `--test` test can also test multiple at the same time, assuming that the script runs based on another script execution:
+You can also test multiple rules at once. For example, if one script depends on another:
 
 ```shell
-$ scheck --test  rules.d/0000-global-cache,rules.d/0400-k8s-node-conf-priv
+$ scheck --test rules.d/0000-global-cache,rules.d/0400-k8s-node-conf-priv
 ```
 
 ## Lua Functions {#lua-funcs}
 
 See [Functions](funcs.md)
 
-## Create Common Libraries {#common-rules}
+## Creating Common Libraries {#common-rules}
 
-SChecker allows the use of the `require` function to import Lua modules in detection scripts, and module files can only be stored in the *rules.d/lib* directory. Some commonly used functions can be modularized and placed in this lib subdirectory for use in detection scripts.
+SChecker allows the use of the `require` function to import Lua modules, which must be stored in the *rules.d/lib* directory. You can modularize commonly used functions and place them in this lib subdirectory for use by detection scripts.
 
 Suppose you create a Lua module *common.lua*:
 
-``` lua
+```lua
 module={}
 
-function modules.Foo()
+function module.Foo()
     -- Function body...
 end
 
@@ -234,49 +235,49 @@ return module
 
 Place *common.lua* in the */usr/local/scheck/rules.d/lib* directory.
 
-Suppose there is a rule script *demo.lua* that uses this common module:
+Assuming a rule script *demo.lua* uses this common module:
 
-``` lua
-common=require("common") --No need to write the suffix name
+```lua
+common=require("common") -- No need to specify the file extension
 common.Foo()
 ```
 
 ## Line Protocol {#line-proto}
 
-SCheck's output is in line protocol format. The rule ID is used as the metric name.
+SCheck outputs in line protocol format, using the rule ID as the metric name.
 
-### Tag List {#tags}
+### Tag List (tags) {#tags}
 
 | Name        | Type   | Description                                    | Required |
-| ---         | :----: | ----                                           | :---:    |
-| `title`     | string | Security event title                           | true     |
-| `category`  | string | Event category                                 | true     |
-| `level`     | string | Security event level, supports: `info`, `warn`, `critical` | true     |
-| `host`      | string | Event source hostname (default has)            |          |
-| `os_arch`   | string | Host platform                                   | true     |
-| Custom tags | string | Custom tags in the manifest file               | false    |
+| ----------- | ------ | ---------------------------------------------- | -------- |
+| `title`     | string | Security event title                          | true     |
+| `category`  | string | Event category                                | true     |
+| `level`     | string | Security event severity, supports: `info`, `warn`, `critical` | true     |
+| `host`      | string | Source hostname of the event (default included)|          |
+| `os_arch`   | string | Host platform                                 | true     |
+| Custom tags | string | Tags defined in the manifest file             | false    |
 
-Current `category` classifications
+Current categories:
 
-- `network`: Network related, mainly involving connections, ports, firewalls, etc.
-- `storage`: Storage related, such as disks, HDFS, etc.
-- `db`: Various database related (MySQL/Redis/...)
-- `system`: Mainly related to the operating system
+- `network`: Network-related, mainly involving connections, ports, firewalls, etc.
+- `storage`: Storage-related, such as disks, HDFS, etc.
+- `db`: Various databases (MySQL/Redis/...)
+- `system`: Mainly operating system-related
 - `container`: Including Docker and Kubernetes
 
-### Metric List {#fields}
+### Field List (fields) {#fields}
 
-| Metric Name  | Type   | Description |
-| ---          | :---:  | ----        |
-| `message`    | string | Event details |
+| Field Name  | Type   | Description     |
+| ----------- | ------ | --------------- |
+| `message`   | string | Event details   |
 
-## SCheck Limit Running Resources {#cgroup}
+### SCheck Resource Limitation {#cgroup}
 
-Limit SCheck running resources (such as CPU usage) through cgroup (only supports the Linux operating system). Enter the SCheck installation directory and modify the scheck.conf configuration file. Set enable to true, example is as follows:
+To limit SCheck's resource usage (e.g., CPU usage) via cgroups, supported only on Linux systems. Navigate to the SCheck installation directory, modify the scheck.conf configuration file, and set `enable` to `true`. Example:
 
 ```toml
 [cgroup]
-# Optional, default closed, can control cpu and mem
+# Optional, defaults to disabled; can control CPU and memory
 enable = false
 cpu_max = 30.0
 cpu_min = 5.0

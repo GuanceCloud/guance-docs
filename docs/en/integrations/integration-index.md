@@ -2,11 +2,10 @@
 icon: zy/integrations
 ---
 
-# Integrations
+# 集成
 
 ---
 
-Guance has the ability of full stack data collection, and now supports about 320 integrations.
 
 <!-- markdownlint-disable MD046 MD037 MD009 MD010 -->
 <html lang="en">
@@ -92,11 +91,11 @@ Guance has the ability of full stack data collection, and now supports about 320
             position: relative;
   		}
         .fth-integration-list-content .fth-integration-list-item .integration-list-item-left .glightbox {
-            display: flex;
+           display: flex;
         }
   		.fth-integration-list-content .fth-integration-list-item .integration-list-item-left img {
   			width: 32px;
-            min-width: 32px;
+        min-width: 32px;
   			height: 32px;
   			border-style: none;
   		}
@@ -170,7 +169,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../active_directory"
   				data-tags=""
   				data-name="Active Directory"
-  				data-summary="Collect Active Directory related metrics information"
+  				data-summary="Collect metrics related to Active Directory"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -181,7 +180,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Active Directory</div>
-                            <div title="Collect Active Directory related metrics information" class="fth-integration-desc">Collect Active Directory related metrics information</div>
+                            <div title="Collect metrics related to Active Directory" class="fth-integration-desc">Collect metrics related to Active Directory</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -200,7 +199,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aerospike"
   				data-tags=""
   				data-name="Aerospike"
-  				data-summary="Collecting Aerospike-related metric information"
+  				data-summary="Collect metrics related to Aerospike"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -211,7 +210,67 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Aerospike</div>
-                            <div title="Collecting Aerospike-related metric information" class="fth-integration-desc">Collecting Aerospike-related metric information</div>
+                            <div title="Collect metrics related to Aerospike" class="fth-integration-desc">Collect metrics related to Aerospike</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../aliyun_analyticdb_postgresql"
+  				data-tags="Alibaba Cloud"
+  				data-name="Alibaba Cloud AnalyticDB PostgreSQL"
+  				data-summary="Alibaba Cloud AnalyticDB PostgreSQL Metrics display, including CPU, memory, disk, coordinator node, instance queries, etc."
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aliyun_analyticdb_postgresql/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Alibaba Cloud AnalyticDB PostgreSQL</div>
+                            <div title="Alibaba Cloud AnalyticDB PostgreSQL Metrics display, including CPU, memory, disk, coordinator node, instance queries, etc." class="fth-integration-desc">Alibaba Cloud AnalyticDB PostgreSQL Metrics display, including CPU, memory, disk, coordinator node, instance queries, etc.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../aliyun_cdn"
+  				data-tags="Alibaba Cloud"
+  				data-name="Alibaba Cloud CDN"
+  				data-summary="Performance metrics display for Alibaba Cloud CDN, including requests per second, downstream traffic, edge bandwidth, response time, back-to-source bandwidth, status codes, etc."
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aliyun_cdn/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Alibaba Cloud CDN</div>
+                            <div title="Performance metrics display for Alibaba Cloud CDN, including requests per second, downstream traffic, edge bandwidth, response time, back-to-source bandwidth, status codes, etc." class="fth-integration-desc">Performance metrics display for Alibaba Cloud CDN, including requests per second, downstream traffic, edge bandwidth, response time, back-to-source bandwidth, status codes, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -229,8 +288,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_clickhouse_community"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun ClickHouse Community"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud ClickHouse Community Compatible Edition"
+  				data-summary="Display of Alibaba Cloud ClickHouse metrics, including service status, log traffic, operation counts, overall QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -240,8 +299,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun ClickHouse Community</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud ClickHouse Community Compatible Edition</div>
+                            <div title="Display of Alibaba Cloud ClickHouse metrics, including service status, log traffic, operation counts, overall QPS, etc." class="fth-integration-desc">Display of Alibaba Cloud ClickHouse metrics, including service status, log traffic, operation counts, overall QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -258,9 +317,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../aliyun_ecs"
-  				data-tags="Alibaba Cloud"
-  				data-name="Aliyun ECS"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-tags="Alibaba Cloud,Host"
+  				data-name="Alibaba Cloud ECS"
+  				data-summary="The displayed metrics for Alibaba Cloud ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -270,8 +329,38 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun ECS</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud ECS</div>
+                            <div title="The displayed metrics for Alibaba Cloud ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage." class="fth-integration-desc">The displayed metrics for Alibaba Cloud ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../aliyun_edas"
+  				data-tags="Alibaba Cloud"
+  				data-name="Alibaba Cloud EDAS"
+  				data-summary="Collect Alibaba Cloud EDAS Metrics and tracing data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aliyun_edas/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Alibaba Cloud EDAS</div>
+                            <div title="Collect Alibaba Cloud EDAS Metrics and tracing data" class="fth-integration-desc">Collect Alibaba Cloud EDAS Metrics and tracing data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -289,8 +378,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_eip"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun EIP"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud EIP"
+  				data-summary="Display of Alibaba Cloud EIP metrics, including network bandwidth, network packets, rate-limited packet loss rate, bandwidth utilization, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -300,8 +389,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun EIP</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud EIP</div>
+                            <div title="Display of Alibaba Cloud EIP metrics, including network bandwidth, network packets, rate-limited packet loss rate, bandwidth utilization, etc." class="fth-integration-desc">Display of Alibaba Cloud EIP metrics, including network bandwidth, network packets, rate-limited packet loss rate, bandwidth utilization, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -319,8 +408,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_es"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun ElasticSearch"
-  				data-summary="Aliyun ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk utilization and so on."
+  				data-name="Alibaba Cloud ElasticSearch"
+  				data-summary="Alibaba Cloud ElasticSearch Metrics display, including cluster status, index QPS, node CPU/memory/disk usage rates, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -330,8 +419,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun ElasticSearch</div>
-                            <div title="Aliyun ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk utilization and so on." class="fth-integration-desc">Aliyun ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk utilization and so on.</div>
+                            <div class="fth-integration-name">Alibaba Cloud ElasticSearch</div>
+                            <div title="Alibaba Cloud ElasticSearch Metrics display, including cluster status, index QPS, node CPU/memory/disk usage rates, etc." class="fth-integration-desc">Alibaba Cloud ElasticSearch Metrics display, including cluster status, index QPS, node CPU/memory/disk usage rates, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -349,8 +438,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_kafka"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun Kafka"
-  				data-summary="AliCloud Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams."
+  				data-name="Alibaba Cloud KafKa"
+  				data-summary="Alibaba Cloud KafKa includes instance disk usage, instance and topic message production volume, message production frequency, message consumption volume, and message consumption frequency. These metrics reflect the reliability of Kafka in handling large-scale message transmission and real-time data streams."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -360,8 +449,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun Kafka</div>
-                            <div title="AliCloud Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams." class="fth-integration-desc">AliCloud Kafka's presentation metrics include message throughput, latency, number of concurrent connections, and reliability, which reflect Kafka's performance performance and reliability guarantees when dealing with large-scale messaging and real-time data streams.</div>
+                            <div class="fth-integration-name">Alibaba Cloud KafKa</div>
+                            <div title="Alibaba Cloud KafKa includes instance disk usage, instance and topic message production volume, message production frequency, message consumption volume, and message consumption frequency. These metrics reflect the reliability of Kafka in handling large-scale message transmission and real-time data streams." class="fth-integration-desc">Alibaba Cloud KafKa includes instance disk usage, instance and topic message production volume, message production frequency, message consumption volume, and message consumption frequency. These metrics reflect the reliability of Kafka in handling large-scale message transmission and real-time data streams.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -379,8 +468,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_lindorm"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun Lindorm"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud Lindorm"
+  				data-summary="Use the cloud synchronization script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -390,8 +479,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun Lindorm</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud Lindorm</div>
+                            <div title="Use the cloud synchronization script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance." class="fth-integration-desc">Use the cloud synchronization script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -408,9 +497,11 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../aliyun_mongodb"
-  				data-tags="aliyun,mongodb"
+  				data-tags="Alibaba Cloud"
   				data-name="Alibaba Cloud MongoDB"
-  				data-summary="Alibaba Cloud MongoDB replica set metrics display, including CPU usage, memory usage, disk usage, data disk space, log disk space, statement execution times per second, requests, connections, network traffic, replication latency, QPS, etc."
+  				data-summary="Alibaba Cloud MongoDB replica set metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, log disk space occupied, statements executed per second, number of requests, connections, network traffic, replication delay, QPS, etc.
+Alibaba Cloud MongoDB sharded cluster metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, log disk space occupied, statements executed per second, number of requests, connections, network traffic, replication delay, QPS, etc.
+Alibaba Cloud MongoDB single-node instance metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, statements executed per second, number of requests, connections, network traffic, QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -421,7 +512,11 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Alibaba Cloud MongoDB</div>
-                            <div title="Alibaba Cloud MongoDB replica set metrics display, including CPU usage, memory usage, disk usage, data disk space, log disk space, statement execution times per second, requests, connections, network traffic, replication latency, QPS, etc." class="fth-integration-desc">Alibaba Cloud MongoDB replica set metrics display, including CPU usage, memory usage, disk usage, data disk space, log disk space, statement execution times per second, requests, connections, network traffic, replication latency, QPS, etc.</div>
+                            <div title="Alibaba Cloud MongoDB replica set metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, log disk space occupied, statements executed per second, number of requests, connections, network traffic, replication delay, QPS, etc.
+Alibaba Cloud MongoDB sharded cluster metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, log disk space occupied, statements executed per second, number of requests, connections, network traffic, replication delay, QPS, etc.
+Alibaba Cloud MongoDB single-node instance metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, statements executed per second, number of requests, connections, network traffic, QPS, etc." class="fth-integration-desc">Alibaba Cloud MongoDB replica set metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, log disk space occupied, statements executed per second, number of requests, connections, network traffic, replication delay, QPS, etc.
+Alibaba Cloud MongoDB sharded cluster metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, log disk space occupied, statements executed per second, number of requests, connections, network traffic, replication delay, QPS, etc.
+Alibaba Cloud MongoDB single-node instance metrics display, including CPU usage, memory usage, disk usage, data disk space occupied, statements executed per second, number of requests, connections, network traffic, QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -439,8 +534,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_nat"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun NAT"
-  				data-summary="Aliyun NAT Metrics, including the number of concurrent connections, number of new connections, VPC traffic, and VPC data packets。"
+  				data-name="Alibaba Cloud NAT"
+  				data-summary="Alibaba Cloud NAT metrics display, including concurrent connections, new connections, VPC traffic, VPC packets, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -450,8 +545,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun NAT</div>
-                            <div title="Aliyun NAT Metrics, including the number of concurrent connections, number of new connections, VPC traffic, and VPC data packets。" class="fth-integration-desc">Aliyun NAT Metrics, including the number of concurrent connections, number of new connections, VPC traffic, and VPC data packets。</div>
+                            <div class="fth-integration-name">Alibaba Cloud NAT</div>
+                            <div title="Alibaba Cloud NAT metrics display, including concurrent connections, new connections, VPC traffic, VPC packets, etc." class="fth-integration-desc">Alibaba Cloud NAT metrics display, including concurrent connections, new connections, VPC traffic, VPC packets, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -469,19 +564,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_newbgp_ddos"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun DDoS New BGP High Defense"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud DDoS New BGP High Defense"
+  				data-summary="The display metrics of Alibaba Cloud DDoS New BGP High Defense include attack protection capability, cleaning capability, response time, and reliability. These metrics reflect the performance and credibility of the new BGP high defense service in handling large-scale DDoS attacks."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_nat/icon.png"
+									src="../icon/aliyun_newbgp_ddos/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun DDoS New BGP High Defense</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud DDoS New BGP High Defense</div>
+                            <div title="The display metrics of Alibaba Cloud DDoS New BGP High Defense include attack protection capability, cleaning capability, response time, and reliability. These metrics reflect the performance and credibility of the new BGP high defense service in handling large-scale DDoS attacks." class="fth-integration-desc">The display metrics of Alibaba Cloud DDoS New BGP High Defense include attack protection capability, cleaning capability, response time, and reliability. These metrics reflect the performance and credibility of the new BGP high defense service in handling large-scale DDoS attacks.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -499,8 +594,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_oss"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun OSS"
-  				data-summary="Aliyun OSS metrics display, including request volume, availability, network traffic, request ratio, and more."
+  				data-name="Alibaba Cloud OSS"
+  				data-summary="Alibaba Cloud OSS metrics display, including request count, availability, network traffic, request ratio, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -510,8 +605,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun OSS</div>
-                            <div title="Aliyun OSS metrics display, including request volume, availability, network traffic, request ratio, and more." class="fth-integration-desc">Aliyun OSS metrics display, including request volume, availability, network traffic, request ratio, and more.</div>
+                            <div class="fth-integration-name">Alibaba Cloud OSS</div>
+                            <div title="Alibaba Cloud OSS metrics display, including request count, availability, network traffic, request ratio, etc." class="fth-integration-desc">Alibaba Cloud OSS metrics display, including request count, availability, network traffic, request ratio, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -529,19 +624,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_polardb_1.0"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun  PolarDB 1.0"
-  				data-summary="Aliyun PolarDB Distributed 1.0 displays metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS."
+  				data-name="Alibaba Cloud PolarDB Distributed 1.0"
+  				data-summary="Alibaba Cloud PolarDB Distributed 1.0 displays Metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_polardb_1.0/icon.png"
+									src="../icon/aliyun_polardb/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun  PolarDB 1.0</div>
-                            <div title="Aliyun PolarDB Distributed 1.0 displays metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS." class="fth-integration-desc">Aliyun PolarDB Distributed 1.0 displays metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS.</div>
+                            <div class="fth-integration-name">Alibaba Cloud PolarDB Distributed 1.0</div>
+                            <div title="Alibaba Cloud PolarDB Distributed 1.0 displays Metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS." class="fth-integration-desc">Alibaba Cloud PolarDB Distributed 1.0 displays Metrics including CPU utilization, memory utilization, network bandwidth, and disk IOPS.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -559,19 +654,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_polardb_2.0"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun PolarDB distributed2.0"
-  				data-summary="Aliyun PolarDB distributed2.0 displays metrics of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth."
+  				data-name="Alibaba Cloud PolarDB Distributed 2.0"
+  				data-summary="Alibaba Cloud PolarDB Distributed 2.0 displays metrics for the compute layer and storage nodes, including CPU utilization, connection usage, disk usage, disk usage rate, memory utilization, network bandwidth, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_polardb_2.0/icon.png"
+									src="../icon/aliyun_polardb/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun PolarDB distributed2.0</div>
-                            <div title="Aliyun PolarDB distributed2.0 displays metrics of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth." class="fth-integration-desc">Aliyun PolarDB distributed2.0 displays metrics of the computing layer and storage nodes, including CPU usage, connection usage, disk usage, disk usage, memory usage, and network bandwidth.</div>
+                            <div class="fth-integration-name">Alibaba Cloud PolarDB Distributed 2.0</div>
+                            <div title="Alibaba Cloud PolarDB Distributed 2.0 displays metrics for the compute layer and storage nodes, including CPU utilization, connection usage, disk usage, disk usage rate, memory utilization, network bandwidth, etc." class="fth-integration-desc">Alibaba Cloud PolarDB Distributed 2.0 displays metrics for the compute layer and storage nodes, including CPU utilization, connection usage, disk usage, disk usage rate, memory utilization, network bandwidth, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -589,19 +684,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_polardb_mysql"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun PolarDB MySQL"
-  				data-summary="Aliyun PolarDB MySQL Metrics Display, including CPU usage, memory hit rate, network traffic, connection count, QPS (Queries Per Second), TPS (Transactions Per Second), and read-only node latency."
+  				data-name="Alibaba Cloud PolarDB MySQL"
+  				data-summary="Display of Alibaba Cloud PolarDB MySQL metrics, including CPU usage, memory hit rate, network traffic, connections, QPS, TPS, read-only node delay, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_polardb_mysql/icon.png"
+									src="../icon/aliyun_polardb/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun PolarDB MySQL</div>
-                            <div title="Aliyun PolarDB MySQL Metrics Display, including CPU usage, memory hit rate, network traffic, connection count, QPS (Queries Per Second), TPS (Transactions Per Second), and read-only node latency." class="fth-integration-desc">Aliyun PolarDB MySQL Metrics Display, including CPU usage, memory hit rate, network traffic, connection count, QPS (Queries Per Second), TPS (Transactions Per Second), and read-only node latency.</div>
+                            <div class="fth-integration-name">Alibaba Cloud PolarDB MySQL</div>
+                            <div title="Display of Alibaba Cloud PolarDB MySQL metrics, including CPU usage, memory hit rate, network traffic, connections, QPS, TPS, read-only node delay, etc." class="fth-integration-desc">Display of Alibaba Cloud PolarDB MySQL metrics, including CPU usage, memory hit rate, network traffic, connections, QPS, TPS, read-only node delay, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -619,19 +714,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_polardb_oracle"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun PolarDB Oracle"
-  				data-summary="Aliyun PolarDB Oracle Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size."
+  				data-name="Alibaba Cloud PolarDB Oracle"
+  				data-summary="Alibaba Cloud PolarDB Oracle Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_polardb_oracle/icon.png"
+									src="../icon/aliyun_polardb/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun PolarDB Oracle</div>
-                            <div title="Aliyun PolarDB Oracle Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size." class="fth-integration-desc">Aliyun PolarDB Oracle Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size.</div>
+                            <div class="fth-integration-name">Alibaba Cloud PolarDB Oracle</div>
+                            <div title="Alibaba Cloud PolarDB Oracle Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc." class="fth-integration-desc">Alibaba Cloud PolarDB Oracle Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -649,19 +744,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_polardb_postgresql"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun PolarDB PostgreSQL"
-  				data-summary="Aliyun PolarDB PostgreSQL Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size."
+  				data-name="Alibaba Cloud PolarDB PostgreSQL"
+  				data-summary="Alibaba Cloud PolarDB PostgreSQL Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_polardb_postgresql/icon.png"
+									src="../icon/aliyun_polardb/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun PolarDB PostgreSQL</div>
-                            <div title="Aliyun PolarDB PostgreSQL Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size." class="fth-integration-desc">Aliyun PolarDB PostgreSQL Metrics Display, including CPU usage, memory usage, network traffic, connection count, IOPS (Input/Output Operations Per Second), TPS (Transactions Per Second), and data disk size.</div>
+                            <div class="fth-integration-name">Alibaba Cloud PolarDB PostgreSQL</div>
+                            <div title="Alibaba Cloud PolarDB PostgreSQL Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc." class="fth-integration-desc">Alibaba Cloud PolarDB PostgreSQL Metrics display, including CPU usage, memory usage, network traffic, connection count, IOPS, TPS, data disk size, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -679,8 +774,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_rds_mariadb"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun RDS MariaDB"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud RDS MariaDB"
+  				data-summary="The displayed Metrics for Alibaba Cloud RDS MariaDB include response time, concurrent connections, QPS, and TPS."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -690,8 +785,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun RDS MariaDB</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud RDS MariaDB</div>
+                            <div title="The displayed Metrics for Alibaba Cloud RDS MariaDB include response time, concurrent connections, QPS, and TPS." class="fth-integration-desc">The displayed Metrics for Alibaba Cloud RDS MariaDB include response time, concurrent connections, QPS, and TPS.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -709,8 +804,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_rds_mysql"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun RDS MySQL"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud RDS MySQL"
+  				data-summary="Display of Alibaba Cloud RDS MySQL metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -720,8 +815,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun RDS MySQL</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud RDS MySQL</div>
+                            <div title="Display of Alibaba Cloud RDS MySQL metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Display of Alibaba Cloud RDS MySQL metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -739,8 +834,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_rds_postgresql"
   				data-tags="Alibaba Cloud"
-  				data-name="AliCloud RDS PostgreSQL"
-  				data-summary="AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more."
+  				data-name="Alibaba Cloud RDS PostgreSQL"
+  				data-summary="Alibaba Cloud RDS PostgreSQL Metrics display, including CPU usage, memory usage, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -750,8 +845,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">AliCloud RDS PostgreSQL</div>
-                            <div title="AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more." class="fth-integration-desc">AliCloud RDS PostgreSQL metrics showcase, including CPU utilization, memory usage, and more.</div>
+                            <div class="fth-integration-name">Alibaba Cloud RDS PostgreSQL</div>
+                            <div title="Alibaba Cloud RDS PostgreSQL Metrics display, including CPU usage, memory usage, etc." class="fth-integration-desc">Alibaba Cloud RDS PostgreSQL Metrics display, including CPU usage, memory usage, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -769,8 +864,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_rds_sqlserver"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun RDS SQLServer"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud RDS SQLServer"
+  				data-summary="Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -780,8 +875,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun RDS SQLServer</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud RDS SQLServer</div>
+                            <div title="Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -799,8 +894,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_redis"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun Redis Standard"
-  				data-summary="Aliyun Redis Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc."
+  				data-name="Alibaba Cloud Redis Standard Edition"
+  				data-summary="Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memory usage, disk read/write, network traffic, and accesses per second."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -810,8 +905,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun Redis Standard</div>
-                            <div title="Aliyun Redis Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc." class="fth-integration-desc">Aliyun Redis Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.</div>
+                            <div class="fth-integration-name">Alibaba Cloud Redis Standard Edition</div>
+                            <div title="Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memory usage, disk read/write, network traffic, and accesses per second." class="fth-integration-desc">Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memory usage, disk read/write, network traffic, and accesses per second.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -829,8 +924,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_redis_shard"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun Redis Shard"
-  				data-summary="Aliyun Redis Shard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc."
+  				data-name="Alibaba Cloud Redis Cluster Edition"
+  				data-summary="Display of Alibaba Cloud Redis Cluster Edition metrics, including CPU usage, memory usage, disk read/write, network traffic, and requests per second."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -840,8 +935,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun Redis Shard</div>
-                            <div title="Aliyun Redis Shard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc." class="fth-integration-desc">Aliyun Redis Shard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.</div>
+                            <div class="fth-integration-name">Alibaba Cloud Redis Cluster Edition</div>
+                            <div title="Display of Alibaba Cloud Redis Cluster Edition metrics, including CPU usage, memory usage, disk read/write, network traffic, and requests per second." class="fth-integration-desc">Display of Alibaba Cloud Redis Cluster Edition metrics, including CPU usage, memory usage, disk read/write, network traffic, and requests per second.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -859,19 +954,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_rocketmq4"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun RocketMQ4"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Alibaba Cloud RocketMQ4"
+  				data-summary="The displayed metrics for Alibaba Cloud RocketMQ 4.0 include message throughput, latency, reliability, and horizontal scalability."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_rocketmq4/icon.png"
+									src="../icon/aliyun_rocketmq/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun RocketMQ4</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Alibaba Cloud RocketMQ4</div>
+                            <div title="The displayed metrics for Alibaba Cloud RocketMQ 4.0 include message throughput, latency, reliability, and horizontal scalability." class="fth-integration-desc">The displayed metrics for Alibaba Cloud RocketMQ 4.0 include message throughput, latency, reliability, and horizontal scalability.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -889,19 +984,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_rocketmq5"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun RocketMQ 5"
-  				data-summary="Aliyun RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability."
+  				data-name="Alibaba Cloud RocketMQ5"
+  				data-summary="The display metrics of Alibaba Cloud RocketMQ 5.0 include message throughput, latency, reliability, and horizontal scalability."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aliyun_rocketmq5/icon.png"
+									src="../icon/aliyun_rocketmq/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun RocketMQ 5</div>
-                            <div title="Aliyun RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability." class="fth-integration-desc">Aliyun RocketMQ 5.0 display metrics including message throughput, latency, reliability, and horizontal scalability.</div>
+                            <div class="fth-integration-name">Alibaba Cloud RocketMQ5</div>
+                            <div title="The display metrics of Alibaba Cloud RocketMQ 5.0 include message throughput, latency, reliability, and horizontal scalability." class="fth-integration-desc">The display metrics of Alibaba Cloud RocketMQ 5.0 include message throughput, latency, reliability, and horizontal scalability.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -919,8 +1014,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_sae"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun SAE"
-  				data-summary="Collect metric information for Aliyun SAE (Serverless App Engine)"
+  				data-name="Alibaba Cloud SAE"
+  				data-summary="Collect metrics, logs, and tracing information from Alibaba Cloud SAE (Serverless App Engine)"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -930,8 +1025,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun SAE</div>
-                            <div title="Collect metric information for Aliyun SAE (Serverless App Engine)" class="fth-integration-desc">Collect metric information for Aliyun SAE (Serverless App Engine)</div>
+                            <div class="fth-integration-name">Alibaba Cloud SAE</div>
+                            <div title="Collect metrics, logs, and tracing information from Alibaba Cloud SAE (Serverless App Engine)" class="fth-integration-desc">Collect metrics, logs, and tracing information from Alibaba Cloud SAE (Serverless App Engine)</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -949,8 +1044,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_site"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun Site Monitor"
-  				data-summary="Alibaba Cloud site monitoring mainly obtains site call testing information"
+  				data-name="Alibaba Cloud Site Monitoring"
+  				data-summary="Alibaba Cloud Site Monitoring primarily obtains site dial test information."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -960,8 +1055,68 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun Site Monitor</div>
-                            <div title="Alibaba Cloud site monitoring mainly obtains site call testing information" class="fth-integration-desc">Alibaba Cloud site monitoring mainly obtains site call testing information</div>
+                            <div class="fth-integration-name">Alibaba Cloud Site Monitoring</div>
+                            <div title="Alibaba Cloud Site Monitoring primarily obtains site dial test information." class="fth-integration-desc">Alibaba Cloud Site Monitoring primarily obtains site dial test information.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../aliyun_slb"
+  				data-tags="Alibaba Cloud"
+  				data-name="Alibaba Cloud SLB"
+  				data-summary="Alibaba Cloud SLB Metrics display, including backend ECS instance status, port connection count, QPS, network traffic, status codes, etc."
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aliyun_slb/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Alibaba Cloud SLB</div>
+                            <div title="Alibaba Cloud SLB Metrics display, including backend ECS instance status, port connection count, QPS, network traffic, status codes, etc." class="fth-integration-desc">Alibaba Cloud SLB Metrics display, including backend ECS instance status, port connection count, QPS, network traffic, status codes, etc.</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../aliyun_sls"
+  				data-tags="Alibaba Cloud"
+  				data-name="Alibaba Cloud SLS"
+  				data-summary="Alibaba Cloud SLS metrics display, including service status, log traffic, operation counts, overall QPS, etc."
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/aliyun_sls/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Alibaba Cloud SLS</div>
+                            <div title="Alibaba Cloud SLS metrics display, including service status, log traffic, operation counts, overall QPS, etc." class="fth-integration-desc">Alibaba Cloud SLS metrics display, including service status, log traffic, operation counts, overall QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -979,8 +1134,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../aliyun_tair"
   				data-tags="Alibaba Cloud"
-  				data-name="Aliyun Tair Standard"
-  				data-summary="Aliyun Tair Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc."
+  				data-name="Alibaba Cloud Tair Community Edition"
+  				data-summary="Alibaba Cloud Tair Community Edition metrics display, including CPU usage, memory usage, total proxy QPS, network traffic, hit rate, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -990,8 +1145,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Aliyun Tair Standard</div>
-                            <div title="Aliyun Tair Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc." class="fth-integration-desc">Aliyun Tair Standard Metric display,including cpu usage, memory usage, disk read and write, network traffic, accesses per second, etc.</div>
+                            <div class="fth-integration-name">Alibaba Cloud Tair Community Edition</div>
+                            <div title="Alibaba Cloud Tair Community Edition metrics display, including CPU usage, memory usage, total proxy QPS, network traffic, hit rate, etc." class="fth-integration-desc">Alibaba Cloud Tair Community Edition metrics display, including CPU usage, memory usage, total proxy QPS, network traffic, hit rate, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1008,9 +1163,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../apache"
-  				data-tags="MIDDLEWARE,WEB SERVER"
+  				data-tags="Middleware,WEB SERVER"
   				data-name="Apache"
-  				data-summary="Apache collector can collect the number of requests, connections, etc. from the Apache service"
+  				data-summary="The Apache collector can gather request counts, connection counts, and other data from Apache services"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1021,7 +1176,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Apache</div>
-                            <div title="Apache collector can collect the number of requests, connections, etc. from the Apache service" class="fth-integration-desc">Apache collector can collect the number of requests, connections, etc. from the Apache service</div>
+                            <div title="The Apache collector can gather request counts, connection counts, and other data from Apache services" class="fth-integration-desc">The Apache collector can gather request counts, connection counts, and other data from Apache services</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1040,7 +1195,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../apisix"
   				data-tags=""
   				data-name="APISIX"
-  				data-summary="Collect APISIX related metrics, logs, and tracing information"
+  				data-summary="Collect APISIX related Metrics, logs, and trace information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1051,7 +1206,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">APISIX</div>
-                            <div title="Collect APISIX related metrics, logs, and tracing information" class="fth-integration-desc">Collect APISIX related metrics, logs, and tracing information</div>
+                            <div title="Collect APISIX related Metrics, logs, and trace information" class="fth-integration-desc">Collect APISIX related Metrics, logs, and trace information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1070,7 +1225,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../apollo"
   				data-tags=""
   				data-name="Apollo"
-  				data-summary="Collect information about Apollo-related metrics"
+  				data-summary="Collect Apollo-related Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1081,7 +1236,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Apollo</div>
-                            <div title="Collect information about Apollo-related metrics" class="fth-integration-desc">Collect information about Apollo-related metrics</div>
+                            <div title="Collect Apollo-related Metrics information" class="fth-integration-desc">Collect Apollo-related Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1100,7 +1255,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../argocd"
   				data-tags=""
   				data-name="ArgoCD"
-  				data-summary="Collect Argo CD service status, application status, logs, and link information"
+  				data-summary="Collect Argo CD service status, application status, logs, and tracing information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1111,7 +1266,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">ArgoCD</div>
-                            <div title="Collect Argo CD service status, application status, logs, and link information" class="fth-integration-desc">Collect Argo CD service status, application status, logs, and link information</div>
+                            <div title="Collect Argo CD service status, application status, logs, and tracing information" class="fth-integration-desc">Collect Argo CD service status, application status, logs, and tracing information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1130,7 +1285,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../automq"
   				data-tags=""
   				data-name="AutoMQ"
-  				data-summary="Collect AutoMQ related metrics information"
+  				data-summary="Collect metrics related to AutoMQ"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1141,7 +1296,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AutoMQ</div>
-                            <div title="Collect AutoMQ related metrics information" class="fth-integration-desc">Collect AutoMQ related metrics information</div>
+                            <div title="Collect metrics related to AutoMQ" class="fth-integration-desc">Collect metrics related to AutoMQ</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1160,7 +1315,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_api_gateway"
   				data-tags="AWS"
   				data-name="AWS API Gateway"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="The displayed metrics of AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway in handling API requests and traffic management."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1171,37 +1326,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS API Gateway</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
-  				data-href="../aws_aurora_serverless_v2"
-  				data-tags="AWS"
-  				data-name="AWS Aurora Serverless V2"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/aws_aurora_serverless_v2/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">AWS Aurora Serverless V2</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title="The displayed metrics of AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway in handling API requests and traffic management." class="fth-integration-desc">The displayed metrics of AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway in handling API requests and traffic management.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1220,7 +1345,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_auto_scaling"
   				data-tags="AWS"
   				data-name="AWS Auto Scaling"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
+  				data-summary="AWS Auto Scaling, including instance counts, capacity units, warm pools, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1231,7 +1356,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Auto Scaling</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title="AWS Auto Scaling, including instance counts, capacity units, warm pools, etc." class="fth-integration-desc">AWS Auto Scaling, including instance counts, capacity units, warm pools, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1280,7 +1405,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_cloudfront"
   				data-tags="AWS"
   				data-name="AWS CloudFront"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1291,7 +1416,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS CloudFront</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network." class="fth-integration-desc">The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1310,7 +1435,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_dms"
   				data-tags="AWS"
   				data-name="AWS DMS"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="The metrics displayed for AWS DMS include data migration speed, latency, data consistency, and migration success rate. These metrics reflect the performance and reliability of DMS during database migration and replication."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1321,7 +1446,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DMS</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="The metrics displayed for AWS DMS include data migration speed, latency, data consistency, and migration success rate. These metrics reflect the performance and reliability of DMS during database migration and replication." class="fth-integration-desc">The metrics displayed for AWS DMS include data migration speed, latency, data consistency, and migration success rate. These metrics reflect the performance and reliability of DMS during database migration and replication.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1340,7 +1465,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_documentdb"
   				data-tags="AWS"
   				data-name="AWS DocumentDB"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。"
+  				data-summary="The metrics displayed for AWS DocumentDB include read and write throughput, query latency, and scalability."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1351,7 +1476,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DocumentDB</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance。</div>
+                            <div title="The metrics displayed for AWS DocumentDB include read and write throughput, query latency, and scalability." class="fth-integration-desc">The metrics displayed for AWS DocumentDB include read and write throughput, query latency, and scalability.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1370,7 +1495,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_dynamodb"
   				data-tags="AWS"
   				data-name="AWS DynamoDB"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance ."
+  				data-summary="The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1381,7 +1506,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DynamoDB</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance ." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .</div>
+                            <div title="The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access." class="fth-integration-desc">The metrics displayed for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1400,7 +1525,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_dynamodb_DAX"
   				data-tags="AWS"
   				data-name="AWS DynamoDB DAX"
-  				data-summary="The display metrics of AWS DynamoDB DAX include CPU usage of nodes or clusters, number of bytes received or sent on all network interfaces, number of packets, etc. These metrics reflect the running status of DynamoDB DAX."
+  				data-summary="The metrics displayed for AWS DynamoDB DAX include CPU utilization of nodes or clusters, bytes received or transmitted on all network interfaces, number of packets, etc. These metrics reflect the operational status of DynamoDB DAX."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1411,7 +1536,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS DynamoDB DAX</div>
-                            <div title="The display metrics of AWS DynamoDB DAX include CPU usage of nodes or clusters, number of bytes received or sent on all network interfaces, number of packets, etc. These metrics reflect the running status of DynamoDB DAX." class="fth-integration-desc">The display metrics of AWS DynamoDB DAX include CPU usage of nodes or clusters, number of bytes received or sent on all network interfaces, number of packets, etc. These metrics reflect the running status of DynamoDB DAX.</div>
+                            <div title="The metrics displayed for AWS DynamoDB DAX include CPU utilization of nodes or clusters, bytes received or transmitted on all network interfaces, number of packets, etc. These metrics reflect the operational status of DynamoDB DAX." class="fth-integration-desc">The metrics displayed for AWS DynamoDB DAX include CPU utilization of nodes or clusters, bytes received or transmitted on all network interfaces, number of packets, etc. These metrics reflect the operational status of DynamoDB DAX.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1430,7 +1555,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_ec2"
   				data-tags="AWS"
   				data-name="AWS EC2"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="Use the script packages in the Script Market series "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1441,7 +1566,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS EC2</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="Use the script packages in the Script Market series "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the Script Market series "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1460,7 +1585,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_ec2_spot"
   				data-tags="AWS"
   				data-name="Amazon EC2 Spot"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
+  				data-summary=" Amazon EC2 Spot, including request capacity pools, target capacity pools, and terminated capacity."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1471,7 +1596,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Amazon EC2 Spot</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title=" Amazon EC2 Spot, including request capacity pools, target capacity pools, and terminated capacity." class="fth-integration-desc"> Amazon EC2 Spot, including request capacity pools, target capacity pools, and terminated capacity.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1490,7 +1615,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_ecs"
   				data-tags="AWS"
   				data-name="AWS ECS"
-  				data-summary="The Amazon ECS feature is integrated with the Amazon Cloud Technology Fargate serverless computing engine, using observation clouds to monitor the operational status of its services."
+  				data-summary="Amazon ECS features integrated with the Amazon Web Services Fargate serverless computing engine, monitored using Guance for service runtime."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1501,7 +1626,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ECS</div>
-                            <div title="The Amazon ECS feature is integrated with the Amazon Cloud Technology Fargate serverless computing engine, using observation clouds to monitor the operational status of its services." class="fth-integration-desc">The Amazon ECS feature is integrated with the Amazon Cloud Technology Fargate serverless computing engine, using observation clouds to monitor the operational status of its services.</div>
+                            <div title="Amazon ECS features integrated with the Amazon Web Services Fargate serverless computing engine, monitored using Guance for service runtime." class="fth-integration-desc">Amazon ECS features integrated with the Amazon Web Services Fargate serverless computing engine, monitored using Guance for service runtime.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1520,7 +1645,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_elasticache_redis"
   				data-tags="AWS"
   				data-name="AWS ElastiCache Redis"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="Use the script market "Guance Cloud Sync" series script packages to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1531,7 +1656,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ElastiCache Redis</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="Use the script market "Guance Cloud Sync" series script packages to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script market "Guance Cloud Sync" series script packages to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1550,7 +1675,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_elasticache_serverless"
   				data-tags="AWS"
   				data-name="AWS ElastiCache Serverless"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="Use the script packages in the Script Market of Guance to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1561,7 +1686,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ElastiCache Serverless</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="Use the script packages in the Script Market of Guance to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the Script Market of Guance to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1580,18 +1705,18 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_elb"
   				data-tags="AWS"
   				data-name="AWS ELB"
-  				data-summary="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="Use the script packages in the script market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/aws_api_gateway/icon.png"
+									src="../icon/aws_elb/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS ELB</div>
-                            <div title="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="Use the script packages in the script market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1610,7 +1735,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_emr"
   				data-tags="AWS"
   				data-name="AWS EMR"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
+  				data-summary="Use the cloud synchronization script package from the Script Market to sync cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1621,7 +1746,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS EMR</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title="Use the cloud synchronization script package from the Script Market to sync cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the cloud synchronization script package from the Script Market to sync cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1640,7 +1765,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_eventbridge"
   				data-tags="AWS"
   				data-name="AWS EventBridge"
-  				data-summary="Use the「Guance   Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance ."
+  				data-summary="The displayed Metrics of AWS EventBridge include event delivery latency, throughput, event scale, and scalability. These Metrics reflect the performance and reliability of EventBridge in processing large-scale event streams and real-time data delivery."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1651,7 +1776,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS EventBridge</div>
-                            <div title="Use the「Guance   Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance ." class="fth-integration-desc">Use the「Guance   Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .</div>
+                            <div title="The displayed Metrics of AWS EventBridge include event delivery latency, throughput, event scale, and scalability. These Metrics reflect the performance and reliability of EventBridge in processing large-scale event streams and real-time data delivery." class="fth-integration-desc">The displayed Metrics of AWS EventBridge include event delivery latency, throughput, event scale, and scalability. These Metrics reflect the performance and reliability of EventBridge in processing large-scale event streams and real-time data delivery.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1667,10 +1792,10 @@ Guance has the ability of full stack data collection, and now supports about 320
   		
   			<div
   				class="fth-integration-list-item"
-  				data-href="../aws_firehose_http_endpoint"
+  				data-href="../aws_hirehose_http_endpoint"
   				data-tags="Amazon Firehose,HTTP Endpoint,Kinesis Data Stream"
   				data-name="AWS Firehose HTTP Endpoint"
-  				data-summary="AWS Kinesis Firehose Logging and Metrics Data Reception Guide"
+  				data-summary="Send Firehose logs or metrics to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1681,7 +1806,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Firehose HTTP Endpoint</div>
-                            <div title="AWS Kinesis Firehose Logging and Metrics Data Reception Guide" class="fth-integration-desc">AWS Kinesis Firehose Logging and Metrics Data Reception Guide</div>
+                            <div title="Send Firehose logs or metrics to Guance" class="fth-integration-desc">Send Firehose logs or metrics to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1700,7 +1825,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_kinesis"
   				data-tags="AWS"
   				data-name="AWS Kinesis"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1711,7 +1836,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Kinesis</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1730,7 +1855,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_kinesis_analytics"
   				data-tags="AWS"
   				data-name="AWS KinesisAnalytics"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
+  				data-summary="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1741,7 +1866,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS KinesisAnalytics</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1760,7 +1885,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_lambda"
   				data-tags="AWS"
   				data-name="AWS Lambda"
-  				data-summary="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="The displayed metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1771,7 +1896,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Lambda</div>
-                            <div title="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="The displayed metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions." class="fth-integration-desc">The displayed metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1790,7 +1915,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_mediaconvert"
   				data-tags="AWS"
   				data-name="AWS MediaConvert"
-  				data-summary="AWS MediaConvert, including data transfer, video errors, job count, padding, etc."
+  				data-summary="AWS MediaConvert, including data transfer, video errors, job counts, padding, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1801,7 +1926,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS MediaConvert</div>
-                            <div title="AWS MediaConvert, including data transfer, video errors, job count, padding, etc." class="fth-integration-desc">AWS MediaConvert, including data transfer, video errors, job count, padding, etc.</div>
+                            <div title="AWS MediaConvert, including data transfer, video errors, job counts, padding, etc." class="fth-integration-desc">AWS MediaConvert, including data transfer, video errors, job counts, padding, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1820,7 +1945,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_memorydb"
   				data-tags="AWS"
   				data-name="AWS MemoryDB"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
+  				data-summary="Use the script packages in the script market series "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1831,7 +1956,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS MemoryDB</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title="Use the script packages in the script market series "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market series "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1850,7 +1975,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_mq_rabbitmq"
   				data-tags="AWS"
   				data-name="Amazon MQ for RabbitMQ"
-  				data-summary="Amazon MQ supports industry standard APIs and protocols to manage and maintain message brokers, and automatically provides infrastructure for high availability."
+  				data-summary="Amazon MQ supports industry-standard APIs and protocols, manages the management and maintenance of message brokers, and automatically provides infrastructure for high availability."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1861,7 +1986,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Amazon MQ for RabbitMQ</div>
-                            <div title="Amazon MQ supports industry standard APIs and protocols to manage and maintain message brokers, and automatically provides infrastructure for high availability." class="fth-integration-desc">Amazon MQ supports industry standard APIs and protocols to manage and maintain message brokers, and automatically provides infrastructure for high availability.</div>
+                            <div title="Amazon MQ supports industry-standard APIs and protocols, manages the management and maintenance of message brokers, and automatically provides infrastructure for high availability." class="fth-integration-desc">Amazon MQ supports industry-standard APIs and protocols, manages the management and maintenance of message brokers, and automatically provides infrastructure for high availability.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1880,7 +2005,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_msk"
   				data-tags="AWS"
   				data-name="AWS MSK"
-  				data-summary="AWS MSK metrics collection"
+  				data-summary="Use script packages from the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1891,7 +2016,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS MSK</div>
-                            <div title="AWS MSK metrics collection" class="fth-integration-desc">AWS MSK metrics collection</div>
+                            <div title="Use script packages from the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use script packages from the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1910,7 +2035,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_neptune_cluster"
   				data-tags="AWS"
   				data-name="AWS Neptune Cluster"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
+  				data-summary="The displayed Metrics of the AWS Neptune Cluster include cold start time, execution time, concurrent executions, and memory usage. These Metrics reflect the response speed, scalability, and resource utilization of the Neptune Cluster function."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1921,7 +2046,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Neptune Cluster</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title="The displayed Metrics of the AWS Neptune Cluster include cold start time, execution time, concurrent executions, and memory usage. These Metrics reflect the response speed, scalability, and resource utilization of the Neptune Cluster function." class="fth-integration-desc">The displayed Metrics of the AWS Neptune Cluster include cold start time, execution time, concurrent executions, and memory usage. These Metrics reflect the response speed, scalability, and resource utilization of the Neptune Cluster function.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1940,7 +2065,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_opensearch"
   				data-tags="AWS"
   				data-name="AWS OpenSearch"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance"
+  				data-summary="AWS OpenSearch, including connection counts, request numbers, latency, and slow queries."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1951,7 +2076,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS OpenSearch</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance</div>
+                            <div title="AWS OpenSearch, including connection counts, request numbers, latency, and slow queries." class="fth-integration-desc">AWS OpenSearch, including connection counts, request numbers, latency, and slow queries.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1970,7 +2095,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_rds_mysql"
   				data-tags="AWS"
   				data-name="AWS RDS MySQL"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="Use script packages from the script market in the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1981,7 +2106,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS RDS MySQL</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="Use script packages from the script market in the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use script packages from the script market in the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2000,7 +2125,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_redshift"
   				data-tags="AWS"
   				data-name="AWS Redshift"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance ."
+  				data-summary="The core performance Metrics of AWS Redshift include query performance, disk space usage, CPU utilization, database connections, and disk I/O operations. These are key Metrics for evaluating and optimizing the performance of a data warehouse."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2011,7 +2136,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Redshift</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance ." class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance .</div>
+                            <div title="The core performance Metrics of AWS Redshift include query performance, disk space usage, CPU utilization, database connections, and disk I/O operations. These are key Metrics for evaluating and optimizing the performance of a data warehouse." class="fth-integration-desc">The core performance Metrics of AWS Redshift include query performance, disk space usage, CPU utilization, database connections, and disk I/O operations. These are key Metrics for evaluating and optimizing the performance of a data warehouse.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2030,7 +2155,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_s3"
   				data-tags="AWS"
   				data-name="AWS S3"
-  				data-summary="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud"
+  				data-summary="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2041,7 +2166,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS S3</div>
-                            <div title="Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud" class="fth-integration-desc">Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud</div>
+                            <div title="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2060,7 +2185,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_sqs"
   				data-tags="AWS"
   				data-name="AWS Simple Queue Service"
-  				data-summary="AWS Simple Queue Service displaed metrics include the approximate age of the oldest non-deleted message in the queue, the number of messages in the queue that are delayed and not available for reading immediately, the number of messages that are in flight, the number of messages to be processed, and so on."
+  				data-summary="The displayed metrics of AWS Simple Queue Service include the approximate existence time of the oldest undeleleted message in the queue, the number of delayed messages that cannot be read immediately, the number of messages in flight state, the number of messages that can be retrieved from the queue, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2071,7 +2196,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Simple Queue Service</div>
-                            <div title="AWS Simple Queue Service displaed metrics include the approximate age of the oldest non-deleted message in the queue, the number of messages in the queue that are delayed and not available for reading immediately, the number of messages that are in flight, the number of messages to be processed, and so on." class="fth-integration-desc">AWS Simple Queue Service displaed metrics include the approximate age of the oldest non-deleted message in the queue, the number of messages in the queue that are delayed and not available for reading immediately, the number of messages that are in flight, the number of messages to be processed, and so on.</div>
+                            <div title="The displayed metrics of AWS Simple Queue Service include the approximate existence time of the oldest undeleleted message in the queue, the number of delayed messages that cannot be read immediately, the number of messages in flight state, the number of messages that can be retrieved from the queue, etc." class="fth-integration-desc">The displayed metrics of AWS Simple Queue Service include the approximate existence time of the oldest undeleleted message in the queue, the number of delayed messages that cannot be read immediately, the number of messages in flight state, the number of messages that can be retrieved from the queue, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2090,7 +2215,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../aws_timestream"
   				data-tags="AWS"
   				data-name="AWS Timestream"
-  				data-summary="AWS Timestream displays the metrics include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and the current AWS account, the time elapsed for successful requests and the number of samples, the amount of data stored in memory, and the amount of data stored in magnetic storage."
+  				data-summary="The metrics displayed for AWS Timestream include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and account, the elapsed time and sample count of successful requests, the amount of data stored in memory, and the amount of data stored on magnetic storage."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2101,7 +2226,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Timestream</div>
-                            <div title="AWS Timestream displays the metrics include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and the current AWS account, the time elapsed for successful requests and the number of samples, the amount of data stored in memory, and the amount of data stored in magnetic storage." class="fth-integration-desc">AWS Timestream displays the metrics include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and the current AWS account, the time elapsed for successful requests and the number of samples, the amount of data stored in memory, and the amount of data stored in magnetic storage.</div>
+                            <div title="The metrics displayed for AWS Timestream include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and account, the elapsed time and sample count of successful requests, the amount of data stored in memory, and the amount of data stored on magnetic storage." class="fth-integration-desc">The metrics displayed for AWS Timestream include the number of system errors (internal service errors), the total number of invalid requests for the current AWS region and account, the elapsed time and sample count of successful requests, the amount of data stored in memory, and the amount of data stored on magnetic storage.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2120,7 +2245,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../awslambda"
   				data-tags="AWS"
   				data-name="AWS Lambda Extension"
-  				data-summary="Extend data collection through AWS Lambda"
+  				data-summary="Collect data using AWS Lambda Extension"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2131,7 +2256,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">AWS Lambda Extension</div>
-                            <div title="Extend data collection through AWS Lambda" class="fth-integration-desc">Extend data collection through AWS Lambda</div>
+                            <div title="Collect data using AWS Lambda Extension" class="fth-integration-desc">Collect data using AWS Lambda Extension</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2150,7 +2275,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../azure_mysql"
   				data-tags="AZURE"
   				data-name="Azure MySQL"
-  				data-summary="Collect Azure MySQL metric data"
+  				data-summary="Collect Azure MySQL metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2161,7 +2286,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Azure MySQL</div>
-                            <div title="Collect Azure MySQL metric data" class="fth-integration-desc">Collect Azure MySQL metric data</div>
+                            <div title="Collect Azure MySQL metrics data" class="fth-integration-desc">Collect Azure MySQL metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2178,9 +2303,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../azure_public_ip"
-  				data-tags="AZURE"
-  				data-name="Azure Public Ip Address"
-  				data-summary="Collect Azure Public Ip Address metric data"
+  				data-tags="AZURE,Network"
+  				data-name="Azure Public IP Address"
+  				data-summary="Collect Azure Public IP Address Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2190,8 +2315,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Azure Public Ip Address</div>
-                            <div title="Collect Azure Public Ip Address metric data" class="fth-integration-desc">Collect Azure Public Ip Address metric data</div>
+                            <div class="fth-integration-name">Azure Public IP Address</div>
+                            <div title="Collect Azure Public IP Address Metrics data" class="fth-integration-desc">Collect Azure Public IP Address Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2210,7 +2335,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../azure_sqlserver"
   				data-tags="AZURE"
   				data-name="Azure SQL Servers"
-  				data-summary="Collect Azure SQL Servers metric data"
+  				data-summary="Collect metrics data from Azure SQL Servers"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2221,7 +2346,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Azure SQL Servers</div>
-                            <div title="Collect Azure SQL Servers metric data" class="fth-integration-desc">Collect Azure SQL Servers metric data</div>
+                            <div title="Collect metrics data from Azure SQL Servers" class="fth-integration-desc">Collect metrics data from Azure SQL Servers</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2240,7 +2365,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../azure_vm"
   				data-tags="AZURE"
   				data-name="Azure Virtual Machines"
-  				data-summary="Collect Azure Virtual Machines metric data"
+  				data-summary="Collect metrics data from Azure Virtual Machines"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2251,7 +2376,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Azure Virtual Machines</div>
-                            <div title="Collect Azure Virtual Machines metric data" class="fth-integration-desc">Collect Azure Virtual Machines metric data</div>
+                            <div title="Collect metrics data from Azure Virtual Machines" class="fth-integration-desc">Collect metrics data from Azure Virtual Machines</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2268,9 +2393,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../beats_output"
-  				data-tags="LOG"
+  				data-tags="Logs"
   				data-name="Filebeat"
-  				data-summary="Receive log collected by Filebeat "
+  				data-summary="Receive log data collected by Filebeat"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2281,7 +2406,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Filebeat</div>
-                            <div title="Receive log collected by Filebeat " class="fth-integration-desc">Receive log collected by Filebeat </div>
+                            <div title="Receive log data collected by Filebeat" class="fth-integration-desc">Receive log data collected by Filebeat</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2298,9 +2423,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../cassandra"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="Cassandra"
-  				data-summary="Collect Cassandra metrics"
+  				data-summary="Collect Metrics data from Cassandra"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2311,7 +2436,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Cassandra</div>
-                            <div title="Collect Cassandra metrics" class="fth-integration-desc">Collect Cassandra metrics</div>
+                            <div title="Collect Metrics data from Cassandra" class="fth-integration-desc">Collect Metrics data from Cassandra</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2328,9 +2453,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../cat"
-  				data-tags="TRACING,APM"
+  				data-tags="Trace Analysis"
   				data-name="Dianping CAT"
-  				data-summary="The performance, capacity, and business indicator monitoring system of Meituan Dianping"
+  				data-summary="A performance, capacity, and business metrics monitoring system by Meituan Dianping"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2341,7 +2466,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Dianping CAT</div>
-                            <div title="The performance, capacity, and business indicator monitoring system of Meituan Dianping" class="fth-integration-desc">The performance, capacity, and business indicator monitoring system of Meituan Dianping</div>
+                            <div title="A performance, capacity, and business metrics monitoring system by Meituan Dianping" class="fth-integration-desc">A performance, capacity, and business metrics monitoring system by Meituan Dianping</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2360,7 +2485,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../chrony"
   				data-tags=""
   				data-name="Chrony"
-  				data-summary="Collect metrics related to Chrony server"
+  				data-summary="Collect metrics data related to Chrony server"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2371,7 +2496,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Chrony</div>
-                            <div title="Collect metrics related to Chrony server" class="fth-integration-desc">Collect metrics related to Chrony server</div>
+                            <div title="Collect metrics data related to Chrony server" class="fth-integration-desc">Collect metrics data related to Chrony server</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2388,9 +2513,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../clickhousev1"
-  				data-tags="DATA STORES"
+  				data-tags="database"
   				data-name="ClickHouse"
-  				data-summary="Collect metrics of ClickHouse"
+  				data-summary="Collect metrics data from ClickHouse"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2401,7 +2526,37 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">ClickHouse</div>
-                            <div title="Collect metrics of ClickHouse" class="fth-integration-desc">Collect metrics of ClickHouse</div>
+                            <div title="Collect metrics data from ClickHouse" class="fth-integration-desc">Collect metrics data from ClickHouse</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../cloud-charges"
+  				data-tags=""
+  				data-name="Cloud Billing Cost Inquiry"
+  				data-summary="Cloud billing cost inquiry, which can query public cloud billing information from AWS, Huawei Cloud, Alibaba Cloud, Tencent Cloud, etc."
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/asset//icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Cloud Billing Cost Inquiry</div>
+                            <div title="Cloud billing cost inquiry, which can query public cloud billing information from AWS, Huawei Cloud, Alibaba Cloud, Tencent Cloud, etc." class="fth-integration-desc">Cloud billing cost inquiry, which can query public cloud billing information from AWS, Huawei Cloud, Alibaba Cloud, Tencent Cloud, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2420,7 +2575,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../cloudprober"
   				data-tags=""
   				data-name="Cloudprober"
-  				data-summary="Collect Cloudprober data"
+  				data-summary="Receive Cloudprober data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2431,7 +2586,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Cloudprober</div>
-                            <div title="Collect Cloudprober data" class="fth-integration-desc">Collect Cloudprober data</div>
+                            <div title="Receive Cloudprober data" class="fth-integration-desc">Receive Cloudprober data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2448,9 +2603,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../cockroachdb"
-  				data-tags="DATA STORES"
+  				data-tags="database"
   				data-name="CockroachDB"
-  				data-summary="Collect CockroachDB metrics"
+  				data-summary="Collect metrics data from CockroachDB"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2461,7 +2616,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">CockroachDB</div>
-                            <div title="Collect CockroachDB metrics" class="fth-integration-desc">Collect CockroachDB metrics</div>
+                            <div title="Collect metrics data from CockroachDB" class="fth-integration-desc">Collect metrics data from CockroachDB</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2478,9 +2633,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../confluent_cloud"
-  				data-tags="MIDDLEWARE"
+  				data-tags="Middleware"
   				data-name="Confluent Cloud"
-  				data-summary="Collecting Kafka metric data from Confluent Cloud"
+  				data-summary="Collect Kafka Metrics data from Confluent Cloud"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2491,7 +2646,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Confluent Cloud</div>
-                            <div title="Collecting Kafka metric data from Confluent Cloud" class="fth-integration-desc">Collecting Kafka metric data from Confluent Cloud</div>
+                            <div title="Collect Kafka Metrics data from Confluent Cloud" class="fth-integration-desc">Collect Kafka Metrics data from Confluent Cloud</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2508,9 +2663,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../consul"
-  				data-tags="MIDDLEWARE"
+  				data-tags="Middleware"
   				data-name="Consul"
-  				data-summary="Collect metrics of Consul"
+  				data-summary="Collect metrics data from Consul"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2521,7 +2676,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Consul</div>
-                            <div title="Collect metrics of Consul" class="fth-integration-desc">Collect metrics of Consul</div>
+                            <div title="Collect metrics data from Consul" class="fth-integration-desc">Collect metrics data from Consul</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2538,9 +2693,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../container-log"
-  				data-tags="LOG,CONTAINER,KUBERNETES"
+  				data-tags="Logs,Container,KUBERNETES"
   				data-name="Kubernetes Logs"
-  				data-summary="Collect container and Kubernetes log"
+  				data-summary="Collecting Container and Kubernetes Log Data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2551,7 +2706,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes Logs</div>
-                            <div title="Collect container and Kubernetes log" class="fth-integration-desc">Collect container and Kubernetes log</div>
+                            <div title="Collecting Container and Kubernetes Log Data" class="fth-integration-desc">Collecting Container and Kubernetes Log Data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2568,9 +2723,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../container"
-  				data-tags="KUBERNETES,CONTAINER"
+  				data-tags="KUBERNETES,Container"
   				data-name="Kubernetes"
-  				data-summary="Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud."
+  				data-summary="Collect metrics, objects, and log data from Container and Kubernetes and report to Guance."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2581,7 +2736,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes</div>
-                            <div title="Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud." class="fth-integration-desc">Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud.</div>
+                            <div title="Collect metrics, objects, and log data from Container and Kubernetes and report to Guance." class="fth-integration-desc">Collect metrics, objects, and log data from Container and Kubernetes and report to Guance.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2598,9 +2753,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../coredns"
-  				data-tags="MIDDLEWARE"
+  				data-tags="Middleware"
   				data-name="CoreDNS"
-  				data-summary="Collect CoreDNS metrics and logs"
+  				data-summary="Collect metrics data from CoreDNS"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2611,7 +2766,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">CoreDNS</div>
-                            <div title="Collect CoreDNS metrics and logs" class="fth-integration-desc">Collect CoreDNS metrics and logs</div>
+                            <div title="Collect metrics data from CoreDNS" class="fth-integration-desc">Collect metrics data from CoreDNS</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2630,7 +2785,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../couchbase-prom"
   				data-tags=""
   				data-name="CouchBase Exporter"
-  				data-summary="The collector can take many metrics from CouchBase instance, such as the memory and disk used by the data, the number of current connections and other metrics, and collect the metrics into the observation cloud to help monitor and analyze various anomalies in CouchBase. "
+  				data-summary="The collector can gather many metrics from a CouchBase instance, such as memory and disk usage for data, current number of connections, and more. It sends these metrics to Guance to help monitor and analyze various anomalies in CouchBase."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2641,37 +2796,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">CouchBase Exporter</div>
-                            <div title="The collector can take many metrics from CouchBase instance, such as the memory and disk used by the data, the number of current connections and other metrics, and collect the metrics into the observation cloud to help monitor and analyze various anomalies in CouchBase. " class="fth-integration-desc">The collector can take many metrics from CouchBase instance, such as the memory and disk used by the data, the number of current connections and other metrics, and collect the metrics into the observation cloud to help monitor and analyze various anomalies in CouchBase. </div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
-  				data-href="../couchbase"
-  				data-tags="DATA STORES"
-  				data-name="Couchbase"
-  				data-summary="Collect Couchbase server metrics"
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/couchbase/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Couchbase</div>
-                            <div title="Collect Couchbase server metrics" class="fth-integration-desc">Collect Couchbase server metrics</div>
+                            <div title="The collector can gather many metrics from a CouchBase instance, such as memory and disk usage for data, current number of connections, and more. It sends these metrics to Guance to help monitor and analyze various anomalies in CouchBase." class="fth-integration-desc">The collector can gather many metrics from a CouchBase instance, such as memory and disk usage for data, current number of connections, and more. It sends these metrics to Guance to help monitor and analyze various anomalies in CouchBase.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2688,9 +2813,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../couchdb"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="CouchDB"
-  				data-summary="Collect CouchDB server metrics"
+  				data-summary="Collect Metrics Data from CouchDB"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2701,7 +2826,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">CouchDB</div>
-                            <div title="Collect CouchDB server metrics" class="fth-integration-desc">Collect CouchDB server metrics</div>
+                            <div title="Collect Metrics Data from CouchDB" class="fth-integration-desc">Collect Metrics Data from CouchDB</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2720,7 +2845,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../cpu"
   				data-tags="HOST"
   				data-name="CPU"
-  				data-summary="Collect metric of cpu"
+  				data-summary="Collect CPU Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2731,7 +2856,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">CPU</div>
-                            <div title="Collect metric of cpu" class="fth-integration-desc">Collect metric of cpu</div>
+                            <div title="Collect CPU Metrics data" class="fth-integration-desc">Collect CPU Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2748,9 +2873,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../db2"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="DB2"
-  				data-summary="Collect IBM DB2 metrics"
+  				data-summary="Collect metrics data from IBM DB2"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2761,7 +2886,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DB2</div>
-                            <div title="Collect IBM DB2 metrics" class="fth-integration-desc">Collect IBM DB2 metrics</div>
+                            <div title="Collect metrics data from IBM DB2" class="fth-integration-desc">Collect metrics data from IBM DB2</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2778,9 +2903,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-attach"
-  				data-tags="APM,TRACING,JAVA"
-  				data-name="DDTrace Attach "
-  				data-summary="Attach DDTrace to Java applications"
+  				data-tags="Tracing,JAVA"
+  				data-name="Automatic Injection of DDTrace-Java Agent"
+  				data-summary="DDTrace Java Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2790,8 +2915,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">DDTrace Attach </div>
-                            <div title="Attach DDTrace to Java applications" class="fth-integration-desc">Attach DDTrace to Java applications</div>
+                            <div class="fth-integration-name">Automatic Injection of DDTrace-Java Agent</div>
+                            <div title="DDTrace Java Integration" class="fth-integration-desc">DDTrace Java Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2808,9 +2933,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-cpp"
-  				data-tags="APM,TRACING,C/C++"
+  				data-tags="Tracing,C/C++"
   				data-name="DDTrace C++"
-  				data-summary="Tracing C++ Application with DDTrace"
+  				data-summary="DDTrace C++ Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2821,7 +2946,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace C++</div>
-                            <div title="Tracing C++ Application with DDTrace" class="fth-integration-desc">Tracing C++ Application with DDTrace</div>
+                            <div title="DDTrace C++ Integration" class="fth-integration-desc">DDTrace C++ Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2838,9 +2963,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-ext-java"
-  				data-tags="DDTRACE,APM,TRACING"
-  				data-name="DDTrace Extensions"
-  				data-summary="GuanceCloud Extensions on DDTrace"
+  				data-tags="DDTRACE,Trace Analysis"
+  				data-name="DDTrace Extension"
+  				data-summary="Guance extends DDTrace support for components"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2850,8 +2975,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">DDTrace Extensions</div>
-                            <div title="GuanceCloud Extensions on DDTrace" class="fth-integration-desc">GuanceCloud Extensions on DDTrace</div>
+                            <div class="fth-integration-name">DDTrace Extension</div>
+                            <div title="Guance extends DDTrace support for components" class="fth-integration-desc">Guance extends DDTrace support for components</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2868,9 +2993,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-golang"
-  				data-tags="DDTRACE,GOLANG,APM,TRACING"
+  				data-tags="DDTRACE,GOLANG,Tracing"
   				data-name="DDTrace Golang"
-  				data-summary="Tracing Golang application with DDTrace"
+  				data-summary="Integration of DDTrace with Golang"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2881,7 +3006,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Golang</div>
-                            <div title="Tracing Golang application with DDTrace" class="fth-integration-desc">Tracing Golang application with DDTrace</div>
+                            <div title="Integration of DDTrace with Golang" class="fth-integration-desc">Integration of DDTrace with Golang</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2898,9 +3023,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-java"
-  				data-tags="DDTRACE,JAVA,APM,TRACING"
+  				data-tags="DDTRACE,JAVA,Trace Collection"
   				data-name="DDTrace Java"
-  				data-summary="Tracing Java application with DDTrace"
+  				data-summary="DDTrace Java Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2911,7 +3036,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Java</div>
-                            <div title="Tracing Java application with DDTrace" class="fth-integration-desc">Tracing Java application with DDTrace</div>
+                            <div title="DDTrace Java Integration" class="fth-integration-desc">DDTrace Java Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2928,9 +3053,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-jmxfetch"
-  				data-tags="DDTRACE,JAVA"
+  				data-tags="DDTRACE,JAVA,Tracing"
   				data-name="DDTrace JMX"
-  				data-summary="Export JVM metrics with DDTrace JMX"
+  				data-summary="DDTrace JMX Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2941,7 +3066,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace JMX</div>
-                            <div title="Export JVM metrics with DDTrace JMX" class="fth-integration-desc">Export JVM metrics with DDTrace JMX</div>
+                            <div title="DDTrace JMX Integration" class="fth-integration-desc">DDTrace JMX Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2958,9 +3083,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-nodejs"
-  				data-tags="DDTRACE,NODEJS,APM,TRACING"
+  				data-tags="DDTRACE,NODEJS,Tracing"
   				data-name="DDTrace NodeJS"
-  				data-summary="Tracing NodeJS applications with DDTrace"
+  				data-summary="DDTrace NodeJS Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2971,7 +3096,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace NodeJS</div>
-                            <div title="Tracing NodeJS applications with DDTrace" class="fth-integration-desc">Tracing NodeJS applications with DDTrace</div>
+                            <div title="DDTrace NodeJS Integration" class="fth-integration-desc">DDTrace NodeJS Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2988,9 +3113,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-php"
-  				data-tags="DDTRACE,PHP,TRACING,APM"
+  				data-tags="DDTRACE,PHP,Tracing"
   				data-name="DDTrace PHP"
-  				data-summary="Tracing PHP applications with DDTrace"
+  				data-summary="DDTrace PHP Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3001,7 +3126,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace PHP</div>
-                            <div title="Tracing PHP applications with DDTrace" class="fth-integration-desc">Tracing PHP applications with DDTrace</div>
+                            <div title="DDTrace PHP Integration" class="fth-integration-desc">DDTrace PHP Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3018,9 +3143,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-python"
-  				data-tags="DDTRACE,PYTHON,APM,TRACING"
+  				data-tags="DDTRACE,PYTHON,Tracing"
   				data-name="DDTrace Python"
-  				data-summary="Tracing Python applications with DDTrace"
+  				data-summary="DDTrace Python Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3031,7 +3156,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Python</div>
-                            <div title="Tracing Python applications with DDTrace" class="fth-integration-desc">Tracing Python applications with DDTrace</div>
+                            <div title="DDTrace Python Integration" class="fth-integration-desc">DDTrace Python Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3048,9 +3173,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-ruby"
-  				data-tags="DDTRACE,RUBY,APM,TRACING"
+  				data-tags="DDTRACE,RUBY,Tracing"
   				data-name="DDTrace Ruby"
-  				data-summary="Tracing Ruby applications with DDTrace"
+  				data-summary="DDTrace Ruby Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3061,7 +3186,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">DDTrace Ruby</div>
-                            <div title="Tracing Ruby applications with DDTrace" class="fth-integration-desc">Tracing Ruby applications with DDTrace</div>
+                            <div title="DDTrace Ruby Integration" class="fth-integration-desc">DDTrace Ruby Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3078,7 +3203,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace"
-  				data-tags="APM,TRACING,DDTRACE"
+  				data-tags="DDTRACE,Trace Collection"
   				data-name="DDTrace"
   				data-summary="Receive APM data from DDTrace"
   			>
@@ -3108,9 +3233,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../dialtesting"
-  				data-tags="TESTING,NETWORK"
-  				data-name="Diatesting"
-  				data-summary="Obtain network performance through network dialing test"
+  				data-tags="Dial Testing,Network"
+  				data-name="Network Dial Testing"
+  				data-summary="Obtain network performance through network dial testing"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3120,8 +3245,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Diatesting</div>
-                            <div title="Obtain network performance through network dialing test" class="fth-integration-desc">Obtain network performance through network dialing test</div>
+                            <div class="fth-integration-name">Network Dial Testing</div>
+                            <div title="Obtain network performance through network dial testing" class="fth-integration-desc">Obtain network performance through network dial testing</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3138,9 +3263,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../dialtesting_json"
-  				data-tags="TESTING,NETWORK"
-  				data-name="Customize Dialtesting"
-  				data-summary="Customize your dialtesting task with local configurations"
+  				data-tags="Dial Testing,Network"
+  				data-name="Custom Dial Testing Tasks"
+  				data-summary="Customize dial testing collectors to tailor dial testing tasks"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3150,8 +3275,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Customize Dialtesting</div>
-                            <div title="Customize your dialtesting task with local configurations" class="fth-integration-desc">Customize your dialtesting task with local configurations</div>
+                            <div class="fth-integration-name">Custom Dial Testing Tasks</div>
+                            <div title="Customize dial testing collectors to tailor dial testing tasks" class="fth-integration-desc">Customize dial testing collectors to tailor dial testing tasks</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3168,9 +3293,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../disk"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Disk"
-  				data-summary="Collect metrics of disk"
+  				data-summary="Collect metrics data from disk"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3181,7 +3306,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Disk</div>
-                            <div title="Collect metrics of disk" class="fth-integration-desc">Collect metrics of disk</div>
+                            <div title="Collect metrics data from disk" class="fth-integration-desc">Collect metrics data from disk</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3198,9 +3323,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../diskio"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Disk IO"
-  				data-summary="Collect metrics of disk io"
+  				data-summary="Collect Disk IO Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3211,7 +3336,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Disk IO</div>
-                            <div title="Collect metrics of disk io" class="fth-integration-desc">Collect metrics of disk io</div>
+                            <div title="Collect Disk IO Metrics data" class="fth-integration-desc">Collect Disk IO Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3228,9 +3353,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../dk"
-  				data-tags="HOST"
-  				data-name="DataKit metrics"
-  				data-summary="Collect DataKit metrics"
+  				data-tags="Host"
+  				data-name="DataKit Self-Monitoring Metrics Collection"
+  				data-summary="Collecting DataKit runtime metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3240,8 +3365,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">DataKit metrics</div>
-                            <div title="Collect DataKit metrics" class="fth-integration-desc">Collect DataKit metrics</div>
+                            <div class="fth-integration-name">DataKit Self-Monitoring Metrics Collection</div>
+                            <div title="Collecting DataKit runtime metrics" class="fth-integration-desc">Collecting DataKit runtime metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3259,8 +3384,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../dm_v8"
   				data-tags=""
-  				data-name="Dameng Database（DM8）"
-  				data-summary="Collect information about Dameng Database metrics"
+  				data-name="Dameng Database (DM8)"
+  				data-summary="Collect runtime Metrics information from Dameng Database"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3270,8 +3395,38 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Dameng Database（DM8）</div>
-                            <div title="Collect information about Dameng Database metrics" class="fth-integration-desc">Collect information about Dameng Database metrics</div>
+                            <div class="fth-integration-name">Dameng Database (DM8)</div>
+                            <div title="Collect runtime Metrics information from Dameng Database" class="fth-integration-desc">Collect runtime Metrics information from Dameng Database</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../docker"
+  				data-tags="Container"
+  				data-name="Docker"
+  				data-summary="Collect metrics, objects, and log data from Docker Container"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/docker/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">Docker</div>
+                            <div title="Collect metrics, objects, and log data from Docker Container" class="fth-integration-desc">Collect metrics, objects, and log data from Docker Container</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3289,8 +3444,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../dongfangtong_ths"
   				data-tags=""
-  				data-name="Dongfangtong THS（TongHttpServer）"
-  				data-summary="Collect information about Dongfangtong THS（TongHttpServer） metrics"
+  				data-name="TongHttpServer (THS) by Dongfangtong"
+  				data-summary="Collect runtime Metrics information of TongHttpServer (THS) by Dongfangtong"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3300,8 +3455,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Dongfangtong THS（TongHttpServer）</div>
-                            <div title="Collect information about Dongfangtong THS（TongHttpServer） metrics" class="fth-integration-desc">Collect information about Dongfangtong THS（TongHttpServer） metrics</div>
+                            <div class="fth-integration-name">TongHttpServer (THS) by Dongfangtong</div>
+                            <div title="Collect runtime Metrics information of TongHttpServer (THS) by Dongfangtong" class="fth-integration-desc">Collect runtime Metrics information of TongHttpServer (THS) by Dongfangtong</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3319,8 +3474,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../dongfangtong_tweb"
   				data-tags=""
-  				data-name="Dongfangtong TWeb（TongWeb）"
-  				data-summary="Collect information about Dongfangtong TWeb（TongWeb） metrics and tracing"
+  				data-name="TongWeb"
+  				data-summary="Collect TongWeb runtime Metrics and tracing information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3330,8 +3485,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Dongfangtong TWeb（TongWeb）</div>
-                            <div title="Collect information about Dongfangtong TWeb（TongWeb） metrics and tracing" class="fth-integration-desc">Collect information about Dongfangtong TWeb（TongWeb） metrics and tracing</div>
+                            <div class="fth-integration-name">TongWeb</div>
+                            <div title="Collect TongWeb runtime Metrics and tracing information" class="fth-integration-desc">Collect TongWeb runtime Metrics and tracing information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3348,9 +3503,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../doris"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="Doris"
-  				data-summary="Collect metrics of Doris"
+  				data-summary="Collect metrics data from Doris"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3361,7 +3516,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Doris</div>
-                            <div title="Collect metrics of Doris" class="fth-integration-desc">Collect metrics of Doris</div>
+                            <div title="Collect metrics data from Doris" class="fth-integration-desc">Collect metrics data from Doris</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3380,7 +3535,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../dotnet"
   				data-tags=""
   				data-name=".NET"
-  				data-summary="Collect relevant metrics, traces, logs, and profiling information for.NET applications through DDTrace"
+  				data-summary="Collect related Metrics, Tracing, Logging, and Profiling information for .NET applications."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3391,7 +3546,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">.NET</div>
-                            <div title="Collect relevant metrics, traces, logs, and profiling information for.NET applications through DDTrace" class="fth-integration-desc">Collect relevant metrics, traces, logs, and profiling information for.NET applications through DDTrace</div>
+                            <div title="Collect related Metrics, Tracing, Logging, and Profiling information for .NET applications." class="fth-integration-desc">Collect related Metrics, Tracing, Logging, and Profiling information for .NET applications.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3410,7 +3565,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../ebpf"
   				data-tags="EBPF,NETWORK"
   				data-name="eBPF"
-  				data-summary="Collect Linux network data through eBPF"
+  				data-summary="Collect Linux network data via eBPF"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3421,7 +3576,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">eBPF</div>
-                            <div title="Collect Linux network data through eBPF" class="fth-integration-desc">Collect Linux network data through eBPF</div>
+                            <div title="Collect Linux network data via eBPF" class="fth-integration-desc">Collect Linux network data via eBPF</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3438,9 +3593,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ebpftrace"
-  				data-tags="APM,TRACING,EBPF"
+  				data-tags="Trace Linking,EBPF"
   				data-name="eBPF Tracing"
-  				data-summary="Associate eBPF span and generate trace"
+  				data-summary="Associate eBPF-collected link spans to generate traces"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3451,7 +3606,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">eBPF Tracing</div>
-                            <div title="Associate eBPF span and generate trace" class="fth-integration-desc">Associate eBPF span and generate trace</div>
+                            <div title="Associate eBPF-collected link spans to generate traces" class="fth-integration-desc">Associate eBPF-collected link spans to generate traces</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3468,9 +3623,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../elasticsearch"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="ElasticSearch"
-  				data-summary="Collect ElasticSearch metrics"
+  				data-summary="Collect metrics data from ElasticSearch"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3481,7 +3636,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">ElasticSearch</div>
-                            <div title="Collect ElasticSearch metrics" class="fth-integration-desc">Collect ElasticSearch metrics</div>
+                            <div title="Collect metrics data from ElasticSearch" class="fth-integration-desc">Collect metrics data from ElasticSearch</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3500,7 +3655,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../emqx"
   				data-tags=""
   				data-name="EMQX"
-  				data-summary="Collect EMQX collection, topics, subsriptions, message, package related metric information"
+  				data-summary="Collect metrics related to EMQX collection, topics, subscriptions, message, and packet"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3511,7 +3666,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">EMQX</div>
-                            <div title="Collect EMQX collection, topics, subsriptions, message, package related metric information" class="fth-integration-desc">Collect EMQX collection, topics, subsriptions, message, package related metric information</div>
+                            <div title="Collect metrics related to EMQX collection, topics, subscriptions, message, and packet" class="fth-integration-desc">Collect metrics related to EMQX collection, topics, subscriptions, message, and packet</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3528,9 +3683,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../etcd"
-  				data-tags="MIDDLEWARE"
+  				data-tags="Middleware"
   				data-name="etcd"
-  				data-summary="Collect etcd metrics"
+  				data-summary="Collect metrics data from etcd"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3541,7 +3696,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">etcd</div>
-                            <div title="Collect etcd metrics" class="fth-integration-desc">Collect etcd metrics</div>
+                            <div title="Collect metrics data from etcd" class="fth-integration-desc">Collect metrics data from etcd</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3560,7 +3715,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../exchange"
   				data-tags=""
   				data-name="Exchange"
-  				data-summary="Collect Exchange related metric information"
+  				data-summary="Collect metrics related to Exchange"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3571,7 +3726,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Exchange</div>
-                            <div title="Collect Exchange related metric information" class="fth-integration-desc">Collect Exchange related metric information</div>
+                            <div title="Collect metrics related to Exchange" class="fth-integration-desc">Collect metrics related to Exchange</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3590,7 +3745,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../external"
   				data-tags=""
   				data-name="External"
-  				data-summary="Start external program for collection"
+  				data-summary="Launch external programs for collection"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3601,37 +3756,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">External</div>
-                            <div title="Start external program for collection" class="fth-integration-desc">Start external program for collection</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
-  				data-href="../feishu_im"
-  				data-tags=""
-  				data-name="Lark and Exception Tracking Integration"
-  				data-summary="To get new issues from exception tracking more timely and conveniently, we can create a Lark, DingTalk or WeChat Work bot in the internal group to receive new issue alerts from exception tracking, or new reply alerts. This can help us handle issues in a timely manner. We can also quickly respond to issues by @bot, which can improve our exception handling efficiency."
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/feishu_im/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Lark and Exception Tracking Integration</div>
-                            <div title="To get new issues from exception tracking more timely and conveniently, we can create a Lark, DingTalk or WeChat Work bot in the internal group to receive new issue alerts from exception tracking, or new reply alerts. This can help us handle issues in a timely manner. We can also quickly respond to issues by @bot, which can improve our exception handling efficiency." class="fth-integration-desc">To get new issues from exception tracking more timely and conveniently, we can create a Lark, DingTalk or WeChat Work bot in the internal group to receive new issue alerts from exception tracking, or new reply alerts. This can help us handle issues in a timely manner. We can also quickly respond to issues by @bot, which can improve our exception handling efficiency.</div>
+                            <div title="Launch external programs for collection" class="fth-integration-desc">Launch external programs for collection</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3648,9 +3773,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../flinkv1"
-  				data-tags="MIDDLEWARE"
+  				data-tags="Middleware"
   				data-name="Flink"
-  				data-summary="Collect Flink metrics"
+  				data-summary="Collect metrics data from Flink"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3661,7 +3786,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Flink</div>
-                            <div title="Collect Flink metrics" class="fth-integration-desc">Collect Flink metrics</div>
+                            <div title="Collect metrics data from Flink" class="fth-integration-desc">Collect metrics data from Flink</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3680,7 +3805,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../fluent_bit"
   				data-tags=""
   				data-name="Fluent Bit"
-  				data-summary="FluentBit log collection, accepting log text data reported to the Guance"
+  				data-summary="Collect logs via Fluent Bit"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3691,7 +3816,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Fluent Bit</div>
-                            <div title="FluentBit log collection, accepting log text data reported to the Guance" class="fth-integration-desc">FluentBit log collection, accepting log text data reported to the Guance</div>
+                            <div title="Collect logs via Fluent Bit" class="fth-integration-desc">Collect logs via Fluent Bit</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3709,8 +3834,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../fluentd"
   				data-tags=""
-  				data-name="Fluentd Logs"
-  				data-summary="Collect Fluentd logs"
+  				data-name="Fluentd"
+  				data-summary="Collect logs from Fluentd"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3720,8 +3845,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Fluentd Logs</div>
-                            <div title="Collect Fluentd logs" class="fth-integration-desc">Collect Fluentd logs</div>
+                            <div class="fth-integration-name">Fluentd</div>
+                            <div title="Collect logs from Fluentd" class="fth-integration-desc">Collect logs from Fluentd</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3740,7 +3865,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../gitlab"
   				data-tags="GITLAB,CI/CD"
   				data-name="GitLab"
-  				data-summary="Collect GitLab metrics and logs"
+  				data-summary="Collect metrics data from GitLab"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3751,7 +3876,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">GitLab</div>
-                            <div title="Collect GitLab metrics and logs" class="fth-integration-desc">Collect GitLab metrics and logs</div>
+                            <div title="Collect metrics data from GitLab" class="fth-integration-desc">Collect metrics data from GitLab</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3770,7 +3895,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../golang"
   				data-tags=""
   				data-name="Golang"
-  				data-summary="Obtain metrics, link tracking, and log information for Golang applications"
+  				data-summary="Collect metrics, trace data, and log information from Golang applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3781,7 +3906,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Golang</div>
-                            <div title="Obtain metrics, link tracking, and log information for Golang applications" class="fth-integration-desc">Obtain metrics, link tracking, and log information for Golang applications</div>
+                            <div title="Collect metrics, trace data, and log information from Golang applications" class="fth-integration-desc">Collect metrics, trace data, and log information from Golang applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3798,9 +3923,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../gpu_smi"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="GPU"
-  				data-summary="Collect NVIDIA GPU metrics and logs"
+  				data-summary="Collect NVIDIA GPU Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3811,7 +3936,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">GPU</div>
-                            <div title="Collect NVIDIA GPU metrics and logs" class="fth-integration-desc">Collect NVIDIA GPU metrics and logs</div>
+                            <div title="Collect NVIDIA GPU Metrics data" class="fth-integration-desc">Collect NVIDIA GPU Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3830,7 +3955,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../grafana-guance-data-source"
   				data-tags=""
   				data-name="Grafana Guance Datasource"
-  				data-summary="Datasource source provided by Guance Cloud for integration with Grafana."
+  				data-summary="Grafana integration with Guance data provided as a Datasource plugin"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3841,7 +3966,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Grafana Guance Datasource</div>
-                            <div title="Datasource source provided by Guance Cloud for integration with Grafana." class="fth-integration-desc">Datasource source provided by Guance Cloud for integration with Grafana.</div>
+                            <div title="Grafana integration with Guance data provided as a Datasource plugin" class="fth-integration-desc">Grafana integration with Guance data provided as a Datasource plugin</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3858,9 +3983,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../graphite"
-  				data-tags="THIRD PARTY"
-  				data-name="Graphite Exporter"
-  				data-summary="Collect Graphite Exporter exposed by Graphite Exporter"
+  				data-tags="External Data Ingestion"
+  				data-name="Graphite"
+  				data-summary="Collect metrics data exposed by Graphite Exporter"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3870,8 +3995,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Graphite Exporter</div>
-                            <div title="Collect Graphite Exporter exposed by Graphite Exporter" class="fth-integration-desc">Collect Graphite Exporter exposed by Graphite Exporter</div>
+                            <div class="fth-integration-name">Graphite</div>
+                            <div title="Collect metrics data exposed by Graphite Exporter" class="fth-integration-desc">Collect metrics data exposed by Graphite Exporter</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3890,7 +4015,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../greenplum"
   				data-tags=""
   				data-name="GreenPlum"
-  				data-summary="Collect information on greenplum metrics"
+  				data-summary="Collect GreenPlum Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3901,7 +4026,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">GreenPlum</div>
-                            <div title="Collect information on greenplum metrics" class="fth-integration-desc">Collect information on greenplum metrics</div>
+                            <div title="Collect GreenPlum Metrics information" class="fth-integration-desc">Collect GreenPlum Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3920,7 +4045,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../hadoop_hdfs_datanode"
   				data-tags=""
   				data-name="Hadoop HDFS DataNode"
-  				data-summary="Collect HDFS datanode metric information"
+  				data-summary="Collect HDFS datanode Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3931,7 +4056,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop HDFS DataNode</div>
-                            <div title="Collect HDFS datanode metric information" class="fth-integration-desc">Collect HDFS datanode metric information</div>
+                            <div title="Collect HDFS datanode Metrics information" class="fth-integration-desc">Collect HDFS datanode Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3950,7 +4075,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../hadoop_hdfs_namenode"
   				data-tags=""
   				data-name="Hadoop HDFS NameNode"
-  				data-summary="Collect HDFS namenode metric information"
+  				data-summary="Collect HDFS namenode metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3961,7 +4086,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop HDFS NameNode</div>
-                            <div title="Collect HDFS namenode metric information" class="fth-integration-desc">Collect HDFS namenode metric information</div>
+                            <div title="Collect HDFS namenode metrics information" class="fth-integration-desc">Collect HDFS namenode metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3980,7 +4105,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../hadoop_yarn_nodemanager"
   				data-tags=""
   				data-name="Hadoop Yarn NodeManager"
-  				data-summary="Collect Yarn NodeManager metric information"
+  				data-summary="Collect Yarn NodeManager Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3991,7 +4116,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop Yarn NodeManager</div>
-                            <div title="Collect Yarn NodeManager metric information" class="fth-integration-desc">Collect Yarn NodeManager metric information</div>
+                            <div title="Collect Yarn NodeManager Metrics information" class="fth-integration-desc">Collect Yarn NodeManager Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4010,7 +4135,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../hadoop_yarn_resourcemanager"
   				data-tags=""
   				data-name="Hadoop Yarn ResourceManager"
-  				data-summary="Collect Yarn ResourceManager metric information"
+  				data-summary="Collect metrics information from Yarn ResourceManager"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4021,7 +4146,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Hadoop Yarn ResourceManager</div>
-                            <div title="Collect Yarn ResourceManager metric information" class="fth-integration-desc">Collect Yarn ResourceManager metric information</div>
+                            <div title="Collect metrics information from Yarn ResourceManager" class="fth-integration-desc">Collect metrics information from Yarn ResourceManager</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4040,7 +4165,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../haproxy"
   				data-tags=""
   				data-name="Haproxy"
-  				data-summary="Collect metrics of Haproxy"
+  				data-summary="Collect Haproxy Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4051,7 +4176,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Haproxy</div>
-                            <div title="Collect metrics of Haproxy" class="fth-integration-desc">Collect metrics of Haproxy</div>
+                            <div title="Collect Haproxy Metrics information" class="fth-integration-desc">Collect Haproxy Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4070,7 +4195,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../hbase_master"
   				data-tags=""
   				data-name="HBase Master"
-  				data-summary="Collect HBase Master metric information"
+  				data-summary="Collect HBase Master Metrics Information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4081,7 +4206,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">HBase Master</div>
-                            <div title="Collect HBase Master metric information" class="fth-integration-desc">Collect HBase Master metric information</div>
+                            <div title="Collect HBase Master Metrics Information" class="fth-integration-desc">Collect HBase Master Metrics Information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4100,7 +4225,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../hbase_region"
   				data-tags=""
   				data-name="HBase Region"
-  				data-summary="Collect HBase Region Metric Information"
+  				data-summary="Collect HBase Region Metrics Information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4111,7 +4236,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">HBase Region</div>
-                            <div title="Collect HBase Region Metric Information" class="fth-integration-desc">Collect HBase Region Metric Information</div>
+                            <div title="Collect HBase Region Metrics Information" class="fth-integration-desc">Collect HBase Region Metrics Information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4128,9 +4253,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../host_healthcheck"
-  				data-tags="HOST"
-  				data-name="Health Check"
-  				data-summary="Regularly check the host process and network health status"
+  				data-tags="Host"
+  				data-name="Host Health Check"
+  				data-summary="Periodically check the health status of host processes and network"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4140,8 +4265,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Health Check</div>
-                            <div title="Regularly check the host process and network health status" class="fth-integration-desc">Regularly check the host process and network health status</div>
+                            <div class="fth-integration-name">Host Health Check</div>
+                            <div title="Periodically check the health status of host processes and network" class="fth-integration-desc">Periodically check the health status of host processes and network</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4158,9 +4283,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../host_processes"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Process"
-  				data-summary="Collect host process metrics"
+  				data-summary="Collect metrics and object data from processes"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4171,7 +4296,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Process</div>
-                            <div title="Collect host process metrics" class="fth-integration-desc">Collect host process metrics</div>
+                            <div title="Collect metrics and object data from processes" class="fth-integration-desc">Collect metrics and object data from processes</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4188,9 +4313,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../hostdir"
-  				data-tags="HOST"
-  				data-name="Host Directory"
-  				data-summary="Collect metrics from file directories"
+  				data-tags="Host"
+  				data-name="File Directory"
+  				data-summary="Collect metrics data from file directories"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4200,8 +4325,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Host Directory</div>
-                            <div title="Collect metrics from file directories" class="fth-integration-desc">Collect metrics from file directories</div>
+                            <div class="fth-integration-name">File Directory</div>
+                            <div title="Collect metrics data from file directories" class="fth-integration-desc">Collect metrics data from file directories</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4218,9 +4343,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../hostobject"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Host Object"
-  				data-summary="Collect Basic Host Information"
+  				data-summary="Collect basic host information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4231,7 +4356,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Host Object</div>
-                            <div title="Collect Basic Host Information" class="fth-integration-desc">Collect Basic Host Information</div>
+                            <div title="Collect basic host information" class="fth-integration-desc">Collect basic host information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4249,8 +4374,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_FunctionGraph"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI FunctionGraph"
-  				data-summary="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud FunctionGraph"
+  				data-summary="The metrics displayed for Huawei Cloud FunctionGraph include invocation counts, error counts, rejected counts, concurrency numbers, reserved instance counts, and runtime (including maximum, minimum, and average runtimes). These metrics reflect the operational status of FunctionGraph functions."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4260,8 +4385,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI FunctionGraph</div>
-                            <div title="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud FunctionGraph</div>
+                            <div title="The metrics displayed for Huawei Cloud FunctionGraph include invocation counts, error counts, rejected counts, concurrency numbers, reserved instance counts, and runtime (including maximum, minimum, and average runtimes). These metrics reflect the operational status of FunctionGraph functions." class="fth-integration-desc">The metrics displayed for Huawei Cloud FunctionGraph include invocation counts, error counts, rejected counts, concurrency numbers, reserved instance counts, and runtime (including maximum, minimum, and average runtimes). These metrics reflect the operational status of FunctionGraph functions.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4280,18 +4405,18 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../huawei_SYS.AS"
   				data-tags="Huawei Cloud"
   				data-name="HUAWEI AS"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="The core performance metrics of HUAWEI AS include CPU utilization, memory usage, disk I/O, network throughput, and system load. These are key indicators for evaluating and optimizing the performance of an auto-scaling system."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/huawei_SYS.AS/icon.png"
+									src="../icon/huawei_sys_as/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">HUAWEI AS</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="The core performance metrics of HUAWEI AS include CPU utilization, memory usage, disk I/O, network throughput, and system load. These are key indicators for evaluating and optimizing the performance of an auto-scaling system." class="fth-integration-desc">The core performance metrics of HUAWEI AS include CPU utilization, memory usage, disk I/O, network throughput, and system load. These are key indicators for evaluating and optimizing the performance of an auto-scaling system.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4309,19 +4434,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_SYS.CBR"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI CBR"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Huawei Cloud CBR"
+  				data-summary="The displayed metrics for Huawei Cloud CBR include bandwidth utilization, latency, packet loss rate, and network throughput. These metrics reflect the performance and quality assurance of CBR in network transmission and bandwidth management."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/huawei_SYS.CBR/icon.png"
+									src="../icon/huawei_sys_cbr/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI CBR</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Huawei Cloud CBR</div>
+                            <div title="The displayed metrics for Huawei Cloud CBR include bandwidth utilization, latency, packet loss rate, and network throughput. These metrics reflect the performance and quality assurance of CBR in network transmission and bandwidth management." class="fth-integration-desc">The displayed metrics for Huawei Cloud CBR include bandwidth utilization, latency, packet loss rate, and network throughput. These metrics reflect the performance and quality assurance of CBR in network transmission and bandwidth management.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4339,8 +4464,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_SYS_DDMS"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI DDM"
-  				data-summary="The HUAWEI CLOUD DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow."
+  				data-name="Huawei Cloud DDM"
+  				data-summary="The Huawei Cloud DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of DDMS in handling large-scale message delivery and real-time data streams."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4350,8 +4475,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI DDM</div>
-                            <div title="The HUAWEI CLOUD DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow." class="fth-integration-desc">The HUAWEI CLOUD DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow.</div>
+                            <div class="fth-integration-name">Huawei Cloud DDM</div>
+                            <div title="The Huawei Cloud DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of DDMS in handling large-scale message delivery and real-time data streams." class="fth-integration-desc">The Huawei Cloud DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of DDMS in handling large-scale message delivery and real-time data streams.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4369,19 +4494,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_apic"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI API Gateway"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the APIervation cloud."
+  				data-name="Huawei Cloud API"
+  				data-summary="Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/huawei_API/icon.png"
+									src="../icon/huawei_apic/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI API Gateway</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the APIervation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the APIervation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud API</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4399,8 +4524,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_asm"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI ASM"
-  				data-summary="The link tracking data from HUAWEI CLOUD ASM is exported to Guance for viewing and analysis"
+  				data-name="Huawei Cloud ASM Trace Data to Guance"
+  				data-summary="Sending trace data from Huawei Cloud ASM to Guance for viewing and analysis."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4410,8 +4535,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI ASM</div>
-                            <div title="The link tracking data from HUAWEI CLOUD ASM is exported to Guance for viewing and analysis" class="fth-integration-desc">The link tracking data from HUAWEI CLOUD ASM is exported to Guance for viewing and analysis</div>
+                            <div class="fth-integration-name">Huawei Cloud ASM Trace Data to Guance</div>
+                            <div title="Sending trace data from Huawei Cloud ASM to Guance for viewing and analysis." class="fth-integration-desc">Sending trace data from Huawei Cloud ASM to Guance for viewing and analysis.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4429,8 +4554,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_cce"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI CCE"
-  				data-summary="Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, and more."
+  				data-name="Collect Huawei Cloud CCE Metrics Data with Guance"
+  				data-summary="Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4440,8 +4565,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI CCE</div>
-                            <div title="Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, and more." class="fth-integration-desc">Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, and more.</div>
+                            <div class="fth-integration-name">Collect Huawei Cloud CCE Metrics Data with Guance</div>
+                            <div title="Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc." class="fth-integration-desc">Guance supports monitoring the operational status and service capabilities of various resources in CCE, including Containers, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4459,8 +4584,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_css_es"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI CSS for Elasticsearch"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud Search Service CSS for Elasticsearch"
+  				data-summary="The core performance Metrics of the Huawei Cloud Search Service CSS for Elasticsearch include query latency, indexing speed, search speed, disk usage, and CPU usage. These are key Metrics for evaluating and optimizing Elasticsearch performance."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4470,8 +4595,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI CSS for Elasticsearch</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud Search Service CSS for Elasticsearch</div>
+                            <div title="The core performance Metrics of the Huawei Cloud Search Service CSS for Elasticsearch include query latency, indexing speed, search speed, disk usage, and CPU usage. These are key Metrics for evaluating and optimizing Elasticsearch performance." class="fth-integration-desc">The core performance Metrics of the Huawei Cloud Search Service CSS for Elasticsearch include query latency, indexing speed, search speed, disk usage, and CPU usage. These are key Metrics for evaluating and optimizing Elasticsearch performance.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4489,8 +4614,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_dcaas"
   				data-tags="Huawei Cloud"
-  				data-name="Huawei Cloud DCAAS Cloud Dedicated Line"
-  				data-summary="Collect Huawei Cloud DCAAS metric data"
+  				data-name="Huawei Cloud DCAAS Cloud Direct Connect"
+  				data-summary="Collect Huawei Cloud DCAAS Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4500,8 +4625,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Huawei Cloud DCAAS Cloud Dedicated Line</div>
-                            <div title="Collect Huawei Cloud DCAAS metric data" class="fth-integration-desc">Collect Huawei Cloud DCAAS metric data</div>
+                            <div class="fth-integration-name">Huawei Cloud DCAAS Cloud Direct Connect</div>
+                            <div title="Collect Huawei Cloud DCAAS Metrics data" class="fth-integration-desc">Collect Huawei Cloud DCAAS Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4519,8 +4644,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_dcs"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI DCS"
-  				data-summary="Collect Huawei Cloud DCS metric data"
+  				data-name="Huawei Cloud DCS"
+  				data-summary="Collect Huawei Cloud DCS Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4530,8 +4655,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI DCS</div>
-                            <div title="Collect Huawei Cloud DCS metric data" class="fth-integration-desc">Collect Huawei Cloud DCS metric data</div>
+                            <div class="fth-integration-name">Huawei Cloud DCS</div>
+                            <div title="Collect Huawei Cloud DCS Metrics data" class="fth-integration-desc">Collect Huawei Cloud DCS Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4549,8 +4674,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_dds"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI CLOUD DDS"
-  				data-summary="Collect Huawei Cloud DDS metric data"
+  				data-name="Huawei Cloud DDS"
+  				data-summary="Collect Huawei Cloud DDS Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4560,8 +4685,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI CLOUD DDS</div>
-                            <div title="Collect Huawei Cloud DDS metric data" class="fth-integration-desc">Collect Huawei Cloud DDS metric data</div>
+                            <div class="fth-integration-name">Huawei Cloud DDS</div>
+                            <div title="Collect Huawei Cloud DDS Metrics data" class="fth-integration-desc">Collect Huawei Cloud DDS Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4579,8 +4704,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_dis"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI DIS"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud DIS"
+  				data-summary="Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4590,8 +4715,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI DIS</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud DIS</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages from the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4609,8 +4734,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_ecs"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI ECS"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud ECS"
+  				data-summary="Use the "Guance Cloud Sync" series of script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4620,8 +4745,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI ECS</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud ECS</div>
+                            <div title="Use the "Guance Cloud Sync" series of script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series of script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4640,7 +4765,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../huawei_eip"
   				data-tags="Huawei Cloud"
   				data-name="Huawei Cloud EIP"
-  				data-summary="Collect Huawei Cloud EIP metric data"
+  				data-summary="Collect Huawei Cloud EIP Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4651,7 +4776,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Huawei Cloud EIP</div>
-                            <div title="Collect Huawei Cloud EIP metric data" class="fth-integration-desc">Collect Huawei Cloud EIP metric data</div>
+                            <div title="Collect Huawei Cloud EIP Metrics data" class="fth-integration-desc">Collect Huawei Cloud EIP Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4669,8 +4794,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_elb"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI ELB"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud ELB"
+  				data-summary="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4680,8 +4805,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI ELB</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud ELB</div>
+                            <div title="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4699,8 +4824,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_gaussdb_cassandra"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI GaussDB-Cassandra"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud GaussDB-Cassandra"
+  				data-summary="The displayed metrics for Huawei Cloud GaussDB-Cassandra include read/write throughput, latency, data consistency, and scalability. These metrics reflect the performance and reliability of GaussDB-Cassandra in handling large-scale distributed data storage and access."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4710,8 +4835,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI GaussDB-Cassandra</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud GaussDB-Cassandra</div>
+                            <div title="The displayed metrics for Huawei Cloud GaussDB-Cassandra include read/write throughput, latency, data consistency, and scalability. These metrics reflect the performance and reliability of GaussDB-Cassandra in handling large-scale distributed data storage and access." class="fth-integration-desc">The displayed metrics for Huawei Cloud GaussDB-Cassandra include read/write throughput, latency, data consistency, and scalability. These metrics reflect the performance and reliability of GaussDB-Cassandra in handling large-scale distributed data storage and access.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4729,19 +4854,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_gaussdb_for_mysql"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI GaussDB for MySQL"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud GaussDB for MySQL"
+  				data-summary="GaussDB for MySQL, including CPU, memory, network, buffer pool, storage, slow logs, `innoDB` and other related metrics."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/gaussdb_for_mysql/icon.png"
+									src="../icon/huawei_gaussdb_for_mysql/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI GaussDB for MySQL</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud GaussDB for MySQL</div>
+                            <div title="GaussDB for MySQL, including CPU, memory, network, buffer pool, storage, slow logs, `innoDB` and other related metrics." class="fth-integration-desc">GaussDB for MySQL, including CPU, memory, network, buffer pool, storage, slow logs, `innoDB` and other related metrics.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4759,19 +4884,19 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_gaussdb_influx"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI GaussDB-Influx"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud GaussDB-Influx"
+  				data-summary="The displayed metrics for Huawei Cloud GaussDB-Influx include write throughput, query latency, data retention policy, and scalability. These metrics reflect the performance and reliability of GaussDB-Influx when handling large-scale time series data storage and queries."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/HUAWEI CLOUD_gaussdb_influx/icon.png"
+									src="../icon/huawei_gaussdb_influx/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI GaussDB-Influx</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud GaussDB-Influx</div>
+                            <div title="The displayed metrics for Huawei Cloud GaussDB-Influx include write throughput, query latency, data retention policy, and scalability. These metrics reflect the performance and reliability of GaussDB-Influx when handling large-scale time series data storage and queries." class="fth-integration-desc">The displayed metrics for Huawei Cloud GaussDB-Influx include write throughput, query latency, data retention policy, and scalability. These metrics reflect the performance and reliability of GaussDB-Influx when handling large-scale time series data storage and queries.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4789,8 +4914,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_gaussdb_redis"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI GaussDB-Redis"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Huawei Cloud GaussDB-Redis"
+  				data-summary="The displayed Metrics of Huawei Cloud GaussDB-Redis include read/write throughput, response time, concurrent connections, and data persistence. These Metrics reflect the performance and reliability of GaussDB-Redis when handling high-concurrency data storage and caching."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4800,8 +4925,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI GaussDB-Redis</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Huawei Cloud GaussDB-Redis</div>
+                            <div title="The displayed Metrics of Huawei Cloud GaussDB-Redis include read/write throughput, response time, concurrent connections, and data persistence. These Metrics reflect the performance and reliability of GaussDB-Redis when handling high-concurrency data storage and caching." class="fth-integration-desc">The displayed Metrics of Huawei Cloud GaussDB-Redis include read/write throughput, response time, concurrent connections, and data persistence. These Metrics reflect the performance and reliability of GaussDB-Redis when handling high-concurrency data storage and caching.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4819,8 +4944,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_gaussdb_sys.gaussdbv5"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI GaussDB SYS.GAUSSDBV5"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud GaussDB SYS.GAUSSDBV5"
+  				data-summary="Huawei Cloud GaussDB SYS.GAUSSDBV5 provides data on CPU, memory, disk, deadlocks, SQL response time metrics, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4830,8 +4955,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI GaussDB SYS.GAUSSDBV5</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud GaussDB SYS.GAUSSDBV5</div>
+                            <div title="Huawei Cloud GaussDB SYS.GAUSSDBV5 provides data on CPU, memory, disk, deadlocks, SQL response time metrics, etc." class="fth-integration-desc">Huawei Cloud GaussDB SYS.GAUSSDBV5 provides data on CPU, memory, disk, deadlocks, SQL response time metrics, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4849,8 +4974,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_kafka"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI DMS Kafka"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Huawei Cloud DMS Kafka"
+  				data-summary="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4860,8 +4985,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI DMS Kafka</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Huawei Cloud DMS Kafka</div>
+                            <div title="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4880,7 +5005,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../huawei_mongodb"
   				data-tags="Huawei Cloud"
   				data-name="Huawei Cloud MongoDB"
-  				data-summary="Collect Huawei Cloud MongoDB metric data"
+  				data-summary="Collecting Huawei Cloud MongoDB Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4891,7 +5016,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Huawei Cloud MongoDB</div>
-                            <div title="Collect Huawei Cloud MongoDB metric data" class="fth-integration-desc">Collect Huawei Cloud MongoDB metric data</div>
+                            <div title="Collecting Huawei Cloud MongoDB Metrics data" class="fth-integration-desc">Collecting Huawei Cloud MongoDB Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4909,8 +5034,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_obs"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI OBS"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud OBS"
+  				data-summary="Use the script packages in the Script Market, such as "Guance Cloud Sync", to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4920,8 +5045,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI OBS</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud OBS</div>
+                            <div title="Use the script packages in the Script Market, such as "Guance Cloud Sync", to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the Script Market, such as "Guance Cloud Sync", to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4939,8 +5064,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_rabbitmq"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI DMS RabbitMQ"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Huawei Cloud DMS RabbitMQ"
+  				data-summary="Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4950,8 +5075,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI DMS RabbitMQ</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Huawei Cloud DMS RabbitMQ</div>
+                            <div title="Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance." class="fth-integration-desc">Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4970,7 +5095,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../huawei_rds_mariadb"
   				data-tags="Huawei Cloud"
   				data-name="Huawei Cloud RDS MariaDB"
-  				data-summary="Collect Huawei Cloud RDS MariaDB metric data"
+  				data-summary="Collect Huawei Cloud RDS MariaDB Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4981,7 +5106,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Huawei Cloud RDS MariaDB</div>
-                            <div title="Collect Huawei Cloud RDS MariaDB metric data" class="fth-integration-desc">Collect Huawei Cloud RDS MariaDB metric data</div>
+                            <div title="Collect Huawei Cloud RDS MariaDB Metrics data" class="fth-integration-desc">Collect Huawei Cloud RDS MariaDB Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4999,8 +5124,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_rds_mysql"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI RDS MYSQL"
-  				data-summary="Collect Huawei Cloud RDS MYSQL metric data"
+  				data-name="Huawei Cloud RDS MYSQL"
+  				data-summary="Collect Huawei Cloud RDS MYSQL data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5010,8 +5135,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI RDS MYSQL</div>
-                            <div title="Collect Huawei Cloud RDS MYSQL metric data" class="fth-integration-desc">Collect Huawei Cloud RDS MYSQL metric data</div>
+                            <div class="fth-integration-name">Huawei Cloud RDS MYSQL</div>
+                            <div title="Collect Huawei Cloud RDS MYSQL data" class="fth-integration-desc">Collect Huawei Cloud RDS MYSQL data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5029,8 +5154,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_rds_postgresql"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI RDS PostgreSQL"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance."
+  				data-name="Huawei Cloud RDS PostgreSQL"
+  				data-summary="The displayed Metrics for Huawei Cloud RDS PostgreSQL include query performance, transaction throughput, concurrent connections, and data reliability. These Metrics reflect the performance and reliability of RDS PostgreSQL when handling large-scale relational data storage and transaction processing."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5040,8 +5165,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI RDS PostgreSQL</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to monitor the cloud ,The data of the cloud asset is synchronized to the Guance.</div>
+                            <div class="fth-integration-name">Huawei Cloud RDS PostgreSQL</div>
+                            <div title="The displayed Metrics for Huawei Cloud RDS PostgreSQL include query performance, transaction throughput, concurrent connections, and data reliability. These Metrics reflect the performance and reliability of RDS PostgreSQL when handling large-scale relational data storage and transaction processing." class="fth-integration-desc">The displayed Metrics for Huawei Cloud RDS PostgreSQL include query performance, transaction throughput, concurrent connections, and data reliability. These Metrics reflect the performance and reliability of RDS PostgreSQL when handling large-scale relational data storage and transaction processing.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5060,7 +5185,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../huawei_rds_sqlserver"
   				data-tags="Huawei Cloud"
   				data-name="Huawei Cloud RDS SQLServer"
-  				data-summary="Collect Huawei Cloud RDS SQLServer metric data"
+  				data-summary="Collect Huawei Cloud RDS SQLServer Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5071,7 +5196,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Huawei Cloud RDS SQLServer</div>
-                            <div title="Collect Huawei Cloud RDS SQLServer metric data" class="fth-integration-desc">Collect Huawei Cloud RDS SQLServer metric data</div>
+                            <div title="Collect Huawei Cloud RDS SQLServer Metrics data" class="fth-integration-desc">Collect Huawei Cloud RDS SQLServer Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5089,8 +5214,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_rocketmq"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI DMS RocketMQ"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Huawei Cloud DMS RocketMQ"
+  				data-summary="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5100,8 +5225,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI DMS RocketMQ</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Huawei Cloud DMS RocketMQ</div>
+                            <div title="Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance." class="fth-integration-desc">Use the script packages in the script market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5119,8 +5244,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../huawei_roma"
   				data-tags="Huawei Cloud"
-  				data-name="HUAWEI ROMA"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-name="Huawei Cloud ROMA"
+  				data-summary="Use the script packages in the script market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5130,8 +5255,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">HUAWEI ROMA</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div class="fth-integration-name">Huawei Cloud ROMA</div>
+                            <div title="Use the script packages in the script market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5150,7 +5275,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../huawei_waf"
   				data-tags="Huawei Cloud"
   				data-name="Huawei Cloud WAF Web Application Firewall"
-  				data-summary="Collect Huawei Cloud WAF metric data"
+  				data-summary="Collect Huawei Cloud WAF Metrics Data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5161,37 +5286,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Huawei Cloud WAF Web Application Firewall</div>
-                            <div title="Collect Huawei Cloud WAF metric data" class="fth-integration-desc">Collect Huawei Cloud WAF metric data</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
-  				data-href="../huaweiyun_SYS_DDMS"
-  				data-tags="Huawei Cloud"
-  				data-name="Huawei Cloud SYS.DDMS Monitoring View"
-  				data-summary="The Huawei Cloud SYS.DDMS monitoring view displays indicators including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow."
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/huaweiyun_SYS_DDMS/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Huawei Cloud SYS.DDMS Monitoring View</div>
-                            <div title="The Huawei Cloud SYS.DDMS monitoring view displays indicators including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow." class="fth-integration-desc">The Huawei Cloud SYS.DDMS monitoring view displays indicators including message throughput, latency, concurrent connections, and reliability, which reflect the performance and reliability assurance of DDMS in handling large-scale message delivery and real-time data flow.</div>
+                            <div title="Collect Huawei Cloud WAF Metrics Data" class="fth-integration-desc">Collect Huawei Cloud WAF Metrics Data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5210,7 +5305,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../iis"
   				data-tags="WINDOWS,IIS,WEB SERVER"
   				data-name="IIS"
-  				data-summary="Collect IIS metrics"
+  				data-summary="Collect IIS Metrics Data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5221,7 +5316,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">IIS</div>
-                            <div title="Collect IIS metrics" class="fth-integration-desc">Collect IIS metrics</div>
+                            <div title="Collect IIS Metrics Data" class="fth-integration-desc">Collect IIS Metrics Data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5240,7 +5335,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../ilogtail"
   				data-tags=""
   				data-name="iLogtail"
-  				data-summary="iLogtail collects log information"
+  				data-summary="Collect log information with iLogtail"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5251,7 +5346,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">iLogtail</div>
-                            <div title="iLogtail collects log information" class="fth-integration-desc">iLogtail collects log information</div>
+                            <div title="Collect log information with iLogtail" class="fth-integration-desc">Collect log information with iLogtail</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5268,9 +5363,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../influxdb"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="InfluxDB"
-  				data-summary="Collect InfluxDB metrics"
+  				data-summary="Collect InfluxDB Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5281,7 +5376,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">InfluxDB</div>
-                            <div title="Collect InfluxDB metrics" class="fth-integration-desc">Collect InfluxDB metrics</div>
+                            <div title="Collect InfluxDB Metrics data" class="fth-integration-desc">Collect InfluxDB Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5300,7 +5395,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../ingress-nginx-prom"
   				data-tags=""
   				data-name="Ingress Nginx (Prometheus)"
-  				data-summary="Collect Ingress Nginx (Prometheus) related metric information"
+  				data-summary="Collect metrics related to Ingress Nginx (Prometheus)"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5311,7 +5406,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Ingress Nginx (Prometheus)</div>
-                            <div title="Collect Ingress Nginx (Prometheus) related metric information" class="fth-integration-desc">Collect Ingress Nginx (Prometheus) related metric information</div>
+                            <div title="Collect metrics related to Ingress Nginx (Prometheus)" class="fth-integration-desc">Collect metrics related to Ingress Nginx (Prometheus)</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5330,7 +5425,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../ipmi"
   				data-tags="IPMI"
   				data-name="IPMI"
-  				data-summary="Collect IPMI metrics"
+  				data-summary="IPMI Metrics display information such as current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of the monitored equipment"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5341,7 +5436,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">IPMI</div>
-                            <div title="Collect IPMI metrics" class="fth-integration-desc">Collect IPMI metrics</div>
+                            <div title="IPMI Metrics display information such as current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of the monitored equipment" class="fth-integration-desc">IPMI Metrics display information such as current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of the monitored equipment</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5359,8 +5454,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../issue_dingtalk"
   				data-tags=""
-  				data-name="Guance Exception Tracking (issue) - Dingtalk"
-  				data-summary="Guance anomaly tracking is integrated with DingTalk depth, making it convenient to send anomaly tracking information to DingTalk, reply through DingTalk, and send it back to the Guance"
+  				data-name="Incident - DingTalk"
+  				data-summary="Guance Incident is deeply integrated with DingTalk, making it easy to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5370,8 +5465,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Guance Exception Tracking (issue) - Dingtalk</div>
-                            <div title="Guance anomaly tracking is integrated with DingTalk depth, making it convenient to send anomaly tracking information to DingTalk, reply through DingTalk, and send it back to the Guance" class="fth-integration-desc">Guance anomaly tracking is integrated with DingTalk depth, making it convenient to send anomaly tracking information to DingTalk, reply through DingTalk, and send it back to the Guance</div>
+                            <div class="fth-integration-name">Incident - DingTalk</div>
+                            <div title="Guance Incident is deeply integrated with DingTalk, making it easy to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance" class="fth-integration-desc">Guance Incident is deeply integrated with DingTalk, making it easy to send incident information to DingTalk and reply through DingTalk, which will be transmitted back to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5389,8 +5484,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../issue_feishu"
   				data-tags=""
-  				data-name="Guance Exception Tracking (issue) - Feishu"
-  				data-summary="Guance anomaly tracking is integrated with Feishu depth, making it convenient to send anomaly tracking information to Feishu, reply through Feishu, and send it back to the Guance"
+  				data-name="Incident - Lark"
+  				data-summary="Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5400,8 +5495,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Guance Exception Tracking (issue) - Feishu</div>
-                            <div title="Guance anomaly tracking is integrated with Feishu depth, making it convenient to send anomaly tracking information to Feishu, reply through Feishu, and send it back to the Guance" class="fth-integration-desc">Guance anomaly tracking is integrated with Feishu depth, making it convenient to send anomaly tracking information to Feishu, reply through Feishu, and send it back to the Guance</div>
+                            <div class="fth-integration-name">Incident - Lark</div>
+                            <div title="Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance" class="fth-integration-desc">Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5420,7 +5515,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../istio"
   				data-tags=""
   				data-name="Istio"
-  				data-summary="Istio performance metric display, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc."
+  				data-summary="Display of Istio performance Metrics, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5431,7 +5526,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Istio</div>
-                            <div title="Istio performance metric display, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc." class="fth-integration-desc">Istio performance metric display, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc.</div>
+                            <div title="Display of Istio performance Metrics, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc." class="fth-integration-desc">Display of Istio performance Metrics, including Incoming Request Volume, Incoming Success Rate, Incoming Requests By Source And Response Code, Outgoing Requests By Destination And Response Code, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5448,7 +5543,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../jaeger"
-  				data-tags="JAEGER,APM,TRACING"
+  				data-tags="JAEGER,Trace Analysis"
   				data-name="Jaeger"
   				data-summary="Receive Jaeger APM Data"
   			>
@@ -5480,7 +5575,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../java"
   				data-tags=""
   				data-name="JAVA"
-  				data-summary="Get metrics, link tracking, and log information for JAVA applications"
+  				data-summary="Obtain metrics, trace data, and log information from JAVA applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5491,7 +5586,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JAVA</div>
-                            <div title="Get metrics, link tracking, and log information for JAVA applications" class="fth-integration-desc">Get metrics, link tracking, and log information for JAVA applications</div>
+                            <div title="Obtain metrics, trace data, and log information from JAVA applications" class="fth-integration-desc">Obtain metrics, trace data, and log information from JAVA applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5510,7 +5605,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../javascript"
   				data-tags=""
   				data-name="JavaScript"
-  				data-summary="Monitoring browser usage behavior through JavaScript (Web)"
+  				data-summary="Monitor browser user behavior using JavaScript (Web)"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5521,7 +5616,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JavaScript</div>
-                            <div title="Monitoring browser usage behavior through JavaScript (Web)" class="fth-integration-desc">Monitoring browser usage behavior through JavaScript (Web)</div>
+                            <div title="Monitor browser user behavior using JavaScript (Web)" class="fth-integration-desc">Monitor browser user behavior using JavaScript (Web)</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5540,7 +5635,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../jenkins"
   				data-tags="JENKINS,CI/CD"
   				data-name="Jenkins"
-  				data-summary="Collect Jenkins metrics and logs"
+  				data-summary="Collect metrics and logs from Jenkins"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5551,7 +5646,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Jenkins</div>
-                            <div title="Collect Jenkins metrics and logs" class="fth-integration-desc">Collect Jenkins metrics and logs</div>
+                            <div title="Collect metrics and logs from Jenkins" class="fth-integration-desc">Collect metrics and logs from Jenkins</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5570,7 +5665,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../jmx"
   				data-tags=""
   				data-name="JMX"
-  				data-summary="JVM performance metrics display: heap and non heap memory, threads, class load count, etc."
+  				data-summary="Display JVM performance Metrics: heap and non-heap memory, threads, class loading counts, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5581,7 +5676,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX</div>
-                            <div title="JVM performance metrics display: heap and non heap memory, threads, class load count, etc." class="fth-integration-desc">JVM performance metrics display: heap and non heap memory, threads, class load count, etc.</div>
+                            <div title="Display JVM performance Metrics: heap and non-heap memory, threads, class loading counts, etc." class="fth-integration-desc">Display JVM performance Metrics: heap and non-heap memory, threads, class loading counts, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5600,7 +5695,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../juicefs"
   				data-tags=""
   				data-name="JuiceFS"
-  				data-summary="Collect JuiceFS data size, IO, things, objects, clients and other related component metric information"
+  				data-summary="Collect metrics information related to JuiceFS data size, IO, transactions, objects, clients, and other components"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5611,7 +5706,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JuiceFS</div>
-                            <div title="Collect JuiceFS data size, IO, things, objects, clients and other related component metric information" class="fth-integration-desc">Collect JuiceFS data size, IO, things, objects, clients and other related component metric information</div>
+                            <div title="Collect metrics information related to JuiceFS data size, IO, transactions, objects, clients, and other components" class="fth-integration-desc">Collect metrics information related to JuiceFS data size, IO, transactions, objects, clients, and other components</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5630,7 +5725,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../jvm"
   				data-tags="JAVA"
   				data-name="JVM"
-  				data-summary="Collect the JVM metrics"
+  				data-summary="Collect JVM Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5641,7 +5736,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JVM</div>
-                            <div title="Collect the JVM metrics" class="fth-integration-desc">Collect the JVM metrics</div>
+                            <div title="Collect JVM Metrics data" class="fth-integration-desc">Collect JVM Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5660,7 +5755,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../jvm_jmx_exporter"
   				data-tags=""
   				data-name="JMX Exporter"
-  				data-summary="JVM performance metrics display: heap and non heap memory, threads, class load count, etc."
+  				data-summary="JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5671,7 +5766,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX Exporter</div>
-                            <div title="JVM performance metrics display: heap and non heap memory, threads, class load count, etc." class="fth-integration-desc">JVM performance metrics display: heap and non heap memory, threads, class load count, etc.</div>
+                            <div title="JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc." class="fth-integration-desc">JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5690,7 +5785,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../jvm_jolokia"
   				data-tags=""
   				data-name="JMX Jolokia"
-  				data-summary="JVM performance metrics display: heap and non heap memory, threads, class load count, etc."
+  				data-summary="JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5701,7 +5796,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX Jolokia</div>
-                            <div title="JVM performance metrics display: heap and non heap memory, threads, class load count, etc." class="fth-integration-desc">JVM performance metrics display: heap and non heap memory, threads, class load count, etc.</div>
+                            <div title="JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc." class="fth-integration-desc">JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5720,7 +5815,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../jvm_micrometer"
   				data-tags=""
   				data-name="JMX Micrometer"
-  				data-summary="JVM performance metrics display: heap and non heap memory, threads, class load count, etc."
+  				data-summary="JVM performance metrics display: heap and non-heap memory, threads, number of classes loaded, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5731,7 +5826,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX Micrometer</div>
-                            <div title="JVM performance metrics display: heap and non heap memory, threads, class load count, etc." class="fth-integration-desc">JVM performance metrics display: heap and non heap memory, threads, class load count, etc.</div>
+                            <div title="JVM performance metrics display: heap and non-heap memory, threads, number of classes loaded, etc." class="fth-integration-desc">JVM performance metrics display: heap and non-heap memory, threads, number of classes loaded, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5750,7 +5845,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../jvm_statsd"
   				data-tags=""
   				data-name="JMX StatsD"
-  				data-summary="JVM performance metrics display: heap and non heap memory, threads, class load count, etc."
+  				data-summary="JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5761,7 +5856,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">JMX StatsD</div>
-                            <div title="JVM performance metrics display: heap and non heap memory, threads, class load count, etc." class="fth-integration-desc">JVM performance metrics display: heap and non heap memory, threads, class load count, etc.</div>
+                            <div title="JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc." class="fth-integration-desc">JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5778,9 +5873,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kafka"
-  				data-tags="MIDDLEWARE,MESSAGE QUEUES"
+  				data-tags="Middleware,Message Queue"
   				data-name="Kafka"
-  				data-summary="Collect metrics of Kafka"
+  				data-summary="Collect Kafka Metrics Data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5791,7 +5886,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kafka</div>
-                            <div title="Collect metrics of Kafka" class="fth-integration-desc">Collect metrics of Kafka</div>
+                            <div title="Collect Kafka Metrics Data" class="fth-integration-desc">Collect Kafka Metrics Data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5808,9 +5903,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kafkamq"
-  				data-tags="MESSAGE QUEUES,LOG"
+  				data-tags="Message Queue,Logs"
   				data-name="KafkaMQ"
-  				data-summary="Collect metrics and log data via Kafka"
+  				data-summary="Collect existing Metrics and log data via Kafka"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5821,7 +5916,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">KafkaMQ</div>
-                            <div title="Collect metrics and log data via Kafka" class="fth-integration-desc">Collect metrics and log data via Kafka</div>
+                            <div title="Collect existing Metrics and log data via Kafka" class="fth-integration-desc">Collect existing Metrics and log data via Kafka</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5840,7 +5935,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../kong"
   				data-tags=""
   				data-name="Kong"
-  				data-summary="Collect Kong metrics and log information"
+  				data-summary="Collect Kong Metrics and Log Information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5851,7 +5946,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kong</div>
-                            <div title="Collect Kong metrics and log information" class="fth-integration-desc">Collect Kong metrics and log information</div>
+                            <div title="Collect Kong Metrics and Log Information" class="fth-integration-desc">Collect Kong Metrics and Log Information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5868,9 +5963,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kube_proxy"
-  				data-tags=""
-  				data-name="kube Proxy"
-  				data-summary="By tracking the performance metrics of kube proxy, it helps to understand the load, response time, synchronization status, and other information of network agents"
+  				data-tags="PROMETHEUS,KUBERNETES"
+  				data-name="Kube Proxy"
+  				data-summary="By tracking the operational metrics of kube-proxy, it helps to understand the load, response time, synchronization status, and other information of the network proxy"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5880,8 +5975,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">kube Proxy</div>
-                            <div title="By tracking the performance metrics of kube proxy, it helps to understand the load, response time, synchronization status, and other information of network agents" class="fth-integration-desc">By tracking the performance metrics of kube proxy, it helps to understand the load, response time, synchronization status, and other information of network agents</div>
+                            <div class="fth-integration-name">Kube Proxy</div>
+                            <div title="By tracking the operational metrics of kube-proxy, it helps to understand the load, response time, synchronization status, and other information of the network proxy" class="fth-integration-desc">By tracking the operational metrics of kube-proxy, it helps to understand the load, response time, synchronization status, and other information of the network proxy</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5898,9 +5993,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kube_scheduler"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kube Scheduler"
-  				data-summary="By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance"
+  				data-summary="By monitoring Kube Scheduler metrics, it helps configure and optimize the Kube Scheduler, which can improve cluster resource utilization and application performance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5911,7 +6006,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kube Scheduler</div>
-                            <div title="By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance" class="fth-integration-desc">By monitoring Kube Scheduler metrics to help configure and optimize Kube Scheduler, you can improve cluster resource utilization and application performance</div>
+                            <div title="By monitoring Kube Scheduler metrics, it helps configure and optimize the Kube Scheduler, which can improve cluster resource utilization and application performance" class="fth-integration-desc">By monitoring Kube Scheduler metrics, it helps configure and optimize the Kube Scheduler, which can improve cluster resource utilization and application performance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5928,9 +6023,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kube_state_metrics"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kube State Metrics"
-  				data-summary="Collect real-time information on cluster resources through Kube State Metrics"
+  				data-summary="Collect real-time cluster resource information using Kube State Metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5941,7 +6036,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kube State Metrics</div>
-                            <div title="Collect real-time information on cluster resources through Kube State Metrics" class="fth-integration-desc">Collect real-time information on cluster resources through Kube State Metrics</div>
+                            <div title="Collect real-time cluster resource information using Kube State Metrics" class="fth-integration-desc">Collect real-time cluster resource information using Kube State Metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5958,9 +6053,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kubecost"
-  				data-tags=""
+  				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="KubeCost"
-  				data-summary="Collect KubeCost metrics"
+  				data-summary="Collect KubeCost Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5971,7 +6066,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">KubeCost</div>
-                            <div title="Collect KubeCost metrics" class="fth-integration-desc">Collect KubeCost metrics</div>
+                            <div title="Collect KubeCost Metrics information" class="fth-integration-desc">Collect KubeCost Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6019,7 +6114,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../kubernetes-crd"
   				data-tags="PROMETHEUS,KUBERNETES"
-  				data-name="Kubernetes CRD Extended Collection"
+  				data-name="Kubernetes CRD"
   				data-summary="Create Datakit CRD to collect"
   			>
   				<div class="fth-integration-list-card">
@@ -6030,7 +6125,7 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Kubernetes CRD Extended Collection</div>
+                            <div class="fth-integration-name">Kubernetes CRD</div>
                             <div title="Create Datakit CRD to collect" class="fth-integration-desc">Create Datakit CRD to collect</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
@@ -6050,7 +6145,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../kubernetes-prom"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes Prometheus Exporter"
-  				data-summary="Collect Prometheus metrics among Kubernetes Pod"
+  				data-summary="Collect Prometheus Metrics exposed by custom Pods in Kubernetes clusters"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6061,7 +6156,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes Prometheus Exporter</div>
-                            <div title="Collect Prometheus metrics among Kubernetes Pod" class="fth-integration-desc">Collect Prometheus metrics among Kubernetes Pod</div>
+                            <div title="Collect Prometheus Metrics exposed by custom Pods in Kubernetes clusters" class="fth-integration-desc">Collect Prometheus Metrics exposed by custom Pods in Kubernetes clusters</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6079,8 +6174,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../kubernetes-prometheus-operator-crd"
   				data-tags="PROMETHEUS,KUBERNETES"
-  				data-name="Kubernetes Prometheus CRD"
-  				data-summary="Collecting on Prometheus-Operator CRD"
+  				data-name="Prometheus CRD"
+  				data-summary="Support for Prometheus-Operator CRD and collection of corresponding metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6090,8 +6185,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Kubernetes Prometheus CRD</div>
-                            <div title="Collecting on Prometheus-Operator CRD" class="fth-integration-desc">Collecting on Prometheus-Operator CRD</div>
+                            <div class="fth-integration-name">Prometheus CRD</div>
+                            <div title="Support for Prometheus-Operator CRD and collection of corresponding metrics" class="fth-integration-desc">Support for Prometheus-Operator CRD and collection of corresponding metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6108,9 +6203,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../kubernetes_audit"
-  				data-tags=""
-  				data-name="Kubernetes Audit"
-  				data-summary="Kubernetes Audit"
+  				data-tags="PROMETHEUS,KUBERNETES"
+  				data-name="Kubernetes Audit Log Collection"
+  				data-summary="Kubernetes Audit Log Collection"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6120,8 +6215,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Kubernetes Audit</div>
-                            <div title="Kubernetes Audit" class="fth-integration-desc">Kubernetes Audit</div>
+                            <div class="fth-integration-name">Kubernetes Audit Log Collection</div>
+                            <div title="Kubernetes Audit Log Collection" class="fth-integration-desc">Kubernetes Audit Log Collection</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6140,7 +6235,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../kubernetesprometheus"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes Prometheus Discovery"
-  				data-summary="Auto discovery and collecting Prometheus exported metrics among Kubernetes"
+  				data-summary="Supports discovering and collecting Prometheus metrics exposed in Kubernetes"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6151,7 +6246,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Kubernetes Prometheus Discovery</div>
-                            <div title="Auto discovery and collecting Prometheus exported metrics among Kubernetes" class="fth-integration-desc">Auto discovery and collecting Prometheus exported metrics among Kubernetes</div>
+                            <div title="Supports discovering and collecting Prometheus metrics exposed in Kubernetes" class="fth-integration-desc">Supports discovering and collecting Prometheus metrics exposed in Kubernetes</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6170,7 +6265,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../langchain"
   				data-tags=""
   				data-name="LangChain"
-  				data-summary="Optimize LangChain usage: prompt sampling and performance and cost metrics."
+  				data-summary="Optimize the use of LangChain: timely sampling and performance and cost metrics."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6181,7 +6276,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">LangChain</div>
-                            <div title="Optimize LangChain usage: prompt sampling and performance and cost metrics." class="fth-integration-desc">Optimize LangChain usage: prompt sampling and performance and cost metrics.</div>
+                            <div title="Optimize the use of LangChain: timely sampling and performance and cost metrics." class="fth-integration-desc">Optimize the use of LangChain: timely sampling and performance and cost metrics.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6198,9 +6293,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../logfwd"
-  				data-tags="KUBERNETES,LOG,CONTAINER"
-  				data-name="Sidecar for Pod Logging"
-  				data-summary="Collect pod logging via Sidecar"
+  				data-tags="KUBERNETES,Logs,Container"
+  				data-name="Log Sidecar"
+  				data-summary="Sidecar-based log collection"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6210,8 +6305,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Sidecar for Pod Logging</div>
-                            <div title="Collect pod logging via Sidecar" class="fth-integration-desc">Collect pod logging via Sidecar</div>
+                            <div class="fth-integration-name">Log Sidecar</div>
+                            <div title="Sidecar-based log collection" class="fth-integration-desc">Sidecar-based log collection</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6228,9 +6323,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../logfwdserver"
-  				data-tags="KUBERNETES,LOG,CONTAINER"
-  				data-name="Log Forward Server"
-  				data-summary="Collect log data in Pod through sidecar method"
+  				data-tags="KUBERNETES,Logs,Containers"
+  				data-name="Log Forward"
+  				data-summary="Collect log data within Pods via sidecar method"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6240,8 +6335,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Log Forward Server</div>
-                            <div title="Collect log data in Pod through sidecar method" class="fth-integration-desc">Collect log data in Pod through sidecar method</div>
+                            <div class="fth-integration-name">Log Forward</div>
+                            <div title="Collect log data within Pods via sidecar method" class="fth-integration-desc">Collect log data within Pods via sidecar method</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6258,9 +6353,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../logging"
-  				data-tags="LOG"
-  				data-name="Log Collector"
-  				data-summary="Collect log data on the host"
+  				data-tags="Logs"
+  				data-name="Log Collection"
+  				data-summary="Collect log data from hosts"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6270,8 +6365,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Log Collector</div>
-                            <div title="Collect log data on the host" class="fth-integration-desc">Collect log data on the host</div>
+                            <div class="fth-integration-name">Log Collection</div>
+                            <div title="Collect log data from hosts" class="fth-integration-desc">Collect log data from hosts</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6288,9 +6383,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../logging_socket"
-  				data-tags="LOG"
+  				data-tags="Logging"
   				data-name="Socket Logging"
-  				data-summary="Accept Java/Go/Python logging framework remotely"
+  				data-summary="This document mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6301,7 +6396,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Socket Logging</div>
-                            <div title="Accept Java/Go/Python logging framework remotely" class="fth-integration-desc">Accept Java/Go/Python logging framework remotely</div>
+                            <div title="This document mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector." class="fth-integration-desc">This document mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6320,7 +6415,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../logstash"
   				data-tags=""
   				data-name="Logstash"
-  				data-summary="Collecting logging through Logstash"
+  				data-summary="Collect log information via Logstash"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6331,7 +6426,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Logstash</div>
-                            <div title="Collecting logging through Logstash" class="fth-integration-desc">Collecting logging through Logstash</div>
+                            <div title="Collect log information via Logstash" class="fth-integration-desc">Collect log information via Logstash</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6348,9 +6443,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../logstreaming"
-  				data-tags="LOG"
+  				data-tags="Logs"
   				data-name="Log Streaming"
-  				data-summary="Report log data via HTTP"
+  				data-summary="Submit log data via HTTP"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6361,7 +6456,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Log Streaming</div>
-                            <div title="Report log data via HTTP" class="fth-integration-desc">Report log data via HTTP</div>
+                            <div title="Submit log data via HTTP" class="fth-integration-desc">Submit log data via HTTP</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6378,9 +6473,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../lsblk"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Lsblk"
-  				data-summary="Collect metrics of block device"
+  				data-summary="Collect metrics data from block devices"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6391,7 +6486,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Lsblk</div>
-                            <div title="Collect metrics of block device" class="fth-integration-desc">Collect metrics of block device</div>
+                            <div title="Collect metrics data from block devices" class="fth-integration-desc">Collect metrics data from block devices</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6408,9 +6503,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../mem"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Memory"
-  				data-summary="Collect metrics of host memory"
+  				data-summary="Collect metrics data from host memory"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6421,7 +6516,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Memory</div>
-                            <div title="Collect metrics of host memory" class="fth-integration-desc">Collect metrics of host memory</div>
+                            <div title="Collect metrics data from host memory" class="fth-integration-desc">Collect metrics data from host memory</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6438,9 +6533,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../memcached"
-  				data-tags="CACHING,MIDDLEWARE"
+  				data-tags="Cache,Middleware"
   				data-name="Memcached"
-  				data-summary="Collect memcached metrics data"
+  				data-summary="Collect metrics data from Memcached"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6451,7 +6546,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Memcached</div>
-                            <div title="Collect memcached metrics data" class="fth-integration-desc">Collect memcached metrics data</div>
+                            <div title="Collect metrics data from Memcached" class="fth-integration-desc">Collect metrics data from Memcached</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6469,8 +6564,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../milvus"
   				data-tags=""
-  				data-name="Milvus vector database"
-  				data-summary="Collect relevant metric information of Mlivus vector database"
+  				data-name="Milvus Vector Database"
+  				data-summary="Collect metrics related to the Milvus vector database"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6480,8 +6575,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Milvus vector database</div>
-                            <div title="Collect relevant metric information of Mlivus vector database" class="fth-integration-desc">Collect relevant metric information of Mlivus vector database</div>
+                            <div class="fth-integration-name">Milvus Vector Database</div>
+                            <div title="Collect metrics related to the Milvus vector database" class="fth-integration-desc">Collect metrics related to the Milvus vector database</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6500,7 +6595,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../minio"
   				data-tags=""
   				data-name="MinIO"
-  				data-summary="Collect information about MinIO related metrics"
+  				data-summary="Collect metrics related to MinIO"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6511,7 +6606,37 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">MinIO</div>
-                            <div title="Collect information about MinIO related metrics" class="fth-integration-desc">Collect information about MinIO related metrics</div>
+                            <div title="Collect metrics related to MinIO" class="fth-integration-desc">Collect metrics related to MinIO</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../minio_v3"
+  				data-tags=""
+  				data-name="MinIO V3"
+  				data-summary="Collect MinIO related Metrics information"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/minio/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">MinIO V3</div>
+                            <div title="Collect MinIO related Metrics information" class="fth-integration-desc">Collect MinIO related Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6528,9 +6653,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../mongodb"
-  				data-tags="DATA STORES"
+  				data-tags="database"
   				data-name="MongoDB"
-  				data-summary="Collect mongodb metrics data"
+  				data-summary="Collect metrics data from MongoDB"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6541,7 +6666,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">MongoDB</div>
-                            <div title="Collect mongodb metrics data" class="fth-integration-desc">Collect mongodb metrics data</div>
+                            <div title="Collect metrics data from MongoDB" class="fth-integration-desc">Collect metrics data from MongoDB</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6559,8 +6684,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../monitor_jira"
   				data-tags=""
-  				data-name="Exception Events Integration with Jira"
-  				data-summary="When our applications or systems encounter exceptions, it is important to handle them promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to Jira to create issues. This allows us to track, analyze, and resolve these issues in Jira, providing us with better capabilities to manage and track exception events and ensure the normal operation of the system. Additionally, this approach helps us analyze and resolve issues more effectively, improving the stability and reliability of the system."
+  				data-name="Incident Events and Jira Integration"
+  				data-summary="When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira, this method provides better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this approach also helps us analyze and solve problems more effectively, improving system stability and reliability."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6570,8 +6695,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Exception Events Integration with Jira</div>
-                            <div title="When our applications or systems encounter exceptions, it is important to handle them promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to Jira to create issues. This allows us to track, analyze, and resolve these issues in Jira, providing us with better capabilities to manage and track exception events and ensure the normal operation of the system. Additionally, this approach helps us analyze and resolve issues more effectively, improving the stability and reliability of the system." class="fth-integration-desc">When our applications or systems encounter exceptions, it is important to handle them promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to Jira to create issues. This allows us to track, analyze, and resolve these issues in Jira, providing us with better capabilities to manage and track exception events and ensure the normal operation of the system. Additionally, this approach helps us analyze and resolve issues more effectively, improving the stability and reliability of the system.</div>
+                            <div class="fth-integration-name">Incident Events and Jira Integration</div>
+                            <div title="When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira, this method provides better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this approach also helps us analyze and solve problems more effectively, improving system stability and reliability." class="fth-integration-desc">When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira, this method provides better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this approach also helps us analyze and solve problems more effectively, improving system stability and reliability.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6590,18 +6715,18 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../mqtt"
   				data-tags=""
   				data-name="MQTT"
-  				data-summary="Receiving Data via the MQTT Protocol"
+  				data-summary="Receive MQTT protocol data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/minio/icon.png"
+									src="../icon/mqtt/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">MQTT</div>
-                            <div title="Receiving Data via the MQTT Protocol" class="fth-integration-desc">Receiving Data via the MQTT Protocol</div>
+                            <div title="Receive MQTT protocol data" class="fth-integration-desc">Receive MQTT protocol data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6618,9 +6743,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../mysql"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="MySQL"
-  				data-summary="Collect MySQL metrics and logs"
+  				data-summary="Collect metrics data from MySQL"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6631,7 +6756,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">MySQL</div>
-                            <div title="Collect MySQL metrics and logs" class="fth-integration-desc">Collect MySQL metrics and logs</div>
+                            <div title="Collect metrics data from MySQL" class="fth-integration-desc">Collect metrics data from MySQL</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6650,7 +6775,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../nacos"
   				data-tags=""
   				data-name="Nacos"
-  				data-summary="Collect Nacos related index information"
+  				data-summary="Collect metrics related to Nacos"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6661,7 +6786,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Nacos</div>
-                            <div title="Collect Nacos related index information" class="fth-integration-desc">Collect Nacos related index information</div>
+                            <div title="Collect metrics related to Nacos" class="fth-integration-desc">Collect metrics related to Nacos</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6678,9 +6803,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../neo4j"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="Neo4j"
-  				data-summary="Collect Neo4j server metrics"
+  				data-summary="Collect metrics data from Neo4j"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6691,7 +6816,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Neo4j</div>
-                            <div title="Collect Neo4j server metrics" class="fth-integration-desc">Collect Neo4j server metrics</div>
+                            <div title="Collect metrics data from Neo4j" class="fth-integration-desc">Collect metrics data from Neo4j</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6708,9 +6833,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../net"
-  				data-tags="HOST"
-  				data-name="Network"
-  				data-summary="Collect NIC metrics data"
+  				data-tags="Host,Network"
+  				data-name="Net"
+  				data-summary="Collect network interface metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6720,8 +6845,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Network</div>
-                            <div title="Collect NIC metrics data" class="fth-integration-desc">Collect NIC metrics data</div>
+                            <div class="fth-integration-name">Net</div>
+                            <div title="Collect network interface metrics data" class="fth-integration-desc">Collect network interface metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6738,9 +6863,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../netflow"
-  				data-tags="NETWORK"
+  				data-tags="Network"
   				data-name="NetFlow"
-  				data-summary="NetFlow collector can be used to visualize and monitor NetFlow-enabled device."
+  				data-summary="The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6751,7 +6876,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">NetFlow</div>
-                            <div title="NetFlow collector can be used to visualize and monitor NetFlow-enabled device." class="fth-integration-desc">NetFlow collector can be used to visualize and monitor NetFlow-enabled device.</div>
+                            <div title="The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled" class="fth-integration-desc">The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6768,9 +6893,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../netstat"
-  				data-tags="NETWORK,HOST"
+  				data-tags="Network,Host"
   				data-name="NetStat"
-  				data-summary="Collect NIC traffic metrics data"
+  				data-summary="Collect network interface traffic Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6781,7 +6906,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">NetStat</div>
-                            <div title="Collect NIC traffic metrics data" class="fth-integration-desc">Collect NIC traffic metrics data</div>
+                            <div title="Collect network interface traffic Metrics data" class="fth-integration-desc">Collect network interface traffic Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6798,7 +6923,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../newrelic"
-  				data-tags="APM,NEWRELIC,TRACING"
+  				data-tags="NEWRELIC,Trace"
   				data-name="New Relic"
   				data-summary="Receive data from New Relic Agent"
   			>
@@ -6828,9 +6953,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../nfs"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="NFS"
-  				data-summary="Collect metrics of NFS"
+  				data-summary="NFS Metrics Collection"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6841,7 +6966,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">NFS</div>
-                            <div title="Collect metrics of NFS" class="fth-integration-desc">Collect metrics of NFS</div>
+                            <div title="NFS Metrics Collection" class="fth-integration-desc">NFS Metrics Collection</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6858,9 +6983,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../nginx"
-  				data-tags="WEB SERVER,MIDDLEWARE"
+  				data-tags="WEB SERVER,Middleware"
   				data-name="Nginx"
-  				data-summary="Collect metrics of Nginx"
+  				data-summary="Collect metrics data from Nginx"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6871,7 +6996,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Nginx</div>
-                            <div title="Collect metrics of Nginx" class="fth-integration-desc">Collect metrics of Nginx</div>
+                            <div title="Collect metrics data from Nginx" class="fth-integration-desc">Collect metrics data from Nginx</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6890,7 +7015,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../nginx_tracing"
   				data-tags=""
   				data-name="Nginx Tracing"
-  				data-summary="Collect Nginx tracing information"
+  				data-summary="Collect Nginx trace information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6901,7 +7026,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Nginx Tracing</div>
-                            <div title="Collect Nginx tracing information" class="fth-integration-desc">Collect Nginx tracing information</div>
+                            <div title="Collect Nginx trace information" class="fth-integration-desc">Collect Nginx trace information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6920,7 +7045,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../node-exporter"
   				data-tags=""
   				data-name="Node Exporter"
-  				data-summary="Collect host metric information through Node Exporter"
+  				data-summary="Collect host Metrics information via Node Exporter"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6931,7 +7056,37 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Node Exporter</div>
-                            <div title="Collect host metric information through Node Exporter" class="fth-integration-desc">Collect host metric information through Node Exporter</div>
+                            <div title="Collect host Metrics information via Node Exporter" class="fth-integration-desc">Collect host Metrics information via Node Exporter</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../nodejs"
+  				data-tags=""
+  				data-name="NodeJs"
+  				data-summary="Collect metrics, trace data, and logs from NodeJs applications"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/node_js/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">NodeJs</div>
+                            <div title="Collect metrics, trace data, and logs from NodeJs applications" class="fth-integration-desc">Collect metrics, trace data, and logs from NodeJs applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6950,7 +7105,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../npd"
   				data-tags=""
   				data-name="Node Problem Detector"
-  				data-summary="Collecting cluster node metics and events through NPD"
+  				data-summary="Collect cluster node Metrics and events via NPD"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6961,7 +7116,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Node Problem Detector</div>
-                            <div title="Collecting cluster node metics and events through NPD" class="fth-integration-desc">Collecting cluster node metics and events through NPD</div>
+                            <div title="Collect cluster node Metrics and events via NPD" class="fth-integration-desc">Collect cluster node Metrics and events via NPD</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6978,9 +7133,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../nsq"
-  				data-tags="MESSAGE QUEUES,MIDDLEWARE"
+  				data-tags="Message Queue,Middleware"
   				data-name="NSQ"
-  				data-summary="Collect NSQ metrics"
+  				data-summary="Collect metrics data from NSQ"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6991,7 +7146,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">NSQ</div>
-                            <div title="Collect NSQ metrics" class="fth-integration-desc">Collect NSQ metrics</div>
+                            <div title="Collect metrics data from NSQ" class="fth-integration-desc">Collect metrics data from NSQ</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7008,9 +7163,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../oceanbase"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="OceanBase"
-  				data-summary="Collect OceanBase metrics"
+  				data-summary="Collect metrics data from OceanBase"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7021,7 +7176,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OceanBase</div>
-                            <div title="Collect OceanBase metrics" class="fth-integration-desc">Collect OceanBase metrics</div>
+                            <div title="Collect metrics data from OceanBase" class="fth-integration-desc">Collect metrics data from OceanBase</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7040,7 +7195,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../openai"
   				data-tags=""
   				data-name="OpenAI"
-  				data-summary="The display metrics of OpenAI include the total number of requests, response time, number of requests, number of request errors, and number of consumed tokens."
+  				data-summary="The displayed metrics for OpenAI include total requests, response time, request count, request error count, and consumed token count."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7051,7 +7206,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenAI</div>
-                            <div title="The display metrics of OpenAI include the total number of requests, response time, number of requests, number of request errors, and number of consumed tokens." class="fth-integration-desc">The display metrics of OpenAI include the total number of requests, response time, number of requests, number of request errors, and number of consumed tokens.</div>
+                            <div title="The displayed metrics for OpenAI include total requests, response time, request count, request error count, and consumed token count." class="fth-integration-desc">The displayed metrics for OpenAI include total requests, response time, request count, request error count, and consumed token count.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7070,7 +7225,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../opengauss"
   				data-tags=""
   				data-name="OpenGauss"
-  				data-summary="Collect OpenGaussian metric information"
+  				data-summary="Collect OpenGauss Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7081,7 +7236,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenGauss</div>
-                            <div title="Collect OpenGaussian metric information" class="fth-integration-desc">Collect OpenGaussian metric information</div>
+                            <div title="Collect OpenGauss Metrics information" class="fth-integration-desc">Collect OpenGauss Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7098,9 +7253,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../openlit"
-  				data-tags="OTEL,Tracing"
+  				data-tags="OTEL,Trace Linking"
   				data-name="OpenLIT"
-  				data-summary="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit"
+  				data-summary="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7111,7 +7266,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenLIT</div>
-                            <div title="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit" class="fth-integration-desc">OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to DataKit</div>
+                            <div title="OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to Guance" class="fth-integration-desc">OpenLIT simplifies the development process for generative AI and large language models (LLMs), providing comprehensive observability support and reporting observability data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7128,9 +7283,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry-go"
-  				data-tags="GOLANG,OTEL,APM,TRACING"
+  				data-tags="GOLANG,OTEL,Tracing"
   				data-name="OpenTelemetry Golang"
-  				data-summary="Tracing Golang applications with OpenTelemetry"
+  				data-summary="Integration of OpenTelemetry Golang"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7141,7 +7296,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry Golang</div>
-                            <div title="Tracing Golang applications with OpenTelemetry" class="fth-integration-desc">Tracing Golang applications with OpenTelemetry</div>
+                            <div title="Integration of OpenTelemetry Golang" class="fth-integration-desc">Integration of OpenTelemetry Golang</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7158,9 +7313,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry-java"
-  				data-tags="JAVA,OTEL,APM,TRACING"
+  				data-tags="JAVA,OTEL,Tracing"
   				data-name="OpenTelemetry Java"
-  				data-summary="Tracing Java applications with OpenTelemetry"
+  				data-summary="OpenTelemetry Java Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7171,7 +7326,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry Java</div>
-                            <div title="Tracing Java applications with OpenTelemetry" class="fth-integration-desc">Tracing Java applications with OpenTelemetry</div>
+                            <div title="OpenTelemetry Java Integration" class="fth-integration-desc">OpenTelemetry Java Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7188,9 +7343,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry-python"
-  				data-tags="Python,OTEL,APM,TRACING"
+  				data-tags="Python,OTEL,Tracing"
   				data-name="OpenTelemetry Python"
-  				data-summary="OpenTelemetry Python Integration"
+  				data-summary="OpenTelemetry Python integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7201,7 +7356,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry Python</div>
-                            <div title="OpenTelemetry Python Integration" class="fth-integration-desc">OpenTelemetry Python Integration</div>
+                            <div title="OpenTelemetry Python integration" class="fth-integration-desc">OpenTelemetry Python integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7218,9 +7373,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry"
-  				data-tags="OTEL,APM,TRACING"
+  				data-tags="OTEL,Trace Analysis"
   				data-name="OpenTelemetry"
-  				data-summary="Collect OpenTelemetry metric, log and APM data"
+  				data-summary="Receive OpenTelemetry Metrics, logs, APM data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7231,7 +7386,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">OpenTelemetry</div>
-                            <div title="Collect OpenTelemetry metric, log and APM data" class="fth-integration-desc">Collect OpenTelemetry metric, log and APM data</div>
+                            <div title="Receive OpenTelemetry Metrics, logs, APM data" class="fth-integration-desc">Receive OpenTelemetry Metrics, logs, APM data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7248,9 +7403,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../oracle"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="Oracle"
-  				data-summary="Collect Oracle Metric"
+  				data-summary="Collect metrics data from Oracle"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7261,7 +7416,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Oracle</div>
-                            <div title="Collect Oracle Metric" class="fth-integration-desc">Collect Oracle Metric</div>
+                            <div title="Collect metrics data from Oracle" class="fth-integration-desc">Collect metrics data from Oracle</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7278,9 +7433,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../otel-ext-java"
-  				data-tags="OTEL,APM,TRACING"
-  				data-name="OpenTelemetry Extensions"
-  				data-summary="Guance Cloud added more OpenTelemetry plugins"
+  				data-tags="OTEL,Tracing"
+  				data-name="OpenTelemetry Extension"
+  				data-summary="Guance has made additional extensions to the OpenTelemetry plugin"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7290,8 +7445,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">OpenTelemetry Extensions</div>
-                            <div title="Guance Cloud added more OpenTelemetry plugins" class="fth-integration-desc">Guance Cloud added more OpenTelemetry plugins</div>
+                            <div class="fth-integration-name">OpenTelemetry Extension</div>
+                            <div title="Guance has made additional extensions to the OpenTelemetry plugin" class="fth-integration-desc">Guance has made additional extensions to the OpenTelemetry plugin</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7309,8 +7464,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../otel-guance-exporter"
   				data-tags="OTEL"
-  				data-name="OpenTelemetry Exportor for Guance Cloud"
-  				data-summary="Export OpenTelemetry data to GuanCe Cloud directly"
+  				data-name="Guance OpenTelemetry Exporter"
+  				data-summary="Directly export OpenTelemetry data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7320,8 +7475,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">OpenTelemetry Exportor for Guance Cloud</div>
-                            <div title="Export OpenTelemetry data to GuanCe Cloud directly" class="fth-integration-desc">Export OpenTelemetry data to GuanCe Cloud directly</div>
+                            <div class="fth-integration-name">Guance OpenTelemetry Exporter</div>
+                            <div title="Directly export OpenTelemetry data to Guance" class="fth-integration-desc">Directly export OpenTelemetry data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7339,8 +7494,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../pagerduty"
   				data-tags=""
-  				data-name="Exception Events and PagerDuty Linkage"
-  				data-summary="When our application or system encounters exceptions, it usually needs to be dealt with promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to PagerDuty to create events, so that we can track, analyze, and solve these problems in PagerDuty. By quickly sending exception events to PagerDuty to create events, it provides us with better capabilities to manage and track exception events, thereby better ensuring the normal operation of the system. At the same time, this method can also help us better analyze and solve problems, improving the stability and reliability of the system."
+  				data-name="Incident Events and PagerDuty Integration"
+  				data-summary="When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to PagerDuty to create incidents. This allows us to track, analyze, and resolve issues within PagerDuty, providing better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this method also helps us better analyze and solve problems, improving system stability and reliability."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7350,8 +7505,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Exception Events and PagerDuty Linkage</div>
-                            <div title="When our application or system encounters exceptions, it usually needs to be dealt with promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to PagerDuty to create events, so that we can track, analyze, and solve these problems in PagerDuty. By quickly sending exception events to PagerDuty to create events, it provides us with better capabilities to manage and track exception events, thereby better ensuring the normal operation of the system. At the same time, this method can also help us better analyze and solve problems, improving the stability and reliability of the system." class="fth-integration-desc">When our application or system encounters exceptions, it usually needs to be dealt with promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to PagerDuty to create events, so that we can track, analyze, and solve these problems in PagerDuty. By quickly sending exception events to PagerDuty to create events, it provides us with better capabilities to manage and track exception events, thereby better ensuring the normal operation of the system. At the same time, this method can also help us better analyze and solve problems, improving the stability and reliability of the system.</div>
+                            <div class="fth-integration-name">Incident Events and PagerDuty Integration</div>
+                            <div title="When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to PagerDuty to create incidents. This allows us to track, analyze, and resolve issues within PagerDuty, providing better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this method also helps us better analyze and solve problems, improving system stability and reliability." class="fth-integration-desc">When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to PagerDuty to create incidents. This allows us to track, analyze, and resolve issues within PagerDuty, providing better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this method also helps us better analyze and solve problems, improving system stability and reliability.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7370,7 +7525,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../php"
   				data-tags=""
   				data-name="PHP"
-  				data-summary="Obtain metrics, link tracking, and log information for PHP applications"
+  				data-summary="Get metrics, trace data, and log information from PHP applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7381,7 +7536,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">PHP</div>
-                            <div title="Obtain metrics, link tracking, and log information for PHP applications" class="fth-integration-desc">Obtain metrics, link tracking, and log information for PHP applications</div>
+                            <div title="Get metrics, trace data, and log information from PHP applications" class="fth-integration-desc">Get metrics, trace data, and log information from PHP applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7398,9 +7553,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../pinpoint-go"
-  				data-tags="PINPOINT,GOLANG,APM,TRACING"
+  				data-tags="PINPOINT,GOLANG,Trace Analysis"
   				data-name="PinPoint Golang"
-  				data-summary="Tracing Golang applications with PinPoint"
+  				data-summary="PinPoint Golang Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7411,7 +7566,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">PinPoint Golang</div>
-                            <div title="Tracing Golang applications with PinPoint" class="fth-integration-desc">Tracing Golang applications with PinPoint</div>
+                            <div title="PinPoint Golang Integration" class="fth-integration-desc">PinPoint Golang Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7428,9 +7583,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../pinpoint-java"
-  				data-tags="PINPOINT,JAVA,APM,TRACING"
+  				data-tags="PINPOINT,JAVA,Trace Analysis"
   				data-name="PinPoint Java"
-  				data-summary="Tracing Java applications with PinPoint"
+  				data-summary="PinPoint Java Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7441,7 +7596,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">PinPoint Java</div>
-                            <div title="Tracing Java applications with PinPoint" class="fth-integration-desc">Tracing Java applications with PinPoint</div>
+                            <div title="PinPoint Java Integration" class="fth-integration-desc">PinPoint Java Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7458,9 +7613,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../pinpoint"
-  				data-tags="PINPOINT,APM,TRACING"
+  				data-tags="PINPOINT,Trace Analysis"
   				data-name="Pinpoint"
-  				data-summary="Receive Pinpoint Tracing data"
+  				data-summary="Pinpoint Tracing Data Ingestion"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7471,7 +7626,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Pinpoint</div>
-                            <div title="Receive Pinpoint Tracing data" class="fth-integration-desc">Receive Pinpoint Tracing data</div>
+                            <div title="Pinpoint Tracing Data Ingestion" class="fth-integration-desc">Pinpoint Tracing Data Ingestion</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7488,9 +7643,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ploffload"
-  				data-tags=""
+  				data-tags="PIPELINE"
   				data-name="Pipeline Offload"
-  				data-summary="Receive pending data offloaded from the datakit pipeline"
+  				data-summary="Receive data to be processed from DataKit Pipeline Offload"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7501,7 +7656,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Pipeline Offload</div>
-                            <div title="Receive pending data offloaded from the datakit pipeline" class="fth-integration-desc">Receive pending data offloaded from the datakit pipeline</div>
+                            <div title="Receive data to be processed from DataKit Pipeline Offload" class="fth-integration-desc">Receive data to be processed from DataKit Pipeline Offload</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7518,9 +7673,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../postgresql"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="PostgreSQL"
-  				data-summary="Collect PostgreSQL metrics"
+  				data-summary="Collect metrics data from PostgreSQL"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7531,7 +7686,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">PostgreSQL</div>
-                            <div title="Collect PostgreSQL metrics" class="fth-integration-desc">Collect PostgreSQL metrics</div>
+                            <div title="Collect metrics data from PostgreSQL" class="fth-integration-desc">Collect metrics data from PostgreSQL</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7550,7 +7705,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../profile-cpp"
   				data-tags="C/C++,PROFILE"
   				data-name="Profiling C++"
-  				data-summary="Profling C++ applications"
+  				data-summary="C++ Profiling Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7561,7 +7716,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling C++</div>
-                            <div title="Profling C++ applications" class="fth-integration-desc">Profling C++ applications</div>
+                            <div title="C++ Profiling Integration" class="fth-integration-desc">C++ Profiling Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7578,7 +7733,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../profile-dotnet"
-  				data-tags=".NET,PROFILE"
+  				data-tags=".Net,PROFILE"
   				data-name="Profiling .Net"
   				data-summary=".Net Profiling Integration"
   			>
@@ -7609,8 +7764,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../profile-go"
   				data-tags="GOLANG,PROFILE"
-  				data-name="Profiling C++"
-  				data-summary="Profling Golang applications"
+  				data-name="Profiling Golang"
+  				data-summary="Golang Profiling Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7620,8 +7775,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Profiling C++</div>
-                            <div title="Profling Golang applications" class="fth-integration-desc">Profling Golang applications</div>
+                            <div class="fth-integration-name">Profiling Golang</div>
+                            <div title="Golang Profiling Integration" class="fth-integration-desc">Golang Profiling Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7640,7 +7795,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../profile-java"
   				data-tags="JAVA,PROFILE"
   				data-name="Profiling Java"
-  				data-summary="Profling Java applications"
+  				data-summary="Java Profiling Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7651,7 +7806,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling Java</div>
-                            <div title="Profling Java applications" class="fth-integration-desc">Profling Java applications</div>
+                            <div title="Java Profiling Integration" class="fth-integration-desc">Java Profiling Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7670,7 +7825,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../profile-nodejs"
   				data-tags="NODEJS,PROFILE"
   				data-name="Profiling NodeJS"
-  				data-summary="Profling NodeJS applications"
+  				data-summary="NodeJS Profiling Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7681,7 +7836,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling NodeJS</div>
-                            <div title="Profling NodeJS applications" class="fth-integration-desc">Profling NodeJS applications</div>
+                            <div title="NodeJS Profiling Integration" class="fth-integration-desc">NodeJS Profiling Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7730,7 +7885,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../profile-python"
   				data-tags="PYTHON,PROFILE"
   				data-name="Profiling Python"
-  				data-summary="Profling Python applications"
+  				data-summary="Python Profiling Integration"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7741,7 +7896,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling Python</div>
-                            <div title="Profling Python applications" class="fth-integration-desc">Profling Python applications</div>
+                            <div title="Python Profiling Integration" class="fth-integration-desc">Python Profiling Integration</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7760,7 +7915,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../profile"
   				data-tags="PROFILE"
   				data-name="Profiling"
-  				data-summary="Collect application runtime performance data"
+  				data-summary="Collect runtime performance data of applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7771,7 +7926,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Profiling</div>
-                            <div title="Collect application runtime performance data" class="fth-integration-desc">Collect application runtime performance data</div>
+                            <div title="Collect runtime performance data of applications" class="fth-integration-desc">Collect runtime performance data of applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7788,9 +7943,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../prom"
-  				data-tags="PROMETHEUS,THIRD PARTY"
+  				data-tags="External Data Ingestion,PROMETHEUS"
   				data-name="Prometheus Exporter"
-  				data-summary="Collect metrics exposed by Prometheus Exporter"
+  				data-summary="Collect metrics data exposed by Prometheus Exporters"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7801,7 +7956,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Exporter</div>
-                            <div title="Collect metrics exposed by Prometheus Exporter" class="fth-integration-desc">Collect metrics exposed by Prometheus Exporter</div>
+                            <div title="Collect metrics data exposed by Prometheus Exporters" class="fth-integration-desc">Collect metrics data exposed by Prometheus Exporters</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7818,9 +7973,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../prom_remote_write"
-  				data-tags="THIRD PARTY,PROMETHEUS"
+  				data-tags="External Data Ingestion,PROMETHEUS"
   				data-name="Prometheus Remote Write"
-  				data-summary="Receive metrics via Prometheus Remote Write"
+  				data-summary="Collect metrics data via Prometheus Remote Write"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7831,7 +7986,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Remote Write</div>
-                            <div title="Receive metrics via Prometheus Remote Write" class="fth-integration-desc">Receive metrics via Prometheus Remote Write</div>
+                            <div title="Collect metrics data via Prometheus Remote Write" class="fth-integration-desc">Collect metrics data via Prometheus Remote Write</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7848,7 +8003,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../promtail"
-  				data-tags="THIRD PARTY"
+  				data-tags="External Data Ingestion"
   				data-name="Promtail"
   				data-summary="Collect log data reported by Promtail"
   			>
@@ -7878,9 +8033,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../proxy"
-  				data-tags=""
+  				data-tags="PROXY"
   				data-name="Proxy"
-  				data-summary="Proxy HTTP requests to Datakit"
+  				data-summary="Proxy Datakit’s HTTP requests"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7891,7 +8046,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Proxy</div>
-                            <div title="Proxy HTTP requests to Datakit" class="fth-integration-desc">Proxy HTTP requests to Datakit</div>
+                            <div title="Proxy Datakit’s HTTP requests" class="fth-integration-desc">Proxy Datakit’s HTTP requests</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7908,9 +8063,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../pushgateway"
-  				data-tags="THIRD PARTY,PROMETHEUS"
+  				data-tags="External Data Ingestion,PROMETHEUS"
   				data-name="Prometheus Push Gateway"
-  				data-summary="Enable Pushgateway API to receive Prometheus metric data"
+  				data-summary="Enable the Pushgateway API to receive Prometheus Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7921,7 +8076,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Prometheus Push Gateway</div>
-                            <div title="Enable Pushgateway API to receive Prometheus metric data" class="fth-integration-desc">Enable Pushgateway API to receive Prometheus metric data</div>
+                            <div title="Enable the Pushgateway API to receive Prometheus Metrics data" class="fth-integration-desc">Enable the Pushgateway API to receive Prometheus Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7940,7 +8095,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../pyroscope"
   				data-tags="PYROSCOPE,PROFILE"
   				data-name="Pyroscope"
-  				data-summary="Grafana Pyroscope Application Performance Profiler"
+  				data-summary="Grafana Pyroscope application performance collector"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7951,7 +8106,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Pyroscope</div>
-                            <div title="Grafana Pyroscope Application Performance Profiler" class="fth-integration-desc">Grafana Pyroscope Application Performance Profiler</div>
+                            <div title="Grafana Pyroscope application performance collector" class="fth-integration-desc">Grafana Pyroscope application performance collector</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7970,7 +8125,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../pythond"
   				data-tags="PYTHON"
   				data-name="Pythond"
-  				data-summary="Collect data via Python extension"
+  				data-summary="Collect data via Python extensions"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7981,7 +8136,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Pythond</div>
-                            <div title="Collect data via Python extension" class="fth-integration-desc">Collect data via Python extension</div>
+                            <div title="Collect data via Python extensions" class="fth-integration-desc">Collect data via Python extensions</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8000,18 +8155,18 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../quick-guide"
   				data-tags=""
   				data-name="Grafana Dashboard Import"
-  				data-summary="Grafana Dashboard Template Import Tool for Guance Cloud"
+  				data-summary="Tool for importing Grafana Dashboard templates into Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/grafana_import/icon.png"
+									src="../icon/grafance_import/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Grafana Dashboard Import</div>
-                            <div title="Grafana Dashboard Template Import Tool for Guance Cloud" class="fth-integration-desc">Grafana Dashboard Template Import Tool for Guance Cloud</div>
+                            <div title="Tool for importing Grafana Dashboard templates into Guance" class="fth-integration-desc">Tool for importing Grafana Dashboard templates into Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8028,9 +8183,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../rabbitmq"
-  				data-tags="MESSAGE QUEUES,MIDDLEWARE"
+  				data-tags="Message Queue,Middleware"
   				data-name="RabbitMQ"
-  				data-summary="Collect RabbitMQ metrics"
+  				data-summary="Collect metrics data from RabbitMQ"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8041,7 +8196,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">RabbitMQ</div>
-                            <div title="Collect RabbitMQ metrics" class="fth-integration-desc">Collect RabbitMQ metrics</div>
+                            <div title="Collect metrics data from RabbitMQ" class="fth-integration-desc">Collect metrics data from RabbitMQ</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8060,7 +8215,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../ranger_admin"
   				data-tags=""
   				data-name="Ranger Admin"
-  				data-summary="Collect Ranger Admin metric information"
+  				data-summary="Collect Ranger Admin Metrics Information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8071,7 +8226,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Ranger Admin</div>
-                            <div title="Collect Ranger Admin metric information" class="fth-integration-desc">Collect Ranger Admin metric information</div>
+                            <div title="Collect Ranger Admin Metrics Information" class="fth-integration-desc">Collect Ranger Admin Metrics Information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8090,7 +8245,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../ranger_tagsync"
   				data-tags=""
   				data-name="Ranger Tagsync"
-  				data-summary="Collect Ranger Tagsync metric information"
+  				data-summary="Collect Ranger Tagsync Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8101,7 +8256,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Ranger Tagsync</div>
-                            <div title="Collect Ranger Tagsync metric information" class="fth-integration-desc">Collect Ranger Tagsync metric information</div>
+                            <div title="Collect Ranger Tagsync Metrics information" class="fth-integration-desc">Collect Ranger Tagsync Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8120,7 +8275,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../ranger_usersync"
   				data-tags=""
   				data-name="Ranger Usersync"
-  				data-summary="Collect Ranger Usersync metric information"
+  				data-summary="Collect Ranger Usersync Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8131,7 +8286,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Ranger Usersync</div>
-                            <div title="Collect Ranger Usersync metric information" class="fth-integration-desc">Collect Ranger Usersync metric information</div>
+                            <div title="Collect Ranger Usersync Metrics information" class="fth-integration-desc">Collect Ranger Usersync Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8150,7 +8305,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../redis-sentinel"
   				data-tags=""
   				data-name="Redis Sentinel"
-  				data-summary="Collect Redis Sentinel Cluster Metrics, Log Information"
+  				data-summary="Collect Redis Sentinel cluster Metrics and log information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8161,7 +8316,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Redis Sentinel</div>
-                            <div title="Collect Redis Sentinel Cluster Metrics, Log Information" class="fth-integration-desc">Collect Redis Sentinel Cluster Metrics, Log Information</div>
+                            <div title="Collect Redis Sentinel cluster Metrics and log information" class="fth-integration-desc">Collect Redis Sentinel cluster Metrics and log information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8178,9 +8333,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../redis"
-  				data-tags="CACHING,MIDDLEWARE"
+  				data-tags="Cache,Middleware"
   				data-name="Redis"
-  				data-summary="Collect Redis metrics and logs"
+  				data-summary="Redis Metrics and Log Collection"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8191,7 +8346,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Redis</div>
-                            <div title="Collect Redis metrics and logs" class="fth-integration-desc">Collect Redis metrics and logs</div>
+                            <div title="Redis Metrics and Log Collection" class="fth-integration-desc">Redis Metrics and Log Collection</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8210,7 +8365,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../resin"
   				data-tags=""
   				data-name="Resin"
-  				data-summary="Resin Performance metrics display, including startup time, heap memory, non heap memory, classes, threads, etc."
+  				data-summary="Display of Resin performance Metrics, including startup time, heap memory, non-heap memory, classes, threads, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8221,7 +8376,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Resin</div>
-                            <div title="Resin Performance metrics display, including startup time, heap memory, non heap memory, classes, threads, etc." class="fth-integration-desc">Resin Performance metrics display, including startup time, heap memory, non heap memory, classes, threads, etc.</div>
+                            <div title="Display of Resin performance Metrics, including startup time, heap memory, non-heap memory, classes, threads, etc." class="fth-integration-desc">Display of Resin performance Metrics, including startup time, heap memory, non-heap memory, classes, threads, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8240,7 +8395,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../rocketmq"
   				data-tags=""
   				data-name="RocketMQ"
-  				data-summary="Collect RocketMQ related index information"
+  				data-summary="Collect RocketMQ related Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8251,7 +8406,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">RocketMQ</div>
-                            <div title="Collect RocketMQ related index information" class="fth-integration-desc">Collect RocketMQ related index information</div>
+                            <div title="Collect RocketMQ related Metrics information" class="fth-integration-desc">Collect RocketMQ related Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8300,7 +8455,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../seata"
   				data-tags=""
   				data-name="Seata"
-  				data-summary="Collect information about Seata-related metrics"
+  				data-summary="Collect Seata related Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8311,7 +8466,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Seata</div>
-                            <div title="Collect information about Seata-related metrics" class="fth-integration-desc">Collect information about Seata-related metrics</div>
+                            <div title="Collect Seata related Metrics information" class="fth-integration-desc">Collect Seata related Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8328,9 +8483,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../sec-checker"
-  				data-tags="SECURITY"
+  				data-tags="Security"
   				data-name="SCheck"
-  				data-summary="接收 SCheck 采集的数据"
+  				data-summary="Receive data collected by SCheck"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8341,7 +8496,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">SCheck</div>
-                            <div title="接收 SCheck 采集的数据" class="fth-integration-desc">接收 SCheck 采集的数据</div>
+                            <div title="Receive data collected by SCheck" class="fth-integration-desc">Receive data collected by SCheck</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8358,9 +8513,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../sensors"
-  				data-tags="HOST"
-  				data-name="Hardware Sensors"
-  				data-summary="Collect hardware temperature indicators through Sensors command"
+  				data-tags="Host"
+  				data-name="Hardware Sensors Data Collection"
+  				data-summary="Collect hardware temperature metrics using the Sensors command"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8370,8 +8525,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Hardware Sensors</div>
-                            <div title="Collect hardware temperature indicators through Sensors command" class="fth-integration-desc">Collect hardware temperature indicators through Sensors command</div>
+                            <div class="fth-integration-name">Hardware Sensors Data Collection</div>
+                            <div title="Collect hardware temperature metrics using the Sensors command" class="fth-integration-desc">Collect hardware temperature metrics using the Sensors command</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8388,7 +8543,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../skywalking"
-  				data-tags="APM,TRACING,SKYWALKING"
+  				data-tags="Tracing,SKYWALKING"
   				data-name="SkyWalking"
   				data-summary="SkyWalking Tracing Data Ingestion"
   			>
@@ -8418,9 +8573,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../smart"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Disk S.M.A.R.T"
-  				data-summary="Collect disk metrics through smartctl"
+  				data-summary="Collect disk metrics using `smartctl`"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8431,7 +8586,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Disk S.M.A.R.T</div>
-                            <div title="Collect disk metrics through smartctl" class="fth-integration-desc">Collect disk metrics through smartctl</div>
+                            <div title="Collect disk metrics using `smartctl`" class="fth-integration-desc">Collect disk metrics using `smartctl`</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8478,9 +8633,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../socket"
-  				data-tags="NETWORK"
+  				data-tags="Network"
   				data-name="Socket"
-  				data-summary="Collect metrics of TCP/UDP ports"
+  				data-summary="Collect metrics data from TCP/UDP ports"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8491,7 +8646,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Socket</div>
-                            <div title="Collect metrics of TCP/UDP ports" class="fth-integration-desc">Collect metrics of TCP/UDP ports</div>
+                            <div title="Collect metrics data from TCP/UDP ports" class="fth-integration-desc">Collect metrics data from TCP/UDP ports</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8508,9 +8663,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../solr"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="Solr"
-  				data-summary="Collect Solr metrics"
+  				data-summary="Collect metrics data from Solr"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8521,7 +8676,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Solr</div>
-                            <div title="Collect Solr metrics" class="fth-integration-desc">Collect Solr metrics</div>
+                            <div title="Collect metrics data from Solr" class="fth-integration-desc">Collect metrics data from Solr</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8538,9 +8693,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../sqlserver"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="SQLServer"
-  				data-summary="Collect SQLServer Metrics"
+  				data-summary="Collect metrics data from SQLServer"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8551,7 +8706,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">SQLServer</div>
-                            <div title="Collect SQLServer Metrics" class="fth-integration-desc">Collect SQLServer Metrics</div>
+                            <div title="Collect metrics data from SQLServer" class="fth-integration-desc">Collect metrics data from SQLServer</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8568,9 +8723,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../ssh"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="SSH"
-  				data-summary="Collect SSH metrics"
+  				data-summary="Collect metrics data from SSH"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8581,7 +8736,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">SSH</div>
-                            <div title="Collect SSH metrics" class="fth-integration-desc">Collect SSH metrics</div>
+                            <div title="Collect metrics data from SSH" class="fth-integration-desc">Collect metrics data from SSH</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8598,9 +8753,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../statsd"
-  				data-tags="THIRD PARTY"
+  				data-tags="External Data Ingestion"
   				data-name="StatsD"
-  				data-summary="Collect metrics reported by StatsD"
+  				data-summary="Collect metrics data reported by StatsD"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8611,7 +8766,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">StatsD</div>
-                            <div title="Collect metrics reported by StatsD" class="fth-integration-desc">Collect metrics reported by StatsD</div>
+                            <div title="Collect metrics data reported by StatsD" class="fth-integration-desc">Collect metrics data reported by StatsD</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8628,9 +8783,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../swap"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="Swap"
-  				data-summary="Collect metrics of host swap"
+  				data-summary="Collect metrics data from host swap memory"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8641,7 +8796,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Swap</div>
-                            <div title="Collect metrics of host swap" class="fth-integration-desc">Collect metrics of host swap</div>
+                            <div title="Collect metrics data from host swap memory" class="fth-integration-desc">Collect metrics data from host swap memory</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8658,9 +8813,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../system"
-  				data-tags="HOST"
+  				data-tags="Host"
   				data-name="System"
-  				data-summary="Collecting metrics data related to the host system"
+  				data-summary="Collect metrics data related to the host system"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8671,7 +8826,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">System</div>
-                            <div title="Collecting metrics data related to the host system" class="fth-integration-desc">Collecting metrics data related to the host system</div>
+                            <div title="Collect metrics data related to the host system" class="fth-integration-desc">Collect metrics data related to the host system</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8688,9 +8843,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../tdengine"
-  				data-tags="DATA STORES"
+  				data-tags="Database"
   				data-name="TDengine"
-  				data-summary="Collect TDengine metrics"
+  				data-summary="Collect Metrics data from TDengine"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8701,7 +8856,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">TDengine</div>
-                            <div title="Collect TDengine metrics" class="fth-integration-desc">Collect TDengine metrics</div>
+                            <div title="Collect Metrics data from TDengine" class="fth-integration-desc">Collect Metrics data from TDengine</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8718,9 +8873,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../telegraf"
-  				data-tags="THIRD PARTY"
+  				data-tags="External Data Integration"
   				data-name="Telegraf"
-  				data-summary="Accept Telegraf collected data"
+  				data-summary="Receive data collected by Telegraf"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8731,7 +8886,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Telegraf</div>
-                            <div title="Accept Telegraf collected data" class="fth-integration-desc">Accept Telegraf collected data</div>
+                            <div title="Receive data collected by Telegraf" class="fth-integration-desc">Receive data collected by Telegraf</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8750,7 +8905,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_cdb"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud CDB"
-  				data-summary="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-summary="Use the script packages from the official script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8761,7 +8916,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud CDB</div>
-                            <div title="Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div title="Use the script packages from the official script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages from the official script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8780,7 +8935,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_ckafka"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud CKafka"
-  				data-summary="Use the 「Guance platform Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-summary="The displayed metrics for Tencent Cloud CKafka include message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of CKafka in handling large-scale message delivery and real-time data streams."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8791,7 +8946,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud CKafka</div>
-                            <div title="Use the 「Guance platform Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the 「Guance platform Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div title="The displayed metrics for Tencent Cloud CKafka include message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of CKafka in handling large-scale message delivery and real-time data streams." class="fth-integration-desc">The displayed metrics for Tencent Cloud CKafka include message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of CKafka in handling large-scale message delivery and real-time data streams.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8809,8 +8964,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../tencent_clb_private"
   				data-tags="Tencent Cloud"
-  				data-name="Tencent CLB Private"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Tencent Cloud CLB Private"
+  				data-summary="Use the script packages in the script market of the Guance cloud synchronization series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8820,8 +8975,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Tencent CLB Private</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Tencent Cloud CLB Private</div>
+                            <div title="Use the script packages in the script market of the Guance cloud synchronization series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market of the Guance cloud synchronization series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8840,7 +8995,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_clb_public"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud CLB Public"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-summary="Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8851,7 +9006,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud CLB Public</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div title="Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8870,7 +9025,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_cos"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud COS"
-  				data-summary="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the Guance cloud."
+  				data-summary="Use the script packages in the Script Market of Guance series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8881,7 +9036,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud COS</div>
-                            <div title="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the Guance cloud." class="fth-integration-desc">Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the Guance cloud.</div>
+                            <div title="Use the script packages in the Script Market of Guance series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the Script Market of Guance series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8900,7 +9055,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_cvm"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud CVM"
-  				data-summary="Use the "Watch Cloud Sync" script package in the script market to synchronize the data of the cloud monitoring cloud assets to the watch cloud"
+  				data-summary="Use the script packages in the script market of Guance series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8911,7 +9066,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud CVM</div>
-                            <div title="Use the "Watch Cloud Sync" script package in the script market to synchronize the data of the cloud monitoring cloud assets to the watch cloud" class="fth-integration-desc">Use the "Watch Cloud Sync" script package in the script market to synchronize the data of the cloud monitoring cloud assets to the watch cloud</div>
+                            <div title="Use the script packages in the script market of Guance series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market of Guance series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8929,8 +9084,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../tencent_keewidb"
   				data-tags="Tencent Cloud"
-  				data-name="Tencent KeeWiDB"
-  				data-summary="Tencent Cloud KeeWiDB metric display includes metrics such as connection count, requests, cache, keys, and slow queries."
+  				data-name="Tencent Cloud KeeWiDB"
+  				data-summary="Tencent Cloud KeeWiDB metrics display, including connections, requests, cache, keys, slow queries, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8940,8 +9095,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Tencent KeeWiDB</div>
-                            <div title="Tencent Cloud KeeWiDB metric display includes metrics such as connection count, requests, cache, keys, and slow queries." class="fth-integration-desc">Tencent Cloud KeeWiDB metric display includes metrics such as connection count, requests, cache, keys, and slow queries.</div>
+                            <div class="fth-integration-name">Tencent Cloud KeeWiDB</div>
+                            <div title="Tencent Cloud KeeWiDB metrics display, including connections, requests, cache, keys, slow queries, etc." class="fth-integration-desc">Tencent Cloud KeeWiDB metrics display, including connections, requests, cache, keys, slow queries, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8960,7 +9115,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_mariadb"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud MariaDB"
-  				data-summary="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-summary="Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8971,7 +9126,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud MariaDB</div>
-                            <div title="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div title="Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the script market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8990,7 +9145,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_memcached"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud Memcached"
-  				data-summary="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud"
+  				data-summary="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9001,7 +9156,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud Memcached</div>
-                            <div title="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud" class="fth-integration-desc">Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9020,7 +9175,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_mongodb"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud MongoDB"
-  				data-summary="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud"
+  				data-summary="Use the script packages in the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9031,7 +9186,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud MongoDB</div>
-                            <div title="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud" class="fth-integration-desc">Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud</div>
+                            <div title="Use the script packages in the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the script packages in the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9050,7 +9205,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_postgresql"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud PostgreSQL"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance."
+  				data-summary="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9061,7 +9216,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud PostgreSQL</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9079,8 +9234,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../tencent_redis_mem"
   				data-tags="Tencent Cloud"
-  				data-name="Tencent Redis"
-  				data-summary="Tencent Cloud Redis metrics display, including connection count, request count, latency, and slow queries."
+  				data-name="Tencent Cloud Redis"
+  				data-summary="Display of Tencent Cloud Redis metrics, including connections, requests, latency, slow queries, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9090,8 +9245,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Tencent Redis</div>
-                            <div title="Tencent Cloud Redis metrics display, including connection count, request count, latency, and slow queries." class="fth-integration-desc">Tencent Cloud Redis metrics display, including connection count, request count, latency, and slow queries.</div>
+                            <div class="fth-integration-name">Tencent Cloud Redis</div>
+                            <div title="Display of Tencent Cloud Redis metrics, including connections, requests, latency, slow queries, etc." class="fth-integration-desc">Display of Tencent Cloud Redis metrics, including connections, requests, latency, slow queries, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9110,7 +9265,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tencent_sqlserver"
   				data-tags="Tencent Cloud"
   				data-name="Tencent Cloud SQLServer"
-  				data-summary="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-summary="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9121,7 +9276,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tencent Cloud SQLServer</div>
-                            <div title="Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the 「Guance Synchronization」 series of script packages in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9139,8 +9294,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../tencent_tdsql_c_mysql"
   				data-tags="Tencent Cloud"
-  				data-name="Tencent Cloud TDSQL-C MySQL"
-  				data-summary="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud."
+  				data-name="Tencent Cloud TDSQL_C_MySQL"
+  				data-summary="Use the "Guance Cloud Sync" series script packages from the Script Market to synchronize cloud monitoring and cloud asset data to Guance"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9150,8 +9305,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Tencent Cloud TDSQL-C MySQL</div>
-                            <div title="Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud." class="fth-integration-desc">Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.</div>
+                            <div class="fth-integration-name">Tencent Cloud TDSQL_C_MySQL</div>
+                            <div title="Use the "Guance Cloud Sync" series script packages from the Script Market to synchronize cloud monitoring and cloud asset data to Guance" class="fth-integration-desc">Use the "Guance Cloud Sync" series script packages from the Script Market to synchronize cloud monitoring and cloud asset data to Guance</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9170,7 +9325,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../tidb"
   				data-tags=""
   				data-name="TiDB"
-  				data-summary="Collect TiDB cluster, TiDB, Etcd, Region and other related component metric information"
+  				data-summary="Collect metrics information from TiDB cluster, TiDB, Etcd, Region, and other related components"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9181,7 +9336,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">TiDB</div>
-                            <div title="Collect TiDB cluster, TiDB, Etcd, Region and other related component metric information" class="fth-integration-desc">Collect TiDB cluster, TiDB, Etcd, Region and other related component metric information</div>
+                            <div title="Collect metrics information from TiDB cluster, TiDB, Etcd, Region, and other related components" class="fth-integration-desc">Collect metrics information from TiDB cluster, TiDB, Etcd, Region, and other related components</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9198,9 +9353,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../tomcat"
-  				data-tags="WEB SERVER,MIDDLEWARE"
+  				data-tags="WEB SERVER,Middleware"
   				data-name="Tomcat"
-  				data-summary="Collect Tomcat metrics"
+  				data-summary="Collect metrics data from Tomcat"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9211,7 +9366,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tomcat</div>
-                            <div title="Collect Tomcat metrics" class="fth-integration-desc">Collect Tomcat metrics</div>
+                            <div title="Collect metrics data from Tomcat" class="fth-integration-desc">Collect metrics data from Tomcat</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9228,9 +9383,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../tracing-propagator"
-  				data-tags="APM,TRACING"
+  				data-tags="Trace Propagation"
   				data-name="Tracing Propagator"
-  				data-summary="Propagation between multiple tracing agents"
+  				data-summary="Mechanism and usage of information propagation in multiple traces"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9241,7 +9396,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Tracing Propagator</div>
-                            <div title="Propagation between multiple tracing agents" class="fth-integration-desc">Propagation between multiple tracing agents</div>
+                            <div title="Mechanism and usage of information propagation in multiple traces" class="fth-integration-desc">Mechanism and usage of information propagation in multiple traces</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9260,7 +9415,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../trino"
   				data-tags=""
   				data-name="Trino"
-  				data-summary="Collect Trino metrics information"
+  				data-summary="Collect Trino Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9271,7 +9426,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Trino</div>
-                            <div title="Collect Trino metrics information" class="fth-integration-desc">Collect Trino metrics information</div>
+                            <div title="Collect Trino Metrics information" class="fth-integration-desc">Collect Trino Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9318,9 +9473,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_alb"
-  				data-tags="Volcengine"
-  				data-name="Volcengine ALB"
-  				data-summary="Collect ALB metrics data of Volcengine"
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine ALB"
+  				data-summary="Collect VolcEngine ALB Metrics Data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9330,8 +9485,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine ALB</div>
-                            <div title="Collect ALB metrics data of Volcengine" class="fth-integration-desc">Collect ALB metrics data of Volcengine</div>
+                            <div class="fth-integration-name">VolcEngine ALB</div>
+                            <div title="Collect VolcEngine ALB Metrics Data" class="fth-integration-desc">Collect VolcEngine ALB Metrics Data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9348,9 +9503,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_clb"
-  				data-tags="Volcengine"
-  				data-name="Volcengine CLB"
-  				data-summary="Collect CLB metrics data of Volcengine"
+  				data-tags="Volc Engine"
+  				data-name="Volc Engine CLB"
+  				data-summary="Collect Volc Engine CLB Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9360,8 +9515,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine CLB</div>
-                            <div title="Collect CLB metrics data of Volcengine" class="fth-integration-desc">Collect CLB metrics data of Volcengine</div>
+                            <div class="fth-integration-name">Volc Engine CLB</div>
+                            <div title="Collect Volc Engine CLB Metrics data" class="fth-integration-desc">Collect Volc Engine CLB Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9378,9 +9533,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_ecs"
-  				data-tags="Volcengine"
-  				data-name="Volcengine ECS"
-  				data-summary="The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances."
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine ECS"
+  				data-summary="The displayed Metrics of VolcEngine ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These Metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9390,8 +9545,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine ECS</div>
-                            <div title="The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances." class="fth-integration-desc">The display metrics of Voltage ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS, which reflect the computing, memory, network, and storage performance of ECS instances.</div>
+                            <div class="fth-integration-name">VolcEngine ECS</div>
+                            <div title="The displayed Metrics of VolcEngine ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These Metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage." class="fth-integration-desc">The displayed Metrics of VolcEngine ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These Metrics reflect the performance of ECS instances in terms of computing, memory, network, and storage.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9408,9 +9563,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_eip"
-  				data-tags="Volcengine"
-  				data-name="Volcengine EIP"
-  				data-summary="Collect EIP metrics data of Volcengine"
+  				data-tags="Volc Engine"
+  				data-name="Volc Engine EIP"
+  				data-summary="Collect Volc Engine EIP metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9420,8 +9575,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine EIP</div>
-                            <div title="Collect EIP metrics data of Volcengine" class="fth-integration-desc">Collect EIP metrics data of Volcengine</div>
+                            <div class="fth-integration-name">Volc Engine EIP</div>
+                            <div title="Collect Volc Engine EIP metrics data" class="fth-integration-desc">Collect Volc Engine EIP metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9438,9 +9593,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_mongodb_replica_set"
-  				data-tags="Volcengine"
-  				data-name="Volcengine MongoDB Replica Set"
-  				data-summary="Volcengine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc."
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine MongoDB Replica Set"
+  				data-summary="Displays VolcEngine MongoDB replica set metrics, including CPU usage, memory usage, connections, latency, OPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9450,8 +9605,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine MongoDB Replica Set</div>
-                            <div title="Volcengine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc." class="fth-integration-desc">Volcengine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.</div>
+                            <div class="fth-integration-name">VolcEngine MongoDB Replica Set</div>
+                            <div title="Displays VolcEngine MongoDB replica set metrics, including CPU usage, memory usage, connections, latency, OPS, etc." class="fth-integration-desc">Displays VolcEngine MongoDB replica set metrics, including CPU usage, memory usage, connections, latency, OPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9468,9 +9623,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_mongodb_sharded_cluster"
-  				data-tags="Volcengine"
-  				data-name="Volcengine MongoDB Sharded Cluster"
-  				data-summary="Volcengine MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc."
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine MongoDB Sharded Cluster"
+  				data-summary="Displays metrics for the VolcEngine MongoDB sharded cluster, including CPU usage, memory usage, connections, latency, OPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9480,8 +9635,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine MongoDB Sharded Cluster</div>
-                            <div title="Volcengine MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc." class="fth-integration-desc">Volcengine MongoDB Sharded Cluster metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.</div>
+                            <div class="fth-integration-name">VolcEngine MongoDB Sharded Cluster</div>
+                            <div title="Displays metrics for the VolcEngine MongoDB sharded cluster, including CPU usage, memory usage, connections, latency, OPS, etc." class="fth-integration-desc">Displays metrics for the VolcEngine MongoDB sharded cluster, including CPU usage, memory usage, connections, latency, OPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9498,9 +9653,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_mysql"
-  				data-tags="Volcengine"
-  				data-name="Volcengine MySQL"
-  				data-summary="Volcengine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine MySQL"
+  				data-summary="VolcEngine MySQL metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9510,8 +9665,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine MySQL</div>
-                            <div title="Volcengine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Volcengine MySQL indicators display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
+                            <div class="fth-integration-name">VolcEngine MySQL</div>
+                            <div title="VolcEngine MySQL metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">VolcEngine MySQL metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9528,9 +9683,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_nas"
-  				data-tags="Volcengine"
-  				data-name="Volcengine NAS File Storage"
-  				data-summary="Collect Volcengine NAS metric data"
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine NAS File Storage"
+  				data-summary="Collect VolcEngine NAS Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9540,8 +9695,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine NAS File Storage</div>
-                            <div title="Collect Volcengine NAS metric data" class="fth-integration-desc">Collect Volcengine NAS metric data</div>
+                            <div class="fth-integration-name">VolcEngine NAS File Storage</div>
+                            <div title="Collect VolcEngine NAS Metrics data" class="fth-integration-desc">Collect VolcEngine NAS Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9558,20 +9713,20 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_redis"
-  				data-tags="Volcengine"
-  				data-name="Volcengine Redis"
-  				data-summary="Volcengine Redis Metrics Collection"
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine Redis"
+  				data-summary="VolcEngine Redis Metrics Collection"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="..//icon.png"
+									src="../icon/volcengine_redis/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine Redis</div>
-                            <div title="Volcengine Redis Metrics Collection" class="fth-integration-desc">Volcengine Redis Metrics Collection</div>
+                            <div class="fth-integration-name">VolcEngine Redis</div>
+                            <div title="VolcEngine Redis Metrics Collection" class="fth-integration-desc">VolcEngine Redis Metrics Collection</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9588,9 +9743,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_tos"
-  				data-tags="Volcengine"
-  				data-name="Volcengine TOS Object Storage"
-  				data-summary="Collect Volcengine TOS metric data"
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine TOS Object Storage"
+  				data-summary="Collect VolcEngine TOS Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9600,8 +9755,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine TOS Object Storage</div>
-                            <div title="Collect Volcengine TOS metric data" class="fth-integration-desc">Collect Volcengine TOS metric data</div>
+                            <div class="fth-integration-name">VolcEngine TOS Object Storage</div>
+                            <div title="Collect VolcEngine TOS Metrics data" class="fth-integration-desc">Collect VolcEngine TOS Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9618,9 +9773,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../volcengine_vke"
-  				data-tags="Volcengine"
-  				data-name="Volcengine VKE"
-  				data-summary="Volcengine VKE metrics collection, including Cluster, Container, Node, Pod, etc."
+  				data-tags="VolcEngine"
+  				data-name="VolcEngine VKE"
+  				data-summary="VolcEngine VKE Metrics Collection, including Cluster, Container, Node, Pod, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9630,8 +9785,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Volcengine VKE</div>
-                            <div title="Volcengine VKE metrics collection, including Cluster, Container, Node, Pod, etc." class="fth-integration-desc">Volcengine VKE metrics collection, including Cluster, Container, Node, Pod, etc.</div>
+                            <div class="fth-integration-name">VolcEngine VKE</div>
+                            <div title="VolcEngine VKE Metrics Collection, including Cluster, Container, Node, Pod, etc." class="fth-integration-desc">VolcEngine VKE Metrics Collection, including Cluster, Container, Node, Pod, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9650,7 +9805,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../vsphere"
   				data-tags="VMWARE"
   				data-name="vSphere"
-  				data-summary="Collect vSphere metrics"
+  				data-summary="Collect metrics data from vSphere"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9661,7 +9816,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">vSphere</div>
-                            <div title="Collect vSphere metrics" class="fth-integration-desc">Collect vSphere metrics</div>
+                            <div title="Collect metrics data from vSphere" class="fth-integration-desc">Collect metrics data from vSphere</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9679,8 +9834,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   				class="fth-integration-list-item"
   				data-href="../windows_event"
   				data-tags="WINDOWS"
-  				data-name="Windows Event"
-  				data-summary="Collect event logs in Windows"
+  				data-name="Windows Events"
+  				data-summary="Collecting event logs from Windows"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9690,8 +9845,38 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Windows Event</div>
-                            <div title="Collect event logs in Windows" class="fth-integration-desc">Collect event logs in Windows</div>
+                            <div class="fth-integration-name">Windows Events</div>
+                            <div title="Collecting event logs from Windows" class="fth-integration-desc">Collecting event logs from Windows</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../xfsquota"
+  				data-tags=""
+  				data-name="xfsquota"
+  				data-summary="Collect quota information from the xfs file system"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="..//icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div class="fth-integration-name">xfsquota</div>
+                            <div title="Collect quota information from the xfs file system" class="fth-integration-desc">Collect quota information from the xfs file system</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9708,9 +9893,9 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../zabbix_exporter"
-  				data-tags="THIRD PARTY"
-  				data-name="Zabbix Export"
-  				data-summary="Zabbix real-time data exporter"
+  				data-tags="External Data Ingestion"
+  				data-name="Zabbix Data Ingestion"
+  				data-summary="Zabbix real-time data ingestion"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9720,8 +9905,8 @@ Guance has the ability of full stack data collection, and now supports about 320
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div class="fth-integration-name">Zabbix Export</div>
-                            <div title="Zabbix real-time data exporter" class="fth-integration-desc">Zabbix real-time data exporter</div>
+                            <div class="fth-integration-name">Zabbix Data Ingestion</div>
+                            <div title="Zabbix real-time data ingestion" class="fth-integration-desc">Zabbix real-time data ingestion</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9740,7 +9925,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../zadigx"
   				data-tags=""
   				data-name="Zadigx"
-  				data-summary="ZadigX is a cloud-native DevOps value chain platform developed by KodeRover based on Kubernetes."
+  				data-summary="Zadigx displays metrics including Overview, automated builds, automated deployments, and automated testing."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9751,7 +9936,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">Zadigx</div>
-                            <div title="ZadigX is a cloud-native DevOps value chain platform developed by KodeRover based on Kubernetes." class="fth-integration-desc">ZadigX is a cloud-native DevOps value chain platform developed by KodeRover based on Kubernetes.</div>
+                            <div title="Zadigx displays metrics including Overview, automated builds, automated deployments, and automated testing." class="fth-integration-desc">Zadigx displays metrics including Overview, automated builds, automated deployments, and automated testing.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9768,7 +9953,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   			<div
   				class="fth-integration-list-item"
   				data-href="../zipkin"
-  				data-tags="ZIPKIN,APM,TRACING"
+  				data-tags="ZIPKIN,Tracing"
   				data-name="Zipkin"
   				data-summary="Zipkin Tracing Data Ingestion"
   			>
@@ -9800,7 +9985,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				data-href="../zookeeper"
   				data-tags=""
   				data-name="ZooKeeper"
-  				data-summary="Collect zookeeper related index information"
+  				data-summary="Collect ZooKeeper related Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9811,7 +9996,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   						/>
   						<div class="fth-integration-description">
                             <div class="fth-integration-name">ZooKeeper</div>
-                            <div title="Collect zookeeper related index information" class="fth-integration-desc">Collect zookeeper related index information</div>
+                            <div title="Collect ZooKeeper related Metrics information" class="fth-integration-desc">Collect ZooKeeper related Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9830,8 +10015,8 @@ Guance has the ability of full stack data collection, and now supports about 320
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['Alibaba Cloud', 'Tencent Cloud', 'Huawei Cloud', 'Volcengine' ,'GCP', 'AWS', 'AZURE', 'MIDDLEWARE', 'HOST', 'IPMI', 'KUBERNETES', 'CONTAINERS', 'NETWORK', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', 'CACHING', 'MESSAGE QUEUES', 'DATA STORES', 'LANGUAGE', 'TRACING、APM', 'PROFILE', 'LOG', 'TESTING', 'WEB', 'MOBILE', 'CI/CD', 'JENKINS', 'GITLAB', 'SESSION REPLAY'];
-            const tagAll = { label: 'All', value: '' };
+            const limitTags = ['阿里云', '腾讯云', '华为云', '火山引擎','谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
+            const tagAll = { label: '全部', value: '' };
   			const debounce = (fn, delay, immediate) => {
   				let timeout = null;
   				let result = undefined;
@@ -9875,7 +10060,7 @@ Guance has the ability of full stack data collection, and now supports about 320
   				if (e.target.classList.contains('integration-tags-group-item')) {
   					const curTag = e.target;
   					const activeTag = header.querySelector('.integration-tags-group-item.tag-active');
-  					const tagAllContainer = header.querySelector('.integration-tags-group-item');
+            const tagAllContainer = header.querySelector('.integration-tags-group-item');
   					if (curTag !== activeTag) {
   						tagValue = curTag.dataset.tag;
   						curTag.classList.add('tag-active');
