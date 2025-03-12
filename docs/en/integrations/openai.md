@@ -41,8 +41,8 @@ Install the DataKit data collector within the Guance workspace. Click on Integra
 
 For more information, please refer to:
 
-- <https://func.guance.com/doc/practice-connect-to-datakit/>
-- <<<< homepage >>>/datakit/datakit-service-how-to/>
+- [https://func.guance.com/doc/practice-connect-to-datakit/]
+- [<<< homepage >>>/datakit/datakit-service-how-to/]
 
 ### Install Script
 
@@ -68,4 +68,3 @@ We have collected some configurations by default; see the Metrics section for de
 | create_time   | Request Count | float | count |
 | res_status    | Request Error Count | float | count |
 | total_tokens  | Total Consumed Tokens | float | count |
-</translated_content>
