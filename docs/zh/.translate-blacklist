@@ -1,5 +1,6 @@
 # black list
 
+openapi/
 integrations/integration-index.md
 integrations/integration-index.template
 integrations/apache.md
