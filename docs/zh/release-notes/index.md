@@ -39,6 +39,11 @@ icon: zy/release-notes
 
 ## 2025 年 3 月 12 日 {#20250312}
 
+### Breaking Changes {#breakingchanges0312}
+
+[事件](../events/index.md) `df_alert_info` 字段定义调整，新增告警策略未匹配原因说明，仍然需要通过 `isIgnored` 做过滤判断获取实际对外发送的通知对象。
+
+
 ### 功能更新 {#feature0312}
 
 #### 异常追踪
