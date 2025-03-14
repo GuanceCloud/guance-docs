@@ -5,3 +5,4 @@ nav:
   - '账号-修改': modify.md
   - '【前台账号】启用/禁用': set-disable.md
   - '【前台账号】删除': delete.md
+  - '【前台账号】修改品牌标识': change-brand-key.md

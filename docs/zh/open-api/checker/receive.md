@@ -79,6 +79,7 @@
 ## 请求例子
 ```shell
 curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/push-events/<secret>/<subUri>' \
+  -H 'DF-API-KEY:  <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   --data-raw '{"event":{"status":"warning","title":"外部事件监控器测试1","message":"你好，这是外部事件监控器的message","dimension_tags":{"heros":"caiwenji"},"check_value":20},"extraData":{"name":"xxxxxxxx"}}' \
   --compressed
