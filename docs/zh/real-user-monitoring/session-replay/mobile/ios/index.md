@@ -23,7 +23,8 @@
     #import <FTMobileSDK/FTRumSessionReplay.h>
     
        FTSessionReplayConfig *srConfig = [[FTSessionReplayConfig alloc]init];
-       srConfig.privacy = FTSRPrivacyAllow;
+       srConfig.touchPrivacy = FTTouchPrivacyLevelShow;
+       srConfig.textAndInputPrivacy = FTTextAndInputPrivacyLevelMaskSensitiveInputs;
        srConfig.sampleRate = 100;
        [[FTRumSessionReplay sharedInstance] startWithSessionReplayConfig:srConfig];
     ```
@@ -32,7 +33,8 @@
 
     ```swift
        let srConfig = FTSessionReplayConfig.init()
-       srConfig.privacy = .allow
+       srConfig.touchPrivacy = .show
+       srConfig.textAndInputPrivacy = .maskSensitiveInputs
        srConfig.sampleRate = 100
        FTRumSessionReplay.shared().start(with: srConfig)
     ```
