@@ -1,38 +1,31 @@
-# Delete One/More Monitors
+# Delete One or Multiple Monitors
 
 ---
 
-<br />**post /api/v1/monitor/check/delete**
+<br />**POST /api/v1/checker/delete**
 
 ## Overview
-Delete one/more monitors.
+Delete one or multiple monitors
 
 
+## Body Request Parameters
 
-
-## Body Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
+| Parameter Name | Type   | Required | Description              |
 |:-----------|:-------|:-----|:----------------|
-| ruleUUIDs | array | Y | The check's UUID list<br>Allowed null: False <br> |
+| ruleUUIDs | array | Y | List of UUIDs for the monitors<br>Allow null: False <br> |
 
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
-``shell
-curl 'https://openapi.guance.com/api/v1/monitor/check/delete' \
+```shell
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"ruleUUIDs": ["rul_692741d674ac4aea9980979721591b35", "rul_79f1adceb3c8418d943f38767d05f981"]}' \
---compressed \
---insecure
+--data-raw '{"ruleUUIDs": ["rul_xxxx32", "rul_xxxx32"]}' \
+--compressed 
 ```
-
-
 
 
 ## Response
@@ -46,7 +39,3 @@ curl 'https://openapi.guance.com/api/v1/monitor/check/delete' \
     "traceId": "TRACE-F010835F-BD10-429A-974C-8CFED4A76F0D"
 } 
 ```
-
-
-
-

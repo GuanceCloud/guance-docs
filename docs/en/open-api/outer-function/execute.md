@@ -1,41 +1,35 @@
-# Outer Func Execution
+# [Func Function] Execute External Function
 
 ---
 
-<br />**post /api/v1/outer_function/execute**
+<br />**POST /api/v1/outer_function/execute**
 
 ## Overview
-Initiate an execution request for the specified Func.
+Initiate an execution request for a specified Func function
 
 
-
-
-## Body Request Parameter
+## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| funcId | string | Y | Function ID<br>Example: hello_world_msg <br>Allow null: False <br> |
-| funcBody | json |  | Function request body<br>Allow null: False <br> |
-| funcBody.kwargs | json |  | Function call dictionary parameters（**kwargs）<br>Example: {'msg': 'tom'} <br>Allow null: False <br> |
-| funcBody.options | json |  | Return type (default raw)<br>Allow null: False <br> |
-| funcBody.options.returnType | enum |  | Return type (default raw)<br>Example: jsonDumps <br>Allow null: False <br>Optional value: ['ALL', 'raw', 'repr', 'jsonDumps'] <br> |
+|:-------------------|:-------|:-----|:----------------|
+| funcId | string | Y | Function ID<br>Example: hello_world_msg <br>Can be empty: False <br> |
+| funcBody | json |  | Function request body<br>Can be empty: False <br> |
+| funcBody.kwargs | json |  | Function call dictionary parameters (**kwargs)<br>Example: {'msg': 'tom'} <br>Can be empty: False <br> |
+| funcBody.options | json |  | Return type (default raw)<br>Can be empty: False <br> |
+| funcBody.options.returnType | custom_enum |  | Return type (default raw)<br>Example: jsonDumps <br>Can be empty: False <br>Options: ['ALL', 'raw', 'repr', 'jsonDumps'] <br> |
 
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/outer_function/execute' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/outer_function/execute' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-raw $'{\n  "funcId": "guance__openapi.test",\n  "funcBody": {\n    "kwargs": {\n      "workspace_token": {},\n        "workspace_uuid": {},\n        "your_name": {\n          "default": "OpenAPI 用户"\n        }\n    }\n  }\n}' \
+  --data-raw $'{\n  "funcId": "guance__openapi.test",\n  "funcBody": {\n    "kwargs": {\n      "workspace_token": {},\n        "workspace_uuid": {},\n        "your_name": {\n          "default": "OpenAPI User"\n        }\n    }\n  }\n}' \
   --compressed
 ```
-
-
 
 
 ## Response
@@ -53,7 +47,7 @@ curl 'https://openapi.guance.com/api/v1/outer_function/execute' \
         "reason": "EFuncFailed",
         "reqCost": 41,
         "reqDump": {
-            "bodyDump": "{\n  \\\"kwargs\\\": {\n    \\\"workspace_token\\\": {},\n    \\\"workspace_uuid\\\": {},\n    \\\"your_name\\\": {\n      \\\"default\\\": \\\"OpenAPI 用户\\\"\n    }\n  }\n}",
+            "bodyDump": "{\n  \\\"kwargs\\\": {\n    \\\"workspace_token\\\": {},\n    \\\"workspace_uuid\\\": {},\n    \\\"your_name\\\": {\n      \\\"default\\\": \\\"OpenAPI User\\\"\n    }\n  }\n}",
             "method": "POST",
             "url": "/api/v1/func/guance__openapi.test"
         },
@@ -67,7 +61,3 @@ curl 'https://openapi.guance.com/api/v1/outer_function/execute' \
     "traceId": "TRACE-16435F71-4C2E-4026-A5D8-0B6B9ADD23AE"
 } 
 ```
-
-
-
-

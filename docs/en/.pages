@@ -1,37 +1,47 @@
 nav:
+
   - Release Notes: release-notes
   - <br/>Getting Started: ""
-  - Getting Started: getting-started
-  - About Guance: plans
+  - Product Introduction: product-introduction
+  - Sign Up: plans
+  - Billing Method: billing-method
   - DataKit: datakit
   - Integrations: integrations
-  - <br/>Product Functions: ""
+  - Quick Start: getting-started
+  - <br/>Product Features: ""
   - Scenes: scene
   - Monitoring: monitoring
   - Events: events
-  - Incidents: exception
+  - Incident: exception
   - Infrastructure: infrastructure
   - Metrics: metrics
   - Logs: logs
   - APM: application-performance-monitoring
   - RUM: real-user-monitoring
   - Synthetic Tests: usability-monitoring
+  - Security Check: scheck
   - CI Visibility: ci-visibility
   - Pipelines: pipeline
-  - <br/>Openess: ""
+  - Cloud Billing Analysis: cloud-billing
+  - <br/>Open Capabilities: ""
   - DataFlux Func: dataflux-func
-  - Developers: developers
+  - DCA: dca
+  - Custom Development: developers
   - OpenAPI: open-api
+  - API Documentation: studio-backend
   - <br/>Management: ""
   - Workspace Management: management
-  - Billing: billing
+  - Billing Plans and Invoices: billing
   - Billing Center: billing-center
-  - <br/>Deployment: ""
-  - Deployment: deployment
+  - Guance AI: guance-ai
+  - <br/>Private Deployment: ""
+  - Private Deployment: deployment
+  - ExternalAPI: external-api
   - <br/>Others: ""
   - DQL: dql
-  - Mobile Application: mobile
+  - FAQ: faq
+  - Best Practices: best-practices
+  - Third-party Integration: third-party
+  - Data Security: security
+  - Mobile: mobile
   - Agreements: agreements
-
-
-

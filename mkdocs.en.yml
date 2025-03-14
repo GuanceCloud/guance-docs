@@ -61,8 +61,11 @@ extra:
   generator: false
   homepage: https://docs.guance.com/en
   custom_key:
-    static_domain: static.guance.com
+    brand_key: guance
     brand_name: Guance
+    brand_main_domain: guance.com
+    boss_domain: boss.guance.com
+    func_domain: func.guance.com
 
   alternate:
     - name: 中文

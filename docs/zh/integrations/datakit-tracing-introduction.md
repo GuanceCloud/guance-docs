@@ -109,7 +109,7 @@ graph LR
 
 : Zipkin 是一个分布式循迹系统用于收集时序化数据来完成系统监控和发现服务级别的系统问题。Zipkin 提供了包括收集数据和数据查询一体的解决方案，你可以基于一个 TraceID 在 Zipkin 的 UI 直接从日志跳进链路并提供基于多样化数据的检索能力。
 
-[Datakit](https://docs.guance.com/datakit/datakit-tracing/){:target="_blank"}
+[Datakit](<<< homepage >>>/datakit/datakit-tracing/){:target="_blank"}
 
 : 不同于以上几种循迹系统，Datakit 提供的解决方案本身并不产生任何程序执行状态数据（Span）也不会改变数据组织形态。Datakit 监听在网络端口上接收各大主流循迹系统发送的链路数据。Datakit 的循迹模块不仅仅提供开箱即用的能力同时几乎是零配置的，使用者可以从任何其他循迹系统中无摩擦的过度到 Datakit 中。
 
@@ -124,7 +124,7 @@ graph LR
 : - 高度灵活的可配置，你可以在零配置的情况下就使用 Datakit 的链路数据能力也可以通过简单的配置定制化的开启 Datakit 提供的包括采样，稀有链路拾取，资源关闭在内的多种链路计算能力。
 : - 高效且分布式一致的采样算法。
 : - 数据处理前段多种数据处理 Filter 满足日常数据处理需求。
-: - 数据处理后段 Pipeline 支持，你可以借助[观测云提供的强大的 Pipeline 脚本](https://docs.guance.com/logs/pipelines/text-processing/){:target="_blank"}在数据发送到中心之前就对数据进行定制化。
+: - 数据处理后段 Pipeline 支持，你可以借助[观测云提供的强大的 Pipeline 脚本](<<< homepage >>>/logs/pipelines/text-processing/){:target="_blank"}在数据发送到中心之前就对数据进行定制化。
 
 ## 总结 {#conclude}
 

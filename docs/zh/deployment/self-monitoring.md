@@ -152,7 +152,7 @@ kubectl apply -f datakit.yaml
 
 ???+ "前置条件"
 
-     1. 您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
+     1. 您的主机上需 [安装 DataKit](<<< homepage >>>/datakit/datakit-install/) 
     
      2. 如果您不懂相关的 Pipeline 知识，请查看[日志 Pipeline 使用手册](../logs/manual.md)
 
@@ -276,7 +276,7 @@ spec:
 
 ???+ "前置条件"
 
-     1、您的主机上需 [安装 DataKit](https://docs.guance.com/datakit/datakit-install/) 
+     1、您的主机上需 [安装 DataKit](<<< homepage >>>/datakit/datakit-install/) 
     
      2、并在 DataKit 上[开启 ddtrace 采集器](../integrations/ddtrace.md),采用K8S `ConfigMap`的方式注入
 
@@ -329,7 +329,7 @@ spec:
 
 - 页面显示
 
-![img](https://docs.guance.com/application-performance-monitoring/img/9.apm_explorer_1.png)
+![img](<<< homepage >>>/application-performance-monitoring/img/9.apm_explorer_1.png)
 
 ### 配置可用性监测
 
@@ -481,14 +481,14 @@ window.DEPLOYCONFIG = {
     innerAppProfile: 'https://cn4-auth.guance.com/redirectpage/profile',
     innerAppCreateworkspace: 'https://cn4-auth.guance.com/redirectpage/createworkspace',
     staticFileUrl: 'https://cn4-static-res.guance.com',
-    staticDatakit: 'https://<<< custom_key.static_domain >>>',
+    staticDatakit: 'https://static.<<< custom_key.brand_main_domain >>>',
     cloudDatawayUrl: '',
     isSaas: '1',
     showHelp: 1,
     rumEnable: 1,                                                                              ## 0是关闭，1是开启，此处开启
     rumDatakitUrl: "",                                                                         ## 修改成deployment的datakit地址
     rumApplicationId: "",                                                                      ## 修改成实际appid
-    rumJsUrl: "https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js",
+    rumJsUrl: "https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js",
     rumDataEnv: 'prod',
     shrineApiUrl: '',
     upgradeUrl: '',
@@ -530,7 +530,7 @@ DataFlux Func 的函数运行日志、自动触发配置等信息可以直接上
 https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> *注意：如果Func数据上报失败，可查看 [DataFlux Func文档](https://func.guance.com/doc/ui-guide-management-module-system-setting/){:target="_blank"}*
+> *注意：如果Func数据上报失败，可查看 [DataFlux Func文档](https://<<< custom_key.func_domain >>>/doc/ui-guide-management-module-system-setting/){:target="_blank"}*
 
 
 

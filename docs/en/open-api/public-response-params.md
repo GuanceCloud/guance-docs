@@ -1,17 +1,17 @@
-# Common Response Structure
+# Public Response Structure
 
 ---
 
 | Field        | Type      | Description                   |
 |-----------|-----------|----------------------|
-| code      | Number    | The returned status code remains the same as the HTTP status code and is fixed at 200 when there are no errors. |
-| content   | String, Number, Array, Boolean, JSON | The data returned, and what Type of data returned is related to the business of the actual interface. |
-| pageInfo  | JSON | List paging information for all list interface Response     |
-| pageInfo.count | Number | Current page data amount               |
-| pageInfo.pageIndex | Number | page number                 |
-| pageInfo.pageSize | Number | Size per page                 |
-| pageInfo.totalCount | Number | Total amount of eligible data            |
-| errorCode | String | The error status code returned. Null means no error      |
-| message   | String | Specific Description information corresponding to the returned error code      |
-| success   | Boolean | Fixed to true, indicating that the interface call was successful   |
-| traceId   | Boolean | traceId, which is used to track the status of each request |
+| code      | Number    | The return status code, which is the same as the HTTP status code. It is fixed at 200 when there are no errors. |
+| content   | String, Number, Array, Boolean, JSON | The returned data, the specific type of which depends on the actual business of the interface |
+| pageInfo  | JSON | Pagination information for all list interface responses      |
+| pageInfo.count | Number | The number of items on the current page               |
+| pageInfo.pageIndex | Number | Pagination page number                 |
+| pageInfo.pageSize | Number | Page size                 |
+| pageInfo.totalCount | Number | Total number of items that meet the conditions            |
+| errorCode | String | The returned error status code, an empty value indicates no error      |
+| message   | String | Specific description corresponding to the returned error code      |
+| success   | Boolean | Fixed at true, indicating successful API invocation    |
+| traceId   | String | Trace ID, used to track each request situation |

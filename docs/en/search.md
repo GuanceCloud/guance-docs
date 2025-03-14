@@ -1,15 +1,14 @@
-
 <link href="/assets/stylesheets/search.css" rel="stylesheet">
 
 <div class="cu-search-result-layout" id="custom-search">
 <script id="no-result-tmpl" type="text/template">
-    <div class="no-result-text">No matching documents</div>
+    <div class="no-result-text">No results found</div>
 </script>
 <script id="prev-btn-tmpl" type="text/template">
-    <a id="btn-prev" class="btn">Prev</a>
+    <a id="btn-prev" class="btn">Previous page</a>
 </script>
 <script id="next-btn-tmpl" type="text/template">
-    <a id="btn-next" class="btn">Next</a>
+    <a id="btn-next" class="btn">Next page</a>
 </script>
 <script id="page-btn-tmpl" type="text/template">
     <a class="page-num btn"></a>

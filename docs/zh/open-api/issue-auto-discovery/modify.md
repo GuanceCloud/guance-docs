@@ -41,7 +41,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/issue_auto_discovery/iatdc_xxxxx/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue_auto_discovery/iatdc_xxxxx/modify' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"name":"test-core-worker","description":"这是一个新建issue自动发现规则测试例子","every":300,"dqlNamespace":"keyevent","conditions":"`source` = \"lwctest\"","dimensions":["name"],"config":{"name":"这是issue定义中的标题","description":"这是issue定义中的描述信息修改后","level":"system_level_0","extend":{"text":"这是issue定义中的描述信息修改后","manager":["acnt_xxx"]},"channelUUIDs":["chan_xxxxx"]}}' \

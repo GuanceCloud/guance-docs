@@ -1,0 +1,7 @@
+nav:
+  - '【Aggregation Generated Metrics】List': list.md
+  - '【Aggregation Generated Metrics】Create': add.md
+  - '【Aggregation Generated Metrics】Get': get.md
+  - '【Aggregation Generated Metrics】Modify': modify.md
+  - '【Aggregation Generated Metrics】Disable/Enable': set-disable.md
+  - '【Aggregation Generated Metrics】Delete': delete.md

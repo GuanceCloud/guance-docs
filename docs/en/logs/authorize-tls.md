@@ -1,56 +1,56 @@
-# How to use TLS authorization file to authorize lAM account
+# How to Authorize TLS Credentials to an IAM Account
 ---
 
 ## Background
 
-This guide is for setting up a lAM account from scratch and granting permissions. If you've already done this, you can skip these steps.
+This guide walks you through creating an IAM account and authorizing it from scratch. If you have already performed these steps before, you can skip them.
 
 ## Steps
 
-I. On the Guance page for [binding Volcengine TLS external indices](./multi-index/tls.md), download the authorization file, open it, and copy the JSON backup for later use.
+1. On the <<< custom_key.brand_name >>> [Bind Volcengine TLS External Index](./multi-index/tls.md) page, click to download the authorization file. Open it and copy the JSON content for backup; you will need it later.
 
-II. Log in to your Volcengine master account and complete real-name verification.
+2. Log in to your main Volcengine account and complete real-name verification.
 
-**Note**: If no prompt appears, it means you've already verified.
+**Note**: If no prompt appears, it means you have already completed the verification.
 
-III. Click on API Access Key under your profile picture in the top right corner.
+3. Click on the avatar in the top-right corner, then select API Access Key.
 
-<img src="../img/api.png" width="60%" >
+![API](../img/api.png)
 
-IV. Click "Create New Key" to create a sub-user.
+4. Click Create Key to create a sub-user.
 
-![](img/new-user.png)
+![New User](img/new-user.png)
 
-V. Create a user, either by using the current username or by inviting another account.
+5. Create a user either by using the current username or inviting other accounts to create one.
 
-*Below is an example of creating via username:*
+*The following image shows creation via username:*
 
-![](img/via-name.png)
+![Via Name](img/via-name.png)
 
-VI. Enter the necessary information for the sub-user and click "Next."
+6. After entering the required information for the sub-user, click Next.
 
-**Note:** In the login settings, check "Programmatic Access."
+**Note**: In the login settings, check "Programmatic Access".
 
-![](img/next.png)
+![Next](img/next.png)
 
-VII. In the permissions settings, do not check any policy; select "Global" for the scope.
+7. In the permission settings, do not select any permission policies; choose "Global" for the scope of effect.
 
-![](img/all.png)
+![All](img/all.png)
 
-VIII. After reviewing and verifying your phone number, you can view the AK and AKS information and download them.
+8. After reviewing and verifying your phone number, you can view and download the AK (Access Key ID) and SK (Secret Access Key) information.
 
-![](img/download.png)
+![Download](img/download.png)
 
-IX. Click on "Policy Management" and create a new custom policy.
+9. Click Policy Management and create a custom policy.
 
-![](img/strategy.png)
+![Strategy](img/strategy.png)
 
-X. Click the JSON editor, enter the policy name, paste the JSON copied in step I here, and click submit.
+10. Click JSON Editor, enter the policy name, paste the JSON copied in step 1 here, and click Submit.
 
-![](img/json-tls.png)
+![JSON TLS](img/json-tls.png)
 
-XI. After successful submission, click "Add Authorization" to grant this policy to the applied sub-user.
+11. After successful submission, click Add Authorization to assign this permission policy to the requested sub-user.
 
-XII. Enable the Log Service for your Volcengine account.
+12. Enable log service for the Volcengine account.
 
-![](img/open.png)
+![Open](img/open.png)

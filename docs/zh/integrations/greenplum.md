@@ -73,7 +73,7 @@ Flags:
 
 #### 主机安装
 
-- [安装Datakit](https://docs.guance.com/datakit/datakit-install/)
+- [安装Datakit](<<< homepage >>>/datakit/datakit-install/)
   
 #### 配置采集器
 由于`greenplum exporter` 能够直接暴露`metrics` url，所以可以直接通过 prom 采集器，配置对应的 url 进行采集。
@@ -104,7 +104,7 @@ cp prom.conf.sample greenplum.conf
 
 #### 重启Datakit
 
-[重启Datakit](https://docs.guance.com/datakit/datakit-service-how-to/#manage-service)
+[重启Datakit](<<< homepage >>>/datakit/datakit-service-how-to/#manage-service)
 
 ## 指标 {#metric}
 

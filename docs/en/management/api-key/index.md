@@ -1,29 +1,27 @@
 # API Key Management
 ---
 
-Guance supports obtaining and updating the data of Guance workspace by calling Open API interface. Before calling API interface, it is necessary to create API Key as authentication method. For an introduction to the API, refer to the documentation [OpenAPI](../../management/api-key/open-api.md).
+<<< custom_key.brand_name >>> supports obtaining and updating <<< custom_key.brand_name >>> workspace data through calling Open API interfaces. Before calling the API interface, you need to create an API Key as the authentication method.
+
+> For API introduction, refer to [OpenAPI](../../management/api-key/open-api.md).
 
 
 ## Create API Key
 
-In the Guance workspace **Management > API Key Management**, click **Create** in the upper right corner, enter the Key name, and click **Confirm**.
+In <<< custom_key.brand_name >>> workspace **Management > API Key Management**, click **Create Key** in the top-right corner, enter the Key name, and click Confirm.
 
-Note: Only Owner and Administrato can edit API Key.
+**Note**: API Key management supports editing by administrators and above.
 
-![](../img/3_apikey_1.png)
+<img src="../img/3_apikey_1.png" width="80%" >
 
-Click **Confirm** to get the API Key ID and key for the call.
+After clicking **Confirm**, you can obtain the API Key ID and secret key for use.
 
 ![](../img/3_apikey_2.png)
 
-Or you can get the API Key ID and key by clicking the view icon on the right side of the API Key management list. If it is no longer needed or there is a risk of leakage, it can be deleted and re-created.
+Alternatively, you can obtain the API Key ID and secret key by clicking the view icon on the right side of the API Key management list. If it is no longer needed or there is a risk of leakage, you can delete it and recreate it.
 
 ![](../img/3.apikey_3.png)
 
-The creation and deletion of API Key will generate audit events, which can be viewed under **Management > Basic Settings > Audit** of the Guance workspace.
+Creating or deleting an API Key will generate an audit event, which can be viewed under **Management > Basic Settings** in <<< custom_key.brand_name >>> workspace's operation audit.
 
 ![](../img/3.apikey_4.png)
-
-
----
-

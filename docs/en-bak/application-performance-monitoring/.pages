@@ -1,0 +1,9 @@
+nav:
+  - index.md
+  - 'Data Collection': collection
+  - 'Overview': overview.md
+  - 'Traces': explorer.md
+  - 'Error Tracking': error.md
+  - 'Profiing': profile.md
+  - 'Generate Metrics': generate-metrics.md
+  - 'FAQ': faq.md

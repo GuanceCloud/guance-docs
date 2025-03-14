@@ -1,0 +1,6 @@
+nav:
+  - 'Customize SDK Collecting Data': custom-sdk
+  - 'Miniapp Application Data Collection': app-data-collection.md
+  - 'WeChat Miniapp Application Access': app-access.md
+  - 'Applet Access Based on Uniapp Development Framework': uniapp-dev-framework.md
+  - 'Miniapp Application Analysis': app-analysis.md

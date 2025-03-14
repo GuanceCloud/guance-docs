@@ -37,7 +37,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notification_policy/inpy_c79b26b3f6a540888f1773317093c0bd/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_policy/inpy_c79b26b3f6a540888f1773317093c0bd/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"api_modify test","notificationScheduleUUIDs":["nsche_a15990d7e6ec4514842dbee74e26a1cf"],"extend":{"notifyTypes":["issueUpgrade.noManager","issueReply.add"],"upgradeCfg":{"noManager":{"duration":1200},"processTimeout":{}}}}' \

@@ -70,13 +70,13 @@ ntpdate cn.pool.ntp.org
 === "amd64"
 
     ``` shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/sealos_4.1.5_linux_amd64.tar.gz \
        && tar zxvf sealos_4.1.5_linux_amd64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 === "arm64"
 
     ``` shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/sealos_4.1.5_linux_arm64.tar.gz \
        && tar zxvf sealos_4.1.5_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 
@@ -128,8 +128,8 @@ Use "sealos [command] --help" for more information about a command.
 ### 4、安装集群
 
 ```shell
-sealos run pubrepo.guance.com/googleimages/kubernetes:v1.24.0 \
-    pubrepo.guance.com/googleimages/calico:v3.22.1 \
+sealos run pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kubernetes:v1.24.0 \
+    pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/calico:v3.22.1 \
     --masters 192.168.100.101     \
     --nodes 192.168.100.102,192.168.100.103     \
     --passwd [your-ssh-passwd] 

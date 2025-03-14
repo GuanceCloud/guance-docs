@@ -14,6 +14,7 @@
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
 | name | string | Y | API Key 名称信息<br>例子: xxx <br>允许为空: False <br>最大长度: 256 <br> |
+| roleUUIDs | array |  | 指定 API key 的角色 列表 (不包含 owner)<br>允许为空: False <br> |
 | workspaceUUID | string | Y | 指定工作空间UUID<br>例子: wksp_xxxxx <br>允许为空: False <br> |
 
 ## 参数补充说明

@@ -1,28 +1,23 @@
 # Text
 ---
 
-## Introduction
-
-Text is generally used for hints, instructions, you can add text, images, hyperlinks, etc. to text.
-
-**Note: the document is in markdown format**
-
-## Application Scene
-
-Text charts of Guances are used to display text. It can be used in the following scene.
-
-- Displaying text descriptions of different scenes
-- Text cues for those requiring special cues
-
-## Chart Style
-| Options | Description |
-| --- | --- |
-| Chart Title | Set the title for the chart, it will be shown on the top left of the chart after setting, and support hiding |
-
-
-## Example diagram
-
-The following figure shows an example of how to use the Guance Notes text instructions.
+Used to add prompts, explanations, and various content in Markdown formatted documents, such as text, images, and hyperlinks.
 
 ![](../img/text.png)
 
+## Use Cases
+
+1. Display explanatory text for different scenarios;
+2. Provide special prompts for texts that require them.
+
+<!--
+## Chart Styles
+
+| Option | Description |
+| --- | --- |
+| Chart Title | Set a title for the chart. After setting, it will be displayed in the top left corner of the chart and supports hiding. |
+
+
+
+
+-->

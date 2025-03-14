@@ -1,80 +1,95 @@
-# Upgrade Commercial Version
+# Upgrade to Commercial Plan
 ---
 
-Guance Cloud Community Version provides a simple, easy-to-get and fully functional local deployment platform for community users such as teachers, students and cloud computing enthusiasts. You can apply for free, download and try it out, build your own Guance Cloud platform, and experience complete product functions. 
-The Guance Community Version supports upgrading to the commercial version, which is divided into subscription plate making, license plate making and pay-as-you-go version. 
+The <<< custom_key.brand_name >>> Free Plan provides a simple yet fully functional productized local deployment platform for teachers, students, cloud computing enthusiasts, and other community users. You can apply for and download it for free to set up your own <<< custom_key.brand_name >>> platform and experience the complete product features.
 
-## Upgrade to Pay-as-you-go Version
-After the Guance community version is upgraded to the commercial pay-as-you-go version, it would be charged according to the number of DK installations. DK (DataKit) is a real-time data collector for Guance, which needs to be deployed to users' own IT environment for data collection. A DK is 5 yuan/day. If the DK of reported data is less than 20, the fee would be charged according to 20 DKs. 
-### Select an Upgraded Version
-In the [Guance Cloud Expense Center](https://boss.guance.com/#/signin), in "Version Upgrade", select "Commercial Edition-Pay-as-You-Go Edition", and click "Upgrade Now". 
+The <<< custom_key.brand_name >>> Free Plan supports upgrades to the Commercial Plan, which is divided into subscription-based, license-based, and pay-as-you-go versions.
 
-![](img/13.deployment_1.png)
+## Upgrade to Pay-As-You-Go Version
 
-### Agree to Upgrade the Agreement
-Carefully review the commercial service agreement for opening the Guance deployment bank. 
+After upgrading from the <<< custom_key.brand_name >>> Free Plan to the commercial pay-as-you-go version, charges will be based on the number of DK installations. DK (DataKit) is <<< custom_key.brand_name >>>'s real-time data collector that needs to be deployed in the user's IT environment for data collection. The cost is 5 yuan/day per DK. If the number of reporting DKs is less than 20, it will be charged as 20 DKs.
+
+### Select Upgrade Version
+
+On the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), click "Upgrade Commercial Plan". In the "Version Upgrade" section, select "Commercial Plan - Pay-As-You-Go", and click "Upgrade Immediately".
+
+![](img/6.deployment_10.png)
+
+### Agree to Upgrade Agreement
+
+Carefully review the <<< custom_key.brand_name >>> Deployment Commercial Plan Service Agreement.
 
 ![](img/13.deployment_2.png)
 
-At the end of the agreement, click "Agree and Accept", and click "OK" in the pop-up dialog box. Note: Once the agreement is agreed, it means that you have understood and agreed to the contents of the agreement. 
+At the end of the agreement, click "Agree and Accept", and then click "Confirm" in the pop-up dialog box.
+Note: Once you agree to the agreement, it indicates that you have understood and agreed to its content.
 
 ![](img/13.deployment_3.png)
 
-### Choose the Payment Method 
-After agreeing to upgrade the agreement and completing the upgrade of "Commercial Edition-Pay-by-Volume Edition", it is necessary to choose the pay-by-volume settlement method. At present, Guance supports three settlement methods: 
+### Select Payment Method
 
-- Guance enterprise account: recharge the account of Guance expense center directly for settlement; 
-- Alibaba Cloud Account: Settle directly through Alibaba Cloud Account Recharge; 
-- Amazon Cloud Account: Settle directly through AWS account recharge. 
+After agreeing to the upgrade agreement and completing the upgrade to the "Commercial Plan - Pay-As-You-Go", you need to choose a payment method. Currently, <<< custom_key.brand_name >>> supports three payment methods:
+
+- <<< custom_key.brand_name >>> Corporate Account: Directly recharge and settle payments through the <<< custom_key.brand_name >>> Billing Center account;
+- Alibaba Cloud Account: Directly recharge and settle payments through the Alibaba Cloud account;
+- AWS Account: Directly recharge and settle payments through the AWS account.
 
 ![](img/13.deployment_4.png)
 
-Select the "Guance Enterprise Account Settlement" method. Click OK. 
+Select the "<<< custom_key.brand_name >>> Corporate Account Settlement" method. Click "Confirm".
 
 ![](img/13.deployment_5.png)
 
-### Generate License
-After selecting the settlement method, return to the Guance expense center and click "Manage License". 
+### Generate License {#get_license}
+
+After selecting the payment method, return to the <<< custom_key.brand_name >>> Billing Center, enter **Manage License > Create License**. After creating the License, click "Copy" to copy the License to the clipboard.
 
 ![](img/13.deployment_6.png)
 
-In "License Management", click "Create License". After the License is created, click "Copy" to copy the License to the pad. 
+**Note**: Before upgrading to a paid version, the maximum number of DKs is fixed at 50. After upgrading, the maximum DataKit limit can be increased.
 
-![](img/13.deployment_7.png)
+### Activate Commercial Plan
 
-### Activate the Commercial Version 
-Open the Guance Launcher, set it in the upper right corner, and click "License Activation and AK/SK Configuration". 
+Open <<< custom_key.brand_name >>> Launcher, go to settings in the top-right corner, and click "License Activation and AK/SK Configuration".
 
 ![](img/13.deployment_8.png)
 
-In the Guance Launcher's "Guance Activation" dialog box, update License Activation Business Edition.
-Note: You can scan the code and pay attention to the Guance service number to get more official information of Guance. 
+In the <<< custom_key.brand_name >>> Launcher "<<< custom_key.brand_name >>> Activation" dialog box, update the License to activate the Commercial Plan.
 
 ![](img/13.deployment_9.png)
 
-**Note: after the data gateway address **`**?token={}**`** Keep this as it is, don't remove it, don't write a specific token, **`**{}**`**is just a placeholder.**
+**Note**:
 
-### Notes
-After the [Guance Expense Center](https://boss.guance.com/#/signin) upgrades its account to "Commercial Edition-Pay-by-Volume Edition", Guance would provide a free use period of 7 days, during which you can activate the community version to the commercial version, that is, in the "Guance Activation" dialog box of the Guance Launcher, replace the commercial version License to activate the commercial version. 
+1. If the License is not activated, data queries will not be available.
 
-- If you do not activate the commercial version within 7 days, your account in the [Guance Expense Center](https://boss.guance.com/#/signin)would be automatically downgraded to the community account; 
-- If you activate the commercial version after 7 days, the Guance would charge according to the charging method of "commercial version-pay-as-you-go version", and your account in the [Guance Expense Center](https://boss.guance.com/#/signin) would be automatically upgraded to the commercial account. 
+2. Keep the data gateway address suffix **`?token={}`** as is; do not remove it or replace the token placeholder **`{}`** with any specific token.
 
-## Upgrade to Subscription Version
-In the [Guance Expense Center](https://boss.guance.com/#/signin), click "Upgrade Commercial Version", in "Version Upgrade", select "Commercial Version-Subscribe Plate Making", and click "Apply Now". 
+### Precautions
 
+After upgrading your account to the "Commercial Plan - Pay-As-You-Go" on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), <<< custom_key.brand_name >>> will provide a 7-day free trial period. During this period, you can activate the Commercial Plan by replacing the Free Plan License with a Commercial Plan License in the <<< custom_key.brand_name >>> Launcher "<<< custom_key.brand_name >>> Activation" dialog box.
+
+- If you do not activate the Commercial Plan within 7 days, your account on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) will automatically revert to a Free Plan account.
+- If you activate the Commercial Plan after 7 days, <<< custom_key.brand_name >>> will charge according to the "Commercial Plan - Pay-As-You-Go" billing method, and your account on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) will automatically upgrade to a Commercial Plan account.
+
+## Upgrade to Subscription-Based Version
+
+On the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), click "Upgrade Commercial Plan", in the "Version Upgrade" section, select "Commercial Plan - Subscription-Based", and click "Apply Immediately".
+
+<!--
 ![](img/13.deployment_10.png)
-
-Fill in your requirements and contact information in the "Remarks" information, and the Guance Account Manager would contact the upgrade. 
-
+-->
+Fill in your requirements and contact information in the "Remarks" section, and a <<< custom_key.brand_name >>> customer manager will contact you regarding the upgrade process.
+<!-- 
 ![](img/13.deployment_11.png)
+-->
 
-## Upgrade to License Version
-In the [Guance Expense Center](https://boss.guance.com/#/signin), click "Upgrade Commercial Edition", in "Version Upgrade", select "Commercial Edition-License Plate Making", and click "Apply Now". 
+## Upgrade to License-Based Version
 
+On the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin), click "Upgrade Commercial Plan", in the "Version Upgrade" section, select "Commercial Plan - License-Based", and click "Apply Immediately".
+<!--
 ![](img/13.deployment_12.png)
-
-Fill in your requirements, contact information, etc. in the "Remarks" information, and the Guance Account Manager would contact the upgrade. 
-
+-->
+Fill in your requirements and contact information in the "Remarks" section, and a <<< custom_key.brand_name >>> customer manager will contact you regarding the upgrade process.
+<!--
 ![](img/13.deployment_13.png)
-
+-->

@@ -1,55 +1,51 @@
 # Dashboard
 ---
 
-## Introduction
+It clearly displays the range in which metric data values fall, making it suitable for segmenting chaotic data to highlight key points.
 
-Clearly shows the range of metric data values. Suitable for cutting through cluttered data to segment the main points.
-
-## Use Case
-
-The dashboard of the guance is used to display the range of metric data values. For example, you can query the memory usage of a host for the last 15 minutes.
+<img src="../../img/dashboard-pic.png" width="70%" >
 
 ## Chart Query
 
-Chart query supports 「simple query」, 「expression query」 and 「DQL query」, please click [chart-query.md](chart-query.md) for detailed explanation of chart query conditions.
+Supports **simple query**, **expression query**, and **PromQL query**.
 
-**Note：**
+**Note**:
 
-- Click 「Convert to expression query」 to switch to expression query, and use 「simple query」 as "Query A" to support switching between each other. The same applies to 「DQL query」.
-- If you use a conversion function in 「Simple query」 that is not supported by 「Expression query」, the function will not be brought into the expression query after switching.
+1. Single chart queries only support one query statement, defaulting to a simple query. You can switch between simple and expression queries. DQL queries also support switching between these modes;
+2. If conversion functions unsupported by expression queries are used in a simple query, they will not be carried over when switching to an expression query.
 
+> For more detailed explanations of chart query conditions, refer to [Chart Query](chart-query.md).
+
+<!--
 ## Chart Links
 
-Links can help you jump from the current chart to the target page, support adding internal links and external links to the platform, and support modifying the corresponding variable values in the links through template variables to transfer the data information to complete the data linkage. Please click [chart-link](chart-link.md) to view the related settings.
-## Chart Style
-| Options | Description |
+Links help you jump from the current chart to the target page; you can add internal and external links. Additionally, you can pass data information by modifying the corresponding variables in the link using template variables, achieving data interactivity.
+
+> For more related settings, refer to [Chart Links](chart-link.md).
+-->
+
+## Chart Configuration
+
+> For more details, refer to [Chart Configuration](./chart-config.md).
+
+
+
+### Segment Thresholds
+
+This involves setting segmented critical values and gauge colors for numerical values. Corresponding threshold colors are also set.
+
+<img src="../../img/dashboard-pic-1.png" width="70%" >
+
+<!--
+| Unit | **:material-numeric-1-box: Default unit display**: <br /><li>If the queried data is metric data and you have set units for metrics in [Metric Management](../../metrics/dictionary.md), it will display according to the metric's unit;<br /><li>If no unit is configured in **Metric Management**, it will display with thousand separators as per [thousand separator](chart-query.md#thousand) rules.<br />**:material-numeric-2-box: After configuring units**: <br />Priority is given to your custom-defined units. Metric data supports two options for numerical values:<br /><br />**Scientific notation explanation**<br /><u>Default scaling</u>: Units are in ten thousand, million, etc., e.g., 10000 shows as 1 ten thousand, 1000000 shows as 1 million. Two decimal places are retained;<br /><u>Short scale</u>: Units are K, M, B. These represent thousand, million, billion, trillion, etc. For example, 1000 is 1k, 10000 is 10k, 1000000 is 1M; two decimal places are retained.|
+
+## Advanced Configuration
+
+| Option | Description |
 | --- | --- |
-| Chart Title | Set the title for the chart, after setting, it will be displayed on the top left of the chart, and it supports hiding |
-| Minimum | Sets the minimum value for the dashboard, which is the leftmost value in the dial chart |
-| Max | Sets the maximum value of the dashboard, which is the sum of the leftmost and rightmost values in the dial chart |
-| Segment Threshold | Set the segment threshold and dial color for the value. Click 「+」 and 「-」 to add and remove corresponding thresholds |
-
-
-## Chart Setup
-
-### Basic Settings
-| Options | Description |
-| --- | --- |
-| Units | 1. Support setting units for query results.<br />1）If the queried data has no unit, after setting the unit in the chart, it will be displayed on the chart according to the set unit<br />2）If the query data comes with its own units, or if you are in [Metric Management] (../../metrics/dictionary.md), and you set the units for the metrics in the chart, the units set in the chart will be displayed on the chart.<br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths] (chart-query.md#thousand).<br /> **Scientific counting instructions**<br />Default query result value is automatically converted to units, display follows 「scientific notation K, M, B」 (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units 「yuan, million, billion」, retaining two decimal points<br />*For example, if the unit of time interval is selected as ns, then according to the size of the data, the query result will only automatically convert the unit effect as follows, and so on：*<br /><li>1000000ns: chart query data results are displayed as 1ms<br /><li>1000000000ns: chart query data results are displayed as 1s<br /><li>10000000000ns: chart query data results are displayed as 1m<br /><br/>2. support for the query results preset units, manual input format: aggregation function (metric), such as `last(age_idle)` |
-
-### Advanced Settings
-| Options | Description |
-| --- | --- |
-| Time Slicing | When time slicing is enabled, the original data will be aggregated in segments at certain time intervals, and then the aggregated data set will be aggregated for the second time to get the result value, which is disabled by default. For details, please refer to [time slicing description](chart-query.md#time-slicing) |
-| Lock time | Support locking the time range of chart query data, not limited by the global time component. The time set by the user will appear in the upper right corner of the chart after successful setup, e.g. 【xx minutes】, 【xx hours】, 【xx days】. If the time interval is locked at 30 minutes, then when adjusting the time component, no matter what time range view is queried, only the last 30 minutes of data will be displayed. |
-| Time interval | If the time slice is off, there is no time interval option, if the time slice is on, the time interval option is as follows：<br /><li>Original interval: default query to display data according to the time range of the time component<br /><li>自Dynamic Alignment: When turned on, the query will be dynamically adjusted according to the selected time range and aggregation interval, rounded up according to the calculated time interval. (For example, if the automatic aggregation algorithm calculates the time interval to be 50 seconds, then the actual query will be launched according to the time interval of 1 minute) The system presets 1 millisecond, 10 milliseconds, 50 milliseconds, 100 milliseconds, 500 milliseconds, 1 second, 5 seconds, 15 seconds, 30 seconds, 1 minute, 5 minutes, 10 minutes, 30 minutes, 1 hour, 6 hours, 12 hours, 1 day, 1 week, 1 month, and many time interval.<br /><li>Custom time interval: When 【Lock time】 is selected, according to the length of lock time, different optional time intervals will be automatically matched to query the displayed data. (For example, if you select 1 minute as the time interval, the query will actually be launched at 1 minute interval)<br /> |
-| Field Mapping | The object mapping function with view variables is off by default, if object mapping is configured in the view variables：<br /><li>When field mapping is enabled, the chart displays the 「grouped fields」 of the query and the corresponding 「mapped fields」, and the grouped fields without specified mapping are not displayed.<br /><li>When field mapping is turned off, the chart is displayed normally, without the mapped fields<br /> |
-| Chart Description | Add description information to the chart, after setting the chart title will appear behind the 【i】 prompt, do not set it will not be displayed |
-| Workspace | A list of authorized workspaces, which can be queried and displayed via charts after selection |
-
-## Example Graph
-
-The following graph shows the memory usage of the host for the last 15 minutes.
-
-![](../img/yibiaopan.png)
-
+| Time Slicing | When time slicing is enabled, the original data is first segmented and aggregated based on a certain time interval, then the aggregated dataset undergoes a second aggregation to get the final result value. It is disabled by default.<br /><br />If time slicing is off, there is no time interval option; if enabled, the time interval options are as follows:<br /><li>Auto-align: When enabled, it dynamically adjusts the query based on the selected time range and aggregation interval, rounding up to the nearest higher interval.<br /> &nbsp; &nbsp; &nbsp;The system presets multiple time intervals: 1ms, 10ms, 50ms, 100ms, 500ms, 1s, 5s, 15s, 30s, 1min, 5min, 10min, 30min, 1h, 6h, 12h, 1d, 1w, 1mo;<br /><li>Custom time interval: When selecting "Lock Time," different selectable time intervals are automatically matched based on the locked time duration. (e.g., if the time interval is set to 1 minute, the actual query will use 1-minute intervals.)<br /><br /><br />For more details, refer to [Time Slicing Explanation](chart-query.md#time-slicing). |
+| Workspace Authorization | The list of authorized workspaces. Once selected, you can query and display data from that workspace through the chart. |
+| Data Sampling | Applies only to workspaces using the Doris log data engine; when enabled, it samples non-metric data, with a dynamic sampling rate based on data volume. |
+| Time Offset | Non-time series data may have at least a 1-minute delay after being stored. When querying relative time, this might lead to missing recent data.<br />Enabling time offset shifts the actual query time range forward by 1 minute when querying relative time ranges, preventing data loss due to storage delays. For example, if it is currently 12:30 and you query the last 15 minutes of data, with time offset enabled, the actual query time is 12:14-12:29.<br />:warning: <br /><li>This setting applies only to relative time ranges. If querying an absolute time range, time offset does not apply.<br /><li>For charts with time intervals, such as time series charts, time offset does not apply if the interval exceeds 1 minute. For charts without time intervals, like overview or bar charts, time offset remains effective.
+--></example>
+</example>

@@ -43,7 +43,7 @@ icon: zy/plans
 ## <<< custom_key.brand_name >>>支持哪些结算方式？
 
 
-:material-numeric-1-circle: 进入[费用中心](https://boss.guance.com/)，直接使用费用中心帐号进行结算。您只需在费用中心账号中进行充值、购买预购卡等，就可以完成账单支付。
+:material-numeric-1-circle: 进入[费用中心](https://<<< custom_key.boss_domain >>>/)，直接使用费用中心帐号进行结算。您只需在费用中心账号中进行充值、购买预购卡等，就可以完成账单支付。
 
 :material-numeric-1-circle: 支持云厂商帐号结算，目前支持华为云、阿里云、亚马逊、微软云四大云平台。
 
@@ -82,9 +82,9 @@ icon: zy/plans
                                         
 :material-chat-question: 如何确定自己有没有<<< custom_key.brand_name >>>控制台账号和费用中心账号？
 
-<<< custom_key.brand_name >>>控制台账号用于官网登录：https://www.guance.com。**账号的唯一凭证是邮箱**。
+<<< custom_key.brand_name >>>控制台账号用于官网登录：https://<<< custom_key.brand_main_domain >>>。**账号的唯一凭证是邮箱**。
 
-费用中心账号可在**<<< custom_key.brand_name >>>工作空间 > 付费计划与账单**查看。如有费用中心帐号，则结算账号可以正常显示；或者直接登录费用中心平台：https://boss.guance.com。**费用中心账号的唯一凭证是用户名**。
+费用中心账号可在**<<< custom_key.brand_name >>>工作空间 > 付费计划与账单**查看。如有费用中心帐号，则结算账号可以正常显示；或者直接登录费用中心平台：https://<<< custom_key.boss_domain >>>。**费用中心账号的唯一凭证是用户名**。
 
 
 :material-chat-question: 我已开通<<< custom_key.brand_name >>>体验版，如何升级商业版？

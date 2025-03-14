@@ -1,159 +1,127 @@
-# AWS Cloudtrail Exception Event Intelligent Inspection
+# AWS CloudTrail Anomaly Detection
 
 ---
 
 ## Background
 
-AWS CloudTrail is a service used to track, log, and monitor activity in an AWS account. It records various actions performed within the AWS account, including management console access, API calls, and resource changes. By monitoring CloudTrail for error events, potential security issues can be promptly identified. For example, unauthorized API calls, access to denied resources, and abnormal authentication attempts. This helps protect your AWS account and resources from unauthorized access and malicious activities. It also provides insights into the types, frequency, and scope of failures occurring in the system. This enables you to quickly identify issues and take appropriate corrective measures, reducing service downtime and minimizing the impact on your business.
+AWS CloudTrail is a service used for tracking, logging, and monitoring activities within an AWS account. It records operations performed in the AWS account, including management console access, API calls, resource changes, etc. By monitoring error events in CloudTrail, potential security issues can be identified promptly. For example, unauthorized API calls, denied resource access, abnormal authentication attempts, etc. This helps protect your AWS account and resources from unauthorized access and malicious activities; it also provides insights into the types, frequency, and impact of failures in the system. This helps you quickly identify issues and take appropriate corrective actions to minimize service disruptions and business impacts.
 
-## Preconditions
+## Prerequisites
 
-1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
-2. In Guance「Management / API Key Management」create [API Key](../../management/api-key/open-api.md)
+1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. Create an [API Key](../../management/api-key/open-api.md) for performing operations in <<< custom_key.brand_name >>> under "Management / API Key Management"
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as the current <<< custom_key.brand_name >>> SaaS deployment [same operator, same region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Start Intelligent Inspection
+## Enable Inspection
 
+In the self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-hosted Inspection (AWS CloudTrail Anomaly Detection)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-In the self-built DataFlux Func, you can install the "Guance Self-built Inspection (AWS CloudTrail Exception Event Inspection)" through the "Script Market" and follow the prompts to configure the Guance API Key to enable it.
+Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
-In the DataFlux Func Script Market, select the desired inspection scenario and click on install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/). Finally, select deploy to start the script.
-
-> Note: First, you need to configure the CloudTrail log collection in CloudWatch Logs on AWS. Then, enable the "Guance Integration (AWS-CloudWatchLogs)" in Func.
->
+> Note: First, configure CloudWatchLogs collection for CloudTrail on AWS, then enable the "<<< custom_key.brand_name >>> Integration (AWS-CloudWatchLogs)" in Func.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create and configure the startup script and automatic trigger settings. You can directly jump to view the corresponding configuration via the link.
 
 ![image](../img/success_checker.png)
 
+## Configure Inspection
 
+Configure the inspection conditions you wish to filter in the intelligent inspection module of <<< custom_key.brand_name >>> Studio or the startup script automatically created by DataFlux Func. Refer to the following two configuration methods:
 
-## Configs Intelligent Inspection
-
-To configure the inspection conditions you want to filter in the Guance Studio Monitoring - Intelligent Inspection module's automatically created startup script, you can refer to the following two configuration methods:
-
-### Configure Intelligent Inspection in Guance
+### Configuration in <<< custom_key.brand_name >>>
 
   ![image](../img/aws_ak_errorlog02.png)
 
-
-
 #### Enable/Disable
 
-By default, AWS CloudTrail Exception Event Inspection is in the "Enabled" state and can be manually "Disabled." When enabled, it performs inspections on the configured AWS accounts.
+AWS CloudTrail anomaly detection is enabled by default. You can manually disable it. Once enabled, it will inspect the configured cloud accounts.
 
+#### Edit
 
+The "AWS CloudTrail Anomaly Detection" intelligent inspection supports manual addition of filtering conditions. Click the **Edit** button under the operation menu on the right side of the intelligent inspection list to edit the inspection template.
 
-#### Export
+* Filtering Conditions: Configure the names of the log groups (CloudWatchLogs collected log group names) that need to be inspected.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
-
-
-
-#### Editor
-
-In the Intelligent Inspection module, specifically for "AWS CloudTrail Exception Event Inspection," users can manually add filtering conditions. In the right-side action menu of the Intelligent Inspection list, click the **Edit** button to edit the inspection template.
-
-* Filtering Conditions: Configure the corresponding log group names (the log groups collected by CloudWatch Logs) that need to be inspected.
-* Alert Notifications: Support selecting and editing alert policies, including the event severity level to be notified, the recipients of the notifications, and the silence period for alerts.
-
-After clicking the Edit button in the configuration entry parameters, fill in the corresponding detection objects in the parameter configuration, and click Save to start the inspection.
+Click Edit in the configuration entry parameters, fill in the corresponding detection object in the parameter configuration, and save to start the inspection:
 
   ![image](/Users/pacher/Downloads/aws_ak_errorlog03.png)
 
-You can refer to the following configuration:
+Refer to the following configuration:
 
   ```json
-      configs example：
+   // Configuration Example:
+      configs Configuration Example:
           source1
           source2
           source3
   ```
 
-
-
 ## View Events
 
-The Intelligent Inspection module, based on the Guance inspection algorithm, searches for AWS CloudTrail exception events. When an exception event is detected, the Intelligent Inspection generates corresponding events. You can view the related events by clicking the **View Related Events** button in the right-side action menu of the Intelligent Inspection list.
+Intelligent inspection based on <<< custom_key.brand_name >>> inspection algorithms will look for anomalies in AWS CloudTrail. When anomalies are detected, intelligent inspections generate corresponding events. Click the **View Related Events** button under the operation menu on the right side of the intelligent inspection list to view the corresponding anomaly events.
 
 ![image](../img/aws_ak_errorlog04.png)
 
+### Event Details Page
 
+Click **Event** to view the details page of the intelligent inspection event, including event status, time of anomaly occurrence, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-### Event Details page
+* Click the small icon "View Monitor Configuration" in the upper-right corner of the details page to view and edit the current intelligent inspection configuration details.
 
-Click "Event" to view the detail page of intelligent inspection events, including event status, time of exception occurrence, exception name, basic attributes, event details, alarm notification, history and associated events.
+#### Basic Attributes
 
-  * Click the "View monitor configuration" small icon at the top right corner of the detail page to support viewing and editing the configuration details of the current intelligent inspection.
-  * Click the "Export Event JSON" icon in the upper-right corner of the detail page to support exporting the event details.
-
-
-
-#### Basic Properties
-
-  * Detection Dimensions: Filter criteria based on smart check configuration, enabling replication of detection dimensions `key/value`, adding to filters and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data
-  * Extended Attributes: Support replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering.
+* Detection Dimensions: Based on the configured filtering conditions of the intelligent inspection, it supports copying `key/value` pairs, adding filters, and viewing related logs, containers, processes, security checks, traces, user analysis, synthetic tests, and CI data.
+* Extended Attributes: After selecting extended attributes, it supports copying in `key/value` format and forward/reverse filtering.
 
   ![image](../img/aws_ak_errorlog05.png)
 
-
-
 #### Event Details
 
-  * Event Overview: Describes the objects, content, and other details of the exceptional inspection event.
-* CloudTrail: The number of newly added error events in the current cloud account.
-* AK Last Active Time: The last active time of the Access Key (AK) in the current cloud account.
-* New Errors: Clusters of newly added error events in the current cloud account, which can be clicked to navigate to the corresponding event details.
+* Event Overview: Describes the object and content of the anomaly inspection event.
+* Cloudtrail: The number of new error events in the current cloud account.
+* AK Last Active Time: The last active time of the AK in the current cloud account.
+* New Errors: Clusters of new error events in the current cloud account, which can be navigated to the corresponding event details.
 
 ![image](../img/aws_ak_errorlog06.png)
 
-
-
 #### History
 
- Support to view the detection object, exception/recovery time and duration.
+Supports viewing the detection object, anomaly/recovery times, and duration.
 
  ![image](../img/aws_ak_errorlog07.png)
 
+#### Related Events
 
-
-#### Related events
-
-Support to view related events through filtering fields and selected time component information.
+Supports viewing related events through filtering fields and selected time component information.
 
   ![image](../img/aws_ak_errorlog08.png)
 
+## Common Issues
 
+**1. How to configure the detection frequency of AWS CloudTrail anomaly detection**
 
-## FAQ
+In the self-hosted DataFlux Func, when writing the custom inspection processing function, add `fixed_crontab='0 * * * *', timeout=900` in the decorator, then configure it in "Management / Automatic Trigger Configuration".
 
-**1.How to configure the detection frequency for AWS Cloudtrail Exception Event Intelligent Inspection?**
+**2. Why might there be no anomaly analysis during AWS CloudTrail anomaly detection**
 
-In the self-built DataFlux Func, when writing the self-built inspection processing function, add `fixed_crontab='0 * * * *', timeout=900` in the decorator. Then, configure it in "Management / Automatic Trigger Configuration."
+When there is no anomaly analysis in the inspection report, check if the preceding collector in Func has data.
 
-**2.AWS Cloudtrail Exception Event Intelligent Inspection may not have any anomaly analysis when triggered？**
+**3. Under what circumstances will AWS CloudTrail anomaly detection events occur**
 
-If there is no anomaly analysis in the inspection report, please check if the current Func pre-collector has data.
+When new anomaly events appear within the past hour.
 
-**3.Under what circumstances does AWS Cloudtrail Exception Event Intelligent Inspection generate events?**
+**4. What to do if previously normal scripts encounter errors during inspection**
 
-When new exceptional events are detected within the past 1 hour.
+Update the referenced script set in the DataFlux Func Script Market. You can check the update records of the script market via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) for timely updates.
 
-**4.During the inspection process, previously running scripts are found to have exception errors？**
+**5. During script upgrade, why does the Startup script set remain unchanged**
 
-Please update the referenced script set in the DataFlux Func Script Market. You can check the script market's updates through the [Changelog](https://func.guance.com/doc/script-market-guance-changelog/) for convenient script updates.
+First delete the corresponding script set, then click the Upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**5.During the upgrade of the inspection script, there are no changes in the corresponding script set in the Startup？**
+**6. How to determine if the inspection is effective after enabling**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
-
-**6.How to determine if the inspection is effective after enabling it?**
-
-Check the corresponding inspection status in "Management / Automatic Trigger Configuration." First, the status should be enabled. Secondly, you can verify if the inspection script has any issues by clicking "Execute." If it shows "Execution successful xx minutes ago," then the inspection is running correctly and effective.
-
-  
-
-  
+Check the inspection status in "Management / Automatic Trigger Configuration". The status should be enabled first, and you can validate the inspection script by clicking Execute. If it shows "Executed Successfully xxx minutes ago," the inspection is running normally and effectively.

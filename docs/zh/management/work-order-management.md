@@ -7,7 +7,7 @@
 
 <<< custom_key.brand_name >>>为用户提供 5*8 小时的工单服务时间，客服人员收到工单问题后，会尽快为您处理。
 
-> 更多详情，可查看 [服务支持计划](https://www.guance.com/support)。
+> 更多详情，可查看 [服务支持计划](https://<<< custom_key.brand_main_domain >>>/support)。
 
 点击左下角**帮助 > 工单管理**，即可进入工单管理入口：
 

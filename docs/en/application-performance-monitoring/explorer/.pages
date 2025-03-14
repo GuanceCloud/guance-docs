@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Manual Installation': manual
+  - 'Auto Injection': auto_wire
+  - 'Explorer': explorer-analysis.md

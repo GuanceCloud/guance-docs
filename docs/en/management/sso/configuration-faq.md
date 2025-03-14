@@ -1,73 +1,85 @@
-# Configuration FAQs 
+# Configuration FAQs
 ---
 
-:material-chat-question: **What is Guance SSO?** 
+:material-chat-question: **What is <<< custom_key.brand_name >>> SSO Single Sign-On?**
 
-Single Sign-On (SSO) is one of the solutions for integrating enterprise systems, used for unified user identity authentication. Users only need to log in once to access all applications that the enterprise trusts mutually. The SSO single sign-on of Guance is based on SAML 2.0 and OIDC/Oauth2.0 protocol joint identity verification.
+Single sign-on (SSO) is one of the solutions for integrating enterprise systems, used to unify user identity authentication. Users only need to log in once to access all enterprise applications that trust each other. <<< custom_key.brand_name >>>'s SSO single sign-on is based on SAML 2.0 (Security Assertion Markup Language 2.0) and OIDC/OAuth2.0 protocols for federated identity verification.
 
-SAML (Security Assertion Markup Language), is an open-source standard data format based on XML, specifically supporting joint identity verification, securely exchanging identity verification and authorization data between Identity Providers (IdP) and Service Providers (SP).
+SAML stands for Security Assertion Markup Language, an XML-based open standard data format specifically supporting federated identity verification. It securely exchanges authentication and authorization data between Identity Providers (IdP) and Service Providers (SP).
 
-The basic concepts of SAML are as follows:
+Basic concepts of SAML are as follows:
 
-| Term | Explanation |
-| --- | --- |
-| Identity Provider (IdP) | An entity that contains metadata about external IdPs. The IdP can provide identity management services, such as Azure AD, Authing, Okta, Keycloak, etc. |
-| Service Provider (SP) | An application that provides specific services to users using the identity management functions of the IdP. The SP uses the user information provided by the IdP, such as Guance. |
-| Security Assertion Markup Language (SAML 2.0) | A standard protocol for implementing enterprise-level user identity authentication. It is one of the technical implementation methods for mutual trust between SP and IdP. |
-| SAML Assertion | The core element used to describe authentication requests and responses in the SAML protocol. User-specific attributes, such as the email information required for Guance single sign-on configuration, are included in the assertion of the authentication response. |
-| Trust | The trust mechanism established between SP and IdP, usually implemented using public and private keys. SP obtains the IdP's SAML metadata in a trusted manner, which contains the public key used by the IdP to sign and verify the integrity of SAML assertions. |
+| Term      | Explanation                          |
+| ----------- | ------------------------------------ |
+| Identity Provider (IdP)       | An entity containing metadata about external identity providers that can provide identity management services. Examples include Azure AD, Authing, Okta, Keycloak, etc.  |
+| Service Provider (SP)     | An application that leverages IdP's identity management capabilities to provide specific services to users. SP uses user information provided by the IdP. For example, <<< custom_key.brand_name >>>. |
+| Security Assertion Markup Language (SAML 2.0)  | A standard protocol for enterprise-level user identity authentication, it is one of the technical implementations enabling mutual trust between SP and IdP. |
+| SAML Assertion      | The core element in the SAML protocol used to describe authentication requests and responses. User-specific attributes (such as email information required for <<< custom_key.brand_name >>> SSO) are included in the assertion of the authentication response.                          |
+| Trust      | The mutual trust mechanism established between SP and IdP, typically implemented using public and private keys. SP obtains IdP’s SAML metadata through a trusted method; the metadata contains the public key used by the IdP to sign SAML assertions, which SP uses to verify the integrity of the assertion.                          |
 
-:material-chat-question: **How to obtain the cloud data document in Guance SSO management?**
+:material-chat-question: **How do I obtain the cloud data document needed to create an Identity Provider in <<< custom_key.brand_name >>> SSO Management?**
 
-After configuring the entity ID and reply URL for SAML single sign-on in the IdP, you can download the cloud data document. If there is no entity ID and callback address, you can fill in the following examples to obtain the metadata document.
+After configuring the Entity ID and callback URL (assertion URL) for SAML single sign-on in the Identity Provider, you can download the cloud data document. If you do not have an Entity ID or callback URL (assertion URL), you can fill in the following examples to obtain the metadata document.
 
-- Entity ID: https://auth.guance.com/saml/metadata.xml;
-- Reply URL (temporary): https://auth.guance.com/saml/assertion.
+- Entity ID: [https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml);  
+- Assertion URL, temporary use: [https://auth.guance.com/saml/assertion/](https://auth.guance.com/saml/assertion/).  
 
-After enabling SSO in Guance, [obtain the correct entity ID and reply URL](../../management/sso/index.md#obtain) and replace them.
+After enabling SSO single sign-on in <<< custom_key.brand_name >>>, replace with the correct Entity ID and assertion URL obtained from [here](../../management/sso/index.md#obtain).
 
 
-:material-chat-question: **How to obtain the entity ID and reply URL (callback address) for Guance?**
+:material-chat-question: **Common SAML protocol SSO single sign-on requires configuring the Entity ID and callback URL (assertion URL) for login. How do I get the Entity ID and callback URL (assertion URL) for <<< custom_key.brand_name >>>?**
 
-Go to [obtain the Entity ID and Assertion URL](../sso/index.md#obtain).
+Go to [Obtain Entity ID and Assertion URL](../sso/index.md#obtain).
 
-:material-chat-question: **After configuring the entity ID and reply URL (callback address) for the IdP, I still cannot perform single sign-on in Guance. How to resolve this?**
 
-When configuring the identity provider SAML, you need to configure **email mapping** to associate the IdP's user email (i.e., the IdP maps the login user's email to the associated field in Guance).
+:material-chat-question: **After configuring the Entity ID and callback URL (assertion URL) in the Identity Provider, I still cannot perform single sign-on in <<< custom_key.brand_name >>>. How do I resolve this?**
 
-In Guance, a mapping field is defined for association mapping. You must fill in **Email** for mapping. For example, in Azure AD, you need to add an attribute declaration in **Attributes&Claims**:
+When configuring SAML in the Identity Provider, you need to configure email mapping to associate the Identity Provider's user email (i.e., the Identity Provider maps the login user's email to the associated field in <<< custom_key.brand_name >>>).
 
-- Name: The field defined by Guance, fill in **Email**;
-- Source attribute: Select "user.mail" based on the actual email of the IdP.
+<<< custom_key.brand_name >>> defines an associated mapping field that must be filled with **Email** for mapping. For example, in Azure AD, you need to add **Attribute Claims** under **Attributes and Claims**, as shown below:
+
+- Name: <<< custom_key.brand_name >>> defined field, should be filled with **Email**;  
+- Source attribute: Select "user.mail" based on the actual email address provided by the Identity Provider.
 
 ![](../img/9.azure_8.1.png)
 
-:material-chat-question: **After configuring the email mapping declaration for the IdP, I still cannot perform single sign-on in Guance. How to resolve this?**
+:material-chat-question: **After configuring the email mapping claim in the Identity Provider, I still cannot perform single sign-on in <<< custom_key.brand_name >>>. How do I resolve this?**
 
-The associated mapping email field defined by Guance uses regular expressions to match the email rules of the IdP. If the configured email rules of the IdP do not match the regular expression supported by Guance, single sign-on cannot be performed. Please [contact us](https://www.guance.one/) for assistance.
+The associated email mapping field defined by <<< custom_key.brand_name >>> matches the email rules of the Identity Provider using regular expressions. If the configured Identity Provider email rule does not match the supported email regular expression of <<< custom_key.brand_name >>>, single sign-on will fail. You can [contact <<< custom_key.brand_name >>> support](https://<<< custom_key.brand_main_domain >>>/#home) for assistance.
 
 ![](../img/contact-us.png)
 
-Currently, the regular expression supported by Guance for email is as follows:
+Currently, <<< custom_key.brand_name >>> supports the following email regular expression:
 
 ```
-[\\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?
+[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?
 ```
 
-You can use the following website to test the regular expression: `https://c.runoob.com/front-end/854/`
+You can test the regular expression using the following website:
 
-:material-chat-question: **After configuring the entity ID, reply URL, email mapping, and declaration for the IdP, I still cannot perform single sign-on in Guance. How to resolve this?**
+[https://c.runoob.com/front-end/854/](https://c.runoob.com/front-end/854/)
 
-If the [role mapping](index.md#saml-mapping) is enabled in Guance, the role of the user account logging in via SSO will be stripped from its current workspace and dynamically assigned roles according to the attribute fields and attribute values provided by the IDP. If the role mapping rules are not matched, the user account will be stripped of all roles and is not allowed to log in to the Guance workspace.
+:material-chat-question: **After configuring the Entity ID, callback URL (assertion URL), email mapping, and claims in the Identity Provider, I still cannot perform single sign-on in <<< custom_key.brand_name >>>. How do I resolve this?**
 
-If the above situation is excluded, please contact the account manager for assistance.
+If <<< custom_key.brand_name >>> has enabled [role mapping](index.md#saml-mapping), the roles of SSO login users will be removed from their current workspace and dynamically assigned based on the **attribute fields** and **attribute values** provided by the Identity Provider. If no role mapping rule matches, the user account will lose all roles and will not be allowed to log in to the <<< custom_key.brand_name >>> workspace.
 
-:material-chat-question: **Can multiple SSO be configured in Guance?**
+If none of the above applies, please contact your account manager for assistance.
 
-Yes. Configuration steps can be found at [User SSO](./index.md#corporate).
 
-:material-chat-question: **Can accounts logged in through SSO be deleted in Guance? Can they log in again after deletion?**
+:material-chat-question: **Can <<< custom_key.brand_name >>> configure multiple SSO single sign-ons?**
 
-Click on the number in the picture to delete the SSO login member. As long as the IdP is not deleted, the member can still continue to log in to the Guance workspace. If you need to completely delete and prevent the member from logging in through SSO, you need to delete the user accounts of both the Guance and the IdP.
+Yes. Refer to [User SSO](./index.md#corporate) for configuration steps.
+
+
+:material-chat-question: **What access permissions are supported for accounts logging in via SSO?**
+
+During SSO configuration, role access permissions such as **Standard Member** and **Read-Only Member** can be set. These can be upgraded to "Administrator" in **Member Management**. If the workspace enables the [role mapping](index.md#saml-mapping) feature, members will be assigned roles according to the mapped rules when they log in.
+
+> For more details, refer to [Role Management](../role-management.md).
+
+
+:material-chat-question: **Can accounts logging in via SSO be deleted from <<< custom_key.brand_name >>>? Can they log in again after deletion?**
+
+Click the number in the image to delete an SSO login member. As long as the Identity Provider has not deleted the user, the member can continue to log into the <<< custom_key.brand_name >>> workspace. To completely remove the member and prevent them from logging in via SSO, you must delete both the <<< custom_key.brand_name >>> and Identity Provider user accounts.
 
 ![](../img/12.sso_13.png)

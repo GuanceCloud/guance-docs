@@ -14,7 +14,7 @@
 
 ## 前提条件
 
-需选择下载对应安装包，[快速开始](https://func.guance.com/doc/quick-start/)部署 Func 平台。
+需选择下载对应安装包，[快速开始](https://<<< custom_key.func_domain >>>/doc/quick-start/)部署 Func 平台。
 
 部署完成后，等待初始化完成，登录进入平台。
 
@@ -28,10 +28,10 @@
 
 
 1. 选择连接器类型；
-2. 自定义该连接器的 [ID](https://func.guance.com/doc/development-guide-basic-conception/#2)，如 `guance_test`；
+2. 自定义该连接器的 [ID](https://<<< custom_key.func_domain >>>/doc/development-guide-basic-conception/#2)，如 `guance_test`；
 3. 添加标题。该标题将同步展示在<<< custom_key.brand_name >>>工作空间内；
 4. 按需输入该连接器的描述；
-5. 选择<<< custom_key.brand_name >>>[节点](https://func.guance.com/doc/ui-guide-development-module-guance-node/)；
+5. 选择<<< custom_key.brand_name >>>[节点](https://<<< custom_key.func_domain >>>/doc/ui-guide-development-module-guance-node/)；
 6. 添加 [API Key ID 和 API Key](#api-key-how_to_get_api_key)；
 7. 按需测试连通性；
 8. 点击保存。

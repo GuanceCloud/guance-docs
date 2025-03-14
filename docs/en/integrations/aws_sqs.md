@@ -2,13 +2,15 @@
 title: 'AWS Simple Queue Service'
 tags: 
   - AWS
-summary: 'AWS Simple Queue Service displaed metrics include the approximate age of the oldest non-deleted message in the queue, the number of messages in the queue that are delayed and not available for reading immediately, the number of messages that are in flight, the number of messages to be processed, and so on.'
+summary: 'The displayed metrics of AWS Simple Queue Service include the approximate existence time of the oldest undeleleted message in the queue, the number of delayed messages that cannot be read immediately, the number of messages in flight state, the number of messages that can be retrieved from the queue, etc.'
 __int_icon: 'icon/aws_sqs'
 dashboard:
-  - desc: 'AWS Simple Queue Service dashboard'
+
+  - desc: 'Built-in views for AWS Simple Queue Service'
     path: 'dashboard/en/aws_sqs'
+
 monitor:
-  - desc: 'AWS Simple Queue Service monitor'
+  - desc: 'Monitors for AWS Simple Queue Service'
     path: 'monitor/en/aws_sqs'
 
 ---
@@ -18,55 +20,57 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-AWS Simple Queue Service displaced metrics include the approximate age of the oldest non-deleted message in the queue, the number of messages in the queue that are delayed and not available for reading immediately, the number of messages that are in flight, the number of messages to be processed, and so on.
+The displayed metrics of AWS Simple Queue Service include the approximate existence time of the oldest undeleleted message in the queue, the number of delayed messages that cannot be read immediately, the number of messages in flight state, the number of messages that can be retrieved from the queue, etc.
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening [ Integrations - Extension - DataFlux Func (Automata) ]: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-### Installation script
-
-> Tip: Please prepare AWS AK that meets the requirements in advance (For simplicity's sake, you can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`)
-
-To synchronize the monitoring data of AWS Simple Queue Service cloud resources, we install the corresponding collection script: `ID:guance_aws_sqs`
-
-Click [Install] and enter the corresponding parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET and Account Name.
-
-Tap [Deploy startup Script],The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
-
-Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
-
-After this function is enabled, you can view the automatic triggering configuration in [Management / Crontab Config]. Click[Run],you can immediately execute once, without waiting for a regular time. After a while, you can view task execution records and corresponding logs.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Install Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Prepare the required Amazon Cloud AK in advance (for simplicity, you can directly grant `CloudWatchReadOnlyAccess` permission).
 
-## Metric {#metric}
+To synchronize monitoring data from AWS Simple Queue Service, we install the corresponding collection script: 「Guance Integration (AWS-Simple Queue Service Collection)」(ID: `guance_aws_sqs`)
 
-After configure AWS Simple Queue Service monitoring, the default metric set is as follows. You can collect more metrics by configuring them:
+After clicking 【Install】, enter the required parameters: AWS AK ID, AWS AK SECRET, account_name.
 
-[Available CloudWatch metrics for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html){:target="_blank"}
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup script accordingly. Ensure that the 'regions' in the startup script match the actual regions where instances reside.
+
+After enabling, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing information, enable the cloud billing collection script.
 
 
-| Metric  | Description | Units | Valid Statistics |
+By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. Confirm in 「Manage / Automatic Trigger Configuration」whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+
+After configuring Amazon Cloud Monitoring, the default metric set is as follows. More metrics can be collected through configuration:
+
+[Amazon Cloud Monitoring AWS Simple Queue Service Metric Details](https://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html){:target="_blank"}
+
+
+| Metric Name | Description | Unit | Valid Statistics |
 | :---: | :---: | :---: | :---: |
-| `ApproximateAgeOfOldestMessage` | The approximate age of the oldest non-deleted message in the queue. Note: After a message is received three times (or more) and not processed, the message is moved to the back of the queue and the ApproximateAgeOfOldestMessage metric points at the second-oldest message that hasn't been received more than three times. This action occurs even if the queue has a redrive policy. Because a single poison-pill message (received multiple times but never deleted) can distort this metric, the age of a poison-pill message isn't included in the metric until the poison-pill message is consumed successfully. When the queue has a redrive policy, the message is moved to a dead-letter queue after the configured maximum number of receives. When the message is moved to the dead-letter queue, the ApproximateAgeOfOldestMessage metric of the dead-letter queue represents the time when the message was moved to the dead-letter queue (not the original time the message was sent). For FIFO queues, the message is not moved to the back of the queue because this will break the FIFO order guarantee. The message will instead go to the DLQ if there is one configured. Otherwise it will block the message group until successfully deleted or until it expires. Reporting Criteria: A non-negative value is reported if the queue is active. | Seconds | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console) |
-| `ApproximateNumberOfMessagesDelayed` | The number of messages in the queue that are delayed and not available for reading immediately. This can happen when the queue is configured as a delay queue or when a message has been sent with a delay parameter.Reporting Criteria: A non-negative value is reported if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console)  |
-| `ApproximateNumberOfMessagesNotVisible` | The number of messages that are in flight. Messages are considered to be in flight if they have been sent to a client but have not yet been deleted or have not yet reached the end of their visibility window. Reporting Criteria: A non-negative value is reported if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console) |
-| `ApproximateNumberOfMessagesVisible` | The number of messages to be processed. Reporting Criteria: A non-negative value is reported if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console) |
-| `NumberOfEmptyReceives`| The number of ReceiveMessage API calls that did not return a message. Reporting Criteria: A non-negative value is reported if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console)  |
-| `NumberOfMessagesDeleted` |The number of messages deleted from the queue. Reporting Criteria: A non-negative value is reported if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console) |
-| `NumberOfMessagesReceived`|  The number of messages returned by calls to the ReceiveMessage action.Reporting Criteria: A non-negative value is reported if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console) |
-| `NumberOfMessagesSent`| The number of messages added to a queue. Reporting Criteria: A non-negative value is reported if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console) |
-| `SentMessageSize` | The size of messages added to a queue. Reporting Criteria: A non-negative value is reported if the queue is active. | Bytes | Average, Minimum, Maximum, Sum, Data Samples (displays as Sample Count in the Amazon SQS console) |
+| `ApproximateAgeOfOldestMessage` | The approximate existence time of the oldest undeleleted message in the queue. **Note**: When a message is received three times (or more) and not processed, it will move to the back of the queue, and the ApproximateAgeOfOldestMessage metric will indicate the second oldest message that has not been received more than three times. Even if the queue has a dead-letter queue policy, this operation will occur. Since a single poison pill message (received multiple times but never deleted) can distort this metric, the expiration time of the poison pill message will not be included in the metric until it is successfully used. If the queue has a dead-letter queue policy, when the configured maximum receive count is reached, the message will move to the dead-letter queue. When the message moves to the dead-letter queue, the ApproximateAgeOfOldestMessage metric of the dead-letter queue indicates the time when the message moved to the dead-letter queue (not the original send time). Reporting standard: Reports non-negative values if the queue is active. | Seconds | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `ApproximateNumberOfMessagesDelayed` | The number of delayed messages in the queue that cannot be read immediately. This occurs if the queue is configured as a delay queue or if the delay parameter is used to send messages. Reporting standard: Reports non-negative values if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `ApproximateNumberOfMessagesNotVisible` | The number of messages in flight. Messages are considered in flight if they have been sent to a client but not yet deleted or not yet reached the end of their visibility window. Reporting standard: Reports non-negative values if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `ApproximateNumberOfMessagesVisible` | The number of messages that can be retrieved from the queue. Reporting standard: Reports non-negative values if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `NumberOfEmptyReceives` | The number of ReceiveMessage API calls that did not return any messages. Reporting standard: Reports non-negative values if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `NumberOfMessagesDeleted` | The number of messages deleted from the queue. Reporting standard: Reports non-negative values if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `NumberOfMessagesReceived` | The number of messages returned by calling the ReceiveMessage operation. Reporting standard: Reports non-negative values if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `NumberOfMessagesSent` | The number of messages added to the queue. Reporting standard: Reports non-negative values if the queue is active. | Count | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |
+| `SentMessageSize` | The size of messages added to the queue. Reporting standard: Reports non-negative values if the queue is active. | Bytes | Average, Minimum, Maximum, Sum, Data Samples (displayed as sample count in the Amazon SQS console) |

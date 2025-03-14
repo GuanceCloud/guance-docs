@@ -1,98 +1,87 @@
-# Change Detection
+# Mutation Detection
 ---
 
-By comparing the absolute or relative (%) change values of the same metric in two different time periods, it is possible to determine if there are any abnormal conditions. This method is commonly used to track the peak value or data changes of a specific metric. When abnormal conditions occur, events can be recorded more accurately.
+By comparing the absolute change or relative percentage change of the same metric in two different time periods, it determines whether an anomaly has occurred. This method is commonly used to track peaks or fluctuations in metrics. When an anomaly is detected, it can generate event records more accurately for subsequent analysis and processing.
+
 
 ## Use Cases
 
-Change detection can be used to monitor recent and long-term relative changes/relative change rates. For example, when you set the percentage difference between the average value of the connection count metric for MySQL in the last 15 minutes and the average value in the last 1 day to be >500, it means that a warning should be triggered when the average connection count in the last fifteen minutes exceeds five times the average connection count in the last day.
+Mutation detection is suitable for monitoring short-term changes relative to long-term data or change rates. For example, setting the percentage difference between the average number of MySQL connections in the last 15 minutes and the average over the past day to be greater than 500% means that if the average number of connections in the last 15 minutes exceeds five times the daily average, the system will trigger a warning.
 
-It is recommended to use statistical functions such as AVG, MAX, MIN, etc., and avoid using the last function.
+It is recommended to use statistical functions such as Average (AVG), Maximum (MAX), Minimum (MIN) to calculate these metrics rather than the Last (LAST) function to reduce the impact of anomalous data and improve monitoring accuracy.
 
-## Setup
 
-### Step 1: Detection Configuration
+## Detection Configuration {#configuration-file}
 
 ![](../img/monitor22.png)
 
-:material-numeric-1-circle-outline: **Detection Metrics:** Monitoring Metric Data. It supports comparing the difference or difference percentage of the metric in two time periods.
+### Detection Metrics
+
+This refers to the metric data being monitored. It compares the difference or percentage difference of the metric between two time periods.
 
 | Field | Description |
 | --- | --- |
-| Data Type | At present, only "metric" data is supported |
-| Measurements | Measurement where the current detection metric is located |
-| Metrics | Metrics for current detection |
-| Aggregation Algorithm | Contain Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%) |
-| Detection Dimension | The corresponding string type (keyword) fields in the configuration data can be selected as detection dimensions. At present, the detection dimensions support selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. (For example, if the detection dimensions `host` and `host_ip` are selected, the detection object can be `{host: host1, host_ip: 127.0.0.1}`.) |
-| Filtering | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, and support fuzzy matching and fuzzy mismatching screening conditions. |
-| Alias | Custom metrics name |
-| Query Mode | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md) |
+| Data Type | The current data type being detected, including Metrics, Logs, Infrastructure, Resource Catalog, Events, APM, RUM, Security Check, Network, and Profile. |
+| Measurement | The measurement set where the current detection metric resides. |
+| Metric | The specific metric currently being detected. |
+| Aggregation Algorithm | Includes Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (last value), First by (first value), Count by (data point count), Count_distinct by (unique data point count), p50 (median), p75 (75th percentile), p90 (90th percentile), p99 (99th percentile). |
+| Detection Dimensions | String type (`keyword`) fields in the configuration data can be selected as detection dimensions, with up to three fields supported. By combining multiple detection dimension fields, a specific detection object can be determined. <<< custom_key.brand_name >>> will determine whether the statistical metric for a specific detection object meets the threshold condition; if it does, an event is generated.<br />* (For example, selecting detection dimensions `host` and `host_ip` results in a detection object like `{host: host1, host_ip: 127.0.0.1}`). |
+| Filter Conditions | Filters the detection metric data based on metric labels to limit the scope of the detected data; supports adding one or more label filters; supports fuzzy matching and non-matching filter conditions. |
+| Alias | Custom name for the detection metric. |
+| [Query](../../scene/visual-chart/chart-query.md) Method | Supports simple queries and expression queries. |
 
-The selectable **detection intervals** for time periods are 15m, 30m, 1h, 4h, 12h and 1d.
+Time intervals can include last month, last week, yesterday, one hour ago, compared to the previous period, last 15 minutes, last 30 minutes, last hour, last 4 hours, last 12 hours, and last day.
 
-**Note**: The "1d" and "1h" detection intervals compare the difference or percentage difference of detection metrics within the same time range. Other detection intervals compare the difference or percentage difference of detection metrics between two time periods.
+**Note**: For the detection intervals "yesterday" and "one hour ago," the comparison is made within the same time range for the difference or percentage difference of the detection metric. For other detection intervals, the comparison is made between two time periods for the difference or percentage difference of the detection metric.
 
 ![](../img/1.monitor_1.png)
 
-![](../img/1.monitor_2.png)
 
-| Detection Interval (Drop-down oOption) | Detection Frequency | 
-| --- | --- | 
-| 15m | 5m |
-| 30m | 5m |
-| 1h | 15m |
-| 4h | 30m |
-| 12h | 1h |
-| 1d | 1h |
+### Detection Frequency
 
-:material-numeric-2-circle-outline: **Detection Frequency:** The execution frequency of the detection rule automatically matches the detection interval with a larger time range among the two detection intervals selected by the user.
+The execution frequency of the detection rule automatically matches the larger time range of the two selected detection intervals. It includes 1 minute, 5 minutes, 15 minutes, 30 minutes, and 1 hour.
 
-:material-numeric-3-circle-outline: **Trigger Condition:** Set the trigger condition of alert level. Support three forms of data comparison: upward (data rise), downward (data fall), upward or downward.
+### Trigger Conditions
 
-![](../img/monitor51.png)
+Set the alert level trigger conditions: you can configure any one of the following trigger conditions—Critical, Major, Minor, Data Gap, Informational:
 
-Configure the trigger condition and severity. When the query result is multiple values, an event will be generated if any value meets the trigger condition.
+1. Pre-trigger Condition Configuration: Enabled by default; when the detected value meets the threshold set in the pre-trigger condition (supported operators are >, >=, <, <=, default is >), then proceed to evaluate the mutation detection rule; disabling this configuration skips the pre-trigger condition check and directly evaluates the mutation detection rule;
 
-> See [Event Levels](event-level-description.md). 
+2. Mutation Rule Configuration: Compares data increases, decreases, or both for mutation detection rules.
 
-I. Alert levels: Critical (red), Important (orange), Warning (yellow): Based on the configured conditions using [operators](operator-description.md). 
+![](../img/muta_01.png)
 
-II. Alert levels: OK (green), Information (blue): Based on the configured number of detections, as explained below:
+Configure trigger conditions and severity levels. If the query result contains multiple values, any value meeting the trigger condition will generate an event.
 
-- One test is performed for each test task, if "test frequency = 5 minutes", then one test = 5 minutes
-- You can customize the number of tests, such as "Test frequency = 5 minutes", then 3 tests = 15 minutes
+> For more details, refer to [Event Level Description](event-level-description.md).
 
-| Level | Description |
-| --- | --- |
-| OK | After the detection rule takes effect, if the result of an urgent, important, or warning abnormal event returns to normal within the configured number of custom detections, a recovery alert event is generated. <br/>:warning: Recovery alert events are not affected by [Mute Alerting](../alert-setting.md). If no detection count is set for recovery alert events, the alert event will not recover and will always appear in the Events > Unrecovered Events List. |
-| Information | Events are generated even for normal detection results. |
+???+ abstract "Alert Levels"
 
-After the detection rule comes into effect, there is no data detected for the first time and there is no data continuously, and no data alert event is generated; If there is data detected and the data report is broken within the configured self-defined detection time range, an alert event without data will be generated.
+	1. **Alert Levels Critical (Red), Major (Orange), Minor (Yellow)**: Based on configured condition operators.
+  
 
-### Step 2: Event Notification
+	2. **Alert Level Normal (Green)**: Based on configured detection counts, as follows:
 
-![](../img/monitor15.png)
+	- Each execution of a detection task counts as 1 detection, e.g., if [Detection Frequency = 5 minutes], then 1 detection = 5 minutes;
+	- You can customize the detection count, e.g., if [Detection Frequency = 5 minutes], then 3 detections = 15 minutes.
 
-:material-numeric-4-circle-outline: **Event Title:** Set the event name of the alert trigger condition; support the use of [preset template variables](../event-template.md).
+	| Level | Description |
+	| --- | --- |
+	| Normal | After the detection rule takes effect, if critical, major, or minor abnormal events occur, and the data returns to normal within the configured custom detection count, a recovery alert event is generated.<br/> :warning: Recovery alert events are not subject to [alert muting](../alert-setting.md). If no recovery alert event detection count is set, the alert event will not recover and will remain in the [**Events > Unrecovered Events List**](../../events/event-explorer/unrecovered-events.md).|
 
-**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
+### Data Gap
 
-:material-numeric-5-circle-outline: **Event Content**: The content of the event notification sent when the trigger conditions are met. Support inputting text in Markdown format, previewing effects, the use of preset [associated links](link-description.md) and the use of preset [template variables](../event-template.md).
+For data gap states, seven strategies can be configured.
 
-**Note**: Different alert notification objects support different Markdown syntax. For example, WeCom does not support unordered lists.
+1. Link the detection interval time range to judge the query results of the most recent minutes of the detection metric, **no event is triggered**;
 
-:material-numeric-6-circle-outline: **Alarm Strategy:** After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification targets. The [Alert Strategy](../alert-setting.md) includes the event level that needs to be notified, the notification targets and the mute alerting period.
+2. Link the detection interval time range to judge the query results of the most recent minutes of the detection metric, **query results are treated as 0**; at this point, the query results are re-evaluated against the thresholds configured in the **trigger conditions** to determine if an anomaly event should be triggered.
 
-:material-numeric-7-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
+3. Customize the fill value for the detection interval, **trigger data gap event, critical event, major event, minor event, and recovery event**; when choosing this configuration strategy, it is recommended that the custom data gap time be **>= detection interval time**. If the configured time <= detection interval time, there might be simultaneous satisfaction of data gap and anomaly conditions, in which case only the data gap handling result will apply.
 
-### Step 3: Association
 
-![](../img/monitor13.png)
+### Information Generation
 
-:material-numeric-8-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
+Enabling this option generates "information" events for detection results that do not match the above trigger conditions.
 
-### Example
-
-When the percentage difference between the last 15 minutes and the average of the last day is more than 90, it means that the average cpu utilization of the last 15 minutes exceeds 90% of the average cpu utilization of the last day.
-
-![](../img/example05.png)
+**Note**: When configuring trigger conditions, data gaps, and information generation simultaneously, the priority order for triggering is: data gap > trigger conditions > information event generation.

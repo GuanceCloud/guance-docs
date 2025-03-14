@@ -102,12 +102,12 @@ type = "slack"
 slack = "#test"
 
 [[Repos]]  # 仓库配置, # 填写仓库链接对应的提供商和期望显示文本
-link = "https://www.guance.com"
+link = "https://<<< custom_key.brand_main_domain >>>"
 name = "guance"
 provider = "guanceyun"
 
 [[Repos]]  # 仓库配置
-link = "https://func.guance.com"
+link = "https://<<< custom_key.func_domain >>>"
 name = "func"
 provider = "guanceyun"
 
@@ -118,7 +118,7 @@ name = "guance"
 provider = "guanceyun"
 
 [[Docs]]  # 帮助
-link = "https://func.guance.com/doc"
+link = "https://<<< custom_key.func_domain >>>/doc"
 name = "func"
 provider = "guanceyun"
 
@@ -136,10 +136,10 @@ DashboardUUIDs = ["dsbd_xxxx32", "dsbd_xxxx32"]
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/add' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
-  --data-binary '{"serviceCatelog": "\n[Team]    #团队\nservice = \"test\"    # 必填\ntype = \"db\"  # 必填，当前服务所属类型\nteam = \"测试组\"   # 当前服务所属团队UUID\ncolour = \"#40C9C9\"   # 当前服务颜色信息\n\n[[Team.oncall]]  # 联系方式配置\nname = \"guanceyun\"\ntype = \"email\"\nemails = [\"test1@guance.com\", \"test2@guance.com\"]\n\n[[Team.oncall]]  # 联系方式配置\nname = \"zhuyun\"\ntype = \"mobile\"\nmobiles = [\"xxxxxxx5786\", \"xxxxxxx4231\"]\n\n[[Team.oncall]]  # 联系方式配置\nname = \"test\"\ntype = \"slack\"\nslack = \"#test\"\n\n[[Repos]]  # 仓库配置, # 填写仓库链接对应的提供商和期望显示文本\nlink = \"https://www.guance.com\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Repos]]  # 仓库配置\nlink = \"https://func.guance.com\"\nname = \"func\"\nprovider = \"guanceyun\"\n\n\n[[Docs]]  # 帮助, 填写帮助链接对应的内容提供方和期望显示文本\nlink = \"https://www.docs.guance.com\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Docs]]  # 帮助\nlink = \"https://func.guance.com/doc\"\nname = \"func\"\nprovider = \"guanceyun\"\n\n\n[Related]  # 关联配置\nAppId = \"a138bcb0_47ef_11ee_9d75_31ea50b9d85a\"\nTags = [\"test\", \"mysql\"]\nDashboardUUIDs = [\"dsbd_xxxx32\", \"dsbd_xxxx32\"]"}' \
+  --data-binary '{"serviceCatelog": "\n[Team]    #团队\nservice = \"test\"    # 必填\ntype = \"db\"  # 必填，当前服务所属类型\nteam = \"测试组\"   # 当前服务所属团队UUID\ncolour = \"#40C9C9\"   # 当前服务颜色信息\n\n[[Team.oncall]]  # 联系方式配置\nname = \"guanceyun\"\ntype = \"email\"\nemails = [\"test1@guance.com\", \"test2@guance.com\"]\n\n[[Team.oncall]]  # 联系方式配置\nname = \"zhuyun\"\ntype = \"mobile\"\nmobiles = [\"xxxxxxx5786\", \"xxxxxxx4231\"]\n\n[[Team.oncall]]  # 联系方式配置\nname = \"test\"\ntype = \"slack\"\nslack = \"#test\"\n\n[[Repos]]  # 仓库配置, # 填写仓库链接对应的提供商和期望显示文本\nlink = \"https://<<< custom_key.brand_main_domain >>>\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Repos]]  # 仓库配置\nlink = \"https://<<< custom_key.func_domain >>>\"\nname = \"func\"\nprovider = \"guanceyun\"\n\n\n[[Docs]]  # 帮助, 填写帮助链接对应的内容提供方和期望显示文本\nlink = \"https://www.docs.guance.com\"\nname = \"guance\"\nprovider = \"guanceyun\"\n\n[[Docs]]  # 帮助\nlink = \"https://<<< custom_key.func_domain >>>/doc\"\nname = \"func\"\nprovider = \"guanceyun\"\n\n\n[Related]  # 关联配置\nAppId = \"a138bcb0_47ef_11ee_9d75_31ea50b9d85a\"\nTags = [\"test\", \"mysql\"]\nDashboardUUIDs = [\"dsbd_xxxx32\", \"dsbd_xxxx32\"]"}' \
   --compressed
 ```
 

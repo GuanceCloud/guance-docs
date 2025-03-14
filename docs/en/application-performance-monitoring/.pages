@@ -1,9 +1,9 @@
 nav:
   - index.md
   - 'Data Collection': collection
+  - 'Service Management': service-manag
   - 'Overview': overview.md
-  - 'Traces': explorer.md
+  - 'Explorer': explorer
   - 'Error Tracking': error.md
-  - 'Profiing': profile.md
-  - 'Generate Metrics': generate-metrics.md
+  - 'Profiling': profile.md
   - 'FAQ': faq.md

@@ -1,15 +1,33 @@
 # 版本历史
 
-## 1.106.192（2025 年 03 月 05 日） {#1.106.192}
+## 1.106.193（2025 年 03 月 08 日） {#1.106.193}
 
-pubrepo.guance.com/dataflux/1.106.192:launcher-d438422-1741176806
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.106.193:launcher-2ce6b5a-1741359234
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.106.192.tar.gz
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.106.193.tar.gz
+    - MD5: `c4d91656b7cdd641beb6094c567e6160`
+
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.106.193.tar.gz
+    - MD5: `8e011cfb7d9321f9194ac160aad92067`
+
+### 部署版更新 {#feature0308}
+
+- 修复一些 bug
+
+更多产品功能更新说明，请参考产品功能 [更新日志 -> 2025 年 2 月 27 日](../../release-notes/index.md#20250227)
+
+## 1.106.192（2025 年 03 月 05 日） {#1.106.192}
+
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.106.192:launcher-d438422-1741176806
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.106.192.tar.gz
     - MD5: `108ade865cc48ddb47e81cc29a101ef1`
 
-- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.106.192.tar.gz
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.106.192.tar.gz
     - MD5: `26cce1d476048898c261b3a7bbe9a2fc`
 
 ### 部署版更新 {#feature0305}
@@ -20,28 +38,28 @@ pubrepo.guance.com/dataflux/1.106.192:launcher-d438422-1741176806
 
 ## 1.105.191（2025 年 02 月 27 日） {#1.105.191}
 
-pubrepo.guance.com/dataflux/1.105.191:launcher-b3bee84-1740751379
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.105.191:launcher-b3bee84-1740751379
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.105.191.tar.gz
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.105.191.tar.gz
     - MD5: `0882e8fa58ebdbf6597c0943455b49b1`
 
-- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.105.191.tar.gz
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.105.191.tar.gz
     - MD5: `bf7acef9f04550d8e199a287b6080445`
 
 更多产品功能更新说明，请参考产品功能 [更新日志 -> 2025 年 2 月 27 日](../../release-notes/index.md#20250227)
 
 ## 1.104.190（2025 年 02 月 19 日） {#1.104.190}
 
-pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.104.190:launcher-f574b1d-1740401808
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.104.190.tar.gz
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.104.190.tar.gz
     - MD5: `c75a12066300d28f85912128bf5e4b6f`
 
-- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.104.190.tar.gz
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.104.190.tar.gz
     - MD5: `9fc1d397413d9a49c1f9fc2362a7301c`
 
 ???+ attention 重要版本依赖更新说明
@@ -74,14 +92,14 @@ pubrepo.guance.com/dataflux/1.104.190:launcher-f574b1d-1740401808
 
 ## 1.103.189（2025 年 01 月 16 日） {#1.103.189}
 
-pubrepo.guance.com/dataflux/1.103.189:launcher-d4a5efc-1737455050
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.103.189:launcher-d4a5efc-1737455050
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.103.189.tar.gz
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.103.189.tar.gz
     - MD5: `e3c0d6aa1ca3e063575aeb1c7c6cf2da`
 
-- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.103.189.tar.gz
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.103.189.tar.gz
     - MD5: `1edf1c249834224b0ee2fa49e2280927`
 
 ### 功能更新 {#feature0116}
@@ -132,14 +150,14 @@ APM 添加服务时，新增[主机自动注入](../../application-performance-m
 
 ## 1.102.188（2025 年 01 月 08 日） {#1.102.188}
 
-pubrepo.guance.com/dataflux/1.102.188:launcher-0bd0be5-1736856269
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.102.188:launcher-0bd0be5-1736856269
 
 ### 离线镜像包下载
 
-- AMD64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-1.102.188.tar.gz
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.102.188.tar.gz
     - MD5: `07d82df7e9a6ccb4ba747e8cb02d0882`
 
-- ARM64 架构下载: https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-1.102.188.tar.gz
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.102.188.tar.gz
     - MD5: `e5ee7933fd1f46ae9df5d05219b4726d`
 
 ### 部署版更新 {#deployment0108}

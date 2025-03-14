@@ -30,7 +30,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_cfg/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_cfg/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"appId":"fe52be60_2fac_11ee_8ee7_0ffb4a4ef591","jsonContent":{"name":"ass","type":"ios"},"clientToken":"xxx"}' \

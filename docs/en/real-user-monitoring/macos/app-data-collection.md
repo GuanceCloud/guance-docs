@@ -1,303 +1,304 @@
 # macOS Application Data Collection
-
 ---
 
-## Overview
+## Introduction
 
-After collecting application data and reporting it to the guance, you can customize the configuration scene and configure anomaly detection events through the Guance console.
+After collecting application data to <<< custom_key.brand_name >>>, you can perform custom configuration scenarios and configure anomaly detection events through the <<< custom_key.brand_name >>> console.
 
-## Data Type
+## Data Types
 
-Real User Monitoring of Guance includes six data types.
+<<< custom_key.brand_name >>>'s user access monitoring includes six types of data.
 
 | **Type** | **Description** |
 | --- | --- |
-| session | User session information records, in the current session, will be based on the session dimension of user pages, resources, actions, errors, long task related access data. |
-| view | When a user accesses a page, a page view record is generated. When the user stays on the same page, the resource, long task, error, and action records are linked to the relevant RUM view through the view_id attribute. |
-| resource | The resource information record loaded when the user accesses the page. |
-| error | An exception or crash from a mobile application. |
-| long_task | A long task event is generated for any task in the application that blocks the main thread beyond the specified duration threshold. |
-| action | Record user activities in mobile applications (application launch, click, slide, back, etc.). Each action is attached with a unique action_id. |
+| session | Records user session information. During the current session, session-based data for user pages, resources, actions, errors, and long tasks are collected. |
+| view | A view record is generated each time a user visits an application page. When a user stays on the same page, resource, long task, error, and action records are linked to the relevant RUM view via the `view_id` attribute. |
+| resource | Records the loaded resource information when a user accesses a page. |
+| error | Exceptions or crashes emitted by the application. |
+| long_task | Any task in the application that blocks the main thread for longer than a specified duration threshold generates a long task event. |
+| action | Records user activities within the application (such as app launches, clicks, swipes, back actions, etc.). Each action has a unique `action_id`. |
 
-## Global Properties
+## Global Attributes
 
-Scenario construction and event alerts for Real User Monitoring can be queried through the following global properties.
+Scenarios for user access monitoring and event alerts can be queried using the following global attributes.
 
-### SDK Properties
+### SDK Attributes
 
-| **Fields** | **Type** | **Description** |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `sdk_name` | string | Collector name.<br>`df_macos_rum_sdk`<br>`df_linux_rum_sdk`<br>`df_windows_rum_sdk`<br>`df_web_rum_sdk`<br>`df_miniapp_rum_sdk`<br>`df_ios_rum_sdk`<br>`df_android_rum_sdk` |
-| `sdk_version` | string | Integrations version |
+| `sdk_name` | string | Collector name, fixed names:<br>`df_macos_rum_sdk`<br>`df_linux_rum_sdk`<br>`df_windows_rum_sdk`<br>`df_web_rum_sdk`<br>`df_miniapp_rum_sdk`<br>`df_ios_rum_sdk`<br>`df_android_rum_sdk` |
+| `sdk_version` | string | Collector version information |
 
-### Application Properties
+### Application Attributes
 
-| Fields    | Type   | Description                                                  |
-| --------- | ------ | ------------------------------------------------------------ |
-| `app_id`  | string | Required, The unique ID generated when you create a application. |
-| `env`     | string | Required, Environment field. Attribute Value: prod/gray/pre/common/local. |
-| `version` | string | Required, Version                                            |
-| `service` | string | Optional,The name of the business or service to which it belongs. Defaults:<br/>`df_rum_ios`<br/>`df_rum_macos`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |
+| **Field** | **Type** | **Description** |
+| --- | --- | --- |
+| `app_id` | string | Required, unique ID for user access applications, auto-generated when creating monitoring in the <<< custom_key.brand_name >>> console. |
+| `env` | string | Required, environment field. Possible values: prod/gray/pre/common/local. Where:<br>prod: Production environment<br>gray: Gray release environment<br>pre: Pre-release environment<br>common: Daily environment<br>local: Local environment |
+| `version` | string | Required, version number. |
+| `service` | string | Optional, name of the associated business or service. Fixed names:<br/>`df_rum_ios`<br/>`df_rum_macos`<br/>`df_rum_android`<br/>`df_rum_windows`<br/>`df_rum_linux` |
 
-### User & Session Properties
+### User & Session Attributes
 
-| **Fields**       | **Type** | **Description**                                                     |
-| -------------- | -------- | ------------------------------------------------------------ |
-| `userid`       | string   | User ID. Unlogged-in users use the cookie as the userid, and logged-in users use the userid generated in the application background. |
-| `user_name` | string | Optional, User name. |
-| `user_email` | string | Optional, User email. |
-| `session_id`   | string   | ID of the session. (A new session_id will be generated if the backend stays for more than 30s)       |
-| `session_type` | string   | Session Type. <br>user: Data generated by RUM functionality. <br>synthetics: headless data generated by dialing test. |
-| `is_signin`    | boolean  | Is it a registered user.                       |
+| **Field** | **Type** | **Description** |
+| --- | --- | --- |
+| `userid` | string | For unlogged users, a random UUID is used as `userid`; for logged-in users, the user ID generated by the application backend is used. |
+| `user_name` | string | Optional, user name. |
+| `user_email` | string | Optional, user email. |
+| `session_id` | string | Session ID, a new `session_id` is generated if no operation occurs for more than 15 minutes. |
+| `session_type` | string | Session type. Reference values: user & synthetics<br>user: Data generated by RUM functionality;<br>synthetics: Data generated by headless tests. |
+| `is_signin` | boolean | Whether the user is registered, possible values: T & F. |
 
-### Device & Resolution Properties
+### Device & Resolution Attributes
 
-| **Fields**           | **Type** | **Description**         |
-| :----------------- | :------- | :--------------- |
-| `device`           | string   | Device     |
-| `model`            | string   | Device model     |
-| `device_uuid`      | string   | Device unique id   |
-| `os`               | string   | The OS name as reported by the device     |
-| `os_version`       | string   | The OS version as reported by the device     |
-| `os_version_major` | string   | The OS version major as reported by the device |
-| `screen_size`      | string   | Screen resolution       |
+| **Field** | **Type** | **Description** |
+| --- | --- | --- |
+| `device` | string | Device manufacturer |
+| `model` | string | Device model |
+| `device_uuid` | string | Unique device ID |
+| `os` | string | Operating system information |
+| `os_version` | string | Operating system version |
+| `os_version_major` | string | Major OS version |
+| `screen_size` | string | Screen resolution |
 
-### Geographic & Network Properties
+### Geographic & Network Attributes
 
-| Fields             | Type   | Description                                                  |
-| ------------------ | ------ | ------------------------------------------------------------ |
-| `ip`               | string | IP                                               |
-| `isp`              | string | ISP                                                      |
-| `network_type`     | string | Network connection type, e.g. wifi/2g/3g/4g/5g, unknown/unreachable |
-| `country`          | string | Country                                                        |
-| `country_iso_code` | string | Country iso code                                                |
-| `province`         | string | Province                                                          |
-| `city`             | string | City                                                         |
+| **Field** | **Type** | **Description** |
+| --- | --- | --- |
+| `ip` | string | User's IP address |
+| `isp` | string | Internet Service Provider |
+| `network_type` | string | Network connection type, reference values:<br>wifi &#124; 2g &#124; 3g &#124; 4g &#124; 5g &#124; unknown (unknown network) &#124; unreachable (unavailable network) |
+| `country` | string | Country |
+| `country_iso_code` | string | Country ISO code |
+| `province` | string | Province |
+| `city` | string | City |
 
-## Custom Properties
+## Custom Attributes
 
-In addition to global properties, you can also build scenarios and configure event alerts through custom properties (**SDK supports users to type custom tag data **). Custom properties are non-global properties. Through custom properties, we can track the whole process of users accessing applications, locate and discover the affected access conditions of users, and monitor the access performance of users.
+In addition to global attributes, custom attributes (**SDK supports user-defined tag data**) can be used to build scenarios and configure event alerts. Custom attributes are non-global attributes that allow tracking the entire process of user access to applications, identifying and discovering affected user access situations, and monitoring user access performance.
 
-## Other Data Type Properties
+## Other Data Type Attributes
 
 ### Session 
 
 #### Properties
 
-| Fields | Type | Description |
+| **Field**                      | **Type**   | **Description**                                                        |
+| ------------------------- | ------ | ------------------------------------------------------------ |
+| `session_id`              | string | Session ID          |
+| `session_type`            | string | Session type. Reference values: user & test<br>user: Data generated by RUM functionality;<br>test: Data generated by headless tests. |
+| `session_referrer`        | string | Session source. Usually records the URL of the source page.                         |
+| `session_first_view_id`   | string | The `view_id` of the first page in the current session                                |
+| `session_first_view_name` | string | The URL of the first page in the current session                                    |
+| `session_last_view_id`    | string | The `view_id` of the last visited page in the current session                          |
+| `session_last_view_name`  | string | The URL of the last page in the current session                                  |
+
+#### Statistics Metrics
+
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `session_id` | string | ID of the session. |
-| `session_type` | string | Session Type. <br>user: Data generated by RUM functionality. <br>synthetics: headless data generated by dialing test. |
-| `session_referrer` | string | Session source. The page address used to record the source. |
-| `session_first_view_id` | string | The view_id of the first page of the current session |
-| `session_first_view_name` | string | URL of the first page of the current session |
-| `session_last_view_id` | string | The view_id of the last page visited by the current session |
-| `session_last_view_name` | string | URL of the last page of the current session |
-
-#### Statistical Metrics
-
-| Fields                    | Type       | Description               |
-| ------------------------- | ---------- | ------------------------- |
-| `time_spent`              | number(ns) | Duration of the user session. [Unit: ns]          |
-| `session_view_count`      | number     | Count of all views collected for this session. |
-| `session_error_count`     | number     | Count of all errors collected for this session.      |
-| `session_resource_count`  | number     | Count of all resources collected for this session.      |
-| `session_action_count`    | number     | Count of all actions collected for this session.      |
-| `session_long_task_count` | number     | Count of all long tasks collected for this session.    |
+| `time_spent` | number(ns) | Duration of the current session |
+| `session_view_count` | number | Number of associated `view_id`s in the current session |
+| `session_error_count` | number | Number of errors in the current session |
+| `session_resource_count` | number | Number of resources loaded in the current session |
+| `session_action_count` | number | Number of user actions in the current session |
+| `session_long_task_count` | number | Number of long tasks in the current session |
 
 ### View 
 
 #### Properties
 
-| **Fields**        | **Type** | **Description**                                        |
-| :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | Unique ID for each page view.                      |
-| `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
-| `view_name`     | string   | View name                                        |
+| **Field**        | **Type** | **Description**                                            |
+| --------------- | -------- | --------------------------------------------------- |
+| `view_id`       | string   | Unique ID generated each time a page is visited                          |
+| `view_referrer` | string   | Page source, parent page                                |
+| `view_name`     | string   | Page name                                            |
 
 #### Metrics
 
-| Fields | Type | Description |
+| **Field** | **Type** | **Description**   |
 | --- | --- | --- |
 | `loading_time` | number（ns） | Page loading time |
-| `time_spent` | number（ns） | Page dwell time |
-| `is_active`     | boolean  | Judge whether the user is still active. |
+| `time_spent` | number（ns） | Time spent on the page |
+| `is_active`     | boolean  | Indicates whether the user is still active, possible values: true & false |
 
-#### Statistical Metrics
+#### Statistics Metrics
 
-| Fields                 | Type   | Description                                                  |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `view_error_count` | number | Count of all errors collected for the view. |
-| `view_resource_count` | number | Count of all resources collected for the view. |
-| `view_long_task_count` | number | Count of all long tasks collected for the view. |
-| `view_action_count` | number | Count of all actions collected for the view. |
+| `view_error_count` | number | Number of errors during each page load |
+| `view_resource_count` | number | Number of resources requested during each page load |
+| `view_long_task_count` | number | Number of long tasks during each page load |
+| `view_action_count` | number | Number of actions during the page viewing process |
 
-#### Monitor Metrics
+#### Monitoring Metrics
 
-| **Fields**                  | **Type** | **Description**                                  |
-| --------------------------- | -------- | ------------------------------------------------ |
-| `cpu_tick_count`            | number   | Optional,CPU tick count for the view.            |
-| `cpu_tick_count_per_second` | number   | Optional,CPU ticks per second for the view.      |
-| ~~`fps_avg`~~               | number   | Optional,Average frames per second for the view. |
-| ~~`fps_mini`~~              | number   | Optional,Minimum frames per second for the view. |
-| `memory_avg`                | number   | Optional,Average memory usage for the view.      |
-| `memory_max`                | number   | Optional,Maximum  memory for the view.           |
+| **Field**                    | **Type** | **Description**                 |
+| --------------------------- | -------- | ------------------------ |
+| `cpu_tick_count`            | number   | Optional, CPU tick count for this page    |
+| `cpu_tick_count_per_second` | number   | Optional, average CPU ticks per second  |
+| ~~`fps_avg`~~               | number   | <del>Optional, average frames per second</del> |
+| ~~`fps_mini`~~              | number   | <del>Optional, minimum frames per second</del> |
+| `memory_avg`                | number   | Optional, average memory usage for the page |
+| `memory_max`                | number   | Optional, peak memory usage for the page |
 
 ### Resource
 
 #### View Properties
 
-| **Fields**        | **Type** | **Description**                                        |
-| :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | Unique ID for each page view.                      |
-| `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
-| `view_name`     | string   | View name                                        |
+| **Field**        | **Type** | **Description**                   |
+| --------------- | -------- | -------------------------- |
+| `view_id`       | string   | Unique ID generated each time a page is visited |
+| `view_referrer` | string   | Page source, parent page       |
+| `view_name`     | string   | Page name                   |
 
 #### Action Properties
 
-| **Fields**    | **Type** | **Description**                                     |
-| ------------- | -------- | --------------------------------------------------- |
-| `action_id`   | string   | Unique ID for each page view.                       |
-| `action_name` | string   | Action name                                         |
-| `action_type` | string   | Type of the user action. (Launch, Click action,etc) |
+| **Field**      | **Type** | **Description**                            |
+| ------------- | -------- | ----------------------------------- |
+| `action_id`   | string   | Unique ID generated when a user performs an action on a page          |
+| `action_name` | string   | Action name                            |
+| `action_type` | string   | Action type (cold/hot start, click, etc.) |
 
 #### Resource Properties
 
-| Fields                    | Type   | Description              |
-| ------------------------- | ------ | ------------------------ |
-| `resource_url`            | string | The resource URL.                 |
-| `resource_url_host`       | string | The host part of the URL.        |
-| `resource_url_path`       | string | The path part of the URL.       |
-| `resource_url_query`      | string | The query string parts of the URL decomposed as query params key/value attributes.      |
-| `resource_url_path_group` | string | The path part of the URL group.       |
-| `resource_type`           | string | The type of resource being collected.               |
-| `resource_method`         | string | The HTTP method.<br>e.g. POST/GET             |
-| `resource_status`         | string | The response status.     |
-| `resource_status_group`   | string | The response status code. |
+| **Field**                  | **Type** | **Description**                 |
+| ------------------------- | -------- | ------------------------ |
+| `resource_url`            | string   | Resource URL                  |
+| `resource_url_host`       | string   | Domain part of the resource URL         |
+| `resource_url_path`       | string   | Path part of the resource URL         |
+| `resource_url_query`      | string   | Query part of the resource URL        |
+| `resource_url_path_group` | string   | Grouped path part of the resource URL         |
+| `resource_type`           | string   | Category of the resource               |
+| `resource_method`         | string   | HTTP method used for the request             |
+| `resource_status`         | string   | Status code returned by the resource request     |
+| `resource_status_group`   | string   | Grouped status code returned by the resource request |
 
 #### Metrics
 
-| Fields                | Type         | Description                                                  |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `resource_size` | number | Resource size.<br>Unit: ns |
-| `resource_dns` | number（ns） | Time spent resolving the DNS name of the last request.<br>Unit: ns<br>Calculation: domainLookupEnd - domainLookupStart |
-| `resource_tcp` | number（ns） | Time spent for the TCP handshake.<br>Unit: ns<br>Calculation: connectEnd - connectStart |
-| `resource_ssl` | number（ns） | Time spent for the TLS handshake.<br>Unit: ns<br>Calculation: connectEnd - secureConnectStart |
-| `resource_ttfb` | number（ns） | Time spenton on request response.<br>Unit: ns<br>Calculation: responseStart - requestStart |
-| `resource_trans` | number（ns） | Time spenton  on content transfer.<br>Unit: ns<br>Calculation: responseEnd - responseStart |
-| `resource_first_byte` | number（ns） | Time spent waiting for the first byte of response to be received. <br>Unit: ns<br>Calculation: responseStart - domainLookupStart |
-| `duration` | number（ns） | Resource loading time.<br>Calculation: duration(responseEnd-startTime) |
-| `request_header` | string | Resource request headers. |
-| `response_header` | string | Resource Response headers. |
+| `resource_size` | number | Size of the resource, default unit: byte |
+| `resource_dns` | number（ns） | DNS lookup time for resource loading<br>Calculated as: domainLookupEnd - domainLookupStart |
+| `resource_tcp` | number（ns） | TCP connection time for resource loading<br>Calculated as: connectEnd - connectStart |
+| `resource_ssl` | number（ns） | SSL handshake time for resource loading<br>Calculated as: connectEnd - secureConnectStart |
+| `resource_ttfb` | number（ns） | Time to first byte for resource loading<br>Calculated as: responseStart - requestStart |
+| `resource_trans` | number（ns） | Content transfer time for resource loading<br>Calculated as: responseEnd - responseStart |
+| `resource_first_byte` | number（ns） | First byte time for resource loading<br>Calculated as: responseStart - domainLookupStart |
+| `duration` | number（ns） | Total resource loading time<br>Calculated as: duration (responseEnd-startTime) |
+| `request_header` | string | Request headers for the resource |
+| `response_header` | string | Response headers for the resource |
 
 ### Error
 
 #### View Properties
 
-| **Fields**        | **Type** | **Description**                                        |
+| **Field**        | **Type** | **Description**                                        |
 | :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | Unique ID for each page view.                      |
-| `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
-| `view_name`     | string   | View name                                        |
+| `view_id`       | string   | Unique ID generated each time a page is visited                      |
+| `view_referrer` | string   | Page source, parent page                            |
+| `view_name`     | string   | Page name                                        |
 
 #### Action Properties
 
-| **Fields**    | **Type** | **Description**                                         |
-| ------------- | -------- | ------------------------------------------------------- |
-| `action_id`   | string   | Unique ID generated when the user operates on the page. |
-| `action_name` | string   | Action name                                             |
-| `action_type` | string   | Type of the user action. (Launch, Click action,etc)     |
+| **Field**      | **Type** | **Description**                            |
+| ------------- | -------- | ----------------------------------- |
+| `action_id`   | string   | Unique ID generated when a user performs an action on a page          |
+| `action_name` | string   | Action name                            |
+| `action_type` | string   | Action type (cold/hot start, click, etc.) |
 
 #### Error Properties
 
-| **Fields** | **Type** | **Description** |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `error_source` | string | Where the error originates from. e.g. logger / network |
-| `error_type` | string | The error type. <br>logger error type: java_crash &#124; native_crash &#124; abort &#124; ios_crash<br>network error type： |
-| `error_situation` | string | The timing of the mistake. e.g. startup / run |
+| `error_source` | string | Source of the error, reference values: logger &#124; network |
+| `error_type` | string | Type of the error<br>logger error type: java_crash &#124; native_crash &#124; anr_error &#124; anr_crash &#124; ios_crash<br>network error type：network_error |
+| `error_situation` | string | Situation when the error occurred, reference values: startup (at startup) and run (during runtime) |
 
-When type=network, the following Network Error properties is added.
+**When `type=network`, additional Network Error properties are added.**
 
-| **Fields** | **Type** | **Description** |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `resource_status` | string | The response status. |
-| `resource_url` | string | The resource URL. |
-| `resource_url_host` | string | The host part of the URL. |
-| `resource_url_path` | string | The path part of the URL. |
-| `resource_url_path_group` | string | The path part of the URL group. |
-| `resource_method` | string | The HTTP method.<br>e.g. POST/GET |
+| `resource_status` | string | Status code returned by the resource request |
+| `resource_url` | string | Resource URL |
+| `resource_url_host` | string | Domain part of the resource URL |
+| `resource_url_path` | string | Path part of the resource URL |
+| `resource_url_path_group` | string | Grouped path part of the resource URL |
+| `resource_method` | string | HTTP method used for the request |
 
-#### Error Monitor Metrics
+#### Error Monitoring Properties
 
-| **Fields**     | **Type** | **Description**                                   |
-| -------------- | -------- | ------------------------------------------------- |
-| `memory_total` | string   | Optional,Total memory.                            |
-| `memory_use`   | number   | Optional,Memory usage.                            |
-| `cpu_use`      | number   | Optional,CPU usage.                               |
-| `battery_use`  | number   | Optional,The current battery level of the  phone. |
-| `locale`       | string   | Current system language.                          |
+| **Field**       | **Type** | **Description**             |
+| -------------- | -------- | -------------------- |
+| `memory_total` | string   | Optional, total memory       |
+| `memory_use`   | number   | Optional, memory usage rate     |
+| `cpu_use`      | number   | Optional, CPU usage rate     |
+| `battery_use`  | number   | Optional, current device battery level |
+| `locale`       | string   | Current system language         |
 
 #### Metrics
 
-| **Fields**      | **Type** | **Description** |
-| --------------- | -------- | --------------- |
-| `error_message` | string   | Error message.  |
-| `error_stack`   | string   | Error stack.    |
+| **Field**        | **Type** | **Description** |
+| --------------- | -------- | -------- |
+| `error_message` | string   | Error message |
+| `error_stack`   | string   | Error stack trace |
 
 ### Long Task
 
 #### View Properties
 
-| **Fields**        | **Type** | **Description**                                        |
-| :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | Unique ID for each page view.                      |
-| `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
-| `view_name`     | string   | View name.                                        |
+
+| **Field**        | **Type** | **Description**                   |
+| --------------- | -------- | -------------------------- |
+| `view_id`       | string   | Unique ID generated each time a page is visited |
+| `view_referrer` | string   | Page source, parent page       |
+| `view_name`     | string   | Page name                   |
 
 #### Action Properties
 
-| **Fields**    | **Type** | **Description**                                         |
-| ------------- | -------- | ------------------------------------------------------- |
-| `action_id`   | string   | Unique ID generated when the user operates on the page. |
-| `action_name` | string   | Action name                                             |
-| `action_type` | string   | Type of the user action. (Launch, Click action,etc)     |
+| **Field**      | **Type** | **Description**                            |
+| ------------- | -------- | ----------------------------------- |
+| `action_id`   | string   | Unique ID generated when a user performs an action on a page          |
+| `action_name` | string   | Action name                            |
+| `action_type` | string   | Action type (cold/hot start, click, etc.) |
+
 
 #### Metrics
 
-| **Fields** | **Type** | **Description** |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `duration` | number（ns） | Carton duration |
-| `long_task_message` | string | Caton information |
-| `long_task_stack` | string | Caton stack |
+| `duration` | number（ns） | Duration of the freeze |
+| `long_task_message` | string | Freeze message |
+| `long_task_stack` | string | Freeze stack trace |
 
 ### Action
 
 #### View Properties
 
-| **Fields**        | **Type** | **Description**                                        |
-| :-------------- | :------- | :---------------------------------------------- |
-| `view_id`       | string   | Unique ID for each page view.                      |
-| `view_referrer` | string   | The URL of the previous web page from which a link to the currently requested page was followed.                            |
-| `view_name`     | string   | View name.                                        |
+| **Field**        | **Type** | **Description**                   |
+| --------------- | -------- | -------------------------- |
+| `view_id`       | string   | Unique ID generated each time a page is visited |
+| `view_referrer` | string   | Page source, parent page       |
+| `view_name`     | string   | Page name                   |
 
 #### Action Properties
 
-| Fields        | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
-| `action_id`   | string | Unique ID generated when the user operates on the page. |
-| `action_name` | string | Action name                    |
-| `action_type` | string | Type of the user action. (Launch, Click action,etc) |
+| **Field**      | **Type** | **Description**                            |
+| ------------- | -------- | ----------------------------------- |
+| `action_id`   | string   | Unique ID generated when a user performs an action on a page          |
+| `action_name` | string   | Action name                            |
+| `action_type` | string   | Action type (cold/hot start, click, etc.) |
 
 #### Metrics
 
-| Fields     | Type         | Description      |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `duration` | number（ns） | Time spent on page operations. |
+| `duration` | number（ns） | Time taken for the page action |
 
-#### Statistical Metrics
+#### Statistics Metrics
 
-| Fields                   | Type   | Description          |
+| **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| `action_long_task_count` | number | Number of operations associated with long tasks. |
-| `action_resource_count` | number | Number of requests to operate associated resources. |
-| `action_error_count` | number | Number of errors associated with the operation. |
+| `action_long_task_count` | number | Number of long tasks associated with the action |
+| `action_resource_count` | number | Number of resource requests associated with the action |
+| `action_error_count` | number | Number of errors associated with the action |

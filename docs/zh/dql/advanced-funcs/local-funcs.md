@@ -8,11 +8,11 @@
 
 ### 步骤一：创建<<< custom_key.brand_name >>>连接器
 
-> 参考[创建<<< custom_key.brand_name >>>连接器](https://func.guance.com/doc/practice-guance-self-build-notify-function/#31)
+> 参考[创建<<< custom_key.brand_name >>>连接器](https://<<< custom_key.func_domain >>>/doc/practice-guance-self-build-notify-function/#31)
 
 ### 步骤二：编写高级函数
 
-> 参考[编写自建通知函数](https://func.guance.com/doc/practice-guance-self-build-notify-function/#32)
+> 参考[编写自建通知函数](https://<<< custom_key.func_domain >>>/doc/practice-guance-self-build-notify-function/#32)
 
 ![](../img/local.png)
 

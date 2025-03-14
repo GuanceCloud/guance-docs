@@ -1,26 +1,20 @@
-# Delete a Notification Object
+# Delete a Notification Target
 
 ---
 
-<br />**post /api/v1/notify_object/delete**
+<br />**POST /api/v1/notify_object/delete**
 
 ## Overview
-Delete the specified notification object.
+Delete the specified notification target
 
 
+## Body Request Parameters
 
+| Parameter Name        | Type     | Required | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| notifyObjectUUID | string | Y | Notification target UUID<br>Allow null: False <br> |
 
-## Body Request Parameter
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| notifyObjectUUID | string | Y | Notification object UUID<br>Allow null: False <br> |
-
-## Supplementary Description of Parameters
-
-
-
-
+## Additional Parameter Notes
 
 
 
@@ -28,7 +22,3 @@ Delete the specified notification object.
 ```shell
  
 ```
-
-
-
-

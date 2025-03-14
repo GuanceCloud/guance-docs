@@ -1,81 +1,74 @@
-# Infrastructure Active Detection
+# Infrastructure Liveness Detection V2
 ---
 
-Based on infrastructure data, you can set up survival conditions in infrastructure survival detection settings to monitor the operational status and stability of the infrastructure.
+You can set conditions based on infrastructure object data to monitor the reporting stability of critical objects, including hosts, containers, Pods, Deployments, and Nodes. This ensures timely detection and handling of anomalies.
 
-## Use Cases
-
-Monitor whether there is abnormal interruption in long-term survival infrastructure, and support monitoring the running status of host, container, Pod, Deployment and Node.
-
-## Setup
-
-Click on **Monitor > Create > Infrastructure Active Detection** to enter the configuration page for the rule.
-
-### Step 1: Detection Configuration
+## Detection Configuration {#config}
 
 ![](../img/monitor18.png)
 
-:material-numeric-1-circle-outline: **Detection Frequency:** The execution frequency of detection rules, including "5 minutes/10 minutes/15 minutes/30 minutes/1 hour", and 5 minutes is selected by default.
+### Detection Frequency
 
-:material-numeric-2-circle-outline: **Detection Metrics:** Monitoring metric data.
+This is the execution frequency of the detection rules; the default is 5 minutes.
 
-<div class="grid" markdown>
+### Detection Interval
 
-=== "Objects"
+This is the time range for querying detection metrics each time a task is executed. Depending on the detection frequency, selectable intervals will vary.
 
-    <img src="../../img/insfra-2.png" width="60%" >
+### Detection Metrics
 
-    - Types: include host, container, Pod, Deployment, Node;
-    - Filter: drop-down to view related fields; by default, the object's name Tag is in the first position;
-    - Detect all hosts: only available when the type is host, when enabled, the filtering box is greyed out.
+These are the monitored metric data.
 
-=== "Metrics"
+:material-numeric-1-circle-outline: Infrastructure Type: Includes host, process, container, Pod, Service, Deployment, Node, ReplicaSet, Job, CronJob;
 
-    <img src="../../img/insfra-2.png" width="60%" >
+| Type | Detection Object | Wildcard Filtering | Fixed Filtering | DQL Query |
+| --- | --- | --- | --- | --- |
+| Host | All hosts | / | / | O::`host_processes`:((now()-last_update_time)/1000 AS `Result`) by cmdline |
+|  | Custom | host: host | df_label: label ; os: operating system | O::`HOST`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by host |
+| Process | All processes | / | / | O::`HOST`:((now()-last_update_time)/1000 AS `Result`) by host |
+|  | Custom | cmdline: command line | host: host ; process_name: process name | O::`host_processes`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by cmdline |
+| Container | All containers | / | / | O::`docker_containers`:((now()-last_update_time)/1000 AS `Result`) by container_name |
+|  | Custom | container_name: container name | host: host ; namespace: namespace | O::`docker_containers`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by container_name |
+| Pod | All Pods | / | / | O::`kubelet_pod`:((now()-last_update_time)/1000 AS `Result`) by pod_name |
+|  | Custom | pod_name: Pod name | host: host ; namespace: namespace | O::`kubelet_pod`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by pod_name |
+| Service | All Services | / | / | O::`kubernetes_services`:((now()-last_update_time)/1000 AS `Result`) by service_name |
+|  | Custom | service_name: Service name | cluster_name_k8s: K8s cluster ; namespace: namespace | O::`kubernetes_services`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by service_name |
+| Deployment | All Deployments | / | / | O::`kubernetes_deployments`:((now()-last_update_time)/1000 AS `Result`) by deployment_name |
+|  | Custom | deployment_name: Deployment name | cluster_name_k8s: K8s cluster ; namespace: namespace | O::`kubernetes_deployments`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by deployment_name |
+| Node | All Nodes | / | / | O::`kubernetes_nodes`:((now()-last_update_time)/1000 AS `Result`) by node_name |
+|  | Custom | node_name: Node name | cluster_name_k8s: K8s cluster ; namespace: namespace | O::`kubernetes_nodes`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by node_name |
+| ReplicaSet | All ReplicaSets | / | / | O::`kubernetes_replica_sets`:((now()-last_update_time)/1000 AS `Result`) by replicaset_name |
+|  | Custom | replicaset_name: ReplicaSet name | cluster_name_k8s: K8s cluster ; namespace: namespace | O::`kubernetes_replica_sets`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by replicaset_name |
+| Job | All Jobs | / | / | O::`kubernetes_jobs`:((now()-last_update_time)/1000 AS `Result`) by job_name |
+|  | Custom | job_name: Job name | cluster_name_k8s: K8s cluster ; namespace: namespace | O::`kubernetes_jobs`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by job_name |
+| CronJob | All CronJobs | / | / | O::`kubernetes_cron_jobs`:((now()-last_update_time)/1000 AS `Result`) by cron_job_name |
+|  | Custom | cron_job_name: CronJob name | cluster_name_k8s: K8s cluster ; namespace: namespace | O::`kubernetes_cron_jobs`:((now()-last_update_time)/1000 AS `Result`) {filter conditions} by cron_job_name |
 
-    - Types: include host, container, Pod, Deployment, Node;
-    - Metrics: list all measurements in the current workspace and their corresponding metric fields; you can also choose to manually input custom measurements and metrics;
-    - Filter: drop-down to view related fields; by default, the object's name Tag is in the first position;
-    - Detect all hosts: only available when the type is host, when enabled, the filtering box is greyed out.
+:material-numeric-2-circle-outline: Detection Object: Supports selecting **all** or **custom**;
 
-</div>
+| Detection Object | Description |
+| --- | --- |
+| All | Evaluates whether the last update time of all objects within the workspace has triggered the threshold. |
+| Custom | Retrieves the scope of objects to be detected through wildcard matching or precise filtering conditions, evaluating whether the last update time of the selected infrastructure objects has triggered the threshold. |
 
-:material-numeric-3-circle-outline: **Trigger Condition:** Set the trigger condition of alert level.
+:material-numeric-3-circle-outline: Additional Information: After selecting fields, the system performs additional queries but does not use them for condition triggering. These fields can be configured in event notifications. If multiple matches are detected, one event record is returned randomly.
 
-![](../img/monitor56.png)
+### Trigger Conditions
 
-- Information (Blue): Normal detection results also generate events;
-- Events triggered by meeting conditions without data events;
-- If no abnormal events are generated within the detection times, normal events are generated.
+You can set trigger conditions for critical, major, minor, and normal alert levels. Configuring multiple trigger conditions and severity levels, an event is generated if any of the queried values meet the trigger conditions.
 
-**Note**: The monitor can't query any data of the detected infrastucture tyep, and there may be anomalies in data reporting.
+> For more details, refer to [Event Level Description](event-level-description.md).
 
-### Step 2: Event Notification
+???+ abstract "Alert Levels"
 
-![](../img/monitor15.png)
+    1. **Critical (Red), Major (Orange), Minor (Yellow) Alert Levels**: Based on the configuration, it evaluates whether the last update time of the detected object data has triggered an alert.
 
-:material-numeric-4-circle-outline: **Event Title:** Set the event name of the alert trigger condition, and support the use of preset [template variables](../event-template.md).
+    2. **Normal (Green) Alert Level**: After the detection rule takes effect, if critical, major, or minor anomaly events occur, and the data returns to normal within the custom detection count, a recovery alert event is generated.
 
-**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
+    Based on the configured detection count, the following applies:
 
-:material-numeric-5-circle-outline: **Event Content:** Event notification content sent when triggering conditions are met, It supports input of markdown format text information and preview effect, support use of preset template variables, refer to [template variables](../event-template.md).
+    - Each execution of a detection task counts as 1 detection, e.g., if the **Detection Frequency = 5 minutes**, then 1 detection = 5 minutes.
+    - You can customize the detection count, e.g., if the **Detection Frequency = 5 minutes**, then 3 detections = 15 minutes.
+    - If no anomaly events occur within the detection count, a normal event is generated.
 
-**Note**: Different alert notification objects support different Markdown syntax. For example, WeCom does not support unordered lists.
-
-:material-numeric-6-circle-outline: **Alert Strategy:** Send an alert message to the specified notification targets immediately after the monitoring meets the trigger condition. The [Alert Strategy](../alert-setting.md) includes the event level to be notified, the notification targets and the mute alerting period.
-
-:material-numeric-7-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
-
-### Step 3: Association
-
-![](../img/monitor13.png)
-
-:material-numeric-8-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
-
-### Example
-
-Assuming that your host needs to run 24 hours and can't go down, you can configure the host survival alert, and trigger the alert if there is no data for 10 consecutive minutes.
-
-![](../img/example02.png)
-
-
+    **Note**: The input value range for trigger conditions for **critical, major, minor** levels is 5～999. If the input value is less than 5, a prompt will appear to adjust the value to avoid false alarms.

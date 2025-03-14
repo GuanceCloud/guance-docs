@@ -1,0 +1,6 @@
+nav:
+  - 'List Roles': list.md
+  - 'Get Role': get.md
+  - 'Create Role': add.md
+  - 'Modify Role': modify.md
+  - 'Delete Role': delete.md

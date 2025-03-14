@@ -1,78 +1,76 @@
-# RUM Log Error Intelligent Inspection
+# Frontend Application Log Error Inspection
 ---
 
 ## Background
 
-RUM error log inspection will help discover new error messages (Error Message after clustering) of the front-end application in the past hour, helping development and operation and maintenance to fix the code in time to avoid continuous harm to customer experience with the accumulation of time.
+Frontend error log inspection helps identify new error messages (clustered Error Messages) that have appeared in the frontend application within the past hour, assisting developers and operations teams in promptly fixing issues to avoid prolonged negative impacts on customer experience.
 
-## Precondition
+## Prerequisites
 
-1. In Guance「 [user access monitoring](../../real-user-monitoring/index) 」that already have access applications.
-2. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
-4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+1. An integrated application already exists under <<< custom_key.brand_name >>> "[User Access Monitoring](../../real-user-monitoring/index)"
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activation of [DataFlux Func (Automata)](../../dataflux-func/index.md)
+4. Create an [API Key](../../management/api-key/open-api.md) for operations in <<< custom_key.brand_name >>> "Management / API Key Management"
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note**: If you are considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and in the same region as your current <<< custom_key.brand_name >>> SaaS deployment [in the same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Start Intelligent Inspection
+## Enabling Inspection
 
-In the DataFlux Func, install the "Guance Custom Inspection (RUM New Error Types)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
+In the self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Custom Inspection (New RUM Error Types)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Choose the required inspection scenario from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select Deploy to start the script.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create and trigger configurations. You can directly jump to the corresponding configuration via the link.
 
 ![image](../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configuring Inspection
 
-### Configure Intelligent Inspection in Guance
+Configure the desired inspection filters in the Intelligent Inspection module under <<< custom_key.brand_name >>> Studio Monitoring or in the automatically created startup script in DataFlux Func. Refer to the two configuration methods below.
+
+### Configuring Inspection in <<< custom_key.brand_name >>>
 
 ![image](../img/rum_error11.png)
 
 #### Enable/Disable
-The error detection of front-end application log is "on" by default, which can be manually "off". After being turned on, the configured front-end application list will be detected.
+The frontend application log error inspection is default set to "Enabled". It can be manually "Disabled". Once enabled, it will inspect the configured list of frontend applications.
 
-#### Export
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
+#### Editing
+Intelligent Inspection "Frontend Error Inspection" supports manual addition of filter conditions. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
 
-#### Editor
-Intelligent Check "Front-end Error Detection" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent detection list, click the "Edit" button to edit the detection template.
+* Filter Conditions: Configure frontend application `app_name`
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods
 
-* Filter criteria: Configure the front-end application app_name
-* Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
-  
-
-Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start detection:
+To configure entry parameters, click Edit, fill in the corresponding detection objects in the parameter configuration, and click Save to start the inspection:
 
 ![image](../img/rum_error02.png)
 
-You can refer to the following to configuration information for multiple applications.
+You can refer to the following JSON to configure multiple application information
 
 ```json
- // configuration example:
- 	configs:
-    	app_name_1
-    	app_name_2
+ // Configuration Example:
+    configs
+        app_name_1
+        app_name_2
 ```
 
->  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the intelligent inspection processing function.
+>  **Note**: In the self-hosted DataFlux Func, when writing custom inspection handling functions, you can also add filter conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> Studio will override those configured in the custom inspection handling function.
 
-### Configuring inspections in DataFlux Func
+### Configuring Inspection in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
+After configuring the necessary filtering conditions in DataFlux Func, you can test by clicking the `run()` method directly on the page. After clicking Publish, the script will run normally. You can also view or change configurations in <<< custom_key.brand_name >>> "Monitoring / Intelligent Inspection".
 
 ```python
 from guance_monitor__runner import Runner
 from guance_monitor__register import self_hosted_monitor
 import guance_monitor_rum_error__main as main
 
-# Support for using filtering functions to filter the objects being inspected, for example:
+# Support for using filtering functions to filter inspected objects, for example:
 def filter_appid(data):
     appid = data[0]
     '''
-    Filter `appid`, customize the conditions for matching the required `appid`, and return True if matched, and False if not matched.
+    Filter appid, define conditions for matching appids, return True if matched, False otherwise
     return True｜False
     '''
     if appid in ['appid_xxxxxxxxxxx']:
@@ -80,82 +78,76 @@ def filter_appid(data):
   
   
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
-@DFF.API('RUM 新增错误类型', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('RUM New Error Types', fixed_crontab='0 * * * *', timeout=900)
 def run(configs=None):
     """
-    Optional parameters：
-        configs：Multiple `appid` can be specified (concatenated by line breaks). If not specified, all apps will be checked.
+    Parameters:
+        configs: Multiple `app_name_1` can be specified (separated by line breaks), unspecified means all apps are inspected
 
-    config example：
+    Configuration Example:
         configs
             app_name_1
             app_name_2
     """
     checkers = [
-        main.RumErrorCheck(configs=configs, filters=[filter_appid]), # Support for user-configured multiple filtering functions that are executed in sequence.
+        main.RumErrorCheck(configs=configs, filters=[filter_appid]), # Support for user-configured multiple filtering functions executed sequentially.
     ]
 
     Runner(checkers, debug=False).run()
 ```
 
-## View Events
+## Viewing Events
 
- Guance automatically clusters error messages from all browser clients, This detection will compare all error messages in the past one hour with those in the past 12 hours. Once an error that has never occurred, an alarm will be given, and the intelligent check will generate corresponding events. Under the operation menu on the right side of the intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+<<< custom_key.brand_name >>> automatically clusters all browser client error information. This inspection compares all error information from the past hour with the past 12 hours. If a previously unseen error appears, it triggers an alert. The intelligent inspection generates corresponding events. Click the **View Related Events** button in the operation menu on the right side of the intelligent inspection list to view the relevant anomaly events.
 
 ![image](../img/rum_error04.png)
 
-### Event Details page
-Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+### Event Details Page
+Click **Event** to view the detailed page of the intelligent inspection event, including event status, time of occurrence, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-* Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check
-* Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events
+* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the detail page to view and edit the current intelligent inspection configuration details.
 
-#### Basic Properties
-* Detection Dimensions: Filter criteria based on intelligent check configuration, enabling replication of detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security check, links, user access monitoring, availability monitoring and CI data
-* Extended Attributes: Supports replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering
+#### Basic Attributes
+* Detection Dimensions: Based on the filtering conditions configured in the intelligent inspection, support copying `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, synthetic tests, and CI data.
+* Extended Attributes: Select extended attributes to copy in `key/value` form, apply forward/reverse filtering.
 
 ![image](../img/rum_error05.png)
 
-#### Event details
-* Event overview: Describes the object and content of the anomaly detection event
-* Front-end error trend: You can view the error statistics of the current front-end application in the past hour
-* New error details: View the detailed error time, error information, error type, error stack and number of errors; Click on the error message, and the error type will enter the corresponding data explorer; Clicking on the error stack will bring you to the specific error stack details page.
+#### Event Details
+* Event Overview: Describes the object and content of the anomaly inspection event.
+* Frontend Error Trend: View the error statistics for the current frontend application over the past hour.
+* New Error Details: View detailed error times, error messages, error types, error stacks, and error counts. Clicking on the error message or error type will enter the corresponding data viewer; clicking on the error stack will enter the specific error stack detail page.
 
 ![image](../img/rum_error06.png)
 ![image](../img/rum_error09.png)
 
 #### History
-Support to view detection objects, exception/recovery time and duration.
+Supports viewing detection objects, anomaly/recovery times, and duration.
 
 ![image](../img/rum_error07.png)
 
-#### Related events
-Support to view associated events by filtering fields and selected time component information.
+#### Related Events
+Supports viewing related events through filtered fields and selected time component information.
 
 ![image](../img/rum_error08.png)
 
-## FAQ
-**1.How to configure the detection frequency of front-end application log error detection**
+## Common Issues
+**1. How is the inspection frequency configured for frontend application log errors?**
 
-In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the intelligent inspection processing function, and then configure it in "Administration/Auto-trigger Configuration".
+In the self-hosted DataFlux Func, when writing custom inspection handling functions, add `fixed_crontab='0 * * * *', timeout=900` in the decorator, then configure it in "Management / Automatic Trigger Configuration".
 
-**2.There may be no anomaly analysis when the front-end application log error detection is triggered**
+**2. Why might there be no anomaly analysis when frontend application log error inspections are triggered?**
 
-Check the current data collection status of `datakit` when there is no anomaly analysis in the patrol report..
+If there is no anomaly analysis in the inspection report, check the current `datakit` data collection status.
 
-**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+**3. During the inspection process, why do previously normal scripts show abnormal errors?**
 
-Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
+Update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates of the script.
 
-**5. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+**4. Why does the script set in Startup not change during the upgrade of the inspection script?**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
+Delete the corresponding script set first, then click the Upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**6. How to determine if the inspection is effective after it is enabled**
+**5. How to determine if the inspection has taken effect after enabling it?**
 
-Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the wor
-
-
-
-
-
+In "Management / Automatic Trigger Configuration", check the inspection status. First, the status should be Enabled, then validate the inspection script by clicking Execute. If it shows "Executed Successfully xx minutes ago," the inspection is running normally and effectively.

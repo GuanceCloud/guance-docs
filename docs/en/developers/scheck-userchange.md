@@ -1,42 +1,40 @@
 # Monitor System User Changes
-  This time, we will show how to use Scheck to check the lua script implementation of sensitive files.
+  This will demonstrate how to use Scheck to implement a Lua script for checking sensitive files.
 
 - Version: 1.0.7-5-gb83de2d
-- Release date: 2022-08-30 03:31:26
-- Operating system support: linux/arm,linux/arm64,linux/386,linux/amd64  
+- Release Date: 2022-08-30 03:31:26
+- Supported Operating Systems: linux/arm, linux/arm64, linux/386, linux/amd64  
 
+## Prerequisites
 
-## Preconditions
-
-- [Scheck](../scheck/scheck-install.md) has been installed.
+- [Scheck](../scheck/scheck-install.md) is already installed
 
 ## Development Steps
 
-
-1. Go to the installation directory and edit the configuration file `scheck.conf` to set the `enable` field to `true`:
+1. Navigate to the installation directory and edit the `enable` field in the configuration file `scheck.conf` to set it to `true`:  
 
 ```toml
 ...
 [scoutput]
-   # ##Messages generated during Sheck can be sent to local, http and Alibaba Cloud sls.
-   # ##Remote server, such as http(s)://your.url
+   # ##Messages generated during Security Check can be sent to local, http, Alibaba Cloud sls.
+   # ##Remote server, e.g., http(s)://your.url
   [scoutput.http]
     enable = true
     output = "http://127.0.0.1:9529/v1/write/security"
   [scoutput.log]
-    # ##Configurable local storage
+    # ##Local storage can be configured
     enable = false
     output = "/var/log/scheck/event.log"
 ...
 ```
 
-2. Create a new manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is the user-defined script directory) and edit it as follows:
+2. Create a manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:  
 
 ```toml
 id         = 'users-checker'
 category   = 'system'
 level      = 'warn'
-title      = 'monitor system user changes'
+title      = 'Monitor System User Changes'
 desc       = '{{.Content}}'
 cron       = '*/10 * * * *'
 instanceId = 'id-xxx'
@@ -44,7 +42,7 @@ os_arch    = ["Linux"]
 ```
 
 
-3. Create a new script file `users.lua` in the manifest file sibling directory and edit it as follows:
+3. In the same directory as the manifest file, create a script file `users.lua`, and edit it as follows:
 ```lua
 local function check()
     local cache_key="current_users"
@@ -86,11 +84,11 @@ local function check()
 
     local content=''
     if #adds > 0 then
-        content=content..'新用户: '..table.concat(adds, ',')
+        content=content..'New users: '..table.concat(adds, ',')
     end
     if #dels > 0 then
         if content ~= '' then content=content..'; ' end
-        content=content..'删除的用户: '..table.concat(dels, ',')
+        content=content..'Deleted users: '..table.concat(dels, ',')
     end
     if content ~= '' then
         trigger({Content=content})
@@ -101,8 +99,8 @@ end
 check()
 ```
 
-4. When a user is added, the next 10 seconds will detect and trigger the trigger function, sending the event to the file `/var/log/scheck/event.log`, adding a row of data, for example:  
+4. When a user is added, it will be detected within the next 10 seconds and trigger the `trigger` function, sending the event to the file `/var/log/scheck/event.log`, adding a line of data, for example:
 
 ```
-users-checker,category=system,level=warn,title=monitor system user changes message="new user: xxx" 1617262230001916515
+users-checker,category=system,level=warn,title=Monitor System User Changes message="New users: xxx" 1617262230001916515
 ```

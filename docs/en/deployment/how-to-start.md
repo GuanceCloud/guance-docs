@@ -1,98 +1,98 @@
-# How To Start
+# How to Get Started
 ---
 
-After the deployment of the Guance Community Version is completed, the Community Version needs to be configured and activated before it can be used. 
+<<< custom_key.brand_name >>> needs to be configured and activated after deployment to start using it.
 
-## Preconditions
+## Prerequisites
 
-You can refer to the doc [cloud deployment](cloud-deployment-manual.md) or [offline environment deployment](offline-deployment-manual.md) or [Alibaba Cloud computing nest deployment](https://help.aliyun.com/document_detail/416711.html?spm=5176.26884182.J_4028621810.1.3a4b7bbbT89v0m) for online or offline deployment. After the deployment is completed, you can get the following login methods for the related platforms of Guance Community Version. 
+You can refer to the documentation [Cloud Deployment](cloud-deployment-manual.md) or [On-premises Environment Deployment](offline-deployment-manual.md) or [Alibaba Cloud ROS Deployment](https://help.aliyun.com/document_detail/416711.html?spm=5176.26884182.J_4028621810.1.3a4b7bbbT89v0m) for online or on-premises deployment. After deployment is completed, you will receive login credentials for the following <<< custom_key.brand_name >>> platforms.
 
-- dataflux 【**User Foreground (Guance)**】
-- df-management 【**Management Background**】
+- dataflux 【**User Frontend (<<< custom_key.brand_name >>>)**】
+- df-management 【**Management Backend**】
 - df-openapi 【**OpenAPI**】
 
-## Method Step
+## Method Steps
 
-### Step1: Deploy DataWay
+### Step 1: Deploy DataWay
 
-After the deployment of Guance Community Version is completed, DataWay needs to be deployed before data can be reported to Guance Community Version workspace through DataWay. In the meantime, we would have a DataWay data gateway address to activate the community version. 
+After <<< custom_key.brand_name >>> deployment is complete, you need to deploy DataWay first to report data to the <<< custom_key.brand_name >>> workspace via DataWay. During this period, we will have a DataWay data gateway address used to activate the Deployment Plan.
 
-#### New DataWay
-Use the administrator account, enter the **Data Gateway** menu of **Guance Cloud Management Background**, and click "New DataWay" to add a data gateway DataWay. 
+#### Create DataWay
+Using an admin account, go to the "Data Gateway" menu in the **<<< custom_key.brand_name >>> Management Backend**, click "Create DataWay" to add a data gateway DataWay.
 
-- **Name**: Custom
-- **Binding address**: Access address of DataWay. Access data in DataKit. You can use `http://ip+端口`
+- **Name**: Custom name
+- **Binding Address**: The access address for DataWay, used by DataKit to ingest data, can use `http://ip+port`
 
-**Note: When configuring the DataWay binding address, you must ensure that the DataKit host is connected to the DataWay address through which data can be reported.**
+**Note: When configuring the DataWay binding address, ensure that the DataKit host can connect to this DataWay address and report data through this DataWay address.**
 
 ![](img/12.deployment_1.png)
 
-#### Installing DataWay
-After the DataWay is added, you can get a DataWay installation script, copy the installation script, and run the installation script on the host where the DataWay is deployed. 
+#### Install DataWay
+After adding DataWay, you can obtain an installation script for DataWay. Copy the installation script and run it on the host where DataWay is deployed.
 
-**Note: Here you need to ensure that the host on which DataWay is deployed can access the kodo address configured earlier. It is recommended that DataWay go to kodo through the intranet!**
+**Note: Ensure that the host deploying DataWay can access the previously configured kodo address. It is recommended that DataWay connects to kodo via the internal network!**
 
 ![](img/12.deployment_2.png)
 
-After installation, wait for a moment to refresh the "Data Gateway" page. If you see the version number in the "Version Information" column of the newly added data gateway, it means that this DataWay has been successfully connected with the Guance center, and foreground users can access data through it. 
+After installation is complete, wait a moment and refresh the "Data Gateway" page. If you see a version number in the "Version Information" column of the newly added data gateway, it indicates that this DataWay has successfully connected to the <<< custom_key.brand_name >>> center, and frontend users can start ingesting data through it.
 
 ![](img/12.deployment_3.png)
 
-### Step2: Activate Community Version
+### Step 2: Activate Deployment Plan
 
-#### Register a Community Account
-Open the community version registration website ([https://boss.guance.com/index.html#/signup?type=community](https://boss.guance.com/index.html#/signup?type=community)) and register the community version account according to the prompts. 
+#### Register Deployment Plan Account
 
-![](img/12.deployment_4.png)
+Open the registration URL for the Deployment Plan ([https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private](https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private)) and follow the prompts to register a Deployment Plan account.
 
-After registration, enter the Guance Community Version Expense Center. 
+![](img/6.deployment_3.png)
 
+After registration is complete, enter the <<< custom_key.brand_name >>> Deployment Plan Billing Center.
+
+<!--
 ![](img/12.deployment_5.png)
+-->
+#### Obtain AK/SK
 
-#### Get AK/SK
+In the "AK Management" section of the <<< custom_key.brand_name >>> Deployment Plan Billing Center, click "Create AK".
 
-In the "AK Management" of the Guance Community Expense Center, click "Create AK". 
+![](img/6.deployment_6.png)
 
-![](img/12.deployment_6.png)
+#### Obtain License
 
-#### Get License
+In the "License Management" section of the <<< custom_key.brand_name >>> Deployment Plan Billing Center, click "Create License".
 
-In the "License Management" section of the Cloud Community Expense Center, click "Create License". 
+![](img/6.deployment_7.png)
 
-![](img/12.deployment_7.png)
-
-#### Activate Community Version 
-Open the Guance Launcher, set it in the upper right corner, and click "License Activation and AK/SK Configuration". 
+#### Activate Deployment Plan
+Open <<< custom_key.brand_name >>> Launcher, go to settings in the top-right corner, and click "License Activation and AK/SK Configuration".
 
 ![](img/12.deployment_8.png)
 
-In the "Guance Activation" dialog box of Guance Launcher, fill in AK/SK, License and data gateway address to complete the community version activation.
-Note: You can scan the code and pay attention to the Guance service number to get more official information of Guance. 
+In the "<<< custom_key.brand_name >>> Activation" dialog box of <<< custom_key.brand_name >>> Launcher, fill in the AK/SK, License, and Data Gateway address to complete the activation of the Deployment Plan.
+Note: You can scan the QR code to follow the <<< custom_key.brand_name >>> service account to get more official information about <<< custom_key.brand_name >>>.
 
 ![](img/12.deployment_9.png)
 
-### Start Using Guance
-#### Create a User
-Guance Deployment Version does not provide user registration function. You need to log in to the **User** menu of **Guance Management Background** and click "Add User" to add users. 
+### Step 3: Start Using <<< custom_key.brand_name >>>
+#### Create Users
+The <<< custom_key.brand_name >>> Deployment Plan does not provide user registration functionality. You need to log into the **<<< custom_key.brand_name >>> Management Backend**'s "Users" menu and click "Add User" to add users.
 
 ![](img/12.deployment_10.png)
 
-#### Create a Workspace 
-After adding users, click **New Workspace** in the **Workspace List** menu of **Guance Management Background** to continue creating a workspace.
-**Note: The default "system workspace" should not be used as an observation in daily business!**
+#### Create Workspaces
+After adding users, go to the "Workspace List" menu in the **<<< custom_key.brand_name >>> Management Backend** and click "Create Workspace" to create a workspace.
+**Note: Do not use the default "System Workspace" for daily business monitoring!**
 
 ![](img/12.deployment_11.png)
 
-#### Add a Workspace Member 
-After creating the workspace, click "View Members" to enter the corresponding workspace member page, and you can view the basic information of all members in the space. 
+#### Add Workspace Members
+After creating the workspace, click "View Members" to enter the corresponding workspace members page and view all member basic information in that space.
 
 ![](img/12.deployment_12.png)
-In the workspace member list, click "Add User" in the upper right corner, select the newly added user and set the permissions, and then click "OK" to add a new user in this space. 
+In the workspace members list, click "Add User" in the top-right corner, select the newly added user, set the permissions, and click "Confirm" to add a new user to this space.
 
 ![](img/12.deployment_13.png)
-#### Login Guance
-Open the access address of Guance Cloud Community Edition, and you can log in to the corresponding workspace with the users created above to start using all functions of Guance Cloud. Please refer to the [Guance Help Manual](https://docs.guance.com/) for detailed introduction of functions. 
+#### Log in to <<< custom_key.brand_name >>>
+Open the <<< custom_key.brand_name >>> Deployment Plan access URL, and you can log in with the created user to start using all <<< custom_key.brand_name >>> features. For detailed feature usage, refer to the [<<< custom_key.brand_name >>> Help Manual](<<< homepage >>>/).
 
 ![](img/12.deployment_14.png)
-
-

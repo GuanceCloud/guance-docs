@@ -35,7 +35,7 @@ OpenEBS动态本地PV通过使用OpenEBS节点存储磁盘管理器(NDM)扩展�
     执行命令安装：
     
     ```shell
-    helm install localpv localpv-provisioner --repo https://pubrepo.guance.com/chartrepo/dataflux-chart -n kube-system
+    helm install localpv localpv-provisioner --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/dataflux-chart -n kube-system
     ```
 
     输出结果：

@@ -26,7 +26,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/sensitive_mask_rule/test' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/sensitive_mask_rule/test' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"namespace":"logging","roleUUIDs":["readOnly"],"data":[{"host":"jinlei","message":"sakldfu93w4urfjsndf / GET"},{"host":"hangzhou1234","message":"tokenUUID: 9083hsdf"}]}' \

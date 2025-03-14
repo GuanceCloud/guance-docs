@@ -12,7 +12,7 @@
 ### 选择升级版本
 
 
-在[<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)，点击“升级商业版”，在“版本升级”，选择“商业版-按量付费版”，点击“立即升级”。
+在[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)，点击“升级商业版”，在“版本升级”，选择“商业版-按量付费版”，点击“立即升级”。
 
 ![](img/6.deployment_10.png)
 
@@ -68,14 +68,14 @@
 
 ### 注意事项
 
-在[<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)升级账号到“商业版-按量付费版”以后，<<< custom_key.brand_name >>>会提供 7 天的免费使用期限，您可以在这期间激活体验版为商业版，即在<<< custom_key.brand_name >>> Launcher 的“<<< custom_key.brand_name >>>激活”对话框中，替换商业版 License 来激活商业版。
+在[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)升级账号到“商业版-按量付费版”以后，<<< custom_key.brand_name >>>会提供 7 天的免费使用期限，您可以在这期间激活体验版为商业版，即在<<< custom_key.brand_name >>> Launcher 的“<<< custom_key.brand_name >>>激活”对话框中，替换商业版 License 来激活商业版。
 
-- 若 7 天内您未激活商业版，您在[<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)的账号会自动降级到体验版的账号；  
-- 若 7 天后您激活了商业版，<<< custom_key.brand_name >>>按照“商业版-按量付费版”的计费方式进行收费，您在[<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)的账号会自动升级到商业版账号。
+- 若 7 天内您未激活商业版，您在[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)的账号会自动降级到体验版的账号；  
+- 若 7 天后您激活了商业版，<<< custom_key.brand_name >>>按照“商业版-按量付费版”的计费方式进行收费，您在[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)的账号会自动升级到商业版账号。
 
 ## 升级到订阅制版
 
-在[<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)，点击“升级商业版”，在“版本升级”，选择“商业版-订阅制版”，点击“立即申请”。
+在[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)，点击“升级商业版”，在“版本升级”，选择“商业版-订阅制版”，点击“立即申请”。
 
 <!--
 ![](img/13.deployment_10.png)
@@ -85,7 +85,7 @@
 ![](img/13.deployment_11.png)
 -->
 ## 升级到许可证制版
-在[<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/#/signin)，点击“升级商业版”，在“版本升级”，选择“商业版-许可证制版”，点击“立即申请”。
+在[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/#/signin)，点击“升级商业版”，在“版本升级”，选择“商业版-许可证制版”，点击“立即申请”。
 <!--
 ![](img/13.deployment_12.png)
 -->

@@ -1,0 +1,7 @@
+nav:
+  - 'List data access rules': list.md
+  - 'Get a single data access rule': get.md
+  - 'Create a single data access rule': add.md
+  - 'Modify a single data access rule': modify.md
+  - 'Disable a single data access rule': set-disable.md
+  - 'Delete data access rule': delete.md

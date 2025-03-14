@@ -38,11 +38,11 @@
 
 #### 第一步：下载浏览器插件
 
-1、若您已经接入 Web 应用，您可以直接通过 [下载浏览器插件](https://<<< custom_key.static_domain >>>/guance-plugin/guance-rum-plugin.zip) 进行安装。
+1、若您已经接入 Web 应用，您可以直接通过 [下载浏览器插件](https://static.<<< custom_key.brand_main_domain >>>/guance-plugin/guance-rum-plugin.zip) 进行安装。
 
 2、若您还未开始使用<<< custom_key.brand_name >>>，可以先完成以下步骤：
 
- - [注册<<< custom_key.brand_name >>>账号](https://www.guance.com/)；  
+ - [注册<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)；  
  - [安装 DataKit](../datakit/datakit-install.md)；  
  - [开启用户访问监测采集器](../integrations/rum.md)；  
  - [接入 Web 应用](web/app-access.md)。
@@ -55,7 +55,7 @@
 
 2、开启**开发者模式**；
 
-3、解压下载的浏览器插件 [guance-rum-plugin.zip](https://<<< custom_key.static_domain >>>/guance-plugin/guance-rum-plugin.zip)；  
+3、解压下载的浏览器插件 [guance-rum-plugin.zip](https://static.<<< custom_key.brand_main_domain >>>/guance-plugin/guance-rum-plugin.zip)；  
 
 4、点击**加载已解压的压缩包**；
 

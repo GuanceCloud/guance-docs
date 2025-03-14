@@ -14,7 +14,7 @@ __int_icon: icon/aliyun_edas
 
 ### 前置条件
 
-- **EDAS** 中每台 ECS <[安装 DataKit](https://docs.guance.com/datakit/datakit-install/){:target="_blank"}>
+- **EDAS** 中每台 ECS <[安装 DataKit](<<< homepage >>>/datakit/datakit-install/){:target="_blank"}>
 
 ### 安装配置
 

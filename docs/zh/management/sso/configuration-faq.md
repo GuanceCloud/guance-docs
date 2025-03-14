@@ -46,7 +46,7 @@ SAML 基本概念如下：
 
 :material-chat-question: **在身份提供商配置了邮箱映射声明以后，还是无法在<<< custom_key.brand_name >>>进行单点登录，如何解决？**
 
-<<< custom_key.brand_name >>>定义的关联映射邮箱字段通过正则表达式来匹配身份提供商的邮箱规则，若配置的身份提供商邮箱规则不符合<<< custom_key.brand_name >>>支持的邮箱正则表达式，故无法进行单点登录，可[联系<<< custom_key.brand_name >>>售后](https://www.guance.com/#home)进行处理。
+<<< custom_key.brand_name >>>定义的关联映射邮箱字段通过正则表达式来匹配身份提供商的邮箱规则，若配置的身份提供商邮箱规则不符合<<< custom_key.brand_name >>>支持的邮箱正则表达式，故无法进行单点登录，可[联系<<< custom_key.brand_name >>>售后](https://<<< custom_key.brand_main_domain >>>/#home)进行处理。
 
 ![](../img/contact-us.png)
 

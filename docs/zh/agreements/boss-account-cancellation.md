@@ -3,7 +3,7 @@
 
 **【特别提示】注销<<< custom_key.brand_name >>>费用中心账号为不可恢复的操作，账号注销以后，您将无法再使用本账号登录到<<< custom_key.brand_name >>>费用中心，且您在<<< custom_key.brand_name >>>费用中心的所有数据将被删除并不可恢复（即使您使用相同的邮箱、手机再次注册并使用<<< custom_key.brand_name >>>费用中心）。**
 
-<<< custom_key.brand_name >>>费用中心账号注销条款（以下简称“本条款”）约束您主动注销您的<<< custom_key.brand_name >>>费用中心（国内域名：boss.guance.com；海外域名：bill.guance.one）账号的行为及所涉相关事宜。
+<<< custom_key.brand_name >>>费用中心账号注销条款（以下简称“本条款”）约束您主动注销您的<<< custom_key.brand_name >>>费用中心（国内域名：<<< custom_key.boss_domain >>>；海外域名：bill.guance.one）账号的行为及所涉相关事宜。
 
 请您在提交账号注销申请前务必充分阅读、理解并同意本条款的全部内容，有任何疑问，请您联系<<< custom_key.brand_name >>>客服。
 

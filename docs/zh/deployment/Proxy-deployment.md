@@ -4,7 +4,7 @@
 
 下载 docker-nginx.tar.gz 
 
-资源包下载地址[Download]( https://<<< custom_key.static_domain >>>/dataflux/package/docker-nginx.tar.gz)
+资源包下载地址[Download]( https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/docker-nginx.tar.gz)
 ## 安装 docker
 
 ### 1. 解压安装包

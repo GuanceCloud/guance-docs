@@ -17,6 +17,7 @@
 | type | string |  | 列出监控器,列出智能监控传参为 smartMonitor<br>允许为空: False <br>允许为空字符串: False <br>可选值: ['smartMonitor'] <br> |
 | monitorUUID | commaArray |  | 监视器分组UUID<br>允许为空: False <br> |
 | alertPolicyUUID | commaArray |  | 告警策略UUID<br>允许为空: False <br> |
+| checkerStatus | commaArray |  | 监控器状态, 0 表示 启用状态, 2 表示禁用状态 (默认查询启用/禁用 0,2)<br>例子: 0 <br>允许为空: False <br> |
 | checkerUUID | commaArray |  | 检查项UUID列表<br>允许为空: False <br> |
 | sloUUID | string |  | SLO的UUID<br>允许为空: False <br> |
 | search | string |  | 搜索规则名<br>允许为空: False <br> |
@@ -31,7 +32,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/checker/list?pageIndex=1&pageSize=2' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/checker/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```

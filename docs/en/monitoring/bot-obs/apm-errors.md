@@ -1,69 +1,68 @@
-# Server Application Error Intelligent Inspection
+# Server-Side Application Error Inspection
 
 ---
 
 ## Background
 
-When server-side operation errors occur, we need to find early and timely warning to allow development and operation maintenance to troubleshoot and confirm whether the error has a potential impact on the application in a timely manner. The content of the server-side application error patrol event report is to remind the development and operation of the maintenance in the past hour there is a new application error and locate the specific place of error will be associated with the diagnostic clues provided to the user.
+When server-side errors occur, we need to detect and alert early so that development and operations can troubleshoot promptly and confirm whether the error has any potential impact on the application. The content reported by server-side application error inspection events is to remind developers and operators of new errors in the past hour and provide diagnostic clues associated with specific error locations.
 
-## Preconditions
+## Prerequisites
 
-1. In Guance「 [application performance monitoring](../../application-performance-monitoring/collection/index) 」that already have access applications.
-2. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
+1. <<< custom_key.brand_name >>>「[APM](../../application-performance-monitoring/collection/index)」already has integrated applications
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+4. In <<< custom_key.brand_name >>>「Manage / API Key Management」, create an [API Key](../../management/api-key/open-api.md) for performing operations
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed in the [same operator and region](../../../getting-started/necessary-for-beginners/select-site/) as the current SaaS deployment of <<< custom_key.brand_name >>>.
 
-## Start Intelligent Inspection
+## Enable Inspection
 
-In the DataFlux Func, install the "Guance Custom Inspection (APM Errors)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
+In your self-hosted DataFlux Func, install 「<<< custom_key.brand_name >>> Self-Hosted Inspection (APM Errors)」via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+In the DataFlux Func Script Market, select the required inspection scenario, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration, which can be viewed directly via the provided link.
 
 ![image](../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configure Inspection
 
-### Configure Intelligent Inspection in Guance
+Configure the desired filtering conditions for inspection in the <<< custom_key.brand_name >>> Studio under Monitoring - Smart Inspection or in the startup script automatically created by DataFlux Func. You can refer to the following two configuration methods:
+
+### Configuration in <<< custom_key.brand_name >>>
 
 ![image](../img/apm-errors02.png)
 
 #### Enable/Disable
 
-Server Application Error Intelligent Inspection is "On" by default, and can be manually "Off". When it is on, it will inspect the configured APM.
+Memory leak inspection is enabled by default and can be manually disabled. After enabling, it will inspect the configured service list.
 
-#### Export
+#### Edit
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
+The smart inspection 「Server-Side Application Error Inspection」supports users adding manual filtering conditions. In the operation menu on the right side of the smart inspection list, click the **Edit** button to edit the inspection template.
 
-#### Editor
+* Filtering Conditions: Configure the list of app_names to be inspected (optional, defaults to all app_names if not configured)
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity, notification targets, and alert mute periods
 
-Intelligent Inspection "Server Application Error Intelligent Inspection" supports users to manually add filtering conditions, and click the "Edit" button under the operation menu on the right side of the Intelligent Inspection list to edit the inspection template.
-
-  * Filter criteria: configuration application project service belongs to the project, service_sub including service, environment, version by ":" stitching.
-  * Alarm notification: support for selecting and editing alarm policies, including the level of events to be notified, notification objects, and alarm silence period, etc.
-
- Configure the entry parameters by clicking on Edit and then fill in the corresponding detection object in the parameter configuration and click Save to start the inspection：
+Click Edit to enter parameter configuration and fill in the corresponding detection objects before saving and starting the inspection:
 
 ![image](../img/apm-errors03.png)
 
-You can refer to the following configuration information for multiple projects, environments, versions and services.
+You can reference the configuration of multiple projects, environments, versions, and services as follows:
 
 ```json
- // Configuration example:
-    configs :
-        project1:service1:env1:version1
-        project2:service2:env2:version2
+// Configuration Example:
+configs configuration instance:
+    project1:service1:env1:version1
+    project2:service2:env2:version2
 ```
 
->  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the  check processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the  check processing function.
+> **Note**: In self-hosted DataFlux Func, when writing self-hosted inspection processing functions, you can also add filtering conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> Studio will override those set in the self-hosted inspection processing function.
 
-### Configuring inspections in DataFlux Func
+### Configuration in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
+After configuring the necessary filtering conditions in DataFlux Func, you can test by clicking the `run()` method directly on the page. After clicking Publish, the script will run normally. You can also view or change the configuration in <<< custom_key.brand_name >>>「Monitoring / Smart Inspection」.
 
 ```python
 from guance_monitor__runner import Runner
@@ -75,7 +74,7 @@ def filter_project_servcie_sub(data):
     project = data['project']
     service_sub = data['service_sub']
     '''
-    Filter the "service_sub" attribute, customize the conditions that meet the requirements for the "service_sub" attribute, and return True if there is a match, and False if there is no match.
+    Filter service_sub, customize conditions matching service_sub, return True for matches, False otherwise.
     return True｜False
     '''
     if service_sub in ['xxx-xxx-auth:dev:1.0']:
@@ -83,15 +82,15 @@ def filter_project_servcie_sub(data):
   
   
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
-@DFF.API('APM 新增错误类型', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('New APM Error Types', fixed_crontab='0 * * * *', timeout=900)
 def run(configs=None):
     """
-    Optional parameters：
-        configs:
-	Multiple services can be specified (concatenated by line breaks), and if not specified, all services will be checked.
-		Each service is composed of the project to which the service belongs, the service itself, the environment, and the version concatenated by ":".Example:"project1:service:env:version"
-    示例：
-        configs example：
+    Optional parameter:
+        configs :
+            Can specify multiple services (separated by line breaks), unspecified checks all services.
+            Each service is composed of project, service, environment, version joined by ":", e.g., "project1:service:env:version"
+    Example:
+        configs configuration instance:
             project1:service1:env1:version1
             project2:service2:env2:version2
     """
@@ -102,33 +101,30 @@ def run(configs=None):
     Runner(checkers, debug=False).run()
 ```
 
-
-
 ## View Events
 
-This check will scan the newly added application error information in the last hour. Once a new error does not occur, the intelligent check will generate corresponding events. Under the operation menu on the right side of the intelligent check list, click the "View Related Events" button to view the corresponding abnormal events.
+This inspection scans for new application errors in the last hour. Once a new error type occurs, the smart inspection generates a corresponding event. In the operation menu on the right side of the smart inspection list, click the **View Related Events** button to view the corresponding anomaly events.
 
 ![image](../img/apm-errors04.png)
 
 ### Event Details Page
 
-Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+Click **Event** to view the details page of the smart inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-* Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check
-* Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events
+* Click the small icon labeled 「View Monitor Configuration」in the top-right corner of the details page to view and edit the current smart inspection configuration.
 
-#### Basic Properties
+#### Basic Attributes
 
-* Detection Dimensions: Filter criteria based on smart patrol configuration, enabling replication of detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security check, links, user access monitoring, availability monitoring and CI data
-* Extended Attributes: Support replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering
+* Detection Dimensions: Based on the filtering conditions configured in the smart inspection, supports copying `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, RUM PV, Synthetic Tests, and CI data.
+* Extended Attributes: Select extended attributes to support copying in `key/value` format, forward/reverse filtering.
 
 ![image](../img/apm-errors05.png)
 
 #### Event Details
 
-* Event Overview: Describes the objects, contents of abnormal check events.
-* Error Distribution: You can view the change of the number of errors in the past 1 hour when the current exception is applied.
-* Error Details: You can display the new error details and specific error count of exception application. You can click specific error information, error type and error stack to jump to the error details page for viewing.
+* Event Overview: Describes the object and content of the anomaly inspection event.
+* Error Distribution: View the number of errors that occurred in the last hour for the current anomalous application.
+* Error Details: Displays detailed information about new errors and specific error counts for the anomalous application. You can click specific error messages, error types, and error stacks to navigate to the error detail page for viewing.
 
 ![image](../img/apm-errors06.png)
 
@@ -136,38 +132,38 @@ Click "Event" to view the details page of intelligent check events, including ev
 
 #### History
 
- Support to view the detection object, exception/recovery time and duration.
+Supports viewing detection objects, anomaly/recovery times, and duration.
 
 ![image](../img/apm-errors08.png)
 
-#### Related events
+#### Related Events
 
-Support to view related events through filtering fields and selected time component information.
+Supports viewing related events through filtering fields and selected time component information.
 
 ![image](../img/apm-errors09.png)
 
-## FAQ
+## Common Issues
 
-**1.How to configure the detection frequency of server application error check**
+**1. How to configure the inspection frequency for server-side application errors**
 
-* In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=1800` in the decorator when writing the  check processing function, and then configure it in "admin/auto-trigger configuration".
+* In self-hosted DataFlux Func, add `fixed_crontab='0 * * * *', timeout=1800` in the decorator when writing self-hosted inspection processing functions, then configure it in 「Manage / Auto-Trigger Configuration」.
 
-**2.There may be no exception analysis when the server applies error check trigger**
+**2. Why might there be no anomaly analysis in the inspection report**
 
-Check the current data collection status of `datakit` when there is no anomaly analysis in the check report.
+If the inspection report lacks anomaly analysis, check the current `datakit` data collection status.
 
-**3.Under what circumstances will server-side application error check events occur**
+**3. Under what circumstances would server-side application error inspection events be generated**
 
-The server-side application error inspection will scan the newly added application error information in the last hour. Once a new error type does not occur, the intelligent inspection will generate corresponding events.
+Server-side application error inspection scans for new application errors in the last hour. Once a new error type appears, the smart inspection generates a corresponding event.
 
-**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
+**4. What should I do if a previously working script fails during inspection**
 
-Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
+Update the referenced script set in the DataFlux Func Script Market. You can review the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to keep the scripts up-to-date.
 
-**5. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+**5. Why does the Startup script set not change during script upgrade**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
+Delete the corresponding script set first, then click the Upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**6. How to determine if the inspection is effective after it is enabled**
+**6. How to determine if the inspection is effective after enabling**
 
-Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.
+In 「Manage / Auto-Trigger Configuration」, check the inspection status. First, it should be enabled. Then, verify the inspection script by clicking Execute. If it shows "Executed successfully xxx minutes ago," the inspection is running normally.

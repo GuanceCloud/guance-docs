@@ -1,59 +1,60 @@
 # Global Labels
 
-Global labels refer to labels that can be directly called within the Guance workspace. Through global labels, data that meets the requirements can be classified, filtered, and linked globally.
+Global labels refer to tags that can be directly invoked within the <<< custom_key.brand_name >>> workspace. Through global labels, data can be categorized, filtered, and filtered according to requirements, ultimately achieving global data linkage.
 
-**Note**: Only owners, administrators and custom roles with the permission can view this feature.
+**Note**: Only Owner, Administrator, and custom roles can view this feature.
 
-## Setup
+![](img/label-7.png)
+
+## Create Labels
 
 <img src="../img/label.png" width="50%" >
 
-1. Name: Required; the name must be unique and cannot be duplicated; it can be any text format.  
-2. Description: Optional; limited to 100 characters.  
-3. Color: The first color block is the default color, and you can customize your selection.  
-4. Continue to creat the next one: You can continue creating labels, and the popup window will not close after clicking **Confirm**.  
+1. Name: Required; names must be unique and cannot be repeated; they can be in any text format;
+2. Description: Optional; length should not exceed 100 characters;
+3. Color: The first color block is the default color, but you can customize it;
+4. Continue creating the next one: You can continue creating labels, and the popup will remain open after clicking confirm.
 
-**Note**: If you select this button, it will remain selected throughout the label creation process. The status will only be canceled if you manually uncheck it or close the popup window.
+**Note**: If you check this option, it will remain checked during the label creation process unless you manually uncheck it or close the popup.
 
-## Label List
+## Manage Labels
 
-The created labels can be viewed in the **Management > Global Labels** list page. You can also perform the following operations on the list page:
+After creating labels, you can view them on the **Manage > Global Labels** list page. You can also perform the following operations on this page:
 
-- Edit: You can update the name and description of existing labels.  
-- Delete: Deletes the current label.  
-- Batch Operations: Can delete multiple selected labels in batch.  
-- Search: In the search box, you can enter the label name for quick search and positioning.  
+1. Edit: Update the name and description of existing labels;
+2. Delete: Remove the current label;
+3. Batch operations: Bulk delete multiple selected labels;
+4. Search: Enter a label name in the search box to quickly locate it.
 
 ![](img/label-1.png)
-
 
 ## Use Cases
 
 <div class="grid" markdown>
 
-=== "Dashboards"
+=== "Dashboard"
 
-    :material-numeric-1-circle-outline: When modifying the dashboard or viewing the explorer page, open the dropdown menu under the custom labels to search or add global labels:
+    :material-numeric-1-circle-outline: When modifying dashboards or Explorer pages, open the custom label dropdown to search for or add global labels:
 
     <img src="../img/label-2.png" width="60%" >
 
     <img src="../img/label-5.png" width="60%" >
 
-    **Note**: If you do not have permission to create labels, you can only search for labels here.
+    **Note**: If you do not have permission to create labels, you can only search for existing labels here.
 
-    :material-numeric-2-circle-outline: In label filtering, you can view all the labels associated with the current page dashboard.
+    :material-numeric-2-circle-outline: In the label filter, you can view all labels associated with the current dashboard page.
 
-    <img src="../img/label-3.png" width="60%" >
+    <img src="../img/label-3.png" width="50%" >
 
-=== "Infrastructure > Host"
+=== "Infrastructure > Hosts"
 
-    On Host Details page > Information > Label, click on the dropdown:
+    On the **Host Details Page > Basic Information > Labels**, click the dropdown:
 
-    <img src="../img/label-4.png" width="70%" >
+    ![](img/label-4.png)
 
 === "Monitors"
 
-    Enter the new monitor creation page and you can search or add global labels:
+    When entering the monitor creation page, you can search for or add global labels:
 
     <img src="../img/label-6.png" width="60%" >
 

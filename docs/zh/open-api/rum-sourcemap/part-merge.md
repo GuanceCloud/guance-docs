@@ -26,7 +26,7 @@ sourcemap 压缩文件上传(分片上传)操作中的第五步操作。合并�
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/part_merge' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/part_merge' \
 -H 'Content-Type: application/json' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw $'{\n  "uploadId": "65ef45944fac157005cb73de48e81f161Lfv5UOs"\n}' \

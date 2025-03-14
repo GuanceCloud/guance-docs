@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/accesskey/wsak_xxxxx/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/accesskey/wsak_xxxxx/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

@@ -1,24 +1,22 @@
-# Customized User Id
+# Custom User Identifier
 ---
 
-By default, the SDK automatically generates a unique ID for the user, which does not have any identifying attributes and can only distinguish between different user attributes.
+By default, the SDK automatically generates a unique identifier ID for users. This ID does not carry any identifying attributes and can only distinguish between different user properties. Therefore, we provide additional APIs to add different identifying attributes to the current user.
 
-For this reason we provide an additional API to add different identification attributes to the current user.
-
-| Properties | Type   | Description               |
+| Property   | Type   | Description               |
 | ---------- | ------ | ------------------------- |
 | user.id    | string | User ID                   |
 | user.name  | string | User nickname or username |
-| user.email | string | User Email                |
+| user.email | string | User email                |
 
-The following attributes are optional, but it is recommended that at least one of them be provided.
+**Note**: The following properties are optional, but it is recommended to provide at least one of them.
 
-### Adding User Identification
+### Add User Identifier
 
 === "CDN" 
 
-    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
-    
+    [Download file](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local introduction
+
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
     datafluxRum.setUser({
@@ -30,8 +28,8 @@ The following attributes are optional, but it is recommended that at least one o
 
 === "NPM" 
 
-    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
-    
+    [Introduction](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
     datafluxRum.setUser({
@@ -41,11 +39,12 @@ The following attributes are optional, but it is recommended that at least one o
     })
     ```
 
-### Remove User Identification
+### Remove User Identifier
+
 === "CDN" 
 
-    Download files imported locally ([download address](https://static.guance.com/miniapp-sdk/v2/dataflux-rum-miniapp.js))
-    
+    [Download file](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v2/dataflux-rum-miniapp.js) for local introduction
+
     ```javascript
     const { datafluxRum } = require('./lib/dataflux-rum-miniapp.js')
     datafluxRum.removeUser()
@@ -53,10 +52,9 @@ The following attributes are optional, but it is recommended that at least one o
 
 === "NPM" 
 
-    Introduction: (see WeChat official [npm introduction method](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html))
-    
+    [Introduction](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+
     ```javascript
     import { datafluxRum } from '@cloudcare/browser-rum'
     datafluxRum.removeUser()
     ```
-

@@ -1,47 +1,45 @@
 ---
-title: 'Exception Events Integration with Jira'
-summary: 'When our applications or systems encounter exceptions, it is important to handle them promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to Jira to create issues. This allows us to track, analyze, and resolve these issues in Jira, providing us with better capabilities to manage and track exception events and ensure the normal operation of the system. Additionally, this approach helps us analyze and resolve issues more effectively, improving the stability and reliability of the system.'
+title: 'Incident Events and Jira Integration'
+summary: 'When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira, this method provides better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this approach also helps us analyze and solve problems more effectively, improving system stability and reliability.'
 __int_icon: 'icon/monitor_jira'
 ---
 
 <!-- markdownlint-disable MD025 -->
 
-# Exception Events Integration with Jira
-
+# Incident Events and Jira Integration
 <!-- markdownlint-enable -->
 
-When our applications or systems encounter exceptions, it is important to handle them promptly to ensure the normal operation of the system. To better manage and track exception events, we can send these events to Jira to create issues. This allows us to track, analyze, and resolve these issues in Jira, providing us with better capabilities to manage and track exception events and ensure the normal operation of the system. Additionally, this approach helps us analyze and resolve issues more effectively, improving the stability and reliability of the system.
+When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira, this method provides better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this approach also helps us analyze and solve problems more effectively, improving system stability and reliability.
 
-## Config {#config}
+## Configuration {#config}
 
-### Prerequisites
+### Preparation
 
-1. Deploy a [Dataflux Func Observability Cloud Special Edition](https://func.guance.com/#/) to generate an authorization link.
-2. Create a [webhook custom notification object](https://docs.guance.com/monitoring/notify-object/#4-webhook) (the webhook address should be the authorization link of Func).
-3. Properly configure the [monitor](https://docs.guance.com/monitoring/monitor/).
-
+1. Deploy a [DataFlux Func (Automata)](https://func.guance.com/#/) to generate an authorization link.
+2. Create a [custom webhook notification target](<<< homepage >>>/monitoring/notify-object/#4-webhook) (the webhook URL should be the authorization link URL of DataFlux Func).
+3. Correctly configure the [monitor](<<< homepage >>>/monitoring/monitor/).
 
 ### Deployment Process
 
-#### Create Webhook Custom Notification Object
+#### Create Custom Webhook Notification Target
 
-In the Observability Cloud Studio, go to "Monitoring/Notification Object Management" and create a new notification object. Choose **webhook custom** and enter the webhook address as the authorization link of the deployed Dataflux Func.
+In the Guance Studio under **Notification Targets Management**, create a new notification target, select **Custom Webhook**, and enter the authorization link URL of the deployed DataFlux Func.
 
 ![1693212890543.png](imgs/monitor_jira/monitor_jira01.png)
 
-> Note: Please select the authorization link in Func without parameters.
+> Note: In DataFlux Func, choose an authorization link without parameters.
 
 #### Create Monitor
 
-In the Observability Cloud Studio, go to "Monitoring/Monitors" and create a new monitor. Select the desired metrics to monitor, and configure the notification content for events. In the alert policy, specify the webhook custom notification object created earlier as the alert notification object.
+In the Guance Studio under **Monitors**, create a new monitor, select the metrics you want to observe, and after configuring the event notification content, specify the alert strategy's notification target as the **Custom Webhook** notification target name created earlier.
 
 ![1693212934306.png](imgs/monitor_jira/monitor_jira02.png)
 
-#### Write Listening Script
+#### Write Listener Script
 
-After configuring the monitoring rules for the monitor, we need to write a script in the already installed and configured Dataflux Func to retrieve new messages and send them to Jira to create issues.
+After configuring the monitor's detection rules, we need to write a script in the already installed and configured DataFlux Func to retrieve new messages and send them to Jira to create issues.
 
-First, we need to import some constants such as `jira_server`, `username`, `password`, `project_key`, etc.
+First, we need to introduce some constants, such as `jira_server`, `username`, `password`, `project_key`, etc.
 
 ```Python
 import json
@@ -53,7 +51,7 @@ password = "xxxxx"
 project_key = "XXXXXXXXX"
 ```
 
-After importing the necessary constants, we need to understand the data structure of the monitoring events in order to parse and create the events to be sent to Jira.
+After introducing the necessary constants, we need to understand the data structure of the monitoring events to parse and create events sent to Jira.
 
 ```JSON
 {
@@ -74,7 +72,7 @@ After importing the necessary constants, we need to understand the data structur
     "df_dimension_tags":"{\"host\":\"share\"}",
     "df_event_id":"event-f20a38aa58b54c6c8d4c9a84e655db1a",
     "df_event_link":"https://console.guance.com/keyevents/monitor?time=1693034040000%2C1693035000000&tags=%7B%22df_event_id%22%3A%22event-f20a38aa58b54c6c8d4c9a84e655db1a%22%7D&w=wksp_968577392a1c4714a464cd2f6ee42a9c",
-    "df_event_reason":"\u6ee1\u8db3\u76d1\u63a7\u5668\u4e2d\u6545\u969c\u7684\u8ba4\u5b9a\u6761\u4ef6\uff0c\u4ea7\u751f\u6545\u969c\u4e8b\u4ef6",
+    "df_event_reason":"满足监控器中的故障认定条件，产生故障事件",
     "df_exec_mode":"crontab",
     "df_issue_duration":3840,
     "df_issue_start_time":1693031100,
@@ -84,7 +82,7 @@ After importing the necessary constants, we need to understand the data structur
     "df_monitor_checker":"custom_metric",
     "df_monitor_checker_event_ref":"13713ac25e993a37d2ca5899e2a7bba6",
     "df_monitor_checker_id":"rul_c439124e218f4c0c9cb114b5d04eeab4",
-    "df_monitor_checker_name":"\u5b9e\u4f8b\u540d\u79f0\u4e3a {{host}} \u78c1\u76d8\u4f7f\u7528\u7387\u8fc7\u9ad8",
+    "df_monitor_checker_name":"\u5b9e\u4f8b\u540d\u79f0\u4e3a {host} \u78c1\u76d8\u4f7f\u7528\u7387\u8fc7\u9ad8",
     "df_monitor_checker_ref":"aad7deb63b2e58b301f823517fea944d",
     "df_monitor_checker_sub":"check",
     "df_monitor_checker_value":"100",
@@ -105,9 +103,9 @@ After importing the necessary constants, we need to understand the data structur
 }
 ```
 
-In this JSON, we have the event title `df_title`, event details `df_message`, and event status `df_status` that we need. Of course, this JSON also contains other relevant information such as event generation time, exception value, workspace ID, etc. If needed, we can include them in the events we want to create.
+This **Json** contains the event title `df_title`, event details `df_message`, and event status `df_status` that we need. It also includes other relevant information such as event creation time, anomaly value, workspace ID, etc., which can be included in the generated issue if needed.
 
-Once we have clarified the input data structure, we can write the function to create Jira issues.
+With the input data structure clear, we can now write the function to create Jira issues.
 
 ```Python
 @DFF.API('Create_JIRA_Issue_Reply')
@@ -115,7 +113,7 @@ def create_jira_issue_reply(**kwargs):
 
     # Create Jira instance
     jira = JIRA(server=jira_server, basic_auth=(username, password))
-    # Get event data from Observability Cloud
+    # Get Guance event data
     event = json.dumps(kwargs)
     print(event)
     summary  = kwargs["df_title"]
@@ -126,7 +124,7 @@ def create_jira_issue_reply(**kwargs):
         'project': {'key': project_key},
         'summary': summary,
         'description': description,
-        'issuetype': {'name': 'Fault'},  # Change the question type to Task
+        'issuetype': {'name': 'Fault'},  # Change issue type to Task
         'assignee': {'name': 'pacher'},
         'priority': {'name': 'Highest'}
     }
@@ -135,15 +133,15 @@ def create_jira_issue_reply(**kwargs):
     issue = jira.create_issue(fields=issue_dict)
 
     # Print the key of the newly created issue
-    print(f"Key for the newly created question：{issue.key}")
+    print(f"Key of the newly created issue: {issue.key}")
 ```
 
-By creating a Jira instance, we can create an issue dictionary from the event details obtained from Observability Cloud and send it to Jira. After sending successfully, the log will be generated, which is the `issue.key` we created.
+By creating a Jira instance, we use the obtained event details from Guance to create an issue dictionary and send it to Jira. After successful transmission, a log is generated, which is the `issue.key` we created.
 
 ![1693213100705.png](imgs/monitor_jira/monitor_jira03.png)
 
-Then, we can view the corresponding issue in Jira using the created `issue.key`.
+We can then view the corresponding issue in Jira using the created `issue.key`.
 
 ![1693213121459.png](imgs/monitor_jira/monitor_jira04.png)
 
-After writing the script, we can click on "Publish" to deploy it.
+After writing the script, click Publish to complete the process.

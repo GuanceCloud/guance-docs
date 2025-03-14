@@ -36,7 +36,6 @@
 | `df_workspace_name`                              | String         | 所属工作空间名                                                                                                              |
 | `df_workspace_uuid`                              | String         | 所属工作空间 ID<br>_如果对检测有疑问，可以将此 ID 发送给我们_                                                               |
 | `df_label`                                       | List           | 监控器标签列表                                                                                                              |
-| &#12288;`df_label[#]`                            | String         | 监控器标签                                                                                                                  |
 | `df_check_condition`                             | Dict           | 满足的检测条件                                                                                                              |
 | &#12288;`df_check_condition.operator`            | String         | 满足检测条件的操作符，如：`>`、`>=` 等                                                                                      |
 | &#12288;`df_check_condition.operands`            | List           | 满足检测条件的操作数列表。<br>一般只有 1 个操作数<br>但`between`等操作符具有 2 个操作数                                     |

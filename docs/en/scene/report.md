@@ -1,87 +1,77 @@
-# Regular Reports {#report}
+# Scheduled Reports {#report}
 
-Guance enables you to export dashboards into reports, which are regularly pushed to relevant members in different forms according to different time dimensions such as daily/weekly/monthly.
+<<< custom_key.brand_name >>> supports exporting dashboards as reports and sending them through various channels at scheduled intervals such as daily, weekly, or monthly to relevant personnel.
 
-Enter **Scenes > Regular Report**:
+To access **Use Cases > Scheduled Reports**:
 
-<img src="../img/report-9.png" width="40%" >
+![Scheduled Report](../img/report-9.png)
 
-Or **Scenes > Dashboards > Regular Reports**:
+Or **Use Cases > Dashboards > Scheduled Reports**:
 
-![](img/report-1.png)
+![Scheduled Report from Dashboard](img/report-1.png)
 
+On this page, you can view information about the scheduled report name, associated dashboard, report frequency, notification targets, etc.
 
-## Create
+![Scheduled Report Info](img/report-2.png)
 
+## Create a Report
 
-:material-numeric-1-circle: **Basic info**:
+1. **Basic Information**:
 
-![](img/report-4.png)
+![Basic Info](img/report-4.png)
 
-:material-numeric-1-circle-outline: Dashboard: Select the dashboard you need to send the scheduled report.
-
-:material-numeric-2-circle-outline: Modify view variables: You can choose to customize the view variables of the dashboard in the scheduled report.
+:material-numeric-1-circle-outline: Dashboard: Select the dashboard for which you need to send the scheduled report.
+:material-numeric-2-circle-outline: Modify View Variables: You can choose to customize and modify the view variables of the dashboard in the scheduled report.
 
 **Note**:
 
-- The modification here only affects the report and will not affect the default values of the dashboard;
-- If there are no view variables in the dashboard, this option will not be shown to you.
+- Modifications here only affect the report and do not impact the original default settings of the dashboard.
+- If the dashboard does not have any view variables, this option will not be displayed.
 
-:material-numeric-3-circle-outline: Query Scope: The time range of the dashboard query when sending the report; the default selection is "Last 1 day", you can manually enter the time range.
+:material-numeric-3-circle-outline: Query Range: This is the time range queried by the dashboard when sending the report; it defaults to "Last 1 Day," but you can manually enter a different time range.
 
-:material-numeric-2-circle: **Timing plan**:
+2. **Schedule Settings**:
 
-![](img/report-5.png)
+![Schedule Settings](img/report-5.png)
 
-:material-numeric-1-circle-outline: Time Zone: The time zone by default is `UTC+08:00`, modification is not supported.
+:material-numeric-1-circle-outline: Time Zone: The time zone defaults to `UTC+08:00` and currently cannot be modified.
+:material-numeric-2-circle-outline: Report Time: The time at which the current scheduled report is sent; enter a positive integer within the ranges: hours 0-23, minutes 0-59.
+:material-numeric-3-circle-outline: Report Frequency: The sending frequency of the current scheduled report; options include ["One-time"]["Daily"]["Weekly"]["Monthly"]. Choose based on your needs.
 
-:material-numeric-2-circle-outline: Report time: The time to send the current scheduled report; you need to fill in a positive integer, range: hours 0-23; minutes 0-59.
+- One-time: If selected, the report will only be sent at the specified time.
+- Daily: You can select every day or specific days for sending the scheduled report.
+- Weekly: You can choose to send the report weekly.
+- Monthly: You can select specific months and days for sending the scheduled report.
 
-:material-numeric-3-circle-outline: Report cycle: The frequency of the current scheduled report; includes "One-time", "Daily", "Weekly", "Monthly", you can choose as needed.
+3. **Notification Methods**:
 
-- One-time: If checked, the current report will only be sent at your specific time;
-- Daily: You can choose every day; or you can choose the specific date to send the current scheduled report, multiple choices are supported;
-- Weekly: You can choose to send it regularly based on the time dimension of the week;
-- Monthly: You can choose every month; or you can choose the specific month and day to send the current scheduled report, multiple choices are supported.
+Currently supports 4 types of notifications: email group, DingTalk bot, WeCom bot, Lark bot.
 
-:material-numeric-3-circle: **Notification method**:
+![Notification Methods](img/report-6.png)
 
-Currently, 4 types of notifications are supported: Email group, DingTalk robot, Enterprise WeChat robot, Lark robot.
+:material-numeric-1-circle-outline: Notification Targets: The recipients of the current scheduled report; you can create new notification targets under **Monitoring > Notification Targets Management**.
+:material-numeric-2-circle-outline: Title: The title that appears in the email for the current scheduled report.
+:material-numeric-3-circle-outline: Content: The content that appears in the email for the current scheduled report.
 
-![](img/report-6.png)
+4. **Sharing Methods**:
 
-:material-numeric-1-circle-outline: Notification object: The recipient of the current scheduled report; you can go to **Monitoring > Notification object management** to create a new notification object.
+![Sharing Methods](img/report-3.png)
 
-:material-numeric-2-circle-outline: Title: The name of the current scheduled report displayed in the email.
+:material-numeric-1-circle-outline: Image Format: You can choose the image format for sharing the scheduled report, including dashboard screenshots or chart screenshots.
 
-:material-numeric-3-circle-outline: Content: The content of the current scheduled report displayed in the email.
-
-:material-numeric-4-circle: **Sharing Method**:
-
-![](img/report-3.png)
-
-:material-numeric-1-circle-outline: Type: You can choose the image form for sharing the scheduled report, including dashboard screenshots or icon screenshots.
-
-**Note**: The default email notification will export the dashboard content as an image. If your dashboard data query time range is too long, the data volume is too large or there are complex calculations, the related charts may appear blank.
+**Note**: Email notifications default to exporting the dashboard content as an image. If the data query time range of your dashboard is too long, the data volume is too large, or there are complex calculations involved, charts may appear blank.
 
 :material-numeric-2-circle-outline: Sharing Method:
 
-- **Public Sharing**: The short link to the scheduled report with public sharing selected can be opened directly;
+- **Public Sharing**: The short link for publicly shared scheduled reports can be opened directly.
+- **Encrypted Sharing**: Requires setting a 4-8 character password consisting of English letters and numbers. After setting, the correct password must be entered to open the short link of the scheduled report.
 
-- **Encrypted Sharing**: You need to set a 4～8 digit English, numeric input password. After setting, the correct password must be entered to open the short link to the scheduled report.
+Once the scheduled report is created, each chart within the dashboard will generate a corresponding image and be sent to the specified email according to the set schedule.
 
-After the scheduled report is created, each chart in the dashboard will generate corresponding images and send them to the corresponding email according to the settings.
+## Manage Reports
 
+In the report list, you can perform the following actions:
 
-
-## Report List
-
-From the report list, you can do the following:
-
-- Hover to **Dashboard Name**, display details including dashboard name and view variables;
-- Hover to **Report Cycle**, display detailed cycle information for the current timing report.
-
-![](img/report-8.gif)
-
-- In the **Options** on the right side of the report, you can view the creator of the timed report, and you can choose to disable, edit, or delete the timed report.
-
+- Hover over the dashboard name to display detailed information, including the dashboard name and view variables; click to navigate to the corresponding dashboard page.
+- Hover over the report frequency and notification targets to display detailed information.
+- On the right side of the report under **Actions**, you can view the creator of the scheduled report and choose to disable, edit, or delete the report.

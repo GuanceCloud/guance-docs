@@ -1,116 +1,122 @@
-# Metric Management
+# Metrics Management
 ---
 
+After completing the collection of metrics data, you can view all reported Measurement and related Metrics, labels, Time Series quantity, and data storage policies in **Workspace > Metrics Management**.
 
-After completing the metric data collection, you can view all reported measurements and related metrics, labels, timeseries numbers and data storage policies in the **Metric Management** of Guance workspace.
+## Measurement
 
-## Measurements
-
-A measurement is a set of metrics of the same type, and a measurement can contain multiple metrics and labels. Click Measurement, and you can view all available metrics and labels under the measurement on the details page. Fuzzy search is supported to query measurements.
+Measurement refers to a collection of metrics of the same type. A Measurement can contain multiple Metrics and labels. Clicking on a Measurement allows you to view all available [Metrics](#metrics) and [labels](#labels) under that Measurement on the details page, and you can quickly locate the required content using fuzzy search.
 
 ![](img/11.metrics_3.png)
 
+### Metrics {#metrics}
 
+Metrics help you quickly understand the overall operation status of the system, such as server CPU usage, website loading time, remaining disk space, etc.
 
-### Metrics
+Metrics consist of **Metric names** and **Metric values**, where the Metric name is an alias for the metric, and the Metric value is the specific numerical value collected. In Workspace > Metrics Management, clicking on the Measurement name will display the corresponding list of Metrics, including Metric names, field types, units, and other detailed information.
 
-Metrics can help you understand the overall availability of the system, such as server CPU usage, Web site load time and remaining disk space.
-
-Metrics are divided into two parts: metric name and metric value. Metric name refers to an alias that identifies the metrics, and metric value refers to the specific value of the metrics when collecting. In **Metric Management** of the Guance workspace, click **Measurement Name** to view the corresponding metric list, including metric name, metric field type, unit, etc.
-
-- By :octicons-search-24:, search for related metrics based on keywords.
-- By :material-export-variant:, export metric list as CSV file to local.
+- Use :octicons-search-24: to search for related Metrics based on keywords;
+- Use :material-export-variant: to export the Metrics list as a CSV file to your local machine.
+- Click the icon under Actions to perform one-click Metric analysis;
+- Click to expand Metric data to edit the Metric configuration.
 
 <img src="../img/1.metrics_2.png" width="70%" >
 
-#### Editing
+#### Editing Metrics
 
-In **Metric Management**, you can view all metrics reported to Guance, including metric name, field type, company and description, and customize the **Unit** and **Description** of metrics. After saving, you can apply them in chart query.
+In **Metrics Management**, you can view all Metrics reported to <<< custom_key.brand_name >>>, including Metric names, field types, units, and descriptions, and customize the editing of **units** and **descriptions**. After saving, these changes will be applied in chart queries.
 
 ![](img/1.metrics_3.png)
 
-???+ warning
+???+ warning "Permissions and Priority"
 
-    - Metric details can only be edited by standard members and above.
-    - The priority of **Unit** and **Description** added in **Metric Management** is higher than the data collected by default. For example, **Unit** is changed from `B` to `GB`, and the unit on the chart would be converted to `GB` for data display when the scene is queried for charts.
+    - Only standard members and above can edit Metric details;
+    - Custom-added **units** and **descriptions** in **Metrics Management** have higher priority than default collected data. For example, if the **unit** is changed from `B` to `GB`, the unit displayed in charts during scene queries will be converted to `GB`.
 
-#### Use Case
+#### Use Cases
 
-When you query metrics, you can query and analyze data more conveniently by viewing the metric name, field type, unit and description. For example, when you query charts in scenes, you can view the detailed information of metrics in real time when you detect metrics in monitors.
+When querying Metrics, you can more easily perform data queries and analysis by viewing the Metric names, field types, units, and descriptions. For instance, when performing chart queries or Metric detection in monitors, you can view the detailed information of Metrics in real-time.
 
 <img src="../img/11.metrics_6.png" width="70%" >
 
-### Label
+### Labels {#labels}
 
-Label can help you associate data, and Guance supports reporting all metrics, logs and link data to the workspace in a unified way. By labeling the collected data with the same labels for association analysis, it can help you quickly discover and solve potential risks.
+Labels help you correlate data from different sources. <<< custom_key.brand_name >>> supports unified reporting of all Metrics, logs, and trace data to the workspace. By tagging collected data with the same labels, you can perform correlation analysis to quickly identify and resolve potential risks.
 
-Labels refer to the collection of attributes that identify the collection object of a data point. Labels are divided into tag name and tag value, and a data point can have multiple tags. In the **Metric Management** of the Guance workspace, click **Measurement Name** to view the corresponding tag list, including tag name, tag value statistics, description, etc.
+Labels are collections of attributes used to identify the properties of data points, consisting of **label names** and **label values**. A data point can have multiple labels. In Workspace > Metrics Management, clicking on the Measurement name will display the corresponding list of labels, including label names, statistics of label values, and descriptions.
 
-- By :octicons-search-24:, search for related metrics based on keywords.
-- By :material-export-variant:, export metric list as CSV file to local.
+- Click :octicons-search-24: to search for related labels based on keywords;
+- Click :material-export-variant: to export the label list as a CSV file to your local machine;
 
 <img src="../img/1.tag_1.png" width="70%" >
 
-#### Use Case
+#### Use Cases
 
-In the metric query, you can quickly understand the meaning of the tag by viewing the description of the tag. For example, in the part of the chart query in the scene and the metric detection in the monitor, you can view the description information of the tag in real time. Guance provides system field/tag descriptions by default, and you can replace system field or tag descriptions in [field management](../management/field-management.md).
+When querying Metrics, you can quickly understand the meaning of labels by viewing their descriptions. For example, when performing chart queries or Metric detection in monitors, you can view the description information of labels in real-time. <<< custom_key.brand_name >>> provides default system fields/label descriptions, which you can replace according to your needs in [Field Management](../management/field-management.md).
 
 <img src="../img/11.metrics_7.png" width="70%" >
 
-## Timeseries
+## Time Series
 
-The number of all combinations that can be combined based on tags in the reported metric data in the current workspace. In Guance, the timeseries is composed of metrics, tags (fields) and data storage duration, and the combination of metrics and tags (fields) is the primary key of data storage. Relevant nouns are explained as follows:
+In the current workspace, the number of combinations of Metrics data based on labels is dynamically calculated. In <<< custom_key.brand_name >>>, Time Series are composed of Metrics, tags (fields), and data storage duration. Among them, the combination of "Metrics" and "tags (fields)" serves as the primary key for data storage.
 
-| Nouns      | Description                          |
-| ----------- | ------------------------------------ |
-| Database       | database  |
-| Measurement      | data table, which can be understood as table and measurement in mysql |
-| Field    | key-value pairs that record real data in Influxdb (required in Influxdb and not indexed), metrics |
-| Field Set      | a collection of Field key-value pairs                       |
-| Field Key      | the keys that make up the Field Key-value pair                       |
-| Field Value      | the value (real data) that makes up the Field key-value pair                          |
-| Tag      | key-value pair used to describe Field (optional in Influxdb and indexed); tag                          |
-| Tag Set      | a collection of Tag key-value pairs                          |
-| Tag Key      | the key that makes up the Tag Key-value pair                      |
-| Tag Value      | the value that makes up the Tag key-value pair                       |
-| TimeStamp      | the date and time associated with the data point                          |
-| Retention Policy      | data storage time (data preservation policy)                         |
-| Series      | the timeseries consists of Retention Policy, Measurement and Tag Set                         |
+| Term           | Description                                               |
+| --------------- | ----------------------------------------------------------- |
+| Database       | The database.  |
+| Measurement    | Refers to Measurement, similar to tables in MySQL.        |
+| Field          | Refers to Metrics, key-value pairs recording actual data in InfluxDB (mandatory in InfluxDB, not indexed). |
+| Field Set      | A set of Field key-value pairs.                             |
+| Field Key      | The key in the Field key-value pair.                        |
+| Field Value    | The value in the Field key-value pair (actual data).        |
+| Tag            | Refers to labels, key-value pairs describing Fields (optional in InfluxDB, indexed). |
+| Tag Set        | A set of Tag key-value pairs.                               |
+| Tag Key        | The key in the Tag key-value pair.                          |
+| Tag Value      | The value in the Tag key-value pair.                        |
+| TimeStamp      | The date and time associated with the data point.           |
+| Retention Policy | Data storage duration (data retention policy).            |
+| Series         | Time Series composed of Retention Policy, Measurement, and Tag Set. |
 
+## Metrics Storage Policies {#storage}
 
-## Metric Storage Policy {#storage}
+Metrics storage policies are divided into two types:
 
-There are two kinds of metric storage policies, one is the big-picture setting for metric workspace level, and the other is the custom setting for metrics set.
+- Global settings at the Metrics workspace level;
+- Custom settings for specific Mearsurements.
 
-???+ warning
+### Modify Policies
 
-    - The priority of the user-defined setting of the measurement is higher than the big-picture setting of the measurement. That is, after the user-defined setting of the data storage policy of the measurement, the big-picture setting of the metric is changed without affecting the data storage policy of the metrics set.
+Custom settings for Mearsurements take precedence over global settings. That is, after setting custom data retention policies for a Measurement, changing the global settings does not affect the data retention policy for that Measurement.
 
-    - Once the measurement data saving policy is modified in Metric Management, the corresponding measurement data saved in the workspace big-picture policy would be deleted and cannot be recovered, so please operate carefully; If you modify the measurement data saving policy again in Metric Management, the measurement data under the previous policy would also be deleted.
-    - After the measurement data storage policy is modified in Metric Management, the data of measurement would be stored separately. If the measurement data saving polic duration is modified in the Workspace Management, the storage policy duration of measurement would not be changed.
-    - After the measurement data storage policy is modified in Metric Management, the measurement is changed back to the big-picture default index data storage policy duration and is re-stored in the whole database. At this time, if the big-picture data storage policy duration of the workspace metric is modified again, the measurement storage policy duration is changed at the same time.
-    - After the measurement data storage policy is modified in Metric Management, the duration of modifying the global data storage policy of the workspace metric is the same as that of the measurement, and the measurement data would still be saved separately instead of being stored in the global database.
+**Note**:
 
-### Metric Global Setting
+- After modifying the data retention policy for a Measurement in Metrics Management, the corresponding Measurement data stored in the global workspace policy will be deleted and cannot be recovered. Be cautious when performing this operation. If you modify the data retention policy for a Measurement again, the data under the previous policy will also be deleted.
+- After modifying the data retention policy for a Measurement, its data will be stored separately. At this point, changing the global data retention policy for workspace Metrics will not alter the retention policy for that Measurement.
+- After modifying the data retention policy for a Measurement, if you revert it to the global default retention policy, the Measurement will be re-stored in the global database. At this point, modifying the global data retention policy for workspace Metrics will synchronize the retention policy for that Measurement.
+- After modifying the data retention policy for a Measurement, even if the global and Measurement retention policies are set to the same duration, the Measurement data will still be stored separately and will not be stored in the global database.
 
-In the **Management > Settings > Risky Operations** of the Guance workspace, you can view the global data storage policy of the metric workspace. The default metric data is 7 days, including 3 days, 7 days, 14 days, 30 days, 180 days and 360 days.
+#### Global Settings for Metrics
 
-> For more details, see [Data Storage Policy](../billing/billing-method/data-storage.md)。
+In **Manage > Settings > Risky Operations**, you can view the global data retention policy for the Metrics workspace. The default data retention period is 7 days, including options for 3 days, 7 days, 14 days, 30 days, 180 days, and 360 days.
+
+> For more details, refer to [Data Storage Policy](../billing-method/data-storage.md).
 
 <img src="../img/2.data_storage_3.png" width="70%" >
 
-### Custom Settings of Measurement
+#### Custom Settings for Mearsurements
 
-In **Metric Management**, you can view and customize data storage policies for measurements.
+In Metrics Management, you can view and customize the data retention policy for Mearsurements.
 
-**Note**: Measurement storage policy can only be configured by the owner, and the free plan does not support measurement custom data storage policy.
-
-
-Click the button under **Operate** to customize the data saving policy of the measurement, including 3 days, 7 days, 14 days, 30 days, 180 days and 360 days, which is consistent with the global data saving policy of the metrics by default.
+Click the :octicons-gear-24: button in the action bar to customize the data retention policy for a Measurement. Options include: 3 days, 7 days, 14 days, 30 days, 180 days, and 360 days. If no custom settings are applied, it defaults to the global data retention policy for Metrics.
 
 ![](img/19.metrics_6.png)
 
-After modifying the duration of the measurement data saving policy, the measurement data under the previous policy would also be deleted and cannot be recovered.
+**Note**:
 
-![](img/19.metrics_7.png)
+- Only workspace owners can configure data retention policies for Mearsurements, and the Free Plan does not support custom data retention policies;
+- After modifying the data retention period for a Measurement, the data under the previous policy will also be deleted and cannot be recovered.
 
+???+ abstract "For Deployment Plan"
+
+    Workspace owners can configure data retention policies for Mearsurements, supporting custom input of retention periods ranging from 1 to 1800 days.
+
+    <img src="../img/deploy-metric.png" width="60%" >

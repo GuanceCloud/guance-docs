@@ -1,45 +1,55 @@
-# Workspaces
-
+# Workspace Management
 ---
 
-Click **Account > Workspaces** in the lower-left corner to view operations related to workspace dimensions.
+Click **Account > Workspace management** to view related operations for workspaces.
 
-<img src="../img/3.space_management_2.png" width="50%" >
+![Space Management](../img/3.space_management_2.png)
 
-:material-numeric-1-circle: On the current page, you can view all workspaces associated with your account:
+## Window Operations
 
-![](img/space.png)
-
-In the **All Plans**, **All Roles** and **All Business** dropdown menus, you can filter and view based on different observation cloud versions and roles within the current workspace;
-
-In the search bar, you can enter the workspace name for quick search and location.
-
-![](img/space-1.png)
-
-:material-numeric-2-circle: Hover over a specific workspace card and click on :octicons-clock-16: to view the creation time of the workspace.
-
-:material-numeric-3-circle: Hover over a specific workspace card and click on :material-dots-vertical: to set an alias for the current workspace; you can also exit or dissolve the current workspace.
-
-<img src="../img/space-3.png" width="50%" >
-
-???+ warning "Attention when dissolving a workspace"
-
-    1. Only the workspace owner can dissolve the current workspace. Once dissolved, the data cannot be recovered. Please proceed with caution.
-    
-    2. After dissolution, the workspace will be automatically unbound from the cost center and deleted.
-
-    <img src="../img/space-risk.png" width="50%" >
+1. On this page, you can view all workspaces associated with your account.
+2. On the workspace card, it directly displays your role permissions in that workspace, as well as the number of members in that workspace.
+3. Filter by version, role, and business.
+4. In the search bar, enter the workspace name or description to quickly search and locate.
 
 
+## Card Operations
 
-:material-numeric-4-circle: On the workspace card, your role permissions in that workspace and the number of members in the workspace are displayed directly.
+Hover over a workspace card to perform the following actions:
 
-![](img/space-2.png)
+1. Click :octicons-clock-16: to view the creation time of the workspace.
+2. Click :material-dots-vertical: to set notes for the current workspace; pin the space or set it as the default space (the workspace you enter by default after logging in, applicable only to the current login account); you can also exit or解散 the current workspace.
 
-## More Reading
+**Note**:
+
+1. Only the owner of the workspace can解散 the current workspace. Once解散ed, data cannot be recovered, so please operate with caution.
+2. After解散, the workspace will automatically be unlinked from the billing center and deleted.
+
+![Space Risk](../img/space-risk.png)
+
+
+## Further Reading
+
+<font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: **What is a War Room?**</font>](https://www.notion.so/management/settings/key-metrics.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **What is a Warroom?**</font>](../management/settings/key-metrics.md)
 
 </div>
+
+</font>
+
+Please note that "解散" should be translated consistently. Based on context, it should be "dissolve". Here's the corrected version:
+
+## Card Operations
+
+Hover over a workspace card to perform the following actions:
+
+1. Click :octicons-clock-16: to view the creation time of the workspace.
+2. Click :material-dots-vertical: to set notes for the current workspace; pin the space or set it as the default space (the workspace you enter by default after logging in, applicable only to the current login account); you can also exit or dissolve the current workspace.
+
+**Note**:
+
+1. Only the owner of the workspace can dissolve the current workspace. Once dissolved, data cannot be recovered, so please operate with caution.
+2. After dissolution, the workspace will automatically be unlinked from the billing center and deleted.

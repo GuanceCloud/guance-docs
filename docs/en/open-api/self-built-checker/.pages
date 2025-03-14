@@ -1,8 +1,9 @@
 nav:
-  - 'Intelligent Inspection List': list.md
-  - 'Get an Intelligent Inspection Info': get.md
-  - 'Create an Intelligent Inspection': create.md
-  - 'Modify an Intelligent Inspection': modify.md
-  - 'Disable an Intelligent Inspection': disable.md
-  - 'Enable an Intelligent Inspection': enable.md
-  - 'Delete an Intelligent Inspection': delete.md
+  - 'List intelligent inspection items': list.md
+  - 'Get information about an intelligent inspection item': get.md
+  - 'Create an intelligent inspection item': create.md
+  - 'Modify an intelligent inspection item': modify.md
+  - 'Disable an intelligent inspection item': disable.md
+  - 'Enable an intelligent inspection item': enable.md
+  - 'Delete an intelligent inspection item': delete.md
+  - 'Batch delete intelligent inspection items': batch-delete.md

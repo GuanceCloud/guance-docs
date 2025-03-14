@@ -1,81 +1,77 @@
-# Workspace Asset Intelligent Inspection
+# Workspace Asset Inspection
 
 ---
 
 ## Background
 
-For service inspections, it is essential to ensure the normal operation of the service, detect faults or abnormalities in a timely manner, and reduce business losses. Secondly, inspections help improve service availability and stability, identify and resolve potential problems. Inspections can also enhance operational efficiency, accelerate problem diagnosis and resolution, and optimize resource allocation. Ensuring business security is of utmost importance. By regularly inspecting services such as hosts, K8s, and containers, operations personnel can ensure that these services can efficiently and stably support the business, providing a continuously reliable operating environment for the enterprise.
+Service inspections should ensure that services are operating normally, promptly identify faults or anomalies to minimize business losses. Additionally, inspections help improve service availability and stability by discovering and resolving potential issues. They also enhance operations efficiency, accelerate problem diagnosis and resolution, optimize resource allocation, and ensure business security. By conducting regular inspections of hosts, K8s, containers, and other services, operations personnel can ensure these services efficiently and stably support business operations, providing a continuously reliable environment for enterprises.
 
-## Preconditions
+## Prerequisites
 
-1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
-2. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. In <<< custom_key.brand_name >>> "Management / API Key Management," create an [API Key](../../management/api-key/open-api.md) for performing operations
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with the current used <<< custom_key.brand_name >>> SaaS in [the same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Start Intelligent Inspection
+## Enabling Inspections
 
-In DataFlux Func, install the "Guance Self-Built Inspection (Weekly and Monthly Inspection)" from the "Script Market" and follow the prompts to configure the Guance API Key to complete the activation.
+In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-built Inspection (Weekly/Monthly Report)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Select the inspection scenario you want to enable from the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration, which you can directly access via the provided link.
 
 ![image](../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configuring Inspections
 
-In the Guance Studio Monitoring - Intelligent Inspection module or the startup script automatically created by DataFlux Func, configure the desired inspection filtering conditions. You can refer to the following two configuration methods:
+Configure the inspection filters you want either in the <<< custom_key.brand_name >>> Studio under Monitoring - Intelligent Inspection or in the startup script automatically created by DataFlux Func. Refer to the two configuration methods below:
 
-### Configure Intelligent Inspection in Guance
+### Configuring Inspections in <<< custom_key.brand_name >>>
 
 ![image](../img/workspace-weekly-report02.png)
 
 #### Enable/Disable
 
-Workspace Asset Intelligent Inspection is "On" by default, and can be manually "Off". When it is on, it will inspect the configured Alibaba Cloud Preemptible Instance.
+The workspace asset inspection is enabled by default. You can manually disable it. Once enabled, it will inspect the configured list of hosts.
 
-#### Export
+#### Editing
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
+Intelligent inspection "Workspace Asset Inspection" supports users adding filter conditions manually. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
 
-#### Editor
+* Filter Conditions: Configure the report period for inspection. Currently, only 7 days and 30 days are supported.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
 
-The intelligent inspection "Workspace Asset Intelligent Inspection" allows users to manually add filtering conditions. In the operation menu on the right side of the intelligent inspection list, click the **Edit** button to edit the inspection template.
-
-* Filtering conditions: Configure the reporting period for inspection, currently supporting only 7 days and 30 days options
-* Alert notifications: Support selection and editing of alert policies, including the event level to be notified, notification objects, and alert silence periods, etc.
-
-After clicking edit for the configuration entry parameters, fill in the corresponding detection objects in the parameter configuration and click save to start the inspection:
+Click Edit to enter the parameter configuration and fill in the corresponding detection object, then save and start the inspection:
 
 ![image](../img/workspace-weekly-report03.png)
 
-You can refer to the following configuration:
+You can refer to the following configuration example:
 
 ```
-configs example：
+configs Configuration example:
           7
 ```
 
->  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the intelligent inspection processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the intelligent inspection processing function.
+> **Note**: When writing self-built inspection handling functions in your self-hosted DataFlux Func, you can also add filtering conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> Studio will override those set in the self-built inspection handling function.
 
-### Configuring inspections in DataFlux Func
+### Configuring Inspections in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
+In DataFlux Func, after configuring the required filtering conditions for inspection, you can test by clicking the `run()` method directly on the page. After clicking Publish, the script will run normally. You can also view or modify configurations in <<< custom_key.brand_name >>> "Monitoring / Intelligent Inspection."
 
 ```python
 # Please fill in the following configuration according to the actual situation
 
 # Guance API key
 account = {
-    "api_key_id" : "<Guance API key ID>",
-    "api_key"    : "<Guance API key>",
-    "guance_node": "<Guance Node [About Guance Node](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/)>"
+    "api_key_id": "<Guance API key ID>",
+    "api_key": "<Guance API key>",
+    "guance_node": "<Guance Node [About Guance Node](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/)>"
 }
 
-# The host does not need to be checked
+# Hosts that do not need to be checked
 # Example:
 #         no_check_host = ['192.168.0.1', '192.168.0.1']
 no_check_host = []
@@ -87,25 +83,16 @@ import guance_monitor_weekly_report__main as main
 
 
 @self_hosted_monitor(account['api_key_id'], account['api_key'], account['guance_node'])
-@DFF.API('工作空间资产巡检', fixed_crontab='* * */7 * *', timeout=900)
-# @DFF.API('工作空间资产巡检', fixed_crontab='* * */30 * *', timeout=900)
+@DFF.API('Workspace asset inspection', fixed_crontab='* * */7 * *', timeout=900)
+# @DFF.API('Workspace asset inspection', fixed_crontab='* * */30 * *', timeout=900)
 def run(configs=None):
     '''
-    zh-CN:
-        title: 工作空间资产巡检
-        doc: |
-            参数:
-                configs :
-                    配置检测周期，七天或三十天（可选，不配置则默认检测七天）
-
-                configs 配置示例：
-                    7
     en:
         title: Workspace asset inspection
         doc: |
             parameters:
                 configs :
-                    Set the detection period to seven days or several days (optional. If this parameter is not configured, the detection period is seven days by default).
+                    Set the detection period to seven days or thirty days (optional. If this parameter is not configured, the detection period is seven days by default).
 
                 configs Configuration example：
                     7
@@ -118,78 +105,76 @@ def run(configs=None):
     Runner(checkers).run()
 ```
 
-## View Events
+## Viewing Events
 
-This inspection will scan the asset information within the workspace for the past 7 days or 30 days. The intelligent inspection will summarize the asset reports for 7 days or 30 days. In the operation menu on the right side of the intelligent inspection list, click the **View Related Events** button to view the corresponding events.
+This inspection scans the asset information within the workspace over the past 7 or 30 days. Intelligent inspections aggregate 7-day or 30-day asset reports. In the intelligent inspection list's operation menu on the right side, click the **View Related Events** button to view the corresponding events.
 
 ![image](../img/workspace-weekly-report04.png)
 
-### Event details page
+### Event Details Page
 
-Click "Event" to view the detail page of intelligent inspection events, including event status, time of exception occurrence, exception name, basic attributes, event details, alarm notification, history and associated events.
+Click **Event** to view the details page of the intelligent inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history records, and related events.
 
-  * Click the "View monitor configuration" small icon at the top right corner of the detail page to support viewing and editing the configuration details of the current intelligent inspection.
-  * Click the "Export Event JSON" icon in the upper-right corner of the detail page to support exporting the event details.
+* Click the small icon "View Monitor Configuration" in the top-right corner of the details page to view and edit the current intelligent inspection configuration details.
 
-#### Basic Properties
+#### Basic Attributes
 
-* Detection dimension: Based on the filtering conditions configured by Intelligent Inspection, it supports copying and adding the detection dimension `key/value` to the filtering and viewing the related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data.
-  * Extended Attributes: Supports `key/value` replication and forward/reverse filtering after selecting extended attributes.
+* Detection Dimensions: Based on the configured filter conditions of intelligent inspections, you can copy `key/value`, add to filters, and view related logs, containers, processes, security checks, traces, user analysis, synthetic tests, and CI data.
+* Extended Attributes: Select extended attributes to copy in `key/value` format, and perform forward/reverse filtering.
 
 ![image](../img/workspace-weekly-report05.png)
 
-#### Event details
+#### Event Details
 
 ##### Overview
 
-* Overview: Displays the resource overview of the current workspace, including the total number of hosts, containers, etc.
-* Cloud Vendor Host Distribution: Allows users to view the distribution of cloud vendors for the assets in the current workspace.
-* Regional Host Distribution: Allows users to view the geographical distribution of the assets in the current workspace.
-* Operating System Host Distribution: Allows users to view the operating system distribution of the assets in the current workspace.
-* Restarted Pods: Allows users to view the status of abnormally restarted Pods in the current workspace and navigate to the corresponding log details for further investigation.
+* Overview: Displays an overview of the resources in the current workspace, including total host count, container count, etc.
+* Cloud Vendor Host Distribution: View the distribution of cloud vendors in the current workspace assets.
+* Regional Host Distribution: View the geographical distribution of hosts in the current workspace assets.
+* Operating System Host Distribution: View the operating system distribution of hosts in the current workspace assets.
+* Restarted Pods: View the situation of abnormally restarted Pods in the current workspace and jump to the corresponding log details for further investigation.
 
 ![image](../img/workspace-weekly-report06.png)
 
-##### Host
+##### Hosts
 
-* Disk: Displays the disk details of the resources in the current workspace.
-* CPU: Displays the CPU usage details of the resources in the current workspace, and shows the process details of the Top hosts.
-* MEM: Displays the MEM usage details of the resources in the current workspace, and shows the process details of the Top hosts.
-* Traffic: Displays the traffic details of the resources in the current workspace.s
+* Disk: Displays detailed disk information for resources in the current workspace.
+* CPU: Displays detailed CPU usage information for resources in the current workspace and shows process details for top hosts.
+* MEM: Displays detailed memory usage information for resources in the current workspace and shows process details for top hosts.
+* Traffic: Displays detailed traffic information for resources in the current workspace.
 
 ![image](../img/workspace-weekly-report07.png)
 
-#### History
+#### History Records
 
- Support to view the detection object, exception/recovery time and duration.
+Supports viewing detected objects, anomaly/recovery times, and duration.
 
 ![image](../img/workspace-weekly-report08.png)
 
-#### Related events
+#### Related Events
 
-  Support to view related events through filtering fields and selected time component information.
+Supports viewing related events through filtered fields and selected time component information.
 
 ![image](../img/workspace-weekly-report09.png)
 
-## FAQ
+## Common Issues
 
-**1. How to configure the detection frequency for Workspace Asset Intelligent Inspection**
+**1. How to configure the inspection frequency for workspace asset inspections**
 
-To enable monthly inspection, change the decorator parameter in the automatically created inspection processing function to `fixed_crontab='* * */30 * *', timeout=900`, and then configure it in "Management / Automatic Trigger Configuration".
+To enable monthly inspections, change the decorator parameter in the automatically created inspection handler function to `fixed_crontab='* * */30 * *', timeout=900`, then configure it in "Management / Auto-Trigger Configuration."
 
-**2. There may be no anomaly analysis when Workspace Asset Intelligent Inspection is triggered**
+**2. Why might there be no anomaly analysis when workspace asset inspections trigger**
 
-If there is no anomaly analysis in the inspection report, please check the data collection status of the current `datakit`.
+If there is no anomaly analysis in the inspection report, check the current `datakit` data collection status.
 
-**3. During the inspection process, an exception error occurs in a script that was previously running normally**
+**3. Why might previously running scripts fail during inspection**
 
-Please update the referenced script set in the DataFlux Func script market. You can view the update records of the script market through the [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) for timely script updates.
+Update the referenced script sets in the DataFlux Func Script Market. You can view the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
 
-**4. No changes in the corresponding script set in Startup during the inspection script upgrade process**
+**4. Why might the corresponding script set remain unchanged during inspection script upgrades**
 
-Please first delete the corresponding script set, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
+First, delete the corresponding script set, then click the upgrade button and configure the <<< custom_key.brand_name >>> API Key to complete the upgrade.
 
-**5. How to determine if the inspection takes effect after enabling it**
+**5. How to determine if the inspection has taken effect after enabling it**
 
-Check the corresponding inspection status in "Management / Automatic Trigger Configuration". First, the status should be enabled. Secondly, you can click Execute to verify if there is any problem with the inspection script. If it shows "xxx minutes ago execution successful", the inspection is running normally and takes effect.
-
+Check the inspection status in "Management / Auto-Trigger Configuration." The status should be enabled, and you can verify the inspection script by clicking Execute. If it shows "Executed Successfully xx minutes ago," the inspection is running normally and effectively.

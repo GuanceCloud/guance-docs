@@ -1,123 +1,145 @@
-# Unrecovered Events
+# Unresolved Incidents
 ---
+
+<<< custom_key.brand_name >>> provides a centralized Explorer to display all incident records at the alert level within the current workspace. This method not only helps observers gain a comprehensive understanding of the context of alert incidents, accelerating their comprehension and cognition of events, but also effectively reduces alert fatigue by associating monitors and alert strategies.
+
+The data source for unresolved incidents aggregates event data using `df_fault_id` as the unique identifier and displays the latest data results. You can use the Explorer, this visualization tool, to intuitively understand a series of key data points from event levels to baseline trigger thresholds, including event levels, duration, alert notifications, monitors, event content, and historical trigger trend charts. This information collectively forms a comprehensive view, helping you analyze and understand events from different angles to make more informed response decisions.
 
 ![](../img/5.event_6.png)
 
-Enter **Events** and Guance will show you the **Unrecovered Event Explorer** by default. You can view all unresolved events that are continuously triggered in the workspace, as well as data statistics for unresolved events under different alert levels and details of alert information.
+## Incident Card
 
-Here, you can:
+![](../img/event-card.png)
 
-- Count the number of events under different alert statuses by clicking on the alert status for quick filtering, including **Unrecovered (`df_status != ok`)**, **Critical**, **Error**, **Warning**, **No Data**.
-- Search events based on tags, fields and text, and filter events based on keywords, tags, fields, and associations.
-- View the current alert event information, including the detection dimension of the event, the start time of the alert, the duration of the alert, and the event occurrence trend in the past 6 hours.
+### Event Level
 
+Based on the trigger conditions configured in the monitor, the following status statistics are generated: **Unresolved (df_status != ok)**, **Critical**, **Major (error)**, **Minor (warning)**, **No Data**.
 
-## Data Status
+In <<< custom_key.brand_name >>>'s unresolved incident Explorer, each incident's level is defined as the level during the most recent trigger event for that detection object.
 
-In the Unrecovered Event Explorer, based on the trigger condition configuration of the monitor, statistics of Unrecovered (`df_status != ok`), Critical, Error, Warning, and No Data statuses are generated. You can also refer to [Threshold Detection](../../monitoring/monitor/threshold-detection.md) to configure a monitor and set trigger conditions for the monitor.
+> For more details, refer to [Event Level Description](../../monitoring/monitor/event-level-description.md).
 
-> See [Event Severity Description](../../monitoring/monitor/event-level-description.md).
+### Event Title
 
-## Event Information
+The event title displayed in the unresolved incident Explorer comes directly from the [title set](../../monitoring/monitor/mutation-detection.md#event-content) when configuring the monitor rule. It represents the title used during the last trigger event for that detection object.
 
-In the Unrecovered Event Explorer, you can view the current alert event information, including the severity of the event, the duration of the event (generation time), the alert notification, detection type, detection dimension, event content, event content detection query statement, and expand to view the abnormal trend of the event occurrence in the past 6 hours.
+### Duration
 
-### Event Abnormal Trend {#exception}
+This indicates the duration from the first trigger event until the end time of the current Time Widget, such as `5 minutes (08/20 17:53:00 ~ 17:57:38)`.
 
-This trend is displayed using the Window function:
+### Alert Notifications
 
-- The historical trend of the detection result value shows the actual data of 60 detections;
-- The current event trigger time can be quickly identified by the **vertical line** in the chart, and the actual data is displayed above it;
-- The baseline is displayed based on the threshold configured for the monitor;
-- When the detection library rule type is threshold, log, APM, RUM, security check, abnormal process, or cloud dial, the color blocks corresponding to different alert levels can be used to view related abnormal detection indicator data, including critical, error, and warning.
+The alert notification status for the last triggered event of the current detection object. It mainly includes three states:
 
+- Mute: Indicates that the current event is affected by a mute rule but no external alert notifications have been sent.
+- Silenced: Indicates that the current event is affected by repeated alert configurations but no external alert notifications have been sent.
+- Actual [Notification Targets](../../monitoring/notify-object.md) identifiers: Including DingTalk bots, WeCom bots, Lark bots, etc.
 
-## Detection Dimension
+### Monitor Detection Type
 
-In the Unrecovered Event Explorer, you can click on the event detection dimension to jump to the relevant viewer based on the triggered detection dimension. If there is no relevant detection query data, you cannot jump.
+The type of monitor.
 
-**Note**: If you click on a single detection dimension, the relevant operation will be based on that dimension; if you click on a blank area, all detection dimensions will be triggered.
+### Detection Object
 
-| Operation      | Description               |
-| ----------- | ------------------------- |
-| Filter      | Add the tag to the event viewer to view all event data related to that host.               |
-| Reverse filter      | Add the tag to the event viewer to view all event data related to hosts other than that host.               |
-| Copy      | Copy the tag content to the clipboard.               |
+If the `by` grouping query was used in the detection metrics when configuring the monitor rule, the event card will display the filter conditions, such as `source:kodo-servicemap`.
 
-![](../img/event003.png)
+### Event Content
 
-## Query and Analysis
+The event content of the last triggered event for the current detection object, sourced from the [preset content](../../monitoring/monitor/mutation-detection.md#event-content) configured in the monitor rule. It represents the event content during the last trigger event for that detection object.
 
+### Historical Trigger Trend Chart {#exception}
 
-- Time Widget: The Unrecovered Event Explorer defaults to query the data of the past 48 hours. You can also customize the [time range](../../getting-started/function-details/explorer-search.md#time) for data display.
+This trend is displayed using a Window function, showing the actual data of 60 detection results. Based on the detection results of the current unresolved incident, it shows the historical anomaly trends of events. The trigger threshold condition values set in the configured monitor detection rules are designated as clear reference lines. The system specially marks the detection result of the last triggered event for the current detection object, and through the **vertical line** in the trend chart, you can quickly locate the exact time point of the event trigger. Additionally, the corresponding detection interval for that detection result is also displayed, providing you with an intuitive analysis tool to evaluate the development process and impact of the event.
 
-- Search and Filter: The search bar supports [multiple search and filter methods](../../getting-started/function-details/explorer-search.md).
+## Management Cards
 
-- Quick Filter: You can edit [quick filters](../../getting-started/function-details/explorer-search.md#quick-filter) through the quick filters on the left side of the list to add new filtering fields.
+You can manage unresolved incidents through the following operations:
 
-    - **Note**: Custom adding of filter fields is not supported in the Unrecovered Event Explorer.
+1. Time Widget: The unresolved incident Explorer defaults to querying data for the last 48 hours and does not support customizing the time range for data display.
 
-- Save Snapshot: In the top-left corner of the event viewer, click View Historical Snapshot to directly save the snapshot data of the current event. With [Snapshot](../../getting-started/function-details/snapshot.md), you can quickly reproduce the data copy information saved at a specific time point and with specific data display logic.
+2. Search and Filtering: In the search bar of the unresolved incident Explorer, multiple search methods and filtering methods are supported [here](../../getting-started/function-details/explorer-search.md).
 
-- Filter History: Guance supports saving the search condition history of the explorer `key:value` in the [filter history](../../getting-started/function-details/explorer-search.md#filter-history), which can be applied to different explorers in the current workspace.
+3. Quick Filters: Through the quick filters on the left side of the list, you can edit [quick filters](../../getting-started/function-details/explorer-search.md#quick-filter) and add new filter fields.
 
-- Export: Guance supports exporting unresolved events as CSV files.
+    - **Note**: Adding custom filter fields is not supported in the unresolved incident Explorer.
 
-### Display Preferences
+4. Save Snapshot: In the upper-left corner of the incident Explorer, click **View Historical Snapshots** to save the current event snapshot data. Using the [snapshot](../../getting-started/function-details/snapshot.md) feature, you can quickly reproduce instant copies of data and restore it to a specific time point and data display logic.
 
-You can choose the display style of the unresolved event list, which supports two options: Standard and Expanded.
+5. Filter History: <<< custom_key.brand_name >>> supports saving the `key:value` search condition history in [filter history](../../getting-started/function-details/explorer-search.md#filter-history) for different Explorers in the current workspace.
 
-:material-numeric-1-circle-outline: When selecting Standard: you can see the event title, detection dimension and event content of the current event;
+6. Export: You can export unresolved incidents as a CSV file.
+
+7. Click Batch to select multiple events for [recovery](#recover) operations. You can also directly recover all events with one click.
+
+8. [Display Preferences](#preference).
+
+### Display Preferences {#preference}
+
+You can choose the display style of the unresolved incident list, supporting two options: Standard and Expanded.
+
+:material-numeric-1-circle-outline: When choosing Standard: Only the event title, detection dimensions, and event content are visible;
 
 ![](../img/event-1-1.png)
 
-:material-numeric-2-circle-outline: When selecting Expanded: you can also open the [historical trend](#exception) of the detection result values for all unresolved events.
+:material-numeric-2-circle-outline: When choosing Expanded: In addition to the information displayed in standard mode, you can open the [historical trend](#exception) of the detection results for all unresolved events.
 
 ![](../img/event.png)
 
+### Issue & Create Issue {#issue}
 
-### Create Issue {#issue}
+For the current unresolved incident, you can [create an Issue](../../exception/issue.md#event) to notify relevant members to track and handle it promptly.
 
-You can [create an Issue](../../exception/issue.md#event) for the current unresolved event and notify relevant members to track and process it.
- 
 ![](../img/event-2.png)
 
-![](../img/event-3.png)
+<img src="../../img/event-3.png" width="60%" >
 
-If the current event is associated with a specific exception trace, you can click the icon in the event list to directly jump to view it:
+If the current incident is associated with an Incident, you can click the icon to directly navigate to view it:
 
 ![](../img/event-6.png)
 
-### Recover Event {#recover}
+### Recover Incident {#recover}
 
-In the case of events with a status of "ok" (`df_sub_status = ok`), you can configure event recovery rules in the [monitor](../../monitoring/monitor/index.md) to trigger conditions or manually recover the event.
+An incident whose status is normal (`df_sub_status = ok`). You can set recovery rules when configuring the trigger conditions in [Monitors](../../monitoring/monitor/index.md), or manually recover incidents.
 
-Recovering events includes four use cases: recovery, no data recovery, no data treated as recovery, and manual recovery, as shown in the following table:
+Recovering incidents include four scenarios: **Recover**, **Data Gap Recovery**, **Data Gap Considered as Recovery**, and **Manual Recovery**. See the table below:
 
-| Type       | `df_status` | Description                                                    |
+| <div style="width: 140px">Name</div>       | `df_status` | Description                                                    |
 | :------------- | :-------- | :----------------------------------------------------------- |
-| recovery           | ok        | If "Critical", "Error" and "Warning" events were triggered during the previous detection process, based on the N detections configured on the frontend, if no "critical", "error", or "warning" events are generated within the detection times, it is considered as recovery and a normal recovery event is generated. |
-| no data recovery     | ok        | If the data stopped reporting during the previous detection process and new data is reported again, it is considered as recovery and a no data recovery event is generated. |
-| no data treated as recovery | ok        | If no data is found in the detection data, it is considered as a normal state and a recovery event is generated. |
-| manual recovery       | ok        | An OK event generated by manually clicking the recovery button.                             |
+| Recover           | ok        | If "Critical", "Major", or "Minor" events were previously triggered during detection, based on the N times detection configured on the frontend, if no "Critical", "Major", or "Minor" events occur within the detection times, it is considered recovered, and a normal recovery event is generated. |
+| Data Gap Recovery     | ok        | If a data gap incident was triggered due to stopped data reporting during previous detection, a recovery event is generated once new data starts reporting again. |
+| Data Gap Considered as Recovery | ok        | If there is a data gap in the detection data, this situation is considered normal, and a recovery event is generated. |
+| Manual Recovery       | ok        | An OK event generated by user manually clicking to recover, supporting single and batch recovery.                            |
 
-In the Unrecovered Event Explorer, you can hover over an event and view the grayed-out recovery button on the right side of the event.
+In the unresolved incident Explorer, when you hover over an incident, the recovery button on the right side of the incident is grayed out.
 
 ![](../img/5.event_4.png)
 
+## Further Reading
 
-## More Readings
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Event Details</font>](event-details.md)
-
-</div>
-
-
+<font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Powerful Explorer</font>](../../getting-started/function-details/explorer-search.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Incident Details</font>](event-details.md)
 
 </div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; All Incident Explorers</font>](./event-list.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; The Power of Explorers</font>](../../getting-started/function-details/explorer-search.md)
+
+</div>
+
+<div class="grid cards" markdown>
+
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Visualize and Analyze Event Data with Alert Statistics Charts</font>](../../scene/visual-chart/alert-statistics.md)
+
+</div>
+
+</font>

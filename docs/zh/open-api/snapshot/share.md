@@ -82,7 +82,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/snapshots/snap_xxxx32/share' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/snapshots/snap_xxxx32/share' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"changeTime":true,"expirationAt":1730874467,"hiddenTopBar":false,"showWatermark":true,"maskCfg":{"fields":"","reExprs":[]},"ipWhitelistSet":{"isOpen":false},"changeTime":true}' \

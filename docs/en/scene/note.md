@@ -1,100 +1,79 @@
 # Notes
 ---
 
+In specific scenarios, multiple notes can be created for summary reports, supporting real-time insertion of visual charts for data analysis and text documents for explanations. Combining charts and documents allows for comprehensive data analysis and reporting. Additionally, notes can be shared with all members of the workspace, preserving anomaly data analysis which aids in tracing, locating, and solving problems.
 
-Multiple notes can be created for summarizing reports and real-time insertion of visual charts for data analysis, along with the insertion of text documents for explanations. By combining charts and documents, data analysis and summary reports can be conducted. Additionally, the notes can be shared with all members of the workspace, preserving the analysis of abnormal data and facilitating the process of tracing, locating and resolving issues.
+## Create a Note
 
-## Setup
+After entering the scene, under **Notes**, click **Create**.
 
-1. After entering in **Notes**, click **Create**.<br/>
-2. Edit the title and enter the text. Markdown is supported.<br/>
-3. Select a chart template shown above the page to set and customize the display options.
-4. When the notes are finished, click **Done** to finish creating the notes.
+![](img/9.note_8.png)
 
-![](img/1.notebook_2.png)
+Enter the note title, choose to input text or select other chart components to display visualized data analysis of metrics.
 
+> For text input, refer to [How to Write Text Documents](../others/write-text.md);
+>
+> For chart creation, refer to [Visual Charts](visual-chart/index.md).
 
-> For chart creation, see [Visual Charts](visual-chart/index.md).
+![](img/9.note_1.png)
 
-## Features
+Once completed, click **Finish Editing** to complete the creation.
 
-### Lock the Time Range
+## Options
 
-By default, Guance allows you to control the time range of the charts in the current note (excluding charts with a locked time range) through the time component. You can customize the time range.
+### Lock Time Range
 
-> For more details, see [Time Widget](../getting-started/function-details/explorer-search.md#time).
+By default, <<< custom_key.brand_name >>> supports controlling the time range of charts (excluding locked time range charts) in the current note via the time component, allowing you to customize the time range.
+
+> For more details, refer to the documentation [Time Widget Explanation](../getting-started/function-details/explorer-search.md#time).
+
+![](img/9.note_4.png)
+
+If you need to lock the query time range for chart data in the note, while in edit mode, use the ![](img/9.note_10.png) button in the time component to lock the time.
 
 ![](img/9.note_6.png)
 
-If you need to lock the query time range of the charts in a note, you can lock the time by clicking the button :fontawesome-solid-play: in the time component when in edit mode for the note.
-
-
-Once the time range is locked, finish editing, and all charts on the note page will display data according to the locked time.
+After locking the time range, complete the editing; all charts on the note page will display data according to the locked time.
 
 ![](img/9.note_7.png)
 
-### Settings 
+### Settings
 
-After adding the note, click the button :fontawesome-solid-gear: to perform the following operations on the note:
+After adding a note, click the **Settings** button in the navigation bar to perform the following operations:
 
-<img src="../img/1.notebook_3.png" width="70%" >
+![](img/9.note_3.png)
 
-- New Issue: You can create the current note content as an Issue.
-
-    > For more related operations, see [How to manually create an Issue at the view level](../exception/issue.md#dashboards). For more information about Issues, see [Incidents](../exception/index.md).
-
-- Save [Snapshot](../management/snapshot.md): The user can save a snapshot of the current note.
-
-- Export Note JSON: Users can export current notes as json files locally to support notes being restored or shared in different Guance workspaces.
-
-- Import Note JSON: Users can import template json files to notes to quickly restore the contents of the template json files.
-
-    **Note**: In non-blank notes, the original notes will be overwritten after importing template JSON and cannot be restored once overwritten.
-
+- You can create an Issue from the current note content.
   
-- Export PDF: Users can export the current note as a PDF file to local.
+    > For more related operations, refer to [How to Manually Create an Issue at the View Level](../exception/issue.md#dashboards). For more information about Issues, refer to [Incident](../exception/index.md).
 
+- Save Snapshot: Users can save a [snapshot](../getting-started/function-details/snapshot.md) of the current note;
 
-- Set Visibility Range: Note Creator can customize the viewing rights of the current note, including "Public" and "Private".
+- Export Note JSON: Users can export the current note as a "JSON file" to their local machine to support restoration or sharing of the note in different <<< custom_key.brand_name >>> workspaces;
 
-    - Public: Notes that are open to all members in the space, other members' viewing and editing permissions are not affected.
-    
-    - Private: Notes that can only be viewed by the **Creator** of the **non-public** note, other members do not have viewing permissions.
+- Import Note JSON: Users can import a "template JSON file" into the note to quickly restore the content of the "template JSON file";
+  
+    **Note**: In non-blank notes, importing a template JSON will overwrite existing notes, and once overwritten, it cannot be restored.
 
-    **Note**: Non-public notes that are shared as links are still not visible to non-creators.
+- Export as PDF: Users can export the current note as a "PDF file" to their local machine;
 
-<!--
-### Time Widget
+- Set Visibility Scope: The note creator can customize the viewing permissions of the current note, including **Public** and **Only Visible to Me**.
 
-Guance supports the function of controlling the time range of charts in the current note (excluding charts with locked time ranges) via the time widge, which you can customize.
+    - Public: Notes open to all members within the workspace, with no restrictions on viewing and editing permissions for other members;
+    - Only Visible to Me: **Non-public notes** that only the note creator can view, other members do not have viewing permissions.
 
-![](img/z1.png)
+    **Note**: Non-public notes shared via links are still invisible to non-creators.
 
-If you need to lock the query time range of chart data in notes, you can lock the time through the buttons of the time component in the editing mode of notes.
+### Modify/Delete/Search/Filter
 
-After the time range is locked, all charts on the note display data according to that lock time.
+![](img/9.note_9.png)
 
-![](img/note01.png)
+- Click the drop-down button in the lower right corner of the note and select **Modify** or **Delete** to modify or delete the note.
 
--->
+    **Note**: Only workspace owners, administrators, and note creators can delete notes; other workspace members can view but not delete them.
 
-### Modify / Delete / Filter
+- At the top of the notes, you can search by keyword and sort notes by time; on the left side of the notes, you can filter and find corresponding notes quickly through **My Favorites**, **Created by Me**, and **Only Visible to Me**.
 
-![](img/notebook.png)
-
-
-- Click the drop-down button at the bottom right corner of one certain note and then you can select **Modify** or **Delete** the note.
-
-    **Note**: Only the workspace Owner, Administrator and note creator can delete notes; other workspace members can view but not delete.
-
-
-- You can search by keyword and sort notes by time at the top of your notes; On the left side of notes, you can quickly filter and find the corresponding notes through Favorites, Creations and Just me.
-
-    - **Favorites**: the current user's favorite notes, click the favorite icon at the bottom right corner of the note.
-    - **Creations**: all notes created by the current user.
-    - **Just me**: only the creator of the note can view **non-public notes**, other members do not have viewing permissions.
-
-
-
-
-
+    - My Favorites: Notes favorited by the current user; click the favorite icon in the lower right corner of the note;
+    - Created by Me: All notes created by the current user;
+    - Only Visible to Me: **Non-public notes** that only the note creator can view, other members do not have viewing permissions.

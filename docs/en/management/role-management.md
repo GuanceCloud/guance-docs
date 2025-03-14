@@ -1,126 +1,122 @@
-# Roles
+# Role Management
 ---
 
-
-If you need to set different Guance access permissions for employees in your organization to achieve permission isolation between different employees, you can use the role management feature of the Guance. Role management provides users with an intuitive entry for permission management, supporting the flexible adjustment of the permission scope corresponding to different roles, creating new roles for users, and assigning permission scopes to roles to meet the permission needs of different users.
+If you need to set different <<< custom_key.brand_name >>> access permissions for employees in your enterprise to achieve permission isolation between different employees, you can use the role management feature of <<< custom_key.brand_name >>>. **Role Management** provides users with an intuitive permission management entry point, supporting flexible adjustment of permission scopes for different roles, creating new roles for users, assigning permission scopes to roles, and meeting the permission needs of different users.
 
 ## Roles
 
 ### Default Roles {#default-roles}
 
-If different teams in an enterprise need to view and operate different Guance function modules and need to distinguish different role permissions, they can invite members to join the current workspace and set role permissions for them to control Guance function modules that the members can access and operate.
+If different teams within an enterprise need to view and operate different <<< custom_key.brand_name >>> feature modules, and require distinguishing between different role permissions, you can invite members to join the current workspace and set role permissions for them to control the <<< custom_key.brand_name >>> feature modules they can access and operate.
 
-Guance provides four member roles by default, as shown in the following table.
+<<< custom_key.brand_name >>> provides four default member roles by default and has renamed these default roles as shown in the following table:
 
-**Note**: Default roles cannot be removed and permission range changes are not supported.
+| Old Role Name | New Role Name |
+| ------------- | ------------- |
+| Owner         | Owner         |
+| Administrator | Administrator |
+| Standard Member | Standard     |
+| Read-only Member | Read-only    |
 
-| Role Name     |
-| ------------- |
-| Owner         |
-| Administrator |
-| Standard      |
-| Read-only     |
+**Note**: Default roles cannot be deleted or have their permission scope changed.
 
 #### Permission Description
 
-Permission ranges for different default roles can be found in the doc [permission list](role-list.md).
+> For the permission scope of different default roles, refer to the [Permission List](role-list.md).
 
-| **Roles** | **Description**                                                     |
-| -------- | ------------------------------------------------------------ |
-| Owner | The owner of the current workspace has all the operation permissions in the workspace, including adjusting the role permissions of other members. If the granted role permissions include "Token View", the authorization audit process will be initiated. <br />For details, see [Permission Change Review](#upgrade).<br /><br />**Notes:**<br /><li>Workspace creator defaults to Owner.<br /><li>There can only be one Owner in a workspace.<br /><li> Owner cannot exit workspace.<br /><li> Owner can transfer permissions to space members. After successful transferred, the original Owner is demoted to Administrator.|
-| Administrator | Administrator of the current workspace has read and write permissions of the workspace. The role is able to adjust the permissions of other member roles except Owner. |
-| Standard | Standard member of the current workspace have read and write permissions to the workspace.                 |
-| Read-only | Read-only member of the current workspace can view the data of the workspace, and has no write permission. |
+| **Role**      | **Description**                                                     |
+| ------------- | ------------------------------------------------------------------- |
+| Owner         | The owner of the current workspace, with all operation permissions within the workspace, supports adjusting other members' role permissions. If the granted role permissions include "Token View," then an authorization review process is initiated. For more details, refer to [Permission Change Review](#upgrade).<br />**Note**:<br /><li>The workspace creator is the default Owner.<br /><li>There can only be one Owner per workspace.<br /><li>The Owner cannot leave the workspace.<br /><li>The Owner can transfer permissions to workspace members, and after successful transfer, the original Owner will be downgraded to Administrator. |
+| Administrator | The administrator of the current workspace, with read/write permissions for the workspace, supports adjusting the role permissions of other members except the Owner. |
+| Standard      | A standard member of the current workspace, with read/write permissions for the workspace. |
+| Read-only     | A read-only member of the current workspace, who can only view the data in the workspace without write permissions. |
 
 ### Custom Roles {#customized-roles}
 
-In addition to the default roles, Guance supports the creation of new roles in role management, and gives permission scope to the roles to meet the permission needs of different users.
+In addition to default roles, <<< custom_key.brand_name >>> supports creating new roles in role management and assigning permission scopes to meet the permission needs of different users.
 
-A new role can be created in Guance workspace **Management > Roles**.
+In the <<< custom_key.brand_name >>> workspace **Management > Role Management**, you can create a new role.
 
-**Note**: Custom roles can only be created by Owner and Administrator.
+> For the permission scope of custom roles, refer to the [Permission List](role-list.md).
 
-> See [Permission List](role-list.md) for permission scopes for custom roles.
-
+**Note**: Only Owner and Administrator can create custom roles.
 
 ![](img/8.member_6.png)
 
-#### Edit/Delete/Clone {#operations}
+#### Modify/Delete/Clone Role {#operations}
 
-- Click **Edit** to adjust the permissions of the role;  
+You can perform the following operations on custom roles:
 
-- Click :fontawesome-regular-trash-can: to delete some role that is not associated with the member account;
+- Click the **Edit** button to adjust the role's permissions;
 
-- Click :octicons-copy-24: to clone an existing role and create a new role;
-    
-    - **Note**: Cloning a role based on existing role permissions can reduce operational steps, quickly add or remove permissions, and create a new role.
+- Click :fontawesome-regular-trash-can:, if the role is not associated with any member accounts, it can be deleted;
+
+- Click :octicons-copy-24: to clone an existing role to create a new role;
+
+    - By cloning an existing role, you can reduce operational steps, quickly add or remove permissions, and create a new role based on the existing role's permissions.
 
 ![](img/clone.png)
 
-#### Details Page
+#### Role Details Page
 
-Click on any custom role to view its detailed information, including role name, creation/update time, creator/updater, description, and role permissions. You can click the **Edit** button on the right side of the role to modify its permissions.
+Click any custom role to view its detailed information, including role name, creation/update time, creator/updater, description, and role permissions. You can click the **Edit** button on the right side of the role to modify the role's permissions.
 
 ![](img/8.member_13.1.png)
 
 ### Permission Change Review {#upgrade}
 
-When setting role permissions for workspace members, if the granted role permissions include the permission of "Token View", a verification message will be sent to Guance Billing Center to initiate the permission change audit process:
+When setting role permissions for workspace members, if the granted role permissions include "Token View," a verification message will be sent to the <<< custom_key.brand_name >>> Billing Center to initiate the permission change review process:
 
 - If the Billing Center **accepts** the verification, the permission change is successful;
-- If the Billing Center **rejects** the verification, the permission change fails and the original role permission continues to be maintained;
-- If the Billing Center **has not been approved**, the member can be modified to another role. After the modification is successful, the original permission change approval application will become invalid.
+- If the Billing Center **rejects** the verification, the permission change fails, and the original role permissions remain unchanged;
+- If the Billing Center does not review it for a long time, you can change the member to another role, and the original permission change request becomes invalid after the change is successful.
 
-> See [Permission List](role-list.md) for more information.
+> For more permission details, refer to the [Permission List](role-list.md).
 
-**Notes**:
+???+ warning
 
-- At present, only Owner and Administrator have "Token View" permission. If Commercial workspace members need to refer to Administrator, they need to go to Guance Billing Center for review.
+    - Currently, only Owner and Administrator have the "Token View" permission. If a Commercial Plan workspace member needs to be promoted to Administrator, it must be reviewed by the <<< custom_key.brand_name >>> Billing Center.
+    - Free Plan workspace members can be directly promoted to Administrator without review by the <<< custom_key.brand_name >>> Billing Center.
 
-- Members from Experience Plan workspace can directly raise the right to Administrator without going to Guance Billing Center for review.
+#### Example of Promoting to Administrator in Commercial Plan
 
-#### Example: Privilege Escalation of Administrator
+In the <<< custom_key.brand_name >>> workspace **Management > Member Management**, select the member you want to promote to Administrator, click the **Edit** button on the right side, choose Administrator in the **Role** dropdown in the pop-up dialog, and click **Confirm**.
 
-In the Guance Commercial Plan workspace, enter **Management > Member Management**, select the member that needs to be promoted to Administrator, click the **Edit** button on the right and select **Role** as Administrator in the pop-up dialog box, and click Confirm.
-
-**Note**: Guance only supports assigning Administrator permissions to current workspace members with the Owner and Administrator roles. Only users with the Owner role can approve Administrator permissions in the Billing Center.
+**Note**: <<< custom_key.brand_name >>> only supports Owner and Administrator roles granting Administrator permissions to workspace members. Only the Owner role can approve Administrator permissions in the Billing Center.
 
 ![](img/11.role_upgrade_1.png)
 
-
-- If the current workspace Owner is not the Administrator of the Guance Billing Center or the Administrator promotes the right for members, it is necessary to notify the Administrator of the Guance Billing Center to [log in to the Billing Center](https://bill.guance.one/) for operation; Or you can view the members that need to be authorized in **Member Management** and click **Billing Center** to operate.
-- If the current workspace Owner is the administrator of the Guance Billing Center, then you can directly click **Jump to the Billing Center for Review** without logging in for operation;
+- If you are the Administrator role of the current workspace, when promoting a member, you need to notify the <<< custom_key.brand_name >>> Billing Center administrator to [log in to the Billing Center](https://<<< custom_key.boss_domain >>>/) for operation;
+- If you are the Owner role of the current workspace, you can directly click **Go to Billing Center Review** and operate without logging into the <<< custom_key.brand_name >>> Billing Center.
 
 ![](img/11.role_upgrade_2.png)
 
-<!-- 
-
-In the message center of the Guance Billing Center, click **Accept**.
+In the <<< custom_key.brand_name >>> Billing Center message center, click **Accept**:
 
 ![](img/11.role_upgrade_3.png)
 
-In the **Action Confirmation** dialog box, click **Confirm**.
+In the **Operation Confirmation** dialog box, click **Confirm**:
 
 ![](img/11.role_upgrade_4.png)
 
-It can be seen that the petition has been accepted.
+You can see that the promotion request has been accepted:
 
 ![](img/11.role_upgrade_5.png)
 
-Returning to **Member Management**, you can see that the workspace member is already Administrator.
+Return to the <<< custom_key.brand_name >>> workspace member management, and you will see that the workspace member has been upgraded to Administrator:
 
 ![](img/11.role_upgrade_6.png)
 
--->
+<<< custom_key.brand_name >>> supports viewing all members with pending Administrator role approval in the member management list. Click the ![](img/4.member_admin_2.png) icon next to the member's role, and you can click **Billing Center** in the prompt dialog box to perform the review operation.
 
-**Note**: Only users with the Owner role and Administrator permissions approved as members of the current workspace can perform the review.
+**Note**: Only the Owner role can approve Administrator permissions for workspace members.
 
 ![](img/4.member_admin_1.png)
 
 ## Permission List
 
-Guance supports setting permissions for custom roles in the workspace to meet the permission requirements of different users. 
+<<< custom_key.brand_name >>> supports setting permissions for custom roles within the workspace to meet the permission needs of different users.
 
-> For more details, see [Permission List](role-list.md).
+> For more details, refer to the document [Permission List](role-list.md).
 
-**Note**: Presently you can only set permissions for functional operations within the workspace.
+**Note**: Permissions are currently only set for workspace feature operations.

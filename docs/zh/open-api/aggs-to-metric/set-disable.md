@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/aggs_to_metric/set_disable' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric/set_disable' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"isDisable":false,"ruleUUIDs":["rul_xxxx"]}' \

@@ -1,54 +1,48 @@
-# Sharing
+# Share Management
 ---
 
-Guance supports the unified management of charts and snapshots shared in the current space through **Management > Sharing**.
+<<< custom_key.brand_name >>> supports the unified management of shared charts and snapshots within the current space through **Management > Share Management**.
 
+## Sharing Charts
 
-## Chart Sharing
+<<< custom_key.brand_name >>> allows space administrators and standard members to share and manage charts. Chart sharing can be used to embed charts in external platform code for visual data presentation and analysis outside <<< custom_key.brand_name >>>.
 
-Guance supports current space administrators and standard members to share and manage charts. Chart sharing can be used to insert charts into platform codes other than Guance for visual data presentation and analysis. 
+> For more details, refer to [Chart Sharing](../scene/visual-chart/index.md#share).
 
-> For details, see [Chart Sharing](../scene/visual-chart/chart-share.md).
-
-After sharing the chart in **Scene > Inner View**, you can view the chart sharing list in the current space through **Management > Sharing > Chart Sharing**.
+After completing chart sharing in the **Scene View**, you can view the list of shared charts within the current space via **Management > Share Management > Shared Charts** and perform <u>batch operations, chart viewing, viewing embedding codes, and canceling shares</u>.
 
 ![](img/share.png)
 
-- **Chart View** can help you quickly preview the corresponding shared charts:
+- **Chart Viewing** helps you quickly preview the corresponding shared chart;
 
 ![](img/11_share_01.png)
 
-- **View Embedded Code** can help you quickly get the embedded code corresponding to the shared chart:
+- **View Embedding Code** helps you quickly obtain the embedding code for the corresponding shared chart;
 
 ![](img/11_share_02.png)
 
-- **Cancel Sharing** will invalidate the shared chart and cannot be restored. **Please carefully confirm the cancelled sharing content**. You can also click on the :material-crop-square: next to the chart name to select specific charts to unshare in bulk.
+- **Cancel Share** will invalidate the shared chart and cannot be restored. <u>Please carefully confirm the content to cancel sharing</u>. You can also click the :material-crop-square: next to the chart name to select specific charts for batch cancellation of shares.
 
 ![](img/11_share_03.png)
 
-## Snapshot Sharing
+## Sharing Snapshots
 
-After sharing snapshots, you can view the snapshot sharing list through **Management > Sharing > Snapshot Sharing**, including snapshot name, sharing method, sharer, expiration date, time range, view snapshot and view sharing link.
+After sharing a snapshot, you can view the snapshot sharing list through **Management > Share Management > Snapshot Sharing**, including snapshot name, sharing method, sharer, validity period, time range, view snapshot, and view sharing link.
 
-![](img/11_share_04.png)
+![](img/share-1.png)
 
-- **Snapshot Name**: the name set when creating snapshots, and modification is not supported for the time being.
+| Field         | Description                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| Snapshot Name | The name set when creating the snapshot, which is not currently editable.   |
+| [Sharing Method](../getting-started/function-details/snapshot.md) | Includes public sharing and encrypted sharing. It supports sharing with "anyone" who has the link or those who have both the sharing link and the key. |
+| Validity Period | The validity period of the snapshot share. <<< custom_key.brand_name >>> defaults the share link's validity to 48 hours from creation. |
+| Time Range    | The relative or absolute time range selected for the snapshot. For example, the last 15 minutes as a relative time range. |
+| View Snapshot | Click **View Snapshot** to redirect to a new page to view the corresponding data copy. |
+| View Sharing Link | Adjust the sharing method (e.g., add a password to public sharing). Confirm adjustments for them to take effect. Refer to Image One below. |
+| Cancel Share  | This will invalidate the shared snapshot and cannot be restored. <u>Please carefully confirm the content to cancel sharing</u>. Refer to Image Two below.<br/>You can also click the :material-crop-square: next to the snapshot name to select specific snapshots for batch cancellation of shares. |
 
-- [**Sharing Methods**](../getting-started/function-details/snapshot.md): include public sharing and encrypted sharing, and support sharing to anyone who has links or people who have shared links and keys.
-
-- **Validity Period**: help you view the validity period of snapshot sharing. The default effective time of sharing links in Guance is 48 hours, that is, 48 hours after generating sharing links is the effective time.
-
-- **Time Range**: help you understand the relative/absolute time range selected for snapshot saving. For example, the relative time range is the nearest 15 minutes.
-
-- **View Snapshot**: help you view the corresponding snapshot. Click **View Snapshot** to jump to a new page to view the corresponding data copy
-
-- **View Sharing Links**: help you adjust the sharing method (for example, add a password for public sharing), which will take effect after confirming the adjustment
-
+<font size=2>*Image One:*</font>
 ![](img/11_share_05.png)
 
-- **Cancel Sharing**: invalidate the shared snapshot and cannot be recovered, **please carefully confirm the contents cancelled.**
-
+<font size=2>*Image Two:*</font>
 ![](img/11_share_06.png)
-
-
-

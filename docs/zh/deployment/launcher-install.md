@@ -32,7 +32,7 @@
     - 安装
     
       ```shell
-      helm install launcher launcher  --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+      helm install launcher launcher  --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/launcher -n launcher \
         --create-namespace  \
         --set ingress.hostName=<Hostname>,storageClassName=<Stroageclass>
       ```
@@ -42,7 +42,7 @@
         `<Hostname>` 为 Launcher ingress 域名， `<Stroageclass>` 为存储类名称，可执行 `kubectl get sc` 获取。
     
         ```
-        helm install launcher launcher  --repo https://pubrepo.guance.com/chartrepo/launcher -n launcher \
+        helm install launcher launcher  --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/launcher -n launcher \
            --create-namespace  \
            --set ingress.hostName="launcher.dataflux.cn",storageClassName=df-nfs-storage        
         ```
@@ -61,7 +61,7 @@
 
     - YAML 安装
     
-       Launcher YAML 下载：https://<<< custom_key.static_domain >>>/launcher/launcher.yaml
+       Launcher YAML 下载：https://static.<<< custom_key.brand_main_domain >>>/launcher/launcher.yaml
      
        将上面的 YAML 内容保存为 **launcher.yaml** 文件，放到**运维操作机**上，然后替换文档内的变量部分：
     

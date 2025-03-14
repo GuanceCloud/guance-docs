@@ -1,22 +1,24 @@
 # Login Methods
 ---
 
-There are two login methods for Billing Center, namely, directly login through the link of the Billing Center and free login to Billing Center through Guance.
+The Billing Center provides two login methods: direct login via the Billing Center link and login to the Billing Center through <<< custom_key.brand_name >>> single sign-on.
 
-### Login Through Billing Center
+## <<< custom_key.brand_name >>> Billing Center Login Method
 
-You can log in to the Guance Billing Center through [https://boss.guance.com/](https://boss.guance.com/). After logging in to Billing Center, you can view [a series of operations](./index.md#features).
+You can directly log in to the <<< custom_key.brand_name >>> Billing Center via the link ([https://<<< custom_key.boss_domain >>>/](https://<<< custom_key.boss_domain >>>/)).
 
-If you forget your password, you can log in to the page of [Guance Billing Center](https://boss.guance.com/) and retrieve it through **Forget Password**.
+After logging into the Billing Center, you can view your account balance, recharge your account with cash, coupons, or prepaid cards, change payment methods, manage accounts, and view detailed billing statements.
 
-![](../img/page.png)
+**Note**: If you forget your password, you can recover it through the **Forgot Password** option on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) login page.
 
-### Login Through Guance Studio
+![](img/3.billing_cost_1.png)
 
-1. Open [Guance](https://auth.guance.one/login/pwd), select the login site, and enter the user name and password to log in.
+## <<< custom_key.brand_name >>> Login Method
 
-2. In the Guance workspace **Billing**, click **Billing Center** to enter the Guance Billing Center for account management.
+1. Open [<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd), select the login site, and enter your username and password to log in.
 
-![](../img/0625-1.png)
+2. In the <<< custom_key.brand_name >>> workspace **Paid Plans & Billing**, click **Billing Center** to access the <<< custom_key.brand_name >>> Billing Center for account management.
 
-<font color=coral>**Note:**</font> Only workspace owners can login-free access to the Guance Billing Center.
+**Note**: Only workspace owners can log in to the Billing Center without entering credentials from the <<< custom_key.brand_name >>> workspace.
+
+![](img/3.billing_cost_2.png)

@@ -22,7 +22,7 @@ DataKit 为 Amazon EKS 集群提供按命名空间、集群、Pod 不同维度�
 - 在 AWS 市场上订阅 [Guance Container Agent](https://aws.amazon.com/marketplace/pp/prodview-tdwkw3qcsimso?sr=0-2&ref_=beagle&applicationId=AWSMPContessa){:target="_blank"} 。
 - 您有权访问 [Amazon EKS 集群](https://aws.amazon.com/eks/){:target="_blank"} 。
 - 你需要提前获取 `DK_DATAWAY`， 您还可以按照以下说明获取：
-    - 进入 [观测云](https://en.guance.com/){:target="_blank"} 网站，参考 [注册](https://docs.guance.com/en/billing/commercial-register/){:target="_blank"} 指南成为 GuanCe 用户。
+    - 进入 [观测云](https://en.guance.com/){:target="_blank"} 网站，参考 [注册](<<< homepage >>>/en/billing/commercial-register/){:target="_blank"} 指南成为 GuanCe 用户。
     - 点击「集成」菜单，然后选择 「DataKit」页签，复制 `DK_DATAWAY` 参数 如下图：
 
 <figure markdown>
@@ -130,7 +130,7 @@ datakit  datakit  1  2024-01-12 14:50:07.880846 +0800 CST  deployed  datakit-1.2
 - 安装以下工具：[Helm 3.7.1](https://github.com/helm/helm/releases/tag/v3.7.1){:target="_blank"}, [kubectl](https://kubernetes.io/docs/tasks/tools/){:target="_blank"} 和 [AWS CLI](https://aws.amazon.com/cli/){:target="_blank"} 。
 - 您有权访问 [Amazon EKS 集群](https://aws.amazon.com/eks/){:target="_blank"} 。
 - 你需要提前获取 `DK_DATAWAY`， 您还可以按照以下说明获取：
-    - 进入 [观测云](https://en.guance.com/){:target="_blank"} 网站，参考 [注册](https://docs.guance.com/en/billing/commercial-register/){:target="_blank"} 指南成为 GuanCe 用户。
+    - 进入 [观测云](https://en.guance.com/){:target="_blank"} 网站，参考 [注册](<<< homepage >>>/en/billing/commercial-register/){:target="_blank"} 指南成为 GuanCe 用户。
     - 点击「集成」菜单，然后选择 「DataKit」页签，复制 `DK_DATAWAY` 参数 如下图：
 
 

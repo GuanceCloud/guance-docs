@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
+- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)。
 - [安装 DataKit](../datakit/datakit-install.md)
 - 操作系统支持：`windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
@@ -94,7 +94,7 @@
 
 ![](img/2.png)
 
-开启主机相关的其他数据采集器，可参考[日志](../integrations/logging.md)、[进程](../integrations/host_processes.md)、[容器](../integrations/container.md)、[网络](../datakit/net.md)、[安全巡检](../integrations/sec-checker.md)。
+开启主机相关的其他数据采集器，可参考[日志](../integrations/logging.md)、[进程](../integrations/host_processes.md)、[容器](../integrations/container.md)、[网络](../integrations/net.md)、[安全巡检](../integrations/sec-checker.md)。
 
 - **自定义内置视图**
 

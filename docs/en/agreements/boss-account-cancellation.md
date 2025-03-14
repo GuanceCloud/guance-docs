@@ -1,71 +1,71 @@
-# Guance Billing Center Account Cancellation Notice
+# <<< custom_key.brand_name >>> Billing Center Account Cancellation Notice
 ---
 
-**[Special Reminder]: Cancelling a Guance Billing Center account is an irreversible operation. Once the account is cancelled, you will no longer be able to log into the Guance Billing Center with this account, and all your data will be deleted and cannot be recovered (even if you register and use the Guance Billing Center again with the same email or mobile phone).**
+**[Special Note] Canceling your <<< custom_key.brand_name >>> Billing Center account is an irreversible operation. After cancellation, you will no longer be able to log in to the <<< custom_key.brand_name >>> Billing Center using this account, and all your data in <<< custom_key.brand_name >>> Billing Center will be deleted and cannot be recovered (even if you register and use <<< custom_key.brand_name >>> Billing Center again with the same email or phone number).**
 
-Guance Billing Center Account Cancellation Terms (hereinafter referred to as "these Terms") constrain your actions and related matters of actively canceling your Guance Billing Center (domestic domain: boss.guance.com; overseas domain: bill.guance.one) account.
+The <<< custom_key.brand_name >>> Billing Center account cancellation terms (hereinafter referred to as "these terms") govern your voluntary cancellation of your <<< custom_key.brand_name >>> Billing Center (domestic domain: <<< custom_key.boss_domain >>>; international domain: bill.guance.one) account and related matters.
 
-Before submitting an account cancellation application, you must fully read, understand and agree to all the content of these Terms. If you have any questions, please contact Guance customer service.
+Please read, understand, and agree to all the contents of these terms before submitting an account cancellation request. If you have any questions, please contact <<< custom_key.brand_name >>> customer service.
 
-From the moment you submit your account cancellation application, Guance will check your application according to these Terms and related prompts. For applications that meet the account cancellation conditions, Guance will initiate the account cancellation process, which cannot be revoked. If it does not meet the conditions for account cancellation, Guance will notify you of the check result, and the account cancellation process will automatically terminate. You can apply for account cancellation again after completing the corresponding condition processing.
+From the moment you submit an account cancellation request, <<< custom_key.brand_name >>> will check your application according to these terms and related prompts. For applications that meet the account cancellation conditions, <<< custom_key.brand_name >>> will initiate the account cancellation process, which cannot be reversed. For applications that do not meet the cancellation conditions, <<< custom_key.brand_name >>> will notify you of the inspection results, and the account cancellation process will automatically terminate. You can complete the corresponding condition handling and then reapply for account cancellation.
 
-## I. Conditions for Account Cancellation
+## 1. Conditions for Account Cancellation
 
-1.1 The Guance Billing Center account applying for cancellation has no bound workspaces, or the bound workspaces have been disbanded and released;
+1.1 The <<< custom_key.brand_name >>> Billing Center account to be canceled has no associated workspaces, or the associated workspaces have been dissolved and released;
 
-1.2 The Guance Billing Center account applying for cancellation does not have any arrears, including cash, stored value cards, and vouchers;
+1.2 The <<< custom_key.brand_name >>> Billing Center account to be canceled has no outstanding payments, including cash, stored value cards, and coupons;
 
-1.3 The Guance Billing Center account applying for cancellation does not have any unsettled bills;
+1.3 The <<< custom_key.brand_name >>> Billing Center account to be canceled has no unsettled bills;
 
-1.4 The Guance Billing Center account applying for cancellation does not have any unpaid taxes and other obligations required by law that have not been fulfilled;
+1.4 The <<< custom_key.brand_name >>> Billing Center account to be canceled has no unpaid taxes or other obligations required by law that have not been fulfilled;
 
-1.5 The Guance Billing Center account applying for cancellation has not violated any laws or agreements with Guance by the date of application for cancellation, or has reached an agreement with Guance on related matters.
+1.5 As of the date of the cancellation request, the <<< custom_key.brand_name >>> Billing Center account has not violated any laws or agreements with <<< custom_key.brand_name >>>, or has reached a mutual agreement with <<< custom_key.brand_name >>> regarding any violations.
 
-## II. Account Cancellation Process
+## 2. Account Cancellation Process
 
-2.1 Self-Check by Customers
+2.1 Self-Check
 
-Before you submit an account cancellation application, please check whether you meet the account cancellation conditions stipulated in Article 1 of these Terms, otherwise your account cancellation process may be terminated due to non-compliance with the cancellation conditions.
+Before submitting an account cancellation request, please self-check whether your account meets the cancellation conditions outlined in Section 1 of these terms. Otherwise, your account cancellation process may be terminated due to non-compliance.
 
 2.2 Cancellation Method
 
-You can go to [Tickets] - [Submit] in the Guance Billing Center, choose [Account Cancellation] in [Ticket Type], and contact Guance customer service to apply for account cancellation.
+You can submit a ticket under [Tickets] - [Submit Ticket] in the <<< custom_key.brand_name >>> Billing Center, select [Cancel Account] as the ticket type, and contact <<< custom_key.brand_name >>> customer service to apply for account cancellation.
 
-2.3 Account Check
+2.3 Account Verification
 
-Upon receiving the cancellation request, Guance will check your account for cancellation conditions to verify whether your account meets the cancellation conditions.
+<<< custom_key.brand_name >>> will verify your account for cancellation conditions upon receiving the cancellation request to ensure it meets the requirements.
 
-- Check Passed: If the application meets the conditions for account cancellation, Guance will initiate the account cancellation process.
+- Verification Passed: If the <<< custom_key.brand_name >>> Billing Center account meets the cancellation conditions, <<< custom_key.brand_name >>> will initiate the account cancellation process.
 
-Note: The conditions for account cancellation by Guance are only preliminarily and formally verified. If Guance deems that you meet the cancellation conditions, it does not mean that Guance substantively approves or renounces any rights it should enjoy according to law or agreement. It also does not mean that all account behaviors and related responsibilities before the account is cancelled are exempted or mitigated, including but not limited to any arrears, pending fees, unpaid taxes, etc. under the account to be cancelled.
+Note: <<< custom_key.brand_name >>> only conducts preliminary and formal reviews of your account cancellation conditions. <<< custom_key.brand_name >>>'s approval does not imply a waiver of any rights legally or contractually reserved, nor does it exempt or mitigate any responsibilities or liabilities incurred by your account prior to cancellation, including but not limited to any outstanding fees, pending payments, or unpaid taxes.
 
-- Check Failed: If the application does not meet the conditions for account cancellation, the account cancellation process will automatically terminate, and it will not automatically recover. If you wish to continue with the cancellation, you should reapply for account cancellation.
+- Verification Failed: If the <<< custom_key.brand_name >>> Billing Center account does not meet the cancellation conditions, the account cancellation process will automatically terminate and will not be automatically reinstated. If you wish to proceed with cancellation, you must resubmit the cancellation request after addressing the issues.
 
 2.4 Account Cancellation
 
-After the Guance Billing Center account check is passed, Guance will initiate the account cancellation process, delete your data in the Guance Billing Center, except as otherwise provided in these Terms or as required by laws, regulations, or national administrative and judicial law enforcement agencies.
+After verification, <<< custom_key.brand_name >>> will initiate the account cancellation process and delete your data from the <<< custom_key.brand_name >>> Billing Center, except as otherwise agreed in these terms or required by law or regulatory authorities.
 
-## III. Results of Account Cancellation
+## 3. Results of Account Cancellation
 
-3.1 After the account is cancelled, you will no longer be able to use the services of the Guance Billing Center through this account, including but not limited to:
+3.1 After account cancellation, you will no longer be able to use <<< custom_key.brand_name >>> Billing Center services through this account, including but not limited to:
 
-- Logging into the Guance Billing Center website with this account;
-- Performing other operations that depend on this account's permissions;
-- Recovering account information, business data, consumption records, etc. under this account;
-- Other Guance Billing Center services.
+- Logging into the <<< custom_key.brand_name >>> Billing Center website;
+- Performing other operations dependent on this account's permissions;
+- Retrieving account information, business data, transaction records, etc.;
+- Other <<< custom_key.brand_name >>> Billing Center services
 
-3.2 Account cancellation does not mean that all account behaviors and related responsibilities before the account is cancelled are exempted or mitigated.
+3.2 Account cancellation does not exempt or mitigate any responsibilities or liabilities incurred by your account prior to cancellation.
 
-3.3 As of the date of account cancellation, Guance has provided services according to the contract and effective orders between the two parties, and there is no breach of contract.
+3.3 As of the date of account cancellation, <<< custom_key.brand_name >>> has provided services in accordance with the contract and effective orders, without any breach of contract.
 
-3.4 Guance will clear your data and has no right to continue to collect, store and use your personal information and other data, except as otherwise required by applicable legal norms or industry best practices, such as retaining corresponding invoice data for tax compliance, retaining transaction information between us and you to comply with e-commerce laws, etc.
+3.4 <<< custom_key.brand_name >>> will clear your data and will not continue to collect, store, or use your personal information and other data, except as required by applicable laws or industry best practices, such as retaining invoice data for tax compliance or transaction information for e-commerce legal requirements.
 
-3.5 The account balance, vouchers, stored value cards, etc. of the Guance Billing Center account will be invalidated and deleted.
+3.5 The account balance, coupons, stored value cards, etc., associated with the <<< custom_key.brand_name >>> Billing Center account will be invalidated and deleted.
 
-3.6 Once the account is cancelled, it cannot be recovered. Please back up all business information and data under your account. Guance is not responsible for any data or information loss caused by this.
+3.6 Once an account is canceled, it cannot be recovered. Please back up all business information and data under your account. <<< custom_key.brand_name >>> will not be responsible for any data or information loss resulting from the cancellation.
 
-## IV. Others
+## 4. Miscellaneous
 
-4.1 These Terms constitute an inseparable part of the "Guance Billing Center Service Agreement". For matters not covered by these Terms, refer to the relevant provisions of the "Guance Billing Center Service Agreement".
+4.1 These terms form an integral part of the <<< custom_key.brand_name >>> Billing Center Service Agreement. Any matters not covered by these terms shall be governed by the relevant provisions of the <<< custom_key.brand_name >>> Billing Center Service Agreement.
 
-4.2 If your account cancellation causes losses to Guance, you should compensate for the losses caused to Guance, and exempt Guance and its directors, employees, agents, partners, and suppliers from any claims by third parties.
+4.2 If your account cancellation causes any loss to <<< custom_key.brand_name >>>, you shall compensate <<< custom_key.brand_name >>> for such losses and ensure that <<< custom_key.brand_name >>>, its directors, employees, agents, partners, and suppliers are free from any claims by third parties.

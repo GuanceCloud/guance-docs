@@ -7,7 +7,7 @@
 
 ### 注册部署版账号
 
-直接打开部署版注册地址（[https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private)），根据提示注册部署版账号。
+直接打开部署版注册地址（[https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private](https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private)），根据提示注册部署版账号。
 
 ![](img/6.deployment_3.png)
 

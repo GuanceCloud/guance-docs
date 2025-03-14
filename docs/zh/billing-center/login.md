@@ -5,11 +5,11 @@
 
 ## <<< custom_key.brand_name >>>费用中心登录方式
 
-您可以直接通过链接（[https://boss.guance.com/](https://boss.guance.com/)）登录<<< custom_key.brand_name >>>费用中心。
+您可以直接通过链接（[https://<<< custom_key.boss_domain >>>/](https://<<< custom_key.boss_domain >>>/)）登录<<< custom_key.brand_name >>>费用中心。
 
 登录到费用中心以后，您可以查看账户余额，对账户进行现金、代金券、预购卡充值，更换结算方式，管理账户、查看账单明细等操作。
 
-**注意**：若忘记密码，可在 [<<< custom_key.brand_name >>>费用中心](https://boss.guance.com/) 登录页面，通过**忘记密码**重新找回。
+**注意**：若忘记密码，可在 [<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/) 登录页面，通过**忘记密码**重新找回。
 
 ![](img/3.billing_cost_1.png)
 

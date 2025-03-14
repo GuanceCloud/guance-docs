@@ -54,7 +54,7 @@ filters 示例如下 之前的 search字段兼容到filters 使用正则 `.*serv
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/performance/list?end=1693810693999&start=1693767493000' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/performance/list?end=1693810693999&start=1693767493000' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed

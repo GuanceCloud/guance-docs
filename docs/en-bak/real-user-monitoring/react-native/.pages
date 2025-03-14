@@ -1,0 +1,3 @@
+nav:
+  - 'React Native Application Data Collection': app-data-collection.md
+  - 'React Native Application Access': app-access.md

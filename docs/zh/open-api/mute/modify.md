@@ -80,7 +80,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/monitor/mute/<obj_uuid>/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/monitor/mute/<obj_uuid>/modify' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -H 'Content-Type: application/json;charset=UTF-8' \
   --data-raw '{"name":"名称A","description":"描述A","startTime":"2023/08/22 16:27:27","notifyTargets":[{"to":["notify_xxxx32"],"type":"notifyObject"}],"tags":{},"muteRanges":[{"name":"多个点{{version}}","checkerUUID":"rul_xxxx32","type":"监控器"}],"type":"checker","timezone":"Asia/Shanghai","repeatTimeSet":1,"repeatCrontabSet":{"min":"0","hour":"1","day":"*","month":"*","week":"0,5,6,4"},"crontabDuration":10800,"repeatExpireTime":"2023/09/09 00:00:00","notifyTimeStr":"","notifyMessage":"dcscsadcsdacasdcsdacsdac"}' \

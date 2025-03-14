@@ -13,7 +13,7 @@
 
 ## 开始配置
 
-### :material-numeric-1-circle: 定义转换步骤
+### 1、定义转换步骤
 
 默认提供两个步骤类型：[View](./explorer/view.md) 和 [Action](./explorer/action.md)。
 
@@ -33,7 +33,7 @@
 |       |   contains        |  |
 
 
-### :material-numeric-2-circle: 过滤用户范围
+### 2、过滤用户范围
 
 通过城市、环境、版本、浏览器、会话时长、会话首个页面路径等筛选条件确定 `session` 数据范围。
 
@@ -45,11 +45,14 @@
 
 以图表的方式可视化展示端到端的转化率。
 
-如下图，在 RUM 应用列表中，在 11 个 `session` 中，最终有 1 个 `session` 做出了 `导出` 动作，该行为的转化率为 9.09%。
+如下图，在 RUM 应用列表中，在 10 个 `session` 中，最终有 1 个 `session` 做出了 `导出` 动作，该行为的转化率为 90%。
 
 <img src="../img/user_insight_funnel_1.png" width="80%" >
 
-针对该图表，可导出到仪表板/笔记或导出为 PNG 图片。
+- 针对该图表，可导出到仪表板/笔记或导出为 PNG 图片。
+- Session 右侧可点击跳转会话重放。
+
+> 更多详情，可参考 [Web 会话重放](./session-replay/web/index.md)
 
 ## 时间转换率
 

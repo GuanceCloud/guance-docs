@@ -1,27 +1,30 @@
-# Guance Billing Center account Settlement
+# Billing Center Account Settlement
 ---
 
-This article will introduce how to open the account settlement of Guance enterprise in the Commercial Plan of Guance. 
+## Selection During Commercial Plan Registration
 
-> Refer to the doc [Register Commercial Plan](../../billing/commercial-register.md) for information on how to launch a Commercial Plan.
+During the registration process for the <<< custom_key.brand_name >>> Commercial Plan, you can directly choose to use a Billing Center account for settlement.
 
-## Select Guance Billing Center account Settlement
+<img src="../../img/bill-by-center.png" width="70%" >
 
-When registering or upgrading the Commercial Plan of Guance, **Guance Billing Center account Settlement** is selected by default, and the **Change Settlement Method** dialog box can be directly closed.
+1. [Start the registration process](../../plans/commercial-register.md);
+2. On the third step, when selecting the activation method, choose direct activation for <<< custom_key.brand_name >>>
+3. Enter the workspace name and select the workspace language;
+4. Check the box to agree to the terms;
+5. Click Activate.
 
-![](../img/9.upgrade_7.png)
+At this step, the system will create a Billing Center account for you, indicating that the current account will use this created Billing Center account for settlement.
 
-You can change the settlement method in **Billing Center > Workspace Management**.
+<img src="../../img/bill-by-center-1.png" width="70%" >
 
-![](../img/9.upgrade_9.png)
+## Changing Settlement in the Billing Center Platform
 
-Returning to **Billing**, you can see that the current workspace has been upgraded to Commercial Plan.
+1. Log in to the <<< custom_key.brand_name >>> [Billing Center](https://<<< custom_key.boss_domain >>>);
+2. Go to Workspace management;
+3. Select the workspace and click the change button on the right;
+4. Choose **Billing Center Settlement**;
+5. Click Confirm.
 
-And you can click **Billing Center** in the upper right corner to the Guance Billing Center.
+<img src="../../img/bill-by-center-2.png" width="70%" >
 
-![](../img/9.upgrade_10.png)
-
-
-<!--
-![](../img/9.upgrade_11.png)
--->
+<img src="../../img/bill-by-center-3.png" width="70%" >

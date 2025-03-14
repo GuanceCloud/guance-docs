@@ -3,7 +3,7 @@
 
 ## 人民币结算和美元结算
 
-针对海内外客户的不同需求，<<< custom_key.brand_name >>>推出[国内版](https://boss.guance.com/)和[海外版](https://bill.guance.one/)两套结算中心系统。前者使用人民币结算，后者使用美元结算。在每套系统中，针对不同的站点登录会进行不同的定价。
+针对海内外客户的不同需求，<<< custom_key.brand_name >>>推出[国内版](https://<<< custom_key.boss_domain >>>/)和[海外版](https://bill.guance.one/)两套结算中心系统。前者使用人民币结算，后者使用美元结算。在每套系统中，针对不同的站点登录会进行不同的定价。
 
 ## 更换币种结算方式
 

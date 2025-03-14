@@ -20,13 +20,13 @@
 ![](../img/image_13.png)
 
 ## 安装 {#install}
-![](https://img.shields.io/badge/dynamic/json?label=unity&color=orange&query=$.version&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/unity/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://<<< custom_key.static_domain >>>/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-unity)
+![](https://img.shields.io/badge/dynamic/json?label=unity&color=orange&query=$.version&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/unity/version.json&link=https://github.com/GuanceCloud/datakit-react-native) ![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/react-native/info.json&link=https://github.com/GuanceCloud/datakit-unity)
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-unity](https://github.com/GuanceCloud/datakit-unity)
 
 **Demo 地址**：[https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes](https://github.com/GuanceCloud/datakit-unity/blob/dev/Assets/Scenes/ClickEvent.cs)
 
-* 下载最新 [ft-sdk-unity.unitypackage](https://<<< custom_key.static_domain >>>/ft-sdk-package/unitypackage/alpha/ft-sdk-unity.unitypackage)
+* 下载最新 [ft-sdk-unity.unitypackage](https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/unitypackage/alpha/ft-sdk-unity.unitypackage)
 
 ```
 Assets/Plugins

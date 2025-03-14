@@ -2,19 +2,19 @@
 title: 'AWS Lambda'
 tags: 
   - AWS
-summary: 'Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.'
+summary: 'The displayed metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions.'
 __int_icon: 'icon/aws_lambda'
-dashboard:
 
-  - desc: 'AWS Lambda dashboard'
+dashboard:
+  - desc: 'Built-in Views for AWS Lambda'
     path: 'dashboard/en/aws_lambda'
 
 monitor:
-  - desc: 'AWS Lambda monitor'
+  - desc: 'AWS Lambda Monitor'
     path: 'monitor/en/aws_lambda'
 
 cloudCollector:
-  desc: 'cloud collector'
+  desc: 'Cloud Collector'
   path: 'cloud-collector/en/aws_lambda'
 ---
 
@@ -23,95 +23,96 @@ cloudCollector:
 # AWS Lambda
 <!-- markdownlint-enable -->
 
-Use the「Guance  Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the Guance.
+The displayed metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions.
 
 
-## config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-### Installation script
-
-> Tip：Please prepare AWS AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission for CloudWatch `CloudWatchReadOnlyAccess`）
-
-To synchronize the monitoring data of AWS ELB cloud resources, we install the corresponding collection script: `ID:guance_aws_lambda`
-
-Click 【Install】 and enter the corresponding parameters: AWS AK, AWS account name.
-
-tap【Deploy startup Script】，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script。
-
-Then, in the collection script, add the collector_configs and cloudwatch_change the regions in configs to the actual regions
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click【Run】，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs。
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
+### Installation Script
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+> Note: Prepare an Amazon Cloud AK that meets the requirements in advance (for simplicity, you can directly grant CloudWatch read-only permissions `CloudWatchReadOnlyAccess`).
 
-## Metric {#metric}
-Configure AWS Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html){:target="_blank"}
+To synchronize ECS cloud resource monitoring data, install the corresponding collection script: "Guance Integration (AWS-Lambda Collection)" (ID: `guance_aws_lambda`)
 
-### Metric
+After clicking 【Install】, enter the required parameters: AWS AK ID, AWS AK SECRET.
 
-The following section describes the types of Lambda metrics available on the CloudWatch console.
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup scripts. Ensure that 'regions' in the startup script match the actual regions of the instances.
 
-### Invocation metrics
+After enabling, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, then view the execution task records and corresponding logs.
 
-| metric                                              | Description                                                         |
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing data, enable the cloud billing collection script.
+
+
+By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
+
+### Verification
+
+1. Confirm in "Manage / Automatic Trigger Configuration" whether the corresponding tasks have the automatic trigger configuration, and check the task records and logs for any anomalies.
+2. In the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. In the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring Amazon Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration:
+
+[Amazon Cloud Monitoring Lambda Metrics Details](https://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-metrics.html){:target="_blank"}
+
+
+### Invocation Metrics
+
+| Metric                                              | Description                                                         |
 | :------------------------------------------------ | :----------------------------------------------------------- |
-| `Invocations`                           | The number of times that your function code is invoked, including successful invocations and invocations that result in a function error. Invocations aren't recorded if the invocation request is throttled or otherwise results in an invocation error. The value of Invocations equals the number of requests billed. |
-| `Errors`                           | The number of invocations that result in a function error. Function errors include exceptions that your code throws and exceptions that the Lambda runtime throws. The runtime returns errors for issues such as timeouts and configuration errors. To calculate the error rate, divide the value of Errors by the value of Invocations. Note that the timestamp on an error metric reflects when the function was invoked, not when the error occurred. |
-| `DeadLetterErrors`                           |  For asynchronous invocation, the number of times that Lambda attempts to send an event to a dead-letter queue (DLQ) but fails. Dead-letter errors can occur due to misconfigured resources or size limits. |
-| `DestinationDeliveryFailures`                           | For asynchronous invocation and supported event source mappings, the number of times that Lambda attempts to send an event to a destination but fails. For event source mappings, Lambda supports destinations for stream sources (DynamoDB and Kinesis). Delivery errors can occur due to permissions errors, misconfigured resources, or size limits. Errors can also occur if the destination you have configured is an unsupported type such as an Amazon SQS FIFO queue or an Amazon SNS FIFO topic. |
-| `Throttles`                           | The number of invocation requests that are throttled. When all function instances are processing requests and no concurrency is available to scale up, Lambda rejects additional requests with a TooManyRequestsException error. Throttled requests and other invocation errors don't count as either Invocations or Errors. |
-| `ProvisionedConcurrencyInvocations`                           | The number of times that your function code is invoked using provisioned concurrency. |
-| `ProvisionedConcurrencySpilloverInvocations`                           | The number of times that your function code is invoked using standard concurrency when all provisioned concurrency is in use. |
-| `RecursiveInvocationsDropped`                           | The number of times that Lambda has stopped invocation of your function because it's detected that your function is part of an infinite recursive loop. Lambda recursive loop detection monitors how many times a function is invoked as part of a chain of requests by tracking metadata added by supported AWS SDKs. If your function is invoked as part of a chain of requests more than 16 times, Lambda drops the next invocation. |
+| `Invocations`                           | The number of times the function code is invoked, including successful invocations and those that result in function errors. Invocations are not recorded if the invocation request is throttled or results in an error. The value of Invocations equals the number of billed requests. |
+| `Errors`                           | The number of invocations that result in function errors. Function errors include exceptions thrown by your code and those raised by the Lambda runtime. Runtime returns errors due to issues like timeouts and configuration errors. To calculate the error rate, divide the value of Errors by Invocations. Note that the timestamp on the error metric reflects the time when the function was invoked, not the time when the error occurred. |
+| `DeadLetterErrors`                           | For asynchronous invocations, the number of times Lambda fails to send events to the dead-letter queue (DLQ). Misconfigured resources or size limits may cause dead letter errors. |
+| `DestinationDeliveryFailures`                           | For asynchronous invocations and supported event source mappings, the number of times Lambda fails to send events to the destination. For event source mappings, Lambda supports targets for stream sources (DynamoDB and Kinesis). Permission errors, misconfigured resources, or size limits may cause delivery failures. If you configure unsupported target types, such as Amazon SQS FIFO queues or Amazon SNS FIFO topics, this error may occur. |
+| `Throttles`                           | The number of throttled invocation requests. When all function instances are handling requests and there is no available concurrency for scaling out, Lambda rejects other requests, resulting in TooManyRequestsException errors. Throttled requests and other invocation errors are not counted as Invocations or Errors. |
+| `ProvisionedConcurrencyInvocations`                           | The number of times the function code is invoked using provisioned concurrency. |
+| `ProvisionedConcurrencySpilloverInvocations`                           | The number of times the function code is invoked using standard concurrency when all provisioned concurrency is in use. |
+| `RecursiveInvocationsDropped`                           | The number of times Lambda stops invoking your function because it detects that your function is part of an infinite recursion loop. Lambda monitors the number of times your function is invoked as part of a request chain using metadata added by supported AWS SDKs. If your function is invoked more than 16 times as part of a request chain, Lambda interrupts the next invocation. |
 
-### Performance metrics
+### Performance Metrics
 
-Performance metrics provide performance details about a single function invocation. For example, the Duration metric indicates the amount of time in milliseconds that your function spends processing an event. To get a sense of how fast your function processes events, view these metrics with the Average or Max statistic.
+Performance metrics provide detailed information about individual function invocations. For example, the Duration metric indicates the amount of time (in milliseconds) the function spends processing an event. To understand how quickly the function processes events, use Average or Max statistics to view these metrics.
 
-| metric                                              | Description                                                         |
+| Metric                                              | Description                                                         |
 | :------------------------------------------------ | :----------------------------------------------------------- |
-| `Duration`                         | The amount of time that your function code spends processing an event. The billed duration for an invocation is the value of Duration rounded up to the nearest millisecond. |
-| `PostRuntimeExtensionsDuration`    | The cumulative amount of time that the runtime spends running code for extensions after the function code has completed. |
-| `IteratorAge`                    | For DynamoDB, Kinesis, and Amazon DocumentDB event sources, the age of the last record in the event. This metric measures the time between when a stream receives the record and when the event source mapping sends the event to the function. |
-| `OffsetLag`                           | For self-managed Apache Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) event sources, the difference in offset between the last record written to a topic and the last record that your function's consumer group processed. Though a Kafka topic can have multiple partitions, this metric measures the offset lag at the topic level. |
+| `Duration`                         | The amount of time the function code spends processing an event. The billed duration for the invocation is the rounded-to-the-nearest-millisecond value of Duration. |
+| `PostRuntimeExtensionsDuration`    | The cumulative time the runtime spends running extension code after the function code completes. |
+| `IteratorAge`                    | For event source mappings that read from streams, the age of the last record in the event. This metric measures the time between when the stream receives the record and when the event source mapping sends the event to the function. |
+| `OffsetLag`                           | For self-managed Apache Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) event sources, the difference in offset between the last record written to the topic and the last record processed by the function's consumer group. Although Kafka topics can contain multiple partitions, this metric still measures offset lag at the topic level. |
 
-### Concurrency metrics
+### Concurrency Metrics
 
-Lambda reports concurrency metrics as an aggregate count of the number of instances processing events across a function, version, alias, or AWS Region. To see how close you are to hitting concurrency limits, view these metrics with the Max statistic.
+Lambda reports concurrency metrics as the total count of instances processing events across functions, versions, aliases, or AWS regions. To see how close you are to concurrency limits, use Max statistics to view these metrics.
 
-| metric                                              | Description                                                         |
+| Metric                                              | Description                                                         |
 | :------------------------------------------------ | :----------------------------------------------------------- |
-| `ConcurrentExecutions`    | The number of function instances that are processing events. If this number reaches your concurrent executions quota for the Region, or the reserved concurrency limit on the function, then Lambda throttles additional invocation requests. |
-| `ProvisionedConcurrentExecutions`    | The number of function instances that are processing events using provisioned concurrency. For each invocation of an alias or version with provisioned concurrency, Lambda emits the current count. |
-| `ProvisionedConcurrencyUtilization`    |  For a version or alias, the value of ProvisionedConcurrentExecutions divided by the total amount of provisioned concurrency allocated. For example, .5 indicates that 50 percent of allocated provisioned concurrency is in use. |
-| `UnreservedConcurrentExecutions`    | For a Region, the number of events that functions without reserved concurrency are processing. |
+| `ConcurrentExecutions`    | The number of function instances currently processing events. If this number reaches the concurrency execution quota for the region or the reserved concurrency limit configured on the function, Lambda will throttle other invocation requests. |
+| `ProvisionedConcurrentExecutions`    | The number of function instances processing events using provisioned concurrency. For each invocation of an alias or version with provisioned concurrency, Lambda emits the current count. |
+| `ProvisionedConcurrencyUtilization`    | For versions or aliases, the ratio of ProvisionedConcurrentExecutions to the total allocated provisioned concurrency. For example, .5 indicates that 50% of the allocated provisioned concurrency is in use. |
+| `UnreservedConcurrentExecutions`    | For a region, the number of events processed by functions that do not have reserved concurrency. |
 
-### Asynchronous invocation metrics
+### Asynchronous Invocation Metrics
 
-Asynchronous invocation metrics provide details about asynchronous invocations from event sources and direct invocations. You can set thresholds and alarms to notify you of certain changes. For example, when there's an undesired increase in the number of events queued for processing (AsyncEventsReceived). Or, when an event has been waiting a long time to be processed (AsyncEventAge).
+Asynchronous invocation metrics provide details about asynchronous invocations from event sources and direct invocations. You can set thresholds and alerts to notify you of certain changes. For example, when the number of events queued for processing unexpectedly increases (AsyncEventsReceived), or when an event takes a long time to complete processing (AsyncEventAge).
 
-| metric                                              | Description                                                         |
+| Metric                                              | Description                                                         |
 | :------------------------------------------------ | :----------------------------------------------------------- |
-| `AsyncEventsReceived`    | The number of events that Lambda successfully queues for processing. This metric provides insight into the number of events that a Lambda function receives. Monitor this metric and set alarms for thresholds to check for issues. For example, to detect an undesirable number of events sent to Lambda, and to quickly diagnose issues resulting from incorrect trigger or function configurations. Mismatches between AsyncEventsReceived and Invocations can indicate a disparity in processing, events being dropped, or a potential queue backlog. |
-| `AsyncEventAge`    | The time between when Lambda successfully queues the event and when the function is invoked. The value of this metric increases when events are being retried due to invocation failures or throttling. Monitor this metric and set alarms for thresholds on different statistics for when a queue buildup occurs. To troubleshoot an increase in this metric, look at the Errors metric to identify function errors and the Throttles metric to identify concurrency issues. |
-| `AsyncEventsDropped`    | The number of events that are dropped without successfully executing the function. If you configure a dead-letter queue (DLQ) or OnFailure destination, then events are sent there before they're dropped. Events are dropped for various reasons. For example, events can exceed the maximum event age or exhaust the maximum retry attempts, or reserved concurrency might be set to 0. To troubleshoot why events are dropped, look at the Errors metric to identify function errors and the Throttles metric to identify concurrency issues. |
+| `AsyncEventsReceived`    | The number of events successfully queued by Lambda for processing. This metric gives insight into the number of events received by the Lambda function. Monitor this metric and set threshold alerts to detect issues. For example, detect the number of bad events sent to Lambda and quickly diagnose problems caused by incorrect triggers or function configurations. A mismatch between AsyncEventsReceived and Invocations may indicate differences in processing, dropped events, or potential queue backlog. |
+| `AsyncEventAge`    | The time between when Lambda successfully queues the event and when it invokes the function. This metric's value increases when events are retried due to invocation failures or throttling. Monitor this metric and set alerts for different statistics when queues build up. To address increases in this metric, review the Errors metric to identify function errors and the Throttles metric to determine concurrency issues. |
+| `AsyncEventsDropped`    | The number of events dropped without successfully executing the function. If you configure a dead-letter queue (DLQ) or OnFailure target, events are sent there before being dropped. Events are dropped for various reasons. For example, events may exceed the maximum event age or exhaust the maximum retry attempts, or reserved concurrency may be set to 0. To address dropped events, review the Errors metric to identify function errors and the Throttles metric to determine concurrency issues.
 
-## Object {#object}
+## Objects {#object}
 
-The collected AWS Lambda object data structure can be seen from the [ Infrastructure - Custom]  object data
+The collected AWS Lambda object data structure can be viewed under "Infrastructure - Custom".
 
 ```json
 {
@@ -132,10 +133,12 @@ The collected AWS Lambda object data structure can be seen from the [ Infrastruc
   "fields": {
     "CreatedTime"         : "2022-03-09T06:13:31Z",
     "ListenerDescriptions": "{JSON data}",
-    "AvailabilityZones"   : "{Availability Zone JSON data}",
+    "AvailabilityZones"   : "{Availability Zones JSON data}",
     "message"             : "{Instance JSON data}"
   }
 }
 ```
 
-> *Note: The fields in 'tags' and' fields' may change with subsequent updates*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
+>
+> Tip 1: The value of `tags.account_name` is the instance ID, used for unique identification.

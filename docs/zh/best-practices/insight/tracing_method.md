@@ -193,7 +193,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 
 以上分别介绍了 DDTrace 和 OpenTelemetry 在非侵入式的情况下对业务特定函数方法进行链路追踪。同样它们也提供了 SDK 的方式，具有一定的代码侵入性，但表现为更灵活。
 
-- DDTrace 使用注解 `@Trace`配置业务 Span，实际用法以及相关依赖，参考[链接](https://docs.guance.com/best-practices/insight/ddtrace-skill-api/#2)
+- DDTrace 使用注解 `@Trace`配置业务 Span，实际用法以及相关依赖，参考[链接](<<< homepage >>>/best-practices/insight/ddtrace-skill-api/#2)
 - OpenTelemetry  使用注解 `@WithSpan` 配置业务 Span，参考[链接](https://github.com/lrwh/observable-demo/blob/main/springboot-opentelemetry-otlp-server/src/main/java/com/zy/observable/otel/controller/OtelController.java){:target="_blank"}
 
 关于 SDK 方式，这里不再一一分析。

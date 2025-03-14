@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 'Unrecovered Events': unrecovered-events.md
+  - 'All Events': event-list.md
+  - 'Event Details': event-details.md

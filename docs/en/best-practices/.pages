@@ -1,0 +1,6 @@
+nav:
+  - index.md
+  - 'Cloud Native': cloud-native
+  - 'Cloud Platform Integration': partner
+  - 'Monitoring': monitoring
+  - 'Insight': insight

@@ -1,78 +1,77 @@
-# Authing
+# Authing Single Sign-On Example
 ---
 
+Authing is a provider of identity and access management solutions.
 
-## Setup
+## Steps
 
-### 1. Authing Account Registration/Login
+### 1. Register / Log in to Authing Account
 
-You can create an [Authing account](https://www.authing.cn/) through the following steps. If you already have an account in use, you can directly configure it in the next step. 
+You can create an [Authing account](https://www.authing.cn/) by following these steps. If you already have an active account, proceed directly to the next configuration step.
 
-**Note**: Currently, Guance only supports SSO login of email account.
+**Note**: Currently <<< custom_key.brand_name >>> only supports single sign-on (SSO) login with email accounts.
 
-<img src="../../img/1.authing_1.png" width="60%" >
+![](../img/1.authing_1.png)
 
-### 2. Create a User
+### 2. Create Users
 
-Create a user in **Organization > Employees > Create**. 
+Create users on the **Authing User Management > User List** page. As shown below:
+
+**Note**: You can create users using either usernames or emails. When creating users with usernames, the username must be an email address. If you use a username for SSO, you need to add a mapping between the username and email during the SAML configuration.
 
 ![](../img/03_authing_03.png)
 
-**Note**: Both **Username** and **Email** can be used to create accounts. When creating a user with a username, the username must be an email. If single sign-on is implemented using a username account, a mapping relationship between the username and email needs to be added later in the SAML protocol configuration.
-
-
 ![](../img/03_authing_04.png)
 
+### 3. Create Authing Application
 
+After creating users, go to the **Authing Application Page**, click **Add Application**, and configure the application information as shown below:
 
-### 3. Create an Application
-
-
-<font size=3>**Note**: If you already have an application in use, you can ignore this step and go straight to the next configuration. The application name and authentication address here requires custom configuration.</font>
-
-After creating the user, go to **Applications > Self-built App > Create** to configure the application information. 
-
+**Note**: If you already have an active application, you can skip this step and proceed directly to the next configuration. The application name and authentication URL need to be customized.
 
 ![](../img/03_authing_06.png)
 
-### 4. Configure SAML 2.0 Identity Provider Information
+### 4. Configure SAML2 Identity Provider Information {#step4}
 
-Go to your application configuration page > **Protocal Configuration** and drop down to the bottom to find more identity protocols. Configure SAML2 identity provider information. 
+Enter the application configuration page, scroll down to find more identity protocols, and configure the SAML2 identity provider information as shown below:
 
-:material-numeric-1-circle-outline: Adjust the default protocol type of Authentication Configuration to SAML2.
-
-:material-numeric-2-circle-outline: Fill in the default ACS address (assertion address). *(This configuration is only used to obtain metadata for the next step, and can be replaced after the correct assertion address is obtained in Guance. Example assertion address: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/))*
-
-:material-numeric-3-circle-outline: Download the SAML2 metadata document, which will be uploaded and used at the SSO identity provider creation place of Guance;
+1. Enter the default ACS URL (assertion consumer service URL) and click Save. (This configuration is only for obtaining metadata for the next step. After getting the correct assertion URL from <<< custom_key.brand_name >>>, you can replace it. Assertion URL example: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/);)
+   
+2. Download the SAML2 metadata document, which will be uploaded when creating the SSO identity provider in <<< custom_key.brand_name >>>;
 
 ![](../img/03_authing_07.png)
 
-### 5. Select Application Access Authorization
+### 5. Select Authentication Protocol Type
 
-Go to the tab **Access Authorization** and check the permission **Add to Single Sign On**. 
+Change the default protocol type in **Authentication Configuration** to SAML2.
+
+![](../img/03_authing_08.png)
+
+### 6. Select Application Access Authorization
+
+Adjust **Access Authorization** settings to allow all users access by default, as shown below:
 
 ![](../img/03_authing_09.png)
 
-### 6. [Enable SSO in Guance](./azure-ad.md#step4)
+### 7. [Enable SSO Single Sign-On in <<< custom_key.brand_name >>>](./azure-ad.md#step4)
 
+### 8. Update Authing ACS URL and Mapping
 
-### 7. Update Authing ACS Address and Mapping
-
-After configuring Guance SSO, get the assertion address, update Auhting SAML2 > **Default ACS Address**, and add the field mapping setting. 
+After configuring <<< custom_key.brand_name >>> SSO single sign-on, obtain the assertion URL and update the **default ACS URL** in Authing SAML2. Add field mappings as shown below:
 
 ![](../img/03_authing_11.png)
 
-**mapping**
+**Mapping**
 
 ```json
-// Authing email maps Guance email; no need to copy
+// Email mapping configuration for Authing, do not copy this line
 {
     "mappings": {
         "email": "Email"
     }
 }
 
-// Authing username maps Guance email; no need to copy
+// Username mapping configuration for Authing, do not copy this line
 
 {
     "mappings": {
@@ -81,5 +80,4 @@ After configuring Guance SSO, get the assertion address, update Auhting SAML2 > 
 }
 ```
 
-### 8. [Access Guance through SSO](./azure-ad.md#step7)
-
+### 9. [Access <<< custom_key.brand_name >>> via Single Sign-On](./azure-ad.md#step7)

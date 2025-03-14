@@ -39,8 +39,8 @@ Velero 是一个开源工具，可以安全地备份和还原，执行灾难恢�
 
 |     名称     |                   下载地址                   |
 | :------------------: | :---------------------------------------------: |
-|     Velero-cli  |                [Amd 下载](https://<<< custom_key.static_domain >>>/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz)<br>[Arm 下载](https://<<< custom_key.static_domain >>>/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz)                |
-| Velero 镜像 | [Amd 下载](https://<<< custom_key.static_domain >>>/dataflux/package/velero-amd64.tar.gz)<br/>[Arm 下载](https://<<< custom_key.static_domain >>>/dataflux/package/velero-arm64.tar.gz) |
+|     Velero-cli  |                [Amd 下载](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz)<br>[Arm 下载](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz)                |
+| Velero 镜像 | [Amd 下载](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/velero-amd64.tar.gz)<br/>[Arm 下载](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/velero-arm64.tar.gz) |
 
 
 ### 镜像导入 {#image-load}
@@ -270,14 +270,14 @@ Velero 是一个开源工具，可以安全地备份和还原，执行灾难恢�
 === "Amd"
 
     ```shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz && tar -xvf velero-v1.13.0-linux-amd64.tar.gz && mv velero-v1.13.0-linux-amd64/velero /bin
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/velero-v1.13.0-linux-amd64.tar.gz && tar -xvf velero-v1.13.0-linux-amd64.tar.gz && mv velero-v1.13.0-linux-amd64/velero /bin
     ```
 
 === "Arm"
 
 
     ```shell
-    wget https://<<< custom_key.static_domain >>>/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz && tar -xvf velero-v1.13.0-linux-arm64.tar.gz && mv velero-v1.13.0-linux-arm64/velero /bin
+    wget https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/velero-v1.13.0-linux-arm64.tar.gz && tar -xvf velero-v1.13.0-linux-arm64.tar.gz && mv velero-v1.13.0-linux-arm64/velero /bin
     ```
 
 #### 离线安装（可选） CLI {#install-download-cli}
@@ -322,8 +322,8 @@ velero -h
     ```
     velero install \
         --provider aws \
-        --image pubrepo.guance.com/googleimages/velero:v1.13.0 \    
-        --plugins pubrepo.guance.com/googleimages/velero-plugin-for-aws:v1.9.0 \
+        --image pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero:v1.13.0 \    
+        --plugins pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero-plugin-for-aws:v1.9.0 \
         --bucket $BUCKET \
         --backup-location-config region=$REGION \
         --snapshot-location-config region=$REGION \
@@ -349,13 +349,13 @@ velero -h
     ```
     velero install \
       --provider alibabacloud \
-      --image pubrepo.guance.com/googleimages/velero:v1.13.0 \
+      --image pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero:v1.13.0 \
       --bucket $BUCKET \
       --secret-file ./credentials-velero \
       --use-volume-snapshots=false \
       --backup-location-config region=$REGION \
       --prefix $BUCKETPATH \
-      --plugins pubrepo.guance.com/googleimages/velero-plugin-alibabacloud:v1.9.6-581f313-aliyun
+      --plugins pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/velero-plugin-alibabacloud:v1.9.6-581f313-aliyun
     ```
 
 #### 验证 {#check-velero}

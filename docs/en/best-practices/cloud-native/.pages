@@ -1,0 +1,35 @@
+nav:
+  - 'Microservices': 
+    - 'Best Practices for Observability in Large-Scale Microservice Projects': mutil-micro-service.md
+    - 'Mapping DataKit Service with ExternalName in Kubernetes Clusters': kubernetes-external-name.md
+
+  - 'Service Mesh':
+    - Best Practices for Microservice Observability using Istio: istio.md
+    - Best Practices from Development to Canary Release in a Service Mesh Microservices Architecture (Part 1): microservices1.md
+    - Best Practices from Development to Canary Release in a Service Mesh Microservices Architecture (Part 2): microservices2.md
+    - Best Practices from Development to Canary Release in a Service Mesh Microservices Architecture (Part 3): microservices3.md
+
+  - 'OpenTelemetry':
+    - OpenTelemetry Observability: opentelemetry-observable.md
+    - Sending OpenTelemetry Data to Jeager, Grafana, and ELK: opentelemetry-elk.md
+    - Sending OpenTelemetry Data to Grafana: opentelemetry-grafana.md
+    - Sending OpenTelemetry Data to Guance: opentelemetry-guance.md
+    - Best Practices for OpenTelemetry Sampling: opentelemetry-simpling.md
+    - OpenTelemetry Java Agent Sampling Strategies: otel-agent-sampling.md
+
+  - 'Logs':
+    - Best Practices for Log Collection Using Logback Socket in K8s: k8s-logback-socket.md
+    - Best Practices for Whitelisting Stdout Logs in Kubernetes: stdout-log.md
+    - Various Approaches for Log Collection in Kubernetes Clusters: k8s-logs.md 
+    - Best Practices for Pod Log Collection: pod-log.md
+    - Best Practices for Log Collection Using Logback Socket: logback-socket.md
+    - Best Practices for Log Collection and Analysis with Guance: logs.md
+    - Best Practices for Reporting Kubernetes Cluster Logs to the Same Node's DataKit: log-report-one-node.md
+    - Collecting Amazon ECS Logs with Guance: amazon-ecs.md
+
+  - 'Others':
+    - Collecting Tracing Data Using SkyWalking in Kubernetes Applications: k8s-skywalking.md
+    - Correlating RUM, APM, and LOG Data in Kubernetes Applications: k8s-rum-apm-log.md
+    - Best Practices for Observability with Nginx Ingress: ingress-nginx.md
+    - Enabling Ingress Observability Using CRD: ingress-crd.md
+    - Best Practices for Metrics Collection in Multiple Kubernetes Clusters: multi-cluster.md

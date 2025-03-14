@@ -5,4 +5,4 @@ nav:
   - 'Container': container.md
   - 'Process': process.md
   - 'Network': network.md
-  - 'Custom': custom
+  - 'Resource Catalog': custom

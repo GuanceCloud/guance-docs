@@ -1,18 +1,18 @@
-# DQL Outer Function
+## DQL Outer Functions Description
 
-The outer function in DQL is mainly used to calculate the data returned by DQL twice.
+DQL outer functions are primarily used for secondary calculations on data returned by DQL.
 
-For external functions, it is effective for all data types unless otherwise specified.
+For outer functions, unless otherwise specified, they apply to all data types.
 
-## Function Chain Call
+### Function Chain Calls
 
-DQL supports cascading multiple functions to realize chain call.
+DQL supports multiple functions cascaded together to achieve chain calls.
 
 ```python
 # Request
 difference(dql=`R::resource:(resource_load) {resource_load > 100} [1614239472:1614239531] limit 3`).cumsum()
 
-# Back
+# Response
 {
   "content": [
     {
@@ -42,27 +42,28 @@ difference(dql=`R::resource:(resource_load) {resource_load > 100} [1614239472:16
 }
 ```
 
-## Outer Function List
+## List of Outer Functions
 
 ### abs()
 
-- Description: Calculate the absolute value of each element of the processing set.
+- **Description**: Calculates the absolute value of each element in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                   |
-| ------- | ------------ | ---------- | -------- | ------ | -------------------    |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`          |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `abs('')` or `abs(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string
-  - No arguments are required when `abs()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `abs('')` or `abs(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `abs()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 abs(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -94,30 +95,30 @@ abs(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
     }
   ]
 }
-
 ```
 
 ### avg()
 
-- Description: Calculate the average value of the processing set.
+- **Description**: Calculates the average of the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                   |
-| ------- | ------------ | ---------- | -------- | ------ | -------------------    |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`          |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene: 
-  - When `avg('')` or `avg(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `avg()` is a non-first function called as a link.
+- **Scenarios**:
 
-> Note: The return value time column has a value of 0.
+  - `avg('')` or `avg(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `avg()`: When used as a non-first function in a chain call, no parameters are required.
 
-- Example:
+**Note**: The time column in the response is always 0.
+
+- **Example**:
 
 ```python
 # Request
 avg(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -143,26 +144,26 @@ avg(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 }
 ```
 
-
 ### count()
 
-- Description: For the returned results, count the quantity.
+- **Description**: Counts the number of results returned
 
- Parameter    | Description         | Type       | Is It Required | Default Value | Example 
-| ------- | ------------ | ---------- | -------- | ------ | -------------------    |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`          |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - `count('')` or `count(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string. 
-  - No arguments are required when `count()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example
+  - `count('')` or `count(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `count()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 count(`L::nginxlog:(status) {client_ip='127.0.0.1'}`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -186,28 +187,28 @@ count(`L::nginxlog:(status) {client_ip='127.0.0.1'}`)
     }
   ]
 }
-
 ```
 
 ### count_distinct()
 
-- Description: For processing set, de-duplicate statistics quantity.
+- **Description**: Counts the number of unique elements in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example 
-| ------- | ------------ | ---------- | -------- | ------ | -------------------    |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`          |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `count_distinct('')` or `count_distinct(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when  `count_distinct()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `count_distinct('')` or `count_distinct(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `count_distinct()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 count_distinct(`L::nginxlog:(status) {client_ip='127.0.0.1'}`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -235,23 +236,23 @@ count_distinct(`L::nginxlog:(status) {client_ip='127.0.0.1'}`)
 
 ### count_filter()
 
-- Description: For query result set, filter some data.
+- **Description**: Filters part of the result set for the query
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                   |
-| ------- | ------------ | ---------- | -------- | ------ | -------------------    |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`          |
-| `expr`  | Filter Expression   | string     | Yes       |        | `status != `critical`` |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
+| `expr`    | Filter expression | string | Yes      |              | `status != 'critical'`     |
 
-- Example:
+- **Example**:
 
 ```python
 # Request
 count_filter(
   dql="E::monitor:(event_id, status, source){source=monitor} by event_id", 
-  expr="status != `critical`"
+  expr="status != 'critical'"
 )
 
-# Back
+# Response
 {
   "content": [
     {
@@ -286,23 +287,24 @@ count_filter(
 
 ### cumsum()
 
-- Description: Cumulative summation of processing sets.
+- **Description**: Cumulative sum of the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `cumsum('')` or `cumsum(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `cumsum()` is a non-first function called as a link.
+- **Scenarios**:
 
-Example:
+  - `cumsum('')` or `cumsum(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `cumsum()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 cumsum(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -338,25 +340,26 @@ cumsum(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### derivative()
 
-- Description: Calculate the derivative of adjacent elements of the processing set.
+- **Description**: Calculates the derivative of adjacent elements in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-> Note: The time unit for derivation is seconds (s) .
+**Note**: The time unit for derivatives is seconds (s).
 
-- Scene:
-  - When `derivative('')` or `derivative(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `derivative()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `derivative('')` or `derivative(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `derivative()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 derivative(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -388,25 +391,26 @@ derivative(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### difference()
 
-- Description: Calculate the difference between adjacent elements of the processing set.
+- **Description**: Calculates the difference between adjacent elements in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-> Note: The processing set is at least larger than one row, otherwise a null value is returned.
+**Note**: The processing set must have more than one row; otherwise, it returns an empty value.
 
-- Scene:
-  - When `difference('')` or `difference(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `difference()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `difference('')` or `difference(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `difference()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 difference(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -438,25 +442,26 @@ difference(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### eval()
 
-- Note: Simple expression calculation function, the current eval function supports the operators: (1) addition, subtraction, multiplication and division operations (+-*/); (2) Take the mold (%); (3) Exponential operation (^).
+- **Description**: Simple expression evaluation function. Currently supported operators are: (1) arithmetic operations (+ - * /); (2) modulus (%); (3) exponentiation (^)
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| Expression   | Expression Evaluation | string     | Yes       |        | `A.a1 + B.b1 + 10`       |
-| DQL Query Statement String   | DQL Query Statement String | string     | Yes       |        | `M::cpu:(avg(usage_total) as a1) {  } [2h::1h]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| Expression | Expression calculation | string | Yes      |              | `A.a1 + B.b1 + 10`       |
+| DQL Query Statement | DQL query statement | string | Yes      |              | `M::cpu:(avg(usage_total) as a1) {  } [2h::1h]` |
 
-- Scene:
-  - `eval(expression, Query Statement String 1， Query Statement String...，Query Statement String n)`
+- **Scenarios**:
 
-> Note: The eval function does not support link calls, which means that the eval function cannot be used in combination with other outer functions.
+  - `eval(expression, query_statement1, ..., query_statementN)`
 
-- Example:
+**Note**: The `eval` function does not support chain calls, i.e., the `eval` function cannot be combined with other outer functions.
+
+- **Example**:
 
 ```python
 # Request
 eval(A.a1 + B.b1 + 10 , A='M::`cpu`:(avg(usage_total) as `a1`) {  } [2h::1h]', B='M::`cpu`:(avg(usage_total) as `b1`) {  } [2h::1h]')
 
-# Back
+# Response
 {
   "content": [
     {
@@ -493,23 +498,24 @@ eval(A.a1 + B.b1 + 10 , A='M::`cpu`:(avg(usage_total) as `a1`) {  } [2h::1h]', B
 
 ### first()
 
-- Description: Calculate the earliest meaningful value of the processing set.
+- **Description**: Calculates the earliest meaningful value in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `first('')` or `first(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `first()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `first('')` or `first(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `first()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 first(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -537,26 +543,27 @@ first(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### irate()
 
-- Description: Calculate the rate of change of an index within a certain time range.
-- See: [prometheus irate](https://prometheus.io/docs/prometheus/latest/querying/functions/#irate)
+- **Description**: Calculates the rate of change for a metric over a certain time range
+- **See more**: [Prometheus irate](https://prometheus.io/docs/prometheus/latest/querying/functions/#irate)
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-> Note: The unit of time is seconds (s) .
+**Note**: The time unit is seconds (s).
 
-- Scene:
-  - When `irate('')` or `irate(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `irate()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `irate('')` or `irate(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `irate()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 irate(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -588,23 +595,24 @@ irate(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### last()
 
-- Description: Calculate the most significant value of the processing set.
+- **Description**: Calculates the most recent meaningful value in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `last('')` or `last(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `last()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `last('')` or `last(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `last()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 last(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -632,25 +640,26 @@ last(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### log10()
 
-- Description: Calculate the log10 value of each element of the processing set.
+- **Description**: Calculates the log10 value of each element in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `log10('')` or `log10(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `log10()` is a non-first function called as a link.
+- **Scenarios**:
 
-> Note: The processing set is at least larger than one row, otherwise a null value is returned.
+  - `log10('')` or `log10(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `log10()`: When used as a non-first function in a chain call, no parameters are required.
 
-- Example:
+**Note**: The processing set must have more than one row; otherwise, it returns an empty value.
+
+- **Example**:
 
 ```python
 # Request
 log10(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -686,25 +695,26 @@ log10(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### log2()
 
-- Description: Calculate the log2 value of each element of the processing set.
+- **Description**: Calculates the log2 value of each element in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-> Note: The processing set is at least larger than one row, otherwise a null value is returned.
+**Note**: The processing set must have more than one row; otherwise, it returns an empty value.
 
-- Scene:
-  - When `log2('')` or `log2(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `log2()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `log2('')` or `log2(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `log2()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 log2(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -740,23 +750,24 @@ log2(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### max()
 
-- 说明：计算处理集的最大值
+- **Description**: Calculates the maximum value in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `max('')` or `max(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `max()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `max('')` or `max(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `max()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 max(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -784,23 +795,24 @@ max(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### min()
 
-- Description: Calculate the minimum value of the processing set.
+- **Description**: Calculates the minimum value in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-- Scene:
-  - When `min('')` or `min(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `min()`is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `min('')` or `min(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `min()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 min(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -828,26 +840,27 @@ min(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
 ### moving_average()
 
-- Description: Calculate the moving average of the processing set.
+- **Description**: Calculates the moving average of the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
-| `size`  | Window size     | int        | Yes       |        | 3                   |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
+| `size`    | Window size     | int    | Yes      |              | 3                         |
 
-> Note: The size of the window needs to be no less than the number of rows in the processing set, otherwise a null value is returned.
+**Note**: The window size must be no less than the number of rows in the processing set; otherwise, it returns an empty value.
 
-- Scene:
+- **Scenarios**:
+
   - `moving_average('', n)` or `moving_average(dql='', size=n)`
-  - When `moving_average(size=3)` is a non-first function called as a link, there is only one argument, indicating the window size.
+  - `moving_average(size=3)`: When used as a non-first function in a chain call, it has only one parameter, which represents the window size.
 
-- Example:
+- **Example**:
 
 ```python
 # Request
-moving_average(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`,size=2)
+moving_average(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`, size=2)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -879,25 +892,26 @@ moving_average(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`,s
 
 ### non_negative_derivative()
 
-- Description: Calculate the non-negative derivative of adjacent elements of the processing set.
+- **Description**: Calculates the non-negative derivative of adjacent elements in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-> Note: The time unit for derivation is seconds (s).
+**Note**: The time unit for derivatives is seconds (s).
 
-- Scene:
+- **Scenarios**:
+
   - `non_negative_derivative('')` or `non_negative_derivative(dql='')`
-  - No arguments are required when `non_negative_derivative()` is a non-first function called as a link.
+  - `non_negative_derivative()`: When used as a non-first function in a chain call, no parameters are required.
 
-- Example:
+- **Example**:
 
 ```python
 # Request
 non_negative_derivative(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -925,25 +939,26 @@ non_negative_derivative(dql=`R::resource:(resource_load) {resource_load > 100} l
 
 ### non_negative_difference()
 
-- Description: Calculate the non-negative difference between adjacent elements of the processing set.
+- **Description**: Calculates the non-negative difference between adjacent elements in the processing set
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-> Note: The processing set is at least larger than one row, otherwise a null value is returned.
+**Note**: The processing set must have more than one row; otherwise, it returns an empty value.
 
-- Scene:
+- **Scenarios**:
+
   - `non_negative_difference('')` or `non_negative_difference(dql='')`
-  - No arguments are required when `non_negative_difference()` is a non-first function called as a link.
+  - `non_negative_difference()`: When used as a non-first function in a chain call, no parameters are required.
 
-- Example:
+- **Example**:
 
 ```python
 # Request
 non_negative_difference(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -971,26 +986,27 @@ non_negative_difference(dql=`R::resource:(resource_load) {resource_load > 100} l
 
 ### rate()
 
-- Description: Calculate the rate of change of an index within a certain time range.
-- See: [prometheus rate](https://prometheus.io/docs/prometheus/latest/querying/functions/#rate)
+- **Description**: Calculates the rate of change for a metric over a certain time range
+- **See more**: [Prometheus rate](https://prometheus.io/docs/prometheus/latest/querying/functions/#rate)
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
 
-> Note: The unit of time is seconds (s).
+**Note**: The time unit is seconds (s).
 
-- Scene:
-  - When `rate('')` or `rate(dql='')` is the first function called by a link, there is only one argument, and the first argument represents a dql query of type string.
-  - No arguments are required when `rate()` is a non-first function called as a link.
+- **Scenarios**:
 
-- Example:
+  - `rate('')` or `rate(dql='')`: When used as the first function in a chain call, it has only one parameter, which represents the DQL query and is of type string.
+  - `rate()`: When used as a non-first function in a chain call, no parameters are required.
+
+- **Example**:
 
 ```python
 # Request
 rate(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 
-# Back
+# Response
 {
   "content": [
     {
@@ -1020,33 +1036,34 @@ rate(dql=`R::resource:(resource_load) {resource_load > 100} limit 3`)
 }
 ```
 
-
 ### series_sum()
 
-- Explanation: When ` group by ` produces multiple ` series `, it is merged into one ` series ` according to the point in time. Where multiple ` series ` at the same point in time are summed. 
+- **Description**: When `group by` produces multiple `series`, merge them into one `series` based on time points. Sum up the values of multiple `series` at the same time point.
 
-| Parameter    | Description         | Type       | Is It Required | Default Value | Example                |
-| ------- | ------------ | ---------- | -------- | ------ | ------------------- |
-| `dql`   | DQL Query Statement String | string     | Yes       |        | `M::cpu [5m]`       |
-| `sumBy` | group by Field List| string_list| No| | `sumBy=['host']`|
+| Parameter | Description     | Type   | Required | Default Value | Example                   |
+| --------- | --------------- | ------ | -------- | ------------- | ------------------------- |
+| `dql`     | DQL query statement | string | Yes      |              | `M::cpu [5m]`             |
+| `sumBy`   | List of `group by` fields | string_list | No | | `sumBy=['host']`|
 
-> Note: The processing set is at least larger than one row, otherwise a null value is returned.
-> sumBy example: 
->
->nsq Different node nodes may have the same topic, assuming that some measurement (f1) is on the topic,
->
-> M::nsq:(last(f1)) by host, topic, you need to count the sum of topic index f1 of each host according to the host level.
->
-> series_sum(dql="M::rocketmq:(last(f1)) BY host, topic", sumBy = "host")
+**Note**: The processing set must have more than one row; otherwise, it returns an empty value.
 
-- Scene: `series_sum('')` or `series_sum(dql='')` or `series_sum(dql='', sumBy=['f1', 'f2'])`
-- Example:
+> **Example of `sumBy`**:
+>
+> For different node instances of nsq, there may be identical topics. Suppose we have a metrics set (`f1`) defined on the topic level.
+>
+> `M::nsq:(last(f1)) by host, topic`, to aggregate the total sum of `f1` for each host's topics.
+>
+> `series_sum(dql="M::rocketmq:(last(f1)) BY host, topic", sumBy = ["host"])`
+
+- **Scenarios**: `series_sum('')` or `series_sum(dql='')` or `series_sum(dql='', sumBy=['f1', 'f2'])`
+
+- **Example**:
 
 ```python
 # Request
 series_sum(dql="L::`*`:(last(f2)) [20d::1d] by f1")
 
-# Back
+# Response
 {
   "content": [
     {

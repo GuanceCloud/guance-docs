@@ -61,7 +61,7 @@
                 - redis-server
                 - /usr/local/etc/redis/redis.conf
               name: redis
-              image: pubrepo.guance.com/googleimages/redis:6.0.20
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/redis:6.0.20
               imagePullPolicy: IfNotPresent
               ports:
                 - containerPort: 6379

@@ -42,7 +42,7 @@ DataWay 添加完成后，可获取到一个 DataWay 的安装脚本，复制安
 
 #### 注册部署版账号
 
-打开部署版注册网址（[https://boss.guance.com/index.html#/signup?type=private](https://boss.guance.com/index.html#/signup?type=private），根据提示注册部署版账号。
+打开部署版注册网址（[https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private](https://<<< custom_key.boss_domain >>>/index.html#/signup?type=private），根据提示注册部署版账号。
 
 ![](img/6.deployment_3.png)
 
@@ -93,7 +93,7 @@ DataWay 添加完成后，可获取到一个 DataWay 的安装脚本，复制安
 
 ![](img/12.deployment_13.png)
 #### 登录<<< custom_key.brand_name >>>
-打开<<< custom_key.brand_name >>>部署版访问地址，即可使用以上创建的用户登录到对应的工作空间开始使用<<< custom_key.brand_name >>>的所有功能。详细功能使用介绍可参考 [<<< custom_key.brand_name >>>帮助手册](https://docs.guance.com/)。
+打开<<< custom_key.brand_name >>>部署版访问地址，即可使用以上创建的用户登录到对应的工作空间开始使用<<< custom_key.brand_name >>>的所有功能。详细功能使用介绍可参考 [<<< custom_key.brand_name >>>帮助手册](<<< homepage >>>/)。
 
 ![](img/12.deployment_14.png)
 

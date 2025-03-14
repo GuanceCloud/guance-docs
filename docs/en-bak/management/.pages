@@ -1,0 +1,32 @@
+nav:
+  - index.md
+  - 'Settings': settings 
+  - 'Attribute Claims': attribute-claims.md
+  - 'Fields': field-management.md
+  - 'Global Labels': global-label.md
+  - 'Member Management': 
+    - member-management.md
+    - 'Invite Members': invite-member.md
+  - 'Roles': 
+    - role-management.md
+    - 'Permission List': role-list.md
+  - 'API Key': api-key
+  - 'Blacklist': overall-blacklist.md
+  - 'Pipelines': overall-pipeline.md 
+  - 'Data Forward': backup
+  - 'Regular Expressions': regex.md
+  - 'Audit': operation-audit.md
+  - 'Sharing': share-management.md
+  - 'Data Authorization': data-authorization.md
+  - 'Data Masking': data-mask.md
+  - 'Data Scanner': data-scanner.md
+  - 'Workspaces': space-management.md
+  - 'SSO Management': sso
+  - 'MFA': mfa-management.md
+  - 'Help': 
+    - help.md
+    - 'Status Page': status-page.md
+    - 'Tickets': work-order-management.md
+
+    
+    

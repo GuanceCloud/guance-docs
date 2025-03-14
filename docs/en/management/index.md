@@ -4,191 +4,185 @@ icon: zy/management
 # Workspace Management
 ---
 
-The workspace is the basic operational unit for Guance. Within the Guance workspace, you can use the diverse functions provided by the Guance. **Workspace management** refers to the settings, management, and operations performed on the current workspace. After joining a workspace and being assigned permissions, you can manage the basic information of the workspace, member permissions, SSO, data permissions, API Key, notification targets, built-in views, chart and snapshot sharing, etc.
+A workspace is the basic operational unit of <<< custom_key.brand_name >>>. Within <<< custom_key.brand_name >>> workspaces, you can use a variety of features provided by <<< custom_key.brand_name >>>. **Workspace management** involves settings, management, and operations for the current workspace. After joining a workspace and being assigned permissions, you can manage the basic information, member permissions, SSO login, data permissions, API Key, notification targets, built-in views, charts, and snapshot sharing.
 
-The following sections will guide you from the **personal account level** on how to register and log in to your account, ensure the security of your account, and customize the appearance of your workspace.
+The following sections introduce how to register and log into an account and enter your workspace, focus on account security, and set up the appearance of your workspace from the **personal account level**.
 
-## Workspace
+## Workspace Related
 
-### Create Workspace {#create}
+### Create a Workspace {#create}
 
-You can join one or more workspaces by creating or being invited to them.
+You can join one or more workspaces by creating or being invited.
 
-Before entering the Guance workspace, be sure that you have [registered a Guance account](https://auth.guance.com/businessRegister). After registration, you can click **Login** through [Guance Official Website](https://www.guance.one/), select the site you registered, enter the login account and password. The system will automatically create a workspace for you and assign Owner permission.
+Before joining any workspace in any way, you need to [register for a <<< custom_key.brand_name >>> account](https://auth.guance.com/businessRegister). After [registration is complete](../plans/commercial-huaweiyun.md), you can go to the [<<< custom_key.brand_name >>> official website](https://<<< custom_key.brand_main_domain >>>/), click **Login**, select the registration site, enter your login account and password, and log in to the <<< custom_key.brand_name >>> console. The system will create a workspace for you by default and grant you **Owner** permissions.
 
-<img src="img/0712-login.png" width="70%" >
-
-
-You can create one or more workspaces from the following two entrances:
-
-
-- Entrance 1
-
-Click **Account > Create Workspace** in the lower left corner.
-
-<img src="img/3.space_management_3.png" width="60%" >
-
-- Entrance 2
-
-Click **Workspace Name > Create Workspace** in the upper left corner of the studio page. 
-
-![](img/3.space_management_1.png)
-
-
-When **Creating Workspace**, enter a workspace name, select the workspace language, and describe the workspace as needed. You can also select different workspace directory style attributes based on roles.
-
-<img src="img/9.space_management_1.png" width="70%" >
-
-- The workspace directories under different roles are displayed by default as follows:
+Within an existing workspace, you can create other workspaces from the following two entry points:
 
 <div class="grid" markdown>
 
-=== "Dev"
+=== "Entry 1"
 
-    <img src="img/yanfa.png" width="60%" >
+    Click the lower-left corner **Account > Create Workspace**.
 
-=== "Ops"
+    <img src="img/3.space_management_3.png" width="60%" >
 
-    <img src="img/yunwei.png" width="60%" >
+=== "Entry 2"
 
-=== "Test"
+    Click the upper-left corner **Workspace Name > Create Workspace**.
 
-    <img src="img/ceshi.png" width="60%" >
-
-=== "Default"
-
-    <img src="img/moren.png" width="60%" >
+    ![](img/3.space_management_1.png)
 
 </div>
 
-If you need to set the menu, you can go to **Management > Advanced Settings > [Function Menu Management](./settings/customized-menu.md)** to modify it.
+Enter the Create Workspace window:
 
-???- warning "Details Worthy of Attention"
+1. Enter the workspace name;
+2. Select the language for this workspace;
+3. Optionally add a description for the workspace;
+4. Click **Confirm**.
 
-    - Under a single Guance site, only one mobile phone number and one mailbox are supported, and Hong Kong(China), Macao(China) and Taiwan(China) and foreign mobile phone numbers are not supported for the time being.   
-    - The accounts of different sites are independent and do not communicate with each other.   
-    > For more site descriptions, see [Select Registered Site](../getting-started/necessary-for-beginners/select-site.md).
-    - [SSO](../management/sso/index.md) to Guance is supported.
-
-
-> If you need to create a **SLS workspace of Exclusive Plan**, see [Guance Exclusive Plan in Alibaba Cloud Market](../billing/commercial-aliyun-sls.md).
-
-#### SSO Account {#sso}
-
-In addition to logging in by registering a Guance account, enterprise users are supported to log in to the Guance through [SSO](../management/sso/index.md).
-
-For accounts logged in through SSO, the login session configured by SSO is used by default. After account management is modified, the modified login session is used.
+<img src="img/9.space_management_1.png" width="60%" >
 
 
+### SSO Account Login {#sso}
 
-## Security  
+In addition to logging in via a <<< custom_key.brand_name >>> account, enterprise users can also log in to <<< custom_key.brand_name >>> using [SSO single sign-on](../management/sso/index.md).
 
-Guance has always valued users's account security, here are some related security settings. 
+Accounts logging in via SSO use the login session duration configured in SSO by default.
 
-### MFA {#mfa}
+### Quick Search {#quick-entry}
 
-Guance provides MFA management, which helps to add an additional layer of security protection to the account user name and password. After MFA is turned on, you need to perform secondary verification when logging in to help you improve the security of your account. 
+In the left navigation bar > Quick Search, you can quickly view recently visited pages and other function-related pages within the current workspace:
 
-> See [MFA Management](mfa-management.md).
+![](img/quick-entry.png)
 
-### Login Session {#login-hold-time}
+## Account Security Settings
 
-Guance supports setting login session for accounts logged into the workspace, including accounts registered in the workspace and SSO accounts.
+### MFA Authentication {#mfa}
 
-Click your account on the lower-right corner of the stuido and click **Account Management**. In the login session, click to modify the default login session, including the inactive login session and the maximum login session. After setting, the timeout session will be invalid.
+<<< custom_key.brand_name >>> provides MFA authentication management to add an extra layer of security beyond usernames and passwords. After enabling MFA authentication, you will need to perform a second verification when logging in, thereby enhancing account security.
 
-- No operation login session: From 30 to 1440 minutes, and the default is 30 minutes;
-- Maximum retention time of session: From 0 to 7 days, where 0 means never timeout, and the default is 7 days.
-   
-<img src="img/6.mfa_2.1.png" width="60%" >
+> For more details, refer to [MFA Management](mfa-management.md).
 
-### Data Isolation and Authorization
+### Login Session Duration {#login-hold-time}
 
-If your company has multiple departments that need to isolate data, you can create multiple workspaces and invite related departments or stakeholders to join the corresponding workspaces.
+<<< custom_key.brand_name >>> supports setting session hold times for accounts logged into the workspace, including both registered accounts and SSO single sign-on accounts.
 
-If you need to view the data of different workspaces in all departments in a unified way, you can authorize the data of multiple workspaces to the current workspace by configuring [data authorization](data-authorization.md), and query and display them through the scene dashboard and chart components of notes.
+Registered accounts can click the lower-left corner **Account > Account Management** in the workspace, and under login hold time, modify the default login session hold time, including idle login session hold time and maximum login session hold time. After setting, expired login sessions will become invalid.
 
-## Preferences  
+- Idle login session hold time: Supported range 30 ~ 10080 minutes, default is 10080 minutes;
+- Maximum login session hold time: Supported range 1 ~ 30 days, default is 30 days.
 
-The followings are some personal settings.   
+<img src="img/6.mfa_2.1.png" width="70%" >
 
-### Profile  
+### Data Isolation and Data Authorization
 
-You can modify your avatar, username, email address, phone number and account password; 
+If your company has multiple departments that need data isolation, you can create multiple workspaces and invite relevant departments or individuals to join the corresponding workspaces.
+
+If you need to uniformly view data across different departmental workspaces, you can configure [data authorization](./data-authorization.md) to authorize data from multiple workspaces to the current workspace. You can then query and display data through scenario dashboards and chart components.
+
+### Cancel Account {#cancel}
+
+<font size=2>**Note**: This entry is only visible for local accounts; single sign-on accounts do not have this option.</font>
+
+<img src="img/cancel.png" width="70%" >
+
+:material-numeric-1-circle-outline: Choose any method in the above image for identity verification;
+
+:material-numeric-2-circle-outline: If the current account is the workspace owner, transfer this role permission first;
+
+<img src="img/all-workspaces.png" width="60%" >
+
+<img src="img/de-owner.png" width="70%" >
+
+:material-numeric-3-circle-outline: Proceed to step three if the current account is not an owner. Before confirming cancellation, note the following:
+
+1. The account will no longer be able to log into <<< custom_key.brand_name >>> workspaces;  
+2. All associated information within the workspace will be cleared and cannot be recovered;  
+3. Any open tickets submitted by the account will be closed within 7 business days.
+
+After reading and agreeing to the relevant agreement, click **Confirm Cancellation** to cancel the current account.
+
+<img src="img/confirm-cancel.png" width="60%" >
+
+???+ warning "After the account is canceled:"
+
+    1. For the standard commercial plan: After cancellation, the email can be registered again. After re-registration, it becomes a new account, and historical account data will not be associated.
+    2. For the deployment plan: A new user can be created via [Management Backend > Add User](../deployment/user.md#add).
+
+## Personal Account Settings {#personal}
+
+**Note**: If the avatar is hidden in the management backend, configurations such as automatic refresh of the Explorer and high-performance mode can be modified at **Management > User Settings**.
+
+### User Information
+
+In the workspace, click the left side **Account > Account Management** to modify the avatar, username, email, phone number, and password.
 
 ### Time Zone {#zone}
 
+<<< custom_key.brand_name >>> supports members modifying their time zone to switch to the corresponding workspace time zone for viewing data. <<< custom_key.brand_name >>> defaults to "Browser Time," which is the time detected by the local browser.
 
-Guance supports members to modify time zones in order to switch to the corresponding workspace time zone to view data. Guance defaults to adopt browser time, which is the time detected by your local browser.
+In the workspace, click the lower-left corner **Account > Account Management > Time Zone** to modify the current time zone. You can also quickly change the time zone using the <<< custom_key.brand_name >>> [Time Widget](../getting-started/function-details/explorer-search.md#time).
 
-In the workspace, click on the bottom left corner **Account > Account Management > Time Zone** to modify the current time zone.
+**Note**: After setting a new time zone, all workspaces associated with your account will display according to the new time zone, so proceed with caution.
 
-**Note**: After setting a new time zone, all workspaces in which your current account is located will be displayed according to the set time zone. Please proceed with caution.
-
-![](img/account-zone.png)
-
-You can also use the [Time Widget](../getting-started/function-details/explorer-search.md#time) to quickly modify the time zone.
-
+<img src="img/account-zone.png" width="70%" >
 
 #### Workspace Time Zone {#workspace}
 
-Considering that the data in a workspace is sometimes reported based on a specific time zone, while the members of the current workspace may be located in different countries or regions, it is important to ensure that all members can analyze data and troubleshoot issues in the same time zone. You can go to **Workspace Management > Settings > Advanced Settings > Time Zone** to configure the time zone for all members. Once the configuration is completed, when other members of the workspace select the configured Workspace Time Zone, their time zone will automatically adjust accordingly.
+Considering that sometimes workspace data is reported based on a specific time zone while members may be located in different countries or regions, to ensure that all members analyze data and troubleshoot issues within the same time zone, you can go to **Workspace Management > Space Settings > Advanced Settings > Workspace Time Zone** to uniformly configure the time zone for members. After configuration, when other members of the workspace select the configured **Workspace Time Zone**, their time zone status will follow the changes in the configured space time zone.
 
 ???+ warning
 
-    - Only the Owner and Administrators of the current workspace have the permission to configure the Workspace Time Zone.   
-    - When the Workspace Time Zone is set, it will not automatically change the time zone of the members in the workspace. They need to manually select it.            
-    - When other members of the workspace have selected the workspace time zone, if the workspace time zone is deleted, the member's time zone will automatically change to browser time.  
-
-<img src="img/zone-1.png" width="60%" >
+    - Only the Owner and Administrator of the current workspace have the permission to configure the workspace time zone;          
+    - Setting the workspace time zone does not automatically change the time zone of members in the workspace; they must manually select it;          
+    - If the workspace time zone is deleted after other members have selected it, their time zones will revert to **Browser Time**.
 
 
-### System Notification
+### System Notifications {#system-notice}
 
-<div class="grid cards" markdown>
+You can view abnormal statuses in the current account's workspaces, such as data forwarding rules, cloud account availability, alert rules, and data usage limits, in the navigation bar > **System Notifications**.
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Manage your System Notification Settigs</font>](./system-notification.md)
+<img src="img/system-notice.png" width="70%" >
 
+Click the subscription button above, and <<< custom_key.brand_name >>> will send related emails to your inbox when there are new messages.
 
-</div>
+![](img/system-notice-1.png)
 
-### High Performance  
+### High-Performance Mode
 
-Guance supports chart high-performance loading mode, which is closed by default. You can click on the account in the lower-left corner and select **High-performance Mode** to open it.
+<<< custom_key.brand_name >>> supports high-performance chart loading mode, which is disabled by default.
 
 <img src="img/3.customized_1.1.png" width="60%" >
 
 *Example:*
 
-After the high-performance mode is turned on, all charts are not dynamically loaded, but directly loaded when clicking to enter the page, that is, all charts have been loaded when sliding down beyond the current page, and the display results can be directly viewed.
+After enabling high-performance mode, all charts are loaded statically and fully loaded upon entering the page. When scrolling down to view charts outside the current page, they are already fully loaded and ready for immediate viewing.
 
-**Note**: After enabling the high-performance mode, it only affects the current user's viewing of charts.
+**Note**: Enabling high-performance mode affects only the current user's chart viewing scenarios.
 
 ![](img/3.high_performance_2.gif)
 
-### Theme
 
-You can switch theme colors in Guance, including light color and dark color. Click on the account in the lower-left corner and choose to use it in **Theme**.
+### System Theme {#theme}
+
+<<< custom_key.brand_name >>> supports switching theme colors.
+
+If the system theme is set to **Auto**, it will automatically switch based on the computer's appearance.
 
 <img src="img/3.high_performance_1.png" width="60%" >
 
-<div class="grid" markdown>
 
-=== "Light color effect"
-                                                              
-    ![](img/08_color_02.png)
 
-=== "Dark color effect"
+## Further Reading
 
-    ![](img/08_color_03.png)
-
-</div>
-
-## More Reading
+<font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Workspace Lock/Unlock/Dissolve**</font>](../billing/cost-center/workspace-management.md#lock)
-
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Lock/Unlock/Dissolve Workspace**</font>](../billing-center/workspace-management.md#workspace-lock#lock)
 
 </div>
+
+
+</font>

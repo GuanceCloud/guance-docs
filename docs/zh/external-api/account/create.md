@@ -22,7 +22,8 @@
 | extend | json |  | 额外信息<br>允许为空: True <br> |
 | language | string |  | 语言信息<br>例子: zh <br>允许为空: True <br>允许空字符串: True <br>可选值: ['zh', 'en'] <br> |
 | isDisable | boolean |  | 是否禁用<br>例子: True <br>允许为空: False <br>可选值: [True, False] <br> |
-| attributes | json |  | 账号的属性信息(json结构, KV结构, V部分尽量使用字符串)<br>例子: {'部门': 'A部门'} <br>允许为空: False <br> |
+| attributes | json |  | 账号的属性信息(json结构, KV结构, V部分尽量使用字符串，适用于SSO登录时自动更新)<br>例子: {'部门': 'A部门'} <br>允许为空: False <br> |
+| customAttributes | json |  | 账号的自定义属性信息(json结构, KV结构, V部分尽量使用字符串, 仅适用于业务侧更新)<br>例子: {'部门': 'A部门'} <br>允许为空: False <br> |
 
 ## 参数补充说明
 

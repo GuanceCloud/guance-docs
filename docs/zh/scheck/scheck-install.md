@@ -13,13 +13,13 @@
 === "Linux"
 
     ```Shell
-    sudo -- bash -c "$(curl -L https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
+    sudo -- bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
-    Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://<<< custom_key.static_domain >>>/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
     ```
 <!-- markdownlint-enable MD046 -->
 
@@ -29,13 +29,13 @@
 === Linux
 
     ```Shell
-    SC_UPGRADE=1 bash -c "$(curl -L https://<<< custom_key.static_domain >>>/security-checker/install.sh)"
+    SC_UPGRADE=1 bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.sh)"
     ```
 
 === Windows
 
     ```powershell
-    $env:SC_UPGRADE;Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://<<< custom_key.static_domain >>>/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
+    $env:SC_UPGRADE;Set-ExecutionPolicy Bypass -scope Process -Force; Import-Module bitstransfer; start-bitstransfer -source https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.ps1 -destination .install.ps1; powershell .install.ps1;
     ```
 <!-- markdownlint-enable MD046 -->
 

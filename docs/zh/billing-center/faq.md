@@ -3,7 +3,7 @@
 
 :material-chat-question: 代金券发放方式
 
-直接发放：代金券会直接发放到您的费用中心账号里，可直接登录[费用中心](https://boss.guance.com/) > 账户概览 > 代金券余额进行查看。
+直接发放：代金券会直接发放到您的费用中心账号里，可直接登录[费用中心](https://<<< custom_key.boss_domain >>>/) > 账户概览 > 代金券余额进行查看。
 
 :material-chat-question: 代金券使用范围
 

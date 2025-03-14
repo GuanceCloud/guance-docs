@@ -6,7 +6,7 @@
 <a name="SFSA6"></a>
 ## 1.升级到商业版
 
-购买套餐可在<<< custom_key.brand_name >>>工作空间升级到商业版后，点击右上角的“进入费用中心”，进入<<< custom_key.brand_name >>>[费用中心](https://boss.guance.com)。关于如何升级到商业版可参考文档 [付费计划与账单](../../../../billing/index.md)。<br />![](../../../img/11.account_center_10.png)
+购买套餐可在<<< custom_key.brand_name >>>工作空间升级到商业版后，点击右上角的“进入费用中心”，进入<<< custom_key.brand_name >>>[费用中心](https://<<< custom_key.boss_domain >>>)。关于如何升级到商业版可参考文档 [付费计划与账单](../../../../billing/index.md)。<br />![](../../../img/11.account_center_10.png)
 <a name="tr5vY"></a>
 ## 2.购买套餐包
 

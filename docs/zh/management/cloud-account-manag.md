@@ -8,49 +8,61 @@
 
 **注意**：当前功能仅支持**工作空间拥有者、管理者**进行相关配置。
 
-## 添加云账号授权 {#cloud-authorize}
+## 添加授权 {#cloud-authorize}
 
-<font size=2>**注意**：目前仅支持 AWS 云账号，其他云账号即将上线，敬请期待。</font>
+目前支持为 [AWS 帐号](#aws)和[阿里云云账号](#alibaba)进行授权。
 
-AWS 账号类型有两种认证方式：Access Keys、角色授权。
+<img src="../img/cloud-account.png" width="50%" >
 
-<img src="../img/cloud-account.png" width="60%" >
+### AWS {#aws}
 
+AWS 账号类型有两种认证方式：
 
-### 基于 Access Keys {#ak}
+- [Access Keys](#ak)   
+- [角色授权](#ra)
 
-<img src="../img/cloud-account-1.png" width="60%" >
+#### 基于 Access Keys {#ak}
+
+<img src="../img/cloud-account-1.png" width="50%" >
 
 1. 选择地区：按需选择中国区与海外区；
-2. 账号 ID：必须为 12 个字符；
+2. 填入 AWS 主账号 ID；
 3. 输入 AWS 侧的 Access Key 与 Secret Key；
 4. 填入账户别名；将用于在<<< custom_key.brand_name >>>中展示，后续此账号收集的数据会自动加上此标签；
 5. 点击**测试**按钮，测试通过后方可创建成功。
 
-### 基于角色授权 {#ra}
+#### 基于角色授权 {#ra}
 
-<img src="../img/cloud-account-2.png" width="60%" >
+<img src="../img/cloud-account-2.png" width="50%" >
 
 1. 选择地区：按需选择中国区与海外区；
-2. 账号 ID：必须为 12 个字符；
+2. 填入 AWS 主账号 ID；
 3. 输入 AWS 侧的 Access Key 与 Secret Key；
 4. 填入该账号下的角色名称；
 5. 输入账户别名；将用于在<<< custom_key.brand_name >>>中展示，后续此账号收集的数据会自动加上此标签；
 6. 点击保存即可。还可点击**测试**按钮，校验当前云账号信息。
 
-## 账号列表
+### 阿里云 {#alibaba}
+
+#### 基于 Access Keys {#alibaba_ak}
+
+<img src="../img/cloud-account-5.png" width="50%" >
+
+1. 选择地区：按需选择中国区与海外区；
+2. 填入阿里云主账号 ID；
+3. 输入阿里云侧的 Access Key 与 Secret Key；
+4. 填入账户别名；将用于在<<< custom_key.brand_name >>>中展示，后续此账号收集的数据会自动加上此标签；
+5. 点击**测试**按钮，测试通过后方可创建成功。
+
+## 管理授权
 
 创建成功的云账号均会在此展示。您可进行以下操作：
 
 - 右上角基于**类型**进行快速筛选；
 - 直接在搜索栏输入云账号别名进行搜索定位；
-- 通过设置按钮直接进行删除操作；
-
-<img src="../img/cloud-account-3.png" width="60%" >
-
+- 通过设置按钮直接进行删除操作；  
 - 点击进入某条账号信息，进行再次编辑。
 
-<img src="../img/cloud-account-4.png" width="80%" >
 
 ## 配置集成
 
@@ -58,13 +70,10 @@ AWS 账号类型有两种认证方式：Access Keys、角色授权。
 
 **注意**：不同的集成所需要授权的资源不同，请根据集成文档要求授予相应的权限给到云账号，否则有可能会出现集成安装成功，但数据采集会失败的情况。
 
-???+ abstract "安装前提"
+**前提**：已开通 [DataFlux Func 托管版](../dataflux-func/automata.md)。
 
-    已开通 [DataFlux Func 托管版](../dataflux-func/automata.md)。
 
-    若未开通 DataFlux Func 托管版，请先前往开通。
-
-    ![](img/cloud-inte-3.png)
+### 在云账号信息配置
 
 点击进入云账号信息详情页 > 集成，您可查看当前账号下所有相关的集成。
 
@@ -76,44 +85,37 @@ AWS 账号类型有两种认证方式：Access Keys、角色授权。
 
 1. 云账号自动填入；
 2. 按需选择适用的地域类型；
-3. <<< custom_key.brand_name >>>会自动识别当前集成脚本包含的指标，您可按需删减；
-4. 过滤器目前支持 `=`、`in` 运算。
-
-点击安装。安装成功后，请继续脚本安装。
+3. 系统会自动识别当前集成脚本包含的指标，您可按需删减；
+4. 过滤器目前支持 `=`、`in` 运算；
+5. 点击安装。安装成功后，请继续脚本安装。
 
 ![](img/cloud-inte-2.png)
 
-### 集成侧直接安装
+### 集成侧直接配置
 
-???+ abstract "前提"
+**前提**：
 
-    ![](img/cloud-inte-4.png)
+- 开通 DataFlux Func 托管版；  
+- 在管理中[已配置云账号授权](#cloud-authorize)。
 
-    1. 开通 DataFlux Func 托管版；  
-    2. 在管理中[已配置云账号授权](#cloud-authorize)。
+![](img/cloud-inte-4.png)
 
-除在**管理 > 云账号管理**这一路径下安装集成外，您也可以前往**集成**直接安装.
 
-在单个集成安装页面下，您可以配置多个云账号。
+1. 前往**集成**直接安装。在单个集成安装页面下，可以配置多个云账号；
+2. 点击添加云账号；
+3. 可勾选其他需要配置的云账号，并配置地域、指标、过滤器；
+4. 点击安装，云账号将覆盖更新为当前的最新配置。
 
 ![](img/cloud-inte-3.png)
 
-点击添加云账号，您可勾选其他需要配置的云账号，并配置地域、指标、过滤器。
 
 ![](img/cloud-inte-5.png)
 
-点击安装，云账号将覆盖更新为当前的最新配置。
 
 ## 删除/卸载集成
 
 - 在云账号管理列表页，点击 :octicons-gear-24:，即可删除云账号。删除后将不会再继续采集此云账号下所有配置的集成，但不会影响已采集到的数据。
 
-![](img/cloud-inte-7.png)
-
 - 在云账号详情页 > 集成，点击卸载后，将不会再继续采集此集成，但不会回影响已采集的数据。
 
-![](img/cloud-inte-8.png)
-
 - 在集成侧，点击卸载后，所有 AWS 云账户将不会再继续采集此集成数据。如果只需要某个云账号不再继续采集，可前往云账号配置中操作。
-
-![](img/cloud-inte-6.png)

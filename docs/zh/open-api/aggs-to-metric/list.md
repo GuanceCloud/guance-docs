@@ -27,7 +27,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/aggs_to_metric/list?pageSize=100&pageIndex=1&scriptType=logToMetric' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric/list?pageSize=100&pageIndex=1&scriptType=logToMetric' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
