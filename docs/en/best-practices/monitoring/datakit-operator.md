@@ -10,7 +10,7 @@ Is it possible to extract these identical sections to reduce workload? The answe
 
 ## Prerequisites
 
-- You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/).
+- You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/).
 - A Kubernetes cluster.
 - [DataKit has been deployed using DaemonSet](../../datakit/datakit-daemonset-deploy.md), and ddtrace collector has been enabled.
 
@@ -141,6 +141,6 @@ Obtain the IP address of the Pod, access the application's interface to generate
 
 ![image.png](../images/datakit-operator1.png)
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) - [APM], based on the server `java-demo-service`, you can query the traces.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) - [APM], based on the server `java-demo-service`, you can query the traces.
 
 ![image.png](../images/datakit-operator2.png)

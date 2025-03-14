@@ -19,7 +19,7 @@ Linux, fully known as GNU/Linux, is a free-to-use and freely distributed Unix-li
 
 ## Prerequisites
 
-Visit the official website [Guance](https://www.guance.com/) to register an account and log in using your registered credentials.
+Visit the official website [Guance](https://<<< custom_key.brand_main_domain >>>/) to register an account and log in using your registered credentials.
 
 ## Deployment Implementation
 
@@ -370,7 +370,7 @@ vi /etc/telegraf/telegraf.conf
 
 ```bash
 [[inputs.http_response]]
-    urls = ["https://www.baidu.com","https://guance.com","http://localhost:9090"]
+    urls = ["https://www.baidu.com","https://<<< custom_key.brand_main_domain >>>","http://localhost:9090"]
 ```
 
 3. Restart Telegraf

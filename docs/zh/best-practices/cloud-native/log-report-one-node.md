@@ -21,10 +21,10 @@ Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、�
 
 ##### 1.1.1 下载部署文件
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
 
 ##### 1.1.2 配置 token
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 
 ```yaml
         - name: ENV_DATAWAY
@@ -556,7 +556,7 @@ data:
 
 ![image](../images/log-report-one-node/5.png)
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『日志』模块，根据数据来源搜索 log_fwd_demo，找到日志点击查看详情。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『日志』模块，根据数据来源搜索 log_fwd_demo，找到日志点击查看详情。
 
 ![image](../images/log-report-one-node/6.png)
 

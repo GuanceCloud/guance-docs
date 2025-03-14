@@ -173,7 +173,7 @@ mvn clean install -DskipTests
 
 ### Enable RUM
 
-- Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/)
+- Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)
 
 Click on 【User Analysis】 -> 【Create】 to input `book-shop`, select Web, and copy the JS.
 
@@ -252,7 +252,7 @@ java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
 
 ### Order Monitoring Dashboard
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Use Cases】->【Create New Dashboard】->【Create Blank Dashboard】, input “Order Monitoring Dashboard”, and click 【Confirm】.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), go to 【Use Cases】->【Create New Dashboard】->【Create Blank Dashboard】, input “Order Monitoring Dashboard”, and click 【Confirm】.
 
 ![1641360132(1).png](../images/order-4.png)
 

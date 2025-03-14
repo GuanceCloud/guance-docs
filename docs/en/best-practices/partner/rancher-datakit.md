@@ -53,7 +53,7 @@ Click "Install".
 Select the namespace "datakit" and click "Next".
 ![image](../images/rancher-datakit/6.png)
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Management" module, find the `token` as shown in the figure below, and click the "Copy Icon".
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Management" module, find the `token` as shown in the figure below, and click the "Copy Icon".
 ![image](../images/rancher-datakit/7.png)
 
 Switch to the Rancher interface:
@@ -93,7 +93,7 @@ Here, enter the variable name `ENV_NAMESPACE`, and the value `guance-k8s`, and c
 
 2. ebpf View
 
-   Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)" - "Infrastructure", and click on "k8s-node1".
+   Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)" - "Infrastructure", and click on "k8s-node1".
 
 ![image](../images/rancher-datakit/15.png)
 
@@ -171,7 +171,7 @@ Enter the volume name "datakit-conf", choose the config map "`datakit.conf`", en
 
 2. Container Monitoring View
 
-   Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)" - "Infrastructure" - "Containers", input "host:k8s-node1", display the containers on the k8s-node1 node, and click "ingress".
+   Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)" - "Infrastructure" - "Containers", input "host:k8s-node1", display the containers on the k8s-node1 node, and click "ingress".
 ![image](../images/rancher-datakit/24.png)
 
 Click on "Metrics" to view the DataKit Container monitoring view.
@@ -185,7 +185,7 @@ Click on "Metrics" to view the DataKit Container monitoring view.
 
 2. Deploy Kubernetes Monitoring View
 
-   Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes monitoring", select "Kubernetes Monitoring View", and click "Confirm".
+   Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes monitoring", select "Kubernetes Monitoring View", and click "Confirm".
 ![image](../images/rancher-datakit/26.png)
 
 Click on the newly created "Kubernetes Monitoring View" to view cluster information.
@@ -227,7 +227,7 @@ Click "Storage", find the config map with the volume name "datakit-conf", click 
 
 2. Kubernetes Overview with Kube State Metrics Monitoring View
 
-   Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes Overview", select "Kubernetes Overview with Kube State Metrics Monitoring View", and click "Confirm".
+   Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes Overview", select "Kubernetes Overview with Kube State Metrics Monitoring View", and click "Confirm".
 
 ![image](../images/rancher-datakit/32.png)
 
@@ -236,7 +236,7 @@ Click on the newly created "Kubernetes Overview with KSM Monitoring View" to vie
 
 #### 2.5 Kubernetes Overview by Pods Monitoring View
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes Overview by", select "Kubernetes Overview by Pods Monitoring View", and click "Confirm".
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes Overview by", select "Kubernetes Overview by Pods Monitoring View", and click "Confirm".
 ![image](../images/rancher-datakit/34.png)
 
 Click on the newly created "Kubernetes Overview by Pods Monitoring View" to view cluster information.
@@ -246,7 +246,7 @@ Click on the newly created "Kubernetes Overview by Pods Monitoring View" to view
 
 #### 2.6 Kubernetes Services Monitoring View
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes Services", select "Kubernetes Services Monitoring View", and click "Confirm".
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "kubernetes Services", select "Kubernetes Services Monitoring View", and click "Confirm".
 ![image](../images/rancher-datakit/37.png)
 
 Click on the newly created "Kubernetes Services Monitoring View" to view cluster information.
@@ -999,33 +999,33 @@ In the previous steps, metrics have been collected for Istiod and the bookinfo a
 
 ##### 4.1 Istio Workload Monitoring View
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Workload Monitoring View", and click "Confirm". Then click on the newly created "Istio Workload Monitoring View" for observation.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Workload Monitoring View", and click "Confirm". Then click on the newly created "Istio Workload Monitoring View" for observation.
 ![image](../images/rancher-datakit/68.png)
 ![image](../images/rancher-datakit/69.png)
 ![image](../images/rancher-datakit/70.png)
 
 ##### 4.2 Istio Control Plane Monitoring View
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Control Plane Monitoring View", and click "Confirm". Then click on the newly created "Istio Control Plane Monitoring View" for observation.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Control Plane Monitoring View", and click "Confirm". Then click on the newly created "Istio Control Plane Monitoring View" for observation.
 ![image](../images/rancher-datakit/71.png)
 ![image](../images/rancher-datakit/72.png)
 ![image](../images/rancher-datakit/73.png)
 
 ##### 4.3 Istio Service Monitoring View
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Service Monitoring View", and click "Confirm". Then click on the newly created "Istio Service Monitoring View" for observation.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Service Monitoring View", and click "Confirm". Then click on the newly created "Istio Service Monitoring View" for observation.
 ![image](../images/rancher-datakit/74.png)
 
 ##### 4.4 Istio Mesh Monitoring View
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Mesh Monitoring View", and click "Confirm". Then click on the newly created "Istio Mesh Monitoring View" for observation.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "Scenarios" module, click "Create Dashboard", input "Istio", select "Istio Mesh Monitoring View", and click "Confirm". Then click on the newly created "Istio Mesh Monitoring View" for observation.
 ![image](../images/rancher-datakit/75.png)
 
 ### Step 5 RUM Observability
 
 ##### 5.1 Create User Access Monitoring
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to "User Access Monitoring", create a new application **devops-bookinfo**, and copy the JS below.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to "User Access Monitoring", create a new application **devops-bookinfo**, and copy the JS below.
 ![image](../images/rancher-datakit/76.png)
 
 ![image](../images/rancher-datakit/77.png)
@@ -1063,7 +1063,7 @@ Replace the image `image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.
 
 ##### 5.4 User Access Monitoring
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to "User Access Monitoring", find the **devops-bookinfo** application, click to enter, and view UV, PV, session count, visited pages, etc.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to "User Access Monitoring", find the **devops-bookinfo** application, click to enter, and view UV, PV, session count, visited pages, etc.
 ![image](../images/rancher-datakit/81.png)
 ![image](../images/rancher-datakit/82.png)
 
@@ -1075,12 +1075,12 @@ Resource Analysis
 
 ### Step 6 Log Observability
 
-By default, logs output to `/dev/stdout` are collected when deploying DataKit. Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to "Logs" to view log information. Additionally, <<< custom_key.brand_name >>> provides联动功能 between RUM, APM, and logs. Please refer to the official documentation for the corresponding configuration.
+By default, logs output to `/dev/stdout` are collected when deploying DataKit. Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to "Logs" to view log information. Additionally, <<< custom_key.brand_name >>> provides联动功能 between RUM, APM, and logs. Please refer to the official documentation for the corresponding configuration.
 ![image](../images/rancher-datakit/85.png)
 
 ### Step 7 Gitlab CI Observability
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to "CI", click "Summary" and select the bookinfo-views project to view the execution status of Pipelines and Jobs.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to "CI", click "Summary" and select the bookinfo-views project to view the execution status of Pipelines and Jobs.
 ![image](../images/rancher-datakit/86.png)
 
 Go to "CI", click "Explorer", and select gitlab_pipeline.
@@ -1128,7 +1128,7 @@ spec:
 Log in to "gitlab", find the bookinfo-views project, modify the `.gitlab-ci.yml` file to set `APP_VERSION` to `v2`, and commit the changes.
 ![image](../images/rancher-datakit/92.png)
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to "CI" -> "Explorer", and you can see that version v2 has been deployed.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to "CI" -> "Explorer", and you can see that version v2 has been deployed.
 
 ![image](../images/rancher-datakit/93.png)
 
@@ -1143,7 +1143,7 @@ Add weights so that v1 has a weight of 90 and v2 has a weight of 10, then click 
 
 ##### 8.5 Observe reviews-v2 Operation
 
-Log in to "[<<< custom_key.brand_name >>>](https://console.guance.com/)", go to the "APM" module, click the icon in the upper-right corner.
+Log in to "[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)", go to the "APM" module, click the icon in the upper-right corner.
 ![image](../images/rancher-datakit/96.png)
 
 Turn on "Distinguish Environments and Versions", and view the call topology diagram of bookinfo.<br />

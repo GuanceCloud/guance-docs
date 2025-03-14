@@ -10,7 +10,7 @@ Logback 日志输出除了常用的 file 和 stdout 外，还可以进行 socket
 
 ## 前置条件
 
-1. 需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)
+1. 需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)
 1. Spring Boot应用
 1. docker-harbor
 1. K8s 集群

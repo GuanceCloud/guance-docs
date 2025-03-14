@@ -40,11 +40,11 @@ Below, we will provide a detailed explanation using the example of collecting **
 
 #### 1.1 Download datakit.yaml
 
-Log in to the [<<< custom_key.brand_name >>> Console](https://console.guance.com/), click on "Integration" - "DataKit" - "Kubernetes", and download `datakit.yaml`.
+Log in to the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/), click on "Integration" - "DataKit" - "Kubernetes", and download `datakit.yaml`.
 
 #### 1.2 Replace Token
 
-Log in to the [<<< custom_key.brand_name >>> Console](https://console.guance.com/), go to the "Management" module, and copy the token from "Basic Settings". Replace `<your-token>` in the `ENV_DATAWAY` environment variable's value in the `datakit.yaml` file.
+Log in to the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/), go to the "Management" module, and copy the token from "Basic Settings". Replace `<your-token>` in the `ENV_DATAWAY` environment variable's value in the `datakit.yaml` file.
 
 #### 1.3 Add Global Tags
 
@@ -94,12 +94,12 @@ kubectl apply -f datakit.yaml
 
 #### 3.1 Metric Preview
 
-Log in to the [<<< custom_key.brand_name >>> Console](https://console.guance.com/), click on "Metrics", search for `prom_api_server`, and under the `cluster_name_k8s` tag, you will see the names of two clusters.
+Log in to the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/), click on "Metrics", search for `prom_api_server`, and under the `cluster_name_k8s` tag, you will see the names of two clusters.
 
 ![image](../images/multi-cluster-3.png)
 
 #### 3.2 Create a New View
 
-Log in to the [<<< custom_key.brand_name >>> Console](https://console.guance.com/), click on "Scenes" - "Create Dashboard", select **Kubernetes API Server Monitoring View**, and you can now distinguish between clusters in the cluster name dropdown.
+Log in to the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/), click on "Scenes" - "Create Dashboard", select **Kubernetes API Server Monitoring View**, and you can now distinguish between clusters in the cluster name dropdown.
 
 ![image](../images/multi-cluster-4.png)

@@ -10,7 +10,7 @@ Similarly, DataKit supports Socket log collection. This article primarily introd
 
 ## Prerequisites
 
-1. You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/)
+1. You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/)
 2. Spring Boot application
 3. Docker-Harbor
 4. K8s cluster

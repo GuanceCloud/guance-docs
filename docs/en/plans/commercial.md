@@ -5,7 +5,7 @@
 
 <<< custom_key.brand_name >>> workspace users of the Commercial Plan need to successfully register for **<<< custom_key.brand_name >>> Console and <<< custom_key.brand_name >>> Billing Center accounts** in order to proceed with subsequent usage billing and fee settlement processes.
 
-- [<<< custom_key.brand_name >>> Console](https://console.guance.com/) account can track the data intake scale and bill details of the current workspace, synchronizing this information to a specified Billing Center account.
+- [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/) account can track the data intake scale and bill details of the current workspace, synchronizing this information to a specified Billing Center account.
 - [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) account can be bound via `Workspace ID` to achieve **unified fee management at the workspace level**, providing you with multiple payment options.
 
 

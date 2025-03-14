@@ -20,7 +20,7 @@
 
 ### 账号注册
 
-前往 [<<< custom_key.brand_name >>>](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。
+前往 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) 注册账号，使用已注册的账号/密码登录。
 
 ![image](../images/k8s-rum-apm-log/1.png)
 

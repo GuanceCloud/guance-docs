@@ -21,7 +21,7 @@
 
 - [x] Jira 平台（需要有管理员权限）
 - [x] <<< custom_key.brand_name >>>空间帐号
-- [x] [Dataflux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/) 
+- [x] [Dataflux Func <<< custom_key.brand_name >>>特别版](https://<<< custom_key.func_domain >>>/) 
 
 
 ## Jira
@@ -44,7 +44,7 @@ API Key 可参考文档 [API Key](/management/api-key/index.md)
 
 - 登陆 Func
 
-登陆到已经部署的[Dataflux Func <<< custom_key.brand_name >>>特别版](https://func.guance.com/) 
+登陆到已经部署的[Dataflux Func <<< custom_key.brand_name >>>特别版](https://<<< custom_key.func_domain >>>/) 
 
 - 添加 Python 依赖
 

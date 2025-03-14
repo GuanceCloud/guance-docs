@@ -3,7 +3,7 @@
 ---
 
 ## Prerequisites
-Visit the official website [<<< custom_key.brand_name >>>](https://guance.com/) to register an account, and log in using your registered account credentials.
+Visit the official website [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) to register an account, and log in using your registered account credentials.
 ## Installing DataKit
 
 ### Obtain Installation Command
@@ -559,7 +559,7 @@ data:
           
 ```
 
-Find the openway address on [https://console.guance.com/](https://console.guance.com/) as shown below, and replace the value of ENV_DATAWAY in `datakit-default.yaml`
+Find the openway address on [https://<<< custom_key.studio_main_site >>>/](https://<<< custom_key.studio_main_site >>>/) as shown below, and replace the value of ENV_DATAWAY in `datakit-default.yaml`
 
 ![1631933361(1).png](../images/jvm-5.png)
 
@@ -742,7 +742,7 @@ $ kubectl apply -f your-app-deployment-yaml
 
 ### Creating a New JVM Observability Scenario:
 
-Log in to [<<< custom_key.brand_name >>>](https://guance.com/), enter the workspace, and click [Create Scenario]
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/), enter the workspace, and click [Create Scenario]
 
 ![1631933819(1).png](../images/jvm-7.png)
 

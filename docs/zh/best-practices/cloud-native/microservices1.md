@@ -28,11 +28,11 @@
 
 ##### 1.1.1 下载部署文件
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
 
 ##### 1.1.2 配置 token
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 
 ```yaml
         - name: ENV_DATAWAY
@@ -178,7 +178,7 @@ DataKit 部署成功后，可以看到如下图的运行状态。
 
 #### 2.2 开启 RUM
 
-为了观测网站被调用的信息，需要开通前端的数据采集。登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。
+为了观测网站被调用的信息，需要开通前端的数据采集。登录『 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『用户访问监测』，新建应用 **devops-bookinfo** ，复制下方 JS。
 
 ![image](../images/microservices/6.png)	 
 
@@ -699,19 +699,19 @@ deploy_k8s:
 
 #### 6.2 Gitlab CI 流水线可观测
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『CI』，点击『概览』选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
 		  
 ![image](../images/microservices/16.png)	 
 
 ![image](../images/microservices/17.png)	 
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_pipeline。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『CI』,点击『查看器』，选择 gitlab_pipeline。
 		 
 ![image](../images/microservices/18.png)	 
 
 ![image](../images/microservices/19.png)	 
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『CI』,点击『查看器』，选择 gitlab_job。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『CI』,点击『查看器』，选择 gitlab_job。
 		 
 ![image](../images/microservices/20.png)	 
 

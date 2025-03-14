@@ -20,7 +20,7 @@ GitLab CI/CD（后简称 GitLab CI）是一套基于 GitLab 的 CI/CD 系统，�
 
 ## <<< custom_key.brand_name >>>
 
-“[<<< custom_key.brand_name >>>](https://guance.com/)” 是一个云时代的系统可观测性平台。平台包含基础设施、日志、指标、事件、应用性能、用户访问、云拨测、系统级安全巡检等功能模块，针对上述功能产生的 Logging、Metrics、Tracing 这三类数据提供全链路级别的数据分析和洞察能力。H5、iOS、Android、小程序等应用全面覆盖，支持完整追踪用户访问行为及真实体验，提供了页面性能、资源调用、错误告警、业务访问等一系列数据及分析视图。与链路追踪相联动，帮助您实时洞察应用表现和每一个请求背后的真实需求。灵活的场景布局、丰富的图表选择、拉拽式交互体验让您轻松搭建属于“自己”的仪表板。统一的数据查询方式，支持配置各类数据，简单易上手。
+“[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)” 是一个云时代的系统可观测性平台。平台包含基础设施、日志、指标、事件、应用性能、用户访问、云拨测、系统级安全巡检等功能模块，针对上述功能产生的 Logging、Metrics、Tracing 这三类数据提供全链路级别的数据分析和洞察能力。H5、iOS、Android、小程序等应用全面覆盖，支持完整追踪用户访问行为及真实体验，提供了页面性能、资源调用、错误告警、业务访问等一系列数据及分析视图。与链路追踪相联动，帮助您实时洞察应用表现和每一个请求背后的真实需求。灵活的场景布局、丰富的图表选择、拉拽式交互体验让您轻松搭建属于“自己”的仪表板。统一的数据查询方式，支持配置各类数据，简单易上手。
 ## DataKit
 
 DataKit 是<<< custom_key.brand_name >>>开源的采集工具，开源地址：[https://github.com/DataFlux-cn/datakit](https://github.com/DataFlux-cn/datakit)

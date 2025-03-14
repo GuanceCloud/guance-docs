@@ -20,7 +20,7 @@ Regarding logs, this article will use DataKit’s Logfwd collector to collect lo
 
 ### Account Registration
 
-Go to [<<< custom_key.brand_name >>>](https://console.guance.com/) to register an account and log in using your registered credentials.
+Go to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) to register an account and log in using your registered credentials.
 
 ![image](../images/k8s-rum-apm-log/1.png)
 

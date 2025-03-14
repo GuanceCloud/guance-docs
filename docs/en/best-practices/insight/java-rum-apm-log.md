@@ -18,7 +18,7 @@ Currently, **<<< custom_key.brand_name >>>** has this capability. This article u
 
 ### 1 Copy Installation Command
 
-Register and log in to [<<< custom_key.brand_name >>>](https://console.guance.com), choose 「Integration」 - 「DataKit」, select an installation command suitable for your environment, and copy it.
+Register and log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>), choose 「Integration」 - 「DataKit」, select an installation command suitable for your environment, and copy it.
 
 ![image](../images/java-rum-apm-log/1.png)
 
@@ -59,7 +59,7 @@ By choosing different integration input names, you can view corresponding monito
 
 ### 1 Copy JS Code
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com), choose 「User Access Monitoring」 - 「Create Application」 - 「Web」 - Load Type choose 「Synchronous Loading」
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>), choose 「User Access Monitoring」 - 「Create Application」 - 「Web」 - Load Type choose 「Synchronous Loading」
 
 ![image](../images/java-rum-apm-log/5.png)
 

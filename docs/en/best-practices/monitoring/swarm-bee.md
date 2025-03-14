@@ -317,4 +317,4 @@ In this article, we mentioned some of the most useful metrics to monitor for mai
 - **Harvester Screening Pass Rate**
 - **Processes**
 
-Ultimately, you will recognize other metrics relevant to your specific use case. Of course, you can also learn more through [<<< custom_key.brand_name >>>](http://guance.com).
+Ultimately, you will recognize other metrics relevant to your specific use case. Of course, you can also learn more through [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>).

@@ -12,7 +12,7 @@ As a classic observability architecture, different types of data are stored on d
 
 The combination of Grafana Tempo and Loki allows us to intuitively see the log trace situation. However, the characteristics of Loki also determine that it cannot provide good log processing and analysis capabilities for large production systems. Log tracing is only part of observability; querying through log traces alone cannot solve most problems, especially in the era of microservices and cloud-native architectures where the diversity of issues requires comprehensive analysis from multiple aspects. For example, user access delays may not be due to program issues but could also result from other factors like current system network or CPU. In multi-cloud scenarios, Grafana cannot effectively support business development.
 
-[<<< custom_key.brand_name >>>](https://www.guance.com)
+[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 
 is a unified platform for collecting and managing various types of data including metrics, logs, APM, RUM, infrastructure, containers, middleware, and network performance. Using <<< custom_key.brand_name >>> allows for comprehensive observability of applications, not just between log traces. For more information about <<< custom_key.brand_name >>>, please refer to [Product Advantages](../../product-introduction/index.md).
 

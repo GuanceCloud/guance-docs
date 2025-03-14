@@ -154,7 +154,7 @@ Check if there is a `container.conf` file under the `gitrepos` directory, which 
 
 ![image](../images/rancher-install-15.png)
 
-Log in to **[<<< custom_key.brand_name >>>](https://console.guance.com/)** - **Metrics**, select the **kubernetes** Measurement, and verify that the metrics have data, indicating successful metric collection.
+Log in to **[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)** - **Metrics**, select the **kubernetes** Measurement, and verify that the metrics have data, indicating successful metric collection.
 
 ![image](../images/rancher-install-16.png)
 

@@ -295,4 +295,4 @@ In this article, we covered some of the most useful metrics to monitor for maint
 - **Harvester Eligibility Rate**
 - **Processes**
 
-Ultimately, you will identify additional metrics relevant to your specific use case. You can also learn more through [<<< custom_key.brand_name >>>](http://guance.com).
+Ultimately, you will identify additional metrics relevant to your specific use case. You can also learn more through [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>).

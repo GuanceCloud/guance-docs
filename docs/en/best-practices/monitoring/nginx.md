@@ -31,7 +31,7 @@ Although Nginx provides enough data sources to reflect its own status, textual o
 
 ### Account Registration
 
-Go to [<<< custom_key.brand_name >>>](https://www.guance.com) to register an account and log in using your registered account/password.
+Go to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) to register an account and log in using your registered account/password.
 
 ### Install Datakit
 

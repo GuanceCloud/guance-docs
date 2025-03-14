@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-登录 [<<< custom_key.brand_name >>>](https://console.guance.com/)，【集成】->【Datakit】-> 【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 datakit.yaml 文件，在接下来的操作中会使用到。
+登录 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)，【集成】->【Datakit】-> 【Kubernetes】，请按照指引在 Kubernetes 集群中安装 DataKit ，其中部署使用的 datakit.yaml 文件，在接下来的操作中会使用到。
 
 ## DataKit 高级配置
 
@@ -423,7 +423,7 @@ data:
 
 ### 1 创建通知对象
 
-登录 [<<< custom_key.brand_name >>>](https://console.guance.com/)，【管理】->【通知对象管理】-> 【新建通知对象】，选择邮件组，输入名称和邮件地址。<br />
+登录 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)，【管理】->【通知对象管理】-> 【新建通知对象】，选择邮件组，输入名称和邮件地址。<br />
 
 ![image](../images/k8s-logs/1.png)	
 

@@ -36,7 +36,7 @@ For Kubernetes clusters with deployed Ingress, it becomes very important to obse
 ## Prerequisites
 
 - [Install Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)
-- Install DataKit: Log in to the [<<< custom_key.brand_name >>> Console](https://console.guance.com/), click 「Integration」 - 「DataKit」 - 「Kubernetes」
+- Install DataKit: Log in to the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/), click 「Integration」 - 「DataKit」 - 「Kubernetes」
 
 ### Deploy Ingress
 
@@ -212,7 +212,7 @@ curl -v http://8.136.204.98 -H 'host: mynginx.com'
 
 ### View Metrics Data
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), under 「Metrics」 find the prom_ingress metric. The prom_ingress is the value of the measurement_name parameter in the annotations.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), under 「Metrics」 find the prom_ingress metric. The prom_ingress is the value of the measurement_name parameter in the annotations.
 
 ![image](../images/ingress-nginx-6.png)
 
@@ -220,7 +220,7 @@ Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), under �
 
 ### Ingress Monitoring View
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 「Scenes」 - 「Create Dashboard」, search for 「Ingress Nginx Monitoring View」 in the template library, and click 「Confirm」.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), go to 「Scenes」 - 「Create Dashboard」, search for 「Ingress Nginx Monitoring View」 in the template library, and click 「Confirm」.
 
 The Ingress performance metrics displayed include the average CPU usage, average memory usage, total network requests/responses, number of Ingress Config loads, result of the last Ingress Config load, and the forwarding success rate of Ingress.
 

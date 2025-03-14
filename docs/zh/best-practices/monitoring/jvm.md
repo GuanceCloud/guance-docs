@@ -3,7 +3,7 @@
 ---
 
 ## 前置条件
-前往官方网站 [<<< custom_key.brand_name >>>](https://guance.com/) 注册账号，使用已注册的账号/密码登录。
+前往官方网站 [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) 注册账号，使用已注册的账号/密码登录。
 ## 安装 DataKit
 
 ### 获取命令
@@ -559,7 +559,7 @@ data:
           
 ```
 
-在 [https://console.guance.com/](https://console.guance.com/) 找到 openway 地址，如下图所示，替换 `datakit-default.yaml` 中的  ENV_DATAWAY 的值
+在 [https://<<< custom_key.studio_main_site >>>/](https://<<< custom_key.studio_main_site >>>/) 找到 openway 地址，如下图所示，替换 `datakit-default.yaml` 中的  ENV_DATAWAY 的值
 
 ![1631933361(1).png](../images/jvm-5.png)
 
@@ -742,7 +742,7 @@ $ kubectl apply -f your-app-deployment-yaml
 
 ###  新建 JVM 可观测场景：
 
-登录[<<< custom_key.brand_name >>>](https://guance.com/)进入空间，点击【新建场景】
+登录[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)进入空间，点击【新建场景】
 
 ![1631933819(1).png](../images/jvm-7.png)
 

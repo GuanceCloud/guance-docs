@@ -80,4 +80,4 @@ Lastly, resist the temptation to set too many SLOs or make SLI aggregations over
 ### Now You Know Your SLOs
 In this blog post, we explored how choosing the right SLIs and converting them into well-defined SLOs can put your organization on the path to success. By using SLIs to measure the level of service you provide to users—and tracking your performance against actual SLOs—you will be better equipped to make decisions that enhance both feature velocity and system reliability. We have summarized this guide into a simple checklist that you can refer to as you start creating SLOs and involving more team members.
 
-Continue reading the [next part of this series](slo-part2.md) to learn how technical and business teams can collaborate more effectively using [<<< custom_key.brand_name >>>](https://guance.com/) by managing SLOs and the rest of their monitoring data.
+Continue reading the [next part of this series](slo-part2.md) to learn how technical and business teams can collaborate more effectively using [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) by managing SLOs and the rest of their monitoring data.

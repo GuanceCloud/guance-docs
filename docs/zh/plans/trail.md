@@ -102,7 +102,7 @@
 
 ### 前置条件
 
-- 已注册[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)账号，已有体验版工作空间；
+- 已注册[<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)账号，已有体验版工作空间；
 - 同步创建[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/)账号，对接后续费用结算功能。
 
 

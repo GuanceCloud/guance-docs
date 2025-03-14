@@ -96,7 +96,7 @@ cd /usr/local/df-demo/tomcat8081/bin
 ### 3 Observable Tracing
 
 Access `http://192.168.0.100:8080/consumer/ping` in your browser, where the IP is the address of the host.<br/>
-Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」-「APM」, and you should see the `tomcat-customer` and `tomcat-provider` services.<br/>
+Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」-「APM」, and you should see the `tomcat-customer` and `tomcat-provider` services.<br/>
 Click on a trace to view flame graphs, span lists, call relationships, etc.
 
 ![image](../images/springboot-tomcat-3.png)

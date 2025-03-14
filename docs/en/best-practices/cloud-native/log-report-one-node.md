@@ -21,11 +21,11 @@ In the default Cluster mode, Kube-proxy receives request traffic and performs SN
 
 ##### 1.1.1 Download Deployment Files
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and click on the 'Integration' module. Then click on 'DataKit' in the top-left corner, select 'Kubernetes', and download `datakit.yaml`.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and click on the 'Integration' module. Then click on 'DataKit' in the top-left corner, select 'Kubernetes', and download `datakit.yaml`.
 
 ##### 1.1.2 Configure Token
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and enter the 'Management' module. Find the token as shown in the image below and replace the `<your-token>` value in the ENV_DATAWAY environment variable of `datakit.yaml`.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and enter the 'Management' module. Find the token as shown in the image below and replace the `<your-token>` value in the ENV_DATAWAY environment variable of `datakit.yaml`.
 
 ```yaml
         - name: ENV_DATAWAY
@@ -557,7 +557,7 @@ Log in to the master node of the cluster and execute the following command to ge
 
 ![image](../images/log-report-one-node/5.png)
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and go to the 'Logs' module. Search for `log_fwd_demo` based on the data source, find the logs, and click to view details.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and go to the 'Logs' module. Search for `log_fwd_demo` based on the data source, find the logs, and click to view details.
 
 ![image](../images/log-report-one-node/6.png)
 

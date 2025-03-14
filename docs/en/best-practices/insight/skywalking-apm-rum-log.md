@@ -10,7 +10,7 @@ This article uses a simple and easy-to-follow open-source project as an example,
 
 ## Prerequisites
 
-- You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/).
+- You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/).
 - Spring Boot and Vue applications.
 - A Linux server with Nginx installed.
 
@@ -24,7 +24,7 @@ This article uses a simple and easy-to-follow open-source project as an example,
 
 #### 1.1 Install DataKit
 
-Log in to the «[<<< custom_key.brand_name >>>](https://console.guance.com/)», sequentially enter «Integration» - «DataKit» - «Linux», and click «Copy Icon» to copy the installation command.
+Log in to the «[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)», sequentially enter «Integration» - «DataKit» - «Linux», and click «Copy Icon» to copy the installation command.
 
 ![image](../images/skywalking-apm-rum-log/1.png)
 
@@ -164,13 +164,13 @@ cd /usr/local/df-demo/skywalking
 java  -javaagent:agent/skywalking-agent.jar -Dskywalking.agent.service_name=skywalking-log  -Dskywalking.collector.backend_service=localhost:11800 -jar skywalking-user-service.jar
 ```
 
-Log in to «[<<< custom_key.brand_name >>>](https://console.guance.com/)», enter «Application Performance Monitoring», and view services, traces, and topology maps.
+Log in to «[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)», enter «Application Performance Monitoring», and view services, traces, and topology maps.
 
 ![image](../images/skywalking-apm-rum-log/16.png)
 
 ### 4 Enable RUM
 
-Log in to «[<<< custom_key.brand_name >>>](https://console.guance.com/)», enter «User Access Monitoring», create a new application named **skywalking-web-demo**, and copy the JS code below.
+Log in to «[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)», enter «User Access Monitoring», create a new application named **skywalking-web-demo**, and copy the JS code below.
 
 ![image](../images/skywalking-apm-rum-log/17.png)
 
@@ -190,7 +190,7 @@ Parameter Description
 - `traceType`: Type of trace, defaults to `ddtrace`, optional.
 - `allowedTracingOrigins`: To achieve correlation between APM and RUM traces, fill in the domain name or IP of the backend service, optional.
 
-Click the button on the frontend interface. Log in to «[<<< custom_key.brand_name >>>](https://console.guance.com/)» - «User Access Monitoring», click on «skywalking-web-demo», and view UV, PV, session count, visited pages, etc.
+Click the button on the frontend interface. Log in to «[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)» - «User Access Monitoring», click on «skywalking-web-demo», and view UV, PV, session count, visited pages, etc.
 
 ![image](../images/skywalking-apm-rum-log/19.png)
 
@@ -198,7 +198,7 @@ Click the button on the frontend interface. Log in to «[<<< custom_key.brand_na
 
 ### 5 Full-Stack Observability
 
-Log in to «[<<< custom_key.brand_name >>>](https://console.guance.com/)» - «User Access Monitoring», click on «skywalking-web-demo», then click «Explorer», select «View», view page calls, and then click «route_change».
+Log in to «[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)» - «User Access Monitoring», click on «skywalking-web-demo», then click «Explorer», select «View», view page calls, and then click «route_change».
 
 ![image](../images/skywalking-apm-rum-log/21.png)
 

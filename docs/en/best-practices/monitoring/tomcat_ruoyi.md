@@ -264,7 +264,7 @@ Download [dd-trace-java](https://github.com/GuanceCloud/dd-trace-java/releases),
 
 ## Create RUM
 
-1. Log in to [<<< custom_key.brand_name >>>](https://www.guance.com)
+1. Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 2. Select `Synthetic Tests`, choose `Application List`, and click `Create`
 3. Enter `ruoyi-admin` as the `Application Name`. You can customize the `Application ID` or click the `Random Generate` button.
 4. Choose `web` for `Application Type`. On the right side, select `CDN Synchronous Loading` under `SDK Configuration`, ***copy the corresponding script content, which will be used later***.

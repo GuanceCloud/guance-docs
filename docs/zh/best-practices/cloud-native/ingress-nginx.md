@@ -36,7 +36,7 @@ Ingress 包含两大组件 Ingress Controller 和 Ingress ，常用的 Ingress �
 ## 前置条件
 
 - [安装 Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/)
-- 安装 DataKit：登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，点击 「集成」 - 「DataKit」 - 「Kubernetes」
+- 安装 DataKit：登录[<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)，点击 「集成」 - 「DataKit」 - 「Kubernetes」
 
 ### 部署 Ingress
 
@@ -212,7 +212,7 @@ curl -v http://8.136.204.98 -H 'host: mynginx.com'
 
 ### 查看指标数据
 
-登录[<<< custom_key.brand_name >>>](https://console.guance.com/)，在「指标」中找到 prom_ingress 指标。其中 prom_ingress 是 annotations 中 measurement_name 参数的值。
+登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)，在「指标」中找到 prom_ingress 指标。其中 prom_ingress 是 annotations 中 measurement_name 参数的值。
 
 ![image](../images/ingress-nginx-6.png)
 
@@ -220,7 +220,7 @@ curl -v http://8.136.204.98 -H 'host: mynginx.com'
 
 ### Ingress 监控视图
 
-登录[<<< custom_key.brand_name >>>](https://console.guance.com/)，「场景」 - 「新建仪表板」，在模板库中搜索「Ingress Nginx 监控视图」，点击「确定」。
+登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)，「场景」 - 「新建仪表板」，在模板库中搜索「Ingress Nginx 监控视图」，点击「确定」。
 
 Ingress 性能指标展示，包括 Ingress Controller 的平均 cpu 使用率、平均内存使用、网络请求/响应合计、 Ingress Config 的加载次数、 Ingress Config 上次加载结果、 Ingress 的转发成功率等。
 

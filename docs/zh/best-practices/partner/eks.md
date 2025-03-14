@@ -15,7 +15,7 @@ Amazon Elastic Kubernetes Service (Amazon EKS) 是 Amazon 提供的一项 Kubern
 
 ## 前置条件
 
-- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
+- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)。
 - 您需要先创建一个[AWS 账号](https://www.amazonaws.cn/)。
 - [安装 EKS ](https://docs.amazonaws.cn/eks/latest/userguide/create-cluster.html)集群
 - 一台 EC2(Amazon Linux 2 AMI 镜像)
@@ -115,7 +115,7 @@ helm version
 
 #### 4.1 获取 Token
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」- 「管理」-「设置」，找到 Token，点击右边的复制图标，Token 在下一步中会使用到。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」- 「管理」-「设置」，找到 Token，点击右边的复制图标，Token 在下一步中会使用到。
 
 ![image.png](../images/eks-9.png)
 

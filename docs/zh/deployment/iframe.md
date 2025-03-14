@@ -14,7 +14,7 @@
 
 ## 如何获取 iframe 链接
 
-直接找到想要嵌套的<<< custom_key.brand_name >>>目标页面，复制页面 URL 即可。支持通过参数控制隐藏左侧菜单栏和右下角的「创建 Issue」按钮。只需要在页面 URL 后面追加参数配置，例如：`<iframe src="https://console.guance.com/logIndi/log/all?hideWidget=true&hideTopNav=true&hideLeftNav=true"></iframe>`
+直接找到想要嵌套的<<< custom_key.brand_name >>>目标页面，复制页面 URL 即可。支持通过参数控制隐藏左侧菜单栏和右下角的「创建 Issue」按钮。只需要在页面 URL 后面追加参数配置，例如：`<iframe src="https://<<< custom_key.studio_main_site >>>/logIndi/log/all?hideWidget=true&hideTopNav=true&hideLeftNav=true"></iframe>`
 
 | 参数          | 是否必填 | 类型     |  描述 |
 | ------------ | ------- | -------- | ---------------------------------------------- |

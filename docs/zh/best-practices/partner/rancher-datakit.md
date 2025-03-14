@@ -53,7 +53,7 @@
 命名空间选择「datakit」，点击「下一步」。
 ![image](../images/rancher-datakit/6.png)
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「管理」模块，找到下图中 `token`，点击旁边的「复制图标」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「管理」模块，找到下图中 `token`，点击旁边的「复制图标」。
 ![image](../images/rancher-datakit/7.png)
 
 切换到 Rancher 界面：
@@ -93,7 +93,7 @@
 
 2、 ebpf 视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「基础设施」，点击「k8s-node1」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」 - 「基础设施」，点击「k8s-node1」。
 
 ![image](../images/rancher-datakit/15.png)
 
@@ -171,7 +171,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 2、 Container 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「基础设施」 - 「容器」，输入「`host:k8s-node1`」 ，显示 k8s-node1 节点的容器，点击「ingress」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」 - 「基础设施」 - 「容器」，输入「`host:k8s-node1`」 ，显示 k8s-node1 节点的容器，点击「ingress」。
 ![image](../images/rancher-datakit/24.png)
 
 点击「指标」，查看 DataKit Container 的监控视图。
@@ -185,7 +185,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 2、 部署 Kubernetes 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes 监控」，选择 「Kubernetes 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes 监控」，选择 「Kubernetes 监控视图」，点击「确定」。
 ![image](../images/rancher-datakit/26.png)
 
 点击新建的「Kubernetes 监控视图」，查看集群信息。
@@ -227,7 +227,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 2、 Kubernetes Overview with Kube State Metrics 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview」，选择 「Kubernetes Overview with Kube State Metrics 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview」，选择 「Kubernetes Overview with Kube State Metrics 监控视图」，点击「确定」。
 
 ![image](../images/rancher-datakit/32.png)
 
@@ -236,7 +236,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 #### 2.5 Kubernetes Overview by Pods 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview by」，选择 「Kubernetes Overview by Pods 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Overview by」，选择 「Kubernetes Overview by Pods 监控视图」，点击「确定」。
 ![image](../images/rancher-datakit/34.png)
 
 点击新建的「Kubernetes Overview by Pods 监控视图」，查看集群信息。
@@ -246,7 +246,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
 #### 2.6 Kubernetes Services 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Services」，选择 「Kubernetes Services 监控视图」，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「kubernetes Services」，选择 「Kubernetes Services 监控视图」，点击「确定」。
 ![image](../images/rancher-datakit/37.png)
 
 点击新建的「Kubernetes Services 监控视图」，查看集群信息。
@@ -999,33 +999,33 @@ deploy_k8s:
 
 ##### 4.1 Istio Workload 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择 「Istio Workload 监控视图」，点击「确定」。再点击新建的「Istio Workload 监控视图」进行观测。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择 「Istio Workload 监控视图」，点击「确定」。再点击新建的「Istio Workload 监控视图」进行观测。
 ![image](../images/rancher-datakit/68.png)
 ![image](../images/rancher-datakit/69.png)
 ![image](../images/rancher-datakit/70.png)
 
 ##### 4.2 Istio Control Plane 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Control Plane 监控视图」，点击「确定」。再点击新建的「Istio Control Plane 监控视图」进行观测 。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Control Plane 监控视图」，点击「确定」。再点击新建的「Istio Control Plane 监控视图」进行观测 。
 ![image](../images/rancher-datakit/71.png)
 ![image](../images/rancher-datakit/72.png)
 ![image](../images/rancher-datakit/73.png)
 
 ##### 4.3 Istio Service 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Service 监控视图」，点击「确定」。再点击新建的「Istio Service 监控视图」进行观测 。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Service 监控视图」，点击「确定」。再点击新建的「Istio Service 监控视图」进行观测 。
 ![image](../images/rancher-datakit/74.png)
 
 ##### 4.4 Istio Mesh 监控视图
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Mesh 监控视图」，点击「确定」。再点击新建的「Istio Mesh 监控视图」进行观测 。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「场景」模块，点击「新建仪表板」，输入「Istio」，选择「Istio Mesh 监控视图」，点击「确定」。再点击新建的「Istio Mesh 监控视图」进行观测 。
 ![image](../images/rancher-datakit/75.png)
 
 ### 步骤 5 RUM 可观测
 
 ##### 5.1 新建用户访问监测
 
-登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「用户访问监测」，新建应用 **devops-bookinfo** ，复制下方 JS。
+登录「 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「用户访问监测」，新建应用 **devops-bookinfo** ，复制下方 JS。
 ![image](../images/rancher-datakit/76.png)
 
 ![image](../images/rancher-datakit/77.png)
@@ -1063,7 +1063,7 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 ##### 5.4 用户访问监测
 
-登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「用户访问监测」，找到 **devops-bookinfo **应用，点击进入，查看 UV、PV、会话数、访问的页面等信息。
+登录「 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「用户访问监测」，找到 **devops-bookinfo **应用，点击进入，查看 UV、PV、会话数、访问的页面等信息。
 ![image](../images/rancher-datakit/81.png)
 ![image](../images/rancher-datakit/82.png)
 
@@ -1075,12 +1075,12 @@ docker push 172.16.0.238/df-demo/product-page:v1
 
 ### 步骤 6 日志可观测
 
-根据部署 datakit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「日志」，查看日志信息。此外<<< custom_key.brand_name >>>还提供了 RUM、APM 和日志直接的联动功能，请参考官方文档做相应的配置。
+根据部署 datakit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录「 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「日志」，查看日志信息。此外<<< custom_key.brand_name >>>还提供了 RUM、APM 和日志直接的联动功能，请参考官方文档做相应的配置。
 ![image](../images/rancher-datakit/85.png)
 
 ### 步骤 7 Gitlab CI 可观测
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「CI」，点击「概览」选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「CI」，点击「概览」选择 bookinfo-views 项目，查看 Pipeline 和 Job 的执行情况。
 ![image](../images/rancher-datakit/86.png)
 
 进入「CI」,点击「查看器」，选择 gitlab_pipeline。
@@ -1128,7 +1128,7 @@ spec:
 登录「gitlab」，找到 bookinfo-views 项目， 修改 `.gitlab-ci.yml` 文件中的 `APP_VERSION` 的值为 `v2`，提交一次代码。
 ![image](../images/rancher-datakit/92.png)
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「CI」->「查看器」，可以看到 v2 版本已发布。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「CI」->「查看器」，可以看到 v2 版本已发布。
 
 ![image](../images/rancher-datakit/93.png)
 
@@ -1143,7 +1143,7 @@ spec:
 
 ##### 8.5 观测 reviews-v2 运行情况
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，进入「应用性能监测」模块，点击右上方的图标。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，进入「应用性能监测」模块，点击右上方的图标。
 ![image](../images/rancher-datakit/96.png)
 
 打开「区分环境和版本」，查看 bookinfo 的调用拓扑图。<br />

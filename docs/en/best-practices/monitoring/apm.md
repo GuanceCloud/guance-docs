@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-Account Registration: Visit the official website [https://www.guance.com/](https://auth.guance.com/login/pwd) to register an account, and log in using your registered account/password.
+Account Registration: Visit the official website [https://<<< custom_key.brand_main_domain >>>/](https://auth.guance.com/login/pwd) to register an account, and log in using your registered account/password.
 
 ![image](../images/apm/1.png)
 
@@ -56,7 +56,7 @@ Clicking on [**Integration Runtime Status**] and selecting any plugin name [**Vi
 
 ### Viewing APM Monitoring Scenarios
 
-Log in to [Guance](https://console.guance.com/) and enter the specific project space. Click on Application Performance Monitoring to view:
+Log in to [Guance](https://<<< custom_key.studio_main_site >>>/) and enter the specific project space. Click on Application Performance Monitoring to view:
 
 ![image](../images/apm/6.png)
 
@@ -193,7 +193,7 @@ $ wq!
 $ ./bin/startup.sh
 ```
 
-Log in to [Guance](https://console.guance.com/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service named mall-admin.
+Log in to [Guance](https://<<< custom_key.studio_main_site >>>/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service named mall-admin.
 
 ---
 
@@ -209,7 +209,7 @@ $ nohup java -jar mall-admin.jar &
 $ nohup java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
 ```
 
-Log in to [Guance](https://console.guance.com/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service named mall-admin.
+Log in to [Guance](https://<<< custom_key.studio_main_site >>>/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service named mall-admin.
 
 ---
 
@@ -248,7 +248,7 @@ $ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -
 ## Note: After adding java –javaagent, add -jar your app name.jar after the startup script
 ```
 
-Log in to [Guance](https://console.guance.com/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service with the specified `serveice.name`.
+Log in to [Guance](https://<<< custom_key.studio_main_site >>>/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service with the specified `serveice.name`.
 
 ---
 
@@ -377,4 +377,4 @@ $ wq!
 $ ./bin/startup.sh
 ```
 
-Log in to [Guance](https://console.guance.com/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service named mall-admin.
+Log in to [Guance](https://<<< custom_key.studio_main_site >>>/) and enter the specific project space. Click on Application Performance Monitoring to view data for the service named mall-admin.
