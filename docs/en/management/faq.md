@@ -3,7 +3,7 @@
 
 :material-chat-question: How to create a workspace?
 
-After [registering](https://auth.guance.com/register) for a <<< custom_key.brand_name >>> account, the system will automatically create a workspace for you and assign you "Owner" permissions. If you need to create additional workspaces, click the avatar in the top-left corner in the <<< custom_key.brand_name >>> workspace and select **Create Workspace**.
+After [registering](https://<<< custom_key.studio_main_site_auth >>>/register) for a <<< custom_key.brand_name >>> account, the system will automatically create a workspace for you and assign you "Owner" permissions. If you need to create additional workspaces, click the avatar in the top-left corner in the <<< custom_key.brand_name >>> workspace and select **Create Workspace**.
 
 ---
 

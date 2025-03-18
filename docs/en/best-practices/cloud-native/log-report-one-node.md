@@ -21,15 +21,15 @@ In the default Cluster mode, Kube-proxy receives request traffic and performs SN
 
 ##### 1.1.1 Download Deployment Files
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and click on the 'Integration' module. Then click on 'DataKit' in the top-left corner, select 'Kubernetes', and download `datakit.yaml`.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and click on the 'Integration' module. Then click on 'DataKit' in the top-left corner, select 'Kubernetes', and download `datakit.yaml`.
 
 ##### 1.1.2 Configure Token
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and enter the 'Management' module. Find the token as shown in the image below and replace the `<your-token>` value in the ENV_DATAWAY environment variable of `datakit.yaml`.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and enter the 'Management' module. Find the token as shown in the image below and replace the `<your-token>` value in the ENV_DATAWAY environment variable of `datakit.yaml`.
 
 ```yaml
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token>
+          value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
 ```
 
 ![image](../images/log-report-one-node/2.png)
@@ -242,7 +242,7 @@ spec:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token> # Replace with the actual DataWay URL
+          value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token> # Replace with the actual DataWay URL
         - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip
         - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -257,7 +257,7 @@ spec:
           value: k8s-prod
         - name: ENV_NAMESPACE
           value: guance-k8s
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.2.16
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.2.16
         imagePullPolicy: Always
         name: datakit
         ports:
@@ -490,7 +490,7 @@ spec:
         - mountPath: /data/app/logs
           name: varlog 
       - name: logfwd
-        image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.12
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.12
         env:
         - name: LOGFWD_DATAKIT_HOST
           value: "datakit-service.datakit.svc.cluster.local"
@@ -557,7 +557,7 @@ Log in to the master node of the cluster and execute the following command to ge
 
 ![image](../images/log-report-one-node/5.png)
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and go to the 'Logs' module. Search for `log_fwd_demo` based on the data source, find the logs, and click to view details.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and go to the 'Logs' module. Search for `log_fwd_demo` based on the data source, find the logs, and click to view details.
 
 ![image](../images/log-report-one-node/6.png)
 

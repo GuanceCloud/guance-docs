@@ -9,7 +9,7 @@
 
 ## Prerequisites
 
-You need to create a [<<< custom_key.brand_name >>> account](https://auth.guance.com/register?channel=Help Documentation) and [install DataKit](../datakit/datakit-install.md) on your host.
+You need to create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.studio_main_site_auth >>>/register?channel=Help Documentation) and [install DataKit](../datakit/datakit-install.md) on your host.
 
 ## Data Collection
 

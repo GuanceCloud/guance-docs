@@ -198,7 +198,7 @@
 
 ## 登录验证 {#login}
 
-1. 邮箱登录进入<<< custom_key.brand_name >>> SSO 页面：https://auth.guance.com/login/sso；
+1. 邮箱登录进入<<< custom_key.brand_name >>> SSO 页面：https://<<< custom_key.studio_main_site_auth >>>/login/sso；
 2. 输入创建 SSO 时配置的邮箱地址，即可进入该身份提供商授权的所有工作空间；
 3. 登录地址；
 4. 输入用户名、密码等信息；

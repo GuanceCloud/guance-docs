@@ -89,7 +89,7 @@
 
 ## 安装 Datakit：
 
-1、 登录 console.guance.com
+1、 登录 <<< custom_key.studio_main_site >>>
 
 2、 新建工作空间
 

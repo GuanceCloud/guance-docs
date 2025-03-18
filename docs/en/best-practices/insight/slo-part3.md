@@ -2,7 +2,7 @@
 
 ---
 
-We previously covered [SLO tool selection in the previous part](slo-part2.md). Now, let's look at best practices for SLO within [<<< custom_key.brand_name >>>](https://guance.com/).
+We previously covered [SLO tool selection in the previous part](slo-part2.md). Now, let's look at best practices for SLO within [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/).
 
 Collaboration and communication are crucial for successfully implementing service level objectives. Development and operations teams need to evaluate the impact of their work based on established service reliability goals to improve the end-user experience. <<< custom_key.brand_name >>> enables everyone in your organization to track, manage, and monitor all SLOs and error budget statuses in one place, simplifying cross-team collaboration. Teams can visualize their SLOs along with related services and infrastructure components on dashboards and share real-time SLO status with any stakeholders who depend on them.
 

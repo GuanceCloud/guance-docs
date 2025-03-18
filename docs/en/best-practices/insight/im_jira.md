@@ -18,7 +18,7 @@
 
 - [x] Jira platform (requires administrator privileges)
 - [x] <<< custom_key.brand_name >>> workspace account
-- [x] [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/) 
+- [x] [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/) 
 
 ## Jira
 
@@ -38,7 +38,7 @@ Set the key name to `Jira System` to distinguish whether the comment information
 
 - Log in to Func
 
-Log in to the deployed [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://func.guance.com/)
+Log in to the deployed [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/)
 
 - Add Python Dependencies
 
@@ -61,7 +61,7 @@ from datetime import datetime, timedelta
 from jira import JIRA
 
 # <<< custom_key.brand_name >>> configuration, note to modify df_api_key
-base_url = 'https://openapi.guance.com'
+base_url = 'https://openapi.<<< custom_key.brand_main_domain >>>'
 channel_list_url = base_url + '/api/v1/channel/quick_list'
 issue_list_url = base_url + '/api/v1/issue/list'
 create_issue_reply_url = base_url + '/api/v1/issue/reply/create'

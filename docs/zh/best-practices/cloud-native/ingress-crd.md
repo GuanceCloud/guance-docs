@@ -25,13 +25,13 @@ CRD 全称是 Custom Resource Definition，是 Kubernetes 的一种内置资源�
 
 #### 1.1 获取 Token
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，点击「管理」模块，在基本设置界面找到 Token，点击后面的「复制图标」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，点击「管理」模块，在基本设置界面找到 Token，点击后面的「复制图标」。
 
 ![1643275020(1).png](../images/ingress-crd/1.png)
 
 #### 1.2 下载 DataKit 部署文件
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，点击「集成」模块 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml` 文件。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，点击「集成」模块 - 「DataKit」 - 「Kubernetes」，下载 `datakit.yaml` 文件。
 
 ![1643275020(1).png](../images/ingress-crd/2.png)
 
@@ -862,9 +862,9 @@ kubectl apply -f nginx-ingress.yaml
     apiVersion: apiextensions.k8s.io/v1
     kind: CustomResourceDefinition
     metadata:
-      name: datakits.guance.com
+      name: datakits.<<< custom_key.brand_main_domain >>>
     spec:
-      group: guance.com
+      group: <<< custom_key.brand_main_domain >>>
       versions:
         - name: v1beta1
           served: true
@@ -904,7 +904,7 @@ kubectl apply -f nginx-ingress.yaml
 ??? quote "`ingress-crd.yaml`"
 
     ```yaml
-    apiVersion: "guance.com/v1beta1"
+    apiVersion: "<<< custom_key.brand_main_domain >>>/v1beta1"
     kind: Datakit
     metadata:
       name: prom-ingress
@@ -956,7 +956,7 @@ while true; do sleep 1;curl -v http://8.136.207.182 -H 'host: mynginx.com'; done
 
 #### 5.2 Ingress 可观测
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，点击「场景」模块，新建仪表板，搜索 ingress，点击「确定」。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，点击「场景」模块，新建仪表板，搜索 ingress，点击「确定」。
 
 ![1643275020(1).png](../images/ingress-crd/5.png)
 

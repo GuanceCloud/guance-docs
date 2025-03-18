@@ -121,7 +121,7 @@ Content-Type: application/json
     "df_monitor_checker_id"   : "rul_xxxxxxxxxx",
     "df_monitor_checker_name" : "Anomaly Detection Project Name",
     "df_monitor_checker_value": "99",
-    "df_event_link"           : "https://console.guance.com/keyevents/monitorChart?xxxxxxxxxx"
+    "df_event_link"           : "https://<<< custom_key.studio_main_site >>>/keyevents/monitorChart?xxxxxxxxxx"
     "df_workspace_uuid"       : "wksp_xxxxxxxxxx",
     "df_workspace_name"       : "My Workspace",
     "Result"                  : 99,

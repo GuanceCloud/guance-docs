@@ -18,7 +18,7 @@
 
 ### 1 复制安装指令
 
-注册并登录[<<< custom_key.brand_name >>>](https://console.guance.com)，选择「集成」 - 「DataKit」，选择适合自己环境的安装指令，复制。
+注册并登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>)，选择「集成」 - 「DataKit」，选择适合自己环境的安装指令，复制。
 
 ![image](../images/java-rum-apm-log/1.png)
 
@@ -59,7 +59,7 @@ Datakit 安装好后，默认会对如下内容进行采集，可直接在 「<<
 
 ### 1 复制 JS 代码
 
-登录[<<< custom_key.brand_name >>>](https://console.guance.com)，选择「用户访问监测」 - 「新建应用」 - 「Web」- 载入类型选择「同步载入」
+登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>)，选择「用户访问监测」 - 「新建应用」 - 「Web」- 载入类型选择「同步载入」
 
 ![image](../images/java-rum-apm-log/5.png)
 

@@ -213,7 +213,7 @@ tree /root
 Use the Shell module to install DataKit (note to modify the corresponding token)
 
 ```bash
-ansible guance -m shell -a 'DK_DATAWAY="https://openway.guance.com?token=token" bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"'
+ansible guance -m shell -a 'DK_DATAWAY="https://openway.<<< custom_key.brand_main_domain >>>?token=token" bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"'
 ```
 
 Check if the process has started

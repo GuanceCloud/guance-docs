@@ -1,7 +1,7 @@
 # 从官网注册商业版
 ---
 
-在[<<< custom_key.brand_name >>>官网](https://<<< custom_key.brand_main_domain >>>/)，点击**[免费注册](https://auth.guance.com/businessRegister)**，填写相关信息后即可成为<<< custom_key.brand_name >>>用户。
+在[<<< custom_key.brand_name >>>官网](https://<<< custom_key.brand_main_domain >>>/)，点击**[免费注册](https://<<< custom_key.studio_main_site_auth >>>/businessRegister)**，填写相关信息后即可成为<<< custom_key.brand_name >>>用户。
 
 ## 第一步：基本信息 {#info}
 

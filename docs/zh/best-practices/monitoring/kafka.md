@@ -204,7 +204,7 @@ RequestsPerSec 每秒请求次数。通过观测该指标，可以实时掌握�
 
 ## 场景视图
 
-在开始使用<<< custom_key.brand_name >>>观测 Kafka 之前，您需要先注册一个 [<<< custom_key.brand_name >>>账号](https://auth.guance.com/register?channel=帮助文档)，注册完成后登录到<<< custom_key.brand_name >>>工作空间。然后按照 <[Kafka 集成文档](/integrations/kafka/)>来实现 Kafka 的可观测。
+在开始使用<<< custom_key.brand_name >>>观测 Kafka 之前，您需要先注册一个 [<<< custom_key.brand_name >>>账号](https://<<< custom_key.studio_main_site_auth >>>/register?channel=帮助文档)，注册完成后登录到<<< custom_key.brand_name >>>工作空间。然后按照 <[Kafka 集成文档](/integrations/kafka/)>来实现 Kafka 的可观测。
 
 ![image.png](../images/kafka-4.png)
 

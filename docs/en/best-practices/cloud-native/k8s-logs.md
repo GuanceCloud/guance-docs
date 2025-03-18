@@ -8,7 +8,7 @@ For enterprise application systems, logs are very important, especially in a Kub
 
 ## Prerequisites
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), navigate to 【Integration】->【DataKit】-> 【Kubernetes】, and follow the instructions to install DataKit in your Kubernetes cluster. The `datakit.yaml` file used for deployment will be referenced in subsequent operations.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), navigate to 【Integration】->【DataKit】-> 【Kubernetes】, and follow the instructions to install DataKit in your Kubernetes cluster. The `datakit.yaml` file used for deployment will be referenced in subsequent operations.
 
 ## Advanced DataKit Configuration
 
@@ -53,11 +53,11 @@ DataKit can collect logs output to stdout from containers. By deploying DataKit 
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
 ```
 
-This creates a configuration file `/usr/local/datakit/conf.d/container/container.conf` inside the DataKit container. By default, it collects all stdout logs except those from images starting with `pubrepo.jiagouyun.com/datakit/logfwd`.
+This creates a configuration file `/usr/local/datakit/conf.d/container/container.conf` inside the DataKit container. By default, it collects all stdout logs except those from images starting with `pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd`.
 
 ```toml
   container_include_log = []  # Equivalent to image:*
-  container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+  container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*"]
 ```
 
 #### 1.2 Customized stdout Log Collection
@@ -163,7 +163,7 @@ data:
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 
@@ -424,7 +424,7 @@ When logs indicate anomalies that significantly impact applications, using <<< c
 
 ### 1 Creating Notification Targets
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), navigate to 【Manage】->【Notification Targets Management】-> 【Create Notification Target】, select Email Group, and input the name and email address.<br />
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), navigate to 【Manage】->【Notification Targets Management】-> 【Create Notification Target】, select Email Group, and input the name and email address.<br />
 
 ![image](../images/k8s-logs/1.png)	
 

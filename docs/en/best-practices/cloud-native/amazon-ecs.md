@@ -13,9 +13,9 @@ This document focuses on collecting logs from containers managed by AWS Fargate.
 
 ## Prerequisites
 
-- First, create a [<<< custom_key.brand_name >>> account](https://www.guance.com/)
+- First, create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/)
 - [Install DataKit](../../datakit/datakit-install.md)
-- [Install Func Portable Edition](https://func.guance.com/doc/maintenance-guide-installation/)
+- [Install Func Portable Edition](https://<<< custom_key.func_domain >>>/doc/maintenance-guide-installation/)
 - Already have a Java application running on ECS
 
 The ECS cluster name used here is `cluster-docker`. Below, we will view sample logs and log groups. Log in to [AWS](https://www.amazonaws.cn/), enter "Elastic Container Service" - click on "Clusters" - "cluster-docker".
@@ -243,7 +243,7 @@ Click "Execute", and the output `total 8` indicates eight log entries were repor
 
 ![image](../images/ecs/ecs-log-18.png)
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), enter the "Logs" module, select `ecs_log_source` as the data source, and you can view the logs.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), enter the "Logs" module, select `ecs_log_source` as the data source, and you can view the logs.
 
 ![image](../images/ecs/ecs-log-19.png)
 

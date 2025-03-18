@@ -15,7 +15,7 @@ After logging into the Billing Center, you can view your account balance, rechar
 
 ## <<< custom_key.brand_name >>> Login Method
 
-1. Open [<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd), select the login site, and enter your username and password to log in.
+1. Open [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site_auth >>>/login/pwd), select the login site, and enter your username and password to log in.
 
 2. In the <<< custom_key.brand_name >>> workspace **Paid Plans & Billing**, click **Billing Center** to access the <<< custom_key.brand_name >>> Billing Center for account management.
 

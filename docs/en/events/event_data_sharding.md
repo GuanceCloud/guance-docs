@@ -582,15 +582,15 @@ X-Global-Tags: host=web-01,business_type=ecommerce,DF_WORKSPACE_UUID=wksp_123
   "rules": [
     {
       "rules": ["{ business_type = 'ecommerce' }"],  // Match ecommerce events
-      "url": "https://kodo.guance.com?token=tkn_ecommerce_workspace_token"
+      "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_ecommerce_workspace_token"
     },
     {
       "rules": ["{ DF_WORKSPACE_UUID = 'wksp_123' }"],  // Match specified workspace
-      "url": "https://backup.guance.com?token=tkn_backup_workspace_token"
+      "url": "https://backup.<<< custom_key.brand_main_domain >>>?token=tkn_backup_workspace_token"
     },
     {
       "rules": ["*"],  // Default rule (must exist)
-      "url": "https://default.guance.com?token=tkn_default_workspace_token"
+      "url": "https://default.<<< custom_key.brand_main_domain >>>?token=tkn_default_workspace_token"
     }
   ]
 }

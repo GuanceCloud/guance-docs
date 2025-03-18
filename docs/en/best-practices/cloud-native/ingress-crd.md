@@ -25,13 +25,13 @@ Next, let's walk through enabling observability for Ingress using CRD step by st
 
 #### 1.1 Obtain Token
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Manage" module, find the Token in the basic settings interface, and click the "Copy Icon".
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on the "Manage" module, find the Token in the basic settings interface, and click the "Copy Icon".
 
 ![1643275020(1).png](../images/ingress-crd/1.png)
 
 #### 1.2 Download DataKit Deployment File
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Integration" module - "DataKit" - "Kubernetes", and download the `datakit.yaml` file.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on the "Integration" module - "DataKit" - "Kubernetes", and download the `datakit.yaml` file.
 
 ![1643275020(1).png](../images/ingress-crd/2.png)
 
@@ -862,9 +862,9 @@ kubectl apply -f nginx-ingress.yaml
     apiVersion: apiextensions.k8s.io/v1
     kind: CustomResourceDefinition
     metadata:
-      name: datakits.guance.com
+      name: datakits.<<< custom_key.brand_main_domain >>>
     spec:
-      group: guance.com
+      group: <<< custom_key.brand_main_domain >>>
       versions:
         - name: v1beta1
           served: true
@@ -904,7 +904,7 @@ kubectl apply -f nginx-ingress.yaml
 ??? quote "`ingress-crd.yaml`"
 
     ```yaml
-    apiVersion: "guance.com/v1beta1"
+    apiVersion: "<<< custom_key.brand_main_domain >>>/v1beta1"
     kind: Datakit
     metadata:
       name: prom-ingress
@@ -956,7 +956,7 @@ while true; do sleep 1;curl -v http://8.136.207.182 -H 'host: mynginx.com'; done
 
 #### 5.2 Ingress Observability
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Scenarios" module, create a new dashboard, search for ingress, and click "Confirm".
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on the "Scenarios" module, create a new dashboard, search for ingress, and click "Confirm".
 
 ![1643275020(1).png](../images/ingress-crd/5.png)
 

@@ -129,7 +129,7 @@ Check the target directory; you should see the binary file `springboot-native-de
 
 #### 6.1 Install DataKit
 
-Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」, navigate sequentially to 「Integration」 - 「DataKit」 - 「Linux」, and click 「Copy Icon」 to copy the installation command.
+Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」, navigate sequentially to 「Integration」 - 「DataKit」 - 「Linux」, and click 「Copy Icon」 to copy the installation command.
 
 ![image](../images/spring-native/7.png)
 
@@ -179,7 +179,7 @@ Access the application interface `curl localhost:8090/ping` to report trace data
 
 ![image](../images/spring-native/12.png)
 
-Log in to 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「APM」 to view the spring-native-demo service.
+Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」 - 「APM」 to view the spring-native-demo service.
 
 ![image](../images/spring-native/13.png)
 

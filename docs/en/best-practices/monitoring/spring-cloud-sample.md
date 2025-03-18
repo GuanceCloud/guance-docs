@@ -84,7 +84,7 @@ The concept of **observability** involves a comprehensive system that provides o
 
 ## Installing Datakit:
 
-1. Log in to console.guance.com
+1. Log in to <<< custom_key.studio_main_site >>>
 2. Create a new workspace
 3. Select Integration — Datakit — Choose the installation command suitable for your environment and copy it
 4. Install Datakit on the server

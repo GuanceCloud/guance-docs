@@ -12,7 +12,7 @@ After deployment, locate the `DEPLOYCONFIG` configuration file and add `cookieSa
 
 ## How to Obtain the iframe Link
 
-To embed a <<< custom_key.brand_name >>> page, simply find the target page you wish to embed and copy its URL. You can use parameters to control hiding the left sidebar and the "Create Issue" button in the lower right corner. Just append parameter configurations to the page URL, for example: `<iframe src="https://console.guance.com/logIndi/log/all?hideWidget=true&hideTopNav=true&hideLeftNav=true"></iframe>`
+To embed a <<< custom_key.brand_name >>> page, simply find the target page you wish to embed and copy its URL. You can use parameters to control hiding the left sidebar and the "Create Issue" button in the lower right corner. Just append parameter configurations to the page URL, for example: `<iframe src="https://<<< custom_key.studio_main_site >>>/logIndi/log/all?hideWidget=true&hideTopNav=true&hideLeftNav=true"></iframe>`
 
 | Parameter     | Required | Type    | Description |
 | ------------- | -------- | ------- | ------------------------------------------------------------------- |

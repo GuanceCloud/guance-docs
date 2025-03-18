@@ -10,7 +10,7 @@ When using <<< custom_key.brand_name >>> for real user monitoring (RUM), if the 
 
 ### 1.1 Deploy DataKit on Linux
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the 'Integration' module, then click 'DataKit' in the top-left corner, select 'Linux', and copy the installation command to execute on your Linux server.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on the 'Integration' module, then click 'DataKit' in the top-left corner, select 'Linux', and copy the installation command to execute on your Linux server.
 
 ![1646965753(1).png](../images/rum-datakit-cluster-1.png)
 
@@ -30,7 +30,7 @@ systemctl restart datakit
 
 ### 1.2 Deploy DataKit on Kubernetes
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the 'Integration' module, then click 'DataKit' in the top-left corner, select 'Kubernetes', and follow the instructions to install DataKit.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on the 'Integration' module, then click 'DataKit' in the top-left corner, select 'Kubernetes', and follow the instructions to install DataKit.
 
 ## 2 Configure SLB
 
@@ -48,7 +48,7 @@ Enter the newly created load balancer and click 'Create Virtual Server Group'.
 
 ## 3 Enable RUM
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the 'User Analysis' module, then click 'Create Application' for https-datakit.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on the 'User Analysis' module, then click 'Create Application' for https-datakit.
 
 ![1646976064(1).png](../images/rum-datakit-cluster-5.png)
 
@@ -66,6 +66,6 @@ Parameter Description:
 
 ## 4 User Analysis
 
-Access the website using a browser. Then log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the 'User Analysis' module, and click on the https-datakit application to view the reported data.
+Access the website using a browser. Then log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on the 'User Analysis' module, and click on the https-datakit application to view the reported data.
 
 ![1646977682(1).png](../images/rum-datakit-cluster-7.png)

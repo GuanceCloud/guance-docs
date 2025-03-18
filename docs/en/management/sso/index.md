@@ -188,7 +188,7 @@ After adding an identity provider, you can enable or disable the current SSO con
 
 ## Login Verification {#login}
 
-1. Email login to <<< custom_key.brand_name >>> SSO page: https://auth.guance.com/login/sso;
+1. Email login to <<< custom_key.brand_name >>> SSO page: https://<<< custom_key.studio_main_site_auth >>>/login/sso;
 2. Enter the email address configured during SSO creation to access all authorized workspaces linked to the identity provider;
 3. Login URL;
 4. Enter username, password, etc.;

@@ -101,7 +101,7 @@ In addition to regular Dataway settings, a few additional configurations need to
 
 ```yaml
 # Set the address for Dataway to upload to, usually Kodo, but can also be another Dataway
-remote_host: https://kodo.guance.com
+remote_host: https://kodo.<<< custom_key.brand_main_domain >>>
 
 # If the upload address is Dataway, this should be set to true, indicating Dataway cascading
 cascaded: false
@@ -193,13 +193,13 @@ Assuming *sinker.json* rule definition is as follows:
             "rules": [
                 "{ host = 'my-host'}"
             ],
-            "url": "https://kodo.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         },
         {
             "rules": [
                 "{ host = 'my-host' OR cluster = 'cluster-A' }"
             ],
-            "url": "https://kodo.guance.com?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
         }
      ]
 }
@@ -223,7 +223,7 @@ OK
             "{ host = 'my-host' OR cluster = 'cluster-A' }"
         ],
         "info": "This is the yyy workspace",
-        "url": "https://kodo.guance.com?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+        "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
     }
     ```
 <!-- markdownlint-enable -->
@@ -238,7 +238,7 @@ Adding the `as_default` flag in a specific rule entry sets that rule as the defa
 {
     "as_default": true,
     "info": "This is the default fallback workspace",
-    "url": "https://kodo.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 ```
 
@@ -410,7 +410,7 @@ Rules:
         "rules": [
             "{ workspace = 'zhengb-test'}"
         ],
-        "url": "https://openway.guance.com?token=token1"
+        "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=token1"
     }
 ]
 ```
@@ -425,13 +425,13 @@ Create a rule file `rule.json`, content reference as follows:
     "rules": [
       "{ host = 'HOST1'}"
     ],
-    "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxx"
+    "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxx"
   },
   {
     "rules": [
       "{ host = 'HOST2'}"
     ],
-    "url": "https://openway.guance.com?token=tkn_yyyyyyyyyyyyy"
+    "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyy"
   }
 ]
 
@@ -470,7 +470,7 @@ Create a rule file `sink-put.json`, content reference as follows:
             "rules": [
                 "{ workspace = 'test'}"
             ],
-            "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxxx"
+            "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxx"
         }
     ],
     "strict": true
@@ -752,7 +752,7 @@ Datakit has built-in several custom keys that generally do not appear in collect
             "rules": [
                 "{ class = 'kubelet_pod' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -771,7 +771,7 @@ Datakit has built-in several custom keys that generally do not appear in collect
            "rules": [
                "{ measurement = 'disk' AND other_conditon = 'some-value' }",
            ],
-           "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
+           "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -792,7 +792,7 @@ Datakit has built-in several custom keys that generally do not appear in collect
             "rules": [
                 "{ category = 'logging' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -820,7 +820,7 @@ Below is an example of such routing rules:
             "rules": [
                 "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat', '/v1/query/raw', '/v1/workspace', '/v1/object/labels', '/v1/check/token'] }",
             ],
-            "url": "https://kodo.guance.com?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
         }
     ]
 }

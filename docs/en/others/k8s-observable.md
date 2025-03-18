@@ -42,7 +42,7 @@ $ helm repo update
 Modify the token data in the `datakit.dataway_url` parameter in the Helm installation command for DataKit.
 
 ```
-$ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.guance.com?token=<your-token>" --create-namespace 
+$ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>" --create-namespace 
 ```
 
 You can obtain the token from the <<< custom_key.brand_name >>> workspace under "Manage" - "Basic Settings".
@@ -83,7 +83,7 @@ Edit the datakit.yaml file to configure the data gateway (dataway) and replace t
 
 ```
 	- name: ENV_DATAWAY
-		value: https://openway.guance.com?token=<your-token> # Replace this with your workspace token
+		value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token> # Replace this with your workspace token
 ```
 
 You can obtain the token from the <<< custom_key.brand_name >>> workspace under "Manage" - "Basic Settings".

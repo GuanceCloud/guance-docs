@@ -41,7 +41,7 @@ $ helm repo update
 修改 Helm 安装 DataKit 执行代码中 `datakit.dataway_url` 的 token 数据。
 
 ```
-$ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.guance.com?token=<your-token>" --create-namespace 
+$ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>" --create-namespace 
 ```
 
 token 可以在<<< custom_key.brand_name >>>工作空间的「管理」-「基本设置」获取。
@@ -86,7 +86,7 @@ wget https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit.yaml
 
 ```
 	- name: ENV_DATAWAY
-		value: https://openway.guance.com?token=<your-token> # 此处填上你工作空间的 token
+		value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token> # 此处填上你工作空间的 token
 ```
 
 token 可以在<<< custom_key.brand_name >>>工作空间的「管理」-「基本设置」获取。

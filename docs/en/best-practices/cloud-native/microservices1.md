@@ -28,15 +28,15 @@ A company manages two sets of Kubernetes environments using Rancher: one for dev
 
 ##### 1.1.1 Download Deployment Files
 
-Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, click on the 『Integration』module, then click 『DataKit』in the top-left corner, select 『Kubernetes』, and download datakit.yaml.
+Log in to『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』, click on the 『Integration』module, then click 『DataKit』in the top-left corner, select 『Kubernetes』, and download datakit.yaml.
 
 ##### 1.1.2 Configure Token
 
-Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, enter the 『Management』module, find the token in the image below, and replace the value of the ENV_DATAWAY environment variable in the datakit.yaml file with <your-token>.
+Log in to『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』, enter the 『Management』module, find the token in the image below, and replace the value of the ENV_DATAWAY environment variable in the datakit.yaml file with <your-token>.
 
 ```yaml
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token>
+          value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
 ```
 
 ![image](../images/microservices/1.png)	 
@@ -99,7 +99,7 @@ data:
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 
@@ -178,7 +178,7 @@ Download [istio-1.13.2.zip](https://github.com/istio/istio/releases). All subseq
 
 #### 2.2 Enable RUM
 
-To observe website call information, front-end data collection needs to be enabled. Log in to『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』, enter『User Analysis』, create a new application named **devops-bookinfo**, and copy the JS code below.
+To observe website call information, front-end data collection needs to be enabled. Log in to『 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』, enter『User Analysis』, create a new application named **devops-bookinfo**, and copy the JS code below.
 
 ![image](../images/microservices/6.png)	 
 
@@ -683,19 +683,19 @@ At this point, the Pipeline is triggered three times.
 
 #### 6.2 Observability of GitLab CI Pipelines
 
-Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, go to『CI』, click『Overview』and select the bookinfo-views project to view the execution status of Pipelines and Jobs.
+Log in to『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』, go to『CI』, click『Overview』and select the bookinfo-views project to view the execution status of Pipelines and Jobs.
 		  
 ![image](../images/microservices/16.png)	 
 
 ![image](../images/microservices/17.png)	 
 
-Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, go to『CI』, click『Explorer』, and select gitlab_pipeline.
+Log in to『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』, go to『CI』, click『Explorer』, and select gitlab_pipeline.
 		 
 ![image](../images/microservices/18.png)	 
 
 ![image](../images/microservices/19.png)	 
 
-Log in to『[<<< custom_key.brand_name >>>](https://console.guance.com/)』, go to『CI』, click『Explorer』, and select gitlab_job.
+Log in to『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』, go to『CI』, click『Explorer』, and select gitlab_job.
 		 
 ![image](../images/microservices/20.png)	 
 

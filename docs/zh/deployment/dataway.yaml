@@ -51,12 +51,12 @@ spec:
               topologyKey: kubernetes.io/hostname
 
       containers:
-      - image: pubrepo.jiagouyun.com/dataflux/dataway:1.8.0
+      - image: pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/dataway:1.8.0
         imagePullPolicy: IfNotPresent
         name: dataway
         env:
         - name: DW_REMOTE_HOST
-          value: "https://kodo.guance.com:443" # 此处填写真实的 Kodo 地址，或者下一个 Dataway 地址
+          value: "https://kodo.<<< custom_key.brand_main_domain >>>:443" # 此处填写真实的 Kodo 地址，或者下一个 Dataway 地址
         - name: DW_BIND
           value: "0.0.0.0:9528"
         - name: DW_UUID

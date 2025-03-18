@@ -76,9 +76,9 @@ Below are explanations of basic concepts involved in the Keycloak configuration 
 
 2) On the **Add Client** page, fill in the following details and click **Save**.
 
-- Client ID (Entity ID): [https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml);  
+- Client ID (Entity ID): [https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml);  
 - Client Protocol: Select **SAML**;   
-- Client SAML Endpoint (Assertion URL), temporarily use: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/).   
+- Client SAML Endpoint (Assertion URL), temporarily use: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/).   
 
 **Note**: This configuration is only for obtaining metadata documents in the next step. After enabling SSO single sign-on in <<< custom_key.brand_name >>>, obtain the correct **Entity ID** and **Assertion URL** and replace them accordingly.
 

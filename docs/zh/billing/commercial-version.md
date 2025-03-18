@@ -5,7 +5,7 @@
 
 ## 前置条件
 
-- 注册[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)账号，已用体验版工作空间。
+- 注册[<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)账号，已用体验版工作空间。
 - 注册[<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/)账号，对接后续费用结算功能。
 
 ## 体验版升级到商业版操作

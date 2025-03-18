@@ -9,7 +9,7 @@ This article mainly introduces how to collect logs in a **host environment**. Fo
 
 [Install DataKit](../datakit/datakit-install.md).                
 
-Or you can log in to [<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd), go to **Integration > DataKit**, and choose **Linux, Windows, MacOS** based on your host system to obtain DataKit installation commands and steps.
+Or you can log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site_auth >>>/login/pwd), go to **Integration > DataKit**, and choose **Linux, Windows, MacOS** based on your host system to obtain DataKit installation commands and steps.
 
 ## Log Collector Configuration
 

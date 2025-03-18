@@ -335,7 +335,7 @@ spec:
       dnsPolicy: ClusterFirst
       containers:
         - name: controller
-          image: "pubrepo.jiagouyun.com/googleimages/controller:v1.2.1"
+          image: "pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/controller:v1.2.1"
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -628,7 +628,7 @@ spec:
     spec:
       containers:
         - name: create
-          image: "pubrepo.jiagouyun.com/googleimages/kube-webhook-certgen:v1.1.1"
+          image: "pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kube-webhook-certgen:v1.1.1"
           imagePullPolicy: IfNotPresent
           args:
             - create
@@ -683,7 +683,7 @@ spec:
     spec:
       containers:
         - name: patch
-          image: "pubrepo.jiagouyun.com/googleimages/kube-webhook-certgen:v1.1.1"
+          image: "pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kube-webhook-certgen:v1.1.1"
           imagePullPolicy: IfNotPresent
           args:
             - patch

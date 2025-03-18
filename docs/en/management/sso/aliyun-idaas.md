@@ -69,7 +69,7 @@ Alibaba Cloud IDaaS (Yundun) is an identity recognition and access management so
 
 4. Obtain the Single Sign-On URL
 
-1) Visit <<< custom_key.brand_name >>> through [**Single Sign-On**](https://auth.guance.com/login/sso), input the email address to get the login link. As shown in the following image:
+1) Visit <<< custom_key.brand_name >>> through [**Single Sign-On**](https://<<< custom_key.studio_main_site_auth >>>/login/sso), input the email address to get the login link. As shown in the following image:
 
 ![](../img/06_aliyun_11.png)
 

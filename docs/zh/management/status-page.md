@@ -19,11 +19,11 @@
 
 | 站点              | 服务状态 URL            | 运营商       |
 | :---------------- | :-------------------- | :----------- |
-| 中国区1（杭州）   | [https://status.guance.com](https://status.guance.com/)        | 阿里云（中国杭州） |
-| 中国区2（宁夏）   | [https://aws-status.guance.com](https://aws-status.guance.com/) | AWS（中国宁夏）    |
-| 中国区3（张家口） | [https://cn3-status.guance.com](https://cn3-status.guance.com) | 阿里云（中国杭州） |
-| 中国区4（广州）   | [https://cn4-status.guance.com](https://cn4-status.guance.com/) | 华为云（中国广州） |
-| 海外区1（俄勒冈） | [https://us1-status.guance.com](https://us1-status.guance.com/) | AWS（美国俄勒冈）  |
+| 中国区1（杭州）   | [https://status.<<< custom_key.brand_main_domain >>> ](https://status.<<< custom_key.brand_main_domain >>> /)        | 阿里云（中国杭州） |
+| 中国区2（宁夏）   | [https://aws-status.<<< custom_key.brand_main_domain >>> ](https://aws-status.<<< custom_key.brand_main_domain >>> /) | AWS（中国宁夏）    |
+| 中国区3（张家口） | [https://cn3-status.<<< custom_key.brand_main_domain >>> ](https://cn3-status.<<< custom_key.brand_main_domain >>> ) | 阿里云（中国杭州） |
+| 中国区4（广州）   | [https://cn4-status.<<< custom_key.brand_main_domain >>> ](https://cn4-status.<<< custom_key.brand_main_domain >>> /) | 华为云（中国广州） |
+| 海外区1（俄勒冈） | [https://us1-status.<<< custom_key.brand_main_domain >>> ](https://us1-status.<<< custom_key.brand_main_domain >>> /) | AWS（美国俄勒冈）  |
 
 ## 服务状态
 

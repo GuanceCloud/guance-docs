@@ -208,7 +208,7 @@ Dataway 成功与<<< custom_key.brand_name >>>中心连接后，登录<<< custom
     直接替换镜像版本即可：
 
     ```yaml
-    - image: pubrepo.jiagouyun.com/dataflux/dataway:<VERSION>
+    - image: pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/dataway:<VERSION>
     ```
 <!-- markdownlint-enable -->
 

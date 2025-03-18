@@ -80,7 +80,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 Or you can debug using the IDEA tool.
 
 
-Request `http://localhost:8090/user`, and the effect seen on the [<<< custom_key.brand_name >>>](https://www.guance.com) platform is as follows:
+Request `http://localhost:8090/user`, and the effect seen on the [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) platform is as follows:
 
 ![Img](../images/tracing_method_1.png)
 
@@ -102,7 +102,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 -jar springboot-server.jar
 ```
 
-On the [<<< custom_key.brand_name >>>](https://www.guance.com) platform, you can see the following effect:
+On the [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) platform, you can see the following effect:
 
 ![Img](../images/tracing_method_2.png)
 
@@ -119,7 +119,7 @@ java -javaagent:D:/ddtrace/dd-java-agent-1.25.2-guance.jar \
 -jar springboot-server.jar
 ```
 
-On the [<<< custom_key.brand_name >>>](https://www.guance.com) platform, you can see the following effect:
+On the [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) platform, you can see the following effect:
 
 ![Img](../images/tracing_method_3.png)
 
@@ -159,7 +159,7 @@ Continuing with the same code, run the application without adding any parameters
 -Dotel.resource.attributes=service.name=springboot-server
 ```
 
-On the [<<< custom_key.brand_name >>>](https://www.guance.com) platform, you can see the following effect:
+On the [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) platform, you can see the following effect:
 
 ![Img](../images/tracing_method_4.png)
 
@@ -182,7 +182,7 @@ Run the following command:
 -Dotel.instrumentation.methods.include="com.zy.observable.server.service.TestService[users]"
 ```
 
-On the [<<< custom_key.brand_name >>>](https://www.guance.com) platform, you can see the following effect:
+On the [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) platform, you can see the following effect:
 
 ![Img](../images/tracing_method_5.png)
 

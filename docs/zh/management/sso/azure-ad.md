@@ -30,8 +30,8 @@ Azure Active Directory （AAD） 是 Microsoft 推出的基于云的标识和访
 
 填入以下断言地址和实体 ID 示例。
 
-- 标识符（实体 ID）：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)
-- 回复 URL（断言地址），临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
+- 标识符（实体 ID）：[https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml)
+- 回复 URL（断言地址），临时使用：[https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/)
 
 **注意**：此次配置仅为获取下一步的元数据文档使用，需要在<<< custom_key.brand_name >>>中启用 SSO 单点登录后，获取到正确的**实体 ID** 和**断言地址**后重新替换。
 

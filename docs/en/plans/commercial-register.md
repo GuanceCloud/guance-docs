@@ -1,7 +1,7 @@
 # Register for the Commercial Plan from the Official Website
 ---
 
-On the [<<< custom_key.brand_name >>> official website](https://<<< custom_key.brand_main_domain >>>/), click **[Free Registration](https://auth.guance.com/businessRegister)**, fill in the relevant information to become a <<< custom_key.brand_name >>> user.
+On the [<<< custom_key.brand_name >>> official website](https://<<< custom_key.brand_main_domain >>>/), click **[Free Registration](https://<<< custom_key.studio_main_site_auth >>>/businessRegister)**, fill in the relevant information to become a <<< custom_key.brand_name >>> user.
 
 ## Step 1: Basic Information {#info}
 

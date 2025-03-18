@@ -100,9 +100,9 @@
 
 7.2  本协议的任何条款无论因何种原因无效或不具可执行性，其余条款仍有效，对双方具有约束力。
 
-7.3  用户如有任何需要说明条款的要求，请立即停止使用服务，同时立即发送邮件至<<< custom_key.brand_name >>>费用中心官方客服人员（邮箱地址：support@guance.com），若用户未发送内含说明条款要求的邮件至<<< custom_key.brand_name >>>费用中心官方客服人员而选择同意该协议，则双方在此确认<<< custom_key.brand_name >>>费用中心已依法履行了根据用户要求对相关条款进行说明的法定义务，<<< custom_key.brand_name >>>费用中心已给予用户充足的时间与充分的选择权来决定是否缔结本协议。
+7.3  用户如有任何需要说明条款的要求，请立即停止使用服务，同时立即发送邮件至<<< custom_key.brand_name >>>费用中心官方客服人员（邮箱地址：support@<<< custom_key.brand_main_domain >>>），若用户未发送内含说明条款要求的邮件至<<< custom_key.brand_name >>>费用中心官方客服人员而选择同意该协议，则双方在此确认<<< custom_key.brand_name >>>费用中心已依法履行了根据用户要求对相关条款进行说明的法定义务，<<< custom_key.brand_name >>>费用中心已给予用户充足的时间与充分的选择权来决定是否缔结本协议。
 
-7.4  在充值过程中遇到的与充值相关的问题亦可联系<<< custom_key.brand_name >>>费用中心官方客服人员（邮箱地址：support@guance.com）
+7.4  在充值过程中遇到的与充值相关的问题亦可联系<<< custom_key.brand_name >>>费用中心官方客服人员（邮箱地址：support@<<< custom_key.brand_main_domain >>>）
 
 **用户确认声明页**
 

@@ -10,7 +10,7 @@ Similarly, DataKit supports Socket log collection. This article primarily introd
 
 ## Prerequisites
 
-1. You need to first create a [<<< custom_key.brand_name >>> account](https://www.guance.com/)
+1. You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/)
 2. Spring Boot application
 3. Docker-Harbor
 4. K8s cluster
@@ -239,7 +239,7 @@ You need to replace the token in `datakit.yaml` with your own token. Full conten
                       apiVersion: v1
                       fieldPath: spec.nodeName
                 - name: ENV_DATAWAY
-                  value: https://openway.guance.com?token=<your-token>
+                  value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
                 - name: ENV_GLOBAL_HOST_TAGS
                   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name=k8s-dev
                 - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -250,7 +250,7 @@ You need to replace the token in `datakit.yaml` with your own token. Full conten
                   value: 0.0.0.0:9529
                 - name: ENV_LOG_LEVEL
                   value: info
-              image: pubrepo.jiagouyun.com/datakit/datakit:1.2.6
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.2.6
               imagePullPolicy: IfNotPresent
               name: datakit
               ports:
@@ -348,7 +348,7 @@ You need to replace the token in `datakit.yaml` with your own token. Full conten
 
           ## Containers logs to include and exclude, default collect all containers. Globs accepted.
           container_include_log = []
-          container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+          container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
           exclude_pause_container = true
 
@@ -750,7 +750,7 @@ Full content as follows:
               - sh
               - -c
               - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-              image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
               imagePullPolicy: Always
               name: ddtrace-agent-sidecar
               volumeMounts:

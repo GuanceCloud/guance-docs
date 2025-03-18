@@ -7,7 +7,7 @@ Below, we will use *[DDtrace Collector](../../integrations/ddtrace.md)* as an ex
 
 ## Prerequisites
 
-- [Register and log in to <<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd);
+- [Register and log in to <<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site_auth >>>/login/pwd);
 - [Install DataKit](../../datakit/datakit-install.md);
 - [Enable DDtrace Collector](../../integrations/ddtrace.md).
 

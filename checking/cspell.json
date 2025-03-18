@@ -1,63 +1,65 @@
 // NOTE: comment in this json is accepted.
 {
-    //"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-    "version": "0.2",
-    "caseSensitive": true,
-    "dictionaryDefinitions": [
-        {
-            "name": "glossary",
-            "path": "checking/glossary.txt", // glossary of global
-            "addWords": true
-        },
+	//"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+	"version": "0.2",
+	"caseSensitive": true,
+	"dictionaryDefinitions": [
+		{
+			"name": "glossary",
+			"path": "checking/glossary.txt", // glossary of global
+			"addWords": true
+		},
 
-        {
-            "name": "glossary.datakit",
-            "path": "checking/glossary.datakit.txt",
-            "addWords": true
-        }
-    ],
-    "dictionaries": [
-        "glossary",
-				"glossary.datakit"
-    ],
+		{
+			"name": "glossary.datakit",
+			"path": "checking/glossary.datakit.txt",
+			"addWords": true
+		}
+	],
+	"dictionaries": [
+		"glossary",
+		"glossary.datakit"
+	],
 
-    "languageSettings": [
-        {
-            "languageId": "markdown",
+	"languageSettings": [
+		{
+			"languageId": "markdown",
 
-            "ignoreRegExpList": [
+			"ignoreRegExpList": [
 
-								// ignore code blocks
-                "/^\\s*```[\\s\\S]*?^\\s*```/gm",
+				// ignore code blocks
+				"/^\\s*```[\\s\\S]*?^\\s*```/gm",
 
-								// ignore inline code
-                "/`.*`/gm",
+				// ignore html in markdown: there are too many code in there
+				"/^\\s*<html [\\s\\S]*?^\\s*<\/html>/gm",
 
-							  // ignore markdown header meta data
-                "/'.*'/gm",
+				// ignore inline code
+				"/`.*`/gm",
 
-                // some markdown emoji use the forms like :fontawesome-brands-linux:, we should ignore them
-                "/:.*:/gm", 
+				// ignore markdown header meta data
+				"/'.*'/gm",
 
-								// italic fonts
-                "/_.*_/gm",
-								// italic or bold fonts
-                "/\\*.*\\*/gm",
+				// some markdown emoji use the forms like :fontawesome-brands-linux:, we should ignore them
+				"/:.*:/gm", 
 
-								// permalink after sections like(notice the space between section text and permalink)
-								//  ## This is a section {#sample-section}
-                "/ {#[-a-z0-9.]*}/gm",
+				// italic fonts
+				"/_.*_/gm",
+				// italic or bold fonts
+				"/\\*.*\\*/gm",
 
-								// page icon like:
-								//  ---
-								//  icon: path/to/icon
-								//  ---
-                "^icon: .*",
+				// permalink after sections like(notice the space between section text and permalink)
+				//  ## This is a section {#sample-section}
+				"/ {#[-a-z0-9.]*}/gm",
 
-								// ignore specific HTML text in integration-index.md
-								"src=\"\.\.\/icon/.*\"",
-								"data-href=.*"
-            ]
-        }
-    ]
+				// page icon like:
+				//  ---
+				//  icon: path/to/icon
+				//  ---
+				"^icon: .*",
+
+				// ignore specific HTML text in integration-index.md
+				"data-href=.*"
+			]
+		}
+	]
 }
