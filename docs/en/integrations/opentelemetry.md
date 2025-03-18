@@ -466,7 +466,7 @@ In addition, the acquisition configuration of some third-party software built in
 <!-- markdownlint-disable MD046 -->
 ???+ warning "metric"
 
-    Starting from [DataKit 1.68.0](../datakit/changelog.md#cl-1.68.0), the indicator set name has been changed:
+    Starting from [DataKit 1.68.0](../datakit/changelog-2025.md#cl-1.68.0), the indicator set name has been changed:
     All indicators sent to the observation cloud have a unified indicator set name: `otel_service`.
     If you already have a dashboard, export the existing dashboard and change `otel-serivce` to `otel_service` and then import it.
 
@@ -500,6 +500,26 @@ In histogram data, the `le` (less or equal) label can be used for classification
 
 This conversion enables seamless integration of OpenTelemetry-collected histogram data into Prometheus, leveraging Prometheus' powerful querying and visualization capabilities for analysis.
 
+## Delete Metric Tags {#del-metric}
+
+There are many useless tags in the indicators reported by OTEL. These are all of **String** type. They have been deleted because they occupy too much memory and bandwidth and will not be uploaded to the GuanCe cloud center.
+
+These tags include:
+
+```text
+process.command_line
+process.executable.path
+process.runtime.description
+process.runtime.name
+process.runtime.version
+telemetry.distro.name
+telemetry.distro.version
+telemetry.sdk.language
+telemetry.sdk.name
+telemetry.sdk.version
+```
+
+
 
 
 ### metric
@@ -515,7 +535,6 @@ This conversion enables seamless integration of OpenTelemetry-collected histogra
 |`area`|Heap or not|
 |`cause`|GC Cause|
 |`container_id`|Container ID|
-|`description`|Metric Description|
 |`exception`|Exception Information|
 |`gc`|GC Type|
 |`host`|Host Name|
@@ -540,25 +559,15 @@ This conversion enables seamless integration of OpenTelemetry-collected histogra
 |`name`|Thread Pool Name|
 |`net_protocol_name`|Net Protocol Name|
 |`net_protocol_version`|Net Protocol Version|
-|`os_description`|OS Version|
 |`os_type`|OS Type|
 |`outcome`|HTTP Outcome|
 |`path`|Disk Path|
 |`pool`|JVM Pool Type|
-|`process_command_line`|Process Command Line|
-|`process_executable_path`|Executable File Path|
-|`process_runtime_description`|Process Runtime Description|
-|`process_runtime_name`|JVM Pool Runtime Name|
-|`process_runtime_version`|JVM Pool Runtime Version|
 |`scope_name`|Scope name|
 |`service_name`|Service Name|
 |`spanProcessorType`|Span Processor Type|
 |`state`|Thread State:idle,used|
 |`status`|HTTP Status Code|
-|`telemetry_auto_version`|Version|
-|`telemetry_sdk_language`|Language|
-|`telemetry_sdk_name`|SDK Name|
-|`telemetry_sdk_version`|SDK Version|
 |`unit`|metrics unit|
 |`uri`|HTTP Request URI|
 
@@ -580,6 +589,7 @@ This conversion enables seamless integration of OpenTelemetry-collected histogra
 |`executor.queued`|The approximate number of tasks that are queued for execution|float|count|
 |`http.server.active_requests`|The number of concurrent HTTP requests that are currently in-flight|float|count|
 |`http.server.duration`|The duration of the inbound HTTP request|float|ns|
+|`http.server.request.duration`|The count of HTTP request duration time in each bucket|float|count|
 |`http.server.requests`|The http request count|float|count|
 |`http.server.requests.max`|None|float|B|
 |`http.server.response.size`|The size of HTTP response messages|float|B|
@@ -644,6 +654,7 @@ This conversion enables seamless integration of OpenTelemetry-collected histogra
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|

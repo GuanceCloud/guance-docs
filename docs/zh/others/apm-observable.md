@@ -8,7 +8,7 @@
 本文档将使用 Python 应用，介绍如何通过 ddtrace 实现 APM 可观测。
 ## 前置条件
 
-您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md)。
+您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)，并在您的主机上[安装 DataKit](../datakit/datakit-install.md)。
 
 ## 方法/步骤
 
@@ -177,7 +177,7 @@ def after_request(response):
 2）在前端页面 index.html 的 head 中增加以下用户访问可观测配置（在<<< custom_key.brand_name >>>工作空间用户访问监测创建应用获取）。
 
 ```
-<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

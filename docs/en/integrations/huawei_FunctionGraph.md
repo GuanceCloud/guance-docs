@@ -1,79 +1,73 @@
 ---
-title: 'HUAWEI FunctionGraph'
+title: 'Huawei Cloud FunctionGraph'
 tags: 
   - Huawei Cloud
-summary: 'Use the " Official Script Market " series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'The metrics displayed for Huawei Cloud FunctionGraph include invocation counts, error counts, rejected counts, concurrency numbers, reserved instance counts, and runtime (including maximum, minimum, and average runtimes). These metrics reflect the operational status of FunctionGraph functions.'
 __int_icon: 'icon/huawei_functiongraph'
 dashboard:
 
-  - desc: 'HUAWEI CLOUD FunctionGraph dashboard'
-    path: 'dashboard/zh/huawei_functiongraph'
+  - desc: 'Built-in Views for Huawei Cloud FunctionGraph'
+    path: 'dashboard/en/huawei_functiongraph'
 
 monitor:
-  - desc: 'HUAWEI CLOUD FunctionGraph monitor'
-    path: 'monitor/zh/huawei_functiongraph'
+  - desc: 'Monitors for Huawei Cloud FunctionGraph'
+    path: 'monitor/en/huawei_functiongraph'
 
 ---
 
-
 <!-- markdownlint-disable MD025 -->
-# HUAWEI CLOUD FunctionGraph
+# Huawei Cloud FunctionGraph
 <!-- markdownlint-enable -->
 
-HUAWEI CLOUD FunctionGraph display metrics include count,**failcount**,**rejectcount**,concurrency,**reservedinstancenum** and so on, these metrics Indicates the operation of function for **FuntionGraph**.
+The metrics displayed for Huawei Cloud FunctionGraph include invocation counts, error counts, rejected counts, concurrency numbers, reserved instance counts, and runtime (including maximum, minimum, and average runtimes). These metrics reflect the operational status of FunctionGraph functions.
 
-## Config {#config}
+## Configuration {#config}
 
-### Install Func
+### Installing Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you choose to deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
+### Installation Script
 
+> Note: Ensure you have prepared a Huawei Cloud AK that meets the requirements (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-### Installation script
+To synchronize monitoring data from Huawei FunctionGraph, install the corresponding collection script: "Guance Integration (Huawei Cloud - FunctionGraph Collection)" (ID: `guance_huaweicloud_functiongraph`).
 
-> Tip：Please prepare HUAWEI CLOUD AK that meets the requirements in advance（For simplicity's sake, You can directly grant the global read-only permission for CloudWatch `ReadOnlyAccess`）
+After clicking 【Install】, enter the required parameters: Huawei Cloud AK and Huawei Cloud account name.
 
-To synchronize the monitoring data of HUAWEI CLOUD FunctionGraph cloud resources, we install the corresponding collection script：「Guance Integration（HUAWEI CLOUD-FunctionGraphCollect）」(ID：`guance_huaweicloud_functiongraph`)
+Click 【Deploy Startup Script】 to have the system automatically create the `Startup` script set and configure the startup scripts accordingly.
 
-Click 【Install】 and enter the corresponding parameters: HUAWEI CLOUD AK, HUAWEI CLOUD account name.
+Once enabled, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
 
-tap【Deploy startup Script】,The system automatically creates `Startup` script sets,And automatically configure the corresponding startup script.
+By default, we collect some configurations; see the metrics section for details.
 
-Then, in the collection script, add the collector-Configs and cloudwatch-Change the regions in configs to the actual regions
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-functiongraph/){:target="_blank"}
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」.Click【Run】,you can immediately execute once, without waiting for a regular time.After a while, you can view task execution records and corresponding logs.
+### Verification
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-functiongraph/){:target="_blank"}
+1. In "Manage / Automatic Trigger Configuration", confirm that the corresponding task has an automatic trigger configuration and check the task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", verify if asset information exists.
+3. On the Guance platform, under "Metrics", check if the corresponding monitoring data is available.
 
+## Metrics {#metric}
+After configuring Huawei SYS.FunctionGraph, the default metric set is as follows. You can collect more metrics by configuring further. Refer to [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-functiongraph/functiongraph_01_0213.html){:target="_blank"}
 
-
-### Verify
-
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists
-
-## Metric {#metric}
-
-Configure HUAWEI SYS.FunctionGraph. The default metric set is as follows. You can collect more metrics by configuring them [HUAWEI CLOUD CloudWatch Metrics Details](https://support.huaweicloud.com/intl/en-us/usermanual-functiongraph/functiongraph_01_0213.html){:target="_blank"}
-
-| Metric ID        | Metric Name     | Description                                      | Value Range      | Monitored Object   | **Monitoring Period of Raw Data (Minute)** |
+| Metric ID        | Metric Name     | Description                                      | Value Range      | Measurement Object   | **Monitoring Period (Original Metric)** |
 | ---- -------- | ----------- | -------------------------------------------- | ------------- | --------- | ---------------------- |
-| `count`        | Invocations      | Number of function invocations Unit: Count           | ≥ 0 counts   | Functions       | 1                   |
-| `failcount`    | Errors      | Number of invocation errors. The following errors are included:Function request error (causing an execution failure and returning error code 200). Function syntax or execution error. Unit: Count          | ≥ 0 counts   | Functions       | 1               |
-| `rejectcount`        | Throttles      | Number of function throttles. That is, the number of times that FunctionGraph throttles your functions due to the resource limit. Unit: Count   | ≥ 0 counts   | Functions       | 1                  |
-| `concurrency`        | Number of concurrent requests      | Maximum number of concurrent requests during function invocation. Unit: Count           | ≥ 0 counts   | Functions       | 1                |
-| `reservedinstancenum`        | Number of reserved instances      | Number of reserved instances. Unit: Count           | ≥ 0 counts   | Functions       | 1                |
-| `duration`        | Average duration      | Average duration of function invocation. Unit: ms          | ≥ 0 ms   | Functions       | 1                   |
-| `maxDuration`        | Maximum duration      | Maximum duration of function invocation. Unit: ms          | ≥ 0 ms   | Functions       | 1                  |
-| `minDuration`        | Minimum duration      | Minimum duration           | ≥ 0 ms   | Functions       | 1                   |
+| `count`        | Invocation Count      | This metric counts the number of function invocations. Unit: times            | ≥ 0 counts   | Function       | 1 minute                   |
+| `failcount`    | Error Count      | This metric counts the number of function invocation errors. Errors occur when function requests fail to complete or return a non-200 status code due to syntax or execution issues. Unit: times          | ≥ 0 counts   | Function       | 1 minute                   |
+| `rejectcount`        | Rejected Count      | This metric counts the number of function invocations that were rejected due to too many concurrent requests. Unit: times   | ≥ 0 counts   | Function       | 1 minute                   |
+| `concurrency`        | Concurrency      | This metric counts the maximum number of concurrent requests being processed simultaneously. Unit: instances            | ≥ 0 counts   | Function       | 1 minute                   |
+| `reservedinstancenum`        | Reserved Instance Count      | This metric counts the number of reserved instances configured for the function. Unit: instances           | ≥ 0 counts   | Function       | 1 minute                   |
+| `duration`        | Average Runtime      | This metric measures the average runtime of function invocations. Unit: milliseconds           | ≥ 0 ms   | Function       | 1 minute                   |
+| `maxDuration`        | Maximum Runtime      | This metric measures the maximum runtime of function invocations. Unit: milliseconds           | ≥ 0 ms   | Function       | 1 minute                   |
+| `minDuration`        | Minimum Runtime      | This metric measures the minimum runtime of function invocations. Unit: milliseconds           | ≥ 0 ms   | Function       | 1 minute                   |
 
-## Object {#object}
+## Objects {#object}
 
-The collected HUAWEI CLOUD SYS.FunctionGraph object data structure can be seen from the [ Infrastructure - Custom]  object data.
+The object data structure collected from Huawei SYS.FunctionGraph can be viewed in "Infrastructure - Custom"
 
 ``` json
 {
@@ -96,17 +90,15 @@ The collected HUAWEI CLOUD SYS.FunctionGraph object data structure can be seen f
     "last_modified"   : "2023-07-18TXX:XX:XX+08:00",
     "memory_size"     : 128,
     "timeout"         : 3,
-    "strategy_config" : "{Function policy configuration}",
-    "message"         : "{Instance JSON data}"
+    "strategy_config" : "{function strategy configuration}",
+    "message"         : "{instance JSON data}"
   }
 }
 
 ```
 
-
-> *Note: The fields in 'tags' and' fields' may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: `tags.name` value as instance ID, it is th uniquely identify.
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Tip 2: `fields.last_modified`、`fields.message`、`fields.strategy_config`are all the JSON serialized strings.
-
+> Tip 2: `fields.last_modified`, `fields.message`, and `fields.strategy_config` are serialized JSON strings.

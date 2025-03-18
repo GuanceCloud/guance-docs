@@ -10,7 +10,7 @@ Kubernetes 环境在接入 Java 应用 APM 时，需要使用到 `dd-java-agent.
 
 ## 前置条件
 
-- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
+- 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)。
 - 一个 Kubernetes 集群。
 - 已使用[ DaemonSet 方式部署 DataKit](../../datakit/datakit-daemonset-deploy.md)，且已开通 ddtrace 采集器。
 
@@ -25,7 +25,7 @@ Kubernetes 环境在接入 Java 应用 APM 时，需要使用到 `dd-java-agent.
 下载 `datakit-operator.yaml`，并部署到 Kubernetes 集群中。
 
 ```
-wget https://<<< custom_key.static_domain >>>/datakit-operator/datakit-operator.yaml
+wget https://static.<<< custom_key.brand_main_domain >>>/datakit-operator/datakit-operator.yaml
 kubectl apply -f datakit-operator.yaml
 ```
 
@@ -144,6 +144,6 @@ kubectl apply -f java-demo.yaml
 
 ![image.png](../images/datakit-operator1.png)
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」- 「应用性能监测」，根据服务器 java-demo-service，即可查询到链路。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」- 「应用性能监测」，根据服务器 java-demo-service，即可查询到链路。
 
 ![image.png](../images/datakit-operator2.png)

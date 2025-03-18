@@ -16,7 +16,7 @@ icon: zy/release-notes
 
     <table>
       <tr>
-        <th><a href="https://docs.guance.com/datakit/changelog/" target="_blank">DataKit</a></th>
+        <th><a href="<<< homepage >>>/datakit/changelog-2025/" target="_blank">DataKit</a></th>
       </tr>
     </table>
 
@@ -27,15 +27,114 @@ icon: zy/release-notes
         <th colspan="5">SDK</th>
       </tr>
       <tr>
-        <td><a href="https://docs.guance.com/real-user-monitoring/web/sdk-changelog/" target="_blank">Web</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/miniapp/sdk-changelog/" target="_blank">小程序</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/android/sdk-changelog/" target="_blank">Android</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/ios/sdk-changelog/" target="_blank">iOS</a></td>
-        <td><a href="https://docs.guance.com/real-user-monitoring/react-native/sdk-changelog/" target="_blank">React Native</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/web/sdk-changelog/" target="_blank">Web</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/miniapp/sdk-changelog/" target="_blank">小程序</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/android/sdk-changelog/" target="_blank">Android</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/ios/sdk-changelog/" target="_blank">iOS</a></td>
+        <td><a href="<<< homepage >>>/real-user-monitoring/react-native/sdk-changelog/" target="_blank">React Native</a></td>
       </tr>
     </table>
 
 </div>
+
+## 2025 年 3 月 12 日 {#20250312}
+
+### Breaking Changes {#breakingchanges0312}
+
+[事件](../events/index.md) `df_alert_info` 字段定义调整，新增告警策略未匹配原因说明，仍然需要通过 `isIgnored` 做过滤判断获取实际对外发送的通知对象。
+
+
+### 功能更新 {#feature0312}
+
+#### 异常追踪
+
+1. 新增[异常追踪管理](../management/index.md#personal_incidents)入口，通过该入口，当前登录用户可以查看和管理所有已加入工作空间的异常追踪状态。
+2. 优化异常追踪页面[频道列表](../exception/channel.md#list)显示，提升频道过多时的查询效率。
+
+#### 管理
+
+1. [云账号管理](../management/cloud-account-manag.md#alibaba)：新增阿里云云账号授权类型。
+2. [API Key 管理](../management/api-key/index.md)：新增对 API Key 的权限控制功能，支持添加角色授权。通过角色授权，API Key 仅具备角色范围内的操作权限，从而有效降低安全风险。
+3. 数据转发：默认交互变更为不选中规则。
+
+#### AI 错误分析
+
+以下详情页新增 [AI 错误分析](../logs/explorer-details.md#ai)能力：
+
+- error 日志
+- APM > 链路/错误追踪
+
+#### 场景
+
+1. 定时报告：
+
+    - 新增 Webhook 发送作为通知方式；
+    - 支持将仪表板图片分享到企业微信/钉钉。
+
+2. 时序图：选择面积图作为图表类型后，新增[堆叠模式](../scene/visual-chart/timeseries-chart.md#style)风格，便于观察整体数据的累积效果。
+
+#### APM
+
+链路：支持列表批量导出 JSONL 格式。
+
+#### RUM
+
+用户洞察 > [漏斗分析](../real-user-monitoring/user_insight_funnel.md)：对于查询到的 Session 列表支持会话重放功能。
+
+
+#### 日志
+
+1. 查看器：    
+    - 日志查看器 > 索引快捷筛选在搜索栏列出显示效果优化； 
+    - 日志详情 > 扩展字段：新增“进行维度分析”模式；         
+2. 索引：在索引的维度下支持设置专属[关键字段](../logs/multi-index/index.md#key_key)。
+
+#### 查看器时间控件
+
+左侧选择时间范围与右侧刷新频率各自独立。仅两种情况会影响刷新频率：  
+
+- 所选时间范围超过 1h       
+- 所选时间是绝对时间     
+
+
+#### 基础设施
+
+主机：查看器支持调整时间范围。
+   
+#### Pipeline
+
+1. 配置页面显示优化；
+2. Pipeline 处理类型新增“事件”；
+3. 测试样本支持获取 JSON 格式。
+4. 过滤条件 > 可用性监测：支持选择多步拨测。
+
+### 部署版更新 {#deployment0312}
+
+[模板管理](../deployment/integration.md)：支持上传所有查看器模板。
+
+### 新增集成 {#inte0312}
+
+- 新增 [azure_load_balancer](../integrations/azure_load_balancer.md)；
+- 重写 [K8S server api](../integrations/kubernetes-api-server.md)；
+- 更新 [Gitlab CI](../integrations/gitlab.md)；
+- 翻译 Volcengine 相关视图；
+- 翻译 AWS 相关视图。
+
+### Bug 修复 {#bug0312}
+
+1. 修复了日志流图导出到 CSV 无反应的问题。
+2. 修复了 `ddtrace` 采集的 JVM 指标视图变量为 `runtime-id` 字段时，时序图添加相关筛选后无数据的问题。
+3. 修复了自定义渐变区间色阶界面显示的问题。
+4. 修复了时序图编辑 DQL 查询时，过滤条件选择 >0 后保存，再次编辑时显示为空的问题。
+5. 修复了应用性能监测 > 基础设施表格图显示异常的问题。
+6. 修复了管理后台设置数据转发存储时长为 1,800 天后，前台转发规则不支持的问题。
+7. 修复了快捷查询执行 show_object_field(`HOST`) 时，报错 “kodo 服务 API 请求错误: Service Unavailable”的问题。
+8. 修复了快捷入口中存在的 bug 问题。
+9. 修复了 RUM 中 `session` 和 `view` 无数据，而其他 `resource` 和 action 等有数据的问题。
+10. 修复了多步拨测创建请求步骤会立即校验必填项的问题。
+11. 修复了数据访问设置角色授权时，过滤条件不生效的问题。
+
+
 
 ## 2025 年 2 月 27 日 {#20250227}
 

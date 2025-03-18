@@ -40,11 +40,11 @@
 
 #### 1.1 下载 datakit.yaml
 
-登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，点击「集成」 -「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`。
+登录[<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)，点击「集成」 -「DataKit」 - 「Kubernetes」，下载 `datakit.yaml`。
 
 #### 1.2 替换 Token
 
-登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，进入「管理」模块，在「基本设置」里面复制 token，替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 `<your-token>`。
+登录[<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)，进入「管理」模块，在「基本设置」里面复制 token，替换 `datakit.yaml` 文件中的 `ENV_DATAWAY` 环境变量的 value 值中的 `<your-token>`。
 
 #### 1.3 增加全局 Tag
 
@@ -94,12 +94,12 @@ kubectl apply -f datakit.yaml
 
 #### 3.1 指标预览
 
-登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，点击「指标」，搜索「prom_api_server」，在 `cluster_name_k8s` 标签下面已经有两个集群的名称。
+登录[<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)，点击「指标」，搜索「prom_api_server」，在 `cluster_name_k8s` 标签下面已经有两个集群的名称。
 
 ![image](../images/multi-cluster-3.png)
 
 #### 3.2 新建视图
 
-登录[<<< custom_key.brand_name >>>控制台](https://console.guance.com/)，点击「场景」 - 「新建仪表板」，选择 **Kubernetes API Server 监控视图**，集群名称下拉框可以区分集群了。
+登录[<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)，点击「场景」 - 「新建仪表板」，选择 **Kubernetes API Server 监控视图**，集群名称下拉框可以区分集群了。
 
 ![image](../images/multi-cluster-4.png)

@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - 'DQL Query': query.md
+  - 'DQL Definition': define.md
+  - 'DQL Functions': funcs.md
+  - 'DQL Outer Functions': out-funcs.md
+  - 'DQL vs. Other Query Languages': dql-vs-others.md

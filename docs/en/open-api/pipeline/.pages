@@ -1,0 +1,9 @@
+nav:
+  - 'List Pipelines': list.md
+  - 'Create Pipeline Rule': add.md
+  - 'Get Pipeline Rule': get.md
+  - 'Modify Pipeline Rule': modify.md
+  - 'Delete Pipeline Rule': delete.md
+  - 'Enable/Disable Pipeline Rule': batch-set-disable.md
+  - 'Import Pipeline Rule': import-pipeline.md
+  - 'Export Pipeline Rule': export-pipeline.md

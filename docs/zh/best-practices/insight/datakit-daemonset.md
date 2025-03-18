@@ -20,7 +20,7 @@
 ####  添加helm 仓库
 
 ```shell
-helm add repo dataflux  https://pubrepo.guance.com/chartrepo/datakit
+helm add repo dataflux  https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 ```
 
 #### 查看 DataKit 版本
@@ -49,7 +49,7 @@ helm pull datakit/datakit--untar
 values.yaml 可以用于下次升级使用
 
 ```yaml
-dataway_url: https://openway.guance.com?token=<your-token>
+dataway_url: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
 
 ... 
 dkconfig:
@@ -181,9 +181,9 @@ Datakit[启用git](/datakit/datakit-conf/)管理
 需要修改dataway_url，git_repos.git_url.
 
 ```shell
-helm add repo dataflux  https://pubrepo.guance.com/chartrepo/datakit
+helm add repo dataflux  https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 helm repo update 
-helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
+helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>" \
 --set git_repos.git_url="http://username:password@github.com/path/to/repository.git" \
 --create-namespace 
 ```
@@ -193,9 +193,9 @@ helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://ope
 需要修改dataway_url，git_repos.git_url，git_repos.git_key_path(绝对路径)
 
 ```shell
-helm add repo dataflux  https://pubrepo.guance.com/chartrepo/datakit
+helm add repo dataflux  https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 helm repo update 
-helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
+helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>" \
 --set git_repos.git_url="git@github.com:path/to/repository.git" \
 --set-file git_repos.git_key_path="/Users/buleleaf/.ssh/id_rsa" \
 --create-namespace 
@@ -203,7 +203,7 @@ helm install my-datakit datakit/datakit-n datakit --set dataway_url="https://ope
 
 ### yaml 启用git 部署
 
-先下载 [datakit.yaml](https://<<< custom_key.static_domain >>>/datakit/datakit.yaml)
+先下载 [datakit.yaml](https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit.yaml)
 
 - 使用密码管理git
 

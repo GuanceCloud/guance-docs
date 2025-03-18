@@ -1,0 +1,6 @@
+nav:
+  - 'Customize SDK Collecting Data': custom-sdk
+  - 'How to Configure RUM Sampling': sampling.md
+  - 'Web Application Data Collection': app-data-collection.md
+  - 'Web Application Access': app-access.md
+  - 'Web Application Analysis': app-analysis.md

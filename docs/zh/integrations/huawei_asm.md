@@ -15,7 +15,7 @@ __int_icon: 'icon/huawei_asm'
 ## 配置 {#config}
 
 ### 准备工作
-使用ASM前提，需要购买了CCE集群，部署了 `datakit` 的 [`daemonset`](https://docs.guance.com/datakit/datakit-daemonset-deploy/)。
+使用ASM前提，需要购买了CCE集群，部署了 `datakit` 的 [`daemonset`](<<< homepage >>>/datakit/datakit-daemonset-deploy/)。
 
 
 ### ASM的创建
@@ -52,7 +52,7 @@ __int_icon: 'icon/huawei_asm'
 
 #### 开启 OpenTelemetry 采集器
 
-参考[`OpenTelemetry` 采集器接入文档](https://docs.guance.com/datakit/opentelemetry/)
+参考[`OpenTelemetry` 采集器接入文档](<<< homepage >>>/datakit/opentelemetry/)
 
 - ConfigMap 增加
 
@@ -138,7 +138,7 @@ traces/apm:
 ### 指标数据发送到观测云
 #### 指标采集配置
 
-1. DataKit开启 `Prometheus Exportter` 数据采集，可以参考[**Prometheus Exportter**](https://docs.guance.com/integrations/prom/#__tabbed_1_2)，configmap如下：
+1. DataKit开启 `Prometheus Exportter` 数据采集，可以参考[**Prometheus Exportter**](<<< homepage >>>/integrations/prom/#__tabbed_1_2)，configmap如下：
 
 
    ``` yaml

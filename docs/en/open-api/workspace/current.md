@@ -1,29 +1,24 @@
-# Get Current Workspace Info
+# Get Current Workspace Information
 
 ---
 
-<br />**get /api/v1/workspace/get**
+<br />**GET /api/v1/workspace/get**
 
 ## Overview
-Get the workspace information to which the current caller belongs.
+Retrieve information about the workspace associated with the current API Key
 
 
 
-
-## Supplementary Description of Parameters
-
-
+## Additional Parameter Notes
 
 
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/get' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/get' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---compressed \
---insecure
+--compressed 
 ```
-
 
 
 
@@ -32,47 +27,144 @@ curl 'https://openapi.guance.com/api/v1/workspace/get' \
 {
     "code": 200,
     "content": {
+        "AutomataServerRegionType": "cn",
+        "IssueGlobalOpenStatus": true,
         "billingState": "normal",
-        "cliToken": "wkcli_2dc439f6693711eb8ff97aeee04b54af",
-        "createAt": 1612697128,
-        "creator": "mact-U2kcQuQum4Cs7YdLAe49B9Hg",
+        "bossStation": "CN",
+        "cliToken": "wkcli_xxxxx",
+        "createAt": 1695179876,
+        "creator": "external",
         "dashboardUUID": null,
-        "dbUUID": "ifdb_c0fss9qc8kg4gj9bjjag",
+        "datastore": {
+            "backup_log": "doris",
+            "custom_object": "doris",
+            "keyevent": "doris",
+            "logging": "doris",
+            "metric": "guancedb",
+            "network": "doris",
+            "object": "doris",
+            "object_history": "doris",
+            "profiling": "doris",
+            "rum": "doris",
+            "security": "doris",
+            "tracing": "doris"
+        },
+        "dbUUID": "ifdb_xxx",
+        "declaration": {
+            "asd": "aa,bb,cc,1,True",
+            "business": "Sales Department",
+            "organization": "64fe7b406xxxx"
+        },
         "deleteAt": -1,
-        "desc": "m修改修改hhhhh",
+        "desc": "Do not perform data deletion operations",
         "durationSet": {
             "backup_log": "180d",
             "keyevent": "14d",
-            "logging": "14d",
+            "logging": "30d",
             "network": "2d",
-            "rp": "30d",
-            "rum": "7d",
-            "security": "90d",
-            "tracing": "7d"
+            "profiling": "7d",
+            "rp": "7d",
+            "rum": "3d",
+            "security": "180d",
+            "tracing": "3d"
         },
+        "enableMFA": false,
         "enablePublicDataway": 1,
-        "esInstanceUUID": "es_1f32b130567411ec9cfbacde48001122",
-        "extend": {},
-        "exterId": "team-y25aVfh4neXCspQrcfqEaM",
-        "id": 2,
-        "isOpenWarehouse": 0,
-        "memberCount": 75,
-        "name": "开发测试一起用",
-        "rpName": "rp4",
+        "esIndexMerged": 0,
+        "esIndexSettings": {
+            "apm": {
+                "hot_retention": 2,
+                "number_of_replicas": 1,
+                "number_of_shards": 1,
+                "openAdvancedConfig": 0,
+                "rollover_max_size": 30
+            },
+            "backup_log": {
+                "hot_retention": 0,
+                "number_of_replicas": 1,
+                "number_of_shards": 1,
+                "openAdvancedConfig": 0,
+                "rollover_max_size": 30
+            },
+            "keyevent": {
+                "hot_retention": 1,
+                "number_of_replicas": 1,
+                "number_of_shards": 1,
+                "openAdvancedConfig": 0,
+                "rollover_max_size": 30
+            },
+            "logging": {
+                "hot_retention": 6,
+                "number_of_replicas": 1,
+                "number_of_shards": 1,
+                "openAdvancedConfig": 0,
+                "rollover_max_size": 30
+            },
+            "network": {
+                "hot_retention": 23,
+                "number_of_replicas": 1,
+                "number_of_shards": 1,
+                "openAdvancedConfig": 0,
+                "rollover_max_size": 30
+            },
+            "tracing": {
+                "hot_retention": 48,
+                "number_of_replicas": 1,
+                "number_of_shards": 1,
+                "openAdvancedConfig": 0,
+                "rollover_max_size": 30
+            }
+        },
+        "esInstanceUUID": "es_nCyRaJjUeWR6uDoris",
+        "expensiveCfg": {},
+        "exterId": "",
+        "faviconUrl": "https://testing-static-res.dataflux.cn/logo/wksp_xxxx32_favicon.ico",
+        "id": 2928,
+        "indexDashboardInfo": {},
+        "inviteAudit": 0,
+        "isLocked": 0,
+        "isOpenCustomMappingRule": 1,
+        "isOpenLogMultipleIndex": 1,
+        "language": "en",
+        "lastDqlDataCheckTime": {
+            "ci": true,
+            "cloudDial": true,
+            "containers": true,
+            "events": true,
+            "host_processes": true,
+            "logging": true,
+            "network": true,
+            "object": true,
+            "profile": true,
+            "security": true,
+            "tracing": true
+        },
+        "leftWildcard": true,
+        "lockAt": -1,
+        "logMultipleIndexCount": 8,
+        "loggingCutSize": 10240,
+        "logoUrl": "https://testing-static-res.dataflux.cn/logo/xxxxxxxx_logo.png",
+        "makeResourceExceptionCode": "",
+        "memberCount": "79",
+        "menuStyle": "",
+        "name": "[Doris] Development and Testing Together",
+        "note": "",
+        "noviceGuide": true,
+        "rpName": "rp1",
+        "rumDataWayToken": "",
         "status": 0,
-        "token": "tkn_2dc438b6693711eb8ff97aeee04b54af",
-        "updateAt": 1642562104,
-        "updator": "acnt_6f2fd4c0766d11ebb56ef2b2c21faf74",
-        "uuid": "wksp_2dc431d6693711eb8ff97aeee04b54af",
+        "supportJsonMessage": 1,
+        "tenantId": 2928,
+        "timezone": "",
+        "token": "tkn_xxxxx",
+        "updateAt": 1724244707,
+        "updator": "acnt_xxxx",
+        "uuid": "wksp_xxxxx",
         "versionType": "pay"
     },
     "errorCode": "",
     "message": "",
     "success": true,
-    "traceId": "TRACE-C8664FD5-8EFB-4CB3-895F-B019D2A212E3"
+    "traceId": "2956247345653191101"
 } 
 ```
-
-
-
-

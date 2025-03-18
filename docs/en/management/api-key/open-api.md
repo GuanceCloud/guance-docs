@@ -1,74 +1,76 @@
 # OpenAPI
 ---
 
+<<< custom_key.brand_name >>> supports obtaining and updating <<< custom_key.brand_name >>> workspace data through calling Open API interfaces.
 
-Guance supports obtaining and updating the data of Guance workspace by calling the Open API interface. 
-
-> For a detailed list of APIs, see [Guance OpenAPI Doc Library](../../open-api/index.md).
+> For detailed API lists, refer to the [<<< custom_key.brand_name >>> OpenAPI Documentation Library](../../open-api/index.md).
 
 
 ## Authentication Method
 
-Before calling the API interface, you need to create an API Key as the authentication method. Refer to the documentation [API Key management](../../management/api-key/index.md).
+Before calling API interfaces, you need to create an API Key for authentication.
 
-The interface takes API KEY as the authentication mode, and each request uses the value of DF-API-KEY in the Header of the request body as the validity test, and the workspace limitation basis of this request (taking the workspace to which this DF-API-KEY belongs).
+> For instructions on creating an API Key, refer to [API Key Management](../../management/api-key/index.md).
 
-All GET (**data query GET class**) interfaces need only provide API KEY (Header: **DF-API-KEY**) as credentials.
+The interface uses API KEY as the authentication method. Each request uses the value of the DF-API-KEY in the request header for validation and to determine the workspace for this request (based on the workspace associated with this DF-API-KEY).
+
+All GET (**data query and retrieval**) interfaces only require providing the API KEY (Header: **DF-API-KEY**) as credentials.
 
 
 ## Request Structure
 
-**Example of URL POST request to delete dashboard interface:**
+**Example of a URL POST request to delete a dashboard:**
 
 ```
-curl -X POST "https://openapi.guance.com/api/v1/dashboard/dsbd_922428e594ba44ce87229b8ca3007a90/delete" \
+curl -X POST "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/dsbd_922428e594ba44ce87229b8ca3007a90/delete" \
 -H "Content-Type: application/json" \
 -H "DF-API-KEY: ${DF_API_KEY}"
 ```
 
-**Sample URL GET request with validate interface:**
+**Example of a URL GET request to validate:**
 
 ```
-curl -X GET "https://openapi.guance.com/api/v1/validate" \
+curl -X GET "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/validate" \
 -H "Content-Type: application/json" \
 -H "DF-API-KEY: ${DF_API_KEY}"
 ```
 
-Note: We simplify the HTTP request mode, only using GET and POST. GET is a data acquisition class request, such as obtaining dashboard list interface, and POST is all data change class requests, such as creating dashboard and deleting dashboard interface.
+**Note**: We have simplified HTTP request methods to use only GET and POST. GET is used for data retrieval requests, such as the [Get Dashboard List] interface, while POST is used for all data modification requests, such as [Create Dashboard, Delete Dashboard] interfaces, etc.
 
 ### Access Address Endpoint
 
 | **SaaS Deployment Node** | **Endpoint** |
 | --- | --- |
-| Alibaba Cloud | https://openapi.guance.com |
-| AWS | https://aws-openapi.guance.com |
+| Alibaba Cloud | https://openapi.<<< custom_key.brand_main_domain >>> |
+| AWS | https://aws-openapi.<<< custom_key.brand_main_domain >>> |
 
-Note: Private Deployment Plan also supports openapi access and is subject to the actual deployment of Endpoint.
+**Note**: Private deployment versions also support OpenAPI access, using the actual deployment Endpoint.
 
 ### Interface Routing Address Specification
 
-Interface routes generally follow the following naming conventions:
+Interface routing generally follows these naming conventions:
 
-| /api/v1/{object type}/{object uuid}/{action} |
+| Naming Convention |
 | --- |
+| /api/v1/{object type}/{object uuid}/{action} |
 
-Such as:
+For example:
 
-- dashboard list retrieval: **/api/v1/dashboard/list**
-- create a dashboard: **/api/v1/dashboard/create**
-- get a dashboard: **/api/v1/dashboard/dsbd_0e233ee4804aca011ba94a9164a9ed7f/get**
-- delete a dashboard: **/api/v1/dashboard/dsbd_0e233ee4804aca011ba94a9164a9ed7f/delete**
-- modify a dashboard: **/api/v1/dashboard/dsbd_0e233ee4804aca011ba94a9164a9ed7f/modify**
-- host object list retrieval: **/api/v1/object/host/list**
-- process object list retrieval: **/api/v1/object/process/list**
+- Get dashboard list: **/api/v1/dashboard/list**
+- Create a dashboard: **/api/v1/dashboard/create**
+- Get a dashboard: **/api/v1/dashboard/dsbd_0e233ee4804aca011ba94a9164a9ed7f/get**
+- Delete a dashboard: **/api/v1/dashboard/dsbd_0e233ee4804aca011ba94a9164a9ed7f/delete**
+- Modify a dashboard: **/api/v1/dashboard/dsbd_0e233ee4804aca011ba94a9164a9ed7f/modify**
+- Get host object list: **/api/v1/object/host/list**
+- Get process object list: **/api/v1/object/process/list**
 
-Note: **v1** in the route is the interface version number. Each release version of the interface needs to be forward compatible. If there are incompatible interface changes or major business changes, a version number needs to be added.
+**Note**: The **v1** in the route is the API version number. Each released version of the API must be backward compatible. If there are incompatible changes or significant business changes, a new version number should be added.
 
-## Return Results
+## Response Results
 
-The interface return follows the HTTP request response specification, the normal return HTTP status code for the request is 200, the API KEY test fails to return the HTTP status code is 403, and the rest of the server can't handle or unknown error HTTP status code is 500, such as accessing unauthorized access data is 403, and can't find a certain operation object to return 404. See **Error Definition** below for details.
+API responses follow HTTP request-response standards. A successful request returns an HTTP status code of 200, an invalid API KEY returns an HTTP status code of 403, and all other server-side unhandled or unknown errors return an HTTP status code of 500, such as accessing unauthorized data returning 403, or not finding an operation object returning 404, etc. Refer to the error definitions for more details.
 
-### Response Result Sample
+### Response Result Example
 
 ```
 {
@@ -89,29 +91,28 @@ The interface return follows the HTTP request response specification, the normal
 }
 ```
 
-### Common Response Result Parameter
+### Common Response Result Parameters
+
 | **Field** | **Type** | **Description** |
 | --- | --- | --- |
-| code | Number | The returned status code remains the same as the HTTP status code and is fixed at 200 when there are no errors. |
-| content | String, Number, Array, Boolean, JSON | The data returned, and what type of data is returned is related to the business of the actual interface. |
-| pageInfo | JSON | List paging information that all list interfaces respond to. |
-| errorCode | String | The error status code returned. Null means no error. |
-| message | String | Specific information corresponding to the returned error code. |
-| success | Boolean | Fixed to true, indicating that the interface call was successful. |
-| traceId | String | traceId, which is used to track the status of each request. |
+| code | Number | Return status code, consistent with HTTP status codes, fixed at 200 when there are no errors. |
+| content | String, Number, Array, Boolean, JSON | Returned data, the specific type depends on the actual business of the interface. |
+| pageInfo | JSON | Pagination information for all list interfaces. |
+| errorCode | String | Returned error code, empty indicates no error. |
+| message | String | Specific description of the returned error code. |
+| success | Boolean | Fixed at true, indicating successful API call. |
+| traceId | String | Trace ID, used to track each request. |
 
 
-## Public Error Definition
+## Common Error Definitions
+
 | **Error Code** | **HTTP Status Code** | **Error Message** |
 | --- | --- | --- |
-| RouterNotFound | 400 | Request routing address does not exist |
-| InvalidApiKey | 403 | Invalid Request API KEY |
-| InternalError | 503 | Unknown error |
+| RouterNotFound | 400 | Requested route address does not exist. |
+| InvalidApiKey | 403 | Invalid request API KEY. |
+| InternalError | 503 | Unknown error. |
 | ... |  |  |
 
-For a list of API interfaces, see [Guance OpenAPI Doc Library](../../open-api/index.md).
-
+> For more about API interface lists, refer to the [<<< custom_key.brand_name >>> OpenAPI Documentation Library](../../open-api/index.md).
 
 ---
-
-

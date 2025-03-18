@@ -1,65 +1,60 @@
 # Intelligent Monitoring
 ---
 
-Intelligent monitoring provides a mechanism for quickly identifying abnormal nodes for business analysis, user behavior analysis, and root cause analysis of failures. It is suitable for business metrics and metrics with high volatility. By analyzing the scenarios, it constructs a key dimension for locating multidimensional metrics. After locating the business dimension, it quickly analyzes and identifies exceptions based on the service calls and resource dependencies within microservices. 
+Intelligent monitoring provides a mechanism for quickly identifying abnormal nodes for business analysis, user behavior analysis, and root cause analysis of faults. It is suitable for business-related metrics and highly volatile metrics. By building an analytical scenario to locate critical dimensions for multi-dimensional metrics; after pinpointing the dimensional scope of the business, it focuses on service calls and resource dependencies within microservices to rapidly identify and analyze anomalies.
 
-Monitoring is configured using detection rules such as [Host Detection](host-intelligent-detection.md), [Logs Detection](log-intelligent-monitoring.md), [APM Detection](application-intelligent-detection.md) and [RUM Detection](rum-intelligent-detection.md). Set the detection scope and notification recipients, and use intelligent detection algorithms to identify abnormal data and predict future trends.
+Configure monitoring through various intelligent detection rules. Set the detection range and notification recipients, using intelligent detection algorithms to identify abnormal data and predict future trends.
 
-**Notes**: In contrast to traditional monitoring modes, intelligent monitoring does not require configuring detection thresholds and triggering rules. It only requires setting the detection scope and notification recipients to enable monitoring with one click. It uses intelligent algorithms to identify and locate exceptions, and supports analysis and reporting of abnormal intervals.
+**Note**: Unlike traditional monitoring models, intelligent monitoring does not require configuring detection thresholds or trigger rules. Simply set the detection range and notification recipients to enable monitoring with one click. Through intelligent algorithms, it identifies and locates anomalies, supporting analysis and reporting of abnormal intervals.
 
-The intelligent monitoring tool in the workspace can be accessed and managed through the **Intelligent Monitoring** feature of the cloud platform.
+The intelligent monitors in the workspace can be viewed and managed via the <<< custom_key.brand_name >>> platform's **Intelligent Monitoring**.
 
-![](../img/intelligent-detection01.png)
-
-## Usage Instructions
+## Usage Notes
 
 :material-numeric-1-circle: Data Storage
 
-I. Due to the need for data transfer, the number of new timelines will be generated after enabling log and APM detection, that is, **the number of detection dimensions (Service, Source) filtered by the current monitoring configuration filter conditions * the number of detection metrics (premise: the metric is a valid value)**.
+1. Due to the need for data migration, enabling log and application intelligent detection will generate new time series based on the number of detected dimensions (Service, Source) filtered by the current monitoring configuration * the number of detection metrics (premise: metrics are valid).
 
-detection metrics:         
+Intelligent monitoring detection metrics:
 
-- Logs detection: `error_log_count`, `log_count`;
-- APM detection: `p90`, `error_request_count`, `request_count`.
+- Log intelligent detection: Error log count (`error_log_count`), log count (`log_count`);
+- Application intelligent detection: P90 latency (`p90`), error request count (`error_request_count`), request count (`request_count`).
 
-II. To reduce overheads, logs and APM detection transcription timelines adopt the minimum storage logic, only retaining the detection dimension, measurement name and detection metric, and do not store the monitor's filter conditions. Therefore, given the current storage transcription logic, if the monitor's filter conditions configuration is changed, a new timeline will be generated, so there may be duplicate timeline charges on the day the monitor's filter conditions configuration is changed, and it will take effect immediately after the modification.
+2. To reduce overhead, log and application intelligent detection time series use minimal storage logic, retaining only the detection dimensions, measurement names, and detection metrics. Monitoring filter conditions are not stored. Therefore, if the monitoring filter conditions are modified, new time series will be generated, which may result in duplicate billing for time series on the day of modification. Changes take effect immediately.
 
-III. To improve algorithm accuracy and achieve the best detection effect, please **set the metric storage cycle to a maximum of 30 days before enabling intelligent monitoring (default configuration is 7 days)**.
+3. To improve algorithm accuracy and achieve optimal detection results, **set the metric retention period to the maximum of 30 days (default is 7 days) before enabling intelligent monitoring**.
 
-IV. If you need to view the metric data (Metric) transcribed by log and application intelligent detection, you can go to the current monitoring alert event > Extend Fields > `df_event_report` > report content > `smart_monitor_metric:smart_apm_ff5cf0ea792f4bac72ca1afdcd431c82`.
+4. To view the metrics (Metrics) stored from log and application intelligent detection, go to Current Monitoring Alert Event > Extended Fields > `df_event_report` > Report Content > `smart_monitor_metric:smart_apm_ff5cf0ea792f4bac72ca1afdcd431c82`.
 
-<img src="../img/detail-report.png" width="70%" >
+![Detail Report](../img/detail-report.png)
 
+:material-numeric-2-circle: Algorithm Explanation: Intelligent monitoring uses the [ADTK](https://adtk.readthedocs.io/en/stable/install.html) library, which is based on time-series anomaly detection.
 
-:material-numeric-2-circle: Algorithm Explanation: Intelligent monitoring uses the algorithm of the anomaly [ADTK](https://adtk.readthedocs.io/en/stable/install.html) based on time series.
-    
-This monitoring system compares the time series value with its previous time window value. If a value changes anomalously large compared to its previous average or median, then this time point is identified as an anomaly. At the same time, the system will calculate the expected normal range of the current detection dimension based on past data. This expected range is determined based on the time of day and a specific day of the week. In this way, the system can verify whether the anomalies detected by the data are truly valid.
+This monitoring system compares time series values with those from the previous time window. If a value shows an abnormally large change compared to its previous average or median, that time point is identified as an anomaly. Additionally, the system calculates the expected normal range for the current detection dimension based on past data. This expected range is determined by the time of day and day of the week. This way, the system can verify whether detected anomalies are truly valid.
 
+## Rule Types {#detect}
 
-## Setup {#new}
+Currently, <<< custom_key.brand_name >>> supports multiple intelligent detection rules, each covering different data ranges.
 
-You can set detection rules for different monitoring scenarios using **Intelligent Monitoring**.
-
-![](../img/intelligent-detection02.png)
-
-### Detection Rules {#detect}
-
-Currently, Guance supports three types of intelligent detection rules, each covering a different range of data.
-
-| Rule Name | Data Range | Description |
+| <div style="width: 170px">Rule Name</div> | <div style="width: 120px">Data Range</div> | Basic Description |
 | --- | --- | --- |
-| Host Detection | Metrics(M)  | Automatically detect host anomalies using intelligent algorithms, including CPU and memory anomalies. |
-| Logs Detection | Logs(L) | Automatically detect anomalies in logs using intelligent algorithms, including log count and error log count. |
-| Application Detection](application-intelligent-detection.md) | Traces(T)  | Automatically detect anomalies in applications using intelligent algorithms, including request count, error request count, and request latency. |
+| [Host Intelligent Detection](./host-intelligent-detection.md) | Metrics (M) | Automatically detects host anomalies using intelligent algorithms, such as CPU and memory issues. |
+| [Log Intelligent Detection](./log-intelligent-monitoring.md) | Logs (L) | Automatically detects anomalies in logs using intelligent algorithms, including log volume and error log counts. |
+| [Application Intelligent Detection](./application-intelligent-detection.md) | Traces (T) | Automatically detects anomalies in applications using intelligent algorithms, including request volume, error requests, and request latency. |
+| [User Access Intelligent Detection](./rum-intelligent-detection.md) | User Access Data (R) | Automatically detects anomalies in websites/APPs using intelligent algorithms, including page performance analysis, error analysis, and metrics like LCP, FID, CLS, Loading Time, etc. |
+| [Kubernetes Intelligent Detection](./k8s.md) | Metrics (M) | Automatically detects anomalies in Kubernetes using intelligent algorithms, including total Pod count, Pod restarts, API QPS, etc. |
+| [Cloud Billing Intelligent Monitoring](./cloud-bill-detection.md) | Cloud Billing (B) | Automatically detects anomalies in cloud accounts' billing fees using intelligent algorithms, including billing costs. |
 
+## Configuration
 
-|                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Learn More**</font>             |        |         
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [Host Detection](host-intelligent-detection.md){ .md-button .md-button--primary } | [Logs Detection](log-intelligent-monitoring.md){ .md-button .md-button--primary } |
-| [APM Detection](application-intelligent-detection.md){ .md-button .md-button--primary } | [RUM Detection](rum-intelligent-detection.md){ .md-button .md-button--primary } | 
+1. Set corresponding detection conditions for different [detection rules](#detect);
+2. Fill in [event notification](../monitor/monitor-rule.md#notice) content as needed;
+3. Configure [alert strategies](../monitor/monitor-rule.md#alert);
+4. Set [operation permissions](../monitor/monitor-rule.md#permission);
+5. Click save.
 
-### Billing
+## Billing Details
 
-The host, logs, and APM detection are performed every 10 minutes, each detection is calculated as 10 triggers; each detection performed by user access intelligence is calculated as 100 triggers.
+Host, log, and application intelligent detection runs every 10 minutes, with each execution counted as 10 API calls. User access intelligent detection is billed at 100 API calls per execution.
 
-> See [How Triggers bill](../../billing/billing-method/billing-item.md#trigger).
+> For more details, see [Task Triggers](../../billing-method/billing-item.md#trigger).

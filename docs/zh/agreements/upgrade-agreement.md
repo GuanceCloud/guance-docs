@@ -23,7 +23,7 @@
 
 ### 2、服务内容
 
-本条款中“服务”指： “<<< custom_key.brand_name >>>” https://www.guance.com/ 网站和客户端（以下单独或统称“<<< custom_key.brand_name >>>网站”）所展示的、您申请订购且 “<<< custom_key.brand_name >>>” 同意向您提供的<<< custom_key.brand_name >>>一站式数据监测云平台【商业版】服务。（具体详见<<< custom_key.brand_name >>>的网站相关页面的服务内容及报价）
+本条款中“服务”指： “<<< custom_key.brand_name >>>” https://<<< custom_key.brand_main_domain >>>/ 网站和客户端（以下单独或统称“<<< custom_key.brand_name >>>网站”）所展示的、您申请订购且 “<<< custom_key.brand_name >>>” 同意向您提供的<<< custom_key.brand_name >>>一站式数据监测云平台【商业版】服务。（具体详见<<< custom_key.brand_name >>>的网站相关页面的服务内容及报价）
 
 ### 3、服务费用
 

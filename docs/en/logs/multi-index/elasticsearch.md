@@ -1,28 +1,31 @@
-# Bind Elasticsearch Index {#es}
+# Elasticsearch Index Binding  {#es}
 
-Select **Elasticsearch** and fill in the required information. After completion, you can click **Test** to verify the correctness of the username and password.
+Select **Elasticsearch**, and fill in the required information. After completing the form, you can click **Test** to verify the correctness of the username and password.
 
-**Note**: Only Elasticsearch versions 7.0+ and above are supported.
+**Note**: Only Elasticsearch 7.0+ versions are supported for binding.
 
 :material-numeric-1-circle-outline: Account Authorization
 
-1. Domain Name: The user access address for Elasticsearch, ensure it is accessible over the public network.
-2. Username: The user name for accessing Elasticsearch.
-3. Password: The password required for accessing Elasticsearch.
+1. Domain Name: The access address for Elasticsearch users. Ensure it is accessible via the public network.
+2. Username: The username required to access Elasticsearch.
+3. Password: The password required to access Elasticsearch.
 
 :material-numeric-2-circle-outline: Resource Authorization
 
-1. Elasticsearch Index: The name of the index in Elasticsearch that you wish to bind for viewing.
-2. Guance Index: The unique index name identified by the Guance workspace, to be filled in by the user, with no repetition allowed. After configuration, it can be used for filtering index names.
-    - **Note**: This index name is unrelated to Elasticsearch and is only used for your subsequent data filtering in Guance.
+1. Elasticsearch Index: The index name in Elasticsearch that needs to be bound for viewing.
+2. <<< custom_key.brand_name >>> Index: The index name uniquely identifying the <<< custom_key.brand_name >>> workspace, defined by the user. Duplicate names are not supported. After configuration, this can be used to filter index names.
+    - **Note**: This index name is unrelated to Elasticsearch and is only used for data filtering within <<< custom_key.brand_name >>>.
 
-:material-numeric-3-circle-outline: [Field Mapping](./index.md#mapping).                 
+:material-numeric-3-circle-outline: [Field Mapping](./index.md#mapping).
 
-:material-numeric-4-circle-outline: Click **Confirm** to complete the index binding, and you can view it by switching indexes in the **Explorer**.
+:material-numeric-4-circle-outline: Click **Confirm** to complete the index binding. You can view the bound index by switching indexes in the **Explorer**.
 
-## More Reading
 
-<font size=3>
+## Further Reading
+
+
+<font size=2>
+
 
 <div class="grid cards" markdown>
 
@@ -30,6 +33,5 @@ Select **Elasticsearch** and fill in the required information. After completion,
 
 </div>
 
+
 </font>
-
-

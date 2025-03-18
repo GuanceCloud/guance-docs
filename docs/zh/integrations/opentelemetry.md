@@ -464,7 +464,7 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 <!-- markdownlint-disable MD046 -->
 ???+ warning "metric"
 
-    从版本 [DataKit 1.68.0](../datakit/changelog.md#cl-1.68.0) 开始指标集名称做了改动：
+    从版本 [DataKit 1.68.0](../datakit/changelog-2025.md#cl-1.68.0) 开始指标集名称做了改动：
     所有发送到观测云的指标有一个统一的指标集的名字： `otel_service` 
     如果已经有了仪表板，将已有的仪表板导出后统一将 `otel-serivce` 改为 `otel_service` 再导入即可。
 
@@ -498,6 +498,8 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 这种转换使得 OpenTelemetry 收集的直方图数据能够无缝集成到 Prometheus 中，并利用 Prometheus 的强大查询和可视化功能进行分析。
 
+
+
 ## 数据字段说明 {#fields}
 
 
@@ -515,7 +517,6 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 |`area`|Heap or not|
 |`cause`|GC Cause|
 |`container_id`|Container ID|
-|`description`|Metric Description|
 |`exception`|Exception Information|
 |`gc`|GC Type|
 |`host`|Host Name|
@@ -540,25 +541,15 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 |`name`|Thread Pool Name|
 |`net_protocol_name`|Net Protocol Name|
 |`net_protocol_version`|Net Protocol Version|
-|`os_description`|OS Version|
 |`os_type`|OS Type|
 |`outcome`|HTTP Outcome|
 |`path`|Disk Path|
 |`pool`|JVM Pool Type|
-|`process_command_line`|Process Command Line|
-|`process_executable_path`|Executable File Path|
-|`process_runtime_description`|Process Runtime Description|
-|`process_runtime_name`|JVM Pool Runtime Name|
-|`process_runtime_version`|JVM Pool Runtime Version|
 |`scope_name`|Scope name|
 |`service_name`|Service Name|
 |`spanProcessorType`|Span Processor Type|
 |`state`|Thread State:idle,used|
 |`status`|HTTP Status Code|
-|`telemetry_auto_version`|Version|
-|`telemetry_sdk_language`|Language|
-|`telemetry_sdk_name`|SDK Name|
-|`telemetry_sdk_version`|SDK Version|
 |`unit`|metrics unit|
 |`uri`|HTTP Request URI|
 
@@ -580,6 +571,7 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 |`executor.queued`|The approximate number of tasks that are queued for execution|float|count|
 |`http.server.active_requests`|The number of concurrent HTTP requests that are currently in-flight|float|count|
 |`http.server.duration`|The duration of the inbound HTTP request|float|ns|
+|`http.server.request.duration`|The count of HTTP request duration time in each bucket|float|count|
 |`http.server.requests`|The http request count|float|count|
 |`http.server.requests.max`|None|float|B|
 |`http.server.response.size`|The size of HTTP response messages|float|B|
@@ -644,6 +636,7 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
@@ -676,6 +669,25 @@ OpenTelemetry Java Agent 从应用程序中通过 JMX 协议获取 MBean 的指�
 
 
 
+
+## 指标中删除的标签 {#del-metric}
+
+OTEL 上报的指标中有很多无用的标签，这些都是 String 类型，由于太占用内存和带宽就做了删除，不会上传到观测云中心。
+
+这些标签包括：
+
+```text
+process.command_line
+process.executable.path
+process.runtime.description
+process.runtime.name
+process.runtime.version
+telemetry.distro.name
+telemetry.distro.version
+telemetry.sdk.language
+telemetry.sdk.name
+telemetry.sdk.version
+```
 
 ## 日志 {#logging}
 

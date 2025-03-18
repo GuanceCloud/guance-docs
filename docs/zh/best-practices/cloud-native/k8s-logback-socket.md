@@ -10,7 +10,7 @@ Logback 日志输出除了常用的 file 和 stdout 外，还可以进行 socket
 
 ## 前置条件
 
-1. 需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)
+1. 需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)
 1. Spring Boot应用
 1. docker-harbor
 1. K8s 集群
@@ -239,7 +239,7 @@ Kubernetes 下 DataKit 安装参照文档 <[Kubernetes 应用的 RUM-APM-LOG 联
                       apiVersion: v1
                       fieldPath: spec.nodeName
                 - name: ENV_DATAWAY
-                  value: https://openway.guance.com?token=<you token>
+                  value: https://openway.<<< custom_key.brand_main_domain >>>?token=<you token>
                 - name: ENV_GLOBAL_HOST_TAGS
                   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name=k8s-dev
                 - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -250,7 +250,7 @@ Kubernetes 下 DataKit 安装参照文档 <[Kubernetes 应用的 RUM-APM-LOG 联
                   value: 0.0.0.0:9529
                 - name: ENV_LOG_LEVEL
                   value: info
-              image: pubrepo.jiagouyun.com/datakit/datakit:1.2.6
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.2.6
               imagePullPolicy: IfNotPresent
               name: datakit
               ports:
@@ -348,7 +348,7 @@ Kubernetes 下 DataKit 安装参照文档 <[Kubernetes 应用的 RUM-APM-LOG 联
 
           ## Containers logs to include and exclude, default collect all containers. Globs accepted.
           container_include_log = []
-          container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+          container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
           exclude_pause_container = true
 
@@ -750,7 +750,7 @@ docker push registry.cn-shenzhen.aliyuncs.com/lr_715377484/springboot-logback-so
               - sh
               - -c
               - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-              image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
               imagePullPolicy: Always
               name: ddtrace-agent-sidecar
               volumeMounts:

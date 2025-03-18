@@ -7,7 +7,7 @@
 - 账号与工作空间的关联关系将被清除处理且无法找回（即使您使用相同的邮箱、手机再次注册并使用<<< custom_key.brand_name >>>）；
 - 账号提交的未关闭工单将于 7 个工作日内做关闭处理。
 
-<<< custom_key.brand_name >>>账号注销条款（以下简称“本条款”）约束您主动注销您的<<< custom_key.brand_name >>>（国内域名：www.guance.com；海外域名：www.guance.one）账号的行为及所涉相关事宜。
+<<< custom_key.brand_name >>>账号注销条款（以下简称“本条款”）约束您主动注销您的<<< custom_key.brand_name >>>（国内域名：<<< custom_key.brand_main_domain >>>；海外域名：www.guance.one）账号的行为及所涉相关事宜。
 
 请您在提交账号注销申请前务必充分阅读、理解并同意本条款的全部内容，有任何疑问，请您联系<<< custom_key.brand_name >>>客服。
 

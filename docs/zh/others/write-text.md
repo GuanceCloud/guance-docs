@@ -94,29 +94,29 @@ Python
 支持使用`中括号`和`小括号`表示超链接，`文字描述`写在`中括号`内，`网址`写在`小括号`内，格式如下：
 
 ```
-[<<< custom_key.brand_name >>>](https://www.guance.com)
+[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 ```
 
 效果如下：
 
-[<<< custom_key.brand_name >>>](https://www.guance.com)
+[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 
 支持使用使用`<>` 符号直接显示链接地址，格式如下：
 
 ```
-<https://www.guance.com>
+<https://<<< custom_key.brand_main_domain >>>>
 ```
 
 效果如下：
 
-[https://www.guance.com](https://www.guance.com)
+[https://<<< custom_key.brand_main_domain >>>](https://<<< custom_key.brand_main_domain >>>)
 
 ## 7.图片
 
 支持在文本文档中插入网络图片，格式如下：
 
 ```
-![avatar](https://<<< custom_key.static_domain >>>/dataflux-icon/official/community-code.png)
+![avatar](https://static.<<< custom_key.brand_main_domain >>>/dataflux-icon/official/community-code.png)
 ```
 
 效果如下：

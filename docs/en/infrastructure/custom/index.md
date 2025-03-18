@@ -1,140 +1,156 @@
-# Custom
+# Resource Catalog
 ---
 
-Besides hosts, containers and processes, Guance supports customizing new infrastructure types and reporting relevant data to the Guance console.
+In addition to hosts, containers, and processes, you can create custom resources by combining properties, associated views, JSON text configurations, and using the DataKit API and DataFlux Func to report any data to <<< custom_key.brand_name >>>, including cloud vendor cloud resource data, various business data of enterprises, and other arbitrary data that needs monitoring. Ultimately, this data is managed and analyzed in a unified visual manner through the custom resource Explorer in the front-end console.
 
-Guance supports you in classifying custom infrastructure types, helping you track and store custom data of the same type.
+By creating viewer templates that conform to the characteristics of different resource classes, once the data is connected to the console, it will prioritize applying the [created templates](#start). You can use these viewer templates to view and analyze Resource Catalog data. If no match is found, the official template library's templates will be applied.
 
-## Add
+**Note**:
 
-In the Guance workspace, you can create new custom and customize its names and fields through **Infrastructure > Custom > Add Custom**.
+1. Whether or not a resource has a viewer template **does not affect** the reporting and reception of data;
+2. Templates support configuring "mandatory attributes," meaning the data must include these fields for it to be received, which can be used for data filtering and interception.
 
-<img src="../img/1.custom_1.png" width="70%" >
+## Data Reporting
 
-1. Custom: This is the name when conducting custom data reporting. When reporting data, you need to ensure that the name matches the naming used during data reporting.
+**Prerequisite**: Install DataKit and DataFlux Func.
 
-2. Alias: This is the name under which the current custom is displayed in the list of custom infrastructure types.
+After adding resource catalog classifications, you can proceed with custom data reporting. Report data from DataFlux Func to DataKit, which ultimately reports the data to the <<< custom_key.brand_name >>> workspace.
 
-3. Required Attributes: The fields that must be included in the data; the `name` field of the custom is added by default. If the reported data does not include the fields you have set, it will not be reported to Guance, thus filtering out non-standard data.
+> For detailed steps, refer to [Resource Catalog Data Reporting](data-reporting.md).
 
+**Note**:
 
-## Data Report
+1. Custom fields in **mandatory attributes** are required fields when reporting data. If the reported data lacks these required fields, it will not be reported to the <<< custom_key.brand_name >>> workspace;
+2. If the data type of the reported data does not match the defined field data type, it will not be reported to the <<< custom_key.brand_name >>> workspace. For example, if the field type is defined as string in DataFlux Func but the data type reported is integer, this data will not be reported to the <<< custom_key.brand_name >>> workspace;
+3. Resource catalogs offline for 48 hours will be cleared.
 
-After adding custom, you can proceed with custom data reporting. Before that, you need to install and connect DataKit and DataFlux Func, and then report data to DataKit through DataFlux Func. Finally, the data will be reported to the Guance workspace through DataKit.
+## Create a Resource Viewer {#create}
 
-> See [Custom Data Report](data-reporting.md) for the specific operation process.
+You can create a viewer in the following ways:
 
-**Note:**
+:material-numeric-1-circle: Custom Creation: Click to directly enter the creation page.
 
-- Custom fields in the **Required Attributes** are required when reporting data. If any of the required fields are missing in the reported data, the data will not be uploaded to the Guance workspace.
+:material-numeric-2-circle: Import Viewer Template: Import a template and then edit it.
 
-- If the reported data type does not match the defined field data type, the data will not be uploaded to the Guance workspace. For example, if a field is defined as a character type in DataFlux Func, but the reported data type is an integer, the data will not be uploaded to the Guance workspace.
+### Start Configuration {#start}
 
-- Custom will be cleared after 48 hours of being offline.
+#### Default Configuration
 
-## Modify 
+<img src="../img/default-config.png" width="70%" >
 
-In the category list on the page, you can click the :material-dots-vertical: button:
-- **Settings** for existing categories, including changing the alias of existing categories and adding/removing fields;
-- Add the current custom to the secondary menu for easy access.
+1. Choose whether to group resources as needed;
+2. Define the resource class name for resource catalog data reporting;
+3. Mandatory Attributes: Fields that must be included in the data; the `name` field of the object is added by default. If the reported data does not contain the fields you set, it will not be reported to <<< custom_key.brand_name >>>, thus filtering out non-conforming data;
+4. Enter an alias for the resource class, which will be displayed preferentially in the list after configuration;
+5. Viewer Display Configuration:
+    - Default Columns: The headers displayed by default in the viewer table;
+    - Default Quick Filters: The filter fields displayed by default in the quick filters on the left side of the viewer;
+    - Detail Page Associated Views: Define the display name of the view, select the view, and fill in the associated fields as needed to bind built-in views or pages;
+    - Color Fill Fields: A list of fields used for color filling in hexagonal map mode; if not configured, all numeric fields are listed by default;
+    - Group Analysis Fields: A list of fields that can be selected for group analysis in hexagonal map mode; if not configured, all string fields are listed by default;
+6. Click Confirm.
 
-<img src="../img/11.custom_2.png" width="70%" >
+**Note**:
 
-**Note:** After adding fields, the original data remains unchanged, and the data reported later must contain the newly added fields.
+- Built-in views include all views; if there are duplicates, user views take precedence over system views;
+- Built-in pages include viewer lists (such as logs, traces, containers), network topology, and other page templates.
 
-## Delete
+#### JSON Configuration
 
-Guance supports Owner and Administrator to delete the specified custom classification and all custom, enter **Management > Settings > Delete Custom Objects**, and select the method of deleting custom to delete the corresponding data.
+<img src="../img/json-config.png" width="70%" >
 
-- All custom: Delete all custom data and indexes.
-- Specify custom classification: Only the data under the selected classification will be deleted, and the index will not be deleted.
+When switching from default configuration to JSON configuration, choose:
 
-**Note**: Once all custom are deleted, all data and indexes reported to infrastructure customization will be deleted and cannot be recovered. All set custom classification data need to be re-reported, and all custom are limited to be deleted 5 times a day.
+- Yes: Automatically carry over the current content to JSON configuration;
+- No: Only basic configuration is provided when entering JSON mode.
 
-![](../img/7.custom_cloud_3.png)
+1. Choose whether to group resources as needed;
+2. Add mandatory attributes;
+3. Modify JSON configuration as needed;
+4. Click Confirm.
 
-## Filter {#filter}
+## Resource Classes
 
-You can add filters for custom.
+<img src="../img/11.custom_2.png" width="60%" >
 
-Click on **Add workspace-level filter** and the settings button to start adding.
+In the resource class list on the left side of the page, you can perform the following operations:
 
-**Note**: Workspace-level filters can only be added by the workspace Owner and Administrator.
+- In the search bar, input the resource name for quick location;
+- Click the :material-dots-vertical: button:
+    - Modify or export existing object classes;
+    - [Delete](#delete) the viewer template;
+    - Add the resource class to a secondary menu for easier viewing.
+- Click the expand/collapse button to hide the resource class to meet display preferences.
+- Add Groups: Categorize resource viewers. After adding, click the button on the right side of a single resource to move the current resource to the target group.
+    - Click the button on the right side of the group to modify the group name;
+    - Delete groups and choose whether to "only delete the group" or "synchronously delete all viewer templates under the group."
 
-<img src="../img/filter.png" width="60%" >
+**Note**: Adding fields does not change existing object data; newly reported data must include the added fields.
 
-Click on the edit button to add personal-level filters. Adding them will not affect the explorer layout for other members of the workspace.
+### Delete {#delete}
 
-> See [Filter](../../getting-started/function-details/explorer-search.md#quick-filter).
+Deleting a viewer template here does not delete the data. If data continues to be reported, it will automatically apply the default viewer template.
 
+If you want to completely delete the data, go to **Manage > Delete Resource Catalog** to perform the deletion operation.
 
-## Details Page
+- Specific Resource Catalog Classifications: Only delete data under the selected object classification without deleting indexes;
+- All Resource Catalogs: Delete all resource catalog data and indexes.
 
-After custom data is reported, click on the name in the custom list to bring up the details page and view the detailed information, including the name, category, attributes, etc.
+**Note**:
+
+1. Only Owners and Administrators can perform deletion operations;
+2. Once all resource catalogs are deleted, all data and indexes reported to custom infrastructure will be deleted and cannot be recovered. All settings for resource catalog classification data need to be re-reported, with a limit of 5 deletions per day.
+
+### Cross-Workspace Query {#cross_workspace}
+
+Select all workspaces associated with your account to query resource list data across spaces.
+
+<img src="../img/custom_list.png" width="60%" >
+
+## Resource Catalog Viewer
+
+View and analyze resource catalogs in list or hexagonal map form.
+
+![](../img/explorer-mode.gif)
+
+### Quick Filter {#filter}
+
+You can add filter items to the resource catalog.
+
+**Note**: Space-level filter items can only be added by the current workspace Owner and Administrator.
+
+1. Click the **Add Space-Level Filter Item** button;
+2. Search or directly add fields in the dropdown box;
+3. Click Confirm.
+
+<img src="../img/filter.png" width="80%" >
+
+> For more details, refer to [Viewer Quick Filters](../../getting-started/function-details/explorer-search.md#quick-filter).
+
+### Detail Page
+
+After resource catalog data is reported, clicking the name in the right-side viewer resource catalog list will slide out a detail page showing detailed information about the object, including object name, extended attributes, and associated views.
 
 ![](../img/11.custom_4.png)
 
-### Information
+#### Basic Attributes
 
-By clicking on the tab `Host` on the custom details page, you can do the following:
+View all attribute fields attached to the resource catalog data.
 
-- Add to Filter: add the tag to the Container List Explorer to view all Container data associated with the host.
+#### Associated Views
 
-- Copy: copy the contents of the label to the local clipboard. 
+Set up binding or removal of built-in views (system views, user views) to the infrastructure resource catalog detail page.
 
-- View related logs/containers/processes/links/inspection: view all logs related to corresponding data.
+**Note**: Before binding built-in views, ensure that the view variables in the [bound built-in view](../../scene/built-in-view/bind-view.md) contain fields related to the resource catalog, such as `host`.
 
-<!-- 
+## Further Reading
 
-![](../img/11.custom_5.png)
--->
-### Customize Inner Views
-
-Guance supports setting up binding or deleting inner views (user views) to the details page of custom infrastructure. After binding the inner views, the bound views can be viewed in the details of the custom.
-
-**Note:** Before binding a inner view, you need to confirm whether the view variable in the bound inner view has a field related to the classification, such as `host`. See [Binding Inner Views](../../scene/inner-view/bind-view.md).
-
-## More Readings
+<font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Powerful Explorer**</font>](../billing/cost-center/workspace-management.md#lock)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **The Power of Viewers**</font>](../../billing-center/workspace-management.md#workspace-lock)
 
 </div>
 
-<!--
-
-## Data Query and Analysis
-
-Enter the Custom explorer, and Guance supports you to query and analyze custom data by searching, filtering, sorting and grouping.
-
-- The :octicons-search-24: search bar supports multiple search methods including keyword search, wildcard search, associated search, and JSON search. It also supports filtering values using `tags/attributes`, including positive filtering, negative filtering, fuzzy matching, reverse fuzzy matching, existence, and non-existence filtering methods.
-
-- The left side :octicons-search-24: search categories can be matched with relevant categories using keywords.
-
-> For more searching and filtering, see [Searching and Filtering for Explorer](../../getting-started/function-details/explorer-search.md#search).
-
-![](../img/11.custom_10.png)
-
-### Columns
-
-On the custom host list page, you can customize the addition, editing, deletion and dragging of columns for display columns.
-
-> See [Display Column Description](../../getting-started/necessary-for-beginners/explorer-search.md#columns).
-
-![](../img/11.custom_6.png)
-
-### Export
-
-In the custom list, Guance enables you to export the data of the current object list as CSV files, dashboards or notes through :material-cog:.
-
-![](../img/11.custom_7.png)
-
-### Analysis Mode
-
-Custom explorer analysis bar in infrastructure supports multi-dimensional analysis and statistics based on **1-3 tags** to reflect the distribution characteristics of data in different dimensions, and supports various data chart analysis methods, including ranking list, pie chart and rectangular tree chart. 
-
-> See [Analysis Mode in Explorer](../getting-started/necessary-for-beginners/explorer-search.md#analysis).
-
-![](../img/4.jichusheshi_4.png)
--->
+</font>

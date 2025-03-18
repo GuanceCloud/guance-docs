@@ -62,8 +62,13 @@ extra:
   generator: false
   homepage: https://docs.guance.com
   custom_key:
-    static_domain: static.guance.com
+    brand_key: guance
     brand_name: 观测云
+    brand_main_domain: guance.com
+    boss_domain: boss.guance.com
+    func_domain: func.guance.com
+    studio_main_site: console.guance.com
+    studio_main_site_auth: auth.guance.com
 
   alternate:
     - name: 中文

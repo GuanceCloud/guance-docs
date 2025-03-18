@@ -1,0 +1,41 @@
+nav:
+  - 'Application Performance Monitoring (APM)':
+    - 'Tracing':
+      - 'SpringBoot3 WebFlux Observability Best Practices': springboot3_webflux.md
+      - opentelemetry-operator.md
+      - Distributed Tracing (APM) Best Practices: apm.md
+      - ddtrace-custom-traceId.md
+      - ddtrace-instrumentation.md
+      - 'JVM Observability Best Practices': jvm.md
+      - Achieving Trace Observability with GraalVM and Spring Native Projects: spring-native.md
+      - JAVA OOM Exception Observability Best Practices: java-oom.md
+      - Building Observability for Springcloud Services from Scratch Using Guance: spring-cloud-sample.md
+      - Skywalking Collecting JVM Observability Best Practices: skywalking-jvm.md
+      - Injecting dd-java-agent Using datakit-operator: datakit-operator.md
+      - trace-glame-graph.md
+      - 'tomcat_ruoyi.md'
+    - 'Middleware':
+      - 'Nginx Observability Best Practices': nginx.md
+      - 'Redis Observability Best Practices': redis.md
+      - 'Kafka Observability Best Practices': kafka.md
+      - 'Insights into MySQL': mysql.md
+    - 'Performance Optimization (Profling)':
+      - 'Optimizing Application Performance Using async-profiler': async-profiler.md
+
+  - 'User Experience Monitoring (RUM)':
+    - Web Application Monitoring (RUM) Best Practices: web.md
+    - 'RUM Data Reporting DataKit Cluster Best Practices': rum-datakit-cluster.md
+    - 'Page Channel Traffic Acquisition Observability Best Practices': page.md
+
+  - 'IT Infrastructure Monitoring (ITIM)':
+    - 'Host Observability Best Practices': host-linux.md
+    - 'Prometheus System Data Ingestion Best Practices': prometheus.md
+    - 'Ansible Batch Processing in Practice': ansible-batch-processing.md
+
+  - 'Continuous Integration and Deployment (CI/CD)':
+    - 'Jenkins Observability Best Practices': jenkins.md
+    - 'Gitlab-CI Observability Best Practices': gitlab-ci.md
+
+  - 'Blockchain':
+    - 'Swarm Bee Observability Best Practices': swarm-bee.md
+    - 'Chia Harvesters Best Practices for Assurance': chai-havesters.md

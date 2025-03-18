@@ -1,115 +1,111 @@
 # Legal Declaration
 ---
 
-[Chinese Version](legal-declaration-zh.md)
+[English Version Agreement](legal-declaration-en.md)
 
-**A reminder: Please read this declaration carefully and thoroughly before using the services of Guance (the “Services”).**
+**Please note: Before using any services provided by <<< custom_key.brand_name >>>, you must read and thoroughly understand this statement.**
 
-You may choose not to use the Guance Services, but if you do, your use will be regarded as an approval of the entire content of this declaration. Guance refers to the website operated by Guance Information Technology Co., Limited ("Guance"), and its domain name is www.guance.one.
+You can choose not to use <<< custom_key.brand_name >>> services, but if you use <<< custom_key.brand_name >>> services, your usage will be deemed as acknowledgment of all the contents of this statement. <<< custom_key.brand_name >>> refers to the website operated by Shanghai Guance Future Information Technology Co., Ltd. (referred to as “<<< custom_key.brand_name >>>”), with the domain name <<< custom_key.brand_main_domain >>>.
 
-Guance does not monitor, preview, edit, screen or vet any information that Guance members may provide, upload, transmit, send, post, publish, disseminate, or share on or through the Guance platform or otherwise in relation to Guance’s services. Guance is not responsible for, and does not endorse, warrant, or otherwise guarantee any information contained in any such aforesaid content and/or the accuracy, legality, integrity and/or quality of any such contents.
+Given that some services provided by “<<< custom_key.brand_name >>>” belong to electronic bulletin board (BBS) services, information about <<< custom_key.brand_name >>> members or their published content (including but not limited to user names, company names, contact information, related images, videos, etc.) is provided by members themselves, and members are legally responsible for any information they provide. Any entity or individual who believes that the web page content of <<< custom_key.brand_name >>> (including but not limited to product information posted by <<< custom_key.brand_name >>> members) may infringe on their legitimate rights should promptly submit a written notice to “<<< custom_key.brand_name >>>” along with identity proof, ownership proof, specific links (URL), and detailed evidence of infringement. “<<< custom_key.brand_name >>>” will remove the suspected infringing content as soon as possible after receiving the legal documents. <<< custom_key.brand_name >>> reprints works (including forum content) for the purpose of conveying more information and does not imply that “<<< custom_key.brand_name >>>” (including its associated enterprises) agrees with their views or confirms the authenticity of their content.
 
-## Declaration of Intellectual Property Rights
+## Intellectual Property Statement
 
-The intellectual property rights of all data (including personal data), text, images, audio, video, photographs, and other content (in any format) provided by You are retained by You. Guance owns the copyright of all information contents in the website of Guance (including but not limited to text, pictures, software, audio and video) in relation to the Services. The authorized browsing, copying, printing and dissemination of the information content within the Guance website shall not be used for commercial purposes, and the use of all information content and any part of it must include this copyright notice.
+“<<< custom_key.brand_name >>>” owns the copyright of all information content within the <<< custom_key.brand_name >>> website (excluding product information posted by <<< custom_key.brand_name >>> members, including but not limited to text, images, software, audio, video). Authorized browsing, copying, printing, and dissemination of information within the <<< custom_key.brand_name >>> website must not be used for commercial purposes, and all information content and any part of it must include this copyright notice; all products, technologies, and programs of “<<< custom_key.brand_name >>>” are intellectual property of “<<< custom_key.brand_name >>>”.
 
-Guance, other products and service names of "Guance" and related graphics and logos are registered trademarks of "Guance". No one is allowed to use them without the permission of "Guance" (including but not limited to: copying, spreading, displaying, mirroring, uploading and downloading in an illegal way). Otherwise,Guance will be investigated for legal responsibility according to law.
+“<<< custom_key.brand_name >>>”, “<<< custom_key.brand_name >>>” other product service names, and related graphics, logos, etc., are registered trademarks of “<<< custom_key.brand_name >>>”. Without the permission of “<<< custom_key.brand_name >>>”, no one may use them擅自 (including but not limited to: illegal reproduction, dissemination, display, mirroring, uploading, downloading). Otherwise, “<<< custom_key.brand_name >>>” will pursue legal responsibility.
 
 ## Privacy Policy
 
-Guance respects and protects the personal privacy rights of all users who use the Guance service. In order to provide you with more accurate and personalized services, "Guance" will use and disclose your personal information in accordance with the provisions of this Privacy Policy. However, Guance will treat this information with a high level of diligence and prudence, protect your privacy and ensure the safety of your personal data, in order to comply with (in particular and where applicable) the Personal Data (Privacy) Ordinance, Chapter 486 of the Laws of Hong Kong. Except as otherwise provided in this Privacy Policy, Guance will not disclose this information to the outside world or provide it to third parties without your prior permission.
+“<<< custom_key.brand_name >>>” respects and protects the personal privacy rights of all users of <<< custom_key.brand_name >>> services. To provide you with more accurate and personalized services, “<<< custom_key.brand_name >>>” will use and disclose your personal information in accordance with this privacy policy. However, “<<< custom_key.brand_name >>>” will treat this information with high diligence and prudence. Except as otherwise provided in this privacy policy, “<<< custom_key.brand_name >>>” will not disclose or provide this information to third parties without your prior consent.
 
-**Guance will update this Privacy Policy from time to time. When you agree to the Guance Service Agreement, you will be deemed to have agreed to all the contents of this Privacy Policy. This Privacy Policy is an integral part of the Guance Service Agreement.**
+“<<< custom_key.brand_name >>>” will update this privacy policy from time to time. By agreeing to the “<<< custom_key.brand_name >>>” service agreement, you are also agreeing to all the contents of this privacy policy. This privacy policy is an integral part of the “<<< custom_key.brand_name >>>” service agreement.
 
 ## Scope of Application
 
-1. Personal or organizational registration information you provide according to the requirements of Guance when you register an account;
-2. Information on your browser and computer automatically received and recorded by Guance when you use the Guance service or visit the Guance webpage, including but not limited to your IP address, browser type, language used, access date and time, software and hardware characteristic information and webpage records you access, etc.;
-3. Personal data of users obtained by Guance from business partners through legal means.
+1. Personal or organizational registration information you provide when registering a “<<< custom_key.brand_name >>>” account;
 
-You may choose whether to provide the aforesaid personal data, but where the required service is customized service, or the service is provided on the basis that you have provided all personal data necessary, if you are unable to provide the required personal data, this may hinder the provision of the specific services to you by Guance. 
+2. Information automatically received and recorded by “<<< custom_key.brand_name >>>” when you use <<< custom_key.brand_name >>> services or visit <<< custom_key.brand_name >>> web pages, including but not limited to your IP address, browser type, language used, access date and time, hardware and software feature information, and web pages you request;
 
-**You understand and agree that the following information is not applicable to this Privacy Policy:**
+3. User personal data obtained by “<<< custom_key.brand_name >>>” through legal means from business partners.
 
-1. The information you publish when using the Electronic Bulletin Board (BBS) service provided by Guance;
-2. The information you publish when using the services provided by Guance;
-3. Credit evaluation, violation of laws and regulations or Guance rules and the measures taken by Guance against you.
+**You understand and agree that the following information is not subject to this privacy policy:**
 
-## Use of Information
+1. Information you post when using the BBS services provided by <<< custom_key.brand_name >>>;
 
-1. Guance may collect, retain and use your personal data for the following purposes:
-- The purposes described in this Privacy Policy; 
-- Ensure and improve the security and reliability of Guance cloud products and services, including detecting, preventing and responding to frauds, infringements, security risks and technical problems that may harm Guance, our users or the public;
-- We seek your prior consent to use your information for purposes not covered by this Privacy Policy.
-2. Guance will not provide, sell, let, share or transact your personal data to any unrelated third parties, unless with your consent, or if such third party and Guance (including affiliated companies of Guance) solely or jointly provide(s) services to you, and when such service terminates, it will be barred from access of all such information including those it has access to previously.
-3. Guance also does not allow any third party to collect, edit, sell, or transfer without consideration your personal data in any means. If any Guance user takes part in the aforesaid activities, Guance has the right to terminate the service agreement with such user immediately.
-4. For the purpose of serving users, "Guance" may provide you with information of interest by using your personal data, including but not limited to sending you product and service information, or sharing information with Guance partners(For details, please refer to the relevant pages of Guance website.) so that they can send you information about their products and services (the latter requires your prior consent).
-5. For ICSP service customers in Guance, Guance will strictly keep confidential the relevant information, plans and structures, etc. obtained during your cooperation, and Guance will not share such information with other third parties unless your specific consent is obtained.
+2. Information you publish externally when using <<< custom_key.brand_name >>> services;
 
-## Disclosure of Information
+3. Credit evaluations, violations of laws or regulations or violations of “<<< custom_key.brand_name >>>” rules, and measures taken by “<<< custom_key.brand_name >>>” against you.
 
-**Under the following circumstances, Guance will disclose all or part of your personal data according to your personal wishes or legal provisions:**
+## Information Usage
 
-1. Disclosure to a third party with your prior consent;
-2. If you are a qualified intellectual property complainant and have filed a complaint, disclose it to the respondent at the request of the respondent so that both parties can handle possible rights disputes;
-3. Disclosure to a third party or administrative or judicial body in accordance with the relevant provisions of the law or the requirements of administrative or judicial bodies;
-4. If you violate relevant Hong Kong laws and regulations or relevant rules, and need to disclose it to a third party;
-5. In order to provide the products and services you require, for which it is mandatory to share your personal data with third parties;
-6. In a transaction created on Guance, if either party to the transaction fulfills or partially fulfills its transaction obligations and makes an information disclosure request, Guance has the right to decide to provide the user with necessary information such as the contact information of its counterparty to facilitate the completion of the transaction or the resolution of disputes;
-7. Other disclosures deemed appropriate by Guance according to laws, regulations or website policies.
+1. “<<< custom_key.brand_name >>>” will not provide, sell, rent, share, or trade your personal information to any irrelevant third party unless we have your prior consent, or the third party and “<<< custom_key.brand_name >>>” (including associated companies of “<<< custom_key.brand_name >>>”) jointly provide you with services, and after the service ends, they will be prohibited from accessing all the information they previously had access to;
 
-## Storage and Retention of Information
+2. “<<< custom_key.brand_name >>>” does not allow any third party to collect, edit, sell, or freely disseminate your personal information in any manner. Any <<< custom_key.brand_name >>> user engaged in such activities will have their service agreement immediately terminated by “<<< custom_key.brand_name >>>” upon discovery;
 
-The information and data about you collected by Guance will be stored on the servers of Guance and/or its affiliated companies, and where Guance collects information and data overseas and there is a need to transfer to outside of Hong Kong for various purposes, such transfer will comply with the existing requirements of the Personal Data (Privacy) Ordinance. 
+3. For the purpose of serving users, “<<< custom_key.brand_name >>>” may use your personal information to provide you with information you may be interested in, including but not limited to sending you product and service information, or sharing information with “<<< custom_key.brand_name >>>” partners so they can send you information about their products and services (the latter requires your prior consent);
 
-Guance will retain your data in accordance with our internal policies, and abide by the following principles:
+4. For ICSP service customers of “<<< custom_key.brand_name >>>”, “<<< custom_key.brand_name >>>” will strictly keep confidential all information, solutions, architectures, etc., obtained during cooperation, and will not share this information with any third party unless you give special permission.
 
-a.Data will only be retained for as long as is necessary to fulfil the original or directly related purposes for which it was collected, unless the data is also retained to satisfy any applicable legal, regulatory or contractual obligations; and 
-b.Data is removed from Guance’s electronic, manual and other filing systems based on internal procedures.
+## Information Disclosure
 
-## Direct marketing
+**In the following circumstances, “<<< custom_key.brand_name >>>” will disclose your personal information in whole or in part based on your personal preference or legal requirements:**
 
-Guance may, in compliance with applicable laws, rules, regulations and licence requirements, use your data (including without limitation name, contact information, phone number, residential/office address and email address and information about the Services you have purchased), for Guance, its subsidiaries, affiliates and associated companies, and its business partners (collectively, “Service Providers”) to provide you with direct marketing content, including sending to you notices and/or updates about gifts, discounts, privileged offers, benefits and promotions related to Services offered by us and/or the Service Providers.
+1. Disclosure to third parties with your prior consent;
 
-Before using and providing your data for the purposes as set out in this Privacy Policy, Guance may be required by law to obtain your written consent, and in such cases, Guance will only use and provide your data for any promotional or marketing purpose after having obtained such written consent.
+2. Disclosure to the complainant at their request if you are a qualified intellectual property complainant and have filed a complaint, to facilitate the resolution of potential rights disputes;
+
+3. Disclosure to third parties or administrative or judicial authorities as required by law or administrative or judicial institutions;
+
+4. Disclosure to third parties if you violate relevant Chinese laws, regulations, or “<<< custom_key.brand_name >>>” service agreements or related rules;
+
+5. Sharing your personal information with third parties to provide the products and services you request;
+
+6. In transactions created on <<< custom_key.brand_name >>>, if any party fulfills or partially fulfills transaction obligations and requests disclosure of information, “<<< custom_key.brand_name >>>” has the right to decide to provide necessary information such as the contact details of the transaction counterpart to promote the completion of the transaction or resolve disputes;
+
+7. Other disclosures deemed appropriate by “<<< custom_key.brand_name >>>” according to law, regulations, or website policies.
+
+## Information Storage and Exchange
+
+Information and data collected by “<<< custom_key.brand_name >>>” regarding you will be stored on the servers of “<<< custom_key.brand_name >>>” and/or its affiliated companies. This information and data may be transmitted to countries, regions, or locations outside your country where “<<< custom_key.brand_name >>>” collects information and data, and may be accessed, stored, and displayed abroad.
 
 ## Use of Cookies
 
-1. If you do not refuse to accept cookies, Guance will set or use cookies on your computer so that you can log in to or use the Guance service or function that relies on cookies. Using cookies in Guance can provide you with more thoughtful personalized services, including promotion services;
-2. You have the option of accepting or rejecting cookies. You can reject cookies by modifying your browser settings. However, if you choose to reject cookies, you may not be able to log in or use the Guance service or function that relies on cookies;
-3. This policy will apply to the relevant information obtained through cookies set up by Guance.
+1. If you do not refuse cookies, “<<< custom_key.brand_name >>>” will set or retrieve cookies on your computer to enable you to log in or use cookie-dependent <<< custom_key.brand_name >>> services or features. “<<< custom_key.brand_name >>>” uses cookies to provide more thoughtful personalized services, including promotional services;
+
+2. You have the option to accept or reject cookies. You can refuse cookies by modifying your browser settings. However, if you choose to reject cookies, you may not be able to log in or use cookie-dependent <<< custom_key.brand_name >>> services or features;
+
+3. Information obtained through cookies set by “<<< custom_key.brand_name >>>” will be subject to this policy.
 
 ## Information Security
 
-1. Please keep your account and password information properly. Guance will ensure that your information is not lost, abused or altered by backing up to other servers and encrypting users' passwords. Despite the aforementioned security measures, please note that there are no absolutely perfect security measures on the information network;
-2. When using Guance service for online transactions, it is inevitable that you will disclose your personal information, such as contact information or postal address, to the counterparty or potential counterparty. Please protect your personal information properly and provide it to others only when necessary. If you find that your personal information is leaked, especially the account and password of Guance, please contact the customer service in Guance immediately so that we can take corresponding measures.
-3. Customers can log in to the Guance console through the browser, and carry out Guance account cancellation in "Account Management". Please refer to "[Guance Account Cancellation Notice](account-cancellation.md)". Except as otherwise provided by laws and regulations, after the account is cancelled, your information will be deleted from Guance and cannot be recovered. Please proceed with caution.
+1. Please keep your account and password information safe. “<<< custom_key.brand_name >>>” will ensure your information is not lost, misused, or tampered with through server backups, encryption of user passwords, and other security measures. Despite these security measures, please note that there is no absolutely perfect security measure on the Internet;
 
-## Rights of access, correction and erasure of personal data
+2. When using <<< custom_key.brand_name >>> services for online transactions, you may need to disclose your personal information to the transaction counterpart or potential counterpart, such as contact information or email addresses. Please protect your personal information properly and only provide it when necessary. If you find your personal information has been leaked, especially if your <<< custom_key.brand_name >>> account and password have been compromised, please contact “<<< custom_key.brand_name >>>” customer service immediately so that “<<< custom_key.brand_name >>>” can take appropriate measures.
 
-Guance will take all reasonable precautions to ensure that the data collected, used and disclosed is accurate, complete and up-to-date. You have a right to request access to, and correction of your data, please let us know if there are any errors in your data and where your personal data is changed or updated.
+3. Customers can log into the <<< custom_key.brand_name >>> control panel via the browser and proceed to [Account Management] to cancel their <<< custom_key.brand_name >>> account. Please refer to the [<<< custom_key.brand_name >>> Account Cancellation Guidelines](account-cancellation.md). Except as otherwise required by law, your information will be deleted and cannot be recovered after account cancellation, so please proceed with caution.
 
-If you wish to access or amend any of your data we hold, or request that we delete (only applicable where the rights to erasure is required by law) any of your information that is no longer necessary for the provision of the Guance Services, you may login to the Guance, or contact Guance in the manner as set forth under the “How to contact us” section. Guance may apply an administrative charge for providing you with access to your data in response to such request. 
+## Special Notes for Minors
 
-At any time, you may object to Guance holding or processing your data, on legitimate grounds, save and except as otherwise permitted by applicable law.
+If you are not a natural person with full civil rights and capacity for action, you have no right to use “<<< custom_key.brand_name >>>” services, so we hope you do not provide us with any personal information.
 
-## Special Precautions for Minors
+## Updates to the Privacy Policy
 
-If you are not a natural person over the age of 18, you have no right to use the Guance service, so Guance hopes that you will not provide us with any personal information.
+1. Our privacy policy may be revised.
 
-## Renewal of Privacy Policy
+2. We will not limit your rights under this privacy policy without your explicit consent. We will post any revisions to the privacy policy on a dedicated page.
 
-1. Our privacy policy may be revised. 
-2. Without your explicit consent, we will not restrict your rights under this Privacy Policy. We will post any revisions to the privacy policy on a special page. 
-3. For major revisions, we will also provide more prominent notices (including for some services, we will notify the specific changes in privacy policy through website publicity). 
-4. Significant changes referred to in this policy include but are not limited to: 
-- Our service model has undergone major changes, including the purpose of processing user information, the type of user information processed and the way of using user information;
-- We have undergone major changes in control rights and organizational structure, including business adjustment, bankruptcy merger and acquisition caused by owner change;
-- The main objects of user information sharing, transfer or public disclosure have changed;
-- Significant changes have taken place in your right to participate in user information processing and the way you exercise it;
-- When our responsible department responsible for handling user information security, contact information and complaint channel change;
-- When the user information security impact assessment report indicates that there is a high risk.
+3. For significant revisions, we will provide more prominent notifications (for certain services, we will notify through website announcements, explaining the specific changes to the privacy policy).
+
+4. Significant changes referred to in this policy include but are not limited to:
+
+- Major changes in our service model, such as the purpose, types, and methods of processing user information;
+- Significant changes in control, organizational structure, etc., such as business adjustments, bankruptcy mergers, etc., leading to changes in ownership;
+- Significant changes in the main objects of user information sharing, transfer, or public disclosure;
+- Significant changes in your rights and ways to participate in user information processing;
+- Changes in the department, contact information, and complaint channels responsible for handling user information security;
+- High-risk situations identified by user information security impact assessment reports.
 
 ## How to Contact Us
 
-If you have any questions or comments about the contents of this declaration and policy or about the implementation and operation of this privacy policy by Guance, you can contact us at customer service telephone number (400-882-3320).
+If you have any questions or comments about this statement and policy, or if you have any questions or comments about how <<< custom_key.brand_name >>> implements this privacy policy, you can contact us via customer service hotline (400-882-3320).

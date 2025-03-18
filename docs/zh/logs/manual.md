@@ -7,7 +7,7 @@ Pipeline 支持对不同格式的日志数据进行文本解析，通过编写 P
 
 ## 前置条件
 
-1. 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)；
+1. 您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md)；
 1. 开启日志采集器，并在配置文件中打开 Pipeline 功能；
 
 ## 自定义 Pipeline 脚本文件

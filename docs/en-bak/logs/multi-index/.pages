@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - 'SLS Logstore': sls.md
+  - 'Elasticsearch': elasticsearch.md
+  - 'OpenSearch': opensearch.md
+  - 'LogEase': logease.md
+  - 'Volcengine TLS': tls.md

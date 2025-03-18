@@ -6,7 +6,7 @@
 
 ## 前置条件
 
-您需要先创建一个 [<<< custom_key.brand_name >>>账号](https://www.guance.com)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启相关集成的运行，进行数据采集。
+您需要先创建一个 [<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>)，并在您的主机上 [安装 DataKit](../../datakit/datakit-install.md) ，开启相关集成的运行，进行数据采集。
 
 ## 日志黑名单的作用
 

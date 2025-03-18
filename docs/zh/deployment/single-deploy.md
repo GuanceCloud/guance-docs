@@ -25,7 +25,7 @@
 
 === "arm64"
     
-    安装包地址：https://<<< custom_key.static_domain >>>/dataflux/package/guance-middleware-arm64.tar.gz
+    安装包地址：https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-middleware-arm64.tar.gz
     解压安装包：
     ```shell
     tar -zvxf guance-middleware-arm64.tar.gz
@@ -33,7 +33,7 @@
 
 === "amd64"
     
-    安装包地址：https://<<< custom_key.static_domain >>>/dataflux/package/guance-middleware-amd64.tar.gz
+    安装包地址：https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-middleware-amd64.tar.gz
     解压安装包：
     ```shell
     tar -zvxf guance-middleware-amd64.tar.gz
@@ -64,7 +64,7 @@ sealos help            sealos帮助文档
 ```shell
 sealos load -i calico_3.22.1.tar.gz && sealos load -i helm_3.8.2.tar.gz && sealos load -i kubernetes_1.24.0.tar.gz && sealos images
 
-sealos run pubrepo.guance.com/googleimages/kubernetes:v1.24.0 pubrepo.guance.com/googleimages/helm:v3.8.2 pubrepo.guance.com/googleimages/calico:v3.22.1 --single
+sealos run pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kubernetes:v1.24.0 pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/helm:v3.8.2 pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/calico:v3.22.1 --single
 
 # 验证
 kubectl get nodes 
@@ -390,16 +390,16 @@ sealos run imagesId -e nfs_name=df-nfs-storage
 
 === "arm64"
     
-    镜像包下载地址：https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
+    镜像包下载地址：https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz
 
 === "amd64"
     
-    镜像包下载地址：https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
+    镜像包下载地址：https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz
 
 
 2.14.2 launcher chart包下载
 
-chart包下载地址：https://<<< custom_key.static_domain >>>/dataflux/package/launcher-helm-latest.tgz
+chart包下载地址：https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/launcher-helm-latest.tgz
 
 2.14.3 业务服务镜像导入
 

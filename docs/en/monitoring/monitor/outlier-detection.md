@@ -1,25 +1,26 @@
 # Outlier Detection
 ---
 
-To detect outliers in the metrics/statistical data of the detection objects within a specific group, an algorithm is used. If there is a significant inconsistency beyond a certain threshold, it will trigger an abnormal event for outlier detection, which can be used for subsequent alert tracking.
+By analyzing the metrics or statistical data of specific groups, this method identifies significant outliers. If inconsistencies detected exceed preset thresholds, the system generates an outlier detection incident for subsequent alert tracking and analysis. This approach helps promptly identify and address potential anomalies, improving monitoring accuracy and response speed.
 
 ## Use Cases
 
-Users can configure suitable distance parameters based on the characteristics of indicator data to trigger emergency events. For example, you can monitor individual host memory usage rates that deviate significantly from other hosts.
+You can configure appropriate distance parameters based on the characteristics of the metric data to trigger critical events when data significantly deviates from the normal range. For example, you can set up monitoring so that when a host's memory usage is significantly higher than others, the system promptly issues an alert. Such configurations help quickly identify and respond to potential performance issues or anomalies.
 
-## Setup
+## Detection Configuration
 
+![](../img/5.monitor_9.png)
 
-### Step 1: Detection Configuration
+### Detection Frequency
 
-![](../img/monitor34.png)
+Automatically matches the selected detection interval.
 
-:material-numeric-1-circle-outline: **Detection Frequency:** The execution frequency of detection rules automatically matches the detection interval selected by users.
+### Detection Interval
 
-:material-numeric-2-circle-outline: **Detection Interval:** The time range of detection index query when each task is executed. You can choose 15m, 30m, 1h, 4h, 12h and 1d.
+The time range for querying detection metrics.
 
-| Detection Interval (Drop-down Option) | Default Detection Frequency | 
-| --- | --- | 
+| Detection Interval (Dropdown Options) | Default Detection Frequency |
+| --- | --- |
 | 15m | 5m |
 | 30m | 5m |
 | 1h | 15m |
@@ -27,68 +28,45 @@ Users can configure suitable distance parameters based on the characteristics of
 | 12h | 1h |
 | 1d | 1h |
 
-:material-numeric-3-circle-outline: **Detection Metrics:** Monitoring metric Data.
+### Detection Metrics
+
+The monitored metric data.
 
 | Field | Description |
 | --- | --- |
-| Data Type | At present, only "metric" data is supported. |
-| Measurements | Measurement where the current detection metric is located. |
-| Metrics | The metric where the current detection metric is located. |
-| Aggregation Algorithm | Contain Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (Last), First by (first), Count by (data points), Count_distinct by (non-duplicate data points), p50 (median), p75 (75%), p90 (90%), p99 (99%).  |
-| Filtering | The corresponding string type (keyword) fields in the check configuration data can be selected as the check dimension. At present, the check dimension supports selecting up to three fields. Through the combination of fields of multiple detection dimensions, a certain detection object can be determined, and the guance will judge whether the statistical index corresponding to a detection object meets the threshold of trigger conditions, and if it meets the conditions, an event will be generated. *(For example, if the instrumentation dimensions `host` and `host_ip` are selected, the instrumentation object can be `{host: host1, host_ip: 127.0.0.1}`.)* |
-| Detection Dimension | Metric-based labels filter the data of detecting metrics, limit the range of detected data, support adding one or more labels to filter, and support fuzzy matching and fuzzy mismatching screening conditions. |
-| Alias | Custom metrics name. |
-| Query Mode | Support simple query and expression query, refer to [query](../../scene/visual-chart/chart-query.md). |
+| Data Type | The current data type being detected, including Metrics, Logs, Infrastructure, Resource Catalog, Events, APM, RUM, Security Check, Network, and Profile. |
+| Measurement | The measurement set where the current detection metrics reside. |
+| Metric | The specific metric being detected. |
+| Aggregation Algorithm | Includes Avg by (average), Min by (minimum), Max by (maximum), Sum by (sum), Last (last value), First by (first value), Count by (number of data points), Count_distinct by (number of distinct data points), p50 (median), p75 (75th percentile), p90 (90th percentile), p99 (99th percentile). |
+| Detection Dimensions | Any string type (`keyword`) fields in the configured data can be selected as detection dimensions. Currently, up to three fields are supported. By combining multiple detection dimension fields, a specific detection object can be determined. <<< custom_key.brand_name >>> will determine if the statistical metric of a detection object meets the threshold conditions; if it does, an event is generated.<br />* (For example, selecting detection dimensions `host` and `host_ip` results in a detection object like `{host: host1, host_ip: 127.0.0.1}`.) * |
+| Filter Conditions | Filters the detection metrics data based on metric labels to limit the scope of detection; supports adding one or more label filters; supports fuzzy matching and non-matching filter conditions. |
+| Alias | Custom name for the detection metric. |
+| [Query](../../scene/visual-chart/chart-query.md) Method | Supports simple queries and expression queries. |
 
-:material-numeric-4-circle-outline: **Trigger Condition:** Set the trigger condition of alert level; You can configure any of the following trigger conditions: Critical, OK, No Data, or Information.
+### Trigger Conditions
 
+Set the alert level trigger conditions: you can configure any one of the critical, normal, data gap, or informational triggers.
 
+Configure trigger conditions and severity levels. When query results contain multiple values, any value meeting the trigger condition will generate an event.
 
-![](../img/monitor53.png)
-
-Configure the trigger condition and severity. When the query result is multiple values, an event will be generated if any value meets the trigger condition.
-
-| Level | Description |
+| <div style="width: 100px">Severity</div> | Description |
 | --- | --- |
-| Critical (red) | Use the DBSCAN algorithm to configure the appropriate distance parameter based on the metrics data characteristics to trigger a critical event. The distance parameter represents the maximum distance between two samples, which are considered adjacent, and is not the maximum limit of distance within a cluster. (float, default=0.5) <br />:warning: You can choose to configure any floating point value between range(0-3.0). If not configured, the default distance parameter is 0.5. A larger distance setting will result in fewer outlier points detected, while a smaller distance value may detect a large number of outliers. Setting a distance value too large can result in no outliers being detected. Therefore, it is necessary to set the appropriate distance parameter based on different data characteristics. |
-| OK (green) | Users can configure the number of consecutive normal detections required after a critical abnormal event is triggered to generate an OK event. This is used to determine if the abnormal event has returned to OK. It is recommended to configure this. |
-| Information (blue) | An information event is triggered when the normal detection result does not meet any of the conditions for triggering critical, error, warning, OK, or no-data events. This indicates that there are no abnormalities in the detection result. |
-| No Data (gray) | When there is no data for the detection metric, users can configure whether to trigger an event, trigger a no-data event, or trigger a recovery event based on the configured conditions. |
+| Critical (Red) | Uses the DBSCAN algorithm, allowing configuration of suitable distance parameters based on metric data characteristics to trigger critical events. Distance parameter indicates the maximum distance between two samples to be considered neighbors, not the maximum distance within a cluster (float, default=0.5).<br /><br />:warning: You can choose any floating-point value between 0 and 3.0. If not configured, the default distance parameter is 0.5. Larger distances result in fewer anomaly points, while smaller distances may detect many outliers. Very large distances may result in no outliers detected, so suitable distance parameters should be set according to different data characteristics. |
+| Normal (Green) | Configurable number of times. If the detection metric triggers a "Critical" anomaly event, and then N consecutive detections are normal, a "Normal" event is generated. Used to determine if an anomaly has returned to normal, it is recommended to configure this. |
 
-### Step 2: Event Notification
+### Data Gap Handling
 
-![](../img/monitor15.png)
+Seven strategies can be configured for handling data gaps.
 
-:material-numeric-5-circle-outline: **Event Title:** Set the event name of the alert trigger condition; support the use of [preset template variables](../event-template.md).
+1. Linked to the detection interval time range, evaluate the most recent minutes of the detection metric's query results, **do not trigger events**;
 
-**Note**: In the latest version, the Monitor Name will be automatically generated based on the Event Title input. In older monitors, there may be inconsistencies between the Monitor Name and the Event Title. To enjoy a better user experience, please synchronize to the latest version as soon as possible. One-click replacement with event title is supported.
+2. Linked to the detection interval time range, evaluate the most recent minutes of the detection metric's query results, **consider query results as 0**; at this point, the query results will be compared with the thresholds configured in the **trigger conditions** to determine if an anomaly event should be triggered.
 
-:material-numeric-6-circle-outline: **Event Content**: The content of the event notification sent when the trigger conditions are met. Support inputting text in Markdown format, previewing effects, the use of preset [associated links](link-description.md) and the use of preset [template variables](../event-template.md).
+3. Custom fill for detection interval values, **trigger data gap events, critical events, important events, warning events, and recovery events**; if this strategy is chosen, it is suggested that the custom data gap time configuration be **>= detection interval time**. If the configured time <= detection interval time, both data gap and anomaly conditions might be met simultaneously; in such cases, only the data gap handling result will be applied.
 
-**Note**: Different alert notification objects support different Markdown syntax. For example, WeCom does not support unordered lists.
 
-:material-numeric-7-circle-outline: **Alert Strategy**: After the monitoring meets the trigger conditions, immediately send an alert message to the specified notification targets. The [Alert Strategy](../alert-setting.md) includes the event level that needs to be notified, the notification targets and the mute alerting period.
+### Information Generation
 
-:material-numeric-8-circle-outline: **Synchronously create Issue**: If abnormal events occur under this monitor, an issue for anomaly tracking will be created synchronously and delivered to the channel for anomaly tracking. You can go to [Incident](../../exception/index.md) > Your selected [Channel](../../exception/channel.md) to view it.
+Enabling this option writes unmatched detection results as "Informational" events.
 
-### Step 3: Association
-
-![](../img/monitor13.png)
-
-:material-numeric-9-circle-outline: **Associate Dashboard**: Every monitor supports associating with a dashboard for quick navigation and viewing.
-
-### Example
-
-Take host memory metric outlier detection as an example.
-
-Configure the monitor to generate an alert when the maximum distance parameter between two adjacent samples is greater than 1.2:
-
-![](../img/monitor35.png)
-
-The event details page shows that the host datakit-internal memory outlier exceeds the configured distance parameter, resulting in an emergency alert event:
-
-![](../img/monitor36.png)
-
-Notification object details display:
-
-![](../img/monitor37.png)
+**Note**: When configuring trigger conditions, data gap handling, and information generation simultaneously, the following priority applies: data gap > trigger conditions > information event generation.

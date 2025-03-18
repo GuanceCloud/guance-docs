@@ -19,7 +19,7 @@
 
 ### 1.3 部署步骤架构
 
-[![img](https://docs.guance.com/deployment/img/23.install-step.png)](https://docs.guance.com/deployment/img/23.install-step.png)
+[![img](<<< homepage >>>/deployment/img/23.install-step.png)](<<< homepage >>>/deployment/img/23.install-step.png)
 
 ## 2 资源清单
 
@@ -185,4 +185,4 @@ kubectl 是一个 kubernetes 的一个命令行客户端工具，可以通过此
 
 ## 5 开始安装
 
-操作完成后，可以参考手册 [开始安装](https://docs.guance.com/deployment/launcher-install/){:target="_blank"}
+操作完成后，可以参考手册 [开始安装](<<< homepage >>>/deployment/launcher-install/){:target="_blank"}

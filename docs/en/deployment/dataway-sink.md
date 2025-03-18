@@ -1,15 +1,13 @@
-<!-- 不要在 dataflux-doc 仓库直接修改本文件，该文件由 Dataway 项目自动导出 -->
-
 # Dataway Sink
 ---
 
-[:octicons-tag-24: Version-1.14.0](../datakit/changelog.md#cl-1.14.0) to use the sinker functionality here.
+[:octicons-tag-24: Version-1.14.0](../datakit/changelog.md#cl-1.14.0) version of Datakit is required to use the Sinker feature described here.
 
 ---
 
-## Dataway Sinker Introduction {#sink-intro}
+## Introduction to Dataway Sinker Functionality {#sink-intro}
 
-In the daily data collection process, we may need to upload different data into different workspaces due to the existence of multiple different workspaces. For example, in a common Kubernetes cluster, the data collected may involve different teams or business departments, and we can tap the data with specific attributes to different workspaces to achieve fine-grained collection in common infrastructure scenarios.
+During routine data collection, due to the existence of multiple different workspaces, we may need to send different data to different workspaces. For example, in a shared Kubernetes cluster, the collected data may involve different teams or business departments. At this point, we can route data with specific attributes to various workspaces respectively, achieving fine-grained collection under a shared infrastructure scenario.
 
 The basic network topology is as follows:
 
@@ -18,44 +16,50 @@ flowchart TD
 dw(Dataway);
 dk(Datakit);
 etcd[(etcd)];
-sinker(Sinker);
+sinker(分流);
 wksp1(Workspace 1);
 wksp2(Workspace 2);
-rules(Sinker Rules);
-check_token{Token ok?};
-drop(Drop Data/Request);
+wksp3(Specific Workspace);
+wkspx(Fallback Workspace);
+rules(Routing Rules);
+as_default{Fallback rule exists?};
+drop(Discard data/request);
 
-subgraph "Datakit cluster"
+subgraph "Datakit Cluster"
 dk
 end
 
-dk -.-> |HTTP: X-Global-Tags/Secret-Token|dw
+dk -.-> |"HTTP: X-Global-Tags + Secret-Token"|dw
+dk -..-> |"Non-routing request (specify specific workspace token)"|dw
 
-subgraph "Dataway Cluster (Nginx)"
+subgraph "Dataway Cluster(Nginx)"
 %%direction LR
-rules -->  dw
-dw --> check_token -->|No| drop
-check_token -->|OK| sinker
+rules -->  dw ---> |Routing Request|sinker
+
+dw ---> |Non-routing request|wksp3
 
 sinker --> |Rule 1 match|wksp1;
 sinker --> |Rule 2 match|wksp2;
-sinker --> |Rules do not match|drop;
+sinker --> |No matches|as_default -->|No|drop;
+as_default -->|Yes|wkspx;
 end
 
 subgraph "Workspace Changes"
 direction BT
-etcd -.-> |Key change notice|rules
+etcd -.-> |Key change notification|rules
 end
 ```
 
-### Dataway Serial Mode {#cascaded}
+> [Dataway 1.8.0](dataway-changelog.md#cl-1.8.0) supports receiving both Sinker and non-Sinker requests, so only one Dataway deployment is needed.
 
-For SaaS users, you can deploy a Dataway on your own premises (k8s cluster) dedicated to offloading, and then forward the data to Openway:
+### Cascading Mode of Dataway {#cascaded}
+
+For SaaS users, you can deploy a Dataway locally (in k8s Cluster) dedicated for routing, then forward the data to Openway:
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    In cascaded mode, the Dataway in the cluster needs to enable the `cascaded` option. See [Environment Variable Description](dataway.md#dw-envs) in the installation documentation. 
+    In cascading mode, the Dataway within the cluster must enable the cascaded option. See the [environment variable explanation](dataway.md#dw-envs) in the installation documentation.
 <!-- markdownlint-enable -->
 
 ```mermaid
@@ -72,37 +76,43 @@ subgraph "K8s Cluster"
 dk1 ---> sink_dw
 dk2 ---> sink_dw
 dk3 ---> sink_dw
-etcd-.-> | triage rules | sink_dw
+etcd-.-> |Routing rules|sink_dw
 end
 
 subgraph "SaaS"
-sink_dw --> |Sink|openway;
-sink_dw --> |Sink|openway;
+sink_dw --> |Route|openway;
+sink_dw --> |Route|openway;
 end
 ```
 
-## Dataway installation {#dw-install}
+Impact of cascading:
 
-See [here](dataway.md#install)
+- Some API behaviors will differ. Due to historical reasons, there are differences between the URLs of requests sent by Datakit and those on Kodo. Dataway plays an API translation role here. In cascading scenarios, the API translation function is disabled.
+- The cascading Dataway does not send heartbeat requests to the center. Because the next-level Dataway does not process this request (so it results in a 404)
+- Requests received by the cascading Dataway do not sign the API when forwarding to the next Dataway.
 
-## Dataway Settings {#dw-config}
+## Dataway Installation {#dw-install}
 
-In addition to the general Dataway settings, several additional configurations need to be set up (located in the */usr/local/cloudcare/dataflux/dataway/* directory):
+Refer to [here](dataway.md#install)
+
+## Dataway Configuration {#dw-config}
+
+In addition to regular Dataway settings, a few additional configurations need to be set (located at */usr/local/cloudcare/dataflux/dataway/dataway.yaml*):
 
 ```yaml
-# Set the address to be uploaded by Dataway here, usually Kodo, but it can also be another Dataway
-remote_host: https://kodo.guance.com
+# Set the address for Dataway to upload to, usually Kodo, but can also be another Dataway
+remote_host: https://kodo.<<< custom_key.brand_main_domain >>>
 
-# If the upload address is Dataway, set to true here to indicate that Dataway cascade
+# If the upload address is Dataway, this should be set to true, indicating Dataway cascading
 cascaded: false
 
-# This token is a random token set on the dataway, we need to fill it in
-# Datakit's datakit.conf configuration. A certain length and format need to be maintained here.
+# This token is a randomly set token on Dataway; it needs to be filled into the
+# Datakit's datakit.conf configuration. It should maintain a certain length and format.
 secret_token: tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-# sinker rule settings
+# Sinker rules setting
 sinker:
-  etcd: # supports etcd
+  etcd: # Supports etcd
     urls:
     - http://localhost:2379
     dial_timeout: 30s
@@ -110,75 +120,70 @@ sinker:
     username: "dataway"
     password: "<PASSWORD>"
 
-  #file: # also supports local file mode, which is often used for debugging
+  #file: # Also supports local file method, commonly used for debugging
   #  path: /path/to/sinker.json
 ```
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    If you do not set `secret_token`, any request sent by Datakit will go through without causing data problems. However, if Dataway is deployed on the public network, it is recommended to set `secret_token`.
-
-    If etcd does not set a username/password, then set both `username` and `password` to `""` here.
+    If `secret_token` is not set, any request from Datakit can pass through, which does not cause data issues. However, if Dataway is deployed publicly, it is recommended to set `secret_token`.
 <!-- markdownlint-enable -->
 
-### Config sinker rules {#setup-sinker-rules}
+### Setting Sinker Rules {#setup-sinker-rules}
 
-Dataway Sinker rules are JSON string, there are 2 JSON source:
+Dataway Sinker rules are a set of JSON-formatted configurations. The matching rule syntax is consistent with blacklist writing, refer to [here](../datakit/datakit-filter.md).
 
-- Specify a local disk file(like */path/to/sinker.json*), every time we update the JSON file, we **must** restart dataway to reload the JSON.
-- We can push the JSON file to etcd. While sinker JSON host on etcd, we don't have to restart Dataway if the JSON file refreshed, Dataway will be notified if sinker rules updated.
 
-Actually, the JSON from local file or etcd are the same string, we only cover how to manage sinker rules hosted on etcd in the following sections.
+Currently, two sources of configuration are supported:
 
-## etcd settings {#etcd-settings}
+- Specify a local JSON file, mainly used for debugging Sinker rules. In this case, after updating the Sinker rules in the JSON file, **Dataway needs to be restarted for changes to take effect**
+- etcd: Store the debugged rule file in etcd. When fine-tuning rules later, directly update etcd, **no need to restart Dataway**
 
-> All command following are under Linux.
+Actually, the JSON stored in etcd is the same as the JSON in the local file. Below, we only introduce the etcd托管方式。
+
+#### etcd Settings {#etcd-settings}
+
+> All commands below are operated on Linux.
+
+As an etcd client, Dataway can set up the following usernames and roles in etcd (etcd 3.5+), refer to [here](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#using-etcdctl-to-authenticate){:target="_blank"}
+
+Create a `dataway` account and corresponding role:
+
+```shell
+# Add username, will prompt for password input
+$ etcdctl user add dataway
+
+# Add the sinker role
+$ etcdctl role add sinker
+
+# Add dataway to the role
+$ etcdctl user grant-role dataway sinker
+
+# Restrict role key permissions (the two keys /dw_sinker and /ping are default)
+$ etcdctl role grant-permission sinker readwrite /dw_sinker
+$ etcdctl role grant-permission sinker readwrite /ping       # Used for connectivity checks
+```
 
 <!-- markdownlint-disable MD046 -->
-=== "etcd settings already exist"
+???+ info "Why create roles?"
 
-    Dataway, as an etcd client, can set the following username and role in etcd (etcd 3.5+), see [here](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#using-etcdctl-to-authenticate){:target="_blank"}
-
-    Create a 'dataway' account and corresponding role:
-
-    ```shell
-    # Add a username, where you will be prompted for a password
-    $ etcdctl user add dataway
-
-    # Add the role of sinker
-    $ etcdctl role add sinker
-
-    # Add Dataway to the role
-    $ etcdctl user grant-role dataway sinker
-
-    # Restrict the key permissions of the role (where /dw_sinker and /ping are the two keys used by default)
-    $ etcdctl role grant-permission sinker readwrite /dw_sinker
-    $ etcdctl role grant-permission sinker readwrite /ping # is used to detect connectivity
-    ```
-
-=== "Kubernetes self-built etcd node"
-
-    See [here](https://github.com/etcd-io/etcd/tree/main/hack/kubernetes-deploy){:target="_blank"}.
-
-???+ info "Why create a role?"
-
-    Roles are used to control the permissions of the corresponding user on certain keys, here we may use the user's existing etcd service, it is necessary to restrict the data permissions of Dataway this user.
+    Roles control the permissions of corresponding users on certain keys. Here we might be using an existing etcd service of the user, so it is necessary to restrict the data permissions of the Dataway user.
 
 ???+ warning
 
-    If etcd has [authentication mode](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#enabling-authentication){:target="_blank"} enabled, execute the `etcdctl` command, and bring the corresponding username and password:
+    If etcd has enabled [authentication mode](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#enabling-authentication){:target="_blank"}, the `etcdctl` command needs to include the corresponding username and password:
 
     ```shell
     $ etcdctl --user name:password ...
     ```
 <!-- markdownlint-enable -->
 
-### Write sinker rules {#prepare-sink-rules}
+#### Writing Sinker Rules {#prepare-sink-rules}
 
-> For Dataway version 1.3.6, there are convenient commands to manage sinker rules hosted on etcd.
+> New versions (1.3.6) of Dataway support manipulating etcd-based Sinker rules via the `dataway` command.
 
-Suppose the *sinker.json* rule is defined as follows:
+Assuming *sinker.json* rule definition is as follows:
 
 ```json
 {
@@ -188,19 +193,19 @@ Suppose the *sinker.json* rule is defined as follows:
             "rules": [
                 "{ host = 'my-host'}"
             ],
-            "url": "https://kodo.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         },
         {
             "rules": [
                 "{ host = 'my-host' OR cluster = 'cluster-A' }"
             ],
-            "url": "https://kodo.guance.com?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
         }
      ]
 }
 ```
 
-You can write the sinker rule configuration with the following command:
+Using the following command, you can write Sinker rule configurations:
 
 ```shell
 $ etcdctl --user dataway:PASSWORD put /dw_sinker "$(<sinker.json)"
@@ -208,81 +213,107 @@ OK
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ abstract "Comment URL Token Info"
+???+ tip "Marking Workspace Information"
 
-    Because we can't add comments on JSON file *sinker.json*, we can add extra field for commenting:
+    Since *sinker.json* does not support comments, we can add an `info` field in JSON as a note to achieve the effect of comments:
 
-    ``` json
+    ``` json hl_lines="5"
     {
         "rules": [
             "{ host = 'my-host' OR cluster = 'cluster-A' }"
         ],
-        "info": "This is yyy workspace",
-        "url": "https://kodo.guance.com?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+        "info": "This is the yyy workspace",
+        "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
     }
     ```
 <!-- markdownlint-enable -->
 
-### Token Specs {#spec-on-secret-token}
+#### Default Rule {#default-rule}
 
-Since Datakit will detect tokens on Dataway, the `token` (including `secret_token`) set here must meet the following conditions:
+[:octicons-tag-24: Version-1.6.0](dataway-changelog.md#cl-1.6.0)
 
-> starts with `token_` or `tkn_` and follows a character length of 32.
+Adding the `as_default` flag in a specific rule entry sets that rule as the default fallback rule. A fallback rule can omit any matching conditions (do not configure the `rules` field); it should not participate in normal rule matching. A suggested fallback rule is as follows:
 
-For tokens that do not meet this condition, Datakit fails to install.
+``` json hl_lines="2"
+{
+    "as_default": true,
+    "info": "This is the default fallback workspace",
+    "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
+```
 
-## Datakit settings {#config-dk}
+> Note: Only one fallback rule should be set. If there are multiple fallback rules in the Sinker configuration, the last one takes precedence.
 
-For Datakit, we must setup some configures to enable sinker:
+### Token Rules {#spec-on-secret-token}
 
-- Config *customer global keys*: Datakit will search among all uploading data for these keys(only string-type fields), and group the upload payload by same `key:value` pair
+Since Datakit checks tokens on Dataway, the `token` (including `secret_token`) configured here must meet the following conditions:
+
+> Starts with `token_` or `tkn_`, followed by 32 characters.
+
+For tokens that do not meet this condition, Datakit installation will fail.
+
+## Datakit End Configuration {#config-dk}
+
+In Datakit, we need to make several settings to tag collected data for grouping.
+
+- Configure Global Custom Key List
+
+Datakit will search for fields with these keys in its collected data (only string-type fields), extract them, and use them as the basis for grouped sending.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    See [here](../datakit/datakit-install.md#env-sink)
+    Refer to [here](../datakit/datakit-install.md#env-sink)
 
 === "Kubernetes"
 
-    See [here](../datakit/datakit-daemonset-deploy.md#env-sinker)
+    Refer to [here](../datakit/datakit-daemonset-deploy.md#env-sinker)
 <!-- markdownlint-enable -->
 
-- Configure Global Host Tag and Global Election Tag
+- Configure "Global Host Tag" and "Global Election Tag"
 
-In all Datakit uploaded data, these configured global tags (including tag key and tag value) will be brought as the basis for group sending.
+All Datakit uploaded data will carry these global tags (including tag key and tag value) as the basis for grouped sending.
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    See [here](../datakit/datakit-install.md#common-envs)
+    Refer to [here](../datakit/datakit-install.md#common-envs)
 
 === "Kubernetes"
 
-    See [here](../datakit/datakit-daemonset-deploy.md#env-common)
+    Refer to [here](../datakit/datakit-daemonset-deploy.md#env-common)
 <!-- markdownlint-enable -->
 
-### Setup global custom keys {#dk-customer-key}
+### Datakit End Customer Key Configuration {#dk-customer-key}
 
-To enable sinker for Datakit, setup these in *datakit.conf*: 
+To ensure that data collected by a specific Datakit meets routing requirements, ensure the following points:
+
+- Datakit has enabled the Sinker function
+- Datakit has configured valid Global Customer Keys
+
+These configurations are as follows:
 
 ```toml
+# /usr/local/datakit/conf.d/datakit.conf
 [dataway]
+
+  # Specify a set of customer keys
   global_customer_keys = [
-    # Do not add too may keys here, 2 ~ 3 keys are valid.
-    # Here we add category and class.
+    # Example: Add category and class two keys
+    # It is not advisable to configure too many keys here, generally 2 ~ 3 keys are sufficient
     "category",
     "class",
   ]
 
-  # enable Sinker feature
+  # Enable sinker function
   enable_sinker = true
 ```
 
-In addition to dial tests, [General Data Classification](../datakit/apis.md#category), [Session Replay](../integrations/rum.md#rum-session-replay) and [Profiling](../integrations/profile.md) and other binary file data. **Do not configure non-string-type keys for `global_customer_keys`**, we just ignore them.
+Besides synthetic testing data and [regular data categories](../datakit/apis.md#category), it also supports [Session Replay](../integrations/rum.md#rum-session-replay) and [Profiling](../integrations/profile.md) binary file data. Therefore, all field names can be chosen here, with the caveat that **non-string type fields should not be configured**. Normal keys generally come from Tags (all Tag values are string types). Datakit will not use non-string type fields as routing criteria.
 
-#### Impact of Global Tags on Sink {#dk-global-tags-on-sink}
+#### Impact of Global Tags {#dk-global-tags-on-sink}
 
-In addition to `global_customer_keys` affecting the sinking markers, the [Global Tags](../datakit/datakit-conf.md#set-global-tag) configured in Datakit (including global election tags and global host tags) also influence the sinking markers. This means that if the data points contain fields that appear in the global tags (and the value types of these fields must be string), they will be taken into account for sinking. Assume the global election tag is configured as follows:
+In addition to `global_customer_keys` affecting routing tags, the [global Tags](../datakit/datakit-conf.md#set-global-tag) configured on Datakit (including global election Tags and global host Tags) also influence routing tags. That is, if the data point contains fields that appear in the global Tags (these field values must be string types), they will also be counted towards routing. Assuming the global election Tag is as follows:
 
 ```toml
 # datakit.conf
@@ -296,13 +327,13 @@ For the following data point:
 pi,cluster=cluster_A,app=math,other_tag=other_value value=3.14 1712796013000000000
 ```
 
-Since the global election tag includes `cluster` (regardless of the value configured for this tag), and the data point itself also has a `cluster` tag, the final `X-Global-Tags` will include the key-value pair `cluster=cluster_A`:
+Because the global election Tag includes `cluster` (regardless of the value configured for this Tag), and this point itself has a `cluster` Tag, the final `X-Global-Tags` will append the key-value pair `cluster=cluster_A`:
 
 ```not-set
 X-Global-Tags: cluster=cluster_A
 ```
 
-If `global_customer_keys` also configures the `app` key, then the final sharding Header will be (the order of the key-value pairs is not important):
+If `global_customer_keys` also configures the `app` key, the final routing Header would be (the order of key-value pairs is not important):
 
 ```not-set
 X-Global-Tags: cluster=cluster_A,app=math
@@ -311,12 +342,12 @@ X-Global-Tags: cluster=cluster_A,app=math
 <!-- markdownlint-disable MD046 -->
 ???+ note
 
-    The example here intentionally sets the value of `cluster` in the *datakit.conf* different from the value of the `cluster` field in the data point, mainly to emphasize the impact of the tag key here. It can be understood that once a data point contains a global tag key that meets the condition, **its effect is equivalent to this global tag key being added to `global_customer_keys`**.
+    In this example, the value of `cluster` in *datakit.conf* is deliberately set differently from the `cluster` field value in the data point, mainly emphasizing the impact of the Tag Key. It can be understood that once a data point contains a qualified global Tag Key, **its effect is equivalent to adding this global Tag Key to `global_customer_keys`**.
 <!-- markdownlint-enable -->
 
-## Dataway sink command {#dw-sink-command}
+## Dataway Sink Commands {#dw-sink-command}
 
-Dataway supports managing the configuration of `sinker` through the command line since version [:octicons-tag-24: Version-1.3.6](dataway-changelog.md#cl-1.3.6). The specific usage is as follows:
+Starting from version [:octicons-tag-24: Version-1.3.6](dataway-changelog.md#cl-1.3.6), Dataway supports managing `sinker` configurations via command line, specific usage is as follows:
 
 ```shell
 $ ./dataway sink --help
@@ -340,53 +371,53 @@ Usage of sink:
         rules filtered by token, eg: xx,yy
 ```
 
-**Specify configuration file**
+**Specifying Configuration File**
 
-When the command is executed, the default configuration file loaded is `/usr/local/cloudcare/dataflux/dataway/dataway`.yaml, and if additional configurations need to be loaded, they can be specified using the `--cfg-file` option.
+By default, the command loads the configuration file `/usr/local/cloudcare/dataflux/dataway/dataway.yaml`. To load other configurations, specify using `--cfg-file`.
 
 ```shell
 $ ./dataway sink --cfg-file dataway.yaml [--list...]
 ```
 
-**Command log setting**
+**Command Log Settings**
 
-The command log was disabled by default. If you need to view it, you can set the `--log` parameter.
+By default, command output logs are disabled. To view them, set the `--log` parameter.
 
 ```shell
-# output log to stdout
+# Output log to stdout
 $ ./dataway sink --list --log stdout
 
-# output log to file
+# Output log to file
 $ ./dataway sink --list --log /tmp/log
 ```
 
-**View sinker rules**
+**Viewing Rule List**
 
 ```shell
 
-# list all rules 
+# List all rules
 $ ./dataway sink --list
 
-# list all rules filtered by token 
+# List all rules filtered by token
 $ ./dataway sink --list --token=token1,token2
 
 CreateRevision: 2
 ModRevision: 41
 Version: 40
-Rules: 
+Rules:
 [
     {
         "rules": [
             "{ workspace = 'zhengb-test'}"
         ],
-        "url": "https://openway.guance.com?token=token1"
+        "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=token1"
     }
 ]
 ```
 
-**Add sinker rules**
+**Adding Rules**
 
-Create file `rule.json` and add the following content:
+Create a rule file `rule.json`, content reference as follows:
 
 ```json
 [
@@ -394,19 +425,19 @@ Create file `rule.json` and add the following content:
     "rules": [
       "{ host = 'HOST1'}"
     ],
-    "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxx"
+    "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxx"
   },
   {
     "rules": [
       "{ host = 'HOST2'}"
     ],
-    "url": "https://openway.guance.com?token=tkn_yyyyyyyyyyyyy"
+    "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyy"
   }
 ]
 
 ```
 
-Add the rules.
+Add new rules
 
 ```shell
 $ ./dataway sink --add rule.json
@@ -415,9 +446,9 @@ add 2 rules ok!
 
 ```
 
-**Export sinker configuration**
+**Export Configuration**
 
-Export the `sinker` configuration content to local file.
+Export configuration can export `sinker` configurations to a local file.
 
 ```shell
 $ ./dataway sink --get --file sink-get.json
@@ -426,11 +457,11 @@ rules json was saved to sink-get.json!
 
 ```
 
-**Import sinker configuration**
+**Write Configuration**
 
-Import `sinker` configuration from local file.
+Writing rules synchronizes local rule files to `sinker`.
 
-Create file `sink-put.json` and add following content:
+Create a rule file `sink-put.json`, content reference as follows:
 
 ```json
 {
@@ -439,7 +470,7 @@ Create file `sink-put.json` and add following content:
             "rules": [
                 "{ workspace = 'test'}"
             ],
-            "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxxx"
+            "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxx"
         }
     ],
     "strict": true
@@ -447,18 +478,18 @@ Create file `sink-put.json` and add following content:
 
 ```
 
-Import the file.
+Write configuration
 
 ```shell
-$ dataway sink --put --file sink-put.json
+$ ./dataway sink --put --file sink-put.json
 ```
 
-## Config examples {#config-examples}
+## Configuration Examples {#config-examples}
 
 <!-- markdownlint-disable MD046 -->
-??? info "dataway.yaml in Kubernetes(expand me)"
+??? info "Example of dataway.yaml in Kubernetes (expand to view)"
 
-    We can setup a configmap in Dataway Pod yaml:
+    Directly specify sinker JSON in yaml:
 
 
     ```yaml
@@ -484,9 +515,9 @@ $ dataway sink --put --file sink-put.json
               [{"disable": true}]
             datakit/prom.instances: |
               [[inputs.prom]]
-                url = "http://$IP:9090/metrics"
+                url = "http://$IP:9090/metrics" # Depending on the situation, this port (default 9090) may vary
                 source = "dataway"
-                measurement_name = "dw"
+                measurement_name = "dw" # Fixed as this Metrics set
                 interval = "10s"
 
                 [inputs.prom.tags]
@@ -507,19 +538,19 @@ $ dataway sink --put --file sink-put.json
                   topologyKey: kubernetes.io/hostname
 
           containers:
-          - image: registry.jiagouyun.com/dataway/dataway:1.3.6 # select version here 
+          - image: registry.jiagouyun.com/dataway/dataway:1.3.6 # Choose an appropriate version number here
             #imagePullPolicy: IfNotPresent
             imagePullPolicy: Always
             name: dataway
             env:
             - name: DW_REMOTE_HOST
-              value: "http://kodo.forethought-kodo:9527" # setup kodo server or next cascaded Dataway
+              value: "http://kodo.forethought-kodo:9527" # Fill in the real Kodo address or the next Dataway address here
             - name: DW_BIND
               value: "0.0.0.0:9528"
             - name: DW_UUID
-              value: "agnt_xxxxx" # setup Dataway UUID
+              value: "agnt_xxxxx" # Fill in the real Dataway UUID here
             - name: DW_TOKEN
-              value: "tkn_oooooooooooooooooooooooooooooooo" # setup system workspace Dataway token
+              value: "tkn_oooooooooooooooooooooooooooooooo" # Fill in the real Dataway token here, generally the system workspace token
             - name: DW_PROM_LISTEN
               value: "0.0.0.0:9090"
             - name: DW_SECRET_TOKEN
@@ -603,7 +634,7 @@ $ dataway sink --put --file sink-put.json
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD046 -->
-??? info "Ingress for Dataway(expand me)"
+??? info "Ingress Configuration Example (expand to view)"
 
     ```yaml
     apiVersion: networking.k8s.io/v1
@@ -630,45 +661,88 @@ $ dataway sink --put --file sink-put.json
 
 ## FAQ {#faq}
 
+### Viewing Details of Dropped Requests {#dropped-request}
+
+[:octicons-tag-24: Version-1.3.7](dataway-changelog.md#cl-1.3.7)
+
+When a request does not match the Sinker rules, Dataway discards the request and increments a discard count in metrics. During debugging, we need to know the specifics of a discarded request, especially the `X-Global-Tags` information carried in the request header.
+
+We can search Dataway logs using the following command:
+
+``` bash
+$ cat <path/to/dataway/log> | grep dropped
+```
+
+In the output results, we can see outputs similar to the following:
+
+``` not-set
+for API /v1/write/logging with X-Global-Tags <some-X-Global-Tags...> dropped
+```
+
+### Troubleshooting Discarded Datakit Requests {#dk-http-406}
+
+[:octicons-tag-24: Version-1.3.9](dataway-changelog.md#cl-1.3.9)
+
+When a Datakit request is discarded by Dataway, Dataway returns a corresponding HTTP error. In the Datakit logs, you might see errors like the following:
+
+```not-set
+post 3641 to http://dataway-ip:9528/v1/write/metric failed(HTTP: 406 Not Acceptable):
+{"error_code":"dataway.sinkRulesNotMatched","message":"X-Global-Tags: `host=my-host',
+URL: `/v1/write/metric'"}, data dropped
+```
+
+This error indicates that the request `/v1/write/metric` was discarded because its X-Global-Tags did not satisfy any of the rules on Dataway.
+
+Additionally, in the Datakit monitor (`datakit monitor -V`), in the bottom-right `DataWay APIs` panel, the column `Status` will display `Not Acceptable`, indicating that the corresponding Dataway API request was discarded.
+
+Checking Datakit's own metrics also reveals the corresponding metrics:
+
+```shell
+$ curl -s http://localhost:9529/metrics | grep datakit_io_dataway_api_latency_seconds_count
+
+datakit_io_dataway_api_latency_seconds_count{api="/v1/datakit/pull",status="Not Acceptable"} 50
+datakit_io_dataway_api_latency_seconds_count{api="/v1/write/metric",status="Not Acceptable"} 301
+```
+
 ### Datakit Error 403 {#dk-403}
 
-If the sinker on the Dataway is misconfigured, causing all Datakit requests to use `secret_token`, and the token hub (Kodo) is not recognized, a 403 error `kodo.tokenNotFound` is reported.
+If the Dataway sinker configuration is incorrect, leading all Datakit requests to use `secret_token`, and this token is not recognized by the center (Kodo), it reports a 403 error `kodo.tokenNotFound`.
 
-The cause of this problem may be that the etcd username and password are wrong, causing Dataway to fail to obtain the sinker configuration, and Dataway believes that the current sinker is invalid, and all data is directly transmitted to the center.
+This issue could be caused by incorrect etcd username/password, preventing Dataway from obtaining the Sinker configuration, thus Dataway considers the current sinker invalid and forwards all data directly to the center.
 
-### etcd permission configuration issues {#etcd-permission}
+### etcd Permission Issues {#etcd-permission}
 
-If the following error is reported in the Dataway log, there may be a problem with the permission setting:
+If the Dataway logs show the following error, it suggests permission settings may be problematic:
 
 ```not-set
 sinker ping: etcdserver: permission denied, retrying(97th)
 ```
 
-If the permissions are not configured properly, you can delete all existing Dataway-based permissions and reconfigure them, see [here](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#using-etcdctl-to-authenticate){:target="_blank"}
+If the permission configuration is improper, you can delete all existing Dataway-based permissions and reconfigure them. Refer to [here](https://etcd.io/docs/v3.5/op-guide/authentication/rbac/#using-etcdctl-to-authenticate){:target="_blank"}
 
-### Datakit Key Priority {#key-priority}
+### Key Overriding Relationship on Datakit End {#key-priority}
 
-When configuring the Global Custom Key List, if both the Global Host Tag and the Global Election Tag also have a Key with the same name, the corresponding Key-Value pair in the collected data is used.
+When configuring the "Global Custom Key List," if the "Global Host Tag" and "Global Election Tag" also contain keys with the same name, the corresponding Key-Value pair in the collected data is used.
 
-For example, if there is `key1,key2,key3` in the configured "global custom key list", and these keys are also configured in the "global host tag" or "global election tag" and the corresponding values are specified, such as: `key1=value-1`, in a data collection, there is also a field `key1=value-from-data`, then the final grouping by uses `key1=in the data` value-from-data', ignoring the value of the corresponding key configured in the Global Host Tag and Global Election Tag.
+For example, if the "Global Custom Key List" contains `key1,key2,key3`, and the "Global Host Tag" or "Global Election Tag" also configures these keys with specified values, such as `key1=value-1`, and in some data collection, there is a field `key1=value-from-data`, then the final grouping basis uses the data's `key1=value-from-data`, ignoring the Value of the corresponding Key in the "Global Host Tag" and "Global Election Tag".
 
-If there is a key with the same name between the Global Host Tag and the Global Election Tag, the key in the Global Election Tag takes precedence. In summary, the value source priority of the key is as follows (decreasing):
+If the "Global Host Tag" and "Global Election Tag" have keys with the same name, the "Global Election Tag" key takes precedence. In summary, the priority of Key value sources (in descending order) is as follows:
 
-- Data collected
-- Global election tag
-- Global host TAg
+- Collected data
+- Global Election Tag
+- Global Host Tag
 
-### Built-in "global custom key" {#reserved-customer-keys}
+### Built-in "Global Custom Keys" {#reserved-customer-keys}
 
-Datakit has several built-in custom keys that are not typically present in the collected data, but Datakit can use these keys to group data. If there is a need to split the dimensions of these keys, you can add them to the "Global Custom Key" list (none of these keys are configured by default). We can use some built-in custom keys as follows to achieve data offloading.
+Datakit has built-in several custom keys that generally do not appear in collected data, but Datakit can use these keys to group data. If there is a need to split data based on these dimensions, they can be added to the "Global Custom Key" list (by default, these keys are not configured). We can use the following built-in custom keys to implement data splitting.
 
 <!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    The addition of a "global custom key" will cause data to be subpackaged when it is sent, and if the granularity is too fine, the Datakit upload efficiency will be rapidly reduced. In general, it is not recommended to have more than 3 global custom keys.
+    Adding "Global Custom Keys" can cause data to be sent in separate batches. If the granularity is too fine, it can drastically reduce Datakit's upload efficiency. Generally, the number of "Global Custom Keys" should not exceed 3.
 <!-- markdownlint-enable -->
 
-- `class` is for object data, and when enabled, it will be divided according to the classification of objects. For example, if the object of a pod is classified as `kubelet_pod`, then you can formulate a triage rule for the pod:
+- `class` targets object data. When enabled, it splits data based on object classification. For example, if the object classification for Pod is `kubelet_pod`, rules can be created specifically for Pods:
 
 ``` json
 {
@@ -678,7 +752,7 @@ Datakit has several built-in custom keys that are not typically present in the c
             "rules": [
                 "{ class = 'kubelet_pod' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://openway.guance.com?token=<YOUR-TOKEN>",
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -687,7 +761,7 @@ Datakit has several built-in custom keys that are not typically present in the c
 }
 ```
 
-- `measurement` For indicator data, we can hit a specific indicator set to a specific workspace, for example, the name of the indicator set on disk is `disk`, we can write the rule like this:
+- `measurement` targets metric data. Specific Metrics sets can be routed to specific workspaces. For instance, if the Metrics set name for disk is `disk`, the rule can be written as follows:
 
 ```json
 {
@@ -697,7 +771,7 @@ Datakit has several built-in custom keys that are not typically present in the c
            "rules": [
                "{ measurement = 'disk' AND other_conditon = 'some-value' }",
            ],
-           "url": "https://openway.guance.com?token=<YOUR-TOKEN>",
+           "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -706,9 +780,9 @@ Datakit has several built-in custom keys that are not typically present in the c
 }
 ```
 
-- `source` for logs (L), eBPF network metrics (N), events (E), and RUM data
-- `service` for Tracing, Scheck, and Profiling
-- `category` for all [general data classification](apis.md#category), its value is the "name" column of the corresponding data classification (e.g. time series is `metric`, object is `object`, etc.). Taking logs as an example, we can do a separate triage rule for logs as follows:
+- `source` targets logs (L), eBPF network metrics (N), events (E), and RUM data
+- `service` targets Tracing, Synthetic Tests, and Profiling
+- `category` targets all [standard data classifications](../datakit/apis.md#category), whose values are the "name" column of the corresponding data classification (such as `metric` for Time Series, `object` for objects, etc.). Taking logs as an example, we can create a rule specifically for logs as follows:
 
 ``` json
 {
@@ -718,7 +792,7 @@ Datakit has several built-in custom keys that are not typically present in the c
             "rules": [
                 "{ category = 'logging' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://openway.guance.com?token=<YOUR-TOKEN>",
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -727,26 +801,26 @@ Datakit has several built-in custom keys that are not typically present in the c
 }
 ```
 
-### Special Sink Behavior {#special-sink-rule}
+### Special Routing Behavior {#special-sink-rule}
 
-Some requests initiated by Datakit are aimed at pulling resources from the center or performing self-identification. These behaviors are atomic and indivisible, and these requests cannot be distributed to multiple workspaces (because Datakit needs to process the return of these API requests and decide its subsequent actions). Therefore, these APIs can only be diverted to one workspace at most.
+Some requests initiated by Datakit aim to pull resources from the center or perform self-identification. These actions are already atomic and indivisible and cannot be distributed to multiple workspaces (because Datakit needs to handle the return of these API requests and decide its subsequent behavior). Therefore, these APIs can only be routed to one workspace.
 
-If multiple conditions are met in the diversion rules, these APIs will also **only be diverted to the workspace pointed to by the first rule that meets the condition**.
+If multiple conditions are met in the routing rules, these APIs will **only be routed to the first workspace specified by the matching rule**.
 
-Here is an example of such a diversion rule:
+Below is an example of such routing rules:
 
-> We recommend adding the following rule to the Sinker rules to ensure that these existing API requests from Datakit can be implemented in a specific workspace.
+> We recommend adding the following rule to all Sinker rules to ensure that Datakit's existing API requests are directed to a specific workspace.
 
 ``` json
 {
     "strict": true,
-    "info": "Some Special workspace only used for pulling APIs",
+    "info": "Special workspace (used only for data retrieval APIs)",
     "rules": [
         {
             "rules": [
                 "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat', '/v1/query/raw', '/v1/workspace', '/v1/object/labels', '/v1/check/token'] }",
             ],
-            "url": "https://openway.guance.com?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
         }
     ]
 }
@@ -755,29 +829,29 @@ Here is an example of such a diversion rule:
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    The descriptions of these API URLs are as follows:
-
+    Explanation of these API URLs:
+        
     - `/v1/election`: Election request
     - `/v1/election/heartbeat`: Election heartbeat request
-    - `/v1/datakit/pull`: Pull central configuration of Pipeline and blacklist
+    - `/v1/datakit/pull`: Pull Pipeline and blacklist configurations from the center
     - `/v1/query/raw`: DQL query
     - `/v1/workspace`: Get workspace information
     - `/v1/object/labels`: Update/delete object data
     - `/v1/check/token`: Check workspace Token information
 <!-- markdownlint-enable -->
 
-The key `__dataway_api` does not need to be configured in the `global_customer_keys` of the *datakit.conf*. Dataway will default to using this as a diversion Key, and use the current request's API route as its value. That is to say, for a certain API:
+Here, the key `__dataway_api` does not need to be configured in the `global_customer_keys` in *datakit.conf*. Dataway defaults to using this as a routing key, with the current request's API route as its value. That is, for a certain API:
 
 ```text
-POST /v1/write/metrics
+POST /v1/some/api
 X-Global-Tags: cluster=cluster_A,app=math
 ```
 
-The final diversion effect it participates in is the same as the following:
+Its ultimate effect on routing is the same as:
 
 ```text
-POST /v1/write/metrics
+POST /v1/some/api
 X-Global-Tags: cluster=cluster_A,app=math,__dataway_api=/v1/write/metrics
 ```
 
-So, we can directly use the `__dataway_api` KV pair in the Sink rules for matching. This also reminds us that in this special rule, **do not include other important data upload APIs**, such as the `/v1/write/...` API routes, otherwise, which workspace the data will ultimately fall into is undefined.
+So, we can directly use the `__dataway_api` key-value pair in the Sink rule for matching. This also reminds us not to include other important data upload APIs in this special rule, such as `/v1/write/...` interfaces, otherwise, where the data ultimately lands is undefined.

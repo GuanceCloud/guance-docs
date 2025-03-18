@@ -213,7 +213,7 @@ tree /root
 使用 Shell 模块安装 DataKit (注意修改对应的 token)
 
 ```bash
-ansible guance -m shell -a 'DK_DATAWAY="https://openway.guance.com?token=token" bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"'
+ansible guance -m shell -a 'DK_DATAWAY="https://openway.<<< custom_key.brand_main_domain >>>?token=token" bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"'
 ```
 
 查看进程是否已经启动
@@ -253,7 +253,7 @@ ansible guance -m shell -a 'systemctl restart datakit'
       register: version
     - name: dk upgrade
       when: version.stdout > "0"
-      shell: DK_UPGRADE=1 bash -c "$(curl -L https://<<< custom_key.static_domain >>>/datakit/install.sh)"
+      shell: DK_UPGRADE=1 bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"
 ```
 
 运行 playbook

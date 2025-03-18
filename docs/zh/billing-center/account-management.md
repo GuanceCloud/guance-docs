@@ -38,7 +38,7 @@
 
 ### 登录费用中心
 
-换绑完新的邮箱或者手机号后，可使用新邮箱或者新手机号直接登录到 [费用中心](https://boss.guance.com/#/signin)。
+换绑完新的邮箱或者手机号后，可使用新邮箱或者新手机号直接登录到 [费用中心](https://<<< custom_key.boss_domain >>>/#/signin)。
 
 ![](img/7.account_6.png)
 

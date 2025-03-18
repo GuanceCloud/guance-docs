@@ -1,64 +1,71 @@
-
-
 # Reference Table
 
-[:octicons-tag-24: Version-1.4.11](../datakit/changelog.md#cl-1.4.6) ·
+[:octicons-tag-24: Version-1.4.11](../datakit/changelog.md#cl-1.4.11) ·
 [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
 ---
 
-Through the Reference Table function, Pipeline supports importing external data for data processing.
+Through the Reference Table feature, Pipeline supports importing external data for data processing.
 
+<!-- markdownlint-disable MD046 -->
 ???+ warning
 
-    This feature consumes high memory, with reference to 1.5 million rows of disk occupying about 200MB (JSON file) of non-repetitive data (string type two columns; int, float, bool), the memory footprint is maintained at 950MB ~ 1.2 GB, and the peak memory at update is 2.2 GB ~ 2.7 GB.
+    This feature consumes a significant amount of memory. For example, approximately 200MB of disk space (JSON file) is used for 1.5 million non-repeating rows (two string columns; one each of int, float, and bool types), with memory usage maintained at 950MB to 1.2GB, and peak memory usage during updates at 2.2GB to 2.7GB. You can configure `use_sqlite = true` to save data to disk.
+<!-- markdownlint-enable -->
 
-## Table Structure and Column Data Type {#table-struct}
+## Table Structure and Column Data Types {#table-struct}
 
-The table structure is a two-dimensional table, which is distinguished from each other by table name. At least one column needs to exist. The data types of elements in each column must be consistent, and the data types must be one of int (int 64), float (float 64), string and bool.
+The table structure is a two-dimensional table. Tables are distinguished by their names, and there must be at least one column. Elements within each column must have consistent data types, which must be one of int(int64), float(float64), string, or bool.
 
-Setting primary keys to tables is not supported yet, but you can query through any column and take the first row of all the results found as the query result. The following is an example of a table structure:
+Setting primary keys for tables is not yet supported, but queries can be performed using any column, and the first row of all results will be returned as the query result. The following is an example of a table structure:
 
 - Table name: `refer_table_abc`
 
-- Column name(col1, col2, ...), column data type(int, float, ...), line data:
+- Column names (col1, col2, ...), column data types (int, float, ...), and row data:
 
 | col1: int | col2: float | col3: string | col4: bool |
 | ---       | ---         | ---          | ---        |
 | 1         | 1.1         | "abc"        | true       |
 | 2         | 3           | "def"        | false      |
 
-## Import Data from Outside {#import}
+## Importing Data from External Sources {#import}
 
-
+<!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Configure reference table url and pull interval in configuration file `datakit.conf` (default interval is 5 minutes)
+    Configure the reference table URL and pull interval (default interval is 5 minutes) in the configuration file `datakit.conf`
     
     ```toml
     [pipeline]
       refer_table_url = "http[s]://host:port/path/to/resource"
       refer_table_pull_interval = "5m"
+      use_sqlite = false
+      sqlite_mem_mode = false
     ```
 
 === "Kubernetes"
 
-    [see here](../datakit/datakit-daemonset-deploy.md#env-reftab)
+    [Refer here](../datakit/datakit-daemonset-deploy.md#env-reftab)
 
 ---
 
-Supported data formats:
+???+ warning
 
-Content-Type: application/json ：
+    Currently, the HTTP response Content-Type of the address specified by `refer_table_url` must be `Content-Type: application/json`.
+<!-- markdownlint-enable -->
 
-* The data consists of a list of tables, and each table consists of a map with the fields in the map:
+---
 
-| Field Name   | table_name | column_name | column_type                                                         | row_data                                                                                                             |
-| ---      | ---        | --          | --                                                                  | ---                                                                                                                  |
-| Description     | Table Name       | All Column Names    | Column data type, need to correspond to column name, value range "int", "float", "string", "bool" | Multiple rows of data, for int, float, bool types can use corresponding type data or converted to string representation; Elements in [] any must correspond to column names and column types one by one. |
-| Data Type | string     | [ ]string   | [ ]string                                                           | [ ][ ]any                                                                                                            |
+- Data consists of multiple tables represented as lists, where each table is a map with fields:
 
-* JSON structure:
+| Field Name   | Description     | Data Type   |
+| ---          | ---             | ---         |
+| table_name   | Table name      | string      |
+| column_name  | All column names| [ ]string   |
+| column_type  | Column data types, corresponding to column names, values range "int", "float", "string", "bool" | [ ]string |
+| row_data     | Multiple row data, for int, float, bool types can use corresponding type data or convert to string representation; elements in []any need to correspond one-to-one with column names and column types | [ ][ ]any  |
+
+- JSON structure:
   
 ```json
 [
@@ -75,7 +82,7 @@ Content-Type: application/json ：
 ]
 ```
 
-* example:
+- Example:
 
 ```json
 [
@@ -102,11 +109,31 @@ Content-Type: application/json ：
 ]
 ```
 
-## Practice Example {#example}
+## Using SQLite to Save Imported Data {#sqlite}
 
-Write the json text above as the file `test.json` and place the file under/var/www/html after installing nginx with apt in Ubuntu 18.04 +
+To save imported data to an SQLite database, simply set `use_sqlite` to `true`:
 
-Execute `curl -v localhost/test.json` to test whether the file can be obtained via HTTP GET, and the output is roughly
+```toml
+[pipeline]
+    refer_table_url = "http[s]://host:port/path/to/resource"
+    refer_table_pull_interval = "5m"
+    use_sqlite = true
+    sqlite_mem_mode = false
+```
+
+When using SQLite to save data and setting `sqlite_mem_mode` to `true`, it uses SQLite's memory mode; the default is SQLite disk mode.
+
+<!-- markdownlint-disable MD046 -->
+???+ warning
+
+    This feature is currently unsupported on windows-386.
+<!-- markdownlint-enable -->
+
+## Practical Example {#example}
+
+Write the above JSON text into a file `test.json`, place it under */var/www/html* after installing NGINX via `apt` on Ubuntu18.04+
+
+Execute `curl -v localhost/test.json` to test if the file can be retrieved via HTTP GET. The output should look like this:
 
 ```txt
 ...
@@ -126,23 +153,25 @@ Execute `curl -v localhost/test.json` to test whether the file can be obtained v
 ...
 ```
 
-Modify the value of refer_table_url in the configuration file `datakit.conf`:
+Modify the value of `refer_table_url` in the configuration file `datakit.conf`:
 
 ```toml
 [pipeline]
   refer_table_url = "http://localhost/test.json"
   refer_table_pull_interval = "5m"
+  use_sqlite = false
+  sqlite_mem_mode = false
 ```
 
-Go into the datakit pipeline logging directory and create the test script `refer_table_for_test.p` and write the following
+Enter the Datakit *pipeline/logging* directory and create a test script `refer_table_for_test.p` with the following content:
 
 ```python
-# Extract table name, column name and column value from input
+# Extract table name, column names, and column values from input
 json(_, table)
 json(_, key)
 json(_, value)
 
-# Query and append the data of the current column, which is added to the data as field by default
+# Query and append current column data, default is added to the data as a field
 query_refer_table(table, key, value)
 ```
 
@@ -154,7 +183,7 @@ vim refer_table_for_test.p
 datakit pipeline -P refer_table_for_test.p -T '{"table": "table_abc", "key": "col2", "value": 1234.0}' --date
 ```
 
-As can be seen from the following output results, coll, col2, col3 and col4 of the columns in the table were successfully appended to the output results:
+From the following output, we can see that the columns col, col2, col3, col4 were successfully appended to the output result:
 
 ```shell
 2022-08-16T15:02:14.150+0800  DEBUG  refer-table  refertable/cli.go:26  performing request[method GET url http://localhost/test.json]

@@ -130,7 +130,7 @@ logging.pattern.level = trace_id=%mdc{trace_id} span_id=%mdc{span_id} trace_flag
 
 ## 参考文档 {#faq}
 
-[**DDTrace Log**](https://docs.guance.com/best-practices/insight/ddtrace-skill-log/)
+[**DDTrace Log**](<<< homepage >>>/best-practices/insight/ddtrace-skill-log/)
 
 [**springboot-ddtrace-server**](https://github.com/lrwh/observable-demo/blob/main/springboot-ddtrace-server/src/main/resources/logback-spring.xml)
 

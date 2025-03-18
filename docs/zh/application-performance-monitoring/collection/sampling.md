@@ -8,7 +8,7 @@
 
 ## 前置条件
 
-- [注册登录<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd)；  
+- [注册登录<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site_auth >>>/login/pwd)；  
 - [安装 DataKit](../../datakit/datakit-install.md)；   
 - [开启 DDtrace 采集器](../../integrations/ddtrace.md)。 
 

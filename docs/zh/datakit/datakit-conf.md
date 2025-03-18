@@ -19,7 +19,7 @@ DataKit 主配置用来配置 DataKit 自己的运行行为。
 
 ## Datakit 主配置示例 {#maincfg-example}
 
-Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.68.0）：
+Datakit 主配置示例如下，我们可以根据该示例来开启各种功能（当前版本 1.69.1）：
 
 <!-- markdownlint-disable MD046 -->
 ??? info "*datakit.conf*"
@@ -438,11 +438,13 @@ DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基
 
     > [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) 已经默认开启该功能。
     
-    由于 DataKit 需要大量接收外部数据写入，为了避免给所在节点造成巨大开销，可修改如下 HTTP 配置（默认不开启）：
+    由于 DataKit 需要大量接收外部数据写入，为了避免给所在节点造成巨大开销，Datakit 默认给 API 设置了 20/s 的 QPS 限制：
     
     ```toml
     [http_api]
-      request_rate_limit = 20.0 # 限制每个客户端（IP + API 路由）发起请求的 QPS 限制
+      request_rate_limit = 20.0 # 限制每个客户端（IP + API 路由）每秒发起请求的 QPS 限制
+
+      # 如果确实有大量数据写入，可酌情调大限制，避免数据丢失（请求超限后客户端会收到 HTTP 429 错误码）
     ```
 
     ### 其它设置 {#http-other-settings}
@@ -463,17 +465,35 @@ DataKit 会开启 HTTP 服务，用来接收外部数据，或者对外提供基
 
 [:octicons-tag-24: Version-1.64.0](changelog.md#cl-1.64.0)
 
-出于安全考虑，Datakit 默认限制了一些自身 API 的访问（这些 API 只能通过 localhost 访问）。如果 DataKit 部署在公网环境，又需要通过公网（或从本地局域网的其它机器）来请求这些 API，可以在 *datakit.conf* 中，修改如下 `public_apis` 字段配置：
+出于安全考虑，Datakit 默认限制了一些自身 API 的访问（这些 API 只能通过 localhost 访问）。如果 DataKit 部署在公网环境，又需要通过其它机器或公网来请求这些 API，可以在 *datakit.conf* 中，修改如下 `public_apis` 字段配置：
 
 ```toml
 [http_api]
   public_apis = [
-    # 放行 /metrics 接口访问
+    # 放行 Datakit 自身指标暴露接口 /metrics
     "/metrics",
+    # ... # 其它接口
   ]
 ```
 
-默认情况下，只开启了 Ping 接口以及基本的数据上传接口访问，所有其它接口都是禁止外部访问的，而采集器对应的接口，比如 trace 类采集器，一旦开启采集器之后，默认就能外部访问。Kubernetes 中增加 API 白名单参见[这里](datakit-daemonset-deploy.md#env-http-api)。
+默认情况下，`public_apis` 为空。出于便捷和兼容性考虑，默认开放了 Ping 接口（`/v1/ping`）以及基本的数据上传接口（"/v1/write/:category"），所有其它接口都是禁止外部访问的。而采集器对应的接口，比如 trace 类采集器，一旦开启采集器之后，其访问自动放开，默认就能外部访问。
+
+Kubernetes 中增加 API 白名单参见[这里](datakit-daemonset-deploy.md#env-http-api)。
+
+<!-- markdownlint-disable MD046 -->
+???+ attention
+
+    一旦 `public_apis` 不为空，则默认开启的那些 API 接口需要**再次手动添加**：
+
+    ```toml
+    [http_api]
+      public_apis = [
+        "/v1/write/metric",
+        "/v1/write/logging",
+        # ...
+      ]
+    ```
+<!-- markdownlint-enable -->
 
 ## 全局标签（Tag）修改 {#set-global-tag}
 
@@ -646,7 +666,7 @@ $ systemctl status datakit
     - 非 root 用户改资源限制配置时，必须重装 service。
     - CPU 核心数限制会影响 Datakit 部分子模块的 worker 数配置（一般是 CPU 核心数的整数倍）。比如数据上传 worker 就是 CPU 核心数 * 2。而单个上传 worker 会占用默认 10MB 的内存用于数据发送，故 CPU 核心数如果开放较多，会影响 Datakit 整体内存的占用
     - [:octicons-tag-24: Version-1.5.8](changelog.md#cl-1.5.8) 开始支持 cgroup v2。如果不确定 cgroup 版本，可通过命令 `mount | grep cgroup` 来确认。
-    - [:octicons-tag-24: Version-1.68.0](changelog.md#cl-1.68.0) 支持在 *daktait.conf* 中配置 CPU 核心数限制，且弃用原来的百分比配置方式。百分比配置方式会因为不同主机的 CPU 核心数不同而出现 CPU 配额不同，在采集压力相同的情况下，可能会导致一些异常行为。老版本 Datakit 升级上来的时候，在升级命令中指定 `DK_LIMIT_CPUCORES` 环境变量即可。升级命令如果不指定，仍然沿用之前的百分比配置方式。如果重新安装 Datakit，则直接采用 CPU 核心数限额方式。
+    - [:octicons-tag-24: Version-1.68.0](changelog-2025.md#cl-1.68.0) 支持在 *daktait.conf* 中配置 CPU 核心数限制，且弃用原来的百分比配置方式。百分比配置方式会因为不同主机的 CPU 核心数不同而出现 CPU 配额不同，在采集压力相同的情况下，可能会导致一些异常行为。老版本 Datakit 升级上来的时候，在升级命令中指定 `DK_LIMIT_CPUCORES` 环境变量即可。升级命令如果不指定，仍然沿用之前的百分比配置方式。如果重新安装 Datakit，则直接采用 CPU 核心数限额方式。
 <!-- markdownlint-enable -->
 
 ### 选举配置 {#election}

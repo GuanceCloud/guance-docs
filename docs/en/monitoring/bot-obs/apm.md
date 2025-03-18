@@ -1,87 +1,85 @@
-# APM Intelligent Inspection
+# APM Performance Check
 
 ---
 
 ## Background
 
-「APM Intelligent Inspection」is based on APM root cause analysis detector, select the `service` 、 `resource` 、 `project` 、 `env` information to be tested, and perform intelligent inspection of APM on a regular basis to automatically analyze the upstream and downstream information of the service through application service index exceptions, and confirm the root cause of the abnormal problem for the application.
+"APM Performance Check" is based on the APM Incident Root Cause Analysis Detector. It allows you to select the `service`, `resource`, `project`, and `env` information to be inspected, and regularly performs intelligent checks on application performance. By automatically analyzing anomalies in application service metrics, it identifies upstream and downstream service information to pinpoint root cause issues.
 
-## Preconditions
+## Prerequisites
 
-1. In Guance「 [APM](../../application-performance-monitoring/collection/index) 」that already have access applications.
-2. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
-4. In Guance「Management / API Key Management」create [API Key](../../../management/api-key/open-api.md)
+1. <<< custom_key.brand_name >>> "[APM](../../application-performance-monitoring/collection/index.md)" already has integrated applications.
+2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
+4. In <<< custom_key.brand_name >>> "Manage / API Key Management," create an [API Key](../../management/api-key/open-api.md) for operations.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the current <<< custom_key.brand_name >>> SaaS [in the same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Start Intelligent Inspection
+## Enabling Checks
 
-In the DataFlux Func, install the "Guance Custom Inspection (APM Performance)" through the "Script Market" and follow the prompts to configure the Guance API Key to complete activation.
+In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-hosted Check (APM Performance)" from the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+Choose the desired check scenario in the DataFlux Func Script Market, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) settings, then select deploy to start the script.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration, which can be viewed directly via the provided link.
 
 ![image](../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configuring Checks
 
-### Configure Intelligent Inspection in Guance
+Configure the desired filtering conditions for the checks in either the <<< custom_key.brand_name >>> studio's Monitoring - Intelligent Check module or the automatically generated startup script in DataFlux Func. Refer to the following two configuration methods:
+
+### Configuring Checks in <<< custom_key.brand_name >>>
 
   ![image](../img/apm02.png)
 
-
-
 #### Enable/Disable
 
-APM Intelligent Inspection is "On" by default, and can be manually "Off". When it is on, it will inspect the configured APM.
+APM Performance Check defaults to "Enabled" status but can be manually "Disabled." When enabled, it will perform checks on the configured APM monitoring.
 
+#### Editing
 
+The "APM Performance Check" under Intelligent Checks supports manual addition of filter conditions. Click the **Edit** button in the operation menu on the right side of the Intelligent Check list to edit the check template.
 
-#### Export
+* Filter Conditions: Configure the project of the service (`project`), `service_sub` including service (`service`), environment (`env`), version (`version`) concatenated by ":".
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
-
-#### Editor
-
-Intelligent Inspection "APM Intelligent Inspection" supports users to manually add filtering conditions, and click the "Edit" button under the operation menu on the right side of the Intelligent Inspection list to edit the inspection template.
-
-  * Filter criteria: configuration application project service belongs to the project, service_sub including service, environment, version by ":" stitching.
-  * Alarm notification: support for selecting and editing alarm policies, including the level of events to be notified, notification objects, and alarm silence period, etc.
-
- Configure the entry parameters by clicking on Edit and then fill in the corresponding detection object in the parameter configuration and click Save to start the inspection：
+Click Edit in the configuration entry parameters, fill in the corresponding detection objects in the parameter configuration, and click Save to start the check:
 
   ![image](../img/apm03.png)
 
-You can refer to the following configuration for multiple projects, environments, versions and services
+You can refer to the following configuration for multiple projects, environments, versions, and services:
 
   ```json
-   // config example：
+   // Configuration Example:
+  configs configured in TOML format:
           enabled_service = [
               "project1:service1:env1:version1",
               "project2:service2:env2:version2"
           ]
   
+  				# Specify services to check; default is the entire workspace
           disabled_service = [
               "project2:service2:env2:version2"
           ]
   
+  				# Specify error rate for services; default is 0
           [service_error_rate_threshold]
           "project1:service1:env1:version1"=0.1
           "project2:service2:env2:version2"=0.2
   
+  				# Specify p99 threshold for services; default is 15s 
           [service_p99_threshold]
           "project1:service1:env1:version1"=15000000
           "project2:service2:env2:version2"=90000000
   ```
 
->  **Note**: In the  DataFlux Func, filter conditions can also be added when writing the  check processing function (refer to the sample code configuration). Note that the parameters configured in the Guance studio will override the parameters configured when writing the  check processing function.
+> **Note**: In the self-hosted DataFlux Func, when writing self-hosted check handling functions, you can also add filter conditions (refer to example code configuration). Note that parameters configured in <<< custom_key.brand_name >>> studio will override those set in the self-hosted check handling function.
 
-### Configuring inspections in DataFlux Func
+### Configuring Checks in DataFlux Func
 
-After configuring the required filter conditions for inspections in DataFlux Func, you can click the "run()" method to test it directly on the page. After clicking "publish", the script will be executed normally. You can also view or change the configuration in the Guance "Monitoring/Intelligent Inspection".
+In DataFlux Func, after configuring the required filtering conditions for checks, you can test by clicking the `run()` method directly on the page. After publishing, the script will run normally. You can also view or change configurations in <<< custom_key.brand_name >>> "Monitoring / Intelligent Checks."
 
 ```python
 from guance_monitor__register import self_hosted_monitor
@@ -91,7 +89,7 @@ import guance_monitor_apm_performance__main as main
 # Support for using filtering functions to filter the objects being inspected, for example:
 def filter_project_servcie_sub(data):
     '''
-    过滤 project，service_sub，检测符合要求的对象，匹配的返回 True，不匹配的返回 False
+    Filter project, service_sub, inspect objects that meet requirements, return True if matched, False otherwise
     '''
     project = data['project']
     service_sub = data['service_sub']
@@ -100,49 +98,20 @@ def filter_project_servcie_sub(data):
   
   
 @self_hosted_monitor(account['api_key_id'], account['api_key'])
-@DFF.API('APM 性能巡检', fixed_crontab='0 * * * *', timeout=900)
+@DFF.API('APM Performance Check', fixed_crontab='0 * * * *', timeout=900)
 def run(configs=None):
     '''
-    zh-CN:
-        title: APM 性能巡检
-        doc: |
-            可选参数：
-                configs ：
-                    可以指定检测 service（enabled_service），不指定则检测所有 service。
-                    可以指定过滤 service （disabled_service），不指定不过滤
-                    可以针对 service 单独设置 p99 阈值（service_p99_threshold），错误率阈值（service_error_rate_threshold）
-                    注：每个 service 由服务所属项目 (project), 服务（service）、环境（env）、版本（version）通过 ":" 拼接而成，例："project1:service:env:version"
-
-                configs 按照 toml 格式配置示例 ：
-
-                    enabled_service = [
-                        "project1:service1:env1:version1",
-                        "project2:service2:env2:version2"
-                    ]
-
-                    disabled_service = [
-                        "project2:service2:env2:version2"
-                    ]
-
-                    [service_error_rate_threshold]
-                    "project1:service1:env1:version1"=0.1
-                    "project2:service2:env2:version2"=0.2
-
-                    [service_p99_threshold]
-                    "project1:service1:env1:version1"=15000000
-                    "project2:service2:env2:version2"=90000000
     en:
         title: APM Performance Check
         doc: |
-            Optional parameter：
+            Optional parameter:
                 configs :
                     You can specify the detection service (enabled_service), otherwise all services will be detected.
                     You can specify the filtering service (disabled_service), and do not specify no filtering
                     You can set the p99 threshold (service_p99_threshold) and error rate threshold (service_error_rate_threshold) separately for services
                     Note: Each service by service belongs to the project (project), service (service), environment (env), version (version) by ":" patchwork, example: "project1: service: env: version"
 
-
-                Example of configuring configs toml format:
+                Example of configuring configs in TOML format:
 
                     enabled_service = [
                         "project1:service1:env1:version1",
@@ -169,84 +138,69 @@ def run(configs=None):
     Runner(checkers).run_v2()
 ```
 
-## View Events
+## Viewing Events
 
- Based on the Guance inspection algorithm, Intelligent Inspection will look for abnormalities in APM metrics, such as `resource` abnormalities occurring suddenly. For abnormal conditions, Intelligent Inspection will generate corresponding events, and you can check the corresponding abnormal events by clicking the "View Related Events" button under the operation menu on the right side of the Smart Inspection list.
+Based on <<< custom_key.brand_name >>> inspection algorithms, Intelligent Checks identify anomalies in APM metrics, such as sudden anomalies in `resource`. For any anomalies, Intelligent Checks generate corresponding events. In the Intelligent Check list's operation menu, click the **View Related Events** button to view the corresponding anomaly events.
 
 ![image](../img/apm04.png)
 
+### Event Details Page
 
+Clicking **Event**, you can view the details page of the Intelligent Check event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
 
-### Event Details page
+* Click the "View Monitor Configuration" icon in the top-right corner of the details page to view and edit the current Intelligent Check configuration details.
 
-Click "Event" to view the detail page of intelligent inspection events, including event status, time of exception occurrence, exception name, basic attributes, event details, alarm notification, history and associated events.
+#### Basic Attributes
 
-  * Click the "View monitor configuration" small icon at the top right corner of the detail page to support viewing and editing the configuration details of the current intelligent inspection.
-  * Click the "Export Event JSON" icon in the upper-right corner of the detail page to support exporting the event details.
+* Detection Dimensions: Based on the Intelligent Check configuration's filter conditions, it supports copying `key/value`, adding filters, and viewing related logs, containers, processes, Security Checks, traces, RUM PV, Synthetic Tests, and CI data.
+* Extended Attributes: Select extended attributes to support copying in `key/value` form, forward/reverse filtering.
 
-
-
-#### Basic Properties
-
-  * Detection Dimensions: Filter criteria based on smart check configuration, enabling replication of detection dimensions `key/value`, adding to filters and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data
-  * Extended Attributes: Support replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering.
-
-  ![image](../img/apm05.png)
-
-
+![image](../img/apm05.png)
 
 #### Event Details
 
-  * Event overview: describes the object and content of the exception patrol event
-  * Error trend: you can view the performance metrics of the current application for nearly 1 hour
-  * Abnormal impact: you can view the services and resources affected by the abnormal service of the current link
-  * Abnormal link sampling: view the detailed error time, service, resource and link ID; Click Services and Resources to enter the corresponding data explorer; Click the link ID to enter the specific link details page.
+* Event Overview: Describes the object and content of the anomaly check event.
+* Error Trend: View the performance metrics of the current application over the past hour.
+* Anomaly Impact: View the services and resources affected by the abnormal service in the current trace.
+* Anomaly Trace Sampling: View detailed error times, services, resources, and trace IDs. Clicking on services or resources enters the corresponding data viewer; clicking on trace ID enters the specific trace detail page.
 
 ![image](../img/apm06.png)
-  ![image](../img/apm07.png)
+![image](../img/apm07.png)
 
+#### History Records
 
+Supports viewing the detection object, anomaly/recovery times, and duration.
 
-#### History
+![image](../img/apm08.png)
 
- Support to view the detection object, exception/recovery time and duration.
+#### Related Events
 
- ![image](../img/apm08.png)
+Supports viewing related events through filter fields and selected Time Widget information.
 
+![image](../img/apm09.png)
 
+## Common Issues
 
-#### Related events
+**1. How to configure the frequency of APM Performance Checks**
 
-  Support to view related events through filtering fields and selected time component information.
+  * In self-hosted DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the self-hosted check handling function, and configure it in "Manage / Auto Trigger Configuration."
 
-  ![image](../img/apm09.png)
+**2. Why might there be no anomaly analysis in APM Performance Checks**
 
+  When there is no anomaly analysis in the check report, check the current `datakit` data collection status.
 
+**3. Under what circumstances will APM Performance Check events be generated**
 
-## FAQ
+  Using error rates, P90, etc., as indicators, when one of these indicators shows abnormal changes and affects upstream and downstream services, it triggers the collection of alarm information and root cause analysis.
 
-**1. How to configure the detection frequency of the APM Intelligent Inspection**
+**4. What should be done if previously running scripts encounter errors during checks**
 
-  **In the  DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` to the decorator when writing the  patrol handler function, and then configure it in `Management / Auto-trigger Configuration'.
+Update the referenced script sets in the DataFlux Func Script Market. You can view the update records of the script market through the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates of the scripts.
 
-**2. There may be no exception analysis when triggered by APM Intelligent Inspection**
+**5. Why does the corresponding script set remain unchanged during script upgrade**
 
-  When there is no exception analysis in the inspection report, please check the current data collection status of `datakit`.
+Delete the corresponding script set first, then click the upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**3. Under what circumstances will an APM Intelligent Inspection event be generated**
+**6. How to determine if the check has taken effect after enabling**
 
-  Use metrics such as error rate and P90 as entry points to trigger the collection of alarm information and root cause analysis when one of these metrics changes abnormally and has an upstream and downstream link impact.
-
-**4. Abnormal errors are found in scripts that were previously running normally during the inspection process**
-
-Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
-
-**5. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
-
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
-
-**6. How to determine if the inspection is effective after it is enabled**
-
-Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.
-
-  
+In "Manage / Auto Trigger Configuration," view the corresponding check status. The status should be enabled, and you can verify the check script by clicking execute. If it shows successful execution within the last xx minutes, the check is functioning properly.

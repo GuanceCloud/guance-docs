@@ -217,7 +217,7 @@ processors:
 
 ## 演示 demo
 
-本 demo 主要是将 OpenTelemetry 数据推送至 [<<< custom_key.brand_name >>>](https://www.guance.com/)
+本 demo 主要是将 OpenTelemetry 数据推送至 [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)
 
 ### 准备工作
 

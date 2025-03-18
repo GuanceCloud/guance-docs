@@ -72,7 +72,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
         window,
         document,
         'script',
-        'https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js',
+        'https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js',
         'DATAFLUX_RUM'
       )
       DATAFLUX_RUM.onReady(function () {
@@ -96,7 +96,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
 === "CDN 同步加载"
 
     ```javascript
-    <script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+    <script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
     <script>
       window.DATAFLUX_RUM &&
         window.DATAFLUX_RUM.init({

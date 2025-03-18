@@ -32,7 +32,7 @@ DataWay 是<<< custom_key.brand_name >>>的数据网关，采集器上报数据�
     DW_KODO=http://kodo_ip:port \
        DW_TOKEN=<tkn_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX> \
        DW_UUID=<YOUR_UUID> \
-       bash -c "$(curl https://<<< custom_key.static_domain >>>/dataway/install.sh)"
+       bash -c "$(curl https://static.<<< custom_key.brand_main_domain >>>/dataway/install.sh)"
     ```
 
     安装完成后，在安装目录下，会生成 *dataway.yaml*，其内容示例如下，可手动修改，通过重启服务来生效。
@@ -141,10 +141,10 @@ DataWay 是<<< custom_key.brand_name >>>的数据网关，采集器上报数据�
 
 === "Kubernetes"
 
-    下载 [*dataway.yaml*](https://<<< custom_key.static_domain >>>/dataway/dataway.yaml){:target="_blank"}，安装：
+    下载 [*dataway.yaml*](https://static.<<< custom_key.brand_main_domain >>>/dataway/dataway.yaml){:target="_blank"}，安装：
 
     ```shell
-    $ wget https://<<< custom_key.static_domain >>>/dataway/dataway.yaml -O dw-deployment.yaml
+    $ wget https://static.<<< custom_key.brand_main_domain >>>/dataway/dataway.yaml -O dw-deployment.yaml
     $ kubectl apply -f dw-deployment.yaml
     ```
 
@@ -200,7 +200,7 @@ Dataway 成功与<<< custom_key.brand_name >>>中心连接后，登录<<< custom
 === "主机升级"
 
     ```shell
-    DW_UPGRADE=1 bash -c "$(curl https://<<< custom_key.static_domain >>>/dataway/install.sh)"
+    DW_UPGRADE=1 bash -c "$(curl https://static.<<< custom_key.brand_main_domain >>>/dataway/install.sh)"
     ```
 
 === "Kubernetes 升级"
@@ -208,7 +208,7 @@ Dataway 成功与<<< custom_key.brand_name >>>中心连接后，登录<<< custom
     直接替换镜像版本即可：
 
     ```yaml
-    - image: pubrepo.jiagouyun.com/dataflux/dataway:<VERSION>
+    - image: pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/dataway:<VERSION>
     ```
 <!-- markdownlint-enable -->
 

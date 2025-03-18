@@ -1,39 +1,34 @@
-# Object List Diagram
+# Object List Chart
 ---
 
-## Introduction
-
-Support adding a list of objects to the view and filtering the data to see the data under the corresponding object category.
-
-## Use Case
-
-The object list graph of the Guance is used to view the data under the corresponding object category. For example, you can view the names of different hosts in the workspace, CPU usage, disk occupancy, and other attributes.
-
-## Chart Search
-
-- Query: Support query with data source fixed as "object" and support keyword search.
-- Filtering: Support filtering. Filter the object data of the query by entering filtering conditions.
-- Show columns: Select the columns to be displayed. The contents of 「name」 and 「class」exist by default and can be renamed.
-## Chart Style
-| Options | Description |
-| --- | --- |
-| Chart Title | 为Set the title name of the chart, after setting, it will be shown on the top left of the chart, support hide |
-
-## Chart Setup
-### Basic Settings
-| Options | Description |
-| --- | --- |
-| Unit | Select the units for displaying columns. Custom units are supported. When the content is of numeric type, the user 「selects」 the data unit; when the content is of non-numeric type, the user 「enters」 the data unit. |
-
-### Advanced Settings
-| Options | Description |
-| --- | --- |
-| Lock time | Support locking the time range of the chart query data, not limited by the global time component. The time set by the user will appear in the upper right corner of the chart after successful setup, e.g. 【xx minutes】, 【xx hours】, 【xx days】. If the time interval is locked at 30 minutes, then when adjusting the time component, no matter what time range view is queried, only the last 30 minutes of data will be displayed. |
-| Chart Description | Add description information for the chart, after setting the chart title will appear behind the 【i】 prompt, not set, it will not be displayed |
-
-## Example diagram
-
-The following chart shows the names, CPU usage, disk occupancy, and other attributes of the different hosts in the workspace.
+Displays infrastructure data in a tabular chart format, including "Basic Objects" and "Resource Catalog". You can filter and view data under the corresponding object categories.
 
 ![](../img/object.png)
 
+## Chart Query
+
+1. Query: The data query source is fixed as **Basic Objects**, supporting keyword search;
+2. Filter: Input filter conditions to refine the queried object data;
+3. Display Columns: Select the columns to display. `name` and `class` are default fields that exist and can be renamed.
+
+
+## Chart Configuration
+
+> For more details, refer to [Chart Configuration](./chart-config.md).
+
+<!--
+## Common Configuration
+
+| Option | Description |
+| --- | --- |
+| Title | Set a title for the chart, which will be displayed in the top-left corner of the chart after setting. Supports hiding. |
+| Description | Add a description to the chart. After setting, an 【i】 prompt will appear after the chart title; if not set, it will not be displayed. |
+| Unit | Choose the unit for the display column. Supports custom units. When the content is numeric, users select the data unit; when the content is non-numeric, users input the data unit. |
+
+## Advanced Configuration
+
+| Option | Description |
+| --- | --- |
+| Lock Time | Fixes the time range for the current chart query data, independent of the global time component. After successful setup, the user-defined time will appear in the top-right corner of the chart, such as 【xx minutes】, 【xx hours】, 【xx days】. If the locked time interval is 30 minutes, then regardless of the time range selected by adjusting the time component, only the data from the last 30 minutes will be displayed. |
+
+-->

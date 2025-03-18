@@ -101,7 +101,7 @@
     - 避免存储超限导致数据主动丢弃
     - 同时尽早将缓存的数据发送上去
 - 增加超大请求丢弃相关的可观测性（[指标/日志](dataway.md#too-large-request-body)）
-- 调整 [Dataway 自身 POD yaml](https://<<< custom_key.static_domain >>>/dataway/dataway.yaml)，完善其指标和日志采集
+- 调整 [Dataway 自身 POD yaml](https://static.<<< custom_key.brand_main_domain >>>/dataway/dataway.yaml)，完善其指标和日志采集
 ---
 
 ## 1.3.6(2023/10/24) {#cl-1.3.6}
@@ -113,7 +113,7 @@
 ## 1.3.5(2023/09/13) {#cl-1.3.5}
 
 - Kubernetes 下支持通过[环境变量](dataway.md#img-envs)注入来安装 Dataway
-- 新发布了 [dataway.yaml](https://<<< custom_key.static_domain >>>/dataway/dataway.yaml){:target="_blank"}
+- 新发布了 [dataway.yaml](https://static.<<< custom_key.brand_main_domain >>>/dataway/dataway.yaml){:target="_blank"}
 
 ---
 

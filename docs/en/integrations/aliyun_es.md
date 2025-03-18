@@ -1,89 +1,88 @@
 ---
-title: 'Aliyun ElasticSearch'
+title: 'Alibaba Cloud ElasticSearch'
 tags: 
   - Alibaba Cloud
-summary: 'Aliyun ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk utilization and so on.' 
+summary: 'Alibaba Cloud ElasticSearch Metrics display, including cluster status, index QPS, node CPU/memory/disk usage rates, etc.'
 __int_icon: 'icon/aliyun_es'
 dashboard:
-  - desc: 'Aliyun ElasticSearch Monitoring View'
-    path: 'dashboard/zh/aliyun_es/'
+  - desc: 'Alibaba Cloud ElasticSearch built-in views'
+    path: 'dashboard/en/aliyun_es/'
 
 monitor:
-  - desc: 'Aliyun ElasticSearch Monitor'
-    path: 'monitor/zh/aliyun_elasticsearch/'
+  - desc: 'Alibaba Cloud ElasticSearch Monitor'
+    path: 'monitor/en/aliyun_elasticsearch/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Aliyun ElasticSearch
+# Alibaba Cloud ElasticSearch
 <!-- markdownlint-enable -->
 
-Aliyun ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk utilization and so on.
+Alibaba Cloud ElasticSearch metrics display, including cluster status, index QPS, node CPU/memory/disk usage rates, etc.
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of ElasticSearch cloud resources, we install the corresponding collection script：「Guance Integration（Aliyun -ElasticSearch Collect）」(ID：`guance_aliyun_elasticsearch`)
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-Click "Install" and enter the corresponding parameters: Aliyun AK, Aliyun account name.
+### Install Script
 
-Click [Deploy Startup Scripts], the system will automatically create the `Startup` script set and automatically configure the corresponding startup scripts.
+> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
+To synchronize monitoring data from Alibaba Cloud ElasticSearch resources, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-ElasticSearch Collection)」(ID: `guance_aliyun_elasticsearch`)
 
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
+After clicking 【Install】, enter the required parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+
+Once enabled, you can see the corresponding automatic trigger configurations under 「Manage / Automatic Trigger Configurations」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+
+> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing information, enable the cloud billing collection script.
+
+We default to collecting some configurations; see the metrics section for details.
+
+[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
-### Verify
+### Verification
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+1. Confirm in 「Manage / Automatic Trigger Configurations」that the corresponding tasks have the appropriate automatic trigger configurations, and check the task records and logs for any anomalies.
+2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
-## Metric {#metric}
-Configure Ali Cloud - cloud monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Alibaba Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+## Metrics {#metric}
+After configuring Alibaba Cloud Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitoring Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                       |              Metric Name              | Dimensions              | Statistics      | Unit         |
 | ---- | :----: | ---- | ---- | ---- |
-| `ClusterAutoSnapshotLatestStatus` |               snapshot state                | userId,clusterId        | Maximum         | value        |
-| `ClusterIndexQPS`                 |              Cluster Write QPS              | userId,clusterId        | Average         | Count/Second |
-| `ClusterQueryQPS`                |              Cluster Query QPS              | userId,clusterId        | Average         | Count/Second |
-| `ClusterStatus`                   |               cluster state                | userId,clusterId        | Value,Maximum   | value        |
-| `NodeCPUUtilization`              |    elasticsearch instance node CPU utilization     | userId,clusterId,nodeIP | Average,Maximum | %            |
-| `NodeDiskUtilization`             |    elasticsearch instance node disk usage    | userId,clusterId,nodeIP | Average,Maximum | %            |
-| `NodeHeapMemoryUtilization`       | elasticsearch instance node HeapMemory usage rate | userId,clusterId,nodeIP | Average,Maximum | %            |
-| `NodeLoad_1m`                     |              Node Load_1m              | userId,clusterId,nodeIP | Average         | value        |
-| `NodeStatsDataDiskR`              |         Number of read requests completed per second          | userId,clusterId,nodeIP | Maximum         | count        |
-| `NodeStatsDataDiskRm`             |           Read size per second            | userId,clusterId,nodeIP | Maximum         | MB/s         |
-| `NodeStatsDataDiskUtil`           |                IOUtil                 | userId,clusterId,nodeIP | Maximum         | %            |
-| `NodeStatsDataDiskW`              |         Number of write requests completed per second          | userId,clusterId,nodeIP | Maximum         | count        |
-| `NodeStatsDataDiskWm`             |           Size of writes per second            | userId,clusterId,nodeIP | Maximum         | MB/s         |
-| `NodeStatsExceptionLogCount`      |             Number of Exception             | userId,clusterId,nodeIP | Maximum         | Count        |
-| `NodeStatsFullGcCollectionCount`  |              Number of FullGc               | userId,clusterId,nodeIP | Maximum         | Count        |
-| `NodeStatsNetworkinPackages`      |            Node Network Inflow Packets             | userId,clusterId,nodeIP | Maximum         | count        |
-| `NodeStatsNetworkinRate` | Data inflow rate | userId,clusterId,nodeIP | Maximum | kB/s |
-| `NodeStatsNetworkoutPackages` | Node Network Outflow Package | userId,clusterId,nodeIP | Maximum | count |
-| `NodeStatsNetworkoutRate` | Data outflow rate | userId,clusterId,nodeIP | Maximum | kB/s |
-| `NodeStatsTcpEstablished` | Number of node TCP links | userId,clusterId,nodeIP | Maximum | count |
+| `ClusterAutoSnapshotLatestStatus` |               Snapshot Status                | userId,clusterId        | Maximum         | value        |
+| `ClusterIndexQPS`               |              Cluster Write QPS              | userId,clusterId        | Average         | Count/Second |
+| `ClusterQueryQPS`               |              Cluster Query QPS              | userId,clusterId        | Average         | Count/Second |
+| `ClusterStatus`                 |               Cluster Status                | userId,clusterId        | Value,Maximum   | value        |
+| `NodeCPUUtilization`            |    Elasticsearch Instance Node CPU Usage     | userId,clusterId,nodeIP | Average,Maximum | %            |
+| `NodeDiskUtilization`           |    Elasticsearch Instance Node Disk Usage    | userId,clusterId,nodeIP | Average,Maximum | %            |
+| `NodeHeapMemoryUtilization`     | Elasticsearch Instance Node Heap Memory Usage | userId,clusterId,nodeIP | Average,Maximum | %            |
+| `NodeLoad_1m`                   |              Node Load_1m              | userId,clusterId,nodeIP | Average         | value        |
+| `NodeStatsDataDiskR`            |         Number of Read Requests per Second          | userId,clusterId,nodeIP | Maximum         | count        |
+| `NodeStatsDataDiskRm`           |           Read Size per Second            | userId,clusterId,nodeIP | Maximum         | MB/s         |
+| `NodeStatsDataDiskUtil`         |                IOUtil                 | userId,clusterId,nodeIP | Maximum         | %            |
+| `NodeStatsDataDiskW`            |         Number of Write Requests per Second          | userId,clusterId,nodeIP | Maximum         | count        |
+| `NodeStatsDataDiskWm`           |           Write Size per Second            | userId,clusterId,nodeIP | Maximum         | MB/s         |
+| `NodeStatsExceptionLogCount`    |             Exception Count             | userId,clusterId,nodeIP | Maximum         | Count        |
+| `NodeStatsFullGcCollectionCount` |              Full GC Count               | userId,clusterId,nodeIP | Maximum         | Count        |
+| `NodeStatsNetworkinPackages`    |            Node Network Incoming Packets             | userId,clusterId,nodeIP | Maximum         | count        |
+| `NodeStatsNetworkinRate` | Network Inbound Rate | userId,clusterId,nodeIP | Maximum | kB/s |
+| `NodeStatsNetworkoutPackages` | Node Network Outgoing Packets | userId,clusterId,nodeIP | Maximum | count |
+| `NodeStatsNetworkoutRate` | Network Outbound Rate | userId,clusterId,nodeIP | Maximum | kB/s |
+| `NodeStatsTcpEstablished` | Node TCP Connections | userId,clusterId,nodeIP | Maximum | count |
 
-## Object {#object}
+## Objects {#object}
 
-The collected Alibaba Cloud ElasticSearch object data structure can see the object data from「Infrastructure-Custom」
-
+The collected Alibaba Cloud ElasticSearch object data structure can be viewed in 「Infrastructure - Custom」.
 
 ```json
 {
@@ -101,8 +100,8 @@ The collected Alibaba Cloud ElasticSearch object data structure can see the obje
   "fields": {
     "advancedDedicateMaster": false,
     "createdAt"             : "2021-04-07T06:10:50.527Z",
-    "extendConfigs"         : "[ {Cluster Expansion Parameter Configuration JSON data}, ...]",
-    "message"               : "{Instance JSON data}"
+    "extendConfigs"         : "[ {Cluster Extended Parameter Configuration JSON Data}, ...]",
+    "message"               : "{Instance JSON Data}"
   }
 }
 ```
@@ -110,19 +109,26 @@ The collected Alibaba Cloud ElasticSearch object data structure can see the obje
 ## Logging {#logging}
 
 ### Prerequisites
-> Note: The code of this script depends on elasticsearch instance object collection to run. If elasticsearch's custom object collection is not configured, the slow log script cannot collect slow log data
+> Note 1: Before using this collector, you must install the 「Guance Integration Core Package」and its associated third-party dependency packages.
+> Note 2: This script's code depends on MongoDB instance object collection. If MongoDB custom object collection is not configured, the slow log script cannot collect slow log data.
 
-### Install the slow query ingest script
-To start with, install a script for **elasticsearch Scripts for log collection**
+<!-- markdownlint-disable MD024 -->
 
-In "Script Market - Official Script Market", go to "Details" and click to install the corresponding script package:
+### Install Script
 
-- 「Guance Integration (Aliyun-ElasticSearch Acquisition)」(ID：`guance_aliyun_elasticsearch_log`)
+<!-- markdownlint-enable -->
 
-### Data reporting format
-After the data is properly synchronized, you can view the data in "Infrastructure - Custom Objects" in Guance.
+On top of the previous setup, you need to install another script for **Elasticsearch Log Collection**.
 
-Examples of reported data are as follows:
+In 「Manage / Script Market」, click and install the corresponding script package:
+
+- 「Guance Integration (Alibaba Cloud-ElasticSearch Collection)」(ID: `guance_aliyun_elasticsearch_log`)
+
+
+### Data Reporting Format
+After data synchronization, you can view the data in the 「Infrastructure - Custom Objects」of Guance.
+
+The reported data example is as follows:
 
 ```json
 {
@@ -140,24 +146,24 @@ Examples of reported data are as follows:
   },
   "fields": {
     "timestamp"        : 1684304299000,
-    "contentCollection": "[ {Log Details JSON data}, ...]",
-    "message"          : "{Instance JSON data}"
+    "contentCollection": "[ {Detailed Log JSON Data}, ...]",
+    "message"          : "{Instance JSON Data}"
   }
 }
 
 ```
 
-log_types,Meaning of log_types assignment:
+log_types (Log Types) values and meanings:
 
-| value | clarification |
+| Value | Description |
 | ---- |---- |
 | `INSTANCELOG` | Main Log |
-| `SEARCHSLOW` | Slow searching logs |
-| `INDEXINGSLOW` | indexing slow logs |
+| `SEARCHSLOW` | Searching Slow Log |
+| `INDEXINGSLOW` | Indexing Slow Log |
 | `JVMLOG` | GC Log |
 | `ES_SEARCH_ACCESS_LOG` | ES Access Log |
-| `AUDIT` | Audit log |
+| `AUDIT` | Audit Log |
 
-> *Notice：`tags`、`fields` The fields in are subject to change with subsequent updates*
->
-> Remind：`fields.message` is a JSON serialized string.
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
+> Note 1: The value of tags.name is the instance ID, used as a unique identifier.
+> Note 2: `fields.message` is a JSON serialized string.

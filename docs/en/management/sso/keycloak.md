@@ -1,116 +1,211 @@
-# Keycloak SSO
+# Keycloak Single Sign-On Example
 ---
 
+Keycloak is an open-source solution for identity and access management for modern applications and distributed services.
 
-Keycloak is a cloud-based identity and access management service launched by RedHat, which can help enterprises manage internal and external resources.
+This article uses a built Keycloak server to demonstrate how to achieve Keycloak user SSO login to the <<< custom_key.brand_name >>> management console using the SAML 2.0 protocol.
 
-This article uses the built Keycloak server to demonstrate how to use the SAML 2.0 protocol to implement Keycloak user SSO login to the Guance console.
+> For instructions on achieving Keycloak user SSO login to the <<< custom_key.brand_name >>> management console using the OpenID Connect protocol, refer to [Keycloak Single Sign-On (Deployment Plan)](../../deployment/keycloak-sso.md).
 
-## Preconditions
+## Prerequisites
 
-The Keycloak server has been set up and can be logged in to the Keycloak server for configuration. 
+A Keycloak server has been set up, and you can log in to the Keycloak server to perform configurations.
 
-If there is no Keycloak environment, you can refer to the following steps to build it:
+If you do not have a Keycloak environment, follow these steps to set it up:
 
 ```
-sudo yum update         #update
+sudo yum update         # Update
 
-sudo yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel      #install JDK
+sudo yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel      # Install JDK
 
-wget https://downloads.jboss.org/keycloak/11.0.2/keycloak-11.0.2.zip   #download Keycloak
+wget https://downloads.jboss.org/keycloak/11.0.2/keycloak-11.0.2.zip   # Download Keycloak
 
-yum install unzip       #install the unzipped package
+yum install unzip       # Install unzip
 
-unzip keycloak-11.0.2.zip       #unzip the downloaded Keycloak
+unzip keycloak-11.0.2.zip       # Extract Keycloak
 
-cd keycloak-11.0.2/bin         #enter the bin directory
+cd keycloak-11.0.2/bin         # Enter the bin directory
 
-./add-user-keycloak.sh -r master -u admin -p admin     #Create a server administrator login account and password
+./add-user-keycloak.sh -r master -u admin -p admin     # Create server administrator credentials
 
-nohup bin/standalone.sh -b 0.0.0.0 &     #Go back to the bin directory and hang in the background on Keycloak to start the service
+nohup bin/standalone.sh -b 0.0.0.0 &     # Return to the bin directory and start Keycloak service in the background
 ```
 
-After the Keycloak environment is built, enter `https://IP address:8443/auth` in the browser, and click "Administration Console" to open the Keycloak management studio.<br />![](../img/05_keycloak_01.png)
+After setting up the Keycloak environment, enter `https://IP Address:8443/auth` in your browser, click “Administration Console” to open the Keycloak management console.
 
+![](../img/05_keycloak_01.png)
 
 ## Concepts
 
-Here are the basic concept explanations during the KeyCloak configuration process:
+Below are explanations of basic concepts involved in the Keycloak configuration process:
 
-
-| Fields      | Description                          |
+| Field      | Description                          |
 | ----------- | ------------------------------------ |
-| Realm      | Similar to a workspace, used to manage users, credentials, roles and user groups. Realms are isolated from each other.                          |
+| Realm      | A realm, similar to a workspace, used to manage users, credentials, roles, and user groups; realms are isolated from each other.                          |
 | Clients | Clients are applications or services that can request Keycloak to authenticate users. |
-| Users      | User accounts that are able to log into the system. Login email and Credentials need to be configured.                          |
-| Credentials | Credentials to verify a user's identity; be used to set the login password for a user account.  |
-| Authentication      | The process of recognizing and verifying a user.                          |
-| Authorization | The process of granting access permissions to a user. |
-| Roles      | Used to identify the type of a user's identity, such as an administrator, regular user, etc.                          |
-| User role mapping | The mapping relationship between users and roles, a user can be associated with multiple roles. |
-| Groups | Manage user groups, support mapping roles to groups. |
+| Users      | User accounts that can log into the system, requiring configuration of email and Credentials.                          |
+| Credentials | Credentials used to verify user identity, such as setting the login password for user accounts. |
+| Authentication      | The process of identifying and verifying users.                          |
+| Authorization | The process of granting users access permissions. |
+| Roles      | Used to identify types of user identities, such as administrator, regular user, etc.                          |
+| User Role Mapping | The mapping relationship between users and roles, allowing one user to be associated with multiple roles. |
+| Groups | Management of user groups, supporting role mapping to groups. |
+
+## Configuration Steps
+
+### 1. Create a Keycloak Realm
+
+**Note**: Keycloak itself has a master realm (Master), and we need to create a new realm (similar to a workspace).
+
+1) In the Keycloak management console, click **Master > Add realm**.
+
+![](../img/05_keycloak_02.png)
+
+2) On the **Add realm** page, input the realm name in the **Name** field, such as "gcy", and click **Create** to create a new realm.
+
+![](../img/05_keycloak_03.png)
 
 
-## Setup
+### 2. Create Client and Configure SAML {#step2}
 
-### 1. Create Keycloak realm
+**Note**: This step will create a Keycloak client and configure SAML to establish a trust relationship between Keycloak and <<< custom_key.brand_name >>> so they trust each other.
 
-Note: Keycloak itself has a Master domain, so we need to create a new domain (similar to a workspace). <br />1）In the Keycloak administrative console, click "Master"-"Add realm".<br />![](../img/05_keycloak_02.png)<br />2）On the "Add realm" page, enter a domain Name at "Name", such as "gcy", and click "Create" to Create a new domain.<br />![](../img/05_keycloak_03.png)
+1) Under the newly created "gcy" realm, click **Client**, and on the right side, click **Create**.
 
+![](../img/05_keycloak_04.png)
 
-### 2.Create a Client and Configure SAML
+2) On the **Add Client** page, fill in the following details and click **Save**.
 
-Note: This step will create the Keycloak client and configure SAML to establish a trust relationship between Keycloak and Guance so that they trust each other. <br />1）Under the newly created "gcy" field, click "Client" and click "Create" on the right.<br />![](../img/05_keycloak_04.png)<br />2）After "Add Client" is completed as follows, click "Save".
+- Client ID (Entity ID): [https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml);  
+- Client Protocol: Select **SAML**;   
+- Client SAML Endpoint (Assertion URL), temporarily use: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/).   
 
-- Client ID (Entity ID): [https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)
-- Client Protocol: Select
-- Client SAML Endpoint, temporary use: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
+**Note**: This configuration is only for obtaining metadata documents in the next step. After enabling SSO single sign-on in <<< custom_key.brand_name >>>, obtain the correct **Entity ID** and **Assertion URL** and replace them accordingly.
 
-**Note: This configuration is only used to obtain the metadata document for the next step. After SSO is enabled in Guance, the correct "Entity ID" and "Assertion Address" are obtained and replaced again. Refer to doc **[**New SSO**](../../management/sso/index.md)** 。**<br />![](../img/05_keycloak_05.png)<br />After the Client is created, you can see the entity ID, protocol, and assertion address filled out in the previous step in "Settings". Save after setting the following parameters.
+![](../img/05_keycloak_05.png)
 
-- Sign Assertions：ON (used to prevent data transmitted by IdP from being tampered with and to secure data transmitted from IdP to SP.)
+After creating the client, under **Settings**, you can see the Entity ID, protocol, and Assertion URL filled in the previous step. Set the following parameters and save.
+
+- Sign Assertions: ON (to prevent data tampering during transmission from IdP to SP, ensuring data security).
 
 ![](../img/05_keycloak_06.png)
 
-- IDP Initiated SSO URL Name: can be filled at any time, such as "gcy". After filling out, SSO address will be generated, as shown in the following figure.
-- Base URL: Fill in the SSO address generated by the previous parameter, such as `/auth/realms/gcy/protocol/saml/clients/gcy`, which is mainly used to generate access links in Keycloak Clients to sign on directly to Guance.
+- IDP Initiated SSO URL Name: Can be any name, e.g., "gcy". After filling this, an SSO single sign-on URL will be generated, as shown below;
+- Base URL: Enter the SSO single sign-on URL generated in the previous parameter, such as `/auth/realms/gcy/protocol/saml/clients/gcy`. This is mainly used to generate a direct access link for single sign-on to <<< custom_key.brand_name >>> from Keycloak Clients.
 
 ![](../img/05_keycloak_07.png)
 
-3）In the "Mappers" section of "Clients", click "Create" to Create a mailbox map, which is required and cannot be completed without SSO.<br />![](../img/05_keycloak_08.png)<br />On the "Create Protocol Mapper" page, enter the following and save.
+3) Under **Clients**'s **Mappers**, click **Create** to create an email mapper. This content is mandatory and must be filled out; otherwise, SSO single sign-on cannot be achieved.
 
-- Name: optional, such as "mail mapper"
-- Mapper Type: Select "User Property"
-- Property: Fill in "email" according to the rules supported by the identity provider
-- SAML Attribute Name: Required "Email"
+![](../img/05_keycloak_08.png)
 
-Note: Guance defines a mapping field, which must be filled in with "Email" to associate the identity provider's user mailbox (that is, the identity provider maps the logged-in user's mailbox to Email). <br />![](../img/05_keycloak_09.png)
+On the **Create Protocol Mapper** page, input the following and save.
 
-### 3.Get the KeyCloak Metadata Doc
+- Name: Can be any name, e.g., "mail mapper";
+- Mapper Type: Select "User Property";
+- Property: Fill in **Email** according to the rules supported by the identity provider;
+- SAML Attribute Name: Must be **Email**.
 
-Note: This step obtains the metadata document for creating identity providers in Guance.<br />1）In the "Installation" of "clients", select "Mod Auth Mellon files" and click "Download" to Download the metadata document.<br />![](../img/05_keycloak_10.png)<br />2）In the Download folder, select "idp-metadata.xml".<br />![](../img/05_keycloak_11.png)<br />3）Since Keycloak's cloud data document is "domain" level, you need to add client parameters `/clients/<IDP Initiated SSO URL Name>` to the access address in the metadata document "idp-metadata.xml", in this document `IDP Initiated SSO URL Name：gcy` is set, then fill in `/clients/gcy` in the xml file, as shown below. Save the xml file after adding. <br />![](../img/05_keycloak_12.png)
+**Note**: <<< custom_key.brand_name >>> defines a mapped field that must be filled with **Email** to associate the identity provider's user email (i.e., the identity provider maps the logged-in user's email to Email).
 
+![](../img/05_keycloak_09.png)
 
-### 4.Configure the Keycloak User
+### 3. Obtain Keycloak Metadata Document {#step3}
 
-Note: In this step, the authorized user email account of the identity provider is configured to be created in Guance, and the configured Keycloak user email account can be used to log in to Guance platform.<br />1）In the created gcy domain, click "User", click "Add user". <br />![](../img/05_keycloak_13.png)<br />2）Enter "Username" and "Email", which is required and needs to be consistent with the User list mailbox configured by Guance identity provider to match the mailbox mapping to log in to Guance.<br />![](../img/05_keycloak_14.png)<br />3）After creating the User, set the password for the User in "Credentials".<br />![](../img/05_keycloak_15.png)
+**Note**: This step allows you to obtain the metadata document required to create an identity provider in <<< custom_key.brand_name >>>.
 
+1) Under **Clients**'s **Installation**, select **Mod Auth Mellon files**, and click **Download** to download the metadata document.
 
-### 5.Enable SSO in Guance and Replace SAML Assertion Address in KeyCloak
+![](../img/05_keycloak_10.png)
 
-1）Enable SSO, and click Enable in Guance workspace "Management"-"SSO Management". Refer to the doc [new SSO](../../management/sso/index.md).<br />**Note: For account security reasons, only one SSO is configured in Guance support workspace. If you have previously configured SAML 2.0, we will regard your last updated SAML 2.0 configuration as the final single sign-on authentication entry by default.**<br />![](../img/05_keycloak_16.png)<br />Upload the "metadata document" of the identity provider, configure the "mailbox domain name", and select "access role" to obtain the "entity ID" and "assertion address" of the identity provider, and support directly copying the "login address" for login. <br />**Note: When SSO login is enabled, "mailbox domain name" needs to be added for mailbox domain name mapping between oGuance and identity provider (user mailbox domain name needs to be consistent with mailbox domain name added in Guance) to realize single sign-on.**<br />![](../img/05_keycloak_17.png)<br />3）Return Keycloak and updates SAML's "assertion address", see [step 2.2)](#j217u)。<br />**Note: When configuring single sign-on in Guance, the assertion address configured in the identity provider SAML must be consistent with that in Guance to implement single sign-on.**<br />![](../img/05_keycloak_18.png)
+2) In the downloaded folder, select **idp-metadata.xml**.
 
-### 6.SSO to Guance Using Keycloak Account
+![](../img/05_keycloak_11.png)
 
-After all configuration is completed, there are two ways to single sign-on to Guance.
+3) Since Keycloak’s cloud metadata document is at the **realm** level, add the client parameter `/clients/<IDP Initiated SSO URL Name>` to the access URL in the metadata document **idp-metadata.xml**. As this document sets `IDP Initiated SSO URL Name: gcy`, add `/clients/gcy` in the XML file as shown below. Save the XML file after completing the addition.
 
-#### Method 1: Log in to Guance at Keycloak
+![](../img/05_keycloak_12.png)
 
-1）In Keycloak's Clients, click "Base URL" on the right.<br />![](../img/05_keycloak_19.png)<br />Enter the configured user mailbox and password.<br />![](../img/05_keycloak_20.png)<br />Log in to the workspace corresponding to Guance.<br />Note: If multiple workspaces are configured with the same identity provider SSO at the same time, users can click the workspace option in the upper left corner of Guance to switch between different workspaces to view data. <br />![](../img/1.sso_okta_23.png)
+### 4. Enable SSO Single Sign-On in <<< custom_key.brand_name >>>
 
-#### Method 2: SSO with Keycloak Account in Guance
+1) Enable SSO single sign-on in <<< custom_key.brand_name >>> workspace **Management > Member Management > SSO Management**, and click **Enable**.
 
-1）After the SSO configuration is completed, log in through [Guance official website](https://www.dataflux.cn/) or [Guance studio](https://auth.dataflux.cn/loginpsw), and select SSO on the login page.<br />![](../img/9.sso_2.png)<br />2）Enter the email address where the SSO is being created and click "Get login address".<br />![](../img/9.sso_3.png)<br />3）Click the link to open the enterprise account login page.<br />![](../img/03_authing_13.png) <br /> 4）Enter the enterprise common mailbox (the enterprise mailbox address configured in Keycloak and Guance SSO management) and password. <br />Log in to the workspace corresponding to Guance. <br/> Note: If multiple workspaces are configured with the same identity provider SSO at the same time, users can click the workspace option in the upper left corner of Guance to switch between different workspaces to view data.<br />![](../img/1.sso_okta_23.png)
+> Refer to the documentation [Create SSO](../../management/sso/index.md).
 
----
+**Note**: Considering account security, <<< custom_key.brand_name >>> supports configuring only one SSO per workspace. If you have previously configured SAML 2.0, the last updated SAML 2.0 configuration will be considered the final single sign-on authentication entry.
 
+![](../img/1.sso_enable.png)
+
+2) Upload the **metadata document** downloaded in [Step 3](#step3), configure the **domain name (email suffix domain)**, and select the **role** to obtain the identity provider's **Entity ID** and **Assertion URL**, which support directly copying the **login URL** for login.
+
+**Note**: The domain name is used for email domain mapping between <<< custom_key.brand_name >>> and the identity provider to achieve single sign-on, i.e., the email suffix domain of the user must match the domain added in <<< custom_key.brand_name >>>.
+
+![](../img/1.sso_enable_2.png)
+
+### 5. Replace SAML Assertion URL in Keycloak
+
+1) Return to Keycloak and update the **Entity ID** and **Assertion URL** from [Step 2](#step2).
+
+**Note**: When configuring single sign-on in <<< custom_key.brand_name >>>, the Assertion URL configured in the identity provider SAML must match the one in <<< custom_key.brand_name >>> to achieve single sign-on.
+
+![](../img/05_keycloak_18.png)
+
+### 6. Configure Keycloak Users
+
+**Note**: This step configures authorized user email accounts in <<< custom_key.brand_name >>> via the identity provider. By configuring the Keycloak user email accounts, users can log in to <<< custom_key.brand_name >>> through single sign-on.
+
+1) In the created gcy realm, click **User**, and then click **Add user**.
+
+![](../img/05_keycloak_13.png)
+
+2) Input **Username** and **Email**. Email is a required field and must match the user whitelist email configured in <<< custom_key.brand_name >>> for matching email mapping to log in to <<< custom_key.brand_name >>>.
+
+![](../img/05_keycloak_14.png)
+
+3) After creating the user, set the password for the user under **Credentials**.
+
+![](../img/05_keycloak_15.png)
+
+### 7. Use Keycloak Account to Log in to <<< custom_key.brand_name >>> via SSO
+
+After all configurations are completed, there are two ways to log in to <<< custom_key.brand_name >>> via single sign-on.
+
+#### Method One: Log in to <<< custom_key.brand_name >>> from Keycloak
+
+1) In Keycloak's Clients, click the **Base URL** on the right side.
+
+![](../img/05_keycloak_19.png)
+
+2) Enter the configured user email and password.
+
+![](../img/05_keycloak_20.png)
+
+3) Log in to the corresponding workspace in <<< custom_key.brand_name >>>.
+
+**Note**: If multiple workspaces have configured the same identity provider SSO single sign-on, users can switch between different workspaces to view data after logging in via SSO.
+
+![](../img/1.sso_okta_23.png)
+
+#### Method Two: Log in to <<< custom_key.brand_name >>> Using Keycloak Account
+
+1) After SSO configuration is complete, log in via [<<< custom_key.brand_name >>> website](https://www.dataflux.cn/) or [<<< custom_key.brand_name >>> console](https://auth.dataflux.cn/loginpsw) and select **Single Sign-On** on the login page.
+
+![](../img/9.sso_2.png)
+
+2) Enter the email address configured for SSO creation and click **Get Login URL**.
+
+![](../img/9.sso_3.png)
+
+3) Click **Link** to open the enterprise account login page.
+
+![](../img/03_authing_13.png)
+
+4) Enter the enterprise common email (configured in Keycloak and <<< custom_key.brand_name >>> SSO management) and password.
+
+![](../img/4.keycloak_9.1.png)
+
+5) Log in to the corresponding workspace in <<< custom_key.brand_name >>>.
+
+**Note**: If multiple workspaces have configured the same identity provider SSO single sign-on, users can switch between different workspaces to view data after logging in via SSO.
+
+![](../img/1.sso_okta_23.png)

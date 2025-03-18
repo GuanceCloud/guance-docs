@@ -132,7 +132,7 @@ vim datakit-upgrade.yaml
      ignore_errors: True
      register: result
    - name: install datakit
-     shell: sudo -- sh -c "curl https://<<< custom_key.static_domain >>>/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk installer"
+     shell: sudo -- sh -c "curl https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk installer"
      when: result.rc == 0
 ```
 

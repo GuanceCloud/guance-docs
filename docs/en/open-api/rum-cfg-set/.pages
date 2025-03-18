@@ -1,0 +1,5 @@
+nav:
+  - 'Quickly list RUM configuration information': quick-list.md
+  - 'Add RUM configuration information': add.md
+  - 'Modify RUM configuration': modify.md
+  - 'Delete RUM configuration': delete.md

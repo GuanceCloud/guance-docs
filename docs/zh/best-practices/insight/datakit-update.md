@@ -14,23 +14,23 @@
 
 **【在 Linux 上安装】**
 
-| X86 amd64 | `sudo -- sh -c 'curl https://<<< custom_key.static_domain >>>/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'` |
+| X86 amd64 | `sudo -- sh -c 'curl https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-linux-amd64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'` |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| X86 i386  | `sudo -- sh -c 'curl https://<<< custom_key.static_domain >>>/datakit/installer-linux-386 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`   |
-| arm       | `sudo -- sh -c 'curl https://<<< custom_key.static_domain >>>/datakit/installer-linux-arm -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`   |
-| arm64     | `sudo -- sh -c 'https://<<< custom_key.static_domain >>>/datakit/installer-linux-arm64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`      |
+| X86 i386  | `sudo -- sh -c 'curl https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-linux-386 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`   |
+| arm       | `sudo -- sh -c 'curl https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-linux-arm -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`   |
+| arm64     | `sudo -- sh -c 'https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-linux-arm64 -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer'`      |
 
 
 
 **【在 Windows 上安装】**
 
-| 64位 | `Import-Module bitstransfer; start-bitstransfer -source [https://<<< custom_key.static_domain >>>/datakit/installer-windows-amd64.exe](https://<<< custom_key.static_domain >>>/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe` |
+| 64位 | `Import-Module bitstransfer; start-bitstransfer -source [https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-windows-amd64.exe](https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe` |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 32位 | `Import-Module bitstransfer; start-bitstransfer -source [https://<<< custom_key.static_domain >>>/datakit/installer-windows-386.exe](https://<<< custom_key.static_domain >>>/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe`   |
+| 32位 | `Import-Module bitstransfer; start-bitstransfer -source [https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-windows-386.exe](https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-windows-amd64.exe) -destination .dk-installer.exe; .dk-installer.exe -upgrade; rm .dk-installer.exe`   |
 
 **【在 MacOS 上安装 上安装】**
 
-| all | `sudo -- sh -c "curl [https://<<< custom_key.static_domain >>>/datakit/installer-darwin-amd64](https://<<< custom_key.static_domain >>>/datakit/installer-darwin-amd64) -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer"` |
+| all | `sudo -- sh -c "curl [https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-darwin-amd64](https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-darwin-amd64) -o dk-installer && chmod +x ./dk-installer && ./dk-installer -upgrade && rm -rf ./dk-installer"` |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ## 二：自动更新（目前自动更新只支持 Linux）
@@ -44,7 +44,7 @@
 # Update DataKit if new version available
 
 otalog=/usr/local/datakit/ota-update.log
-installer=https://<<< custom_key.static_domain >>>/datakit/installer-linux-amd64
+installer=https://static.<<< custom_key.brand_main_domain >>>/datakit/installer-linux-amd64
 
 # 注意：如果不希望更新 RC 版本的 DataKit，可移除 `--accept-rc-version`
 /usr/local/datakit/datakit --check-update --accept-rc-version --update-log $otalog

@@ -1,9 +1,10 @@
-# Customize SDK Collecting Data
+# Custom RUM SDK Data Collection
+
 ---
 
-By default, RUM SDK automatically collects web data and uploads it to datakit, Most application scenarios do not need to actively modify these data, but there are also some specific scenarios that need to locate and analyze some data by setting different types of identifiers. Therefore, in view of these situations, RUM SDK provides some specific API aspects. Users add their own specific logic to their own application systems:
+By default, the RUM SDK automatically collects Web data and uploads it to DataKit. In most application scenarios, there is no need to actively modify this data. However, in some specific scenarios, different types of identifiers are required to locate and analyze certain data. For these situations, the RUM SDK provides specific APIs that allow users to add their own custom logic within their application systems:
 
-1. Customized User Identification (ID, name, email)
-2. Customize to add additional data TAG
-3. Custom Add Action
-4. Custom Add Error 
+1. [Customize User Identification (ID, name, email)](./user-id.md)
+2. [Add Custom Data TAGs](./add-additional-tag.md)
+3. [Add Custom Actions](./add-action.md)
+4. [Add Custom Errors](./add-error.md)

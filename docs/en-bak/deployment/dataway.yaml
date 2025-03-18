@@ -1,0 +1,109 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deployment-utils-dataway
+  name: dataway
+  namespace: utils
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deployment-utils-dataway
+  template:
+    metadata:
+      labels:
+        app: deployment-utils-dataway
+      annotations:
+        datakit/logs: |
+          [
+            {
+              "disable": false,
+              "source": "dataway",
+              "service": "dataway",
+              "multiline_match": "^\\d{4}|^\\[GIN\\]"
+            }
+          ]
+        datakit/prom.instances: |
+          [[inputs.prom]]
+            url = "http://$IP:9090/metrics"
+
+            source = "dataway"
+            measurement_name = "dw"
+            interval = "10s"
+            disable_instance_tag = true
+          [inputs.prom.tags]
+            service = "dataway"
+            instance = "$PODNAME" # 此处可填写成 "guangzhou-$PODNAME" 这种形式，以区分不同节点的 dataway 实例
+    spec:
+      affinity:
+        podAffinity: {}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - deployment-utils-dataway
+              topologyKey: kubernetes.io/hostname
+
+      containers:
+      - image: pubrepo.jiagouyun.com/dataflux/dataway:1.8.0
+        imagePullPolicy: IfNotPresent
+        name: dataway
+        env:
+        - name: DW_REMOTE_HOST
+          value: "https://kodo.guance.com:443" # 此处填写真实的 Kodo 地址，或者下一个 Dataway 地址
+        - name: DW_BIND
+          value: "0.0.0.0:9528"
+        - name: DW_UUID
+          value: "agnt_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # 此处填写真实的 Dataway UUID
+        - name: DW_TOKEN
+          value: "tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # 此处填写真实的 Dataway token，一般是系统工作空间的 token
+        - name: DW_PROM_LISTEN
+          value: "0.0.0.0:9090"
+
+        ports:
+        - containerPort: 9528
+          name: 9528tcp01
+          protocol: TCP
+        volumeMounts:
+          - mountPath: /usr/local/cloudcare/dataflux/dataway/cache
+            name: dataway-cache
+        resources:
+          limits:
+            cpu: '4'
+            memory: 4Gi
+          requests:
+            cpu: 100m
+            memory: 512Mi
+      # nodeSelector:
+      #   key: string              
+      imagePullSecrets:
+      - name: registry-key
+      restartPolicy: Always
+      volumes:
+      - hostPath:
+          path: /root/dataway_cache
+          type: DirectoryOrCreate
+        name: dataway-cache
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataway
+  namespace: utils
+spec:
+  ports:
+  - name: 9528tcp02
+    port: 9528
+    protocol: TCP
+    targetPort: 9528
+    nodePort: 30928
+  selector:
+    app: deployment-utils-dataway
+  type: NodePort

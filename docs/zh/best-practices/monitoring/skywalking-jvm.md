@@ -113,7 +113,7 @@ java  -javaagent:agent/skywalking-agent.jar \
 
 ### 3 JVM 可观测
 
-登录「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「场景」，输入“JVM”，选择「JVM Skywalking 监控视图」，点击「确定」。
+登录「 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」 - 「场景」，输入“JVM”，选择「JVM Skywalking 监控视图」，点击「确定」。
 
 再点击新建的「JVM Skywalking 监控视图」，即可进行观测。
 

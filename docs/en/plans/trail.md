@@ -1,155 +1,172 @@
-# Public Cloud Experience Plan
+# Public Cloud Free Plan
 ---
 
-## Difference Between Experience Plan and Commercial Plan {#trail-vs-commercial}
+## Differences Between Free Plan and Commercial Plan {#trail-vs-commercial}
 
-The experience versplanion and Commercial Plan provided by the public cloud all adopt the billing method of <font color=coral>**pay-per-use**</font>.
+Public cloud offers both the Free Plan and Commercial Plan, both of which adopt the <font color=coral>**pay-as-you-go**</font> billing method.
 
-There are limitations on the amount of data that can be accessed in the Experience Plan. After [upgrading to Commercial Plan](commercial-version.md), a larger amount of data can be accessed, and the data storage time can be customized more flexibly.
+The Free Plan has restrictions on the scale of data that can be ingested. After [upgrading to the Commercial Plan](#upgrade-commercial), larger volumes of data can be ingested with more flexible custom data retention periods.
 
-???+ warning "Instructions for Using Experience Plan"
+???+ warning "Free Plan Usage Guidelines"
 
-    - There is no charge if the Experience Plan is not upgraded. <u>Once upgraded to the Commercial Plan, it cannot be refunded</u>;
-    - If the Experience Plan is upgraded to the Commercial Plan, the collected data will continue to be reported to Guance workspace, but the data collected during the <u>Experience Plan will not be viewed</u>;
-    - The upgraded Commercial Plan only supports the current workspace owner to view and operate;
-    - Timeseries and backup log statistics are full data, and other billing items are incremental data; Incremental data statistics reset the free quota at 0 o'clock every day, which is valid on the same day;
-    - If the data quota is fully used for different billing items in the Experience Plan, the data will stop being reported and updated; Infrastructure and event data still support reporting updates, and you can still see infrastructure list data and event data.
-    - The experience workspace <u>does not support the use of Snapshot Sharing</u> function because of data content security issues.
+    - The Free Plan does not incur charges unless upgraded; **once upgraded to the Commercial Plan, it cannot be reverted**;
+    - If you upgrade from the Free Plan to the Commercial Plan, data collection will continue to report to the <<< custom_key.brand_name >>> workspace, but **data collected during the Free Plan period will no longer be accessible**;
+    - Upgrading to the Commercial Plan is only available for the current workspace owner to view and operate;
+    - Backup logs are counted as full data, while other billing items are incremental data; the free quota resets at 0:00 every day and is valid for that day;
+    - If any billing item reaches its limit under the Free Plan, data reporting will stop until the next day; infrastructure and event data still support updates, allowing you to see infrastructure list data and event data;
+    - Due to data security concerns, the Free Plan workspace **does not support snapshot sharing**.
 
-The following is the difference between the scope of services supported by **Experience Plan** and **Commercial Plan**.
+Differences in supported services between the Free Plan and Commercial Plan:
 
-| **Differences** | **Project**  | **Experience Plan**    | **Commercial Plan**   |
-| -------- | ---------------- | ---------- | --------- |
-| Data  | <div style="width: 150px"> DataKit number </div>   | <div style="width: 240px"> not limited </div>    | not limited    |
-|          | Daily data reporting limit | Limited data is reported and excess data is no longer reported       | not limited |
-|          | Data storage policty     | 7-day cycle        |Customize the storage policy, please refer to [Data Storage Policty](../billing/billing-method/data-storage.md) |
-|          | Quantity of timeline | 3000 | not limited    |
-|          | Number of log data | 1 million<br/>Log class data range: events, security check, log<br/>(Log data without synthetic test) | not limited    |
-|          | Quantity of application performance Trace |8,000 per day | not limited    |
-|          | Quantity of user access PV | 2,000 per day | not limited    |
-|          | Number of task calls | 100,000 per day  |not limited    |
-| Function      | infrastructure         | :white_check_mark: | :white_check_mark:    |
-|          | Log            | :white_check_mark:| :white_check_mark: | 
-|          | Backup log         | /     | :white_check_mark: | 
-|          | APM     | :white_check_mark: | :white_check_mark: | 
-|          | RUM     | :white_check_mark: | :white_check_mark: | 
-|          | CI visibility    | :white_check_mark: | :white_check_mark: | 
-|          | Security check         | :white_check_mark: | :white_check_mark: | 
-|          | Montoring      | :white_check_mark: | :white_check_mark: | 
-|          | Synthetic tests       | Dial test in China (200,000 times a day)      |Global dialing       |
-|          | SMS alarm notification     | /     | :white_check_mark: | 
-|          | DataFlux Func    | :white_check_mark: | :white_check_mark: | 
-|          | Account permissions         | Read-only, standard permissions are promoted to administrators without auditing | Read-only, standard permissions are promoted to administrators, and need to be approved by Billing Center administrators           |
-| Service     | Basic service         | Community, phone, Billing Center support (5 x 8 hours)     | Community, phone, work order support (5 x 8 hours)     |
-|          | Training services         | Regular training on observability              | Regular training on observability      |
-|          | Expert services         | /     | Professional product technical expert support       |
-|          | Value-added services         | /     | Internet professional operation and maintenance service         |
-|          | Monitoring digital combat screen   | /     | Customizable   |
+| **Difference** | <div style="width: 200px">Item</div> | **Free Plan** | **Commercial Plan** |
+| -------------- | ---------------- | ------------- | ------------------- |
+| Data           | Daily data reporting limit | Limited data, excess data will not be reported | Unlimited |
+|                | Data retention policy | 7-day rotation | Customizable [retention policy](../billing-method/data-storage.md) |
+|                | Time Series | 3000 entries | Unlimited |
+|                | Log data | 1 million entries per day<br/>Log data scope: events, security checks, logs<br/>(excluding Synthetic Tests log data) | Unlimited |
+|                | APM Trace | 8000 entries per day | Unlimited |
+|                | APM Profile | 60 entries per day | Unlimited |
+|                | RUM PV | 2000 entries per day | Unlimited |
+|                | Trigger calls | 100,000 calls per day | Unlimited |
+|                | Synthetic Tests | 200,000 tests per day | Unlimited |
+|                | Session Replay | 1000 sessions per day | Unlimited |
+| Features       | Infrastructure | :heavy_check_mark: | :heavy_check_mark: |
+|                | Logs | :heavy_check_mark: | :heavy_check_mark: |
+|                | Backup logs | / | :heavy_check_mark: |
+|                | APM | :heavy_check_mark: | :heavy_check_mark: |
+|                | RUM | :heavy_check_mark: | :heavy_check_mark: |
+|                | CI Visualization | :heavy_check_mark: | :heavy_check_mark: |
+|                | Security Check | :heavy_check_mark: | :heavy_check_mark: |
+|                | Monitoring | :heavy_check_mark: | :heavy_check_mark: |
+|                | Synthetic Tests | China region (200,000 tests per day) | Global tests |
+|                | SMS alert notifications | / | :heavy_check_mark: |
+|                | DataFlux Func | :heavy_check_mark: | :heavy_check_mark: |
+|                | Account permissions | Read-only, standard permissions can be elevated to admin without review | Read-only, standard permissions can be elevated to admin with Billing Center admin review |
+| Services      | Basic services | Community, phone, ticket support (5 x 8 hours) | Community, phone, ticket support (5 x 8 hours) |
+|                | Training services | Regular observability training | Regular observability training |
+|                | Expert services | / | Professional product technical expert support |
+|                | Value-added services | / | Professional internet operation services |
+|                | Monitoring digital war room | / | Customizable |
 
+## Registering for the Free Plan {#register-trail}
 
-## Open Experience Plan
+On the [<<< custom_key.brand_name >>> website](https://<<< custom_key.brand_main_domain >>>/), click [**Get Started Free**](https://<<< custom_key.studio_main_site_auth >>>/businessRegister), fill in the relevant information, and you can become a <<< custom_key.brand_name >>> user.
 
-In [Guance official site](https://www.guance.com/), click **[Getting Started](https://auth.guance.com/businessRegister)** and fill in relevant information to become a Guance user.
+### Step 1: Basic Information
 
-Step 1: Fill in **Basic Info** and **Company Info**
-
-<font color=coral>**Note:**</font> In **Basic Setting**, the choice of **[site instructions](../getting-started/necessary-for-beginners/select-site.md)** is important, please choose carefully.
+1. Select site;
+2. Define username and login password;
+3. Enter email information and enter the verification code sent;
+4. Enter phone number;
+5. Click **Next**.
 
 ![](img/commercial-register-1.png)
 
-Step 2: Click the upper right corner to switch to **Open Experience Plan Workspace**, enter **Workspace Name**, select **Workspace Language** and Workspace Style. Check the buttom **Synchronize creation of Billing Center account** and click **Register** to open the public cloud Experience Plan of Guance.
+## Step 2: Corporate Information {#corporate}
+
+1. Enter company name;
+2. Read and agree to the relevant agreements;
+3. Click **More Information**, and fill in additional corporate details as needed;
+4. Click Register.
+
+**Note**: Completing this step means you have **successfully registered a <<< custom_key.brand_name >>> account**. The next step will guide you to **activate a workspace under this account**.
+
+![](img/11.account_center_4.png)
+
+## Step 3: Activate Free Plan
+
+1. Click the top-right corner of the current page to switch to the **Activate Free Plan Workspace** page;
+
+2. Enter workspace name;
+3. Select workspace language;
+4. It is recommended to check the agreement and **synchronize the creation of a Billing Center account**;
+5. Click Register to activate successfully.
+
+![](img/switch.png)
 
 ![](img/8.register_5.png)
 
+### Query Free Quotas
 
-## Quota Inquiry
-
-Owners and administrators of the Guance workspace can view the daily experience quota and usage of each billing item in the **Studio > Billing** module.
-
-If you need to [upgrade to Commercial Plan](commercial-version.md), you can click the **Upgrade** button.
+Owners and administrators of <<< custom_key.brand_name >>> workspaces can view daily free quotas and their usage for each billing item in the **Billing** module.
 
 ![](img/9.upgrade_1.png)
 
 ## Upgrade to Commercial Plan {#upgrade-commercial}
 
-???+ warning "Upgrade Instructions"
+Upgrade Notes:
 
-    - After the Experience Plan is successfully upgraded to Commercial Plan, <u>it cannot be retreated</u>;
-    - The collected data will continue to be reported to the Guance workspace, but <u>the data collected during the experience version will not be viewed</u>.
+- After successfully upgrading from the Free Plan to the Commercial Plan, **it cannot be reverted**;
+- Data collected during the Free Plan period will no longer be accessible after upgrading.
 
-### Preconditions
+### Prerequisites
 
-- Register [Guance](https://console.guance.com/) account and have an experience workspace;
-- Create the account number of [Guance Billing Center](https://boss.guance.com/) synchronously, and connect with the subsequent expense settlement function.
+- Register a [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/) account and have a Free Plan workspace;
+- Synchronize the creation of a [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) account to connect with subsequent billing functions.
 
-### Go to the Upgrade Page
+???- abstract "What is a Billing Center account?"
 
-Enetr **Billing > Package Upgrad**:
+    The [Billing Center](../billing-center/index.md) is <<< custom_key.brand_name >>>'s payment settlement platform. Only by registering an account on this platform can you perform account recharges, payment settlements, and bill management.
 
-![](img/9.upgrade_1.png)
+### Start Upgrade {#upgrade-entry}
 
-On the Package Upgrade page, click **Upgrade**. Guance supports to <u>buy on demand and pay per use</u>.
+In the workspace navigation bar, click **Upgrade Now**:
 
-> For more plans of billing logic, please refer to the doc [Billing Methods](../billing/billing-method/index.md).
+<img src="../img/upgrade-plan.png" width="50%" >
 
-![](img/9.upgrade_2.png)
+Or go directly to **Billing** and click **Upgrade Now**.
 
-### Bind Billing Center Account
+If you are the Owner of the current workspace, clicking will take you directly to the upgrade page:
 
-Enter the account registered in the [Guance Billing Center](https://bill.guance.one/#/signin) for binding, and the **User Name** will be verified here. <u>Please enter the user name of the account opened in the Guance Billing Center</u>.
+![](img/upgrade-plan-1.png)
+
+Other members need to contact the workspace Owner for the upgrade. If you have a <<< custom_key.brand_name >>> Billing Center account, you can directly bind the space in the Billing Center to achieve version upgrades.
+
+1. Enter the **Plan Upgrade** page;
+2. Click **Upgrade**;
+3. Begin [binding the <<< custom_key.brand_name >>> Billing Center account](#bind-billing).
+
+### Bind Billing Center Account {#bind-billing}
+
+If you selected to create a Billing Center account synchronously during the Free Plan activation process, the system has already created a Billing Center account with the same name as your current account.
+
+![](img/check_for_billing_account.png)
+
+1. Enter the username;
+2. Enter the binding email;
+3. Get the verification code;
+4. Click Bind.
 
 ![](img/9.upgrade_3.png)
 
+If you did not select this option at the time, you need to register a Billing Center account first.
 
-If the Billing Center account has not been registered, please click **Register a new account**. Fill in the relevant information and check the opening agreement.
+Fill in the basic and corporate information to complete registration.
 
-### Successful Upgrade
+![](img/7.biling_account_5.png)
 
-After agreeing to the Agreement, the workspace was successfully upgraded to the Commercial Plan.
+## View Upgraded Version
 
-![](img/9.upgrade_5.png)
+Return to <<< custom_key.brand_name >>> Billing to see that the current workspace has been upgraded to the **Commercial Plan**.
 
-### Select Settlement Methods
-
-After successfully upgrading to the Commercial Plan, the Guance Billing Center account will be used for settlement by default.
-
-If you need to change other settlement methods, you can click the **Bind Settlement Cloud Account** button above. Currently, Guance supports [three settlement methods](./billing-account/index.md).
-
-![](img/1.upgrade_account.png)
-
-If you have not registered a cloud account, you can select **Alibaba Cloud Account** or **AWS Cloud Account**, and select the settlement method in the pop-up dialog box. 
-
-> Please refer to the specific steps for [Alibaba Cloud Account Settlement](../billing/billing-account/aliyun-account.md), [AWS Account Settlement](../billing/billing-account/aws-account.md) and [Huawei Cloud Account Settlement](../billing/billing-account/huaweicloud-account.md)
-
-![](img/9.upgrade_7.png)
-
-If you choose to use the Guance account for settlement, you can directly close the **Change Settlement Methods** dialog box. If necessary, you can manage and change the settlement method in the **Guance Billing Center > Workspace Management**.
-
-![](img/9.upgrade_9.png)
-
-
-Returning to **Guance Studio > Billing**, you can see that the current workspace has been upgraded to Commercial Plan.
-
-Click **Billing Center** in the upper right corner to automatically jump to the Guance Billing Center.
+Click the top-right **Billing Center** to automatically redirect to the <<< custom_key.brand_name >>> Billing Center.
 
 ![](img/9.upgrade_10.png)
 
+## Further Reading
 
-
-
-
-## More Reading
-
+<font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Get started to Guance products and services**</font>](../getting-started/index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Quick Start Guide for <<< custom_key.brand_name >>> Products**</font>](../getting-started/index.md)
 
 </div>
 
+<div class="grid cards" markdown>
 
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **How to Change the Billing Method?**</font>](../billing/faq/settlement-bill.md#switch)
 
+</div>
 
-
-
-
+</font>

@@ -75,7 +75,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/workspace/menu_v2/set' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/menu_v2/set' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"menu":[{"key":"Scene","value":1},{"key":"Events","value":1},{"key":"ExceptionsTracking","value":1},{"key":"Objectadmin","value":1},{"key":"MetricQuery","value":1},{"key":"LogIndi","value":1},{"key":"Tracing","value":1},{"key":"Rum","value":1},{"key":"CloudDial","value":1},{"key":"Security","value":1},{"key":"GitLabCI","value":1},{"key":"Monitor","value":1},{"key":"Integration","value":1},{"key":"Workspace","value":1},{"key":"Billing","value":1}]}' \

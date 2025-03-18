@@ -1,34 +1,30 @@
-# Get a Notification Object Info
+# Get Notification Target Information
 
 ---
 
-<br />**get /api/v1/notify_object/get**
+<br />**GET /api/v1/notify_object/get**
 
 ## Overview
-Get the specified notification object information.
+Retrieve information for a specified notification target.
 
 
+## Query Request Parameters
 
+| Parameter Name        | Type     | Required | Description              |
+|:---------------------|:---------|:---------|:-------------------------|
+| notifyObjectUUID     | string   | Y        | Notification target UUID |
 
-## Query Request Parameter
+## Additional Parameter Explanation
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| notifyObjectUUID | string | Y | Notification object UUID<br> |
+**Response Body Parameter Explanation**
 
-## Supplementary Description of Parameters
-
-
-
-
-
+| Parameter Name           | Type    | Description                                                 |
+| ------------------------ | ------- | ----------------------------------------------------------- |
+| allow_operation          | boolean/None | True: Indicates that the current user is allowed to perform update operations such as modification or deletion, False: Not allowed, None: Indicates that it will follow the interface operation permissions |
+| permissionSetInfo        | dict    | Custom operation configuration related information         |
 
 
 ## Response
 ```shell
  
 ```
-
-
-
-

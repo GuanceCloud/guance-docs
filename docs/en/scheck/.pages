@@ -1,0 +1,278 @@
+nav:
+    - index.md
+    - "Version History": changelog.md
+    - "Installation and Configuration":
+        - "Installation": scheck-install.md
+        - "Configuration": scheck-configure.md
+        - "Examples": example.md
+
+    - 'Security Check Explorer': explorer.md
+    - 'Generate Metrics': generate-metrics.md
+    - "Getting Started": scheck-how-to.md
+    - "Best Practices": best-practices.md
+    - "Multi-end Output":
+        - "Connect to Datakit": join-datakit.md
+        - "Connect to Alibaba Cloud Logs": join-sls.md
+
+    - "Script Secondary Development":
+        - "Implementation of Checking Changes in Sensitive Files": scheck-filechange.md
+        - "Monitoring Changes in System Users": scheck-userchange.md
+        - "User-defined Rules and Lib Library": custom-how-to.md
+
+    - "Lua Built-in Standard Library and Lua-lib": lualib.md
+    - "Funcs Support List": funcs.md
+
+    - "Others":
+        - "View Cache Using Developer Mode": cachedev.md
+        - "Concurrency Strategy": scheck-pool.md
+    - "Rule Library":
+    
+        - "container":
+       
+            - "0300-Docker server kernel version is 3.10 or higher": 0300-docker-kernel.md
+       
+            - "0301-Docker does not use the lxc execution driver": 0301-docker-lxc-notuse.md
+       
+            - "0303-docker.service file permissions are not set to 644 or higher": 0303-docker-service-priv.md
+       
+            - "0304-registry.service file ownership is not set to root:root": 0304-docker-registry-ownership.md
+       
+            - "0305-docker.registry.service file permissions are not set to 644 or stricter": 0305-docker-registry-service-priv.md
+       
+            - "0306-docker.socket file ownership is not set to root:root": 0306-docker-socket-ownership.md
+       
+            - "0307-docker.socket file permissions are not set to 644 or stricter": 0307-docker-socket-priv.md
+       
+            - "0308-docker environment file ownership is not set to root:root": 0308-docker-env-ownership.md
+       
+            - "0309-docker environment file permissions are not set to 644 or stricter": 0309-docker-env-priv.md
+       
+            - "0310-Retrieve docker runtime run parameters": 0310-docker-runlike.md
+       
+            - "0400-Kubernetes configuration file permissions are not set to 644 or higher": 0400-k8s-node-conf-priv.md
+       
+            - "0402-proxy kubeconfig file permissions are not set to 644 or higher": 0402-kubeproxy-conf-priv.md
+       
+            - "0422-kubelet ensure authorization mode parameter is not set to AlwaysAllow": 0422-k8s-authorization-mode.md
+       
+            - "0423-kubelet ensure client CA file parameter is set as needed": 0423-k8s-client-ca.md
+       
+            - "0424-kubelet verify read-only port parameter is set to 0": 0424-k8s-readonlyport.md
+       
+            - "0425-Ensure streaming connection idle timeout --streaming-connection-idle-timeout parameter is not set to 0": 0425-k8s-idle-timeout.md
+       
+            - "0426-Ensure protection of default kernel parameters is set to true": 0426-k8s-protect-kernel.md
+       
+            - "0427-Allow Kubelet management information iptables": 0427-k8s-kubelet-iptable-chains.md
+       
+            - "0429-The events qps flag on Kubernetes can be used to limit the rate of event collection": 0429-k8s-qps.md
+       
+            - "4111-apiserver configuration file permissions are not set to 644 or higher": 4111-k8s-apiserver-conf-priv.md
+       
+            - "4117-etcd configuration file permissions are not set to 644 or higher": 4117-k8s-edct-conf-priv.md
+       
+            - "4118-k8s-etcd file ownership is not set to root:root": 4118-k8s-etcd-ownership.md
+       
+            - "4121-etcd data directory permissions are not set to 700 or higher": 4121-k8s-edct-dir-priv.md
+       
+            - "4122-k8s-etcd file ownership is not set to etcd:etcd": 4122-k8s-etcd-dir-ownership.md
+       
+            - "4132-Prohibit anonymous requests to apiserver": 4132-k8s-apiserver-anonymous.md
+       
+            - "4210-Set up TLS connections on Kubernetes systems": 4210-k8s-kubelet-tls.md
+       
+            - "4211-Ensure --rotate-certificates parameter is not set to false": 4211-k8s-kubelet-rotate.md
+       
+            - "4212-Ensure kubelet starts with certificates set to automatic replacement mode": 4212-k8s-kubelet-rotate-ca.md
+       
+            - "4213-Ensure Kubelet is configured to only use enhanced encryption ciphers": 4213-k8s-kubelet-tls-cipher-suites.md
+       
+        - "db":
+       
+            - "0500-MySQL weak password exists": 0500-mysql-weak-psw.md
+       
+        - "network":
+       
+            - "0027-SSH tunnel exists": 0027-ssh-tunnel.md
+       
+        - "storage":
+       
+            - "0012-New path is mounted": 0012-mounts-add.md
+       
+            - "0013-Path is unmounted": 0013-mounts-del.md
+       
+            - "0037-/etc/sudoers is deleted": 0037-sudoers-exist.md
+       
+            - "0057-cramfs is enabled": 0057-cramfs-disabled.md
+       
+            - "0058-squashfs is enabled": 0058-squashfs-disabled.md
+       
+            - "0059-udf is enabled": 0059-udf-disabled.md
+       
+            - "0060-vfat is enabled": 0060-fat-disabled.md
+       
+        - "system":
+       
+            - "0001-A new user is added to the host": 0001-user-add.md
+       
+            - "0002-A host user is deleted": 0002-user-del.md
+       
+            - "0003-A host user password is changed": 0003-user-passwd.md
+       
+            - "0004-/etc/passwd does not exist": 0004-user-passwd-exist.md
+       
+            - "0005-/etc/group does not exist": 0005-user-group-exist.md
+       
+            - "0006-Host user password status has changed": 0006-user-passwdstatus.md
+       
+            - "0007-Host timezone has changed": 0007-time-zone.md
+       
+            - "0008-Hostname is modified": 0008-hostname.md
+       
+            - "0009-Host kernel version has changed": 0009-kernel-version.md
+       
+            - "0010-A kernel module is added": 0010-kernel-modules-add.md
+       
+            - "0016-resolv is modified": 0016-resolv.md
+       
+            - "0017-Dns resolv file is deleted": 0017-resolv-exist.md
+       
+            - "0018-hosts is modified": 0018-hosts.md
+       
+            - "0019-hosts is deleted": 0019-hosts-exist.md
+       
+            - "0020-Host profile is modified": 0020-profile.md
+       
+            - "0021-Global environment variable file exists": 0021-profile-exist.md
+       
+            - "0022-sshd service is restarted": 0022-sshd-restart.md
+       
+            - "0023-sshd file is modified": 0023-sshd.md
+       
+            - "0028-fstab is modified": 0028-fstab.md
+       
+            - "0029-fstab is deleted": 0029-fstab-exist.md
+       
+            - "0034-authorized_keys public key differences occur": 0034-ssh-keys.md
+       
+            - "0036-sudoers is modified": 0036-sudoers.md
+       
+            - "0038-sudoers file permissions have changed": 0038-sudoers-priv.md
+       
+            - "0039-yum repository is modified": 0039-yum-repos.d.md
+       
+            - "0040-New yum repository file is added": 0040-yum-repos.d-add.md
+       
+            - "0041-Yum repository file is deleted": 0041-yum-repos.d-del.md
+       
+            - "0043-File permissions in /bin directory are modified": 0043-libbin-priv.md
+       
+            - "0044-File in /bin directory is deleted": 0044-libbin-del.md
+       
+            - "0045-File is added to /sbin directory": 0045-libsbin-add.md
+       
+            - "0046-File permissions in /sbin directory are modified": 0046-libsbin-priv.md
+       
+            - "0047-File in /sbin directory is deleted": 0047-libsbin-del.md
+       
+            - "0048-File is added to /usr/bin directory": 0048-libusrbin-add.md
+       
+            - "0049-File permissions in /usr/bin directory are modified": 0049-libusrbin-priv.md
+       
+            - "0050-File in /usr/bin directory is deleted": 0050-libusrbin-del.md
+       
+            - "0051-File is added to /usr/sbin directory": 0051-libusrsbin-add.md
+       
+            - "0052-File permissions in /usr/sbin directory are modified": 0052-libusrsbin-priv.md
+       
+            - "0053-File in /usr/sbin directory is deleted": 0053-libusrsbin-del.md
+       
+            - "0054-rc.local file is modified": 0054-rc.local.md
+       
+            - "0056-rc.local permissions are modified": 0056-rc.local-priv.md
+       
+            - "0062-/dev/shm partition does not have noexec option set": 0062-shm-noexec.md
+       
+            - "0063-Ensure noexec option is set on /dev/shm partition": 0063-shm-nodev.md
+       
+            - "0064-/dev/shm partition does not have nosuid option set": 0064-shm-nosuid.md
+       
+            - "0065-USB storage is disabled": 0065-usbstorage-disable.md
+       
+            - "0067-sudo is not installed": 0067-sudo-install.md
+       
+            - "0068-sudo command does not use pty": 0068-sudo-use-pty.md
+       
+            - "0069-sudo log file is not configured or deleted": 0069-sudo-logfile.md
+       
+            - "0070-Ensure boot loader configuration permissions (-rw-------) are configured": 0070-grub-priv.md
+       
+            - "0072-Core dumps are restricted": 0072-coredumps-restricted.md
+       
+            - "0073-Ensure address space layout randomization (ASLR) is enabled": 0073-addressspac-randomization-enable.md
+       
+            - "0074-Prelink is installed": 0074-prelink-disable.md
+       
+            - "0075-Ensure SETroubleshoot is not installed": 0075-SETroubleshoot-uninstalled.md
+       
+            - "0076-mcstrans service is installed": 0076-Translation-uninstalled.md
+       
+            - "0078-Ensure motd permissions (-rw-r--r--)": 0078-motd-priv.md
+       
+            - "0079-Ensure issue permissions (-rw-r--r--)": 0079-issue-priv.md
+       
+            - "0080-issue.net is not 644": 0080-issue.net-priv.md
+       
+            - "0081-GDM is not deleted or configured for login": 0081-gdm-config.md
+       
+            - "0082-xinetd is installed": 0082-xinetd-uninstalled.md
+       
+            - "0086-X11 is installed": 0086-X11-uninstalled.md
+       
+            - "0087-Avahi is installed": 0087-avahi-uninstalled.md
+       
+            - "0088-CUPS is installed": 0088-cups-uninstalled.md
+       
+            - "0089-DHCP is installed": 0089-dhcp-uninstalled.md
+       
+            - "0090-LDAP is installed": 0090-ldap-uninstalled.md
+       
+            - "0091-rpcbind is installed": 0091-rpcbind-uninstalled.md
+       
+            - "0092-DNS is installed": 0092-dns-uninstalled.md
+       
+            - "0093-vsftpd is installed": 0093-vsftpd-uninstalled.md
+       
+            - "0094-IMAP and POP3 services are installed": 0094-dovecot-uninstalled.md
+       
+            - "0095-Ensure Samba is not installed": 0095-samba-uninstalled.md
+       
+            - "0096-Ensure Squid HTTP proxy server is not installed": 0096-squid-uninstalled.md
+       
+            - "0097-Ensure net-snmp is not installed": 0097-net-snmp-uninstalled.md
+       
+            - "0099-rsync is installed or rsyncd service is not blocked": 0099-rsync-uninstalled.md
+       
+            - "0100-NIS service is installed": 0100-ypserv-uninstalled.md
+       
+            - "0101-telnet server is installed": 0101-telnetserver-uninstalled.md
+       
+            - "0102-NIS client is installed": 0102-ypbind-uninstalled.md
+       
+            - "0103-rsh is installed": 0103-rsh-uninstalled.md
+       
+            - "0104-talk client is installed": 0104-talk-uninstalled.md
+       
+            - "0106-LDAP client is installed": 0106-openldapclients-uninstalled.md
+       
+            - "0142-crontab scheduled task is added": 0142-crontab-add.md
+       
+            - "0143-crontab scheduled task is deleted": 0143-crontab-del.md
+       
+            - "0144-crontab scheduled task is modified": 0144-crontab.md
+       
+            - "0200-A new port is opened on the host": 0200-listening-ports-add.md
+       
+            - "0201-A port on the host is closed": 0201-listening-ports-del.md
+       
+            - "0302-docker.service file ownership is not set to root:root": 0302-docker-service-ownership.md

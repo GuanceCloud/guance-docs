@@ -1,0 +1,5 @@
+nav:
+  - 'List User-defined Nodes': list.md
+  - 'Get Configuration of a User-defined Node': get.md
+  - 'Delete a User-defined Node': delete.md
+  - 'Create a User-defined Node': regist.md

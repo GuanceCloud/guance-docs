@@ -1,34 +1,34 @@
 ---
 title     : 'PHP'
-summary   : 'Obtain metrics, link tracking, and log information for PHP applications'
+summary   : 'Get metrics, trace data, and log information from PHP applications'
 __int_icon: 'icon/php'
 dashboard :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'No'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
-<!--markdownlint-disable MD025-->
+<!-- markdownlint-disable MD025 -->
 # PHP
-<!--markdownlint-enable -->
+<!-- markdownlint-enable -->
 
-Report PHP application related information to the Observation Cloud:
+Report relevant information from PHP applications to Guance:
 
-- Collect custom metric data from the application;
-- Collect link tracking data from the application;
-- Manage all logs for the application.
+- Collect custom Metrics data from the application;
+- Collect trace data from the application;
+- Manage all logs from the application.
 
 ## Trace {#tracing}
 
-PHP provides a non-invasive way to inject probe information.
+PHP provides a non-intrusive way to inject probe information.
 
-[DDTrace PHP integration](ddtrace-php.md)
+
+[DDTrace Integration](ddtrace-php.md)
 
 ## Profiling {#profiling}
 
 PHP Profiling can be used to collect performance data during program execution.
 
-[DDTrace PHP profiling integration](profile-php.md)
-
+[DDTrace PHP Profiling](profile-php.md)

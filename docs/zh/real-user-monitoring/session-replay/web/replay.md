@@ -4,7 +4,7 @@
 
 ## 开启 Session Replay
 
-通过您之前的 SDK 引入方式，替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js`。SDK 初始化 `init()` 之后并不会自动采集 Session Replay Record 数据，需要执行 `startSessionReplayRecording` 开启数据的采集，这对于一些只采集特定情况 Session Replay Record 数据很有用，比如：
+通过您之前的 SDK 引入方式，替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js`。SDK 初始化 `init()` 之后并不会自动采集 Session Replay Record 数据，需要执行 `startSessionReplayRecording` 开启数据的采集，这对于一些只采集特定情况 Session Replay Record 数据很有用，比如：
 
 ```js
 // 只采集用户登录之后的操作数据
@@ -38,11 +38,11 @@ datafluxRum.startSessionReplayRecording()
 
 ### CDN {#cdn}
 
-替换原来的 CDN 地址 `https://<<< custom_key.static_domain >>>/browser-sdk/v2/dataflux-rum.js` 为 `https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js`, 并在执行 `DATAFLUX_RUM.init()` 之后，执行 `DATAFLUX_RUM.startSessionReplayRecording()`。
+替换原来的 CDN 地址 `https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js` 为 `https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js`, 并在执行 `DATAFLUX_RUM.init()` 之后，执行 `DATAFLUX_RUM.startSessionReplayRecording()`。
 
 ```js
 <script
-src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
+src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
 type="text/javascript"
 ></script>
 <script>
@@ -78,8 +78,8 @@ Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此�
 - 该静态资源不可访问。例如，可能需要身份验证，或者资源可能只能从内部网络访问。
 - 由于 CORS（通常是网络字体），静态资源被浏览器阻止。
 
-  - 由于重放时，是基于 iframe 对应的 `guance.com` 沙箱环境，如果某些静态资源未获得特定域名授权，您的浏览器将阻止该请求；
-  - 通过 Access-Control-Allow-Origin Header 头允许 `guance.com` 访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重放。
+  - 由于重放时，是基于 iframe 对应的 `<<< custom_key.brand_main_domain >>>` 沙箱环境，如果某些静态资源未获得特定域名授权，您的浏览器将阻止该请求；
+  - 通过 Access-Control-Allow-Origin Header 头允许 `<<< custom_key.brand_main_domain >>>` 访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重放。
 
   > 有关详细信息，可参考 [跨源资源共享](https://developer.mozilla.org/en-US/docs/Web)。
 

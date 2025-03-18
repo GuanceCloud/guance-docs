@@ -181,4 +181,4 @@ DataKit 根据上报协议的不同，参数配置有差异。
 [opentelemetry-java 扩展配置](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md)
 
 
-[Opentelemetry Agent 增强版](https://docs.guance.com/integrations/otel-ext-changelog/)
+[Opentelemetry Agent 增强版](<<< homepage >>>/integrations/otel-ext-changelog/)

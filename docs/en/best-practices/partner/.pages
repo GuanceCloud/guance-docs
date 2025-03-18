@@ -1,0 +1,13 @@
+nav:
+  - 'Rancher':
+    - Deploy and manage DataKit using Rancher to quickly build Kubernetes ecosystem observability: rancher-datakit.md
+    - Best practices for deploying DataKit on Rancher: rancher-datakit-install.md
+
+  - 'Alibaba Cloud':
+    - 'Best practices for Alibaba Cloud DTS incremental data migration (Function)': aliyun-dts-func.md
+    - 'Resolve Alibaba Cloud API signature issues to achieve billing analysis': aliyun-bill.md
+    - 'Best practices for backing up log data to OSS (Function)': log-backup-to-oss-by-func.md
+    - aliyun_eventbridge.md
+
+  - 'AWS':
+        - 'Deploy DataKit on EKS': eks.md

@@ -20,7 +20,7 @@ icon: fontawesome/solid/mobile-screen
 
 ## 登录
 
-现有的<<< custom_key.brand_name >>>免费/商业版用户可以通过已注册的账号密码和手机验证码的方式，选定账号对应的站点，登录至<<< custom_key.brand_name >>> App。如若您还没有<<< custom_key.brand_name >>>账号，您可以前往<<< custom_key.brand_name >>>官网 [立即申请](https://auth.guance.com/register) ，选择注册适合的站点账号。
+现有的<<< custom_key.brand_name >>>免费/商业版用户可以通过已注册的账号密码和手机验证码的方式，选定账号对应的站点，登录至<<< custom_key.brand_name >>> App。如若您还没有<<< custom_key.brand_name >>>账号，您可以前往<<< custom_key.brand_name >>>官网 [立即申请](https://<<< custom_key.studio_main_site_auth >>>/register) ，选择注册适合的站点账号。
 
 ## 账号管理
 

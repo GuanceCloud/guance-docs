@@ -2,7 +2,7 @@
 
 ---
 
-小程序主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[<<< custom_key.brand_name >>>](https://www.guance.com/)。
+小程序主动发送不同等级的日志数据(`对应的 source:browser_log` 指标类型日志数据)到[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)。
 
 ## 功能简介
 
@@ -36,7 +36,7 @@ datafluxLogs.init({
 //#endif
 ```
 
-### CDN 下载文件本地方式引入([下载地址](https://<<< custom_key.static_domain >>>/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
+### CDN 下载文件本地方式引入([下载地址](https://static.<<< custom_key.brand_main_domain >>>/miniapp-sdk/v1/dataflux-rum-miniapp-logs.js))
 
 ```javascript
 //#ifndef H5 || APP-PLUS || APP-NVUE || APP-PLUS-NVUE

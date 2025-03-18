@@ -194,7 +194,7 @@ my-instrumentation   71m   http://demo-collector:4317
 
 ### Kubernetes DataKit 安装
 
-[Kubernetes DataKit 安装](https://docs.guance.com/datakit/datakit-daemonset-deploy/)
+[Kubernetes DataKit 安装](<<< homepage >>>/datakit/datakit-daemonset-deploy/)
 
 ### OpenTelemetry 采集器配置
 

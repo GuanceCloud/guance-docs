@@ -41,7 +41,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notification_schedule/nsche_3512c1f4d176433484676225b547ef7a/modify' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_schedule/nsche_3512c1f4d176433484676225b547ef7a/modify' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"schecule_modify","timezone":"Asia/Shanghai","start":"11:00","end":"23:59","notifyTargets":["acnt_8b4bd2b8782646f3ba8f6554193f5997"],"extend":{"enableRotateNotification":false,"effectiveTime":{"start":1735747200,"end":1737603472}}}' \

@@ -28,7 +28,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/objc_cfg/list?sourceType=custom_object&timeRange=[1734573756731]' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/objc_cfg/list?sourceType=custom_object&timeRange=[1734573756731]' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```

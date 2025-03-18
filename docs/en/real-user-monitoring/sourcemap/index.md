@@ -1,29 +1,29 @@
 # SourceMap
 ---
 
-## The need for SourceMap
+## Why Do We Need SourceMap?
 
-In the past, we built Web applications using only HTML, CSS, and JavaScript and deployed the same files to the web.
+In the past, we built web applications using only HTML, CSS, and JavaScript, deploying the same files to the web.
 
-Now that we are building more complex Web applications, your development workflow may involve using various tools. For example:
+Now, as we build more complex web applications, your development workflow may involve using various tools. For example:
 
-- Template languages and HTML preprocessors: [Pug](https://pugjs.org/), [Nunjucks](https://mozilla.github.io/nunjucks/), [Markdown](https://daringFreball.net/projects/markdown/).
+- Template languages and HTML preprocessors: [Pug](https://pugjs.org/), [Nunjucks](https://mozilla.github.io/nunjucks/), [Markdown](https://daringFreball.net/projects/markdown/)
 
-- CSS preprocessors: [SCSS](https://sass-lang.com/), [LESS](https://lesscss.org/), [PostCSS](https://postcss.org/).
+- CSS preprocessors: [SCSS](https://sass-lang.com/), [LESS](https://lesscss.org/), [PostCSS](https://postcss.org/)
 
-- JavaScript frameworks: Angular, React, Vue, Svelte.
+- JavaScript frameworks: Angular, React, Vue, Svelte
 
-- JavaScript meta-frameworks: [Next.js](https://nextjs.org/), [Nuxt](https://nuxt.com/), [Astro](https://astro.build/).
+- JavaScript meta-frameworks: [Next.js](https://nextjs.org/), [Nuxt](https://nuxt.com/), [Astro](https://astro.build/)
 
-- Advanced programming languages: [TypeScript](https://www.typescriptlang.org/), [Dart](https://dart.dev/tools/dart2js>), [CoffeeScript](https://coffeescript.org/).
+- Advanced programming languages: [TypeScript](https://www.typescriptlang.org/), [Dart](https://dart.dev/tools/dart2js), [CoffeeScript](https://coffeescript.org/)
 
-- And so on.
+- ...
 
 ![](../img/sourcemap_05.png)
 
-These tools require a build process to translate your code into standard HTML, JavaScript, and CSS that the browser can understand. Also, to optimize performance, it's common to minify (for example, using [Terser](https://github.com/terser/terser) to shrink and mangle JavaScript) and combine these files to reduce their size and improve page efficiency.
+These tools require a build process to transpile your code into standard HTML, JavaScript, and CSS that browsers can understand. Additionally, to optimize performance, it is common practice to minify (for example, using [Terser](https://github.com/terser/terser) to reduce and mangle JavaScript) and concatenate these files, thereby reducing their size and improving web page efficiency.
 
-For instance, using build tools, we can translate and compress the following TypeScript file into a single line of JavaScript.
+For instance, using a build tool, we can transpile and minify the following TypeScript file into one line of JavaScript.
 
 ``` shell
  /* A TypeScript demo: example.ts */
@@ -33,27 +33,25 @@ For instance, using build tools, we can translate and compress the following Typ
  (document.querySelector('p') as HTMLParagraphElement).innerText = `${greet}, you
  console.log(num);
  });
-
 ```
 
-The compressed version is as follows:
+The minified version looks like this:
 
-```
+``` shell
  /* A compressed JavaScript version of the TypeScript demo: example.min.js  */
  document.querySelector("button")?.addEventListener("click",(()=>{const e=Math.floor
-
 ```
 
-However, this optimization makes debugging more difficult. If the minified code puts everything on one line and the variable names are short, it's hard to pinpoint the source of the problem. This is where source maps come in - source maps map your compiled code back to the original code.
+However, this optimization increases the difficulty of debugging. If the minified code places everything on one line and uses short variable names, it becomes challenging to pinpoint the root cause of issues. This is where source maps come into play—source maps map your compiled code back to the original code.
 
-## Generate SourceMap
+## How to Generate SourceMap?
 
-Source maps are files ending with .map (such as example.min.js.map and styles.css.map). Most build tools can generate source maps, such as [Vite](https://vitejs.dev/), [webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/), [Parcel](https://parceljs.org/), [esbuild](https://esbuild.github.io/). Some tools include source maps by default, while others may require additional configuration for generation.
+Source maps are files with the .map extension (e.g., example.min.js.map and styles.css.map). Most build tools can generate source maps, such as [Vite](https://vitejs.dev/), [webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/), [Parcel](https://parceljs.org/), [esbuild](https://esbuild.github.io/), etc. Some tools include source maps by default, while others may require additional configuration to generate them.
 
-```
+``` shell
  /* Example configuration: vite.config.js */
 
- /* https://vitejs.dev/config/> */
+ /* https://vitejs.dev/config/ */
 
  export default defineConfig({
  build: {
@@ -63,14 +61,13 @@ Source maps are files ending with .map (such as example.min.js.map and styles.cs
  devSourcemap: true // enable CSS source maps during development
  }
  })
-
 ```
 
-## Understand SourceMap
+## Understanding SourceMap
 
-These source map files contain crucial information about how the compiled code maps to the original code, allowing developers to debug easily. Here is an example of a source code map:
+These source map files contain important information about how the compiled code maps back to the original code, making it easier for developers to debug. Below is an example of a source map:
 
-```
+``` shell
  {
  "mappings": "AAAAA,SAASC,cAAc,WAAWC, ...",
  "sources": ["src/script.ts"],
@@ -79,24 +76,24 @@ These source map files contain crucial information about how the compiled code m
  "version": 3,
  "file": "example.min.js.map"
  }
-
 ```
 
-The most critical element of a source map is the `mappings` field. It uses a [VLQ base 64 encoded](https://developer.chrome.com/blog/sourcemaps/?hl=zh-cn#base64-vlq-and-keeping-the-source-map-small) string to map the lines and positions in the compiled file to the corresponding original file. You can use source map visualization tools like [source-map-visualization](https://sokra.github.io/source-map-visualization/) and [source map visualization](https://evanw.github.io/source-map-visualization/) to present this mapping intuitively and verify the file's usability.
+The most critical part of a source map is the `mappings` field. It uses a [VLQ base 64 encoded](https://developer.chrome.com/blog/sourcemaps/?hl=en#base64-vlq-and-keeping-the-source-map-small) string to map lines and positions in the compiled file to corresponding original files. You can use tools like [source-map-visualization](https://sokra.github.io/source-map-visualization/) and [source map visualization](https://evanw.github.io/source-map-visualization/) to visually present this mapping and verify file availability.
 
-For example: a visualization chart of the code sample generated by the visualization tool **source-map-visualization**.
+For example, a visual chart generated by the **source-map-visualization** tool for the example code.
+
 
 ![](../img/sourcemap_03.png)
 
-The **generated** column on the left shows the compressed content, and the **original** column shows the original source.
+The left **generated** column shows the minified content, while the **original** column displays the original source.
 
-Visualization tools color-code each line in the **original** column and the corresponding code in the **generated** column. The **mappings** section displays the decoded code mapping. For instance, entry 65-> 2:2 means:
+The visualization tool color-codes each line in the **original** column and the corresponding code in the **generated** column. The **mappings** section shows the decoded code mappings. For example, entry 65-> 2:2 indicates:
 
-- **Generated** code: The word const starts at position 65 in the compressed content.
-- **Original** code: The word const starts from the 2nd line and 2nd column in the original content.
+- **Generated** code: The word `const` starts at position 65 in the minified content.
+- **Original** code: The word `const` starts from line 2 and column 2 in the original content.
 
 ![](../img/sourcemap_04.png)
 
 This way, developers can quickly determine the relationship between the minified code and the original code, making the debugging process smoother.
 
-Browser developer tools will apply these source code maps to help you debug issues directly in the browser faster.
+Browser developer tools apply these source maps to help you identify and debug issues faster directly within the browser.

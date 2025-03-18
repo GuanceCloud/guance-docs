@@ -87,7 +87,7 @@ Sourcemap（源代码映射）用于将生产环境中的压缩代码映射回�
 | 已开通      | 表示已完成一键开通 RUM Headless 流程。             |
 | 方案变更中      | 表示正在修改服务地址或修改规格。              |
 | 升级中      | 表示正在升级当前应用服务。               |
-| 操作失败      | 表示在开通流程中存在操作问题，您可以**查看错误反馈**或直接[联系我们](https://www.guance.com/aboutUs/introduce#contact)。           |
+| 操作失败      | 表示在开通流程中存在操作问题，您可以**查看错误反馈**或直接[联系我们](https://<<< custom_key.brand_main_domain >>>/aboutUs/introduce#contact)。           |
 
 ### 应用到期
 

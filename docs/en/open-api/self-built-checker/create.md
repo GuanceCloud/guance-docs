@@ -1,36 +1,34 @@
-# Create an Intelligent Inspection
+# Create a Self-built Security Check
 
 ---
 
-<br />**post /api/v1/self_built_checker/create**
+<br />**POST /api/v1/self_built_checker/create**
 
 ## Overview
-Create an intelligent inspection.
+Create a self-built security check
 
 
 
-
-## Body Request Parameter
+## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
-| monitorUUID | string |  | Alarm policy UUID<br>Allow empty strings: True <br> |
-| refKey | string | Y | Custom ID of intelligent inspection (cannot be changed after new creation)<br>Example: ref-xxx <br>Allow null: False <br> |
-| title | string | Y | Correlation function title<br>Example: ref-xxx <br>Allow null: False <br> |
-| refFuncInfo | json | Y | Correlation function configuration information<br>Allow null: False <br> |
-| refFuncInfo.funcId | string | Y | Association function ID<br>Example: ref-xxx <br>Allow null: False <br> |
-| refFuncInfo.description | string |  | Correlation function description (that is, function document)<br>Example: ref-xxx <br>Allow null: False <br>Allow empty strings: True <br> |
-| refFuncInfo.definition | string |  | Definition of correlation function<br>Example: ref-xxx <br>Allow null: False <br>Allow empty strings: True <br> |
-| refFuncInfo.category | string |  | Classification of correlation function<br>Example: ref-xxx <br>Allow null: False <br> |
-| refFuncInfo.args | array |  | Association function parameter list<br>Example: ref-xxx <br>Allow null: False <br> |
-| refFuncInfo.kwargs | json |  | Details of correlation function parameters<br>Example: ref-xxx <br>Allow null: False <br> |
-| isDisabled | boolean |  | Disabled or not<br>Example: ref-xxx <br>Allow null: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| monitorUUID | string |  | Alert strategy UUID<br>Allow empty string: True <br> |
+| alertPolicyUUIDs | array |  | List of alert strategy UUIDs<br>Allow empty: False <br> |
+| refKey | string | Y | Custom identifier for the self-built security check (cannot be changed after creation)<br>Example: ref-xxx <br>Allow empty: False <br> |
+| title | string | Y | Associated function title<br>Example: ref-xxx <br>Allow empty: False <br> |
+| refFuncInfo | json | Y | Associated function configuration information<br>Allow empty: False <br> |
+| refFuncInfo.funcId | string | Y | Associated function ID<br>Example: ref-xxx <br>Allow empty: False <br> |
+| refFuncInfo.description | string |  | Associated function description (i.e., function documentation)<br>Example: ref-xxx <br>Allow empty: False <br>Allow empty string: True <br> |
+| refFuncInfo.definition | string |  | Associated function definition<br>Example: ref-xxx <br>Allow empty: False <br>Allow empty string: True <br> |
+| refFuncInfo.category | string |  | Associated function category<br>Example: ref-xxx <br>Allow empty: False <br> |
+| refFuncInfo.args | array |  | Associated function argument list<br>Example: ref-xxx <br>Allow empty: False <br> |
+| refFuncInfo.kwargs | json |  | Associated function argument details<br>Example: ref-xxx <br>Allow empty: False <br> |
+| isDisabled | boolean |  | Whether it is disabled<br>Example: ref-xxx <br>Allow empty: False <br> |
 
-## Supplementary Description of Parameters
+## Additional Parameter Notes
 
 None
-
-
 
 
 
@@ -38,7 +36,3 @@ None
 ```shell
  
 ```
-
-
-
-

@@ -16,8 +16,8 @@ __int_icon: 'icon/pagerduty'
 ### 准备工作
 
 1. 部署一个 [Dataflux Func 观测云特别版](https://func.guance.com/#/) 生成授权链接
-2. 创建[webhook 自定义通知对象](https://docs.guance.com/monitoring/notify-object/#4-webhook) (webhook 地址为 Func 授权链接地址)
-3. 正确配置[监控器](https://docs.guance.com/monitoring/monitor/)
+2. 创建[webhook 自定义通知对象](<<< homepage >>>/monitoring/notify-object/#4-webhook) (webhook 地址为 Func 授权链接地址)
+3. 正确配置[监控器](<<< homepage >>>/monitoring/monitor/)
 4. 在 PagerDuty 中创建一个 **Integrations** 为**Events API V2** 的 Services
 
 

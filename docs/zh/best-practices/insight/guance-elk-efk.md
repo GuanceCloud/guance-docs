@@ -103,7 +103,7 @@ filebeat 其实是 elastic/beats 的一员，除了 filebeat 外，还有 HeartB
 
 ### DataKit
 
-Datakit 是运行在用户本地机器上的一种基础数据采集工具，主要用于采集系统运行的各种指标、日志等数据，将它们汇总给 [<<< custom_key.brand_name >>>](https://guance.com)，在<<< custom_key.brand_name >>>中，用户可以查看并分析自己的各种指标、日志等数据。DataKit 是<<< custom_key.brand_name >>>中至关重要的一个数据采集组件，所有<<< custom_key.brand_name >>>中的数据都是来源于 DataKit。
+Datakit 是运行在用户本地机器上的一种基础数据采集工具，主要用于采集系统运行的各种指标、日志等数据，将它们汇总给 [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)，在<<< custom_key.brand_name >>>中，用户可以查看并分析自己的各种指标、日志等数据。DataKit 是<<< custom_key.brand_name >>>中至关重要的一个数据采集组件，所有<<< custom_key.brand_name >>>中的数据都是来源于 DataKit。
 
 1. DataKit 主要通过定期采集的方式，采集各种不同的指标，然后定时、定量通过 HTTP(s) 将数据发送给 DataWay。每个 DataKit 都会配置对应的 token，用于标识不同的用户
 

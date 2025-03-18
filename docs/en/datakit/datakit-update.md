@@ -214,7 +214,7 @@ If the new version is unsatisfactory and eager to roll back the recovery functio
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
-The version number here can be found on the [DataKit release history](changelog.md) page. Currently, only rollback to [1.2.0](changelog.md#cl-1.2.0) is supported, and previous rc versions do not recommend rollback. After rolling back the version, you may encounter some configurations that are only available in the new version, which cannot be resolved in the rolled back version. For the time being, you can only manually adjust the configuration to adapt to the old version of DataKit.
+The version number here can be found on the [DataKit release history](changelog-2025.md) page. Currently, only rollback to [1.2.0](changelog.md#cl-1.2.0) is supported, and previous rc versions do not recommend rollback. After rolling back the version, you may encounter some configurations that are only available in the new version, which cannot be resolved in the rolled back version. For the time being, you can only manually adjust the configuration to adapt to the old version of DataKit.
 
 ### Version Detection Failed Processing {#version-check-failed}
 

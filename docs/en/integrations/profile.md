@@ -142,6 +142,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|

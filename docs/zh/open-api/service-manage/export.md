@@ -24,7 +24,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/export?originStr=0' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -o 'serviceInfo.json'
   --compressed
@@ -58,7 +58,7 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
                     "provider": "guanceyun"
                 },
                 {
-                    "link": "https://func.guance.com/doc",
+                    "link": "https://<<< custom_key.func_domain >>>/doc",
                     "name": "func",
                     "provider": "guanceyun"
                 }
@@ -74,12 +74,12 @@ curl 'https://openapi.guance.com/api/v1/service_manage/export?originStr=0' \
             },
             "Repos": [
                 {
-                    "link": "https://www.guance.com",
+                    "link": "https://<<< custom_key.brand_main_domain >>>",
                     "name": "guance",
                     "provider": "guanceyun"
                 },
                 {
-                    "link": "https://func.guance.com",
+                    "link": "https://<<< custom_key.func_domain >>>",
                     "name": "func",
                     "provider": "guanceyun"
                 }

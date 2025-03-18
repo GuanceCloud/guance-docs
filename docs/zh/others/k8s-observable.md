@@ -7,7 +7,7 @@
 
 ## 前置条件
 
-您需要先创建一个[<<< custom_key.brand_name >>>账号](https://www.guance.com/)。
+您需要先创建一个[<<< custom_key.brand_name >>>账号](https://<<< custom_key.brand_main_domain >>>/)。
 
 ## 方法/步骤
 
@@ -30,7 +30,7 @@
 注意：添加完 DataKit Helm 仓库后，必须执行升级操作 `helm repo update` 。
 
 ```
-$ helm repo add datakit  https://pubrepo.guance.com/chartrepo/datakit
+$ helm repo add datakit  https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 $ helm repo update 
 ```
 
@@ -41,7 +41,7 @@ $ helm repo update
 修改 Helm 安装 DataKit 执行代码中 `datakit.dataway_url` 的 token 数据。
 
 ```
-$ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.guance.com?token=<your-token>" --create-namespace 
+$ helm install datakit datakit/datakit -n datakit --set datakit.dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>" --create-namespace 
 ```
 
 token 可以在<<< custom_key.brand_name >>>工作空间的「管理」-「基本设置」获取。
@@ -75,7 +75,7 @@ DataKit 部署状态正常，即可在<<< custom_key.brand_name >>>工作空间�
 开启 Kubernetes 资源采集前，需要使用终端工具登录到服务器执行下面的脚本命令来下载 yaml 文件。
 
 ```
-wget https://<<< custom_key.static_domain >>>/datakit/datakit.yaml
+wget https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit.yaml
 ```
 
 ![](img/3.yaml_3.png)
@@ -86,7 +86,7 @@ wget https://<<< custom_key.static_domain >>>/datakit/datakit.yaml
 
 ```
 	- name: ENV_DATAWAY
-		value: https://openway.guance.com?token=<your-token> # 此处填上你工作空间的 token
+		value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token> # 此处填上你工作空间的 token
 ```
 
 token 可以在<<< custom_key.brand_name >>>工作空间的「管理」-「基本设置」获取。

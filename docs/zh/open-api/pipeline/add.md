@@ -21,9 +21,11 @@
 | source | array |  | 选取的source列表<br>允许为空: False <br> |
 | content | string | Y | pipeline文件内容(base64编码)<br>允许为空: False <br> |
 | testData | string |  | 测试数据(base64编码)<br>允许为空: False <br>允许为空字符串: True <br> |
+| dataType | string |  | 数据类型 line_protocol-行协议格式; json-JSON格式; message-Message<br>例子: line_protocol <br>允许为空: False <br>允许为空字符串: True <br>可选值: ['line_protocol', 'json', 'message'] <br> |
 | isForce | boolean |  | 具体类型存在default时, 是否进行替换<br>允许为空: False <br> |
-| category | string | Y | 类别<br>允许为空: False <br>允许为空字符串: False <br>可选值: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric', 'profiling', 'dialtesting', 'billing'] <br> |
+| category | string | Y | 类别<br>允许为空: False <br>允许为空字符串: False <br>可选值: ['logging', 'object', 'custom_object', 'network', 'tracing', 'rum', 'security', 'keyevent', 'metric', 'profiling', 'dialtesting', 'billing', 'keyevent'] <br> |
 | asDefault | int |  | 是否作为该类型的默认pipeline, 1设为默认, 0为非默认<br>允许为空: False <br> |
+| enableByLogBackup | int |  | 启用Pipeline处理转发数据, 1为启用, 0为不启用<br>允许为空: False <br> |
 | extend | json |  | 类别<br>允许为空: False <br> |
 | extend.appID | array |  | appID<br>允许为空: True <br> |
 | extend.measurement | array |  | source来源<br>允许为空: True <br> |
@@ -37,7 +39,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notes/create' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/create' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"openapi_test","category":"logging","asDefault":0,"content":"YWRkX2tleShjaXR5LCAic2hhbmdoYWkiKQ==","testData":"W10=","source":["nsqlookupd"]}' \

@@ -387,8 +387,8 @@ DD_XXX=<env-value> DD_YYY=<env-value> ./my-app
 | DD_SERVICE              | -          | 设置应用服务名                                               |
 | DD_ENV                  | -          | 设置应用当前的环境，如 prod、pre-prod 等                     |
 | DD_AGENT_HOST           | localhost  | 设置 DataKit 的 IP 地址，应用产生的 trace 数据将发送给 DataKit |
-| DD_TRACE_AGENT_PORT     | -          | 设置 DataKit trace 数据的接收端口。这里需手动指定 [DataKit 的 HTTP 端口](https://docs.guance.com/datakit/datakit-conf/#config-http-server)（一般为 9529） |
-| DD_DOGSTATSD_PORT       | -          | 如果要接收 ddtrace 产生的 statsd 数据，需在 DataKit 上手动开启 [statsd 采集器](https://docs.guance.com/datakit/statsd/) |
+| DD_TRACE_AGENT_PORT     | -          | 设置 DataKit trace 数据的接收端口。这里需手动指定 [DataKit 的 HTTP 端口](<<< homepage >>>/datakit/datakit-conf/#config-http-server)（一般为 9529） |
+| DD_DOGSTATSD_PORT       | -          | 如果要接收 ddtrace 产生的 statsd 数据，需在 DataKit 上手动开启 [statsd 采集器](<<< homepage >>>/datakit/statsd/) |
 | DD_TRACE_SAMPLING_RULES | -          | 这里用 JSON 数组来表示采样设置（采样率应用以数组顺序为准），其中 sample_rate 为采样率，取值范围为 [0.0, 1.0]。 **示例一**：设置全局采样率为 20%：DD_TRACE_SAMPLE_RATE='[{"sample_rate": 0.2}]' ./my-app **示例二**：服务名通配 app1.*、且 span 名称为 abc的，将采样率设置为 10%，除此之外，采样率设置为 20%：DD_TRACE_SAMPLE_RATE='[{"service": "app1.*", "name": "b", "sample_rate": 0.1}, {"sample_rate": 0.2}]' ./my-app |
 | DD_TRACE_SAMPLE_RATE    | -          | 开启上面的采样率开关                                         |
 | DD_TRACE_RATE_LIMIT     | -          | 设置每个 golang 进程每秒钟的 span 采样数。如果 DD_TRACE_SAMPLE_RATE 已经打开，则默认为 100 |

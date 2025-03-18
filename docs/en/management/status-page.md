@@ -1,80 +1,71 @@
 # Status Page
 ---
 
-Guance provides a Status Page to help users monitor the real-time service status of different sites on Guance, as well as the history of issues and their resolution records.
+<<< custom_key.brand_name >>> provides a Status Page to help users view the service status of different <<< custom_key.brand_name >>> sites in real time, as well as historical issues and resolution records.
 
-Guance constantly monitors the service status of each site. If any service issues occur, they will be promptly addressed and resolved. If you encounter any abnormalities while using Guance, you can check the service status on the Guance Status Page to determine the cause of the issue. For example, if you find that logs cannot be reported, you can check whether the log service on Guance is functioning properly.
+<<< custom_key.brand_name >>> continuously monitors the service status of various sites. If a service issue occurs, it will be addressed immediately. If you encounter any anomalies while using <<< custom_key.brand_name >>>, you can check the service status to determine the cause. For example, if you notice that logs are not being reported, you can check whether <<< custom_key.brand_name >>>'s log service is functioning normally.
 
-## Service Site
+## Service Sites
 
-If you have logged into Guance, you can view the service status of each site of Guance by clicking **Help > Status Page** in the lower left corner.
+If you have logged into <<< custom_key.brand_name >>>, you can view the service status of each site by clicking **Help > Status Page** in the lower-left corner.
 
-<img src="../img/6.status_page_1.png" width="50%" >
+![Status Page](../img/6.status_page_1.png)
 
-You can also directly click the following link to view the service status of each site in Guance.
+Click the subscription icon to monitor the operational status of the current site. After subscribing successfully, you will receive email notifications if there are any service anomalies.
 
-| Sites              | Service Status URL            | Operator             |
-| :---------------- | :-------------------------------------- | :----------------- |
-| CN1 (Hangzhou)   | [http://status.guance.com](http://status.guance.com/)        | Alibaba Cloud (Hangzhou, China |
-| CN2 (Ningxia)   | [http://aws-status.guance.com](http://aws-status.guance.com/) | AWS (Ningxia, China)    |
-| CN3 (Zhangjiakou) | [http://cn3-status.guance.com](http://cn3-status.guance.com) | Alibaba Cloud (Hangzhou, China |
-| CN4 (Guangzhou)   | [http://cn4-status.guance.com](http://cn4-status.guance.com/) | Huawei Cloud (Guangzhou, China) |
-| US1 (Oregon) | [http://us1-status.guance.com](http://us1-status.guance.com/) | AWS (Oregon, USA)  |
+**Note**: <<< custom_key.brand_name >>> checks the functionality of workspaces under each site at a frequency of once per minute, summarizing the checks every 5 minutes. If an anomaly occurs within 5 minutes, it will be marked as abnormal. If there are continuous 6 anomalies (i.e., 30 minutes), an alert notification email will be triggered. After the first anomaly alert, if the next summary check (every 5 minutes) returns normal, the anomaly event is considered resolved.
+
+You can also directly click the following links to view the service status of <<< custom_key.brand_name >>>'s various sites.
+
+| Site               | Service Status URL                         | Operator             |
+| :----------------- | :----------------------------------------- | :------------------- |
+| China Region 1 (Hangzhou) | [https://status.<<< custom_key.brand_main_domain >>>](https://status.<<< custom_key.brand_main_domain >>>/)        | Alibaba Cloud (China Hangzhou) |
+| China Region 2 (Ningxia)   | [https://aws-status.<<< custom_key.brand_main_domain >>>](https://aws-status.<<< custom_key.brand_main_domain >>>/) | AWS (China Ningxia)    |
+| China Region 3 (Zhangjiakou) | [https://cn3-status.<<< custom_key.brand_main_domain >>>](https://cn3-status.<<< custom_key.brand_main_domain >>>) | Alibaba Cloud (China Hangzhou) |
+| China Region 4 (Guangzhou)   | [https://cn4-status.<<< custom_key.brand_main_domain >>>](https://cn4-status.<<< custom_key.brand_main_domain >>>/) | Huawei Cloud (China Guangzhou) |
+| Overseas Region 1 (Oregon) | [https://us1-status.<<< custom_key.brand_main_domain >>>](https://us1-status.<<< custom_key.brand_main_domain >>>/) | AWS (US Oregon)  |
 
 ## Service Status
 
-Guance supports real-time viewing of service status of different sites, including normal, abnormal and maintenance status.
+<<< custom_key.brand_name >>> supports real-time viewing of the service status for different sites, including Normal, Anomaly, Delay, and Maintenance.
 
-| Service Status | Description                                                         |
-| :------- | :----------------------------------------------------------- |
-| Normal     | Indicate that the service of the current site is working properly.                                 |
-| Anomaly     | Indicate that the service of the current site is delayed or abnormal, such as: <br><li>collecting log data, but no log data is reported, and the status of log service is abnormal at this time; <br><li>collecting application performance data, and report the data delay. At this time, the status of APM service is abnormal. |
-| Maintenance     | Indicate that Guance technician is maintaining the current site.                   |
+| Service Status | Status Description                                      |
+| :------------- | :----------------------------------------------------- |
+| Normal         | Indicates that the current site's service is operating normally, but data interruptions may occur. |
+| Anomaly        | Indicates that the current site's service has encountered an anomaly, with potential data loss. |
+| Delay          | Indicates that the current site's service has experienced delays, with data interruptions and query delays. |
+| Maintenance    | Indicates that <<< custom_key.brand_name >>> technicians are maintaining the current site. |
 
-### Exception/Delay Judgment Logic
+### Anomaly/Delay Judgment Logic
 
-On the Status Page, you can view the status of Events, Infrastructure, RUM, APM, metrics, logs, Synthetic Tests, Security Check, CI Visibility, and other features. The following figure shows the data processing process of each feature, including data collection, data processing, and data storage.
+On the Status Page, you can view the status of various modules such as events, infrastructure, user access monitoring, APM, Metrics, logs, Synthetic Tests, security checks, and CI visualization. The following diagram illustrates the data processing workflow for these modules, which mainly includes data collection, data processing, and data storage.
 
 ![](img/2.status_page.png)
 
-Guance's Status Page is based on the above data processing process to determine the service status in the data processing and data storage processes, as shown in the table below:
+<<< custom_key.brand_name >>>'s Status Page evaluates the service status based on the data processing and storage phases, as shown in the table below:
 
-| Judgment Item | Judgment Condition | Service Status | Example Explanation |
-| --- | --- | --- | --- |
-| Data Push Failure Rate | Greater than 90% | Exception | When the failure rate of pushing log data from Kodo to the message queue is greater than 90%, the status of the log service is considered as exceptional. |
-| Data Storage Failure Rate | Greater than 90% | Exception | When the failure rate of writing log data from Kodo-x to the database is greater than 90%, the status of the log service is considered as exceptional. |
-| Message Subscription Delay P99 | Greater than 5 minutes | Delay | When the P99 delay of sending message queue data to Kodo-x exceeds 5 minutes in the collection of application performance data, the status of the APM service is considered as delayed. |
+| Judgment Item       | Judgment Condition      | Service Status | Example Description                                                                                       |
+| :------------------ | :---------------------- | :------------- | :-------------------------------------------------------------------------------------------------------- |
+| Data Push Failure Rate | Greater than 90%        | Anomaly        | Collecting log data, where the failure rate of pushing data from Kodo to the message queue exceeds 90%, indicating an anomaly in the log service. |
+| Data Ingestion Failure Rate | Greater than 90%        | Anomaly        | Collecting log data, where the failure rate of writing data from Kodo-x to the database exceeds 90%, indicating an anomaly in the log service. |
+| Message Subscription Delay P99 | Greater than 5 minutes   | Delay          | Collecting APM data, where the delay P99 of sending data from the message queue to Kodo-x exceeds 5 minutes, indicating a delay in the APM service. |
 
-### View Service Status
+### Viewing Service Status
 
-On Guance Service Status page, you can:
+On <<< custom_key.brand_name >>>'s service status page, you can:
 
-- Click Switch to view the service status of all sites;
-
+- Switch to view the service status of all sites;
 - Refresh the service status in real time;
-
-- Check the current status and the last 24-hour status of CI visibility, synthetic tests, events, logs, metrics, basic implementation, RUM, security check and APM function modules;
-
+- View the current status and the past 24-hour status of modules like events, infrastructure, RUM PV, APM, Metrics, logs, Synthetic Tests, security checks, and CI;
 - Switch to view historical incidents.
 
-![](img/6.status_page_4.png)
+![](img/2.status_page_2.png)
 
-## Historical Accident
+## Historical Incidents
 
-On the **Historical Incident** page, you can:
+On the historical incidents page, you can:
 
-- Check all service failures that occur every month;
+- View all service outages that occurred each month;
 - Switch to view service status.
 
-
-
 ![](img/6.status_page_3.png)
-
-
-
-
-
-
-
-
-

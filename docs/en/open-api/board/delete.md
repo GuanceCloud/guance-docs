@@ -2,22 +2,21 @@
 
 ---
 
-<br />**post /api/v1/dashboards/\{dashboard_uuid\}/delete**
+<br />**POST /api/v1/dashboards/\{dashboard_uuid\}/delete**
 
 ## Overview
-Delete the dashboard according to the specified `dashboard_uuid`.
+Delete a dashboard based on the specified `dashboard_uuid`
 
 
 
+## Route Parameters
 
-## Routing Parameters
-
-| Parameter Name        | Type     | Required   | Description              |
-|:-----------|:-------|:-----|:----------------|
+| Parameter Name      | Type   | Required | Description              |
+|:-----------------|:-----|:-------|:----------------|
 | dashboard_uuid | string | Y | View ID<br> |
 
 
-## Parameter Supplement
+## Additional Parameter Notes
 
 
 
@@ -25,12 +24,11 @@ Delete the dashboard according to the specified `dashboard_uuid`.
 
 ## Request Example
 ```shell
-curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbfc92e110c/delete' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/dsbd_xxxx32/delete' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw 'null' \
---compressed \
---insecure
+--compressed 
 ```
 
 
@@ -41,7 +39,7 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbf
 {
     "code": 200,
     "content": {
-        "dsbd_541083cc19ec4d27ad597839a0477a97": "test"
+        "dsbd_xxxx32": "test"
     },
     "errorCode": "",
     "message": "",
@@ -49,7 +47,3 @@ curl 'https://openapi.guance.com/api/v1/dashboards/dsbd_501b8277ba88479b82020dbf
     "traceId": "TRACE-AFBA9730-1A3A-4D2A-AF3B-EEDE315AB6CD"
 } 
 ```
-
-
-
-

@@ -1,134 +1,253 @@
-# Access to Guance Commercial Plan in Amazon Web Services(AWS)
+# AWS Cloud Marketplace Subscription to <<< custom_key.brand_name >>> Commercial Plan
 ---
 
-This article will introduce how to open the Commercial Plan of Guance and use AWS account for fee settlement after subscribing to Guance Service in AWS Cloud Market. 
+This document will guide you through subscribing to <<< custom_key.brand_name >>> on the AWS Cloud Marketplace and activating the Commercial Plan using your AWS account for billing purposes.
 
-> If you want to register Commercial Plan directly, see [Register Commercial Plan](commercial-register.md).
 
-## Subscribe to Guance in AWS Marketplace {#subscribe}
+## Step 1: Subscribe to <<< custom_key.brand_name >>> {#subscribe}
 
-Enter Guance commercial page in [AWS Marketplace](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-duyx7ds3f3cq2) and click **Continue Subscription**.
+Log in to the [AWS Cloud Marketplace](https://awsmarketplace.amazonaws.cn/marketplace/pp/prodview-duyx7ds3f3cq2) <<< custom_key.brand_name >>> product page and click **Continue Subscription**.
 
 ![](img/8.space_4.png)
 
-Enter an account, user name and password to log in.
+After successful subscription, click **Set Up Your Account**.
 
-![](img/8.space_5.png)
-
-After logging in, click **Subscribe** on the page to which Guance belongs.
-
-![](img/8.space_8.png)
-
-In the pop-up dialog box, click **Set up your Account**.
+![](img/8.space_9.png)
 
 
-## Open Guance Commercial Plan
+## Step 2: Activate <<< custom_key.brand_name >>> Commercial Plan
 
-After clicking **Set up your Account** in AWS Marketplace, jump back to Guance to open. Prompt **Register Guance Commercial Plan Immediately** and **Exist Billing Center account, bind it**.
+Clicking next will automatically redirect you to the <<< custom_key.brand_name >>> activation page. If your current AWS account is not linked to a <<< custom_key.brand_name >>> Billing Center account, two scenarios may occur:
 
-<font color=coral>**Note:**</font> Billing Center account is an independent account used by the Guance Billing Center to manage the billing related to the Commercial Plan of Guance, and one Billing Center account can be associated with multiple workspace billing.
+:material-numeric-1-circle-outline: [No Billing Center Account](#register): You need to register for a <<< custom_key.brand_name >>> account and a Billing Center account, then link the cloud account for billing;
 
-![](img/15.aws_market_1.png)
+:material-numeric-2-circle-outline: [Existing Billing Center Account](#bond): You can directly bind the Billing Center account to enable cloud account billing.
 
-The overall process is as follows:
+![](img/10.aliyun_market_2.png)
 
-![](img/17.process_1.png)
+???+ warning "What is a Billing Center Account?"
 
-### Register Guance Commercial Plan
+    A Billing Center account is an independent account within the <<< custom_key.brand_name >>> Billing Center platform used to manage Commercial Plan billing. It allows a single account to be associated with multiple workspaces, facilitating unified billing management for these workspaces.
 
-If you don't have a Guance account yet, you can click **Register Guance Commercial Plan Now** to enter the account registration process.
+    The overall process is as follows:
 
-=== "Step 1: Basic Info"
+    <img src="../img/17.process_1.png" width="60%" >
 
-    On the **Basic Info** page, select the "**China 2 (Ningxia)**" or "**Overseas 1 (Oregon)**" site, enter the registration information, and click **Continue**.
+### No Billing Center Account {#register}
+
+If you do not have a Billing Center account, click Next to be redirected to the registration page. After completing the registration process, you will obtain both a <<< custom_key.brand_name >>> account and a Billing Center account.
+
+1. Fill in basic information;
+2. Provide company information;
+3. Choose the activation method: Enter the workspace name and select the workspace language;
+4. Click **Activate** to complete registration.
+
+![](img/aws.png)
+
+### Existing Billing Center Account {#bond}
+
+If you already have a Billing Center account, click Next to proceed directly to the binding page:
+
+**Note**: The site in the top-right corner of this page is unrelated to the Billing Center binding process; it only affects the site selection when creating a workspace later and cannot be changed after creation.
+
+![](img/aws-1.png)
+
+
+#### :material-numeric-1-circle: Bind Billing Center Account
+
+Enter the username of your Billing Center account and verify via email to bind it;
+
+![](img/aws-2.png)
+
+#### :material-numeric-2-circle: Bind Workspace
+
+##### Create Workspace
+
+If your current Billing Center account does not yet have any associated workspaces, you need to create one first. Since the <<< custom_key.brand_name >>> console and the Billing Center are two separate platforms, confirm whether you have registered for <<< custom_key.brand_name >>> and own a <<< custom_key.brand_name >>> account.
+
+:material-numeric-1-circle-outline: If you have already registered for a <<< custom_key.brand_name >>> account and need to create a workspace, go to **Create Workspace > Have <<< custom_key.brand_name >>> Account**.
+
+![](img/1-1-commercial-aliyun.png)
+
+1. Enter the workspace name;
+2. Select the workspace language;
+3. Input the email address used during <<< custom_key.brand_name >>> account registration;
+4. Enter the verification code;
+5. Agree to the terms;
+6. Click **Create**, and the workspace will be successfully created.
+
+![](img/10.aws_create_space.png)
+
+After successfully creating the workspace, you will be redirected back to the binding page, showing **Bound**.
+
+![](img/15.aws_market_10.png)
+
+
+:material-numeric-2-circle-outline: If you have not previously used <<< custom_key.brand_name >>> services, register for a <<< custom_key.brand_name >>> account first. Go to **Create Workspace > No <<< custom_key.brand_name >>> Account**.
+
+![](img/1-2-commercial-aliyun.png)
+
+1. Enter the workspace name;
+2. Select the workspace language;
+3. Input the username;
+4. Enter and confirm the login password;
+5. Enter the email;
+6. Enter the verification code;
+7. Optionally provide a phone number;
+8. Agree to the terms;
+9. Click **Register and Create Workspace**.
+
+Click **Register <<< custom_key.brand_name >>> Account**, enter the required information, and verify via email to complete registration.
+
+
+![](img/10.aws_register.png)
+
+
+
+##### Bind Existing Workspace
+
+If you have existing workspaces under your <<< custom_key.brand_name >>> Billing Center account that can be bound, simply click **Bind**.
+
+1. Select the workspace to bind and click Bind;
+2. Confirm on the new page;
+3. It will now show as **Bound**.
+
+![](img/15.aws_market_register_11.png)
+
+
+## Step 3: Activation Successful
+
+After successfully binding the workspace, click Confirm to be redirected to the login page. Enter your username and password to access the workspace and start using <<< custom_key.brand_name >>>.
+
+<!--
+Redirected to the **Bind <<< custom_key.brand_name >>> Workspace** page, showing that it has been bound.
+
+![](img/15.aws_market_register_14.png)
+
+Click **Confirm**, displaying activation success.
+
+![](img/15.aws_market_register_15.png)
+
+You can view the activated billing method under **Workspace Management** in the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin).
+
+![](img/15.aws_market_register_16.png)
+
+
+
+
+<!--
+### Register <<< custom_key.brand_name >>> Commercial Plan
+
+If you do not have a <<< custom_key.brand_name >>> account, you can click **Register <<< custom_key.brand_name >>> Commercial Plan Now** to start the account registration process.
+
+=== "Step 1: Basic Information"
+
+    On the **Basic Information** page, choose either “China Region 2 (Ningxia)” or “Overseas Region 1 (Oregon)” site, input registration details, and click **Next**.
 
     ![](img/15.aws_market_register_1.png)
 
-=== "Step 2: Company Info"
+=== "Step 2: Company Information"
 
-    On the **Company Info** page, enter relevant information and click **Continue**.
+    On the **Company Information** page, input relevant details and click **Register**.
 
-    ![](img/11.account_center_4.png)
+    ![](img/15.aws_market_register_3.png)
 
-=== "Step 3: Select the opening method"
+=== "Step 3: Choose Activation Method"
 
-    In **Select Opening Method**, fill in **Workspace Name**, select **Workspace Language**, and click **Confirm** to complete the registration.
+    On the **Choose Activation Method** page, enter the **Workspace Name** and select the **Workspace Language**, then click **Confirm** to complete registration.
 
-    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+    **Note**: The workspace is a collaboration space for <<< custom_key.brand_name >>> data insights. The workspace language option affects event, alert, SMS templates, etc., within the workspace. If English is chosen, the corresponding templates will default to English and cannot be changed once created, so please choose carefully.
     
-    ![](img/inter-create-workspace.png)
+    ![](img/15.aws_market_register_5.png)
 
-=== "Step 4: Successful opening"
+=== "Step 4: Activation Successful"
 
-    After successfully selecting the opening method, it will be prompted to successfully open the Commercial Plan of Guance.
+    After successfully choosing the activation method, it will prompt that <<< custom_key.brand_name >>> Commercial Plan has been activated.
     
-    <font color=coral>**Note:**</font> After successful opening, the expenses incurred by the bound workspace will be settled directly from the AWS account where the product was purchased.
+    **Note**: After activation, fees generated by the bound workspace will be directly settled from the AWS account that purchased the product.
 
-    ![](img/inter-1.sls_8.png)
+    ![](img/15.aws_market_register_7.png)
 
-    You can log in to [Guance Billing Center](https://boss.guance.com/#/signin) with the account you just registered, and view the opened settlement methods in **Workspace Management**.
+    You can log in to the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin) with the newly registered account to view the activated billing method under **Workspace Management**.
 
     ![](img/15.aws_market_register_10.png)
 
-### Bind Guance Workspace
+### Bind <<< custom_key.brand_name >>> Workspace
 
-If you already have a Guance account, you can click **Exist Billing Center account, bind it** and prompt **How to quickly bind AWS account for settlement**.
+If you already have a <<< custom_key.brand_name >>> account, you can click **Existing Billing Center Account, Proceed to Bind** for instructions on how to quickly bind AWS account billing.
 
-Click **Got it** to start binding the Guance workspace. Before binding the workspace, you need to bind the Billing Center account of Guance.
+![](img/15.aws_market_2.png)
 
-#### Bind Guance Billing Center account
+Click **Understood** to start binding <<< custom_key.brand_name >>> workspace. Before binding the workspace, you need to bind the <<< custom_key.brand_name >>> Billing Center account first.
 
-If you already have a Guance Billing Center account, enter the **User Name** of Guance Billing Center account and bind it through email verification.
+#### Bind <<< custom_key.brand_name >>> Billing Center Account
 
-![](img/15.aws_market_3.png)
+- Site: Choose the site for creating the workspace later;
+- Username: If you already have a <<< custom_key.brand_name >>> Billing Center account, enter the **Username** and verify via email to bind;
+- Registration: If you do not have a <<< custom_key.brand_name >>> Billing Center account, register first.
+
+![](img/10.market_aws_1.png)
 
 
 #### Bind Workspace
 
 === "Bind Existing Workspace"
 
-    If you have a workspace that can be bound under the Guance Billing Center account, click **Add** directly.
+    If you have existing workspaces under your <<< custom_key.brand_name >>> Billing Center account, directly click **Bind**.
 
     ![](img/15.aws_market_register_11.png)
 
-    In the pop-up confirmation dialog box, click **Confirm**.
+    In the confirmation dialog box, click **Confirm**.
 
-    ![](img/inter-15.aws_market_register_13.png)
+    ![](img/15.aws_market_register_13.png)
     
-    You can check the open billing methods in **[Guance Billing Center](https://boss.guance.com/#/signin) > Workspace Management**.
+    Redirected to the **Bind <<< custom_key.brand_name >>> Workspace** page, showing that it has been bound.
+
+    ![](img/15.aws_market_register_14.png)
+
+    Click **Confirm**, displaying activation success.
+
+    ![](img/15.aws_market_register_15.png)
+
+    You can view the activated billing method under **Workspace Management** in the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/#/signin).
+
+    ![](img/15.aws_market_register_16.png)
 
 
-=== "Create a Workspace"
+=== "Create Workspace"
 
-    If you have registered your Guance account but have not yet created a workspace, please click **Create Workspace** first.
+    If you have registered a <<< custom_key.brand_name >>> account but have not created a workspace, click **Create Workspace** first.
 
     ![](img/1-1-commercial-aliyun.png)
 
-    Enter the workspace name, select the workspace language, enter the mailbox used when registering the Guance account, and create it through mailbox verification.
+    Enter the workspace name, select the workspace language, and input the email address used during <<< custom_key.brand_name >>> account registration. Verify via email to create the workspace.
 
-    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+    **Note**: The workspace is a collaboration space for <<< custom_key.brand_name >>> data insights. The workspace language option affects event, alert, SMS templates, etc., within the workspace. If English is chosen, the corresponding templates will default to English and cannot be changed once created, so please choose carefully.
 
-    ![](img/inter-10.aws_create_space.png)
+    ![](img/10.aws_create_space.png)
 
-    Fill in all necessary information, click **Create**.
+    After successfully creating the workspace, you will be redirected to the **Bind <<< custom_key.brand_name >>> Workspace** page.
 
+    ![](img/15.aws_market_10.png)
 
-=== "Register Guance Account"
+    Click **Confirm**, redirecting to the **Successfully Bound <<< custom_key.brand_name >>> Workspace** page.
 
-    If you have not used Guance service before, please register Guance account and create a workspace first.
+    ![](img/15.aws_market_11.png)
 
-    ![](img/inter-1-2-commercial-aliyun.png)
+=== "Register <<< custom_key.brand_name >>> Account"
 
-    Click **Register Guance Account**, enter relevant information, and register through email verification.
+    If you have not previously used <<< custom_key.brand_name >>> services, register for a <<< custom_key.brand_name >>> account and create a workspace first.
 
-    <font color=coral>**Note:**</font> Workspace language options affect templates for events, alarms and text messages in the workspace. If you select English, the above corresponding template will be used by default. Once created, the template language of this workspace cannot be modified, so please choose carefully.
+    ![](img/1-2-commercial-aliyun.png)
 
-    ![](img/inter-10.aws_register.png)
+    Click **Register <<< custom_key.brand_name >>> Account**, enter the required information, and verify via email to complete registration.
 
-## Start Using Guance
+    **Note**: The workspace is a collaboration space for <<< custom_key.brand_name >>> data insights. The workspace language option affects event, alert, SMS templates, etc., within the workspace. If English is chosen, the corresponding templates will default to English and cannot be changed once created, so please choose carefully.
 
-After registration, get started with the first DataKit.
+    ![](img/10.aws_register.png)
+
+## Start Using <<< custom_key.brand_name >>>
+
+After registration, you can watch a short video introduction about <<< custom_key.brand_name >>> or click **Start with Installing DataKit** to install and configure your first DataKit.
 
 ![](img/1-free-start-1109.png)
-
-

@@ -21,14 +21,14 @@ Kubernetes 集群中，在使用 DaemonSet 部署的 DataKit 来采集指标、�
 
 ##### 1.1.1 下载部署文件
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，点击『集成』模块，再点击左上角『DataKit』，选择『Kubernetes』，下载 datakit.yaml。
 
 ##### 1.1.2 配置 token
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『管理』模块，找到下图中 token，替换 datakit.yaml 文件中的 ENV_DATAWAY 环境变量的 value 值中的 <your-token>。
 
 ```yaml
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token>
+          value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
 ```
 
 ![image](../images/log-report-one-node/2.png)
@@ -241,7 +241,7 @@ spec:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token> # 此处填上 dataway 真实地址
+          value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token> # 此处填上 dataway 真实地址
         - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip
         - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -256,7 +256,7 @@ spec:
           value: k8s-prod
         - name: ENV_NAMESPACE
           value: guance-k8s
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.2.16
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.2.16
         imagePullPolicy: Always
         name: datakit
         ports:
@@ -489,7 +489,7 @@ spec:
         - mountPath: /data/app/logs
           name: varlog 
       - name: logfwd
-        image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.12
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.12
         env:
         - name: LOGFWD_DATAKIT_HOST
           value: "datakit-service.datakit.svc.cluster.local"
@@ -556,7 +556,7 @@ data:
 
 ![image](../images/log-report-one-node/5.png)
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『日志』模块，根据数据来源搜索 log_fwd_demo，找到日志点击查看详情。
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『日志』模块，根据数据来源搜索 log_fwd_demo，找到日志点击查看详情。
 
 ![image](../images/log-report-one-node/6.png)
 

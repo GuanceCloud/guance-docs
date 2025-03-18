@@ -49,7 +49,7 @@
 
 代金券支持用于<<< custom_key.brand_name >>>按量扣费、云账号扣费。分成普通代金券和满减代金券，普通代金券可以通过分配的方式获取，满减代金券现金购买预购卡到一定程度系统会自动分配。
 
-**注意**：预购卡一旦购买不能退款。详情可前往[<<< custom_key.brand_name >>>官网的大客户优惠计划](https://www.guance.com/billing#business#China)，联系销售顾问进行购买。
+**注意**：预购卡一旦购买不能退款。详情可前往[<<< custom_key.brand_name >>>官网的大客户优惠计划](https://<<< custom_key.brand_main_domain >>>/billing#business#China)，联系销售顾问进行购买。
 
 ![](../img/pre-paid.png)
 
@@ -85,7 +85,7 @@
 
 ### 购买预购卡
 
-登录到<<< custom_key.brand_name >>> [费用中心](https://boss.guance.com) ，点击**管理预购卡**，即可进入预购卡管理购买页面。
+登录到<<< custom_key.brand_name >>> [费用中心](https://<<< custom_key.boss_domain >>>) ，点击**管理预购卡**，即可进入预购卡管理购买页面。
 
 ![](../img/10.price_3.png)
 

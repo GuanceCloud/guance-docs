@@ -20,7 +20,7 @@ sourcemap 压缩文件上传(分片上传)操作中的第二步操作。上传�
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/rum_sourcemap/upload_part' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/rum_sourcemap/upload_part' \
 -H 'Content-Type: multipart/form-data' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -F 'uploadId="65ef45944fac157005cb73de48e81f161Lfv5UOs"' \

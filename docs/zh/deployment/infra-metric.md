@@ -141,13 +141,13 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
     ### Helm 安装或升级 GuanceDB {#helm-install}
 
       ```shell
-      helm upgrade -i guancedb-cluster  guancedb-cluster --repo https://pubrepo.jiagouyun.com/chartrepo/guancedb -n middleware \
+      helm upgrade -i guancedb-cluster  guancedb-cluster --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/guancedb -n middleware \
            --set guance_storage.persistentVolume.storageClass="<YOUR StorageClass Name>" \
            --set ingress.enabled=false \
            --create-namespace
       ```
       
-      > `<YOUR StorageClass Name>` 需替换你的存储类名称，建议使用高性能数据块。如果需要其他参数，请执行 `helm pull guancedb-cluster --repo https://pubrepo.jiagouyun.com/chartrepo/guancedb --untar`，修改 values.yaml。
+      > `<YOUR StorageClass Name>` 需替换你的存储类名称，建议使用高性能数据块。如果需要其他参数，请执行 `helm pull guancedb-cluster --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/guancedb --untar`，修改 values.yaml。
 
     ### 查看状态 {#helm-check}
 
@@ -192,25 +192,25 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
      - Centos（amd64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/rpm/guance-storage-v1.5.17-1.el7.amd64.rpm && rpm -ivh guance-storage-v0.1.4-1.el7.amd64.rpm
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/rpm/guance-storage-v1.5.17-1.el7.amd64.rpm && rpm -ivh guance-storage-v0.1.4-1.el7.amd64.rpm
        ```
 
      - Ubuntu（amd64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/deb/guance-storage-amd64-v1.5.17.deb && dpkg -i guance-storage-amd64-v1.5.17.deb
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/deb/guance-storage-amd64-v1.5.17.deb && dpkg -i guance-storage-amd64-v1.5.17.deb
        ```
 
      - Centos（arm64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/rpm/guance-storage-v1.5.17-1.el7.arm64.rpm && rpm -ivh guance-storage-v0.1.4-1.el7.arm64.rpm
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/rpm/guance-storage-v1.5.17-1.el7.arm64.rpm && rpm -ivh guance-storage-v0.1.4-1.el7.arm64.rpm
        ```
 
      - Ubuntu（arm64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/deb/guance-storage-arm64-v1.5.17.deb && dpkg -i guance-storage-arm64-v1.5.17.deb
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/deb/guance-storage-arm64-v1.5.17.deb && dpkg -i guance-storage-arm64-v1.5.17.deb
        ```
     #### 修改数据目录权限 {#chown-dir}
 
@@ -257,25 +257,25 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
      - Centos（amd64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/rpm/guance-select-v1.5.17-1.el7.amd64.rpm && rpm -ivh guance-select-v0.1.4-1.el7.amd64.rpm
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/rpm/guance-select-v1.5.17-1.el7.amd64.rpm && rpm -ivh guance-select-v0.1.4-1.el7.amd64.rpm
        ```
 
      - Ubuntu（amd64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/deb/guance-select-amd64-v1.5.17.deb && dpkg -i guance-select-amd64-v1.5.17.deb
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/deb/guance-select-amd64-v1.5.17.deb && dpkg -i guance-select-amd64-v1.5.17.deb
        ```
 
      - Centos（arm64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/rpm/guance-select-v1.5.17-1.el7.arm64.rpm && rpm -ivh guance-select-v0.1.4-1.el7.arm64.rpm
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/rpm/guance-select-v1.5.17-1.el7.arm64.rpm && rpm -ivh guance-select-v0.1.4-1.el7.arm64.rpm
        ```
 
      - Ubuntu（arm64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/deb/guance-select-arm64-v1.5.17.deb && dpkg -i guance-select-arm64-v1.5.17.deb
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/deb/guance-select-arm64-v1.5.17.deb && dpkg -i guance-select-arm64-v1.5.17.deb
        ```
 
     #### 配置 guance-select 并启动  {#running-select}
@@ -322,25 +322,25 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
      - Centos（amd64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/rpm/guance-insert-v1.5.17-1.el7.amd64.rpm && rpm -ivh guance-insert-v0.1.4-1.el7.amd64.rpm
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/rpm/guance-insert-v1.5.17-1.el7.amd64.rpm && rpm -ivh guance-insert-v0.1.4-1.el7.amd64.rpm
        ```
 
      - Ubuntu（amd64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/deb/guance-insert-amd64-v1.5.17.deb && dpkg -i guance-insert-amd64-v1.5.17.deb
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/deb/guance-insert-amd64-v1.5.17.deb && dpkg -i guance-insert-amd64-v1.5.17.deb
        ```
 
      - Centos（arm64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/rpm/guance-insert-v1.5.17-1.el7.arm64.rpm && rpm -ivh guance-insert-v0.1.4-1.el7.arm64.rpm
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/rpm/guance-insert-v1.5.17-1.el7.arm64.rpm && rpm -ivh guance-insert-v0.1.4-1.el7.arm64.rpm
        ```
 
      - Ubuntu（arm64）
 
        ```shell
-       wget https://<<< custom_key.static_domain >>>/guancedb/deb/guance-insert-arm64-v1.5.17.deb && dpkg -i guance-insert-arm64-v1.5.17.deb
+       wget https://static.<<< custom_key.brand_main_domain >>>/guancedb/deb/guance-insert-arm64-v1.5.17.deb && dpkg -i guance-insert-arm64-v1.5.17.deb
        ```
 
     #### 配置 guance-insert 并启动  {#running-insert}
@@ -507,7 +507,7 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
               value: "true"
             - name: INFLUXDB_HTTP_AUTH_ENABLED
               value: "true"
-            image: pubrepo.guance.com/googleimages/influxdb:1.7.8
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/influxdb:1.7.8
             imagePullPolicy: IfNotPresent
             name: influxdb
             ports:

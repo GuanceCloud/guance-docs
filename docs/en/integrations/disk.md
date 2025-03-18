@@ -50,6 +50,9 @@ After successfully installing and starting DataKit, the disk collector will be e
       ## exclude some with dev prefix (We collect all devices prefixed with dev by default)
       # exclude_device = ["/dev/loop0","/dev/loop1"]
     
+      ignore_fstypes = '''^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$'''
+      ignore_mountpoints = '''^(/usr/local/datakit/.*|/run/containerd/.*)$'''
+    
       #[inputs.disk.tags]
       #  some_tag = "some_value"
       #  more_tag = "some_other_value"
@@ -74,56 +77,6 @@ After successfully installing and starting DataKit, the disk collector will be e
     
         **Default**: 10s
     
-    - **ENV_INPUT_DISK_EXTRA_DEVICE**
-    
-        Additional device prefix. (By default, collect all devices with dev as the prefix)
-    
-        **Type**: List
-    
-        **input.conf**: `extra_device`
-    
-        **Example**: `/nfsdata,other_data`
-    
-    - **ENV_INPUT_DISK_EXCLUDE_DEVICE**
-    
-        Excluded device prefix. (By default, collect all devices with dev as the prefix)
-    
-        **Type**: List
-    
-        **input.conf**: `exclude_device`
-    
-        **Example**: /dev/loop0,/dev/loop1
-    
-    - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
-    
-        Physical devices only (e.g. hard disks, cd-rom drives, USB keys), and ignore all others (e.g. memory partitions such as /dev/shm)
-    
-        **Type**: Boolean
-    
-        **input.conf**: `only_physical_device`
-    
-        **Default**: false
-    
-    - **ENV_INPUT_DISK_ENABLE_LVM_MAPPER_PATH**
-    
-        View the soft link corresponding to the device mapper (e.g. `/dev/dm-0` -> `/dev/mapper/vg/lv`)
-    
-        **Type**: Boolean
-    
-        **input.conf**: `enable_lvm_mapper_path`
-    
-        **Default**: false
-    
-    - **ENV_INPUT_DISK_MERGE_ON_DEVICE**
-    
-        merge disks that have the same device
-    
-        **Type**: Boolean
-    
-        **input.conf**: `merge_on_device`
-    
-        **Default**: true
-    
     - **ENV_INPUT_DISK_TAGS**
     
         Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
@@ -133,6 +86,46 @@ After successfully installing and starting DataKit, the disk collector will be e
         **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
+    
+    - **ENV_INPUT_DISK_EXTRA_DEVICE**
+    
+        Additional device prefix. (By default collect all devices with dev as the prefix)
+    
+        **Type**: List
+    
+        **input.conf**: `extra_device`
+    
+        **Example**: `/nfsdata,other_data`
+    
+    - **ENV_INPUT_DISK_EXCLUDE_DEVICE**
+    
+        Excluded device prefix. (By default collect all devices with dev as the prefix)
+    
+        **Type**: List
+    
+        **input.conf**: `exclude_device`
+    
+        **Example**: /dev/loop0,/dev/loop1
+    
+    - **ENV_INPUT_DISK_IGNORE_MOUNTPOINTS**
+    
+        Excluded mount points
+    
+        **Type**: String
+    
+        **input.conf**: `ignore_mountpoints`
+    
+        **Example**: `^(/usr/local/datakit/.*|/run/containerd/.*)$`
+    
+    - **ENV_INPUT_DISK_INPUT_DISK_IGNORE_FSTYPES**
+    
+        Excluded file systems
+    
+        **Type**: String
+    
+        **input.conf**: `input_disk_ignore_fstypes`
+    
+        **Example**: `^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$`
 
 <!-- markdownlint-enable -->
 
@@ -151,7 +144,7 @@ For all of the following data collections, a global tag named `host` is appended
 ???+ info "Source of disk metrics"
     Under Linux, we first get device and mount info from */proc/self/mountinfo*, then get disk usage metrics via `statfs()` syscall. For Windows, we get device and mount info via Windows APIs like `GetLogicalDriveStringsW()`, and get disk usage by another API `GetDiskFreeSpaceExW()`
 
-    In the [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0) release, the disk collector has been optimized. However, mount points for the same device will still be merged into one, with only the first mount point being taken. If you need to collect all mount points, a specific flag(`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`) must be disable. While this flag disabled, this may result in a significant increase in the number of time series in the disk measurement.
+    In the [:octicons-tag-24: Version-1.66.0](../datakit/changelog-2025.md#cl-1.66.0) release, the disk collector has been optimized. However, mount points for the same device will still be merged into one, with only the first mount point being taken. If you need to collect all mount points, a specific flag(`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`) must be disable. While this flag disabled, this may result in a significant increase in the number of time series in the disk measurement.
 <!-- markdownlint-enable -->
 
 

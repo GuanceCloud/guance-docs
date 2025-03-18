@@ -24,27 +24,27 @@
 
 
 
-**Kubernetes基础环境离线资源包下载地址**  [ https://<<< custom_key.static_domain >>>/dataflux/package/k8s_offline.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/k8s_offline.tar.gz)
+**Kubernetes基础环境离线资源包下载地址**  [ https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/k8s_offline.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/k8s_offline.tar.gz)
 
 **<<< custom_key.brand_name >>>平台离线资源包下载地址** 
 === "amd64"
 
-    [https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
+    [https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-latest.tar.gz)
     
 
 === "arm64"
 
     
-    [https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://<<< custom_key.static_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
+    [https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-latest.tar.gz)
     
 
 
 
 
 
-**Launcher helm charts 资源包地址**[https://<<< custom_key.static_domain >>>/dataflux/package/launcher-helm-latest.tgz](https://<<< custom_key.static_domain >>>/dataflux/package/launcher-helm-latest.tgz)
+**Launcher helm charts 资源包地址**[https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/launcher-helm-latest.tgz](https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/launcher-helm-latest.tgz)
 
-**<<< custom_key.brand_name >>>代理服务离线资源包下载地址** [https://<<< custom_key.static_domain >>>/dataflux/package/docker-nginx.tar.gz]( https://<<< custom_key.static_domain >>>/dataflux/package/docker-nginx.tar.gz)
+**<<< custom_key.brand_name >>>代理服务离线资源包下载地址** [https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/docker-nginx.tar.gz]( https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/docker-nginx.tar.gz)
 
 
 

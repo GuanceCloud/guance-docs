@@ -46,7 +46,7 @@ Datakit 部署完成后，按需采集指定的业务 Pod 日志、K8s 集群组
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = ["image:*coredns*","image:*nginx*"]
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 
@@ -179,7 +179,7 @@ Nginx 的 Annotation 标记
 其实不建议开启白名单策略，白名单可能会造成很多问题，且不好调试，白名单可能会有无法预期的效果，比如开发打个日志没看到，实际上是没加某个 Tag。要过滤日志来源，黑名单失效最差情况是数据采集上来，黑名单过滤比如在 Datakit 采集器 `container.conf` 中的
 
 ```bash
-container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*"]
 ```
 
 方式一，是没有使用 Annotation 标记，而是用采集器 `container.conf` 中内置的过滤方式，更偏向底层的方式实现。但是这种方式不如方式二，因为标记的方式可以对日志的来源做更好的 Tag，未来分析问题，做筛选方便些，另外也更灵活点，标记是在业务 Pod 上，可以做到，同一批业务 Image 进行精细化的日志过滤管控。<br />方式三结合具体的业务场景，过滤掉一些不必要的 Sidecar 等日志，可以过滤掉不必要的日志，达到日志采集降噪的效果。

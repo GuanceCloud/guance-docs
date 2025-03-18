@@ -1,0 +1,6 @@
+nav:
+  - '【Custom Mapping Rules】Add a Mapping Configuration': add.md
+  - '【Custom Mapping Rules】Modify a Mapping Configuration': modify.md
+  - '【Custom Mapping Rules】Mapping Configuration List': list.md
+  - '【Custom Mapping Rules】Delete a Mapping Configuration': delete.md
+  - '【Custom Mapping Rules】Batch Delete Mapping Configurations': batch-delete.md

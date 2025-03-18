@@ -1,99 +1,97 @@
 ---
-title: 'Volcengine MongoDB Replica Set'
+title: 'VolcEngine MongoDB Replica Set'
 tags: 
-  - Volcengine
-summary: 'Volcengine MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.'
+  - VolcEngine
+summary: 'Displays VolcEngine MongoDB replica set metrics, including CPU usage, memory usage, connections, latency, OPS, etc.'
 __int_icon: 'icon/volcengine_mongodb'
 dashboard:
-  - desc: 'Volcengine MongoDB Replica Set'
+  - desc: 'VolcEngine MongoDB'
     path: 'dashboard/en/volcengine_mongodb_replica_set/'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# `Volcengine` MongoDB Replica Set
+# VolcEngine MongoDB Replica Set
 <!-- markdownlint-enable -->
 
 
-`Volcengine` MongoDB replica set metrics display,including CPU usage, memory usage, number of connections, latency, OPS, etc.
+Displays VolcEngine MongoDB replica set metrics, including CPU usage, memory usage, connections, latency, OPS, etc.
 
-
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
+### Install Script
 
-### Installation script
+> Note: Prepare a qualified VolcEngine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
+To synchronize monitoring data of MongoDB cloud resources, we install the corresponding collection script: "Guance Integration (VolcEngine-MongoDB Collection)" (ID: `guance_volcengine_mongodb_replica_set`)
 
-> Tip：Please prepare `Volcengine`  AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
+After clicking 【Install】, enter the corresponding parameters: VolcEngine AK and VolcEngine account name.
 
-To synchronize the monitoring data of **ECS** cloud resources, we install the corresponding collection script：「Guance Integration（`Volcengine` -**MongoDB Replica Set** Collect）」(ID：`guance_volcengine_mongodb_replica_set`)
+Click 【Deploy Startup Script】; the system will automatically create a `Startup` script set and configure the corresponding startup script.
 
-Click "Install" and enter the corresponding parameters: `Volcengine` AK, `Volcengine` account name.
+After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-tap "Deploy startup Script"，The system automatically creates `Startup` script sets，And automatically configure the corresponding startup script.
-
-After this function is enabled, you can view the automatic triggering configuration in「Management / Crontab Config」。Click "Run"，you can immediately execute once, without waiting for a regular time。After a while, you can view task execution records and corresponding logs.
-
-> If you want to collect logs, you must enable the corresponding log collection script. If you want to collect bills, start the cloud bill collection script.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
+> If you need to collect logs, you also need to enable the corresponding log collection script. If you need to collect billing information, you need to enable the cloud billing collection script.
 
 
-### Verify
+We have collected some configurations by default; for more details, see the metrics section.
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist
-2. On the Guance platform, click 「Infrastructure / Custom」 to check whether asset information exists
-3. On the Guance platform, press 「Metrics」 to check whether monitoring data exists
+[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
+### Verification
 
-## Metric  {#metric}
-Configure `Volcengine` Cloud - MongoDB Replica monitoring. The default metric set is as follows. You can collect more metrics by configuring them [`Volcengine` MongoDB Replica Monitor Metrics Details](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Replica){:target="_blank"}
+1. In "Manage / Automatic Trigger Configuration", confirm that the corresponding automatic trigger configuration exists for the task and check the task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
-|`MetricName` |`Subnamespace` |Description |MetricUnit | Dimension|
+## Metrics {#metric}
+After configuring VolcEngine-MongoDB replica set monitoring, the default metric set is as follows. You can collect more metrics through configuration. [VolcEngine MongoDB Monitoring Metrics Details](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Replica){:target="_blank"}
+
+|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
 | ---- |-------------------------------------| :----: |:----: |:----: |
-|`AggregatedCpuUtil` |`instance` |CPU usage |Percent | ResourceID|
-|`AggregatedMemUtil` |`instance` |Memory usage |Percent | ResourceID|
-|`AggregatedTotalDiskUtil` |`instance` |Total disk space usage |Percent | ResourceID|
-|`NetworkReceiveThroughput` |`replica` |Network input rate |Bytes/Second(SI) | ResourceID,Node|
-|`RunningConcurrentWriteRequest` |`replica` |Current number of concurrent write requests |Count | ResourceID,Node|
-|`LogDiskUsage` |`replica` |Log disk usage |Bytes(SI) | ResourceID,Node|
-|`RunningConcurrentReadRequest` |`replica` |Current number of concurrent read requests |Count | ResourceID,Node|
-|`CommandOperationPerSec` |`replica` |COMMAND operations per second |Count/Second | ResourceID,Node|
-|`ReplicationDelay` |`replica` |Master/slave delay |Second | ResourceID,Node|
-|`CurrConn` |`replica` |Current number of connections |Count | ResourceID,Node|
-|`TotalDiskUsage` |`replica` |Total disk usage |Bytes(SI) | ResourceID,Node|
-|`UpdateOperationPerSec` |`replica` |Number of UPDATE operations per second |Count/Second | ResourceID,Node|
-|`MaxDiskConfigured` |`replica` |Configure the maximum available disk space |Bytes(SI) | ResourceID,Node|
-|`TimeOutCursor` |`replica` |Cursor timeout count |Count | ResourceID,Node|
-|`NetworkTransmitThroughput` |`replica` |Network output rate |Bytes/Second(SI) | ResourceID,Node|
-|`GlobalWaitReadLockQueue` |`replica` |The length of the waiting queue for the global read lock |Count | ResourceID,Node|
-|`AvailConcurrentReadRequest` |`replica` |Available concurrent read requests |Count | ResourceID,Node|
-|`DataDiskUsage` |`replica` |Data disk usage |Bytes(SI) | ResourceID,Node|
-|`ReadIntoCachePerSec` |`replica` |The amount of data read into the cache per second |Bytes/Second(SI) | ResourceID,Node|
-|`TotalDiskUtil` |`replica` |Total disk usage |Percent | ResourceID,Node|
-|`GlobalWaitWriteLockQueue` |`replica` |The length of the waiting queue for the global write lock |Count | ResourceID,Node|
-|`TotalOpenCursor` |`replica` |Total number of cursors opened |Count | ResourceID,Node|
-|`GetmoreOperationPerSec` |`replica` |`GETMORE` operations per second |Count/Second | ResourceID,Node|
-|`MemUtil` |`replica` |Memory usage |Percent | ResourceID,Node|
-|`GlobalWaitTotalLockQueue` |`replica` |Total length of the waiting queue for the global lock |Count | ResourceID,Node|
-|`CpuUtil` |`replica` |CPU usage |Percent | ResourceID,Node|
-|`QueryOperationPerSec` |`replica` |QUERY operations per second |Count/Second | ResourceID,Node|
-|`DeleteOperationPerSec` |`replica` |Number of DELETE operations per second |Count/Second | ResourceID,Node|
-|`AvailConcurrentWriteRequest` |`replica` |Available concurrent write requests |Count | ResourceID,Node|
-|`InsertOperationPerSec` |`replica` |Number of INSERT operations per second |Count/Second | ResourceID,Node|
-|`WrittenFromCachePerSec` |`replica` |The amount of data written from cache to disk per second |Bytes/Second(SI) | ResourceID,Node|
-|`NetworkRequestPerSec` |`replica` |Number of network processing requests |Count/Second | ResourceID,Node|
-|`SlowOpCount` |`replica` |Slow query statistics |Count | ResourceID,Node|
-|`OplogAvailTime` |`replica` |`Oplog` availability time |Second | ResourceID,Node|
+|`AggregatedCpuUtil` |`instance` |CPU Utilization |Percent | ResourceID|
+|`AggregatedMemUtil` |`instance` |Memory Utilization |Percent | ResourceID|
+|`AggregatedTotalDiskUtil` |`instance` |Total Disk Space Utilization |Percent | ResourceID|
+|`NetworkReceiveThroughput` |`replica` |Network Input Rate |Bytes/Second(SI) | ResourceID,Node|
+|`RunningConcurrentWriteRequest` |`replica` |Current Concurrent Write Requests |Count | ResourceID,Node|
+|`LogDiskUsage` |`replica` |Log Disk Usage |Bytes(SI) | ResourceID,Node|
+|`RunningConcurrentReadRequest` |`replica` |Current Concurrent Read Requests |Count | ResourceID,Node|
+|`CommandOperationPerSec` |`replica` |COMMAND Operations Per Second |Count/Second | ResourceID,Node|
+|`ReplicationDelay` |`replica` |Replication Delay |Second | ResourceID,Node|
+|`CurrConn` |`replica` |Current Connections |Count | ResourceID,Node|
+|`TotalDiskUsage` |`replica` |Total Disk Usage |Bytes(SI) | ResourceID,Node|
+|`UpdateOperationPerSec` |`replica` |UPDATE Operations Per Second |Count/Second | ResourceID,Node|
+|`MaxDiskConfigured` |`replica` |Configured Maximum Available Disk Space |Bytes(SI) | ResourceID,Node|
+|`TimeOutCursor` |`replica` |Cursor Timeout Count |Count | ResourceID,Node|
+|`NetworkTransmitThroughput` |`replica` |Network Output Rate |Bytes/Second(SI) | ResourceID,Node|
+|`GlobalWaitReadLockQueue` |`replica` |Length of Global Read Lock Wait Queue |Count | ResourceID,Node|
+|`AvailConcurrentReadRequest` |`replica` |Available Concurrent Read Requests |Count | ResourceID,Node|
+|`DataDiskUsage` |`replica` |Data Disk Usage |Bytes(SI) | ResourceID,Node|
+|`ReadIntoCachePerSec` |`replica` |Data Read into Cache Per Second |Bytes/Second(SI) | ResourceID,Node|
+|`TotalDiskUtil` |`replica` |Total Disk Utilization |Percent | ResourceID,Node|
+|`GlobalWaitWriteLockQueue` |`replica` |Length of Global Write Lock Wait Queue |Count | ResourceID,Node|
+|`TotalOpenCursor` |`replica` |Total Open Cursors |Count | ResourceID,Node|
+|`GetmoreOperationPerSec` |`replica` |GETMORE Operations Per Second |Count/Second | ResourceID,Node|
+|`MemUtil` |`replica` |Memory Utilization |Percent | ResourceID,Node|
+|`GlobalWaitTotalLockQueue` |`replica` |Total Length of Global Lock Wait Queue |Count | ResourceID,Node|
+|`CpuUtil` |`replica` |CPU Utilization |Percent | ResourceID,Node|
+|`QueryOperationPerSec` |`replica` |QUERY Operations Per Second |Count/Second | ResourceID,Node|
+|`DeleteOperationPerSec` |`replica` |DELETE Operations Per Second |Count/Second | ResourceID,Node|
+|`AvailConcurrentWriteRequest` |`replica` |Available Concurrent Write Requests |Count | ResourceID,Node|
+|`InsertOperationPerSec` |`replica` |INSERT Operations Per Second |Count/Second | ResourceID,Node|
+|`WrittenFromCachePerSec` |`replica` |Data Written from Cache to Disk Per Second |Bytes/Second(SI) | ResourceID,Node|
+|`NetworkRequestPerSec` |`replica` |Network Request Processing Rate |Count/Second | ResourceID,Node|
+|`SlowOpCount` |`replica` |Slow Query Count |Count | ResourceID,Node|
+|`OplogAvailTime` |`replica` |Oplog Availability Time |Second | ResourceID,Node|
 
+## Object {#object}
 
-## Object  {#object}
-The collected `Volcengine` Cloud **MongoDB** object data structure can see the object data from 「Infrastructure-Custom」
+The structure of collected VolcEngine MongoDB object data can be viewed in "Infrastructure - Custom".
 
 ``` json
   {
@@ -125,4 +123,3 @@ The collected `Volcengine` Cloud **MongoDB** object data structure can see the o
   }
 
 ```
-

@@ -14,6 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
+| extend | json |  | 前端自定义数据<br>允许为空: True <br> |
 | name | string | Y | 索引名字<br>例子: xxx <br>允许为空: False <br> |
 | storeType | string | Y | 存储类型<br>例子: xxx <br>允许为空: False <br> |
 | exterStoreName | string | Y | 与name互为映射的外部存储的名字(SLS 类型对应 StoreName, 火山云的TLS对应 topic_name)<br>允许为空: False <br> |
@@ -43,7 +44,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/log_index_cfg/bind' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_index_cfg/bind' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --data-raw '{"accessCfg":{"url":"aa.com","password":"test","username":"test"},"exterStoreName":"aa_uuid","fields":[{"field":"time","originalField":"time"},{"field":"__docid","originalField":"__docid"},{"field":"message","originalField":"message"}],"storeType":"es","name":"openapi_test"}' \

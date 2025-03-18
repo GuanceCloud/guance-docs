@@ -1,0 +1,9 @@
+nav:
+  - 'Create an SLO': add.md
+  - 'Get SLO Details': get.md
+  - 'List SLOs in Workspace': list.md
+  - 'Modify an SLO': modify.md
+  - 'Delete an SLO': delete.md
+  - 'Batch Delete SLOs': batch-delete.md
+  - 'Disable/Enable an SLO': set-disable.md
+  - 'Batch Disable/Enable SLOs': batch-set-disable.md

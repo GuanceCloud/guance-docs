@@ -27,7 +27,8 @@
 | password | string |  | 密码<br>例子: xxxx <br>允许为空: False <br> |
 | tokenHoldTime | integer |  | 无操作会话保持时长(秒级单位, 默认1440分钟, 86400秒)<br>例子: 604800 <br>允许为空: False <br>允许空字符串: False <br>$minValue: 1800 <br>$maxValue: 604800 <br> |
 | tokenMaxValidDuration | integer |  | 登录会话最大保持时长(秒级单位, 默认7天, 604800秒)<br>例子: 2592000 <br>允许为空: False <br>允许空字符串: False <br>$minValue: 60 <br>$maxValue: 2592000 <br> |
-| attributes | json |  | 账号的属性信息(json结构, KV结构, V部分尽量使用字符串)<br>例子: {'部门': 'A部门'} <br>允许为空: False <br> |
+| attributes | json |  | 账号的属性信息(json结构, KV结构, V部分尽量使用字符串，适用于SSO登录时自动更新)<br>例子: {'部门': 'A部门'} <br>允许为空: False <br> |
+| customAttributes | json |  | 账号的自定义属性信息(json结构, KV结构, V部分尽量使用字符串, 仅适用于业务侧更新)<br>例子: {'部门': 'A部门'} <br>允许为空: False <br> |
 
 ## 参数补充说明
 

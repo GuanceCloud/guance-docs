@@ -71,7 +71,7 @@ datafluxRum.startSessionReplayRecording()
     ;(d = o.createElement(u)), (d.async = 1), (d.src = n)
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(window, document, 'script', 'https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
+  })(window, document, 'script', 'https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
 
   window.DATAFLUX_RUM.onReady(function () {
     window.DATAFLUX_RUM.init({
@@ -97,7 +97,7 @@ datafluxRum.startSessionReplayRecording()
 在 HTML 文件中添加脚本：
 
 ```html
-<script src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({

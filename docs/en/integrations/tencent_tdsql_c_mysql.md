@@ -1,89 +1,94 @@
 ---
-title: 'Tencent Cloud TDSQL-C MySQL'
+title: 'Tencent Cloud TDSQL_C_MySQL'
 tags: 
   - Tencent Cloud
-summary: 'Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.'
+summary: 'Use the "Guance Cloud Sync" series script packages from the Script Market to synchronize cloud monitoring and cloud asset data to Guance'
 __int_icon: 'icon/tencent_tdsql_c_mysql'
 dashboard:
 
-  - desc: 'Tencent Cloud TDSQL-C MySQL Monitoring View'
-    path: 'dashboard/zh/tencent_tdsql_c_mysql'
+  - desc: 'Tencent Cloud TDSQL_C_MySQL built-in views'
+    path: 'dashboard/en/tencent_tdsql_c_mysql'
 
 monitor:
-  - desc: 'Tencent Cloud TDSQL-C MySQL Monitor'
-    path: 'monitor/zh/tencent_tdsql_c_mysql'
+  - desc: 'Tencent Cloud TDSQL_C_MySQL monitor'
+    path: 'monitor/en/tencent_tdsql_c_mysql'
+
 
 ---
 <!-- markdownlint-disable MD025 -->
-# Tencent Cloud **TDSQL-C** MySQL
+# Tencent Cloud **TDSQL_C_MySQL**
 <!-- markdownlint-enable -->
 
-Use the「Guance Synchronization」series script package in the script market to synchronize data from cloud monitoring cloud assets to the observation cloud.
+Use the "Guance Cloud Sync" series script packages from the Script Market to synchronize cloud monitoring and cloud asset data to Guance
 
 
-## Config {#config}
+## Configuration {#config}
 
 ### Install Func
 
-Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
-
-### Installation script
-
-> Tip：Please prepare Aliyun AK that meets the requirements in advance（For simplicity's sake,，You can directly grant the global read-only permission`ReadOnlyAccess`）
-
-To synchronize the monitoring data of **TDSQL-C** MySQL cloud resources, we install the corresponding collection script：「Guance Integration（Tencent Cloud-**TDSQL-C** MySQLCollect）」(ID：`guance_tencentcloud_tdsql-c_mysql`)
-
-Click 【Install】 and enter the corresponding parameters: Aliyun AK, Aliyun account name.
-
-Click [Deploy Startup Scripts], the system will automatically create the `Startup` script set and automatically configure the corresponding startup scripts.
-
-You can see the corresponding auto-trigger configuration in "Management / Auto-trigger Configuration" after you turn it on. Click "Execute" to execute the task immediately without waiting for the regular time. Wait for a while, you can check the record and log of the executed task.
-
-We collected some configurations by default, as described in the Metrics column [Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Verify
 
-1. In「Management / Crontab Config」check whether the automatic triggering configuration exists for the corresponding task,In addition, you can view task records and logs to check whether exceptions exist.
-2. On the observation cloud platform, click 「Infrastructure / Custom」 to check whether asset information exists.
-3. On the observation cloud platform, press 「Metrics」 to check whether monitoring data exists.
+### Install the **TDSQL_C_MySQL** Collection Script
 
-## Metric {#metric}
-Configure Tencent Cloud COS monitoring. The default metric set is as follows. You can collect more metrics by configuring them [Tencent Cloud Monitor Metrics Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}
+> Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-### Monitor Metric
-| Metric name      | Metric             | Implication                        | Unit  | Dimensions              |
+To synchronize the monitoring data of **TDSQL_C_MySQL**, install the corresponding collection script: "Guance Integration (Tencent Cloud-TDSQL_C_MySQL Collection)" (ID: `guance_tencentcloud_tdsql_c_mysql`)
+
+After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
+
+Click 【Deploy Startup Script】and the system will automatically create a `Startup` script package and configure the corresponding startup scripts.
+
+Once enabled, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
+
+> If you need to collect corresponding logs, you also need to enable the corresponding log collection script. If you need to collect billing data, you need to enable the cloud billing collection script.
+
+By default, we collect some configurations, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"} for details.
+
+
+### Verification
+
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+
+## Metrics {#metric}
+After configuring Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}
+
+### Monitoring Metrics
+
+| Metric Name      | Description             | Meaning                        | Unit  | Dimensions              |
 | --------------- | ---------------------- | --------------------------- | ----- | ----------------- |
-| `BytesSent` | Bytes sent per second     | Amount of data sent from the client per second  | MB/s   | InstanceId |
-| `BytesReceived` | Bytes received per second  | Amount of data received by the client per second   | MB/s | InstanceId |
-| `ComDelete` | Number of delete operations  | Number of delete operations per second  | Count/s | InstanceId |
-| `ComInsert` | Number of insert operations  | Number of insert operations per second  | Count/s | InstanceId |
-| `ComUpdate` | Number of update operations  | Number of update operations per second  | Count/s | InstanceId |
-| `MemoryUse` | Memory usage   | Amount of memory used per second  | Count/s | InstanceId |
-| `ComSelect` | Number of select operations   | Number of select operations per second  | Count/s | InstanceId |
-| `MaxConnections` | Maximum number of connections  | Maximum number of connections per second  | Count/s | InstanceId |
-| `SlowQueries` | Number of slow queries | Number of slow queries per second    | Count/s | InstanceId |
-| `ThreadsRunning` | Number of running threads | Number of running threads per second  | Count/s | InstanceId |
-| `Memoryuserate` | Memory usage rate   | Percentage of memory usage  | % | InstanceId |
-| `Storageuserate` | Storage usage rate | Percentage of storage usage  | % | InstanceId |
-| `Storageuse` | Storage usage  | Amount of storage used  | GB | InstanceId |
-| `Connectionuserate` | Connection usage rate  | Percentage of connection usage  | % | InstanceId |
-| `Tps` | Transactions per second | Average number of successful transactions executed per second (including rollbacks and commits)  | Count/s | InstanceId |
-| `Cpuuserate` | CPU usage rate  | Percentage of CPU usage  | % | InstanceId |
-| `Qps` | Queries per second  | Number of queries executed per second  | Count/s | InstanceId |
-| `Queries` | Total number of queries  | Total number of queries within a statistical period  | Count/s | InstanceId |
+| `BytesSent` | Bytes Sent Per Second     | Bytes sent to client per second  | MB/s   | InstanceId |
+| `BytesReceived` | Bytes Received Per Second  | Bytes received from client per second   | MB/s | InstanceId |
+| `ComDelete` | Delete Count  | Number of delete operations  | ops/sec | InstanceId |
+| `ComInsert` | Insert Count  | Number of insert operations  | ops/sec | InstanceId |
+| `ComUpdate` | Update Count  | Number of update operations  | ops/sec | InstanceId |
+| `MemoryUse` | Memory Usage   | Memory usage  | ops/sec | InstanceId |
+| `ComSelect` | Query Count   | Number of queries  | ops/sec | InstanceId |
+| `MaxConnections` | Maximum Connections  | Maximum number of connections  | ops/sec | InstanceId |
+| `SlowQueries` | Slow Query Count | Number of slow queries    | ops/sec | InstanceId |
+| `ThreadsRunning` | Running Threads | Number of running threads  | ops/sec | InstanceId |
+| `Memoryuserate` | Memory Usage Rate   | Memory usage rate | % | InstanceId |
+| `Storageuserate` | Storage Usage Rate | Storage usage rate  | % | InstanceId |
+| `Storageuse` | Storage Usage  | Storage usage | GB | InstanceId |
+| `Connectionuserate` | Connection Utilization Rate  | Connection utilization rate  | % | InstanceId |
+| `Tps` | Transactions Per Second | Average number of transactions successfully executed per second (including rollbacks and commits)  | ops/sec | InstanceId |
+| `Cpuuserate` | CPU Usage Rate  | CPU usage rate  | % | InstanceId |
+| `Qps` | Queries Per Second  | Number of queries executed per second  | ops/sec | InstanceId |
+| `Queries` | Total Queries  | Total number of queries within a statistical period  | ops/sec | InstanceId |
 
-## Object {#object}
 
-Collected Tencent Cloud **TDSQL-C** MySQL object data structure, you can see the object data from "Infrastructure - Customize".
+## Objects {#object}
+
+The structure of collected Tencent Cloud **tdsql_c_mysql** object data can be viewed in "Infrastructure - Custom"
 
 ```json
 {
-  "measurement": "tencentcloud_tdsql-c_mysql",
+  "measurement": "tencentcloud_tdsql_c_mysql",
   "tags": {
     "ClusterType" : "0",
     "InstanceId"  : "cmxxxx",
@@ -104,10 +109,10 @@ Collected Tencent Cloud **TDSQL-C** MySQL object data structure, you can see the
     "CreateTime"       : "2022-08-24 13:54:00",
     "DeadLine"         : "2072-08-24 13:54:00",
     "ReadonlyInstances": "[]",
-    "RelatedInstance"  : "{Instance JSON data}",
-    "ReplicaSets"      : "{Instance JSON data}",
+    "RelatedInstance"  : "{instance JSON data}",
+    "ReplicaSets"      : "{instance JSON data}",
     "StandbyInstances" : "[]",
-    "message"          : "{Instance JSON data}",
+    "message"          : "{instance JSON data}",
   }
 }
 ```

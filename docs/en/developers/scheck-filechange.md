@@ -1,46 +1,46 @@
-# Check the Change Implementation of Sensitive Files
-  This time, we will show how to use Scheck to check the lua script implementation of sensitive files.
+# Implementation of Checking Changes in Sensitive Files
+This will demonstrate how to use Scheck to check sensitive files using a Lua script.
 
 - Version: 1.0.7-5-gb83de2d
-- Release date: 2022-08-30 03:31:26
-- Operating system support: linux/arm,linux/arm64,linux/386,linux/amd64  
+- Release Date: 2022-08-30 03:31:26
+- Supported Operating Systems: linux/arm, linux/arm64, linux/386, linux/amd64  
 
-## Preconditions
+## Prerequisites
 
-- [Scheck](../scheck/scheck-install.md) has been installed.
+- [Scheck](../scheck/scheck-install.md) is installed
 
 ## Development Steps
 
-1. Go to the installation directory and edit the configuration file `scheck.conf` to set the `enable` field to`true`:
+1. Enter the installation directory and set the `enable` field in the configuration file `scheck.conf` to `true`:  
 
 ```toml
 ...
 [scoutput]
-   # ##Messages generated during Sheck can be sent to local, http and Alibaba Cloud sls
-   # ##Remote server, such as http(s)://your.url
+   # ##Messages generated during Security Check can be sent to local, http, or Alibaba Cloud sls.
+   # ##Remote server, example: http(s)://your.url
   [scoutput.http]
     enable = true
     output = "http://127.0.0.1:9529/v1/write/security"
   [scoutput.log]
-    # ##Configurable local storage
+    # ##Local storage can be configured
     enable = false
     output = "/var/log/scheck/event.log"
 ...
 ```
 
-2. Create a new manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is the user-defined script directory) and edit it as follows:
+2. Create a manifest file `files.manifest` under the directory `/usr/local/scheck/custom.rules.d` (this directory is for user-defined scripts), and edit it as follows:  
 
 ```toml
 id       = 'check-file'
 category = 'system'
 level    = 'warn'
-title    = 'monitor file changes'
-desc     = 'the File {{.File}} has changed'
-cron     = '*/10 * * * *' #Indicate that the lua script is executed every 10 seconds
+title    = 'Monitor File Changes'
+desc     = 'File {{.File}} has changed'
+cron     = '*/10 * * * *' # This means the Lua script will run every 10 seconds
 os_arch  = ["Linux"]
 ```
 
-3. Create a new script file `files.lua` in the manifest file sibling directory and edit it as follows:
+3. In the same directory as the manifest file, create a script file `files.lua`, and edit it as follows:
 
 ```lua
 local files={
@@ -69,8 +69,8 @@ for i,v in ipairs(files) do
 end
 ```
 
-4. When a sensitive file is altered, the next 10 seconds will detect and trigger the trigger function, sending the event to the file `/var/log/scheck/event.log`, adding a row of data, for example:  
+4. When a sensitive file is modified, within the next 10 seconds, the change will be detected and the `trigger` function will be invoked, sending the event to the file `/var/log/scheck/event.log`, adding a line of data, for example:  
 
 ```
-check-file-01,category=security,level=warn,title=monitor file changes message="file /etc/passwd changed" 1617262230001916515
+check-file-01,category=security,level=warn,title=Monitor File Changes message="File /etc/passwd has changed" 1617262230001916515
 ```

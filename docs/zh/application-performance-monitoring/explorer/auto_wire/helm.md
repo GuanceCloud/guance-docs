@@ -24,7 +24,7 @@ kubectl apply -f datakit.yam
 
 ```
 $ helm install datakit-operator datakit-operator \
-     --repo  https://pubrepo.guance.com/chartrepo/datakit-operator \
+     --repo  https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit-operator \
      -n datakit --create-namespace
 ```
 
@@ -41,7 +41,7 @@ Datakit Operator 配置是 JSON 格式，在 Kubernetes 中单独以 ConfigMap �
            "enabled_namespaces":     [],
            "enabled_labelselectors": [],
            "images": {
-                "java_agent_image":   "pubrepo.guance.com/datakit-operator/dd-lib-java-init:v1.30.1-guance"
+                "java_agent_image":   "pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init:v1.30.1-guance"
             },
             "envs": {
               "DD_JMXFETCH_STATSD_HOST": "datakit-service.datakit.svc",
@@ -58,7 +58,7 @@ Datakit Operator 配置是 JSON 格式，在 Kubernetes 中单独以 ConfigMap �
                 "reuse_exist_volume": "false"
             },
             "images": {
-                "logfwd_image": "pubrepo.guance.com/datakit/logfwd:1.28.1"
+                "logfwd_image": "pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.28.1"
             }
         }
     }

@@ -41,8 +41,8 @@ OpenAI的展示指标包括请求总数，响应时间，，请求数量，请�
 
 更多信息请参考：
 
-- <https://func.guance.com/doc/practice-connect-to-datakit/>
-- <https://docs.guance.com/datakit/datakit-service-how-to/>
+- [https://func.guance.com/doc/practice-connect-to-datakit/]
+- [<<< homepage >>>/datakit/datakit-service-how-to/>]
 
 ### 安装脚本
 

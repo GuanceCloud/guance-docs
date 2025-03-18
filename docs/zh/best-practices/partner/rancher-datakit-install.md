@@ -88,7 +88,7 @@ Project name 输入 `datakit-conf`，点击「Create Project」。
 
 ### 步骤 3：添加 Chart 仓库
 
-登录「Rancher」 - 「集群」 - 「应用市场」 - 「Chart 仓库」，点击「创建」。名称输入 **datakit**，URL 输入 [https://pubrepo.guance.com/chartrepo/datakit](https://pubrepo.guance.com/chartrepo/datakit)，点击「创建」。
+登录「Rancher」 - 「集群」 - 「应用市场」 - 「Chart 仓库」，点击「创建」。名称输入 **datakit**，URL 输入 [https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit](https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit)，点击「创建」。
 
 ![image](../images/rancher-install-6.png)
 
@@ -154,7 +154,7 @@ Project name 输入 `datakit-conf`，点击「Create Project」。
 
 ![image](../images/rancher-install-15.png)
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「指标」，选中 「kubernetes」指标集，查看指标有数据，即表示指标采集正常。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」 - 「指标」，选中 「kubernetes」指标集，查看指标有数据，即表示指标采集正常。
 
 ![image](../images/rancher-install-16.png)
 

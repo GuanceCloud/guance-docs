@@ -230,7 +230,7 @@
           enableServiceLinks: true
           initContainers:
           - name: fsgroup-volume
-            image: "pubrepo.guance.com/googleimages/busybox:1.35.0"
+            image: "pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0"
             command: ['sh', '-c']
             args:
               - 'chown -R 1000:1000 /usr/share/opensearch/data'
@@ -252,7 +252,7 @@
               runAsNonRoot: true
               runAsUser: 1000
 
-            image: "pubrepo.jiagouyun.com/base/opensearch:2.3.0-85eb7af9"
+            image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/opensearch:2.3.0-85eb7af9"
             imagePullPolicy: "IfNotPresent"
             readinessProbe:
               failureThreshold: 3
@@ -435,7 +435,7 @@ kubectl logs -n middleware -f opensearch-single-0 -c opensearch
         spec:
           containers:
           - name: elasticsearch
-            image: pubrepo.jiagouyun.com/base/elasticsearch:7.13.2
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/base/elasticsearch:7.13.2
             imagePullPolicy: IfNotPresent
             resources:
                 limits:
@@ -488,7 +488,7 @@ kubectl logs -n middleware -f opensearch-single-0 -c opensearch
               defaultMode: 0444 
           initContainers:
           - name: fix-permissions
-            image: pubrepo.guance.com/googleimages/busybox:1.35.0
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0
             imagePullPolicy: IfNotPresent
             command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
             securityContext:
@@ -497,13 +497,13 @@ kubectl logs -n middleware -f opensearch-single-0 -c opensearch
             - name: data
               mountPath: /usr/share/elasticsearch/data
           - name: increase-vm-max-map
-            image: pubrepo.guance.com/googleimages/busybox:1.35.0
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0
             imagePullPolicy: IfNotPresent
             command: ["sysctl", "-w", "vm.max_map_count=262144"]
             securityContext:
               privileged: true
           - name: increase-fd-ulimit
-            image: pubrepo.guance.com/googleimages/busybox:1.35.0
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/busybox:1.35.0
             imagePullPolicy: IfNotPresent
             command: ["sh", "-c", "ulimit -n 65536"]
             securityContext:
@@ -646,7 +646,7 @@ kubectl delete -n middleware pvc data-es-cluster-0
                     - ALL
                   runAsNonRoot: true
                   runAsUser: 1000
-                image: "pubrepo.jiagouyun.com/base/opensearch-dashboards:2.3.0"
+                image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/opensearch-dashboards:2.3.0"
                 imagePullPolicy: "IfNotPresent"
                 readinessProbe:
                   failureThreshold: 10
@@ -733,7 +733,7 @@ kubectl delete -n middleware pvc data-es-cluster-0
                 workload.user.cattle.io/workloadselector: deployment-middleware-kibana
             spec:
               containers:
-              - image: pubrepo.guance.com/googleimages/kibana:7.13.2
+              - image: pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kibana:7.13.2
                 imagePullPolicy: IfNotPresent
                 env:
                 - name: ELASTICSEARCH_URL

@@ -25,7 +25,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/service_manage/performance/export?end=1693810693999&start=1693767493000' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage/performance/export?end=1693810693999&start=1693767493000' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   -o 'servicePerformanceInfo.csv'
   --compressed

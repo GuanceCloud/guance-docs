@@ -2,7 +2,7 @@
 
 ---
 
-我们在[上一部做了 SLO 工具选型](slo-part2.md)，现在我们来看看 SLO 在[<<< custom_key.brand_name >>>](https://guance.com/)的最佳实践
+我们在[上一部做了 SLO 工具选型](slo-part2.md)，现在我们来看看 SLO 在[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)的最佳实践
 
 协作和沟通对于成功实施服务水平目标至关重要。开发和运营团队需要根据既定的服务可靠性目标评估他们的工作的影响，以改善他们的最终用户体验。<<< custom_key.brand_name >>> 使您组织中的每个人都能在一个地方跟踪、管理和监控所有  SLO 和错误预算的状态，从而简化了跨团队协作。团队可以在仪表板上将他们的 SLO 与相关服务和基础设施组件一起可视化，并与依赖它们的任何利益相关者共享这些 SLO 的实时状态。
 
@@ -50,4 +50,4 @@
 #### 使用 <<< custom_key.brand_name >>> SLO 确保服务可靠性
 在这篇文章中，我们研究了一些有用的技巧，它们将帮助您从 <<< custom_key.brand_name >>> 中的服务级别目标中获得最大价值。SLO 与您的基础设施指标、分布式跟踪、日志、综合测试和网络数据一起，帮助您确保提供最佳的最终用户体验。<<< custom_key.brand_name >>> 的内置协作功能不仅可以轻松定义 SLO，还可以轻松地与组织内外的利益相关者分享见解。
 
-查看我们的[文档](https://docs.guance.com/)，开始定义和管理您的 SLO。如果您还没有使用 <<< custom_key.brand_name >>>，您可以立即开始免费试用。
+查看我们的[文档](<<< homepage >>>/)，开始定义和管理您的 SLO。如果您还没有使用 <<< custom_key.brand_name >>>，您可以立即开始免费试用。

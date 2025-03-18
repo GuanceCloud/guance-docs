@@ -103,7 +103,7 @@ end
 
 ```yaml
 # 此处设置 Dataway 要上传的地址，一般为 Kodo，但也可以是另一个 Dataway
-remote_host: https://kodo.guance.com
+remote_host: https://kodo.<<< custom_key.brand_main_domain >>>
 
 # 如果上传地址为 Dataway，则此处要置为 true，表示 Dataway 级联
 cascaded: false
@@ -195,13 +195,13 @@ $ etcdctl role grant-permission sinker readwrite /ping       # 用于检测连�
             "rules": [
                 "{ host = 'my-host'}"
             ],
-            "url": "https://kodo.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         },
         {
             "rules": [
                 "{ host = 'my-host' OR cluster = 'cluster-A' }"
             ],
-            "url": "https://kodo.guance.com?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
         }
      ]
 }
@@ -225,7 +225,7 @@ OK
             "{ host = 'my-host' OR cluster = 'cluster-A' }"
         ],
         "info": "这是 yyy 工作空间",
-        "url": "https://kodo.guance.com?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+        "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
     }
     ```
 <!-- markdownlint-enable -->
@@ -240,7 +240,7 @@ OK
 {
     "as_default": true,
     "info": "这是默认的兜底工作空间",
-    "url": "https://kodo.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 ```
 
@@ -412,7 +412,7 @@ Rules:
         "rules": [
             "{ workspace = 'zhengb-test'}"
         ],
-        "url": "https://openway.guance.com?token=token1"
+        "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=token1"
     }
 ]
 ```
@@ -427,13 +427,13 @@ Rules:
     "rules": [
       "{ host = 'HOST1'}"
     ],
-    "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxx"
+    "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxx"
   },
   {
     "rules": [
       "{ host = 'HOST2'}"
     ],
-    "url": "https://openway.guance.com?token=tkn_yyyyyyyyyyyyy"
+    "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_yyyyyyyyyyyyy"
   }
 ]
 
@@ -472,7 +472,7 @@ rules json was saved to sink-get.json!
             "rules": [
                 "{ workspace = 'test'}"
             ],
-            "url": "https://openway.guance.com?token=tkn_xxxxxxxxxxxxxx"
+            "url": "https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxx"
         }
     ],
     "strict": true
@@ -754,7 +754,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
             "rules": [
                 "{ class = 'kubelet_pod' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -773,7 +773,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
            "rules": [
                "{ measurement = 'disk' AND other_conditon = 'some-value' }",
            ],
-           "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
+           "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -794,7 +794,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
             "rules": [
                 "{ category = 'logging' AND other_conditon = 'some-value' }",
             ],
-            "url": "https://kodo.guance.com?token=<YOUR-TOKEN>"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<YOUR-TOKEN>"
         },
         {
             ... # other rules
@@ -822,7 +822,7 @@ Datakit 内置了以下几个可用的自定义 Key，它们一般不会出现�
             "rules": [
                 "{ __dataway_api in ['/v1/datakit/pull', '/v1/election', '/v1/election/heartbeat', '/v1/query/raw', '/v1/workspace', '/v1/object/labels', '/v1/check/token'] }",
             ],
-            "url": "https://kodo.guance.com?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
+            "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=<SOME-SPECIAL-WORKSPACE-TOKEN>"
         }
     ]
 }

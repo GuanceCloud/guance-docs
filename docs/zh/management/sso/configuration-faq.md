@@ -22,8 +22,8 @@ SAML 基本概念如下：
 
 在身份提供商配置完 SAML 单点登录的实体 ID 和回调地址（断言地址）以后，即可下载云数据文档。若无实体 ID和回调地址（断言地址），可填入以下示例获取元数据文档。
 
-- 实体 ID：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)；  
-- 断言地址，临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)。  
+- 实体 ID：[https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml)；  
+- 断言地址，临时使用：[https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/)。  
 
 在<<< custom_key.brand_name >>>中启用 SSO 单点登录后，[获取到正确的实体 ID 和断言地址](../../management/sso/index.md#obtain)后重新替换。
 
@@ -46,7 +46,7 @@ SAML 基本概念如下：
 
 :material-chat-question: **在身份提供商配置了邮箱映射声明以后，还是无法在<<< custom_key.brand_name >>>进行单点登录，如何解决？**
 
-<<< custom_key.brand_name >>>定义的关联映射邮箱字段通过正则表达式来匹配身份提供商的邮箱规则，若配置的身份提供商邮箱规则不符合<<< custom_key.brand_name >>>支持的邮箱正则表达式，故无法进行单点登录，可[联系<<< custom_key.brand_name >>>售后](https://www.guance.com/#home)进行处理。
+<<< custom_key.brand_name >>>定义的关联映射邮箱字段通过正则表达式来匹配身份提供商的邮箱规则，若配置的身份提供商邮箱规则不符合<<< custom_key.brand_name >>>支持的邮箱正则表达式，故无法进行单点登录，可[联系<<< custom_key.brand_name >>>售后](https://<<< custom_key.brand_main_domain >>>/#home)进行处理。
 
 ![](../img/contact-us.png)
 

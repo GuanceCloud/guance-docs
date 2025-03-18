@@ -63,7 +63,7 @@
 | values    |  array  |  N | 查询条件具体数值 |
 
 **4. operation 说明**
-参考 行协议过滤器https://docs.guance.com/datakit/datakit-filter/
+参考 行协议过滤器<<< homepage >>>/datakit/datakit-filter/
 
 |key|说明|
 |---|----|
@@ -99,7 +99,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/blacklist/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/blacklist/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"规则1","desc":"","type":"logging","source":"kodo-log","filters":[{"name":"host","value":["127.0.0.1"],"operation":"in","condition":"and"}]}' \

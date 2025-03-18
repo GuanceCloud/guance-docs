@@ -28,7 +28,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/outer_function/execute' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/outer_function/execute' \
   -H 'Content-Type: application/json' \
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --data-raw $'{\n  "funcId": "guance__openapi.test",\n  "funcBody": {\n    "kwargs": {\n      "workspace_token": {},\n        "workspace_uuid": {},\n        "your_name": {\n          "default": "OpenAPI 用户"\n        }\n    }\n  }\n}' \

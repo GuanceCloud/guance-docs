@@ -1,0 +1,6 @@
+nav:
+  - 'Create a Test task': add.md
+  - 'Delete a Test task': delete.md
+  - 'Modify a Test task': modify.md
+  - 'Get the list of Test tasks': list.md
+  - 'Get details of a Test task': get.md

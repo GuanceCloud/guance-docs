@@ -1,145 +1,132 @@
-# Cloud Account Billing Inspection Intelligent Integration 
+# Cloud Account Instance-Level Billing Inspection
+
 ---
 
 ## Background
 
-Cloud (now only suport alibaba cloud) Account Billing Inspection helps subscribers manage budget alerts, abnormal cost alerts, forecast costs for cloud services and provides subscribers with the ability to visualize and support multi-dimensional visualization of consumption of cloud service resources.
+Cloud account instance-level billing inspection helps users manage anomaly cost warnings at the cloud service instance level, predict cost trends, and provides alerts for high-growth, high-consumption instances. It also offers bill visualization capabilities and supports multi-dimensional visualization of cloud service resource consumption.
 
-## Preconditions
+## Prerequisites
 
-1. Offline deployment of [**DataFlux Func GSE**](https://func.guance.com/#/), Or activate the [**DataFlux Func Hosted Edition**](../../dataflux-func/index.md)
-3. Create [API Key](../../../management/api-key/open-api.md) in Guance "management/API Key management" 
+1. Self-host [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or enable [DataFlux Func (Automata)](../../dataflux-func/index.md)
+2. Create an [API Key](../../management/api-key/open-api.md) in <<< custom_key.brand_name >>> under "Management / API Key Management" for performing operations.
 
-> **Note：**If you are considering using a cloud server for your DataFlux Func offline deployment, please consider deploying with your current Guance SaaS on [the same carrier in the same region](../../../getting-started/necessary-for-beginners/select-site/)。
+> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with your current <<< custom_key.brand_name >>> SaaS on the [same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
 >
-> **Note 2:** Since instance level billing data is stored in logs, Guance SaaS log data is only stored for 15 days by default.
+> **Note 2**: Since instance-level billing data is stored as logs, <<< custom_key.brand_name >>> SaaS log data has a default retention period of 15 days. To ensure accurate inspections, extend the log retention period to the maximum.
 
-## Start Intelligent Inspection
+## Enable Inspection
 
-In the DataFlux Func, install and activate the following through the "Script Market": [Guance Integration (Huawei Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-huaweicloud-billing-by-instance/), [Guance Integration (Aliyun - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-aliyun-billing/), and [Guance Integration (Tencent Cloud - Billing Collection - Instance Dimension)](https://func.guance.com/doc/script-market-guance-tencentcloud-billing-by-instance/). Ensure that the data collection period is over 15 days. Then, install the "Guance Custom Inspection (Billing - Instance Dimension)" and follow the prompts to configure the Guance API Key to complete activation.
+In your self-hosted DataFlux Func, install and enable ["<<< custom_key.brand_name >>> Integration (Huawei Cloud - Billing Collection - Instance Level)"](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-billing-by-instance/), ["<<< custom_key.brand_name >>> Integration (Alibaba Cloud - Billing Collection - Instance Level)"](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-billing/), and ["<<< custom_key.brand_name >>> Integration (Tencent Cloud - Billing Collection - Instance Level)"](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-billing-by-instance/). Collect data for more than 15 days, then install "<<< custom_key.brand_name >>> Self-hosted Inspection (Billing - Instance Level)" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
 
-Select the inspection scene you want to enable in the DataFlux Func script market and click install. Configure the Guance API Key and [GuanceNode](https://func.guance.com/doc/script-market-guance-monitor-connect-to-other-guance-node/), then select deploy and start the script.
+In the DataFlux Func script market, select the inspection scenario you want to enable, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-Once the deployment of the startup script is successful, it will automatically create the startup script and trigger configuration. You can check the corresponding configuration directly by clicking on the link.
+After successfully deploying the startup script, it will automatically create and trigger configurations. You can view the corresponding configurations directly via the provided link.
 
 ![image](../img/success_checker.png)
 
-## Configs Intelligent Inspection
+## Configure Inspection
 
-### Configure Intelligent Inspection in Guance
+### Configuration in <<< custom_key.brand_name >>>
 
 ![image](../img/cloudfee_instacne02.png)
 
-#### Enable / Disable
+#### Enable/Disable
+The cloud account instance-level billing inspection is enabled by default but can be manually disabled. Once enabled, it will inspect the configured list of cloud accounts.
 
-Smart Inspection "Cloud Account Billing Inspection Intelligent Integration" is "On" by default, you can manually "Off", when it is on, it will inspection the configured cloud accounts.
+#### Edit
+The "Cloud Account Instance-Level Billing Inspection" supports manual addition of filtering conditions. In the smart inspection list's operation menu on the right, click the **Edit** button to edit the inspection template.
 
-#### Export
+* Filtering Conditions: Configure corresponding cloud provider and cloud account information.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
 
-Intelligent Inspection supports "Export JSON configuration". Under the operation menu on the right side of the Intelligent Inspection list, click the "Export" button to export the JSON code of the current inspection, and the export file name format: `intelligent inspection name.json`.
-
-#### Editor
-Intelligent check "Cloud Account Billing Inspection Intelligent Integration" supports users to manually add filter conditions. Under the operation menu on the right side of the intelligent check list, click the "Edit" button to edit the check template.
-
-* Filter Criteria: Configure corresponding cloud vendor and cloud account information
-* Alarm Notification: Support the selection and editing of alarm policies, including the level of events to be notified, the notification object and the alarm silence period
-
-Click Edit to configure entry parameters, then fill in the corresponding detection object in parameter configuration, and click Save to start check:
+To configure entry parameters, click **Edit**, fill in the corresponding detection objects in the parameter configuration, and save to start the inspection:
 
 ![image](../img/cloudfee_instacne03.png)
 
-You can configure multiple cloud accounts and corresponding budget information with reference to the following configure .
+You can reference the following configuration for multiple application information:
 
 ```json
- //  Configuration Example：
- configs:
-        account_id:cloud_provider
-        account_id:cloud_provider
+// Configuration Example:
+configs configuration example:
+    account_id:cloud_provider
+    account_id:cloud_provider
 ```
 
 ## View Events
- Based on the Guance intelligence algorithm, the intelligent inspection will look for abnormalities in cloud asset costs and budget metrics, such as cloud asset costs suddenly occurring abnormally. For abnormal cases, Smart Inspection will generate corresponding events. Under the operation menu on the right side of the Smart Inspection list, click the "View Related Events" button to view the corresponding abnormal events.
+
+Based on <<< custom_key.brand_name >>> intelligent algorithms, the smart inspection identifies anomalies in cloud asset costs. If there are sudden anomalies in cloud asset costs, the smart inspection generates corresponding events. In the smart inspection list's operation menu on the right, click the **View Related Events** button to view the corresponding anomaly events.
 
 ![image](../img/cloudfee_instacne04.png)
 
 ### Event Details Page
+Clicking **Event** allows you to view the details page of the smart inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, historical records, and associated events.
 
-Click "Event" to view the details page of intelligent check events, including event status, exception occurrence time, exception name, basic attributes, event details, alarm notification, history and related events.
+* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the current smart inspection configuration details.
 
-* Click the "View Monitor Configuration" icon in the upper right corner of the Details page to support viewing and editing the configuration details of the current intelligent check
-* Click the "Export Event JSON" icon in the upper right corner of the details page to support exporting the details of events
-
-#### Basic Properties
-
-  * Detection Dimensions: Filter criteria based on smart check configuration, enabling replication of detection dimensions `key/value`, adding to filters and viewing related logs, containers, processes, security patrol, links, user access monitoring, availability monitoring and CI data
-  * Extended Attributes: Support replication in the form of `key/value` after selecting extended attributes and forward/reverse filtering.
+#### Basic Attributes
+* Detection Dimensions: Based on the configured filtering conditions of the smart inspection, support copying `key/value`, adding filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, availability monitoring, and CI data.
+* Extended Attributes: After selecting extended attributes, support copying in `key/value` format and forward/reverse filtering.
 
 ![image](../img/cloudfee_instacne05.png)
 
 #### Event Details
-* Event overview: Describe the object, content, etc. of the abnormal inspection events
-* Cost analysis: You can view the consumption trend of the current abnormal cloud account for the past 30 days
-  * Abnormal interval: The abnormal start time to the end time in the intelligent inspection data
-
-* Consumption amount increase product ranking: View the current cloud account product cost ranking
-* Spending amount increase instance ranking: View current cloud account instance cost ranking
-* Expense Forecast: Forecast the consumption amount of the cloud account for the remaining dates of the month
-  * Confidence interval: Predict the exact range of the trend line
-
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Cost Analysis: View the consumption trend of the current abnormal cloud account over the past 30 days.
+  * Abnormal Interval: The start and end times of the abnormality in the smart inspection data.
+  
+* Consumption Amount Increase Product Ranking: View the ranking of product costs for the current cloud account.
+* Consumption Amount Increase Instance Ranking: View the ranking of instance costs for the current cloud account.
+* Cost Forecast: Predict the remaining monthly consumption amount for the cloud account.
+  * Confidence Interval: The accuracy range of the forecast trend line.
 
 ![image](../img/cloudfee_instacne06.png)
 
-#### History
-Support to view detection objects, exception/recovery time and duration.
+#### Historical Records
+Supports viewing detected objects, anomaly/recovery times, and duration.
 
 ![image](../img/cloudfee_instacne07.png)
 
-#### Related events
-
-Support to view associated events by filtering fields and selected time component information.
+#### Associated Events
+Supports viewing associated events through selected fields and time component information.
 
 ![image](../img/cloudfee_instacne08.png)
 
-#### View Link
+#### View Links
 
-You can view more granular information about the corresponding exception messages, and the factors that may affect them, through the Cloud Billing Instance Expense Monitoring view in the Event List
+You can view more granular information and potential influencing factors of the corresponding anomalies through the cloud billing instance cost monitoring views in the event list.
 ![image](../img/cloudfee_instacne09.png)
 
-## FAQ
+## Common Issues
 
-**1.How to configure the detection frequency of Cloud Account Billing Inspection Intelligent Integration **
+**1. How to configure the inspection frequency for cloud account instance-level billing**
 
-* In the  DataFlux Func, add `fixed_crontab='0 0 * * *', timeout=900` in the decorator when writing the  check processing function, and then configure it in "management/auto-trigger configuration".
+* In your self-hosted DataFlux Func, add `fixed_crontab='0 0 * * *', timeout=900` in the decorator when writing the inspection processing function, then configure it in "Management / Automatic Trigger Configuration".
 
-**2. Cloud Account Billing Inspection Intelligent Integration may not have exception analysis when triggered**
+**2. Why might there be no anomaly analysis during inspection**
 
-When there is no exception analysis in the inspection report, please check the current data collection status of `datakit`.
+If the inspection report lacks anomaly analysis, check the data collection status of the current `datakit`.
 
-**3.Abnormal errors are found in scripts that were previously running normally during the inspection process**
+**3. What if previously running scripts encounter errors during inspection**
 
-Please update the referenced script set in DataFlux Func's script marketplace, you can view the update log of the script marketplace via [**Change Log**](https://func.guance.com/doc/script-market-guance-changelog/) to facilitate immediate script update.
+Update the referenced script sets in the DataFlux Func script market. You can review the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates.
 
-**4.Under what circumstances will Cloud Account Billing Inspection Intelligent Integration event be generated**
+**4. Under what circumstances will cloud account instance-level billing inspection events be generated**
 
-Using the specified cloud vendor product cost sum as the entry point, when there is a significant change in this cost information or when the budget of the total cost exceeds the configured budget triggers the generation of event logic for root cause analysis and generates a walk-through event.
+Using the total cost of specified cloud provider products as the entry point, events are triggered when there is a significant change in cost information or when the total cost exceeds the configured budget.
 
-* Tracking thresholds: e.g., current period cost year-over-year > 100%
+* Tracking Threshold: For example, if the current cost increases by more than 100% year-over-year or month-over-month.
 
-**5.Cloud Account Billing Inspection Intelligent Integration no exceptions for a long time**
+**5. Why hasn't the cloud account instance-level billing inspection been triggered for a long time**
 
-If billing exceptions are found in the online view patrol but not in the patrol, you should first check whether the patrol is open for more than 15 days, secondly, you should check whether the use of log data storage expiration policy is greater than 15 days, and finally, you should check in DataFlux Func whether the automatic triggering task is correctly configured.
+If you notice billing anomalies in online views but the inspection does not detect them, first check whether the inspection has been active for more than 15 days. Next, check if the log data retention policy exceeds 15 days. Finally, verify that automatic trigger tasks are correctly configured in DataFlux Func.
 
-**6. During the upgrade inspection process, it was found that there was no change in the corresponding script set in the Startup**
+**6. During script upgrades, why do the corresponding script sets in Startup remain unchanged**
 
-Please delete the corresponding script set first, then click the upgrade button to configure the corresponding Guance API key to complete the upgrade.
+First, delete the corresponding script set, then click the upgrade button and configure the <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**7. How to determine if the inspection is effective after it is enabled**
+**7. How to determine if the inspection is effective after enabling**
 
-Check the corresponding inspection status in "Management/Auto-trigger configuration". The status should be "enabled" first, and then click "Execute" to verify if there is any problem with the inspection script. If the words "executed successfully xxx minutes ago" appear, the inspection is running normally and is effective.
-
-
-
-
-
+In "Management / Automatic Trigger Configuration," check the inspection status. It should be enabled, and you can validate the inspection script by clicking execute. If it shows "Executed Successfully xx minutes ago," the inspection is running normally and effectively.

@@ -1,147 +1,102 @@
 ---
 icon: zy/billing
 ---
-# Billing
+# Billing and Paid Plans
 ---
 
-## Plan Instructions
+## Plans
 
+<<< custom_key.brand_name >>> offers three versions: Free Plan, Commercial Plan, and Private Cloud Deployment Plan.
 
-Guance currently offers three plans: Experience, Commercial, and Deployment.
+- The public cloud provides both Free Plan and Commercial Plan, both of which adopt the <font color=coral>**pay-as-you-go**</font> billing method. There is no difference in core functionalities.
 
-- The Experience and Commercial plans provided on the public cloud both use a **pay-as-you-go** billing method, with no difference in core functionality.
+    - [The data intake capacity for the Free Plan](../plans/trail.md#trail-vs-commercial) is limited, while <u>Commercial Plan users can access larger data volumes and more flexible data retention periods</u>.
 
-    - The [Experience plan has limitations on the scale of data that can be connected](../plans/trail.md#trail-vs-commercial), while Commercial users support a larger scale of data connection and more flexible data storage timelines.
+- The private cloud deployment plan also offers Community Edition (equivalent to Free Plan) and Commercial Plan.
 
-- The Private Cloud Deployment plan also offers a Community plan (i.e., Experience) and a Commercial plan.
+    - The Commercial Plan allows flexible choices among <u>pay-as-you-go, subscription, and license-based</u> billing methods.
 
-    - The Commercial plan allows flexible selection of various billing methods such as **pay-as-you-go, subscription, and licensing**.
+### View Version
 
-???+ abstract "How to View the Current Workspace plan"
+- All member roles: view it in <<< custom_key.brand_name >>> Console under **Manage > Workspace Settings > Basic Information > Current Version**;
 
-    - All roles: You can view it in Guance Console **Management > Settings > Basic Information > Current Plan**;
-    - Owners, Administrators: You can also view it in Guance Console **Billing**.
+- Owners and Administrators: view it in <<< custom_key.brand_name >>> Console under [**Billing and Paid Plans**](#billing).
 
-<div class="grid cards" markdown>
+## Billing and Paid Plans {#billing}
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public Cloud Commercial plan</font>](../plans/commercial.md)
+<<< custom_key.brand_name >>> Public Cloud follows the principle of purchasing on demand and paying as you go.
 
-</div>
+In the Billing and Paid Plans section, you can view the cash balance, coupon balance, etc., of your current settlement account, and analyze statistics for various billable items such as Time Series, logs, network, APM Trace, APM Profile, RUM PV, Triggers, session replays, etc. Additionally, you can analyze costs from three aspects: detailed billing, usage volume, and data forwarding usage.
 
+### Account Overview {#account}
 
-<div class="grid cards" markdown>
+View the account name, cash balance, coupon balance, prepaid card balance, set high spending alerts, or go directly to the [Billing Center](../billing-center/index.md).
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Public Cloud Experience plan</font>](../plans/trail.md)
+#### Set High Spending Alerts {#alert}
 
-</div>
+<font size=2>**Note**: Only Owners and Administrators have permission to perform this operation.</font>
 
-<div class="grid cards" markdown>
+- Total Threshold Alert: set an overall spending threshold for the current workspace. Once the total spending amount for all billable items in the workspace **exceeds** this threshold, <<< custom_key.brand_name >>> will automatically send a warning email to the member.
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Private Cloud Deployment plan</font>](../deployment/deployment-description.md#_4)
+- Single Billable Item Alert: set alerts for individual billable items. When the **daily billing amount exceeds the set alert threshold**, <<< custom_key.brand_name >>> will automatically send a warning email to the member.
 
-</div>
+<img src="img/billing.png" width="50%" >
 
-## Billing Center
+1. Fill in the total alert threshold as needed;
+2. Select the [billable item](../billing-method/billing-item.md#item) and enter the **alert threshold**;
+3. Choose notification members; whether the actual billing amount of the total threshold or a single billable item exceeds the set alert threshold, a warning email will be sent to the members;
+4. Click **Confirm**.
 
-There are two independent but interrelated account systems for data volume statistics that operate in conjunction to implement usage-based billing and cost settlement processes for **Commercial users**:
-
-- The [Guance Console](https://console.guance.com/) account allows you to tally the data volume scale and billing details of the current workspace, synchronizing it with the designated Billing Center account.
-- The [Guance Billing Center](https://boss.guance.com/) account can be bound with the `Workspace ID` to achieve **unified cost management at the workspace level** and offers various cost settlement methods for your selection.
-
-![](img/billing-index-1.png)
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Billing Center</font>](./cost-center/index.md)
-
-</div>
-
-Methods to view cost information:
-
-- In the console [**Billing**](#billing) module, view the settlement account overview, usage statistics, billing details, usage analysis, data forwarding usage analysis, etc.;
-- Log in to the [Guance Billing Center](https://boss.guance.com/) to view more detailed information.
-
-???- warning "Workspace Role Difference"
-
-    - Owner: In **Billing**, there are buttons for **recharge**, **Billing Center**, **settlement method**, **change binding**;
-    - Administrator: In **Billing**, there are no above-mentioned buttons;
-    - Other members: No **Billing** module, that is, no permission to view cost information.
-
-![](img/12.billing_1.png)
-
-## Billing {#billing}
-
-### Settlement Account Overview {#account}
-
-In the settlement account overview, you can view the settlement account name, cash account balance, voucher balance, prepaid card balance, and perform operations such as account recharge.
-
-- Recharge: Click to recharge the account;
-- Billing Center: Click to open Guance Billing Center;
-- Settlement Method: Click to change the settlement method, including [Guance Billing Center Account Settlement](../billing/billing-account/enterprise-account.md), [AWS Account Settlement](../billing/billing-account/aws-account.md), [Alibaba Cloud Account Settlement](../billing/billing-account/aliyun-account.md), and [Huawei Cloud Account Settlement](../billing/billing-account/huawei-account.md);
-- Change Binding: Click to change the workspace's Guance billing account, **provided that the current account and the new account must belong to the same enterprise, i.e., the enterprise certification of the two accounts in the Guance Billing Center must be the same**.
-- Set High Consumption Alert: After setting the alert, when the billing item's <u>daily bill is greater than the alert threshold</u>, an email notification will be sent to the Owner and Administrator.
-
-    - Select [Billing Item](./billing-method/index.md#item), and set the **alert threshold**, click **OK**, after adding, you will receive an email notification of **Guance High Consumption Alert**; Billing item alert notifications will not be sent repeatedly.
-
-    ![](img/billing.gif)
-
-???+ warning "Operation Permissions"
-
-    - Buttons for **recharge**, **Billing Center**, **settlement method**, **change binding** are only accessible and operable by the current workspace Owner;
-    - **Setting High Consumption Alert** is supported by both Owner and Administrator.
+**Note**: The Owner role is not restricted by the selection of notification targets. That is, regardless of whether the Owner is selected as a notification target, <<< custom_key.brand_name >>> will send a warning email to the Owner when the alert condition is triggered.
 
 ### Usage Statistics
 
-You can view the statistical data of billing items up to the current time and up to yesterday, including: DataKit, Network (host), Timeline, Log data, Backup log data capacity, Application Performance Trace, Application Performance Profile, User visit PV, Dial test times, Task scheduling, SMS, and Central Pipeline processing traffic.
+View statistics for each billable item up to the current time and up to yesterday, including: active DataKit, network (host), Time Series, log-type data, backup log data capacity, APM Trace, APM Profile, RUM PV, API Synthetic Tests, Triggers, SMS, session replays, scheduled reports, log write traffic, sensitive data scanning, central Pipeline processing traffic.
 
-![](img/consumption.png)
+### Detailed Billing
 
-### billing details
-
-In the **billing details**: you can view the **cumulative consumption amount** and the consumption amount of each billing item, and you can check the cost statistics by today, yesterday, this week, last week, this month, last month, and this year.
-
-> For more information on the billing methods of various billing items, please refer to [Billing Methods](billing-method/index.md).
+View consumption data for each product according to dimensions such as billing mode, usage volume, payable amount, overdue amount, etc., and view cost statistics by different months.
 
 ![](img/consumption-2.png)
 
 ### Usage Analysis
 
-In **Usage Analysis**, you can visually view the usage of each billing item.
+View the usage of each billable item through visualizations.
 
-![](img/consumption-1.gif)
+![](img/consumption-1.png)
 
 ### Data Forwarding Usage Analysis {#transmit}
 
-In the **Data Forwarding Usage Analysis** module, you can view the data forwarding quantity of all data forwarding rules in the current workspace. You can also check the forwarding quantity statistics by today, yesterday, this week, last week, this month, last month, and this year.
+View the number of data forwardings for all data forwarding rules in the current workspace. You can also view statistics by today, yesterday, this week, last week, this month, last month, and this year.
 
 **Note**:
 
-- If the forwarding rule is saved to the Guance backup log module, the corresponding data saving policy is displayed, and others are shown as `-`.
-- This section only lists the data forwarding rules in the workspace with a forwarding quantity > 0.
+- If the forwarding rule saves to <<< custom_key.brand_name >>>'s backup logs, it shows the corresponding data retention policy. If saved to external storage, it displays as `-`.
+- This list only includes data forwarding rules that exist within the workspace and have a forwarding count > 0.
 
 ![](img/comm_01.png)
 
+## [Billing Center](../billing-center/index.md)
+
+???- warning "Workspace Role Differences"
+
+    - Owner: has the **Billing Center** button;
+    - Administrator: does not have the above button;
+    - Other members: do not have the **Billing and Paid Plans** module, meaning they do not have permission to view billing information.
+
+<<< custom_key.brand_name >>> has two independently operating but interconnected account systems that together enable usage-based billing and payment processes for **Commercial Plan users**:
+
+- [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/) account, which can track the data intake scale and detailed billing of the current workspace and synchronize it with the designated Billing Center account.
+- [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) account, which can be bound via `Workspace ID` to achieve **unified billing management at the workspace level** and offers multiple billing settlement options.
+
+![](img/billing-index-1.png)
 
 ## Usage-Based Billing Method
 
-The commercial plan users of the Guance workspace adopt a **pay-as-you-go** billing method, which comprehensively calculates the current cost based on different dimensions such as billing cycles, billing items, billing prices, and billing modes.
+<<< custom_key.brand_name >>> Commercial Plan adopts the **pay-as-you-go** [billing method](../billing-method/index.md). Through dimensions such as billing cycle, billable items, billing price, and billing model, it comprehensively calculates the current fee situation.
 
-Owners and administrators of the workspace can view the data connection situation and corresponding billing details of the workspace in the Guance Console **Billing** module; other member roles do not have access to the **Billing** module.
+## Payment Settlement Method
 
-<div class="grid cards" markdown>
+After calculating the detailed billing for the current workspace, <<< custom_key.brand_name >>> synchronizes it to the bound <<< custom_key.brand_name >>> Billing Center account for subsequent payment settlement.
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Usage-Based Billing Method</font>](./billing-method/index.md)
-
-</div>
-
-## Cost Settlement Methods
-
-After the Guance Console calculates the billing details of the current workspace, it will synchronize and push it to the bound Guance Billing Center account for subsequent cost settlement processes.
-
-Currently, various settlement methods are supported, including the Guance Billing Center account, cloud accounts, which include Alibaba Cloud, AWS, and Huawei Cloud accounts. Under the cloud account settlement model, it supports the consolidation of cloud bills from multiple sites into a single cloud account for settlement.
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; Cost Settlement Methods</font>](./billing-account/index.md)
-
-</div>
+Currently supported are <<< custom_key.brand_name >>> Billing Center accounts and cloud accounts for various [settlement methods](./billing-account/index.md), including Alibaba Cloud, AWS, Huawei Cloud, and Microsoft Cloud accounts. Under the cloud account settlement model, multiple site cloud bills can be consolidated into one cloud account for settlement.

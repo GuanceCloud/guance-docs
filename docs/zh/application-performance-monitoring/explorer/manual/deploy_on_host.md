@@ -27,7 +27,7 @@ datakit service -R
 安装依赖：
 
 ```
-wget -O dd-java-agent.jar 'https://<<< custom_key.static_domain >>>/dd-image/dd-java-agent.jar'
+wget -O dd-java-agent.jar 'https://static.<<< custom_key.brand_main_domain >>>/dd-image/dd-java-agent.jar'
 ```
 
 运行应用：

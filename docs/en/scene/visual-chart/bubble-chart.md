@@ -1,48 +1,40 @@
-# Bubble
+# Bubble Chart
 ---
 
-## Overview
+The bubble chart can be used to display the relationship between three variables, similar to a scatter plot with an x-axis and y-axis, and includes a variable representing size for comparison. It shows the general trend of the dependent variable changing with the independent variable, from which a suitable function can be chosen to fit the empirical distribution and find the functional relationship between variables. It can be used to observe the distribution and clustering of data.
 
-A bubble can be used to show the relationship between three variables, similar to a scatter. It is divided into horizontal and vertical axes, with the inclusion of variables indicating magnitude for comparison.<br />It indicates the general trend of the dependent variable with the independent variable, from which the trend can be selected to fit the empirical distribution with a suitable function, and then find the functional relationship between the variables. It can be used to observe the distribution and aggregation of data. For example, you can view the distribution and aggregation of total CPU usage, CPU system usage and CPU user usage across hosts.
+![](../img/bubble.png)
 
-## Operations
+## Chart Query
 
-### Chart Query
+Define filtering conditions for the X-axis and Y-axis separately. You can switch to expression queries, PromQL queries, or other data source queries.
 
-Please click [chart query](chart-query.md) for detailed explanation of the chart query conditions, and add x-axis, y-axis and size queries by default. There is no **Add Query** button. Measurements and metrics of the query can be different, but the by (grouping) Tag must be the same, and if one is modified, the other two are automatically modified in parallel.
+> For more details, refer to [Chart Query](./chart-query.md).
 
-### Chart Link
+## Chart Configuration
 
-Links can help you jump from the current chart to the target page, you can add internal links and external links to the platform and modify the corresponding variable values in the links through template variables to transfer the data information to complete the data linkage. Please click [chart link](chart-link.md) to view the related settings.
+> For more details, refer to [Chart Configuration](./chart-config.md).
 
-### Chart Style
-| Options | Description |
+<!--
+## Common Configuration
+
+| Option | Description |
 | --- | --- |
-| Chart Title | It would be shown on the top left of the chart after setting the title name; it also supports hide. |
-| Color |  It refers to the display color of the chart data, enabling you to manually input custom preset color. The format is aggregation function (metric) {"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}` |
-| Alias | <li>You can add aliases to grouped queries. The name of the legend changes after adding aliases, making it easier to distinguish related metrics more intuitively.<br/><li>You can input preset aliases in the format of aggregation function (metric) {"label": "label value"}, such as `last(usage_idle){"host": "guance_01"}`. |
+| Title | Set a title for the chart, which will be displayed in the top-left corner of the chart after setting; supports hiding. |
+| Description | Add a description to the chart, which will appear as an [i] prompt after the chart title if set; otherwise, it will not be displayed. |
+| Unit | **:material-numeric-1-box: Default unit display**:<br /><li>If the queried data is metrics data and you have set units for the metrics in [Metrics Management](../../metrics/dictionary.md), the default display will follow the metric's unit;<br /><li>If no related unit configuration exists in **Metrics Management**, it will display with thousand separators.<br />**:material-numeric-2-box: After configuring units**:<br />It prioritizes using your custom-configured units for display. Metrics data supports two options for numerical representation:<br /><br />**Scientific notation explanation**<br /><u>Default progression</u>: Units are ten thousand, million, etc., e.g., 10000 is displayed as 1 ten thousand, 1000000 as 1 million. Retains two decimal places;<br /><u>Short scale</u>: Units are K, M, B. i.e., thousand, million, billion, trillion, etc., in English context. For example, 1000 is 1k, 10000 is 10k, 1000000 is 1M; retains two decimal places.|
+| Color | Set the display color for chart data, supporting custom preset colors entered manually. The input format is: aggregation_function(metric){"label": "label_value"}, such as `last(usage_idle){"host": "guance_01"}`. |
+| Alias | <li>Supports adding aliases to grouped queries, which changes the legend names accordingly, making it easier to distinguish related metrics.<br/><li>Supports custom manual entry of preset aliases, with the input format being: aggregation_function(metric){"label": "label_value"}, such as `last(usage_idle){"host": "guance_01"}`. |
+| Data Format | Choose the number of decimal places and whether to use thousand separators.<br /><li>Thousand separators are enabled by default. Disabling them displays raw values without separators. For more details, refer to [Data Thousand Separator Formatting](../visual-chart/chart-query.md#thousand). |
 
 
-### Chart Setting
+## Advanced Configuration
 
-#### Basic Setting
-| Options | Description |
+| Option | Description |
 | --- | --- |
-| Unit | 1. You can set units for query results.<br /><br />1）If the queried data has no unit, it will be displayed on the chart according to the set unit after setting the unit in the chart.<br /><br />2）If the query data comes with its own units, or if you set the units for the metrics in [Metric Management](.../.../metrics/dictionary.md), the units set in the chart will be displayed on the chart.<br /><br />3）If the query data has no units and no units are set in the chart, the chart Y-axis values are automatically calculated according to scientific notation; the original values are displayed on the chart in the format [thousandths](chart-query.md#thousand).<br /><br /> **Scientific counting instructions:**<br />Default query result value is automatically converted to units, display follows scientific notation K, M and B (1 thousand = 1K, 1 million = 1M, 1 billion = 1B), retaining two decimal points; RMB is automatically converted to units yuan, million, billion, retaining two decimal points.<br /><br />*For example: The time interval of the unit is selected in ns, then according to the size of the data, the query results only automatically convert the unit effect as follows, and so on:*<br /><li>1000000ns: chart query data results are displayed as 1ms<br /><li>1000000000ns: chart query data results are displayed as 1s<br /><li>10000000000ns: chart query data results are displayed as 1m<br /><br/>2. You can preset units for the query results and manually input format as: aggregation function (metric), such as `last(age_idle)` |
-
-#### Advanced Setting
-| Options | Description |
-| --- | --- |
-| Time slice | When time slicing is turned on, the original data will be aggregated in segments at certain time intervals, and then the aggregated data set will be aggregated a second time to get the result value, which is turned off by default. For details, please refer to [time slicing description](chart-query.md#time-slicing). |
-| Lock time | Support locking the time range of chart query data, not limited by the global time component. The time set by the user will appear in the upper right corner of the chart after successful setup, e.g. 【xx minutes】, 【xx hours】, 【xx days】. If the time interval is locked at 30 minutes, then when adjusting the time component, no matter what time range view is queried, only the last 30 minutes of data will be displayed. |
-| Time interval | If the time slice is off, there is no time interval option; if the time slice is on, the time interval option is as follows:<br /><br /><li>Original interval: query and display data according to the time range of the time component by default.<br /><br /><li>Auto-alignment: When turned on, the query will be dynamically adjusted according to the selected time range and aggregation interval, rounded up according to the calculated time interval. (For example, if the automatic aggregation algorithm calculates the time interval to be 50 seconds, then the actual query will be launched according to the time interval of 1 minute) The system presets 1 ms, 10 ms, 50 ms, 100 ms, 500 ms, 1 second, 5 seconds, 15 seconds, 30 seconds, 1 minute, 5 minutes, 10 minutes, 30 minutes, 1 hour, 6 hours, 12 hours, 1 day, 1 week, 1 month, and many time interval.<br /><br /><li>Custom time interval: When 【Lock time】 is selected, according to the length of lock time, different optional time intervals will be automatically matched to query the displayed data. (For example, if you select 1 minute as the time interval, the query will actually be launched at 1 minute interval)<br /> |
-| Field mapping | The object mapping function with view variables is off by default, if object mapping is configured in the view variables：<br /><li>When field mapping is enabled, the chart displays the 「grouped fields」 of the query and the corresponding 「mapped fields」, and the grouped fields without specified mapping are not displayed.<br /><li>When field mapping is turned off, the chart is displayed normally, without the mapped fields<br /> |
-| Chart Description | Add description information to the chart, after setting the chart title will appear behind the 【i】 prompt, do not set it will not be displayed |
-| Workspace | A list of authorized workspaces, which can be queried and displayed via charts after selection |
-
-### Example
-
-The following figure shows the distribution and aggregation of total CPU usage, CPU system usage and CPU user usage for different hosts for the last 15 minutes.
-
-![](../img/qipao.png)
-
+| Lock Time | Fix the time range for the current chart query data, unaffected by the global time component. After successful setup, the user-defined time appears in the top-right corner of the chart, such as 【xx minutes】, 【xx hours】, 【xx days】. If the locked time interval is 30 minutes, regardless of the time range selected by the time component, only the last 30 minutes of data will be displayed. |
+| Field Mapping | Works with view variable object mapping functionality, which is off by default. If object mapping is configured in view variables:<br /><li>Enabling field mapping displays the **grouping fields** and corresponding **mapped fields** in the chart, while unmapped grouping fields are not shown;<br /><li>Disabling field mapping shows the chart normally without displaying mapped fields.<br /> |
+| Workspace Authorization | Lists authorized workspaces, allowing queries and displays of data from those workspaces after selection. |
+| Data Sampling | Applies only to Doris log data engine workspaces; when enabled, it samples all data except metrics, with a dynamic sampling rate based on data volume. |
+| Time Offset | Non-time series data has at least a 1-minute query delay after being stored. When selecting relative time queries, this may result in recent data not being collected, leading to data loss.<br />Enabling time offset shifts the actual query time range forward by 1 minute when querying relative time intervals, preventing data gaps due to storage delays. For example, at 12:30, querying the last 15 minutes of data would actually query from 12:14 to 12:29.<br />:warning: <br /><li>This setting only applies to relative time ranges; absolute time ranges do not apply.<br /><li>For charts with time intervals, such as time series charts, time offset does not apply if the time interval exceeds 1 minute. For charts without time intervals, like overview or bar charts, time offset remains effective.
+-->

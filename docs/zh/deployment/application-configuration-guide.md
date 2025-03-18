@@ -248,9 +248,9 @@ WorkspaceDefaultesIndexSettings:
 ```js
 window.DEPLOYCONFIG = {
     ...
-    "rumDatawayUrl": "https://rum-openway.guance.com",
-    "datakitScriptUrl": "https://<<< custom_key.static_domain >>>/datakit",
-    "datakitHelmUrl": "https://pubrepo.guance.com",
+    "rumDatawayUrl": "https://rum-openway.<<< custom_key.brand_main_domain >>>",
+    "datakitScriptUrl": "https://static.<<< custom_key.brand_main_domain >>>/datakit",
+    "datakitHelmUrl": "https://pubrepo.<<< custom_key.brand_main_domain >>>",
     "passPublicNetwork": 1,
     "isOverseas": 0,
     "maxTraceSpanLimit": 10000,
@@ -259,7 +259,7 @@ window.DEPLOYCONFIG = {
     "paasCustomSiteList": [{"url": "xxxx", "label": "xxx"}],
     "paasCustomLoginUrl": "https://www.xxx",
     "maxMessageByte": 10 * 1024,
-    "webRumSdkUrl": "https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js",
+    "webRumSdkUrl": "https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js",
     "defaultTimeMap": {
         'log': [1732254771701,1732255671701],// 或者相对时间 5m
     }
@@ -272,9 +272,9 @@ window.DEPLOYCONFIG = {
 
 | 配置项                    | 子项 | 类型                | 默认值                                             | 描述                                                                                                                                                                    |
 | ------------------------- | ---- | ------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| rumDatawayUrl             |      | 字符串              | "https://rum-openway.guance.com"                   | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                                                 |
-| datakitScriptUrl          |      | 字符串              | "https://<<< custom_key.static_domain >>>/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                                          |
-| datakitHelmUrl            |      | 字符串              | "https://pubrepo.guance.com"                       | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                                             |
+| rumDatawayUrl             |      | 字符串              | "https://rum-openway.<<< custom_key.brand_main_domain >>>"                   | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                                                 |
+| datakitScriptUrl          |      | 字符串              | "https://static.<<< custom_key.brand_main_domain >>>/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                                          |
+| datakitHelmUrl            |      | 字符串              | "https://pubrepo.<<< custom_key.brand_main_domain >>>"                       | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                                             |
 | passPublicNetwork         |      | 数值                | 1                                                  | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                                          |
 | isOverseas                |      | 数值                | 0                                                  | 配置此<<< custom_key.brand_name >>>站点是否为海外部署，将影响 RUM 中的世界地图、中国地图组件的显示                                                                      |
 | maxTraceSpanLimit         |      | 数值                | 10000                                              | 链路的火焰图中最大的 Span 条数，默认值：10000                                                                                                                           |
@@ -289,7 +289,7 @@ window.DEPLOYCONFIG = {
 | rumOpenwayUrl `自观测`    |      | 字符串              | 无                                                 | RUM Openway 公网地址(需要与 `rumClientToken` 配合使用)，用于 Studio 前端站点数据自观测上报                                                                              |
 | paasCustomLoginUrl        |      | 字符串              | 无                                                 | 自定义登录 url                                                                                                                                                          |
 | maxMessageByte            |      | 字符串              | 无                                                 | 日志查看器列表 message 最大显示字节数， 不填默认为 10 \* 1024                                                                                                           |
-| webRumSdkUrl              |      | 字符串              | 无                                                 | Rum web SDK CDN 地址，不填默认 https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js                                                                  |
+| webRumSdkUrl              |      | 字符串              | 无                                                 | Rum web SDK CDN 地址，不填默认 https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js                                                                  |
 | defaultTimeMap            |      | 字符串或者 对象结构 | 无                                                 | 查看器默认初始化时间配置， 格式为 `{'log': '5m'}` 或者 `{'log': [1732254771701,1732255671701]}` 对象 key 为固定字符串，日志查看器为 `log`,安全巡检为 `security`         |
 
 ### kodo 组件 {#kodo}

@@ -18,8 +18,8 @@
 
 若您还没有注册tree-node-{"name":"datakit-daemonset.md","path":"/zh/best-practices/insight/datakit-daemonset.md","type":"file","repo":"guance集成","birthtime":1700705887402.8657,"mtime":1700705887402.8657,"level":5,"marked":false}账号或工作空间没有数据，可跟随以下步骤完成数据采集：
 
-1. [登录<<< custom_key.brand_name >>>控制台](https://auth.guance.com/login/pwd)（还未有账号，[点击注册](https://auth.guance.com/register)）；  
-2. [安装 DataKit 采集器](https://docs.guance.com/datakit/datakit-install/)；  
+1. [登录<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site_auth >>>/login/pwd)（还未有账号，[点击注册](https://<<< custom_key.studio_main_site_auth >>>/register)）；  
+2. [安装 DataKit 采集器](<<< homepage >>>/datakit/datakit-install/)；  
 3. 前往控制台【集成】页面开启相应的数据采集器。
 
 ![](../images/Integration.png)

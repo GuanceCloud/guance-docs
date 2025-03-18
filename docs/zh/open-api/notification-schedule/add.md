@@ -53,7 +53,7 @@
 
 ## 请求例子
 ```shell
-curl 'https://openapi.guance.com/api/v1/notification_schedule/add' \
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_schedule/add' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 --data-raw '{"name":"schecule_add","timezone":"Asia/Shanghai","start":"00:00","end":"23:59","notifyTargets":["acnt_8b4bd2b8782646f3ba8f6554193f5997","notify_1c08db8458ba4ecabd27b8ce805e8502"],"extend":{"enableRotateNotification":true,"rotationCycle":"workDay","effectiveTime":{"start":1735747200,"end":1737603472}}}' \
