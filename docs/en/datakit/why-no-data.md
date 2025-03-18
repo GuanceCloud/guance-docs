@@ -613,7 +613,6 @@ graph TD
   is_input_ok -->|Yes| dataway_upload_ok -->|Yes| dql;
   is_input_ok --> filtered --> sinked;
 
-
   trouble_shooting[<a href='https://docs.guance.com/datakit/why-no-data/#bug-report'>Collect information</a>];
 
   debug_fail --> trouble_shooting;
