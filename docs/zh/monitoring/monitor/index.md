@@ -1,32 +1,17 @@
 # 监控器
 ---
 
+支持通过以下方式快速创建监控器：
 
-在<<< custom_key.brand_name >>>，您可以使用开箱即用的监控[模板](../monitor/template.md)来[新建监控器](#template)；您也可以[自定义新建](#rules)监控器，通过阈值检测、日志检测、突变检测、区间检测等十余种[检测规则](#detect)来设置检测规则和触发条件。开启监控器后，即可接收到由检测规则触发的相关异常事件告警。
-
-
-
-## 开始新建 {#new}
-
-### 配置规则
-
-即根据<<< custom_key.brand_name >>>官方提供的多种检测规则，快速配置[触发规则](./monitor-rule.md)。
+- [使用开箱即用的监控模板](../monitor/template.md)：内置多种官方监控模板，支持一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 等监控器。  
+- [自定义新建监控器](./monitor-rule.md)：通过阈值检测、日志检测、突变检测、区间检测等十余种检测规则，自定义监控器的触发条件。开启监控器后，即可接收相关异常事件告警。
 
 
-### 官方模板库 {#template}
+## 功能扩展
 
-<<< custom_key.brand_name >>>内置多种开箱即用的监控[模板](../monitor/template.md)，可以一键创建主机、Docker、Elasticsearch、Redis、阿里云 RDS、阿里云 SLB、Flink 监控等官方监控器至当前工作空间。
-
-![](../img/monitoring-0725.png)
-
-**注意**：反复从模板创建监控器会导致监控器列表内出现重复的监控器，<<< custom_key.brand_name >>>支持检测重复的监控器，您可以通过在弹窗提示中选择“是”正常创建模板库中所有的监控器，或选择“否”仅创建不重复的监控器。
-
-<img src="../img/image_8.png" width="60%" >
+保存为自定义模板：将已创建的监控器保存为[模版](../monitor/custom-template.md)，便于后续快速添加或删除监控器配置条件。
 
 
-### 自定义模板库
-
-您可以将已创建好的监控器保存为[模版](../monitor/custom-template.md)，便于您之后快速添加或删除监控器配置条件。
 
 
 

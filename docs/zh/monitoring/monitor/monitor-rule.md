@@ -1,11 +1,11 @@
 # 检测规则
 ---
 
-目前<<< custom_key.brand_name >>>支持十几种监控检测规则，不同的规则覆盖不同的数据范围。
+<<< custom_key.brand_name >>>支持十几种监控检测规则，覆盖不同数据范围。
 
 ## 规则类型 {#type}
 
-<font size=3>
+<font size=2>
 
 | <div style="width: 170px">规则名称</div> | <div style="width: 120px">数据范围</div> | 基本描述 |
 | --- | --- | --- |
