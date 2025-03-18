@@ -16,7 +16,7 @@ icon: zy/release-notes
 
     <table>
       <tr>
-        <th><a href="<<< homepage >>>/datakit/changelog/" target="_blank">DataKit</a></th>
+        <th><a href="<<< homepage >>>/datakit/changelog-2025/" target="_blank">DataKit</a></th>
       </tr>
     </table>
 

@@ -4,37 +4,36 @@ icon: zy/events
 # 事件
 ---
 
-<<< custom_key.brand_name >>>提供了一个全面的事件管理和审计平台，允许实时监控和统一查询来自各种来源的事件数据。通过聚合和关联事件，您可以迅速定位异常，并进行高效的数据分析。
+<<< custom_key.brand_name >>>提供全面的事件管理和审计平台，支持实时监控与统一查询多来源事件数据。通过事件聚合和关联，可快速定位异常并高效分析数据。
 
 在**事件**这一功能模块下，您可以通过监控器、智能巡检、SLO 等功能模块监控系统异常和服务质量下降等问题。**所有监控活动的结果都会生成事件记录**，并将这些事件汇集到事件分析模块中，以便进行深入分析和处理。这种一站式的方法确保了您能够全面掌握系统的健康状况，并及时响应可能出现的任何问题。
 
 
-## 事件从何而来？
+## 事件来源
 
 - 满足[监控器](../monitoring/monitor/monitor-rule.md#content)和[智能监控](../monitoring/intelligent-monitoring/index.md)配置规则而触发的告警事件；
-- 基于配置的[智能巡检](../monitoring/bot-obs/index.md) 触发的全部告警事件；
-- 基于配置的 [SLO](../monitoring/slo.md) 触发的全部告警事件；
-- 基于系统操作触发的[审计事件](../management/operation-audit.md)；
+- 基于配置的[智能巡检](../monitoring/bot-obs/index.md)和 [SLO](../monitoring/slo.md) 触发的全部告警事件；
+- 系统操作产生的[审计事件](../management/operation-audit.md)；
 - 通过 [OpenAPI](../open-api/keyevent/create.md) 写入的自定义事件。
 
 
 ## 查看事件记录
 
 
-- [查看器 > 未恢复事件查看器](./event-explorer/unrecovered-events.md)：当前工作空间最近 48 小时内持续被触发的全部未恢复事件，即状态为不正常（`df_status !=ok`）的事件。
-- [查看器 > 所有事件查看器](./event-explorer/event-list.md)：包括监控器、智能巡检、SLO、审计事件、OpenAPI 写入自定义事件来源下的所有事件，如触发**监控器**检测规则的每一条告警记录即为一个事件数据。
-- [智能监控](./inte-monitoring-event.md)：包括所有满足智能监控配置规则而触发的所有事件，触发后产生的每一条告警记录即为一个事件数据。
+- [查看器 > 未恢复事件查看器](./event-explorer/unrecovered-events.md)：展示当前工作空间最近 48 小时内未恢复的事件（`df_status !=ok`）；   
+- [查看器 > 所有事件查看器](./event-explorer/event-list.md)：汇总所有来源的事件，包括监控器、智能巡检、SLO、审计事件和 OpenAPI 自定义事件；   
+- [智能监控](./inte-monitoring-event.md)：包含所有满足智能监控规则触发的事件。
 
 
-## 事件包含内容
+## 事件内容
 
-以触发配置的监控器规则所产生的事件为例，最终事件内容主要包含我们在[新建规则 > 事件通知](../monitoring/monitor/monitor-rule.md#notice)处所填入的内容。
+以监控器规则触发的事件为例，事件内容主要基于[新建规则 > 事件通知](../monitoring/monitor/monitor-rule.md#notice)处填写的信息。
 
-如下图，将事件标题定义为 `日志检测-多索引`，在事件内容中填入 DQL 查询语句，并填入变量，<<< custom_key.brand_name >>>将根据实际监测到的数据，自动生成并展示事件记录的最终结果。
+如下图，将事件标题定义为 `日志检测-多索引`，事件内容包含 DQL 查询语句和变量，系统会根据实际监测数据生成并展示最终结果。
 
 ![](img/event-monitor.png)
 
-当该条规则监测到异常，您可以前往事件 > 事件详情查看到相关的事件内容。
+规则监测到异常后，可在事件 > 事件详情中查看相关事件内容。
 
 ![](img/event-monitor-1.png)
 
@@ -61,7 +60,7 @@ icon: zy/events
 
 - 当 `df_source = monitor` 时，额外存在以下字段：
 
-| <div style="width: 210px">字段</div>                           | 说明                                                         |
+| <div style="width: 230px">字段</div>                           | 说明                                                         |
 | :----------------------------- | :----------------------------------------------------------- |
 | `df_dimension_tags`            | 检测纬度标签，如`{"host":"web01"}`                           |
 | `df_monitor_id`                | 告警策略 ID                                                  |
