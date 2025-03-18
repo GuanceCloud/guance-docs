@@ -54,6 +54,6 @@ You can also visualize the frequency of threshold violations using common SLO be
 
 ### Showcasing and Sharing Your Service Status
 
-<<< custom_key.brand_name >>> makes it simple to monitor and manage your SLOs in the same place where you already monitor applications, infrastructure, user experience, etc. Perhaps equally important, <<< custom_key.brand_name >>> enables you to provide transparency to any stakeholders or users who depend on meeting these SLOs. If you haven't started monitoring your service health and performance with <<< custom_key.brand_name >>>, you can start here with a [free trial account](https://auth.guance.com/redirectpage/register).
+<<< custom_key.brand_name >>> makes it simple to monitor and manage your SLOs in the same place where you already monitor applications, infrastructure, user experience, etc. Perhaps equally important, <<< custom_key.brand_name >>> enables you to provide transparency to any stakeholders or users who depend on meeting these SLOs. If you haven't started monitoring your service health and performance with <<< custom_key.brand_name >>>, you can start here with a [free trial account](https://<<< custom_key.studio_main_site_auth >>>/redirectpage/register).
 
 Continue reading the next and final part of this series [here](slo-part3.md), where we will share best practices for maximizing the value of your SLOs in <<< custom_key.brand_name >>>.

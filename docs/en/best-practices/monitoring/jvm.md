@@ -374,7 +374,7 @@ spec:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token>
+          value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
         - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
         - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -385,7 +385,7 @@ spec:
           value: 0.0.0.0:9529
         - name: ENV_LOG_LEVEL
           value: info
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.2.1
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.2.1
         imagePullPolicy: IfNotPresent
         name: datakit
         ports:
@@ -625,7 +625,7 @@ If collecting system logs, refer to the following content:
 In the jar usage method, `dd-java-agent.jar` is used, which may not exist in the user's image. To avoid intruding on the customer's business image, we need to create an image containing `dd-java-agent.jar` and start it as a sidecar before the business container, sharing storage to provide `dd-java-agent.jar`.
 
 ```
-pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
 ```
 
 #### 3.3 Writing the Dockerfile for Java Applications
@@ -715,7 +715,7 @@ spec:
         - sh
         - -c
         - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
         imagePullPolicy: Always
         name: ddtrace-agent-sidecar
         volumeMounts:

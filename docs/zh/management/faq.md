@@ -3,7 +3,7 @@
 
 :material-chat-question: 如何创建工作空间？
 
-[注册](https://auth.guance.com/register)完<<< custom_key.brand_name >>>账号以后，系统会默认为您创建一个工作空间，并赋予“拥有者”权限。若接下来还需要创建其他工作空间，可以在<<< custom_key.brand_name >>>工作空间点击左上角头像，点击**创建工作空间**。
+[注册](https://<<< custom_key.studio_main_site_auth >>>/register)完<<< custom_key.brand_name >>>账号以后，系统会默认为您创建一个工作空间，并赋予“拥有者”权限。若接下来还需要创建其他工作空间，可以在<<< custom_key.brand_name >>>工作空间点击左上角头像，点击**创建工作空间**。
 
 ---
 

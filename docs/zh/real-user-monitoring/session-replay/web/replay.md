@@ -78,8 +78,8 @@ Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此�
 - 该静态资源不可访问。例如，可能需要身份验证，或者资源可能只能从内部网络访问。
 - 由于 CORS（通常是网络字体），静态资源被浏览器阻止。
 
-  - 由于重放时，是基于 iframe 对应的 `guance.com` 沙箱环境，如果某些静态资源未获得特定域名授权，您的浏览器将阻止该请求；
-  - 通过 Access-Control-Allow-Origin Header 头允许 `guance.com` 访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重放。
+  - 由于重放时，是基于 iframe 对应的 `<<< custom_key.brand_main_domain >>>` 沙箱环境，如果某些静态资源未获得特定域名授权，您的浏览器将阻止该请求；
+  - 通过 Access-Control-Allow-Origin Header 头允许 `<<< custom_key.brand_main_domain >>>` 访问您的网站所依赖的任何 font 或 image 静态资源，以确保可以访问这些资源以进行重放。
 
   > 有关详细信息，可参考 [跨源资源共享](https://developer.mozilla.org/en-US/docs/Web)。
 

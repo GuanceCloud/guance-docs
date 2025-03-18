@@ -77,9 +77,9 @@ Keycloak 环境搭建完成后，在浏览器输入`https://IP地址:8443/auth`�
 
 2）在 **Add Client** 按照以下内容填写完成后，点击 **Save**。
 
-- Client ID（实体 ID）：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)；  
+- Client ID（实体 ID）：[https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml)；  
 - Client Protocol：选择**SAML**；   
-- Client SAML Endpoint（断言地址），临时使用：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)。   
+- Client SAML Endpoint（断言地址），临时使用：[https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/)。   
 
 **注意**：此次配置仅为获取下一步的元数据文档使用，需要在<<< custom_key.brand_name >>>中启用SSO单点登录后，获取到正确的**实体ID**和**断言地址**后重新替换。
 

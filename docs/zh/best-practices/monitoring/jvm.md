@@ -374,7 +374,7 @@ spec:
               apiVersion: v1
               fieldPath: spec.nodeName
         - name: ENV_DATAWAY
-          value: https://openway.guance.com?token=<your-token>
+          value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
         - name: ENV_GLOBAL_HOST_TAGS
           value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
         - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -385,7 +385,7 @@ spec:
           value: 0.0.0.0:9529
         - name: ENV_LOG_LEVEL
           value: info
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.2.1
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.2.1
         imagePullPolicy: IfNotPresent
         name: datakit
         ports:
@@ -625,7 +625,7 @@ $ kubectl get pod -n datakit
 在jar使用方式中使用到了 dd-java-agent.jar，而在用户的镜像中并不一定存在这个 jar，为了不侵入客户的业务镜像，我们需要制作一个包含 dd-java-agent.jar 的镜像，再以 sidecar 的方式先于业务容器启动，以共享存储的方式提供 dd-java-agent.jar。
 
 ```
-pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
 ```
 
 #### 3.3 编写 Java 应用的 Dockerfile
@@ -715,7 +715,7 @@ spec:
         - sh
         - -c
         - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-        image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
         imagePullPolicy: Always
         name: ddtrace-agent-sidecar
         volumeMounts:

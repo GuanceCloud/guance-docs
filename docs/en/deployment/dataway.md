@@ -206,7 +206,7 @@ On the <<< custom_key.brand_name >>> management console "Data Gateway" page, if 
     Directly replace the image version:
 
     ```yaml
-    - image: pubrepo.jiagouyun.com/dataflux/dataway:<VERSION>
+    - image: pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/dataway:<VERSION>
     ```
 <!-- markdownlint-enable -->
 

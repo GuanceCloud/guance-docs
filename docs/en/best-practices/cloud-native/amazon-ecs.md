@@ -15,7 +15,7 @@ This document focuses on collecting logs from containers managed by AWS Fargate.
 
 - First, create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/)
 - [Install DataKit](../../datakit/datakit-install.md)
-- [Install Func Portable Edition](https://func.guance.com/doc/maintenance-guide-installation/)
+- [Install Func Portable Edition](https://<<< custom_key.func_domain >>>/doc/maintenance-guide-installation/)
 - Already have a Java application running on ECS
 
 The ECS cluster name used here is `cluster-docker`. Below, we will view sample logs and log groups. Log in to [AWS](https://www.amazonaws.cn/), enter "Elastic Container Service" - click on "Clusters" - "cluster-docker".

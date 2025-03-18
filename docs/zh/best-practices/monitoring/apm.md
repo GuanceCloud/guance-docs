@@ -4,7 +4,7 @@
 
 ## 前置条件
 
-账号注册：前往官方网站 [https://<<< custom_key.brand_main_domain >>>/](https://auth.guance.com/login/pwd) 注册账号，使用已注册的账号/密码登录
+账号注册：前往官方网站 [https://<<< custom_key.brand_main_domain >>>/](https://<<< custom_key.studio_main_site_auth >>>/login/pwd) 注册账号，使用已注册的账号/密码登录
 
 ![image](../images/apm/1.png)
 

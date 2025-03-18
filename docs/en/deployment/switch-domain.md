@@ -1,7 +1,7 @@
 # Switch Domain
 
 ???+ warning "Note"
-     If HTTPS was previously enabled, you need to prepare the **certificate** for the new domain in advance. This domain replacement assumes `dataflux.cn` is being replaced with `guance.com`.
+     If HTTPS was previously enabled, you need to prepare the **certificate** for the new domain in advance. This domain replacement assumes `dataflux.cn` is being replaced with `<<< custom_key.brand_main_domain >>>`.
 
 ## Introduction
 
@@ -55,7 +55,7 @@ done
 ```shell
 # Set the key-value pairs to be replaced
 OLD_VALUE="dataflux.cn"
-NEW_VALUE="guance.com"
+NEW_VALUE="<<< custom_key.brand_main_domain >>>"
 NAMESPACE="forethought-core forethought-kodo forethought-webclient func2 middleware utils launcher"
 
 for i in $NAMESPACE;
@@ -107,7 +107,7 @@ Execute the following script to update the addresses:
 
 ```shell
 OLD_VALUE="dataflux.cn"
-NEW_VALUE="guance.com"
+NEW_VALUE="<<< custom_key.brand_main_domain >>>"
 NAMESPACE="forethought-core forethought-kodo forethought-webclient func2 middleware utils launcher"
 
 for i in $NAMESPACE;

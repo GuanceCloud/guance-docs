@@ -85,13 +85,13 @@ Log in to the host `172.16.0.29` and execute the following command to install Da
 Here, `172.16.0.245` is the IP address of the host where DataKit was installed in the previous step. This step installs DataKit via the DataKit proxy, using the same token mentioned earlier.
 
 ```shell
-export HTTPS_PROXY=http://172.16.0.245:9530; DK_DATAWAY=https://openway.guance.com?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"
+export HTTPS_PROXY=http://172.16.0.245:9530; DK_DATAWAY=https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_9a1111123412341234123412341113bb bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"
 ```
 
 Execute the following command to test whether data can be reported to <<< custom_key.brand_name >>>.
 
 ```shell
-curl -x http://172.16.0.245:9530 -v -X POST https://openway.guance.com/v1/write/metrics?token=tkn_9a1111123412341234123412341113bb -d "proxy_test,name=test c=123i"
+curl -x http://172.16.0.245:9530 -v -X POST https://openway.<<< custom_key.brand_main_domain >>>/v1/write/metrics?token=tkn_9a1111123412341234123412341113bb -d "proxy_test,name=test c=123i"
 ```
 
 A return code of 200 indicates successful data reporting.

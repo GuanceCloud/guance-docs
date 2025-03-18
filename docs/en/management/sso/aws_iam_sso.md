@@ -45,7 +45,7 @@ On the application management page, select "Customer Managed" and click "Add App
 1. Define the display name for this application, such as `Guance`;
 2. Enter a description as needed;
 3. Under "IAM Identity Center Metadata," click to download the IAM Identity Center SAML metadata file and certificate;
-4. In the application metadata, fill in the fields "Application ACS URL" and "Application SAML Audience" with: https://auth.guance.com/login/sso;
+4. In the application metadata, fill in the fields "Application ACS URL" and "Application SAML Audience" with: https://<<< custom_key.studio_main_site_auth >>>/login/sso;
 5. Submit the current configuration;
 6. The page will prompt that the application has been successfully added.
 
@@ -110,7 +110,7 @@ Users and groups created in the Identity Center directory are only available in 
 3. Click Add Identity Provider and start configuration;
 4. Define the identity provider name as `aws_sso`;
 5. Upload the [metadata document downloaded during application configuration](#config);
-6. Define the access restriction as `guance.com`;
+6. Define the access restriction as `<<< custom_key.brand_main_domain >>>`;
 7. Choose roles and session duration;
 8. Click confirm.
 
@@ -120,7 +120,7 @@ Users and groups created in the Identity Center directory are only available in 
 
 ## 6. Login Verification
 
-1. Log in to the <<< custom_key.brand_name >>> single sign-on page: https://auth.guance.com/login/sso;
+1. Log in to the <<< custom_key.brand_name >>> single sign-on page: https://<<< custom_key.studio_main_site_auth >>>/login/sso;
 2. Select the application created on the AWS side from the list;
 3. Login URL;
 4. Enter [username, password](#add_user);

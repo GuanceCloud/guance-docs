@@ -55,7 +55,7 @@ Logs: 日志，系统/应用输出的时间相关的记录，通常由系统/软
 
 ### 展示并共享您的服务状态
 
-<<< custom_key.brand_name >>> 使在您已经监控应用程序、基础设施、用户体验等的同一个地方监控和管理您的 SLO 变得简单。也许同样重要的是，<<< custom_key.brand_name >>> 使您能够向依赖于满足这些 SLO 的任何利益相关者或用户提供透明度。如果您还没有使用 <<< custom_key.brand_name >>> 来监控您的服务的运行状况和性能，您可以从这里开始[免费试用帐户](https://auth.guance.com/redirectpage/register)。
+<<< custom_key.brand_name >>> 使在您已经监控应用程序、基础设施、用户体验等的同一个地方监控和管理您的 SLO 变得简单。也许同样重要的是，<<< custom_key.brand_name >>> 使您能够向依赖于满足这些 SLO 的任何利益相关者或用户提供透明度。如果您还没有使用 <<< custom_key.brand_name >>> 来监控您的服务的运行状况和性能，您可以从这里开始[免费试用帐户](https://<<< custom_key.studio_main_site_auth >>>/redirectpage/register)。
 
 继续阅读本系列的[下一部分和最后一部分](slo-part3.md)，我们将分享在<<< custom_key.brand_name >>>中充分利用您的SLO的最佳实践。
 

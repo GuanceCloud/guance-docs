@@ -202,6 +202,6 @@ RequestsPerSec measures requests per second. Monitoring this metric provides rea
 
 ## Use Case View
 
-Before using <<< custom_key.brand_name >>> to observe Kafka, you need to register a [<<< custom_key.brand_name >>> account](https://auth.guance.com/register?channel=Help_Documentation). After registration, log in to the <<< custom_key.brand_name >>> workspace. Then follow the <[Kafka Integration Documentation](/integrations/kafka/)> to implement Kafka observability.
+Before using <<< custom_key.brand_name >>> to observe Kafka, you need to register a [<<< custom_key.brand_name >>> account](https://<<< custom_key.studio_main_site_auth >>>/register?channel=Help_Documentation). After registration, log in to the <<< custom_key.brand_name >>> workspace. Then follow the <[Kafka Integration Documentation](/integrations/kafka/)> to implement Kafka observability.
 
 ![image.png](../images/kafka-4.png)

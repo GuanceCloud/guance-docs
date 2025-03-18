@@ -67,7 +67,7 @@ from datetime import datetime, timedelta
 from jira import JIRA
 
 # <<< custom_key.brand_name >>>配置，注意修改df_api_key
-base_url = 'https://openapi.guance.com'
+base_url = 'https://openapi.<<< custom_key.brand_main_domain >>>'
 channel_list_url = base_url + '/api/v1/channel/quick_list'
 issue_list_url = base_url + '/api/v1/issue/list'
 create_issue_reply_url = base_url + '/api/v1/issue/reply/create'

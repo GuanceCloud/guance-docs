@@ -102,7 +102,7 @@ Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `d
           - list
           - watch
       - apiGroups:
-          - guance.com
+          - <<< custom_key.brand_main_domain >>>
         resources:
           - datakits
         verbs:
@@ -187,7 +187,7 @@ Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `d
                   apiVersion: v1
                   fieldPath: spec.nodeName
             - name: ENV_DATAWAY
-              value: https://openway.guance.com?token=XXXXXX
+              value: https://openway.<<< custom_key.brand_main_domain >>>?token=XXXXXX
             - name: ENV_GLOBAL_HOST_TAGS # Non-election tags
               value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
             - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -204,7 +204,7 @@ Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `d
             #  value: debug
             #- name: ENV_K8S_CLUSTER_NAME
             #  value: k8s-prod
-            image: pubrepo.jiagouyun.com/datakit/datakit:1.4.10
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.4.10
             imagePullPolicy: Always
             name: datakit
             ports:
@@ -313,7 +313,7 @@ Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `d
           ## Containers logs to include and exclude, default collect all containers. Globs accepted.
           container_include_log = []
           container_exclude_log = ["image:*"]
-          #container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+          #container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
           exclude_pause_container = true
 
@@ -550,7 +550,7 @@ When starting a user's jar using `java -jar`, you need to use `-javaagent:/usr/l
 <<< custom_key.brand_name >>> already provides this image.
 
 ```
-pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
 ```
 
 If you want to directly embed the jar into the image, download [dd-java-agent](https://github.com/GuanceCloud/dd-trace-java) and reference the following script in your Dockerfile to embed the jar into the image. In the deployment yaml, change the `-javaagent` jar to the one you embedded.
@@ -655,7 +655,7 @@ Create `/usr/local/k8s/gateway-deployment.yaml` with the following content:
             - sh
             - -c
             - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -757,7 +757,7 @@ Create `/usr/local/k8s/auth-deployment.yaml` with the following content:
             - sh
             - -c
             - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -792,7 +792,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 ```
 
-Create `/usr/local/k8s/system-deployment.yaml`, using three images `172.16.0.238/df-ruoyi/demo-system:v1`, `pubrepo.jiagouyun.com/datakit/logfwd:1.2.7`, and `pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init`. <br />
+Create `/usr/local/k8s/system-deployment.yaml`, using three images `172.16.0.238/df-ruoyi/demo-system:v1`, `pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.7`, and `pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init`. <br />
 Here, `dd-lib-java-init` provides the `dd-java-agent.jar` file for the system-container business container, and `logfwd` collects logs from the business container. The configuration file for `logfwd` is mounted into the container via a ConfigMap, specifying the location of the logs to be collected and the source name.
 
 Complete content of `system-deployment.yaml`:
@@ -867,7 +867,7 @@ Complete content of `system-deployment.yaml`:
               requests:
                 memory: 256Mi
           - name: logfwd
-            image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.7
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.7
             env:
             - name: LOGFWD_DATAKIT_HOST
               valueFrom:
@@ -903,7 +903,7 @@ Complete content of `system-deployment.yaml`:
             - sh
             - -c
             - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             volumeMounts:
             - mountPath: /ddtrace/agent

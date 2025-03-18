@@ -41,7 +41,7 @@
 ![image](../images/rancher-datakit/2.png)
 
 「集群」 - 「应用市场」 - 「Chart 仓库」，点击「创建」。<br/>
-名称输入 「datakit」，URL 输入 `[https://pubrepo.guance.com/chartrepo/datakit](https://pubrepo.guance.com/chartrepo/datakit)`，点击「创建」。
+名称输入 「datakit」，URL 输入 `[https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit](https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit)`，点击「创建」。
 ![image](../images/rancher-datakit/3.png)
 
 「集群」 - 「应用市场」 - 「Charts」，选择「datakit」，出现下图带 **DataKit** 的图表，点击进去。
@@ -127,7 +127,7 @@ DataKit 默认已开启 Container 采集器，这里介绍一下自定义采集�
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 

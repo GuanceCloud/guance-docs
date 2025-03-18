@@ -22,7 +22,7 @@ All GET (**data query and retrieval**) interfaces only require providing the API
 **Example of a URL POST request to delete a dashboard:**
 
 ```
-curl -X POST "https://openapi.guance.com/api/v1/dashboard/dsbd_922428e594ba44ce87229b8ca3007a90/delete" \
+curl -X POST "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/dsbd_922428e594ba44ce87229b8ca3007a90/delete" \
 -H "Content-Type: application/json" \
 -H "DF-API-KEY: ${DF_API_KEY}"
 ```
@@ -30,7 +30,7 @@ curl -X POST "https://openapi.guance.com/api/v1/dashboard/dsbd_922428e594ba44ce8
 **Example of a URL GET request to validate:**
 
 ```
-curl -X GET "https://openapi.guance.com/api/v1/validate" \
+curl -X GET "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/validate" \
 -H "Content-Type: application/json" \
 -H "DF-API-KEY: ${DF_API_KEY}"
 ```
@@ -41,8 +41,8 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 
 | **SaaS Deployment Node** | **Endpoint** |
 | --- | --- |
-| Alibaba Cloud | https://openapi.guance.com |
-| AWS | https://aws-openapi.guance.com |
+| Alibaba Cloud | https://openapi.<<< custom_key.brand_main_domain >>> |
+| AWS | https://aws-openapi.<<< custom_key.brand_main_domain >>> |
 
 **Note**: Private deployment versions also support OpenAPI access, using the actual deployment Endpoint.
 

@@ -248,7 +248,7 @@ WorkspaceDefaultesIndexSettings:
 ```js
 window.DEPLOYCONFIG = {
     ...
-    "rumDatawayUrl": "https://rum-openway.guance.com",
+    "rumDatawayUrl": "https://rum-openway.<<< custom_key.brand_main_domain >>>",
     "datakitScriptUrl": "https://static.<<< custom_key.brand_main_domain >>>/datakit",
     "datakitHelmUrl": "https://pubrepo.<<< custom_key.brand_main_domain >>>",
     "passPublicNetwork": 1,
@@ -272,7 +272,7 @@ window.DEPLOYCONFIG = {
 
 | 配置项                    | 子项 | 类型                | 默认值                                             | 描述                                                                                                                                                                    |
 | ------------------------- | ---- | ------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| rumDatawayUrl             |      | 字符串              | "https://rum-openway.guance.com"                   | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                                                 |
+| rumDatawayUrl             |      | 字符串              | "https://rum-openway.<<< custom_key.brand_main_domain >>>"                   | 用于上报 RUM 数据的专用 DataWay 地址，配置后将显示在 RUM 接入配置页面中                                                                                                 |
 | datakitScriptUrl          |      | 字符串              | "https://static.<<< custom_key.brand_main_domain >>>/datakit" | DataKit 安装页面的默认安装脚本下载域名，如使用自建的内部静态资源，请修改此配置                                                                                          |
 | datakitHelmUrl            |      | 字符串              | "https://pubrepo.<<< custom_key.brand_main_domain >>>"                       | DataKit Helm 镜像仓库地址，如使用自建镜像仓库，请修改此配置                                                                                                             |
 | passPublicNetwork         |      | 数值                | 1                                                  | 配置访问 Studio 站点的客户端计算机是否有公网网络，0：无，1：有                                                                                                          |

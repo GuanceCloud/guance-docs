@@ -88,7 +88,7 @@ Enter `datakit` as the name, and click **Create**.
 
 ### Step 3: Add Chart Repository
 
-Log in to **Rancher** - **Cluster** - **Marketplace** - **Chart Repositories**, and click **Create**. Enter **datakit** as the name, and input [https://pubrepo.guance.com/chartrepo/datakit](https://pubrepo.guance.com/chartrepo/datakit) as the URL, then click **Create**.
+Log in to **Rancher** - **Cluster** - **Marketplace** - **Chart Repositories**, and click **Create**. Enter **datakit** as the name, and input [https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit](https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit) as the URL, then click **Create**.
 
 ![image](../images/rancher-install-6.png)
 

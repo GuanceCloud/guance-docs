@@ -41,7 +41,7 @@ Enter the name "datakit" and click "Create".
 ![image](../images/rancher-datakit/2.png)
 
 Go to "Clusters" - "Marketplace" - "Chart Repositories", and click "Create".<br/>
-Enter the name "datakit", URL `[https://pubrepo.guance.com/chartrepo/datakit](https://pubrepo.guance.com/chartrepo/datakit)`, and click "Create".
+Enter the name "datakit", URL `[https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit](https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit)`, and click "Create".
 ![image](../images/rancher-datakit/3.png)
 
 Go to "Clusters" - "Marketplace" - "Charts", select "datakit", and click into the chart with **DataKit**.
@@ -127,7 +127,7 @@ Enter the namespace "datakit", name "datakit-conf", key "container.conf", and th
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 

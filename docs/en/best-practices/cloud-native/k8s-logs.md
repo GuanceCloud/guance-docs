@@ -53,11 +53,11 @@ DataKit can collect logs output to stdout from containers. By deploying DataKit 
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
 ```
 
-This creates a configuration file `/usr/local/datakit/conf.d/container/container.conf` inside the DataKit container. By default, it collects all stdout logs except those from images starting with `pubrepo.jiagouyun.com/datakit/logfwd`.
+This creates a configuration file `/usr/local/datakit/conf.d/container/container.conf` inside the DataKit container. By default, it collects all stdout logs except those from images starting with `pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd`.
 
 ```toml
   container_include_log = []  # Equivalent to image:*
-  container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+  container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*"]
 ```
 
 #### 1.2 Customized stdout Log Collection
@@ -163,7 +163,7 @@ data:
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 

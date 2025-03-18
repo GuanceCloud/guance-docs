@@ -139,13 +139,13 @@ In actual deployment, you can linearly increase or reduce the above resource sca
     ### Install or Upgrade GuanceDB via Helm {#helm-install}
 
       ```shell
-      helm upgrade -i guancedb-cluster  guancedb-cluster --repo https://pubrepo.jiagouyun.com/chartrepo/guancedb -n middleware \
+      helm upgrade -i guancedb-cluster  guancedb-cluster --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/guancedb -n middleware \
            --set guance_storage.persistentVolume.storageClass="<YOUR StorageClass Name>" \
            --set ingress.enabled=false \
            --create-namespace
       ```
       
-      > Replace `<YOUR StorageClass Name>` with your storage class name, recommending high-performance data blocks. If other parameters are needed, execute `helm pull guancedb-cluster --repo https://pubrepo.jiagouyun.com/chartrepo/guancedb --untar` and modify values.yaml.
+      > Replace `<YOUR StorageClass Name>` with your storage class name, recommending high-performance data blocks. If other parameters are needed, execute `helm pull guancedb-cluster --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/guancedb --untar` and modify values.yaml.
 
     ### Check Status {#helm-check}
 

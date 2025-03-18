@@ -21,8 +21,8 @@ Basic concepts of SAML are as follows:
 
 After configuring the Entity ID and callback URL (assertion URL) for SAML single sign-on in the Identity Provider, you can download the cloud data document. If you do not have an Entity ID or callback URL (assertion URL), you can fill in the following examples to obtain the metadata document.
 
-- Entity ID: [https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml);  
-- Assertion URL, temporary use: [https://auth.guance.com/saml/assertion/](https://auth.guance.com/saml/assertion/).  
+- Entity ID: [https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml);  
+- Assertion URL, temporary use: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/).  
 
 After enabling SSO single sign-on in <<< custom_key.brand_name >>>, replace with the correct Entity ID and assertion URL obtained from [here](../../management/sso/index.md#obtain).
 

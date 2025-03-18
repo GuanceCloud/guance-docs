@@ -10,7 +10,7 @@
 
 [安装 DataKit](../datakit/datakit-install.md)。                
 
-或者您也可以登录 [<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd)，在**集成 > DataKit**，根据主机系统选择 **Linux、Windows、MacOS**，获取 DataKit 安装指令和安装步骤。
+或者您也可以登录 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site_auth >>>/login/pwd)，在**集成 > DataKit**，根据主机系统选择 **Linux、Windows、MacOS**，获取 DataKit 安装指令和安装步骤。
 
 ## 日志采集器配置
 

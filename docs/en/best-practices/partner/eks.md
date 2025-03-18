@@ -124,7 +124,7 @@ Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_sit
 To deploy DataKit using Helm, add the DataKit Helm repository first.
 
 ```
-helm repo add datakit https://pubrepo.guance.com/chartrepo/datakit
+helm repo add datakit https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 helm repo update
 ```
 

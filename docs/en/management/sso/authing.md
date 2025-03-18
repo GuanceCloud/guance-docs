@@ -35,7 +35,7 @@ After creating users, go to the **Authing Application Page**, click **Add Applic
 
 Enter the application configuration page, scroll down to find more identity protocols, and configure the SAML2 identity provider information as shown below:
 
-1. Enter the default ACS URL (assertion consumer service URL) and click Save. (This configuration is only for obtaining metadata for the next step. After getting the correct assertion URL from <<< custom_key.brand_name >>>, you can replace it. Assertion URL example: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/);)
+1. Enter the default ACS URL (assertion consumer service URL) and click Save. (This configuration is only for obtaining metadata for the next step. After getting the correct assertion URL from <<< custom_key.brand_name >>>, you can replace it. Assertion URL example: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/);)
    
 2. Download the SAML2 metadata document, which will be uploaded when creating the SSO identity provider in <<< custom_key.brand_name >>>;
 

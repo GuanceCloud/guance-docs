@@ -115,7 +115,7 @@ Deploy the Logfwd image and the business image in the same Pod. Below, we use `l
                 - mountPath: /data/app/logs
                   name: varlog
             - name: logfwd
-              image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.12
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.12
               env:
                 - name: LOGFWD_DATAKIT_HOST
                   valueFrom:

@@ -124,7 +124,7 @@ helm version
 使用 Helm 部署 DataKit，需要先添加 DataKit 的 Helm 仓库。
 
 ```
-helm repo add datakit https://pubrepo.guance.com/chartrepo/datakit
+helm repo add datakit https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 helm repo update
 ```
 

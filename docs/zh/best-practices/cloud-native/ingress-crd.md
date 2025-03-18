@@ -862,9 +862,9 @@ kubectl apply -f nginx-ingress.yaml
     apiVersion: apiextensions.k8s.io/v1
     kind: CustomResourceDefinition
     metadata:
-      name: datakits.guance.com
+      name: datakits.<<< custom_key.brand_main_domain >>>
     spec:
-      group: guance.com
+      group: <<< custom_key.brand_main_domain >>>
       versions:
         - name: v1beta1
           served: true
@@ -904,7 +904,7 @@ kubectl apply -f nginx-ingress.yaml
 ??? quote "`ingress-crd.yaml`"
 
     ```yaml
-    apiVersion: "guance.com/v1beta1"
+    apiVersion: "<<< custom_key.brand_main_domain >>>/v1beta1"
     kind: Datakit
     metadata:
       name: prom-ingress

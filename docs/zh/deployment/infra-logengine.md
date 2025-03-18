@@ -252,7 +252,7 @@
               runAsNonRoot: true
               runAsUser: 1000
 
-            image: "pubrepo.jiagouyun.com/base/opensearch:2.3.0-85eb7af9"
+            image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/opensearch:2.3.0-85eb7af9"
             imagePullPolicy: "IfNotPresent"
             readinessProbe:
               failureThreshold: 3
@@ -435,7 +435,7 @@ kubectl logs -n middleware -f opensearch-single-0 -c opensearch
         spec:
           containers:
           - name: elasticsearch
-            image: pubrepo.jiagouyun.com/base/elasticsearch:7.13.2
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/base/elasticsearch:7.13.2
             imagePullPolicy: IfNotPresent
             resources:
                 limits:
@@ -646,7 +646,7 @@ kubectl delete -n middleware pvc data-es-cluster-0
                     - ALL
                   runAsNonRoot: true
                   runAsUser: 1000
-                image: "pubrepo.jiagouyun.com/base/opensearch-dashboards:2.3.0"
+                image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/opensearch-dashboards:2.3.0"
                 imagePullPolicy: "IfNotPresent"
                 readinessProbe:
                   failureThreshold: 10

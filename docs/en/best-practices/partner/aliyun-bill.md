@@ -309,7 +309,7 @@ The host running DataFlux Func must meet the following conditions:
 ##### Portable Edition Download Command
 
 ```shell
-/bin/bash -c "$(curl -fsSL https://t.guance.com/func-portable-download)"
+/bin/bash -c "$(curl -fsSL https://t.<<<custom_key.brand_main_domain>>>/func-portable-download)"
 ```
 
 > _Note: All shell commands mentioned in this article can be run directly under root user. Non-root users need to add sudo_

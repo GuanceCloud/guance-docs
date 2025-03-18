@@ -78,8 +78,8 @@ Static resources may be unavailable during playback for the following reasons:
 - The static resource is inaccessible. For example, authentication may be required, or the resource may only be accessible from an internal network.
 - Static resources are blocked by the browser due to CORS (usually web fonts).
 
-  - Since playback occurs in a sandbox environment corresponding to `guance.com`, if certain static resources do not have permission for a specific domain, your browser will block the request;
-  - Allow `guance.com` access to any font or image static resources your site depends on by setting the Access-Control-Allow-Origin header, ensuring these resources can be accessed during playback.
+  - Since playback occurs in a sandbox environment corresponding to `<<< custom_key.brand_main_domain >>>`, if certain static resources do not have permission for a specific domain, your browser will block the request;
+  - Allow `<<< custom_key.brand_main_domain >>>` access to any font or image static resources your site depends on by setting the Access-Control-Allow-Origin header, ensuring these resources can be accessed during playback.
 
   > For more details, refer to [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web).
 

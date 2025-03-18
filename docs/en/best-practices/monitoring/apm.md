@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-Account Registration: Visit the official website [https://<<< custom_key.brand_main_domain >>>/](https://auth.guance.com/login/pwd) to register an account, and log in using your registered account/password.
+Account Registration: Visit the official website [https://<<< custom_key.brand_main_domain >>>/](https://<<< custom_key.studio_main_site_auth >>>/login/pwd) to register an account, and log in using your registered account/password.
 
 ![image](../images/apm/1.png)
 

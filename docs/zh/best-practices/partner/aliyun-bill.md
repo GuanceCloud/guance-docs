@@ -312,7 +312,7 @@ DataKit 成功安装完成后，主机对象采集器`hostobject`已经默认开
 ##### 携带版下载命令
 
 ```shell
-/bin/bash -c "$(curl -fsSL https://t.guance.com/func-portable-download)"
+/bin/bash -c "$(curl -fsSL https://t.<<< custom_key.brand_main_domain >>>/func-portable-download)"
 ```
 
 > _注意：本文所有涉及到的shell命令，在root用户下可直接运行，非root用户下需要添加sudo运行_

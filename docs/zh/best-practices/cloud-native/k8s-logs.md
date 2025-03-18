@@ -52,11 +52,11 @@ DataKit 可以采集输出到 stdout 的容器日志，使用 datakit.yaml 部�
           value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
 ```
 
-此时会在 DataKit 容器中生成 /usr/local/datakit/conf.d/container/container.conf 配置文件，默认配置是采集除了 pubrepo.jiagouyun.com/datakit/logfwd 开头的镜像外的所有 stdout 日志。
+此时会在 DataKit 容器中生成 /usr/local/datakit/conf.d/container/container.conf 配置文件，默认配置是采集除了 pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd 开头的镜像外的所有 stdout 日志。
 
 ```toml
   container_include_log = []  # 相当于image:*
-  container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+  container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*"]
 ```
 
 #### 1.2 自定义 stdout 日志采集
@@ -162,7 +162,7 @@ data:
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = []
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 
