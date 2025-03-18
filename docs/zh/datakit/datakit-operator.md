@@ -494,8 +494,8 @@ log-container datakit-logfwd
 
 #### 前置条件 {#async-profiler-prerequisites}
 
-- 集群已安装 [Datakit](<<< homepage >>>/datakit/datakit-daemonset-deploy/){:target="_blank"}。
-- [开启 profile](<<< homepage >>>/datakit/datakit-daemonset-deploy/#using-k8-env){:target="_blank"} 采集器。
+- 集群已安装 [Datakit](https://docs.guance.com/datakit/datakit-daemonset-deploy/){:target="_blank"}。
+- [开启 profile](https://docs.guance.com/datakit/datakit-daemonset-deploy/#using-k8-env){:target="_blank"} 采集器。
 - Linux 内核参数 [kernel.perf_event_paranoid](https://www.kernel.org/doc/Documentation/sysctl/kernel.txt){:target="_blank"} 值设置为 2 及以下。
 
 <!-- markdownlint-disable MD046 -->

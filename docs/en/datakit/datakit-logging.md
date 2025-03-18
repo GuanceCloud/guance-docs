@@ -456,7 +456,7 @@ Log collection uses glob rules to conveniently specify log files and automate di
 | `[!abc]`   | Matches one character not given in brackets         | `[!c]at`       | `bat, bat, cat`             | `cat`                         |
 | `[!a-z]`   | Matches one character not in the range given in brackets | `letter[!3-5]` | `letter1…`                  | `letter3 … letter5, letterxx` |
 
-Additionally, the collector supports `**` for recursive file traversal, as shown in the sample configuration. More about globbing can be found [here](https://rgb-24bit.github.io/blog/2018/glob.html){:target="_blank"}.
+Additionally, the collector supports `**` for recursive file traversal, as shown in the sample configuration. More about glob can be found [here](https://rgb-24bit.github.io/blog/2018/glob.html){:target="_blank"}.
 
 #### Discovering Local Log Files {#local-file-discovery}
 

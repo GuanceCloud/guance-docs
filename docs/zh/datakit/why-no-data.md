@@ -576,8 +576,8 @@ graph TD
   %% node definitions
   no_data[无数据];
   debug_fail{无果};
-  monitor[查看 <a href='<<< homepage >>>/datakit/datakit-monitor/'>monitor</a> 情况];
-  debug_input[<a href='<<< homepage >>>/datakit/why-no-data/#check-input-conf'>调试采集器配置</a>];
+  monitor[查看 <a href='https://docs.guance.com/datakit/datakit-monitor/'>monitor</a> 情况];
+  debug_input[<a href='https://docs.guance.com/datakit/why-no-data/#check-input-conf'>调试采集器配置</a>];
   read_faq[查看文档中的 FAQ];
   dql[DQL 查询];
   beyond_usage[数据是否超量];
@@ -587,8 +587,8 @@ graph TD
   check_time[检查机器时间];
   check_token[检查工作空间空间 token];
   check_version[检查 Datakit 版本];
-  dk_service_ok[<a href='<<< homepage >>>/datakit/datakit-service-how-to/'>Datakit 服务是否正常</a>];
-  check_changelog[<a href='<<< homepage >>>/datakit/changelog'>检查 changelog 是否已修复</a>];
+  dk_service_ok[<a href='https://docs.guance.com/datakit/datakit-service-how-to/'>Datakit 服务是否正常</a>];
+  check_changelog[<a href='https://docs.guance.com/datakit/changelog'>检查 changelog 是否已修复</a>];
   is_input_ok[采集器是否运行正常];
   is_input_enabled[是否开启采集器];
   enable_input[开启采集器];
@@ -616,7 +616,7 @@ graph TD
   is_input_ok -->|Yes| dataway_upload_ok -->|Yes| dql;
   is_input_ok --> filtered --> sinked;
 
-  trouble_shooting[<a href='<<< homepage >>>/datakit/why-no-data/#bug-report'>收集信息</a>];
+  trouble_shooting[<a href='https://docs.guance.com/datakit/why-no-data/#bug-report'>收集信息</a>];
 
   debug_fail --> trouble_shooting;
   trouble_shooting --> ligai;
