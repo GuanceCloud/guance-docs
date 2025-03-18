@@ -23,7 +23,7 @@
 
 **源码地址**：[https://github.com/GuanceCloud/datakit-uniapp-native-plugin](https://github.com/GuanceCloud/datakit-uniapp-native-plugin)
 
-**Demo 地址**：[https://github.com/GuanceCloud/datakit-uniapp-native-plugin/Hbuilder_Example](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/develop/Hbuilder_Example)
+**Demo 地址**：[https://github.com/GuanceCloud/datakit-uniapp-native-plugin/Hbuilder_Example](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/tree/master/Hbuilder_Example)
 
 
 下载的 SDK 包结构说明
@@ -181,7 +181,7 @@
 | autoSync | boolean | 否 | 是否开启自动同步。默认 `YES`。当为 `NO` 时使用 [`flushSyncData`](#flushSyncData) 方法自行管理数据同步 |
 | syncPageSize | number | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源，默认为 10 |
 | syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
-| enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题 。 |
+| enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题。0.2.1 以后版本默认开启 |
 | compressIntakeRequests | boolean | 否 | 对同步数据进行压缩，SDK 0.2.0  以上版本支持这个参数 |
 | enableLimitWithDbSize | boolean | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK 0.2.0  以上版本支持该参数 |
 | dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.2.0  以上版本支持该参数 |
