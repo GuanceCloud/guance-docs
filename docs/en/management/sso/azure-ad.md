@@ -30,8 +30,8 @@ Azure Active Directory (AAD) is a cloud-based identity and access management ser
 
 Enter the following assertion URL and entity ID examples.
 
-- Identifier (Entity ID): [https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)
-- Reply URL (Assertion URL), temporarily use: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)
+- Identifier (Entity ID): [https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml)
+- Reply URL (Assertion URL), temporarily use: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/)
 
 **Note**: This configuration is only for obtaining the metadata document for the next step. After enabling SSO single sign-on in <<< custom_key.brand_name >>>, you need to obtain the correct **entity ID** and **assertion URL** and replace them accordingly.
 

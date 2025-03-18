@@ -150,7 +150,7 @@ Span 列表中查看每个 Span 的执行耗时。
 
 ##### 2 Istio Mesh 监控视图
 
-登录『[<<< custom_key.brand_name >>>](https://console.guance.com/)』，点击『场景』->『新建仪表板』，选择 **Istio Mesh 监控视图**。在这个视图里面可以看到调用 reviews-v1 和 reviews-v2 的比例基本是 9:1.
+登录『[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，点击『场景』->『新建仪表板』，选择 **Istio Mesh 监控视图**。在这个视图里面可以看到调用 reviews-v1 和 reviews-v2 的比例基本是 9:1.
 
 ![image](../images/microservices/75.png)	
 
@@ -182,7 +182,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ![image](../images/microservices/76.png)	
 
-『注意』如果 reviews-v2 版本有问题，请登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』参考本章最后一节的链路超时分析来分析问题，参考步骤六把流量完全切回 reviews-v1，等问题修复后，重新发布。
+『注意』如果 reviews-v2 版本有问题，请登录『 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』参考本章最后一节的链路超时分析来分析问题，参考步骤六把流量完全切回 reviews-v1，等问题修复后，重新发布。
 
 # 指标
 
@@ -196,7 +196,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ### RUM
 
-登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『用户访问监测』，找到  **devops-bookinfo** 应用，点击进入。
+登录『 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『用户访问监测』，找到  **devops-bookinfo** 应用，点击进入。
 
 ![image](../images/microservices/78.png)
 
@@ -216,7 +216,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ### APM
 
-登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『应用性能监测』。通过应用性能监测，查看链路数据。
+登录『 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『应用性能监测』。通过应用性能监测，查看链路数据。
 		
 ![image](../images/microservices/84.png)
 
@@ -226,7 +226,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ### stdout
 
-根据部署 DataKit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『日志』，查看日志信息。
+根据部署 DataKit 时的配置，默认采集输出到 /dev/stdout 的日志。 登录『 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『日志』，查看日志信息。
 		
 ![image](../images/microservices/86.png)
 
@@ -284,7 +284,7 @@ kubectl apply -f virtual-service-ratings-test-delay.yaml
 
 ![image](../images/microservices/88.png)
 
-登录『 [<<< custom_key.brand_name >>>](https://console.guance.com/)』，进入『应用性能监测』。点击超时的链路。
+登录『 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)』，进入『应用性能监测』。点击超时的链路。
 
 ![image](../images/microservices/89.png)
 

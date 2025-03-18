@@ -1,7 +1,7 @@
 # 切换域名
 
 ???+ warning "注意"
-     如果之前启用了HTTPS，您需要提前准备新域名的**证书**。此次更换域名假定为`dataflux.cn` 替换为 `guance.com`
+     如果之前启用了HTTPS，您需要提前准备新域名的**证书**。此次更换域名假定为`dataflux.cn` 替换为 `<<< custom_key.brand_main_domain >>>`
 
 ## 简介
 
@@ -56,7 +56,7 @@ done
 ```shell
 # 设置要替换的键值对
 OLD_VALUE="dataflux.cn"
-NEW_VALUE="guance.com"
+NEW_VALUE="<<< custom_key.brand_main_domain >>>"
 NAMESPACE="forethought-core forethought-kodo forethought-webclient func2 middleware utils launcher"
 
 for i in $NAMESPACE;
@@ -108,7 +108,7 @@ done
 
 ```shell
 OLD_VALUE="dataflux.cn"
-NEW_VALUE="guance.com"
+NEW_VALUE="<<< custom_key.brand_main_domain >>>"
 NAMESPACE="forethought-core forethought-kodo forethought-webclient func2 middleware utils launcher"
 
 for i in $NAMESPACE;

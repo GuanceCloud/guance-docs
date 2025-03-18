@@ -68,7 +68,7 @@
 
 ```sh
 docker run --ulimit nofile=64000:64000 \
-  -e ENV_DATAWAY="https://openway.guance.com?token=<tkn_>" \
+  -e ENV_DATAWAY="https://openway.<<< custom_key.brand_main_domain >>>?token=<tkn_>" \
   -e ENV_HTTP_LISTEN="0.0.0.0:9529" \
   -p 9590:9529 \
   -d pubrepo.guance.com/datakit/datakit:<version>

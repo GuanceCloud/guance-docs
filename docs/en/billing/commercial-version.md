@@ -5,7 +5,7 @@ For a comparison of the differences between the [Guance Free Plan and Commercial
 
 ## Prerequisites
 
-- Register for a [Guance Console](https://console.guance.com/) account and use the Free Plan workspace.
+- Register for a [Guance Console](https://<<< custom_key.studio_main_site >>>/) account and use the Free Plan workspace.
 - Register for a [Guance Billing Center](https://<<< custom_key.boss_domain >>>/) account to connect with subsequent billing functions.
 
 ## Upgrading from Free Plan to Commercial Plan

@@ -2,7 +2,7 @@
 ---
 
 ## Account Registration
-Go to the official website [https://guance.com/](https://auth.guance.com/) to register an account, and log in using your registered account/password.
+Go to the official website [https://<<< custom_key.brand_main_domain >>>/](https://<<< custom_key.studio_main_site_auth >>>/) to register an account, and log in using your registered account/password.
 
 ![1631932979(1).png](../images/jenkins-1.png)
 

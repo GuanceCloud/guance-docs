@@ -220,7 +220,7 @@ As a rule of thumb, if you want to add probabilistic sampling and...
 
 ## Demonstration Demo
 
-This demo mainly pushes OpenTelemetry data to [<<< custom_key.brand_name >>>](https://www.guance.com/)
+This demo mainly pushes OpenTelemetry data to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)
 
 ### Preparation
 

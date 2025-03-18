@@ -20,7 +20,7 @@ This document will describe configuration methods for two different deployment a
 #### Adding the Helm Repository
 
 ```shell
-helm add repo dataflux https://pubrepo.guance.com/chartrepo/datakit
+helm add repo dataflux https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 ```
 
 #### Viewing DataKit Versions
@@ -47,7 +47,7 @@ Modify `datakit/values.yaml`
 Note the YAML format; both `dataway_url` and `dkconfig` need to be changed. The `values.yaml` file can be used for future upgrades.
 
 ```yaml
-dataway_url: https://openway.guance.com?token=<your-token>
+dataway_url: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>
 
 ... 
 dkconfig:
@@ -177,9 +177,9 @@ Note: Enabling Git configuration management will make ConfigMap ineffective, and
 You need to modify `dataway_url`, `git_repos.git_url`.
 
 ```shell
-helm add repo dataflux https://pubrepo.guance.com/chartrepo/datakit
+helm add repo dataflux https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 helm repo update 
-helm install my-datakit datakit/datakit -n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
+helm install my-datakit datakit/datakit -n datakit --set dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>" \
 --set git_repos.git_url="http://username:password@github.com/path/to/repository.git" \
 --create-namespace 
 ```
@@ -189,9 +189,9 @@ helm install my-datakit datakit/datakit -n datakit --set dataway_url="https://op
 You need to modify `dataway_url`, `git_repos.git_url`, `git_repos.git_key_path` (absolute path).
 
 ```shell
-helm add repo dataflux https://pubrepo.guance.com/chartrepo/datakit
+helm add repo dataflux https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 helm repo update 
-helm install my-datakit datakit/datakit -n datakit --set dataway_url="https://openway.guance.com?token=<your-token>" \
+helm install my-datakit datakit/datakit -n datakit --set dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>" \
 --set git_repos.git_url="git@github.com:path/to/repository.git" \
 --set-file git_repos.git_key_path="/Users/buleleaf/.ssh/id_rsa" \
 --create-namespace 

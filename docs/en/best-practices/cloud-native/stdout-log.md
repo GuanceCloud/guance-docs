@@ -46,7 +46,7 @@ Only collect logs from cluster components coredns and nginx. Use regular express
 
         ## Containers logs to include and exclude, default collect all containers. Globs accepted.
         container_include_log = ["image:*coredns*","image:*nginx*"]
-        container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+        container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
         exclude_pause_container = true
 
@@ -179,7 +179,7 @@ Only Nginx logs within the Pod are retained.<br />
 Actually, it is not recommended to enable whitelist strategies. Whitelists can cause many issues and are difficult to debug. Unexpected effects may occur, such as developers not seeing certain logs because a specific tag was not added. To filter log sources, blacklists are safer; the worst-case scenario is that data is still collected, which can then be filtered out later. For example, in Datakit collector `container.conf`, you can use:
 
 ```bash
-container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*"]
+container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*"]
 ```
 
 Method one does not use annotation marking but relies on built-in filtering methods in the collector's `container.conf`, which is a more fundamental approach. However, this method is less flexible compared to method two, as annotations allow better tagging of log sources, making future problem analysis and filtering easier. Additionally, annotations are applied to business Pods, enabling finer-grained control over log collection for a batch of business images.

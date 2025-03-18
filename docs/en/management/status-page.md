@@ -19,11 +19,11 @@ You can also directly click the following links to view the service status of <<
 
 | Site               | Service Status URL                         | Operator             |
 | :----------------- | :----------------------------------------- | :------------------- |
-| China Region 1 (Hangzhou) | [https://status.guance.com](https://status.guance.com/)        | Alibaba Cloud (China Hangzhou) |
-| China Region 2 (Ningxia)   | [https://aws-status.guance.com](https://aws-status.guance.com/) | AWS (China Ningxia)    |
-| China Region 3 (Zhangjiakou) | [https://cn3-status.guance.com](https://cn3-status.guance.com) | Alibaba Cloud (China Hangzhou) |
-| China Region 4 (Guangzhou)   | [https://cn4-status.guance.com](https://cn4-status.guance.com/) | Huawei Cloud (China Guangzhou) |
-| Overseas Region 1 (Oregon) | [https://us1-status.guance.com](https://us1-status.guance.com/) | AWS (US Oregon)  |
+| China Region 1 (Hangzhou) | [https://status.<<< custom_key.brand_main_domain >>>](https://status.<<< custom_key.brand_main_domain >>>/)        | Alibaba Cloud (China Hangzhou) |
+| China Region 2 (Ningxia)   | [https://aws-status.<<< custom_key.brand_main_domain >>>](https://aws-status.<<< custom_key.brand_main_domain >>>/) | AWS (China Ningxia)    |
+| China Region 3 (Zhangjiakou) | [https://cn3-status.<<< custom_key.brand_main_domain >>>](https://cn3-status.<<< custom_key.brand_main_domain >>>) | Alibaba Cloud (China Hangzhou) |
+| China Region 4 (Guangzhou)   | [https://cn4-status.<<< custom_key.brand_main_domain >>>](https://cn4-status.<<< custom_key.brand_main_domain >>>/) | Huawei Cloud (China Guangzhou) |
+| Overseas Region 1 (Oregon) | [https://us1-status.<<< custom_key.brand_main_domain >>>](https://us1-status.<<< custom_key.brand_main_domain >>>/) | AWS (US Oregon)  |
 
 ## Service Status
 

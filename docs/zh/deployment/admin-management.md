@@ -14,6 +14,6 @@
 
 ---
 
-<<< custom_key.brand_name >>>是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往<<< custom_key.brand_name >>>，开启一站式可观测之旅：**[www.guance.com](https://www.guance.com)
+<<< custom_key.brand_name >>>是一款面向开发、运维、测试及业务团队的实时数据监测平台，能够统一满足云、云原生、应用及业务上的监测需求，快速实现系统可观测。**立即前往<<< custom_key.brand_name >>>，开启一站式可观测之旅：**[<<< custom_key.brand_main_domain >>>](https://<<< custom_key.brand_main_domain >>>)
 ![logo_2.png](https://cdn.nlark.com/yuque/0/2022/png/21511848/1642761909015-750c7ecd-81ba-4abf-b446-7b8e97abe76e.png#clientId=ucc58c24e-d7a9-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=u1f1c3a96&margin=%5Bobject%20Object%5D&name=logo_2.png&originHeight=169&originWidth=746&originalType=binary&ratio=1&rotation=0&showTitle=false&size=139415&status=done&style=none&taskId=u420e6521-1eac-4f17-897f-53a63d36ff8&title=)
 

@@ -14,7 +14,7 @@ DataKit enables the Logfwd collector, which collects business container logs in 
 
 ### 1 Enable the Logfwd Collector
 
-If Kubernetes is not integrated with DataKit, please log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to "Integration" - "Datakit" - "Kubernetes", and use the `datakit.yaml` file to integrate DataKit.
+If Kubernetes is not integrated with DataKit, please log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), go to "Integration" - "Datakit" - "Kubernetes", and use the `datakit.yaml` file to integrate DataKit.
 
 ![image](../images/pod-log/1.png)
 
@@ -115,7 +115,7 @@ Deploy the Logfwd image and the business image in the same Pod. Below, we use `l
                 - mountPath: /data/app/logs
                   name: varlog
             - name: logfwd
-              image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.12
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.12
               env:
                 - name: LOGFWD_DATAKIT_HOST
                   valueFrom:
@@ -379,7 +379,7 @@ Access the microservice:
 curl localhost:30053/ping
 ```
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) "Logs" module, input `log-demo-service`, and successfully view the logs.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) "Logs" module, input `log-demo-service`, and successfully view the logs.
 
 ![image](../images/pod-log/4.png)
 

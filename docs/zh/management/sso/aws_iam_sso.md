@@ -46,7 +46,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 1. 定义该应用程序的显示名称，如 `guance`；
 2. 按需输入描述；
 3. 在 “IAM Identity Center 元数据”下，点击下载 IAM Identity Center SAML 元数据文件和证书；
-4. 在应用程序元数据，将“应用程序 ACS URL” 和“应用程序 SAML 受众”两个字段填写为：https://auth.guance.com/login/sso；
+4. 在应用程序元数据，将“应用程序 ACS URL” 和“应用程序 SAML 受众”两个字段填写为：https://<<< custom_key.studio_main_site_auth >>>/login/sso；
 5. 提交当前配置；
 6. 页面将提示应用程序添加成功。
 
@@ -125,7 +125,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 3. 点击添加身份提供商，开始配置；
 4. 定义身份提供商名称为 `aws_sso`；
 5. 上传配置应用程序时[下载的元数据文档](#config)；
-6. 定义访问限制为 `guance.com`；
+6. 定义访问限制为 `<<< custom_key.brand_main_domain >>>`；
 7. 选择角色和会话保持时间；
 8. 点击确认。
 
@@ -136,7 +136,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 
 ## 6、登录验证
 
-1. 登录进入<<< custom_key.brand_name >>>单点登录页面：https://auth.guance.com/login/sso；
+1. 登录进入<<< custom_key.brand_name >>>单点登录页面：https://<<< custom_key.studio_main_site_auth >>>/login/sso；
 2. 在列表中选择在 AWS 侧创建的应用程序；
 3. 登录地址；
 4. 输入[用户名、密码](#add_user)；

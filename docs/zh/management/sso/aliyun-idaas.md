@@ -71,7 +71,7 @@
 
 3、获取单点登录地址
 
-1）通过[**单点登录**](https://auth.guance.com/login/sso)访问<<< custom_key.brand_name >>>，输入邮箱地址获取登录链接。如下图所示：
+1）通过[**单点登录**](https://<<< custom_key.studio_main_site_auth >>>/login/sso)访问<<< custom_key.brand_name >>>，输入邮箱地址获取登录链接。如下图所示：
 
 ![](../img/06_aliyun_11.png)
 

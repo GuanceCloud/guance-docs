@@ -20,7 +20,7 @@
 
 ### 账号注册
 
-前往 [<<< custom_key.brand_name >>>](https://console.guance.com/) 注册账号，使用已注册的账号/密码登录。
+前往 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) 注册账号，使用已注册的账号/密码登录。
 
 ![image](../images/k8s-rum-apm-log/1.png)
 
@@ -102,7 +102,7 @@
           - list
           - watch
       - apiGroups:
-          - guance.com
+          - <<< custom_key.brand_main_domain >>>
         resources:
           - datakits
         verbs:
@@ -187,7 +187,7 @@
                   apiVersion: v1
                   fieldPath: spec.nodeName
             - name: ENV_DATAWAY
-              value: https://openway.guance.com?token=XXXXXX
+              value: https://openway.<<< custom_key.brand_main_domain >>>?token=XXXXXX
             - name: ENV_GLOBAL_HOST_TAGS # 非选举类的tag
               value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=k8s-prod
             - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -204,7 +204,7 @@
             #  value: debug
             #- name: ENV_K8S_CLUSTER_NAME
             #  value: k8s-prod
-            image: pubrepo.jiagouyun.com/datakit/datakit:1.4.10
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.4.10
             imagePullPolicy: Always
             name: datakit
             ports:
@@ -313,7 +313,7 @@
           ## Containers logs to include and exclude, default collect all containers. Globs accepted.
           container_include_log = []
           container_exclude_log = ["image:*"]
-          #container_exclude_log = ["image:pubrepo.jiagouyun.com/datakit/logfwd*", "image:pubrepo.jiagouyun.com/datakit/datakit*"]
+          #container_exclude_log = ["image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd*", "image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit*"]
 
           exclude_pause_container = true
 
@@ -550,7 +550,7 @@ EXPOSE 443
 <<< custom_key.brand_name >>>已提供这个镜像。
 
 ```
-pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
 ```
 
 本示例使用的是 Sidecar 的方式，如果您想直接把 jar 打入镜像，请下载 [dd-java-agent](https://github.com/GuanceCloud/dd-trace-java)，并在您的 Dockerfile 中参考下面的脚本把 jar 打入中镜像中，在部署的 yaml 中 -javaagent 使用的 jar 改成您打入的即可。
@@ -655,7 +655,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
             - sh
             - -c
             - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -757,7 +757,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /d
             - sh
             - -c
             - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             name: ddtrace-agent-sidecar
             volumeMounts:
@@ -792,7 +792,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 ```
 
-新建 `/usr/local/k8s/system-deployment.yaml` ，Pod 中使用了 3 个镜像 `172.16.0.238/df-ruoyi/demo-system:v1` 、`pubrepo.jiagouyun.com/datakit/logfwd:1.2.7` 、`pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init`。 <br />
+新建 `/usr/local/k8s/system-deployment.yaml` ，Pod 中使用了 3 个镜像 `172.16.0.238/df-ruoyi/demo-system:v1` 、`pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.7` 、`pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init`。 <br />
 其中 dd-lib-java-init 是提供 `dd-java-agent.jar` 文件给 system-container 业务容器使用，logfwd 采集业务容器的日志文件。logfwd 的配置文件是通过 ConfigMap 来挂载到容器中的，在配置文件中指明需要采集的日志文件位置、source 名称等。
 
 `system-deployment.yaml` 完整内容如下：
@@ -867,7 +867,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
               requests:
                 memory: 256Mi
           - name: logfwd
-            image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.7
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.7
             env:
             - name: LOGFWD_DATAKIT_HOST
               valueFrom:
@@ -903,7 +903,7 @@ ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 >
             - sh
             - -c
             - set -ex;mkdir -p /ddtrace/agent;cp -r /datadog-init/* /ddtrace/agent;
-            image: pubrepo.jiagouyun.com/datakit-operator/dd-lib-java-init
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
             imagePullPolicy: Always
             volumeMounts:
             - mountPath: /ddtrace/agent

@@ -18,7 +18,7 @@
 | Service Name | Version                                                         | Must Be Installed | Purpose            |
 | ------------ | --------------------------------------------------------------- | ----------------- | ------------------ |
 | Datakit      | 1.1.6 or later [Installation Method](../datakit/datakit-install.md) | Required          | Accept scheck signals |
-| DataFlux     | [DataFlux SaaS](https://guance.com) or other private deployment versions | Required          | View security checks |
+| DataFlux     | [DataFlux SaaS](https://<<< custom_key.brand_main_domain >>>) or other private deployment versions | Required          | View security checks |
 
 # Configuration
 

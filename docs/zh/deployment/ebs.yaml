@@ -588,7 +588,7 @@ spec:
       serviceAccountName: openebs-ndm
       containers:
       - name: openebs-ndm
-        image: "pubrepo.jiagouyun.com/base/node-disk-manager:2.0.0"
+        image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/node-disk-manager:2.0.0"
         args:
           - -v=4
           - --feature-gates=GPTBasedUUID
@@ -722,7 +722,7 @@ spec:
       serviceAccountName: openebs-ndm
       containers:
       - name: localpv-openebs-ndm-operator
-        image: "pubrepo.jiagouyun.com/base/node-disk-operator:2.0.0"
+        image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/node-disk-operator:2.0.0"
         imagePullPolicy: IfNotPresent
         resources:
             {}
@@ -793,7 +793,7 @@ spec:
         {}
       containers:
       - name: localpv-localpv-provisioner
-        image: "pubrepo.jiagouyun.com/base/provisioner-localpv:3.3.0"
+        image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/provisioner-localpv:3.3.0"
         imagePullPolicy: IfNotPresent
         resources:
           null
@@ -837,7 +837,7 @@ spec:
         - name: OPENEBS_IO_BASE_PATH
           value: "/var/openebs/local"
         - name: OPENEBS_IO_HELPER_IMAGE
-          value: "pubrepo.jiagouyun.com/base/linux-utils:3.3.0"
+          value: "pubrepo.<<< custom_key.brand_main_domain >>>/base/linux-utils:3.3.0"
         - name: OPENEBS_IO_INSTALLER_TYPE
           value: "localpv-charts-helm"
         # LEADER_ELECTION_ENABLED is used to enable/disable leader election. By default

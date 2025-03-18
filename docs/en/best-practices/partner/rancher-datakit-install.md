@@ -88,7 +88,7 @@ Enter `datakit` as the name, and click **Create**.
 
 ### Step 3: Add Chart Repository
 
-Log in to **Rancher** - **Cluster** - **Marketplace** - **Chart Repositories**, and click **Create**. Enter **datakit** as the name, and input [https://pubrepo.guance.com/chartrepo/datakit](https://pubrepo.guance.com/chartrepo/datakit) as the URL, then click **Create**.
+Log in to **Rancher** - **Cluster** - **Marketplace** - **Chart Repositories**, and click **Create**. Enter **datakit** as the name, and input [https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit](https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit) as the URL, then click **Create**.
 
 ![image](../images/rancher-install-6.png)
 
@@ -154,7 +154,7 @@ Check if there is a `container.conf` file under the `gitrepos` directory, which 
 
 ![image](../images/rancher-install-15.png)
 
-Log in to **[<<< custom_key.brand_name >>>](https://console.guance.com/)** - **Metrics**, select the **kubernetes** Measurement, and verify that the metrics have data, indicating successful metric collection.
+Log in to **[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)** - **Metrics**, select the **kubernetes** Measurement, and verify that the metrics have data, indicating successful metric collection.
 
 ![image](../images/rancher-install-16.png)
 

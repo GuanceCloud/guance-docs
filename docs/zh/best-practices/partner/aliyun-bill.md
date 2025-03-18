@@ -219,7 +219,7 @@ def getBill():
 
 ### 技术调研
 
-在现在的开源可视化领域中，比较流行的而且可视化模板较多的当属 Grafana 最受欢迎。而 Kibana 也是个不错的可视化平台相比于 Grafana 来说 Kibana 更适合 ELK 架构使用，基于我们的需求使用 Kibana 就不是那么契合了，而 Grafana 也是一个开源可视化工具，可以在各种不同的数据存储上使用，而且是 Graphite-web 的一个功能丰富的替代品，可帮助我们轻松创建和编辑仪表板。它包含一个独特的 Graphite 目标解析器，可以轻松进行度量和功能编辑。用户可以使用智能轴格式（例如线条和点）创建全面的图表，另外 Grafana 附带内置告警引擎，允许我们将条件规则附加到仪表板面板将触发的告警发送到选择的通知端点（例如，电子邮件，Slack，PagerDuty，自定义的 Webhooks ）等，这也刚好满足了对于阿里云费用的预警需求，但是 Grafana 旨在分析和可视化系统 CPU，内存，磁盘和 I/O 利用率等指标。Grafana 不允许全文数据查询这让使用体验变得不那么友好了，通过一番寻找在浏览开源社区是发现“[<<< custom_key.brand_name >>>](https://www.guance.com/)”这个产品也刚好满足需求不仅涵盖了Grafana 和 Kibana 的全部优点更有许多独特的功能，而且还拥有 Serverless 在线编程调度的功能，刚好解决了我们使用 Python 脚本获取阿里云账单数据调度无法管理的痛点，另外作为开源的商业化产品其UI的美观程度上甩了 Grafana 不知几条街，而且其提供的免费额度刚好可以满足我们的需求，而且再有使用问题时还能获得官方的产品支持。
+在现在的开源可视化领域中，比较流行的而且可视化模板较多的当属 Grafana 最受欢迎。而 Kibana 也是个不错的可视化平台相比于 Grafana 来说 Kibana 更适合 ELK 架构使用，基于我们的需求使用 Kibana 就不是那么契合了，而 Grafana 也是一个开源可视化工具，可以在各种不同的数据存储上使用，而且是 Graphite-web 的一个功能丰富的替代品，可帮助我们轻松创建和编辑仪表板。它包含一个独特的 Graphite 目标解析器，可以轻松进行度量和功能编辑。用户可以使用智能轴格式（例如线条和点）创建全面的图表，另外 Grafana 附带内置告警引擎，允许我们将条件规则附加到仪表板面板将触发的告警发送到选择的通知端点（例如，电子邮件，Slack，PagerDuty，自定义的 Webhooks ）等，这也刚好满足了对于阿里云费用的预警需求，但是 Grafana 旨在分析和可视化系统 CPU，内存，磁盘和 I/O 利用率等指标。Grafana 不允许全文数据查询这让使用体验变得不那么友好了，通过一番寻找在浏览开源社区是发现“[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/)”这个产品也刚好满足需求不仅涵盖了Grafana 和 Kibana 的全部优点更有许多独特的功能，而且还拥有 Serverless 在线编程调度的功能，刚好解决了我们使用 Python 脚本获取阿里云账单数据调度无法管理的痛点，另外作为开源的商业化产品其UI的美观程度上甩了 Grafana 不知几条街，而且其提供的免费额度刚好可以满足我们的需求，而且再有使用问题时还能获得官方的产品支持。
 
 ### 技术对比
 
@@ -253,7 +253,7 @@ def getBill():
 
 在开始使用“<<< custom_key.brand_name >>>”监控主机之前，需要先安装 DataKit 。DataKit 是官方发布的数据采集应用，支持上百种数据的采集。通过配置采集源，可实时采集如主机、进程、容器、日志、应用性能、用户访问等多种数据。
 
-在开始安装 DataKit 之前，需要先注册一个 [“<<< custom_key.brand_name >>>”账号](https://www.guance.com/) ，注册完成后登录到“<<< custom_key.brand_name >>>”工作空间，即可获取DataKit 安装指令，部署第一个 DataKit。
+在开始安装 DataKit 之前，需要先注册一个 [“<<< custom_key.brand_name >>>”账号](https://<<< custom_key.brand_main_domain >>>/) ，注册完成后登录到“<<< custom_key.brand_name >>>”工作空间，即可获取DataKit 安装指令，部署第一个 DataKit。
 
 ##### 获取安装指令
 
@@ -312,7 +312,7 @@ DataKit 成功安装完成后，主机对象采集器`hostobject`已经默认开
 ##### 携带版下载命令
 
 ```shell
-/bin/bash -c "$(curl -fsSL https://t.guance.com/func-portable-download)"
+/bin/bash -c "$(curl -fsSL https://t.<<< custom_key.brand_main_domain >>>/func-portable-download)"
 ```
 
 > _注意：本文所有涉及到的shell命令，在root用户下可直接运行，非root用户下需要添加sudo运行_

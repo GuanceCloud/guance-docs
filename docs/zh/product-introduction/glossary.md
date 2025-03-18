@@ -67,7 +67,7 @@
 
 | 版本                                               | 说明                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| [体验版](https://auth.guance.com/businessRegister) | 注册即可体验<<< custom_key.brand_name >>>的功能模块。                               |
+| [体验版](https://<<< custom_key.studio_main_site_auth >>>/businessRegister) | 注册即可体验<<< custom_key.brand_name >>>的功能模块。                               |
 | [商业版](../plans/commercial-register.md)        | 云上的 SaaS 公有版本，按量付费，开箱即用，只需要安装 DataKit 后，配置相关数据采集器即完成可观测接入。<br/>关于计费规则，可参考 [计费方式](../billing-method/index.md)。 |
 | [部署版](../deployment/index.md)                   | SaaS 云上独立部署和 PaaS 本地部署，需要用户自己准备服务资源，数据安全级别最高，提供更多的服务支持。 |
 

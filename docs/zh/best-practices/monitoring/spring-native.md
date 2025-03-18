@@ -128,7 +128,7 @@ mvn -Pnative -DskipTests clean package
 
 #### 6.1 安装 DataKit
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」，依次进入「集成」 - 「DataKit」 - 「Linux」，点击「复制图标」复制安装命令。
 
 ![image](../images/spring-native/7.png)
 
@@ -178,7 +178,7 @@ cd /usr/local/df-demo/springboot-native-demo/target
 
 ![image](../images/spring-native/12.png)
 
-登录「[<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「应用性能监测」，可看到 spring-native-demo 服务。
+登录「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」 - 「应用性能监测」，可看到 spring-native-demo 服务。
 
 ![image](../images/spring-native/13.png)
 

@@ -103,7 +103,7 @@ Filebeat is part of the elastic/beats suite, along with HeartBeat, PacketBeat, a
 
 ### DataKit
 
-DataKit is a fundamental data collection tool running on user's local machines, mainly used for collecting various metrics and logs from system operations, aggregating them to [<<< custom_key.brand_name >>>](https://guance.com). In <<< custom_key.brand_name >>>, users can view and analyze their various metrics and logs. DataKit is a critical data collection component in <<< custom_key.brand_name >>>, where all data in <<< custom_key.brand_name >>> originates from DataKit.
+DataKit is a fundamental data collection tool running on user's local machines, mainly used for collecting various metrics and logs from system operations, aggregating them to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>). In <<< custom_key.brand_name >>>, users can view and analyze their various metrics and logs. DataKit is a critical data collection component in <<< custom_key.brand_name >>>, where all data in <<< custom_key.brand_name >>> originates from DataKit.
 
 1. DataKit collects data periodically from various metrics and sends it to DataWay via HTTP(s) at regular intervals. Each DataKit is configured with a corresponding token to identify different users.
 

@@ -100,9 +100,9 @@ Before becoming a Corporate Member and using the recharge services stipulated in
 
 7.2 If any clause of this Agreement is invalid or unenforceable for any reason, the remaining clauses remain valid and binding on both parties.
 
-7.3 If users have any questions about the terms, please immediately stop using the service and send an email to <<< custom_key.brand_name >>> Billing Center's official customer service (email address: support@guance.com). If users do not send an email containing requests for explanations of the terms to <<< custom_key.brand_name >>> Billing Center's official customer service and choose to agree to the Agreement, both parties hereby confirm that <<< custom_key.brand_name >>> Billing Center has fulfilled its legal obligation to explain the relevant terms as required by law, and <<< custom_key.brand_name >>> Billing Center has given users sufficient time and choice to decide whether to enter into this Agreement.
+7.3 If users have any questions about the terms, please immediately stop using the service and send an email to <<< custom_key.brand_name >>> Billing Center's official customer service (email address: support@<<< custom_key.brand_main_domain >>>). If users do not send an email containing requests for explanations of the terms to <<< custom_key.brand_name >>> Billing Center's official customer service and choose to agree to the Agreement, both parties hereby confirm that <<< custom_key.brand_name >>> Billing Center has fulfilled its legal obligation to explain the relevant terms as required by law, and <<< custom_key.brand_name >>> Billing Center has given users sufficient time and choice to decide whether to enter into this Agreement.
 
-7.4 Any issues encountered during the recharge process can be addressed by contacting <<< custom_key.brand_name >>> Billing Center's official customer service (email address: support@guance.com).
+7.4 Any issues encountered during the recharge process can be addressed by contacting <<< custom_key.brand_name >>> Billing Center's official customer service (email address: support@<<< custom_key.brand_main_domain >>>).
 
 **User Confirmation Page**
 

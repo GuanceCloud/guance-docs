@@ -245,7 +245,7 @@ WorkspaceDefaultesIndexSettings:
 ```js
 window.DEPLOYCONFIG = {
     ...
-    "rumDatawayUrl": "https://rum-openway.guance.com",
+    "rumDatawayUrl": "https://rum-openway.<<< custom_key.brand_main_domain >>>",
     "datakitScriptUrl": "https://static.<<< custom_key.brand_main_domain >>>/datakit",
     "datakitHelmUrl": "https://pubrepo.<<< custom_key.brand_main_domain >>>",
     "passPublicNetwork": 1,
@@ -268,7 +268,7 @@ window.DEPLOYCONFIG = {
 
 | Configuration Item                    | Sub-item | Type                | Default Value                                             | Description                                                                                                                                                                    |
 | ------------------------------------- | -------- | ------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| rumDatawayUrl                         |          | String              | "https://rum-openway.guance.com"                          | Dedicated DataWay URL for reporting RUM data, displayed on the RUM integration configuration page                                                                              |
+| rumDatawayUrl                         |          | String              | "https://rum-openway.<<< custom_key.brand_main_domain >>>"                          | Dedicated DataWay URL for reporting RUM data, displayed on the RUM integration configuration page                                                                              |
 | datakitScriptUrl                      |          | String              | "https://static.<<< custom_key.brand_main_domain >>>/datakit" | Default download domain for DataKit installation script. Modify this configuration if using internal static resources                                                          |
 | datakitHelmUrl                        |          | String              | "https://pubrepo.<<< custom_key.brand_main_domain >>>"                              | DataKit Helm repository URL. Modify this configuration if using a self-built image repository                                                                                  |
 | passPublicNetwork                     |          | Number              | 1                                                         | Whether the client computer accessing the Studio site has public network access, 0: No, 1: Yes                                                                                 |

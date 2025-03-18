@@ -32,8 +32,8 @@ Okta 是身份识别与访问管理解决方案提供商。
 
 2）在 **Configure SAML** 的 **SAML Settings**部分，填入断言地址和 Entity ID。
 
-- Single sign on URL：断言地址，示例：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)；  
-- Audience URI（SP Entity ID）：Entity ID，示例：[https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml)。 
+- Single sign on URL：断言地址，示例：[https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/)；  
+- Audience URI（SP Entity ID）：Entity ID，示例：[https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml)。 
 
 **注意**：此次配置仅为获取下一步的元数据文档使用，需要在<<< custom_key.brand_name >>>中启用SSO单点登录后，获取到正确的**实体 ID**和**断言地址**后重新替换。
 

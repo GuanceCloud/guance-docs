@@ -176,7 +176,7 @@ mvn clean install -DskipTests
 ```
 ### 开启RUM
 
-- 登录[<<< custom_key.brand_name >>>](https://console.guance.com/)
+- 登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)
 
 点击【用户访问监测】- 【新建应用】输入 book-shop，选择Web，复制js。
 
@@ -256,7 +256,7 @@ java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
  
 ### 订单监控视图
 
-登录[<<< custom_key.brand_name >>>](https://console.guance.com/)，【场景】->【新建仪表板】->【新建空白仪表板】，输入“订单监控视图”，点击【确定】。
+登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)，【场景】->【新建仪表板】->【新建空白仪表板】，输入“订单监控视图”，点击【确定】。
 
 ![1641360132(1).png](../images/order-4.png)
 

@@ -21,7 +21,7 @@ Or you can directly click the following links to download.
 
 ## Login
 
-Existing <<< custom_key.brand_name >>> Free Plan / Commercial Plan users can log in to the <<< custom_key.brand_name >>> App by using their registered account credentials or phone verification codes, selecting the corresponding site for their account. If you do not have a <<< custom_key.brand_name >>> account yet, you can visit the <<< custom_key.brand_name >>> website [Sign Up](https://auth.guance.com/register) to register an appropriate site account.
+Existing <<< custom_key.brand_name >>> Free Plan / Commercial Plan users can log in to the <<< custom_key.brand_name >>> App by using their registered account credentials or phone verification codes, selecting the corresponding site for their account. If you do not have a <<< custom_key.brand_name >>> account yet, you can visit the <<< custom_key.brand_name >>> website [Sign Up](https://<<< custom_key.studio_main_site_auth >>>/register) to register an appropriate site account.
 
 ## Account Management
 

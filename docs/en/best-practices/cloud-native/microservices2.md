@@ -10,7 +10,7 @@ The previous document introduced the deployment of DataKit in a Kubernetes envir
 
 ### 1.1 Docker Monitoring View
 
-In a Kubernetes cluster, a Pod is the smallest scheduling unit, which can contain one or more containers. In <<< custom_key.brand_name >>>, you can use the **Docker Monitoring View** to observe containers.<br /> Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Docker Monitoring View**.
+In a Kubernetes cluster, a Pod is the smallest scheduling unit, which can contain one or more containers. In <<< custom_key.brand_name >>>, you can use the **Docker Monitoring View** to observe containers.<br /> Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on **Scenarios** -> **Create Dashboard**, and select **Docker Monitoring View**.
 
 ![image](../images/microservices/23.png)
 
@@ -24,7 +24,7 @@ Enter the monitoring view and select the hostname and container name.
 
 ### 1.2 Kubernetes Monitoring View
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Kubernetes Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on **Scenarios** -> **Create Dashboard**, and select **Kubernetes Monitoring View**.
 
 ![image](../images/microservices/26.png)
 
@@ -156,7 +156,7 @@ Add the content as shown in the image and click **Save**.
 
 #### 1.3.3 Achieve ETCD Observability
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **ETCD Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on **Scenarios** -> **Create Dashboard**, and select **ETCD Monitoring View**.
 
 Enter the dashboard name as **ETCD Monitoring View**. The name can be customized. Click **Confirm**.
 		 
@@ -172,7 +172,7 @@ For more information on ETCD integration methods, refer to the [ETCD](../../inte
 
 ### 2.1 Istio Mesh Monitoring View
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Mesh Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Mesh Monitoring View**.
 		
 ![image](../images/microservices/39.png)
 
@@ -189,7 +189,7 @@ Enter the monitoring view and select the cluster name.
 
 ### 2.2 Istio Control Plane Monitoring View
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Control Plane Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Control Plane Monitoring View**.
 		 
 ![image](../images/microservices/43.png)
 
@@ -203,7 +203,7 @@ Enter the monitoring view and select the cluster name.
 
 ### 2.3 Istio Service Monitoring View
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Service Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Service Monitoring View**.
 
 ![image](../images/microservices/47.png)
 
@@ -215,7 +215,7 @@ Enter the monitoring view and select the cluster name.
 
 ### 2.4 Istio Workload Monitoring View
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Workload Monitoring View**.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), click on **Scenarios** -> **Create Dashboard**, and select **Istio Workload Monitoring View**.
 		 
 ![image](../images/microservices/50.png)
 

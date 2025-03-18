@@ -220,7 +220,7 @@ Below are the modified parts of the `datakit.yaml` file:
 
 #### Replace Token
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), under 「Integration」 - 「DataKit」 copy the token and replace `<your-token>` in `datakit.yaml`.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), under 「Integration」 - 「DataKit」 copy the token and replace `<your-token>` in `datakit.yaml`.
 
 ![image](../images/istio/7.png)
 
@@ -291,7 +291,7 @@ kubectl label namespace prod istio-injection=enabled
 
 #### Enable RUM
 
-- 1 Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), under 「User Access Monitoring」 - 「Create Application」, enter bookinfo,<br />
+- 1 Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), under 「User Access Monitoring」 - 「Create Application」, enter bookinfo,<br />
   copy the JS code to `/usr/local/df-demo/bookinfo/productpage/templates/productpage.html` and change <DATAKIT ORIGIN> to `http://<your-public-ip>:9529`.
 
 ![image](../images/istio/12.png)

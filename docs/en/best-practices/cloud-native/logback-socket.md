@@ -56,7 +56,7 @@ systemctl restart datakit
 
 #### Kubernetes Environment
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Integration】->【Datakit】-> 【Kubernetes】, and follow the instructions to install DataKit. You need to modify the datakit.yaml used for deployment. The steps involve creating a logging-socket.conf file and mounting it into DataKit.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), go to 【Integration】->【Datakit】-> 【Kubernetes】, and follow the instructions to install DataKit. You need to modify the datakit.yaml used for deployment. The steps involve creating a logging-socket.conf file and mounting it into DataKit.
 
 ##### 1 Add Configuration to ConfigMap
 
@@ -285,7 +285,7 @@ kubectl apply -f pay-deployment.yaml
 
 Since the Socker Appender outputs logs in JSON format, DataKit needs to use Pipeline to parse the JSON string. The source and service are default Tags, so set_tag needs to be used.
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Logs】->【Pipelines】, click 【Create Pipeline】, and select the source name socketdefault defined when enabling the Socket collector. Define the parsing rules as follows:
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), go to 【Logs】->【Pipelines】, click 【Create Pipeline】, and select the source name socketdefault defined when enabling the Socket collector. Define the parsing rules as follows:
 
 ```toml
         json(_,msg,"message")
@@ -320,7 +320,7 @@ After testing with log samples and ensuring it works, click 【Save】. Note tha
 
 ### View Log Files
 
-Access the application's interface to generate application logs. Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Logs】->【Data Collection】-> select pay-socket-source to view log details. Here you can see that the source and service have been replaced by the externally passed parameters.
+Access the application's interface to generate application logs. Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), go to 【Logs】->【Data Collection】-> select pay-socket-source to view log details. Here you can see that the source and service have been replaced by the externally passed parameters.
 
 ![image](../images/logback-socket/1.png)
 

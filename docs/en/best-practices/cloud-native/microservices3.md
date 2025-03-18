@@ -150,7 +150,7 @@ In the service call relationships, you can see a clear topology map.
 
 ##### 2 Istio Mesh Monitoring View
 
-Log in to '[<<< custom_key.brand_name >>>](https://console.guance.com/)', click 'Scenarios' -> 'Create Dashboard', and select **Istio Mesh Monitoring View**. In this view, you can see that the ratio of calls to reviews-v1 and reviews-v2 is approximately 9:1.
+Log in to '[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)', click 'Scenarios' -> 'Create Dashboard', and select **Istio Mesh Monitoring View**. In this view, you can see that the ratio of calls to reviews-v1 and reviews-v2 is approximately 9:1.
 
 ![image](../images/microservices/75.png)	
 
@@ -182,7 +182,7 @@ kubectl replace -f virtual-service-reviews.yaml
 
 ![image](../images/microservices/76.png)	
 
-**Note**: If there are issues with the reviews-v2 version, log in to '[<<< custom_key.brand_name >>>](https://console.guance.com/)' and refer to the last section of this chapter for trace timeout analysis to diagnose the problem. Refer to Step Six to completely revert traffic back to reviews-v1 until the issue is fixed and then redeploy.
+**Note**: If there are issues with the reviews-v2 version, log in to '[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)' and refer to the last section of this chapter for trace timeout analysis to diagnose the problem. Refer to Step Six to completely revert traffic back to reviews-v1 until the issue is fixed and then redeploy.
 
 # Metrics
 
@@ -196,7 +196,7 @@ These metrics can be used to create similar **Istio Mesh Monitoring Views** base
 
 ### RUM
 
-Log in to '[<<< custom_key.brand_name >>>](https://console.guance.com/)', enter 'RUM', find the **devops-bookinfo** application, and click to enter.
+Log in to '[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)', enter 'RUM', find the **devops-bookinfo** application, and click to enter.
 
 ![image](../images/microservices/78.png)
 
@@ -216,7 +216,7 @@ View UV, PV, session counts, and visited pages.
 
 ### APM
 
-Log in to '[<<< custom_key.brand_name >>>](https://console.guance.com/)', enter 'APM'. Through APM, view trace data.
+Log in to '[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)', enter 'APM'. Through APM, view trace data.
 		
 ![image](../images/microservices/84.png)
 
@@ -226,7 +226,7 @@ Log in to '[<<< custom_key.brand_name >>>](https://console.guance.com/)', enter 
 
 ### stdout
 
-According to the DataKit deployment configuration, logs output to `/dev/stdout` are collected by default. Log in to '[<<< custom_key.brand_name >>>](https://console.guance.com/)', enter 'Logs', and view log information.
+According to the DataKit deployment configuration, logs output to `/dev/stdout` are collected by default. Log in to '[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)', enter 'Logs', and view log information.
 		
 ![image](../images/microservices/86.png)
 
@@ -283,7 +283,7 @@ Visit [http://8.136.193.105:32156/productpage](http://8.136.193.105:32156/produc
 
 ![image](../images/microservices/88.png)
 
-Log in to '[<<< custom_key.brand_name >>>](https://console.guance.com/)', enter 'APM'. Click on the timed-out trace.
+Log in to '[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)', enter 'APM'. Click on the timed-out trace.
 
 ![image](../images/microservices/89.png)
 

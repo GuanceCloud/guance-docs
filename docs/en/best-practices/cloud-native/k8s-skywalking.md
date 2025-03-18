@@ -158,6 +158,6 @@ curl 10.244.36.98:8090/ping
 
 #### Application Performance Monitoring (APM)
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) and enter the APM module to view the `skywalking-demo-master` application.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and enter the APM module to view the `skywalking-demo-master` application.
 
 ![image](../images/k8s-skywalking/2.png)

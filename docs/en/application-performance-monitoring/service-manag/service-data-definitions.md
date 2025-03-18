@@ -2,7 +2,7 @@
 
 ## Service Performance Data Source Definition {#tm-definitions}
 
-The `TM` index space stores data related to service lists and performance metrics. The data on the [APM - Metrics](https://console.guance.com/tracing/service/performance){:target="_blank"} page is primarily queried from this index space. TM aggregates service metric data at three different granularities—minute, hour, and day—to improve query efficiency.
+The `TM` index space stores data related to service lists and performance metrics. The data on the [APM - Metrics](https://<<< custom_key.studio_main_site >>>/tracing/service/performance){:target="_blank"} page is primarily queried from this index space. TM aggregates service metric data at three different granularities—minute, hour, and day—to improve query efficiency.
 
 For example, to query all service metric data within a 15-minute period from `2024-03-19 15:00:00` to `2024-03-19 15:15:00`, you can use DQL:
 

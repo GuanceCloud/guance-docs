@@ -52,7 +52,7 @@ In recent years, Grafana has ventured into the observability domain, establishin
 
 ### [3. Based on <<< custom_key.brand_name >>> - Commercial Observability Product](./opentelemetry-guance.md)
 
-[<<< custom_key.brand_name >>>](https://www.guance.com) is a unified platform for collecting and managing metrics, logs, APM, RUM, infrastructure, containers, middleware, network performance, and other types of data. Using <<< custom_key.brand_name >>> allows for comprehensive observability of applications, not just log tracing.
+[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) is a unified platform for collecting and managing metrics, logs, APM, RUM, infrastructure, containers, middleware, network performance, and other types of data. Using <<< custom_key.brand_name >>> allows for comprehensive observability of applications, not just log tracing.
 
 ![image.png](../images/opentelemetry_observable_guance.png)
 

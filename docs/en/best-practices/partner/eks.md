@@ -15,7 +15,7 @@ This article describes deploying kubectl and eksctl on an EC2 instance to connec
 
 ## Prerequisites
 
-- You need to create a [<<< custom_key.brand_name >>> account](https://www.guance.com/).
+- You need to create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/).
 - You need to create an [AWS account](https://www.amazonaws.cn/).
 - [Install EKS](https://docs.amazonaws.cn/eks/latest/userguide/create-cluster.html) cluster.
 - An EC2 instance (Amazon Linux 2 AMI image).
@@ -115,7 +115,7 @@ helm version
 
 #### 4.1 Obtain Token
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) - "Manage" - "Settings", find the Token, click the copy icon to the right, and use this Token in the next step.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) - "Manage" - "Settings", find the Token, click the copy icon to the right, and use this Token in the next step.
 
 ![image.png](../images/eks-9.png)
 
@@ -124,7 +124,7 @@ Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/) - "Manage
 To deploy DataKit using Helm, add the DataKit Helm repository first.
 
 ```
-helm repo add datakit https://pubrepo.guance.com/chartrepo/datakit
+helm repo add datakit https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit
 helm repo update
 ```
 

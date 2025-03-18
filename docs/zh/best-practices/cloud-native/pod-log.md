@@ -14,7 +14,7 @@ DataKit 开通 Logfwd 采集器，Logfwd 以 Sidecar 模式收集业务容器日
 
 ### 1 开通 Logfwd 采集器
 
-如果 Kubernetes 未集成 DataKit ，请登录[<<< custom_key.brand_name >>>](https://console.guance.com/)，「集成」 - 「Datakit」 - 「Kubernetes」，使用 `datakit.yaml` 文件集成 DataKit 。
+如果 Kubernetes 未集成 DataKit ，请登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)，「集成」 - 「Datakit」 - 「Kubernetes」，使用 `datakit.yaml` 文件集成 DataKit 。
 
 ![image](../images/pod-log/1.png)
 
@@ -115,7 +115,7 @@ kubectl apply -f datakit.yaml
                 - mountPath: /data/app/logs
                   name: varlog
             - name: logfwd
-              image: pubrepo.jiagouyun.com/datakit/logfwd:1.2.12
+              image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.12
               env:
                 - name: LOGFWD_DATAKIT_HOST
                   valueFrom:
@@ -379,7 +379,7 @@ kuectl apply -f pod-log-service.yaml
 curl localhost:30053/ping
 ```
 
-登录[<<< custom_key.brand_name >>>](https://console.guance.com/) 「日志」模块，输入 log-demo-service ，成功查看到日志。
+登录[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) 「日志」模块，输入 log-demo-service ，成功查看到日志。
 
 ![image](../images/pod-log/4.png)
 

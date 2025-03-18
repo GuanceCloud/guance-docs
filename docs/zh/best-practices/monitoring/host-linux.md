@@ -19,7 +19,7 @@ Linux，全称 GNU/Linux，是一套免费使用和自由传播的类 Unix 操�
 
 ## 前置条件
 
-前往官方网站 [<<< custom_key.brand_name >>>](https://www.guance.com/) 注册账号，使用已注册的账号/密码进行登录。
+前往官方网站 [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) 注册账号，使用已注册的账号/密码进行登录。
 
 ## 部署实施
 
@@ -370,7 +370,7 @@ vi /etc/telegraf/telegraf.conf
 
 ```bash
 [[inputs.http_response]]
-    urls = ["https://www.baidu.com","https://guance.com","http://localhost:9090"]
+    urls = ["https://www.baidu.com","https://<<< custom_key.brand_main_domain >>>","http://localhost:9090"]
 ```
 
 3.重启 telegraf

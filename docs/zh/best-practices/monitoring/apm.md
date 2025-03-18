@@ -4,7 +4,7 @@
 
 ## 前置条件
 
-账号注册：前往官方网站 [https://www.guance.com/](https://auth.guance.com/login/pwd) 注册账号，使用已注册的账号/密码登录
+账号注册：前往官方网站 [https://<<< custom_key.brand_main_domain >>>/](https://<<< custom_key.studio_main_site_auth >>>/login/pwd) 注册账号，使用已注册的账号/密码登录
 
 ![image](../images/apm/1.png)
 
@@ -56,7 +56,7 @@ Datakit 安装完成后，已经默认开启 Linux 主机常用插件，可以�
 
 ### 查看链路追踪（APM）监控场景
 
-登录 [guance](https://console.guance.com/) 进入具体的项目空间，点击应用性能监测即可查看：
+登录 [guance](https://<<< custom_key.studio_main_site >>>/) 进入具体的项目空间，点击应用性能监测即可查看：
 
 ![image](../images/apm/6.png)
 
@@ -193,7 +193,7 @@ $ wq!
 $ ./bin/startup.sh
 ```
 
-登录 [guance](https://console.guance.com/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。
+登录 [guance](https://<<< custom_key.studio_main_site >>>/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。
 
 ---
 
@@ -209,7 +209,7 @@ $ nohup java -jar mall-admin.jar &
 $ nohup java -javaagent:/xxx/dd-java-agent-0.72.0.jar -Ddd.service.name=mall-admin -Ddd.agent.port=9529 -jar mall-admin.jar &
 ```
 
-登录 [guance](https://console.guance.com/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。
+登录 [guance](https://<<< custom_key.studio_main_site >>>/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。
 
 ---
 
@@ -248,7 +248,7 @@ $ docker run -p 8080:8080 --name mall-admin --link mysql:db --link redis:redis -
 ## 注意：添加完java –javaagent后需要在启动脚本后添加-jar your app name.jar
 ```
 
-登录 [guance](https://console.guance.com/) 进入具体的项目空间，点击应用性能监测即可查看服务名为对应 serveice.name 的应用数据。
+登录 [guance](https://<<< custom_key.studio_main_site >>>/) 进入具体的项目空间，点击应用性能监测即可查看服务名为对应 serveice.name 的应用数据。
 
 ---
 
@@ -378,4 +378,4 @@ $ wq!
 $ ./bin/startup.sh
 ```
 
-登录 [guance](https://console.guance.com/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。
+登录 [guance](https://<<< custom_key.studio_main_site >>>/) 进入具体的项目空间，点击应用性能监测即可查看服务名为 mall-admin 的应用数据。

@@ -66,7 +66,7 @@ Including scenarios, events, infrastructure, metrics, logs, APM, RUM, synthetic 
 
 | Version                                               | Description                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| [Free Plan](https://auth.guance.com/businessRegister) | Register to experience <<< custom_key.brand_name >>>’s feature modules.                               |
+| [Free Plan](https://<<< custom_key.studio_main_site_auth >>>/businessRegister) | Register to experience <<< custom_key.brand_name >>>’s feature modules.                               |
 | [Commercial Plan](../plans/commercial-register.md)        | Cloud-based SaaS public version, pay-as-you-go, ready-to-use. Just install DataKit and configure relevant data collectors to complete observability access.<br/>For billing rules, refer to [Billing Method](../billing-method/index.md). |
 | [Deployment Plan](../deployment/index.md)                   | Independent SaaS cloud deployment and PaaS local deployment, requiring users to prepare service resources themselves, offering the highest level of data security and more service support. |
 

@@ -22,7 +22,7 @@
 *示例：删除仪表板（POST 请求）*
 
 ```
-curl -X POST "https://openapi.guance.com/api/v1/dashboard/dsbd_922428e594ba44ce87229b8ca3007a90/delete" \
+curl -X POST "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboard/dsbd_922428e594ba44ce87229b8ca3007a90/delete" \
 -H "Content-Type: application/json" \
 -H "DF-API-KEY: ${DF_API_KEY}"
 ```
@@ -30,7 +30,7 @@ curl -X POST "https://openapi.guance.com/api/v1/dashboard/dsbd_922428e594ba44ce8
 *示例：验证接口（GET 请求）*
 
 ```
-curl -X GET "https://openapi.guance.com/api/v1/validate" \
+curl -X GET "https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/validate" \
 -H "Content-Type: application/json" \
 -H "DF-API-KEY: ${DF_API_KEY}"
 ```
@@ -41,8 +41,8 @@ curl -X GET "https://openapi.guance.com/api/v1/validate" \
 
 | SaaS 部署节点 | Endpoint |
 | --- | --- |
-| 阿里云 | https://openapi.guance.com |
-| AWS | https://aws-openapi.guance.com |
+| 阿里云 | https://openapi.<<< custom_key.brand_main_domain >>> |
+| AWS | https://aws-openapi.<<< custom_key.brand_main_domain >>> |
 
 **注意**：私有部署版也支持 openapi 接入，具体以实际部署的 Endpoint 为准。
 

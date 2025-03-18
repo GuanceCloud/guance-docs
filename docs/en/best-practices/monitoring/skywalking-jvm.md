@@ -113,7 +113,7 @@ java  -javaagent:agent/skywalking-agent.jar \
 
 ### 3 JVM Observability
 
-Log in to 「 [<<< custom_key.brand_name >>>](https://console.guance.com/)」 - 「Scenes」, input "JVM", select 「JVM Skywalking Monitoring View」, and click 「Confirm」.
+Log in to 「 [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」 - 「Scenes」, input "JVM", select 「JVM Skywalking Monitoring View」, and click 「Confirm」.
 
 Click on the newly created 「JVM Skywalking Monitoring View」 to begin monitoring.
 

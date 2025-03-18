@@ -32,8 +32,8 @@ Okta is a provider of identity and access management solutions.
 
 2) In the **Configure SAML** section under **SAML Settings**, enter the assertion URL and Entity ID.
 
-- Single sign-on URL: Assertion URL, example: [https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/);
-- Audience URI (SP Entity ID): Entity ID, example: [https://auth.guance.com/saml/metadata.xml](https://auth.guance.com/saml/metadata.xml).
+- Single sign-on URL: Assertion URL, example: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/);
+- Audience URI (SP Entity ID): Entity ID, example: [https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml).
 
 **Note**: This configuration is only for obtaining the metadata document in the next step. After enabling SSO single sign-on in <<< custom_key.brand_name >>>, you will need to replace these with the correct **Entity ID** and **Assertion URL**.
 
