@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| type | string | Y | 触发规则类型, 默认为`trigger`<br>允许为空: True <br>可选值: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'simpleHTTPRequest'] <br> |
+| type | string | Y | 触发规则类型, 默认为`trigger`<br>允许为空: True <br>可选值: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'simpleHTTPRequest', 'slackIncomingWebhook'] <br> |
 | name | string | Y | 通知对象名字<br>允许为空: False <br> |
 | optSet | json |  | 告警设置<br>允许为空: False <br> |
 | openPermissionSet | boolean |  | 开启 自定义权限配置, (默认 false:不开启), 开启后 该规则的操作权限根据 permissionSet<br>允许为空: False <br> |
@@ -79,6 +79,12 @@
 | key      | 类型   | 是否必须 | 说明  |
 | :------- | :----- | :------- | :----------- |
 | url      | String | 必须 | HTTP 调⽤地址 |
+
+**8. `type`=`slackIncomingWebhook` 时，optSet的参数 **
+
+| key      | 类型   | 是否必须 | 说明  |
+| :------- | :----- | :------- | :----------- |
+| webhook  | String | 必须    | 机器⼈调⽤地址 |
 
 **permissionSet, openPermissionSet 字段说明(2024-06-26迭代新增字段): **
 通知对象配置 openPermissionSet 开启后,  只有空间拥有者 和属于 permissionSet 配置中的 角色, 团队, 成员才能进行编辑/删除

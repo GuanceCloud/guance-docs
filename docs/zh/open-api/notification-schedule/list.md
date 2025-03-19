@@ -16,7 +16,7 @@
 | mySchedule | string |  | 查看我的日程, 默认 false: 查看所有日程<br>允许为空: True <br>可选值: ['true', 'false'] <br> |
 | notificationScheduleUUIDs | commaArray |  | 过滤 日程 UUID<br>允许为空: False <br> |
 | issueNotificationPolicyUUIDs | commaArray |  | 过滤 通知策略 UUID<br>允许为空: False <br> |
-| notifyTargets | commaArray |  | 过滤 通知对象, acnt_xxx,notify_yyy,jj@qq.com<br>允许为空: False <br> |
+| notifyTargets | commaArray |  | 过滤 通知对象, acnt_xxx,notify_yyy,xxx@<<< custom_key.brand_main_domain >>><br>允许为空: False <br> |
 | search | string |  | 搜索名称<br>允许为空: True <br> |
 | pageIndex | integer |  | 页码<br>允许为空: False <br>例子: 1 <br>$minValue: 1 <br> |
 | pageSize | integer |  | 每页返回数量<br>允许为空: False <br>例子: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
@@ -108,7 +108,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_s
                 "inEffectNotifyTargetsInfos": [
                     {
                         "acntWsNickname": "",
-                        "email": "jinlei940@guance.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "17621725046",
                         "name": "金磊lll",
@@ -126,7 +126,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_s
                 "notifyTargetsInfos": [
                     {
                         "acntWsNickname": "",
-                        "email": "jinlei940@guance.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "17621725046",
                         "name": "金磊lll",

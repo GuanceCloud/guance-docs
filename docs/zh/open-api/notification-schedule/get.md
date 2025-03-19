@@ -59,7 +59,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_s
         "notifyTargetsInfos": [
             {
                 "acntWsNickname": "",
-                "email": "jinlei940@guance.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "mobile": "17621725046",
                 "name": "金磊lll",

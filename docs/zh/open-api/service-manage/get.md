@@ -73,7 +73,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "serviceCatelog": {
             "Docs": [
                 {
-                    "link": "https://www.docs.guance.com",
+                    "link": "<<< homepage >>>",
                     "name": "guance",
                     "provider": "guanceyun"
                 },
@@ -96,7 +96,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
             },
             "Repos": [
                 {
-                    "link": "https://<<< custom_key.brand_main_domain >>>",
+                    "link": "https://www.<<< custom_key.brand_main_domain >>>",
                     "name": "guance",
                     "provider": "guanceyun"
                 },
@@ -111,8 +111,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 "oncall": [
                     {
                         "emails": [
-                            "test1@guance.com",
-                            "test2@guance.com"
+                            "xxx@<<< custom_key.brand_main_domain >>>",
+                            "xxx@<<< custom_key.brand_main_domain >>>"
                         ],
                         "name": "guanceyun",
                         "type": "email"

@@ -65,7 +65,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw $'{"name":"temp_test","desc":"test openapi modify","roleUUIDs":["general"],"indexes":["wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b"],"extend":{"source":["http_dial_testing"]},"maskFields":"host,message","logic":"and","conditions":"`source` IN [\'http_dial_testing\']","reExprs":[{"name":"对qq邮箱进行脱敏","enable":true,"reExpr":"[a-zA-Z0-9_]+@qq.com"}]}' \
+--data-raw $'{"name":"temp_test","desc":"test openapi modify","roleUUIDs":["general"],"indexes":["wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b"],"extend":{"source":["http_dial_testing"]},"maskFields":"host,message","logic":"and","conditions":"`source` IN [\'http_dial_testing\']","reExprs":[{"name":"对qq邮箱进行脱敏","enable":true,"reExpr":"[a-zA-Z0-9_]+@<<< custom_key.brand_main_domain >>>"}]}' \
 --compressed
 ```
 
@@ -106,7 +106,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
             {
                 "enable": true,
                 "name": "对qq邮箱进行脱敏",
-                "reExpr": "[a-zA-Z0-9_]+@qq.com"
+                "reExpr": "[a-zA-Z0-9_]+@<<< custom_key.brand_main_domain >>>"
             }
         ],
         "roleUUIDs": [

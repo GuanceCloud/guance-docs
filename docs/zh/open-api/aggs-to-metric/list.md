@@ -95,7 +95,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric
                     "username": "xxxx",
                     "name": "xxxx",
                     "iconUrl": "",
-                    "email": "xxxx@guance.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "mobile": "xxxx",
                     "acntWsNickname": ""
                 },

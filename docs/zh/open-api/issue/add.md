@@ -85,7 +85,7 @@ extend 字段示例:
     ],
     "manager": [
         "acnt_xxxx32",
-        "abc@11.com",
+        "xxx@<<< custom_key.brand_main_domain >>>",
         "group_xxx"
     ],
     "linkList": [
@@ -97,11 +97,11 @@ extend 字段示例:
     "extra": {
             "creator": {
                 "name": "xxx",
-                "email": "xxx@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
             },
             "managerInfos": {
-                "111@qq.com": {"name": "111"},
-                "222@qq.com": {"name": "222"}
+                "xxx@<<< custom_key.brand_main_domain >>>": {"name": "111"},
+                "xxx@<<< custom_key.brand_main_domain >>>": {"name": "222"}
 
             }
             }
@@ -132,10 +132,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/add' \
         "creator": "acnt_xxxx32",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "1061379682@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "wanglei-testing",
-            "username": "1061379682@qq.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "deleteAt": -1,
         "description": "",
@@ -162,10 +162,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/add' \
         "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "1061379682@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "wanglei-testing",
-            "username": "1061379682@qq.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "uuid": "issue_xxxx32",
         "workspaceUUID": "wksp_xxxx32"
