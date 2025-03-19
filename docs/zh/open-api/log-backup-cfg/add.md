@@ -17,6 +17,8 @@
 | name | string | Y | 规则名字<br>例子: xxx <br>允许为空: False <br> |
 | extend | json |  | 前端自定义数据<br>允许为空: True <br> |
 | syncExtensionField | boolean |  | 同步备份扩展字段, true为同步, false不同步, 默认不同步<br>允许为空: False <br> |
+| openPermissionSet | boolean |  | 开启 自定义权限配置, (默认 false:不开启), 开启后 读取转发规则的数据的权限, 根据 readPermissionSet (2025-03-26 迭代新增)<br>允许为空: False <br> |
+| readPermissionSet | array |  | 读取数据转发规则数据的权限配置, 可配置角色(除拥有者) (2025-03-26 迭代新增)<br>例子: ['wsAdmin', 'general'] <br>允许为空: False <br> |
 | storeType | string | Y | 存储类型<br>允许为空: False <br>可选值: ['guanceObject', 's3', 'obs', 'oss', 'kafka'] <br> |
 | dataType | string |  | 数据类型<br>允许为空: False <br>可选值: ['logging', 'tracing', 'rum', 'keyevent'] <br> |
 | duration | string |  | 数据保留时长,<br>例子: 180d <br>可选值: ['180d', '360d', '720d'] <br> |

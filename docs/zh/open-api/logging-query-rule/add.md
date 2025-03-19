@@ -58,7 +58,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
 -H 'Accept: application/json, text/plain, */*' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
---data-raw $'{"name":"temp_test","desc":"test openapi","roleUUIDs":["general","role_3ac3042991c046f0b03452771012b268"],"indexes":["wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b","wksp_eee1a762ed954b7588e30d9bccb717d5:lgim_72143917855c48abae5d4fb1d2fb7a1f"],"extend":{"city":["Tafuna"]},"maskFields":"message","logic":"and","reExprs":[{"name":"对qq邮箱进行脱敏","reExpr":"[a-zA-Z0-9_]+@qq.com","enable":true}],"conditions":"`city` IN [\'Tafuna\']"}' \
+--data-raw $'{"name":"temp_test","desc":"test openapi","roleUUIDs":["general","role_3ac3042991c046f0b03452771012b268"],"indexes":["wksp_4b57c7bab38e4a2d9630f675dc20015d:lgim_f2a50518520b467a920103a19133fa8b","wksp_eee1a762ed954b7588e30d9bccb717d5:lgim_72143917855c48abae5d4fb1d2fb7a1f"],"extend":{"city":["Tafuna"]},"maskFields":"message","logic":"and","reExprs":[{"name":"对qq邮箱进行脱敏","reExpr":"[a-zA-Z0-9_]+@<<< custom_key.brand_main_domain >>>","enable":true}],"conditions":"`city` IN [\'Tafuna\']"}' \
 --compressed
 ```
 
@@ -100,7 +100,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
             {
                 "enable": true,
                 "name": "对qq邮箱进行脱敏",
-                "reExpr": "[a-zA-Z0-9_]+@qq.com"
+                "reExpr": "[a-zA-Z0-9_]+@<<< custom_key.brand_main_domain >>>"
             }
         ],
         "roleUUIDs": [

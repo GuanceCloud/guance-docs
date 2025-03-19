@@ -17,7 +17,7 @@
 | type | string | Y | 类型<br>例子:  <br>允许为空: False <br>可选值: ['saml', 'oidc'] <br> |
 | idpData | string | Y | xml文档内容(saml 类型必填)<br>例子:  <br>允许为空: False <br> |
 | config | json |  | 访问配置表(oidc 类型必填)<br>例子:  <br>允许为空: False <br> |
-| emailDomains | array | Y | 邮箱域名<br>例子: ['jiagouyun.com', 'guance.com'] <br> |
+| emailDomains | array | Y | 邮箱域名<br>例子: ['<<< custom_key.brand_main_domain >>>'] <br> |
 | idpName | string | Y | 供应商<br>例子: 默认供应商 <br>最大长度: 64 <br>$matchRegExp: [a-zA-Z_一-龥-]* <br> |
 | role | string | Y | 角色<br>允许为空: False <br>可选值: ['general', 'readOnly'] <br> |
 | remark | string |  | 备注<br>允许为空: False <br>允许为空字符串: True <br> |

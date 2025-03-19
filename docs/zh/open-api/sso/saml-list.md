@@ -56,7 +56,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list'
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
@@ -83,7 +83,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list'
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"

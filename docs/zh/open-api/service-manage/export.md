@@ -53,7 +53,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "serviceCatelog": {
             "Docs": [
                 {
-                    "link": "https://www.docs.guance.com",
+                    "link": "<<< homepage >>>",
                     "name": "guance",
                     "provider": "guanceyun"
                 },
@@ -74,7 +74,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
             },
             "Repos": [
                 {
-                    "link": "https://<<< custom_key.brand_main_domain >>>",
+                    "link": "https://www.<<< custom_key.brand_main_domain >>>",
                     "name": "guance",
                     "provider": "guanceyun"
                 },
@@ -89,8 +89,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 "oncall": [
                     {
                         "emails": [
-                            "test1@guance.com",
-                            "test3@guance.com"
+                            "xxx@<<< custom_key.brand_main_domain >>>",
+                            "xxx@<<< custom_key.brand_main_domain >>>"
                         ],
                         "name": "guanceyun",
                         "type": "email"
@@ -131,10 +131,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "createType": "manual",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "test@jiagouyun.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "test",
-            "username": "test@jiagouyun.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "dfStatus": "ok",
         "isFavorite": false,
@@ -152,10 +152,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "updateAt": 1693728357,
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "test@jiagouyun.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "test",
-            "username": "test@jiagouyun.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "uuid": "sman_xxxx32"
     }

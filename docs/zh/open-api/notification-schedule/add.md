@@ -18,7 +18,7 @@
 | timezone | string |  | 时区, 默认 Asia/Shanghai<br>例子: Asia/Shanghai <br>允许为空: False <br>最大长度: 48 <br> |
 | start | string | Y | 时间段 开始时间<br>例子: 00:00 <br>允许为空: False <br>最大长度: 48 <br> |
 | end | string | Y | 时间段 结束时间<br>例子: 23:59 <br>允许为空: False <br>最大长度: 48 <br> |
-| notifyTargets | array | Y | 通知对象, 包含 账号uuid, 通知对象uuid, 邮箱<br>例子: ['acnt_xxx', 'notify_', 'test@qq.com'] <br>允许为空: False <br> |
+| notifyTargets | array | Y | 通知对象, 包含 账号uuid, 通知对象uuid, 邮箱<br>例子: ['acnt_xxx', 'notify_', 'xxx@<<< custom_key.brand_main_domain >>>'] <br>允许为空: False <br> |
 | extend | json |  | 扩展信息, 包含 轮换通知对象配置<br>允许为空: False <br> |
 | extend.enableRotateNotification | boolean |  | 是否开启 轮换, 默认 关闭<br>例子: False <br>允许为空: False <br> |
 | extend.rotationCycle | string |  | 轮换周期, 天: day, 周: week, 月: month, 工作日: workDay, 周末: weekend<br>例子: day <br>允许为空: False <br>可选值: ['day', 'week', 'month', 'workDay', 'weekend'] <br> |

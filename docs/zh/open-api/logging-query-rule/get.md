@@ -79,7 +79,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
             {
                 "enable": true,
                 "name": "对qq邮箱进行脱敏",
-                "reExpr": "[a-zA-Z0-9_]+@qq.com"
+                "reExpr": "[a-zA-Z0-9_]+@<<< custom_key.brand_main_domain >>>"
             }
         ],
         "relRoleInfos": [

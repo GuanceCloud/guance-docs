@@ -105,8 +105,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                             "name": "guanceyun",
                             "type": "email",
                             "emails": [
-                                "test1@guance.com",
-                                "test3@guance.com"
+                                "xxx@<<< custom_key.brand_main_domain >>>",
+                                "xxx@<<< custom_key.brand_main_domain >>>"
                             ]
                         },
                         {
@@ -126,7 +126,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 },
                 "Repos": [
                     {
-                        "link": "https://<<< custom_key.brand_main_domain >>>",
+                        "link": "https://www.<<< custom_key.brand_main_domain >>>",
                         "name": "guance",
                         "provider": "guanceyun"
                     },
@@ -138,7 +138,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 ],
                 "Docs": [
                     {
-                        "link": "https://www.docs.guance.com",
+                        "link": "<<< homepage >>>",
                         "name": "guance",
                         "provider": "guanceyun"
                     },
@@ -164,18 +164,18 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
             "createAt": 1693728357,
             "updateAt": 1693728357,
             "creatorInfo": {
-                "username": "test@jiagouyun.com",
+                "username": "xxx@<<< custom_key.brand_main_domain >>>",
                 "name": "test",
                 "iconUrl": "",
-                "email": "test@jiagouyun.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "acntWsNickname": ""
             },
             "colour": "",
             "updatorInfo": {
-                "username": "test@jiagouyun.com",
+                "username": "xxx@<<< custom_key.brand_main_domain >>>",
                 "name": "test",
                 "iconUrl": "",
-                "email": "test@jiagouyun.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "acntWsNickname": ""
             },
             "dfStatus": "ok",
