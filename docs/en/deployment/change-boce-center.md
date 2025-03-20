@@ -34,7 +34,7 @@ Top-right corner button ---> click **Modify Application Configuration**, modify 
 DialingServer:
   # Configuration of the dial testing service center's address
   use_https: true                           ## Whether to use https
-  host: dflux-dial.<<< custom_key.brand_main_domain >>>               ## Address of the dial testing center, replace with the ingress domain name of your private deployment; remember to revert to the original address if switching back
+  host: <<< custom_key.dial_server_domain >>>               ## Address of the dial testing center, replace with the ingress domain name of your private deployment; remember to revert to the original address if switching back
   port: 443
   timeout: 10
 ```
@@ -58,12 +58,12 @@ Click the "Get Configuration" button on the far right, follow the redirection to
 ```shell
 [[inputs.dialtesting]]
   # We can also configure a JSON path like "file:///your/dir/json-file-name"
-  server = "https://dflux-dial.<<< custom_key.brand_main_domain >>>"
+  server = "https://<<< custom_key.dial_server_domain >>>"
 
   # [require] node ID
   region_id = "default"
 
-  # if server is dflux-dial.<<< custom_key.brand_main_domain >>>, ak/sk required
+  # if server is <<< custom_key.dial_server_domain >>>, ak/sk required
   ak = ""
   sk = ""
 ```

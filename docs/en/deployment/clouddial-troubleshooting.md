@@ -62,11 +62,11 @@ DialingServer:
   # Address configuration for the Synthetic Tests center
   use_https: true
   port: 443                                     ## Modify based on actual conditions
-  host: 'dflux-dial.<<< custom_key.brand_main_domain >>>'                 ## Modify based on actual conditions
+  host: '<<< custom_key.dial_server_domain >>>'                 ## Modify based on actual conditions
   timeout: 10
 ```
 
-> **dflux-dial.<<< custom_key.brand_main_domain >>>** is the official Synthetic Tests center. If switching to a private Synthetic Tests center, please refer to the ingress configuration.
+> **<<< custom_key.dial_server_domain >>>** is the official Synthetic Tests center. If switching to a private Synthetic Tests center, please refer to the ingress configuration.
 
 - Verify the ConfigMap named `dialtesting-config` under the `utils` Namespace:
 
