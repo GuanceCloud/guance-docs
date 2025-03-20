@@ -44,9 +44,9 @@
 | 属性                | 类型                       | 必须 | 含义                                                         |
 | ------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | sampleRate          | int                        | 否   | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。此采样率是 RUM 采样基础上的采样率。 |
-| privacy             | FTSRPrivacy                | 否   | 设置 Session Replay 中内容屏蔽的隐私级别。默认`FTSRPrivacyMask`。<br/>屏蔽处理：文本替换为 * 或 # <br>`FTSRPrivacyAllow`: 除了敏感输入控件外记录所有内容，例如密码输入<br/>`FTSRPrivacyMaskUserInput`:屏蔽输入元素。例如 `UITextField`、`UISwitch` 等<br>`FTSRPrivacyMask`：屏蔽所有内容。 |
-| touchPrivacy        | FTTouchPrivacyLevel        | 否   | 会话重放中触摸屏蔽的可用隐私级别。默认`FTTouchPrivacyLevelHide`。<br>`FTTouchPrivacyLevelShow`: 显示所有用户触摸<br>`FTTouchPrivacyLevelHide`:屏蔽所有用户触摸<br> SDK 1.6.1 以上版本支持这个参数 |
-| textAndInputPrivacy | FTTextAndInputPrivacyLevel | 否   | 会话重放中文本和输入屏蔽的可用隐私级别。默认 `FTTextAndInputPrivacyLevelMaskAll`<br>`FTTextAndInputPrivacyLevelMaskSensitiveInputs`:显示除敏感输入外的所有文本<br>`FTTextAndInputPrivacyLevelMaskAllInputs`:屏蔽所有输入字段<br>`FTTextAndInputPrivacyLevelMaskAll`:屏蔽所有文本和输入<br>SDK 1.6.1 以上版本支持这个参数 |
+| privacy             | FTSRPrivacy                | 否   | 设置 Session Replay 中内容屏蔽的隐私级别。默认`FTSRPrivacyMask`。<br/>屏蔽处理：文本替换为 * 或 # <br>`FTSRPrivacyAllow`: 除了敏感输入控件外记录所有内容，例如密码输入<br/>`FTSRPrivacyMaskUserInput`:屏蔽输入元素。例如 `UITextField`、`UISwitch` 等<br>`FTSRPrivacyMask`：屏蔽所有内容。<br>**即将废弃，建议您使用 `touchPrivacy` 、`textAndInputPrivacy` 进行细粒度的屏蔽隐私级别设置** |
+| touchPrivacy        | FTTouchPrivacyLevel        | 否   | 会话重放中触控屏蔽的可用隐私级别。默认`FTTouchPrivacyLevelHide`。<br>`FTTouchPrivacyLevelShow`: 显示所有用户触控<br>`FTTouchPrivacyLevelHide`:屏蔽所有用户触控<br>**优先级 > `privacy`**<br> SDK 1.6.1 以上版本支持这个参数 |
+| textAndInputPrivacy | FTTextAndInputPrivacyLevel | 否   | 会话重放中文本和输入屏蔽的可用隐私级别。默认 `FTTextAndInputPrivacyLevelMaskAll`<br>`FTTextAndInputPrivacyLevelMaskSensitiveInputs`:显示除敏感输入外的所有文本<br>`FTTextAndInputPrivacyLevelMaskAllInputs`:屏蔽所有输入字段<br>`FTTextAndInputPrivacyLevelMaskAll`:屏蔽所有文本和输入<br>**优先级 > `privacy`**<br/>SDK 1.6.1 以上版本支持这个参数 |
 
 ## 隐私覆盖
 
@@ -56,7 +56,7 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 
 视图级隐私覆盖：
 
-* 支持覆盖文本和输入屏蔽级别与触摸屏蔽级别
+* 支持覆盖文本和输入屏蔽级别与触控屏蔽级别
 * 支持设置完全隐藏特定视图
 
 注意：
@@ -73,30 +73,30 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 
     ```objective-c
     #import <FTMobileSDK/UIView+FTSRPrivacy.h>
-       // Set an text and input override on your view
+       // 对指定视图设置文本和输入覆盖
        myView.sessionReplayPrivacyOverrides.textAndInputPrivacy = FTTextAndInputPrivacyLevelOverrideMaskAll;
-       // Remove an text and input override from your view
+       // 移除视图的文本和输入覆盖设置
        myView.sessionReplayPrivacyOverrides.touchPrivacy = FTTextAndInputPrivacyLevelOverrideNone;
     ```
 
 === "Swift"
 
     ```swift 
-       // Set an text and input override on your view
+       // 对指定视图设置文本和输入覆盖
        myView.sessionReplayPrivacyOverrides.textAndInputPrivacy = .maskAll
-       // Remove an text and input override from your view
+       // 移除视图的文本和输入覆盖设置
        myView.sessionReplayPrivacyOverrides.textAndInputPrivacy = .none
     ```
 
-### 触摸覆盖 {#touch_override}
+### 触控覆盖 {#touch_override}
 
-要覆盖触摸隐私，请在视图实例上使用 `sessionReplayOverrides.touchPrivacy` 将其设为 `FTTouchPrivacyLevelOverride` 枚举中的某个值。若需移除现有覆盖规则，直接将该属性设为 `FTTouchPrivacyLevelOverrideNone` 即可。
+要覆盖触控隐私，请在视图实例上使用 `sessionReplayOverrides.touchPrivacy` 将其设为 `FTTouchPrivacyLevelOverride` 枚举中的某个值。若需移除现有覆盖规则，直接将该属性设为 `FTTouchPrivacyLevelOverrideNone` 即可。
 
 === "Objective-C"
 
     ```objective-c
     #import <FTMobileSDK/UIView+FTSRPrivacy.h>
-       // Set a touch override on your view
+       // 对指定视图设置触控覆盖
        myView.sessionReplayPrivacyOverrides.touchPrivacy = FTTouchPrivacyLevelOverrideShow;
        // Remove a touch override from your view
        myView.sessionReplayPrivacyOverrides.touchPrivacy = FTTouchPrivacyLevelOverrideNone;
@@ -106,9 +106,9 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 === "Swift"
 
     ```swift 
-       // Set a touch override on your view
+       // 对指定视图设置触控覆盖
        myView.sessionReplayPrivacyOverrides.touchPrivacy = .show;
-       // Remove a touch override from your view
+       // 移除视图的触控覆盖设置
        myView.sessionReplayPrivacyOverrides.touchPrivacy = .none;
     ```
 
@@ -118,24 +118,24 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 
 当设置某个元素为隐藏时 ，它将在重放中被标记为 "Hidden" 的占位符替换，并且不会记录其子视图。
 
-**注意**：将视图标记为隐藏不会阻止在该元素上记录触摸交互。要隐藏触摸交互，除了将元素标记为隐藏外，还要使用[触摸覆盖](#touch_override)。
+**注意**：将视图标记为隐藏不会阻止在该元素上记录触控交互。要隐藏触控交互，除了将元素标记为隐藏外，还要使用[触控覆盖](#touch_override)。
 
 === "Objective-C"
 
     ```objective-c
     #import <FTMobileSDK/UIView+FTSRPrivacy.h>
-       // Mark a view as hidden
+       // 对指定视图标记隐藏元素覆盖
        myView.sessionReplayPrivacyOverrides.hide = YES;
-       // Remove the override from the view
+       // 移除视图的隐藏元素覆盖设置
        myView.sessionReplayPrivacyOverrides.hide = NO;
     ```
 
 === "Swift"
 
     ```swift 
-       // Mark a view as hidden
+       // 对指定视图标记隐藏元素覆盖
        myView.sessionReplayPrivacyOverrides.touchPrivacy = true;
-       // Remove the override from the view
+       // 移除视图的隐藏元素覆盖设置
        myView.sessionReplayPrivacyOverrides.touchPrivacy = false;
     ```
 
