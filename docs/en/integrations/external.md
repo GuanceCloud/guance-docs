@@ -1,34 +1,35 @@
 ---
 title     : 'External'
-summary   : 'Start external program for collection'
+summary   : 'Launch external programs for collection'
 __int_icon      : 'icon/external'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-External Collector launch outside program to collecting data.
+The External collector can launch external programs for collection.
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- The command and its running environment must have complete dependencies. For example, if Python is used to start an external Python script, the `import` package and other dependencies required for the script to run must be prepared.
+- The program of the startup command and its runtime environment dependencies are complete. For example, if using Python to start an external Python script, all required packages and dependencies for the script's execution must be present.
 
-### Input configuration {#input-config}
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/external` directory under the DataKit installation directory, copy `external.conf.sample` and name it `external.conf`. Examples are as follows:
-
+    Navigate to the `conf.d/external` directory under the DataKit installation directory, copy `external.conf.sample`, and rename it to `external.conf`. An example is as follows:
+    
     ```toml
         
     [[inputs.external]]
@@ -39,18 +40,18 @@ External Collector launch outside program to collecting data.
         # Whether or not to run the external program in the background.
         daemon = false
     
-        # If the external program running in a Non-daemon mode,
-        #     runs it in every this interval time.
+        # If the external program runs in Non-daemon mode,
+        #     runs it at this interval time.
         #interval = '10s'
     
-        # The environment variables running the external program.
+        # Environment variables for running the external program.
         #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
     
-        # The external program' full path. Filling in absolute path whenever possible.
+        # Full path of the external program. Use absolute paths whenever possible.
         cmd = "python" # required
     
-        # Filling "true" if this collecor is involved in the election.
-        # Note: The external program must running in a daemon mode if involving the election.
+        # Set "true" if this collector is involved in the election.
+        # Note: The external program must run in daemon mode if involved in the election.
         election = false
         args = []
     
@@ -60,9 +61,10 @@ External Collector launch outside program to collecting data.
     
     ```
     
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    You can currently enable the collector by [injecting the collector configuration via ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+
 <!-- markdownlint-enable -->

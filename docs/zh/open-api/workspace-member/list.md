@@ -43,7 +43,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/memb
             "createAt": 1614149795,
             "creator": "extend",
             "deleteAt": -1,
-            "email": "88@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "extend": {
                 "user_icon": "acnt_xxxx32.png"
             },
@@ -58,7 +58,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/memb
             "updator": "external",
             "userIconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
             "userType": "common",
-            "username": "88@qq.com",
+            "username": "xxx@<<< custom_key.brand_main_domain >>>",
             "uuid": "acnt_xxxx32",
             "waitAudit": 0
         }

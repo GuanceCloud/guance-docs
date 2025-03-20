@@ -1,6 +1,6 @@
 ---
 title     : 'OpenLIT'
-summary   : 'OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云'
+summary   : 'OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到<<< custom_key.brand_name >>>'
 tags      :
   - 'OTEL'
   - '链路追踪'
@@ -10,7 +10,7 @@ dashboard:
     path: 'dashboard/zh/openlit'
 ---
 
-OpenLIT 通过简化生成式 AI 和大模型语言(LLMs)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云。
+OpenLIT 通过简化生成式 AI 和大模型语言(LLMs)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到<<< custom_key.brand_name >>>。
 
 ## 配置 {#config}
 <!-- markdownlint-disable MD038 -->

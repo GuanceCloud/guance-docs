@@ -1,14 +1,14 @@
 ---
 title     : 'IPMI'
-summary   : 'Collect IPMI metrics'
+summary   : 'IPMI Metrics display information about the current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of monitored devices.'
 tags:
   - 'IPMI'
 __int_icon      : 'icon/ipmi'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -17,19 +17,19 @@ monitor   :
 
 ---
 
-IPMI metrics show the current, voltage, power consumption, occupancy rate, fan speed, temperature and equipment status of the monitored equipment.
+IPMI Metrics display information about the current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of monitored devices.
 
-IPMI is the abbreviation of Intelligent Platform Management Interface, which is an industry standard for managing peripheral devices used in enterprise systems based on Intel structure. This standard is formulated by Intel, Hewlett-Packard, NEC, Dell Computer and SuperMicro. Users can use IPMI to monitor the physical health characteristics of the server, such as temperature, voltage, fan working status, power status, etc.
+IPMI stands for Intelligent Platform Management Interface, an industrial standard used to manage peripheral devices in enterprise systems based on Intel architecture. This standard was developed by companies such as Intel, HP, NEC, Dell USA, and SuperMicro. Users can monitor physical health characteristics of servers, such as temperature, voltage, fan operating state, power supply state, etc., using IPMI.
 
-IPMI enables the operation and maintenance system to obtain the operation health indicators of monitored servers and other devices **without intrusion**, thus ensuring information security.
+IPMI allows operation systems to obtain operational health metrics of monitored servers and other devices **non-invasively**, ensuring information security.
 
-## Configuration {#config}
+## Configuration  {#input-config}
 
-### Preconditions {#requirements}
+### Prerequisites {#precondition}
 
-- Install the `ipmitool` Toolkit
+- Install `ipmitool` package
 
-DataKit collects IPMI data through the [`ipmitool`][1]  tool, so it needs to be installed on the machine. It can be installed by the following command:
+Datakit collects IPMI data via the [`ipmitool`][1] tool, so this tool needs to be installed on the machine. You can install it with the following commands:
 
 ```shell
 # CentOS
@@ -42,17 +42,17 @@ sudo apt-get update && sudo apt -y install ipmitool
 brew install ipmitool # macOS
 ```
 
-- Loading Module
+- Load modules
 
 ```shell
 modprobe ipmi_msghandler
 modprobe ipmi_devintf
 ```
 
-After successful installation, you can see the information output by ipmi server by running the following command:
+After successful installation, run the following command to see the output information from the ipmi server:
 
 ```shell
-ipmitool -I lanplus -H <IP 地址> -U <用户名> -P <密码> sdr elist
+ipmitool -I lanplus -H <IP Address> -U <Username> -P <Password> sdr elist
 
 SEL              | 72h | ns  |  7.1 | No Reading
 Intrusion        | 73h | ok  |  7.1 | 
@@ -71,17 +71,17 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    1. IP address refers to the IP address of the IPMI port of the server that you remotely manage
-    1. Server `IPMI Settings -> Enable IPMI on LAN` needs to be checked
-    1. Server `Channel Privilege Level Restrictions` operator level requirements and `<User Name>` keep level consistent
-    1. `ipmitool` toolkit is installed on the machine running DataKit.
+    1. The IP address refers to the IPMI port IP address of the remote management server.
+    1. In the server's 「IPMI Settings -> Enable IPMI on LAN」 must be checked.
+    1. The server’s 「Channel Permission Level Restriction」 operator level must match the 「Username」.
+    1. The `ipmitool` package is installed on the machine running Datakit.
 
 ### Collector Configuration {#input-config}
 
-=== "Host deployment"
+=== "HOST Deployment"
 
-    Go to the `conf.d/ipmi` directory under the DataKit installation directory, copy `ipmi.conf.sample` and name it `ipmi.conf`. Examples are as follows:
-    
+    Go to the `conf.d/ipmi` directory under the DataKit installation directory, copy `ipmi.conf.sample` and rename it to `ipmi.conf`. Example follows:
+
     ```toml
         
     [[inputs.ipmi]]
@@ -176,112 +176,112 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
       # more_tag = "some_other_value"
     
     ```
-    
-    After configuration, restart DataKit.
+
+    After configuring, restart DataKit.
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject collector configurations via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    It also supports modifying configuration parameters through environment variables (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
+
     - **ENV_INPUT_IPMI_INTERVAL**
     
-        Collect interval
+        Collector repetition interval duration
     
-        **Type**: Duration
+        **Field type**: Duration
     
-        **input.conf**: `interval`
+        **Collector configuration field**: `interval`
     
-        **Default**: 10s
+        **Default value**: 10s
     
     - **ENV_INPUT_IPMI_TIMEOUT**
     
-        Timeout
+        Timeout duration
     
-        **Type**: Duration
+        **Field type**: Duration
     
-        **input.conf**: `timeout`
+        **Collector configuration field**: `timeout`
     
-        **Default**: 5s
+        **Default value**: 5s
     
     - **ENV_INPUT_IPMI_DROP_WARNING_DELAY**
     
-        Ipmi server drop warning delay
+        Service degradation warning delay
     
-        **Type**: Duration
+        **Field type**: Duration
     
-        **input.conf**: `drop_warning_delay`
+        **Collector configuration field**: `drop_warning_delay`
     
-        **Default**: 5m
+        **Default value**: 5m
     
     - **ENV_INPUT_IPMI_BIN_PATH**
     
-        The binPath of `ipmitool`
+        Execution file path
     
-        **Type**: String
+        **Field type**: String
     
-        **input.conf**: `bin_path`
+        **Collector configuration field**: `bin_path`
     
         **Example**: `/usr/bin/ipmitool`
     
     - **ENV_INPUT_IPMI_ENVS**
     
-        The envs of LD_LIBRARY_PATH
+        Path to execution dependency libraries
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `envs`
+        **Collector configuration field**: `envs`
     
         **Example**: ["LD_LIBRARY_PATH=XXXX:$LD_LIBRARY_PATH"]
     
     - **ENV_INPUT_IPMI_SERVERS**
     
-        IPMI servers URL
+        IPMI server URL
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `ipmi_servers`
+        **Collector configuration field**: `ipmi_servers`
     
         **Example**: ["192.168.1.1","192.168.1.2"]
     
     - **ENV_INPUT_IPMI_INTERFACES**
     
-        The interfaces of IPMI servers
+        IPMI server interface protocol
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `ipmi_interfaces`
+        **Collector configuration field**: `ipmi_interfaces`
     
         **Example**: ["`lanplus`"]
     
     - **ENV_INPUT_IPMI_USERS**
     
-        User name
+        Login name
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `ipmi_users`
+        **Collector configuration field**: `ipmi_users`
     
         **Example**: ["root"]
     
     - **ENV_INPUT_IPMI_PASSWORDS**
     
-        Password
+        Login password
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `ipmi_passwords`
+        **Collector configuration field**: `ipmi_passwords`
     
         **Example**: ["Calvin"]
     
     - **ENV_INPUT_IPMI_HEX_KEYS**
     
-        Provide the hex key for the IMPI connection
+        Hexadecimal connection keys
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `hex_keys`
+        **Collector configuration field**: `hex_keys`
     
         **Example**: ["50415353574F5244"]
     
@@ -289,136 +289,136 @@ Temp             | 0Fh | ok  |  3.2 | 45 degrees C
     
         Metric versions
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `metric_versions`
+        **Collector configuration field**: `metric_versions`
     
         **Example**: [2] or [3]
     
     - **ENV_INPUT_IPMI_REGEXP_CURRENT**
     
-        Regexp of current
+        Current metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_current`
+        **Collector configuration field**: `regexp_current`
     
         **Example**: ["current"]
     
     - **ENV_INPUT_IPMI_REGEXP_VOLTAGE**
     
-        Regexp of voltage
+        Voltage metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_voltage`
+        **Collector configuration field**: `regexp_voltage`
     
         **Example**: ["voltage"]
     
     - **ENV_INPUT_IPMI_REGEXP_POWER**
     
-        Regexp of power
+        Power metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_power`
+        **Collector configuration field**: `regexp_power`
     
         **Example**: ["pwr","power"]
     
     - **ENV_INPUT_IPMI_REGEXP_TEMP**
     
-        Regexp of temperature
+        Temperature metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_temp`
+        **Collector configuration field**: `regexp_temp`
     
         **Example**: ["temp"]
     
     - **ENV_INPUT_IPMI_REGEXP_FAN_SPEED**
     
-        Regexp of fan speed
+        Fan speed metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_fan_speed`
+        **Collector configuration field**: `regexp_fan_speed`
     
         **Example**: ["fan"]
     
     - **ENV_INPUT_IPMI_REGEXP_USAGE**
     
-        Regexp of usage
+        Usage metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_usage`
+        **Collector configuration field**: `regexp_usage`
     
         **Example**: ["usage"]
     
     - **ENV_INPUT_IPMI_REGEXP_COUNT**
     
-        Regexp of count metrics
+        Count metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_count`
+        **Collector configuration field**: `regexp_count`
     
         **Example**: []
     
     - **ENV_INPUT_IPMI_REGEXP_STATUS**
     
-        Regexp of status metrics
+        Status metric regular expression
     
-        **Type**: JSON
+        **Field type**: JSON
     
-        **input.conf**: `regexp_status`
+        **Collector configuration field**: `regexp_status`
     
         **Example**: ["fan"]
     
     - **ENV_INPUT_IPMI_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If the configuration file has tags with the same name, they will override them.
     
-        **Type**: Map
+        **Field type**: Map
     
-        **input.conf**: `tags`
+        **Collector configuration field**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
-???+ tip "Configuration"
+???+ tip "Configuration Tips"
 
-    - The keywords for each parameter classification are all in lowercase
-    - Refer to `ipmitool -I ...` The data returned by the command, then the keywords are reasonably configured
+    - All keywords categorized into parameters should be in lowercase.
+    - Refer to the data returned by the `ipmitool -I ...` command to configure keywords appropriately.
+
 <!-- markdownlint-enable -->
 
 <!--
 ## Election Configuration {#election-config}
 
-IPMI collector supports election function. When multiple machines run DataKit, it prevents everyone from collecting data repeatedly through election.
+The IPMI collector supports election functionality. When multiple machines are running DataKit, elections prevent duplicate data collection.
 
-`/conf.d/datakit.conf `file opens the `election `function:
-
+Enable election in the `/conf.d/datakit.conf` file:
 ```
 [election]
-  # Start election
+  # Enable election
   enable = true
 
-  # Set the namespace of the election (default)
+  # Set election namespace (default is "default")
   namespace = "default"
 
-  # Tag that allows election space to be appended to data
+  # Allow appending election space tags to data
   enable_namespace_tag = false
 ```
-`conf.d/ipmi/ipmi.conf` file opens the `election` function:
+Enable election in the `conf.d/ipmi/ipmi.conf` file:
 ```
   ## Set true to enable election
   election = true
 ```
 -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.ipmi.tags]` if needed:
+All data collected by default appends the global election tag unless specified otherwise in the configuration through `[inputs.ipmi.tags]`:
 
 ``` toml
  [inputs.ipmi.tags]
@@ -435,9 +435,9 @@ For all of the following data collections, the global election tags will added a
 | Tag | Description |
 |  ----  | --------|
 |`host`|Monitored host name|
-|`unit`|Unit name in the host|
+|`unit`|Unit name within the host|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |

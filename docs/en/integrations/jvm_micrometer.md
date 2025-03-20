@@ -1,12 +1,12 @@
 ---
 title     : 'JMX Micrometer'
-summary   : 'JVM performance metrics display: heap and non-heap memory, threads, number of classes loaded, etc.'
+summary   : 'JVM performance Metrics display: heap and non-heap memory, threads, number of class loads, etc.'
 __int_icon: 'icon/jvm'
 dashboard :
   - desc  : 'JVM by Micrometer monitoring view'
     path  : 'dashboard/en/jmx_micrometer'
 monitor   :
-  - desc  : 'Not exist'
+  - desc  : 'None'
     path  : '-'
 ---
 
@@ -18,16 +18,16 @@ monitor   :
 <!-- markdownlint-disable MD046 -->
 ???+ info "Tip"
 
-    This article will use SpringBoot as a prerequisite, introducing Micrometer-related dependencies to collect JVM metrics.
+    This article will take SpringBoot as a prerequisite, introducing Micrometer-related dependencies to collect JVM Metrics.
 <!-- markdownlint-enable -->
 
 ## Configuration {#config}
 
-Note: Enable the `Prometheus collector`, collecting JVM metric information via the `Prometheus collector`.
+Description: Enable the `prom collector`, and collect JVM Metrics information through the `prom collector`.
 
 ### Application Integration with Prometheus
 
-Here we use SpringBoot's `spring-boot-starter-actuator` and `Micrometer`.
+Here we use SpringBoot’s `spring-boot-starter-actuator` and `micrometer`.
 
 
 ### Micrometer
@@ -35,7 +35,7 @@ Here we use SpringBoot's `spring-boot-starter-actuator` and `Micrometer`.
 <!-- markdownlint-disable MD046 -->
 ???+ info "Micrometer"
 
-    Micrometer provides a common API for performance data collection on the Java platform. It offers various types of metrics (`Timers`, `Gauges`, `Counters`, etc.), and supports integration with different monitoring systems such as Influxdb, Graphite, Prometheus, etc. We can collect Java performance data through Micrometer, combined with the Prometheus monitoring system to obtain real-time data, and finally display it on Grafana, making it easy to achieve application monitoring.
+    Micrometer provides a common API for performance data collection on the Java platform. It offers various types of metrics (`Timers`, `Gauges`, `Counters`, etc.), and supports integration with different monitoring systems such as Influxdb, Graphite, Prometheus, etc. We can collect Java performance data using Micrometer, combined with the Prometheus monitoring system to obtain data in real-time, and ultimately display it in Grafana, making it easy to monitor applications.
 <!-- markdownlint-enable -->
 
 - The application needs to introduce the following related dependencies
@@ -46,7 +46,7 @@ Here we use SpringBoot's `spring-boot-starter-actuator` and `Micrometer`.
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    <!-- Prometheus dependency -->
+    <!-- prometheus dependency -->
     <dependency>
         <groupId>io.micrometer</groupId>
         <artifactId>micrometer-registry-prometheus</artifactId>
@@ -54,9 +54,9 @@ Here we use SpringBoot's `spring-boot-starter-actuator` and `Micrometer`.
 
 ```
 
-- Configure `application.yaml`
+- Configure application.yaml
 
-Add the following configuration:
+Add the following configuration
 
 ```yaml
 management:
@@ -74,24 +74,24 @@ management:
 
 - Access Metrics
 
-After starting the application, open `http://localhost:8091/actuator/prometheus` in your browser. This port is the `management` port.
+After starting the application, open the browser at `http://localhost:8091/actuator/prometheus`, this port is the `management` port.
 
-If the URL access is successful, it indicates that the application has successfully integrated with `Prometheus`.
+If the URL access is normal, it means the application has successfully integrated with `prometheus`.
 
-### DataKit Enable `Prometheus` Collector
+### DataKit Enable `prom` Collector
 
 - Enable Collector
 
-The collector directory is `datakit/conf.d/prom`. Enter this directory, copy `prom.conf.sample` and rename the new file to `jvm-prom.conf`. Mainly configure the URL and `source`; other parameters can be adjusted as needed.
+The directory for the collector is `datakit/conf.d/prom`. After entering the directory, copy `prom.conf.sample` and rename the new file to `jvm-prom.conf`. Mainly configure the URL and `source`; other parameters can be adjusted as needed.
 
 ```toml
-urls = ["http://localhost:8091/actuator/prometheus"]
+urls =["http://localhost:8091/actuator/prometheus"]
 source = "jvm-prom"
 
 measurement_prefix = "jvm_"
 ```
 
-The above configuration will generate a metrics set starting with `jvm_`.
+The above configuration will generate Measurement sets starting with `jvm_`.
 
 - Restart DataKit
 

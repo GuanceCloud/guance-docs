@@ -2,13 +2,13 @@
 title: 'Huawei Cloud DDM'
 tags: 
   - Huawei Cloud
-summary: 'The Huawei Cloud DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of DDMS in handling large-scale message delivery and real-time data streams.'
+summary: 'The Huawei Cloud DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability. These Metrics reflect the performance and reliability of DDMS when handling large-scale messaging and real-time data streams.'
 __int_icon: 'icon/huaweiyun_SYS_DDMS'
 dashboard:
-  - desc: 'Huawei Cloud DDM monitoring view'
+  - desc: 'Huawei Cloud DDM Monitoring View'
     path: 'dashboard/en/huaweiyun_SYS_DDMS/'
 monitor:
-  - desc: 'Huawei Cloud DDM monitoring view'
+  - desc: 'Huawei Cloud DDM Monitoring View'
     path: 'monitor/en/huaweiyun_SYS_DDMS/'
 ---
 
@@ -17,16 +17,16 @@ monitor:
 # Huawei Cloud DDM
 <!-- markdownlint-enable -->
 
-'The Huawei Cloud DDM monitoring view displays metrics including message throughput, latency, concurrent connections, and reliability. These metrics reflect the performance and reliability of DDMS in handling large-scale message delivery and real-time data streams.'
+'Huawei Cloud DDM Monitoring View displays Metrics including message throughput, latency, concurrent connections, and reliability. These Metrics reflect the performance and reliability of DDMS when handling large-scale messaging and real-time data streams.'
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -34,27 +34,26 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data from Huawei Cloud `DDM`, we install the corresponding collection script: Guance Integration (Huawei Cloud - `SYS.DDMS` Collection) (ID: `startup__guance_huaweicloud_ddm`)
+To synchronize the monitoring data of Huawei Cloud `DDM`, we install the corresponding collection script: <<< custom_key.brand_name >>> Integration (Huawei Cloud- `SYS.DDMS` collection) (ID: `startup__guance_huaweicloud_ddm`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud Project ID.
 
-Click 【Deploy Startup Script】, and the system will automatically create the `Startup` script set and configure the startup script accordingly.
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can check the task execution records and corresponding logs.
+In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a while, you can check the execution task records and corresponding logs.
 
-We default to collecting some configurations; for details, see the Metrics section.
-
+We collect some configurations by default, details are shown in the Metrics section.
 
 
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has an automatic trigger configuration, and you can check the corresponding task records and logs to ensure there are no anomalies.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. On the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to check for any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Huawei Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration.
+After configuring Huawei Cloud - Cloud Monitoring, the default Measurement set is as follows, and more Metrics can be collected through configuration.
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
@@ -62,16 +61,16 @@ After configuring Huawei Cloud - Cloud Monitoring, the default metric set is as 
 | ddm_bytes_in_average | Average bytes received per second | userId,instanceId | Average,Maximum | Bytes/second |
 | ddm_bytes_out_average | Average bytes sent per second | userId,instanceId | Average,Maximum | Bytes/second |
 | ddm_cpu_util_average | Average CPU utilization | userId,instanceId | Average,Maximum | Percentage |
-| ddm_qps_average | Average queries per second | userId,instanceId | Average,Maximum | Times/second |
+| ddm_qps_average | Average queries per second | userId,instanceId | Average,Maximum | Queries/second |
 | ddm_node_status_alarm_code_average | Average node status alarm code | userId,instanceId | Average,Maximum | Count |
-| ddm_write_count_average | Average writes per second | userId,instanceId | Average,Maximum | Times/second |
+| ddm_write_count_average | Average write operations per second | userId,instanceId | Average,Maximum | Operations/second |
 | ddm_rt_avg_average | Average response time | userId,instanceId | Average,Maximum | ms |
 
 
 
 ## Objects {#object}
 
-The object data structure collected from Huawei Cloud **SYS.DDMS** can be viewed in 「Infrastructure - Custom」.
+The object data structure of Huawei Cloud **SYS.DDMS** collected can be seen in "Infrastructure - Custom".
 
 ```json
 [

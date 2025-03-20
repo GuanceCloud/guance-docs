@@ -36,7 +36,7 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
 
     ---
 
-    [SDK :material-download:](https://static.guance.com/dd-image/dd-java-agent.jar){:target="_blank"} ·
+    [SDK :material-download:](https://static.<<< custom_key.brand_main_domain >>>/dd-image/dd-java-agent.jar){:target="_blank"} ·
     [:octicons-book-16: 文档](https://docs.datadoghq.com/tracing/setup_overview/setup/java?tab=containers){:target="_blank"} ·
     [:octicons-arrow-right-24: 示例](ddtrace-java.md)
 
@@ -127,11 +127,6 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     
       ##  It is possible to compatible B3/B3Multi TraceID with DDTrace.
       # trace_id_64_bit_hex=true
-    
-      ## When true, the tracer generates 128 bit Trace IDs, 
-      ## and encodes Trace IDs as 32 lowercase hexadecimal characters with zero padding.
-      ## default is true.
-      # trace_128_bit_id = true
     
       ## delete trace message
       # del_message = true
@@ -237,16 +232,6 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     
         **默认值**: false
     
-    - **ENV_INPUT_DDTRACE_TRACE_128_BIT_ID**
-    
-        将链路 ID 转成长度为 32 的 16 进制编码的字符串
-    
-        **字段类型**: Boolean
-    
-        **采集器配置字段**: `trace_128_bit_id`
-    
-        **默认值**: true
-    
     - **ENV_INPUT_DDTRACE_DEL_MESSAGE**
     
         删除 trace 消息
@@ -343,21 +328,11 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
 
 ### 多线路工具串联注意事项 {#trace_propagator}
 
-DDTrace 数据结构中 TraceID 是 uint64 类型，在使用透传协议 `tracecontext` 时，DDTrace 链路详情内部会增加一个 `_dd.p.tid:67c573cf00000000` 原因是因为 `tracecontext` 协议
-中的 `trace_id` 是 128 位 16 进制编码的字符串，为了兼容只能增加了一个高位的 tag 。
-
 DDTrace 目前支持的透传协议有：`datadog/b3multi/tracecontext` ，有两种情况需要注意：
 
-- 当使用 `tracecontext` 时，由于链路 ID 为 128 位需要将配置中的 `compatible_otel=true` 和 `trace_128_bit_id` 开关打开。
+- 当使用 `tracecontext` 时，由于链路 ID 为 128 位需要将配置中的 `compatible_otel=true` 开关打开。
 - 当使用 `b3multi` 时，需要注意 `trace_id` 的长度，如果为 64 位的 hex 编码，需要将配置文件中的 `trace_id_64_bit_hex=true` 打开。
 - 更多的透传协议及工具使用请查看： [多链路串联](tracing-propagator.md){:target="_blank"}
-
-
-???+ tip
-
-    compatible_otel 作用：将 span_id 和 parent_id 转成 16 进制的字符串。
-    trace_128_bit_id 作用：将 meta 中的 "_dd.p.tid" 加上 trace_id 组合成一个长度为 32 的 16 进制编码的字符串。
-    trace_id_64_bit_hex 作用：将 64 位的 trace_id 转成 16 进制编码的字符串。
 
 ### 注入 Pod 和 Node 信息 {#add-pod-node-info}
 
@@ -439,7 +414,7 @@ $ env | grep DD_
 如果有 DDTrace 数据发送给 Datakit，那么在 [DataKit 的 monitor](../datakit/datakit-monitor.md) 上能看到：
 
 <figure markdown>
-  ![input-ddtrace-monitor](https://static.guance.com/images/datakit/input-ddtrace-monitor.png){ width="800" }
+  ![input-ddtrace-monitor](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/input-ddtrace-monitor.png){ width="800" }
   <figcaption> DDtrace 将数据发送给了 /v0.4/traces 接口</figcaption>
 </figure>
 
@@ -491,7 +466,7 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 
 [:octicons-tag-24: Version-1.35.0](../datakit/changelog.md#cl-1.35.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
-DDTrace 探针启动后，会不断通额外的接口上报服务有关的信息，比如启动配置、心跳、加载的探针列表等信息。可在观测云 基础设施 -> 资源目录 中查看。展示的数据对于排查启动命令和引用的三方库版本问题有帮助。其中还包括主机信息、服务信息、产生的 Span 数信息等。
+DDTrace 探针启动后，会不断通额外的接口上报服务有关的信息，比如启动配置、心跳、加载的探针列表等信息。可在<<< custom_key.brand_name >>> 基础设施 -> 资源目录 中查看。展示的数据对于排查启动命令和引用的三方库版本问题有帮助。其中还包括主机信息、服务信息、产生的 Span 数信息等。
 
 语言不同和版本不同数据可能会有很大的差异，以实际收到的数据为准。
 
@@ -579,7 +554,7 @@ Collect service,host,process APM Telemetry message.
 | `pod_name`          | `pod_name`          | tag 中的 pod 名称 |
 | `_dd.base_service`  | `_dd_base_service`  | 上级服务          |
 
-在观测云中的链路界面，不在列表中的标签也可以进行筛选。
+在<<< custom_key.brand_name >>>中的链路界面，不在列表中的标签也可以进行筛选。
 
 从 DataKit 版本 [1.22.0](../datakit/changelog.md#cl-1.22.0) 恢复白名单功能，如果有必须要提取到一级标签列表中的标签，可以在 `customer_tags` 中配置。
 配置的白名单标签如果是原生的 `message.meta` 中，会使用 `.` 作为分隔符，采集器会进行转换将 `.` 替换成 `_` 。
@@ -599,7 +574,6 @@ Collect service,host,process APM Telemetry message.
 
 | Tag | Description |
 |  ----  | --------|
-|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|

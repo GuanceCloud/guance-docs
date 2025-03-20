@@ -84,7 +84,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/crea
         "makeResourceExceptionCode": "",
         "ownerInfo": {
             "accountUUID": "acnt_xxxxxxxxxx",
-            "email": "xxxxx@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "name": "测试"
         },
         "wsInfo": {

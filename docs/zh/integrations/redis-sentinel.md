@@ -30,10 +30,9 @@ Redis-sentinel 指标展示，包括 Redis 集群、Slaves、节点分布信息�
 java -Xmx64m -jar redis-sentinel-exporter-0.2.jar --spring.redis.sentinel.master=mymaster --spring.redis.sentinel.nodes="127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381"
 ```
 
-参数说明：
-
-- spring.redis.sentinel.master ： 集群名称
-- spring.redis.sentinel.nodes ： 哨兵节点地址
+参数说明
+spring.redis.sentinel.master ： 集群名称
+spring.redis.sentinel.nodes ： 哨兵节点地址
 
 ### 采集器配置
 

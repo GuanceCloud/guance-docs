@@ -350,7 +350,7 @@ class DiskIO(DataKitFramework):
         return stats
 ```
 
-文件保存后，重启 DataKit，稍后即可在观测云平台看到相应的指标。
+文件保存后，重启 DataKit，稍后即可在<<< custom_key.brand_name >>>看到相应的指标。
 
 ### 指标列表 {#ext-metrics}
 

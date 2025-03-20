@@ -47,9 +47,6 @@ monitor   :
       ## exclude some with dev prefix (We collect all devices prefixed with dev by default)
       # exclude_device = ["/dev/loop0","/dev/loop1"]
     
-      ignore_fstypes = '''^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$'''
-      ignore_mountpoints = '''^(/usr/local/datakit/.*|/run/containerd/.*)$'''
-    
       #[inputs.disk.tags]
       #  some_tag = "some_value"
       #  more_tag = "some_other_value"
@@ -74,16 +71,6 @@ monitor   :
     
         **默认值**: 10s
     
-    - **ENV_INPUT_DISK_TAGS**
-    
-        自定义标签。如果配置文件有同名标签，将会覆盖它
-    
-        **字段类型**: Map
-    
-        **采集器配置字段**: `tags`
-    
-        **示例**: tag1=value1,tag2=value2
-    
     - **ENV_INPUT_DISK_EXTRA_DEVICE**
     
         额外的设备前缀。（默认收集以 dev 为前缀的所有设备）
@@ -104,25 +91,45 @@ monitor   :
     
         **示例**: /dev/loop0,/dev/loop1
     
-    - **ENV_INPUT_DISK_IGNORE_MOUNTPOINTS**
+    - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
     
-        忽略这些挂载点对应的磁盘指标
+        忽略非物理磁盘（如网盘、NFS 等，只采集本机硬盘/CD ROM/USB 磁盘等）
     
-        **字段类型**: String
+        **字段类型**: Boolean
     
-        **采集器配置字段**: `ignore_mountpoints`
+        **采集器配置字段**: `only_physical_device`
     
-        **示例**: `^(/usr/local/datakit/.*|/run/containerd/.*)$`
+        **默认值**: false
     
-    - **ENV_INPUT_DISK_INPUT_DISK_IGNORE_FSTYPES**
+    - **ENV_INPUT_DISK_ENABLE_LVM_MAPPER_PATH**
     
-        忽略这些文件系统对应的磁盘指标
+        查看设备映射器对应的软链接（如 `/dev/dm-0` -> `/dev/mapper/vg/lv`）
     
-        **字段类型**: String
+        **字段类型**: Boolean
     
-        **采集器配置字段**: `input_disk_ignore_fstypes`
+        **采集器配置字段**: `enable_lvm_mapper_path`
     
-        **示例**: `^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$`
+        **默认值**: false
+    
+    - **ENV_INPUT_DISK_MERGE_ON_DEVICE**
+    
+        合并有相同 device 的磁盘
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `merge_on_device`
+    
+        **默认值**: true
+    
+    - **ENV_INPUT_DISK_TAGS**
+    
+        自定义标签。如果配置文件有同名标签，将会覆盖它
+    
+        **字段类型**: Map
+    
+        **采集器配置字段**: `tags`
+    
+        **示例**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
@@ -141,7 +148,7 @@ monitor   :
 ???+ info "磁盘指标来源"
     在 Linux 中，指标是通过获取 */proc/self/mountinfo* 其中的挂载信息，然后再逐个获取对应挂载点的磁盘指标（`statfs()`）。对 Windows 而言，则通过一系列 Windows API，诸如 `GetLogicalDriveStringsW()` 系统调用获取挂载点，然后再通过 `GetDiskFreeSpaceExW()` 获取磁盘用量信息。
 
-    在 [:octicons-tag-24: Version-1.66.0](../datakit/changelog-2025.md#cl-1.66.0) 版本中，优化了磁盘信息采集，但是相同设备的挂载点仍然会合并成一个，且只取第一个出现的挂载点为准。如果要采集所有的挂载点，需关闭特定的 flag（`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`），关闭该合并功能后，磁盘指标集中可能会额外多出非常多的时间线。
+    在 [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0) 版本中，优化了磁盘信息采集，但是相同设备的挂载点仍然会合并成一个，且只取第一个出现的挂载点为准。如果要采集所有的挂载点，需关闭特定的 flag（`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`），关闭该合并功能后，磁盘指标集中可能会额外多出非常多的时间线。
 <!-- markdownlint-enable -->
 
 

@@ -1,6 +1,6 @@
 ---
 title     : 'Aerospike'
-summary   : 'Collect metrics related to Aerospike'
+summary   : 'Collect Aerospike related Metrics information'
 __int_icon: 'icon/aerospike'
 dashboard :
   - desc  : 'Aerospike Namespace Overview monitoring view'
@@ -15,32 +15,33 @@ monitor   :
 <!-- markdownlint-disable MD025 -->
 # Aerospike
 <!-- markdownlint-enable -->
-
 ---
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
-Displays performance Metrics for Aerospike Namespaces, including memory usage, disk usage, object count, read/write rates within the cluster and namespace.
+Aerospike Namespace performance Metrics display, including cluster, memory usage under space, disk usage, object count, read/write rate, etc.
 
-Displays Metrics related to Aerospike Nodes, including Node cluster, Node status, record count, memory, disk Metrics, etc.
+Aerospike Node related Metrics display, including Node cluster, Node status, record count, memory, disk Metrics, etc.
 
 
-## Installation and Configuration {#config}
+
+
+## Installation Configuration {#config}
 
 ### Prerequisites {#requirement}
 
 - Aerospike is installed
 
-The example Aerospike version is Linux environment 6.0.0 (CentOS), and the Metrics may vary across different versions.
+Example Aerospike version is Linux environment 6.0.0 (CentOS), various versions may have differences in Metrics.
 
-`aerospike-prometheus-exporter` is an officially developed Exporter that facilitates rapid integration for monitoring Aerospike.
+`aerospike-prometheus-exporter` is the official Exporter developed for easy integration to monitor Aerospike.
 
-### Metric Collection
+### Metrics Collection
 
 #### Install exporter
 
-Official download & installation address for the exporter: [https://docs.aerospike.com/monitorstack/install/linux](https://docs.aerospike.com/monitorstack/install/linux)
+Official download & install exporter address [https://docs.aerospike.com/monitorstack/install/linux](https://docs.aerospike.com/monitorstack/install/linux)
 
 ```shell
 wget https://www.aerospike.com/download/monitoring/aerospike-prometheus-exporter/latest/artifact/rpm -O aerospike-prometheus-exporter.tgz
@@ -53,7 +54,7 @@ rpm -Uvh aerospike-prometheus-exporter--x86_64.rpm
 
 #### Configure exporter
 
-Configuration file location `/etc/aerospike-prometheus-exporter/ape.toml`, default metrics port is 9145, default collection port is 3000. In most cases, no configuration adjustments are necessary.
+Configuration file location `/etc/aerospike-prometheus-exporter/ape.toml`, default metrics port is 9145, default collection port is 3000, no configuration adjustment is necessary by default.
 
 ```toml
 [Agent]
@@ -160,50 +161,50 @@ auth_mode = ""
 # timeout for sending commands to the server node in seconds
 timeout = 5
 
-# Number of histogram buckets to export for latency metrics. Bucket thresholds range from 2^0 to 2^16 (17 buckets).
+# Number of histogram buckets to export for latency Metrics. Bucket thresholds range from 2^0 to 2^16 (17 buckets).
 # e.g. latency_buckets_count=5 will export first five buckets i.e. <=1ms, <=2ms, <=4ms, <=8ms and <=16ms.
 # Default: 0 (export all threshold buckets).
 latency_buckets_count = 0
 
-# Metrics Allowlist - If specified, only these metrics will be scraped. An empty list will exclude all metrics.
-# Commenting out the below allowlist configs will disable metrics filtering (i.e. all metrics will be scraped).
+# Metrics Allowlist - If specified, only these Metrics will be scraped. An empty list will exclude all Metrics.
+# Commenting out the below allowlist configs will disable Metrics filtering (i.e. all Metrics will be scraped).
 
-# Namespace metrics allowlist
+# Namespace Metrics allowlist
 # namespace_metrics_allowlist = []
 
-# Set metrics allowlist
+# Set Metrics allowlist
 # set_metrics_allowlist = []
 
-# Node metrics allowlist
+# Node Metrics allowlist
 # node_metrics_allowlist = []
 
-# XDR metrics allowlist (only for Aerospike versions 5.0 and above)
+# XDR Metrics allowlist (only for Aerospike versions 5.0 and above)
 # xdr_metrics_allowlist = []
 
-# Job (scans/queries) metrics allowlist
+# Job (scans/queries) Metrics allowlist
 # job_metrics_allowlist = []
 
-# Secondary index metrics allowlist
+# Secondary index Metrics allowlist
 # sindex_metrics_allowlist = []
 
-# Metrics Blocklist - If specified, these metrics will NOT be scraped.
+# Metrics Blocklist - If specified, these Metrics will NOT be scraped.
 
-# Namespace metrics blocklist
+# Namespace Metrics blocklist
 # namespace_metrics_blocklist = []
 
-# Set metrics blocklist
+# Set Metrics blocklist
 # set_metrics_blocklist = []
 
-# Node metrics blocklist
+# Node Metrics blocklist
 # node_metrics_blocklist = []
 
-# XDR metrics blocklist (only for Aerospike versions 5.0 and above)
+# XDR Metrics blocklist (only for Aerospike versions 5.0 and above)
 # xdr_metrics_blocklist = []
 
-# Job (scans/queries) metrics blocklist
+# Job (scans/queries) Metrics blocklist
 # job_metrics_blocklist = []
 
-# Secondary index metrics blocklist
+# Secondary index Metrics blocklist
 # sindex_metrics_blocklist = []
 
 # Users Statistics (user statistics are available in Aerospike 5.6+)
@@ -226,9 +227,9 @@ systemctl restart aerospike-prometheus-exporter.service
 
 #### Access Metrics
 
-Access Metrics via `curl http://localhost:9145/metrics`.
+Access Metrics through `curl http://localhost:9145/metrics`.
 
-#### Add a new `aerospike-prom.conf` configuration file for DataKit {#input-config}
+#### DataKit Add New `aerospike-prom.conf` Configuration File {#input-config}
 
 In the `/usr/local/datakit/conf.d/prom` directory, copy `prom.conf.sample` as `aerospike-prom.conf`
 
@@ -236,16 +237,16 @@ In the `/usr/local/datakit/conf.d/prom` directory, copy `prom.conf.sample` as `a
 cp prom.conf.sample aerospike-prom.conf
 ```
 
-Key parameters explanation:
+Main parameter explanation
 
-- url: Address of `aerospike-prometheus-exporter` Metrics
-- interval: Collection frequency
-- source: Collector alias
+- url: `aerospike-prometheus-exporter` Metrics address
+- interval: collection frequency
+- source: collector alias
 
 ```toml
 [[inputs.prom]]
   urls = ["http://192.168.0.189:9145/metrics"]
-  ## Ignore request errors for URLs
+  ## Ignore request errors for url
   ignore_req_err = false
   ## Collector alias
   source = "aerospike"
@@ -265,17 +266,17 @@ Key parameters explanation:
 systemctl restart datakit
 ```
 
-## Log Collection {#logging}
+## LOG Collection {#logging}
 
 ### Parameter Explanation
 
 ```txt
-- logfiles: Log file paths (usually access logs and error logs)
-- source: `aerospike` # Data source
-- service: `aerospike` # Service name
+- logfiles: log file paths (usually filled with access logs and error logs)
+- source: `aerospike` # data source
+- service: `aerospike` # service name
 ```
 
-In the `/usr/local/datakit/conf.d` directory, copy the conf file and rename it to `logging-aerospike.conf`
+In the `/usr/local/datakit/conf.d` directory, copy a conf file and rename it to `logging-aerospike.conf`
 
 ```shell
 cp logging.conf.sample logging-aerospike.conf
@@ -302,7 +303,7 @@ service = "aerospike"
 ## grok pipeline script name
 pipeline = ""
 
-## optional statuses:
+## optional status:
 ##   "emerg","alert","critical","error","warning","info","debug","OK"
 ignore_status = []
 
@@ -310,7 +311,7 @@ ignore_status = []
 ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
 character_encoding = ""
 
-## datakit reads text from Files or Socket , default max_textline is 32k
+## datakit read text from Files or Socket , default max_textline is 32k
 ## If your log text line exceeds 32Kb, please configure the length of your text,
 ## but the maximum length cannot exceed 32Mb
 # maximum_length = 32766
@@ -331,6 +332,6 @@ ignore_dead_log = "10m"
   # more_tag = "some_other_value"
 ```
 
-## Metric Details {#metric}
+## Metrics Details {#metric}
 
-[Refer to Aerospike official Metrics documentation](https://docs.aerospike.com/server/operations/monitor/key_metrics)
+[Refer to Aerospike Official Website Metrics](https://docs.aerospike.com/server/operations/monitor/key_metrics)

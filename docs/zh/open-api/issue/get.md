@@ -90,7 +90,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
             "manager": [
                 "group_xxxx32",
                 "acnt_xxxx32",
-                "jj@qq.com"
+                "xxx@<<< custom_key.brand_main_domain >>>"
             ]
         },
         "id": 212982,
@@ -106,15 +106,15 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
             },
             {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试",
                 "uuid": "acnt_xxxx32"
             },
             {
-                "email": "jj@qq.com",
-                "name": "jj@qq.com"
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
+                "name": "xxx@<<< custom_key.brand_main_domain >>>"
             }
         ],
         "name": "上传",
@@ -128,7 +128,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
         "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "88@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
             "name": "88测试",
             "username": "测试",

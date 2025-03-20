@@ -15,7 +15,7 @@ __int_icon: 'icon/pagerduty'
 
 ### 准备工作
 
-1. 部署一个 [Dataflux Func 观测云特别版](https://func.guance.com/#/) 生成授权链接
+1. 部署一个 [Dataflux Func <<< custom_key.brand_name >>>特别版](https://<<< custom_key.func_domain >>>/#/) 生成授权链接
 2. 创建[webhook 自定义通知对象](<<< homepage >>>/monitoring/notify-object/#4-webhook) (webhook 地址为 Func 授权链接地址)
 3. 正确配置[监控器](<<< homepage >>>/monitoring/monitor/)
 4. 在 PagerDuty 中创建一个 **Integrations** 为**Events API V2** 的 Services
@@ -26,7 +26,7 @@ __int_icon: 'icon/pagerduty'
 
 #### 创建 Webhook 自定义通知对象
 
-在观测云 studio 中【监控/通知对象管理】中新建一个通知对象，选择**webhook 自定义**，webhook 地址填入我们部署的 Dataflux Func 的授权链接地址
+在<<< custom_key.brand_name >>> studio 中【监控/通知对象管理】中新建一个通知对象，选择**webhook 自定义**，webhook 地址填入我们部署的 Dataflux Func 的授权链接地址
 
 ![1693212890543.png](imgs/pagerduty/pagerduty01.png)
 
@@ -34,7 +34,7 @@ __int_icon: 'icon/pagerduty'
 
 #### 创建监控器
 
-在观测云 studio 中【监控/监控器】中新建一个监控器，选择需要观测的指标，配置好事件的通知内容后需要将告警策略中的告警通知对象指定为我们刚刚创建的**webhook 自定义**的通知对象的名称。
+在<<< custom_key.brand_name >>> studio 中【监控/监控器】中新建一个监控器，选择需要观测的指标，配置好事件的通知内容后需要将告警策略中的告警通知对象指定为我们刚刚创建的**webhook 自定义**的通知对象的名称。
 
 ![1693212934306.png](imgs/pagerduty/pagerduty02.png)
 
@@ -72,7 +72,7 @@ routing_key = "xxxxxxxxxx"
     "df_date_range":60,
     "df_dimension_tags":"{\"host\":\"share\"}",
     "df_event_id":"event-f20a38aa58b54c6c8d4c9a84e655db1a",
-    "df_event_link":"https://console.guance.com/keyevents/monitor?time=1693034040000%2C1693035000000&tags=%7B%22df_event_id%22%3A%22event-f20a38aa58b54c6c8d4c9a84e655db1a%22%7D&w=wksp_968577392a1c4714a464cd2f6ee42a9c",
+    "df_event_link":"https://<<< custom_key.studio_main_site >>>/keyevents/monitor?time=1693034040000%2C1693035000000&tags=%7B%22df_event_id%22%3A%22event-f20a38aa58b54c6c8d4c9a84e655db1a%22%7D&w=wksp_968577392a1c4714a464cd2f6ee42a9c",
     "df_event_reason":"\u6ee1\u8db3\u76d1\u63a7\u5668\u4e2d\u6545\u969c\u7684\u8ba4\u5b9a\u6761\u4ef6\uff0c\u4ea7\u751f\u6545\u969c\u4e8b\u4ef6",
     "df_exec_mode":"crontab",
     "df_issue_duration":3840,
@@ -111,7 +111,7 @@ routing_key = "xxxxxxxxxx"
 ```Python
 @DFF.API('Create_PagerDuty_Issue_Reply')
 def create_pagerduty_issue_reply(**kwargs):
-    # 获取观测云事件数据
+    # 获取<<< custom_key.brand_name >>>事件数据
     event = json.dumps(kwargs)
     print("Guance_event：", event)
     summary  = kwargs["df_title"]
@@ -150,7 +150,7 @@ def create_pagerduty_issue_reply(**kwargs):
     print(response.text)
 ```
 
-我们通过创建 PagerDuty 实例将获取到的观测云中的事件详情创建成事件字典，从而发送的 PagerDuty 中，再发送成功后会生日志包含`dedup_key`和`status`信息
+我们通过创建 PagerDuty 实例将获取到的<<< custom_key.brand_name >>>中的事件详情创建成事件字典，从而发送的 PagerDuty 中，再发送成功后会生日志包含`dedup_key`和`status`信息
 
 ![1693213100705.png](imgs/pagerduty/pagerduty03.png)
 

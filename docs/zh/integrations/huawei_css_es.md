@@ -2,7 +2,7 @@
 title: '华为云搜索服务 CSS for Elasticsearch'
 tags: 
   - 华为云
-summary: '华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。'
+summary: '采集 华为云搜索服务 CSS for Elasticsearch 监控指标'
 __int_icon: 'icon/huawei_css_es'
 dashboard:
 
@@ -15,49 +15,39 @@ monitor:
 
 ---
 
-
-<!-- markdownlint-disable MD025 -->
-# 华为云搜索服务 CSS for Elasticsearch
-<!-- markdownlint-enable -->
-
-华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。
-
+采集 华为云搜索服务 CSS for Elasticsearch 监控指标
 
 ## 配置 {#config}
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
+如果自行部署 Func 参考 [自行部署 Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### 安装脚本
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步华为云搜索服务 CSS for Elasticsearch 的监控数据，我们安装对应的采集脚本：通过访问func的web服务进入【脚本市场】-【详情】，通过css关键字检索，安装「观测云集成（华为云-CSS）」(ID：`guance_huaweicloud_css`)
+同步华为云搜索服务 CSS for Elasticsearch 的监控数据，我们安装对应的采集脚本：通过访问func的web服务进入【脚本市场】-【详情】，通过css关键字检索，安装「<<< custom_key.brand_name >>>集成（华为云-CSS）」(ID：`guance_huaweicloud_css`)
 
 点击【安装】后，输入相应的参数：华为云 AK、SK、华为云账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-脚本安装完后，在 Func 中「开发」里找到脚本「观测云集成（华为云-CSS）」，展开修改此脚本，找到 collector_configs 和monitor_configs 分别编辑下面region_projects中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
+脚本安装完后，在 Func 中「开发」里找到脚本「<<< custom_key.brand_name >>>集成（华为云-CSS）」，展开修改此脚本，找到 collector_configs 和 monitor_configs 分别编辑下面region_projects 中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
 
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
-
-我们默认采集了一些配置, 具体见指标一栏 [配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-huaweicloud-css/){:target="_blank"}
-
 
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
+2. 在<<< custom_key.brand_name >>>，「基础设施 - 资源目录」中查看是否存在资产信息
+3. 在<<< custom_key.brand_name >>>，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好华为云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [华为云云监控指标详情](https://support.huaweicloud.com/usermanual-css/css_01_0042.html){:target="_blank"}
+
+配置华为云 CSS 指标, 可以通过配置的方式采集更多的指标 [华为云 CSS 指标详情](https://support.huaweicloud.com/usermanual-css/css_01_0042.html){:target="_blank"}
 
 ### 实例监控指标
 
@@ -93,26 +83,25 @@ monitor:
 
 ## 对象 {#object}
 
-采集到的华为云搜索服务 CSS for Elasticsearch 对象数据结构, 可以从「基础设施-自定义」里看到对象数据
+采集到的华为云搜索服务 CSS for Elasticsearch 对象数据结构, 可以从「基础设施 - 资源目录」里看到对象数据
 
 ```json
 {
   "measurement": "huaweicloud_css",
   "tags": {
-    "name"                       : "xxxxx",
+    "RegionId"                   : "cn-north-4",
+    "project_id"                 : "xxxxxxx",
+    "enterpriseProjectId"        : "",
+    "instance_id"                : "xxxxxxx-xxxxxxx-xxxxxxx-00001",
+    "instance_name"              : "css-3384",
     "publicIp"                   : "xxxxx",
-    "id"                         : "xxxxx",
     "status"                     : "100",
     "endpoint"                   : "192.168.0.100:9200",
-    "vpc_id"                     : "3dda7d4b-aec0-4838-a91a-28xxxxxxxx",
-    "instance_name"              : "css-3384",
-    "subnetId"                   : "xxxxx",
-    "securityGroupId"            : "xxxxxxx",
-    "enterpriseProjectId"        : "xxxxxxx",
-    "project_id"                 : "xxxxxxx",
-    "RegionId"                   : "cn-north-4"
   },
   "fields": {
+    "vpc_id"                     : "3dda7d4b-aec0-4838-a91a-28xxxxxxxx",
+    "subnetId"                   : "xxxxx",
+    "securityGroupId"            : "xxxxxxx",
     "datastore"                           : "{\"supportSecuritymode\": false, \"type\": \"elasticsearch\", \"version\": \"7.6.2\"}",
     "instances"                           : "[{\"azCode\": \"cn-east-3a\", \"id\": \"95f61e90-507b-48d4-8ac5-53dcefd155a3\", \"ip\": \"192.168.0.140\", \"name\": \"css-test-ess-esn-1-1\", \"specCode\": \"ess.spec-kc1.xlarge.2\", \"status\": \"200\", \"type\": \"ess\", \"volume\": {\"size\": 40, \"type\": \"HIGH\"}}]",
     "publicKibanaResp"                    : "xxxx",
@@ -128,6 +117,7 @@ monitor:
 ```
 
 部分参数说明如下：
+
 | 参数名称     | 说明         |
 | :------- | :----------- |
 | `status` | 集群状态值   |
@@ -137,6 +127,7 @@ monitor:
 | `period` | 是否为包周期集群   |
 
 status（集群状态值）取值含义：
+
 | 取值     | 说明         |
 | :------- | :----------- |
 | `100`|创建中|
@@ -144,6 +135,7 @@ status（集群状态值）取值含义：
 | `303`|不可用|
 
 actions（集群当前行为）取值含义：
+
 | 取值     | 说明         |
 | :------- | :----------- |
 | `REBOOTING` | 重启   |
@@ -152,6 +144,7 @@ actions（集群当前行为）取值含义：
 | `SNAPSHOTTING` | 创建快照   |
 
 period 取值含义：
+
 | 取值     | 说明         |
 | :------- | :----------- |
 | `true` | 包周期计费集群   |
@@ -159,4 +152,4 @@ period 取值含义：
 
 > *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 >
-> 提示：tags.name值为集群 ID，作为唯一识别
+> 提示：`tags.instance_id`值为集群 ID，作为唯一识别

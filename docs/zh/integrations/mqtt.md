@@ -10,13 +10,13 @@ MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议）�
 
 - [x] MQTT 代理（Broker）
 
-观测云支持通过 Func 来接收 MQTT 协议的数据。
+<<< custom_key.brand_name >>>支持通过 Func 来接收 MQTT 协议的数据。
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > 推荐部署 GSE 版
 
