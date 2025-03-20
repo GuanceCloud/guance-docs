@@ -139,4 +139,4 @@ Allocation Profiling Enabled => true
     Restart `php-fpm` and access your project.
 <!-- markdownlint-enable -->
 
-After a few minutes, you can view the related data in the [Guance Console](https://console.guance.com/tracing/profile){:target="_blank"}.
+After a few minutes, you can view the related data in the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/tracing/profile){:target="_blank"}.

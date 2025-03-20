@@ -20,15 +20,15 @@ Collect Volcengine CLB Metrics data
 
 ### Install Func
 
-It is recommended to activate Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to activate <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a qualified Volcengine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of CLB cloud resources, we install the corresponding collection script: "Guance Integration (Volcengine-CLB Collection)" (ID: `guance_volcengine_clb`)
+To synchronize the monitoring data of CLB cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-CLB Collection)" (ID: `guance_volcengine_clb`)
 
 After clicking 【Install】, enter the corresponding parameters: Volcengine AK, Volcengine account name, Regions.
 
@@ -39,8 +39,8 @@ After enabling, you can see the corresponding automatic trigger configuration in
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration. You can also check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, in "Infrastructure - Resource Catalog", check if there is asset information.
-3. On the Guance platform, in "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure - Resource Catalog", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

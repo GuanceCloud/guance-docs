@@ -2,7 +2,7 @@
 title: 'Tencent Cloud CLB Public'
 tags: 
   - Tencent Cloud
-summary: 'Use the script packages in the Script Market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the script packages in the Script Market of the "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_clb'
 dashboard:
 
@@ -20,16 +20,16 @@ monitor:
 # Tencent Cloud CLB Public
 <!-- markdownlint-enable -->
 
-Use the script packages in the Script Market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance
+Use the script packages in the Script Market of the "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize CLB_Public cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud CLB Collection)" (ID: `guance_tencentcloud_clb`)
+To synchronize CLB_Public cloud resource monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud CLB Collection)" (ID: `guance_tencentcloud_clb`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -45,14 +45,14 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 In addition, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the regular time. After a short while, you can check the execution task records and corresponding logs.
 
-We default collect some configurations, for more details see the Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default collect some configurations, for more details see the Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Cloud Monitoring, the default Measurement sets are as follows, and more metrics can be collected through configuration [Tencent Cloud Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/51898){:target="_blank"}

@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-The process collector can monitor various running processes in the system in real time, obtaining and analyzing various metrics of process execution, including memory usage, CPU time occupied, current process status, ports listened by the process, etc. Based on various metric information of process execution, users can configure relevant alerts in Guance, allowing them to understand the state of processes and maintain faulty processes promptly when issues arise.
+The process collector can monitor various running processes in the system in real time, obtaining and analyzing various metrics of process execution, including memory usage, CPU time occupied, current process status, ports listened by the process, etc. Based on various metric information of process execution, users can configure relevant alerts in <<< custom_key.brand_name >>>, allowing them to understand the state of processes and maintain faulty processes promptly when issues arise.
 
 <!-- markdownlint-disable MD046 -->
 

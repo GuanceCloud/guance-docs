@@ -2,7 +2,7 @@
 title: 'Tencent Cloud CVM'
 tags: 
   - Tencent Cloud
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_cvm'
 dashboard:
 
@@ -19,23 +19,23 @@ monitor:
 <!-- markdownlint-disable MD025 -->
 # Tencent Cloud CVM
 <!-- markdownlint-enable -->
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Install Script
 
 > Note: Please prepare a qualified Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize CVM monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-CVM Collection)" (ID: `guance_tencentcloud_cvm`)
+To synchronize CVM monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-CVM Collection)" (ID: `guance_tencentcloud_cvm`)
 
 After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -48,14 +48,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default to collecting some configurations, see the metrics section for details.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration. [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/6843){:target="_blank"}

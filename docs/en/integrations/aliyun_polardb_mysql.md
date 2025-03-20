@@ -23,9 +23,9 @@ Alibaba Cloud PolarDB MySQL Metrics display, including CPU usage, memory hit rat
 
 ### Install Func
 
-It is recommended to activate Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to activate <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func by yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > GSE version deployment is recommended.
 
@@ -33,7 +33,7 @@ If you deploy Func by yourself, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Alibaba Cloud PolarDB MySQL monitoring data, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-PolarDB Collection)" (ID: `guance_aliyun_polardb`)
+To synchronize Alibaba Cloud PolarDB MySQL monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-PolarDB Collection)" (ID: `guance_aliyun_polardb`)
 
 After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -46,13 +46,13 @@ Once activated, you can see the corresponding automatic trigger configuration un
 
 We default to collecting some configurations, details see the metrics section
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 ### Verification
 
 1. Confirm in "Manage/Automatic Trigger Configuration" whether the corresponding task has an automatic trigger configuration. You can also check the corresponding task records and logs for any anomalies.
-2. In the Guance platform, check if there are asset information under "Infrastructure / Custom".
-3. In the Guance platform, check if there are corresponding monitoring data under "Metrics".
+2. In the <<< custom_key.brand_name >>> platform, check if there are asset information under "Infrastructure / Custom".
+3. In the <<< custom_key.brand_name >>> platform, check if there are corresponding monitoring data under "Metrics".
 
 ## Metrics {#metric}
 After configuring Alibaba Cloud - Cloud Monitor, the default measurement set is as follows. You can collect more metrics through configuration [Alibaba Cloud Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
@@ -145,9 +145,9 @@ Based on the previous setup, you need to install another script corresponding to
 
 In "Manage / Script Market", click and install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud - PolarDB Slow Query Statistics Log Collection)" (ID: `guance_aliyun_polardb_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - PolarDB Slow Query Statistics Log Collection)" (ID: `guance_aliyun_polardb_slowlog`)
 
-After the data is synchronized normally, you can view the data in the "Logs" section of Guance.
+After the data is synchronized normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
 The reported data example is as follows:
 
@@ -215,11 +215,11 @@ Based on the previous setup, you need to install another script corresponding to
 
 In "Manage / Script Market", click and install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud - PolarDB Slow Query Detail Log Collection)" (ID: `guance_aliyun_polardb_slowlog_record`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - PolarDB Slow Query Detail Log Collection)" (ID: `guance_aliyun_polardb_slowlog_record`)
 
-After the data is synchronized normally, you can view the data in the "Logs" section of Guance.
+After the data is synchronized normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
-Configuration [Cloud Database PolarDB Slow Query Details](https://func.guance.com/doc/script-market-guance-aliyun-polardb-slowlog-record/){:target="_blank"}
+Configuration [Cloud Database PolarDB Slow Query Details](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-polardb-slowlog-record/){:target="_blank"}
 
 The reported data example is as follows:
 

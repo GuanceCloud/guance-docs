@@ -15,9 +15,9 @@ When our applications or systems experience incidents, they typically need to be
 
 ### Preparation
 
-1. Deploy a [Dataflux Func Guance Special Edition](https://func.guance.com/#/) to generate an authorization link.
-2. Create a [webhook custom notification target](https://docs.guance.com/monitoring/notify-object/#4-webhook) (the webhook URL should be the Func authorization link URL).
-3. Properly configure [monitors](https://docs.guance.com/monitoring/monitor/).
+1. Deploy a [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) to generate an authorization link.
+2. Create a [webhook custom notification target](<<< homepage >>>/monitoring/notify-object/#4-webhook) (the webhook URL should be the Func authorization link URL).
+3. Properly configure [monitors](<<< homepage >>>/monitoring/monitor/).
 4. In PagerDuty, create a **Service** with an **Integration** set to **Events API V2**.
 
 
@@ -26,7 +26,7 @@ When our applications or systems experience incidents, they typically need to be
 
 #### Create a Webhook Custom Notification Target
 
-In the Guance Studio under 【Monitoring / Notification Targets Management】, create a new notification target, select **Webhook Custom**, and fill in the webhook URL with the authorization link address of the deployed Dataflux Func.
+In the <<< custom_key.brand_name >>> Studio under 【Monitoring / Notification Targets Management】, create a new notification target, select **Webhook Custom**, and fill in the webhook URL with the authorization link address of the deployed Dataflux Func.
 
 ![1693212890543.png](imgs/pagerduty/pagerduty01.png)
 
@@ -34,7 +34,7 @@ In the Guance Studio under 【Monitoring / Notification Targets Management】, c
 
 #### Create a Monitor
 
-In the Guance Studio under 【Monitoring / Monitors】, create a new monitor, select the metrics you want to observe, and after configuring the notification content for the event, specify the notification target in the alert strategy as the name of the **Webhook Custom** notification target we just created.
+In the <<< custom_key.brand_name >>> Studio under 【Monitoring / Monitors】, create a new monitor, select the metrics you want to observe, and after configuring the notification content for the event, specify the notification target in the alert strategy as the name of the **Webhook Custom** notification target we just created.
 
 ![1693212934306.png](imgs/pagerduty/pagerduty02.png)
 
@@ -72,7 +72,7 @@ After importing the necessary constants, we need to understand the data structur
     "df_date_range":60,
     "df_dimension_tags":"{\"host\":\"share\"}",
     "df_event_id":"event-f20a38aa58b54c6c8d4c9a84e655db1a",
-    "df_event_link":"https://console.guance.com/keyevents/monitor?time=1693034040000%2C1693035000000&tags=%7B%22df_event_id%22%3A%22event-f20a38aa58b54c6c8d4c9a84e655db1a%22%7D&w=wksp_968577392a1c4714a464cd2f6ee42a9c",
+    "df_event_link":"https://<<< custom_key.studio_main_site >>>/keyevents/monitor?time=1693034040000%2C1693035000000&tags=%7B%22df_event_id%22%3A%22event-f20a38aa58b54c6c8d4c9a84e655db1a%22%7D&w=wksp_968577392a1c4714a464cd2f6ee42a9c",
     "df_event_reason":"\u6ee1\u8db3\u76d1\u63a7\u5668\u4e2d\u6545\u969c\u7684\u8ba4\u5b9a\u6761\u4ef6\uff0c\u4ea7\u751f\u6545\u969c\u4e8b\u4ef6",
     "df_exec_mode":"crontab",
     "df_issue_duration":3840,
@@ -111,7 +111,7 @@ After clarifying the input data structure, we can now write the function to crea
 ```Python
 @DFF.API('Create_PagerDuty_Issue_Reply')
 def create_pagerduty_issue_reply(**kwargs):
-    # Get Guance event data
+    # Get <<< custom_key.brand_name >>> event data
     event = json.dumps(kwargs)
     print("Guance_event:", event)
     summary  = kwargs["df_title"]
@@ -150,7 +150,7 @@ def create_pagerduty_issue_reply(**kwargs):
     print(response.text)
 ```
 
-We create PagerDuty incidents by constructing event dictionaries from the details obtained from Guance. After successfully sending the event, logs will include `dedup_key` and `status` information.
+We create PagerDuty incidents by constructing event dictionaries from the details obtained from <<< custom_key.brand_name >>>. After successfully sending the event, logs will include `dedup_key` and `status` information.
 
 ![1693213100705.png](imgs/pagerduty/pagerduty03.png)
 

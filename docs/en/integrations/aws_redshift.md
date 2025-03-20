@@ -31,9 +31,9 @@ The core performance Metrics of AWS Redshift include query performance, disk spa
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with script installation.
 
-If you deploy Func by yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -41,7 +41,7 @@ If you deploy Func by yourself, refer to [Self-deploy Func](https://func.guance.
 
 > Note: Please prepare the required Amazon AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Redshift monitoring data, we install the corresponding collection script: "Guance Integration (AWS-Redshift Collection)" (ID: `guance_aws_redshift`)
+To synchronize Redshift monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-Redshift Collection)" (ID: `guance_aws_redshift`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -51,14 +51,14 @@ In addition, you can see the corresponding automatic trigger configuration in �
 
 
 
-We collect some configurations by default, for details, see the Metrics column [Customize Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We collect some configurations by default, for details, see the Metrics column [Customize Cloud Object Metrics Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
-3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 Configure Amazon CloudWatch, the default Measurement set is as follows. You can collect more Metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}

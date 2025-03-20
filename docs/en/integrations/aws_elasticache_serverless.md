@@ -2,7 +2,7 @@
 title: 'AWS ElastiCache Serverless'
 tags: 
   - AWS
-summary: 'Use the script packages in the "Guance Cloud Sync" series from the Script Market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the script packages in the "<<< custom_key.brand_name >>> Cloud Sync" series from the Script Market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/aws_elasticache_serverless'
 dashboard:
   - desc: 'AWS ElastiCache Serverless'
@@ -15,16 +15,16 @@ dashboard:
 <!-- markdownlint-enable -->
 
 
-Use the script packages in the "Guance Cloud Sync" series from the Script Market to synchronize cloud monitoring and cloud asset data to Guance
+Use the script packages in the "<<< custom_key.brand_name >>> Cloud Sync" series from the Script Market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -32,7 +32,7 @@ If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.
 
 > Note: Please prepare a qualified Amazon AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data of AWS ElastiCache Serverless cloud resources, we install the corresponding collection script: "Guance Integration (AWS-ElastiCache Collection)" (ID: `guance_aws_elasticache_serverless`)
+To synchronize monitoring data of AWS ElastiCache Serverless cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-ElastiCache Collection)" (ID: `guance_aws_elasticache_serverless`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -40,14 +40,14 @@ Click 【Deploy Startup Script】, the system will automatically create a `Start
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-We default to collecting some configurations, for details, see the Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default to collecting some configurations, for details, see the Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, in "Metrics", check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon - Cloud Monitoring, the default metric set is as follows, more metrics can be collected through configuration [Amazon Cloud Monitoring Metric Details](https://docs.aws.amazon.com/en_us/AmazonElastiCache/latest/red-ug/serverless-metrics.html){:target="_blank"}

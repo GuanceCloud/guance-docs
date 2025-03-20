@@ -93,7 +93,7 @@ The CoreDNS collector is used to collect metrics data related to CoreDNS.
 
 === "Kubernetes"
 
-    Enable the [`kubernetesprometheus` collector](https://docs.guance.com/integrations/kubernetesprometheus/) through DataKit.
+    Enable the [`kubernetesprometheus` collector](<<< homepage >>>/integrations/kubernetesprometheus/) through DataKit.
 
     ```yaml
     [inputs.kubernetesprometheus]

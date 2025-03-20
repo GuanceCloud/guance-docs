@@ -27,9 +27,9 @@ The displayed Metrics for Huawei Cloud CBR (Cloud Backup and Recovery) include b
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of HUAWEI SYS.CBR, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-CBR Collection)」(ID: `guance_huaweicloud_cbr`)
+To synchronize the monitoring data of HUAWEI SYS.CBR, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-CBR Collection)」(ID: `guance_huaweicloud_cbr`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
@@ -47,15 +47,15 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default collect some configurations, details are shown in the Metrics section.
 
-[Configure custom cloud object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
+[Configure custom cloud object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, in 「Infrastructure / Custom」, check if there is asset information.
-3. On the Guance platform, in 「Metrics」, check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure / Custom」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring HUAWEI SYS.CBR, the default Measurement set is as follows, and more Metrics can be collected through configuration [Huawei Cloud Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-cbr/cbr_03_0114.html){:target="_blank"}

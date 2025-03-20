@@ -24,9 +24,9 @@ Zadigx displays metrics including Overview, Automated Build, Automated Deploymen
 
 ### Install Func
 
-It is recommended to enable Guance integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > It is recommended to deploy the GSE version.
 
@@ -36,7 +36,7 @@ If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.
 
 > Note: Please prepare a qualified Zadigx API Token in advance.
 
-To synchronize Zadigx monitoring data, we install the corresponding collection script: "Guance Integration (Zadigx Data Collection)" (ID: `guance_zadig`)
+To synchronize Zadigx monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Zadigx Data Collection)" (ID: `guance_zadig`)
 
 After clicking 【Install】, modify the `private_token` in the startup zadigx collection script created and enter your API Token.
 
@@ -51,7 +51,7 @@ We collect some configurations by default, for details, please refer to the Metr
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and check the task records and logs for any abnormalities.
-2. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Zadigx monitoring, the default Measurement set is as follows

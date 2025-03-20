@@ -19,9 +19,9 @@ To get new issues from exception tracking more timely and conveniently, we can c
 
 ### Preparation
 
-1. Get the [API Key](https://docs.guance.com/management/api-key/) of the workspace for tracking issues in Observability Cloud.
+1. Get the [API Key](<<< homepage >>>/management/api-key/) of the workspace for tracking issues in Observability Cloud.
 2. Create a [Lark bot assistant application](https://www.feishu.cn/hc/zh-CN/articles/495678957203-如何使用机器人应用).
-3. Deploy a [Dataflux Func Observability Cloud Special Edition](https://func.guance.com/#/).
+3. Deploy a [Dataflux Func Observability Cloud Special Edition](https://<<< custom_key.func_domain >>>/#/).
 
 
 

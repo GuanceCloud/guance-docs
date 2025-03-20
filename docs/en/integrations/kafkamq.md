@@ -261,7 +261,7 @@ Assuming the received data is a pure text string in JSON format for a metric:
 {"time": 1666492218, "dimensions": {"bk_biz_id": 225,"ip": "10.200.64.45" },  "metrics": { "cpu_usage_pct": 0.01}, "exemplar": null}
 ```
 
-With the data format known, you can manually write a Pipeline script. Log in to 「Guance -> Manage -> Text Processing (Pipeline) Script Writing」. For example:
+With the data format known, you can manually write a Pipeline script. Log in to 「<<< custom_key.brand_name >>> -> Manage -> Text Processing (Pipeline) Script Writing」. For example:
 
 ```python
   data = load_json(message)
@@ -345,7 +345,7 @@ If parsing fails, it is recommended to set `debug=true` in the KafkaMQ configura
 External plugins have certain constraints:
 
 - KafkaMQ receives data but does not handle deserialization, as this is a custom development task and cannot be used universally for all users.
-- Data processed by external plugins can be sent to [dk apis](../datakit/apis.md#api-v1-write), or returned to KafkaMQ and then sent to Guance.
+- Data processed by external plugins can be sent to [dk apis](../datakit/apis.md#api-v1-write), or returned to KafkaMQ and then sent to <<< custom_key.brand_name >>>.
 - Data returned via response to KafkaMQ must be in ***line protocol format***. If it's in `JSON` format, the header information must include: `Content-Type:application/json`. Additionally, the returned header should indicate the type: `X-category:tracing` representing this tracing information.
 - External plugins should return 200 regardless of whether the data parsing succeeds or fails.
 - If KafkaMQ encounters timeouts or port issues while sending data to external plugins, it will attempt to reconnect and stop consuming messages from Kafka.

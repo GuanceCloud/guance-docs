@@ -8,13 +8,13 @@ title: '128-bit Trace ID'
 
 The default trace-id of the DDTrace agent is 64 bits, and the trace-id in the link data received by Datakit is also 64 bits. Starting from version v1.11.0, W3C protocol support was added, enabling reception of 128-bit trace-ids. However, the trace-id sent into the link remains 64 bits.
 
-For this reason, Guance made a secondary development by placing `trace_128_bit_id` into the link data and sending it to Datakit together, thus achieving the linkage between DDTrace and OTEL.
+For this reason, <<< custom_key.brand_name >>> made a secondary development by placing `trace_128_bit_id` into the link data and sending it to Datakit together, thus achieving the linkage between DDTrace and OTEL.
 
 You can refer to: [GitHub issue](https://github.com/GuanceCloud/dd-trace-java/issues/37){:target="_blank"}
 
 
 ## Implementation Method {#how}
-Starting from dd version 1.11, 128-bit traceID is supported. Currently, the version of Guance is 1.12.1. The startup command parameters are:
+Starting from dd version 1.11, 128-bit traceID is supported. Currently, the version of <<< custom_key.brand_name >>> is 1.12.1. The startup command parameters are:
 
 ```shell
 -Ddd.trace.128.bit.traceid.generation.enabled=true
@@ -45,7 +45,7 @@ Afterward, all spans will include this key during initialization.
 
 This is still not sufficient; Datakit must also perform filtering. If there is `trace_128_bit_id`, then the old `trace-id` will be replaced.
 
-In the Guance link, all link IDs will become 128 bits.
+In the <<< custom_key.brand_name >>> link, all link IDs will become 128 bits.
 
 Modify the collector's `ddtrace.conf` configuration:
 

@@ -20,9 +20,9 @@ monitor   :
 
 ---
 
-Collecting Zabbix service real-time data and sending it to the Guance center.
+Collecting Zabbix service real-time data and sending it to the <<< custom_key.brand_name >>> center.
 
-Zabbix versions from 4.0 to 7.0 support writing real-time data to files. There are three types of real-time data formats: `events/history/trends`, where `history` and `trends` are displayed in Metrics form. However, `events` can be sent to Guance via [Webhook](https://www.zabbix.com/documentation/5.4/en/manual/config/notifications/media/webhook?hl=Webhook%2Cwebhook){:target="_blank"} method.
+Zabbix versions from 4.0 to 7.0 support writing real-time data to files. There are three types of real-time data formats: `events/history/trends`, where `history` and `trends` are displayed in Metrics form. However, `events` can be sent to <<< custom_key.brand_name >>> via [Webhook](https://www.zabbix.com/documentation/5.4/en/manual/config/notifications/media/webhook?hl=Webhook%2Cwebhook){:target="_blank"} method.
 
 ## Configuration {#config}
 

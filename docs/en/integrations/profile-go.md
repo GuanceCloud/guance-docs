@@ -224,4 +224,4 @@ runtime.SetBlockProfileRate(rate)
 - `version`: Application version
 - `enabled_types`: Performance types, such as `cpu, goroutine, heap, mutex, block`
 
-After configuring the Profile collector, start or restart DataKit. After a while, you can view Go performance data in the Guance center.
+After configuring the Profile collector, start or restart DataKit. After a while, you can view Go performance data in the <<< custom_key.brand_name >>> center.

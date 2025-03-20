@@ -17,15 +17,15 @@ cloudCollector:
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize AWS-billing monitoring data, we install the corresponding collection script: 「Guance Integration (AWS-Billing Collection-Instance Dimension)」(ID: `guance_aws_billing_by_instance`)
+To synchronize AWS-billing monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (AWS-Billing Collection-Instance Dimension)」(ID: `guance_aws_billing_by_instance`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name, Area.
 
@@ -37,4 +37,4 @@ In addition, you can see the corresponding automatic trigger configuration in �
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding automatic trigger configuration exists for the corresponding task, and you can also check the corresponding task records and logs for any anomalies.
-2. In the Guance platform, under 「Cloud Billing / Billing Analysis」, check if the corresponding billing information exists.
+2. In the <<< custom_key.brand_name >>> platform, under 「Cloud Billing / Billing Analysis」, check if the corresponding billing information exists.

@@ -35,7 +35,7 @@ After DataKit starts, it will by default expose some [Prometheus Metrics](../dat
         
     [[inputs.dk]]
     
-      # See https://docs.guance.com/datakit/datakit-metrics/#metrics for all Metrics exported by DataKit.
+      # See <<< homepage >>>/datakit/datakit-metrics/#metrics for all Metrics exported by DataKit.
       metric_name_filter = [
         ### Collect all Metrics(these may collect over 300 Metrics of DataKit)
         ### If you want to collect all, make this rule the first in the list.

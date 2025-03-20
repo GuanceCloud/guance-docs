@@ -21,29 +21,29 @@ Collect monitoring Metrics for Huawei Cloud Search Service CSS for Elasticsearch
 
 ### Install Func
 
-It is recommended to activate the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a qualified Huawei Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of Huawei Cloud Search Service CSS for Elasticsearch, we install the corresponding collection script: access the web service of func and enter 【Script Market】-【Details】, search by css keyword, and install 「Guance Integration (Huawei Cloud-CSS)」(ID: `guance_huaweicloud_css`)
+To synchronize the monitoring data of Huawei Cloud Search Service CSS for Elasticsearch, we install the corresponding collection script: access the web service of func and enter 【Script Market】-【Details】, search by css keyword, and install 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-CSS)」(ID: `guance_huaweicloud_css`)
 
 After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, SK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set, and automatically configure the corresponding startup script.
 
-After the script installation is complete, find the script 「Guance Integration (Huawei Cloud-CSS)」 in the "Development" section of Func, expand and modify this script. Find collector_configs and monitor_configs respectively and edit the content under region_projects. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script installation is complete, find the script 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-CSS)」 in the "Development" section of Func, expand and modify this script. Find collector_configs and monitor_configs respectively and edit the content under region_projects. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, see the corresponding automatic trigger configuration in the 「Management / Automatic Trigger Configuration」. Click 【Execute】, and it will be executed immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
-3. On the Guance platform, in 「Metrics」, check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

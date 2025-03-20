@@ -21,29 +21,29 @@ Collect Huawei Cloud OBS Metrics data
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func by yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Huawei Cloud OBS monitoring data, we install the corresponding collection script: "Guance Integration (Huawei Cloud-OBS Collection)" (ID: `guance_huaweicloud_obs`)
+To synchronize Huawei Cloud OBS monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud-OBS Collection)" (ID: `guance_huaweicloud_obs`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
 Click 【Deploy Start Script】, and the system will automatically create a `Startup` script set, and automatically configure the corresponding start script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud-OBS Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs`, replace the regions after `regions` with your actual region, then find `monitor_configs` below `region_projects`, change it to the actual region and Project ID. Then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud-OBS Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs`, replace the regions after `regions` with your actual region, then find `monitor_configs` below `region_projects`, change it to the actual region and Project ID. Then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】to immediately execute once without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, in "Infrastructure - Resource Catalog", check if there is asset information.
-3. On the Guance platform, in "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure - Resource Catalog", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 

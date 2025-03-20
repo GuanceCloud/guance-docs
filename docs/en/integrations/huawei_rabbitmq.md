@@ -19,9 +19,9 @@ Collect Huawei Cloud DMS RabbitMQ Metrics data
 
 ### Install Func
 
-It is recommended to activate Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to activate <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > It is recommended to deploy the GSE version.
 
@@ -29,21 +29,21 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of RabbitMQ cloud resources, we install the corresponding collection script: "Guance Integration (Huawei Cloud - RabbitMQ)" (ID: `guance_huaweicloud_rabbitmq`)
+To synchronize the monitoring data of RabbitMQ cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud - RabbitMQ)" (ID: `guance_huaweicloud_rabbitmq`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud - RabbitMQ)" under "Development" in Func, unfold and modify this script. Find `collector_configs` and `monitor_configs`, respectively edit the content under `region_projects`, change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud - RabbitMQ)" under "Development" in Func, unfold and modify this script. Find `collector_configs` and `monitor_configs`, respectively edit the content under `region_projects`, change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the regular time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. Confirm in "Management / Automatic Trigger Configuration" whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. In the Guance platform, under "Infrastructure - Resource Catalog", check if there is asset information.
-3. In the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. In the <<< custom_key.brand_name >>> platform, under "Infrastructure - Resource Catalog", check if there is asset information.
+3. In the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 
@@ -103,7 +103,7 @@ Configure Huawei Cloud DMS RabbitMQ metrics. More metrics can be collected via c
 
 ## Objects {#object}
 
-After data synchronization is normal, you can view the data in the "Infrastructure - Resource Catalog" of Guance.
+After data synchronization is normal, you can view the data in the "Infrastructure - Resource Catalog" of <<< custom_key.brand_name >>>.
 
 ```json
 {

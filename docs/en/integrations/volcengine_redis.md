@@ -23,9 +23,9 @@ Volcengine Redis metrics collection.
 
 ### Install Func
 
-We recommend enabling Guance Integration - Extension - DataFlux Func (Automata): All prerequisites are automatically installed. Please continue with the script installation.
+We recommend enabling <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): All prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -33,7 +33,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Volcengine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize ECS cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (Volcengine-ECS Collection)" (ID: `guance_volcengine_redis`)
+To synchronize ECS cloud resource monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-ECS Collection)" (ID: `guance_volcengine_redis`)
 
 After clicking 【Install】, input the corresponding parameters: Volcengine AK, Volcengine account name.
 
@@ -46,14 +46,14 @@ Once enabled, you can find the corresponding automatic trigger configuration in 
 
 We default to collecting some configurations; see the metrics section for details.
 
-[Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
+[Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 

@@ -18,14 +18,14 @@ monitor   :
 
 ---
 
-This collector is for collecting network testing results. All testing data generated will be reported to Guance.
+This collector is for collecting network testing results. All testing data generated will be reported to <<< custom_key.brand_name >>>.
 
 ## Configuration {#config}
 
 <!-- markdownlint-disable MD046 -->
 === "HOST Installation"
 
-    For private testing node deployment, you need to [create a private testing node on the Guance page](../synthetic-tests/self-node.md). After creation, fill in the relevant information from the page into `conf.d/network/dialtesting.conf`:
+    For private testing node deployment, you need to [create a private testing node on the <<< custom_key.brand_name >>> page](../synthetic-tests/self-node.md). After creation, fill in the relevant information from the page into `conf.d/network/dialtesting.conf`:
 
     Navigate to the `conf.d/network` directory under the DataKit installation directory, copy `dialtesting.conf.sample` and rename it to `dialtesting.conf`. An example is as follows:
     
@@ -33,12 +33,12 @@ This collector is for collecting network testing results. All testing data gener
         
     [[inputs.dialtesting]]
       # We can also configure a JSON path like "file:///your/dir/json-file-name"
-      server = "https://dflux-dial.guance.com"
+      server = "https://<<< custom_key.dial_server_domain >>>"
     
       # [require] node ID
       region_id = "default"
     
-      # if server are dflux-dial.guance.com, ak/sk required
+      # if server are <<< custom_key.dial_server_domain >>>, ak/sk required
       ak = ""
       sk = ""
     
@@ -134,7 +134,7 @@ This collector is for collecting network testing results. All testing data gener
 
 Below is the network deployment topology diagram for testing nodes, showing two types of testing node deployment methods:
 
-- Public Network Testing Nodes: Directly use the globally deployed testing nodes by Guance to monitor **public** service operations.
+- Public Network Testing Nodes: Directly use the globally deployed testing nodes by <<< custom_key.brand_name >>> to monitor **public** service operations.
 - Private Network Testing Nodes: If you need to test services within your **internal network**, you must deploy **private** testing nodes yourself. Of course, if the network allows, these private testing nodes can also be used to test services on the public network.
 
 Regardless of whether it's a public network testing node or a private testing node, both can create testing tasks via the Web interface.
@@ -449,7 +449,7 @@ graph TD
 
 ## Testing Collector Self-Metric Collection {#metric}
 
-The testing collector exposes [Prometheus metrics](../datakit/datakit-metrics.md). To report these metrics to Guance, you can collect them using the [DataKit collector](dk.md), with reference configurations as follows:
+The testing collector exposes [Prometheus metrics](../datakit/datakit-metrics.md). To report these metrics to <<< custom_key.brand_name >>>, you can collect them using the [DataKit collector](dk.md), with reference configurations as follows:
 
 ```toml
 [[inputs.dk]]

@@ -23,9 +23,9 @@ Collect Azure Public IP Address Metrics data.
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
 
-If you deploy Func manually, refer to [Manual Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func manually, refer to [Manual Func Deployment](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > We recommend deploying the GSE version.
 
@@ -33,7 +33,7 @@ If you deploy Func manually, refer to [Manual Func Deployment](https://func.guan
 
 > Note: Please prepare the required Azure application registration information in advance and assign the `Monitoring Reader` role to the application registration.
 
-To synchronize Azure Public IP Address monitoring data, we install the corresponding collection script: 「Guance Integration (Azure-Network Public IP Address Collection)」(ID: `guance_azure_network_public_ip_address`)
+To synchronize Azure Public IP Address monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Azure-Network Public IP Address Collection)」(ID: `guance_azure_network_public_ip_address`)
 
 After clicking 【Install】, enter the corresponding parameters:
 
@@ -48,13 +48,13 @@ After activation, you can see the corresponding automatic trigger configuration 
 
 We default collect some configurations; for details, see the Metrics section.
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-azure-vm/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-azure-vm/){:target="_blank"}
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if there are corresponding monitoring data.
+2. In the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. In the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

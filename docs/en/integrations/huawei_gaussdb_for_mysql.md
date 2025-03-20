@@ -27,9 +27,9 @@ GaussDB for MySQL, including cpu, memory, network, buffer pool, storage, slow lo
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize GaussDB for MySQL monitoring data, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-Gaussdb-Mysql Collection)」(ID: `guance_huaweicloud_ddm_gaussdb_mysql`)
+To synchronize GaussDB for MySQL monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-Gaussdb-Mysql Collection)」(ID: `guance_huaweicloud_ddm_gaussdb_mysql`)
 
 After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
@@ -47,15 +47,15 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default collect some configurations, for details, see the Metrics section.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb-mysql/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-gaussdb-mysql/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can view the corresponding task records and log checks for any abnormalities.
-2. On the Guance platform, in 「Infrastructure / Custom」check if there is asset information.
-3. On the Guance platform, in 「Metrics」check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure / Custom」check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring GaussDB for MySQL, the default metric set is as follows. More metrics can be collected through configuration. [Huawei Cloud Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-gaussdb/gaussdb_03_0085.html){:target="_blank"}

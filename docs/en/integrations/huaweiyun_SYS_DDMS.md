@@ -27,7 +27,7 @@ The Huawei Cloud `SYS.DDMS` monitoring view displays indicators including messag
 
 Recommend opening 「Integrations - Extension - DataFlux Func (Automata)」: All preconditions are installed automatically, Please continue with the script installation
 
-If you deploy Func yourself,Refer to [Self-Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself,Refer to [Self-Deployment of Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation script
@@ -46,8 +46,8 @@ You can see the corresponding auto-trigger configuration in "Management / Auto-t
 ### Verify
 
 1. Check whether the automatic triggering configuration exists for the corresponding task in "Management / Crontab Config". Additionally, you can review task records and logs to identify any exceptions.
-2. On the Guance platform, go to "Infrastructure / Custom" to verify the presence of asset information.
-3. Press "Metrics" on the Guance platform to confirm the availability of monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, go to "Infrastructure / Custom" to verify the presence of asset information.
+3. Press "Metrics" on the <<< custom_key.brand_name >>> platform to confirm the availability of monitoring data.
 
 ## Metrics {#metric}
 After configuring Huawei Cloud Cloud Monitoring, the default indicator set is as follows, and more indicators can be collected through configuration

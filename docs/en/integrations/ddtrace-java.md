@@ -14,12 +14,12 @@ Java APM integration is straightforward, requiring no changes to business code. 
 ## Install Dependencies {#dependence}
 
 <!-- markdownlint-disable MD046 -->
-=== "Guance Version"
+=== "<<< custom_key.brand_name >>> Version"
 
-    To add support for more middleware, Guance has enhanced the [DDTrace-Java implementation](ddtrace-ext-java.md).
+    To add support for more middleware, <<< custom_key.brand_name >>> has enhanced the [DDTrace-Java implementation](ddtrace-ext-java.md).
 
     ```shell
-    wget -O dd-java-agent.jar 'https://static.guance.com/dd-image/dd-java-agent.jar'
+    wget -O dd-java-agent.jar 'https://static.<<< custom_key.brand_main_domain >>>/dd-image/dd-java-agent.jar'
     ```
 
 === "Datadog Version"
@@ -292,7 +292,7 @@ public AjaxResult billing(String tag) {
 
 Triggering the divide-by-zero exception by requesting this interface: `http://localhost:8080/billing?tag=error`
 
-At this point, you can see the span information on Guance: `error_message` `error_stack`:
+At this point, you can see the span information on <<< custom_key.brand_name >>>: `error_message` `error_stack`:
 
 ```txt
   error_message Request processing failed; nested exception is java.lang.ArithmeticException: / by zero

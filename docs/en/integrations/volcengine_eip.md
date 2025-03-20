@@ -20,15 +20,15 @@ Collect Volcengine EIP Metrics data
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a qualified Volcengine AK in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize EIP cloud resource monitoring data, we install the corresponding collection script: 「Guance Integration (Volcengine-EIP Collection)」(ID: `guance_volcengine_eip`)
+To synchronize EIP cloud resource monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Volcengine-EIP Collection)」(ID: `guance_volcengine_eip`)
 
 After clicking 【Install】, enter the corresponding parameters: Volcengine AK, Volcengine account name, Regions.
 
@@ -39,8 +39,8 @@ Once enabled, you can see the corresponding automatic trigger configuration in �
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」check if there is asset information.
-3. On the Guance platform, in 「Metrics」check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

@@ -69,7 +69,7 @@ DD_ENV=testing DD_SERVICE=python-profiling-manual DD_VERSION=1.2.3 python3 app.p
 
 ### View Profile {#view}
 
-After the program starts, DDTrace will periodically (by default, every minute) collect data and report it to Datakit. After waiting a few minutes, you can view the corresponding data in the Guance space [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
+After the program starts, DDTrace will periodically (by default, every minute) collect data and report it to Datakit. After waiting a few minutes, you can view the corresponding data in the <<< custom_key.brand_name >>> space [APM -> Profile](https://<<< custom_key.studio_main_site >>>/tracing/profile){:target="_blank"}.
 
 ### Generate Performance Metrics {#metrics}
 
@@ -110,7 +110,7 @@ Starting from [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39
 
 ### Usage in Host Environment {#py-spy-on-host}
 
-`py-spy` is an open-source, non-intrusive Python performance metric sampling tool provided by the community, with advantages such as standalone operation and low impact on target program load. By default, `py-spy` outputs sampling data in different formats to local files based on specified parameters. To simplify the integration of `py-spy` and DataKit, Guance provides a forked version [`py-spy-for-datakit`](https://github.com/GuanceCloud/py-spy-for-datakit){:target="_blank"}. This version includes minor modifications to the original to support automatically sending profiling data to DataKit.
+`py-spy` is an open-source, non-intrusive Python performance metric sampling tool provided by the community, with advantages such as standalone operation and low impact on target program load. By default, `py-spy` outputs sampling data in different formats to local files based on specified parameters. To simplify the integration of `py-spy` and DataKit, <<< custom_key.brand_name >>> provides a forked version [`py-spy-for-datakit`](https://github.com/GuanceCloud/py-spy-for-datakit){:target="_blank"}. This version includes minor modifications to the original to support automatically sending profiling data to DataKit.
 
 - Installation
 
@@ -186,7 +186,7 @@ py-spy-for-datakit datakit \
   -- python3 server.py  # Note: there must be an extra space before python3 here
 ```
 
-If no errors occur, after waiting one or two minutes, you can view specific performance metric data on the Guance platform [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"} page.
+If no errors occur, after waiting one or two minutes, you can view specific performance metric data on the <<< custom_key.brand_name >>> platform [APM -> Profile](https://<<< custom_key.studio_main_site >>>/tracing/profile){:target="_blank"} page.
 
 ### Usage in k8s Environment {#py-spy-on-k8s}
 

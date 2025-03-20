@@ -2,7 +2,7 @@
 title: 'Tencent Cloud CDB'
 tags: 
   - Tencent Cloud
-summary: 'Use the script market "official script market" series script package to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the script market "official script market" series script package to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_cdb'
 dashboard:
 
@@ -20,16 +20,16 @@ monitor:
 # Tencent Cloud CDB
 <!-- markdownlint-enable -->
 
-Use the script market "Guance Cloud Sync" series script package to synchronize cloud monitoring and cloud asset data to Guance
+Use the script market "<<< custom_key.brand_name >>> Cloud Sync" series script package to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
 
-If you deploy Func by yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func by yourself, refer to [Self-deploy Func](https://func.guance.
 
 > Hint: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize the monitoring data of Tencent Cloud CDB, we install the corresponding collection script: "Guance Integration (Tencent Cloud-CDB Collection)" (ID: `guance_tencentcloud_cdb`)
+To synchronize the monitoring data of Tencent Cloud CDB, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-CDB Collection)" (ID: `guance_tencentcloud_cdb`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -47,14 +47,14 @@ In addition, you can see the corresponding automatic trigger configuration in "M
 
 
 
-We default collect some configurations, for more details see the Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default collect some configurations, for more details see the Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 Configure Tencent Cloud - Cloud Monitoring, the default metric set is as follows, you can collect more metrics via configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/45147){:target="_blank"}
@@ -262,7 +262,7 @@ Collected Tencent Cloud CDB object data structure, which can be viewed from "Inf
 
 #### Prerequisites
 
-> Hint 1: Before using this collector, you must install the "Guance Core Package" and its supporting third-party dependency packages
+> Hint 1: Before using this collector, you must install the "<<< custom_key.brand_name >>> Core Package" and its supporting third-party dependency packages
 >
 > Hint 2: The code execution of this script depends on the CDB instance object collection. If the custom object collection for CDB is not configured, the slow log script cannot collect slow log data.
 
@@ -276,9 +276,9 @@ On top of the previous setup, you need to install another script for collecting 
 
 In the "Management / Script Market", click and install the corresponding script package:
 
-- "Guance Integration (Tencent Cloud-CDB Slow Query Log Collection)" (ID: `guance_tencentcloud_cdb_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Tencent Cloud-CDB Slow Query Log Collection)" (ID: `guance_tencentcloud_cdb_slowlog`)
 
-After data synchronization is normal, you can view the data in the "Logs" section of Guance.
+After data synchronization is normal, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
 The reported data example is as follows:
 

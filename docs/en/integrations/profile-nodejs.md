@@ -13,13 +13,13 @@ Currently, DataKit supports 1 method to collect NodeJS profiling data, which is 
 
 ## Pyroscope {#pyroscope}
 
-[Pyroscope](https://pyroscope.io/){:target="_blank"} is an open-source continuous profiling platform, and DataKit already supports displaying the profiling data it reports in [Guance](https://www.guance.com/){:target="_blank"}.
+[Pyroscope](https://pyroscope.io/){:target="_blank"} is an open-source continuous profiling platform, and DataKit already supports displaying the profiling data it reports in [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/){:target="_blank"}.
 
 Pyroscope uses a C/S architecture, with operation modes divided into [Pyroscope Agent](https://pyroscope.io/docs/agent-overview/){:target="_blank"} and [Pyroscope Server](https://pyroscope.io/docs/server-overview/){:target="_blank"}. Both of these modes are integrated into a single binary file, and different command-line commands are used to present them.
 
 Here, the Pyroscope Agent mode is required. DataKit has already integrated the Pyroscope Server function, and through exposing an HTTP interface, it can receive profiling data reported by the Pyroscope Agent.
 
-Data flow for profiling: "Pyroscope Agent collects profiling data -> DataKit -> Guance".
+Data flow for profiling: "Pyroscope Agent collects profiling data -> DataKit -> <<< custom_key.brand_name >>>".
 
 Here, your NodeJS program is equivalent to a Pyroscope Agent.
 
@@ -58,7 +58,7 @@ Pyroscope.init({
 Pyroscope.start()
 ```
 
-- [DataKit](https://www.guance.com/){:target="_blank"} is installed and the [profile](profile.md#config) collector is enabled. The configuration reference is as follows:
+- [DataKit](https://<<< custom_key.brand_main_domain >>>/){:target="_blank"} is installed and the [profile](profile.md#config) collector is enabled. The configuration reference is as follows:
 
 ```toml
 [[inputs.profile]]
@@ -89,7 +89,7 @@ Start DataKit, then start your NodeJS program.
 
 ## View Profile {#pyroscope-view}
 
-After performing the above operations, your NodeJS program will begin collecting profiling data and reporting it to DataKit. DataKit will then report this data to Guance. After waiting a few minutes, you can view the corresponding data in the Guance space [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
+After performing the above operations, your NodeJS program will begin collecting profiling data and reporting it to DataKit. DataKit will then report this data to <<< custom_key.brand_name >>>. After waiting a few minutes, you can view the corresponding data in the <<< custom_key.brand_name >>> space [APM -> Profile](https://<<< custom_key.studio_main_site >>>/tracing/profile){:target="_blank"}.
 
 ## Pull Mode (Optional) {#pyroscope-pull}
 

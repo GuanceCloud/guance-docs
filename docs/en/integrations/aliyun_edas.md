@@ -14,11 +14,11 @@ __int_icon: icon/aliyun_edas
 
 ### Prerequisites
 
-- **EDAS** each ECS installs [DataKit](https://docs.guance.com/datakit/datakit-install/){:target="_blank"}
+- **EDAS** each ECS installs [DataKit](<<< homepage >>>/datakit/datakit-install/){:target="_blank"}
 
 ### Installation Configuration
 
-Guance supports by default all APM monitoring methods that adopt the OpenTracing protocol, such as **SkyWalking**, **Jaeger**, **Zipkin**, etc.
+<<< custom_key.brand_name >>> supports by default all APM monitoring methods that adopt the OpenTracing protocol, such as **SkyWalking**, **Jaeger**, **Zipkin**, etc.
 
 Here, the official recommendation is to use the **ddtrace** integration method. **ddtrace** is an open-source APM monitoring method. Compared with other methods, it supports more custom fields, which means there can be enough labels to associate with other components. The specific integration method for **ddtrace** is detailed below:
 

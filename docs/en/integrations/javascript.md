@@ -14,7 +14,7 @@ monitor   :
 # JavaScript
 <!-- markdownlint-enable -->
 
-JavaScript falls under the category of [RUM (Real User Monitoring)](../real-user-monitoring/), primarily used for detecting browser user access behaviors and reporting them to Guance.
+JavaScript falls under the category of [RUM (Real User Monitoring)](../real-user-monitoring/), primarily used for detecting browser user access behaviors and reporting them to <<< custom_key.brand_name >>>.
 
 
 ## Configuration {#config}
@@ -72,7 +72,7 @@ There are three ways to integrate web applications: NPM integration, synchronous
         window,
         document,
         'script',
-        'https://static.guance.com/browser-sdk/v3/dataflux-rum.js',
+        'https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js',
         'DATAFLUX_RUM'
       )
       DATAFLUX_RUM.onReady(function () {
@@ -94,7 +94,7 @@ There are three ways to integrate web applications: NPM integration, synchronous
 === "CDN Synchronous Loading"
 
     ```javascript
-    <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+    <script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
     <script>
       window.DATAFLUX_RUM &&
         window.DATAFLUX_RUM.init({

@@ -20,17 +20,17 @@ The displayed Metrics of Alibaba Cloud DDoS New BGP High Defense include attack 
 
 ### Install Func
 
-It is recommended to enable the Guance integration - Expansion - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - Expansion - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
-> Note: Before using this collector, you must install the "Guance Integration Core Package" and its corresponding third-party dependency packages.
+> Note: Before using this collector, you must install the "<<< custom_key.brand_name >>> Integration Core Package" and its corresponding third-party dependency packages.
 
-To synchronize the monitoring data of DDoS cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-DDoS High Defense Collection)" (ID: `guance_aliyun_ddoscoo`)
+To synchronize the monitoring data of DDoS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-DDoS High Defense Collection)" (ID: `guance_aliyun_ddoscoo`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -40,13 +40,13 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default collect some configurations, details are shown in the Metrics section.
 
-[Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

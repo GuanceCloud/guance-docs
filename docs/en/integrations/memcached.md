@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-The Memcached collector can collect instance runtime status metrics from Memcached instances and send the metrics to Guance, helping with monitoring and analyzing various abnormal conditions of Memcached.
+The Memcached collector can collect instance runtime status metrics from Memcached instances and send the metrics to <<< custom_key.brand_name >>>, helping with monitoring and analyzing various abnormal conditions of Memcached.
 
 ## Configuration {#config}
 

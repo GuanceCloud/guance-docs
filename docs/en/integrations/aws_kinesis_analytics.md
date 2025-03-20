@@ -2,7 +2,7 @@
 title: 'AWS KinesisAnalytics'
 tags: 
   - AWS
-summary: 'Use the script market "Guance Cloud Sync" series script packages to synchronize cloud monitoring and cloud assets data to Guance'
+summary: 'Use the script market "<<< custom_key.brand_name >>> Cloud Sync" series script packages to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/aws_kinesis_analytics'
 dashboard:
 
@@ -22,22 +22,22 @@ cloudCollector:
 # AWS KinesisAnalytics
 <!-- markdownlint-enable -->
 
-Use the script market "Guance Cloud Sync" series script packages to synchronize cloud monitoring and cloud assets data to Guance
+Use the script market "<<< custom_key.brand_name >>> Cloud Sync" series script packages to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize KinesisAnalytics cloud resources monitoring data, we install the corresponding collection script: "Guance Integration (AWS KinesisAnalytics Collection)" (ID: `guance_aws_kinesis_analytics)
+To synchronize KinesisAnalytics cloud resources monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS KinesisAnalytics Collection)" (ID: `guance_aws_kinesis_analytics)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -45,14 +45,14 @@ Click 【Deploy Startup Script】, the system will automatically create a `Start
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-We default collect some configurations, for details see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default collect some configurations, for details see the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and you can also check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, in "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon - CloudWatch, the default metric set is as follows, you can collect more metrics through configuration [Amazon CloudWatch Metric Details](https://docs.aws.amazon.com/zh_cn/kinesisanalytics/latest/java/metrics-dimensions.html){:target="_blank"}

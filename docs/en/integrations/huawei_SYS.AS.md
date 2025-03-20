@@ -27,9 +27,9 @@ The core performance Metrics of Huawei Cloud AS (Auto Scaling) include CPU utili
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.
 
 > Note: Please prepare a qualified Huawei Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize HUAWEI SYS.AS monitoring data, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-AS Collection)」(ID: `guance_huaweicloud_as`).
+To synchronize HUAWEI SYS.AS monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-AS Collection)」(ID: `guance_huaweicloud_as`).
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
@@ -47,15 +47,15 @@ Once enabled, you can see the corresponding automatic trigger configuration unde
 
 We default collect some configurations, details are shown in the Metrics section.
 
-[Configure custom cloud object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
+[Configure custom cloud object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration. You can also view the corresponding task records and log checks for any anomalies.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
-3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring HUAWEI SYS.AS, the default Measurement set is as follows. More Metrics can be collected via configuration. [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-as/as_06_0105.html){:target="_blank"}

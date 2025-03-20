@@ -26,16 +26,16 @@ The displayed metrics of AWS **Timestream** include the number of system errors 
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - managed Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func manually, refer to [Manual Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func manually, refer to [Manual Deployment of Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare an Amazon Cloud AK that meets the requirements in advance (for simplicity, you can directly grant `CloudWatchReadOnlyAccess` permission to CloudWatch).
 
-To synchronize monitoring data for AWS **Timestream**, we install the corresponding collection script: 「Guance Integration (AWS-**Timestream** Collection)」(ID: `guance_aws_timestream`).
+To synchronize monitoring data for AWS **Timestream**, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (AWS-**Timestream** Collection)」(ID: `guance_aws_timestream`).
 
 After clicking 【Install】, input the corresponding parameters: AWS AK ID, AWS AK SECRET, account_name.
 
@@ -46,14 +46,14 @@ Once enabled, you can see the corresponding automatic trigger configuration in �
 > To collect corresponding logs, you need to enable the corresponding log collection script. If you want to collect billing information, you need to enable the cloud billing collection script.
 
 
-We collect some configurations by default; for details, see [Configuration of Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We collect some configurations by default; for details, see [Configuration of Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. On the Guance platform, under 「Metrics」, check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

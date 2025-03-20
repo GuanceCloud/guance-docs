@@ -8,7 +8,7 @@ __int_icon: 'icon/fluentbit'
 # Fluent Bit Logs
 <!-- markdownlint-enable -->
 
-FluentBit log collection accepts log text data reporting to Guance.
+FluentBit log collection accepts log text data reporting to <<< custom_key.brand_name >>>.
 
 ## Installation and Deployment {#config}
 

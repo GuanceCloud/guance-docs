@@ -42,7 +42,7 @@ Data conversion steps:
 
 | Metric        | Description                            | Type   | Unit |
 | ---           | ---                                    | ---    | ---  |
-| `create_time` | Guancedb storage create timestamp [^1] | int    | s    |
+| `create_time` | <<< custom_key.brand_name >>>db storage create timestamp [^1] | int    | s    |
 | `duration`    | Span duration                          | int    | us   |
 | `message`     | Raw data content                       | string |      |
 | `parent_id`   | Parent ID of span                      | string |      |

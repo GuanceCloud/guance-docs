@@ -18,9 +18,9 @@ Collect Azure Load Balancer Metrics data
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
@@ -42,8 +42,8 @@ After enabling, you can see the corresponding automatic trigger configuration in
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
-3. On the Guance platform, in 「Metrics」check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 

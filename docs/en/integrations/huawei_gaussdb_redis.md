@@ -27,33 +27,33 @@ The displayed Metrics for Huawei Cloud GaussDB-Redis include read/write throughp
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data for Huawei Cloud GaussDB-Redis, we install the corresponding collection script: "Guance Integration (Huawei Cloud-GaussDB-Redis Collection)" (ID: `guance_huaweicloud_gaussdb_redis`)
+To synchronize monitoring data for Huawei Cloud GaussDB-Redis, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud-GaussDB-Redis Collection)" (ID: `guance_huaweicloud_gaussdb_redis`)
 
 After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud-GaussDB-Redis Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud-GaussDB-Redis Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
-We default to collecting some configurations, for more details see the Metrics section [Customize cloud object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+We default to collecting some configurations, for more details see the Metrics section [Customize cloud object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Huawei Cloud - Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration [Huawei Cloud Cloud Monitoring Metrics Details](https://support.huaweicloud.com/redisug-nosql/nosql_10_0036.html){:target="_blank"}

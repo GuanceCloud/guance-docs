@@ -21,9 +21,9 @@ Collect Huawei Cloud DCS Metrics data
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
@@ -38,16 +38,16 @@ After clicking 【Install】, input the corresponding parameters: Huawei Cloud A
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script automatically.
 
-Once the script is installed, find the script "Guance Integration (Huawei Cloud - DCS Collection)" / "Guance Integration (Huawei Cloud - DCS Slow Query Log Collection)" under "Development" in Func, unfold and modify the script. Find and edit the contents of `collector_configs` and `monitor_configs` under `region_projects`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
+Once the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud - DCS Collection)" / "<<< custom_key.brand_name >>> Integration (Huawei Cloud - DCS Slow Query Log Collection)" under "Development" in Func, unfold and modify the script. Find and edit the contents of `collector_configs` and `monitor_configs` under `region_projects`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. Under "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure - Resource Catalog", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there is any corresponding monitoring data.
-4. On the Guance platform, under "Logs", check if there is any corresponding log data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure - Resource Catalog", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is any corresponding monitoring data.
+4. On the <<< custom_key.brand_name >>> platform, under "Logs", check if there is any corresponding log data.
 
 ## Metrics {#metric}
 

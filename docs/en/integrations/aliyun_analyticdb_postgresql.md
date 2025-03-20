@@ -23,16 +23,16 @@ Alibaba Cloud AnalyticDB PostgreSQL metrics display, including CPU, memory, disk
 
 ### Install Func
 
-It is recommended to activate the Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with script installation.
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data for Alibaba Cloud AnalyticDB PostgreSQL, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-AnalyticDB PostgreSQL Collection)" (ID: `guance_aliyun_analyticdb_postgresql`)
+To synchronize monitoring data for Alibaba Cloud AnalyticDB PostgreSQL, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-AnalyticDB PostgreSQL Collection)" (ID: `guance_aliyun_analyticdb_postgresql`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -42,7 +42,7 @@ Once enabled, you can see the corresponding automatic trigger configuration unde
 
 We default collect some configurations; for more details, see the metrics section.
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-analyticdb-postgresql/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-analyticdb-postgresql/){:target="_blank"}
 
 
 
@@ -50,8 +50,8 @@ We default collect some configurations; for more details, see the metrics sectio
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have been configured with automatic triggers. You can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there are asset information entries.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there are asset information entries.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Alibaba Cloud AnalyticDB PostgreSQL, the default metric sets are as follows. You can collect more metrics through configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://cms.console.aliyun.com/metric-meta/acs_hybriddb/gpdb?spm=a2c4g.11186623.0.0.5da976abPs9zNS){:target="_blank"}

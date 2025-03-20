@@ -21,29 +21,29 @@ Collect Huawei Cloud DIS Metrics data
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of Huawei Cloud DIS, we install the corresponding collection script: "Guance Integration (Huawei Cloud-DIS Collection)" (ID: `guance_huaweicloud_dis`)
+To synchronize the monitoring data of Huawei Cloud DIS, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud-DIS Collection)" (ID: `guance_huaweicloud_dis`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud-DIS Collection)" under "Development" in Func, expand and modify this script, find `collector_configs` and `monitor_configs` respectively, and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud-DIS Collection)" under "Development" in Func, expand and modify this script, find `collector_configs` and `monitor_configs` respectively, and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding automatic trigger configuration exists for the task, and you can also check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, check whether there is asset information in "Infrastructure - Resource Catalog".
-3. On the Guance platform, check whether there are corresponding monitoring data in "Metrics".
+2. On the <<< custom_key.brand_name >>> platform, check whether there is asset information in "Infrastructure - Resource Catalog".
+3. On the <<< custom_key.brand_name >>> platform, check whether there are corresponding monitoring data in "Metrics".
 
 ## Metrics {#metric}
 

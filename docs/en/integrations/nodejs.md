@@ -14,7 +14,7 @@ monitor   :
 # NodeJs
 <!-- markdownlint-enable -->
 
-Report NodeJs application-related information to Guance:
+Report NodeJs application-related information to <<< custom_key.brand_name >>>:
 
 - Collect custom Metrics data from the application;
 - Collect APM trace data from the application;

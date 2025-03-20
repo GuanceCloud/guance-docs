@@ -14,7 +14,7 @@ monitor   :
 # JAVA
 <!-- markdownlint-enable -->
 
-Link Guance to JAVA applications:
+Link <<< custom_key.brand_name >>> to JAVA applications:
 
 - Collect custom Metrics data from the application;
 - Collect APM data from the application;
@@ -28,7 +28,7 @@ You can refer to the [JVM documentation](jvm.md)
 
 ### APM Data Collection
 
-Enable the corresponding ***collector*** in the application, then use the JAVA agent tool to obtain trace information and send it to Guance.
+Enable the corresponding ***collector*** in the application, then use the JAVA agent tool to obtain trace information and send it to <<< custom_key.brand_name >>>.
 <!-- markdownlint-disable MD046 -->
 === "OpenTelemetry"
 
@@ -130,7 +130,7 @@ Log `pattern` configurations differ for various APM tools. Here's an example usi
 
 ## Reference Documentation {#faq}
 
-[**DDTrace Log**](https://docs.guance.com/best-practices/insight/ddtrace-skill-log/)
+[**DDTrace Log**](<<< homepage >>>/best-practices/insight/ddtrace-skill-log/)
 
 [**springboot-ddtrace-server**](https://github.com/lrwh/observable-demo/blob/main/springboot-ddtrace-server/src/main/resources/logback-spring.xml)
 

@@ -20,9 +20,9 @@ monitor:
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署Func](https://func.guance.com/doc/script-market-guance-integration/)
+如果自行部署 Func 参考 [自行部署Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > 推荐部署GSE版
 
@@ -30,21 +30,21 @@ monitor:
 
 > 提示：请提前准备好符合要求的华为云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步华为云 MongoDB 监控数据，我们安装对应的采集脚本：「观测云集成（华为云-GaussDB-Mongo）」(ID：`guance_huaweicloud_gaussdb_mongo`)
+同步华为云 MongoDB 监控数据，我们安装对应的采集脚本：「<<< custom_key.brand_name >>>集成（华为云-GaussDB-Mongo）」(ID：`guance_huaweicloud_gaussdb_mongo`)
 
 点击【安装】后，输入相应的参数：华为云 AK、华为云账户名。
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-脚本安装完后，在 Func 中「开发」里找到脚本「观测云集成（华为云-GaussDB-Mongo 采集）」，展开修改此脚本，找 collector_configs 和 monitor_configs 分别编辑下面 region_projects 中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
+脚本安装完后，在 Func 中「开发」里找到脚本「<<< custom_key.brand_name >>>集成（华为云-GaussDB-Mongo 采集）」，展开修改此脚本，找到 `collector_configs` 和 `monitor_configs` 分别编辑下面 `region_projects` 中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
 
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
 
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
+2. 在<<< custom_key.brand_name >>>，「基础设施 - 资源目录」中查看是否存在资产信息
+3. 在<<< custom_key.brand_name >>>，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
 
@@ -82,42 +82,41 @@ monitor:
 
 ## 对象 {#object}
 
-数据正常同步后，可以在观测云的「基础设施 / 自定义（对象）」中查看数据。
+数据正常同步后，可以在<<< custom_key.brand_name >>>的「基础设施 - 资源目录」中查看数据。
 
 ```json
 {
   "measurement": "huaweicloud_gaussdb_mongo",
   "tags": {
-    "RegionId"          : "cn-south-1",
-    "db_user_name"      : "rwuser",
-    "engine"            : "rocksDB",
-    "instance_id"       : "16b35ebaba1c44c39d9c24bae742ca97in02",
-    "instance_name"     : "dds-3ed3",
-    "name"              : "16b35ebaba1c44c39d9c24bae742ca97in02",
-    "pay_mode"          : "0",
-    "port"              : "8635",
-    "project_id"        : "756ada1aa17e4049b2a16ea41912e52d",
-    "security_group_id" : "7aa51dbf-xxxx-xxxx-xxxx-dad3c4828b58",
-    "status"            : "normal",
-    "subnet_id"         : "f1df08c5-xxxx-xxxx-xxxx-de435a51007b",
-    "vpc_id"            : "674e9b42-xxxx-xxxx-xxxx-5abcc565b961"
+    "RegionId"             : "cn-south-1",
+    "project_id"           : "756ada1aa17e4049b2a16ea41912e52d",
+    "instance_id"          : "16b35ebaba1c44c39d9c24bae742ca97in02",
+    "enterprise_project_id": "0824ss-xxxx-xxxx-xxxx-12334fedffg",
+    "instance_name"        : "dds-3ed3",
+    "status"               : "normal",
+    "engine"               : "rocksDB"
   },
   "fields": {
-    "actions"         : "[]",
-    "create_time"     : "2024-11-09T15:28:46",
-    "update_time"     : "2024-11-08T13:21:35",
-    "backup_strategy" : "{实例 JSON 数据}",
-    "datastore"       : "{实例 JSON 数据}",
-    "groups"          : "[{实例 JSON 数据}]",
-    "time_zone"       : "",
-    "message"         : "{实例 JSON 数据}"
+    "port"              : "8635", 
+    "db_user_name"      : "rwuser",
+    "vpc_id"            : "674e9b42-xxxx-xxxx-xxxx-5abcc565b961",
+    "subnet_id"         : "f1df08c5-xxxx-xxxx-xxxx-de435a51007b",
+    "security_group_id" : "7aa51dbf-xxxx-xxxx-xxxx-dad3c4828b58",
+    "pay_mode"          : "0",
+    "create_time"       : "2024-11-09T15:28:46",
+    "update_time"       : "2024-11-08T13:21:35",
+    "backup_strategy"   : "{实例 JSON 数据}",
+    "datastore"         : "{实例 JSON 数据}",
+    "groups"            : "[{实例 JSON 数据}]",
+    "time_zone"         : "xxxx",
+    "message"           : "{实例 JSON 数据}"
   }
 }
 ```
 
 > *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 >
-> 提示 1：`tags.name`值为实例 ID，作为唯一识别
+> 提示 1：`tags.instance_id`值为实例 ID，作为唯一识别
 >
 > 提示 2：
 >

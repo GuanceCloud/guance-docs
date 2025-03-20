@@ -18,7 +18,7 @@ monitor   :
 
 ---
 
-Collect NSQ runtime data and report it to Guance in the form of Metrics.
+Collect NSQ runtime data and report it to <<< custom_key.brand_name >>> in the form of Metrics.
 
 
 ## Configuration {#config}

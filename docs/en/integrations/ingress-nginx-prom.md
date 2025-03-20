@@ -58,7 +58,7 @@ dnsPolicy: ClusterFirstWithHostNet # Modified
 ```
 
 - Enable Input
-To collect Ingress Metrics data in Guance, you need to enable the prom plugin in DataKit. Specify the exporter's url in the prom plugin configuration. In a Kubernetes cluster, it is recommended to use annotations to add notes when collecting Ingress Controller Metrics. Open the deploy.yaml file used to deploy Ingress, find the DaemonSet section modified in the previous step, and add annotations.
+To collect Ingress Metrics data in <<< custom_key.brand_name >>>, you need to enable the prom plugin in DataKit. Specify the exporter's url in the prom plugin configuration. In a Kubernetes cluster, it is recommended to use annotations to add notes when collecting Ingress Controller Metrics. Open the deploy.yaml file used to deploy Ingress, find the DaemonSet section modified in the previous step, and add annotations.
 
 ```yaml
 annotations:
@@ -99,7 +99,7 @@ kubectl apply -f deploy.yaml
 
 ## Metrics {#metric}
 
-If `inputs.prom.measurements` is configured, the Metrics collected by Guance need to have the prefix added to match the table.<br />
+If `inputs.prom.measurements` is configured, the Metrics collected by <<< custom_key.brand_name >>> need to have the prefix added to match the table.<br />
 For example, if the prefix `nginx*ingress_controller` is set, the Measurement is `prom_ingress`.
 
 ```toml
@@ -108,7 +108,7 @@ For example, if the prefix `nginx*ingress_controller` is set, the Measurement is
               name = "prom_ingress"
 ```
 
-The Metric `nginx_ingress_controller_requests` becomes the `requests` Metric under the `prom_ingress` Measurement in Guance.
+The Metric `nginx_ingress_controller_requests` becomes the `requests` Metric under the `prom_ingress` Measurement in <<< custom_key.brand_name >>>.
 
 | Metric                                                         | Description                                                         | Data Type | Unit  |
 | -------------------------------------------------------------- | ------------------------------------------------------------------- | --------- | ----- |

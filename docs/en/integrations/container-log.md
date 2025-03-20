@@ -76,7 +76,7 @@ Complete example:
 
     ``` shell
     $ cat Dockerfile
-    FROM pubrepo.guance.com/base/ubuntu:18.04 AS base
+    FROM pubrepo.<<< custom_key.brand_main_domain >>>/base/ubuntu:18.04 AS base
     Run mkdir -p /opt
     Run echo 'i=0; \n\
     while true; \n\
@@ -127,7 +127,7 @@ Complete example:
         spec:
           containers:
           - name: log-output
-            image: pubrepo.guance.com/base/ubuntu:18.04
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/base/ubuntu:18.04
             args:
             - /bin/sh
             - -c
@@ -176,7 +176,7 @@ Complete example:
 
     ``` shell
     $ cat Dockerfile
-    FROM pubrepo.guance.com/base/ubuntu:18.04 AS base
+    FROM pubrepo.<<< custom_key.brand_main_domain >>>/base/ubuntu:18.04 AS base
     Run mkdir -p /opt
     Run echo 'i=0; \n\
     while true; \n\
@@ -237,7 +237,7 @@ Complete example:
         spec:
           containers:
           - name: logging-demo
-            image: pubrepo.guance.com/base/ubuntu:18.04
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/base/ubuntu:18.04
             args:
             - /bin/sh
             - -c
@@ -287,8 +287,8 @@ By default, DataKit collects all containers' stdout/stderr logs on the machine/N
 
     Currently, the following 4 field rules are supported, all infrastructure property fields:
 
-    - image : `image:pubrepo.guance.com/datakit/datakit:1.18.0`
-    - image_name : `image_name:pubrepo.guance.com/datakit/datakit`
+    - image : `image:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.18.0`
+    - image_name : `image_name:pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit`
     - image_short_name : `image_short_name:datakit`
     - namespace : `namespace:datakit-ns`
 
@@ -321,7 +321,7 @@ By default, DataKit collects all containers' stdout/stderr logs on the machine/N
 
     - A: `hello/hello-http:latest`
     - B: `world/world-http:latest`
-    - C: `pubrepo.guance.com/datakit/datakit:1.2.0`
+    - C: `pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.2.0`
 
     If you want to collect logs only from Pod A, you can configure ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG:
 
@@ -404,7 +404,7 @@ Datakit needs to mount the `/mnt/container_logs` hostPath to enable normal colle
     spec:
       containers:
       - name: datakit
-        image: pubrepo.guance.com/datakit/datakit:1.16.0
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.16.0
         volumeMounts:
         - mountPath: /mnt/container_logs
           name: container-logs

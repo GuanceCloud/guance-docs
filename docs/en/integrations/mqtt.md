@@ -10,13 +10,13 @@ MQTT (Message Queuing Telemetry Transport, a messaging transport protocol based 
 
 - [x] MQTT Broker
 
-Guance supports receiving MQTT protocol data through Func.
+<<< custom_key.brand_name >>> supports receiving MQTT protocol data through Func.
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > It is recommended to deploy the GSE version
 

@@ -21,9 +21,9 @@ The displayed Metrics for Volcengine ECS include CPU utilization, memory utiliza
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -31,7 +31,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a qualified Volcengine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data for ECS cloud resources, we install the corresponding collection script: "Guance Integration (Volcengine-ECS Collection)" (ID: `guance_volcengine_ecs`)
+To synchronize monitoring data for ECS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-ECS Collection)" (ID: `guance_volcengine_ecs`)
 
 After clicking 【Install】, enter the corresponding parameters: Volcengine AK, Volcengine account name.
 
@@ -44,14 +44,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default collect some configurations, details are shown in the Metrics section.
 
-[Configure custom cloud object Metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
+[Configure custom cloud object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and you can check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Volcengine-Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration [Volcengine Cloud Monitoring Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_ECS){:target="_blank"}

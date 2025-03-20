@@ -2,7 +2,7 @@
 title: 'AWS MSK'
 tags: 
   - AWS
-summary: 'Use the script market series of "Guance Cloud Sync" script packages to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the script market series of "<<< custom_key.brand_name >>> Cloud Sync" script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/aws_msk'
 dashboard:
 
@@ -22,16 +22,16 @@ monitor:
 
 Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that allows you to build and run applications that process streaming data using Apache Kafka.
 
-Use the script market series of "Guance Cloud Sync" script packages to synchronize cloud monitoring and cloud asset data to Guance.
+Use the script market series of "<<< custom_key.brand_name >>> Cloud Sync" script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - hosted Func: all prerequisites will be automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites will be automatically installed, please continue with the script installation
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -39,7 +39,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize MSK monitoring data, install the corresponding collection script: "Guance Integration (AWS-Managed Streaming for Kafka Collection)" (ID: `guance_aws_kafka`)
+To synchronize MSK monitoring data, install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-Managed Streaming for Kafka Collection)" (ID: `guance_aws_kafka`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -49,14 +49,14 @@ In addition, you can see the corresponding automatic trigger configuration in th
 
 
 
-We default to collecting some configurations, for more details see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default to collecting some configurations, for more details see the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon - Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration [Amazon Cloud Monitoring Metric Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#IOcredit){:target="_blank"}

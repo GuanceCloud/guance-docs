@@ -126,7 +126,7 @@ GRANT SELECT ON *.* TO 'datakit'@'localhost';
 
 ## Slow Query Support {#slow}
 
-DataKit can report SQL statements that execute longer than a user-defined time to Guance, showing them in logs with the source name `oceanbase_log`.
+DataKit can report SQL statements that execute longer than a user-defined time to <<< custom_key.brand_name >>>, showing them in logs with the source name `oceanbase_log`.
 
 This feature is disabled by default. Users can enable it in the OceanBase configuration file as follows:
 

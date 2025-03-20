@@ -2,7 +2,7 @@
 title: 'AWS EMR'
 tags: 
   - AWS
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/aws_emr'
 dashboard:
 
@@ -23,22 +23,22 @@ cloudCollector:
 # AWS EMR
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize EMR cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (AWS EMR Collection)" (ID: `guance_aws_emr)
+To synchronize EMR cloud resource monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS EMR Collection)" (ID: `guance_aws_emr)
 
 Click 【Install】, then input the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -46,14 +46,14 @@ Click 【Deploy Startup Script】, the system will automatically create a `Start
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. After a while, you can check the execution task records and corresponding logs.
 
-We default to collecting some configurations, for details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default to collecting some configurations, for details, see the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, check under "Infrastructure / Custom" whether there is asset information.
-3. On the Guance platform, check under "Metrics" whether there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, check under "Infrastructure / Custom" whether there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, check under "Metrics" whether there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon-CloudWatch, the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metric Details](https://docs.aws.amazon.com/en_us/emr/latest/ManagementGuide/UsingEMR_ViewingMetrics.html){:target="_blank"}

@@ -27,9 +27,9 @@ AWS MediaConvert, including data transfer, video errors, job counts, padding, et
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of AWS MediaConvert, we install the corresponding collection script: "Guance Integration (AWS-MediaConvert Collection)" (ID: `guance_aws_mediaconvert`)
+To synchronize monitoring data of AWS MediaConvert, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-MediaConvert Collection)" (ID: `guance_aws_mediaconvert`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK and Amazon account name.
 
@@ -50,8 +50,8 @@ In addition, you can see the corresponding automatic trigger configuration in "M
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring AWS MediaConvert, the default metric set is as follows. You can collect more metrics through configuration. [AWS MediaConvert Metric Details](https://docs.amazonaws.cn/mediaconvert/latest/ug/what-is.html){:target="_blank"}

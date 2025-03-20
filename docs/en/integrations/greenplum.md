@@ -73,7 +73,7 @@ Flags:
 
 #### Host Installation
 
-- [Install Datakit](https://docs.guance.com/datakit/datakit-install/)
+- [Install Datakit](<<< homepage >>>/datakit/datakit-install/)
   
 #### Configure Collector
 Since `greenplum exporter` can directly expose `metrics` URLs, it can be collected directly through the prom collector by configuring the corresponding URL for collection.
@@ -104,7 +104,7 @@ Parameter adjustment description:
 
 #### Restart Datakit
 
-[Restart Datakit](https://docs.guance.com/datakit/datakit-service-how-to/#manage-service)
+[Restart Datakit](<<< homepage >>>/datakit/datakit-service-how-to/#manage-service)
 
 ## Metrics {#metric}
 

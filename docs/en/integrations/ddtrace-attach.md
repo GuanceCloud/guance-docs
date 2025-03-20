@@ -10,7 +10,7 @@ __int_icon: 'icon/ddtrace'
 <!-- markdownlint-disable MD046 MD030 -->
 <div class="grid cards" markdown>
 
--   [:material-language-java: :material-download:](https://static.guance.com/ddtrace/agent-attach-java.jar){:target="_blank"} ·
+-   [:material-language-java: :material-download:](https://static.<<< custom_key.brand_main_domain >>>/ddtrace/agent-attach-java.jar){:target="_blank"} ·
     [:material-github:](https://github.com/GuanceCloud/agent-attach-java){:target="_blank"} ·
     [Issue](https://github.com/GuanceCloud/agent-attach-java/issues/new){:target="_blank"} ·
     [:octicons-history-16:](https://github.com/GuanceCloud/agent-attach-java/releases){:target="_blank"}
@@ -141,7 +141,7 @@ Note: Since JDK 9 does not include the *tools.jar* file, the *tools* file is inc
 ```shell
 mkdir -p /usr/local/ddtrace
 cd /usr/local/ddtrace
-wget https://static.guance.com/ddtrace/dd-java-agent.jar
+wget https://static.<<< custom_key.brand_main_domain >>>/ddtrace/dd-java-agent.jar
 ```
 
 <!-- markdownlint-disable MD046 -->

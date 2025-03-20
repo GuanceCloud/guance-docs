@@ -5,7 +5,7 @@ skip: 'not-searchable-on-index-page'
 
 ## Introduction {#head}
 
-Log collection (logging) is an important feature of the Guance Datakit. It processes log data collected actively or received passively, ultimately uploading it to the Guance center. Based on the data source, log collection can be divided into "network stream data" and "local disk files."
+Log collection (logging) is an important feature of the <<< custom_key.brand_name >>> Datakit. It processes log data collected actively or received passively, ultimately uploading it to the <<< custom_key.brand_name >>> center. Based on the data source, log collection can be divided into "network stream data" and "local disk files."
 
 ### Network Stream Data {#network}
 
@@ -312,8 +312,8 @@ Log collection is a complex system involving numerous detail treatments and opti
 Supplementary links:
 
 - [Introduction to glob Patterns](https://en.wikipedia.org/wiki/Glob_(programming)){:target="_blank"}
-- [Datakit Automatic Multiline Configuration](https://docs.guance.com/integrations/logging/#auto-multiline){:target="_blank"}
-- [Datakit Pipeline Processing](https://docs.guance.com/datakit/pipeline/){:target="_blank"}
+- [Datakit Automatic Multiline Configuration](<<< homepage >>>/integrations/logging/#auto-multiline){:target="_blank"}
+- [Datakit Pipeline Processing](<<< homepage >>>/datakit/pipeline/){:target="_blank"}
 - [Discussion on Docker Truncating Logs Over 16KiB](https://github.com/moby/moby/issues/34855){:target="_blank"}
 - [Source Code for Docker Truncating Logs Over 16KiB](https://github.com/nalind/docker/blob/master/daemon/logger/copier.go#L13){:target="_blank"}
 - [Docker Logging Driver](https://docs.docker.com/config/containers/logging/local/){:target="_blank"}

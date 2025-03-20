@@ -20,9 +20,9 @@ Display of Volcengine MongoDB Replica Set metrics, including CPU usage, memory u
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - managed Func: all prerequisites are automatically installed. Please continue with script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -30,7 +30,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a qualified Volcengine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of MongoDB cloud resources, we install the corresponding collection script: "Guance Integration (Volcengine-MongoDB Collection)" (ID: `guance_volcengine_mongodb_replica_set`)
+To synchronize monitoring data of MongoDB cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-MongoDB Collection)" (ID: `guance_volcengine_mongodb_replica_set`)
 
 After clicking 【Install】, enter the corresponding parameters: Volcengine AK, Volcengine account name.
 
@@ -43,14 +43,14 @@ After enabling, you can see the corresponding automatic trigger configuration un
 
 We default to collecting some configurations, details are shown in the metrics section.
 
-[Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
+[Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration. You can also check the corresponding task records and logs to verify if there are any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Volcengine-MongoDB Replica Set monitoring, the default metric set is as follows. You can collect more metrics via configuration. [Volcengine MongoDB Monitoring Metric Details](https://console.volcengine.com/cloud_monitor/metric?namespace=VCM_MongoDB_Replica){:target="_blank"}

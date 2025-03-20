@@ -1,7 +1,7 @@
 ---
 title     : 'NodeJs'
 summary   : '获取 NodeJs 应用的指标、链路追踪和日志信息'
-__int_icon: 'icon/node_js'
+__int_icon: 'icon/nodejs'
 dashboard :
   - desc  : '暂无'
     path  : '-'
@@ -14,7 +14,7 @@ monitor   :
 # NodeJs
 <!-- markdownlint-enable -->
 
-将 NodeJs 应用程序相关信息上报到观测云：
+将 NodeJs 应用程序相关信息上报到<<< custom_key.brand_name >>>：
 
 - 从应用当中收集自定义指标数据；
 - 从应用中收集链路追踪数据；

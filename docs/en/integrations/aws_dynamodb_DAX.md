@@ -31,16 +31,16 @@ The displayed Metrics for AWS DynamoDB DAX include CPU usage of nodes or cluster
 
 ### Install Func
 
-It is recommended to activate Guance integration - extension - DataFlux Func (Automata): All prerequisites will be automatically installed, please continue with the script installation.
+It is recommended to activate <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): All prerequisites will be automatically installed, please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare an Amazon Cloud AK that meets the requirements in advance (for simplicity, you can directly grant CloudWatch read-only permission `CloudWatchReadOnlyAccess`)
 
-To synchronize monitoring data for AWS-DynamoDB DAX, we install the corresponding collection script: "Guance Integration (AWS-DynamoDB DAX Collection)" (ID: `guance_aws_dynamodb_dax`)
+To synchronize monitoring data for AWS-DynamoDB DAX, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-DynamoDB DAX Collection)" (ID: `guance_aws_dynamodb_dax`)
 
 After clicking 【Install】, enter the corresponding parameters: AWS AK ID, AWS AK SECRET, account_name.
 
@@ -51,14 +51,14 @@ Once activated, you can see the corresponding automatic trigger configuration un
 > If you want to collect corresponding logs, you also need to enable the corresponding log collection script. If you want to collect billing information, you need to enable the cloud billing collection script.
 
 
-We default to collecting some configurations, see the Metrics column for details [Configuration Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default to collecting some configurations, see the Metrics column for details [Configuration Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. Confirm in "Manage / Automatic Trigger Configuration" whether the corresponding task has the corresponding automatic trigger configuration, and you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, check under "Infrastructure / Custom" whether asset information exists.
-3. On the Guance platform, check under "Metrics" whether there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, check under "Infrastructure / Custom" whether asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, check under "Metrics" whether there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

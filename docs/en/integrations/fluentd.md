@@ -8,7 +8,7 @@ __int_icon: 'icon/fluentd'
 # Fluentd Logs
 <!-- markdownlint-enable -->
 
-Fluentd log collection, which reports log text data to Guance.
+Fluentd log collection, which reports log text data to <<< custom_key.brand_name >>>.
 
 ## Installation and Deployment {#config}
 
@@ -35,7 +35,7 @@ systemctl restart datakit
 
 #### Linux Fluentd Collecting nginx Logs Integration with DataKit
 
-Take Fluentd collecting nginx logs and forwarding them to an upstream server end plugin configuration as an example. We don’t want to send directly to the server end for processing but rather process them locally and send them to DataKit for analysis on the Guance platform.
+Take Fluentd collecting nginx logs and forwarding them to an upstream server end plugin configuration as an example. We don’t want to send directly to the server end for processing but rather process them locally and send them to DataKit for analysis on the <<< custom_key.brand_name >>> platform.
 
 ```yaml
 ##PC log collection
@@ -116,7 +116,7 @@ create_time 1637733374609
 
 #### Windows Fluentd Collecting nginx Logs Integration with DataKit
 
-Take Fluentd collecting nginx logs and forwarding them to an upstream server end plugin configuration as an example. We don’t want to send directly to the server end for processing but rather process them locally and send them to DataKit for analysis on the Guance platform.
+Take Fluentd collecting nginx logs and forwarding them to an upstream server end plugin configuration as an example. We don’t want to send directly to the server end for processing but rather process them locally and send them to DataKit for analysis on the <<< custom_key.brand_name >>> platform.
 
 ```bash
 ##PC log collection
@@ -197,7 +197,7 @@ create_time 1637733374609
 
 #### Kubernetes sidecar Fluentd Collecting nginx Logs Integration with DataKit
 
-Take a Deployment of Fluentd sidecar collecting nginx logs and forwarding them to an upstream server end plugin configuration as an example. We don’t want to send directly to the server end for processing but rather process them locally and send them to DataKit for analysis on the Guance platform.
+Take a Deployment of Fluentd sidecar collecting nginx logs and forwarding them to an upstream server end plugin configuration as an example. We don’t want to send directly to the server end for processing but rather process them locally and send them to DataKit for analysis on the <<< custom_key.brand_name >>> platform.
 
 ```yaml
 apiVersion: apps/v1

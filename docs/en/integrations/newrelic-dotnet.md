@@ -108,7 +108,7 @@ Configure `New Relic Agent`
 
 ## Configure Host {#configure-host-for-newrelic}
 
-Since the `New Relic Agent` requires configuring `HTTPS` for data transmission, complete the [certificate application](certificate.md#self-signed-certificate-with-openssl) before host configuration. Since the `New Relic Agent` needs to verify the validity of the certificate during startup, here you need to complete the self-signing of the `CA` and the issuance of the certificate signed by the self-signed `CA`. After issuing the certificate certification chain, refer to [Guance integration with NewRelic .NET probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"} and [How to import root certificates and intermediate certificates on Windows servers?](https://baijiahao.baidu.com/s?id=1738111820379111942&wfr=spider&for=pc){:target="_blank"} for the deployment of certificates.
+Since the `New Relic Agent` requires configuring `HTTPS` for data transmission, complete the [certificate application](certificate.md#self-signed-certificate-with-openssl) before host configuration. Since the `New Relic Agent` needs to verify the validity of the certificate during startup, here you need to complete the self-signing of the `CA` and the issuance of the certificate signed by the self-signed `CA`. After issuing the certificate certification chain, refer to [<<< custom_key.brand_name >>> integration with NewRelic .NET probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"} and [How to import root certificates and intermediate certificates on Windows servers?](https://baijiahao.baidu.com/s?id=1738111820379111942&wfr=spider&for=pc){:target="_blank"} for the deployment of certificates.
 
 After completing the certificate deployment, you need to configure the `hosts` file accordingly to meet the ability to resolve domain names locally. The `hosts` configuration is as follows:
 
@@ -139,5 +139,5 @@ iisreset
 - [Official Documentation](https://docs.newrelic.com/){:target="_blank"}
 - [Code Repository](https://github.com/newrelic/newrelic-dotnet-agent){:target="_blank"}
 - [Download](https://download.newrelic.com/){:target="_blank"}
-- [Guance Integration with NewRelic .NET Probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"}
+- [<<< custom_key.brand_name >>> Integration with NewRelic .NET Probe](https://blog.csdn.net/liurui_wuhan/article/details/132889536){:target="_blank"}
 - [How to Import Root Certificates and Intermediate Certificates on Windows Servers?](https://baijiahao.baidu.com/s?id=1738111820379111942&wfr=spider&for=pc){:target="_blank"}

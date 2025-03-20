@@ -2,7 +2,7 @@
 title: 'Tencent Cloud COS'
 tags: 
   - Tencent Cloud
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_cos'
 dashboard:
 
@@ -20,16 +20,16 @@ monitor:
 # Tencent Cloud COS
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare the required Tencent Cloud AK in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize the monitoring data of Tencent Cloud COS cloud resources, we install the corresponding collection script: "Guance Integration (Tencent Cloud-COS Collection)" (ID: `guance_tencentcloud_cos`)
+To synchronize the monitoring data of Tencent Cloud COS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-COS Collection)" (ID: `guance_tencentcloud_cos`)
 
 In the "Manage / Script Market", click 【Install】, then enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -45,14 +45,14 @@ Click 【Deploy Startup Script】, the system will automatically create a `Start
 
 After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-We default collect some configurations, details are listed under the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default collect some configurations, details are listed under the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, in "Metrics", check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud COS collection, the default collected metric sets are as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/45140){:target="_blank"}

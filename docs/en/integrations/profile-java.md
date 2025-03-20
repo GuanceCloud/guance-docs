@@ -80,7 +80,7 @@ Explanation of some parameters:
 | `-Ddd.profiling.ddprof.memleak.enabled`     | DD_PROFILING_DDPROF_MEMLEAK_ENABLED              | Whether to enable memory leak sample analysis for the `Datadog Profiler` engine                                              |
 
 
-After the program runs, related data can be viewed on the Guance platform after approximately one minute.
+After the program runs, related data can be viewed on the <<< custom_key.brand_name >>> platform after approximately one minute.
 
 ### Generating Performance Metrics {#metrics}
 
@@ -248,7 +248,7 @@ The following operations assume the address is `http://localhost:9529`. If not, 
 
 - Inject Service Name (`service`) into Java Application (Optional)
 
-By default, it automatically acquires the program name as `service` and reports it to Guance. If you want to customize it, inject the service name when starting the program:
+By default, it automatically acquires the program name as `service` and reports it to <<< custom_key.brand_name >>>. If you want to customize it, inject the service name when starting the program:
 
 ```shell
 java -Ddk.service=<service-name> ... -jar <your-jar>
@@ -459,7 +459,7 @@ Create a new file named `collect.sh` in the current directory and input the foll
 bash collect.sh
 ```
 
-After the script execution is complete, the collected profiling data will be reported to the Guance platform via DataKit. You can view it shortly afterward in "Application Performance Monitoring" - "Profile".
+After the script execution is complete, the collected profiling data will be reported to the <<< custom_key.brand_name >>> platform via DataKit. You can view it shortly afterward in "Application Performance Monitoring" - "Profile".
 
 The script supports the following environment variables:
 

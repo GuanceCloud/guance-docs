@@ -105,7 +105,7 @@ dk_C --> dk_X_proxy;
 end
 
 subgraph "Public Network"
-dk_X_proxy --> |https://openway.guance.com|dw;
+dk_X_proxy --> |https://openway.<<< custom_key.brand_main_domain >>>|dw;
 end
 ```
 
@@ -115,7 +115,7 @@ Enabling MITM mode is mainly for collecting more detailed metrics about the Prox
 
 - When an internal Datakit connects to the Proxy, it must trust the HTTPS certificate provided by the Proxy collector (this certificate is definitely insecure; its source is [here](https://github.com/elazarl/goproxy/blob/master/certs.go){:target="_blank"}).
 - Once the Datakit trusts this HTTPS certificate, the Proxy collector can sniff the content of HTTPS packets and thus record more request-related metrics.
-- After recording the metric information, the Proxy collector forwards the request to Dataway (using Guance’s secure HTTPS certificate).
+- After recording the metric information, the Proxy collector forwards the request to Dataway (using <<< custom_key.brand_name >>>’s secure HTTPS certificate).
 
 Here, although an insecure certificate is used between Datakit and Proxy, it is limited to internal network traffic. When the Proxy forwards traffic to the public Dataway, it still uses a secure HTTPS certificate.
 

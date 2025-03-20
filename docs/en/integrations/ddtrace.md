@@ -36,7 +36,7 @@ DDTrace is an open-source APM product from DataDog. The DDTrace Agent embedded i
 
     ---
 
-    [SDK :material-download:](https://static.guance.com/dd-image/dd-java-agent.jar){:target="_blank"} ·
+    [SDK :material-download:](https://static.<<< custom_key.brand_main_domain >>>/dd-image/dd-java-agent.jar){:target="_blank"} ·
     [:octicons-book-16: Documentation](https://docs.datadoghq.com/tracing/setup_overview/setup/java?tab=containers){:target="_blank"} ·
     [:octicons-arrow-right-24: Example](ddtrace-java.md)
 
@@ -414,7 +414,7 @@ If Trace data is sent across machines, you need to configure [DataKit's HTTP set
 If there is DDTrace data sent to Datakit, you will see it on [DataKit's monitor](../datakit/datakit-monitor.md):
 
 <figure markdown>
-  ![input-ddtrace-monitor](https://static.guance.com/images/datakit/input-ddtrace-monitor.png){ width="800" }
+  ![input-ddtrace-monitor](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/input-ddtrace-monitor.png){ width="800" }
   <figcaption> DDtrace sends data to the /v0.4/traces interface</figcaption>
 </figure>
 
@@ -466,7 +466,7 @@ DD_TAGS="project:your_project_name,env=test,version=v1" ddtrace-run python app.p
 
 [:octicons-tag-24: Version-1.35.0](../datakit/changelog.md#cl-1.35.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
-After the DDTrace probe starts, it continuously reports relevant service information through additional interfaces, such as startup configuration, heartbeat, loaded probes list, etc. This can be viewed in the Resource Catalog under Infrastructure in Guance. The displayed data helps diagnose issues with startup commands and referenced third-party library versions. It also includes host information, service information, and the number of Spans generated.
+After the DDTrace probe starts, it continuously reports relevant service information through additional interfaces, such as startup configuration, heartbeat, loaded probes list, etc. This can be viewed in the Resource Catalog under Infrastructure in <<< custom_key.brand_name >>>. The displayed data helps diagnose issues with startup commands and referenced third-party library versions. It also includes host information, service information, and the number of Spans generated.
 
 The data may vary significantly depending on the language and version, so take the actual received data as the standard.
 
@@ -548,7 +548,7 @@ Below is a list of potentially extracted tags:
 | `pod_name`          | `pod_name`          | Pod name in tag   |
 | `_dd.base_service`  | `_dd_base_service`  | Parent service    |
 
-In the link interface of Guance, tags not listed here can still be filtered.
+In the link interface of <<< custom_key.brand_name >>>, tags not listed here can still be filtered.
 
 Starting from DataKit version [1.22.0](../datakit/changelog.md#cl-1.22.0), the whitelist feature is restored. If there are tags that must be promoted to top-level tags, they can be configured in `customer_tags`.
 If the whitelisted tags are from the native `message.meta`, `.` will be used as a separator, and the collector will convert `.` to `_`.

@@ -2,7 +2,7 @@
 title: 'AWS S3'
 tags: 
   - AWS
-summary: 'Use the script market "Guance cloud sync" series of script packages to synchronize cloud monitoring and cloud asset data to Guance.'
+summary: 'Use the script market "<<< custom_key.brand_name >>> cloud sync" series of script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.'
 __int_icon: 'icon/aws_s3'
 dashboard:
 
@@ -23,16 +23,16 @@ cloudCollector:
 # AWS S3
 <!-- markdownlint-enable -->
 
-Use the script market "Guance cloud sync" series of script packages to synchronize cloud monitoring and cloud asset data to Guance.
+Use the script market "<<< custom_key.brand_name >>> cloud sync" series of script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to activate Guance integration - extension - hosted Func: all prerequisites will be automatically installed, please proceed with the script installation.
+It is recommended to activate <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites will be automatically installed, please proceed with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -40,7 +40,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize AWS S3 monitoring data, we install the corresponding collection script: "Guance Integration (AWS-S3 Collection)" (ID: `guance_aws_s3`)
+To synchronize AWS S3 monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-S3 Collection)" (ID: `guance_aws_s3`)
 
 After clicking [Install], enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -48,14 +48,14 @@ Click [Deploy Startup Script], the system will automatically create a `Startup` 
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click [Execute] to immediately execute it once without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-We default collect some configurations, for details see metrics column [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default collect some configurations, for details see metrics column [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and you can also check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, in "Metrics", check if there are any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are any corresponding monitoring data.
 
 ## Metrics {#metric}
 Configure Amazon - CloudWatch properly, the default metric sets are as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/metrics-dimensions.html){:target="_blank"}

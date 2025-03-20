@@ -27,9 +27,9 @@ Tencent Cloud Redis Metrics Display, including connections, requests, latency, s
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Expansion - Managed Func: All prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Expansion - Managed Func: All prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize monitoring data for Tencent Cloud - Redis, we install the corresponding collection script: "Guance Integration (Tencent Cloud - Redis Collection)" (ID: `guance_tencentcloud_redis`)
+To synchronize monitoring data for Tencent Cloud - Redis, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud - Redis Collection)" (ID: `guance_tencentcloud_redis`)
 
 After clicking 【Install】, input the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -45,15 +45,15 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to immediately execute it once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We default collect some configurations, for more details see the metrics section [Customize cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-redis/){:target="_blank"}
+We default collect some configurations, for more details see the metrics section [Customize cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-redis/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Redis, the default metric sets are as follows. More metrics can be collected through configuration [Tencent Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/49729){:target="_blank"}
@@ -167,9 +167,9 @@ Based on the previous steps, another corresponding script needs to be installed 
 
 In "Management / Script Market", click and install the corresponding script package:
 
-- "Guance Integration (Tencent Cloud - Redis Slow Query Log Collection)" (ID: `guance_tencentcloud_redis_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Tencent Cloud - Redis Slow Query Log Collection)" (ID: `guance_tencentcloud_redis_slowlog`)
 
-After data synchronization is normal, you can view the data in the "Logs" section of Guance.
+After data synchronization is normal, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
 An example of the reported data is as follows:
 

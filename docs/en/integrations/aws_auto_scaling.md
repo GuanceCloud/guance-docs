@@ -30,9 +30,9 @@ cloudCollector:
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -40,7 +40,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize AWS Auto Scaling monitoring data, we install the corresponding collection script: "Guance Integration (AWS-Auto Scaling Collection)" (ID: `guance_aws_auto_scaling`)
+To synchronize AWS Auto Scaling monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-Auto Scaling Collection)" (ID: `guance_aws_auto_scaling`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK and Amazon account name.
 
@@ -53,8 +53,8 @@ In addition, you can see the corresponding automatic trigger configuration in "M
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can view the corresponding task records and log checks for any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, in "Metrics", check if there are any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring AWS Auto Scaling, the default metric sets are as follows. You can collect more metrics through configuration [Details of AWS Cloud Monitoring Metrics](https://docs.aws.amazon.com/zh_cn/autoscaling/ec2/userguide/viewing-monitoring-graphs.html){:target="_blank"}

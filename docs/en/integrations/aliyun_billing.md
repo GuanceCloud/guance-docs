@@ -17,9 +17,9 @@ cloudCollector:
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Install Script
@@ -36,4 +36,4 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 ### Verification
 
-On the Guance platform, check under the menu 「Cloud Bill」 to see if there is corresponding cloud bill data.
+On the <<< custom_key.brand_name >>> platform, check under the menu 「Cloud Bill」 to see if there is corresponding cloud bill data.

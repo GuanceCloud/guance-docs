@@ -21,9 +21,9 @@ Collect Huawei Cloud RDS MYSQL data
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - managed Func: all prerequisites will be automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
@@ -39,16 +39,16 @@ After clicking 【Install】, enter the corresponding parameters: Huawei Cloud A
 
 Click 【Deploy Start Script】, and the system will automatically create a `Startup` script set, and automatically configure the corresponding start script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud-RDS Collection)" / "Guance Integration (Huawei Cloud-RDS Slow Query Detail Log Collection)" / "Guance Integration (Huawei Cloud-RDS Slow Query Statistical Log Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs`, and edit the content under `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS Collection)" / "<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS Slow Query Detail Log Collection)" / "<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS Slow Query Statistical Log Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs`, and edit the content under `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】to immediately execute once without waiting for the regular time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under "Infrastructure - Resource Catalog", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
-4. On the Guance platform, under "Logs", check if there are corresponding slow log data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure - Resource Catalog", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
+4. On the <<< custom_key.brand_name >>> platform, under "Logs", check if there are corresponding slow log data.
 
 ## Metrics {#metric}
 

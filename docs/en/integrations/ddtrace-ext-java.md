@@ -1,6 +1,6 @@
 ---
 title     : 'DDTrace Extension'
-summary   : 'Guance extends the support of DDTrace for components'
+summary   : '<<< custom_key.brand_name >>> extends the support of DDTrace for components'
 __int_icon: 'icon/ddtrace'
 tags      :
   - 'DDTRACE'
@@ -61,7 +61,7 @@ The details of the trace will place the request and response header information 
 Minimum supported DDTrace version: [v1.25.2](ddtrace-ext-changelog.md#cl-1.25.2-guance)
 
 ## Supporting MongoDB Database Desensitization {#mongo-obfuscation}
-Activate desensitization using startup parameter `-Ddd.mongo.obfuscation=true` or environment variable `DD_MONGO_OBFUSCATION=TRUE`. This allows you to see a specific command from Guance.
+Activate desensitization using startup parameter `-Ddd.mongo.obfuscation=true` or environment variable `DD_MONGO_OBFUSCATION=TRUE`. This allows you to see a specific command from <<< custom_key.brand_name >>>.
 
 Currently supported desensitization types include: Int32/Int64/Boolean/Double/String. Remaining types are not currently supported as they have no reference significance.
 
@@ -82,7 +82,7 @@ Minimum supported DDTrace version: [v1.12.1](ddtrace-ext-changelog.md#cl-1.12.1-
 
 Specific functions refer to business-specified functions to obtain corresponding input parameter situations. Specific functions need to be defined by specific parameters. Currently, DDTrace provides two ways to declare specific functions for tracing:
 
-1. Through startup parameter marking `-Ddd.trace.methods`, or through introducing SDK, using `@Trace` for marking, refer to [Class or Method Injection Trace](https://docs.guance.com/best-practices/insight/ddtrace-skill-param/#trace){:target="_blank"}
+1. Through startup parameter marking `-Ddd.trace.methods`, or through introducing SDK, using `@Trace` for marking, refer to [Class or Method Injection Trace](<<< homepage >>>/best-practices/insight/ddtrace-skill-param/#trace){:target="_blank"}
 
 After declaring via the above methods, the corresponding methods will be marked as traceable, generating corresponding Span information that includes the input parameter information (parameter name, type, value) of the function (method).
 
@@ -112,7 +112,7 @@ For k8s:
 DD_REDIS_COMMAND_ARGS=TRUE
 ```
 
-In the detailed view of the Guance trace, an additional Tag will appear: `redis.command.args=key val...`. Here `key val ...` corresponds to the parameters in the redis statement `jedis.set(key,val)`.
+In the detailed view of the <<< custom_key.brand_name >>> trace, an additional Tag will appear: `redis.command.args=key val...`. Here `key val ...` corresponds to the parameters in the redis statement `jedis.set(key,val)`.
 
 > Note: The val may involve some confidential information, so please be cautious when activating.
 

@@ -14,7 +14,7 @@ monitor   :
 # Golang
 <!-- markdownlint-enable -->
 
-Upload relevant information of Golang applications to Guance:
+Upload relevant information of Golang applications to <<< custom_key.brand_name >>>:
 
 - Collect custom Metrics data from the application;
 - Collect APM data from the application;

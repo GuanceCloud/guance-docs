@@ -18,7 +18,7 @@ __int_icon: icon/aliyun_edas
 
 ### 安装配置
 
-观测云 默认支持所有采用 OpenTracing 协议的 APM 监控手段，例如 **SkyWalking** 、 **Jaeger** 、 **Zipkin** 等。
+<<< custom_key.brand_name >>> 默认支持所有采用 OpenTracing 协议的 APM 监控手段，例如 **SkyWalking** 、 **Jaeger** 、 **Zipkin** 等。
 
 此处官方推荐 **ddtrace** 接入方式。**ddtrace** 是开源的 APM 监控方式，相较于其他方式，支持更多的自定义字段，也就意味着可以有足够多的标签与其他的组件进行关联。**ddtrace** 具体接入方式详细如下：
 
