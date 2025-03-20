@@ -1,6 +1,6 @@
 ---
 title     : 'vSphere'
-summary   : 'Collect vSphere metrics'
+summary   : 'Collect vSphere Metrics data'
 tags:
   - 'VMWARE'
 __int_icon      : 'icon/vsphere'
@@ -8,7 +8,7 @@ dashboard :
   - desc  : 'vSphere'
     path  : 'dashboard/en/vsphere'
 monitor   :
-  - desc  : '-'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -22,22 +22,22 @@ monitor   :
 
 ---
 
-This collector gathers resource usage metrics from vSphere clusters, including resources such as CPU, memory, and network, and reports this data to the Guance Cloud.
+This collector collects resource usage Metrics of the vSphere cluster, including CPU, memory, and network resources, and reports these data to Guance.
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requirements}
 
-- Create a vSphere account:
+- Create a user
 
-In the vCenter management interface, create a user `datakit` and assign `read-only` permissions, applying these to the resources that need to be monitored. If monitoring of all child objects is required, you can select the `Propagate to children` option.
+In the vCenter management interface, create a user `datakit` and assign it `read-only` permissions, and apply it to the resources that need monitoring. If you need to monitor all sub-objects, you can check the `Propagate to children` option.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/vmware` directory under the DataKit installation directory, copy `vsphere.conf.sample` and name it `vsphere.conf`. Examples are as follows:
+    Go to the `conf.d/vmware` directory under the DataKit installation directory, copy `vsphere.conf.sample` and rename it as `vsphere.conf`. Example as follows:
     
     ```toml
         
@@ -56,7 +56,7 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
       timeout = "60s"
     
       ## VMs
-      ## Typical VM metrics (if omitted or empty, all metrics are collected)
+      ## Typical VM Metrics (if omitted or empty, all Metrics are collected)
       # vm_include = [ "/*/vm/**"] # Inventory path to VMs to collect (by default all are collected)
       # vm_exclude = [] # Inventory paths to exclude
       vm_metric_include = [
@@ -99,7 +99,7 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
       # vm_instances = true ## true by default
     
       ## Hosts
-      ## Typical host metrics (if omitted or empty, all metrics are collected)
+      ## Typical host Metrics (if omitted or empty, all Metrics are collected)
       # host_include = [ "/*/host/**"] # Inventory path to hosts to collect (by default all are collected)
       # host_exclude [] # Inventory paths to exclude
       host_metric_include = [
@@ -157,21 +157,21 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
       ## Clusters
       # cluster_include = [ "/*/host/**"] # Inventory path to clusters to collect (by default all are collected)
       # cluster_exclude = [] # Inventory paths to exclude
-      # cluster_metric_include = [] ## if omitted or empty, all metrics are collected
+      # cluster_metric_include = [] ## if omitted or empty, all Metrics are collected
       # cluster_metric_exclude = [] ## Nothing excluded by default
       # cluster_instances = false ## false by default
     
       ## Datastores
       # datastore_include = [ "/*/datastore/**"] # Inventory path to datastores to collect (by default all are collected)
       # datastore_exclude = [] # Inventory paths to exclude
-      # datastore_metric_include = [] ## if omitted or empty, all metrics are collected
+      # datastore_metric_include = [] ## if omitted or empty, all Metrics are collected
       # datastore_metric_exclude = [] ## Nothing excluded by default
       # datastore_instances = false ## false by default
     
       ## Datacenters
       # datacenter_include = [ "/*/host/**"] # Inventory path to clusters to collect (by default all are collected)
       # datacenter_exclude = [] # Inventory paths to exclude
-      datacenter_metric_include = [] ## if omitted or empty, all metrics are collected
+      datacenter_metric_include = [] ## if omitted or empty, all Metrics are collected
       datacenter_metric_exclude = [ "*" ] ## Datacenters are not collected by default.
       datacenter_instances = false ## false by default
     
@@ -179,7 +179,7 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
       ## set to 64 for vCenter 5.5 and 6.0 (default: 256)
       # max_query_objects = 256
     
-      ## number of metrics to retrieve per query for non-realtime resources (clusters and datastores)
+      ## number of Metrics to retrieve per query for non-realtime resources (clusters and datastores)
       ## set to 64 for vCenter 5.5 and 6.0 (default: 256)
       # max_query_metrics = 256
     
@@ -208,12 +208,12 @@ In the vCenter management interface, create a user `datakit` and assign `read-on
 
 === "Kubernetes"
 
-    The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector through [ConfigMap method to inject collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.vsphere.tags]`:
+By default, all data collected will append a global tag named `host` (the tag value is the hostname where DataKit resides), and other tags can also be specified in the configuration via `[inputs.vsphere.tags]`:
 
 ``` toml
  [inputs.vsphere.tags]
@@ -225,7 +225,7 @@ For all of the following data collections, a global tag named `host` is appended
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - Not all of the metrics listed below are collected; for specifics, refer to the explanations in the [Data Collection Levels](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-25800DE4-68E5-41CC-82D9-8811E27924BC.html){:target="_blank"}
+    Not all the following Metrics may be collected; for details, please refer to the [Data Collection Levels](https://docs.vmware.com/cn/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-25800DE4-68E5-41CC-82D9-8811E27924BC.html){:target="_blank"} description.
 
 <!-- markdownlint-enable -->
 
@@ -246,7 +246,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|The host of the vCenter|
 |`moid`|The managed object id|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -282,6 +282,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
 ### `vsphere_datastore`
 
 
@@ -296,7 +297,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|The host of the vCenter|
 |`moid`|The managed object id|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -322,6 +323,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
 ### `vsphere_host`
 
 
@@ -338,7 +340,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`instance`|The name of the instance|
 |`moid`|The managed object id|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -543,6 +545,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
 ### `vsphere_vm`
 
 
@@ -560,7 +563,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`moid`|The managed object id|
 |`vm_name`|The name of the resource|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -717,8 +720,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
+
 <!-- markdownlint-disable MD024 -->
-## Object {#object}
+## Objects {#object}
 
 
 
@@ -751,7 +755,7 @@ The object of the cluster.
 |  ----  | --------|
 |`name`|The name of the cluster|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -783,7 +787,7 @@ The object of the datastore.
 |`type`|Type of file system volume, such as `VMFS` or NFS|
 |`url`|The unique locator for the datastore|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -813,7 +817,7 @@ The object of the ESXi host.
 |`name`|The name of the ESXi host|
 |`vendor`|The hardware vendor identification|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -844,7 +848,7 @@ The object of the virtual machine.
 |`name`|The name of the virtual machine|
 |`template`|Flag to determine whether or not this virtual machine is a template.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -920,12 +924,11 @@ The event of the vSphere.
 |`status`|The status of the logging|
 |`user_name`|The user who caused the event|
 
-- Metrics
+- Fields List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`chain_id`|The parent or group ID.|int|-|
 |`event_key`|The event ID.|int|-|
 |`message`|A formatted text message describing the event. The message may be localized.|string|-|
-

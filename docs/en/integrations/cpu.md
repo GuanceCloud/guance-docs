@@ -1,6 +1,6 @@
 ---
 title     : 'CPU'
-summary   : 'Collect metric of cpu'
+summary   : 'Collect CPU Metrics data'
 tags:
   - 'HOST'
 __int_icon      : 'icon/cpu'
@@ -8,29 +8,28 @@ dashboard :
   - desc  : 'CPU'
     path  : 'dashboard/en/cpu'
 monitor   :
-  - desc  : 'Host detection library'
+  - desc  : 'Host Monitoring Library'
     path  : 'monitor/en/host'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :material-kubernetes: :material-docker:
 
 ---
 
-The CPU collector is used to collect the CPU utilization rate of the system.
+The CPU collector is used for collecting system CPU usage and other Metrics.
 
-## Configuration {#config}
+## Configuration  {#config}
 
 ### Collector Configuration {#input-config}
 
-After successfully installing and starting DataKit, the CPU collector will be enabled by default without the need for manual activation.
+After successfully installing and starting DataKit, the CPU collector will be enabled by default, no manual activation is required.
 
 <!-- markdownlint-disable MD046 -->
 
-=== "Host Installation"
+=== "Host Deployment"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `cpu.conf.sample` and name it `cpu.conf`. Examples are as follows:
-    
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `cpu.conf.sample` and rename it to `cpu.conf`. An example is as follows:
+
     ```toml
         
     [[inputs.cpu]]
@@ -54,62 +53,62 @@ After successfully installing and starting DataKit, the CPU collector will be en
       # more_tag = "some_other_value"
     
     ```
-    
-    After configuration, [restart Datakit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    It also supports modifying configuration parameters using environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
+
     - **ENV_INPUT_CPU_INTERVAL**
     
-        Collect interval
+        Collector repeat interval duration
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `interval`
+        **Collector Configuration Field**: `interval`
     
-        **Default**: `10s`
+        **Default Value**: `10s`
     
     - **ENV_INPUT_CPU_PERCPU**
     
-        Collect CPU usage per core
+        Collect each CPU core
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `percpu`
+        **Collector Configuration Field**: `percpu`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CPU_ENABLE_TEMPERATURE**
     
-        Enable to collect core temperature data
+        Collect CPU temperature
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_temperature`
+        **Collector Configuration Field**: `enable_temperature`
     
-        **Default**: `true`
+        **Default Value**: `true`
     
     - **ENV_INPUT_CPU_ENABLE_LOAD5S**
     
-        Enable gets average load information every five seconds
+        Get average load information every five seconds
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_load5s`
+        **Collector Configuration Field**: `enable_load5s`
     
-        **Default**: `false`
+        **Default Value**: `false`
     
     - **ENV_INPUT_CPU_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If the configuration file has tags with the same name, they will override them.
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: `tag1=value1,tag2=value2`
 
@@ -117,11 +116,11 @@ After successfully installing and starting DataKit, the CPU collector will be en
 
 ---
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.cpu.tags]`:
+By default, all collected data will append a global tag named `host` (the tag value is the hostname where DataKit resides), and you can also specify other tags in the configuration through `[inputs.cpu.tags]`:
 
-``` toml
+```toml
  [inputs.cpu.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -139,15 +138,15 @@ For all of the following data collections, a global tag named `host` is appended
 
 | Tag | Description |
 |  ----  | --------|
-|`cpu`|CPU core ID. For `cpu-total`, it means *all-CPUs-in-one-tag*. If you want every CPU's metric, please enable `percpu` option in *cpu.conf* or set `ENV_INPUT_CPU_PERCPU` under K8s|
+|`cpu`|CPU core ID. For `cpu-total`, it means *all-CPUs-in-one-tag*. If you want every CPU's metrics, please enable `percpu` option in *cpu.conf* or set `ENV_INPUT_CPU_PERCPU` under K8s|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`core_temperature`|CPU core temperature. This is collected by default. Only collect the average temperature of all cores.|float|C|
+|`core_temperature`|CPU core temperature. This is collected by default. Only collects the average temperature of all cores.|float|C|
 |`load5s`|CPU average load in 5 seconds.|int|-|
 |`usage_guest`|% CPU spent running a virtual CPU for guest operating systems.|float|percent|
 |`usage_guest_nice`|% CPU spent running a nice guest(virtual CPU for guest operating systems).|float|percent|
@@ -160,5 +159,3 @@ For all of the following data collections, a global tag named `host` is appended
 |`usage_system`|% CPU in system mode.|float|percent|
 |`usage_total`|% CPU in total active usage, as well as (100 - usage_idle).|float|percent|
 |`usage_user`|% CPU in user mode.|float|percent|
-
-

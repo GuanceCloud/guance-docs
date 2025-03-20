@@ -1,6 +1,6 @@
 ---
 title     : 'Grafana Guance Datasource'
-summary   : 'Grafana integration with Guance data provided as a Datasource plugin'
+summary   : 'Grafana connects to the data provided by Guance Datasource'
 __int_icon: 'icon/grafana_datasource'
 ---
 
@@ -8,15 +8,15 @@ __int_icon: 'icon/grafana_datasource'
 # Grafana Guance Datasource
 <!-- markdownlint-enable -->
 
-This plugin aims to display Guance data within Grafana, providing a Datasource plugin.
+This plugin is designed to display Guance data within Grafana, providing a Datasource plugin.
 
 ## Configuration {#config}
 
 - 1 [Click to download the plugin](https://static.guance.com/grafana-plugins/guance-guance-datasource.zip){:target="_blank"}
 
-- 2 Locate the Grafana configuration file. The default path can be found in the [official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#configuration-file-location){:target="_blank"}
+- 2 Locate the Grafana configuration file. The default path can be referenced in the [official documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#configuration-file-location){:target="_blank"}
 
-- 3 In the configuration file, find the configured plugin directory
+- 3 Find the configured plugin directory in the configuration file
 
 ```shell
 [paths]
@@ -29,7 +29,7 @@ plugins = "/path/to/grafana-plugins"
 unzip guance-guance-datasource.zip -d YOUR_PLUGIN_DIR/
 ```
 
-- 5 Modify the configuration to:
+- 5 Modify the configuration item to:
 
 ```shell
 [plugins]

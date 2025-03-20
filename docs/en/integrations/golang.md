@@ -1,6 +1,6 @@
 ---
 title     : 'Golang'
-summary   : 'Collect metrics, trace data, and log information from Golang applications'
+summary   : 'Collect Metrics, APM, and LOG information from Golang applications'
 __int_icon: 'icon/go'
 dashboard :
   - desc  : 'Not available'
@@ -14,15 +14,15 @@ monitor   :
 # Golang
 <!-- markdownlint-enable -->
 
-Report information related to Golang applications to Guance:
+Upload relevant information of Golang applications to Guance:
 
 - Collect custom Metrics data from the application;
-- Collect trace data from the application;
-- Manage all logs of the application.
+- Collect APM data from the application;
+- Manage all LOGs of the application.
 
 ## Trace {#tracing}
 
-Golang provides an intrusive method to inject probe information.
+Golang provides an intrusive way to inject probe information.
 
 <!-- markdownlint-disable MD046 -->
 === "OpenTelemetry"

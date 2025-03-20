@@ -1,40 +1,37 @@
 ---
 title     : 'Disk'
-summary   : 'Collect metrics of disk'
+summary   : 'Collect metrics data for disk'
 tags:
   - 'HOST'
 __int_icon      : 'icon/disk'
 dashboard :
-  - desc  : 'disk'
+  - desc  : 'Disk'
     path  : 'dashboard/en/disk'
 monitor   :
-  - desc  : 'host detection library'
+  - desc  : 'Host Monitoring Library'
     path  : 'monitor/en/host'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Disk collector is used to collect disk information, such as disk storage space, inode usage, etc.
+The disk collector is used to collect information about the host disk, such as disk storage space and Inode usage.
 
 ## Configuration {#config}
 
-After successfully installing and starting DataKit, the disk collector will be enabled by default without the need for manual activation.
+After successfully installing and starting DataKit, the Disk collector will be enabled by default, without requiring manual activation.
 
 <!-- markdownlint-disable MD046 -->
 
-### Collector Configuration {#input-config}
-
 === "Host Installation"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `disk.conf.sample` and name it `disk.conf`. Examples are as follows:
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `disk.conf.sample`, and rename it to `disk.conf`. Example as follows:
 
     ```toml
         
     [[inputs.disk]]
-      ##(optional) collect interval, default is 10 seconds
+      ##(optional) collection interval, default is 10 seconds
       interval = '10s'
     
       ## Physical devices only (e.g. hard disks, cd-rom drives, USB keys)
@@ -50,90 +47,97 @@ After successfully installing and starting DataKit, the disk collector will be e
       ## exclude some with dev prefix (We collect all devices prefixed with dev by default)
       # exclude_device = ["/dev/loop0","/dev/loop1"]
     
-      ignore_fstypes = '''^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$'''
-      ignore_mountpoints = '''^(/usr/local/datakit/.*|/run/containerd/.*)$'''
-    
       #[inputs.disk.tags]
       #  some_tag = "some_value"
       #  more_tag = "some_other_value"
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    It also supports modifying configuration parameters via environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
+
     - **ENV_INPUT_DISK_INTERVAL**
     
-        Collect interval
+        Collector repetition interval duration
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `interval`
+        **Collector Configuration Field**: `interval`
     
-        **Default**: 10s
-    
-    - **ENV_INPUT_DISK_TAGS**
-    
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
-    
-        **Type**: Map
-    
-        **input.conf**: `tags`
-    
-        **Example**: tag1=value1,tag2=value2
+        **Default Value**: 10s
     
     - **ENV_INPUT_DISK_EXTRA_DEVICE**
     
-        Additional device prefix. (By default collect all devices with dev as the prefix)
+        Additional device prefixes. (By default, collects all devices prefixed with dev.)
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `extra_device`
+        **Collector Configuration Field**: `extra_device`
     
         **Example**: `/nfsdata,other_data`
     
     - **ENV_INPUT_DISK_EXCLUDE_DEVICE**
     
-        Excluded device prefix. (By default collect all devices with dev as the prefix)
+        Excluded device prefixes. (By default, collects all devices prefixed with dev.)
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `exclude_device`
+        **Collector Configuration Field**: `exclude_device`
     
         **Example**: /dev/loop0,/dev/loop1
     
-    - **ENV_INPUT_DISK_IGNORE_MOUNTPOINTS**
+    - **ENV_INPUT_DISK_ONLY_PHYSICAL_DEVICE**
     
-        Excluded mount points
+        Ignore non-physical disks (such as network drives, NFS, etc., only collect local hard drives/CD ROM/USB disks, etc.)
     
-        **Type**: String
+        **Field Type**: Boolean
     
-        **input.conf**: `ignore_mountpoints`
+        **Collector Configuration Field**: `only_physical_device`
     
-        **Example**: `^(/usr/local/datakit/.*|/run/containerd/.*)$`
+        **Default Value**: false
     
-    - **ENV_INPUT_DISK_INPUT_DISK_IGNORE_FSTYPES**
+    - **ENV_INPUT_DISK_ENABLE_LVM_MAPPER_PATH**
     
-        Excluded file systems
+        View soft links corresponding to device mappers (such as `/dev/dm-0` -> `/dev/mapper/vg/lv`)
     
-        **Type**: String
+        **Field Type**: Boolean
     
-        **input.conf**: `input_disk_ignore_fstypes`
+        **Collector Configuration Field**: `enable_lvm_mapper_path`
     
-        **Example**: `^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$`
+        **Default Value**: false
+    
+    - **ENV_INPUT_DISK_MERGE_ON_DEVICE**
+    
+        Merge disks with the same device
+    
+        **Field Type**: Boolean
+    
+        **Collector Configuration Field**: `merge_on_device`
+    
+        **Default Value**: true
+    
+    - **ENV_INPUT_DISK_TAGS**
+    
+        Custom tags. If there are tags with the same name in the configuration file, they will override it.
+    
+        **Field Type**: Map
+    
+        **Collector Configuration Field**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.disk.tags]`:
+All the following data collected will append a global tag named `host` by default (the tag value is the hostname of the machine where DataKit resides), or you can specify other tags through `[inputs.disk.tags]` in the configuration:
 
-``` toml
+```toml
  [inputs.disk.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -141,10 +145,10 @@ For all of the following data collections, a global tag named `host` is appended
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ info "Source of disk metrics"
-    Under Linux, we first get device and mount info from */proc/self/mountinfo*, then get disk usage metrics via `statfs()` syscall. For Windows, we get device and mount info via Windows APIs like `GetLogicalDriveStringsW()`, and get disk usage by another API `GetDiskFreeSpaceExW()`
+???+ info "Disk Metrics Source"
+    On Linux, metrics are obtained by fetching mount information from */proc/self/mountinfo* and then sequentially obtaining disk metrics for each mount point (`statfs()`). For Windows, this is done through a series of Windows APIs such as `GetLogicalDriveStringsW()` system calls to obtain mount points, followed by `GetDiskFreeSpaceExW()` to get disk usage information.
 
-    In the [:octicons-tag-24: Version-1.66.0](../datakit/changelog-2025.md#cl-1.66.0) release, the disk collector has been optimized. However, mount points for the same device will still be merged into one, with only the first mount point being taken. If you need to collect all mount points, a specific flag(`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`) must be disable. While this flag disabled, this may result in a significant increase in the number of time series in the disk measurement.
+    In [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0), disk information collection has been optimized. However, mount points for the same device will still be merged into one, taking the first appearing mount point as the standard. To collect all mount points, you need to disable a specific flag (`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`). After disabling this merging function, the metrics set may contain many additional time series.
 <!-- markdownlint-enable -->
 
 
@@ -162,7 +166,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|System hostname.|
 |`mount_point`|Mount point.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -178,5 +182,3 @@ For all of the following data collections, a global tag named `host` is appended
 |`total`|Total disk size in bytes.|int|B|
 |`used`|Used disk size in bytes.|int|B|
 |`used_percent`|Used disk size in percent.|float|percent|
-
-

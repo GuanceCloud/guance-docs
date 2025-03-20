@@ -3,10 +3,10 @@ title     : 'OpenGauss'
 summary   : 'Collect OpenGauss Metrics information'
 __int_icon: 'icon/opengauss'
 dashboard :
-  - desc  : 'OpenGauss Monitoring View'
+  - desc  : 'OpenGauss monitoring view'
     path  : 'dashboard/en/opengauss'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'None temporarily'
     path  : '-'
 ---
 
@@ -22,9 +22,10 @@ monitor   :
 
 ### OpenGauss Exporter
 
-The official OpenGauss has open-sourced the [`openGauss-prometheus-exporter`](https://gitee.com/opengauss/openGauss-prometheus-exporter), which can be used to obtain metrics information by accessing `/metrics`.
+The official OpenGauss has open-sourced the [`openGauss-prometheus-exporter`](https://gitee.com/opengauss/openGauss-prometheus-exporter), which can obtain Metrics information by accessing `/metrics`.
 
-You can run the Exporter using Docker or by compiling it into a binary.
+It supports running the Exporter using Docker or compiling it into a binary format.
+
 
 ```shell
 git clone https://gitee.com/opengauss/openGauss-prometheus-exporter.git
@@ -34,13 +35,13 @@ export DATA_SOURCE_NAME="postgresql://login:password@hostname:port/dbname"
 ./bin/opengauss_exporter <flags>
 ```
 
-Refer to the [official documentation](https://gitee.com/opengauss/openGauss-prometheus-exporter#flags) for parameter usage instructions.
+For parameter usage, refer to the [official documentation](https://gitee.com/opengauss/openGauss-prometheus-exporter#flags).
 
 After successful execution, the default port for the Exporter is `9187`.
 
-### Enabling DataKit's `prom` Collector
+### Enable DataKit's `prom` collector
 
-You can directly use the [`prom`](./prom.md) collector to collect metrics in Prometheus format.
+You can directly use the [`prom`](./prom.md) collector to collect metrics in `prometheus` format.
 
 - Enable the DataKit prom plugin and copy the sample file
 
@@ -76,7 +77,7 @@ Adjust the following content:
 | `stat_database_blks_hit`| Cache hit|
 | `stat_database_blks_read`| Cache read|
 | `lock_count`| Total number of transaction locks|
-| `stat_database_conflicts_confl_bufferpin`| Buffer pin conflicts|
-| `stat_database_conflicts_confl_lock`| Lock conflicts|
-| `stat_database_conflicts_confl_snapshot`| Snapshot conflicts|
-| `stat_database_conflicts_confl_tablespace`| Tablespace conflicts|
+| `stat_database_conflicts_confl_bufferpin`| Cache conflict|
+| `stat_database_conflicts_confl_lock`| Lock conflict|
+| `stat_database_conflicts_confl_snapshot`| Snapshot conflict|
+| `stat_database_conflicts_confl_tablespace`| Tablespace conflict|

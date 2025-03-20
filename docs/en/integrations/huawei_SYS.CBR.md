@@ -2,11 +2,11 @@
 title: 'Huawei Cloud CBR'
 tags: 
   - Huawei Cloud
-summary: 'The displayed metrics for Huawei Cloud CBR include bandwidth utilization, latency, packet loss rate, and network throughput. These metrics reflect the performance and quality assurance of CBR in network transmission and bandwidth management.'
+summary: 'The displayed Metrics for Huawei Cloud CBR include bandwidth utilization, latency, packet loss rate, and network throughput. These Metrics reflect the performance and quality assurance of CBR in network transmission and bandwidth management.'
 __int_icon: 'icon/huawei_sys_cbr'
 dashboard:
 
-  - desc: 'Built-in View for Huawei Cloud CBR'
+  - desc: 'Built-in views of Huawei Cloud CBR'
     path: 'dashboard/en/huawei_SYS.CBR'
 
 monitor:
@@ -15,53 +15,59 @@ monitor:
 
 ---
 
+
 <!-- markdownlint-disable MD025 -->
 # Huawei Cloud CBR
 <!-- markdownlint-enable -->
 
-Huawei Cloud CBR (Cloud Backup and Recovery) displays metrics such as bandwidth utilization, latency, packet loss rate, and network throughput. These metrics reflect the performance and quality assurance of CBR in network transmission and bandwidth management.
+The displayed Metrics for Huawei Cloud CBR (Cloud Backup and Recovery) include bandwidth utilization, latency, packet loss rate, and network throughput. These Metrics reflect the performance and quality assurance of CBR in network transmission and bandwidth management.
+
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - Expansion - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
+It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+
+
 
 ### Installation Script
 
-> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of HUAWEI SYS.CBR, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-CBR Collection)」(ID: `guance_huaweicloud_cbr`).
+To synchronize the monitoring data of HUAWEI SYS.CBR, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-CBR Collection)」(ID: `guance_huaweicloud_cbr`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create the `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Start Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding start script.
 
-After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
+After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the task execution records and corresponding logs.
 
-By default, we collect some configurations; see the metrics section for details.
+We default collect some configurations, details are shown in the Metrics section.
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
+[Configure custom cloud object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-cbr/){:target="_blank"}
+
+
 
 ### Verification
 
-1. Confirm in 「Manage / Automatic Trigger Configuration」 whether the corresponding task has an automatic trigger configuration. You can also check the task records and logs to ensure there are no anomalies.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
+2. On the Guance platform, in 「Infrastructure / Custom」, check if there is asset information.
+3. On the Guance platform, in 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring HUAWEI SYS.CBR, the default metric set is as follows. You can collect more metrics through configuration. [Huawei Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-cbr/cbr_03_0114.html){:target="_blank"}
+After configuring HUAWEI SYS.CBR, the default Measurement set is as follows, and more Metrics can be collected through configuration [Huawei Cloud Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-cbr/cbr_03_0114.html){:target="_blank"}
 
-| Metric ID                              | Metric Name           | Metric Description                                                   | Value Range   | Measurement Object (Dimension) | **Monitoring Period (Original Metric)** |
-| -------------------------------------- | --------------------- | -------------------------------------------------------------------- | ------------- | ------------------------------ | ------------------------------------------------- |
-| used_vault_size                        | Storage Vault Usage   | This metric counts the storage vault usage capacity. Unit: GB.       | >=0           | Storage Vault                 | 15min                                           |
-| vault_util                             | Storage Vault Utilization | This metric counts the storage vault capacity utilization.          | 0~100%        | Storage Vault                 | 15min                                            |
+| Metric ID                                | Metric Name             | Metric Meaning                                                     | Value Range      | Measured Object (Dimension) | **Monitoring Cycle (Raw Metrics)** |
+| ------------------------------------- | -------------------- | ------------------------------------------------------------ | ------------- | ---------------- | ------------------------------------------------- |
+| used_vault_size                       | Vault Usage            | This metric is used to count the vault usage capacity. Unit: GB.                       | >=0           | Vault          | 15min                                           |
+| vault_util                            | Vault Utilization Rate | This metric is used to count the vault capacity utilization rate.                                | 0~100%          | Vault          | 15min                                            |
 
 ## Objects {#object}
 
-The object data structure collected from HUAWEI SYS.CBR can be viewed in 「Infrastructure - Custom」
+The collected HUAWEI SYS.CBR object data structure can be seen in the object data from 「Infrastructure - Custom」
 
 ``` json
 {
@@ -89,8 +95,9 @@ The object data structure collected from HUAWEI SYS.CBR can be viewed in 「Infr
 
 ```
 
-> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
+
+> *Note: The fields in `tags`, `fields` may change with subsequent updates.*
 >
 > Tip 1: The value of `tags.name` is the instance ID, which serves as a unique identifier.
 >
-> Tip 2: `fields.message`, `fields.billing`, `fields.bind_rules`, `fields.resources` are all JSON serialized strings.
+> Tip 2: `fields.message`, `fields.billing`, `fields.bind_rules`, `fields.message`, `fields.resources` are all strings serialized after JSON serialization.

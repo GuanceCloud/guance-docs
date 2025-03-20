@@ -2,57 +2,61 @@
 title: 'Huawei Cloud GaussDB-Redis'
 tags: 
   - Huawei Cloud
-summary: 'The displayed Metrics of Huawei Cloud GaussDB-Redis include read/write throughput, response time, concurrent connections, and data persistence. These Metrics reflect the performance and reliability of GaussDB-Redis when handling high-concurrency data storage and caching.'
+summary: 'The displayed Metrics for Huawei Cloud GaussDB-Redis include read/write throughput, response time, concurrent connections, and data persistence. These Metrics reflect the performance and reliability of GaussDB-Redis when handling high-concurrency data storage and caching.'
 __int_icon: 'icon/huawei_gaussdb_redis'
 dashboard:
 
-  - desc: 'Built-in Views for Huawei Cloud GaussDB for Redis'
+  - desc: 'Huawei Cloud GaussDB for Redis built-in views'
     path: 'dashboard/en/huawei_gaussdb_redis'
 
 monitor:
-  - desc: 'Monitor for Huawei Cloud GaussDB for Redis'
+  - desc: 'Huawei Cloud GaussDB for Redis Monitor'
     path: 'monitor/en/huawei_gaussdb_redis'
 
 ---
+
 
 <!-- markdownlint-disable MD025 -->
 # Huawei Cloud GaussDB-Redis
 <!-- markdownlint-enable -->
 
-The displayed Metrics of Huawei Cloud GaussDB-Redis include read/write throughput, response time, concurrent connections, and data persistence. These Metrics reflect the performance and reliability of GaussDB-Redis when handling high-concurrency data storage and caching.
+The displayed Metrics for Huawei Cloud GaussDB-Redis include read/write throughput, response time, concurrent connections, and data persistence. These Metrics reflect the performance and reliability of GaussDB-Redis when handling high-concurrency data storage and caching.
+
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - Expansion - DataFlux Func (Automata): All prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
 If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Install Script
 
-> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+### Installation Script
 
-To synchronize monitoring data from Huawei Cloud GaussDB-Redis, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-GaussDB-Redis Collection)」(ID: `guance_huaweicloud_gaussdb_redis`)
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-After clicking 【Install】, enter the required parameters: Huawei Cloud AK and Huawei Cloud account name.
+To synchronize monitoring data for Huawei Cloud GaussDB-Redis, we install the corresponding collection script: "Guance Integration (Huawei Cloud-GaussDB-Redis Collection)" (ID: `guance_huaweicloud_gaussdb_redis`)
 
-Click 【Deploy Startup Script】, and the system will automatically create the `Startup` script set and configure the corresponding startup script.
+After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
-Once the script is installed, find the script 「Guance Integration (Huawei Cloud-GaussDB-Redis Collection)」 under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs` and edit the content of `region_projects`, replacing the region and Project ID with the actual ones, then click Save and Publish.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration under 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+After the script is installed, find the script "Guance Integration (Huawei Cloud-GaussDB-Redis Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
-By default, we collect some configurations; for details, see the Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
+
+We default to collecting some configurations, for more details see the Metrics section [Customize cloud object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-ces/){:target="_blank"}
+
 
 ### Verification
 
-1. Confirm in 「Management / Automatic Trigger Configuration」whether the corresponding task has an automatic trigger configuration, and check the task records and logs for any anomalies.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if there are corresponding monitoring data.
+1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Huawei Cloud cloud monitoring, the default Metrics set is as follows. You can collect more Metrics through configuration [Huawei Cloud Cloud Monitoring Metrics Details](https://support.huaweicloud.com/redisug-nosql/nosql_10_0036.html){:target="_blank"}
+After configuring Huawei Cloud - Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration [Huawei Cloud Cloud Monitoring Metrics Details](https://support.huaweicloud.com/redisug-nosql/nosql_10_0036.html){:target="_blank"}
 
 | Metric Name | Description | Unit | Dimension |
 | :---: | :---: | :---: | :---: |
@@ -60,27 +64,28 @@ After configuring Huawei Cloud cloud monitoring, the default Metrics set is as f
 | `nosql002_mem_usage` | Memory utilization | % | redis_node_id |
 | `nosql005_disk_usage` | Disk utilization | % | redis_node_id |
 | `nosql006_disk_total_size` | Total disk capacity | GB | redis_node_id |
-| `nosql007_disk_used_size` | Used disk space | GB | redis_node_id |
+| `nosql007_disk_used_size` | Disk usage | GB | redis_node_id |
 | `redis017_proxy_accept` | Total number of clients accepted by proxy | count | redis_node_id |
 | `redis018_proxy_request_ps` | Proxy's request reception rate | counts/s | redis_node_id |
-| `redis019_proxy_response_ps` | Proxy's response transmission rate | count/s | redis_node_id |
-| `redis020_proxy_recv_client_bps` | Rate of byte streams received by proxy from clients | bytes/s | redis_node_id |
-| `redis021_proxy_send_client_bps` | Rate of byte streams sent by proxy to clients | bytes/s | redis_node_id |
+| `redis019_proxy_response_ps` | Proxy's response rate | count/s | redis_node_id |
+| `redis020_proxy_recv_client_bps` | Rate at which proxy receives client byte streams | bytes/s | redis_node_id |
+| `redis021_proxy_send_client_bps` | Rate at which proxy sends byte streams to clients | bytes/s | redis_node_id |
 | `redis032_shard_qps` | Shard QPS | count | redis_node_id |
-| `Invocationredis064_get_avg_usecs` | Average latency of proxy executing command "get" | μs | redis_node_id |
-| `redis065_get_max_usec` | Maximum latency of proxy executing command "get" | μs | redis_node_id |
-| `redis066_get_p99` | P99 latency of proxy executing command "get" | μs | redis_node_id |
-| `redis067_get_qps` | QPS of proxy executing command "get" | count/s | redis_node_id |
-| `redis316_all_avg_usec` | Average latency of proxy executing all commands | μs | redis_node_id |
-| `redis317_all_max_usec` | Maximum latency of proxy executing all commands | μs | redis_node_id |
-| `redis318_all_p99` | P99 latency of proxy executing all commands | μs | redis_node_id |
-| `redis319_all_qps` | QPS of proxy executing all commands | count/s | redis_node_id |
+| `Invocationredis064_get_avg_usecs` | Average latency for proxy executing "get" command | μs | redis_node_id |
+| `redis065_get_max_usec` | Maximum latency for proxy executing "get" command | μs | redis_node_id |
+| `redis066_get_p99` | P99 latency for proxy executing "get" command | μs | redis_node_id |
+| `redis067_get_qps` | Rate for proxy executing "get" command | count/s | redis_node_id |
+| `redis316_all_avg_usec` | Average latency for proxy executing all commands | μs | redis_node_id |
+| `redis317_all_max_usec` | Maximum latency for proxy executing all commands | μs | redis_node_id |
+| `redis318_all_p99` | P99 latency for proxy executing all commands | μs | redis_node_id |
+| `redis319_all_qps` | Rate for proxy executing all commands | count/s | redis_node_id |
 | `redis669_connection_usage` | Connection usage rate | % | redis_node_id |
 | `redis670_hit_rate` | Hit rate | % | redis_node_id |
 
+
 ## Objects {#object}
 
-The object data structure collected from Huawei Cloud GaussDB-Redis can be seen under 「Infrastructure-Custom」.
+The collected Huawei Cloud GaussDB-Redis object data structure can be viewed under "Infrastructure - Custom"
 
 ``` json
 {
@@ -97,7 +102,7 @@ The object data structure collected from Huawei Cloud GaussDB-Redis can be seen 
     "instance_name"           : "xxxxx-efa7"
   },
   "fields": {
-    "charge_info"          : "{Billing type information, supports pay-as-you-go and subscription}",
+    "charge_info"          : "{Billing type information, supports on-demand and package cycle}",
     "flavor_info"          : "{Specification information}",
     "volume"               : "{Volume information}",
     "create_time"          : "2023-08-01T14:17:40+0800",
@@ -108,13 +113,15 @@ The object data structure collected from Huawei Cloud GaussDB-Redis can be seen 
     "time_zone"            : "UTC+08:00"
   }
 }
+
+
 ```
 
 > *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note 1: The value of `tags.name` is the instance ID, used as a unique identifier.
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Note 2: The following fields are serialized JSON strings:
+> Tip 2: The following fields are all JSON serialized strings.
 >
 > - `fields.message`
 > - `fields.backup_strategy`

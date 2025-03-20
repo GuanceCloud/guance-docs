@@ -12,7 +12,7 @@ title: 'Datakit Metrics Performance Test Report'
 - Operating System: Ubuntu 22.04 LTS
 - DataKit: 1.14.1-3-gf792e9d
 
-## Metrics Test Results {#result}
+## Metrics Testing Results {#result}
 
 |  /   | Default Collector Enabled  | Default Collector Enabled + 1 MySQL Collector Enabled  | Default Collector Enabled + 100 MySQL Collectors Enabled  |
 |  ----  | ----  | ----  | ----  |
@@ -20,53 +20,53 @@ title: 'Datakit Metrics Performance Test Report'
 | Average Memory Usage   | 22.91 MB | 21.22 MB | 42.19 MB |
 | Uploaded Bytes   | 150 K | 300 K | 3 M |
 
-## CPU Usage Changes {#cpu}
+## Changes in CPU Usage {#cpu}
 
 Collection Time: 10 min
 
 <!-- markdownlint-disable MD024 -->
 
-- Default Collector Enabled
+- Default collector enabled
 
 ![mp-1-cpu](imgs/mp-1-cpu.png)
 
-- Default Collector Enabled + 1 MySQL Collector Enabled
+- Default collector enabled + 1 MySQL collector enabled
 
 ![mp-2-cpu](imgs/mp-2-cpu.png)
 
-- Default Collector Enabled + 100 MySQL Collectors Enabled
+- Default collector enabled + 100 MySQL collectors enabled
 
 ![mp-3-cpu](imgs/mp-3-cpu.png)
 
-## Memory Usage Changes {#mem}
+## Changes in Memory Usage {#mem}
 
 Collection Time: 10 min
 
-- Default Collector Enabled
+- Default collector enabled
 
 ![mp-1-mem](imgs/mp-1-mem.png)
 
-- Default Collector Enabled + 1 MySQL Collector Enabled
+- Default collector enabled + 1 MySQL collector enabled
 
 ![mp-2-mem](imgs/mp-2-mem.png)
 
-- Default Collector Enabled + 100 MySQL Collectors Enabled
+- Default collector enabled + 100 MySQL collectors enabled
 
 ![mp-3-mem](imgs/mp-3-mem.png)
 
-## Uploaded Bytes Changes {#upload-bytes}
+## Changes in Uploaded Bytes {#upload-bytes}
 
 Collection Time: 10 min
 
-- Default Collector Enabled
+- Default collector enabled
 
 ![mp-1-upload](imgs/mp-1-upload.png)
 
-- Default Collector Enabled + 1 MySQL Collector Enabled
+- Default collector enabled + 1 MySQL collector enabled
 
 ![mp-2-upload](imgs/mp-2-upload.png)
 
-- Default Collector Enabled + 100 MySQL Collectors Enabled
+- Default collector enabled + 100 MySQL collectors enabled
 
 ![mp-3-upload](imgs/mp-3-upload.png)
 
@@ -75,4 +75,4 @@ Collection Time: 10 min
 ## Other Test Results {#others}
 
 - [Datakit Trace Agent Performance Report](./datakit-trace-performance.md){:target="_blank"}
-- [DataKit Log Collector Performance Test](./logging-pipeline-bench.md){:target="_blank"}
+- [DataKit Log Collector Performance Testing](./logging-pipeline-bench.md){:target="_blank"}

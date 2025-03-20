@@ -1,6 +1,6 @@
 ---
-title     : 'Windows Event'
-summary   : 'Collect event logs in Windows'
+title     : 'Windows Events'
+summary   : 'Collecting event logs from Windows'
 tags:
   - 'WINDOWS'
 __int_icon      : 'icon/winevent'
@@ -12,22 +12,21 @@ monitor   :
     path  : '-'
 ---
 
-
 :fontawesome-brands-windows:
 
 ---
 
-Windows Event Log Collection is used to collect applications, security, systems and so on.
+Windows Event Log Collection collects application, security, system, and other Windows event logs.
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requirements}
 
 - Windows version >= Windows Server 2008 R2
 
 ### Collector Configuration {#input-config}
 
-Go to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample` and name it `windows_event.conf`. Examples are as follows:
+Navigate to the `conf.d/windows` directory under the DataKit installation directory, copy `windows_event.conf.sample`, and rename it to `windows_event.conf`. An example is as follows:
 
 ```toml
 
@@ -62,11 +61,11 @@ Go to the `conf.d/windows` directory under the DataKit installation directory, c
   # ...
 ```
 
-After configuration, restart DataKit.
+After configuring, restart DataKit.
 
-## Logging {#logging}
+## Logs {#logging}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration through `[inputs.windows_event.tags]`:
+By default, all data collection will append a global tag named `host` (the tag value is the hostname where DataKit resides). You can also specify other tags in the configuration using `[inputs.windows_event.tags]`:
 
 ``` toml
  [inputs.windows_event.tags]
@@ -98,10 +97,11 @@ For all of the following data collections, a global tag named `host` is appended
 |`total_message`|Full text of the event|
 |`version`|Version|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 
 
+</example>

@@ -2,7 +2,7 @@
 title: 'Tencent Cloud MongoDB'
 tags: 
   - Tencent Cloud
-summary: 'Use the script packages in the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the script packages in the Script Market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.'
 __int_icon: 'icon/tencent_mongodb'
 dashboard:
 
@@ -19,171 +19,171 @@ monitor:
 # Tencent Cloud MongoDB
 <!-- markdownlint-enable -->
 
-Use the script packages in the Script Market series of "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance
+Use the script packages in the Script Market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
-> Note: Prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare a qualified Tencent Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize MongoDB cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-MongoDB Collection)" (ID: `guance_tencentcloud_mongodb`)
+To synchronize the monitoring data of MongoDB cloud resources, we install the corresponding collection script: "Guance Integration (Tencent Cloud-MongoDB Collection)" (ID: `guance_tencentcloud_mongodb`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
-Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click 【Deploy Start Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding start script.
 
-After enabling, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
+After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to immediately execute it once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; for details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+By default, we collect some configurations, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 ### Verification
 
-1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration and check the task records and logs for any anomalies.
-2. On the Guance platform, in "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, in "Metrics", check if there is corresponding monitoring data.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any anomalies.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 
-After configuring Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/45104){:target="_blank"}
+After configuring Tencent Cloud - Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/45104){:target="_blank"}
 
-### Request Type
+### Request Class
 
-| Metric English Name | Metric Chinese Name       | Meaning                         | Unit | Dimension            |
-|---------------------|---------------------------|---------------------------------|------|----------------------|
-| `Inserts_sum`          | Write request count        | Number of writes per unit time  | Times | target (instance ID) |
-| `Reads_sum`            | Read request count         | Number of reads per unit time   | Times | target (instance ID) |
-| `Updates_sum`          | Update request count       | Number of updates per unit time | Times | target (instance ID) |
-| `Deletes_sum`          | Delete request count       | Number of deletes per unit time | Times | target (instance ID) |
-| `Counts_sum`           | Count request count        | Number of counts per unit time  | Times | target (instance ID) |
-| `Success_sum`          | Successful request count   | Number of successful requests   | Times | target (instance ID) |
-| `Commands_sum`         | Command request count      | Number of command requests      | Times | target (instance ID) |
-| `Qps_sum`              | Requests per second        | Operations per second including CRUD | Times/sec | target (instance ID) |
-| `CountPerSecond_sum`   | Counts per second          | Counts per second               | Times/sec | target (instance ID) |
-| `DeletePerSecond_sum`  | Deletes per second         | Deletes per second              | Times/sec | target (instance ID) |
-| `InsertPerSecond_sum`  | Inserts per second         | Inserts per second              | Times/sec | target (instance ID) |
-| `ReadPerSecond_sum`    | Reads per second           | Reads per second                | Times/sec | target (instance ID) |
-| `UpdatePerSecond_sum`  | Updates per second         | Updates per second              | Times/sec | target (instance ID) |
+| Metric English Name      | Metric Chinese Name             | Meaning                        | Unit  | Dimensions              |
+| --------------- | ---------------------- | --------------------------- | ----- | ----------------- |
+| `Inserts_sum`       | Write request count           | Number of writes within a unit of time          | Times    | target (Instance ID) |
+| `Reads_sum`         | Read request count           | Number of reads within a unit of time          | Times    | target (Instance ID) |
+| `Updates_sum`       | Update request count           | Number of updates within a unit of time          | Times    | target (Instance ID) |
+| `Deletes_sum`       | Delete request count           | Number of deletes within a unit of time          | Times    | target (Instance ID) |
+| `Counts_sum`        | Count request count         | Number of counts within a unit of time       | Times    | target (Instance ID) |
+| `Success_sum`       | Successful request count           | Number of successful requests within a unit of time      | Times    | target (Instance ID) |
+| `Commands_sum`      | Command request count       | Number of command requests within a unit of time | Times    | target (Instance ID) |
+| `Qps_sum`           | Requests per second         | Operations per second, including CRUD operations  | Times/sec | target (Instance ID) |
+| `CountPerSecond_sum` | Counts per second request count  | Count requests per second       | Times/sec | target (Instance ID) |
+| `DeletePerSecond_sum` | Deletes per second request count | Delete requests per second      | Times/sec | target (Instance ID) |
+| `InsertPerSecond_sum` | Inserts per second request count | Insert requests per second      | Times/sec | target (Instance ID) |
+| `ReadPerSecond_sum` | Reads per second request count   | Read requests per second        | Times/sec | target (Instance ID) |
+| `UpdatePerSecond_sum` | Updates per second request count | Update requests per second      | Times/sec | target (Instance ID) |
 
-### Latency Request Type
+### Latency Request Class
 
-| Metric English Name     | Metric Chinese Name                  | Meaning                                             | Unit | Dimension            |
-|-------------------------|---------------------------------------|-----------------------------------------------------|------|----------------------|
-| `Delay10_sum`             | Requests with latency between 10-50ms | Number of successful requests delayed between 10ms-50ms | Times | target (instance ID) |
-| `Delay50_sum`             | Requests with latency between 50-100ms | Number of successful requests delayed between 50ms-100ms | Times | target (instance ID) |
-| `Delay100_sum`            | Requests with latency over 100ms      | Number of successful requests delayed over 100ms     | Times | target (instance ID) |
-| `AvgAllRequestDelay_sum`  | Average delay of all requests        | Average delay of all requests                       | ms    | target (instance ID) |
+| Metric English Name         | Metric Chinese Name                   | Meaning                                     | Unit | Dimensions              |
+| ------------------ | ---------------------------- | ---------------------------------------- | ---- | ----------------- |
+| `Delay10_sum`          | Request count with latency between 10 - 50 milliseconds  | Number of successful requests with delay between 10ms - 50ms within a unit of time  | Times   | target (Instance ID) |
+| `Delay50_sum`          | Request count with latency between 50 - 100 milliseconds | Number of successful requests with delay between 50ms - 100ms within a unit of time | Times   | target (Instance ID) |
+| `Delay100_sum`         | Request count with latency over 100 milliseconds    | Number of successful requests with delay over 100ms within a unit of time    | Times   | target (Instance ID) |
+| `AvgAllRequestDelay_sum` | Average delay of all requests             | Average delay of all requests                         | ms   | target (Instance ID) |
 
-### Connection Type
+### Connection Class
 
-| Metric English Name  | Metric Chinese Name | Meaning                                               | Unit | Dimension            |
-|----------------------|---------------------|-------------------------------------------------------|------|----------------------|
-| `ClusterConn_max`     | Cluster connection count | Total cluster connections, i.e., connections received by the current cluster proxy | Times | target (instance ID) |
-| `Connper_max`         | Connection usage rate  | Proportion of current cluster connections to total configured connections | %     | target (instance ID) |
+| Metric English Name  | Metric Chinese Name | Meaning                                        | Unit | Dimensions              |
+| ----------- | ---------- | ------------------------------------------- | ---- | ----------------- |
+| `ClusterConn_max` | Cluster connection count | Total cluster connections, referring to the number of connections received by the current cluster proxy | Times   | target (Instance ID) |
+| `Connper_max`   | Connection usage rate | Proportion of the current cluster's connections to the total cluster connection configuration      | %    | target (Instance ID) |
 
-### System Type
+### System Class
 
-| Metric English Name     | Metric Chinese Name | Meaning                                              | Unit | Dimension            |
-|-------------------------|---------------------|------------------------------------------------------|------|----------------------|
-| `ClusterDiskusage`       | Disk usage rate     | Proportion of actual storage space used by the cluster to total configured capacity | %    | target (instance ID) |
+| Metric English Name         | Metric Chinese Name | Meaning                                       | Unit | Dimensions              |
+| ------------------ | ---------- | ------------------------------------------ | ---- | ----------------- |
+| `ClusterDiskusage` | Disk usage rate | Proportion of actual storage space occupied by the cluster to the total capacity configuration | %    | target (Instance ID) |
 
-### Ingress and Egress Traffic Type
+### Inbound and Outbound Traffic Class
 
-| Metric English Name | Metric Chinese Name | Meaning           | Unit  | Dimension                 |
-|---------------------|---------------------|-------------------|-------|---------------------------|
-| `ClusterNetin`       | Ingress traffic     | Cluster ingress traffic | Bytes | **target** (instance ID)  |
-| `ClusterNetout`      | Egress traffic      | Cluster egress traffic | Bytes | **target** (instance ID)  |
+| Metric English Name      | Metric Chinese Name | Meaning           | Unit  | Dimensions                  |
+| --------------- | ---------- | -------------- | ----- | --------------------- |
+| `ClusterNetin`  | Inbound traffic     | Cluster network inbound traffic | Bytes | **target** (Instance ID) |
+| `ClusterNetout` | Outbound traffic     | Cluster network outbound traffic | Bytes | **target** (Instance ID) |
 
 ### MongoDB Replica Set
 
-#### 1. System Type
+#### 1. System Class
 
-| Metric English Name     | Metric Chinese Name | Meaning             | Unit | Dimension                   |
-|-------------------------|---------------------|---------------------|------|-----------------------------|
-| `ReplicaDiskusage`       | Disk usage rate     | Replica set capacity usage rate | %    | **target** (replica set ID) |
+| Metric English Name         | Metric Chinese Name | Meaning             | Unit | Dimensions                    |
+| ------------------ | ---------- | ---------------- | ---- | ----------------------- |
+| `ReplicaDiskusage` | Disk usage rate | Replica set capacity usage rate | %    | **target** (Replica Set ID) |
 
-#### 2. Master-Slave Type
+#### 2. Master-Slave Class
 
-| Metric English Name     | Metric Chinese Name | Meaning                                         | Unit | Dimension                    |
-|-------------------------|---------------------|-------------------------------------------------|------|-------------------------------|
-| `SlaveDelay`             | Master-slave delay  | Average delay between master and slave per unit time | Seconds | target (replica set ID)      |
-| `Oplogreservedtime`      | **oplog** retention time | Time difference between the last and first operation in the **oplog** records | Hours | target (replica set ID)      |
+| Metric English Name          | Metric Chinese Name         | Meaning                                         | Unit | Dimensions                |
+| ------------------- | ------------------ | -------------------------------------------- | ---- | ------------------- |
+| `SlaveDelay`        | Master-slave delay           | Average master-slave delay within a unit of time                       | Seconds   | target (Replica Set ID) |
+| `Oplogreservedtime` | **oplog** retention time | Difference in time between the last operation and the first operation in the **oplog** records | Hours | target (Replica Set ID) |
 
-#### 3. Cache Type
+#### 3. Cache Class
 
-| Metric English Name | Metric Chinese Name | Meaning                          | Unit | Dimension                     |
-|---------------------|---------------------|----------------------------------|------|-------------------------------|
-| `CacheDirty`         | Cache dirty data percentage | Current percentage of dirty data in memory cache | %    | target (replica set ID)       |
-| `CacheUsed`          | Cache usage percentage      | Current cache usage percentage  | %    | target (replica set ID)       |
-| `HitRatio`           | Cache hit ratio            | Current cache hit ratio          | %    | target (replica set ID)       |
+| Metric English Name   | Metric Chinese Name         | Meaning                          | Unit | Dimensions               |
+| ------------ | ------------------ | ----------------------------- | ---- | ------------------ |
+| `CacheDirty` | Cache dirty data percentage | Percentage of dirty data in the current memory Cache | %    | target (Replica Set ID) |
+| `CacheUsed`  | Cache usage percentage   | Current Cache usage percentage         | %    | target (Replica Set ID) |
+| `HitRatio`   | Cache hit rate       | Current Cache hit rate             | %    | target (Replica Set ID) |
 
 ### Mongo Node
 
 <!-- markdownlint-disable MD024 -->
 
-#### 1. System Type
+#### 1. System Class
 
 <!-- markdownlint-enable -->
 
-| Metric English Name         | Metric Chinese Name | Meaning                     | Unit  | Dimension               |
-|----------------------------|---------------------|-----------------------------|-------|-------------------------|
-| `CpuUsage`                  | CPU usage rate      | CPU usage rate              | %     | target (node ID)        |
-| `MemUsage`                  | Memory usage rate   | Memory usage rate           | %     | target (node ID)        |
-| `NetIn`                     | Network ingress     | Network ingress             | MB/s  | target (node ID)        |
-| `NetOut`                    | Network egress      | Network egress              | MB/s  | target (node ID)        |
-| `Disk`                      | Node disk usage     | Node disk usage             | MB    | target (node ID)        |
-| `Conn`                      | Connection count    | Connection count            | Times | target (node ID)        |
-| `ActiveSession`             | Active session count| Active session count        | Times | target (node ID)        |
-| `NodeOplogReservedTime`     | **Oplog** retention time | Node **oplog** retention time | -     | target (node ID)        |
-| `NodeHitRatio`              | Cache hit ratio     | Cache hit ratio             | %     | target (node ID)        |
-| `NodeCacheUsed`             | Cache usage percentage | Cache memory usage as a percentage of total memory | %     | target (node ID)        |
-| `NodeSlavedelay`            | Master-slave delay  | Slave node delay            | s     | target (node ID)        |
-| `Diskusage`                 | Node disk usage rate | Node disk usage rate        | %     | target (node ID)        |
-| `Ioread`                    | Disk read count     | Disk read IOPS              | Times/sec | target (node ID)        |
-| `Iowrite`                   | Disk write count    | Disk write IOPS             | Times/sec | target (node ID)        |
-| `NodeCacheDirty`            | Cache dirty data percentage | Percentage of dirty data in cache | %     | target (node ID)        |
+| Metric English Name              | Metric Chinese Name         | Meaning                     | Unit  | Dimensions             |
+| ----------------------- | ------------------ | ------------------------ | ----- | ---------------- |
+| `CpuUsage`              | CPU usage         | CPU usage               | %     | target (Node ID) |
+| `MemUsage`              | Memory usage         | Memory usage               | %     | target (Node ID) |
+| `NetIn`                 | Network inbound traffic         | Network inbound traffic               | MB/s  | target (Node ID) |
+| `NetOut`                | Network outbound traffic         | Network outbound traffic               | MB/s  | target (Node ID) |
+| `Disk`                  | Node disk usage       | Node disk usage             | MB    | target (Node ID) |
+| `Conn`                  | Connection count             | Connection count                   | Times    | target (Node ID) |
+| `ActiveSession`         | Active session count  | Active session count        | Times    | target (Node ID) |
+| `NodeOplogReservedTime` | **Oplog** retention duration | Node **oplog** retention duration  | -     | target (Node ID) |
+| `NodeHitRatio`          | Cache hit rate       | Cache hit rate             | %     | target (Node ID) |
+| `NodeCacheUsed`         | Cache usage percentage   | Cache usage percentage in total memory | %     | target (Node ID) |
+| `NodeSlavedelay`        | Master-slave delay           | Slave node delay               | s     | target (Node ID) |
+| `Diskusage`             | Node disk usage rate     | Node disk usage rate           | %     | target (Node ID) |
+| `Ioread`                | Disk read count         | Disk read IOPS              | Times/sec | target (Node ID) |
+| `Iowrite`               | Disk write count         | Disk write IOPS              | Times/sec | target (Node ID) |
+| `NodeCacheDirty`        | Cache dirty data percentage | Cache dirty data ratio       | %     | target (Node ID) |
 
-#### 2. Read and Write Type
+#### 2. Read/Write Class
 
-| Metric English Name | Metric Chinese Name                 | Meaning                       | Unit | Dimension               |
-|---------------------|-------------------------------------|-------------------------------|------|-------------------------|
-| `Qr`                | Number of read requests in queue    | Number of read requests in queue | Count | target (node ID)        |
-| `Qw`                | Number of write requests in queue   | Number of write requests in queue | Count | target (node ID)        |
-| `Ar`                | WT engine active read               | Number of active read requests  | Count | target (node ID)        |
-| `Aw`                | WT engine active write              | Number of active write requests | Count | target (node ID)        |
+| Metric English Name | Metric Chinese Name                 | Meaning                       | Unit | Dimensions             |
+| ---------- | -------------------------- | -------------------------- | ---- | ---------------- |
+| `Qr`       | Read request queue count  | Read request queue count  | Count   | target (Node ID) |
+| `Qw`       | Write request queue count | Write request queue count | Count   | target (Node ID) |
+| `Ar`       | WT engine ActiveRead        | Active Read request count          | Count   | target (Node ID) |
+| `Aw`       | WT engine ActiveWrite         | Active Write request count         | Count   | target (Node ID) |
 
-#### 3. Latency & Request Type
+#### 3. Latency & Request Class
 
-| Metric English Name              | Metric Chinese Name                     | Meaning                           | Unit  | Dimension               |
-|----------------------------------|------------------------------------------|-----------------------------------|-------|-------------------------|
-| `NodeAvgAllRequestDelay`         | Average latency of all requests         | Average delay of all requests at the node | ms    | target (node ID)        |
-| `NodeDelay100`                   | Number of requests with latency > 100ms | Number of requests with latency > 100ms | Times | target (node ID)        |
-| `NodeDelay10`                    | Number of requests with latency 10-50ms | Number of requests with latency 10-50ms | Times | target (node ID)        |
-| `NodeDelay50`                    | Number of requests with latency 50-100ms | Number of requests with latency 50-100ms | Times | target (node ID)        |
-| `NodeSuccessPerSecond`           | Number of successful requests per second | Number of successful requests per second | Times/sec | target (node ID)        |
-| `NodeCountPerSecond`             | Number of count requests per second     | Number of count requests per second | Times/sec | target (node ID)        |
-| `NodeDeletePerSecond`            | Number of delete requests per second    | Number of delete requests per second | Times/sec | target (node ID)        |
-| `NodeInsertPerSecond`            | Number of insert requests per second    | Number of insert requests per second | Times/sec | target (node ID)        |
-| `NodeReadPerSecond`              | Number of read requests per second      | Number of read requests per second | Times/sec | target (node ID)        |
-| `NodeUpdatePerSecond`            | Number of update requests per second    | Number of update requests per second | Times/sec | target (node ID)        |
-| `SuccessPerSecond`               | Total requests                          | Number of successful requests per second | Times/sec | target (node ID)        |
+| Metric English Name               | Metric Chinese Name                     | Meaning                           | Unit  | Dimensions             |
+| ------------------------ | ------------------------------ | ------------------------------ | ----- | ---------------- |
+| `NodeAvgAllRequestDelay` | Average delay of all requests               | Node average delay of all requests           | ms    | target (Node ID) |
+| `NodeDelay100`           | Node request count with delay over 100 milliseconds      | Node request count with delay over 100 milliseconds      | Times    | target (Node ID) |
+| `NodeDelay10`            | Node request count with delay between 10-50 milliseconds  | Node request count with delay between 10-50 milliseconds  | Times    | target (Node ID) |
+| `NodeDelay50`            | Node request count with delay between 50-100 milliseconds | Node request count with delay between 50-100 milliseconds | Times    | target (Node ID) |
+| `NodeSuccessPerSecond`   | Node request success count per second           | Node request success count per second           | Times/sec | target (Node ID) |
+| `NodeCountPerSecond`     | Node count request count per second      | Node count request count per second      | Times/sec | target (Node ID) |
+| `NodeDeletePerSecond`    | Node delete request count per second     | Node delete request count per second     | Times/sec | target (Node ID) |
+| `NodeInsertPerSecond`    | Node insert request count per second     | Node insert request count per second     | Times/sec | target (Node ID) |
+| `NodeReadPerSecond`      | Node read request count per second       | Node read request count per second       | Times/sec | target (Node ID) |
+| `NodeUpdatePerSecond`    | Node update request count per second     | Node update request count per second     | Times/sec | target (Node ID) |
+| `SuccessPerSecond`       | Total requests                         | Node request success count per second           | Times/sec | target (Node ID) |
 
-#### 4. TTL Index Type
+#### 4. TTL Index Class
 
-| Metric English Name | Metric Chinese Name         | Meaning               | Unit | Dimension               |
-|---------------------|-----------------------------|-----------------------|------|-------------------------|
-| `TtlDeleted`        | Number of TTL-deleted documents | Number of TTL-deleted documents | Count | target (node ID)        |
-| `TtlPass`           | TTL rotation rounds          | TTL rotation rounds   | Count | target (node ID)        |
+| Metric English Name   | Metric Chinese Name         | Meaning               | Unit | Dimensions             |
+| ------------ | ------------------ | ------------------ | ---- | ---------------- |
+| `TtlDeleted` | TTL deleted data count | TTL deleted data count | Count   | target (Node ID) |
+| `TtlPass`    | TTL operation cycles       | TTL operation cycles       | Count   | target (Node ID) |
 
 ## Objects {#object}
 
-The structure of the collected Tencent Cloud MongoDB object data can be seen from "Infrastructure - Custom"
+The structure of Tencent Cloud MongoDB objects collected can be seen from "Infrastructure - Custom".
 
 ```json
 {
@@ -208,10 +208,10 @@ The structure of the collected Tencent Cloud MongoDB object data can be seen fro
     "CreateTime"       : "2022-08-24 13:54:00",
     "DeadLine"         : "2072-08-24 13:54:00",
     "ReadonlyInstances": "[]",
-    "RelatedInstance"  : "{instance JSON data}",
-    "ReplicaSets"      : "{instance JSON data}",
+    "RelatedInstance"  : "{Instance JSON data}",
+    "ReplicaSets"      : "{Instance JSON data}",
     "StandbyInstances" : "[]",
-    "message"          : "{instance JSON data}",
+    "message"          : "{Instance JSON data}",
   }
 }
 ```
@@ -230,15 +230,15 @@ The structure of the collected Tencent Cloud MongoDB object data can be seen fro
 
 <!-- markdownlint-enable -->
 
-On top of the previous setup, you need to install another script for collecting MongoDB slow query statistics logs.
+On top of the previous setup, you need to install another script corresponding to **MongoDB Slow Query Log Collection**
 
 In "Manage / Script Market", click and install the corresponding script package:
 
 - "Guance Integration (Tencent Cloud-MongoDB Slow Query Log Collection)" (ID: `guance_tencentcloud_mongodb_slowlog`)
 
-After data synchronization is normal, you can view the data in the "Logs" section of Guance.
+After the data is synchronized normally, you can view the data in the "Logs" section of Guance.
 
-An example of reported data is as follows:
+An example of the reported data is as follows:
 
 ```json
 {
@@ -248,15 +248,15 @@ An example of reported data is as follows:
   },
   "fields": {
       "Slowlog": "Slow log details",
-      "message": "{instance JSON data}"
+      "message": "{Instance JSON data}"
   }
 }
 ```
 
-> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
+> *Note: Fields in `tags`, `fields` may change with subsequent updates.*
 >
 > Note 1: `tags` values are supplemented by custom objects.
 >
-> Note 2: `fields.message` is a JSON serialized string.
+> Note 2: `fields.message` is a string serialized in JSON format.
 >
 > Note 3: `fields.Slowlog` represents each record of all slow query details.

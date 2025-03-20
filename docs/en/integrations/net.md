@@ -1,42 +1,42 @@
 ---
-title     : 'Network'
-summary   : 'Collect NIC metrics data'
+title     : 'Net'
+summary   : 'Collect network card metrics data'
 tags:
   - 'HOST'
+  - 'NETWORK'
 __int_icon: 'icon/net'
 dashboard :
   - desc  : 'Net'
     path  : 'dashboard/en/net'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Net collector is used to collect host network information, such as traffic information of each network interface. For Linux, system-wide TCP and UDP statistics will be collected.
+The Net collector is used to collect host network information, such as traffic information for each network interface. For Linux, it collects system-wide TCP and UDP statistics.
 
-## Config {#config}
+## Configuration {#config}
 
-After successfully installing and launching DataKit, the Net Collector is automatically enabled and does not require manual activation.
-
-### Collector Configuration {#input-config}
+After successfully installing and starting DataKit, the Net collector will be enabled by default, and no manual activation is required.
 
 <!-- markdownlint-disable MD046 -->
 
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `net.conf.sample` and name it `net.conf`. Examples are as follows:
-    
+    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `net.conf.sample`, and rename it to `net.conf`. Example:
+
     ```toml
         
     [[inputs.net]]
-      ## (optional) collect interval, default is 10 seconds
+      ## (optional) collection interval, default is 10 seconds
       interval = '10s'
     
-      ## By default, gathers stats from any up interface, but Linux does not contain virtual interfaces.
+      ## By default, gathers stats from any up interface, but Linux does not include virtual interfaces.
       ## Setting interfaces using regular expressions will collect these expected interfaces.
       # interfaces = ['''eth[\w-]+''', '''lo''', ]
     
@@ -53,76 +53,76 @@ After successfully installing and launching DataKit, the Net Collector is automa
       # more_tag = "some_other_value"
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service) 即可。
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    It also supports modifying configuration parameters via environment variables (requires adding to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
+
     - **ENV_INPUT_NET_INTERVAL**
     
-        Collect interval
+        Collector repeat interval duration
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `interval`
+        **Collector Configuration Field**: `interval`
     
-        **Default**: 10s
+        **Default Value**: 10s
     
     - **ENV_INPUT_NET_IGNORE_PROTOCOL_STATS**
     
-        Ignore reporting of protocol metrics
+        Skip reporting of protocol metrics
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `ignore_protocol_stats`
+        **Collector Configuration Field**: `ignore_protocol_stats`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_NET_ENABLE_VIRTUAL_INTERFACES**
     
-        Enable collect virtual interfaces stats for Linux
+        Collect virtual network interfaces on Linux
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_virtual_interfaces`
+        **Collector Configuration Field**: `enable_virtual_interfaces`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_NET_INTERFACES**
     
-        Expected interfaces (regular)
+        Expected network interfaces to collect (regex)
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `interfaces`
+        **Collector Configuration Field**: `interfaces`
     
         **Example**: eth[\w-]+,lo
     
     - **ENV_INPUT_NET_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If the configuration file has tags with the same name, they will override them.
     
-        **Type**: Map
+        **Field Type**: Map
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.net.tags]`:
+All the following data collections will append a global tag named `host` by default (the tag value is the hostname where DataKit resides), or you can specify other tags in the configuration through `[inputs.net.tags]`:
 
-``` toml
- [inputs.net.tags]
-  # some_tag = "some_value"
-  # more_tag = "some_other_value"
-  # ...
+```toml
+[inputs.net.tags]
+ # some_tag = "some_value"
+ # more_tag = "some_other_value"
+ # ...
 ```
 
 
@@ -137,7 +137,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`host`|System hostname.|
 |`interface`|Network interface name.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -172,7 +172,7 @@ For all the following data collections, a global tag named `host` is appended by
 |`tcp_rtomax`|The maximum value permitted by a TCP implementation for the retransmission timeout, measured in milliseconds.|int|ms|
 |`tcp_rtomin`|The minimum value permitted by a TCP implementation for the retransmission timeout, measured in milliseconds.|int|ms|
 |`udp_ignoredmulti`|TODO|int|count|
-|`udp_incsumerrors`|The number of incoming UDP datagram in checksum error.s|int|count|
+|`udp_incsumerrors`|The number of incoming UDP datagram in checksum error.|int|count|
 |`udp_indatagrams`|The number of UDP datagram delivered to UDP users.|int|count|
 |`udp_indatagrams/sec`|The number of UDP datagram delivered to UDP users per second.|int|count|
 |`udp_inerrors`|The number of packet receive errors.|int|count|
@@ -185,6 +185,6 @@ For all the following data collections, a global tag named `host` is appended by
 
 
 
-## More Readings {#more-readings}
+## Further Reading {#more-readings}
 
-- [eBPF data collection](ebpf.md)
+- [eBPF Data Collection](ebpf.md)

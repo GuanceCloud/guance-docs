@@ -1,6 +1,6 @@
 ---
 title     : 'Kubernetes Prometheus Discovery'
-summary   : 'Auto discovery and collecting Prometheus exported metrics among Kubernetes'
+summary   : 'Supports discovering and collecting exposed Prometheus Metrics in Kubernetes'
 tags      :
   - 'PROMETHEUS'
   - 'KUBERNETES'
@@ -11,21 +11,22 @@ __int_icon: 'icon/kubernetes'
 
 ## Overview {#overview}
 
-KubernetesPrometheus is a collector designed specifically for Kubernetes applications. It automatically discovers Prometheus services based on custom configurations and greatly simplifies the usage process.
+KubernetesPrometheus is a collector that can only be applied in Kubernetes environments. It automatically discovers Prometheus services based on custom configurations and collects data, greatly simplifying the usage process.
 
-This collector requires a certain level of familiarity with Kubernetes, such as the ability to inspect attributes of resources like Services and Pods using `kubectl` commands.
+This collector requires a certain level of familiarity with Kubernetes, such as being able to use the kubectl command to view various attributes of resources like Services and Pods.
 
-A brief description of how this collector operates helps in better understanding and utilizing it. KubernetesPrometheus is implemented in the following steps:
+A brief description of how this collector works will help you better understand and use it. The implementation of KubernetesPrometheus mainly involves the following steps:
 
-1. Registers event notification mechanisms with the Kubernetes API server to promptly receive notifications about the creation, updating, and deletion of various resources.
-1. Upon the creation of a resource (e.g., Pod), KubernetesPrometheus receives a notification and decides whether to collect data from that Pod based on configuration files.
-1. If the Pod meets the criteria, it identifies the corresponding attributes of the Pod (e.g., Port) using placeholders in the configuration file and constructs an access URL.
-1. KubernetesPrometheus accesses this URL, parses the data, and adds tags.
-1. If the Pod undergoes updates or is deleted, the KubernetesPrometheus collector stops collecting data from the Pod and decides whether to initiate new collection based on specific conditions.
+1. Register an event notification mechanism with the Kubernetes APIServer to promptly know about the creation, updates, and deletions of various resources.
+1. When a resource (e.g., Pod) is created, KubernetesPrometheus receives a notification and decides whether to collect data from that Pod based on the configuration file.
+1. If the Pod meets the criteria, it finds the corresponding properties of the Pod (e.g., Port) according to the placeholders in the configuration file and builds an access address.
+1. KubernetesPrometheus accesses this address, parses the data, and adds tags.
+1. If the Pod undergoes updates or deletion, the KubernetesPrometheus collector stops collecting data from that Pod and determines whether to start a new collection based on specific circumstances.
+
 
 ### Configuration Description {#input-config-added}
 
-- The following is a basic configuration with only 2 configuration items—choosing the discovered target as Pod and specifying the target Port. It enables Prometheus data collection for all Pods, even if they do not export Prometheus data:
+- Below is the most basic configuration; it has only two configuration items—selecting self-discovery targets as Pods and specifying the target Port. It implements Prometheus data collection for all Pods, even if they do not export Prometheus data:
 
 ```yaml
 [[inputs.kubernetesprometheus.instances]]
@@ -33,7 +34,7 @@ A brief description of how this collector operates helps in better understanding
   port       = "__kubernetes_pod_container_nginx_port_metrics_number"
 ```
 
-- Adding to the above configuration, it no longer collects data from all Pods, but rather targets a specific type of Pod based on Namespace and Selector. As shown in the configuration, it now only collects data from Pods in the `middleware` Namespace with a Label `app=nginx`:
+- Expand on the above configuration by no longer collecting data from all Pods but instead targeting a specific type of Pod using Namespace and Selector. As shown in the configuration, now only Pods in the Namespace `middleware` with the Label `app=nginx` are collected:
 
 ```yaml
 [[inputs.kubernetesprometheus.instances]]
@@ -44,7 +45,7 @@ A brief description of how this collector operates helps in better understanding
   port       = "__kubernetes_pod_container_nginx_port_metrics_number"
 ```
 
-- Further enhancing the configuration, this time adding some labels. The label values are dynamic and based on the attributes of the target Pod. Four labels are added here:
+- Further expand the configuration by adding some tags. Tag values are dynamic and taken based on the properties of the target Pod. Here, four tags are added:
 
 ```yaml
 [[inputs.kubernetesprometheus.instances]]
@@ -62,7 +63,7 @@ A brief description of how this collector operates helps in better understanding
       pod_namespace    = "__kubernetes_pod_namespace"
 ```
 
-- If the Prometheus service of the target Pod uses HTTPS, additional authentication certificate configuration is required. These certificates have already been mounted into the Datakit container in advance:
+- If the Prometheus service of the target Pod uses the https protocol, additional certificate authentication needs to be configured, and these certificates have been mounted into the Datakit container beforehand:
 
 ```yaml
 [[inputs.kubernetesprometheus.instances]]
@@ -88,7 +89,7 @@ A brief description of how this collector operates helps in better understanding
       cert_key = "/opt/nginx/peer.key"
 ```
 
-- Finally, here is a complete configuration that includes all the configuration items:
+- Finally, this is a complete configuration that includes all configuration items:
 
 ```yaml
 [[inputs.kubernetesprometheus.instances]]
@@ -97,7 +98,7 @@ A brief description of how this collector operates helps in better understanding
   selector   = "app=nginx"
 
   scrape     = "true"
-  scheme     = "http"
+  scheme     = "https"
   port       = "__kubernetes_pod_container_nginx_port_metrics_number"
   path       = "/metrics"
   params     = ""
@@ -120,75 +121,69 @@ A brief description of how this collector operates helps in better understanding
       cert_key = "/opt/nginx/peer.key"
 ```
 
-Additionally, there is a type of global configuration, which is the highest-level configuration, mainly responsible for enabling or disabling certain features, and add labels to all instances:
+There is also a class of global configurations, which are top-level configurations primarily responsible for enabling or disabling certain features and adding tags to all instances:
 
 ```yaml
 [inputs.kubernetesprometheus]
-  node_local      = true   # Whether to enable NodeLocal mode, distributing the collection across nodes
-  scrape_interval = "30s"  # Set scrape interval, default 30 seconds
+  node_local      = true   # Enable NodeLocal mode, distributing collection across nodes
+  scrape_interval = "30s"  # Specify collection interval, default is 30 seconds
 
-  enable_discovery_of_prometheus_pod_annotations     = false  # Whether to enable config for Pod Annotations
-  enable_discovery_of_prometheus_service_annotations = false  # Whether to enable config for Service Annotations
-  enable_discovery_of_prometheus_pod_monitors        = false  # Whether to enable CRD for Pod Monitors of Prometheus
-  enable_discovery_of_prometheus_service_monitors    = false  # Whether to enable CRD for Service Monitors of Prometheus
+  enable_discovery_of_prometheus_pod_annotations     = false  # Enable predefined Pod Annotations configuration
+  enable_discovery_of_prometheus_service_annotations = false  # Enable predefined Service Annotations configuration
+  enable_discovery_of_prometheus_pod_monitors        = false  # Enable Prometheus PodMonitors CRD function
+  enable_discovery_of_prometheus_service_monitors    = false  # Enable Prometheus ServiceMonitors CRD function
 
   [inputs.kubernetesprometheus.global_tags]
     instance = "__kubernetes_mate_instance"
     host     = "__kubernetes_mate_host"
-
+ 
   [[inputs.kubernetesprometheus.instances]]
   # ..other
 ```
 
-`global_tags` will add tags to all instances. Only two placeholders are supported: `__kubernetes_mate_instance` and `__kubernetes_mate_host`. Please refer to the following text for specific functionality.
+`global_tags` adds tags to all instances, supporting only `__kubernetes_mate_instance` and `__kubernetes_mate_host` placeholders. For placeholder functionality, please refer to the subsequent sections.
 
-```markdown
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-  There is no need to manually configure the IP address; the collector will use default IPs as follows:
+    There is no need to manually configure IP addresses; the collector will use the default IP address, specifically:
 
-  - `node` uses InternalIP
-  - `Pod` uses Pod IP
-  - `Service` uses the IP addresses of corresponding Endpoints (multiple)
-  - `Endpoints` uses the corresponding Address IPs (multiple)
+    - `node` uses InternalIP
+    - `Pod` uses Pod IP
+    - `Service` uses the Address IP of corresponding Endpoints (multiple)
+    - `Endpoints` uses the corresponding Address IP (multiple)
 
-  Additionally, ensure that ports are not bound to the loopback address to allow external access.
+    Additionally, note that ports cannot be bound to loopback addresses, otherwise external access will not be possible.
 <!-- markdownlint-enable -->
-```
 
-Assuming the Pod IP is `172.16.10.10` and the metrics port for the nginx container is 9090.
+Assume this Pod IP is `172.16.10.10`, and the metrics port for the nginx container is 9090.
 
-The KubernetesPrometheus collector will ultimately create a target address `http://172.16.10.10:9090/metrics` for Prometheus scraping. After parsing the data, it will add labels `pod_name` and `pod_namespace`, with the metric set named `pod-nginx`.
+The final KubernetesPrometheus collector will create a target address `http://172.16.10.10:9090/metrics` for Prometheus collection, parse the data, and add the tags `pod_name` and `pod_namespace`. The Measurement name is `pod-nginx`.
 
-If another Pod exists that also matches the namespace and selector configurations, it will also be collected.
+If another Pod also matches the namespace and selector configuration, it will also be collected.
 
-## Configuration Details {#input-config}
+## Detailed Configuration {#input-config}
 
-The KubernetesPrometheus collector primarily uses placeholders for configuration, retaining only essential settings necessary for data collection (e.g., port, path). Below is an explanation of each configuration item.
+The KubernetesPrometheus collector mainly uses placeholders for configuration, retaining only the most basic necessary configurations for collection (such as port, path, etc.). Now we will explain each configuration item individually.
 
-Using the configuration example provided:
+Using the configuration from the previous section as an example:
 
 ### Main Configuration {#input-config-main}
 
-| Configuration Item | Required | Default Value | Description                                                                                                                                                                                                                           | Placeholder Supported |
-| ------------------ | -------- | ------------- | -----------------------------------------------------------------------------------------------------------                                                                                                                           | --------------------- |
-| `role`             | Yes      | None          | Specifies the type of resource to collect, which can only be `node`, `pod`, `service`, or `endpoints`.                                                                                                                                | No                    |
-| `namespace`        | No       | None          | Limits the namespace of the resource. It's an array and supports multiple entries, e.g., `["kube-system", "testing"]`.                                                                                                                | No                    |
-| `selector`         | No       | None          | Labels for querying and filtering, allowing for precise selection. Format: `'=', '==', '!='`, e.g., `key1=value1,key2=value2`. It also supports the Glob patterns. See [below](kubernetesprometheus.md#selector-example) for details. | No                    |
-| `scrape`           | No       | "true"        | Determines whether to perform scraping. Set to empty string or `true` for scraping, otherwise no scraping.                                                                                                                            | Yes                   |
-| `scheme`           | No       | "http"        | Default is `http`. Use `https` if scraping requires certificates.                                                                                                                                                                     | Yes                   |
-| `port`             | Yes      | None          | Port of the target address, requires manual configuration.                                                                                                                                                                            | Yes                   |
-| `path`             | No       | "/metrics"    | HTTP access path, default is `/metrics`.                                                                                                                                                                                              | Yes                   |
-| `params`           | No       | None          | HTTP access parameters as a string, e.g., `name=nginx&package=middleware`.                                                                                                                                                            | No                    |
+| Configuration Item | Required? | Default Value | Description                                                                                                                                                                                            | Placeholder Supported? |
+| ----------- | ----------- | -----      | -----------                                                                                                                                                                                     | -----          |
+| `role`      | Yes         | None       | Specifies the type of resource to collect, can only be one of `node`, `pod`, `service`, or `endpoints`                                                                                                                     | No             |
+| `namespace` | No          | None       | Limits the namespace of this resource, it's an array and multiple entries can be specified, e.g., `["kube-system", "testing"]`                                                                                                           | No             |
+| `selector`  | No          | None       | Labels query and filtering, its scope is smaller and more precise. It is a string that supports `'=', '==', '!='`, e.g., `key1=value1,key2=value2`, and it also supports Glob matching patterns. See [here](kubernetesprometheus.md#selector-example) | No             |
+| `scrape`    | No          | "true"     | Determines whether to collect data. When it is an empty string or `true`, collection will occur, otherwise it won't.                                                                                                                            | Yes            |
+| `scheme`    | No          | "http"     | Default value is `http`, if collection requires certificates, change it to `https`                                                                                                                                           | Yes            |
+| `port`      | Yes         | None       | Target address port, manual configuration required                                                                                                                                                                    | Yes            |
+| `path`      | No          | "/metrics" | HTTP access path, default value is `/metrics`                                                                                                                                                              | Yes            |
+| `params`    | No          | None       | HTTP access parameters, it is a string, e.g., `name=nginx&package=middleware`                                                                                                                               | No             |
 
-> `selector` is commonly used in `kubectl` commands. For example, to find Pods with labels `tier=control-plane` and `component=kube-controller-manager`, use:
-    `$ kubectl get pod --selector tier=control-plane,component=kube-controller-manager`
-    The `--selector` parameter functions similarly to the `selector` configuration item. For more details, refer to the [official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/){:target="_blank"}.
+### Adding HTTP Headers {#input-config-http-headers}
 
-### Add HTTP Headers {#input-config-http-headers}
-
-Allow configuring multiple Key/Value pairs and adding them in the HTTP request. For example:
+Supports configuring multiple Key/Value pairs to add them in HTTP requests. Example:
 
 ```yaml
   [inputs.kubernetesprometheus.instances]
@@ -198,34 +193,33 @@ Allow configuring multiple Key/Value pairs and adding them in the HTTP request. 
       "X-testing-key" = "value"
 ```
 
+### Customized Configuration {#input-config-custom}
 
-### Custom Configuration {#input-config-custom}
-
-| Configuration Item     | Required | Default Value                                      | Description                                                                                            |
-| ---------------------- | -------- | ----------------------------------                 | ---------------------------------------------------------------------------                            |
-| `measurement`          | No       | Split by the first underscore in metric field name | Configures the name of the metric set.                                                                 |
-| `job_as_measurement`   | No       | false                                              | Whether to use the `job` label value from data as the metric set name.                                 |
-| `tags`                 | No       | None                                               | Adds tags; note that keys do not support placeholders, values support placeholders as described later. |
+| Configuration Item               | Required?    | Default Value                             | Description                                                                          |
+| -----------          | ----------- | -----                              | -----------                                                                   |
+| `measurement`        | No          | First part of the metric field name after splitting at the first underscore | Configures the Measurement name                                                                |
+| `job_as_measurement` | No          | false                              | Whether to use the `job` tag value in the data as the Measurement name                                   |
+| `tags`               | No          | None                                 | Adds tags, note that tag keys do not support placeholders, but tag values do, see the placeholder description below |
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    The KubernetesPrometheus collector will add Datakit's `global_tags`[:octicons-tag-24: Version-1.65.1](../datakit/changelog.md#cl-1.65.1).
+    The KubernetesPrometheus collector adds Datakit's `global_tags`[:octicons-tag-24: Version-1.65.1](../datakit/changelog.md#cl-1.65.1).
 <!-- markdownlint-enable -->
 
 ### Permissions and Authentication {#input-config-auth}
 
-- `bearer_token_file`: Configures the path to the token file, typically used together with `insecure_skip_verify`.
-- `tls_config`: Configures certificate-related settings. Sub-configuration items include `insecure_skip_verify`, `ca_certs`, `cert`, and `cert_key`. Note that `ca_certs` is configured as an array.
+- `bearer_token_file` configures the token file path, usually used together with `insecure_skip_verify`
+- `tls_config` configures certificate-related settings, sub-items include `insecure_skip_verify`, `ca_certs`, `cert`, `cert_key`, note that `ca_certs` is an array configuration
 
-## Placeholder Explanation {#placeholders}
+## Placeholders Explanation {#placeholders}
 
-Placeholders are a crucial part of the entire collection scheme. They are strings that point to specific properties of resources.
+Placeholders are a very important part of the entire collection scheme. They themselves are strings pointing to a particular attribute of a resource.
 
-There are two main types of placeholders: "Match" and "Regex":
+Placeholders mainly fall into two categories: "fixed match" and "wildcard match":
 
-- Match, such as `__kubernetes_pod_name`, uniquely points to the Pod Name, providing straightforward clarity.
-- Regex is used to configure custom resource names. In the following text, `%s` is used as a placeholder. For example, if a Pod has a label `app=nginx` and you need to extract `nginx` as a tag, configure it as follows:
+- Fixed match, similar to `__kubernetes_pod_name`, it is unique and points solely to the Pod Name, simple and clear
+- Wildcard match, used to configure some custom resource names, `%s` is used as a substitute in the text. For example, if Pod has a Label `app=nginx`, and you want to extract `nginx` as a tag, you would configure it like this:
 
 ```yaml
     [inputs.kubernetesprometheus.instances.custom.tags]
@@ -234,101 +228,101 @@ There are two main types of placeholders: "Match" and "Regex":
 
 Why is this step necessary?
 
-This step is necessary because the value of this label is not fixed and can vary depending on the Pod. For example, one Pod might have `app=nginx`, while another Pod might have `app=redis`. If you want to use the same configuration to collect data from both Pods, you need to differentiate them based on their labels. This configuration method allows you to achieve that.
+Because the value of this label is not fixed and varies depending on the Pod. In this Pod, it might be `app=nginx`, in another Pod it could be `app=redis`. If you want to use the same configuration to collect data from both Pods, it is necessary to distinguish between their labels, hence this configuration method.
 
-Placeholders are primarily used for selecting `annotations` and `labels`, and are also used for configuring ports. For example, if a Pod has a container named nginx with a port named `metrics`, you can specify it as `__kubernetes_pod_container_nginx_port_metrics_number` when collecting data from that port.
+Placeholders are mainly used in selecting `annotations` and `labels`, and also when configuring ports. For example, if a Pod has a container named nginx, and that container has a port called `metrics`, and you want to collect data from this port, you can write it as `__kubernetes_pod_container_nginx_port_metrics_number`.
 
 Below are the global placeholders and placeholders supported by various resources (`node`, `pod`, `service`, `endpoints`).
 
 ### Global Placeholders {#placeholders-global}
 
-Global placeholders are common across all Roles and are often used to specify certain special tags.
+Global placeholders are common to all Roles and are mostly used to specify special tags.
 
 <!-- markdownlint-disable MD049 -->
-| Name                       | Description                                                                                                                | Usage Scope                                                                                  |
-| -----------                | -----------                                                                                                                | -----                                                                                        |
-| __kubernetes_mate_instance | The instance of the target for collection, i.e., `IP:PORT`                                                                 | Supported only in `global_tags/custom.tags`, e.g., `instance = "__kubernetes_mate_instance"` |
-| __kubernetes_mate_host     | The host of the target for collection, i.e., `IP`. If the value is `localhost` or a loopback address, it will not be added | Supported only in `global_tags/custom.tags`, e.g., `host = "__kubernetes_mate_host"`         |
+| Name                       | Description                                                           | Usage Scope                                                                              |
+| -----------                | -----------                                                           | -----                                                                                 |
+| __kubernetes_mate_instance | Instance of the collection target, i.e., `IP:PORT`                                     | Only supported in global_tags/custom.tags usage, e.g., `instance = "__kubernetes_mate_instance"` |
+| __kubernetes_mate_host     | Host of the collection target, i.e., `IP`. If the value is `localhost` or a loopback address, it will not be added | Only supported in global_tags/custom.tags usage, e.g., `host = "__kubernetes_mate_host"`         |
 <!-- markdownlint-enable -->
 
 ### Node Role {#placeholders-node}
 
-The collection address for these resources is the InternalIP, corresponding to JSONPath `.status.addresses[*].address ("type" is "InternalIP")`.
+The collection address for this type of resource is InternalIP, corresponding JSONPath is `.status.addresses[*].address ("type" is "InternalIP")`.
 
 <!-- markdownlint-disable MD049 -->
-| Name                                    | Description                        | Corresponding JSONPath                              |
-| -----------                             | -----------                        | -----                                               |
-| __kubernetes_node_name                  | Node name                          | .metadata.name                                      |
-| __kubernetes_node_label_%s              | Node label                         | .metadata.labels['%s']                              |
-| __kubernetes_node_annotation_%s         | Node annotation                    | .metadata.annotations['%s']                         |
-| __kubernetes_node_address_Hostname      | Node hostname                      | .status.addresses[*].address ("type" is "Hostname") |
-| __kubernetes_node_kubelet_endpoint_port | Node's kubelet port, usually 10250 | .status.daemonEndpoints.kubeletEndpoint.Port        |
+| Name                                    | Description                          | Corresponding JSONPath                                       |
+| -----------                             | -----------                          | -----                                                 |
+| __kubernetes_node_name                  | Node name                            | .metadata.name                                        |
+| __kubernetes_node_label_%s              | Node labels                            | .metadata.labels['%s']                                |
+| __kubernetes_node_annotation_%s         | Node annotations                            | .metadata.annotations['%s']                           |
+| __kubernetes_node_address_Hostname      | Node hostname                          | .status.addresses[*].address ("type" is "Hostname")   |
+| __kubernetes_node_kubelet_endpoint_port | Node kubelet port, generally 10250 | .status.daemonEndpoints.kubeletEndpoint.Port          |
 <!-- markdownlint-enable -->
 
 ### Pod Role {#placeholders-pod}
 
-The collection address for these resources is the PodIP, corresponding to JSONPath `.status.podIP`.
+The collection address for this type of resource is PodIP, corresponding JSONPath is `.status.podIP`.
 
 <!-- markdownlint-disable MD049 -->
-| Name                                         | Description                                                                                                                                                      | Corresponding JSONPath                                         |
-| -----------                                  | -----------                                                                                                                                                      | -----                                                          |
-| __kubernetes_pod_name                        | Pod name                                                                                                                                                         | .metadata.name                                                 |
-| __kubernetes_pod_namespace                   | Pod namespace                                                                                                                                                    | .metadata.namespace                                            |
-| __kubernetes_pod_label_%s                    | Pod label, for example, `_kubernetes_pod_label_app`                                                                                                              | .metadata.labels['%s']                                         |
-| __kubernetes_pod_annotation_%s               | Pod annotation, for example, `_kubernetes_pod_annotation_prometheus.io/port`                                                                                     | .metadata.annotations['%s']                                    |
-| __kubernetes_pod_node_name                   | Node where the Pod is located                                                                                                                                    | .spec.nodeName                                                 |
-| __kubernetes_pod_container_%s_port_%s_number | Specific port of a specific container, for example, `__kubernetes_pod_container_nginx_port_metrics_number` refers to the `metrics` port of the `nginx` container | .spec.containers[*].ports[*].containerPort ("name" equal "%s") |
+| Name                                         | Description                                                                                                                | Corresponding JSONPath                                                |
+| -----------                                  | -----------                                                                                                                | -----                                                          |
+| __kubernetes_pod_name                        | Pod name                                                                                                                   | .metadata.name                                                 |
+| __kubernetes_pod_namespace                   | Pod namespace                                                                                                               | .metadata.namespace                                            |
+| __kubernetes_pod_label_%s                    | Pod labels, e.g., `_kubernetes_pod_label_app`                                                                                 | .metadata.labels['%s']                                         |
+| __kubernetes_pod_annotation_%s               | Pod annotations, e.g., `_kubernetes_pod_annotation_prometheus.io/port`                                                             | .metadata.annotations['%s']                                    |
+| __kubernetes_pod_node_name                   | Pod's Node                                                                                                            | .spec.nodeName                                                 |
+| __kubernetes_pod_container_%s_port_%s_number | Specific container's specific port, e.g., `__kubernetes_pod_container_nginx_port_metrics_number` points to `nginx` container's `metrics` port | .spec.containers[*].ports[*].containerPort ("name" equal "%s") |
 <!-- markdownlint-enable -->
 
-For example, for `__kubernetes_pod_container_%s_port_%s_number`:
+For __kubernetes_pod_container_%s_port_%s_number example:
 
-Suppose there is a Pod named nginx with 2 containers, nginx and logfwd. If you want to collect data from port 8080 of the nginx container (assuming the port is named `metrics` in the configuration), you can configure it as:
+Consider a Pod named nginx, which has two containers, nginx and logfwd. You want to collect data from port 8080 of the nginx container (assuming the port 8080 is named metrics in the configuration). You can configure it as follows:
 
-`__kubernetes_pod_container_nginx_port_metrics_number` (note how `nginx` and `metrics` replace `%s`).
+`__kubernetes_pod_container_nginx_port_metrics_number` (note that nginx and metrics replace %s)
 
 ### Service Role {#placeholders-service}
 
-Since Service resources do not have an IP property, the corresponding Endpoints Address IP property is used (which can have multiple values), with the JSONPath being `.subsets[*].addresses[*].ip`.
+Service resources do not have an IP attribute, so the corresponding Endpoints Address IP property (multiple exist) is used, JSONPath is Endpoints `.subsets[*].addresses[*].ip`.
 
 <!-- markdownlint-disable MD049 -->
-| Name                                      | Description                                                                                                                             | Corresponding JSONPath                                  |
-| -----------                               | -----------                                                                                                                             | -----                                                   |
-| __kubernetes_service_name                 | Service name                                                                                                                            | .metadata.name                                          |
-| __kubernetes_service_namespace            | Service namespace                                                                                                                       | .metadata.namespace                                     |
-| __kubernetes_service_label_%s             | Service label                                                                                                                           | .metadata.labels['%s']                                  |
-| __kubernetes_service_annotation_%s        | Service annotation                                                                                                                      | .metadata.annotations['%s']                             |
-| __kubernetes_service_port_%s_port         | Specific port (rarely used, as targetPort is mostly used in most scenarios)                                                             | .spec.ports[*].port ("name" equal "%s")                 |
-| __kubernetes_service_port_%s_targetport   | Specific targetPort                                                                                                                     | .spec.ports[*].targetPort ("name" equal "%s")           |
-| __kubernetes_service_target_kind          | Services do not have a direct target, this refers to the `targetRef` of the corresponding endpoints, specifically its `kind` field      | Endpoints: .subsets[*].addresses[*].targetRef.kind      |
-| __kubernetes_service_target_name          | Services do not have a direct target, this refers to the `targetRef` of the corresponding endpoints, specifically its `name` field      | Endpoints: .subsets[*].addresses[*].targetRef.name      |
-| __kubernetes_service_target_namespace     | Services do not have a direct target, this refers to the `targetRef` of the corresponding endpoints, specifically its `namespace` field | Endpoints: .subsets[*].addresses[*].targetRef.namespace |
-| __kubernetes_service_target_pod_name      | Deprecated, please use `__kubernetes_service_target_name`                                                                               | Endpoints: .subsets[*].addresses[*].targetRef.name      |
-| __kubernetes_service_target_pod_namespace | Deprecated, please use `__kubernetes_service_target_namespace`                                                                          | Endpoints: .subsets[*].addresses[*].targetRef.namespace |
+| Name                                      | Description                                                                         | Corresponding JSONPath                                         |
+| -----------                               | -----------                                                                         | -----                                                   |
+| __kubernetes_service_name                 | Service name                                                                        | .metadata.name                                          |
+| __kubernetes_service_namespace            | Service namespace                                                                    | .metadata.namespace                                     |
+| __kubernetes_service_label_%s             | Service labels                                                                        | .metadata.labels['%s']                                  |
+| __kubernetes_service_annotation_%s        | Service annotations                                                                        | .metadata.annotations['%s']                             |
+| __kubernetes_service_port_%s_port         | Specific port (rarely used, mostly targetPort is used)                                | .spec.ports[*].port ("name" equal "%s")                 |
+| __kubernetes_service_port_%s_targetport   | Specific targetPort                                                                     | .spec.ports[*].targetPort ("name" equal "%s")           |
+| __kubernetes_service_target_kind          | Service does not have target, this points to the targetRef of corresponding endpoints, taking its `kind` field      | Endpoints: .subsets[*].addresses[*].targetRef.kind      |
+| __kubernetes_service_target_name          | Service does not have target, this points to the targetRef of corresponding endpoints, taking its `name` field      | Endpoints: .subsets[*].addresses[*].targetRef.name      |
+| __kubernetes_service_target_namespace     | Service does not have target, this points to the targetRef of corresponding endpoints, taking its `namespace` field | Endpoints: .subsets[*].addresses[*].targetRef.namespace |
+| __kubernetes_service_target_pod_name      | Deprecated, use `__kubernetes_service_target_name`                               | Endpoints: .subsets[*].addresses[*].targetRef.name      |
+| __kubernetes_service_target_pod_namespace | Deprecated, use `__kubernetes_service_target_namespace`                          | Endpoints: .subsets[*].addresses[*].targetRef.namespace |
 <!-- markdownlint-enable -->
 
 ### Endpoints Role {#placeholders-endpoints}
 
-The collection address for these types of resources is the Address IP (which can have multiple values), with the corresponding JSONPath being `.subsets[*].addresses[*].ip`.
+The collection address for this type of resource is Address IP (multiple exist), corresponding JSONPath is `.subsets[*].addresses[*].ip`.
 
 <!-- markdownlint-disable MD049 -->
-| Name                                                | Description                                                                 | Corresponding JSONPath                        |
-| -----------                                         | -----------                                                                 | -----                                         |
-| __kubernetes_endpoints_name                         | Endpoints name                                                              | .metadata.name                                |
-| __kubernetes_endpoints_namespace                    | Endpoints namespace                                                         | .metadata.namespace                           |
-| __kubernetes_endpoints_label_%s                     | Endpoints label                                                             | .metadata.labels['%s']                        |
-| __kubernetes_endpoints_annotation_%s                | Endpoints annotation                                                        | .metadata.annotations['%s']                   |
-| __kubernetes_endpoints_address_node_name            | Node name of Endpoints Address                                              | .subsets[*].addresses[*].nodeName             |
-| __kubernetes_endpoints_address_target_kind          | `kind` field of targetRef                                                   | .subsets[*].addresses[*].targetRef.kind       |
-| __kubernetes_endpoints_address_target_name          | `name` field of targetRef                                                   | .subsets[*].addresses[*].targetRef.name       |
-| __kubernetes_endpoints_address_target_namespace     | `namespace` field of targetRef                                              | .subsets[*].addresses[*].targetRef.namespace  |
-| __kubernetes_endpoints_address_target_pod_name      | Deprecated, please use `__kubernetes_endpoints_address_target_name`         | .subsets[*].addresses[*].targetRef.name       |
-| __kubernetes_endpoints_address_target_pod_namespace | Deprecated, please use `__kubernetes_endpoints_address_target_namespace`    | .subsets[*].addresses[*].targetRef.namespace  |
-| __kubernetes_endpoints_port_%s_number               | Specifies the port name, e.g., `__kubernetes_endpoints_port_metrics_number` | .subsets[*].ports[*].port ("name" equal "%s") |
+| Name                                                | Description                                                          | Corresponding JSONPath                               |
+| -----------                                         | -----------                                                          | -----                                         |
+| __kubernetes_endpoints_name                         | Endpoints name                                                       | .metadata.name                                |
+| __kubernetes_endpoints_namespace                    | Endpoints namespace                                                   | .metadata.namespace                           |
+| __kubernetes_endpoints_label_%s                     | Endpoints labels                                                       | .metadata.labels['%s']                        |
+| __kubernetes_endpoints_annotation_%s                | Endpoints annotations                                                       | .metadata.annotations['%s']                   |
+| __kubernetes_endpoints_address_node_name            | Endpoints Address Node name                                       | .subsets[*].addresses[*].nodeName             |
+| __kubernetes_endpoints_address_target_kind          | targetRef `kind` field                                             | .subsets[*].addresses[*].targetRef.kind       |
+| __kubernetes_endpoints_address_target_name          | targetRef `name` field                                             | .subsets[*].addresses[*].targetRef.name       |
+| __kubernetes_endpoints_address_target_namespace     | targetRef `namespace` field                                        | .subsets[*].addresses[*].targetRef.namespace  |
+| __kubernetes_endpoints_address_target_pod_name      | Deprecated, use `__kubernetes_endpoints_address_target_name`      | .subsets[*].addresses[*].targetRef.name       |
+| __kubernetes_endpoints_address_target_pod_namespace | Deprecated, use `__kubernetes_endpoints_address_target_namespace` | .subsets[*].addresses[*].targetRef.namespace  |
+| __kubernetes_endpoints_port_%s_number               | Specific port name, e.g., `__kubernetes_endpoints_port_metrics_number`    | .subsets[*].ports[*].port ("name" equal "%s") |
 <!-- markdownlint-enable -->
 
-## Example {#example}
+## Practical Examples {#example}
 
-The following example will create a Service and Deployment, using KubernetesPrometheus to collect metrics from the corresponding Pods. The steps are as follows:
+The following examples will create a Service and Deployment, and use KubernetesPrometheus to collect data from the corresponding Pod. Steps are as follows:
 
 1. Create Service and Deployment
 
@@ -378,7 +372,7 @@ spec:
           containerPort: 30001
 ```
 
-1. Create ConfigMap and KubernetesPrometheus Configuration
+1. Create ConfigMap and KubernetesPrometheus configuration
 
 ```yaml
 apiVersion: v1
@@ -409,7 +403,7 @@ data:
               pod_namespace = "__kubernetes_service_target_namespace"
 ```
 
-1. Apply the `kubernetesprometheus.conf` file in `datakit.yaml`.
+1. Apply the `kubernetesprometheus.conf` file in the Datakit yaml
 
 ``` yaml
         # ..other..
@@ -420,7 +414,7 @@ data:
           readOnly: true
 ```
 
-1. Finally, start `Datakit`. In the logs, you should see the message `create prom url xxxxx for testing/prom-svc`, and you should be able to observe the `prom-svc` metrics set on the Guance page.
+1. Finally, start Datakit and in the logs you will see content like `create prom url xxxxx for testing/prom-svc`, and on the Guance page, you will see the `prom-svc` Measurement.
 
 
 ---
@@ -429,7 +423,7 @@ data:
 
 ### Selector Description and Examples {#selector-example}
 
-The `selector` parameter is frequently used in `kubectl` commands. For example, to find Pods with labels containing `tier=control-plane` and `component=kube-controller-manager`, you can use the following command:
+`selector` is a commonly used parameter in the `kubectl` command. For example, to find Pods whose Labels contain `tier=control-plane` and `component=kube-controller-manager`, you can use the following command:
 
 ```shell
 $ kubectl get pod -n kube-system  --selector tier=control-plane,component=kube-controller-manager
@@ -437,35 +431,35 @@ NAMESPACE     NAME                      READY   STATUS    RESTARTS   AGE
 kube-system   kube-controller-manager   1/1     Running   0          15d
 ```
 
-The `--selector` parameter serves the same purpose as the `selector` configuration option. For more usage details, please refer to the [official documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/){:target="_blank"}.
+The `--selector` parameter functions similarly to the `selector` configuration item. For more usage methods of `selector`, please refer to the [official documentation](https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/){:target="_blank"}.
 
-In addition, Datakit extends the `selector` functionality to support **Glob matching patterns**. For details on writing Glob patterns, see the [Glob Pattern Documentation](https://developers.tetrascience.com/docs/common-glob-pattern#glob-pattern-syntax). Here are some examples:
+Additionally, Datakit has extended the functionality of `selector` to support **Glob matching patterns**. For detailed Glob syntax, please refer to the [Glob Pattern Documentation](https://developers.tetrascience.com/docs/common-glob-pattern#glob-pattern-syntax). Below are some examples:
 
 [:octicons-tag-24: Version-1.65.1](../datakit/changelog.md#cl-1.65.1)
 
 - **`selector="app=middleware*"`**: Matches any value starting with `middleware`, such as `middleware-etcd` or `middleware-coredns`.
 - **`selector="app=middleware-{nginx,redis}"`**: Matches `middleware-nginx` and `middleware-redis`, equivalent to `app in (middleware-nginx, middleware-redis)`.
-- **`selector="app=middleware-[123]"`**: Matches any of `middleware-1`, `middleware-2`, or `middleware-3`.
+- **`selector="app=middleware-[123]"`**: Matches any of `middleware-1`, `middleware-2`, and `middleware-3`.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
-    The Glob pattern syntax does not support the `!` exclusion operator. For example, `app=middleware-[!0123]` will result in an error during the parsing stage. This is because the `!` character is a reserved keyword in Selector syntax (e.g., for `app!=nginx`) and cannot be used in Glob patterns.
+    The `!` exclusion symbol is not supported in this Glob pattern. For example, `app=middleware-[!0123]` will cause an error during parsing. This is because in Selector syntax, `!` is a critical character (such as used in `app!=nginx`) and therefore cannot be used in Glob patterns.
 <!-- markdownlint-enable -->
 
 ### Bearer Token Authentication {#http-bearer-token}
 
-Generally, using Bearer Token authentication requires two conditions: enabling `https` and setting `insecure_skip_verify` to `true`.
+In general, using Bearer Token authentication has two prerequisites: enabling `https` and setting `insecure_skip_verify` to `true`.
 
-There are two ways to configure the Bearer Token:
+There are two ways to configure Bearer Token:
 
-- If the Token is a string, it can be manually added to `http_headers`, for example:
+- If the Token is a string, you can manually fill it in the `http_headers`, for example:
 
 ```yaml
     [inputs.kubernetesprometheus.instances.http_headers]
       "Authorization" = "Bearer XXXXX"
 ```
 
-- If the Token is stored in a file, specify the file path in `bearer_token_file`, as shown in the example. The KubernetesPrometheus collector will automatically read the file contents and add it to the `Authorization` header. Note that if `Authorization` is manually configured in `http_headers`, the `bearer_token_file` setting will be ignored.
+- If the Token is stored in a file, specify the file path in `bearer_token_file` as shown in the example. The KubernetesPrometheus collector will automatically read the file contents and add it to the `Authorization` Header. Note that if `Authorization` is manually configured in `http_headers`, `bearer_token_file` will be ineffective.
 
 ```yaml
     [inputs.kubernetesprometheus.instances.auth]

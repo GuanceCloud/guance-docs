@@ -2,14 +2,14 @@
 title: 'Alibaba Cloud CDN'
 tags: 
   - Alibaba Cloud
-summary: 'Performance metrics display for Alibaba Cloud CDN, including requests per second, downstream traffic, edge bandwidth, response time, back-to-source bandwidth, status codes, etc.'
+summary: 'Alibaba Cloud CDN performance Metrics display, including requests per second, downstream traffic, edge bandwidth, response time, back-to-source bandwidth, status codes, etc.'
 __int_icon: 'icon/aliyun_cdn'
 dashboard:
-  - desc: 'Built-in views for Alibaba Cloud CDN'
+  - desc: 'Alibaba Cloud CDN built-in views'
     path: 'dashboard/en/aliyun_cdn/'
 
 monitor:
-  - desc: 'Alibaba Cloud CDN monitor'
+  - desc: 'Alibaba Cloud CDN monitors'
     path: 'monitor/en/aliyun_cdn/'
 ---
 
@@ -18,63 +18,65 @@ monitor:
 # Alibaba Cloud CDN
 <!-- markdownlint-enable -->
 
-Performance metrics display for Alibaba Cloud CDN, including requests per second, downstream traffic, edge bandwidth, response time, back-to-source bandwidth, status codes, etc.
+Alibaba Cloud CDN performance Metrics display, including requests per second, downstream traffic, edge bandwidth, response time, back-to-source bandwidth, status codes, etc.
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to activate Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
 If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-> We recommend deploying the GSE version.
+> It is recommended to deploy the GSE version
+
+
 
 ### Installation Script
 
-> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`).
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize monitoring data from Alibaba Cloud CDN resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-CDN Collection)" (ID: `guance_aliyun_cdn`)
+To synchronize the monitoring data of CDN cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-CDN Collection)" (ID: `guance_aliyun_cdn`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK and Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After enabling, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the task execution records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-> If you need to collect corresponding logs, enable the log collection script accordingly. If you need to collect billing information, enable the cloud billing collection script.
+> If you need to collect the corresponding logs, enable the corresponding log collection script. If you need to collect bills, enable the cloud bill collection script.
 
 
-By default, we collect some configurations; see the Metrics section for details.
+We default to collecting some configurations, details can be seen in the Metrics section.
 
-[Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure custom cloud object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
-1. Confirm in "Manage / Automatic Trigger Configuration" whether the corresponding task has the corresponding automatic trigger configuration, and check the task records and logs for any anomalies.
-2. In the Guance platform, check under "Infrastructure / Custom" to see if asset information exists.
-3. In the Guance platform, check under "Metrics" to see if there is corresponding monitoring data.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, check the corresponding task records and logs to see if there are any abnormalities.
+2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the Guance platform, under "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Details of Alibaba Cloud Monitoring Metrics](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud - Cloud Monitor, the default Measurement set is as follows. You can collect more Metrics through configuration. [Alibaba Cloud Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id           |        Metric Name        | Dimensions                                                | Statistics              | Unit         |
 | ---- | :----: | ------ | ------ | ---- |
-| `BPS`              |         Peak Bandwidth          | userId,instanceId                                         | Average,Minimum,Maximum | bits/s       |
+| `BPS`              |         Bandwidth Peak          | userId,instanceId                                         | Average,Minimum,Maximum | bits/s       |
 | `BPS_isp`           |     Edge Network Bandwidth(isp)     | userId,instanceId,protocol,continent,country,province,isp | Value                   | bits/s       |
 | `EsCode4xx`         |  EdgeScript Rule Exception Count   | userId,instanceId                                         | Sum                     | Count        |
 | `EsCode4xxRatio`    |  EdgeScript Rule Exception Ratio   | userId,instanceId                                         | Value                   | %            |
-| `GroupBPS`          |    (Group Dimension) Peak Bandwidth     | userId,groupId                                            | Sum                     | bits/s       |
+| `GroupBPS`          |    (Group Dimension) Bandwidth Peak     | userId,groupId                                            | Sum                     | bits/s       |
 | `GroupInternetOut`  |    (Group Dimension) Downstream Traffic     | userId,groupId                                            | Sum                     | bytes        |
 | `InternetOut`       |         Downstream Traffic          | userId,instanceId                                         | Average,Maximum,Minimum | bytes        |
 | `InternetOut_isp`   |       Downstream Traffic(isp)       | userId,instanceId,protocol,continent,country,province,isp | Value                   | bytes        |
 | `QPS`               |       Requests Per Second        | userId,instanceId                                         | Average,Minimum,Maximum | Count        |
 | `QPS_isp`           |     Requests Per Second(isp)     | userId,instanceId,protocol,continent,country,province,isp | Value                   | Count        |
-| `UserQPS`           |      User-Dimensional Edge QPS      | userId                                                    | Average                 | count        |
-| `Usercode4xx`       | User-Dimensional Edge Status Code 4XX Ratio | userId                                                    | Average                 | %            |
-| `Usercode5xx`       | User-Dimensional Edge Status Code 5XX Ratio | userId                                                    | Average                 | %            |
-| `UserhitRate`       |    User-Dimensional Edge Hit Rate     | userId                                                    | Average                 | %            |
+| `UserQPS`           |      User Dimension Edge QPS      | userId                                                    | Average                 | count        |
+| `Usercode4xx`       | User Dimension Edge Status Code 4XX Ratio | userId                                                    | Average                 | %            |
+| `Usercode5xx`       | User Dimension Edge Status Code 5XX Ratio | userId                                                    | Average                 | %            |
+| `UserhitRate`       |    User Dimension Edge Hit Rate     | userId                                                    | Average                 | %            |
 | `code1xx`           |     Edge Status Code 1XX Ratio     | userId,instanceId                                         | Maximum                 | %            |
 | `code1xx_isp`       |  Edge Status Code 1XX Ratio(isp)   | userId,instanceId,protocol,continent,country,province,isp | Value                   | %            |
 | `code2xx`           |     Edge Status Code 2XX Ratio     | userId,instanceId                                         | Maximum                 | %            |
@@ -105,11 +107,11 @@ After configuring Alibaba Cloud Monitoring, the default metric set is as follows
 | `ori_code_ratio_5xx` |     Back-to-Source Status Code 5XX Ratio     | userId,instanceId                                         | Maximum,Average,Minimum | % |
 | `rt`                |       Edge Response Time        | userId,instanceId                                         | Maximum,Average,Minimum | milliseconds |
 | `rt_isp`            |     Edge Response Time(isp)     | userId,instanceId,protocol,continent,country,province,isp | Average,Maximum,Minimum | milliseconds |
-| `user_code_count_499` | User-Dimensional Edge Status Code 499 Count | userId                                                    | Average,Maximum,Minimum | % |
+| `user_code_count_499` | User Dimension Edge Status Code 499 Count | userId                                                    | Average,Maximum,Minimum | % |
 
 ## Objects {#object}
 
-The structure of collected Alibaba Cloud SLB object data can be viewed under "Infrastructure-Custom":
+The collected Alibaba Cloud SLB object data structure can be viewed under "Infrastructure - Custom".
 
 ```json
 {
@@ -132,4 +134,5 @@ The structure of collected Alibaba Cloud SLB object data can be viewed under "In
     "message"       : "{Instance JSON data}"
   }
 }
+
 ```
