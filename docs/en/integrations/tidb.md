@@ -1,9 +1,9 @@
 ---
 title     : 'TiDB'
-summary   : 'Collect metrics information from TiDB cluster, TiDB, Etcd, Region, and other related components'
+summary   : 'Collect related component Metrics information such as TiDB cluster, TiDB, Etcd, Region, etc.'
 __int_icon: 'icon/tidb'
 dashboard :
-  - desc  : 'TiDB monitoring view'
+  - desc  : 'TiDB Monitoring View'
     path  : 'dashboard/en/tidb'
 monitor   :
   - desc  : 'Not available'
@@ -14,30 +14,30 @@ monitor   :
 # TiDB
 <!-- markdownlint-enable -->
 
-The TiDB view displays information including an overview (such as startup time, storage information, node information, etc.), cluster (related cluster information), TiDB, Etcd, Region, and other relevant metrics.
+The TiDB view displays information including the Summary (such as: start time, storage information, node information, etc.), cluster (cluster-related information), TiDB, Etcd, Region, and other related Metrics information.
 
 
 ## Installation and Configuration {#config}
 
 ### Version Support
 
-Version support depends on the versions supported by the TiDB system itself.
+Version support depends on TiDB's own system support.
 
 Note: The example TiDB version is 6.3+
 
-(The environment for Linux / Windows is the same)
+(Linux / Windows environment is the same)
 
-To install TiDB, refer to the documentation [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4).
+If you need to install TiDB, refer to the documentation [Deploying a Local Test Cluster for TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)
 
-The following collection process follows the deployment method described in [Deploy a Local Test Cluster](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4) for data collection.
+The following collection process follows the deployment method outlined in [Deploying a Local Test Cluster for TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4) for data collection.
 
 
 ### Metrics Collection Configuration
 
-All TiDB components (a total of 4 components) expose `metrics` via HTTP protocol
+All components of TiDB (a total of 4 components) have exposed `metrics`, with the protocol being http
 
 
-| Component | Metrics Port |
+| Component | metrics port |
 | --- | --- |
 | TiDB | 10080 |
 | pd  | 2379 |
@@ -45,7 +45,7 @@ All TiDB components (a total of 4 components) expose `metrics` via HTTP protocol
 | TiFlash | 8234 <br/> 20292 |
 
 
-The above table lists the `metrics` ports for single-node cluster component deployments; for multi-node clusters, the port configuration is similar.
+The above are the `metrics` ports related to single-node cluster component deployments. If it's a multi-node cluster, the port configuration is similar.
 
 #### Enable DataKit Collector
 
@@ -105,7 +105,7 @@ The above table lists the `metrics` ports for single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritizes over 'measurement_name' configuration.
+		  # Prioritier over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -223,7 +223,7 @@ The above table lists the `metrics` ports for single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritizes over 'measurement_name' configuration.
+		  # Prioritier over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -347,7 +347,7 @@ The above table lists the `metrics` ports for single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritizes over 'measurement_name' configuration.
+		  # Prioritier over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -466,7 +466,7 @@ The above table lists the `metrics` ports for single-node cluster component depl
 
 		  ## Customize measurement set name.
 		  # Treat those metrics with prefix as one set.
-		  # Prioritizes over 'measurement_name' configuration.
+		  # Prioritier over 'measurement_name' configuration.
 		  #[[inputs.prom.measurements]]
 		  #  prefix = "cpu_"
 		  #  name = "cpu"
@@ -506,20 +506,21 @@ The above table lists the `metrics` ports for single-node cluster component depl
 		```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Note that adjustments are needed for marked sections*</font>
+<font color="red">*Note that adjustments need to be made where marked* </font>
 
 
-Key Parameter Explanation:
+Main parameter descriptions:
 
-- urls: Prometheus metrics address, fill in the corresponding component's exposed metrics URL.
-- source: Collector alias, it is recommended to differentiate them.
+- urls: `prometheus` Metrics address, fill in the Metrics url exposed by the corresponding component here.
+- source: Collector alias, it's recommended to make distinctions.
 - interval: Collection interval.
-- measurement_prefix: Prefix for the metrics set, making management and classification easier.
+- measurement_prefix: Measurement prefix, convenient for management classification.
 - tls_open: TLS configuration.
-- metric_types: Metric types, leaving it blank means collecting all metrics. It is recommended to fill in as needed, especially concerning Time Series.
+- metric_types: Metrics types, leaving it blank represents collecting all Metrics, it's recommended to fill in as needed, involving Time Series.
 - tags_ignore: Ignore unnecessary tags.
-- [inputs.prom.tags_rename.mapping]: <font color="red">Rename tags. If a tag conflicts with a field name, rename the tag to ensure metrics can be collected.</font>
-- [inputs.prom.tags]: Set tags applied to all metrics.
+- [inputs.prom.tags_rename.mapping]: <font color="red">Tag renaming, if a tag has the same name as a field, then the tag needs to be renamed, otherwise the entire Metric cannot be collected.</font>
+- [inputs.prom.tags]: Set tags, applied to all Metrics under the current metrics.
+<!-- markdownlint-enable -->
 
 ### Restart DataKit
 

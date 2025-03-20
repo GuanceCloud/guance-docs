@@ -2,14 +2,14 @@
 title: 'Alibaba Cloud RocketMQ4'
 tags: 
   - Alibaba Cloud
-summary: 'The displayed metrics for Alibaba Cloud RocketMQ 4.0 include message throughput, latency, reliability, and horizontal scalability.'
+summary: 'The display metrics of Alibaba Cloud RocketMQ 4.0 include message throughput, latency, reliability, and horizontal scalability.'
 __int_icon: 'icon/aliyun_rocketmq'
 dashboard:
-  - desc: 'Built-in views for Alibaba Cloud RocketMQ4'
+  - desc: 'Alibaba Cloud RocketMQ4 built-in views'
     path: 'dashboard/en/aliyun_rocketmq4/'
 
 monitor:
-  - desc: 'Monitors for Alibaba Cloud RocketMQ4'
+  - desc: 'Alibaba Cloud RocketMQ4 monitors'
     path: 'monitor/en/aliyun_rocketmq4/'
 ---
 
@@ -17,66 +17,66 @@ monitor:
 # Alibaba Cloud RocketMQ4
 <!-- markdownlint-enable -->
 
-The displayed metrics for Alibaba Cloud RocketMQ 4.0 include message throughput, latency, reliability, and horizontal scalability.
+The display metrics of Alibaba Cloud RocketMQ 4.0 include message throughput, latency, reliability, and horizontal scalability.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): All prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
 ### Installation Script
 
-> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Note: Please prepare the required Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from Alibaba Cloud RocketMQ4, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-RocketMQ 4.0)」(ID: `guance_aliyun_rocketmq4`)
+To synchronize the monitoring data of Alibaba Cloud RocketMQ4, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-RocketMQ 4.0)」(ID: `guance_aliyun_rocketmq4`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup script accordingly.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+In addition, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to immediately execute it once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; for more details, see the Metrics section.
+We default collect some configurations, details are shown in the metrics section.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Customize cloud object metrics configuration](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the automatic trigger configuration, and check the task records and logs for any anomalies.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration. You can also check the corresponding task records and logs to see if there are any abnormalities.
+2. On the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud CloudMonitor, the default metric set is as follows. You can collect more metrics through configuration. [Details of Alibaba Cloud CloudMonitor metrics](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud - Cloud Monitoring, the default metric sets are as follows. More metrics can be collected through configuration. [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
-| ReadyMessages                       | Ready Messages Count(Group)                    | account_name,InstanceName | Average,Maximum | count      |
-| ReadyMessagesPerGidTopic            | Ready Messages Count(Group&Topic)              | account_name,InstanceName | Average,Maximum | count      |
-| ReceiveMessageCountPerGid           | Consumer Message Receive Count per Minute(Group) | account_name,InstanceName | Average,Maximum | count/min  |
-| ReceiveMessageCountPerGidTopic      | Consumer Message Receive Count per Minute(Group&Topic) | account_name,InstanceName | Average,Maximum | count/min  |
-| ReceiveMessageCountPerInstance      | Consumer Message Receive Count per Minute(Instance) | account_name,InstanceName | Average,Maximum | count/min  |
-| ReceiveMessageCountPerTopic         | Consumer Message Receive Count per Minute(Topic) | account_name,InstanceName | Average,Maximum | count/min  |
-| SendDLQMessageCountPerGid           | Dead Letter Queue Message Count per Minute(Group) | account_name,InstanceName | Average,Maximum | count/min  |
-| SendDLQMessageCountPerGidTopic      | Dead Letter Queue Message Count per Minute(Group&Topic) | account_name,InstanceName | Average,Maximum | count/min  |
-| SendMessageCountPerInstance         | Producer Message Send Count per Minute(Instance) | account_name,InstanceName | Average,Maximum | count/min  |
-| SendMessageCountPerTopic            | Producer Message Send Count per Minute(Topic) | account_name,InstanceName | Average,Maximum | count/min  |
-| ThrottledReceiveRequestsPerGid      | Throttled Receive Requests per Minute(Group) | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledReceiveRequestsPerGidTopic | Throttled Receive Requests per Minute(Group&Topic) | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledReceiveRequestsPerInstance | Throttled Receive Requests per Minute(Instance) | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledSendRequestsPerInstance    | Throttled Send Requests per Minute(Instance) | account_name,InstanceName | Average,Maximum | counts/min |
-| ThrottledSendRequestsPerTopic       | Throttled Send Requests per Minute(Topic) | account_name,InstanceName | Average,Maximum | counts/min |
+| ReadyMessages                       | Ready messages count(Group)                    | account_name,InstanceName | Average,Maximum | count      |
+| ReadyMessagesPerGidTopic            | Ready messages count(Group&Topic)              | account_name,InstanceName | Average,Maximum | count      |
+| ReceiveMessageCountPerGid           | Number of messages received by consumer per minute(Group)        | account_name,InstanceName | Average,Maximum | count/min  |
+| ReceiveMessageCountPerGidTopic      | Number of messages received by consumer per minute(Group&Topic)  | account_name,InstanceName | Average,Maximum | count/min  |
+| ReceiveMessageCountPerInstance      | Number of messages received by consumer per minute(Instance) | account_name,InstanceName | Average,Maximum | count/min  |
+| ReceiveMessageCountPerTopic         | Number of messages received by consumer per minute(Topic)      | account_name,InstanceName | Average,Maximum | count/min  |
+| SendDLQMessageCountPerGid           | Number of dead-letter messages generated per minute(Group)        | account_name,InstanceName | Average,Maximum | count/min  |
+| SendDLQMessageCountPerGidTopic      | Number of dead-letter messages generated per minute(Group&Topic)  | account_name,InstanceName | Average,Maximum | count/min  |
+| SendMessageCountPerInstance         | Number of messages sent by producer per minute(Instance)     | account_name,InstanceName | Average,Maximum | count/min  |
+| SendMessageCountPerTopic            | Number of messages sent by producer per minute(Topic)        | account_name,InstanceName | Average,Maximum | count/min  |
+| ThrottledReceiveRequestsPerGid      | Number of throttling occurrences when consuming per minute(GroupId)          | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledReceiveRequestsPerGidTopic | Number of throttling occurrences when consuming per minute(GroupId&Topic)    | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledReceiveRequestsPerInstance | Number of throttling occurrences when consuming per minute(Instance)         | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledSendRequestsPerInstance    | Number of throttling occurrences when sending per minute(Instance)         | account_name,InstanceName | Average,Maximum | counts/min |
+| ThrottledSendRequestsPerTopic       | Number of throttling occurrences when sending per minute(Topic)            | account_name,InstanceName | Average,Maximum | counts/min |
 
 ## Objects {#object}
 
-The object data structure collected from Alibaba Cloud RocketMQ4 can be viewed under 「Infrastructure - Custom」.
+The object data structure of Alibaba Cloud RocketMQ4 that has been collected can be seen in the object data from 「Infrastructure - Custom」
 
 ```json
 {

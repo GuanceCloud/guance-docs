@@ -1,12 +1,12 @@
 ---
 title     : 'JavaScript'
-summary   : 'Monitor browser user behavior using JavaScript (Web)'
+summary   : 'Monitor the usage behavior of browser users via the JavaScript (Web) method.'
 __int_icon: 'icon/javascript'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -14,24 +14,24 @@ monitor   :
 # JavaScript
 <!-- markdownlint-enable -->
 
-JavaScript falls under the [RUM (Real User Monitoring)](../real-user-monitoring/) category and is primarily used to monitor browser user behavior and report it to Guance.
+JavaScript falls under the category of [RUM (Real User Monitoring)](../real-user-monitoring/), primarily used for detecting browser user access behaviors and reporting them to Guance.
 
 
 ## Configuration {#config}
 
-### Enable RUM Collector in DataKit
+### DataKit Enable RUM Collector
 
 [Enable RUM Collector](rum.md)
 
 ### Web Application Integration
 
-There are three methods for integrating web applications: NPM integration, asynchronous loading, and synchronous loading.
+There are three ways to integrate web applications: NPM integration, synchronous loading, and asynchronous loading.
 
-| Integration Method | Description                                                                                                                                                             |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NPM                | By bundling the SDK code into your frontend project, this method ensures no impact on frontend page performance but may miss requests and errors before SDK initialization. |
-| CDN Asynchronous Loading | Through CDN caching, introducing the SDK script asynchronously ensures that the SDK script download does not affect page load performance but may miss requests and errors before SDK initialization. |
-| CDN Synchronous Loading | Through CDN caching, introducing the SDK script synchronously ensures capturing all errors, resources, requests, and performance metrics. However, it may affect page load performance. |
+| Integration Method | Overview                                                                                                                                                             |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NPM               | By bundling the SDK code into your frontend project, this method ensures no impact on the performance of the frontend page. However, it may miss requests and errors before the SDK initialization. |
+| CDN Asynchronous Loading | Through CDN caching with asynchronous script inclusion, this method ensures that the download of the SDK script does not affect the page's loading performance. However, it may miss requests and errors before the SDK initialization. |
+| CDN Synchronous Loading | Through CDN caching with synchronous script inclusion, this method ensures the collection of all errors, resources, requests, and performance metrics. However, it may affect the page's loading performance. |
 
 <!-- markdownlint-disable MD046 -->
 === "NPM"
@@ -47,8 +47,8 @@ There are three methods for integrating web applications: NPM integration, async
       sessionSampleRate: 100,
       sessionReplaySampleRate: 70,
       trackInteractions: true,
-      traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent (6 types)
-      allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of origins or regex patterns for requests where tracing headers can be injected
+      traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports 6 types: ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent.
+      allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of all request origins where headers needed by the trace collector can be injected. Can be a request origin or a regular expression.
     })
     ```
 
@@ -84,8 +84,8 @@ There are three methods for integrating web applications: NPM integration, async
           sessionSampleRate: 100,
           sessionReplaySampleRate: 70,
           trackInteractions: true,
-          traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent (6 types)
-          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of origins or regex patterns for requests where tracing headers can be injected
+          traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports 6 types: ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent.
+          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of all request origins where headers needed by the trace collector can be injected. Can be a request origin or a regular expression.
         })
       })
     </script>
@@ -105,8 +105,8 @@ There are three methods for integrating web applications: NPM integration, async
           sessionSampleRate: 100,
           sessionReplaySampleRate: 70,
           trackInteractions: true,
-          traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent (6 types)
-          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of origins or regex patterns for requests where tracing headers can be injected
+          traceType: 'ddtrace', // Optional, default is ddtrace. Currently supports 6 types: ddtrace, zipkin, skywalking_v-jaeger, zipkin_single_header, w3c_traceparent.
+          allowedTracingOrigins: ['https://api.example.com', /https:\/\/.*\.my-api-domain\.com/],  // Optional, list of all request origins where headers needed by the trace collector can be injected. Can be a request origin or a regular expression.
         })
     </script>
     ```
@@ -114,5 +114,4 @@ There are three methods for integrating web applications: NPM integration, async
 
 ### Parameter Configuration
 
-JavaScript provides many parameters for customizing the [configuration](../real-user-monitoring/web/app-access.md#config) of web monitoring.
-</input_content>
+JavaScript provides many parameters to achieve personalized [configuration](../real-user-monitoring/web/app-access.md#config) for web monitoring.

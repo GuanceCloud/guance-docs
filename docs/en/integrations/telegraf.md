@@ -1,11 +1,10 @@
 ---
 title     : 'Telegraf'
-summary   : 'Accept Telegraf collected data'
+summary   : 'Receive data collected by Telegraf'
 tags:
-  - 'THIRD PARTY'
+  - 'External Data Integration'
 __int_icon: 'icon/telegraf'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple:
 
@@ -14,14 +13,14 @@ __int_icon: 'icon/telegraf'
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    Before using Telegraf, it is recommended to determine whether Datakit can meet the expected data collection. If DataKit is already supported, Telegraf is not recommended for collection, which may lead to data conflicts and cause problems in use.
+    It is recommended to check whether DataKit can meet the expected data collection requirements before using Telegraf. If DataKit already supports the required functionality, it is not recommended to use Telegraf for data collection, as this could lead to data conflicts and cause usage issues.
 <!-- markdownlint-enable MD046 -->
 
-Telegraf is an open source data collection tool. DataKit can access the data set collected by Telegraf through simple configuration.
+Telegraf is an open-source data collection tool. DataKit can integrate datasets collected by Telegraf through simple configuration.
 
 ## Telegraf Installation {#install}
 
-Take Ubuntu as an example. For other systems, [see](https://docs.influxdata.com/telegraf/v1.18/introduction/installation/){:target="_blank"}：
+Taking Ubuntu as an example, refer to [other systems](https://docs.influxdata.com/telegraf/v1.18/introduction/installation/){:target="_blank"}:
 
 Add installation source
 
@@ -39,13 +38,13 @@ sudo apt-get update && sudo apt-get install telegraf
 
 ### Telegraf Configuration {#config}
 
-Default profile path:
+Default configuration file paths:
 
 - Mac: `/usr/local/etc/telegraf.conf`
 - Linux: `/etc/telegraf/telegraf.conf`
-- Windows: The configuration file is in the Telegraf binary sibling directory (depending on the specific installation)
+- Windows: The configuration file is in the same directory as the Telegraf binary (depending on the specific installation situation)
 
-> Note: Under Mac, if you [install through `datakit install --telegraf`](../datakit/datakit-tools-how-to.md#extras), the configuration directory is the same as Linux.
+> Note: On Mac, if installed via [`datakit install --telegraf`](../datakit/datakit-tools-how-to.md#extras), the configuration directory is the same as Linux.
 
 Modify the configuration file as follows:
 
@@ -63,7 +62,7 @@ Modify the configuration file as follows:
     logfile                   = "your_path.log"
     logfile_rotation_interval = ""
 
-# Here you can configure the global tag of the data collected by Telegraf
+# Global tags for the data collected by Telegraf can be configured here
 [global_tags]
   name = "zhangsan"
 
@@ -71,12 +70,12 @@ Modify the configuration file as follows:
     ## URL is the address to send metrics to DataKit ,required
     url         = "http://localhost:9529/v1/write/metric?input=telegraf"
     method      = "POST"
-    data_format = "influx" # You must select `influx` here, otherwise DataKit cannot parse the data
+    data_format = "influx" # Must select `influx` here; otherwise, DataKit cannot parse the data
 
 # More other configurations ...
 ```
 
-If the [DataKit API location is adjusted](datakit-conf#config-http-server), you need to adjust the following configuration by setting the `url` to the real address of the DataKit API:
+If the [DataKit API location has been adjusted](datakit-conf.md#config-http-server), adjust the following configuration by setting the `url` to the actual address of the DataKit API:
 
 ```toml
 [[outputs.http]]
@@ -84,7 +83,7 @@ If the [DataKit API location is adjusted](datakit-conf#config-http-server), you 
    url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-Telegraf's collection configuration is similar to DataKit, and it is also in [Toml format](https://toml.io/cn){:target="_blank"}Specifically, each collector basically takes `[[inputs.xxxx]]` as the entrance. Here, take `nvidia_smi` collection as an example:
+The data collection configuration for Telegraf is similar to DataKit and also uses the [Toml format](https://toml.io/cn){:target="_blank"}. Each collector generally starts with `[[inputs.xxxx]]`. Here's an example enabling the `nvidia_smi` collector:
 
 ```toml
 [[inputs.nvidia_smi]]
@@ -95,7 +94,7 @@ Telegraf's collection configuration is similar to DataKit, and it is also in [To
   timeout = "5s"
 ```
 
-## More Reading {#more-reading}
+## Further Reading {#more-reading}
 
-- [Detailed configuration of Telegraf collector](https://docs.influxdata.com/telegraf){:target="_blank"}
-- [More Telegraf plug-ins](https://github.com/influxdata/telegraf#input-plugins){:target="_blank"}
+- [Detailed configuration for Telegraf collectors](https://docs.influxdata.com/telegraf){:target="_blank"}
+- [More Telegraf plugins](https://github.com/influxdata/telegraf#input-plugins){:target="_blank"}

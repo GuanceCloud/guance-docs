@@ -1,15 +1,17 @@
 ---
 title     : 'InfluxDB'
-summary   : 'Collect InfluxDB metrics'
+summary   : 'Collect InfluxDB Metrics data'
 tags:
-  - 'DATA STORES'
+  - 'DATABASE'
 __int_icon      : 'icon/influxdb'
 dashboard :
   - desc  : 'InfluxDB'
-    path  : 'dashboard/en/influxdb'
+    path  : 'dashboard/zh/influxdb'
+  - desc  : 'InfluxDB v2'
+    path  : 'dashboard/zh/influxdb_v2'
 monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - desc  : 'InfluxDB v2'
+    path  : 'monitor/zh/influxdb_v2'
 ---
 
 
@@ -17,24 +19,25 @@ monitor   :
 
 ---
 
-The InfluxDB collector is used to collect the data of the InfluxDB.
+InfluxDB collector, used to collect InfluxDB data.
 
-## Configuration {#config}
+## InfluxDB Collector Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-The influxdb collector is only applicable to influxdb v1.x, and the prom collector is required for influxdb v2.x.
+- The InfluxDB collector is only applicable to InfluxDB v1.x.
+- For InfluxDB v2.x, the prom collector should be used for collection.
 
-Already tested version:
+Tested versions:
 
 - [x] 1.8.10
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample` and name it `influxdb.conf`. Examples are as follows:
+    Navigate to the `conf.d/influxdb` directory under the DataKit installation directory, copy `influxdb.conf.sample`, and rename it as `influxdb.conf`. An example is shown below:
     
     ```toml
         
@@ -77,20 +80,19 @@ Already tested version:
         # more_tag = "some_other_value"
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    You can currently inject the collector configuration via the [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector.
 <!-- markdownlint-enable -->
-
 
 ### InfluxDB v2.x {#prom-config}
 
 ```toml
 [[inputs.prom]]
-  ## Exporter address
+  ## Exporter HTTP URL.
   url = "http://127.0.0.1:8086/metrics"
 
   metric_types = ["counter", "gauge"]
@@ -135,9 +137,9 @@ Already tested version:
 
 ```
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.influxdb.tags]` if needed:
+All data collected by default will append global election tags unless specified otherwise through `[inputs.influxdb.tags]` in the configuration:
 
 ``` toml
  [inputs.influxdb.tags]
@@ -157,7 +159,7 @@ For all of the following data collections, the global election tags will added a
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -177,7 +179,7 @@ For all of the following data collections, the global election tags will added a
 |`database`|Database name.|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -197,7 +199,7 @@ For all of the following data collections, the global election tags will added a
 |`bind`|Bind port.|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -238,7 +240,7 @@ For all of the following data collections, the global election tags will added a
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -283,7 +285,7 @@ For all of the following data collections, the global election tags will added a
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -305,7 +307,7 @@ For all of the following data collections, the global election tags will added a
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -344,7 +346,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -372,7 +374,7 @@ For all of the following data collections, the global election tags will added a
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -399,7 +401,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -432,7 +434,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -485,7 +487,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -511,7 +513,7 @@ For all of the following data collections, the global election tags will added a
 |`retention_policy`|Retention policy.|
 |`wal_path`|Wal path.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -532,7 +534,7 @@ For all of the following data collections, the global election tags will added a
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -549,13 +551,13 @@ For all of the following data collections, the global election tags will added a
 
 
 
-## Log Collection {#logging}
+## Logs {#logging}
 
-To collect the InfluxDB log, open `files` in influxdb.conf and write to the absolute path of the InfluxDB log file. For example:
+To collect InfluxDB logs, open `files` in influxdb.conf and enter the absolute path of the InfluxDB log file. For example:
 
 ```toml
 [inputs.influxdb.log]
-    # Fill in the absolute path
+    # Enter absolute path
     files = ["/path/to/demo.log"] 
     ## grok pipeline script path
     pipeline = "influxdb.p"

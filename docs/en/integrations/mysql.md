@@ -1,35 +1,34 @@
 ---
 title     : 'MySQL'
-summary   : 'Collect MySQL metrics and logs'
+summary   : 'Collect MySQL Metrics data'
 tags:
-  - 'DATA STORES'
+  - 'DATABASE'
 __int_icon      : 'icon/mysql'
 dashboard :
   - desc  : 'MySQL'
     path  : 'dashboard/en/mysql'
 monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - desc  : 'MySQL'
+    path  : 'monitor/en/mysql'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-MySQL metrics collection, which collects the following data:
+MySQL metrics collection, collecting the following data:
 
-- MySQL global status basic data collection
+- Basic data collection of MySQL Global Status
 - Schema related data
 - InnoDB related metrics
 - Support custom query data collection
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
 - MySQL version 5.7+
-- Create a monitoring account (in general, you need to log in with MySQL `root` account to create MySQL users)
+- Create a monitoring account (in most cases, need to log in with the MySQL `root` account to create a MySQL user)
 
 ```sql
 CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
@@ -48,13 +47,14 @@ GRANT SELECT ON performance_schema.* TO 'datakit'@'localhost';
 GRANT SELECT ON mysql.user TO 'datakit'@'localhost';
 GRANT replication client on *.*  to 'datakit'@'localhost';
 ```
+
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - All the above creation and authorization operations limit that the user `datakit` can only access MySQL on MySQL host (`localhost`). If MySQL is collected remotely, it is recommended to replace `localhost` with `%` (indicating that DataKit can access MySQL on any machine), or use a specific DataKit installation machine address.
-
-    - Note that if you find the collector has the following error when using `localhost` , you need to replace the above `localhost` with `::1`<br/>
+    - If you encounter the following error when using `localhost`, replace `localhost` with `::1` in the steps above<br/>
     `Error 1045: Access denied for user 'datakit'@'localhost' (using password: YES)`
+
+    - The above creation and authorization operations are limited to the `datakit` user who can only access MySQL on the MySQL host (`localhost`). If remote collection is required, replace `localhost` with `%` (indicating that DataKit can access MySQL from any machine), or use a specific DataKit installation machine address.
 <!-- markdownlint-enable -->
 
 ### Collector Configuration {#input-config}
@@ -62,7 +62,7 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `mysql.conf.sample` and name it `mysql.conf`. Examples are as follows:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `mysql.conf.sample` and rename it as `mysql.conf`. Example as follows:
     
     ```toml
         
@@ -161,34 +161,34 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
         # more_tag = "some_other_value"
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, simply [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
 ---
 
-### Binlog Start {#binlog}
+### Binlog Activation {#binlog}
 
-MySQL Binlog is not turned on. If you want to count the Binlog size, you need to turn on the Binlog function corresponding to MySQL:
+By default, MySQL Binlog is not activated. To count the size of Binlog, you need to activate the corresponding Binlog feature in MySQL:
 
 ```sql
 -- ON: turn on, OFF: turn off
 SHOW VARIABLES LIKE 'log_bin';
 ```
 
-Binlog starts, see [this](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"} or [this answer](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}.
+To activate Binlog, refer to [this Q&A](https://stackoverflow.com/questions/40682381/how-do-i-enable-mysql-binary-logging){:target="_blank"} or [this Q&A](https://serverfault.com/questions/706699/enable-binlog-in-mysql-on-ubuntu){:target="_blank"}
 
 ### Database Performance Metrics Collection {#performance-schema}
 
-The database performance metrics come from MySQL's built-in database `performance_schema`, which provides a way to get the internal performance of the server at runtime. Through this database, DataKit can collect statistics of various metrics of historical query statements, execution plans of query statements and other related performance metrics. The collected performance metric data is saved as a log, and the sources are `mysql_dbm_metric`, `mysql_dbm_sample` and `mysql_dbm_activity`.
+Database performance metrics mainly come from MySQL's built-in `performance_schema`, which provides a way to obtain internal execution details of the server at runtime. Through this database, DataKit can collect various statistical metrics of historical queries and the execution plans of query statements, as well as other related performance metrics. The collected performance metrics data is saved as logs with sources being `mysql_dbm_metric`, `mysql_dbm_sample`, and `mysql_dbm_activity`.
 
-To turn it on, you need to perform the following steps.
+To activate this, follow these steps.
 
-- Modify the configuration file and start monitoring and collection
+- Modify the configuration file to activate the monitoring collection
 
 ```toml
 [[inputs.mysql]]
@@ -230,7 +230,7 @@ performance-schema-consumer-events-statements-history = on
 
 ```
 
-- Account configuration
+- Account Configuration
 
 Account authorization
 
@@ -245,7 +245,7 @@ GRANT REPLICATION CLIENT ON *.* TO datakit@'%';
 GRANT PROCESS ON *.* TO datakit@'%';
 ```
 
-Create a database
+Create database
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS datakit;
@@ -253,7 +253,7 @@ GRANT EXECUTE ON datakit.* to datakit@'%';
 GRANT CREATE TEMPORARY TABLES ON datakit.* TO datakit@'%';
 ```
 
-Create the stored procedure `explain_statement` to get the SQL execution plan
+Create stored procedure `explain_statement` to get SQL execution plan
 
 ```sql
 DELIMITER $$
@@ -268,11 +268,11 @@ END $$
 DELIMITER ;
 ```
 
-Create a separate stored procedure for the database that needs to collect execution plans (optional)
+Create separate stored procedures for databases requiring execution plan collection (optional)
 
 ```sql
 DELIMITER $$
-CREATE PROCEDURE <db_name>.explain_statement(IN query TEXT)
+CREATE PROCEDURE <database_name>.explain_statement(IN query TEXT)
     SQL SECURITY DEFINER
 BEGIN
     SET @explain := CONCAT('EXPLAIN FORMAT=json ', query);
@@ -281,12 +281,12 @@ BEGIN
     DEALLOCATE PREPARE stmt;
 END $$
 DELIMITER ;
-GRANT EXECUTE ON PROCEDURE <db_name>.explain_statement TO datakit@'%';
+GRANT EXECUTE ON PROCEDURE <database_name>.explain_statement TO datakit@'%';
 ```
 
-- `consumers` configuration
+- `consumers` Configuration
 
-Method one (recommended): Dynamic configuration of `performance_schema.events_*` with `DataKit` requires the creation of the following stored procedure:
+Method one (recommended): Dynamically configure `performance_schema.events_*` through `DataKit`, creating the following stored procedure:
 
 ```sql
 DELIMITER $$
@@ -301,49 +301,49 @@ DELIMITER ;
 GRANT EXECUTE ON PROCEDURE datakit.enable_events_statements_consumers TO datakit@'%';
 ```
 
-Method 2: Manually configure `consumers`
+Method two: Manually configure `consumers`
 
 ```sql
 UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'events_statements_%';
 UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events_waits_current';
 ```
 
-### Replication Metrics Collection {#replication_metrics}
+### Master-Slave Replication Metrics Collection {#replication_metrics}
 
-To collect replication metrics `mysql_replication`, you need to start MySQL replication. `mysql_replication` metrics are collected from the replication database, so you can confirm that the MySQL replication environment is working properly by entering them in the slave database:
+The prerequisite for collecting `mysql_replication` metrics is enabling master-slave replication. All `mysql_replication` metrics are collected from the slave database. You can check whether the master-slave replication environment is normal by entering the following command on the slave database:
 
 ```sql
 SHOW SLAVE STATUS;
 ```
 
-If the `Slave_IO_Running` and `Slave_SQL_Running` fields are `Yes`, the replication environment is working properly.
+If both `Replica_IO_Running` and `Replica_SQL_Running` values are Yes, it indicates that the master-slave replication environment status is normal.
 
-To capture group replication metrics such as `count_transactions_in_queue`, you need to add the group_replication plugin to the list of plugins loaded by the server at startup (group_replication has been supported since MySQL version 5.7.17). In the configuration file `/etc/my.cnf` for the replication database, add the line:
+To collect group replication metrics such as `count_transactions_in_queue`, you need to add the group replication plugin to the list of plugins loaded at startup (group_replication is supported starting from MySQL version 5.7.17). Add the following line to the configuration file `/etc/my.cnf` on the slave database:
 
 ```toml
 plugin_load_add ='group_replication.so'
 ```
 
-You can confirm that the group replication plugin is installed by `showing plugins;`.
+You can confirm that the group replication plugin has been installed by running `show plugins;`.
 
-To turn it on, you need to perform the following steps.
+To activate this, follow these steps.
 
-- Modify the configuration file and start monitoring and collection
+- Modify the configuration file to activate the monitoring collection
 
 ```toml
-  [[inputs.mysql]]
+[[inputs.mysql]]
 
   ## Set replication to true to collect replication metrics
   replication = true
   ## Set group_replication to true to collect group replication metrics
-  group_replication = true
+  group_replication = true  
   ...
-  
+
 ```
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.mysql.tags]` if needed:
+All the data collected below will append global election tags by default. You can also specify additional tags via `[inputs.mysql.tags]` in the configuration:
 
 ```toml
  [inputs.mysql.tags]
@@ -369,7 +369,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|The server host address|
 |`server`|Server addr|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -466,6 +466,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `mysql_replication`
 
 
@@ -478,7 +479,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|The server host address|
 |`server`|Server addr|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -510,6 +511,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `mysql_schema`
 
 MySQL schema information
@@ -523,13 +525,14 @@ MySQL schema information
 |`schema_name`|Schema name|
 |`server`|Server addr|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`query_run_time_avg`|Avg query response time per schema.|float|ns|
 |`schema_size`|Size of schemas(MiB)|float|MB|
+
 
 
 
@@ -547,11 +550,11 @@ MySQL schema information
 |`host`|The server host address|
 |`server`|Server addr|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`active_transactions`|The number of active transactions on InnoDB tables|int|count|
 |`adaptive_hash_searches`|Number of successful searches using Adaptive Hash Index|int|count|
 |`adaptive_hash_searches_btree`|Number of searches using B-tree on an index search|int|count|
@@ -690,6 +693,7 @@ MySQL schema information
 
 
 
+
 ### `mysql_table_schema`
 
 MySQL table information
@@ -707,7 +711,7 @@ MySQL table information
 |`table_type`|BASE TABLE for a table, VIEW for a view, or SYSTEM VIEW for an INFORMATION_SCHEMA table.|
 |`version`|The version number of the table's .frm file.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -716,6 +720,7 @@ MySQL table information
 |`data_length`|For InnoDB, DATA_LENGTH is the approximate amount of space allocated for the clustered index, in bytes. Specifically, it is the clustered index size, in pages, multiplied by the InnoDB page size|int|count|
 |`index_length`|For InnoDB, INDEX_LENGTH is the approximate amount of space allocated for non-clustered indexes, in bytes. Specifically, it is the sum of non-clustered index sizes, in pages, multiplied by the InnoDB page size|int|count|
 |`table_rows`|The number of rows. Some storage engines, such as MyISAM, store the exact count. For other storage engines, such as InnoDB, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use SELECT COUNT(*) to obtain an accurate count.|int|count|
+
 
 
 
@@ -734,7 +739,7 @@ MySQL user information
 |`server`|The server address containing both host and port|
 |`user`|user|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -755,71 +760,7 @@ MySQL user information
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Custom Object {#object}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Custom Objects {#object}
 
 ### `database`
 
@@ -836,7 +777,7 @@ MySQL user information
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -848,30 +789,9 @@ MySQL user information
 
 
 
-
-## Log {#logging}
+## Logs {#logging}
 
 [:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -897,7 +817,7 @@ Record the number of executions of the query statement, wait time, lock time, an
 |`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -914,6 +834,7 @@ Record the number of executions of the query statement, wait time, lock time, an
 |`sum_select_full_join`|The total count of full table scans on a joined table per normalized query and schema.|int|count|
 |`sum_select_scan`|The total count of full table scans on the first table per normalized query and schema.|int|count|
 |`sum_timer_wait`|The total query execution time(nanosecond) per normalized query and schema.|int|count|
+
 
 
 
@@ -943,7 +864,7 @@ Select some of the SQL statements with high execution time, collect their execut
 |`server`|The server address containing both host and port|
 |`service`|The service name and the value is 'mysql'|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -972,6 +893,7 @@ Select some of the SQL statements with high execution time, collect their execut
 
 
 
+
 ### `mysql_dbm_activity`
 
 Collect the waiting event of the current thread
@@ -985,7 +907,7 @@ Collect the waiting event of the current thread
 |`server`|The server address|
 |`service`|The service name and the value is 'mysql'|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -1025,6 +947,7 @@ Collect the waiting event of the current thread
 
 
 
+
 ### `mysql_replication_log`
 
 Record the replication string information.
@@ -1037,7 +960,7 @@ Record the replication string information.
 |`host`|The server host address|
 |`server`|Server addr|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -1053,30 +976,64 @@ Record the replication string information.
 
 
 
+
+
+## Custom Objects {#customobject}
+
+
+
+
+
+### `database`
+
+
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on MySQL(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the MySQl|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Field List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current MySQL uptime|int|s|
+|`version`|Current version of MySQL|string|-|
+
+
+
 <!-- markdownlint-enable -->
 
-### MySQL Run Log {#mysql-logging}
+### MySQL Operational Logs {#mysql-logging}
 
-If you need to collect MySQL log, open the log-related configuration in the configuration. If you need to open MySQL slow query log, you need to open the slow query log. Execute the following statements in MySQL.
+To collect MySQL logs, enable the relevant log configurations in the configuration file. To activate MySQL slow query logging, you need to enable the slow query log by executing the following statements in MySQL:
 
 ```sql
 SET GLOBAL slow_query_log = 'ON';
 
--- Queries that do not use indexes are also considered a possible slow query
+-- Queries not using indexes are also considered possible slow queries
 set global log_queries_not_using_indexes = 'ON';
 ```
 
 ```toml
 [inputs.mysql.log]
-    # Fill in the absolute path
+    # Insert absolute path
     files = ["/var/log/mysql/*.log"]
 ```
 
-> Note: When using log collection, you need to install the DataKit on the same host as the MySQL service, or use other methods to mount the log on the machine where the DataKit is located.
+> Note: When using log collection, DataKit must be installed on the same host as the MySQL service, or logs should be mounted to the machine where DataKit resides through other methods.
 
-MySQL logs are divided into normal logs and slow logs.
+MySQL logs come in two types: general logs and slow logs.
 
-### MySQL Normal Logs {#mysql-app-logging}
+### MySQL General Logs {#mysql-app-logging}
 
 Original log:
 
@@ -1084,15 +1041,15 @@ Original log:
 2017-12-29T12:33:33.095243Z         2 Query     SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE CREATE_OPTIONS LIKE '%partitioned%';
 ```
 
-The list of cut fields is as follows:
+The parsed field list is as follows:
 
 | Field Name   | Field Value                                                   | Description                         |
-| -------- | -------------------------------------------------------- | ---------------------------- |
-| `status` | `Warning`                                                | log level                     |
-| `msg`    | `System table 'plugin' is expected to be transactional.` | log content                     |
-| `time`   | `1514520249954078000`                                    | Nanosecond timestamp (as row protocol time) |
+| ------------ | ------------------------------------------------------------- | ----------------------------------- |
+| `status`     | `Warning`                                                     | Log level                           |
+| `msg`        | `System table 'plugin' is expected to be transactional.`      | Log content                         |
+| `time`       | `1514520249954078000`                                        | Nanosecond timestamp (as line protocol time) |
 
-### MySQL Slow Query Log {#mysql-slow-logging}
+### MySQL Slow Query Logs {#mysql-slow-logging}
 
 Original log:
 
@@ -1106,29 +1063,29 @@ SET timestamp=1574851393;
 SELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5
 ```
 
-The list of cut fields is as follows:
+The parsed field list is as follows:
 
 | Field Name              | Field Value                                                                                      | Description                           |
-| ---                 | ---                                                                                         | ---                            |
-| `bytes_sent`        | `123456`                                                                                    | Number of bytes sent                     |
-| `db_host`           | `localhost`                                                                                 | hostname                       |
-| `db_ip`             | `1.2.3.4`                                                                                   | ip                             |
-| `db_slow_statement` | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5` | Slow query SQL                     |
-| `db_user`           | `root[root]`                                                                                | User                           |
-| `lock_time`         | `0.000184`                                                                                  | Lock time                         |
-| `query_id`          | `35`                                                                                        | query id                        |
-| `query_time`        | `0.2l4922`                                                                                  | Time spent on SQL execution           |
-| `rows_examined`     | `72`                                                                                        | Number of rows read to return queried data |
-| `rows_sent`         | `248832`                                                                                    | Number of rows returned by query                 |
-| `thread_id`         | `55`                                                                                        | Thread id                        |
-| `time`              | `1514520249954078000`                                                                       | Nanosecond timestamp (as line protocol time)   |
+| ----------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------- |
+| `bytes_sent`           | `123456`                                                                                        | Sent bytes count                     |
+| `db_host`              | `localhost`                                                                                     | Hostname                             |
+| `db_ip`                | `1.2.3.4`                                                                                       | IP                                   |
+| `db_slow_statement`    | `SET timestamp=1574851393;\nSELECT * FROM fruit f1, fruit f2, fruit f3, fruit f4, fruit f5`      | Slow query SQL                       |
+| `db_user`              | `root[root]`                                                                                    | User                                 |
+| `lock_time`            | `0.000184`                                                                                      | Lock time                            |
+| `query_id`             | `35`                                                                                            | Query ID                             |
+| `query_time`           | `0.214922`                                                                                      | SQL execution time                   |
+| `rows_examined`       | `72`                                                                                            | Number of rows read                 |
+| `rows_sent`            | `248832`                                                                                        | Number of rows returned             |
+| `thread_id`            | `55`                                                                                            | Thread ID                           |
+| `time`                 | `1514520249954078000`                                                                            | Nanosecond timestamp (as line protocol time) |
 
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: Why the measurement `mysql_user_status` is not collected for Aliyun RDS? {#faq-user-no-data}
+### :material-chat-question: Why does the metric `mysql_user_status` not report data when collecting from Alibaba Cloud RDS? {#faq-user-no-data}
 
-The measurement is collected from MySQL `performance_schema`. You should check if it is enabled by the SQL below：
+This metric requires enabling `performance_schema`, which can be checked via the following SQL query:
 
 ```sql
 show variables like "performance_schema";
@@ -1141,6 +1098,6 @@ show variables like "performance_schema";
 
 ```
 
-If the value is `OFF`, please refer to the [document](https://help.aliyun.com/document_detail/41726.html?spm=a2c4g.276975.0.i9){:target="_blank"} to enable it.
+If the value is `OFF`, refer to the related Alibaba Cloud [documentation](https://help.aliyun.com/document_detail/41726.html?spm=a2c4g.276975.0.i9){:target="_blank"} to enable it.
 
 <!-- markdownlint-enable -->

@@ -1,6 +1,6 @@
 ---
 title     : 'Apache'
-summary   : 'Apache collector can collect the number of requests, connections, etc. from the Apache service'
+summary   : 'The Apache collector can gather request counts, connection counts, and more from Apache services.'
 tags:
   - 'MIDDLEWARE'
   - 'WEB SERVER'
@@ -17,13 +17,13 @@ monitor   :
 
 ---
 
-Apache collector can collect the number of requests, connections and others from Apache services, and collect indicators to Guance Cloud to help monitor and analyze various abnormal situations of Apache.
+The Apache collector gathers request counts, connection counts, and other data from Apache services, sending metrics to Guance for monitoring and analysis of various Apache anomalies.
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- Apache version >= `2.4.6 (Unix)`. Already tested version:
+- Apache version >= `2.4.6 (Unix)`. Tested versions:
     - [x] 2.4.56
     - [x] 2.4.54
     - [x] 2.4.41
@@ -31,12 +31,12 @@ Apache collector can collect the number of requests, connections and others from
     - [x] 2.4.29
     - [x] 2.4.6
 
-- Default configuration path:
+- Default configuration paths:
     - */etc/apache2/apache2.conf*
     - */etc/apache2/httpd.conf*
     - */usr/local/apache2/conf/httpd.conf*
 
-- Open Apache `mod_status` and add the followings in Apache profile:
+- Enable Apache `mod_status`, by adding the following in the Apache configuration file:
 
 ```xml
 <Location /server-status>
@@ -51,15 +51,16 @@ Allow from [YOUR_IP]
 - Restart Apache
 
 ```shell
-sudo apachectl restart
+$ sudo apachectl restart
+...
 ```
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/apache` directory under the DataKit installation directory, copy `apache.conf.sample` and name it `apache.conf`. Examples are as follows:
+    Navigate to the `conf.d/apache` directory under the DataKit installation directory, copy `apache.conf.sample` and rename it to `apache.conf`. Example as follows:
     
     ```toml
         
@@ -91,16 +92,17 @@ sudo apachectl restart
       # more_tag = "some_other_value"
       # ... 
     ```
-    
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting its configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Measurement {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.apache.tags]` if needed:
+All the collected data will append global election tags by default. You can also specify additional tags through `[inputs.apache.tags]` in the configuration:
 
 ``` toml
  [inputs.apache.tags]
@@ -111,10 +113,9 @@ For all of the following data collections, the global election tags will added a
 
 
 
+### `apache` {#apache}
 
-### `apache`
-
-The collected metrics are affected by the environment in which Apache is installed. The metrics shown on the `http://<your-apache-server>/server-status?auto` page will prevail.
+The collected Metrics are influenced by the environment where Apache is installed. The metrics shown on the `http://<your-apache-server>/server-status?auto` page will prevail.
 
 - Tags
 
@@ -126,7 +127,7 @@ The collected metrics are affected by the environment in which Apache is install
 |`server_version`|Apache server version. Optional.|
 |`url`|Apache server status url.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -157,13 +158,33 @@ The collected metrics are affected by the environment in which Apache is install
 
 
 
-
-
-## Custom Object {#object}
-
+### `web_server` {#web_server}
 
 
 
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`col_co_status`|Current status of collector on Apache(`OK/NotOK`)|
+|`host`|The server host address|
+|`ip`|Connection IP of the Apache|
+|`name`|Object uniq ID|
+|`reason`|If status not ok, we'll get some reasons about the status|
+
+- Metrics List
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`display_name`|Displayed name in UI|string|-|
+|`uptime`|Current Apache uptime|int|s|
+|`version`|Current version of Apache|string|-|
+
+
+
+## Custom Objects {#object}
 
 
 
@@ -184,7 +205,7 @@ The collected metrics are affected by the environment in which Apache is install
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -196,9 +217,9 @@ The collected metrics are affected by the environment in which Apache is install
 
 
 
-## Log Collection {#logging}
+## LOG Collection {#logging}
 
-To collect the Apache log, open  `files` in apache.conf and write to the absolute path of the Apache log file. For example:
+To collect Apache logs, open the `files` option in `apache.conf` and input the absolute path of the Apache log files. For example:
 
 ```toml
 [[inputs.apache]]
@@ -210,49 +231,49 @@ To collect the Apache log, open  `files` in apache.conf and write to the absolut
     ]
 ```
 
-When log collection is turned on, logs with `apache` log (`source`) will be generated by default.
+After enabling log collection, logs with source (`source`) set to `apache` will be generated by default.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    DataKit must be installed on the host where Apache is located to collect Apache logs.
+    DataKit must be installed on the HOST where Apache is located to collect Apache logs.
 <!-- markdownlint-enable -->
 
-## Log Pipeline Function Cut Field Description {#pipeline}
+### Pipeline Field Explanation {#pipeline}
 
-- Apache Error Log Cutting
+- Apache Error Log Parsing
 
-Error Log Text Example
+Error log text example:
 
-```log
+``` log
 [Tue May 19 18:39:45.272121 2021] [access_compat:error] [pid 9802] [client ::1:50547] AH01797: client denied by server configuration: /Library/WebServer/Documents/server-status
 ```
 
-The list of cut fields is as follows:
+Parsed field list:
 
 | Field Name   | Field Value                | Description                         |
-| ---      | ---                   | ---                          |
-| `status` | `error`               | log level                     |
-| `pid`    | `9802`                | process id                      |
-| `type`   | `access_compat`       | log type                     |
-| `time`   | `1621391985000000000` | nanosecond timestamp (as row protocol time) |
+| ---          | ---                        | ---                                 |
+| `status`     | `error`                    | Log level                           |
+| `pid`        | `9802`                     | Process id                          |
+| `type`       | `access_compat`            | Log type                            |
+| `time`       | `1621391985000000000`      | Nanosecond timestamp (as line protocol time) |
 
-- Apache Access Log Cutting
+- Apache Access Log Parsing
 
-Example of access log text:
+Access log text example:
 
-```log
+``` log
 127.0.0.1 - - [17/May/2021:14:51:09 +0800] "GET /server-status?auto HTTP/1.1" 200 917
 ```
 
-The list of cut fields is as follows:
+Parsed field list:
 
 | Field Name         | Field Value                | Description                         |
-| ---            | ---                   | ---                          |
-| `status`       | `info`                | log level                     |
-| `ip_or_host`   | `127.0.0.1`           | requester ip or host             |
-| `http_code`    | `200`                 | http status code             |
-| `http_method`  | `GET`                 | http request type                |
-| `http_url`     | `/`                   | http request url                 |
-| `http_version` | `1.1`                 | http version                 |
-| `time`         | `1621205469000000000` | nanosecond timestamp (as row protocol time) |
+| ---               | ---                        | ---                                 |
+| `status`          | `info`                     | Log level                           |
+| `ip_or_host`      | `127.0.0.1`                | Requesting IP or host               |
+| `http_code`       | `200`                      | HTTP status code                    |
+| `http_method`     | `GET`                      | HTTP request type                   |
+| `http_url`        | `/`                        | HTTP request URL                    |
+| `http_version`    | `1.1`                      | HTTP version                        |
+| `time`            | `1621205469000000000`      | Nanosecond timestamp (as line protocol time) |

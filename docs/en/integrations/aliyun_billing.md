@@ -1,36 +1,39 @@
 ---
-title: 'Alibaba Cloud Billing'
+title: 'Alibaba Cloud Bill'
 tags: 
   - Alibaba Cloud
-summary: 'Collect Alibaba Cloud billing information'
+summary: 'Collecting Alibaba Cloud bill information'
 __int_icon: 'icon/aliyun_billing'
 dashboard:
-  - desc: 'Cloud Billing Analysis View'
+  - desc: 'Cloud bill analysis view'
     path: 'dashboard/en/Intelligent_analysis_cloud_billing/'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aliyun_billing'
 ---
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to activate Observability Cloud Integration - Extensions - Managed Func: All prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you are deploying Func on your own, refer to [Self-Deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation Script
 
-> Note: Please prepare the required Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+### Install Script
 
-To synchronize monitoring data of CDN cloud resources, install the corresponding collection script ID: `guance_aliyun_billing_by_instance`
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-Click [Install], then input the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
+To synchronize monitoring data of cloud resources from CDN, we install the corresponding collection script ID: `guance_aliyun_billing_by_instance`
 
-Click [Deploy and Start Script], the system will automatically create a `Startup` script set and configure the corresponding startup script automatically.
+After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK and Alibaba Cloud account name.
 
-After enabling, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click [Execute] to run it immediately without waiting for the scheduled time. After a moment, you can view the execution task records and corresponding logs.
+Click 【Deploy Start Script】, and the system will automatically create a `Startup` script set, and automatically configure the corresponding start script.
 
+After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
 ### Verification
 
-In the Observability Cloud platform, check if there is corresponding cloud billing data in the "Cloud Billing" menu.
+On the Guance platform, check under the menu 「Cloud Bill」 to see if there is corresponding cloud bill data.

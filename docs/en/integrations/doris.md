@@ -1,8 +1,8 @@
 ---
 title     : 'Doris'
-summary   : 'Collect metrics of Doris'
+summary   : 'Collect Doris Metrics data'
 tags:
-  - 'DATA STORES'
+  - 'DATABASE'
 __int_icon      : 'icon/doris'
 dashboard :
   - desc  : 'Doris'
@@ -12,33 +12,32 @@ monitor   :
     path  : 'monitor/en/doris'
 ---
 
-
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Doris collector is used to collect metric data related to Doris, and currently it only supports data in Prometheus format.
+The Doris collector is used to collect Metrics data related to Doris, and currently only supports data in Prometheus format.
 
 ## Configuration {#config}
 
-Already tested version:
+Tested versions:
 
 - [x] 2.0.0
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-Doris defaults to enabling the Prometheus port
+Doris has Prometheus port enabled by default.
 
-Check front-end: curl ip: 8030/metrics
+Verify frontend: curl ip:8030/metrics
 
-Check backend: curl ip: 8040/metrics
+Verify backend: curl ip:8040/metrics
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "host installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `doris.conf.sample` and name it `doris.conf`. Examples are as follows:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `doris.conf.sample` and rename it to `doris.conf`. Example as follows:
     
     ```toml
         
@@ -99,16 +98,16 @@ Check backend: curl ip: 8040/metrics
       # more_tag = "some_other_value"
     
     ```
-    
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector by [injecting ConfigMap configurations](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
@@ -125,11 +124,11 @@ Check backend: curl ip: 8040/metrics
 |`job`|Job type.|
 |`method`|Method type.|
 |`name`|Metric name.|
-|`quantile`|quantile.|
+|`quantile`|Quantile.|
 |`state`|State.|
 |`type`|Metric type.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -140,46 +139,46 @@ Check backend: curl ip: 8040/metrics
 |`counter_hit_sql_block_rule`|Number of queries blocked by SQL BLOCK RULE.|float|count|
 |`edit_log`|Value of metadata log.|float|count|
 |`edit_log_clean`|The number of times the historical metadata log was cleared.|float|count|
-|`editlog_write_latency_ms`|metadata log write latency . For example, {quantile=0.75} indicates the 75th percentile write latency .|float|ms|
+|`editlog_write_latency_ms`|Metadata log write latency. For example, {quantile=0.75} indicates the 75th percentile write latency.|float|ms|
 |`external_schema_cache`|SpecifyExternal Catalog _ The number of corresponding schema caches.|float|count|
 |`hive_meta_cache`|Specify External Hive Meta store Catalog The number of corresponding partition caches.|float|count|
 |`image_clean`|The number of times cleaning of historical metadata image files.|float|count|
 |`image_push`|The number of times cleaning of historical metadata image files.|float|count|
 |`image_write`|The Number of to generate metadata image files.|float|count|
 |`job`|Current count of different job types and different job statuses. For example, {job=load, type=INSERT, state=LOADING} represents an import job of type INSERT and the number of jobs in the LOADING state.|float|count|
-|`max_journal_id`|The maximum metadata log ID of the current FE node . If it is Master FE , it is the maximum ID currently written , if it is a non- Master FE , represents the maximum ID of the metadata log currently being played back.|float|count|
+|`max_journal_id`|The maximum metadata log ID of the current FE node. If it is Master FE, it is the maximum ID currently written, if it is a non- Master FE, represents the maximum ID of the metadata log currently being played back.|float|count|
 |`max_tablet_compaction_score`|The largest compaction score value among all BE nodes.|float|percent|
-|`publish_txn_num`|Specify the number of transactions being published by the DB . For example, { db =test} indicates the number of transactions currently being published by DB test.|float|count|
+|`publish_txn_num`|Specify the number of transactions being published by the DB. For example, { db =test} indicates the number of transactions currently being published by DB test.|float|count|
 |`qps`|Current number of FE queries per second ( only query requests are counted ).|float|req/s|
 |`query_err`|Value of error query.|float|count|
 |`query_err_rate`|Error queries per second.|float|req/s|
-|`query_instance_begin`|Specify the fragment where the user request starts Number of instances . For example, {user=test_u} represents the user test_u Number of instances to start requesting.|float|count|
-|`query_instance_num`|Specifies the fragment that the user is currently requesting Number of instances . For example, {user=test_u} represents the user test_u The number of instances currently being requested.|float|count|
+|`query_instance_begin`|Specify the fragment where the user request starts Number of instances. For example, {user=test_u} represents the user test_u Number of instances to start requesting.|float|count|
+|`query_instance_num`|Specifies the fragment that the user is currently requesting Number of instances. For example, {user=test_u} represents the user test_u The number of instances currently being requested.|float|count|
 |`query_latency_ms`|Percentile statistics of query request latency. For example, {quantile=0.75} indicates the query delay at the 75th percentile.|float|ms|
-|`query_latency_ms_db`|Percentile statistics of query request delay of each DB . For example, {quantile=0.75,db=test} indicates the query delay of the 75th percentile of DB test.|float|ms|
+|`query_latency_ms_db`|Percentile statistics of query request delay of each DB. For example, {quantile=0.75,db=test} indicates the query delay of the 75th percentile of DB test.|float|ms|
 |`query_olap_table`|The statistics of the number of requests for the internal table ( `OlapTable` ).|float|count|
-|`query_rpc_failed`|RPC failures sent to the specified BE . For example, { be=192.168.10.1} indicates the number of RPC failures sent to BE with IP address 192.168.10.1.|float|count|
-|`query_rpc_size`|Specify the RPC data size of BE . For example, { be=192.168.10.1} indicates the number of RPC data bytes sent to BE with IP address 192.168.10.1.|float|count|
-|`query_rpc_total`|Of RPCs sent to the specified BE . For example, { be=192.168.10.1} indicates the number of RPCs sent to BE with IP address 192.168.10.1.|float|count|
+|`query_rpc_failed`|RPC failures sent to the specified BE. For example, { be=192.168.10.1} indicates the number of RPC failures sent to BE with IP address 192.168.10.1.|float|count|
+|`query_rpc_size`|Specify the RPC data size of BE. For example, { be=192.168.10.1} indicates the number of RPC data bytes sent to BE with IP address 192.168.10.1.|float|count|
+|`query_rpc_total`|Of RPCs sent to the specified BE. For example, { be=192.168.10.1} indicates the number of RPCs sent to BE with IP address 192.168.10.1.|float|count|
 |`query_total`|All query requests.|float|count|
 |`report_queue_size`|The queue length of various periodic reporting tasks of BE on the FE side.|float|count|
-|`request_total`|All operation requests received through the MySQL port (including queries and other statements ).|float|count|
+|`request_total`|All operation requests received through the MySQL port (including queries and other statements).|float|count|
 |`routine_load_error_rows`|Count the total number of error rows for all Routine Load jobs in the cluster.|float|count|
 |`routine_load_receive_bytes`|The amount of data received by all Routine Load jobs in the cluster.|float|B|
 |`routine_load_rows`|Count the number of data rows received by all Routine Load jobs in the cluster.|float|count|
-|`rps`|Current number of FE requests per second (including queries and other types of statements ).|float|count|
-|`scheduled_tablet_num`|Tablets being scheduled by the Master FE node . Includes replicas being repaired and replicas being balanced.|float|count|
-|`tablet_max_compaction_score`|The compaction core reported by each BE node . For example, { backend=172.21.0.1:9556} represents the reported value of BE 172.21.0.1:9556.|float|percent|
-|`tablet_num`|Current total number of tablets on each BE node . For example, {backend=172.21.0.1:9556} indicates the current number of tablets of the BE 172.21.0.1:9556.|float|count|
+|`rps`|Current number of FE requests per second (including queries and other types of statements).|float|count|
+|`scheduled_tablet_num`|Tablets being scheduled by the Master FE node. Includes replicas being repaired and replicas being balanced.|float|count|
+|`tablet_max_compaction_score`|The compaction core reported by each BE node. For example, { backend=172.21.0.1:9556} represents the reported value of BE 172.21.0.1:9556.|float|percent|
+|`tablet_num`|Current total number of tablets on each BE node. For example, {backend=172.21.0.1:9556} indicates the current number of tablets of the BE 172.21.0.1:9556.|float|count|
 |`tablet_status_count`|Statistics Master FE node The cumulative value of the number of tablets scheduled by the tablet scheduler.|float|count|
-|`thread_pool`|Count the number of working threads and queuing status of various thread pools . active_thread_num Indicates the number of tasks being executed . pool_size Indicates the total number of threads in the thread pool . task_in_queue Indicates the number of tasks being queued.|float|count|
+|`thread_pool`|Count the number of working threads and queuing status of various thread pools. active_thread_num Indicates the number of tasks being executed. pool_size Indicates the total number of threads in the thread pool. task_in_queue Indicates the number of tasks being queued.|float|count|
 |`thrift_rpc_latency_ms`|The RPC requests received by each method of the FE thrift interface take time. For example, {method=report} indicates that the RPC request received by the report method takes time.|float|ms|
-|`thrift_rpc_total`|RPC requests received by each method of the FE thrift interface . For example, {method=report} indicates the number of RPC requests received by the report method.|float|count|
+|`thrift_rpc_total`|RPC requests received by each method of the FE thrift interface. For example, {method=report} indicates the number of RPC requests received by the report method.|float|count|
 |`txn_counter`|Value of the number of imported transactions in each status.|float|count|
 |`txn_exec_latency_ms`|Percentile statistics of transaction execution time. For example, {quantile=0.75} indicates the 75th percentile transaction execution time.|float|ms|
-|`txn_num`|Specifies the number of transactions being performed by the DB . For example, { db =test} indicates the number of transactions currently being executed by DB test.|float|count|
+|`txn_num`|Specifies the number of transactions being performed by the DB. For example, { db =test} indicates the number of transactions currently being executed by DB test.|float|count|
 |`txn_publish_latency_ms`|Percentile statistics of transaction publish time. For example, {quantile=0.75} indicates that the 75th percentile transaction publish time is.|float|ms|
-|`txn_replica_num`|Specifies the number of replicas opened by the transaction being executed by the DB . For example, { db =test} indicates the number of copies opened by the transaction currently being executed by DB test.|float|count|
+|`txn_replica_num`|Specifies the number of replicas opened by the transaction being executed by the DB. For example, { db =test} indicates the number of copies opened by the transaction currently being executed by DB test.|float|count|
 |`txn_status`|Count the number of import transactions currently in various states. For example, {type=committed} indicates the number of transactions in the committed state.|float|count|
 
 
@@ -197,11 +196,11 @@ Check backend: curl ip: 8040/metrics
 |`mode`|Metric mode.|
 |`name`|Metric name.|
 |`path`|File path.|
-|`quantile`|quantile.|
+|`quantile`|Quantile.|
 |`status`|Metric status.|
 |`type`|Metric type.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -350,7 +349,7 @@ Check backend: curl ip: 8040/metrics
 |`state`|Metric state.|
 |`type`|Metric type.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -372,7 +371,7 @@ Check backend: curl ip: 8040/metrics
 |`instance`|Instance endpoint.|
 |`type`|Metric type.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -383,6 +382,3 @@ Check backend: curl ip: 8040/metrics
 |`old_size_bytes`|JVM old generation memory statistics.|float|B|
 |`thread`|JVM thread count statistics.|float|count|
 |`young_size_bytes`|JVM new generation memory statistics.|float|B|
-
-
-

@@ -1,34 +1,34 @@
 ---
 skip: 'not-searchable-on-index-page'
-title: 'Generating Self-Signed Certificates with OpenSSL'
+title: 'OpenSSL Generate Self-Signed Certificates'
 ---
 
-This article describes how to generate a self-signed certificate using the OpenSSL CLI for enabling a secure connection layer (SSL).
+This article describes how to generate self-signed certificates via OpenSSL cli for enabling a secure connection layer (ssl).
 
 ## Generation Steps {#certificate-gen-steps}
 
-- Step 1: Generate a private key. The private key is used for encryption and authentication.
+- step1: Generate private key, the private key is used for encryption and authentication
 
   ```shell
   openssl genrsa -out domain.key 2048
   ```
 
-    - `genrsa`: Generates an RSA key.
-    - `out`: Private key file.
-    - `2048`: Key length in bits.
+    - `genrsa`: Generate RSA keys
+    - `out`: Private key file
+    - `2048`: Number of bits
 
-- Step 2: Generate a certificate signing request (CSR). A CSR is used to initiate the signing of a certificate, containing public key information and necessary details for certificate generation.
+- step2: Generate certificate signing request, the certificate signing request (CSR) is used to initiate the signing of the certificate. The file includes public key information and necessary information for generating the certificate.
 
   ```shell
   openssl req -key domain.key -new -out domain.csr
   ```
 
-    - `req`: Certificate request command.
-    - `key`: Private key file.
-    - `new`: Create a new CSR.
-    - `out`: CSR file.
+    - `req`: Certificate request command
+    - `key`: Private key file
+    - `new`: Create new
+    - `out`: CSR file
 
-  The generation process will involve interactive command prompts as follows:
+  The generation process will be interactive through commands, as follows:
 
   ```shell
   Enter pass phrase for domain.key:
@@ -53,42 +53,42 @@ This article describes how to generate a self-signed certificate using the OpenS
   An optional company name []:
   ```
 
-  > Note: Enter the actual valid domain name at the Common Name prompt.
+  > Note: Input the actual valid domain name at the Common Name prompt.
 
-- Step 3: Generate a self-signed certificate. In environments where certificate chain validation is not required, you can directly generate a self-signed certificate to enable certificate services.
+- step3: Generate self-signed certificate, in environments where no certification chain check is required, you can directly generate a self-signed certificate for enabling certificate service.
 
   ```shell
   openssl x509 -signkey domain.key -in domain.csr -req -days 365 -out domain.crt
   ```
 
-    - `x509`: Generates an X.509 standard certificate.
-    - `signkey`: Private key file.
-    - `in`: Input CSR file.
-    - `days`: Validity period in days.
-    - `out`: Certificate file.
+    - `x509`: Generate an X.509 standard certificate
+    - `signkey`: Private key file
+    - `in`: Input CSR file
+    - `days`: Validity period
+    - `out`: Certificate file
 
-- Step 4: Generate a self-signed CA
+- step4: Generate self-signed CA
 
-  Generate the root CA certificate and private key.
+  Generate root CA certificate and private key
 
   ```shell
   openssl req -x509 -sha256 -days 1825 -newkey rsa:2048 -keyout rootCA.key -out rootCA.crt
   ```
 
-    - `req`: Certificate request command.
-    - `x509`: Generates an X.509 standard certificate.
-    - `sha256`: SHA-256 hash algorithm.
-    - `days`: Expiration days.
-    - `newkey`: Create a new key.
-    - `rsa:2048`: RSA encryption algorithm with 2048 bits.
-    - `keyout`: Private key file.
-    - `out`: Certificate file.
+    - `req`: Certificate request command
+    - `x509`: Generate an X.509 standard certificate
+    - `sha256`: SHA256 hash algorithm
+    - `days`: Expiration days
+    - `newkey`: Create new key
+    - `rsa:2048`: RSA encryption algorithm with 2048 bits
+    - `keyout`: Private key file
+    - `out`: Certificate file
 
-  Use the root CA to sign the certificate.
+  Sign the certificate using the root CA
 
-  Create an ext file.
+  Create ext file
 
-  > Note: Enter the actual valid domain name at the domain placeholder.
+  > Note: Input the actual valid domain name at the domain location.
 
   ```shell
   authorityKeyIdentifier=keyid,issuer
@@ -98,7 +98,7 @@ This article describes how to generate a self-signed certificate using the OpenS
   DNS.1 = domain
   ```
 
-  Sign the certificate using the root certificate and private key.
+  Sign the certificate using the root certificate and private key
 
   ```shell
   openssl x509 -req -CA rootCA.crt -CAkey rootCA.key -in domain.csr -out domain.crt -days 365 -CAcreateserial -extfile domain.ext

@@ -1,24 +1,24 @@
 ---
 title     : 'ArgoCD'
-summary   : 'Collect Argo CD service status, application status, logs, and tracing information'
+summary   : 'Collect Argo CD service status, application status, and logs, as well as tracing information'
 __int_icon: 'icon/argocd'
 dashboard :
-  - desc  : 'ArgoCD Monitoring View'
+  - desc  : 'ArgoCD monitoring view'
     path  : 'dashboard/en/argocd'
 monitor   :
-  - desc  : 'AutoMQ'
-    path  : 'monitor/en/argocd'
+  - desc  : 'Not available'
+    path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
 # ArgoCD
 <!-- markdownlint-enable -->
 
-Argo CD exposes metrics via the Prometheus protocol. These metrics can be used to monitor the status of Argo CD services and applications. Argo CD primarily exposes three types of metrics:
+Argo CD exposes metrics through the Prometheus protocol, and these metrics can be used to monitor the status of the Argo CD service and applications. Argo CD primarily exposes three types of metrics:
 
-- Application Controller Metrics: Metrics related to Argo CD applications, such as the number of applications and Argo CD status.
-- API Server Metrics: Metrics for Argo CD API requests, such as request counts and response codes.
-- Repo Server Metrics: Metrics related to the Repo Server, such as Git request counts and Git response times.
+- Application Controller Metrics: Metrics related to Argo CD applications, such as the number of applications, Argo CD status, etc.
+- API Server Metrics: Metrics for Argo CD API requests, such as the number of requests, response codes, etc.
+- Repo Server Metrics: Metrics related to the Repo Server, such as the number of Git requests, Git response times, etc.
 
 
 ## Configuration {#config}
@@ -29,82 +29,158 @@ Argo CD exposes metrics via the Prometheus protocol. These metrics can be used t
 - [x] Install ArgoCD
 - [x] Install [DataKit](../datakit/datakit-daemonset-deploy.md)
 
-### Enable KubernetesPrometheus in DataKit
+### Metric
 
-- MountPath configuration to mount the KubernetesPrometheus configuration file into the container
+#### Enable `ServiceMonitor` in DataKit
 
-```yaml
-          - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kubernetesprometheus.conf
-            name: datakit-conf
-            subPath: kubernetesprometheus.conf
-            readOnly: true
+[Automatic discovery of Pod/Service Prometheus metrics](kubernetes-prom.md#auto-discovery-metrics-with-prometheus)
+
+The following collects ArgoCD metric information via the `ServiceMonitor` method.
+
+#### Install Prometheus Operator
+
+```shell
+git clone https://github.com/coreos/prometheus-operator.git
+cd prometheus-operator
+kubectl create -f bundle.yaml
+kubectl get pod -n default
 ```
 
-- Add `kubernetesprometheus.conf` to the `datakit.yaml` ConfigMap
+
+#### Create ServiceMonitor
+
+- Create `argocd-metrics.yaml`
 
 ```yaml
-kubernetesprometheus.conf: |-
-      [inputs.kubernetesprometheus]
-        [[inputs.kubernetesprometheus.instances]]
-          role       = "service"
-          namespaces = ["argocd"]
-          selector   = "app.kubernetes.io/name=argocd-server-metrics"
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-metrics
+  labels:
+    release: prometheus-operator
+  namespace: argocd
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-metrics
+  endpoints:
+  - port: metrics
+    params:
+      measurement:
+        - argocd-application-controller
 
-          scrape     = "true"
-          scheme     = "http"
-          port       = "__kubernetes_service_port_metrics_targetport"
-          path       = "/metrics"
-          params     = ""
+```
 
-          [inputs.kubernetesprometheus.instances.custom]
-            measurement        = "argocd-server"
-            job_as_measurement = false
-            [inputs.kubernetesprometheus.instances.custom.tags]
-              svc_name      = "__kubernetes_service_name"
-              pod_name      = "__kubernetes_service_target_name"
-              pod_namespace = "__kubernetes_service_target_namespace"
-        [[inputs.kubernetesprometheus.instances]]
-          role       = "service"
-          namespaces = ["argocd"]
-          selector   = "aapp.kubernetes.io/name=argocd-metrics"
+- Create `argocd-server-metrics.yaml`
 
-          scrape     = "true"
-          scheme     = "http"
-          port       = "__kubernetes_service_port_metrics_targetport"
-          path       = "/metrics"
-          params     = ""
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-server-metrics
+  labels:
+    release: prometheus-operator
+  namespace: argocd
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-server-metrics
+  endpoints:
+  - port: metrics
+    params:
+      measurement:
+        - argocd-server
+```
 
-          [inputs.kubernetesprometheus.instances.custom]
-            measurement        = "argocd"
-            job_as_measurement = false
-            [inputs.kubernetesprometheus.instances.custom.tags]
-              svc_name      = "__kubernetes_service_name"
-              pod_name      = "__kubernetes_service_target_name"
-              pod_namespace = "__kubernetes_service_target_namespace"
+- Create `argocd-repo-server.yaml`
 
-        [[inputs.kubernetesprometheus.instances]]
-          role       = "service"
-          namespaces = ["argocd"]
-          selector   = "app.kubernetes.io/name=argocd-notifications-controller-metrics"
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-repo-server-metrics
+  labels:
+    release: prometheus-operator
+  namespace: argocd
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-repo-server
+  endpoints:
+  - port: metrics
+    params:
+      measurement:
+        - argocd-repo-server
+```
 
-          scrape     = "true"
-          scheme     = "http"
-          port       = "__kubernetes_service_port_metrics_targetport"
-          path       = "/metrics"
-          params     = ""
+- Create `argocd-applicationset-controller.yaml`
 
-          [inputs.kubernetesprometheus.instances.custom]
-            measurement        = "argocd-application-controller"
-            job_as_measurement = false
-            [inputs.kubernetesprometheus.instances.custom.tags]
-              svc_name      = "__kubernetes_service_name"
-              pod_name      = "__kubernetes_service_target_name"
-              pod_namespace = "__kubernetes_service_target_namespace"
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-applicationset-controller-metrics
+  labels:
+    release: prometheus-operator
+  namespace: argocd
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-applicationset-controller
+  endpoints:
+  - port: metrics
+    params:
+      measurement: 
+        - argocd-applicationset-controller
+```
 
-      [inputs.kubernetesprometheus.global_tags]
-        instance = "__kubernetes_mate_instance"
-        host     = "__kubernetes_mate_host"
-    
+- Execute
+
+```shell
+kubectl apply -f argocd-metrics.yaml
+kubectl apply -f argocd-server-metrics.yaml 
+kubectl apply -f argocd-repo-server.yaml
+kubectl apply -f argocd-applicationset-controller.yaml
+```
+
+- Check Status
+
+```shell
+[root@k8s-master ~]# kubectl get ServiceMonitor -n argocd
+NAME                                       AGE
+argocd-applicationset-controller-metrics   7d6h
+argocd-metrics                             7d6h
+argocd-repo-server-metrics                 7d6h
+argocd-server-metrics                      7d6h
+
+```
+
+#### DataKit Configuration
+
+- Enable DataKit Service Monitor Auto Discovery
+
+Add `env : ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS`
+
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: daemonset-datakit
+  name: datakit
+  namespace: datakit
+spec:
+  ...
+  template:
+    ...
+    spec:
+      ...
+      containers:
+      - env:
+        ...
+        - name: ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS
+          value: "true"
+        ...
 ```
 
 - Restart DataKit
@@ -113,11 +189,11 @@ kubernetesprometheus.conf: |-
 
 ### Tracing
 
-Argo CD 2.4 [#7539](https://github.com/argoproj/argo-cd/pull/7539) added support for the OpenTelemetry protocol, allowing trace data to be obtained through the exposed `otlp` address.
+Argo CD 2.4 [#7539](https://github.com/argoproj/argo-cd/pull/7539) added support for the OpenTelemetry protocol, allowing trace data to be obtained via the exposed `otlp` address.
 
 #### Enable OpenTelemetry Collector in DataKit
 
-- Modify the DataKit ConfigMap
+- Modify DataKit's ConfigMap
 
 ```yaml
 apiVersion: v1
@@ -139,7 +215,7 @@ data:
        addr = "0.0.0.0:4317"
 ```
 
-- Mounting
+- Mount
 
 ```yaml
 apiVersion: apps/v1
@@ -165,7 +241,7 @@ spec:
         ...
 ```
 
-- Enable `4317` port in DataKit
+- Enable `4317` Port in DataKit
 
 ```yaml
 apiVersion: v1
@@ -186,8 +262,6 @@ spec:
       port: 4317
       targetPort: 4317
 ```
-
-After making these changes, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service)
 
 
 #### Enable `otlp` Reporting in ArgoCD
@@ -215,12 +289,12 @@ kubectl apply -f argocd-cmd-params-cm.yaml
 
 - Restart ArgoCD
 
-Traces will only take effect after restarting ArgoCD.
+Restarting ArgoCD is required for the tracing changes to take effect.
 
 
 ### Logs
 
-After installing the DataKit collector, it will automatically collect logs from Argo CD Pods by default, with no additional configuration required.
+After installing the DataKit collector, it will automatically collect logs output by the Argo CD Pod without requiring additional configuration.
 
 ## Metrics {#metric}
 
@@ -255,6 +329,7 @@ After installing the DataKit collector, it will automatically collect logs from 
 | Metric | Description |
 | -- | -- |
 | `argocd_git_request_total` | Count of Git Ls-Remote Requests |
-| `argocd_git_request_duration_seconds_bucket`| Performance of Git Ls-Remote Requests |
+| `argocd_git_request_duration_seconds_bucket`| Git Ls-Remote Requests Performance |
 
-For more metrics, refer to the [official ArgoCD documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/metrics/)
+
+For more metrics, refer to the [ArgoCD Official Documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/metrics/)

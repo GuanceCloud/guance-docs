@@ -1,26 +1,26 @@
 ---
 title     : 'xfsquota'
-summary   : 'Collect quota information from the xfs file system'
+summary   : 'Collects quota information from the xfs file system'
 ---
 
 :fontawesome-brands-linux:
 
 ---
 
-The xfsquota collector gathers quota information from the xfs file system by running `xfs_quota` and parsing its standard output.
+The xfsquota collector parses the standard output by running `xfs_quota`, collecting quota information from the xfs file system.
 
 ## Configuration {#config}
 
 ### Prerequisites {#requirements}
 
-The `xfs_quota` binary executable must exist.
+Existence of the `xfs_quota` binary executable file.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Navigate to the `conf.d/xfsquota` directory under the DataKit installation directory, copy `xfsquota.conf.sample`, and rename it to `xfsquota.conf`. An example is shown below:
+    Navigate to the `conf.d/xfsquota` directory under the DataKit installation directory, copy `xfsquota.conf.sample` and rename it to `xfsquota.conf`. An example is as follows:
     
     ```toml
         
@@ -28,7 +28,7 @@ The `xfs_quota` binary executable must exist.
         ## Path to the xfs_quota binary.
         binary_path = "/usr/sbin/xfs_quota"
     
-        ## (Optional) Collection interval: (defaults to "1m").
+        ## (Optional) Collect interval: (defaults to "1m").
         interval = "1m"
     
         ## Required.
@@ -65,7 +65,7 @@ The `xfs_quota` binary executable must exist.
 |`filesystem_path`|The file path of the XFS quota limit.|
 |`project_id`|The Project ID in xfs_quota identifies a project or group for disk usage limits.|
 
-- Metric List
+- Metrics List
 
 
 | Metric | Description | Type | Unit |

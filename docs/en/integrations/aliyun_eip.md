@@ -2,14 +2,14 @@
 title: 'Alibaba Cloud EIP'
 tags: 
   - Alibaba Cloud
-summary: 'Display of Alibaba Cloud EIP metrics, including network bandwidth, network packets, rate-limited packet loss rate, bandwidth utilization, etc.'
+summary: 'Alibaba Cloud EIP Metrics Display, including network bandwidth, network packets, speed-limited packet drop rate, bandwidth utilization, etc.'
 __int_icon: 'icon/aliyun_eip'
 dashboard:
-  - desc: 'Built-in views for Alibaba Cloud EIP'
+  - desc: 'Alibaba Cloud EIP Built-in Views'
     path: 'dashboard/en/aliyun_eip/'
 
 monitor:
-  - desc: 'Alibaba Cloud EIP monitor'
+  - desc: 'Alibaba Cloud EIP Monitors'
     path: 'monitor/en/aliyun_eip/'
 ---
 
@@ -18,63 +18,65 @@ monitor:
 # Alibaba Cloud EIP
 <!-- markdownlint-enable -->
 
-Display of Alibaba Cloud EIP metrics, including network bandwidth, network packets, rate-limited packet loss rate, bandwidth utilization, etc.
+Alibaba Cloud EIP Metrics Display, including network bandwidth, network packets, speed-limited packet drop rate, bandwidth utilization, etc.
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to activate the Guance Integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
 
-> We recommend deploying the GSE version.
+> It is recommended to deploy the GSE version.
 
 ### Install Script
 
-> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`).
+> Note: Please prepare the required Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize the monitoring data of EIP cloud resources, install the corresponding collection script: 「Guance Integration (Alibaba Cloud-EIP Collection)」(ID: `guance_aliyun_eip`)
+To synchronize the monitoring data of EIP cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-EIP Collection)" (ID: `guance_aliyun_eip`)
 
-After clicking 【Install】, enter the required parameters: Alibaba Cloud AK and Alibaba Cloud account name.
+After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK and Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+In addition, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-> If you need to collect corresponding logs, enable the relevant log collection script. If you need to collect billing data, enable the cloud billing collection script.
+> If you want to collect the corresponding logs, you need to enable the corresponding log collection script. If you want to collect the billing, you need to enable the cloud billing collection script.
 
-We have collected some configurations by default; see the metrics section for details.
+
+We default to collecting some configurations, details are listed under the metrics section.
 
 [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
+
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration. You can also check the task records and logs to ensure there are no abnormalities.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
+2. On the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. On the Guance platform, under 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud - Cloud Monitor, the default metric sets are as follows. You can collect more metrics through configuration [Alibaba Cloud Cloud Monitor Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric | Description | Statistics | Unit |
 | ---- |---- | :---:    | :----: |
-|`net_rx_rate`|Inbound network bandwidth|Value|bits/s|
-|`net_tx_rate`|Outbound network bandwidth|Value|bits/s|
+|`net_rx_rate`|Network inbound bandwidth|Value|bits/s|
+|`net_tx_rate`|Network outbound bandwidth|Value|bits/s|
 |`netrxPkgs_rate`|Inbound packet rate|Average,Minimum,Maximum,Sum|Packets/Second|
 |`nettxPkgs_rate`|Outbound packet rate|Average,Minimum,Maximum,Sum|Packets/Second|
-|`net_in.rate_percentage`|Inbound network bandwidth utilization|Average||
-|`net_out.rate_percentage`|Outbound network bandwidth utilization|Average||
+|`net_in.rate_percentage`|Network inbound bandwidth utilization|Average||
+|`net_out.rate_percentage`|Network outbound bandwidth utilization|Average||
 |`net_rx`|Inbound traffic|Average,Minimum,Maximum,Sum|bytes|
 |`net_tx`|Outbound traffic|Average,Minimum,Maximum,Sum|bytes|
 |`net_rxPkgs`|Inbound packet count|Average,Minimum,Maximum,Sum|Count|
 |`net_txPkgs`|Outbound packet count|Average,Minimum,Maximum,Sum|Count|
-|`in_ratelimit_drop_speed`|Inbound rate-limited packet drop rate|Average,Minimum,Maximum,Sum|Packets/Second|
-|`out_ratelimit_drop_speed`|Outbound rate-limited packet drop rate|Average,Minimum,Maximum,Sum|Packets/Second|
+|`in_ratelimit_drop_speed`|Inbound speed-limited packet drop rate|Average,Minimum,Maximum,Sum|Packets/Second|
+|`out_ratelimit_drop_speed`|Outbound speed-limited packet drop rate|Average,Minimum,Maximum,Sum|Packets/Second|
 
 ## Objects {#object}
 
-The structure of the collected Alibaba Cloud EIP object data can be viewed in 「Infrastructure - Custom」
+The collected Alibaba Cloud EIP object data structure can be viewed under 「Infrastructure - Custom」
 
 ```json
 {
@@ -94,7 +96,8 @@ The structure of the collected Alibaba Cloud EIP object data can be viewed in �
   "fields": {
     "AllocationTime": "2022-01-20T03:06:51Z",
     "ExpiredTime"   : "",
-    "message"       : "{Instance JSON data}"
+    "message"       : "{JSON instance data}"
   }
 }
+
 ```

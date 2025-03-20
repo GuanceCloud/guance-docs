@@ -1,16 +1,15 @@
 ---
 title     : 'Zipkin'
-summary   : 'Zipkin Tracing Data Ingestion'
+summary   : 'Zipkin Tracing data ingestion'
+__int_icon      : 'icon/zipkin'
 tags      :
   - 'ZIPKIN'
   - 'APM'
-  - 'TRACING'
-__int_icon      : 'icon/zipkin'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -18,16 +17,15 @@ monitor   :
 
 ---
 
-The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze the data of Zipkin Tracing protocol.
+The Zipkin Agent embedded in Datakit is used to receive, process, and analyze data following the Zipkin Tracing protocol.
 
 ## Configuration {#config}
 
-### Collector Config {#input-config}
-
+### Collector Configuration {#input-config}
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST installation"
 
-    Go to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample` and name it `zipkin.conf`. Examples are as follows:
+    Navigate to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample`, and rename it as `zipkin.conf`. An example is shown below:
 
     ```toml
         
@@ -84,15 +82,15 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
     
     ```
 
-    After configuration, restart DataKit.
+    After configuring, simply restart DataKit.
 
 === "Kubernetes"
 
-    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, the collector configuration can be injected via the [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector.
 
-    Multiple environment variables supported that can be used in Kubernetes showing below:
+    Supported environment variables in Kubernetes are listed in the table below:
 
-    | Environment Variable Name             | Type        | Example                                                                          |
+    | Environment Variable Name                            | Type        | Example                                                                             |
     | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_ZIPKIN_PATH_V1`            | string      | "/api/v1/spans"                                                                  |
     | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                  |
@@ -104,9 +102,10 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
     | `ENV_INPUT_ZIPKIN_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
     | `ENV_INPUT_ZIPKIN_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
     | `ENV_INPUT_ZIPKIN_STORAGE`            | JSON string | `{"storage":"./zipkin_storage", "capacity": 5120}`                               |
+
 <!-- markdownlint-enable -->
 
-## Tracing {#tracing}
+## Trace Fields {#tracing}
 
 
 
@@ -121,7 +120,6 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 
 | Tag | Description |
 |  ----  | --------|
-|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
@@ -139,7 +137,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -155,7 +153,7 @@ The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze t
 
 
 
-## Zipkin Docs {#docs}
+## Zipkin Documentation {#docs}
 
 - [Quick Start](https://zipkin.io/pages/quickstart.html){:target="_blank"}
 - [Docs](https://zipkin.io/pages/instrumenting.html){:target="_blank"}

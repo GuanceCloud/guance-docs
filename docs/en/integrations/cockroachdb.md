@@ -1,15 +1,15 @@
 ---
-title     : 'CockroachDB'
-summary   : 'Collect CockroachDB metrics'
-__int_icon      : 'icon/cockroachdb'
+title: "CockroachDB"
+summary: "Collect metrics data from CockroachDB"
+__int_icon: "icon/cockroachdb"
 tags:
-  - 'DATA STORES'
-dashboard :
-  - desc  : 'CockroachDB'
-    path  : 'dashboard/en/cockroachdb'
-monitor   :
-  - desc  : 'CockroachDB'
-    path  : 'monitor/en/cockroachdb'
+  - DATABASE
+dashboard:
+  - desc: "CockroachDB"
+    path: "dashboard/en/cockroachdb"
+monitor:
+  - desc: "CockroachDB"
+    path: "monitor/en/cockroachdb"
 ---
 
 
@@ -17,10 +17,9 @@ monitor   :
 
 ---
 
-The CockroachDB collector is used to collect CockroachDB-related indicator data.
-Currently, it only supports data in Prometheus format.
+The CockroachDB collector is used to collect metrics data related to CockroachDB. Currently, it only supports Prometheus format data.
 
-Already tested CockroachDB version:
+Tested versions:
 
 - [x] CockroachDB 19.2
 - [x] CockroachDB 20.2
@@ -33,9 +32,9 @@ Already tested CockroachDB version:
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host deployment"
+=== "HOST Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `cockroachdb.conf.sample` and name it `cockroachdb.conf`. Examples are as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `cockroachdb.conf.sample`, and rename it to `cockroachdb.conf`. Example configuration as follows:
     
     ```toml
         
@@ -123,7 +122,7 @@ Already tested CockroachDB version:
       ## The matched tags would be dropped, but the item would still be sent.
       # tags_ignore = ["xxxx"]
     
-      ## Customize authentification. For now support Bearer Token only.
+      ## Customize authentication. For now support Bearer Token only.
       ## Filling in 'token' or 'token_file' is acceptable.
       # [inputs.prom.auth]
         # type = "bearer_token"
@@ -171,16 +170,15 @@ Already tested CockroachDB version:
     
     ```
 
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
 <!-- markdownlint-enable -->
----
 
-## Metric {#metric}
+## Metrics {#metric}
 
 <!-- markdownlint-disable MD024 -->
 
@@ -198,7 +196,7 @@ Already tested CockroachDB version:
 |`node_id`|Node id.|
 |`store`|Store id.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -444,7 +442,7 @@ Already tested CockroachDB version:
 |`admission_wait_queue_length_sql_root_start`|Length of wait queue.|float|count|
 |`admission_wait_queue_length_sql_root_start_locking_normal_pri`|Length of wait queue.|float|count|
 |`admission_wait_queue_length_sql_root_start_normal_pri`|Length of wait queue.|float|count|
-|`admission_wait_queue_length_sql_sql_response`|[OpenMetrics v1 & v2] Length of Distributed SQL wait queue.|float|count|
+|`admission_wait_queue_length_sql_sql_response`|[OpenMetrics v```plaintext
 |`admission_wait_queue_length_sql_sql_response_locking_normal_pri`|Length of wait queue.|float|count|
 |`admission_wait_queue_length_sql_sql_response_normal_pri`|Length of wait queue.|float|count|
 |`admission_wait_queue_lengths_sql_root_start`|[OpenMetrics v1 & v2] Length of SQL root start wait queue.|float|count|
@@ -513,7 +511,7 @@ Already tested CockroachDB version:
 |`changefeed_flush_hist_nanos_count`|Time spent flushing messages across all change feeds.|float|ns|
 |`changefeed_flush_hist_nanos_sum`|Time spent flushing messages across all change feeds.|float|ns|
 |`changefeed_flush_messages_pushback`|Total time spent throttled for flush quota.|float|ns|
-|`changefeed_flushed_bytes`|Bytes emitted by all feeds; maybe different from `changefeed.emitted_bytes` when compression is enabled.|float|B|
+|`changefeed_flushed_bytes`|Bytes emitted by all feeds; may differ from `changefeed.emitted_bytes` when compression is enabled.|float|B|
 |`changefeed_flushes`|Total flushes across all feeds.|float|count|
 |`changefeed_forwarded_resolved_messages`|Resolved timestamps forwarded from the change aggregator to the change frontier.|float|count|
 |`changefeed_frontier_updates`|Number of change frontier updates across all feeds.|float|count|
@@ -550,7 +548,7 @@ Already tested CockroachDB version:
 |`clock_offset_meannanos`|[OpenMetrics v1 & v2] Mean clock offset with other nodes in nanoseconds.|float|ns|
 |`clock_offset_stddevnanos`|[OpenMetrics v1 & v2] Standard Deviation clock offset with other nodes in nanoseconds.|float|ns|
 |`cloud_read_bytes`|Number of bytes read.|float|B|
-|`cloud_write_bytes`|Number of bytes read.|float|B|
+|`cloud_write_bytes`|Number of bytes written.|float|B|
 |`cluster_preserve_downgrade_option_last_updated`|Timestamp of the last time the preserve down grade option was updated.|float|count|
 |`compactor_compactingnanos`|[OpenMetrics v1] Number of nanoseconds spent compacting ranges.|float|ns|
 |`compactor_compactingnanos_count`|[OpenMetrics v2] Number of nanoseconds spent compacting ranges.|float|ns|
@@ -646,7 +644,8 @@ Already tested CockroachDB version:
 |`distsender_rpc_err_transactionabortederrtype`|Number of TransactionAbortedErrType errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
 |`distsender_rpc_err_transactionpusherrtype`|Number of TransactionPushErrType errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
 |`distsender_rpc_err_transactionretryerrtype`|Number of TransactionRetryErrType errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
-|`distsender_rpc_err_transactionretrywithprotorefresherrtype`|Number of `TransactionRetryWithProtoRefreshErrType` errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
+|`distsender_rpc_err_transactionretrywithprotorefresherrtype`|Number of `TransactionRetryWithProtoRefreshErrType` errors received```plaintext
+|`distsender_rpc_err_transactionretrywithprotorefresherrtype_count`|[OpenMetrics v2] Number of `TransactionRetryWithProtoRefreshErrType` errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
 |`distsender_rpc_err_transactionstatuserrtype`|Number of TransactionStatusErrType errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
 |`distsender_rpc_err_txnalreadyencounterederrtype`|Number of TxnAlreadyEncounteredErrType errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
 |`distsender_rpc_err_unsupportedrequesterrtype`|Number of UnsupportedRequestErrType errors received replica-bound RPCsThis counts how often error of the specified type was received back from replicas as part of executing possibly range-spanning requests. Failures to reach the target replica will be accounted for as 'roachpb.CommunicationErrType' and unclassifiederrors as 'roachpb.InternalErrType'.|float|count|
@@ -885,6 +884,7 @@ Already tested CockroachDB version:
 |`jobs_key_visualizer_currently_idle`|Number of key_visualizer jobs currently considered Idle and can be freely shut down.|float|count|
 |`jobs_key_visualizer_currently_paused`|Number of key_visualizer jobs currently considered Paused.|float|count|
 |`jobs_key_visualizer_currently_running`|Number of key_visualizer jobs currently running in Resume or OnFailOrCancel state.|float|count|
+|`jobs_key_visualizer_expired```plaintext
 |`jobs_key_visualizer_expired_pts_records`|Number of expired protected timestamp records owned by key_visualizer jobs.|float|count|
 |`jobs_key_visualizer_fail_or_cancel_completed`|Number of key_visualizer jobs which successfully completed their failure or cancellation process.|float|count|
 |`jobs_key_visualizer_fail_or_cancel_failed`|Number of key_visualizer jobs which failed with a non-retry able error on their failure or cancellation process.|float|count|
@@ -1148,7 +1148,8 @@ Already tested CockroachDB version:
 |`kvadmission_flow_controller_regular_wait_duration_count`|Latency histogram for time regular requests spent waiting for flow tokens.|float|ns|
 |`kvadmission_flow_controller_regular_wait_duration_sum`|Latency histogram for time regular requests spent waiting for flow tokens.|float|ns|
 |`kvadmission_flow_handle_elastic_requests_admitted`|Number of elastic requests admitted by the flow handle.|float|count|
-|`kvadmission_flow_handle_elastic_requests_errored`|Number of elastic requests that errored out while waiting for flow tokens, at the handle level.|float|count|
+|`kvadmission_flow_handle_elastic_requests_errored`|Number of elastic requests that errored out while```plaintext
+waiting for flow tokens, at the handle level.|float|count|
 |`kvadmission_flow_handle_elastic_requests_waiting`|Number of elastic requests waiting for flow tokens, at the handle level.|float|count|
 |`kvadmission_flow_handle_elastic_wait_duration_bucket`|Latency histogram for time elastic requests spent waiting for flow tokens, at the handle level.|float|ns|
 |`kvadmission_flow_handle_elastic_wait_duration_count`|Latency histogram for time elastic requests spent waiting for flow tokens, at the handle level.|float|ns|
@@ -1400,7 +1401,8 @@ Already tested CockroachDB version:
 |`raft_quota_pool_percent_used_bucket`|Histogram of proposal quota pool utilization (0-100) per leaseholder per metrics interval.|float|count|
 |`raft_quota_pool_percent_used_count`|Histogram of proposal quota pool utilization (0-100) per leaseholder per metrics interval.|float|count|
 |`raft_quota_pool_percent_used_sum`|Histogram of proposal quota pool utilization (0-100) per leaseholder per metrics interval.|float|count|
-|`raft_rcvd_app`|[OpenMetrics v1] Number of MsgApp messages received by this store.|float|count|
+|`raft_rcvd_app`|[Open```plaintext
+Metrics v1] Number of MsgApp messages received by this store.|float|count|
 |`raft_rcvd_app_count`|[OpenMetrics v2] Number of MsgApp messages received by this store.|float|count|
 |`raft_rcvd_appresp`|[OpenMetrics v1] Number of MsgAppResp messages received by this store.|float|count|
 |`raft_rcvd_appresp_count`|[OpenMetrics v2] Number of MsgAppResp messages received by this store.|float|count|
@@ -1672,7 +1674,8 @@ Already tested CockroachDB version:
 |`schedules_scheduled_sql_stats_compaction_executor_started`|Number of `scheduled-sql-stats-compaction-executor` jobs started.|float|count|
 |`schedules_scheduled_sql_stats_compaction_executor_succeeded`|Number of `scheduled-sql-stats-compaction-executor` jobs succeeded.|float|count|
 |`seconds_until_enterprise_license_expiry`|Seconds until enterprise license expiry (0 if no license present or running without enterprise features).|float|count|
-|`security_certificate_expiration_ca`|Expiration for the CA certificate. 0 means no certificate or error.|float|count|
+|`security_certificate_ex```plaintext
+piration_ca`|Expiration for the CA certificate. 0 means no certificate or error.|float|count|
 |`security_certificate_expiration_ca_client_tenant`|Expiration for the Tenant Client CA certificate. 0 means no certificate or error.|float|count|
 |`security_certificate_expiration_client`|Minimum expiration for client certificates, labeled by SQL user. 0 means no certificate or error.|float|count|
 |`security_certificate_expiration_client_ca`|Expiration for the client CA certificate. 0 means no certificate or error.|float|count|
@@ -1985,7 +1988,6 @@ Already tested CockroachDB version:
 |`sql_stats_reported_mem_max_count`|Memory usage for reported fingerprint storage.|float|B|
 |`sql_stats_reported_mem_max_sum`|Memory usage for reported fingerprint storage.|float|B|
 |`sql_stats_txn_stats_collection_duration`|Time took in nanoseconds to collect transaction stats.|float|ns|
-|`sql_stats_txn_stats_collection_duration_bucket`|Time took in nanoseconds to collect transaction stats.|float|ns|
 |`sql_stats_txn_stats_collection_duration_count`|Time took in nanoseconds to collect transaction stats.|float|ns|
 |`sql_stats_txn_stats_collection_duration_sum`|Time took in nanoseconds to collect transaction stats.|float|ns|
 |`sql_temp_object_cleaner_active_cleaners`|number of cleaner tasks currently running on this node.|float|count|
@@ -2241,7 +2243,6 @@ Already tested CockroachDB version:
 |`txnwaitqueue_pusher_wait_time_bucket`|Histogram of durations spent in queue by pushers.|float|ns|
 |`txnwaitqueue_pusher_wait_time_count`|Histogram of durations spent in queue by pushers.|float|ns|
 |`txnwaitqueue_pusher_wait_time_sum`|Histogram of durations spent in queue by pushers.|float|ns|
-|`txnwaitqueue_pusher_waiting`|Number of pushers on the txn wait queue.|float|count|
 |`txnwaitqueue_query_wait_time_bucket`|Histogram of durations spent in queue by queries.|float|ns|
 |`txnwaitqueue_query_wait_time_count`|Histogram of durations spent in queue by queries.|float|ns|
 |`txnwaitqueue_query_wait_time_sum`|Histogram of durations spent in queue by queries.|float|ns|

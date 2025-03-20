@@ -1,6 +1,6 @@
 ---
 title     : 'IIS'
-summary   : 'Collect IIS metrics'
+summary   : 'Collect IIS Metrics data'
 tags:
   - 'WINDOWS'
   - 'IIS'
@@ -19,20 +19,20 @@ monitor   :
 
 ---
 
-Microsoft IIS collector
+Collect IIS Metrics data.
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-Operating system requirements::
+Operating system requirements:
 
-- Windows Vista and above (excluding Windows Vista)
-- Windows Server 2008 R2 and above
+- Windows 7 or later versions (including Windows 7)
+- Windows Server 2008 R2 or later versions
 
 ### Collector Configuration {#input-config}
 
-Go to the `conf.d/iis` directory under the DataKit installation directory, copy `iis.conf.sample` and name it `iis.conf`. Examples are as follows:
+Navigate to the `conf.d/iis` directory under the DataKit installation directory, copy `iis.conf.sample`, and rename it to `iis.conf`. Example as follows:
 
 ```toml
 
@@ -54,23 +54,22 @@ Go to the `conf.d/iis` directory under the DataKit installation directory, copy 
 
 After configuration, restart DataKit.
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.iis.tags]`:
+All data collections below will append a global tag named `host` by default (tag value is the hostname where DataKit resides), and you can also specify other tags in the configuration through `[inputs.iis.tags]`:
 
 ``` toml
-  [inputs.iis.tags]
-    # some_tag = "some_value"
-    # more_tag = "some_other_value"
-    # ...
+[inputs.iis.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
 
 
 ### `iis_app_pool_was`
-
 
 
 - Tags
@@ -81,7 +80,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`app_pool`|IIS app pool|
 |`host`|Host name|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -94,8 +93,8 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-### `iis_web_service`
 
+### `iis_web_service`
 
 
 - Tags
@@ -106,7 +105,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|Host name|
 |`website`|IIS web site|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -136,12 +135,13 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-## Log {#logging}
 
-If you need to collect IIS logs, open the log-related configuration in the configuration, such as:
+## Logs {#logging}
+
+To collect IIS logs, enable log-related configurations in the configuration file, for example:
 
 ```toml
 [inputs.iis.log]
-    # Fill in the absolute path
+    # Insert absolute path
     files = ["C:/inetpub/logs/LogFiles/W3SVC1/*"] 
 ```

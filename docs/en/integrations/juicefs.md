@@ -1,12 +1,12 @@
 ---
 title     : 'JuiceFS'
-summary   : 'Collect metrics information related to JuiceFS data size, IO, transactions, objects, clients, and other components'
+summary   : 'Collect information on component metrics related to JuiceFS data size, IO, transactions, objects, clients, etc.'
 __int_icon: 'icon/juicefs'
 dashboard :
   - desc  : 'JuiceFS monitoring view'
     path  : 'dashboard/en/juicefs'
 monitor   :
-  - desc  : 'None'
+  - desc  : 'None available'
     path  : '-'
 ---
 
@@ -14,36 +14,41 @@ monitor   :
 # [JuiceFS](https://juicefs.com/docs/en/community/introduction/)
 <!-- markdownlint-enable -->
 
-Collect metrics information related to JuiceFS data size, IO, transactions, objects, clients, and other components.
+Collect information on component metrics related to JuiceFS data size, IO, transactions, objects, clients, etc.
 
 ## Installation and Configuration {#config}
 
+
 ### JuiceFS Metrics
 
-JuiceFS exposes the metrics port by default at `9567`. You can view the metrics information via a browser at `http://clientIP:9567/metrics`.
+JuiceFS exposes the default metrics port as `9567`, where you can view relevant metric information through a browser: `http://clientIP:9567/metrics`.
 
 ### DataKit Collector Configuration
 
-Since `JuiceFS` can directly expose a `metrics` URL, it can be collected using the [`prom`](./prom.md) collector.
+Since `JuiceFS` can directly expose a `metrics` URL, it is possible to collect data directly using the [`prom`](./prom.md) collector.
 
-The configuration changes are as follows:
+
+
+The content to be adjusted is as follows:
 
 ```toml
+
 urls = ["http://localhost:9567/metrics"]
 
 source = "juicefs"
 
 interval = "10s"
+
 ```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Other configurations can be adjusted as needed*</font>
+<font color="red">*Other configurations may need adjustment*</font>
 <!-- markdownlint-enable -->
-, Parameter adjustment notes:
+, parameter adjustment description:
 
-- urls: Prometheus metrics address; enter the metrics URL exposed by the corresponding component.
-- source: Collector alias, it is recommended to differentiate.
-- interval: Collection interval.
+- urls: The `prometheus` metrics address; here, fill in the metrics URL exposed by the corresponding component.
+- source: Collector alias, it's recommended to make distinctions.
+- interval: Collection interval
 
 ### Restart DataKit
 
@@ -53,4 +58,6 @@ systemctl restart datakit
 
 ## Metrics {#metric}
 
-For detailed metrics information, refer to the [official documentation](https://juicefs.com/docs/en/community/p8s_metrics).
+For detailed metrics information, refer to the [official documentation](https://juicefs.com/docs/en/community/p8s_metrics)
+
+```

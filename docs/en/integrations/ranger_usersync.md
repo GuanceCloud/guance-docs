@@ -3,7 +3,7 @@ title     : 'Ranger Usersync'
 summary   : 'Collect Ranger Usersync Metrics information'
 __int_icon: 'icon/ranger'
 dashboard :
-  - desc  : 'Built-in views for Ranger Usersync'
+  - desc  : 'Ranger Usersync built-in views'
     path  : 'dashboard/en/ranger_usersync'
 ---
 
@@ -33,32 +33,32 @@ Add the following to the startup parameters of Ranger Usersync:
 
 #### 2.1 [Install DataKit](../datakit/datakit-install.md)
 
-#### 2.2 Configure the Collector
+#### 2.2 Configure Collector
 
-The jmx-exporter can directly expose a `metrics` URL, so you can use the [Prometheus collector](./prom.md) for collection.
+The jmx-exporter can directly expose `metrics` url, so it can be collected via the [prom](./prom.md) collector.
 
-Go to the [DataKit installation directory](./datakit_dir.md) under `conf.d/prom`, copy `prom.conf.sample` to `ranger-usersync.conf`.
+Go to the `conf.d/prom` directory under the [DataKit installation directory](./datakit_dir.md), copy `prom.conf.sample` as `ranger-usersync.conf`.
 
 > `cp prom.conf.sample ranger-usersync.conf`
 
-Adjust the content of `ranger-usersync.conf` as follows:
+Adjust the content of `ranger_usersync.conf` as follows:
 
 ```toml
   urls = ["http://localhost:17145/metrics"]
-  source ="ranger-usersync"
+  source = "ranger-usersync"
   [inputs.prom.tags]
     component = "ranger-usersync" 
   interval = "10s"
 ```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Other configurations should be adjusted as needed*</font>, parameter adjustment explanation:
+<font color="red">*Other configurations can be adjusted as needed*</font>, parameter adjustment explanation:
 <!-- markdownlint-enable -->
 
 <!-- markdownlint-disable MD004 -->
-- urls: The `jmx-exporter` metrics URL, fill in the metrics URL exposed by the corresponding component.
-- source: Alias for the collector, it is recommended to differentiate.
-- keep_exist_metric_name: Keep metric names.
+- urls: The `jmx-exporter` Metrics address, fill in the corresponding component's exposed Metrics url here.
+- source: Alias for the collector, it is recommended to make distinctions.
+- keep_exist_metric_name: Keep the metric name unchanged.
 - interval: Collection interval.
 - inputs.prom.tags: Add additional tags.
 <!-- markdownlint-enable -->
@@ -69,15 +69,15 @@ Adjust the content of `ranger-usersync.conf` as follows:
 
 ## Metrics {#metric}
 
-### Hadoop Metrics Set
+### Hadoop Measurement Set
 
-Ranger Usersync metrics are located under the Hadoop metrics set. Below is an introduction to the relevant metrics for Ranger Usersync.
+Ranger Usersync Metrics are located under the Hadoop Measurement set, and this section mainly introduces the description of Ranger Usersync related Metrics.
 
 | Metrics | Description | Unit |
-|:--------|:------------|:-----|
-|`hadoop_usersync_addgroupcountsuccess` | Number of successful user group additions | count |
-|`hadoop_usersync_addusercountsuccess` | Number of successful user additions | count |
-|`hadoop_usersync_auditcountsuccess` | Number of successful audits | count |
+|:--------|:-----------|:-----|
+|`hadoop_usersync_addgroupcountsuccess` | Number of successful additions of user groups | count |
+|`hadoop_usersync_addusercountsuccess` | Number of successful additions of users | count |
+|`hadoop_usersync_auditcountsuccess` | Number of successful audits executed | count |
 |`hadoop_usersync_countgroup` | Total number of user groups | count |
 |`hadoop_usersync_countgroupuser` | Total number of users in user groups | count |
 |`hadoop_usersync_countuser` | Total number of users | count |
@@ -87,32 +87,32 @@ Ranger Usersync metrics are located under the Hadoop metrics set. Below is an in
 |`hadoop_usersync_gctimetotal` | Total time spent on garbage collection (GC) | count |
 |`hadoop_usersync_getgroupsavgtime` | Average time to get user groups | count |
 |`hadoop_usersync_getgroupsnumops` | Number of operations to get user groups | count |
-|`hadoop_usersync_groupusercountsuccess` | Number of successful counts of users in user groups | count |
-|`hadoop_usersync_loginfailureavgtime` | Average time for failed logins | ms |
-|`hadoop_usersync_loginfailurenumops` | Number of failed login attempts | count |
+|`hadoop_usersync_groupusercountsuccess` | Number of successful counts of user group users | count |
+|`hadoop_usersync_loginfailureavgtime` | Average time for login failures | ms |
+|`hadoop_usersync_loginfailurenumops` | Number of login failures | count |
 |`hadoop_usersync_loginsuccessavgtime` | Average time for successful logins | ms |
-|`hadoop_usersync_loginsuccessnumops` | Number of successful login attempts | count |
+|`hadoop_usersync_loginsuccessnumops` | Number of successful logins | count |
 |`hadoop_usersync_memorycurrent` | Current memory usage | byte |
 |`hadoop_usersync_memorymax` | Maximum memory usage | byte |
 |`hadoop_usersync_numactivesinks` | Number of active sinks | count |
 |`hadoop_usersync_numactivesources` | Number of active sources | count |
-|`hadoop_usersync_numallsinks` | Total number of sinks | count |
-|`hadoop_usersync_numallsources` | Total number of sources | count |
+|`hadoop_usersync_numallsinks` | Total number of all sinks | count |
+|`hadoop_usersync_numallsources` | Total number of all sources | count |
 |`hadoop_usersync_processorsavailable` | Number of available processors | count |
 |`hadoop_usersync_publishavgtime` | Average time for publish operations | ms |
 |`hadoop_usersync_publishnumops` | Number of publish operations | count |
 |`hadoop_usersync_renewalfailures` | Number of renewal failures | count |
-|`hadoop_usersync_sink_jsonavgtime` | Average time for JSON sink operations | count |
+|`hadoop_usersync_sink_jsonavgtime` | Average time for JSON sink | count |
 |`hadoop_usersync_sink_jsondropped` | Number of messages dropped by JSON sink | count |
-|`hadoop_usersync_sink_jsonnumops` | Number of JSON sink operations | count |
+|`hadoop_usersync_sink_jsonnumops` | Number of operations performed by JSON sink | count |
 |`hadoop_usersync_sink_jsonqsize` | Queue size of JSON sink | count |
-|`hadoop_usersync_sink_prometheusavgtime` | Average time for Prometheus sink operations | count |
+|`hadoop_usersync_sink_prometheusavgtime` | Average time for Prometheus sink | count |
 |`hadoop_usersync_sink_prometheusdropped` | Number of messages dropped by Prometheus sink | count |
-|`hadoop_usersync_sink_prometheusnumops` | Number of Prometheus sink operations | count |
+|`hadoop_usersync_sink_prometheusnumops` | Number of operations performed by Prometheus sink | count |
 |`hadoop_usersync_sink_prometheusqsize` | Queue size of Prometheus sink | count |
 |`hadoop_usersync_snapshotavgtime` | Average time for snapshot operations | ms |
 |`hadoop_usersync_snapshotnumops` | Number of snapshot operations | count |
-|`hadoop_usersync_systemloadavg` | System's average load | count |
+|`hadoop_usersync_systemloadavg` | System average load | count |
 |`hadoop_usersync_threadsblocked` | Number of blocked threads | count |
 |`hadoop_usersync_threadsremaining` | Number of remaining threads | count |
 |`hadoop_usersync_threadswaiting` | Number of waiting threads | count |

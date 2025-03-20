@@ -1,60 +1,61 @@
 ---
 title: 'Kubernetes'
-summary: 'Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud.'
+summary: 'Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to Guance.'
+__int_icon:    'icon/kubernetes/'  
 tags:
   - 'KUBERNETES'
-  - 'CONTAINER'
-__int_icon:    'icon/kubernetes/'  
+  - 'CONTAINERS'
 dashboard:
-  - desc: 'Kubernetes Cluster Overview'
-    path: 'dashboard/zh/kubernetes'
-  - desc: 'Kubernetes Nodes Overview'
-    path: 'dashboard/zh/kubernetes_nodes_overview'
-  - desc: 'Kubernetes Services'
-    path: 'dashboard/zh/kubernetes_services'
-  - desc: 'Kubernetes Deployments'
-    path: 'dashboard/zh/kubernetes_deployment'
-  - desc: 'Kubernetes DaemonSets'
-    path: 'dashboard/zh/kubernetes_daemonset'
-  - desc: 'Kubernetes StatefulSets'
-    path: 'dashboard/zh/kubernetes_statefulset'
-  - desc: 'Kubernetes Pods Overview'
-    path: 'dashboard/zh/kubernetes_pods_overview'
-  - desc: 'Kubernetes Pods Detail'
-    path: 'dashboard/zh/kubernetes_pod_detail'
-  - desc: 'Kubernetes Events'
-    path: 'dashboard/zh/kubernetes_events'
+  - desc: 'Kubernetes Cluster Overview monitoring view'
+    path: 'dashboard/en/kubernetes'
+  - desc: 'Kubernetes Nodes Overview monitoring view'
+    path: 'dashboard/en/kubernetes_nodes_overview'
+  - desc: 'Kubernetes Services monitoring view'
+    path: 'dashboard/en/kubernetes_services'
+  - desc: 'Kubernetes Deployments monitoring view'
+    path: 'dashboard/en/kubernetes_deployment'
+  - desc: 'Kubernetes DaemonSets monitoring view'
+    path: 'dashboard/en/kubernetes_daemonset'
+  - desc: 'Kubernetes StatefulSets monitoring view'
+    path: 'dashboard/en/kubernetes_statefulset'
+  - desc: 'Kubernetes Pods Overview monitoring view'
+    path: 'dashboard/en/kubernetes_pods_overview'
+  - desc: 'Kubernetes Pods Detail monitoring view'
+    path: 'dashboard/en/kubernetes_pod_detail'
+  - desc: 'Kubernetes Events monitoring view'
+    path: 'dashboard/en/kubernetes_events'
  
 monitor:
   - desc: 'Kubernetes'
     path: 'monitor/en/kubernetes'
 ---
 
+
+
 :fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
 ---
 
-Collect indicators, objects and log data of container and Kubernetes and report them to Guance Cloud.
+Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to Guance.
 
-## Configuration {#config}
+## Collector Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requrements}
 
-- At present, container supported Docker/Containerd/CRI-O runtime
-    - Docker v17.04 and above should be installed, Container v15.1 and above should be installed, CRI-O 1.20.1 and above should be installed.
-- Collecting Kubernetes data requires the DataKit to [be deployed as a DaemonSet](../datakit/datakit-daemonset-deploy.md).
+- Currently CONTAINERS support Docker, Containerd, CRI-O container runtimes
+    - Version requirements: Docker v17.04 and above versions, Containerd v1.5.1 and above, CRI-O 1.20.1 and above
+- Collecting Kubernetes data requires DataKit to be deployed in [DaemonSet mode](../datakit/datakit-daemonset-deploy.md).
 
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    - Container collection supports both Docker and Containerd runtime[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7), and both are enabled by default.
+    - Container collection supports Docker and Containerd runtime environments [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7), and both are enabled by default.
 
+=== "HOST Installation"
 
-=== "host installation"
-
-    In the case of a pure Docker or Containerd environment, the DataKit can only be installed on the host machine.
+    If it's a pure Docker or Containerd environment, then DataKit can only be installed on the host machine.
     
-    Go to the *conf.d/container* directory under the DataKit installation directory, copy *container.conf.sample* and name it *container.conf*. Examples are as follows:
+    Enter the *conf.d/container* directory under the DataKit installation directory, copy *container.conf.sample* and rename it as *container.conf*. An example is shown below:
     
     ``` toml
         
@@ -71,7 +72,7 @@ Collect indicators, objects and log data of container and Kubernetes and report 
       enable_k8s_event        = true
       enable_k8s_node_local   = true
     
-      ## Add resource Label as Tags (container use Pod Label), need to specify Label keys.
+      ## Add resource Label as Tags (container uses Pod Label), need to specify Label keys.
       ## e.g. ["app", "name"]
       # extract_k8s_label_as_tags_v2            = []
       # extract_k8s_label_as_tags_v2_for_metric = []
@@ -125,453 +126,449 @@ Collect indicators, objects and log data of container and Kubernetes and report 
     
     ```
 
+=== "KUBERNETES"
 
+    It can be configured through [ConfigMap method to inject collector configurations](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
-=== "Kubernetes"
+    It also supports modifying configuration parameters via environment variables (which need to be added as default collectors in ENV_DEFAULT_ENABLED_INPUTS):
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
-
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
     - **ENV_INPUT_CONTAINER_ENDPOINTS**
     
-        Append to container endpoints
+        Append multiple container runtime endpoints
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `endpoints`
+        **Collector Configuration Field**: `endpoints`
     
         **Example**: "`unix:///var/run/docker.sock,unix:///var/run/containerd/containerd.sock,unix:///var/run/crio/crio.sock`"
     
     - **ENV_INPUT_CONTAINER_DOCKER_ENDPOINT**
     
-        Deprecated. Specify the endpoint of Docker Engine
+        Deprecated, specify Docker Engine endpoint
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `docker_endpoint`
+        **Collector Configuration Field**: `docker_endpoint`
     
         **Example**: `unix:///var/run/docker.sock`
     
     - **ENV_INPUT_CONTAINER_CONTAINERD_ADDRESS**
     
-        Deprecated. Specify the endpoint of `Containerd`
+        Deprecated, specify `Containerd` endpoint
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `containerd_address`
+        **Collector Configuration Field**: `containerd_address`
     
         **Example**: `/var/run/containerd/containerd.sock`
     
     - **ENV_INPUT_CONTAINER_ENABLE_CONTAINER_METRIC**
     
-        Start container index collection
+        Enable container metrics collection
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_container_metric`
+        **Collector Configuration Field**: `enable_container_metric`
     
-        **Default**: true
+        **Default Value**: true
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_METRIC**
     
-        Start k8s index collection
+        Enable K8S metrics collection
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_k8s_metric`
+        **Collector Configuration Field**: `enable_k8s_metric`
     
-        **Default**: true
+        **Default Value**: true
     
     - **ENV_INPUT_CONTAINER_ENABLE_POD_METRIC**
     
-        Turn on Pod index collection
+        Whether to enable POD metrics collection (CPU and memory usage)
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_pod_metric`
+        **Collector Configuration Field**: `enable_pod_metric`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_EVENT**
     
-        Enable event collection mode
+        Whether to enable time-based collection mode
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_k8s_event`
+        **Collector Configuration Field**: `enable_k8s_event`
     
-        **Default**: true
+        **Default Value**: true
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL**
     
-        Enable sub-Node collection mode, where the Datakit deployed on each Node independently collects the resources of the current Node.[:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7) Need new `RABC` [link](#rbac-nodes-stats)
+        Whether to enable Node-based collection mode, where Datakit deployed on each Node independently collects resources from that Node. [:octicons-tag-24: Version-1.19.0](../datakit/changelog.md#cl-1.19.0) Requires additional `RABC` permissions, see [here](#rbac-nodes-stats)
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_k8s_node_local`
+        **Collector Configuration Field**: `enable_k8s_node_local`
     
-        **Default**: true
+        **Default Value**: true
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS**
     
-        Should the labels of the resources be appended to the tags collected? Only Pod metrics, objects, and Node objects will be added, and the labels of container logs belonging to the Pod will also be added. If the key of a label contains a dot character, it will be replaced with a hyphen
+        Whether to append resource labels to collected tags. Only POD metrics, objects, and Node objects will add these labels, and container logs will also add their corresponding POD labels. If label key contains dot characters, it will be converted to hyphens.
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `extract_k8s_label_as_tags`
+        **Collector Configuration Field**: `extract_k8s_label_as_tags`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2**
     
-        Append the labels of the resource to the tag of the non-metric (like object and logging) data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
+        Append resource labels to data (excluding metrics data) tags. Specify label keys; if there’s only one key and it’s an empty string (e.g., [""]), all labels will be added to the tag. Containers inherit POD labels. If label key contains dot characters, it will be converted to hyphens.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `extract_k8s_label_as_tags_v2`
+        **Collector Configuration Field**: `extract_k8s_label_as_tags_v2`
     
         **Example**: `["app","name"]`
     
     - **ENV_INPUT_CONTAINER_EXTRACT_K8S_LABEL_AS_TAGS_V2_FOR_METRIC**
     
-        Append the labels of the resource to the tag of the metric data. Label keys should be specified, if there is only one key and it is an empty string (e.g. [""]), all labels will be added to the tag. The container will inherit the Pod labels. If the key of the label has the dot character, it will be changed to a horizontal line
+        Append resource labels to metric data tags. Specify label keys; if there’s only one key and it’s an empty string (e.g., [""]), all labels will be added to the tag. Containers inherit POD labels. If label key contains dot characters, it will be converted to hyphens.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `extract_k8s_label_as_tags_v2_for_metric`
+        **Collector Configuration Field**: `extract_k8s_label_as_tags_v2_for_metric`
     
         **Example**: `["app","name"]`
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_ANNOTATIONS**
     
-        Whether to turn on Prometheus Pod Annotations and collect metrics automatically
+        Whether to enable automatic discovery of Prometheus POD Annotations and collect metrics
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_auto_discovery_of_prometheus_pod_annotations`
+        **Collector Configuration Field**: `enable_auto_discovery_of_prometheus_pod_annotations`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_ANNOTATIONS**
     
-        Whether to turn on Prometheus Service Annotations and collect metrics automatically
+        Whether to enable automatic discovery of Prometheus Service Annotations and collect metrics
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_auto_discovery_of_prometheus_service_annotations`
+        **Collector Configuration Field**: `enable_auto_discovery_of_prometheus_service_annotations`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_POD_MONITORS**
     
-        Whether to turn on automatic discovery of Prometheus PodMonitor CRD and collection of metrics, see [Prometheus-Operator CRD doc](kubernetes-prometheus-operator-crd
+        Whether to enable automatic discovery of Prometheus POD Monitor CRD and collect metrics, see [Prometheus-Operator CRD Documentation](kubernetes-prometheus-operator-crd.md#config)
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_auto_discovery_of_prometheus_pod_monitors`
+        **Collector Configuration Field**: `enable_auto_discovery_of_prometheus_pod_monitors`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_AUTO_DISCOVERY_OF_PROMETHEUS_SERVICE_MONITORS**
     
-        Whether to turn on automatic discovery of Prometheus ServiceMonitor CRD and collection of metrics, see [Prometheus-Operator CRD doc](kubernetes-prometheus-operator-crd
+        Whether to enable automatic discovery of Prometheus ServiceMonitor CRD and collect metrics, see [Prometheus-Operator CRD Documentation](kubernetes-prometheus-operator-crd.md#config)
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_auto_discovery_of_prometheus_service_monitors`
+        **Collector Configuration Field**: `enable_auto_discovery_of_prometheus_service_monitors`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_KEEP_EXIST_PROMETHEUS_METRIC_NAME**
     
-        Deprecated. Whether to keep the raw field names for Prometheus, see [Kubernetes Prometheus doc](kubernetes-prom.md#measurement-and-tags
+        Deprecated. Whether to keep the original Prometheus field name, see [KUBERNETES Prometheus](kubernetes-prom.md#measurement-and-tags)
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `keep_exist_prometheus_metric_name`
+        **Collector Configuration Field**: `keep_exist_prometheus_metric_name`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG**
     
-        Include condition of container log, filtering with image
+        Container log whitelist, filtered by image/namespace
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `container_include_log`
+        **Collector Configuration Field**: `container_include_log`
     
         **Example**: `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`
     
     - **ENV_INPUT_CONTAINER_CONTAINER_EXCLUDE_LOG**
     
-        Exclude condition of container log, filtering with image
+        Container log blacklist, filtered by image/namespace
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `container_exclude_log`
+        **Collector Configuration Field**: `container_exclude_log`
     
         **Example**: `"image:pubrepo.jiagouyun.com/datakit/logfwd*"`
     
     - **ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC**
     
-        Include condition of pod metrics, filtering with namespace
+        POD metric whitelist, filtered by namespace
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `pod_include_metric`
+        **Collector Configuration Field**: `pod_include_metric`
     
         **Example**: `"namespace:datakit*"`
     
     - **ENV_INPUT_CONTAINER_POD_EXCLUDE_METRIC**
     
-        Exclude condition of pod metrics, filtering with namespace
+        POD metric blacklist, filtered by namespace
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `pod_exclude_metric`
+        **Collector Configuration Field**: `pod_exclude_metric`
     
         **Example**: `"namespace:kube-system"`
     
     - **ENV_INPUT_CONTAINER_KUBERNETES_URL**
     
-        k8s api-server access address
+        K8S API service access address
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `kubernetes_url`
+        **Collector Configuration Field**: `kubernetes_url`
     
         **Example**: `https://kubernetes.default:443`
     
     - **ENV_INPUT_CONTAINER_BEARER_TOKEN**
     
-        The path to the token file required to access k8s api-server
+        Token file path required to access K8S services
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `bearer_token`
+        **Collector Configuration Field**: `bearer_token`
     
         **Example**: `/run/secrets/kubernetes.io/serviceaccount/token`
     
     - **ENV_INPUT_CONTAINER_BEARER_TOKEN_STRING**
     
-        Token string required to access k8s api-server
+        Token string required to access K8S services
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `bearer_token_string`
+        **Collector Configuration Field**: `bearer_token_string`
     
         **Example**: `your-token-string`
     
     - **ENV_INPUT_CONTAINER_LOGGING_SEARCH_INTERVAL**
     
-        The time interval of log discovery, that is, how often logs are retrieved. If the interval is too long, some logs with short survival will be ignored
+        Log discovery time interval, i.e., how often logs are searched. If the interval is too long, some short-lived logs may be ignored.
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `logging_search_interval`
+        **Collector Configuration Field**: `logging_search_interval`
     
-        **Default**: 60s
+        **Default Value**: 60s
     
     - **ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP**
     
-        Log collection configures additional source matching, and the regular source will be renamed
+        Additional source matching for log collection, sources matching the regex will be renamed.
     
-        **Type**: Map
+        **Field Type**: Map
     
-        **input.conf**: `logging_extra_source_map`
+        **Collector Configuration Field**: `logging_extra_source_map`
     
         **Example**: `source_regex*=new_source,regex*=new_source2`
     
     - **ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON**
     
-        Log collection with multiline configuration as specified by the source
+        Multiline configuration for log collection based on source.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `logging_source_multiline_map`
+        **Collector Configuration Field**: `logging_source_multiline_map`
     
         **Example**: `{"source_nginx":"^\d{4}", "source_redis":"^[A-Za-z_]"}`
     
     - **ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_DETECTION**
     
-        Whether the automatic multi-line mode is turned on for log collection; the applicable multi-line rules will be matched in the patterns list after it is turned on
+        Whether to enable automatic multiline mode for log collection. When enabled, applicable multiline rules will be matched in the patterns list.
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `logging_auto_multiline_detection`
+        **Collector Configuration Field**: `logging_auto_multiline_detection`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_LOGGING_AUTO_MULTILINE_EXTRA_PATTERNS_JSON**
     
-        Automatic multi-line pattern pattens list for log collection, supporting manual configuration of multiple multi-line rules
+        Patterns list for automatic multiline mode for log collection. Supports manual configuration of multiple multiline rules.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `logging_auto_multiline_extra_patterns`
+        **Collector Configuration Field**: `logging_auto_multiline_extra_patterns`
     
         **Example**: `["^\d{4}-\d{2}", "^[A-Za-z_]"]`
     
-        **Default**: For more default rules, see [doc](logging.md#auto-multiline)
+        **Default Value**: For more default rules, see [doc](logging.md#auto-multiline)
     
     - **ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION**
     
-        Maximum single multi-row life cycle of log collection. At the end of this cycle, existing multi-row data will be emptied and uploaded to avoid accumulation
+        Maximum lifecycle for single multiline log collection. After this cycle ends, existing multiline data will be cleared and uploaded to avoid accumulation.
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `logging_max_multiline_life_duration`
+        **Collector Configuration Field**: `logging_max_multiline_life_duration`
     
-        **Default**: 3s
+        **Default Value**: 3s
     
     - **ENV_INPUT_CONTAINER_LOGGING_REMOVE_ANSI_ESCAPE_CODES**
     
-        Remove `ansi` escape codes and color characters, referred to [`ansi-decode` doc](logging.md#ansi-decode)
+        Remove color characters from collected logs, see [Special Character Handling for Logs](logging.md#ansi-decode).
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `logging_remove_ansi_escape_codes`
+        **Collector Configuration Field**: `logging_remove_ansi_escape_codes`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_LOGGING_FILE_FROM_BEGINNING_THRESHOLD_SIZE**
     
-        Decide whether or not to from_beginning based on the file size, if the file size is smaller than this value when the file is found, start the collection from the begin
+        Decide whether to start collecting logs from the beginning based on file size. If the file size is less than this value when discovered, use from_beginning to start collecting from the top.
     
-        **Type**: Int
+        **Field Type**: Int
     
-        **input.conf**: `logging_file_from_beginning_threshold_size`
+        **Collector Configuration Field**: `logging_file_from_beginning_threshold_size`
     
-        **Default**: 20,000,000
+        **Default Value**: 20,000,000
     
     - **ENV_INPUT_CONTAINER_LOGGING_FILE_FROM_BEGINNING**
     
-        Whether to collect logs from the begin of the file
+        Whether to start collecting logs from the beginning of the file.
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `logging_file_from_beginning`
+        **Collector Configuration Field**: `logging_file_from_beginning`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_LOGGING_MAX_OPEN_FILES**
     
-        The maximum allowed number of open files. If it is set to -1, it means there is no limit.
+        Maximum number of open files for log collection. If set to -1, there is no limit.
     
-        **Type**: Int
+        **Field Type**: Int
     
-        **input.conf**: `logging_max_open_files`
+        **Collector Configuration Field**: `logging_max_open_files`
     
-        **Default**: 500
+        **Default Value**: 500
     
     - **ENV_INPUT_CONTAINER_LOGGING_FIELD_WHITE_LIST**
     
-        "Only retain the fields specified in the whitelist."
+        Specify fields to retain in the whitelist.
     
-        **Type**: List
+        **Field Type**: List
     
-        **input.conf**: `logging_field_white_list`
+        **Collector Configuration Field**: `logging_field_white_list`
     
         **Example**: `'["service","container_id"]'`
     
     - **ENV_INPUT_CONTAINER_CONTAINER_MAX_CONCURRENT**
     
-        Maximum number of concurrency when collecting container data, recommended to be turned on only when the collection delay is large
+        Maximum concurrency for collecting container data. Recommended only to enable when there is significant collection delay.
     
-        **Type**: Int
+        **Field Type**: Int
     
-        **input.conf**: `container_max_concurrent`
+        **Collector Configuration Field**: `container_max_concurrent`
     
-        **Default**: cpu cores + 1
-    
-    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
-    
-        Turn off collection of Kubernetes Job resources (including metrics data and object data)
-    
-        **Type**: Boolean
-    
-        **input.conf**: `disable_collect_kube_job`
-    
-        **Default**: false
+        **Default Value**: cpu cores + 1
     
     - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
     
-        Turn off collection of Kubernetes Job resources (including metrics data and object data)
+        Disable collection of Kubernetes JOB resources (including metric data and object data)
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `disable_collect_kube_job`
+        **Collector Configuration Field**: `disable_collect_kube_job`
     
-        **Default**: false
+        **Default Value**: false
+    
+    - **ENV_INPUT_CONTAINER_DISABLE_COLLECT_KUBE_JOB**
+    
+        Disable collection of Kubernetes JOB resources (including metric data and object data)
+    
+        **Field Type**: Boolean
+    
+        **Collector Configuration Field**: `disable_collect_kube_job`
+    
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_ENABLE_K8S_SELF_METRIC_BY_PROM**
     
-        Enable collection of Kubernetes Prometheus data, including APIServer, Scheduler, Etcd, etc.(Experimental)
+        Enable collection of Kubernetes Prometheus data, including APIServer, Scheduler, Etcd, etc. (Experimental)
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `enable_k8s_self_metric_by_prom`
+        **Collector Configuration Field**: `enable_k8s_self_metric_by_prom`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_CONTAINER_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If there are same-name tags in the configuration file, they will be overwritten here.
     
-        **Type**: Map
+        **Field Type**: Map
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
-    Additional description of environment variables:
+    Additional notes about environment variables:
     
-    - ENV_INPUT_CONTAINER_TAGS: If there is a tag with the same name in the configuration file (*container.conf*), it will be overwritten by the configuration here.
+    - ENV_INPUT_CONTAINER_TAGS: If the configuration file (*container.conf*) has same-name tags, they will be overwritten by settings here.
     
-    - ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP: Specifying the replacement source with the argument format `regular expression=new_source`, which is replaced by new_source when a source matches the regular expression. If the replacement is successful, the source（[:octicons-tag-24: Version-1.4.7](../datakit/changelog.md#cl-1.4.7)）configured in `annotations/labels` is no longer used. If you want to make an exact match, you need to use `^` and `$` to enclose the content. For example, if a regular expression is written as `datakit`, it can not only match the word `datakit` , but also match `datakit123`; Written as `^datakit$` , you can only match `datakit`.
+    - ENV_INPUT_CONTAINER_LOGGING_EXTRA_SOURCE_MAP: Specifies replacement source, parameter format is "regex=new_source". When a source matches the regex, it will be replaced by new_source. If replacement succeeds, it will not use the source configured in `annotations/labels` ([Version-1.4.7](../datakit/changelog.md#cl-1.4.7)). To achieve exact match, use `^` and `$` around content. For example, writing regex as `datakit` will match not only `datakit`, but also `datakit123`; writing as `^datakit$` will only match `datakit`.
     
-    - ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON: Used to specify the mapping of source to multi-row configuration. If a log is not configured with `multiline_match`, the corresponding `multiline_match` is found and used here based on its source. Because the `multiline_match` value is a regular expression, it is more complex, so the value format is a JSON string that can be coded and compressed into a single line using [json.cn](https://www.json.cn/){:target="_blank"}.
-
+    - ENV_INPUT_CONTAINER_LOGGING_SOURCE_MULTILINE_MAP_JSON: Used to specify mapping from source to multiline configuration. If no `multiline_match` is configured for a log, it will search here based on its source and use the corresponding `multiline_match`. Since `multiline_match` values are complex regex expressions, the value format is JSON string, which can be written and compressed into one line using [json.cn](https://www.json.cn/){:target="_blank"}.
 
 ???+ attention
 
-    - Object data collection interval is 5 minutes and metric data collection interval is 20 seconds. Configuration is not supported for the time being.
-    - Acquired log has a maximum length of 32MB per line (including after `multiline_match` processing), the excess will be truncated and discarded.
+    - Object data collection interval is 5 minutes, metric data collection interval is 60 seconds, not configurable
+    - Collected logs have a maximum single-line length (including after `multiline_match` processing) of 32MB, exceeding part will be truncated and discarded
 
-### Docker and Containerd Sock File Configuration {#sock-config}
+### Docker and Containerd sock File Configuration {#sock-config}
 
-If the sock path of Docker or Containerd is not the default, you need to specify the sock file path. According to different deployment methods of DataKit, the methods are different. Take Containerd as an example:
+If the Docker or Containerd sock path is not the default, you need to specify the sock file path according to different deployment methods of DataKit, taking Containerd as an example:
 
-=== "Host deployment"
+=== "HOST Deployment"
 
-    Modify the `containerd_address` configuration entry of container.conf to set it to the corresponding sock path.
+    Modify the `endpoints` configuration item in container.conf and set it to the corresponding sock path.
 
-=== "Kubernetes"
+=== "KUBERNETES"
 
-    Change the volumes `containerd-socket` of DataKit.yaml, mount the new path into the DataKit, and configure the environment variables`ENV_INPUT_CONTAINER_ENDPOINTS`：
-    
+    Change the volumes `containerd-socket` in *datakit.yaml*, mount the new path into Datakit, and configure the environment variable `ENV_INPUT_CONTAINER_ENDPOINTS`:
+
     ``` yaml hl_lines="3 4 7 14"
-    # add envs
+    # Add env
     - env:
       - name: ENV_INPUT_CONTAINER_ENDPOINTS
         value: ["unix:///path/to/new/containerd/containerd.sock"]
     
-    # modify mountPath
+    # Modify mountPath
       - mountPath: /path/to/new/containerd/containerd.sock
         name: containerd-socket
         readOnly: true
     
-    # modify volumes
+    # Modify volumes
     volumes:
     - hostPath:
         path: /path/to/new/containerd/containerd.sock
       name: containerd-socket
     ```
----
 <!-- markdownlint-enable -->
 
-Environment Variables `ENV_INPUT_CONTAINER_ENDPOINTS` is added to the existing endpoints configuration, and the actual endpoints configuration may have many items. The collector will remove duplicates and connect and collect them one by one.
+The environment variable `ENV_INPUT_CONTAINER_ENDPOINTS` appends to the existing endpoints configuration. The final actual endpoints configuration may contain many items, and the collector will remove duplicates and connect, collect one by one.
 
 The default endpoints configuration is:
 
@@ -583,7 +580,7 @@ The default endpoints configuration is:
   ] 
 ```
 
-Using Environment Variables `ENV_INPUT_CONTAINER_ENDPOINTS` is`["unix:///path/to/new//run/containerd.sock"]`,The final endpoints configuration is as follows:
+Using the environment variable `ENV_INPUT_CONTAINER_ENDPOINTS` as `["unix:///path/to/new//run/containerd.sock"]`, the final endpoints configuration is as follows:
 
 ```yaml
   endpoints = [
@@ -594,23 +591,23 @@ Using Environment Variables `ENV_INPUT_CONTAINER_ENDPOINTS` is`["unix:///path/to
   ] 
 ```
 
-The collector will connect and collect these containers during runtime. If the sock file does not exist, an error log will be output when the first connection fails, which does not affect subsequent collection.
+The collector will connect and collect these container runtimes. If the sock file does not exist, it will output error logs upon the first connection failure without affecting subsequent collections.
 
-### Prometheus Exporter Metrics Collection {#k8s-prom-exporter}
+### Prometheus Exporter Metric Collection {#k8s-prom-exporter}
 
 <!-- markdownlint-disable MD024 -->
-If the Pod/container has exposed Prometheus metrics, there are two ways to collect them, see [here](kubernetes-prom.md).
+If Pods/containers expose Prometheus metrics, there are two ways to collect them, refer to [here](kubernetes-prom.md)
 
 
 ### Log Collection {#logging-config}
 
-See [here](container-log.md) for the relevant configuration of log collection.
+Refer to [here](container-log.md) for related log collection configurations.
 
 ---
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.container.tags]`:
+By default, all data collected will append a global tag named `host` (tag value is the hostname where DataKit resides). You can also specify other tags in the configuration via `[inputs.container.tags]`:
 
 ```toml
  [inputs.container.tags]
@@ -623,10 +620,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-
 ### `docker_containers`
 
-The metric of containers, only supported Running status.
+Metrics of containers, only supported Running status.
 
 - Tags
 
@@ -634,13 +630,13 @@ The metric of containers, only supported Running status.
 | Tag | Description |
 |  ----  | --------|
 |`aws_ecs_cluster_name`|Cluster name of the AWS ECS.|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`container_id`|Container ID|
-|`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
+|`container_name`|Container name from K8S (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime`|Container runtime (this container from Docker/Containerd/cri-o).|
 |`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_runtime_version`|Container runtime version.|
-|`container_type`|The type of the container (this container is created by Kubernetes/Docker/Containerd/cri-o).|
+|`container_type`|The type of the container (this container is created by KUBERNETES/Docker/Containerd/cri-o).|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`image`|The full name of the container image, example `nginx.org/nginx:1.21.0`.|
@@ -656,7 +652,7 @@ The metric of containers, only supported Running status.
 |`task_family`|The task family of the AWS fargate.|
 |`task_version`|The task version of the AWS fargate.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -680,15 +676,6 @@ The metric of containers, only supported Running status.
 |`mem_used_percent_base_request`|The memory usage percentage based on the memory request.|float|percent|
 |`network_bytes_rcvd`|Total number of bytes received from the network (only count the usage of the main process in the container, excluding loopback).|int|B|
 |`network_bytes_sent`|Total number of bytes send to the network (only count the usage of the main process in the container, excluding loopback).|int|B|
-
-
-
-
-
-
-
-
-
 
 
 
@@ -726,6 +713,7 @@ The count of the Kubernetes resource.
 
 
 
+
 ### `kube_cronjob`
 
 The metric of the Kubernetes CronJob.
@@ -735,7 +723,7 @@ The metric of the Kubernetes CronJob.
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`cronjob`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of CronJob.|
@@ -755,21 +743,22 @@ The metric of the Kubernetes CronJob.
 
 
 
+
 ### `kube_daemonset`
 
-The metric of the Kubernetes DaemonSet.
+The metric of the KUBERNETES DaemonSet.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of DaemonSet.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -790,25 +779,26 @@ The metric of the Kubernetes DaemonSet.
 
 
 
+
 ### `kube_deployment`
 
-The metric of the Kubernetes Deployment.
+The metric of the KUBERNETES Deployment.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Deployment.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`replicas`|Total number of non-terminated pods targeted by this deployment (their labels match the selector).|int|count|
 |`replicas_available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.|int|count|
 |`replicas_desired`|Number of desired pods for a Deployment.|int|count|
@@ -826,16 +816,17 @@ The metric of the Kubernetes Deployment.
 
 
 
+
 ### `kube_dfpv`
 
-The metric of the Kubernetes PersistentVolume.
+The metric of the KUBERNETES PersistentVolume.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The dfpv name, consists of pvc name and pod name|
 |`namespace`|The namespace of Pod and PVC.|
 |`node_name`|Reference to the Node.|
@@ -843,7 +834,7 @@ The metric of the Kubernetes PersistentVolume.
 |`pvc_name`|Reference to the PVC.|
 |`volume_mount_name`|The name given to the Volume.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -863,25 +854,26 @@ The metric of the Kubernetes PersistentVolume.
 
 
 
+
 ### `kube_endpoint`
 
-The metric of the Kubernetes Endpoints.
+The metric of the KUBERNETES Endpoints.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`endpoint`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Endpoint.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`address_available`|Number of addresses available in endpoint.|int|count|
 |`address_not_ready`|Number of addresses not ready in endpoint.|int|count|
 
@@ -893,25 +885,26 @@ The metric of the Kubernetes Endpoints.
 
 
 
+
 ### `kube_job`
 
-The metric of the Kubernetes Job.
+The metric of the KUBERNETES Job.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`job`|Name must be unique within a namespace.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Job.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`active`|The number of actively running pods.|int|count|
 |`completion_failed`|The job has failed its execution.|int|count|
 |`completion_succeeded`|The job has completed its execution.|int|count|
@@ -926,24 +919,25 @@ The metric of the Kubernetes Job.
 
 
 
+
 ### `kube_node`
 
-The metric of the Kubernetes Node.
+The metric of the KUBERNETES Node.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`node`|Name must be unique within a namespace|
 |`uid`|The UID of Node.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`cpu_allocatable`|The allocatable CPU of a node that is available for scheduling.|int|-|
 |`cpu_capacity`|The CPU capacity of a node.|int|-|
 |`ephemeral_storage_allocatable`|The allocatable ephemeral-storage of a node that is available for scheduling.|int|-|
@@ -969,30 +963,31 @@ The metric of the Kubernetes Node.
 
 
 
+
 ### `kube_pod`
 
-The metric of the Kubernetes Pod.
+The metric of the KUBERNETES Pod.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`node_name`|NodeName is a request to schedule this pod onto a specific node.|
 |`pod`|Name must be unique within a namespace.|
-|`pod_name`|Renamed from 'pod'.|
+|`pod_name|Renamed from 'pod'.|
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
 |`uid`|The UID of pod.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`cpu_limit_millicores`|The total CPU limit (in millicores) across all containers in this Pod. Note: This value is the sum of all container limit values, as Pods do not have a direct limit value.|int|m|
 |`cpu_number`|The total number of CPUs on the node where the Pod is running.|int|count|
 |`cpu_request_millicores`|The total CPU request (in millicores) across all containers in this Pod.  Note: This value is the sum of all container request values, as Pods do not have a direct request value.|int|m|
@@ -1028,25 +1023,26 @@ The metric of the Kubernetes Pod.
 
 
 
+
 ### `kube_replicaset`
 
-The metric of the Kubernetes ReplicaSet.
+The metric of the KUBERNETES ReplicaSet.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`replicaset`|Name must be unique within a namespace.|
 |`uid`|The UID of ReplicaSet.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`fully_labeled_replicas`|The number of fully labeled replicas per ReplicaSet.|int|count|
 |`replicas`|The most recently observed number of replicas.|int|count|
 |`replicas_available`|The number of available replicas (ready for at least minReadySeconds) for this replica set.|int|count|
@@ -1061,26 +1057,28 @@ The metric of the Kubernetes ReplicaSet.
 
 
 
+
 ### `kube_service`
 
-The metric of the Kubernetes Service.
+The metric of the KUBERNETES Service.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`service`|Name must be unique within a namespace.|
 |`uid`|The UID of Service|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`ports`|Total number of ports that are exposed by this service.|int|count|
+
 
 
 
@@ -1092,23 +1090,23 @@ The metric of the Kubernetes Service.
 
 ### `kube_statefulset`
 
-The metric of the Kubernetes StatefulSet.
+The metric of the KUBERNETES StatefulSet.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`statefulset`|Name must be unique within a namespace.|
 |`uid`|The UID of StatefulSet.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`replicas`|The number of Pods created by the StatefulSet controller.|int|count|
 |`replicas_available`|Total number of available pods (ready for at least minReadySeconds) targeted by this StatefulSet.|int|count|
 |`replicas_current`|The number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision.|int|count|
@@ -1122,7 +1120,8 @@ The metric of the Kubernetes StatefulSet.
 
 
 
-## Object {#object}
+
+## Objects {#object}
 
 
 
@@ -1142,13 +1141,13 @@ The object of containers, only supported Running status.
 | Tag | Description |
 |  ----  | --------|
 |`aws_ecs_cluster_name`|Cluster name of the AWS ECS.|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`container_id`|Container ID|
-|`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
+|`container_name`|Container name from K8S (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`container_runtime`|Container runtime (this container from Docker/Containerd/cri-o).|
 |`container_runtime_name`|Container name from runtime (like 'docker ps'). If empty then use 'unknown'.|
 |`container_runtime_version`|Container runtime version.|
-|`container_type`|The type of the container (this container is created by Kubernetes/Docker/Containerd/cri-o).|
+|`container_type`|The type of the container (this container is created by KUBERNETES/Docker/Containerd/cri-o).|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`image`|The full name of the container image, example `nginx.org/nginx:1.21.0`.|
@@ -1166,11 +1165,11 @@ The object of containers, only supported Running status.
 |`task_family`|The task family of the AWS fargate.|
 |`task_version`|The task version of the AWS fargate.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds)|int|s|
 |`block_read_byte`|Total number of bytes read from the container file system (only supported docker).|int|B|
 |`block_write_byte`|Total number of bytes wrote to the container file system (only supported docker).|int|B|
@@ -1212,24 +1211,24 @@ The object of containers, only supported Running status.
 
 ### `kubernetes_cron_jobs`
 
-The object of the Kubernetes CronJob.
+The object of the KUBERNETES CronJob.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`cron_job_name`|Name must be unique within a namespace.|
 |`name`|The UID of CronJob.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of CronJob.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`active_jobs`|The number of pointers to currently running jobs.|int|count|
 |`age`|Age (seconds)|int|s|
 |`message`|Object details|string|-|
@@ -1247,25 +1246,25 @@ The object of the Kubernetes CronJob.
 
 ### `kubernetes_daemonset`
 
-The object of the Kubernetes DaemonSet.
+The object of the KUBERNETES DaemonSet.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for KUBERNETES resources|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset_name`|Name must be unique within a namespace.|
 |`name`|The UID of DaemonSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of DaemonSet.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds)|int|s|
 |`daemons_available`|The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
 |`daemons_unavailable`|The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds).|int|count|
@@ -1287,25 +1286,25 @@ The object of the Kubernetes DaemonSet.
 
 ### `kubernetes_deployments`
 
-The object of the Kubernetes Deployment.
+The object of the KUBERNETES Deployment.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for KUBERNETES resources|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment_name`|Name must be unique within a namespace.|
 |`name`|The UID of Deployment.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Deployment.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds)|int|s|
 |`available`|Total number of available pods (ready for at least minReadySeconds) targeted by this deployment. (Deprecated)|int|count|
 |`max_surge`|The maximum number of pods that can be scheduled above the desired number of pods. (Deprecated)|int|count|
@@ -1336,14 +1335,14 @@ The object of the Kubernetes Deployment.
 
 ### `kubernetes_dfpv`
 
-The object of the Kubernetes PersistentVolume.
+The object of the KUBERNETES PersistentVolume.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The dfpv name, consists of pvc name and pod name|
 |`namespace`|The namespace of Pod and PVC.|
 |`node_name`|Reference to the Node.|
@@ -1351,11 +1350,11 @@ The object of the Kubernetes PersistentVolume.
 |`pvc_name`|Reference to the PVC.|
 |`volume_mount_name`|The name given to the Volume.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`available`|AvailableBytes represents the storage space available (bytes) for the filesystem.|int|B|
 |`capacity`|CapacityBytes represents the total capacity (bytes) of the filesystems underlying storage.|int|B|
 |`inodes`|Inodes represents the total inodes in the filesystem.|int|count|
@@ -1383,25 +1382,25 @@ The object of the Kubernetes PersistentVolume.
 
 ### `kubernetes_jobs`
 
-The object of the Kubernetes Job.
+The object of the KUBERNETES Job.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for KUBERNETES resources|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`job_name`|Name must be unique within a namespace.|
 |`name`|The UID of Job.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`uid`|The UID of Job.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`active`|The number of actively running pods.|int|count|
 |`active_deadline`|Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it|int|s|
 |`age`|Age (seconds)|int|s|
@@ -1423,14 +1422,14 @@ The object of the Kubernetes Job.
 
 ### `kubernetes_nodes`
 
-The object of the Kubernetes Node.
+The object of the KUBERNETES Node.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`internal_ip`|Node internal IP|
 |`name`|The UID of Node.|
 |`node_name`|Name must be unique within a namespace.|
@@ -1438,11 +1437,11 @@ The object of the Kubernetes Node.
 |`status`|NodePhase is the recently observed lifecycle phase of the node. (Pending/Running/Terminated)|
 |`uid`|The UID of Node.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds).|int|s|
 |`kubelet_version`|Kubelet Version reported by the node.|string|-|
 |`message`|Object details.|string|-|
@@ -1457,23 +1456,23 @@ The object of the Kubernetes Node.
 
 ### `kubernetes_persistentvolumes`
 
-The object of the Kubernetes PersistentVolume.
+The object of the KUBERNETES PersistentVolume.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of PersistentVolume.|
 |`persistentvolume_name`|The name of PersistentVolume|
 |`uid`|The UID of PersistentVolume.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`claimRef_name`|Name of the bound PersistentVolumeClaim.|string|-|
 |`claimRef_namespace`|Namespace of the PersistentVolumeClaim.|string|-|
 |`message`|Object details|string|-|
@@ -1486,25 +1485,25 @@ The object of the Kubernetes PersistentVolume.
 
 ### `kubernetes_persistentvolumeclaims`
 
-The object of the Kubernetes PersistentVolumeClaim.
+The object of the KUBERNETES PersistentVolumeClaim.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for KUBERNETES resources|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of PersistentVolume.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`persistentvolumeclaim_name`|Name must be unique within a namespace.|
 |`uid`|The UID of PersistentVolume.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`message`|Object details|string|-|
 |`phase`|The phase indicates if a volume is available, bound to a claim, or released by a claim.(Pending/Bound/Lost)|string|-|
 |`storage_class_name`|StorageClassName is the name of the StorageClass required by the claim.|string|-|
@@ -1522,14 +1521,14 @@ The object of the Kubernetes PersistentVolumeClaim.
 
 ### `kubelet_pod`
 
-The object of the Kubernetes Pod.
+The object of the KUBERNETES Pod.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`name`|The UID of Pod.|
@@ -1542,11 +1541,11 @@ The object of the Kubernetes Pod.
 |`status`|Reason the container is not yet running.|
 |`uid`|The UID of Pod.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds)|int|s|
 |`available`|Number of containers|int|count|
 |`cpu_limit_millicores`|The total CPU limit (in millicores) across all containers in this Pod. Note: This value is the sum of all container limit values, as Pods do not have a direct limit value.|int|m|
@@ -1583,15 +1582,15 @@ The object of the Kubernetes Pod.
 
 ### `kubernetes_replica_sets`
 
-The object of the Kubernetes ReplicaSet.
+The object of the KUBERNETES ReplicaSet.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for KUBERNETES resources|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`name`|The UID of ReplicaSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
@@ -1599,11 +1598,11 @@ The object of the Kubernetes ReplicaSet.
 |`statefulset`|The name of the StatefulSet which the object belongs to.|
 |`uid`|The UID of ReplicaSet.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds)|int|s|
 |`available`|The number of available replicas (ready for at least minReadySeconds) for this replica set. (Deprecated)|int|-|
 |`message`|Object details|string|-|
@@ -1624,26 +1623,26 @@ The object of the Kubernetes ReplicaSet.
 
 ### `kubernetes_services`
 
-The object of the Kubernetes Service.
+The object of the KUBERNETES Service.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`<all_selector>`|Represents the selector for Kubernetes resources|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`<all_selector>`|Represents the selector for KUBERNETES resources|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of Service|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`service_name`|Name must be unique within a namespace.|
 |`type`|Type determines how the Service is exposed. Defaults to ClusterIP. (ClusterIP/NodePort/LoadBalancer/ExternalName)|
 |`uid`|The UID of Service|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds)|int|s|
 |`cluster_ip`|ClusterIP is the IP address of the service and is usually assigned randomly by the master.|string|-|
 |`external_ips`|ExternalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.|string|-|
@@ -1663,25 +1662,25 @@ The object of the Kubernetes Service.
 
 ### `kubernetes_statefulsets`
 
-The object of the Kubernetes StatefulSet.
+The object of the KUBERNETES StatefulSet.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`<all_selector_matchlabels>`|Represents the selector.matchLabels for Kubernetes resources|
-|`cluster_name_k8s`|K8s cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
+|`<all_selector_matchlabels>`|Represents the selector.matchLabels for KUBERNETES resources|
+|`cluster_name_k8s`|K8S cluster name(default is `default`). We can rename it in datakit.yaml on ENV_CLUSTER_NAME_K8S.|
 |`name`|The UID of StatefulSet.|
 |`namespace`|Namespace defines the space within each name must be unique.|
 |`statefulset_name`|Name must be unique within a namespace.|
 |`uid`|The UID of StatefulSet.|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`age`|Age (seconds)|int|s|
 |`message`|Object details|string|-|
 |`replicas`|The number of Pods created by the StatefulSet controller.|int|count|
@@ -1718,7 +1717,7 @@ The logging of the container.
 | Tag | Description |
 |  ----  | --------|
 |`container_id`|Container ID|
-|`container_name`|Container name from k8s (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
+|`container_name`|Container name from K8S (label `io.kubernetes.container.name`). If empty then use $container_runtime_name.|
 |`daemonset`|The name of the DaemonSet which the object belongs to.|
 |`deployment`|The name of the Deployment which the object belongs to.|
 |`namespace`|The namespace of the container (label `io.kubernetes.pod.namespace`).|
@@ -1726,11 +1725,11 @@ The logging of the container.
 |`pod_name`|The pod name of the container (label `io.kubernetes.pod.name`).|
 |`service`|The name of the service, if `service` is empty then use `source`.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`log_read_lines`|The lines of the read file ([:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6)).|int|count|
 |`message`|The text of the logging.|string|-|
 |`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-|
@@ -1779,9 +1778,10 @@ The logging of the container.
 
 
 
+
 ### `kubernetes_events`
 
-The logging of the Kubernetes Event.
+The logging of the KUBERNETES Event.
 
 - Tags
 
@@ -1792,7 +1792,7 @@ The logging of the Kubernetes Event.
 |`type`|Type of this event.|
 |`uid`|The UID of event.|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -1860,73 +1860,75 @@ The logging of the Kubernetes Event.
 
 
 
+
 <!-- markdownlint-enable -->
 
-## Link Dataway Sink Function {#link-dataway-sink}
+## Link Dataway Sink Functionality {#link-dataway-sink}
 
 Dataway Sink [see documentation](../deployment/dataway-sink.md).
 
-All collected Kubernetes resources will have a Label that matches the CustomerKey. For example, if the CustomerKey is `name`, DaemonSets, Deployments, Pods, and other resources will search for `name` in their own current Labels and add it to tags.
+All KUBERNETES resource collections will add Labels matching CustomerKey. For example, if CustomerKey is `name`, DaemonSet, Deployment, Pod, etc., resources will find `name` in their current Labels and add it to tags.
 
-Containers will add Customer Labels of the Pods they belong to.
+Containers will add their corresponding POD Customer Labels.
+
 
 ## FAQ {#faq}
 
-### Filtering Metrics Collection by Pod Namespace {#config-metric-on-pod-namespace}
+### Filter Metric Collection Based on Pod Namespace {#config-metric-on-pod-namespace}
 
-When Kubernetes Pod metrics collection is enabled (`enable_pod_metric = true`), Datakit will collect metrics data for all Pods in the cluster. Since this can result in a large volume of data, you can filter the metrics collection by the Pod's `namespace` field to only collect metrics from Pods in specific namespaces.
+After enabling KUBERNETES Pod metric collection (`enable_pod_metric = true`), DataKit willcollect metric data from all Pods in the cluster. Since this might generate a large amount of data, you can filter metric collection based on the `namespace` field of the Pod, thus collecting metrics only for Pods in specific namespaces.
 
-You can control which Pods are included or excluded from metrics collection by configuring `pod_include_metric` and `pod_exclude_metric`.
+By configuring `pod_include_metric` and `pod_exclude_metric`, you can control which namespaces' Pods are included or excluded from metric collection.
 
 <!-- markdownlint-disable md046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
     ``` toml
-      ## Collect metrics for Pods whose namespace matches `datakit`
+      ## When Pod's namespace matches `datakit`, collect its metrics
       pod_include_metric = ["namespace:datakit"]
     
-      ## Exclude all Pods with namespace `kodo`
+      ## Ignore all Pods with namespace `kodo`
       pod_exclude_metric = ["namespace:kodo"]
     ```
     
-    - Both `include` and `exclude` settings must start with a field name, formatted as a [glob pattern](https://en.wikipedia.org/wiki/glob_(programming)): `"<field name>:<glob rule>"`.
-    - Currently, only the `namespace` field is supported for filtering, e.g., `namespace:datakit-ns`.
+    - The `include` and `exclude` configuration items must start with the field name, formatted like [glob wildcard](https://en.wikipedia.org/wiki/glob_(programming)): `"<field_name>:<glob rule>"`.
+    - Currently, the `namespace` field is the only supported filtering field. For example: `namespace:datakit-ns`.
     
-    If both `include` and `exclude` are configured, the Pod must meet the following conditions:
+    If both `include` and `exclude` configurations are set, Pods must meet the following conditions:
     
-    - It must satisfy the `include` rule
-    - It must not satisfy the `exclude` rule
+    - Must satisfy the `include` rules.
+    - And not satisfy the `exclude` rules.
     
-    For example, the following configuration will filter out all Pods:
-    
+    For instance, the following configuration would exclude all Pods:
+
     ```toml
-      ## Collect only Pods in `namespace:datakit` and exclude all namespaces
+      ## Only collect metrics for `namespace:datakit` Pods, excluding all namespaces
       pod_include_metric = ["namespace:datakit"]
       pod_exclude_metric = ["namespace:*"]
     ```
 
-=== "Kubernetes"
+=== "KUBERNETES"
 
-    In a Kubernetes environment, you can configure the following environment variables:
+    For KUBERNETES environments, you can configure via the following environment variables:
     
     - `ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC`
     - `ENV_INPUT_CONTAINER_POD_EXCLUDE_METRIC`
     
-    For example, if you want to collect metrics only for Pods in the `kube-system` namespace, you can set the `ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC` environment variable as shown below:
+    For example, if you want to collect metrics only for Pods in the `kube-system` namespace, set the `ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC` environment variable as follows:
     
     ```yaml
       - env:
           - name: ENV_INPUT_CONTAINER_POD_INCLUDE_METRIC
-            value: namespace:kube-system  # Specify the namespace to collect metrics from
+            value: namespace:kube-system  # Specify the namespace to collect
     ```
     
-    By using this method, you can flexibly control the range of Pods from which Datakit collects metrics, reducing the collection of unnecessary data and optimizing system performance and resource usage.
+    This way, you can flexibly control the scope of Pod metrics collected by DataKit, avoiding unnecessary data and optimizing system performance and resource utilization.
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: NODE_LOCAL Mode Requires New RBAC Permissions {#rbac-nodes-stats}
+### :material-chat-question: NODE_LOCAL Requires New Permissions {#rbac-nodes-stats}
 <!-- markdownlint-enable -->
 
-The `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL` mode is only recommended for DaemonSet deployment and requires access to kubelet, so the `nodes/stats` permission needs to be added to RBAC. For example:
+The `ENV_INPUT_CONTAINER_ENABLE_K8S_NODE_LOCAL` mode is recommended for DaemonSet deployment. This mode requires access to kubelet, so additional RBAC permissions for `nodes/stats` need to be added. For example:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -1939,13 +1941,13 @@ rules:
   verbs: ["get", "list", "watch"]
 ```
 
-In addition, the Datakit Pod needs to have the `hostNetwork: true` configuration item enabled.
+Additionally, the Datakit Pod needs to enable the `hostNetwork: true` configuration item.
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: Collect PersistentVolumes and PersistentVolumeClaims Requires New Permissions {#rbac-pv-pvc}
+### :material-chat-question: Collecting PersistentVolumes and PersistentVolumeClaims Requires New Permissions {#rbac-pv-pvc}
 <!-- markdownlint-enable -->
 
-Datakit version 1.25.0[:octicons-tag-24: Version-1.25.0](../datakit/changelog.md#cl-1.25.0) supported the collection of object data for Kubernetes PersistentVolume and PersistentVolumeClaim, which require new RBAC permissions, as described below:
+Datakit supports collecting Kubernetes PersistentVolume and PersistentVolumeClaim object data starting from version 1.25.0[:octicons-tag-24: Version-1.25.0](../datakit/changelog.md#cl-1.25.0). Collecting these resources requires new RBAC permissions, as detailed below:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -1959,12 +1961,12 @@ rules:
 ```
 
 <!-- markdownlint-disable MD013 -->
-### Kubernetes YAML Sensitive Field Mask {#yaml-secret}
+### :material-chat-question: Masking Sensitive Fields in Kubernetes YAML {#yaml-secret}
 <!-- markdownlint-enable -->
 
-Datakit collects yaml configurations for resources such as Kubernetes Pod or Service and stores them in the `yaml` field of the object data. If the yaml contains sensitive data (such as passwords), Datakit does not support manually configuring and shielding sensitive fields for the time being. It is recommended to use Kubernetes' official practice, that is, to use ConfigMap or Secret to hide sensitive fields.
+Datakit collects yaml configurations of Kubernetes Pods or Services and stores them in the `yaml` field of object data. If the yaml contains sensitive data (such as passwords), Datakit does not currently support manually configured masking of sensitive fields. It is recommended to use Kubernetes' official approach, i.e., using ConfigMap or Secret to hide sensitive fields.
 
-For example, you now need to add a password to the env, which would normally be like this:
+For example, if you need to add a password in the env, normally it would look like this:
 
 ```yaml
     containers:
@@ -1972,12 +1974,12 @@ For example, you now need to add a password to the env, which would normally be 
       image: redis
       env:
         - name: SECRET_PASSWORD
-    value: password123
+      value: password123
 ```
 
-When orchestrating yaml configuration, passwords will be stored in clear text, which is very unsafe. You can use Kubernetes Secret to implement hiding as follows:
+Storing the password in plain text within the orchestration yaml is insecure. You can use a Kubernetes Secret to hide it. Here’s how:
 
-Create a Secret：
+Create a Secret:
 
 ```yaml
 apiVersion: v1
@@ -1996,7 +1998,7 @@ Execute:
 kubectl apply -f mysecret.yaml
 ```
 
-Using Secret in env:
+Use the Secret in the env:
 
 ```yaml
     containers:
@@ -2004,17 +2006,17 @@ Using Secret in env:
       image: redis
       env:
         - name: SECRET_PASSWORD
-    valueFrom:
+      valueFrom:
           secretKeyRef:
             name: mysecret
             key: password
             optional: false
 ```
 
-See [doc](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables){:target="_blank"}.
+See the [official documentation](https://kubernetes.io/zh-cn/docs/concepts/configuration/secret/#using-secrets-as-environment-variables){:target="_blank"}.
 
-## More Readings {#more-reading}
+## Further Reading {#more-reading}
 
-- [eBPF Collector: Support flow collection in container environment](ebpf.md)
-- [Proper use of regular expressions to configure](../datakit/datakit-input-conf.md#debug-regex)
-- [Several configurations of DataKit under Kubernetes](../datakit/k8s-config-how-to.md)
+- [eBPF Collector: Supports traffic collection in container environments](ebpf.md)
+- [Properly Using Regular Expressions for Configuration](../datakit/datakit-input-conf.md#debug-regex)
+- [Several Configuration Methods for DataKit in KUBERNETES](../datakit/k8s-config-how-to.md)

@@ -1,8 +1,8 @@
 ---
 title     : 'Neo4j'
-summary   : 'Collect Neo4j server metrics'
+summary   : 'Collect Neo4j Metrics data'
 tags:
-  - 'DATA STORES'
+  - 'DATABASE'
 __int_icon      : 'icon/neo4j'
 dashboard :
   - desc  : 'Neo4j'
@@ -17,33 +17,32 @@ monitor   :
 
 ---
 
-Neo4j collector is used to collect metric data related to Neo4j, and currently it only supports data in Prometheus format.
+The Neo4j collector is used to collect metrics data related to Neo4j, currently only supporting data in Prometheus format.
 
-Already tested version:
+Tested versions:
 
 - [x] Neo4j 5.11.0 enterprise
 - [x] Neo4j 4.4.0 enterprise
 - [x] Neo4j 3.4.0 enterprise
-- [ ] Neo4j 3.3.0 enterprise this and versions earlier than this do not support
-- [ ] Neo4j 5.11.0 community all community versions do not support
+- [ ] Neo4j 3.3.0 enterprise and below versions are not supported
+- [ ] Neo4j 5.11.0 community; community versions are not supported
 
-## Configuration {#config}
 
-### Preconditions {#requirements}
+## Prerequisites {#requirements}
 
-- Install Neo4j server
-  
-See [official document](https://neo4j.com/docs/operations-manual/current/installation/){:target="_blank"}
+- Install Neo4j service
+
+  Refer to the [official installation documentation](https://neo4j.com/docs/operations-manual/current/installation/){:target="_blank"}
 
 - Verify correct installation
 
-  Visit URL in browser `<ip>:7474` can open Neo4j manage UI.
+  Access the URL `<ip>:7474` in your browser to enter the Neo4j management interface.
 
-- Open Neo4j Prometheus port
-  
-  Search Neo4j start config file, usually `/etc/neo4j/neo4j.conf`
+- Open the Neo4j Prometheus port
 
-  Add in the tail
+  Locate and edit the Neo4j startup configuration file, usually located at `/etc/neo4j/neo4j.conf`
+
+  Append the following at the end:
 
   ```ini
   # Enable the Prometheus endpoint. Default is false.
@@ -55,23 +54,23 @@ See [official document](https://neo4j.com/docs/operations-manual/current/install
   server.metrics.prometheus.endpoint=0.0.0.0:2004
   ```
 
-  See [official document](https://neo4j.com/docs/operations-manual/current/monitoring/metrics/expose/#_prometheus){:target="_blank"}
+  Refer to the [official configuration documentation](https://neo4j.com/docs/operations-manual/current/monitoring/metrics/expose/#_prometheus){:target="_blank"}
   
-- Restart Neo4j
+- Restart the Neo4j service
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - To collect data, port `2004` need to be used. When collecting data remotely, need to be opened.
-    - 0.0.0.0:2004 If it is a local collection, need be localhost:2004.
+    - Data collection will use the `2004` port; when collecting remotely, these ports on the target server need to be open.
+    - 0.0.0.0:2004 can be changed to localhost:2004 for local collection.
 <!-- markdownlint-enable -->
 
-### Config {#input-config}
+## Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/neo4j` directory under the DataKit installation directory, copy `neo4j.conf.sample` and name it `neo4j.conf`. Examples are as follows:
+    Navigate to the `conf.d/neo4j` directory under the DataKit installation directory, copy `neo4j.conf.sample`, and rename it to `neo4j.conf`. Example as follows:
     
     ```toml
         
@@ -88,10 +87,10 @@ See [official document](https://neo4j.com/docs/operations-manual/current/install
       ## Set to 'true' to enable election.
       election = true
     
-      ## disable setting host tag for this input
+      ## Disable setting host tag for this input
       disable_host_tag = false
     
-      ## disable setting instance tag for this input
+      ## Disable setting instance tag for this input
       disable_instance_tag = false
     
       ## Customize tags.
@@ -104,15 +103,15 @@ See [official document](https://neo4j.com/docs/operations-manual/current/install
     
     ```
 
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting its configuration through [ConfigMap settings](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
@@ -132,7 +131,7 @@ See [official document](https://neo4j.com/docs/operations-manual/current/install
 |`pool`|Pool name.|
 |`quantile`|Histogram `quantile`.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -300,5 +299,3 @@ See [official document](https://neo4j.com/docs/operations-manual/current/install
 |`server_threads_jetty_idle`|The total number of idle threads in the jetty pool.|float|count|
 |`vm_thread_count`|(only for neo4j.v4) Estimated number of active threads in the current thread group.|float|count|
 |`vm_thread_total`|(only for neo4j.v4) The total number of live threads including daemon and non-daemon threads.|float|count|
-
-

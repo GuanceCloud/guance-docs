@@ -1,19 +1,19 @@
 ---
 title     : 'Kube Scheduler'
-summary   : 'By monitoring Kube Scheduler metrics, it helps configure and optimize the Kube Scheduler, which can improve cluster resource utilization and application performance'
+summary   : 'By monitoring Kube Scheduler Metrics, it helps configure and optimize the Kube Scheduler, which can improve the resource utilization of the cluster and the performance of applications'
 __int_icon: 'icon/kube_scheduler'
 tags      :
   - 'PROMETHEUS'
   - 'KUBERNETES'
 dashboard :
   - desc  : 'Kube Schedule'
-    path  : 'dashboard/en/kube_scheduler'
+    path  : 'dashboard/zh/kube_scheduler'
 monitor   :
   - desc  : 'Kube Schedule'
-    path  : 'monitor/en/kube_scheduler'
+    path  : 'monitor/zh/kube_scheduler'
 ---
 
-By monitoring Kube Scheduler metrics, it helps configure and optimize the Kube Scheduler, which can improve cluster resource utilization and application performance
+By monitoring Kube Scheduler Metrics, it helps configure and optimize the Kube Scheduler, which can improve the resource utilization of the cluster and the performance of applications
 
 ## Configuration {#config}
 
@@ -23,7 +23,7 @@ By monitoring Kube Scheduler metrics, it helps configure and optimize the Kube S
 
 ### Collector Configuration
 
-- Configure a `ConfigMap` resource in `datakit.yaml` to collect Kube Scheduler metrics data
+- Configure `ConfigMap` resources in `datakit.yaml` to collect Kube Scheduler Metrics data
 
 ```yaml
 apiVersion: v1
@@ -33,7 +33,7 @@ metadata:
   namespace: datakit
 data:
    kubernetesprometheus.conf: |-  
-   # The following configuration is not static; please modify according to your actual situation
+   # The following configuration is not fixed, please modify according to actual conditions
         [[inputs.kubernetesprometheus.instances]]
           role       = "pod"
           namespaces = ["kube-system"]
@@ -61,7 +61,7 @@ data:
              cert_key = ""
 ```
 
-- Restart DataKit
+- Restart datakit
 
 ```shell
 kubectl rollout restart ds  datakit -n datakit
@@ -69,15 +69,15 @@ kubectl rollout restart ds  datakit -n datakit
 
 ## Metrics {#metric}
 
-### Kube Scheduler Metrics Set
+### Kube Scheduler Metric Sets
 
-Kube Scheduler metrics are located under the kube-scheduler metrics set. Here we introduce relevant explanations for Kube Scheduler metrics.
+Kube Scheduler Metrics are located under the kube-scheduler metric set. Below is an introduction to the related explanations of Kube Scheduler Metrics.
 
 | Metrics | Description | Unit |
 |:--------|:------------|:-----|
-|`scheduler_scheduler_cache_size`| Number of nodes, Pods, and AssumedPods (assumed to be scheduled) in the scheduler cache | count |
-|`scheduler_pending_pods`| Number of Pending Pods | count |
-|`process_cpu_seconds_total`| Total CPU usage of the kube-scheduler process | s |
-|`rest_client_request_duration_seconds_bucket`| Analysis of HTTP request latency from the method (Verb) and URL dimensions | ms |
-|`rest_client_requests_total`| Analysis of HTTP requests from status code, method, and host dimensions | count |
-|`rest_client_requests_total`| Total number of HTTP requests initiated by kube-scheduler to kube-apiserver | count |
+|`scheduler_scheduler_cache_size`|`Number of nodes, Pods, and AssumedPods (pods assumed to be scheduled) in the scheduler cache`| count |
+|`scheduler_pending_pods`|`Number of Pending Pods`| count |
+|`process_cpu_seconds_total`|`Total CPU usage of the kube-scheduler process`| s |
+|`rest_client_request_duration_seconds_bucket`|`Analyze HTTP request latency from the method (Verb) and URL dimensions`| ms |
+|`rest_client_requests_total`|`Analyze HTTP requests from status value (Status Code), method (Method), and host (Host) dimensions`| count |
+|`rest_client_requests_total`|`Total number of HTTP requests initiated by kube-scheduler to kube-apiserver`| count |

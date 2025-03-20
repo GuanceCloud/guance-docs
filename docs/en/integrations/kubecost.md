@@ -29,7 +29,7 @@ monitor   :
 
 ### CRD Configuration
 
-KubeCost has exposed metrics, so we only need to ensure that DataKit can discover and report these metrics.
+KubeCost has exposed Metrics, and all that is needed is for DataKit to discover these Metrics and report them.
 
 - Create `kubecost-serverMonitor.yaml`
 
@@ -55,7 +55,7 @@ spec:
 
 #### DataKit Configuration
 
-If already enabled, ignore this step.
+If already enabled, please ignore
 
 - Enable DataKit Service Monitor auto-discovery
 

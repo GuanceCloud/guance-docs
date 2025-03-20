@@ -5,10 +5,10 @@ tags:
   - 'RUM'
 __int_icon      : 'icon/rum'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -17,36 +17,37 @@ monitor   :
 
 ---
 
-RUM (Real User Monitor) collector is used to collect user access monitoring data reported by web page or mobile terminal.
+The RUM (Real User Monitor) collector is used to collect real-user monitoring data reported from web pages or mobile terminals.
 
 ## Configuration {#config}
 
-### Access Mode {#supported-platforms}
+### Access Methods {#supported-platforms}
 
 <div class="grid cards" markdown>
-- :material-web: [__JavaScript__](../real-user-monitoring/web/app-access.md)
-- :material-wechat: [__WeChat Mini-Program__](../real-user-monitoring/miniapp/app-access.md)
-- :material-android: [__Android__](../real-user-monitoring/android/app-access.md)
-- :material-apple-ios: [__iOS__](../real-user-monitoring/ios/app-access.md)
-- [__Flutter__](../real-user-monitoring/flutter/app-access.md)
-- :material-react:[__ReactNative__](../real-user-monitoring/react-native/app-access.md)
+- :material-web: [JavaScript](../real-user-monitoring/web/app-access.md)
+- :material-wechat: [WeChat Mini Program](../real-user-monitoring/miniapp/app-access.md)
+- :material-android: [Android](../real-user-monitoring/android/app-access.md)
+- :material-apple-ios: [iOS](../real-user-monitoring/ios/app-access.md)
+- [Flutter](../real-user-monitoring/flutter/app-access.md)
+- :material-react:[ReactNative](../real-user-monitoring/react-native/app-access.md)
 </div>
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- Deploy DataKit to be publicly accessible
+- Deploy DataKit as publicly accessible
 
-It is recommended that RUM be deployed separately on the public network, not with existing services (such as Kubernetes cluster). As the traffic on RUM interface may be very large, the traffic within the cluster will be disturbed by it, and some possible resource scheduling mechanisms within the cluster may affect the operation of RUM services.
+It is recommended to deploy RUM separately on the public network, not together with existing services (such as Kubernetes clusters). Since the traffic on this RUM interface may be very high, internal cluster traffic could be disrupted by it. Additionally, some potential internal cluster resource scheduling mechanisms might affect the operation of the RUM service.
 
-- On the DataKit [install IP geo-Repository](../datakit/datakit-tools-how-to.md#install-ipdb)
-- Since [1.2.7](../datakit/changelog.md#cl-1.2.7), due to the adjustment of the installation method of IP geographic information base, the default installation no longer comes with its own IP information base, but needs to be installed manually.
+- [Install IP geographic information database on DataKit](../datakit/datakit-tools-how-to.md#install-ipdb)
+- Starting from [1.2.7](../datakit/changelog.md#cl-1.2.7), due to changes in the installation method of the IP geographic information database, the default installation no longer includes an IP information database and must be manually installed.
 
 ### Collector Configuration {#input-config}
+
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/rum` directory under the DataKit installation directory, copy `rum.conf.sample` and name it `rum.conf`. Examples are as follows:
-
+    Navigate to the `conf.d/rum` directory under the DataKit installation directory, copy `rum.conf.sample`, and rename it to `rum.conf`. An example is as follows:
+    
     ```toml
         
     [[inputs.rum]]
@@ -58,7 +59,7 @@ It is recommended that RUM be deployed separately on the public network, not wit
       ## used to upload rum session replay.
       session_replay_endpoints = ["/v1/write/rum/replay"]
     
-      ## specify which metrics should be captured.
+      ## specify which Metrics should be captured.
       measurements = ["view", "resource", "action", "long_task", "error", "telemetry"]
     
       ## Android command-line-tools HOME
@@ -125,7 +126,7 @@ It is recommended that RUM be deployed separately on the public network, not wit
     
     ```
 
-    We can also enable RUM input in *datakit.conf*:
+    Or simply enable it in the default collectors within *datakit.conf*:
 
     ``` toml
     default_enabled_inputs = [ "rum", "cpu", "disk", "diskio", "mem", "swap", "system", "hostobject", "net", "host_processes" ]
@@ -135,29 +136,30 @@ It is recommended that RUM be deployed separately on the public network, not wit
 
 === "Kubernetes"
 
-    In *datakit.yaml*, the environment variable `ENV_DEFAULT_ENABLED_INPUTS` adds the rum collector name (as shown in the first in `value` below):
+    In *datakit.yaml*, add the `ENV_DEFAULT_ENABLED_INPUTS` environment variable with the `rum` collector name (as shown first in the `value`):
 
     ```yaml
     - name: ENV_DEFAULT_ENABLED_INPUTS
       value: rum,cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container
     ```
 <!-- markdownlint-enable -->
+
 ### Security Restrictions {#security-setting}
 
-See [Datakit API access control](../datakit/datakit-conf.md#public-apis).
+Refer to [Datakit API Access Control](../datakit/datakit-conf.md#public-apis).
 
 ### Disable DataKit 404 Page {#disable-404}
 
-You can disable public network access to DataKit 404 pages with the following configuration:
+You can disable public access to the DataKit 404 page through the following configuration:
 
 ```toml
 # datakit.conf
 disable_404page = true
 ```
 
-## RUM {#rum}
+## Metrics {#metric}
 
-The RUM collector collects the following metric sets by default:
+The RUM collector defaults to collecting the following Measurement sets:
 
 - `error`
 - `view`
@@ -165,35 +167,35 @@ The RUM collector collects the following metric sets by default:
 - `long_task`
 - `action`
 
-## Sourcemap Transformation {#sourcemap}
+## Sourcemap Conversion {#sourcemap}
 
-Usually, js files in production environment or App code on mobile side will be confused and compressed to reduce the size of application. The call stack when an error occurs is quite different from the source code at development time, which is inconvenient for debugging (`troubleshoot`). If you need to locate errors in the source code, you have to rely on the `sourcemap` file.
+Typically, production js files or mobile App code undergo obfuscation and compression to reduce application size. The call stack during errors differs significantly from the source code during development, making it inconvenient for debugging. To locate errors back to the source code, sourcemap files need to be used.
 
-DataKit supports this mapping of source code file information by zipping the corresponding symbol table file, named *<app_id\>-<env\>-<version\>.zip* and uploading it to *<DataKit Installation Directory\>/data/rum/<platform\>* so that the reported `error` measurement data can be automatically converted and the `error_stack_source` field appended to the metric set.
+DataKit supports this mapping of source code file information. The method involves zipping and compressing the corresponding symbol table files, naming them in the format *[app_id]-[env]-[version].zip*, and uploading them to *[DataKit installation directory]/data/rum/[platform]*. This way, the `error` Measurement set data can be automatically converted, and the `error_stack_source` field is appended to this Measurement set.
 
 
 <!-- markdownlint-disable MD046 -->
-???+ attention "Limits on Sourcemap files"
+???+ attention "Sourcemap File Limitations"
 
-    All Sourcemap files must with extension *.map*, and single *.map* file(after unzip) should not exceed 4GiB.
+    All Sourcemap files must have the (*.map*) extension, and each *.map* file (after decompression) must not exceed 4GiB.
 <!-- markdownlint-enable -->
 
-<!-- markdownlint-disable MD025 -->
-### Install the sourcemap tools {#install-tools}
-<!-- markdownlint-enable -->
-First, you need to install the corresponding symbol restoration tool. Datakit provides a one-click installation command to simplify the installation of the tool:
+### Install Sourcemap Toolset {#install-tools}
+
+First, install the corresponding symbol restoration tools. Datakit provides a one-click installation command to simplify the installation process:
 
 ```shell
 sudo datakit install --symbol-tools
 ```
 
-If a software installation fails during the installation process, you may need to manually install the corresponding software according to the error prompt.
+If certain software fails to install during the process, you may need to manually install the corresponding software based on the error prompts.
 
-### Zip Packaging Instructions {#zip}
+### Zip Package Packing Instructions {#zip}
+
 <!-- markdownlint-disable MD046 -->
 === "Web"
 
-    After the js file is obfuscated and compressed by webpack, the `.map` file is zip compressed and packaged, and then copied to the *<DataKit installation directory\>/data/rum/web* directory. It is necessary to ensure that the uncompressed file path of the compressed package is consistent with the URL path in `error_stack`. Assume the following `error_stack`：
+    Compress and zip the *.map* files generated after webpack obfuscates and compresses the js files, then copy them to *<DataKit installation directory\>/data/rum/web* directory. Ensure that the file paths after decompression match the URL paths in `error_stack`. Assuming the following `error_stack`:
 
     ```
     ReferenceError
@@ -202,32 +204,32 @@ If a software installation fails during the installation process, you may need t
       at <anonymous> @ http://localhost:8080/static/js/app.7fb548e3d065d1f48f74.js:1:1174
     ```
 
-    The path to be converted is `/static/js/app.7fb548e3d065d1f48f74.js`, and its corresponding `sourcemap` path is `/static/js/app.7fb548e3d065d1f48f74.js.map`, so the directory structure of the corresponding compressed package after decompression is as follows:
+    The path to convert is */static/js/app.7fb548e3d065d1f48f74.js*, and its corresponding sourcemap path is */static/js/app.7fb548e3d065d1f48f74.js.map*. Thus, the directory structure after decompressing the corresponding zip package is as follows:
 
     ```
     static/
     └── js
     └── app.7fb548e3d065d1f48f74.js.map
-
+    
     ```
 
-    After conversion `error_stack_source`：
-
+    The converted `error_stack_source`:
+    
     ```
-
+    
     ReferenceError
       at a.hideDetail @ webpack:///src/components/header/header.vue:94:0
       at a.showDetail @ webpack:///src/components/header/header.vue:91:0
       at <anonymous> @ webpack:///src/components/header/header.vue:101:0
     ```
 
-=== "Mini Program"
+=== "Mini Programs"
 
-    Same as Web except you should copy the `.zip` archive into *<DataKit installation directory\>/data/rum/miniapp* directory.
+    The packaging method is basically the same as Web, but note that the packed `.zip` file should be copied to *<DataKit installation directory\>/data/rum/miniapp* rather than *<DataKit installation directory\>/data/rum/web*.
 
-=== "Android"
+=== "ANDROID"
 
-    Android currently has two types of `sourcemap` files. One is the mapping file produced by Java bytecode obfuscated by `R8`/`Proguard` compression. The other is an (unstripped) `.so` file that does not clear the symbol table and debugging information when compiling C/C + + native code. If your android application contains these two `sourcemap` files at the same time, you need to package these two files into a zip package when packaging, and then copy the zip package to the *<DataKit installation directory\>/data/rum/android* directory. The directory structure after zip package decompression is similar:
+    Currently, Android has two types of `sourcemap` files: one is the mapping file produced after Java bytecode is compressed and obfuscated by `R8`/`Proguard`, and the other is the unstripped `.so` file compiled from C/C++ native code that retains symbol tables and debugging information. If your Android application contains both these `sourcemap` files, both types of files need to be included in the zip package during packing, and then the zip package should be copied to *<DataKit installation directory\>/data/rum/android*. The directory structure after decompressing the zip package is similar to:
 
     ```
     <app_id>-<env>-<version>/
@@ -250,13 +252,13 @@ If a software installation fails during the installation process, you may need t
         └── libvideocodec.so
     ```
 
-    By default, the `mapping` file will be in: *<project folder\>/<Module\>/build/outputs/mapping/<build-type\>/*, the `.so` file will be in: *<project folder\>/<Module\>/build/intermediates/cmake/debug/obj/* when compiling with ndk: *<project folder\>/<Module\>/build/intermediates/ndk/debug/obj/*（debug compilation) or *<project folder\>/<Module\>/build/intermediates/ndk/release/obj/*(release compile).
+    By default, mapping files are located at: *<project folder\>/<Module\>/build/outputs/mapping/<build-type\>/*, `.so` files are found at: *<project folder\>/<Module\>/build/intermediates/cmake/debug/obj/* when using CMake compilation, or at: *<project folder\>/<Module\>/build/intermediates/ndk/debug/obj/* (debug compilation) or *<project folder\>/<Module\>/build/intermediates/ndk/release/obj/* (release compilation) when using NDK compilation.
 
-    The effect of the transformation is as follows:
+    The conversion effect is as follows:
 
     === "Java/Kotlin"
 
-        Before conversion `error_stack` :
+        Original `error_stack` :
 
         ```
         java.lang.ArithmeticException: divide by zero
@@ -265,9 +267,9 @@ If a software installation fails during the installation process, you may need t
             at j9.f7.run(Unknown Source:0)
             at java.lang.Thread.run(Thread.java:1012)
         ```
-
-        After conversion `error_stack_source` :
-
+        
+        Converted `error_stack_source` :
+    
         ```
         java.lang.ArithmeticException: divide by zero
         at prof.wang.activity.TeamInvitationActivity.onClick$lambda-0(TeamInvitationActivity.java:1)
@@ -276,8 +278,8 @@ If a software installation fails during the installation process, you may need t
 
     === "C/C++ Native Code"
 
-        Before conversion `error_stack` :
-
+        Original `error_stack` :
+    
         ```
         backtrace:
         #00 pc 00000000000057fc  /data/app/~~Taci3mQyw7W7iWT7Jxo-ag==/com.ft-Q8m2flQFG1MbGImPiuAZmQ==/lib/arm64/libft_native_exp_lib.so (xc_test_call_4+12)
@@ -287,12 +289,12 @@ If a software installation fails during the installation process, you may need t
         #04 pc 0000000000005938  /data/app/~~Taci3mQyw7W7iWT7Jxo-ag==/com.ft-Q8m2flQFG1MbGImPiuAZmQ==/lib/arm64/libft_native_exp_lib.so (xc_test_crash+112)
         ...
         ```
-
-        After conversion `error_stack_source` :
-
+        
+        Converted `error_stack_source` :
+    
         ```
         backtrace:
-
+        
         Abort message: 'abort message for ftNative internal testing'
         #00 0x00000000000057fc /data/app/~~Taci3mQyw7W7iWT7Jxo-ag==/com.ft-Q8m2flQFG1MbGImPiuAZmQ==/lib/arm64/libft_native_exp_lib.so (xc_test_call_4+12)
         xc_test_call_4
@@ -312,11 +314,11 @@ If a software installation fails during the installation process, you may need t
         ...
         ```
 
-=== "iOS"
+=== "IOS"
 
-    The `sourcemap` file on the iOS platform is a symbol table file with debugging information suffixed `.dSYM`. Typically, the project is compiled in the same directory as the `.app` file, as follows:
+    On the iOS platform, the `sourcemap` files are symbol table files with the `.dSYM` extension containing debug information. These are generally located in the same directory as the `.app` file after project compilation, as shown below:
 
-    ```
+    ``` shell
     $ ls -l Build/Products/Debug-iphonesimulator/
     total 0
     drwxr-xr-x   6 zy  staff  192  8  9 15:27 Fishing.app
@@ -325,14 +327,14 @@ If a software installation fails during the installation process, you may need t
     drwxr-xr-x   6 zy  staff  192  8  9 13:55 Fishing.swiftmodule
     ```
 
-    Note that XCode Release builds the `.dSYM` file by default, while Debug compilation will not be generated by default, so you need to set XCode accordingly:
+    Note that XCode Release compilation generates `.dSYM` files by default, while Debug compilation does not. You can adjust XCode settings accordingly:
 
-    ```
+    ```not-set
     Build Settings -> Code Generation -> Generate Debug Symbols -> Yes
     Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File
     ```
 
-    When packaging zip, you can package the corresponding `.dSYM` files into the zip package. If your project involves multiple `.dSYM` files, you need to package them together into the zip package, and then copy the zip package to the *<DataKit installation directory\>/data/rum/ios* directory. The directory structure after zip package decompression is similar to the following (the`.dSYM` file is essentially a directory, which is similar to the executable program `.app` file under macOS):
+    When performing zip packaging, include the corresponding `.dSYM` files into the zip package. If your project involves multiple `.dSYM` files, they should all be packaged into the zip, and then the zip package should be copied to *<DataKit installation directory\>/data/rum/ios*. The extracted directory structure should look similar to the following (`.dSYM` files are essentially directories, similar to macOS executable programs *.app*):
 
 
     ```
@@ -349,21 +351,23 @@ If a software installation fails during the installation process, you may need t
             └── Resources
                 └── DWARF
                     └── App
-
+    
     ```
+<!-- markdownlint-enable -->
 
 ---
 
-???+ attention "For RUM Headless"
+<!-- markdownlint-disable MD046 -->
+???+ attention "RUM Headless Description"
 
-    For [RUM headless](../dataflux-func/headless.md), you can upload these package files on web pages, and following upload/delete operations are not required.
+    For [RUM Headless](../dataflux-func/headless.md) users, you can directly upload the compressed package on the page without performing the following file upload and deletion operations.
 <!-- markdownlint-enable -->
 
-### File Upload and Delete {#upload-delete}
+### File Upload and Deletion {#upload-delete}
 
-After packaging, in addition to manually copying to Datakit related directories, the file can also be uploaded and deleted through http interface.
+After packaging, besides manually copying to the relevant DataKit directory, you can also upload and delete the file via the http interface.
 
-> From Datakit [:octicons-tag-24: Version-1.16.0](../datakit/changelog.md#cl-1.16.0), sourcemap related apis were moved from DCA service to DataKit service.
+> Starting from Datakit [:octicons-tag-24: Version-1.16.0](../datakit/changelog.md#cl-1.16.0), the sourcemap-related interfaces previously provided by DCA services have been deprecated and moved to DataKit services.
 
 [Upload](../datakit/apis.md#api-sourcemap-upload):
 
@@ -383,50 +387,50 @@ curl -X DELETE '<datakit_address>/v1/sourcemap?app_id=<app_id>&env=<env>&version
 curl -X GET '<datakit_address>/v1/sourcemap/check?app_id=<app_id>&env=<env>&version=<version>&platform=<platform>&error_stack=<error_stack>'
 ```
 
-Variable description:
+Variable explanations:
 
-- `<datakit_address>`: DataKit host，such as `http://localhost:9529`
-- `<token>`: The token is specified by dataway field in `datakit.conf`
-- `<app_id>`: RUM's application ID
-- `<env>`: RUM's tag `env`
-- `<version>`: RUM's tag `version`
-- `<platform>` RUM supported platform, currently support `web/miniapp/android/ios`
-- `<sourcemap_path>`: Path of zipped file path
-- `<error_stack>`: The error stack string
+- `<datakit_address>`: Address of the DataKit service, e.g., `http://localhost:9529`
+- `<token>`: Token in the configuration file `datakit.conf` under `dataway`
+- `<app_id>`: Corresponding RUM `applicationId`
+- `<env>`: Corresponding RUM `env`
+- `<version>`: Corresponding RUM `version`
+- `<platform>` Application platforms, currently supported `web/miniapp/android/ios`
+- `<sourcemap_path>`: Path of the `sourcemap` compressed package file to be uploaded
+- `<error_stack>`: `error_stack` to be verified
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
-
-    - This conversion process is only for the `error` measurement.
-    - Currently only Javascript/Android/iOS sourcemap conversion is supported.
-    - If the corresponding sourcemap file is not found, no conversion will be performed.
-    - Sourcemap compressed package uploaded through the interface, which does not need to restart DataKit to take effect. However, if it is uploaded manually, you need to restart the DataKit before it can take effect.
+    - The upload and delete interfaces require `token` authentication
+    - This conversion process only applies to the `error` Measurement set
+    - Currently only supports Javascript/Android/iOS sourcemap conversion
+    - If the corresponding sourcemap file is not found, no conversion will occur
+    - Sourcemap compressed packages uploaded via the interface do not require DataKit to be restarted to take effect. However, if uploaded manually, DataKit needs to be restarted for it to take effect
 <!-- markdownlint-enable -->
 
-## CDN resolve {#cdn-resolve}
+## CDN Annotation {#cdn-resolve}
 
-For the `resource` indicator, DataKit attempts to analyze whether the resource uses CDN and the corresponding CDN manufacturer. When the `provider_type` field value in the indicator set is "CDN", it indicates that The resource uses CDN, and the `provider_name` field value is the specific CDN manufacturer name.
+For the `resource` Metric, DataKit attempts to analyze whether the resource uses CDN and the corresponding CDN provider. When the `provider_type` field in the Measurement set has the value "CDN", it indicates that the resource uses CDN, and at this point, the `provider_name` field value represents the specific CDN provider name.
 
-### Customize the CDN lookup dictionary {#customize-cdn-map}
+### Customize CDN Query List {#customize-cdn-map}
 
-DataKit has a built-in list of CDN manufacturers. If you find that the CDN you used cannot be recognized, you can modify the list in the configuration file, which is located at */usr/local/datakit/conf.d/rum/rum.conf*, which is determined according to DataKit installation location, where `cdn_map` configuration item is used to customize the CDN dictionary. The CDN list seems like the following JSON:
+DataKit includes a built-in list of mainstream CDN provider information. If you find that the CDN you use cannot be correctly identified, you can modify this list in the configuration file. The configuration file is located by default at */usr/local/datakit/conf.d/rum/rum.conf*, specifically depending on your DataKit installation location. The `cdn_map` configuration item in it is used to customize the CDN list set, and the configuration value is a JSON similar to the following:
 
 ```json
 [
   {
     "domain": "alicdn.com",
-    "name": "Aliyun CDN",
+    "name": "Alibaba Cloud CDN",
     "website": "https://www.aliyun.com"
   },
   ...
 ]
 ```
 
-We can easily copy and modify the [built-in CDN Dict](built-in_cdn_dict_config.md){:target="_blank"} config, then paste all the content to the configuration file, remember to restart the DataKit after modification.
+You can simply copy the [built-in CDN configuration list](built-in_cdn_dict_config.md){:target="_blank"}, modify it, and paste it directly into the configuration file. After modification, DataKit needs to be restarted.
 
-## RUM Session Replay {#rum-session-replay}
+## RUM SESSION REPLAY {#rum-session-replay}
 
-As of version [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5), Datakit support to collect the data of RUM Session Replay. It needs you to add item `session_replay_endpoints` to RUM configuration as bellow and then restart Datakit.
+Starting from Datakit [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5), support was added for collecting RUM session replay data. This function requires modifying the RUM collector configuration, adding the `session_replay_endpoints` configuration item, and restarting Datakit.
 
 ```toml
 [[inputs.rum]]
@@ -444,12 +448,12 @@ As of version [:octicons-tag-24: Version-1.5.5](../datakit/changelog.md#cl-1.5.5
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    RUM configuration file is located at */usr/local/datakit/conf.d/rum/rum.conf*(Linux/macOS) and *C:\\Program Files\\datakit\\conf.d\\rum*（Windows） by default, which depend on the operating system you use and the installation location of Datakit.
+    The RUM configuration file is typically located at */usr/local/datakit/conf.d/rum/rum.conf* (Linux/macOS) and *C:\\Program Files\\datakit\\conf.d\\rum* (Windows), specifically depending on the operating system and Datakit installation location you are using.
 <!-- markdownlint-enable -->
 
-### RUM Session Replay Filter {#rum-session-replay-filter}
+### Filtering of RUM Session Replay Data {#rum-session-replay-filter}
 
-Starting from the Datakit [:octicons-tag-24: Version-1.20.0](../datakit/changelog.md#cl-1.20.0) version, it is supported to use configuration to filter out unnecessary session replay data. New The configuration item name is `filter_rules`, and the format is similar to the following (please refer to `rum.conf.sample` RUM sample configuration file):
+Starting from Datakit [:octicons-tag-24: Version-1.20.0](../datakit/changelog.md#cl-1.20.0), support was added for filtering out unnecessary session replay data using configuration. A new configuration item named `filter_rules` was added, formatted similarly as follows (you can refer to the `rum.conf.sample` RUM sample configuration file):
 
 ```toml
 [inputs.rum.session_replay]
@@ -465,16 +469,16 @@ Starting from the Datakit [:octicons-tag-24: Version-1.20.0](../datakit/changelo
    ]
 ```
 
-`filter_rules` is an array of rules. There is an "OR" logical relationship between each rule. That is to say, a certain session replay data will be discarded as long as it hits any one of the rules. It will be discarded only if all the rules fail to hit. reserve. The fields currently supported by filtering rules are as shown in the following table:
+`filter_rules` is an array of rules, and each rule has an "or" logical relationship between them. That is, any session replay data that matches any one of the rules will be discarded, and only data that does not match all rules will be retained. The fields currently supported by the filtering rules are shown in the following table:
 
-| Field name          | Type   | Description                                   | Example         |
-| ------------------- | ------ | --------------------------------------------- | --------------- |
-| `app_id`            | string | Application ID                                | appid_123456789 |
-| `service`           | string | service name                                  | user_center     |
-| `version`           | string | Service version                               | v1.0.0          |
-| `env`               | string | Service deployment environment                | production      |
-| `sdk_name`          | string | RUM SDK name                                  | df_web_rum_sdk  |
-| `sdk_version`       | string | RUM SDK version                               | 3.1.5           |
-| `source`            | string | data source                                   | browser         |
-| `has_full_snapshot` | string | Whether it is full data                       | false           |
-| `raw_segment_size`  | int    | Size of raw session replay data (unit: bytes) | 656             |
+| Field Name                 | Type     | Description                 | Example              |
+|---------------------|--------|--------------------|-----------------|
+| `app_id`            | string | Application ID              | appid_123456789 |
+| `service`           | string | Service Name               | user_center     |
+| `version`           | string | Service Version               | v1.0.0          |
+| `env`               | string | Service Deployment Environment             | production      |
+| `sdk_name`          | string | RUM SDK Name         | df_web_rum_sdk  |
+| `sdk_version`       | string | RUM SDK Version         | 3.1.5           |
+| `source`            | string | Data Source               | browser         |
+| `has_full_snapshot` | string | Whether it is full data            | false           |
+| `raw_segment_size`  | int    | Size of original session replay data (unit: bytes) | 656             |
