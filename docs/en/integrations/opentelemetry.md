@@ -464,9 +464,9 @@ Additionally, the Agent includes some built-in configurations for third-party so
 <!-- markdownlint-disable MD046 -->
 ???+ warning "metrics"
 
-    Starting from version [DataKit 1.68.0](../datakit/changelog.md#cl-1.68.0), the name of the measurement sets has been changed:
-    All metrics sent to <<< custom_key.brand_name >>> have a unified measurement set name: `otel_service`
-    If you already have dashboards, export them and uniformly change `otel-serivce` to `otel_service` before re-importing.
+    Starting from [DataKit 1.68.0](../datakit/changelog-2025.md#cl-1.68.0), the indicator set name has been changed:
+    All indicators sent to the observation cloud have a unified indicator set name: `otel_service`.
+    If you already have a dashboard, export the existing dashboard and change `otel-serivce` to `otel_service` and then import it.
 
 <!-- markdownlint-enable -->
 
@@ -636,6 +636,7 @@ This conversion allows OpenTelemetry-collected histogram data to seamlessly inte
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|

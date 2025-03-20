@@ -128,6 +128,11 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
       ##  It is possible to compatible B3/B3Multi TraceID with DDTrace.
       # trace_id_64_bit_hex=true
     
+      ## When true, the tracer generates 128 bit Trace IDs, 
+      ## and encodes Trace IDs as 32 lowercase hexadecimal characters with zero padding.
+      ## default is true.
+      # trace_128_bit_id = true
+    
       ## delete trace message
       # del_message = true
     
@@ -232,6 +237,16 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
     
         **默认值**: false
     
+    - **ENV_INPUT_DDTRACE_TRACE_128_BIT_ID**
+    
+        将链路 ID 转成长度为 32 的 16 进制编码的字符串
+    
+        **字段类型**: Boolean
+    
+        **采集器配置字段**: `trace_128_bit_id`
+    
+        **默认值**: true
+    
     - **ENV_INPUT_DDTRACE_DEL_MESSAGE**
     
         删除 trace 消息
@@ -328,11 +343,21 @@ DDTrace 是 DataDog 开源的 APM 产品，Datakit 内嵌的 DDTrace Agent 用�
 
 ### 多线路工具串联注意事项 {#trace_propagator}
 
+DDTrace 数据结构中 TraceID 是 uint64 类型，在使用透传协议 `tracecontext` 时，DDTrace 链路详情内部会增加一个 `_dd.p.tid:67c573cf00000000` 原因是因为 `tracecontext` 协议
+中的 `trace_id` 是 128 位 16 进制编码的字符串，为了兼容只能增加了一个高位的 tag 。
+
 DDTrace 目前支持的透传协议有：`datadog/b3multi/tracecontext` ，有两种情况需要注意：
 
-- 当使用 `tracecontext` 时，由于链路 ID 为 128 位需要将配置中的 `compatible_otel=true` 开关打开。
+- 当使用 `tracecontext` 时，由于链路 ID 为 128 位需要将配置中的 `compatible_otel=true` 和 `trace_128_bit_id` 开关打开。
 - 当使用 `b3multi` 时，需要注意 `trace_id` 的长度，如果为 64 位的 hex 编码，需要将配置文件中的 `trace_id_64_bit_hex=true` 打开。
 - 更多的透传协议及工具使用请查看： [多链路串联](tracing-propagator.md){:target="_blank"}
+
+
+???+ tip
+
+    compatible_otel 作用：将 span_id 和 parent_id 转成 16 进制的字符串。
+    trace_128_bit_id 作用：将 meta 中的 "_dd.p.tid" 加上 trace_id 组合成一个长度为 32 的 16 进制编码的字符串。
+    trace_id_64_bit_hex 作用：将 64 位的 trace_id 转成 16 进制编码的字符串。
 
 ### 注入 Pod 和 Node 信息 {#add-pod-node-info}
 
@@ -574,6 +599,7 @@ Collect service,host,process APM Telemetry message.
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
