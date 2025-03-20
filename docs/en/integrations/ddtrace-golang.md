@@ -282,10 +282,10 @@ Compile and run
     ```
 <!-- markdownlint-enable -->
 
-After running the program for some time, similar trace data will appear in Guance as follows:
+After running the program for some time, similar trace data will appear in <<< custom_key.brand_name >>> as follows:
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/golang-ddtrace-example.png){ width="800"}
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/golang-ddtrace-example.png){ width="800"}
   <figcaption>Golang Program Trace Data Display</figcaption>
 </figure>
 

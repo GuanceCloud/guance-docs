@@ -24,9 +24,9 @@ Alibaba Cloud RDS PostgreSQL Metrics Display, including CPU usage, memory usage,
 
 ### Install Func
 
-It is recommended to activate the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > It is recommended to deploy the GSE version.
 
@@ -34,7 +34,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare an appropriate Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of RDS cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud - RDS Collection)" (ID: `guance_aliyun_rds`)
+To synchronize monitoring data of RDS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Collection)" (ID: `guance_aliyun_rds`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK and Alibaba Cloud account name.
 
@@ -42,14 +42,14 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 In addition, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Clicking 【Execute】 will immediately execute once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-We collect some configurations by default; for more details, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
+We collect some configurations by default; for more details, see the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 Configure Alibaba Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics via configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://cms.console.aliyun.com/metric-meta/acs_rds_dashboard/postgresql?spm=a2c4g.11186623.0.0.252476abya93cJ){:target="_blank"}
@@ -126,7 +126,7 @@ The collected Alibaba Cloud RDS PostgreSQL object data structure can be viewed f
 
 > Note 1: The operation of this script's code depends on the collection of RDS instance objects. If the custom object collection for RDS is not configured, the slow log script cannot collect slow log data.
 > Note 2: Due to the 6~8 hours delay in returning statistics data from Alibaba Cloud, there may be delays in updating the collector's data. For more details, refer to the Alibaba Cloud documentation: Cloud Database RDS Query Slow Log Statistics.
-> Note 3: This collector supports all versions of MySQL (except the basic edition of MySQL 5.7), SQL Server 2008 R2, MariaDB 10.3 type databases. To collect other types of databases, use the [Alibaba Cloud-RDS Slow Query Detail](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
+> Note 3: This collector supports all versions of MySQL (except the basic edition of MySQL 5.7), SQL Server 2008 R2, MariaDB 10.3 type databases. To collect other types of databases, use the [Alibaba Cloud-RDS Slow Query Detail](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
 
 #### Slow Query Statistics Installation Script
 
@@ -134,9 +134,9 @@ On top of the previous setup, you need to install another script corresponding t
 
 In "Manage / Script Market," click and install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud - RDS Slow Query Statistics Log Collection)" (ID: `guance_aliyun_rds_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Slow Query Statistics Log Collection)" (ID: `guance_aliyun_rds_slowlog`)
 
-Once the data is synchronized correctly, you can view it under the "Logs" section of Guance.
+Once the data is synchronized correctly, you can view it under the "Logs" section of <<< custom_key.brand_name >>>.
 
 An example of the reported data is as follows:
 
@@ -201,11 +201,11 @@ On top of the previous setup, you need to install another script corresponding t
 
 In "Manage / Script Market," click and install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud-RDS Slow Query Detail Log Collection)" (ID: `guance_aliyun_rds_slowlog_record`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-RDS Slow Query Detail Log Collection)" (ID: `guance_aliyun_rds_slowlog_record`)
 
-Once the data is synchronized correctly, you can view it under the "Logs" section of Guance.
+Once the data is synchronized correctly, you can view it under the "Logs" section of <<< custom_key.brand_name >>>.
 
-Configuration [Cloud Database RDS Slow Query Details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
+Configuration [Cloud Database RDS Slow Query Details](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
 
 An example of the reported data is as follows:
 

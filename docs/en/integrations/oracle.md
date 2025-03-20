@@ -123,7 +123,7 @@ Choose and install the corresponding package based on your operating system and 
     > You can also directly download our pre-prepared dependency package:
 
     ```shell
-    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
+    wget https://static.<<< custom_key.brand_main_domain >>>/otn_software/instantclient/instantclient-basiclite-linux.x64-21.10.0.0.0dbru.zip \
         -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
         && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
         && mv /opt/oracle/instantclient_21_10 /opt/oracle/instantclient;
@@ -141,7 +141,7 @@ Choose and install the corresponding package based on your operating system and 
     > You can also directly download our pre-prepared dependency package:
 
     ```shell
-    wget https://static.guance.com/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
+    wget https://static.<<< custom_key.brand_main_domain >>>/otn_software/instantclient/instantclient-basiclite-linux.arm64-19.19.0.0.0dbru.zip \
         -O /usr/local/datakit/externals/instantclient-basiclite-linux.zip \
         && unzip /usr/local/datakit/externals/instantclient-basiclite-linux.zip -d /opt/oracle \
         && mv /opt/oracle/instantclient_19_19 /opt/oracle/instantclient;
@@ -463,7 +463,7 @@ All the following data collections default to appending global election tags, ot
 
 ## Slow Query Support {#slow}
 
-DataKit can report SQL statements that take longer than the user-defined time to execute to Guance, showing them in logs with the source name `oracle_log`.
+DataKit can report SQL statements that take longer than the user-defined time to execute to <<< custom_key.brand_name >>>, showing them in logs with the source name `oracle_log`.
 
 By default, this feature is turned off. Users can enable it in Oracle's configuration file as follows:
 

@@ -18,9 +18,9 @@ Collect Azure MySQL Metrics data.
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > We recommend deploying the GSE version.
 
@@ -28,7 +28,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare the required Azure application registration information in advance and assign the `Monitoring Reader` role to the application registration.
 
-To synchronize Azure MySQL monitoring data, we install the corresponding collection script: 「Guance Integration (Azure-DB For MySQL Flexible Server Collection)」(ID: `guance_azure_mysql_flexible_server`)
+To synchronize Azure MySQL monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Azure-DB For MySQL Flexible Server Collection)」(ID: `guance_azure_mysql_flexible_server`)
 
 After clicking 【Install】, enter the corresponding parameters:
 
@@ -44,8 +44,8 @@ After starting, you can see the corresponding automatic trigger configuration in
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can check the corresponding task records and logs to check for any anomalies.
-2. On the Guance platform, in 「Infrastructure / Custom」check if there is asset information.
-3. On the Guance platform, in 「Metrics」check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure / Custom」check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

@@ -25,7 +25,7 @@ Prometheus has a comprehensive Kubernetes application Metrics collection solutio
     Prometheus-Operator [official link](https://github.com/prometheus-operator/prometheus-operator){:target="_blank"} and [application example](https://alexandrev.medium.com/prometheus-concepts-servicemonitor-and-podmonitor-8110ce904908){:target="_blank"}.
 <!-- markdownlint-enable -->
 
-Here, Datakit plays the role of step 3, where Datakit listens and discovers Prometheus-Operator CRDs and initiates Metric collection based on configurations, ultimately uploading them to Guance.
+Here, Datakit plays the role of step 3, where Datakit listens and discovers Prometheus-Operator CRDs and initiates Metric collection based on configurations, ultimately uploading them to <<< custom_key.brand_name >>>.
 
 Currently, Datakit supports two types of Prometheus-Operator CRD resources —— `PodMonitor` and `ServiceMonitor`, along with their required (require) configurations, including the following parts:
 
@@ -171,4 +171,4 @@ Refer to [here](kubernetes-prom.md#measurement-and-tags).
 
 ### Verification {#check}
 
-Start Datakit, use `datakit monitor -V` or check on the Guance page; finding Metrics starting with `nacos_` indicates successful collection.
+Start Datakit, use `datakit monitor -V` or check on the <<< custom_key.brand_name >>> page; finding Metrics starting with `nacos_` indicates successful collection.

@@ -1,21 +1,21 @@
 ---
-title: 'Huawei Cloud ASM Tracing TO Guance'
+title: 'Huawei Cloud ASM Tracing TO <<< custom_key.brand_name >>>'
 tags: 
   - Huawei Cloud
-summary: 'Output tracing data from Huawei Cloud ASM to Guance for viewing and analysis.'
+summary: 'Output tracing data from Huawei Cloud ASM to <<< custom_key.brand_name >>> for viewing and analysis.'
 __int_icon: 'icon/huawei_asm'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Huawei Cloud ASM Tracing TO Guance
+# Huawei Cloud ASM Tracing TO <<< custom_key.brand_name >>>
 <!-- markdownlint-enable -->
 
-Output tracing data from Huawei Cloud ASM to Guance for viewing and analysis.
+Output tracing data from Huawei Cloud ASM to <<< custom_key.brand_name >>> for viewing and analysis.
 
 ## Configuration {#config}
 
 ### Preparation
-To use ASM, you need to purchase a CCE cluster and deploy the `datakit` [`daemonset`](https://docs.guance.com/datakit/datakit-daemonset-deploy/).
+To use ASM, you need to purchase a CCE cluster and deploy the `datakit` [`daemonset`](<<< homepage >>>/datakit/datakit-daemonset-deploy/).
 
 ### Creation of ASM
 Service Mesh => Purchase Mesh => Basic Edition
@@ -47,11 +47,11 @@ Access `http://124.70.68.49/productpage` to check if the service is normal.
 
 ![img](imgs/huawei_asm/huawei_asm07.png)
 
-### Sending Trace Data to Guance
+### Sending Trace Data to <<< custom_key.brand_name >>>
 
 #### Enable OpenTelemetry Collector
 
-Refer to the [`OpenTelemetry` collector connection documentation](https://docs.guance.com/datakit/opentelemetry/)
+Refer to the [`OpenTelemetry` collector connection documentation](<<< homepage >>>/datakit/opentelemetry/)
 
 - Add to ConfigMap
 
@@ -102,7 +102,7 @@ sampling: 100   # Change this parameter from 1 to 100
 ...
 ```
 
-Modify asm output to Guance
+Modify asm output to <<< custom_key.brand_name >>>
 
 ```shell
 # kubectl edit -n monitoring cm otel-collector-conf
@@ -126,7 +126,7 @@ traces/apm:
 
 ![img](imgs/huawei_asm/huawei_asm09.png)
 
-After configuration modification, access the address `http://124.70.68.49/productpage` several times, then check the traces in Guance workspace.
+After configuration modification, access the address `http://124.70.68.49/productpage` several times, then check the traces in <<< custom_key.brand_name >>> workspace.
 
 ![img](imgs/huawei_asm/huawei_asm10.png)
 
@@ -134,10 +134,10 @@ Click on a trace to view detailed information.
 
 ![img](imgs/huawei_asm/huawei_asm11.png)
 
-### Sending Metrics Data to Guance
+### Sending Metrics Data to <<< custom_key.brand_name >>>
 #### Metric Collection Configuration
 
-1. Enable `Prometheus Exportter` data collection in DataKit. Refer to [**Prometheus Exportter**](https://docs.guance.com/integrations/prom/#__tabbed_1_2), ConfigMap as follows:
+1. Enable `Prometheus Exportter` data collection in DataKit. Refer to [**Prometheus Exportter**](<<< homepage >>>/integrations/prom/#__tabbed_1_2), ConfigMap as follows:
 
 
    ``` yaml

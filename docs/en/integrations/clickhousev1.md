@@ -16,7 +16,7 @@ monitor:
 
 ---
 
-The ClickHouse collector can collect various types of metrics actively exposed by the ClickHouse server instance, such as statement execution counts and memory storage volumes, IO interactions, etc., and send these metrics to Guance for monitoring and analyzing various abnormal situations in ClickHouse.
+The ClickHouse collector can collect various types of metrics actively exposed by the ClickHouse server instance, such as statement execution counts and memory storage volumes, IO interactions, etc., and send these metrics to <<< custom_key.brand_name >>> for monitoring and analyzing various abnormal situations in ClickHouse.
 
 ## Configuration {#config}
 

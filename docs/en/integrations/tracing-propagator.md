@@ -67,9 +67,9 @@ Products and vendors:
 
 Product open-source addresses:
 
-- [OpenTelemetry](https://github.com/open-telemetry){:target="_blank"} is a product under CNCF. Guance has also [extended it](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
+- [OpenTelemetry](https://github.com/open-telemetry){:target="_blank"} is a product under CNCF. <<< custom_key.brand_name >>> has also [extended it](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
 - [Jaeger](https://github.com/jaegertracing/jaeger){:target="_blank"} belongs to CNCF
-- [Datadog](https://github.com/DataDog){:target="_blank"} multi-language tracing tool, where Guance has [extended it](https://github.com/GuanceCloud/dd-trace-java){:target="_blank"}
+- [Datadog](https://github.com/DataDog){:target="_blank"} multi-language tracing tool, where <<< custom_key.brand_name >>> has [extended it](https://github.com/GuanceCloud/dd-trace-java){:target="_blank"}
 - [SkyWalking](https://github.com/apache?q=skywalking&type=all&language=&sort=){:target="_blank"} is an open-source product under the Apache Foundation
 - [Zipkin](https://github.com/OpenZipkin){:target="_blank"} includes multiple language tracing tools.
 

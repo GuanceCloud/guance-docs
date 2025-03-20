@@ -55,7 +55,7 @@ In the *resources* directory, configure *log4j.xml* and add `Socket Appender`:
 
      <!-- Second output format JSON -->
      <!-- Note: The compact and eventEol settings must be true so each log entry is output on a single line -->
-     <!-- Sending logs to Guance will automatically expand the JSON, so here we recommend you output each log entry on a single line -->
+     <!-- Sending logs to <<< custom_key.brand_name >>> will automatically expand the JSON, so here we recommend you output each log entry on a single line -->
      <!-- <JsonLayout  properties="true" compact="true" complete="false" eventEol="true"/>-->
  </Socket>
 

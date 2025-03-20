@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-The Flink collector can gather many metrics from Flink instances, such as the status of Flink servers and network states among various metrics, and collect them into Guance to help you monitor and analyze various abnormal situations in Flink.
+The Flink collector can gather many metrics from Flink instances, such as the status of Flink servers and network states among various metrics, and collect them into <<< custom_key.brand_name >>> to help you monitor and analyze various abnormal situations in Flink.
 
 ## Configuration {#config}
 

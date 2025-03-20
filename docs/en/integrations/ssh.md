@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-Monitor the SSH/SFTP service and report data to Guance.
+Monitor the SSH/SFTP service and report data to <<< custom_key.brand_name >>>.
 
 ## Configuration {#config}
 

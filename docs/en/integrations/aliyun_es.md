@@ -24,9 +24,9 @@ Alibaba Cloud ElasticSearch metrics display, including cluster status, index QPS
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - managed Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -34,7 +34,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data of ElasticSearch cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-ElasticSearch Collection)" (ID: `guance_aliyun_elasticsearch`)
+To synchronize monitoring data of ElasticSearch cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-ElasticSearch Collection)" (ID: `guance_aliyun_elasticsearch`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -46,14 +46,14 @@ After it is enabled, you can see the corresponding automatic trigger configurati
 
 We default collect some configurations, details see the metrics section
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs to check for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Alibaba Cloud - Cloud Monitor, the default metric set is as follows. More metrics can be collected through configuration. [Alibaba Cloud Cloud Monitor Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
@@ -110,7 +110,7 @@ The structure of the collected Alibaba Cloud ElasticSearch object data can be vi
 ## Logs {#logging}
 
 ### Prerequisites
-> Note 1: Before using this collector, you must install the "Guance Integration Core package" and its accompanying third-party dependency packages.
+> Note 1: Before using this collector, you must install the "<<< custom_key.brand_name >>> Integration Core package" and its accompanying third-party dependency packages.
 > Note 2: This script's code execution depends on mongodb instance object collection. If custom object collection for mongodb is not configured, the slow log script cannot collect slow log data.
 
 <!-- markdownlint-disable MD024 -->
@@ -123,11 +123,11 @@ On top of the previous setup, you need to install another script for **Elasticse
 
 In "Manage / Script Market", click and install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud-ElasticSearch Collection)" (ID: `guance_aliyun_elasticsearch_log`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-ElasticSearch Collection)" (ID: `guance_aliyun_elasticsearch_log`)
 
 
 ### Data Reporting Format
-After the data is synchronized normally, you can view the data in "Infrastructure - Custom Objects" on Guance.
+After the data is synchronized normally, you can view the data in "Infrastructure - Custom Objects" on <<< custom_key.brand_name >>>.
 
 An example of the reported data is as follows:
 

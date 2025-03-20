@@ -25,9 +25,9 @@ Display of Volcengine MongoDB sharded cluster metrics, including CPU usage, memo
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - managed Func: all prerequisites are automatically installed. Please continue with script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -35,7 +35,7 @@ If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com
 
 > Note: Please prepare a Volcengine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data for MongoDB cloud resources, we install the corresponding collection script: "Guance Integration (Volcengine-MongoDB Collection)" (ID: `guance_volcengine_mongodb_sharded_cluster`)
+To synchronize monitoring data for MongoDB cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-MongoDB Collection)" (ID: `guance_volcengine_mongodb_sharded_cluster`)
 
 After clicking 【Install】, enter the corresponding parameters: Volcengine AK and Volcengine account name.
 
@@ -48,14 +48,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default to collecting some configurations; see the metrics section for details.
 
-[Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
+[Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have corresponding automatic trigger configurations, and you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

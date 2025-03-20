@@ -30,15 +30,15 @@ The displayed Metrics for AWS API Gateway include request response time, through
 
 ### Install Func
 
-It is recommended to activate the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Installation Script
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of AWS API Gateway cloud resources, we install the corresponding collection script: "Guance Integration (AWS-Gateway Collection)" (ID: `guance_aws_gateway`)
+To synchronize monitoring data of AWS API Gateway cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-Gateway Collection)" (ID: `guance_aws_gateway`)
 
 After clicking 【Install】, input the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -48,14 +48,14 @@ Then, in the collection script, change the regions in collector_configs and clou
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a while, you can check the execution task records and corresponding logs.
 
-We default to collecting some configurations; for more details, see the Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-gateway/){:target="_blank"}
+We default to collecting some configurations; for more details, see the Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-gateway/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding automatic trigger configuration exists for the task, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon-CloudWatch, the default Measurement set is as follows. You can collect more Metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html){:target="_blank"}

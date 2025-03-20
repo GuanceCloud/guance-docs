@@ -23,9 +23,9 @@ Display of metrics for the Alibaba Cloud **Tair** Community Edition, including C
 
 ### Install Func
 
-We recommend enabling Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with script installation.
+We recommend enabling <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -33,7 +33,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data from the Alibaba Cloud `tair` community edition, we install the corresponding collection script: Guance Integration (Alibaba Cloud - `tair` collection) (ID: `startup__guance_aliyun_tair`)
+To synchronize monitoring data from the Alibaba Cloud `tair` community edition, we install the corresponding collection script: <<< custom_key.brand_name >>> Integration (Alibaba Cloud - `tair` collection) (ID: `startup__guance_aliyun_tair`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -43,14 +43,14 @@ In addition, you can see the corresponding automatic trigger configuration in "M
 
 We collect some configurations by default; see the metrics section for details.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Alibaba Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Details of Alibaba Cloud Cloud Monitoring Metrics](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}

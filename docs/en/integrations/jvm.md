@@ -190,7 +190,7 @@ The Metric type is `counter`, meaning a counter. During the collection process, 
 
 ### Collect JVM Metrics via Jolokia {#jvm-jolokia}
 
-The JVM collector can collect many Metrics through JMX and send them to Guance for analysis of Java runtime conditions.
+The JVM collector can collect many Metrics through JMX and send them to <<< custom_key.brand_name >>> for analysis of Java runtime conditions.
 
 ### Configuration {#jolokia-config}
 

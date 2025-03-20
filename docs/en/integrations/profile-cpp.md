@@ -11,19 +11,19 @@ Currently, DataKit supports 1 method for collecting C/C++ profiling data, namely
 
 ## Pyroscope {#pyroscope}
 
-[Pyroscope](https://pyroscope.io/){:target="_blank"} is an open-source continuous profiling platform. DataKit already supports displaying the profiling data reported by it on [Guance](https://www.guance.com/){:target="_blank"}.
+[Pyroscope](https://pyroscope.io/){:target="_blank"} is an open-source continuous profiling platform. DataKit already supports displaying the profiling data reported by it on [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/){:target="_blank"}.
 
 Pyroscope adopts a C/S architecture, with operation modes divided into [Pyroscope Agent](https://pyroscope.io/docs/agent-overview/){:target="_blank"} and [Pyroscope Server](https://pyroscope.io/docs/server-overview/){:target="_blank"}. Both modes are integrated into a single binary file and are presented through different command-line commands.
 
 Here, the Pyroscope Agent mode is required. DataKit has already integrated the Pyroscope Server function, which exposes an HTTP interface to receive profiling data reported by the Pyroscope Agent.
 
-Profiling data flow: «Pyroscope Agent collects profiling data -> Datakit -> Guance».
+Profiling data flow: «Pyroscope Agent collects profiling data -> Datakit -> <<< custom_key.brand_name >>>».
 
 ### Prerequisites {#pyroscope-requirement}
 
 - According to the Pyroscope official documentation [eBPF Profiling](https://pyroscope.io/docs/ebpf/#prerequisites-for-profiling-with-ebpf){:target="_blank"}, Linux kernel version >= 4.9 is required (because of the event [BPF_PROG_TYPE_PERF_EVENT](https://lkml.org/lkml/2016/9/1/831){:target="_blank"}).
 
-- [DataKit](https://www.guance.com/){:target="_blank"} must be installed and the [profile](profile.md#config) collector must be enabled. The configuration reference is as follows:
+- [DataKit](https://<<< custom_key.brand_main_domain >>>/){:target="_blank"} must be installed and the [profile](profile.md#config) collector must be enabled. The configuration reference is as follows:
 
 ```toml
 [[inputs.profile]]
@@ -86,4 +86,4 @@ export PYROSCOPE_SPY_NAME='ebpfspy'
 
 ### View Profile {#pyroscope-view}
 
-After running the profiling commands, the Pyroscope Agent will start collecting the specified profiling data and report the data to Guance. After waiting a few minutes, you can view the corresponding data in the Guance space [APM -> Profile](https://console.guance.com/tracing/profile){:target="_blank"}.
+After running the profiling commands, the Pyroscope Agent will start collecting the specified profiling data and report the data to <<< custom_key.brand_name >>>. After waiting a few minutes, you can view the corresponding data in the <<< custom_key.brand_name >>> space [APM -> Profile](https://<<< custom_key.studio_main_site >>>/tracing/profile){:target="_blank"}.

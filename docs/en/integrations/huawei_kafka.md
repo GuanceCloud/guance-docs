@@ -21,29 +21,29 @@ Collect Huawei Cloud DMS Kafka Metrics data
 
 ### Install Func
 
-It is recommended to activate Guance Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please proceed with the script installation.
+It is recommended to activate <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please proceed with the script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Huawei Cloud Kafka monitoring data, we install the corresponding collection script: by accessing the web service of func and entering the 【Script Market】, 「Guance Integration (Huawei Cloud-Kafka Collection)」(ID: `guance_huaweicloud_kafka`)
+To synchronize Huawei Cloud Kafka monitoring data, we install the corresponding collection script: by accessing the web service of func and entering the 【Script Market】, 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-Kafka Collection)」(ID: `guance_huaweicloud_kafka`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, SK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script 「Guance Integration (Huawei Cloud-Kafka Collection)」in the "Development" section of Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-Kafka Collection)」in the "Development" section of Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration in the 「Management / Automatic Trigger Configuration」. Click 【Execute】to immediately execute once without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」, check if there is any asset information.
-3. On the Guance platform, in 「Metrics」, check if there are any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」, check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there are any corresponding monitoring data.
 
 ## Metrics {#metric}
 

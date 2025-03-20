@@ -27,9 +27,9 @@ The displayed metrics for Huawei Cloud FunctionGraph include the number of calls
 
 ### Install Func
 
-It is recommended to activate the Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of HUAWEI FunctionGraph, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-FunctionGraph Collection)」(ID: `guance_huaweicloud_functiongraph`)
+To synchronize the monitoring data of HUAWEI FunctionGraph, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-FunctionGraph Collection)」(ID: `guance_huaweicloud_functiongraph`)
 
 After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
@@ -47,15 +47,15 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default collect some configurations, details see the metric section
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-functiongraph/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-functiongraph/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
-3. On the Guance platform, under 「Metrics」, check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring HUAWEI SYS.FunctionGraph, the default metric sets are as follows. You can collect more metrics through configuration. [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-functiongraph/functiongraph_01_0213.html){:target="_blank"}

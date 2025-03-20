@@ -19,9 +19,9 @@ Collect Huawei Cloud WAF Metrics data
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extensions - Managed Func: all prerequisites are automatically installed, please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extensions - Managed Func: all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > It is recommended to deploy the GSE version.
 
@@ -29,21 +29,21 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Huawei Cloud WAF monitoring data, we install the corresponding collection script: "Guance Integration (Huawei Cloud-WAF Collection)" (ID: `guance_huaweicloud_waf`)
+To synchronize Huawei Cloud WAF monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud-WAF Collection)" (ID: `guance_huaweicloud_waf`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set, and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud-WAF Collection)" under "Development" in Func, and edit the content of `region_projects` in `collector_configs` and `monitor_configs`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud-WAF Collection)" under "Development" in Func, and edit the content of `region_projects` in `collector_configs` and `monitor_configs`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and you can also check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 

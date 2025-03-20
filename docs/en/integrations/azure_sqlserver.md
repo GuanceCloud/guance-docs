@@ -19,9 +19,9 @@ Collect metrics data from Azure SQL Servers.
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > We recommend deploying the GSE version.
 
@@ -29,7 +29,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare the required Azure application registration information in advance and assign the `Monitoring Reader` role to the application registration.
 
-To synchronize Azure-SQL Server monitoring data, we install the corresponding collection script: 「Guance Integration (Azure-SQL Server Database Collection)」(ID: `guance_azure_sql_server_database`)
+To synchronize Azure-SQL Server monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Azure-SQL Server Database Collection)」(ID: `guance_azure_sql_server_database`)
 
 After clicking 【Install】, enter the corresponding parameters:
 
@@ -44,13 +44,13 @@ After starting, you can see the corresponding automatic trigger configuration un
 
 We collect some configurations by default; for more details, see the Metrics section.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-azure-sql-server-database/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-azure-sql-server-database/){:target="_blank"}
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, under 「Infrastructure / Custom」check if there is asset information.
-3. On the Guance platform, under 「Metrics」check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

@@ -2,7 +2,7 @@
 title: 'Tencent Cloud PostgreSQL'
 tags: 
   - Tencent Cloud
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_postgresql'
 dashboard:
 
@@ -19,16 +19,16 @@ monitor:
 # Tencent Cloud PostgreSQL
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -36,7 +36,7 @@ If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.
 
 > Note: Please prepare a qualified Tencent Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize PostgreSQL monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-PostgreSQL Collection)" (ID: `guance_tencentcloud_postgresql`)
+To synchronize PostgreSQL monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-PostgreSQL Collection)" (ID: `guance_tencentcloud_postgresql`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -46,14 +46,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 > If you want to collect the corresponding logs, you also need to enable the corresponding log collection script. If you want to collect bills, you need to enable the cloud bill collection script.
 
-We default to collecting some configurations, for more details see [Configuration Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default to collecting some configurations, for more details see [Configuration Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}
@@ -145,9 +145,9 @@ On top of the previous setup, you need to install another corresponding **Postgr
 
 In "Manage / Script Market", click and install the corresponding script package:
 
-- "Guance Integration (Tencent Cloud-PostgreSQL Slow Query Log Collection)" (ID: `guance_tencentcloud_postgresql_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Tencent Cloud-PostgreSQL Slow Query Log Collection)" (ID: `guance_tencentcloud_postgresql_slowlog`)
 
-After data synchronization is normal, you can view the data in the "Logs" section of Guance.
+After data synchronization is normal, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
 Example of reported data:
 

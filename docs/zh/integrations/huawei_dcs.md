@@ -21,9 +21,9 @@ monitor:
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### 安装脚本
 
@@ -38,16 +38,16 @@ monitor:
 
 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 
-脚本安装完后，在 Func 中「开发」里找到脚本「观测云集成（华为云-DCS采集）」/「观测云集成 (华为云-DCS慢查询日志采集) 」，展开修改脚本，找 collector_configs 和 monitor_configs 分别编辑下面 region_projects 中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
+脚本安装完后，在 Func 中「开发」里找到脚本「<<< custom_key.brand_name >>>集成（华为云-DCS采集）」/「<<< custom_key.brand_name >>>集成 (华为云-DCS慢查询日志采集) 」，展开修改脚本，找 collector_configs 和 monitor_configs 分别编辑下面 region_projects 中的内容，将地域和 Project ID,更改为实际的地域和 Project ID，再点击保存发布。
 
 此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
 
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
-4. 在观测云平台，「日志」查看是否有对应日志数据
+2. 在<<< custom_key.brand_name >>>，「基础设施 - 资源目录」中查看是否存在资产信息
+3. 在<<< custom_key.brand_name >>>，「指标」查看是否有对应监控数据
+4. 在<<< custom_key.brand_name >>>，「日志」查看是否有对应日志数据
 
 ## 指标 {#metric}
 
@@ -302,32 +302,33 @@ monitor:
 
 ## 对象 {#object}
 
+采集到的华为云 DCS 对象数据结构, 可以从「基础设施 - 资源目录」里看到对象数据
+
 ```json
 {
   "measurement": "huaweicloud_redis",
   "tags": {
-    "name"              : "71be0037-xxxx-xxxx-xxxx-b6b91f134066",
-    "instance_id"       : "71be0037-xxxx-xxxx-xxxx-b6b91f134066",
-    "instance_name"     : "dcs-iash",
     "RegionId"          : "cn-north-4",
     "project_id"        : "c631f04625xxxxxxxxxxf253c62d48585",
+    "enterprise_project_id" : "71be0037-xxxx-xxxx-xxxx-b6b91f134066",
+    "instance_id"       : "71be0037-xxxx-xxxx-xxxx-b6b91f134066",
+    "instance_name"     : "dcs-iash",
     "engine"            : "Redis",
+  },
+  "fields": {
     "engine_version"    : "5.0",
     "status"            : "RUNNING",
-    "az_codes"          : "[\"cn-north-4c\", \"cn-north-4a\"]",
     "port"              : "6379",
     "ip"                : "192.xxx.x.144",
     "charging_mode"     : "0",
-    "no_password_access": "true",
-    "enable_publicip"   : "False"
-  },
-  "fields": {
-    "created_at" : "2022-07-12T07:29:56.875Z",
-    "max_memory" : 128,
-    "used_memory": 2,
-    "capacity"   : 0,
-    "description": "",
-    "message"    : "{实例 JSON 数据}"
+    "enable_publicip"   : "False",
+    "spec_code"         : "xxxx",
+    "az_codes"          : "xxxxx",
+    "created_at"        : "2022-07-12T07:29:56.875Z",
+    "max_memory"        : "128",
+    "used_memory"       : "2",
+    "capacity"          : "0",
+    "description"       : "",
   }
 }
 ```
@@ -347,6 +348,6 @@ monitor:
 
 > *注意：`tags`、`fields`中的字段可能会随后续更新有所变动*
 >
-> 提示 1：`tags.name`值为实例 ID，作为唯一识别
+> 提示 1：`tags.instance_id`值为实例 ID，作为唯一识别
 >
 > 提示 2：以下字段均为 JSON 序列化后字符串 - `fields.message` - `tags.az_codes`

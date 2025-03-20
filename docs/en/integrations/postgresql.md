@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-The PostgreSQL collector can collect instance operational status metrics from PostgreSQL instances and send them to Guance, helping with monitoring and analyzing various abnormal conditions in PostgreSQL.
+The PostgreSQL collector can collect instance operational status metrics from PostgreSQL instances and send them to <<< custom_key.brand_name >>>, helping with monitoring and analyzing various abnormal conditions in PostgreSQL.
 
 ## Configuration {#config}
 

@@ -24,16 +24,16 @@ Alibaba Cloud OSS Metrics Display, including request counts, availability, netwo
 
 ### Install Func
 
-It is recommended to enable the Guance Integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> Integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data for Alibaba Cloud-OSS, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-OSS Collection)" (ID: `guance_aliyun_oss`)
+To synchronize monitoring data for Alibaba Cloud-OSS, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-OSS Collection)" (ID: `guance_aliyun_oss`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -43,7 +43,7 @@ Once enabled, you can see the corresponding automatic trigger configuration unde
 
 We collect some configurations by default; for more details, see the metrics section.
 
-[Customize Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aliyun-oss/){:target="_blank"}
+[Customize Cloud Object Metrics Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-oss/){:target="_blank"}
 
 
 
@@ -51,8 +51,8 @@ We collect some configurations by default; for more details, see the metrics sec
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the automatic trigger configuration, and check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if asset information exists.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Alibaba Cloud-OSS, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Monitoring Metrics Details](https://help.aliyun.com/document_detail/31879.html?){:target="_blank"}

@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-Start an HTTP Server to receive log text data and report it to Guance. The HTTP URL is fixed as: `/v1/write/logstreaming`, i.e., `http://Datakit_IP:PORT/v1/write/logstreaming`
+Start an HTTP Server to receive log text data and report it to <<< custom_key.brand_name >>>. The HTTP URL is fixed as: `/v1/write/logstreaming`, i.e., `http://Datakit_IP:PORT/v1/write/logstreaming`
 
 > Note: If DataKit is deployed in Kubernetes as a DaemonSet, you can access it via Service. The address would be `http://datakit-service.datakit:9529`
 

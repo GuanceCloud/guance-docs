@@ -42,10 +42,10 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - Managed Func: all prerequisites are automatically installed. Please continue with the script installation.
 
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 > It is recommended to deploy the GSE version.
@@ -54,7 +54,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize ECS cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (Alibaba Cloud - MongoDB Replica Set Collection)" (ID: `guance_aliyun_mongodb`)
+To synchronize ECS cloud resource monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - MongoDB Replica Set Collection)" (ID: `guance_aliyun_mongodb`)
 
 After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -68,14 +68,14 @@ After enabling, you can see the corresponding automatic trigger configuration un
 
 We default to collecting some configurations, for more details see the metrics section.
 
-[Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration. You can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom," check if there is asset information.
-3. On the Guance platform, under "Metrics," check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom," check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics," check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 By configuring Alibaba Cloud - Cloud Monitoring, the following default metrics are collected. More metrics can be collected through configuration.
@@ -208,9 +208,9 @@ On top of the previous steps, you need to install another script corresponding t
 
 In the "Script Market - Official Script Market," go to "Details" and click to install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud - MongoDB Slow Query Log Collection)" (ID: `guance_aliyun_mongodb`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - MongoDB Slow Query Log Collection)" (ID: `guance_aliyun_mongodb`)
 
-After the data synchronizes normally, you can view the data in the "Logs" section of Guance.
+After the data synchronizes normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
 An example of the reported data is as follows:
 

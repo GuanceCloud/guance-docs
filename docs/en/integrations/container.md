@@ -1,6 +1,6 @@
 ---
 title: 'Kubernetes'
-summary: 'Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to Guance.'
+summary: 'Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to <<< custom_key.brand_name >>>.'
 __int_icon:    'icon/kubernetes/'  
 tags:
   - 'KUBERNETES'
@@ -36,7 +36,7 @@ monitor:
 
 ---
 
-Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to Guance.
+Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to <<< custom_key.brand_name >>>.
 
 ## Collector Configuration {#config}
 

@@ -2,7 +2,7 @@
 title: 'Tencent Cloud CLB Private'
 tags: 
   - Tencent Cloud
-summary: 'Use the script package series in the Script Market called "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance.'
+summary: 'Use the script package series in the Script Market called "<<< custom_key.brand_name >>> Cloud Sync" to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.'
 __int_icon: 'icon/tencent_clb'
 dashboard:
 
@@ -20,16 +20,16 @@ monitor:
 # Tencent Cloud CLB Private
 <!-- markdownlint-enable -->
 
-Use the script package series in the Script Market called "Guance Cloud Sync" to synchronize cloud monitoring and cloud asset data to Guance.
+Use the script package series in the Script Market called "<<< custom_key.brand_name >>> Cloud Sync" to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please proceed with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please proceed with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
 
-To synchronize Tencent Cloud CLB monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-CLB Collection)" (ID: `guance_tencentcloud_clb`)
+To synchronize Tencent Cloud CLB monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-CLB Collection)" (ID: `guance_tencentcloud_clb`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -45,14 +45,14 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to immediately execute it once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-We default to collecting some configurations. For more details, see the Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default to collecting some configurations. For more details, see the Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, in "Infrastructure / Custom", check if there are any asset information.
-3. On the Guance platform, in "Metrics", check if there are any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there are any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Cloud Monitoring, the default measurement sets are as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/51899){:target="_blank"}

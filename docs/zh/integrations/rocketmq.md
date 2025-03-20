@@ -124,7 +124,7 @@ cp prom.conf.sample prom.conf
 | `rocketmq_consumer_get_size` | 某个消费组每秒消费的消息大小(字节) | int |
 | `rocketmq_consumer_offset` | 某个消费组的消费消息的进度 | int |
 | `rocketmq_group_get_latency_by_storetime` | 某个消费组的消费延时时间 | int |
-| `rocketmq_group_diff` | 消息堆积量 | int |
+| `rocketmq_message_accumulati` | 消息堆积量 | int |
 
 
 ## 进一步阅读 {#doc}

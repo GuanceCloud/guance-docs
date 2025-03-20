@@ -2,7 +2,7 @@
 title: 'Tencent Cloud TDSQL_C_MySQL'
 tags: 
   - Tencent Cloud
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_tdsql_c_mysql'
 dashboard:
 
@@ -19,16 +19,16 @@ monitor:
 # Tencent Cloud **TDSQL_C_MySQL**
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func yourself, refer to [Deploy Func Yourself](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Deploy Func Yourself](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -36,7 +36,7 @@ If you deploy Func yourself, refer to [Deploy Func Yourself](https://func.guance
 
 > Note: Please prepare a qualified Tencent Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of **TDSQL_C_MySQL**, we install the corresponding collection script: "Guance Integration (Tencent Cloud-TDSQL_C_MySQL Collection)" (ID: `guance_tencentcloud_tdsql_c_mysql`)
+To synchronize the monitoring data of **TDSQL_C_MySQL**, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-TDSQL_C_MySQL Collection)" (ID: `guance_tencentcloud_tdsql_c_mysql`)
 
 After clicking 【Install】, input the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -46,14 +46,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 > If you want to collect the corresponding logs, you also need to enable the corresponding log collection script. If you want to collect the bill, you need to enable the cloud bill collection script.
 
-We default collect some configurations, for details, see the Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default collect some configurations, for details, see the Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Cloud Monitoring, the default metric sets are as follows, more metrics can be collected through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/45105){:target="_blank"}

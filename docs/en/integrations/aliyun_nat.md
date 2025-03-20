@@ -20,9 +20,9 @@ Alibaba Cloud NAT Metrics Display, including concurrent connections, new connect
 
 ### Install Func
 
-It is recommended to enable the Guance Integration - Expansion - Hosted Func: All prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> Integration - Expansion - Hosted Func: All prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > It is recommended to deploy the GSE version.
 
@@ -30,7 +30,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of NAT cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud-NAT Collection)" (ID: `guance_aliyun_nat`)
+To synchronize monitoring data of NAT cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-NAT Collection)" (ID: `guance_aliyun_nat`)
 
 After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -40,13 +40,13 @@ Once enabled, you can see the corresponding automatic trigger configuration unde
 
 We default collect some configurations, for more details see the metrics section.
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

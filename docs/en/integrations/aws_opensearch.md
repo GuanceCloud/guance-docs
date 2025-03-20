@@ -30,9 +30,9 @@ cloudCollector:
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -40,7 +40,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data for AWS OpenSearch, we install the corresponding collection script: 「Guance Integration (AWS-OpenSearch Collection)」(ID: `guance_aws_open_search`)
+To synchronize monitoring data for AWS OpenSearch, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (AWS-OpenSearch Collection)」(ID: `guance_aws_open_search`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -48,15 +48,15 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 In addition, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-We default to collecting some configurations, for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-open-search/){:target="_blank"}
+We default to collecting some configurations, for more details, see [Custom Cloud Object Metrics Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-open-search/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have corresponding automatic trigger configurations, and you can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure / Custom」, check if there is asset information.
-3. On the Guance platform, in 「Metrics」, check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure / Custom」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring AWS OpenSearch, the default metric sets are as follows, and more metrics can be collected through configuration [AWS Cloud Monitoring Metric Details](https://docs.aws.amazon.com/zh_cn/opensearch-service/latest/developerguide/managedomains-cloudwatchmetrics.html){:target="_blank"}

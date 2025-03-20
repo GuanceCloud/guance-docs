@@ -59,7 +59,7 @@ The reason is that the agent's probe is on the function `prepareStatement` or `S
 
 To fundamentally solve the sanitization issue, probes need to be added on `set`. Parameters should be cached before `execute()`, and ultimately, the parameters should be placed into Attributes.
 
-## Guance Secondary Development {#guacne-branch}
+## <<< custom_key.brand_name >>> Secondary Development {#guacne-branch}
 
 To obtain the data before cleaning and the values subsequently added via the `set` function, new instrumentation needs to be performed, along with adding environment variables:
 
@@ -69,7 +69,7 @@ To obtain the data before cleaning and the values subsequently added via the `se
 OTEL_JDBC_SQL_OBFUSCATION=true
 ```
 
-Ultimately, the trace details in Guance will look like this:
+Ultimately, the trace details in <<< custom_key.brand_name >>> will look like this:
 
 <!-- markdownlint-disable MD046 MD033 -->
 <figure >

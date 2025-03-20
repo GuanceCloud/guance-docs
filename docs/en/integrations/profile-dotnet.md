@@ -106,7 +106,7 @@ dotnet bin/Release/net7.0/<your-project-name>.dll
     `LD_PRELOAD="$DDTRACE_HOME/linux-arm64/Datadog.Linux.ApiWrapper.x64.so"`
 <!-- markdownlint-enable -->
 
-After waiting a few minutes, you can view related data in the [Guance Console](https://console.guance.com/tracing/profile){:target="_blank"}.
+After waiting a few minutes, you can view related data in the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/tracing/profile){:target="_blank"}.
 
 ### Windows IIS {#on-windows-iis}
 
@@ -157,4 +157,4 @@ net stop /y was
 net start w3svc
 ```
 
-After waiting a few minutes, you can view related data in the [Guance Console](https://console.guance.com/tracing/profile){:target="_blank"}.
+After waiting a few minutes, you can view related data in the [<<< custom_key.brand_name >>> Console](https://<<< custom_key.studio_main_site >>>/tracing/profile){:target="_blank"}.

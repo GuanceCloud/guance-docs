@@ -2,7 +2,7 @@
 title: 'AWS RDS MySQL'
 tags: 
   - AWS
-summary: 'Use script packages in the script market of "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.'
+summary: 'Use script packages in the script market of "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.'
 __int_icon: 'icon/aws_rds_mysql'
 dashboard:
 
@@ -24,16 +24,16 @@ cloudCollector:
 <!-- markdownlint-enable -->
 
 
-Use script packages in the script market of "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.
+Use script packages in the script market of "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): All prerequisites will be automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): All prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -41,7 +41,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize AWS RDS monitoring data, we install the corresponding collection script: "Guance Integration (AWS-RDS Collection)" (ID: `guance_aws_rds`)
+To synchronize AWS RDS monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-RDS Collection)" (ID: `guance_aws_rds`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -49,14 +49,14 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 In addition, you can see the corresponding automatic trigger configuration in the "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the regular time. After a while, you can view the execution task records and corresponding logs.
 
-We default collect some configurations, for more details, see the metrics column [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default collect some configurations, for more details, see the metrics column [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there are any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are any corresponding monitoring data.
 
 ## Metrics {#metric}
 Configure Amazon-CloudWatch well, and the default metric set is as follows. You can collect more metrics through configuration [Amazon CloudWatch Metric Details](https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/UserGuide/CHAP_Monitoring.html){:target="_blank"}

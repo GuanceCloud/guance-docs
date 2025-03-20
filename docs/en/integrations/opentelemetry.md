@@ -37,7 +37,7 @@ This article aims to introduce how to configure and enable OTEL data ingestion o
     [[inputs.opentelemetry]]
       ## customer_tags will work as a whitelist to prevent tags from being sent to the data center.
       ## All . will be replaced with _, like this:
-      ## "project.name" sent to Guance center becomes "project_name"
+      ## "project.name" sent to <<< custom_key.brand_name >>> center becomes "project_name"
       # customer_tags = ["sink_project", "custom.otel.tag"]
     
       ## Keep rare tracing resources list switch.
@@ -324,7 +324,7 @@ java -javaagent:/usr/local/ddtrace/opentelemetry-javaagent-2.5.0.jar \
 
 Log collection is enabled by default. To disable log collection, set the exporter configuration to empty: `-Dotel.logs.exporter=none`
 
-For more significant changes in V2, please refer to the official documentation or GitHub Guance version notes: [Github-GuanCe-v2.11.0](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"}
+For more significant changes in V2, please refer to the official documentation or GitHub <<< custom_key.brand_name >>> version notes: [Github-GuanCe-v2.11.0](https://github.com/GuanceCloud/opentelemetry-java-instrumentation/releases/tag/v2.11.0-guance){:target="_blank"}
 
 ## Common Commands {#sdk-configuration}
 
@@ -433,7 +433,7 @@ If you want to add custom tags, you can use environment variables:
 -Dotel.resource.attributes=username=myName,env=1.1.0
 ```
 
-And modify the whitelist in the configuration file so that custom tags can appear in the first-level tags of the detailed links in Guance.
+And modify the whitelist in the configuration file so that custom tags can appear in the first-level tags of the detailed links in <<< custom_key.brand_name >>>.
 
 ```toml
 customer_tags = ["sink_project", "username","env"]
@@ -465,12 +465,12 @@ Additionally, the Agent includes some built-in configurations for third-party so
 ???+ warning "metrics"
 
     Starting from version [DataKit 1.68.0](../datakit/changelog.md#cl-1.68.0), the name of the measurement sets has been changed:
-    All metrics sent to Guance have a unified measurement set name: `otel_service`
+    All metrics sent to <<< custom_key.brand_name >>> have a unified measurement set name: `otel_service`
     If you already have dashboards, export them and uniformly change `otel-serivce` to `otel_service` before re-importing.
 
 <!-- markdownlint-enable -->
 
-When transferring **Histogram** metrics to Guance, some special processing occurs:
+When transferring **Histogram** metrics to <<< custom_key.brand_name >>>, some special processing occurs:
 
 - OpenTelemetry histograms are directly mapped to Prometheus histograms.
 - Each bucket count is converted to Prometheus cumulative count format.
@@ -671,7 +671,7 @@ This conversion allows OpenTelemetry-collected histogram data to seamlessly inte
 
 ## Deleted Tags in Metrics {#del-metric}
 
-Many useless tags are reported in OTEL metrics. These are String types and due to excessive memory and bandwidth consumption, they have been removed and will not be uploaded to the Guance center.
+Many useless tags are reported in OTEL metrics. These are String types and due to excessive memory and bandwidth consumption, they have been removed and will not be uploaded to the <<< custom_key.brand_name >>> center.
 
 These tags include:
 
@@ -729,4 +729,4 @@ Datakit currently provides the following best practices fortwo languages:
 - [Golang SDK](https://github.com/open-telemetry/opentelemetry-go){:target="_blank"}
 - [Official User Manual](https://opentelemetry.io/docs/){:target="_blank"}
 - [Environment Variable Configuration](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-both-span-and-metric-exporters){:target="_blank"}
-- [Guance Custom Development Version](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}
+- [<<< custom_key.brand_name >>> Custom Development Version](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"}

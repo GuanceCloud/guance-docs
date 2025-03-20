@@ -36,11 +36,14 @@ monitor   :
     ## Setting enable_net_virtual_interfaces to true will collect network virtual interfaces stats for linux.
     # enable_net_virtual_interfaces = true
     
-    ## Absolute path to the configuration file
+    ## absolute path to the configuration file
     # config_path = ["/usr/local/datakit/conf.d/datakit.conf"]
     
-    # Do not collect disks that with these file systems
-    ignore_fstypes = '''^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$'''
+    ##############################
+    # Disk related options
+    ##############################
+    ## Deprecated
+    # ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "autofs", "squashfs", "aufs"]
     
     ## We collect all devices prefixed with dev by default,If you want to collect additional devices, it's in extra_device add
     # extra_device = []
@@ -120,25 +123,15 @@ monitor   :
     
         **默认值**: false
     
-    - **ENV_INPUT_HOSTOBJECT_IGNORE_FSTYPES**
+    - **ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE**
     
-        磁盘列表采集时忽略特定的文件系统
+        忽略非物理磁盘（如网盘、NFS），任意非空字符串
     
-        **字段类型**: String
+        **字段类型**: Boolean
     
-        **采集器配置字段**: `ignore_fstypes`
+        **采集器配置字段**: `only_physical_device`
     
-        **默认值**: `^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$`
-    
-    - **ENV_INPUT_HOSTOBJECT_IGNORE_MOUNTPOINTS**
-    
-        磁盘列表采集时忽略特定的挂载点
-    
-        **字段类型**: String
-    
-        **采集器配置字段**: `ignore_mountpoints`
-    
-        **默认值**: `^(/usr/local/datakit/.*|/run/containerd/.*)$
+        **默认值**: false
     
     - **ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE**
     
@@ -148,7 +141,7 @@ monitor   :
     
         **采集器配置字段**: `exclude_device`
     
-        **示例**: `/dev/loop0,/dev/loop1`
+        **示例**: /dev/loop0,/dev/loop1
     
     - **ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE**
     
@@ -238,7 +231,7 @@ monitor   :
     
         **采集器配置字段**: `cloud_meta_token_url`
     
-        **示例**: `{"aws":"xxx","aliyun":"yyy"}`
+        **示例**: `{"aws":"xxx", "aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 
@@ -393,7 +386,7 @@ Datakit 默认开启云同步，目前支持阿里云/腾讯云/AWS/华为云/�
 
 #### `host.disk` {#host-disk}
 
-> 之前的版本中，同一个设备只会采集一个挂载点（具体采集哪一个，以具体挂载点在 */proc/self/mountpoint* 出现的顺序为准）。在 [:octicons-tag-24: Version-1.66.0](../datakit/changelog-2025.md#cl-1.66.0) 版本中，主机对象中的磁盘部份会将符合条件（比如设备名以 `/dev` 开头）挂载点都采集上来，其目的是为了展示 Datakit 能看到的所有设备，避免遗漏。
+> 之前的版本中，同一个设备只会采集一个挂载点（具体采集哪一个，以具体挂载点在 */proc/self/mountpoint* 出现的顺序为准）。在 [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0) 版本中，主机对象中的磁盘部份会将符合条件（比如设备名以 `/dev` 开头）挂载点都采集上来，其目的是为了展示 Datakit 能看到的所有设备，避免遗漏。
 
 | 字段名       | 描述         |  类型  |
 | ------------ | ------------ | :----: |

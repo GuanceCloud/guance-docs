@@ -350,7 +350,7 @@ class DiskIO(DataKitFramework):
         return stats
 ```
 
-After saving the file, restart DataKit, and shortly afterward, you should see the corresponding metrics on the Guance platform.
+After saving the file, restart DataKit, and shortly afterward, you should see the corresponding metrics on the <<< custom_key.brand_name >>> platform.
 
 ### Metrics List {#ext-metrics}
 

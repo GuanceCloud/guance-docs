@@ -18,7 +18,7 @@ skip: 'not-searchable-on-index-page'
 
     ---
 
-    [SDK :material-download:](https://static.guance.com/dd-image/dd-java-agent.jar){:target="_blank"} ·
+    [SDK :material-download:](https://static.<<< custom_key.brand_main_domain >>>/dd-image/dd-java-agent.jar){:target="_blank"} ·
     [:material-github:](https://github.com/GuanceCloud/dd-trace-java){:target="_blank"} ·
     [Issue](https://github.com/GuanceCloud/dd-trace-java/issues/new){:target="_blank"} ·
     [:octicons-history-16:](https://github.com/GuanceCloud/dd-trace-java/releases){:target="_blank"}
@@ -41,14 +41,6 @@ skip: 'not-searchable-on-index-page'
 ### 兼容调整 {#cl-1.2.3-brk}
 
 --->
-
-## v1.47.1-guance {#cl-1.47.1-guance}
-
-### 修复 {#cl-1.47.1-guance-fix}
-
-- 修复 Dubbo Response 不生效的问题。
-- 合并最新分支 v1.47.1
-
 
 ## v1.42.8-guance {#cl-1.42.8-guance}
 
@@ -322,7 +314,7 @@ skip: 'not-searchable-on-index-page'
 
 ## guance-0.105.0(2022-08-23) {#cl-0.105.0}
 
-[GitHub 下载地址](https://static.guance.com/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar){:target="_blank"}
+[GitHub 下载地址](https://static.<<< custom_key.brand_main_domain >>>/ddtrace/dd-java-agent-guance-0.106.0-SNAPSHOT.jar){:target="_blank"}
 
 ### 功能调整说明 {#cl-0.105.0}
 

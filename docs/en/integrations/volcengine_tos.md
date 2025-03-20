@@ -20,15 +20,15 @@ Collect Volcengine TOS Metrics data
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extensions - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation.
 
-If you deploy Func by yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a Volcengine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize TOS resource monitoring data, we install the corresponding collection script: "Guance Integration (Volcengine-TOS Collection)" (ID: `guance_volcengine_tos`)
+To synchronize TOS resource monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-TOS Collection)" (ID: `guance_volcengine_tos`)
 
 After clicking 【Install】, input the corresponding parameters: Volcengine AK, Volcengine account name, Regions.
 
@@ -39,8 +39,8 @@ After enabling, you can see the corresponding automatic trigger configuration in
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, in "Infrastructure - Resource Catalog", check if asset information exists.
-3. On the Guance platform, in "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure - Resource Catalog", check if asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

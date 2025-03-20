@@ -34,7 +34,7 @@ Data transmission protocol:
 
 Data classification:
 
-| Data Type Abbreviation | Type                | Description        | Is Current Version of Datakit Integrated? | Corresponding Data Type in Guance     |
+| Data Type Abbreviation | Type                | Description        | Is Current Version of Datakit Integrated? | Corresponding Data Type in <<< custom_key.brand_name >>>     |
 |--------|-------------------|:----------|:------------------:|:-----------------|
 | t      | transaction start | Transaction Start      |        true        | trace            |
 | T      | transaction end   | Transaction End      |        true        | trace            |
@@ -51,7 +51,7 @@ Data classification:
 
     - All data is in Datakit, the web page of cat has no data, so starting it doesn't make much sense, and the page shows errors: **CAT service [xxx.xxx] encountered an issue**
     - Configure client behavior during startup
-    - The cat server will also send transaction data to dk, causing a large amount of garbage data on the Guance page
+    - The cat server will also send transaction data to dk, causing a large amount of garbage data on the <<< custom_key.brand_name >>> page
 
 
 - Do not start cat server: Configure in Datakit
@@ -130,11 +130,11 @@ Notes for the configuration file:
 
 ---
 
-## Guance Tracing and Measurements {#trace-metric}
+## <<< custom_key.brand_name >>> Tracing and Measurements {#trace-metric}
 
-### Guance Tracing {#guance-trace}
+### <<< custom_key.brand_name >>> Tracing {#guance-trace}
 
-Log in to Guance, click APM -> Trace to view trace details.
+Log in to <<< custom_key.brand_name >>>, click APM -> Trace to view trace details.
 
 <!-- markdownlint-disable MD033 -->
 <figure>
@@ -145,11 +145,11 @@ Log in to Guance, click APM -> Trace to view trace details.
 
 [//]: # (<img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/cat-gateway.png" height="500">  )
 
-### Guance Measurements {#guance-metric}
+### <<< custom_key.brand_name >>> Measurements {#guance-metric}
 
 First [download the dashboard](https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/DianPing-Cat%20Monitoring%20View.json){:target="_blank"}
 
-In Guance, click Use Cases -> Dashboard -> Create Dashboard. Import the downloaded JSON file.
+In <<< custom_key.brand_name >>>, click Use Cases -> Dashboard -> Create Dashboard. Import the downloaded JSON file.
 
 Display Effect:
 

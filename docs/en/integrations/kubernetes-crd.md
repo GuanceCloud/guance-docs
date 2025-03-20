@@ -254,8 +254,8 @@ datakit monitor
 ```
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-crd-ingress.png){ width="800" }
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-crd-ingress.png){ width="800" }
   <figcaption> Ingress Data Collection </figcaption>
 </figure>
 
-You can also log into the [Guance Platform](https://www.guance.com/){:target="_blank"}, go to 【Metrics】-【Explorer】to view the metrics data.
+You can also log into the [<<< custom_key.brand_name >>> Platform](https://<<< custom_key.brand_main_domain >>>/){:target="_blank"}, go to 【Metrics】-【Explorer】to view the metrics data.

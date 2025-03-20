@@ -203,7 +203,7 @@ $ java -javaagent:/path_to_pinpoint/pinpoint-bootstrap.jar \
 Datakit trace data adheres to the OpenTracing protocol. In Datakit, a single trace is linked through a simple parent-child structure (the child span stores the id of the parent span), and each span corresponds to a function call.
 
 <figure markdown>
-  ![OpenTracing](https://static.guance.com/images/datakit/datakit-opentracing.png){ width="600" }
+  ![OpenTracing](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-opentracing.png){ width="600" }
   <figcaption>OpenTracing</figcaption>
 </figure>
 
@@ -215,7 +215,7 @@ Pinpoint APM trace data is more complex:
 - A span represents a single response process of a service.
 
 <figure markdown>
-  ![Pinpoint](https://static.guance.com/images/datakit/datakit-pinpoint.png){ width="600" }
+  ![Pinpoint](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-pinpoint.png){ width="600" }
   <figcaption>Pinpoint</figcaption>
 </figure>
 

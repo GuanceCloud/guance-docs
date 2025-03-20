@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-The Apache collector gathers request counts, connection counts, and other data from Apache services, sending metrics to Guance for monitoring and analysis of various Apache anomalies.
+The Apache collector gathers request counts, connection counts, and other data from Apache services, sending metrics to <<< custom_key.brand_name >>> for monitoring and analysis of various Apache anomalies.
 
 ## Configuration {#config}
 

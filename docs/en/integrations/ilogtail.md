@@ -64,7 +64,7 @@ Manually input logs
 echo "hello" >>  /usr/local/df-demo/log-demo/logs/log.log
 ```
 
-At this point, Guance has received the logs pushed by `iLogtail`.
+At this point, <<< custom_key.brand_name >>> has received the logs pushed by `iLogtail`.
 
 #### `pipeline` Configuration
 
@@ -95,4 +95,4 @@ add_key(filepath, tags["log.file.path"])
 
 Start the `JAVA` application to generate logs, which will automatically trigger the `iLogtail` log collection.
 
-Enter Guance, you can see that the logs have been collected, and the `pipeline` is functioning properly.
+Enter <<< custom_key.brand_name >>>, you can see that the logs have been collected, and the `pipeline` is functioning properly.

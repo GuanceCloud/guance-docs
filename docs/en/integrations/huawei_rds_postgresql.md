@@ -21,29 +21,29 @@ Collect Metrics data from Huawei Cloud RDS PostgreSQL
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func by yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data of Huawei Cloud RDS PostgreSQL, we install the corresponding collection script: access the web service of func and enter the 【Script Market】, select 「Guance Integration (Huawei Cloud-RDS-PostgreSQL Collection)」(ID: `guance_huaweicloud_rds_postgresql`)
+To synchronize monitoring data of Huawei Cloud RDS PostgreSQL, we install the corresponding collection script: access the web service of func and enter the 【Script Market】, select 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS-PostgreSQL Collection)」(ID: `guance_huaweicloud_rds_postgresql`)
 
 After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, SK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script automatically.
 
-After the script is installed, find the script 「Guance Integration (Huawei Cloud-RDS-PostgreSQL Collection)」in the "Development" section of Func, unfold and modify this script. Locate `collector_configs` and `monitor_configs`, and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS-PostgreSQL Collection)」in the "Development" section of Func, unfold and modify this script. Locate `collector_configs` and `monitor_configs`, and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration. You can also check the task records and logs to see if there are any anomalies.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
-3. On the Guance platform, in 「Metrics」, check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 

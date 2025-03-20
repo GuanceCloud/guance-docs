@@ -167,7 +167,7 @@ public class otlpdemo {
 
 ## View Effects {#view}
 
-After logging into [Guance](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"}, view 「APM -> APM -> Click a single trace」
+After logging into [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/tracing/service/table?time=15m){:target="_blank"}, view 「APM -> APM -> Click a single trace」
 
 ![avatar](imgs/otel-java-example.png)
 

@@ -24,9 +24,9 @@ Zadigx  展示包括概览、自动化构建、自动化部署、自动化测试
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > 推荐部署GSE版
 
@@ -36,7 +36,7 @@ Zadigx  展示包括概览、自动化构建、自动化部署、自动化测试
 
 > 提示：请提前准备好符合要求的 Zadigx API Token
 
-同步 Zadigx 监控数据，我们安装对应的采集脚本：「观测云集成（Zadigx 数据采集）」(ID：`guance_zadig`)
+同步 Zadigx 监控数据，我们安装对应的采集脚本：「<<< custom_key.brand_name >>>集成（Zadigx 数据采集）」(ID：`guance_zadig`)
 
 点击【安装】后在创建的 `start up` 的 zadigx 的采集脚本中更改 `private_token` 填入您的 API Token
 
@@ -51,7 +51,7 @@ Zadigx  展示包括概览、自动化构建、自动化部署、自动化测试
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「指标」查看是否有对应监控数据
+2. 在<<< custom_key.brand_name >>>，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
 配置好 Zadigx 监控, 默认的指标集如下

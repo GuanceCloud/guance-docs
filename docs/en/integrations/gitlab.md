@@ -18,7 +18,7 @@ monitor   :
 
 ---
 
-Collect runtime data from GitLab and report it as Metrics to Guance.
+Collect runtime data from GitLab and report it as Metrics to <<< custom_key.brand_name >>>.
 
 ## Configuration {#config}
 
@@ -95,10 +95,10 @@ Ensure that the DataFlux Func platform is already available.
 
 By configuring GitLab Webhooks, you can achieve GitLab CI visibility. This requires using DataFlux Func for data reporting. Follow these steps to enable:
 
-1. Install the GitLab CI integration on DataFlux Func (Script ID: `guance_gitlab_ci`). Refer to the [GitLab CI Integration Configuration](https://func.guance.com/doc/script-market-guance-gitlab-ci/){:target="_blank"};
+1. Install the GitLab CI integration on DataFlux Func (Script ID: `guance_gitlab_ci`). Refer to the [GitLab CI Integration Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-gitlab-ci/){:target="_blank"};
 2. In GitLab, go to `Settings` -> `Webhooks`, configure the URL to the API address from step one, and set Triggers to include Job events and Pipeline events. Click Add webhook to confirm;
 
-Trigger the GitLab CI process, and after execution, log in to Guance to view the CI execution status.
+Trigger the GitLab CI process, and after execution, log in to <<< custom_key.brand_name >>> to view the CI execution status.
 
 ## Metrics {#metric}
 

@@ -2,7 +2,7 @@
 title: 'Tencent Cloud MariaDB'
 tags: 
   - Tencent Cloud
-summary: 'Use the script market "Guance cloud sync" series script package to synchronize the data of cloud monitoring and cloud assets to Guance'
+summary: 'Use the script market "<<< custom_key.brand_name >>> cloud sync" series script package to synchronize the data of cloud monitoring and cloud assets to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_mariadb'
 dashboard:
 
@@ -18,15 +18,15 @@ monitor:
 # Tencent Cloud MariaDB
 <!-- markdownlint-enable -->
 
-Use the script market "Guance cloud sync" series script package to synchronize the data of cloud monitoring and cloud assets to Guance
+Use the script market "<<< custom_key.brand_name >>> cloud sync" series script package to synchronize the data of cloud monitoring and cloud assets to <<< custom_key.brand_name >>>
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - hosted Func: all prerequisites are automatically installed, please continue with the script installation
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -34,7 +34,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare the required Tencent Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize MariaDB monitoring data, we install the corresponding collection script: "Guance integration (Tencent Cloud-MariaDB collection)" (ID: `guance_tencentcloud_mariadb`)
+To synchronize MariaDB monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> integration (Tencent Cloud-MariaDB collection)" (ID: `guance_tencentcloud_mariadb`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -44,14 +44,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 > If you need to collect the corresponding logs, you also need to enable the corresponding log collection script. If you need to collect billing information, enable the cloud billing collection script.
 
-We default to collecting some configurations, for more details see the metrics section [Customize cloud object metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-mariadb/){:target="_blank"}
+We default to collecting some configurations, for more details see the metrics section [Customize cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-mariadb/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic trigger configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and at the same time, check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 Configure Tencent Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metric Details](https://cloud.tencent.com/document/product/248/54397){:target="_blank"}

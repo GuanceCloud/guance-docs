@@ -19,9 +19,9 @@ Collect Huawei Cloud EIP Metrics data.
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > It is recommended to deploy the GSE version
 
@@ -29,21 +29,21 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Huawei Cloud EIP monitoring data, we install the corresponding collection script: 「Guance Integration (Huawei Cloud-EIP Collection)」(ID: `guance_huaweicloud_eip`)
+To synchronize Huawei Cloud EIP monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-EIP Collection)」(ID: `guance_huaweicloud_eip`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script 「Guance Integration (Huawei Cloud-EIP Collection)」in the "Development" section of Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively and edit the content under `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-EIP Collection)」in the "Development" section of Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively and edit the content under `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration in the 「Management / Automatic Trigger Configuration」. Click 【Execute】to immediately execute it once without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In 「Management / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can view the corresponding task records and logs to check for any anomalies.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」check if there is asset information.
-3. On the Guance platform, in 「Metrics」check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 
@@ -60,7 +60,7 @@ Collect Huawei Cloud EIP metrics, you can collect more metrics through configura
 
 ## Objects {#object}
 
-After the data is synchronized normally, you can view the data in the 「Infrastructure - Resource Catalog」of Guance.
+After the data is synchronized normally, you can view the data in the 「Infrastructure - Resource Catalog」of <<< custom_key.brand_name >>>.
 
 ```json
 {

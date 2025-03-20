@@ -1,6 +1,6 @@
 ---
 title: 'CouchBase Exporter'
-summary: 'The collector can obtain many metrics from CouchBase instances, such as memory and disk usage for data, the number of current connections, and various other metrics, and send them to Guance to help monitor and analyze various abnormal situations in CouchBase.'
+summary: 'The collector can obtain many metrics from CouchBase instances, such as memory and disk usage for data, the number of current connections, and various other metrics, and send them to <<< custom_key.brand_name >>> to help monitor and analyze various abnormal situations in CouchBase.'
 __int_icon:'icon/couchbase'
 dashboard:
   - desc: 'CouchBase built-in views by Exporter'
@@ -18,7 +18,7 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-The collector can obtain many metrics from CouchBase instances, such as memory and disk usage for data, the number of current connections, and various other metrics, and send them to Guance to help monitor and analyze various abnormal situations in CouchBase.
+The collector can obtain many metrics from CouchBase instances, such as memory and disk usage for data, the number of current connections, and various other metrics, and send them to <<< custom_key.brand_name >>> to help monitor and analyze various abnormal situations in CouchBase.
 
 ## Collector Configuration {#config}
 

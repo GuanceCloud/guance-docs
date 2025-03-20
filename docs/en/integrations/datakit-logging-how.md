@@ -115,11 +115,11 @@ If the corresponding log has Pipeline segmentation configured, then each log (in
 { source = 'datakit' AND bar IN [ 1, 2, 3] }
 ```
 
-If the center configures a log blacklist, assuming 10 out of 100 segmented logs satisfy these conditions (i.e., source is `datakit`, and the value of the `bar` field appears in the subsequent list), then these 10 logs will not be reported to Guance and will be silently discarded. In [DataKit Monitor](../datakit/datakit-monitor.md), you can see statistics about discarded logs.
+If the center configures a log blacklist, assuming 10 out of 100 segmented logs satisfy these conditions (i.e., source is `datakit`, and the value of the `bar` field appears in the subsequent list), then these 10 logs will not be reported to <<< custom_key.brand_name >>> and will be silently discarded. In [DataKit Monitor](../datakit/datakit-monitor.md), you can see statistics about discarded logs.
 
-- Report to Guance
+- Report to <<< custom_key.brand_name >>>
 
-After going through the above steps, the log data is finally reported to Guance, and you can view the log data on the log viewing page.
+After going through the above steps, the log data is finally reported to <<< custom_key.brand_name >>>, and you can view the log data on the log viewing page.
 
 Under normal circumstances, from the generation of logs, if collection is successful, it takes about 30 seconds for the data to appear on the page. During this time, DataKit itself reports data at most once every 10 seconds, and the center also undergoes a series of processing before final storage.
 

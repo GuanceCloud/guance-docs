@@ -24,9 +24,9 @@ The displayed metrics for Tencent Cloud CKafka include message throughput, laten
 
 ### Installing Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -34,7 +34,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize CKafka monitoring data, we install the corresponding collection script: "Guance Integration (Tencent Cloud-CKafka)" (ID: `guance_tencentcloud_ckafka`)
+To synchronize CKafka monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-CKafka)" (ID: `guance_tencentcloud_ckafka`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -42,14 +42,14 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 Once enabled, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We default collect some configurations, details see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default collect some configurations, details see the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configuration. You can also check the task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Cloud Monitor, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitor Metric Details](https://cloud.tencent.com/document/product/248/45121){:target="_blank"}

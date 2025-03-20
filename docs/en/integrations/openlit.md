@@ -1,6 +1,6 @@
 ---
 title     : 'OpenLIT'
-summary   : 'OpenLIT simplifies the development process of generative AI and large language models (LLMs), providing comprehensive observability support, and reports observability data to Guance.'
+summary   : 'OpenLIT simplifies the development process of generative AI and large language models (LLMs), providing comprehensive observability support, and reports observability data to <<< custom_key.brand_name >>>.'
 tags      :
   - 'OTEL'
   - 'APM'
@@ -10,7 +10,7 @@ dashboard:
     path: 'dashboard/en/openlit'
 ---
 
-OpenLIT simplifies the development process of generative AI and large language models (LLMs), providing comprehensive observability support, and reports observability data to Guance.
+OpenLIT simplifies the development process of generative AI and large language models (LLMs), providing comprehensive observability support, and reports observability data to <<< custom_key.brand_name >>>.
 
 ## Configuration {#config}
 <!-- markdownlint-disable MD038 -->

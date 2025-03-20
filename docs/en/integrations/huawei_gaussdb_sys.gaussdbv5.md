@@ -27,9 +27,9 @@ Huawei Cloud GaussDB `SYS.GAUSSDBV5` provides data for cpu, memory, disk, deadlo
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of GaussDB `SYS.GAUSSDBV5`, we install the corresponding collection script: 「Guance Integration (Huawei Cloud - GaussDB Collection)」(ID: `guance_huaweicloud_gaussdb`)
+To synchronize monitoring data of GaussDB `SYS.GAUSSDBV5`, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Huawei Cloud - GaussDB Collection)」(ID: `guance_huaweicloud_gaussdb`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
@@ -47,15 +47,15 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 We default collect some configurations, details are listed under metrics.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-gaussdb/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-gaussdb/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, in 「Infrastructure / Custom」, check if there is asset information.
-3. On the Guance platform, in 「Metrics」, check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure / Custom」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring GaussDB `SYS.GAUSSDBV5`, the default metric set is as follows. You can collect more metrics through configuration. [Huawei Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-opengauss/opengauss_01_0071.html){:target="_blank"}

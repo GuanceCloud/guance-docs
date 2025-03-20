@@ -597,7 +597,7 @@ Datakit 支持 "指定设备" 和 "自动发现" 两种模式。两种模式可�
 
 自动发现模式下，Datakit 向指定 IP 网段内的所有地址逐一发送 SNMP 协议数据包，如果其响应可以匹配到相应的 Profile，那么 Datakit 认为该 IP 上有一个 SNMP 设备。
 
-### :material-chat-question: 在观测云上看不到我想要的指标怎么办? {#faq-not-support}
+### :material-chat-question: 在<<< custom_key.brand_name >>>上看不到我想要的指标怎么办? {#faq-not-support}
 
 Datakit 可以从所有 SNMP 设备中收集通用的基线指标。如果你发现被采集的设备上报的数据中没有你想要的指标，那么，你可以需要为该设备[自定义一份 Profile](snmp.md#advanced-custom-oid)。
 

@@ -289,13 +289,13 @@ kubectl apply -f k8s-audit-log.yaml
 
 - View
 
-After a few minutes, you can view the corresponding logs on Guance. Since they are in `json` format, Guance supports searching via the `@+json` field name, such as `@verb:update`.
+After a few minutes, you can view the corresponding logs on <<< custom_key.brand_name >>>. Since they are in `json` format, <<< custom_key.brand_name >>> supports searching via the `@+json` field name, such as `@verb:update`.
 
 ### Audit Log Field Extraction
 
-After collecting audit logs, through Guance's `pipeline` capabilities, key fields from the audit logs can be extracted for further analysis.
+After collecting audit logs, through <<< custom_key.brand_name >>>'s `pipeline` capabilities, key fields from the audit logs can be extracted for further analysis.
 
-- On Guance, `Logs` - `Pipeline` - `Create`
+- On <<< custom_key.brand_name >>>, `Logs` - `Pipeline` - `Create`
 - Select the corresponding log source `k8s-audit`
 - `Pipeline` Name: `kubelet-audit`
 - Define parsing rules

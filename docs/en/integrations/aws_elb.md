@@ -2,7 +2,7 @@
 title: 'AWS ELB'
 tags: 
   - AWS
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance.'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.'
 __int_icon: 'icon/aws_elb'
 
 dashboard:
@@ -24,16 +24,16 @@ monitor:
 # AWS ELB
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance.
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Install Script
@@ -42,13 +42,13 @@ If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com
 
 To synchronize ECS cloud resource monitoring data, we install the corresponding collection script:
 
-For AWS Application Load Balancer (AWS Application ELB), select "Guance Integration (AWS-ApplicationELB Collection)" (ID: `guance_aws_applicationelb`)
+For AWS Application Load Balancer (AWS Application ELB), select "<<< custom_key.brand_name >>> Integration (AWS-ApplicationELB Collection)" (ID: `guance_aws_applicationelb`)
 
-For AWS Network Load Balancer (AWS Network ELB), select "Guance Integration (AWS-NetworkELB Collection)" (ID: `guance_aws_networkelb`)
+For AWS Network Load Balancer (AWS Network ELB), select "<<< custom_key.brand_name >>> Integration (AWS-NetworkELB Collection)" (ID: `guance_aws_networkelb`)
 
-For AWS Gateway Load Balancer (AWS Gateway ELB), select "Guance Integration (AWS-GatewayELB Collection)" (ID: `guance_aws_gatewayelb`)
+For AWS Gateway Load Balancer (AWS Gateway ELB), select "<<< custom_key.brand_name >>> Integration (AWS-GatewayELB Collection)" (ID: `guance_aws_gatewayelb`)
 
-For AWS Classic Load Balancer, select "Guance Integration (AWS-ELB Collection)" (ID: `guance_aws_elb`)
+For AWS Classic Load Balancer, select "<<< custom_key.brand_name >>> Integration (AWS-ELB Collection)" (ID: `guance_aws_elb`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon Web Services AK, Amazon Web Services account name.
 
@@ -59,14 +59,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 > If you want to collect the corresponding logs, you also need to enable the corresponding log collection script. If you want to collect bills, you need to enable the cloud bill collection script.
 
 
-By default, we collect some configurations, for more details see the metrics section [Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+By default, we collect some configurations, for more details see the metrics section [Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration," confirm whether the corresponding tasks have the corresponding automatic trigger configuration, and check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom," check if there is asset information.
-3. On the Guance platform, under "Metrics," check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom," check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics," check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon Web Services - Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration:

@@ -23,16 +23,16 @@ Alibaba Cloud PolarDB Distributed 2.0 displays Metrics for the compute layer and
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of PolarDB Distributed 2.0, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-PolarDB-X 2.0 Collection)」(ID: `guance_aliyun_polardbx_2`)
+To synchronize monitoring data of PolarDB Distributed 2.0, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Alibaba Cloud-PolarDB-X 2.0 Collection)」(ID: `guance_aliyun_polardbx_2`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET, and Account Name.
 
@@ -40,14 +40,14 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 After it is enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to immediately execute once without waiting for the regular time. Wait for a moment, and you can view the execution task records and corresponding logs.
 
-We have collected some configurations by default, details can be found in the Metrics section [Customize cloud object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-polardbx-1/){:target="_blank"}
+We have collected some configurations by default, details can be found in the Metrics section [Customize cloud object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-polardbx-1/){:target="_blank"}
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under 「Infrastructure / Custom」check if there is any asset information.
-3. On the Guance platform, under 「Metrics」check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Alibaba Cloud PolarDB Distributed 2.0, the default Measurement sets are as follows, and more Metrics can be collected through configuration.

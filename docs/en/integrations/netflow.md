@@ -1,6 +1,6 @@
 ---
 title     : 'NetFlow'
-summary   : 'The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into Guance to help analyze various NetFlow anomalies.'
+summary   : 'The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into <<< custom_key.brand_name >>> to help analyze various NetFlow anomalies.'
 tags:
   - 'NETWORK'
 __int_icon      : 'icon/netflow'
@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into Guance to help analyze various NetFlow anomalies.
+The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into <<< custom_key.brand_name >>> to help analyze various NetFlow anomalies.
 
 ## What is NetFlow {#what}
 

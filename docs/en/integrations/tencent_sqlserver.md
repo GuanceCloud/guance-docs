@@ -2,7 +2,7 @@
 title: 'Tencent Cloud SQLServer'
 tags: 
   - Tencent Cloud
-summary: 'Use the "Guance Cloud Sync" series script package in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script package in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/tencent_sqlserver'
 dashboard:
 
@@ -18,15 +18,15 @@ monitor:
 # Tencent Cloud SQLServer
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script package in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script package in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -34,7 +34,7 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Tencent Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize SQLServer monitoring data, install the corresponding collection script: "Guance Integration (Tencent Cloud-SQL Server Collection)" (ID: `guance_tencentcloud_sqlserver`)
+To synchronize SQLServer monitoring data, install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-SQL Server Collection)" (ID: `guance_tencentcloud_sqlserver`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -44,14 +44,14 @@ After enabling, you can see the corresponding automatic trigger configuration in
 
 > If you want to collect the corresponding logs, you also need to enable the corresponding log collection script. If you want to collect billing information, you need to enable the cloud billing collection script.
 
-We default to collecting some configurations, for details see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+We default to collecting some configurations, for details see the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud - Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration [Tencent Cloud Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/45146){:target="_blank"}

@@ -21,29 +21,29 @@ Collect Huawei Cloud RDS SQLServer Metrics data
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Huawei Cloud RDS SQLServer monitoring data, we install the corresponding collection script: "Guance Integration (Huawei Cloud-RDS-SQLServer Collection)" (ID: `guance_huaweicloud_rds_sqlserver`)
+To synchronize Huawei Cloud RDS SQLServer monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS-SQLServer Collection)" (ID: `guance_huaweicloud_rds_sqlserver`)
 
 After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set, and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud-RDS-SQLServer Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively, and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS-SQLServer Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and `monitor_configs` respectively, and edit the content of `region_projects`. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can view the corresponding task records and log checks for any abnormalities.
-2. On the Guance platform, check whether asset information exists under "Infrastructure - Resource Catalog".
-3. On the Guance platform, check whether there are corresponding monitoring data under "Metrics".
+2. On the <<< custom_key.brand_name >>> platform, check whether asset information exists under "Infrastructure - Resource Catalog".
+3. On the <<< custom_key.brand_name >>> platform, check whether there are corresponding monitoring data under "Metrics".
 
 ## Metrics {#metric}
 

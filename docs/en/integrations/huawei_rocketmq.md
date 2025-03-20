@@ -19,9 +19,9 @@ Collect Metrics data from Huawei Cloud DMS RocketMQ
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - Managed Func: all prerequisites will be automatically installed, please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - Managed Func: all prerequisites will be automatically installed, please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > It is recommended to deploy the GSE version.
 
@@ -29,21 +29,21 @@ If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.c
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize the monitoring data of RocketMQ cloud resources, we install the corresponding collection script: "Guance Integration (Huawei Cloud - RocketMQ)" (ID: `guance_huaweicloud_rocketmq`).
+To synchronize the monitoring data of RocketMQ cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud - RocketMQ)" (ID: `guance_huaweicloud_rocketmq`).
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, the system will automatically create the `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud - RocketMQ)" under "Development" in Func, unfold and modify this script. Find `collector_configs` and `monitor_configs`, respectively edit the content of `region_projects`, change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud - RocketMQ)" under "Development" in Func, unfold and modify this script. Find `collector_configs` and `monitor_configs`, respectively edit the content of `region_projects`, change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the regular time. After a while, you can check the execution task records and corresponding logs.
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, in "Infrastructure - Resource Catalog", check if there is asset information.
-3. On the Guance platform, in "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure - Resource Catalog", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 
@@ -79,7 +79,7 @@ Configure Huawei Cloud DMS RocketMQ Metrics, more Metrics can be collected throu
 
 ## Objects {#object}
 
-After the data is synchronized normally, you can view the data in the "Infrastructure - Resource Catalog" of Guance.
+After the data is synchronized normally, you can view the data in the "Infrastructure - Resource Catalog" of <<< custom_key.brand_name >>>.
 
 ```json
 {

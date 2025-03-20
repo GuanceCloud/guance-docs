@@ -360,7 +360,7 @@ spec:
     spec:
       containers:
       - name: prom-server
-        image: pubrepo.guance.com/datakit-dev/prom-server:v2
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-dev/prom-server:v2
         imagePullPolicy: IfNotPresent
         env:
         - name: ENV_PORT
@@ -414,7 +414,7 @@ data:
           readOnly: true
 ```
 
-1. Finally, start Datakit and in the logs you will see content like `create prom url xxxxx for testing/prom-svc`, and on the Guance page, you will see the `prom-svc` Measurement.
+1. Finally, start Datakit and in the logs you will see content like `create prom url xxxxx for testing/prom-svc`, and on the <<< custom_key.brand_name >>> page, you will see the `prom-svc` Measurement.
 
 
 ---

@@ -19,9 +19,9 @@ Collect Huawei Cloud DCAAS Metrics data
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extensions - DataFlux Func (Automata): All prerequisites are automatically installed, please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extensions - DataFlux Func (Automata): All prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > It is recommended to deploy the GSE version.
 
@@ -38,15 +38,15 @@ After clicking 【Install】, enter the corresponding parameters: Huawei Cloud A
 
 Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud - Cloud Direct Connect DC - Virtual Interface)" / "Guance Integration (Huawei Cloud - Cloud Direct Connect DC - Physical Connection)" under "Development" in Func, unfold and modify this script. Find `collector_configs` and `monitor_configs`, respectively edit the content of `region_projects`, change the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud - Cloud Direct Connect DC - Virtual Interface)" / "<<< custom_key.brand_name >>> Integration (Huawei Cloud - Cloud Direct Connect DC - Physical Connection)" under "Development" in Func, unfold and modify this script. Find `collector_configs` and `monitor_configs`, respectively edit the content of `region_projects`, change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding automatic trigger configuration exists for the task, and you can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, in "Infrastructure - Resource Catalog", check if there is any asset information.
-3. On the Guance platform, in "Metrics", check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure - Resource Catalog", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 
@@ -71,7 +71,7 @@ You can collect more Metrics from Huawei Cloud DCAAS by configuring them [Huawei
 
 ## Objects {#object}
 
-After data synchronization is normal, you can view the data in "Infrastructure - Resource Catalog" on the Guance platform.
+After data synchronization is normal, you can view the data in "Infrastructure - Resource Catalog" on the <<< custom_key.brand_name >>> platform.
 
 - DC cloud direct connect virtual interface object data:
 

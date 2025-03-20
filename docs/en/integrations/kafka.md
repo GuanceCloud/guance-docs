@@ -17,7 +17,7 @@ monitor   :
 
 ---
 
-Collect Kafka metrics and logs and report them to Guance, helping you monitor and analyze various abnormal situations of Kafka.
+Collect Kafka metrics and logs and report them to <<< custom_key.brand_name >>>, helping you monitor and analyze various abnormal situations of Kafka.
 
 ## Configuration {#config}
 

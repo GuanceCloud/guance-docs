@@ -14,7 +14,7 @@ monitor   :
 # Node Exporter
 <!-- markdownlint-enable -->
 
-This article introduces the deployment of the Node Exporter component on a HOST to collect HOST metrics and have them collected and stored by Datakit, finally visualizing the data through Guance.
+This article introduces the deployment of the Node Exporter component on a HOST to collect HOST metrics and have them collected and stored by Datakit, finally visualizing the data through <<< custom_key.brand_name >>>.
 Node Exporter can collect various system operation metrics including CPU usage, memory usage, disk I/O, network traffic, etc.
 
 ## Configuration {#config}
@@ -146,7 +146,7 @@ data:
             interval   = "30s"             # Not required; collection frequency; default is 30s
 
             [inputs.kubernetesprometheus.instances.custom]
-              measurement        = "kube_nodeexporter"       # Not required; Guance Metrics name; default uses the first letter of the underscore in the metric
+              measurement        = "kube_nodeexporter"       # Not required; <<< custom_key.brand_name >>> Metrics name; default uses the first letter of the underscore in the metric
               job_as_measurement = false             # Not required; whether to use the job label value in the data as the Measurements name
               [inputs.kubernetesprometheus.instances.custom.tags]
                 instance         = "__kubernetes_mate_instance"    # Optional; Metrics tag

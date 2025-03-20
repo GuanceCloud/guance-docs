@@ -27,9 +27,9 @@ Tencent Cloud KeeWiDB Metrics Display, including connections, requests, cache, k
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Expansion - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Expansion - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare the required Tencent Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of Tencent Cloud KeeWiDB, we install the corresponding collection script: "Guance Integration (Tencent Cloud-KeeWiDB Collection)" (ID: `guance_tencentcloud_keewidb`).
+To synchronize the monitoring data of Tencent Cloud KeeWiDB, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-KeeWiDB Collection)" (ID: `guance_tencentcloud_keewidb`).
 
 After clicking 【Install】, input the corresponding parameters: Tencent Cloud AK and Tencent Cloud account name.
 
@@ -45,15 +45,15 @@ Click 【Deploy Startup Script】, the system will automatically create a `Start
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-We default collect some configurations, details see the metrics section [Configuration Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-keewidb/){:target="_blank"}
+We default collect some configurations, details see the metrics section [Configuration Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-keewidb/){:target="_blank"}
 
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, in "Metrics", check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Tencent Cloud KeeWiDB, the default metric set is as follows. You can collect more metrics through configuration [Tencent Cloud Monitoring Metrics Details](https://cloud.tencent.com/document/product/248/49729){:target="_blank"}

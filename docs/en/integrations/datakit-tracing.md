@@ -69,7 +69,7 @@ In the configuration file, `tracer` refers to the currently configured Tracing A
     timeout = 1000
 ```
 
-- `customer_tags`: By default, Datakit only picks up Tags that it is interested in (i.e., fields visible in Guance APM details except message),
+- `customer_tags`: By default, Datakit only picks up Tags that it is interested in (i.e., fields visible in <<< custom_key.brand_name >>> APM details except message),
 
   If users are interested in other tags reported on the trace, they can add them to this configuration to inform Datakit to pick them up. This configuration has higher priority than `[inputs.tracer.tags]`.
 

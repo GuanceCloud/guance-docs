@@ -1,6 +1,6 @@
 ---
 title      : 'OpenTelemetry Extensions'
-summary    : 'Guance has made additional extensions to the OpenTelemetry plugin'
+summary    : '<<< custom_key.brand_name >>> has made additional extensions to the OpenTelemetry plugin'
 __int_icon : 'icon/opentelemetry'
 tags       :
   - 'OTEL'
@@ -68,7 +68,7 @@ The reason is that the agent's probe is on the function `prepareStatement` or `S
 
 To fundamentally solve the obfuscation issue, probes need to be added on `set`. Parameters should be cached before `execute()`, and ultimately placed in Attributes.
 
-### Guance Extensions {#guacne-branch}
+### <<< custom_key.brand_name >>> Extensions {#guacne-branch}
 
 To obtain the data before obfuscation and the values subsequently added via the `set` function, new instrumentation needs to be performed, and an environment variable must be added:
 
@@ -78,7 +78,7 @@ To obtain the data before obfuscation and the values subsequently added via the 
 OTEL_JDBC_SQL_OBFUSCATION=true
 ```
 
-Ultimately, in the trace details on Guance, it looks like this:
+Ultimately, in the trace details on <<< custom_key.brand_name >>>, it looks like this:
 
 <!-- markdownlint-disable MD046 MD033 -->
 <figure >

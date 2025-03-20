@@ -2,7 +2,7 @@
 title: 'Huawei Cloud API'
 tags: 
   - Huawei Cloud
-summary: 'Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/huawei_apic'
 dashboard:
 
@@ -20,37 +20,37 @@ monitor:
 # Huawei Cloud API
 <!-- markdownlint-enable -->
 
-Use the "Guance Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to Guance
+Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func by yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize Huawei Cloud API monitoring data, we install the corresponding collection script: "Guance Integration (Huawei Cloud - **APIG** Collection)" (ID: `guance_huaweicloud_apig`)
+To synchronize Huawei Cloud API monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud - **APIG** Collection)" (ID: `guance_huaweicloud_apig`)
 
 After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script installation is complete, find the script "Guance Integration (Huawei Cloud - **APIG** Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and replace the region after `regions` with your actual region. Then find `monitor_configs` below and change `region_projects` to the actual region and Project ID. Click Save and Publish afterward.
+After the script installation is complete, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud - **APIG** Collection)" under "Development" in Func, expand and modify this script. Find `collector_configs` and replace the region after `regions` with your actual region. Then find `monitor_configs` below and change `region_projects` to the actual region and Project ID. Click Save and Publish afterward.
 
 In addition, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute it once without waiting for the scheduled time. After a while, you can check the execution task records and corresponding logs.
 
-We default collect some configurations, details are in the metrics section [Customize Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-huaweicloud-apig/){:target="_blank"}
+We default collect some configurations, details are in the metrics section [Customize Cloud Object Metrics Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-huaweicloud-apig/){:target="_blank"}
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and you can check the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Huawei Cloud - Cloud Monitoring, the default metric sets are as follows. More metrics can be collected through configuration [Huawei Cloud Cloud Monitoring Metric Details](https://support.huaweicloud.com/usermanual-apig/apig-ug-180427085.html){:target="_blank"}

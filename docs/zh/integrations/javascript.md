@@ -14,7 +14,7 @@ monitor   :
 # JavaScript
 <!-- markdownlint-enable -->
 
-JavaScript 属于 [RUM（用户访问检测）](../real-user-monitoring/) 范畴，主要用于检测浏览器用户访问行为并上报至观测云。
+JavaScript 属于 [RUM（用户访问检测）](../real-user-monitoring/) 范畴，主要用于检测浏览器用户访问行为并上报至<<< custom_key.brand_name >>>。
 
 
 ## 配置 {#config}
@@ -72,7 +72,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
         window,
         document,
         'script',
-        'https://static.guance.com/browser-sdk/v3/dataflux-rum.js',
+        'https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js',
         'DATAFLUX_RUM'
       )
       DATAFLUX_RUM.onReady(function () {
@@ -94,7 +94,7 @@ Web 应用接入的有三种方式：NPM 接入、同步载入和异步载入。
 === "CDN 同步加载"
 
     ```javascript
-    <script src="https://static.guance.com/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+    <script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
     <script>
       window.DATAFLUX_RUM &&
         window.DATAFLUX_RUM.init({

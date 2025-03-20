@@ -27,9 +27,9 @@ monitor:
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func manually, refer to [Manual Deployment of Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func manually, refer to [Manual Deployment of Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -37,7 +37,7 @@ If you deploy Func manually, refer to [Manual Deployment of Func](https://func.g
 
 > Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize monitoring data for Amazon EC2 Spot, we install the corresponding collection script: "Guance Integration (AWS-EC2 Spot Collection)" (ID: `guance_aws_ec2_spot`)
+To synchronize monitoring data for Amazon EC2 Spot, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-EC2 Spot Collection)" (ID: `guance_aws_ec2_spot`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK and Amazon account name.
 
@@ -50,8 +50,8 @@ In addition, you can see the corresponding automatic trigger configuration in "M
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration. You can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is any asset information.
-3. On the Guance platform, under "Metrics", check if there is any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon EC2 Spot, the default metric set is as follows. You can collect more metrics through configuration. [Details of AWS Cloud Monitoring Metrics](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/spot-fleet-cloudwatch-metrics.html){:target="_blank"}

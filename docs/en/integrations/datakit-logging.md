@@ -19,7 +19,7 @@ All these various collection methods may have some variations depending on speci
 This is the most primitive method of log processing. Whether it's for developers or traditional log collection solutions, logs usually start by being directly written to disk files. Logs written to disk files have the following characteristics:
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-from-disk.png){ width="300" }
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-from-disk.png){ width="300" }
   <figcaption>Extracting logs from disk files</figcaption>
 </figure>
 
@@ -39,7 +39,7 @@ Because of this characteristic, if the log file continues to update and DataKit 
 This collection method mainly targets [stdout logs in container environments](container.md). These logs require applications running in containers (or Kubernetes Pods) to output logs to stdout. These stdout logs actually get written to disk on the Node, and DataKit can find the corresponding log files via the container ID, then collect them as ordinary disk files.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-stdout.png){ width="300" }
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-stdout.png){ width="300" }
   <figcaption>Collecting container stdout logs</figcaption>
 </figure>
 
@@ -61,7 +61,7 @@ For remote log pushing, it mainly involves
 - [Third-party platform log integration](logstreaming.md)
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-remote.png){ width="300" }
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-remote.png){ width="300" }
   <figcaption>Third-party log integration</figcaption>
 </figure>
 
@@ -78,7 +78,7 @@ The feature of this form is that logs are sent directly to DataKit without inter
 This method of collection is essentially a combination of disk log collection and remote log pushing. Specifically, it involves adding a Sidecar application ([logfwd](logfwd.md)) that is paired with DataKit in the user's Pod, and its collection method is as follows:
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-sidecar.png){ width="300" }
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-sidecar.png){ width="300" }
   <figcaption>Sidecar form log collection</figcaption>
 </figure>
 

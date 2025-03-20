@@ -20,16 +20,16 @@ Volcengine Container Service (`Volcengine` Kubernetes Engine, VKE), VKE Metrics 
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
 > Note: Please prepare a qualified Volcengine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of VKE cloud resources, we install the corresponding collection script: "Guance Integration (Volcengine-VKE Collection)" (ID: `guance_volcengine_vke`)
+To synchronize monitoring data of VKE cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-VKE Collection)" (ID: `guance_volcengine_vke`)
 
 After clicking 【Install】, input the corresponding parameters: Volcengine AK and Volcengine account name.
 
@@ -42,14 +42,14 @@ Once enabled, you can see the corresponding automatic trigger configuration in "
 
 We default collect some configurations, for details, see the Metrics section.
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-volcengine-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have been configured for automatic triggers. You can also check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Volcengine - Cloud Monitoring, the default Metric Set is as follows. You can collect more metrics through configuration. [Volcengine Cloud Monitoring Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_VKE){:target="_blank"}

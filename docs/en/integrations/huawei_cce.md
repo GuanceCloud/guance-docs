@@ -1,8 +1,8 @@
 ---
-title: 'Collect Huawei Cloud CCE Metrics Data Using Guance'
+title: 'Collect Huawei Cloud CCE Metrics Data Using <<< custom_key.brand_name >>>'
 tags: 
   - Huawei Cloud
-summary: 'Guance supports monitoring the operation status and service capabilities of various resources in CCE, including CONTAINERS, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc.'
+summary: '<<< custom_key.brand_name >>> supports monitoring the operation status and service capabilities of various resources in CCE, including CONTAINERS, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc.'
 __int_icon: 'icon/huawei_cce'
 dashboard:
 
@@ -15,16 +15,16 @@ monitor:
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Collect Huawei Cloud CCE Metrics Data Using Guance
+# Collect Huawei Cloud CCE Metrics Data Using <<< custom_key.brand_name >>>
 <!-- markdownlint-enable -->
 
-Guance supports monitoring the operation status and service capabilities of various resources in CCE, including CONTAINERS, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc. You can install `DataKit` in Kubernetes via DaemonSet to complete data collection for Kubernetes resources. Finally, you can monitor the operation status of various Kubernetes resources in real-time through Guance.
+<<< custom_key.brand_name >>> supports monitoring the operation status and service capabilities of various resources in CCE, including CONTAINERS, Pods, Services, Deployments, Clusters, Nodes, Replica Sets, Jobs, Cron Jobs, etc. You can install `DataKit` in Kubernetes via DaemonSet to complete data collection for Kubernetes resources. Finally, you can monitor the operation status of various Kubernetes resources in real-time through <<< custom_key.brand_name >>>.
 
 ## Configuration {#config}
 
 ### Preparation
 
-- Create a Guance account
+- Create a <<< custom_key.brand_name >>> account
 - Create a Huawei Cloud CCE cluster
 
 ### Deployment Process
@@ -46,7 +46,7 @@ There are two methods to install `DataKit` via DaemonSet in Kubernetes:
 To install the `Datakit` collector using Helm, you need to first install Helm on your server. After installing Helm, add the Datakit Helm repository.
 
 ```Bash
-helm repo add datakit https://pubrepo.guance.com/chartrepo/datakit 
+helm repo add datakit https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/datakit 
 helm repo update
 ```
 
@@ -90,10 +90,10 @@ extraEnvs:
 Modify the token data in `datakit.dataway_url`.
 
 ```Bash
-helm install datakit -n datakit -f datakit/values.yaml datakit --set datakit.dataway_url="https://openway.guance.com?token=tkn_1661b3cb5fc442719eae064edb979b5d" --create-namespace
+helm install datakit -n datakit -f datakit/values.yaml datakit --set datakit.dataway_url="https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_1661b3cb5fc442719eae064edb979b5d" --create-namespace
 ```
 
-The token can be obtained from the "Integration" - "Datakit" section of the Guance workspace.
+The token can be obtained from the "Integration" - "Datakit" section of the <<< custom_key.brand_name >>> workspace.
 
 ![img](imgs/cce_im03.png)
 
@@ -107,15 +107,15 @@ After the Datakit installation is complete, you can check the deployment status 
 
 ![img](imgs/cce_im05.png)
 
-##### 6. View and Analyze Collected K8S Data in the Guance Workspace
+##### 6. View and Analyze Collected K8S Data in the <<< custom_key.brand_name >>> Workspace
 
-If the `DataKit` deployment status is normal, you can view and analyze the collected K8S data in the "Infrastructure" - "Containers" section of the Guance workspace.
+If the `DataKit` deployment status is normal, you can view and analyze the collected K8S data in the "Infrastructure" - "Containers" section of the <<< custom_key.brand_name >>> workspace.
 
 ![img](imgs/cce_im06.png)
 
 ##### 7. Add Dashboard
 
-After the K8S data is collected normally, you can create a new dashboard in the "Scenarios" - "Dashboards" - "Create Dashboard" section of the Guance workspace, search for the Kubernetes monitoring view, and see the following dashboard.
+After the K8S data is collected normally, you can create a new dashboard in the "Scenarios" - "Dashboards" - "Create Dashboard" section of the <<< custom_key.brand_name >>> workspace, search for the Kubernetes monitoring view, and see the following dashboard.
 
 ![img](imgs/cce_im07.png)
 
@@ -126,7 +126,7 @@ After the K8S data is collected normally, you can create a new dashboard in the 
 Before enabling Kubernetes resource collection, use a terminal tool to log in to the server and execute the following script command to download the yaml file.
 
 ```Bash
-wget https://static.guance.com/datakit/datakit.yaml
+wget https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit.yaml
 ```
 
 ![img](imgs/cce_im08.png)
@@ -137,7 +137,7 @@ Edit the configuration of the data gateway `dataway` in the `datakit.yaml` file,
 
 ``` yaml
 1.  - name: ENV_DATAWAY
-2.    value: https://openway.guance.com?token=<your-token> # Insert the actual dataway address here
+2.    value: https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token> # Insert the actual dataway address here
 ```
 
 Add environment variable `ENV_NAMESPACE` and set the cluster name; the name can be customized, for example, set it as `hwcce_k8s`:
@@ -161,7 +161,7 @@ Modify the environment variable `ENV_GLOBAL_TAGS`, and set global tags for non-e
 2.   value: host=__datakit_hostname,host_ip=__datakit_ip,cluster_name_k8s=hwcce_k8s # Add the cluster_name_k8s cluster name here
 ```
 
-The `token` can be obtained from the "Integration" - "Datakit" section of the Guance workspace.
+The `token` can be obtained from the "Integration" - "Datakit" section of the <<< custom_key.brand_name >>> workspace.
 
 ![img](imgs/cce_im09.png)
 
@@ -181,12 +181,12 @@ After installing the yaml file, a `datakit` DaemonSet deployment will be created
 
 ![img](imgs/cce_im12.png)
 
-##### 5. View and Analyze Collected K8S Data in the Guance Workspace
+##### 5. View and Analyze Collected K8S Data in the <<< custom_key.brand_name >>> Workspace
 
 ![img](imgs/cce_im06.png)
 
 ##### 6. Add Dashboard
 
-After the K8S data is collected normally, you can create a new dashboard in the "Scenarios" - "Dashboards" - "Create Dashboard" section of the Guance workspace, search for the Kubernetes monitoring view, and see the following dashboard.
+After the K8S data is collected normally, you can create a new dashboard in the "Scenarios" - "Dashboards" - "Create Dashboard" section of the <<< custom_key.brand_name >>> workspace, search for the Kubernetes monitoring view, and see the following dashboard.
 
 ![img](imgs/cce_im07.png)

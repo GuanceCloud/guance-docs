@@ -21,9 +21,9 @@ Collect Huawei Cloud RDS MariaDB Metrics data
 
 ### Install Func
 
-It is recommended to activate the Guance integration - extension - hosted Func: all prerequisites are automatically installed, please continue with the script installation.
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 > It is recommended to deploy the GSE version
 
@@ -31,21 +31,21 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare a Huawei Cloud AK in advance that meets the requirements (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize Huawei Cloud RDS MariaDB monitoring data, we install the corresponding collection script: "Guance Integration (Huawei Cloud-RDS-MariaDB Collection)" (ID: `guance_huaweicloud_rds_mariadb`)
+To synchronize Huawei Cloud RDS MariaDB monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS-MariaDB Collection)" (ID: `guance_huaweicloud_rds_mariadb`)
 
 After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK and Huawei Cloud account name.
 
 Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script is installed, find the script "Guance Integration (Huawei Cloud-RDS-MariaDB Collection)" under "Development" in Func, expand and modify this script. Find and edit the contents of `collector_configs` and `monitor_configs` for `region_projects`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
+After the script is installed, find the script "<<< custom_key.brand_name >>> Integration (Huawei Cloud-RDS-MariaDB Collection)" under "Development" in Func, expand and modify this script. Find and edit the contents of `collector_configs` and `monitor_configs` for `region_projects`, changing the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
 In addition, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the regular time. After a short while, you can check the execution task records and corresponding logs.
 
 ### Verification
 
 1. Confirm in "Manage / Automatic Trigger Configuration" whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, check in "Infrastructure - Resource Catalog" whether asset information exists.
-3. On the Guance platform, check in "Metrics" whether there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, check in "Infrastructure - Resource Catalog" whether asset information exists.
+3. On the <<< custom_key.brand_name >>> platform, check in "Metrics" whether there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

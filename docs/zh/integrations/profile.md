@@ -154,7 +154,6 @@ Profile 支持采集使用 Java, Python 和 Go 等不同语言环境下应用程
 
 | Tag | Description |
 |  ----  | --------|
-|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|

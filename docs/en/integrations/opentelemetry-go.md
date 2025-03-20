@@ -15,7 +15,7 @@ Before sending Traces to Datakit via OTEL, please ensure that you have [configur
 
 ## Next, use pseudocode for implementation {#code}
 
-Simulated scenario: A user login request flows through various modules on the server side and returns to the client. In each process, add trace links and mark them, finally check the processing time of each module and the service status on the Guance platform.
+Simulated scenario: A user login request flows through various modules on the server side and returns to the client. In each process, add trace links and mark them, finally check the processing time of each module and the service status on the <<< custom_key.brand_name >>> platform.
 
 Process introduction: User requests reach the web layer, are parsed, and sent to the service layer, which queries the database in the dao layer, ultimately returning the result to the user.
 
@@ -159,7 +159,7 @@ func main() {
 
 ## View Results {#view}
 
-After logging into [Guance](https://console.guance.com/tracing/service/table?time=15m){:target="_blank"}, view «APM -> Trace -> Click on a single trace»
+After logging into [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/tracing/service/table?time=15m){:target="_blank"}, view «APM -> Trace -> Click on a single trace»
 
 ![not-set](imgs/otel-go-example.png)
 

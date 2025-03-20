@@ -25,13 +25,13 @@ The displayed Metrics of OpenAI include total requests, response time, request v
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install DataKit
 
-Install the DataKit data collector. In the Guance workspace, click Integration -- DataKit, copy the installation command line to install DataKit.
+Install the DataKit data collector. In the <<< custom_key.brand_name >>> workspace, click Integration -- DataKit, copy the installation command line to install DataKit.
 
 **Note**: After installing DataKit, modify one configuration:
 
@@ -41,12 +41,12 @@ Install the DataKit data collector. In the Guance workspace, click Integration -
 
 For more information, please refer to:
 
-- <https://func.guance.com/doc/practice-connect-to-datakit/>
-- <https://docs.guance.com/datakit/datakit-service-how-to/>
+- <https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/>
+- <<<< homepage >>>/datakit/datakit-service-how-to/>
 
 ### Install Script
 
-Install the corresponding collection script: 「Guance Integration (ChatGpt Monitoring)」(ID: `guance_chatgpt_monitor`)
+Install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (ChatGpt Monitoring)」(ID: `guance_chatgpt_monitor`)
 
 After clicking 【Install】, input the corresponding parameters: OpenAI key.
 
@@ -57,7 +57,7 @@ We have collected some configurations by default; for details, see the Metrics s
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding automatic trigger configuration exists for the task, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, go to 「Metrics」to check if there are corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, go to 「Metrics」to check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 

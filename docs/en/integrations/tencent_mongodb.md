@@ -2,7 +2,7 @@
 title: 'Tencent Cloud MongoDB'
 tags: 
   - Tencent Cloud
-summary: 'Use the script packages in the Script Market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.'
+summary: 'Use the script packages in the Script Market of the "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.'
 __int_icon: 'icon/tencent_mongodb'
 dashboard:
 
@@ -19,21 +19,21 @@ monitor:
 # Tencent Cloud MongoDB
 <!-- markdownlint-enable -->
 
-Use the script packages in the Script Market of the "Guance Cloud Sync" series to synchronize cloud monitoring and cloud asset data to Guance.
+Use the script packages in the Script Market of the "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare a qualified Tencent Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize the monitoring data of MongoDB cloud resources, we install the corresponding collection script: "Guance Integration (Tencent Cloud-MongoDB Collection)" (ID: `guance_tencentcloud_mongodb`)
+To synchronize the monitoring data of MongoDB cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Tencent Cloud-MongoDB Collection)" (ID: `guance_tencentcloud_mongodb`)
 
 After clicking 【Install】, enter the corresponding parameters: Tencent Cloud AK, Tencent Cloud account name.
 
@@ -41,13 +41,13 @@ Click 【Deploy Start Script】, the system will automatically create a `Startup
 
 After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to immediately execute it once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations, see the metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
+By default, we collect some configurations, see the metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-tencentcloud-monitor/){:target="_blank"}
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 
@@ -234,9 +234,9 @@ On top of the previous setup, you need to install another script corresponding t
 
 In "Manage / Script Market", click and install the corresponding script package:
 
-- "Guance Integration (Tencent Cloud-MongoDB Slow Query Log Collection)" (ID: `guance_tencentcloud_mongodb_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Tencent Cloud-MongoDB Slow Query Log Collection)" (ID: `guance_tencentcloud_mongodb_slowlog`)
 
-After the data is synchronized normally, you can view the data in the "Logs" section of Guance.
+After the data is synchronized normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
 An example of the reported data is as follows:
 

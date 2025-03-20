@@ -2,7 +2,7 @@
 title: 'AWS EC2'
 tags: 
   - AWS
-summary: 'Use script market "Guance cloud sync" series script packages to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Use script market "<<< custom_key.brand_name >>> cloud sync" series script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>'
 __int_icon: 'icon/aws_ec2'
 dashboard:
 
@@ -23,22 +23,22 @@ cloudCollector:
 # AWS EC2
 <!-- markdownlint-enable -->
 
-Use script market "Guance cloud sync" series script packages to synchronize cloud monitoring and cloud asset data to Guance
+Use script market "<<< custom_key.brand_name >>> cloud sync" series script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed, please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
 > Note: Please prepare the required Amazon AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize EC2 cloud resource monitoring data, we install the corresponding collection script: "Guance Integration (AWS EC2 Collection)" (ID: `guance_aws_ec2`)
+To synchronize EC2 cloud resource monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS EC2 Collection)" (ID: `guance_aws_ec2`)
 
 After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
@@ -46,14 +46,14 @@ Click 【Deploy Startup Script】, and the system will automatically create a `S
 
 In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a while, you can check the execution task records and corresponding logs.
 
-We default to collecting some configurations, for details see Metrics section [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We default to collecting some configurations, for details see Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
-2. On the Guance platform, in "Infrastructure / Custom", check if there are any asset information.
-3. On the Guance platform, in "Metrics", check if there are any corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there are any asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are any corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Amazon CloudWatch, the default metric sets are as follows, more metrics can be collected through configuration [Amazon CloudWatch Metric Details](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html){:target="_blank"}

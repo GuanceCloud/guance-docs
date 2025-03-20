@@ -23,9 +23,9 @@ Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memor
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -33,7 +33,7 @@ If you deploy Func on your own, refer to [Self-deployed Func](https://func.guanc
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data of Alibaba Cloud Redis Standard Edition, we install the corresponding collection script: Guance Integration (Alibaba Cloud - Redis Collection) (ID: `guance_aliyun_redis`).
+To synchronize monitoring data of Alibaba Cloud Redis Standard Edition, we install the corresponding collection script: <<< custom_key.brand_name >>> Integration (Alibaba Cloud - Redis Collection) (ID: `guance_aliyun_redis`).
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -43,14 +43,14 @@ In addition, you can see the corresponding automatic trigger configuration in th
 
 We collect some configurations by default; for more details, see the Metrics section.
 
-[Customize cloud object metrics configuration](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Customize cloud object metrics configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
-3. In the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+2. In the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. In the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 After configuring Alibaba Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics via configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
@@ -125,9 +125,9 @@ On top of the previous setup, you need to install another script for **Redis Slo
 
 In the 「Manage / Script Market」, click and install the corresponding script package:
 
-- 「Guance Integration (Alibaba Cloud - Redis Slow Query Log Collection)」(ID: `guance_aliyun_redis_slowlog`)
+- 「<<< custom_key.brand_name >>> Integration (Alibaba Cloud - Redis Slow Query Log Collection)」(ID: `guance_aliyun_redis_slowlog`)
 
-After the data synchronization is normal, you can view the data in the 「Logs」 section of Guance.
+After the data synchronization is normal, you can view the data in the 「Logs」 section of <<< custom_key.brand_name >>>.
 
 An example of the reported data is as follows:
 

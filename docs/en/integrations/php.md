@@ -14,7 +14,7 @@ monitor   :
 # PHP
 <!-- markdownlint-enable -->
 
-Report relevant information of PHP applications to Guance:
+Report relevant information of PHP applications to <<< custom_key.brand_name >>>:
 
 - Collect custom Metrics data from the application;
 - Collect APM data from the application;

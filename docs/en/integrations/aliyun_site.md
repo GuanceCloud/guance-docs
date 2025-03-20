@@ -21,9 +21,9 @@ Alibaba Cloud Site Monitoring primarily collects site dial test information.
 
 ### Install Func
 
-It is recommended to enable Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
@@ -31,7 +31,7 @@ If you deploy Func yourself, refer to [Self-deploy Func](https://func.guance.com
 
 > Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-We install the corresponding collection script: Guance Integration (Alibaba Cloud - Site Monitoring Task Collection) (ID: `guance_aliyun_site_monitor_task`)
+We install the corresponding collection script: <<< custom_key.brand_name >>> Integration (Alibaba Cloud - Site Monitoring Task Collection) (ID: `guance_aliyun_site_monitor_task`)
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
@@ -41,14 +41,14 @@ In addition, you can see the corresponding automatic trigger configuration in "M
 
 We default to collecting some configurations; for details, see the Metrics section.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
 1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding tasks have corresponding automatic trigger configurations, and at the same time, check the corresponding task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 
