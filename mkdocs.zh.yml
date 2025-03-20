@@ -69,6 +69,7 @@ extra:
     func_domain: func.guance.com
     studio_main_site: console.guance.com
     studio_main_site_auth: auth.guance.com
+    dial_server_domain: dflux-dial.guance.com
 
   alternate:
     - name: 中文
