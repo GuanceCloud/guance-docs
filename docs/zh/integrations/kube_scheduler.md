@@ -33,11 +33,11 @@ metadata:
   namespace: datakit
 data:
    kubernetesprometheus.conf: |-  
-   # 以下配置不是一成不变，请根据实际情况进行修改
+     [inputs.kubernetesprometheus]
         [[inputs.kubernetesprometheus.instances]]
           role       = "pod"
           namespaces = ["kube-system"]
-          selector   = "component=Kube Scheduler,tier=control-plane"      
+          selector   = "component=kube_scheduler,tier=control-plane"      
           scrape   = "true"
           scheme   = "https"
           port     = "10259"
@@ -45,7 +45,7 @@ data:
           interval = "30s"
 
          [inputs.kubernetesprometheus.instances.custom]
-           measurement        = "Kube Scheduler"
+           measurement        = "kube_scheduler"
            job_as_measurement = false
            [inputs.kubernetesprometheus.instances.custom.tags]
              cluster_name_k8s = "k8s-test"           

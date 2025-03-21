@@ -36,14 +36,11 @@ After successfully installing Datakit and starting it, the HOST object collector
     ## Setting enable_net_virtual_interfaces to true will collect network virtual interfaces stats for linux.
     # enable_net_virtual_interfaces = true
     
-    ## absolute path to the configuration file
+    ## Absolute path to the configuration file
     # config_path = ["/usr/local/datakit/conf.d/datakit.conf"]
     
-    ##############################
-    # Disk related options
-    ##############################
-    ## Deprecated
-    # ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "autofs", "squashfs", "aufs"]
+    # Do not collect disks that with these file systems
+    ignore_fstypes = '''^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$'''
     
     ## We collect all devices prefixed with dev by default,If you want to collect additional devices, it's in extra_device add
     # extra_device = []
@@ -123,7 +120,7 @@ After successfully installing Datakit and starting it, the HOST object collector
     
         **Default Value**: false
     
-    - **ENV_INPUT_HOSTOBJECT_ONLY_PHYSICAL_DEVICE**
+    - **ENV_INPUT_HOSTOBJECT_IGNORE_FSTYPES**
     
         Ignore non-physical disks (like cloud disks, NFS), any non-empty string
     
@@ -132,6 +129,23 @@ After successfully installing Datakit and starting it, the HOST object collector
         **Collector Configuration Field**: `only_physical_device`
     
         **Default Value**: false
+        Ignore disks with these file systems
+    
+        **Type**: String
+    
+        **input.conf**: `ignore_fstypes`
+    
+        **Default**: `^(tmpfs|autofs|binfmt_misc|devpts|fuse.lxcfs|overlay|proc|squashfs|sysfs)$`
+    
+    - **ENV_INPUT_HOSTOBJECT_IGNORE_MOUNTPOINTS**
+    
+        Ignore disks with these mount points
+    
+        **Type**: String
+    
+        **input.conf**: `ignore_mountpoints`
+    
+        **Default**: `^(/usr/local/datakit/.*|/run/containerd/.*)$
     
     - **ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE**
     
@@ -141,7 +155,7 @@ After successfully installing Datakit and starting it, the HOST object collector
     
         **Collector Configuration Field**: `exclude_device`
     
-        **Example**: /dev/loop0,/dev/loop1
+        **Example**: `/dev/loop0,/dev/loop1`
     
     - **ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE**
     
@@ -231,7 +245,7 @@ After successfully installing Datakit and starting it, the HOST object collector
     
         **Collector Configuration Field**: `cloud_meta_token_url`
     
-        **Example**: `{"aws":"xxx", "aliyun":"yyy"}`
+        **Example**: `{"aws":"xxx","aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 

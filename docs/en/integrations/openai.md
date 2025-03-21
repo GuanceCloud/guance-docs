@@ -41,8 +41,8 @@ Install the DataKit data collector. In the <<< custom_key.brand_name >>> workspa
 
 For more information, please refer to:
 
-- <https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/>
-- <<<< homepage >>>/datakit/datakit-service-how-to/>
+- [practice-connect-to-datakit](https://<<< custom_key.func_domain >>>/doc/practice-connect-to-datakit/)
+- [datakit-service-how-to](<<< homepage >>>/datakit/datakit-service-how-to/)
 
 ### Install Script
 

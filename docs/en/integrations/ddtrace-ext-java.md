@@ -10,29 +10,26 @@ tags      :
 ## Introduction {#intro}
 
 This section mainly introduces some extended features of DDTrace-Java. Main feature list:
-
-- `JDBC SQL` desensitization function
-- `xxl-jobs` support
-- `Dubbo 2/3` support
-- `Thrift` framework support
-- `RocketMQ` support
-- `Log Pattern` customization
-- Alibaba RPC framework `HSF` probe support
-- Alibaba Cloud `RocketMQ` 5.0 support
-- Adding parameters to Redis traces
-- Obtaining input parameter information for specific functions
-- Supporting `MongoDB` desensitization
-- Supporting Dameng domestic database
-- [Supporting trace-id 128 bits](ddtrace-128-trace-id.md){:target="_blank"}
-- Supporting `PowerJob` framework
-- Supporting `Apache Pulsar` MESSAGE QUEUES
-- Supporting placing trace ID in the response header
-- Supporting placing request header information `Header` into trace tags
-- Supporting placing request response body `Response Body` into trace tags
-- Supporting placing request body `Request Body` into trace tags
-- Setting related chains to error for http 4xx, activation parameter: `-Ddd.http.error.enabled=true`
-- Supporting `Mybatis-plus:batch` usage.
-- Redis cluster support for obtaining peer_ip
+- JDBC SQL obfuscation
+- xxl-jobs
+- Dubbo 2/3
+- Thrift
+- RocketMQ
+- log pattern
+- hsf
+- Support Alibaba Cloud RocketMQ 5.0
+- redis trace parameters
+- Get the input parameter information of a specific function
+- MongoDB obfuscation
+- Supported DM8 Database
+- Supported Apache Pulsar MQ
+- Support placing `trace_id` in the response header
+- Support putting the requested header information into the span tags
+- Support add HTTP `Response Body` information in the trace data
+- Support add HTTP `Request Body` information in the trace data
+- Use `-Ddd.http.error.enabled=true` to change the HTTP 4xx request link status to error
+- Support `Mybatis-plus:batch`
+- Support Redis tag:peer_ip
 
 ## Adding Response, Request Body Information in Trace Data {#response_body}
 

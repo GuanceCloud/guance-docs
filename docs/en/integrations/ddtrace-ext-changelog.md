@@ -42,6 +42,14 @@ This release mainly includes the following updates:
 
 --->
 
+## v1.47.1-guance {#cl-1.47.1-guance}
+
+### fix {#cl-1.47.1-guance-fix}
+
+- Fix the problem that Dubbo Response does not take effect.
+- Merge DDTrace Tag: v1.47.1.
+
+
 ## v1.42.8-guance {#cl-1.42.8-guance}
 
 ### Fixes {#cl-1.42.8-guance-fix}

@@ -147,7 +147,7 @@ The following require corresponding variable information regardless of the metho
         ```
         
 
-=== "ISS"
+=== "IIS"
     After installing the MSI, automatic detection of IIS sites requires no additional configuration. To set additional environment variables inherited by all IIS sites, follow these steps:
 
     1. Open the registry editor, find the multi-string value named `Environment` under the registry item `HKLM\System\CurrentControlSet\Services\WAS`, and then add environment variables, one per line. For example, to add log injection and runtime metrics, add the following lines to the value data:  

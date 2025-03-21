@@ -231,6 +231,7 @@ Cat 通过采集系统的各种指标数据，如 CPU、内存、网络、磁盘
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|

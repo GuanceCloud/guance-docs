@@ -159,7 +159,6 @@ Display Effect:
   <figcaption> Cat Monitoring View </figcaption>
 </figure>
 
-
 ## Data Field Explanation {#fields}
 
 
@@ -228,6 +227,7 @@ Display Effect:
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
