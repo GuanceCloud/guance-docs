@@ -128,6 +128,11 @@ DDTrace is an open-source APM product from DataDog. The DDTrace Agent embedded i
       ##  It is possible to compatible B3/B3Multi TraceID with DDTrace.
       # trace_id_64_bit_hex=true
     
+      ## When true, the tracer generates 128 bit Trace IDs, 
+      ## and encodes Trace IDs as 32 lowercase hexadecimal characters with zero padding.
+      ## default is true.
+      # trace_128_bit_id = true
+    
       ## delete trace message
       # del_message = true
     
@@ -232,6 +237,16 @@ DDTrace is an open-source APM product from DataDog. The DDTrace Agent embedded i
     
         **Default Value**: false
     
+    - **ENV_INPUT_DDTRACE_TRACE_128_BIT_ID**
+    
+        Trace IDs as 32 lowercase hexadecimal
+    
+        **Type**: Boolean
+    
+        **input.conf**: `trace_128_bit_id`
+    
+        **Default**: true
+    
     - **ENV_INPUT_DDTRACE_DEL_MESSAGE**
     
         Delete trace message
@@ -328,11 +343,22 @@ DDTrace is an open-source APM product from DataDog. The DDTrace Agent embedded i
 
 ### Multi-line Tool Chaining Considerations {#trace_propagator}
 
-DDTrace currently supports the following propagation protocols: `datadog/b3multi/tracecontext`. There are two situations to note:
+In the DDTrace data structure, the TraceID is of type uint64. When using the propagation protocol `tracecontext`, an additional tag `_dd.p.tid:67c573cf00000000` is added internally in the DDTrace trace details.
+This is because the `trace_id` in the `tracecontext` protocol is a 128-bit hexadecimal encoded string. To ensure compatibility, a high-order tag is added.
 
-- When using `tracecontext`, since the trace ID is 128 bits, you need to turn on the `compatible_otel=true` switch in the configuration.
-- When using `b3multi`, pay attention to the length of the `trace_id`; if it is a 64-bit hex encoding, you need to turn on the `trace_id_64_bit_hex=true` switch in the configuration file.
-- For more propagation protocols and tool usage, please refer to: [Multi-link chaining](tracing-propagator.md){:target="_blank"}
+- When using `tracecontext`, the `compatible_otel=true` and `trace_128_bit_id` switch needs to be turned on in the configuration because the link ID is 128 bits.
+- When using `b3multi`, pay attention to the length of `trace_id`. If it is 64-bit hex encoding, the `trace_id_64_bit_hex=true` needs to be turned on in the configuration file.
+- For more propagation protocol and tool usage, please refer to: [Multi-Link Concatenation](tracing-propagator.md){:target="_blank"}
+
+
+???+ tip
+
+    compatible_otel function: Converts span_id and parent_id into hexadecimal strings.
+    trace_128_bit_id function: Combines the "_dd.p.tid" from meta with trace_id to form a 32-character hexadecimal encoded string.
+    trace_id_64_bit_hex function: Converts a 64-bit trace_id into a hexadecimal encoded string.
+
+
+### Add Pod and Node tags {#add-pod-node-info}
 
 ### Inject Pod and Node Information {#add-pod-node-info}
 
@@ -568,6 +594,7 @@ If the whitelisted tags are from the native `message.meta`, `.` will be used as 
 
 | Tag | Description |
 |  ----  | --------|
+|`base_service`|Span Base service name|
 |`container_host`|Container hostname. Available in OpenTelemetry. Optional.|
 |`dk_fingerprint`|DataKit fingerprint is DataKit hostname|
 |`endpoint`|Endpoint info. Available in SkyWalking, Zipkin. Optional.|
