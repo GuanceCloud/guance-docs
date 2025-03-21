@@ -25,11 +25,12 @@ Create the following ConfigMap to manage the collector configuration:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: datakit-conf-kube-apiserver
+  name: datakit-conf
   namespace: datakit
 data:
   kube-apiserver.conf: |-
-    [[inputs.kubernetesprometheus.instances]]
+    [inputs.kubernetesprometheus]
+     [[inputs.kubernetesprometheus.instances]]
       role       = "pod"
       namespaces = ["kube-system"]
       selector   = "component=kube-apiserver,tier=control-plane"
@@ -75,14 +76,14 @@ spec:
         ...
         volumeMounts:
           ...
-          - name: datakit-conf-kube-apiserver
+          - name: datakit-conf
             subPath: kube-apiserver.conf
             mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kube-apiserver.conf
       volumes:
         ...
-        - name: datakit-conf-kube-apiserver
+        - name: datakit-conf
           configMap:
-            name: datakit-conf-kube-apiserver
+            name: datakit-conf
 ```
 
 ## Metrics {#metric}

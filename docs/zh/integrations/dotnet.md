@@ -148,7 +148,7 @@ monitor   :
         ```
         
 
-=== "ISS"
+=== "IIS"
     安装MSI后，无需额外配置即可自动检测IIS站点。要设置由所有IIS站点继承的其他环境变量，请执行以下步骤：
 
     1. 打开注册表编辑器，在`HKLM\System\CurrentControlSet\Services\WAS`注册表项中找到名为`Environment`的多字符串值，然后添加环境变量，每行一个。例如，要添加日志注入和运行时度量，请在值数据中添加以下行：  
