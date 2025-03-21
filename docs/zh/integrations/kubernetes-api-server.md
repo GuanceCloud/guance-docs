@@ -25,11 +25,12 @@ monitor   :
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: datakit-conf-kube-apiserver
+  name: datakit-conf
   namespace: datakit
 data:
   kube-apiserver.conf: |-
-    [[inputs.kubernetesprometheus.instances]]
+    [inputs.kubernetesprometheus]
+     [[inputs.kubernetesprometheus.instances]]
       role       = "pod"
       namespaces = ["kube-system"]
       selector   = "component=kube-apiserver,tier=control-plane"
