@@ -101,10 +101,19 @@ void main() async {
 | debug | bool | 否 | 设置是否允许打印日志，默认 `false` |
 | env | String | 否 | 环境配置，默认 `prod`，任意字符，建议使用单个单词，例如 `test` 等|
 | envType | enum EnvType | 否 | 环境配置，默认 `EnvType.prod`。**注：env 与 envType 只需配置一个** |
+| autoSync | bool | 否 |  是否开启自动同步，默认为 `true`。当为 `false` 时使用 `FTMobileFlutter.flushSyncData()` 自行管理数据同步 |
+| syncPageSize | enum | 否 | 设置同步请求条目数，`SyncPageSize.mini` 5 条，`SyncPageSize.medium` 10 条，`SyncPageSize.large` 50 条，默认 `SyncPageSize.medium`  |
+| customSyncPageSize | number | 否 | 设置同步请求条目数。范围 [5,）注意：请求条目数越大，代表数据同步占用更大的计算资源 |
+| syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
+| globalContext | object | 否 | 添加自定义标签。添加规则请查阅[此处](../android/app-access.md#key-conflict) |
 | serviceName | String | 否 | 服务名 |
-| enableLimitWithDbSize | boolean | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK  0.3.10  以上版本支持该参数 |
-| dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.3.10  以上版本支持该参数 |
-| dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`FTDBCacheDiscard.discard`丢弃新数据（默认）、`FTDBCacheDiscard.discardOldest`丢弃旧数据。SDK 0.3.10 以上版本支持该参数 |
+| enableLimitWithDbSize | boolean | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK  0.5.3-pre.2  以上版本支持该参数 |
+| dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.5.3-pre.2  以上版本支持该参数 |
+| dbCacheDiscard | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`FTDBCacheDiscard.discard`丢弃新数据（默认）、`FTDBCacheDiscard.discardOldest`丢弃旧数据。SDK 0.5.3-pre.2 以上版本支持该参数 |
+| compressIntakeRequests | boolean | 否 | 设置是否对同步数据进行压缩，0.5.3-pre.2 以上版本支持该参数，默认关闭 |
+| enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题。0.5.4-pre.1 以上版本默认开启 |
+
+
 ### RUM 配置 {#rum-config}
 
 ```dart
@@ -652,6 +661,21 @@ void httpClientGetHttp() async {
  FTMobileFlutter.unbindUser();
 ```
 
+## 主动同步数据
+### FTMobileFlutter
+#### 使用方法
+
+```dart
+/// 立即同步数据
+static Future<void> flushSyncData())
+```
+
+#### 使用示例
+
+```dart
+FTMobileFlutter.flushSyncData();
+```
+
 ## WebView 数据监测
 WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../web/app-access.md)
 
@@ -666,9 +690,9 @@ WebView 数据监测，需要在 WebView 访问页面集成[Web 监测 SDK](../w
     * View, Resource, Error 采用与纯 Flutter 项目一样的配置方式
     * Flutter Resource 与 Trace 自动采集使用以下配置方式
     ```dart
-        // 设置 traceHeader 0.5.3-pre.1 支持
+        // 设置 traceHeader 0.5.3-pre.2 支持
         FTHttpOverrideConfig.global.traceHeader = true;   
-        //设置采集 Resource 数据 0.5.3-pre.1 支持
+        //设置采集 Resource 数据 0.5.3-pre.2 支持
         FTHttpOverrideConfig.global.traceResource = true; 
     ```
    
