@@ -2,14 +2,14 @@
 title: 'Alibaba Cloud PolarDB MySQL'
 tags: 
   - Alibaba Cloud
-summary: 'Display of Alibaba Cloud PolarDB MySQL metrics, including CPU usage, memory hit rate, network traffic, connections, QPS, TPS, read-only node delay, etc.'
+summary: 'Alibaba Cloud PolarDB MySQL Metrics display, including CPU usage, memory hit rate, network traffic, connection count, QPS, TPS, read-only node delay, etc.'
 __int_icon: 'icon/aliyun_polardb'
 dashboard:
-  - desc: 'Built-in views for Alibaba Cloud PolarDB MySQL'
+  - desc: 'Alibaba Cloud PolarDB MySQL Built-in Views'
     path: 'dashboard/en/aliyun_polardb_mysql/'
 
 monitor:
-  - desc: 'Monitor for Alibaba Cloud PolarDB MySQL'
+  - desc: 'Alibaba Cloud PolarDB MySQL Monitors'
     path: 'monitor/en/aliyun_polardb_mysql/'    
 ---
 
@@ -17,46 +17,45 @@ monitor:
 # Alibaba Cloud PolarDB MySQL
 <!-- markdownlint-enable -->
 
-Display of Alibaba Cloud PolarDB MySQL metrics, including CPU usage, memory hit rate, network traffic, connections, QPS, TPS, read-only node delay, etc.
+Alibaba Cloud PolarDB MySQL Metrics display, including CPU usage, memory hit rate, network traffic, connection count, QPS, TPS, read-only node delay, etc.
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to activate <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func by yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-> We recommend deploying the GSE version.
+> GSE version deployment is recommended.
 
-<!-- markdownlint-disable MD024 -->
 ### Install Script
-<!-- markdownlint-enable -->
 
-> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`)
+> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data from Alibaba Cloud PolarDB MySQL, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-PolarDB MySQL Collection)」(ID: `guance_aliyun_polardb_mysql`)
+To synchronize Alibaba Cloud PolarDB MySQL monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-PolarDB Collection)" (ID: `guance_aliyun_polardb`)
 
-After clicking 【Install】, enter the required parameters: Alibaba Cloud AK and Alibaba Cloud account name.
+After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Once enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+Once activated, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】to immediately execute it once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-> If you need to collect logs, enable the corresponding log collection script. If you need to collect billing data, enable the cloud billing collection script.
+> If you want to collect the corresponding logs, you need to enable the corresponding log collection script. If you want to collect bills, you need to enable the cloud bill collection script.
 
-By default, we collect some configurations; see the metrics section for details.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+We default to collecting some configurations, details see the metrics section
+
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 ### Verification
 
-1. Confirm in 「Manage / Automatic Trigger Configuration」whether the corresponding tasks have been configured for automatic triggers. You can also check the task records and logs for any anomalies.
-2. In the Guance platform, under 「Infrastructure - Resource Catalog」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data is available.
+1. Confirm in "Manage/Automatic Trigger Configuration" whether the corresponding task has an automatic trigger configuration. You can also check the corresponding task records and logs for any anomalies.
+2. In the <<< custom_key.brand_name >>> platform, check if there are asset information under "Infrastructure / Custom".
+3. In the <<< custom_key.brand_name >>> platform, check if there are corresponding monitoring data under "Metrics".
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud Cloud Monitor, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud - Cloud Monitor, the default measurement set is as follows. You can collect more metrics through configuration [Alibaba Cloud Cloud Monitor Metrics Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                      | Metric Name            | Dimensions                  | Statistics              | Unit        |
 | ---- | ------ | ------ | ---- | ---- |
@@ -64,34 +63,34 @@ After configuring Alibaba Cloud Cloud Monitor, the default metric set is as foll
 | `cluster_blktag_utilization`   | **blktag** Utilization | userId,clusterId            | Average                 | %           |
 | `cluster_connection_utilization` | Connection Utilization | userId,clusterId,nodeId     | Average,Maximum,Minimum | %           |
 | `cluster_cpu_utilization`      | CPU Utilization        | userId,clusterId,nodeId     | Average                 | %           |
-| `cluster_data_io`              | Storage Engine IO Throughput per Second | userId,clusterId,nodeId | Average                 | KB          |
-| `cluster_data_iops`            | Storage Engine IO Operations per Second | userId,clusterId,nodeId | Average                 | countSecond |
+| `cluster_data_io`              | Storage Engine IO Throughput per Second | userId,clusterId,nodeId     | Average                 | KB          |
+| `cluster_data_iops`            | Storage Engine IO Operations per Second | userId,clusterId,nodeId     | Average                 | countSecond |
 | `cluster_direntry_utilization` | **direntry** Utilization | userId,clusterId            | Average                 | %           |
 | `cluster_disk_utilization`     | Disk Utilization       | userId,clusterId            | Average                 | %           |
-| `cluster_imci_datasize`        | **IMCI** Node Column Store Index Size | userId,clusterId,nodeId | Average                 | MB          |
-| `cluster_imci_exememusage`     | **IMCI** Executor Memory Usage | userId,clusterId,nodeId | Average                 | Byte        |
-| `cluster_imci_stmtsexepersec`  | **IMCI** SQL Queries per Second | userId,clusterId,nodeId | Average                 | count/s     |
-| `cluster_imci_stmtsinqueue`    | **IMCI** SQL Statements in Queue | userId,clusterId,nodeId | Average                 | count       |
-| `cluster_imci_tmpfileusedsize` | **IMCI** Temporary Table Size | userId,clusterId,nodeId | Average                 | Byte        |
+| `cluster_imci_datasize`        | **IMCI** Node Column Store Index Size | userId,clusterId,nodeId     | Average                 | MB          |
+| `cluster_imci_exememusage`     | **IMCI** Executor Memory Usage | userId,clusterId,nodeId     | Average                 | Byte        |
+| `cluster_imci_stmtsexepersec`  | **IMCI** Queries Per Second | userId,clusterId,nodeId     | Average                 | count/s     |
+| `cluster_imci_stmtsinqueue`    | **IMCI** SQLs in Scheduler Queue | userId,clusterId,nodeId     | Average                 | count       |
+| `cluster_imci_tmpfileusedsize` | **IMCI** Executor Temporary Table Size | userId,clusterId,nodeId     | Average                 | Byte        |
 | `cluster_inode_utilization`    | inode Utilization      | userId,clusterId            | Average                 | %           |
-| `cluster_input_traffic`        | Network Input Traffic per Second | userId,clusterId,nodeId | Average,Maximum,Minimum | KByte/s     |
-| `cluster_iops`                 | IO Operations per Second | userId,clusterId,nodeId | Average                 | countSecond |
+| `cluster_input_traffic`        | Network Input Traffic Per Second | userId,clusterId,nodeId     | Average,Maximum,Minimum | KByte/s     |
+| `cluster_iops`                 | IO Operations Per Second | userId,clusterId,nodeId     | Average                 | countSecond |
 | `cluster_iops_usage`           | IOPS Utilization       | userId,clusterId,nodeId     | Average,Maximum,Minimum | %           |
-| `cluster_mem_hit_ratio`        | Memory Hit Rate        | userId,clusterId,nodeId     | Average                 | %           |
+| `cluster_mem_hit_ratio`        | Memory Hit Ratio       | userId,clusterId,nodeId     | Average                 | %           |
 | `cluster_memory_utilization`   | Memory Utilization     | userId,clusterId,nodeId     | Average                 | %           |
-| `cluster_mps`                  | Data Operations per Second | userId,clusterId,instanceId | Average,Maximum,Minimum | countSecond |
-| `cluster_output_traffic`       | Network Output Traffic per Second | userId,clusterId,nodeId | Average,Maximum,Minimum | KByte/s     |
+| `cluster_mps`                  | Data Operations Per Second | userId,clusterId,instanceId | Average,Maximum,Minimum | countSecond |
+| `cluster_output_traffic`       | Network Output Traffic Per Second | userId,clusterId,nodeId     | Average,Maximum,Minimum | KByte/s     |
 | `cluster_proxy_cpu_utilization` | Proxy CPU Utilization | userId,clusterId            | Average,Maximum,Minimum | %           |
-| `cluster_qps`                  | Queries per Second     | userId,clusterId,nodeId     | Average                 | count       |
+| `cluster_qps`                  | Queries Per Second     | userId,clusterId,nodeId     | Average                 | count       |
 | `cluster_redo_write_rate`      | Redo Log Write Rate    | userId,clusterId,nodeId     | Average                 | Byte/s      |
-| `cluster_replica_lag`          | Read-Only Node Replication Delay | userId,clusterId,instanceId | Average,Minimum,Maximum | seconds     |
-| `cluster_slow_queries_ps`      | Slow Queries per Second | userId,clusterId,nodeId     | Average                 | countS      |
-| `cluster_total_session`        | Total Current Connections | userId,clusterId,nodeId | Average,Maximum,Minimum | count       |
-| `cluster_tps`                  | Transactions per Second | userId,clusterId,nodeId | Average                 | countS      |
+| `cluster_replica_lag`          | Replica Lag           | userId,clusterId,instanceId | Average,Minimum,Maximum | seconds     |
+| `cluster_slow_queries_ps`      | Slow Queries Per Second | userId,clusterId,nodeId     | Average                 | countS      |
+| `cluster_total_session`        | Current Total Connections | userId,clusterId,nodeId     | Average,Maximum,Minimum | count       |
+| `cluster_tps`                  | Transactions Per Second | userId,clusterId,nodeId     | Average                 | countS      |
 
 ## Objects {#object}
 
-The collected Alibaba Cloud PolarDB MySQL object data structure can be viewed in 「Infrastructure - Resource Catalog」
+Collected Alibaba Cloud PolarDB MySQL object data structure, which can be seen in "Infrastructure - Custom" objects data
 
 ```json
 {
@@ -99,27 +98,26 @@ The collected Alibaba Cloud PolarDB MySQL object data structure can be viewed in
   "tags": {
     "name"                : "pc-xxxx",
     "RegionId"            : "cn-hangzhou",
+    "VpcId"               : "vpc-xxxx",
     "DBNodeNumber"        : "2",
+    "PayType"             : "Postpaid",
     "DBType"              : "MySQL",
+    "LockMode"            : "Unlock",
+    "DBVersion"           : "8.0",
     "DBClusterId"         : "pc-xxxx",
+    "DBClusterNetworkType": "VPC",
     "ZoneId"              : "cn-hangzhou-i",
     "Engine"              : "POLARDB",
     "Category"            : "Normal",
-    "DBClusterDescription": "pc-xxxx"
+    "DBClusterDescription": "pc-xxxx",
+    "DBNodeClass"         : "polar.mysql.x4.medium"
   },
   "fields": {
-    "CreateTime"          : "2022-06-17T06:07:19Z",
-    "DBClusterNetworkType": "VPC",
-    "DBNodeClass"         : "polar.mysql.g1.tiny.c",
-    "DBNodes"             : "{JSON data of node list}",
-    "DBVersion"           : "8.0",
-    "Database"            : "[JSON data of database details]",
-    "ExpireTime"          : "",
-    "LockMode"            : "Unlock",
-    "PayType"             : "Postpaid",
-    "Tags"                : "{"Tag": []}",
-    "VpcId"               : "vpc-bp16f7**********3p3",
-    "message"             : "{JSON data of instance}"
+    "DBNodes"   : "{JSON Data of Node List}",
+    "Database"  : "[JSON Data of Database Details]",
+    "ExpireTime": "",
+    "CreateTime": "2022-06-17T06:07:19Z",
+    "message"   : "{Instance JSON Data}"
   }
 }
 
@@ -130,24 +128,28 @@ The collected Alibaba Cloud PolarDB MySQL object data structure can be viewed in
 ### Slow Query Statistics
 
 <!-- markdownlint-disable MD024 -->
+
 #### Prerequisites
+
 <!-- markdownlint-enable -->
 
-> Note: This script depends on the collection of PolarDB instance objects. If PolarDB custom object collection is not configured, the slow log script cannot collect slow log data.
+> Note: The code execution of this script depends on the collection of PolarDB instance objects. If the custom object collection for PolarDB is not configured, the slow log script cannot collect slow log data.
 
 <!-- markdownlint-disable MD024 -->
+
 #### Install Script
+
 <!-- markdownlint-enable -->
 
-In addition to the previous setup, you need to install another script for collecting **PolarDB slow query statistics logs**.
+Based on the previous setup, you need to install another script corresponding to the **PolarDB Slow Query Statistics Log Collection**
 
-In 「Manage / Script Market」, click and install the corresponding script package:
+In "Manage / Script Market", click and install the corresponding script package:
 
-- 「Guance Integration (Alibaba Cloud - PolarDB Slow Query Statistics Log Collection)」(ID: `guance_aliyun_polardb_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - PolarDB Slow Query Statistics Log Collection)" (ID: `guance_aliyun_polardb_slowlog`)
 
-After data synchronization, you can view the data in the 「Logs」section of Guance.
+After the data is synchronized normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
-Example of reported data:
+The reported data example is as follows:
 
 ```json
 {
@@ -169,53 +171,57 @@ Example of reported data:
     "TotalExecutionCounts": 2,
     "TotalExecutionTimes" : 2,
     "TotalLockTimes"      : 1,
-    "message"             : "{JSON log data}"
+    "message"             : "{Log JSON Data}"
   }
 }
 
 ```
 
-Field descriptions:
+Descriptions of some parameters are as follows:
 
-| Field                   | Type | Description                       |
-| :--------------------- | :--- | :--------------------------------- |
-| `MaxExecutionTime`     | Long | Maximum execution duration, in seconds |
-| `TotalExecutionTimes`  | Long | Total execution duration, in seconds |
-| `TotalLockTimes`       | Long | Total lock duration, in seconds     |
-| `MaxLockTime`          | Long | Maximum lock duration, in seconds   |
-| `ReturnMaxRowCount`    | Long | Maximum returned row count         |
-| `ReturnTotalRowCounts` | Long | Total returned row count           |
-| `ParseMaxRowCount`     | Long | Maximum parsed row count           |
-| `ParseTotalRowCounts`  | Long | Total parsed row count             |
-| `TotalExecutionCounts` | Long | Total execution count              |
+| Field                   | Type | Description                         |
+| :--------------------- | :--- | :---------------------------------- |
+| `MaxExecutionTime`     | Long | Execution duration (maximum value), unit: seconds |
+| `TotalExecutionTimes`  | Long | Execution duration (total value), unit: seconds   |
+| `TotalLockTimes`       | Long | Lock duration (total value), unit: seconds       |
+| `MaxLockTime`          | Long | Lock duration (maximum value), unit: seconds     |
+| `ReturnMaxRowCount`    | Long | Returned SQL row count (maximum value)           |
+| `ReturnTotalRowCounts` | Long | Returned SQL row count (total value)             |
+| `ParseMaxRowCount`     | Long | Parsed SQL row count (maximum value)            |
+| `ParseTotalRowCounts`  | Long | Parsed SQL row count (total value)              |
+| `TotalExecutionCounts` | Long | Execution counts (total value)                  |
 
 > *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note: `fields.message` is a JSON serialized string.
+> Note: `fields.message` is a JSON serialized string
 
 ### Slow Query Details
 
 <!-- markdownlint-disable MD024 -->
+
 #### Prerequisites
+
 <!-- markdownlint-enable -->
 
-> Note: This script depends on the collection of PolarDB instance objects. If PolarDB custom object collection is not configured, the slow log script cannot collect slow log data.
+> Note: The code execution of this script depends on the collection of PolarDB instance objects. If the custom object collection for PolarDB is not configured, the slow log script cannot collect slow log data.
 
 <!-- markdownlint-disable MD024 -->
+
 #### Install Script
+
 <!-- markdownlint-enable -->
 
-In addition to the previous setup, you need to install another script for collecting **PolarDB slow query detail logs**.
+Based on the previous setup, you need to install another script corresponding to the **PolarDB Slow Query Detail Log Collection**
 
-In 「Manage / Script Market」, click and install the corresponding script package:
+In "Manage / Script Market", click and install the corresponding script package:
 
-- 「Guance Integration (Alibaba Cloud - PolarDB Slow Query Detail Log Collection)」(ID: `guance_aliyun_polardb_slowlog_record`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - PolarDB Slow Query Detail Log Collection)" (ID: `guance_aliyun_polardb_slowlog_record`)
 
-After data synchronization, you can view the data in the 「Logs」section of Guance.
+After the data is synchronized normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
-Configure [Cloud Database PolarDB Slow Query Details](https://func.guance.com/doc/script-market-guance-aliyun-polardb-slowlog-record/){:target="_blank"}
+Configuration [Cloud Database PolarDB Slow Query Details](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-polardb-slowlog-record/){:target="_blank"}
 
-Example of reported data:
+The reported data example is as follows:
 
 ```json
 {
@@ -233,23 +239,23 @@ Example of reported data:
     "ParseRowCounts"    : 0,
     "LockTimes"         : 0,
     "QueryTimeMS"       : 100,
-    "message"           : "{JSON log data}"
+    "message"           : "{Log JSON Data}"
   }
 }
 
 ```
 
-Field descriptions:
+Descriptions of some parameters are as follows:
 
 | Field                 | Type   | Description                                                  |
-| :------------------- | :----- | :----------------------------------------------------------- |
-| `QueryTimes`         | Long   | SQL execution duration, in seconds                           |
-| `QueryTimeMS`        | Long   | Query time, in milliseconds                                  |
-| `ReturnRowCounts`    | Long   | Returned row count                                           |
-| `ParseRowCounts`     | Long   | Parsed row count                                             |
-| `ExecutionStartTime` | String | SQL start execution time. Format: YYYY-MM-DDThh:mmZ (UTC time) |
-| `LockTimes`          | Long   | SQL lock duration, in seconds                                 |
+| :------------------- | :----- | :---------------------------------------------------------- |
+| `QueryTimes`         | Long   | SQL execution duration, unit: seconds                        |
+| `QueryTimesMS`       | Long   | Query time. Unit: milliseconds                              |
+| `ReturnRowCounts`    | Long   | Return row count                                            |
+| `ParseRowCounts`     | Long   | Parse row count                                             |
+| `ExecutionStartTime` | String | SQL start execution time. Format YYYY-MM-DDThh:mmZ (UTC time) |
+| `LockTimes`          | Long   | SQL lock duration, unit: seconds                            |
 
 > *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note: `fields.message` is a JSON serialized string.
+> Note: `fields.message` is a JSON serialized string

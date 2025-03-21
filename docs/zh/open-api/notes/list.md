@@ -45,7 +45,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/list' \
                 "creatorInfo": {
                     "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "66",
-                    "username": "66@qq.com"
+                    "username": "xxx@<<< custom_key.brand_main_domain >>>"
                 },
                 "deleteAt": -1,
                 "id": 185,
@@ -62,7 +62,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notes/list' \
                 "updatorInfo": {
                     "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "66",
-                    "username": "66@qq.com"
+                    "username": "xxx@<<< custom_key.brand_main_domain >>>"
                 },
                 "uuid": "notes_xxxx32",
                 "workspaceUUID": "wksp_xxxx32"

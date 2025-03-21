@@ -19,11 +19,11 @@ Collect log information via Logstash.
 
 ## Installation and Deployment {#config}
 
-### Enable the `logstreaming` Collector in DataKit
+### Enable the `logstreaming` collector in DataKit
 
 - Enable the `logstreaming` collector
 
-Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample`, and rename it to `logstreaming.conf`.
+Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample` and rename it to `logstreaming.conf`.
 
 ```toml
 [inputs.logstreaming]
@@ -38,7 +38,7 @@ For a detailed introduction to the `logstreaming` collector, refer to the [offic
 
 ### Adjust Logstash Configuration
 
-DataKit uses the `logstreaming` collector to collect log information reported by Logstash, so Logstash needs to point its `output` address to the receiving address of the `logstreaming` collector.
+DataKit uses the `logstreaming` collector to collect log information reported by Logstash, so Logstash needs to point the `output` address to the receiving address of the `logstreaming` collector.
 
 ```yaml
     ....
@@ -52,9 +52,11 @@ output {
 }
 ```
 
-- `url`: The address should be the DataKit collector address, adjust according to actual conditions.
-- `source`: Identifies the data source, i.e., the `measurement` of the line protocol. For example, `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
+- `url`: The address is the DataKit collector address, adjust according to actual conditions.
+- `source`: Identifies the data source, which is the `measurement` of the line protocol. For example, `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
 
-For a detailed introduction to the parameters of the `logstreaming` collector, refer to the [official documentation](logstreaming.md#args)
 
-After making adjustments, restart Logstash to apply the configuration changes.
+For an introduction to the parameters of the `logstreaming` collector, refer to the [official documentation](logstreaming.md#args)
+
+
+After making adjustments, restart Logstash to make the configuration effective.

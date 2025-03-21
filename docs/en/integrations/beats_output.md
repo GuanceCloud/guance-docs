@@ -1,14 +1,14 @@
 ---
 title     : 'Filebeat'
-summary   : 'Receive log collected by Filebeat '
+summary   : 'Receives log data collected by Filebeat'
 tags:
-  - 'LOG'
+  - 'LOGS'
 __int_icon      : 'icon/beats'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
 
@@ -16,12 +16,12 @@ monitor   :
 
 ---
 
-This document focuses on [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"} data collection. Current support:
+This document primarily introduces [Elastic Beats](https://www.elastic.co/products/beats/){:target="_blank"} data collection. Currently supported:
 
 - [Filebeat](https://www.elastic.co/beats/filebeat/){:target="_blank"}
-- [Download Address](http://www.elastic.co/cn/downloads/past-releases/filebeat-7-17-3){:target="_blank"}
+- [Download address](http://www.elastic.co/cn/downloads/past-releases/filebeat-7-17-3){:target="_blank"}
 
-Already tested Filebeat version:
+Tested Filebeat versions:
 
 - [x] 8.6.2
 - [x] 7.17.9
@@ -38,9 +38,9 @@ Already tested Filebeat version:
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/beats_output` directory under the DataKit installation directory, copy `beats_output.conf.sample` and name it `beats_output.conf`. Examples are as follows:
+    Navigate to the `conf.d/beats_output` directory under the DataKit installation directory, copy `beats_output.conf.sample`, and rename it to `beats_output.conf`. Example as follows:
     
     ```toml
         
@@ -68,23 +68,22 @@ Already tested Filebeat version:
       # more_tag = "some_other_value"
     
     ```
-    
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Mode Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
-
+    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 ---
 
 ???+ attention
 
-    If the `inputs.beats_output.tags` configured above duplicates the key in the original fields with the same name, it will be overwritten by the original data.
+    In the `inputs.beats_output.tags` configuration above, if a key duplicates one in the original fields, it will be overwritten by the original data.
 <!-- markdownlint-enable -->
 
 ### Configure Filebeat {#config-filebeat}
 
-Configure `filebeat.yml` in the Filebeat installation directory as follows.
+Set the `filebeat.yml` file under the Filebeat installation directory as follows.
 
 - `filebeat.inputs`
 
@@ -114,11 +113,11 @@ output.logstash:
   hosts: ["<Datakit-IP>:5044"]
 ```
 
-Port `5044` here should be consistent with the `listen` port configured in *<Datakit Installation Directory\>/conf.d/beats_output/beats_output.conf*.
+Here, the `5044` port must match the `listen` port configured in *<Datakit installation directory>/conf.d/beats_output/beats_output.conf*.
 
-In this way, the Filebeat collection log `/Users/mac/Downloads/tmp/1.log` is reported to Datakit.
+This enables Filebeat to collect logs from `/Users/mac/Downloads/tmp/1.log` and report them to Datakit.
 
-It should be noted that **the configuration port 9200 of elasticsearch needs to be commented out**, and the complete *filebeat.yml* file is as follows:
+Note that **you need to comment out the elasticsearch configuration on port 9200**. The complete *filebeat.yml* file is as follows:
 
 ```yml
 #--------------------- Filebeat Configuration Example ------------------------#
@@ -349,9 +348,9 @@ processors:
 #migration.6_to_7.enabled: true
 ```
 
-## Log {#logging}
+## Logs {#logging}
 
-All of the following data collections are appended by default with global tags named `host` (the value is the host name where Filebeat is located) and `filepath` (the value is the full path of the Filebeat collection file), or other tags can be specified in the configuration through `[inputs.beats_output.tags]`.
+All the following data collections append global tags named `host` (value is the hostname where Filebeat is located) and `filepath` (value is the full path of the file collected by Filebeat). Additional tags can also be specified through `[inputs.beats_output.tags]` in the configuration:
 
 ``` toml
  [inputs.beats_output.tags]
@@ -364,27 +363,27 @@ All of the following data collections are appended by default with global tags n
 
 ### `default`
 
-Using `source` field in the config file, default is `default`.
+Using the `source` field in the configuration file; the default is `default`.
 
 - Tags
 
 
 | Tag | Description |
 |  ----  | --------|
-|`filepath`|This item source file, full path.|
-|`host`|Host name.|
-|`service`|Service name, equal to `service` field in the config file.|
+|`filepath`|The full path of the source file.|
+|`host`|Hostname.|
+|`service`|Service name, equal to the `service` field in the configuration file.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`message`|Message text, existed when default. Could use Pipeline to delete this field.|string|-|
+|`message`|Message text, exists by default. Can use Pipeline to delete this field.|string|-|
 |`status`|Log status.|string|-|
 
 
 
 ## Others {#others}
 
-This receiver is similar to a log collector, which you can refer to for [Pipeline syntax](logging.md).
+This receiver is very similar to the log collector. For Pipeline syntax, refer to [Log Collector](logging.md).

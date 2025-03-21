@@ -2,7 +2,7 @@
 title: 'AWS ECS'
 tags: 
   - AWS
-summary: 'Amazon ECS features integrated with the Amazon Web Services Fargate serverless computing engine, monitored using Guance for service runtime.'
+summary: 'Amazon ECS features integrated with Amazon Web Services Fargate serverless compute engine, using <<< custom_key.brand_name >>> to monitor its service runtime.'
 __int_icon: 'icon/aws_ecs'
 dashboard:
   - desc: 'AWS ECS'
@@ -20,51 +20,53 @@ cloudCollector:
 # AWS ECS
 <!-- markdownlint-enable -->
 
-Amazon ECS features integrated with the Amazon Web Services `Fargate` serverless computing engine, monitored using Guance for service runtime.
+Amazon ECS features integrated with Amazon Web Services `Fargate` serverless compute engine, using <<< custom_key.brand_name >>> to monitor its service runtime.
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-hosted Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Installation Script
 
-> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only access `ReadOnlyAccess`).
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
-To synchronize monitoring data from EC2 cloud resources, we install the corresponding collection script: 「Guance Integration (AWS-ECS Collection)」(ID: `guance_aws_ecs`)
+To synchronize EC2 cloud resource monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (AWS-ECS Collection)」(ID: `guance_aws_ecs`)
 
-After clicking 【Install】, enter the corresponding parameters: Amazon AK and Amazon account name.
+After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+In addition, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; for more details, see [Custom Cloud Object Metrics Configuration](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+We collect some configurations by default. For details, see the Metrics section [Custom Cloud Object Metrics Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure / Custom」, check if asset information exists.
-3. On the Guance platform, in 「Metrics」, check if there is corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and check the corresponding task records and logs for any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure / Custom」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon CloudWatch, the default metric set is as follows. More metrics can be collected through configuration. [Amazon CloudWatch Metrics Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
+After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration. [Amazon CloudWatch Metrics Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
 
 ### Instance Metrics
 
-Metrics related to `AWS/ECS`.
+`AWS/ECS` related metrics.
 
 | Metric                    | Description                                                         |
 | :---------------------- | :----------------------------------------------------------- |
-| `CPUUtilization`    | Service CPU utilization (filtered by ClusterName and ServiceName) is calculated by dividing the total number of CPU units used by tasks belonging to the service by the total number of CPU units reserved for tasks belonging to the service. This metric applies to tasks using `Fargate` and EC2 launch types. Unit: Percentage |
-| `MemoryUtilization`       | Service memory utilization (filtered by ClusterName and ServiceName) is calculated by dividing the total amount of memory used by tasks belonging to the service by the total amount of memory reserved for tasks belonging to the service. This metric applies to tasks using `Fargate` and EC2 launch types. Unit: Percentage |
+| `CPUUtilization`    | Service CPU utilization (a metric filtered by ClusterName and ServiceName) is calculated by dividing the total number of CPU units used by tasks belonging to the service by the total number of CPU units reserved for tasks belonging to the service. The service CPU utilization metric applies to tasks using `Fargate` and EC2 launch types. Unit: Percentage |
+| `MemoryUtilization`       | Service memory utilization (a metric filtered by ClusterName and ServiceName) is calculated by dividing the total amount of memory used by tasks belonging to the service by the total amount of memory reserved for tasks belonging to the service. The service memory utilization metric applies to tasks using `Fargate` and EC2 launch types. Unit: Percentage |
+
 
 ## Objects {#object}
 
-The structure of AWS ECS object data collected can be viewed in 「Infrastructure - Custom」
+The collected AWS ECS object data structure can be viewed from 「Infrastructure - Custom」.
 
 ```json
 {
@@ -79,7 +81,7 @@ The structure of AWS ECS object data collected can be viewed in 「Infrastructur
   "fields": {
     "activeServicesCount": 1,
     "configuration": "{}",
-    "message"            : "{instance JSON data}",
+    "message"            : "{Instance JSON Data}",
     "pendingTasksCount": 0,
     "registeredContainerInstancesCount": 0,
     "runningTasksCount": 1,
@@ -88,4 +90,4 @@ The structure of AWS ECS object data collected can be viewed in 「Infrastructur
 }
 ```
 
-> *Note: The fields in `tags` and `fields` may change with subsequent updates*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*

@@ -1,16 +1,16 @@
 ---
 title     : 'JMX StatsD'
-summary   : 'JVM performance Metrics display: heap and non-heap memory, threads, class loading count, etc.'
+summary   : 'JVM performance Metrics display: heap and non-heap memory, threads, class loading numbers, etc.'
 __int_icon: 'icon/jvm'
 dashboard :
-  - desc  : 'JVM monitoring view'
+  - desc  : 'JVM Monitoring View'
     path  : 'dashboard/en/jvm'
-  - desc  : 'JVM Kubernetes monitoring view'
+  - desc  : 'JVM Kubernetes Monitoring View'
     path  : 'dashboard/en/jvm_kubernetes'
-  - desc  : 'JVM Kubernetes by podName monitoring view'
+  - desc  : 'JVM Kubernetes by podName Monitoring View'
     path  : 'dashboard/en/jvm_kubernetes_by_podname'
 monitor   :
-  - desc  : 'None'
+  - desc  : 'Not exist'
     path  : '-'
 ---
 
@@ -21,13 +21,13 @@ monitor   :
 
 ## Configuration {#config}
 
-Note: Example of collecting JVM Metrics through `ddtrace`, with DataKit's built-in Statsd receiving the JVM Metrics sent by `ddtrace`.
+Description: Example of collecting JVM Metrics through `ddtrace`, with DataKit's built-in Statsd receiving the JVM Metrics sent by `ddtrace`.
 
 ### Enable DataKit Collector
 
-- Enable the `Statsd` collector
+- Enable `Statsd` collector
 
-Copy the `sample` file without modifying `statsd.conf`
+Copy the `sample` file; no need to modify `statsd.conf`
 
 ```shell
 cd /usr/local/datakit/conf.d/statsd
@@ -52,6 +52,7 @@ systemctl restart datakit
  -Ddd.agent.port=9529  
 ```
 
-Use `java -jar` to start the `jar`, which connects to the local `DataKit` by default. If you need to connect to a remote server's `DataKit`, use `-Ddd.agent.host` and `-Ddd.jmxfetch.statsd.host` to specify the `ip`.
+Use `java -jar` to start the `jar`, which by default connects to the local `DataKit`. If you need to connect to a remote server's `DataKit`, use `-Ddd.agent.host` and `-Ddd.jmxfetch.statsd.host` to specify the `ip`.
 
 For more detailed integration with DDTrace, refer to the [`ddtrace-java`](ddtrace-java.md) documentation.
+</translated_content>

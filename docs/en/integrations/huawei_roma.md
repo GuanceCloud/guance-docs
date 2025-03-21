@@ -2,7 +2,7 @@
 title: 'Huawei Cloud ROMA'
 tags: 
   - Huawei Cloud
-summary: 'Use the script packages in the script market of Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance'
+summary: 'Collect Huawei Cloud ROMA Metrics data'
 __int_icon: 'icon/huawei_roma'
 dashboard:
   - desc: 'Huawei Cloud ROMA for Kafka'
@@ -11,95 +11,87 @@ dashboard:
 
 ---
 
-
-<!-- markdownlint-disable MD025 -->
-# Huawei Cloud ROMA
-<!-- markdownlint-enable -->
-
-Use the script packages in the script market of the Guance Cloud Sync series to synchronize cloud monitoring and cloud asset data to Guance.
-
+Collect Huawei Cloud ROMA Metrics data
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
-
-
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
-> Note: Prepare a qualified Huawei Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from Huawei Cloud ROMA, install the corresponding collection script: access the web service of func to enter the 【Script Market】, 「Guance Integration (Huawei Cloud-ROMA Collection)」(ID: `guance_huaweicloud_roma`)
+To synchronize Huawei Cloud ROMA monitoring data, we install the corresponding collection script: by accessing the web service of func and entering 【Script Market】, 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-ROMA Collection)」(ID: `guance_huaweicloud_roma`)
 
-Click 【Install】and input the required parameters: Huawei Cloud AK, SK, and Huawei Cloud account name.
+After clicking 【Install】, enter the corresponding parameters: Huawei Cloud AK, SK, Huawei Cloud account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-After the script installation is complete, find the script 「Guance Integration (Huawei Cloud-Kafka Collection)」in the 「Development」section of Func, expand and modify this script. Find and edit the content of `region_projects` under `collector_configs` and `monitor_configs`, change the region and Project ID to the actual ones, then click Save and Publish.
+After the script is installed, find the script 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-Kafka Collection)」in the "Development" section of Func, expand and modify this script, find `collector_configs` and `monitor_configs` respectively and edit the content of `region_projects`, change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
-Additionally, view the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, and you can check the execution task records and corresponding logs.
-
-
+In addition, you can see the corresponding automatic trigger configuration in the 「Management / Automatic Trigger Configuration」. Click 【Execute】to immediately execute once without waiting for the scheduled time. Wait for a moment, you can view the execution task records and corresponding logs.
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure / Custom」check if there is asset information.
-3. On the Guance platform, in 「Metrics」check if there is corresponding monitoring data.
+1. In 「Management / Automatic Trigger Configuration」confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-When configuring Huawei Cloud-`ROMA` collection, the default metric sets are as follows. You can collect more metrics through configuration [Huawei Cloud ROMA Metric Details](https://support.huaweicloud.com/usermanual-roma/roma_03_0023.html#section4){:target="_blank"}
+
+Collect Huawei Cloud ROMA Metrics data, more metrics can be collected through configuration [Huawei Cloud ROMA Metrics Details](https://support.huaweicloud.com/usermanual-roma/roma_03_0023.html#section4){:target="_blank"}
 
 ### Instance Monitoring Metrics
 
-| Metric Name  | Metric Meaning  | Unit  | Dimension  |
+| Metric Name | Metric Meaning | Unit | Dimension |
 | -------- | -------- | -------- | -------- |
-| current_partitions | This metric counts the number of partitions used in the Kafka instance | Count | instance_id |
-| current_topics | This metric counts the number of topics created in the Kafka instance | Count | instance_id |
-| group_msgs | This metric counts the total backlog message count across all consumer groups in the Kafka instance | Count | instance_id |
+| current_partitions | This metric counts the number of partitions already used in the Kafka instance | Count | instance_id |
+| current_topics | This metric counts the number of topics already created in the Kafka instance | Count | instance_id |
+| group_msgs | This metric counts the total number of accumulated messages in all consumer groups in the Kafka instance | Count | instance_id |
 
 ### Node Monitoring Metrics
-| Metric Name  | Metric Meaning  | Unit  | Dimension  |
+
+| Metric Name | Metric Meaning | Unit | Dimension |
 | -------- | -------- | -------- | -------- |
-| broker_data_size | This metric counts the size of the current message data on the node | Byte | instance_id |
+| broker_data_size | This metric counts the current message data size on the node | Byte | instance_id |
 | broker_messages_in_rate | This metric counts the number of messages produced per second | Count/s | instance_id |
 | broker_bytes_in_rate | This metric counts the number of bytes produced per second | Byte/s | instance_id |
 | broker_bytes_out_rate | This metric counts the number of bytes consumed per second | Byte/s | instance_id |
-| broker_public_bytes_in_rate | This metric counts the inbound public network traffic to Broker nodes per second | Byte/s | instance_id |
-| broker_public_bytes_out_rate | This metric counts the outbound public network traffic from Broker nodes per second | Byte/s | instance_id |
-| broker_fetch_mean | This metric counts the average duration of handling consumption requests on Broker nodes | ms | instance_id |
-| broker_produce_mean | This metric counts the average processing time for production requests | ms | instance_id |
-| broker_cpu_core_load | This metric collects the average load of each CPU core at the virtual machine level for Kafka nodes | % | instance_id |
-| broker_disk_usage | This metric collects the disk capacity usage rate at the virtual machine level for Kafka nodes | % | instance_id |
-| broker_memory_usage | This metric collects the memory usage rate at the virtual machine level for Kafka nodes | % | instance_id |
-| broker_heap_usage | This metric collects the heap memory usage rate from the JVM of the Kafka process on Kafka nodes | % | instance_id |
+| broker_public_bytes_in_rate | Counts the inbound traffic over the public network per second for the Broker node | Byte/s | instance_id |
+| broker_public_bytes_out_rate | Counts the outbound traffic over the public network per second for the Broker node | Byte/s | instance_id |
+| broker_fetch_mean | Counts the average time taken to process consumption requests for the Broker node | ms | instance_id |
+| broker_produce_mean | Average processing time for production requests | ms | instance_id |
+| broker_cpu_core_load | CPU load per core collected from the virtual machine level of the Kafka node | % | instance_id |
+| broker_disk_usage | Disk capacity usage rate collected from the virtual machine level of the Kafka node | % | instance_id |
+| broker_memory_usage | Memory usage rate collected from the virtual machine level of the Kafka node | % | instance_id |
+| broker_heap_usage | Heap memory usage rate collected from the Kafka process JVM on the Kafka node | % | instance_id |
 | broker_alive | Indicates whether the Kafka node is alive | 1: Alive 0: Offline | instance_id |
-| broker_connections | The current number of all TCP connections on Kafka nodes | Count | instance_id |
-| broker_cpu_usage | The CPU usage rate of Kafka nodes at the virtual machine level | % | instance_id |
-| broker_total_bytes_in_rate | The inbound network traffic to Broker nodes per second | Byte/s | instance_id |
-| broker_total_bytes_out_rate | The outbound network traffic from Broker nodes per second | Byte/s | instance_id |
+| broker_connections | Total number of TCP connections currently on the Kafka node | Count | instance_id |
+| broker_cpu_usage | CPU usage rate of the virtual machine on the Kafka node | % | instance_id |
+| broker_total_bytes_in_rate | Network access inbound traffic per second for the Broker node | Byte/s | instance_id |
+| broker_total_bytes_out_rate | Network access outbound traffic per second for the Broker node | Byte/s | instance_id |
 | broker_disk_read_rate | Disk read operation traffic | Byte/s | instance_id |
 | broker_disk_write_rate | Disk write operation traffic | Byte/s | instance_id |
 | network_bandwidth_usage | Network bandwidth utilization | % | instance_id |
 
 ### Consumer Group Monitoring Metrics
-| Metric Name  | Metric Meaning  | Unit  | Dimension  |
+
+| Metric Name | Metric Meaning | Unit | Dimension |
 | -------- | -------- | -------- | -------- |
 | messages_consumed | This metric counts the number of messages already consumed by the current consumer group | Count | instance_id |
-| messages_remained | This metric counts the number of messages that can be consumed by the consumer group | Count | instance_id |
-| topic_messages_remained | This metric counts the number of messages that can be consumed from the specified queue of the consumer group | Count | instance_id |
-| topic_messages_consumed | This metric counts the number of messages already consumed from the specified queue of the consumer group | Count | instance_id |
-| consumer_messages_remained | This metric counts the number of messages remaining that can be consumed by the consumer group | Count | instance_id |
+| messages_remained | This metric counts the number of messages that the consumer group can consume | Count | instance_id |
+| topic_messages_remained | This metric counts the number of messages that the specified queue of the consumer group can consume | Count | instance_id |
+| topic_messages_consumed | This metric counts the number of messages already consumed by the specified queue of the consumer group | Count | instance_id |
+| consumer_messages_remained | This metric counts the number of messages remaining that the consumer group can consume | Count | instance_id |
 | consumer_messages_consumed | This metric counts the number of messages already consumed by the consumer group | Count | instance_id |
-
 
 ## Objects {#object}
 
-The structure of the collected Huawei Cloud ROMA object data can be seen in 「Infrastructure - Custom」
+The collected Huawei Cloud ROMA object data structure can be viewed in 「Infrastructure - Resource Catalog」
 
 ```json
 {
@@ -136,8 +128,8 @@ The structure of the collected Huawei Cloud ROMA object data can be seen in 「I
 
 ```
 
-> *Note: Fields in `tags` and `fields` may change with subsequent updates*
+> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note 1: The value of `tags.name` is the instance ID, which serves as a unique identifier
+> Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
-> Note 2: The following fields are serialized JSON strings
+> Tip 2: All the following fields are strings serialized in JSON format.

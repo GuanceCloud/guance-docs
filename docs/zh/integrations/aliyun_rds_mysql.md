@@ -24,9 +24,9 @@ monitor:
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署Func](https://func.guance.com/doc/script-market-guance-integration/)
+如果自行部署 Func 参考 [自行部署Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
 > 推荐部署GSE版
 
@@ -34,7 +34,7 @@ monitor:
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 RDS 云资源的监控数据，我们安装对应的采集脚本：「观测云集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
+同步 RDS 云资源的监控数据，我们安装对应的采集脚本：「<<< custom_key.brand_name >>>集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
 
 点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
 
@@ -44,14 +44,14 @@ monitor:
 
 我们默认采集了一些配置, 具体见指标一栏
 
-[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
+[配置自定义云对象指标](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 
 
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
+2. 在<<< custom_key.brand_name >>>，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在<<< custom_key.brand_name >>>，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
 配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
@@ -146,7 +146,7 @@ monitor:
 
 > 提示 1：本脚本的代码运行依赖 RDS 实例对象采集，如果未配置 RDS 的自定义对象采集，慢日志脚本无法采集到慢日志数据
 > 提示 2：因阿里云统计数据返回有 6~8 小时的延迟，所以采集器更新数据可能会有延迟，详细参考阿里云文档：云数据库 RDS 查询慢日志统计
-> 提示 3：本采集器支持 MySQL所有版本（MySQL 5.7基础版除外）、SQL Server 2008 R2、MariaDB 10.3 类型数据库，若要采集其他类型数据库，请使用 [阿里云-RDS 慢查询明细](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} 采集器
+> 提示 3：本采集器支持 MySQL所有版本（MySQL 5.7基础版除外）、SQL Server 2008 R2、MariaDB 10.3 类型数据库，若要采集其他类型数据库，请使用 [阿里云-RDS 慢查询明细](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} 采集器
 
 #### 慢查询统计安装脚本
 
@@ -154,9 +154,9 @@ monitor:
 
 在「管理 / 脚本市场」中点击并安装对应的脚本包：
 
-- 「观测云集成（阿里云- RDS 慢查询统计日志采集）」(ID：`guance_aliyun_rds_slowlog`)
+- 「<<< custom_key.brand_name >>>集成（阿里云- RDS 慢查询统计日志采集）」(ID：`guance_aliyun_rds_slowlog`)
 
-数据正常同步后，可以在观测云的「日志」中查看数据。
+数据正常同步后，可以在<<< custom_key.brand_name >>>的「日志」中查看数据。
 
 上报的数据示例如下：
 
@@ -222,11 +222,11 @@ monitor:
 
 在「管理 / 脚本市场」中点击并安装对应的脚本包：
 
-- 「观测云集成（阿里云-RDS慢查询明细日志采集）」(ID：`guance_aliyun_rds_slowlog_record`)
+- 「<<< custom_key.brand_name >>>集成（阿里云-RDS慢查询明细日志采集）」(ID：`guance_aliyun_rds_slowlog_record`)
 
-数据正常同步后，可以在观测云的「日志」中查看数据。
+数据正常同步后，可以在<<< custom_key.brand_name >>>的「日志」中查看数据。
 
-配置[云数据库 RDS 慢查询明细](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
+配置[云数据库 RDS 慢查询明细](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
 
 上报的数据示例如下：
 

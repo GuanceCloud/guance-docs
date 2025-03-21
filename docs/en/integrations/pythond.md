@@ -1,44 +1,61 @@
 ---
 title     : 'Pythond'
-summary   : 'Collect data via Python extension'
+summary   : 'Collect data through Python extensions'
 tags:
   - 'PYTHON'
 __int_icon      : 'icon/pythond'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-pythond is a complete set of scenes for firing user-defined python collection scripts at regular intervals.
+Pythond is a complete solution that periodically triggers user-defined Python collection scripts.
 
 ## Configuration {#config}
 
+Enter the *conf.d/pythond* directory under the DataKit installation directory, copy *pythond.conf.sample* and rename it to *pythond.conf*. Example as follows:
+
+```toml
+
+[[inputs.pythond]]
+  # Python input name
+  name = 'some-python-inputs'  # required
+
+  # System environments to run Python
+  #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
+
+  # Python path(recomment abstract Python path)
+  cmd = "python3" # required. python3 is recommended.
+
+  # Python scripts relative path
+  dirs = []
+```
+
 ### Python Environment {#req-python}
 
-Currently in the alpha phase, **it is compatible with Python 3++ only**. Already tested version:
+Currently in alpha stage, **only compatible with Python 3+**. Tested versions:
 
 - [x] 3.10.1
 
-The following dependency libraries need to be installed:
+The following libraries need to be installed:
 
 - requests
 
-The installation method is as follows:
+Installation method as follows:
 
 ```shell
 # python3
 python3 -m pip install requests
 ```
 
-The above installation requires pip installation. If you don't have it, you can refer to the following method (from: [here](https://pip.pypa.io/en/stable/installation/){:target="_blank"}):
+The above installation requires pip. If you do not have it, refer to the following method (originally from here)[https://pip.pypa.io/en/stable/installation/]{:target="_blank"}:
 
 ```shell
 # Linux/MacOS
@@ -48,11 +65,11 @@ python -m ensurepip --upgrade
 py -m ensurepip --upgrade
 ```
 
-### Write a User-defined Script {#add-script}
+### Writing User-defined Scripts {#add-script}
 
-Create a folder named as Python package under the path `datakit/python.d`, then create a Python script(`.py`) inside it.
+Create a directory named after the "Python package name" under the `datakit/python.d` directory, then create Python scripts (`*.py`) within this directory.
 
-For example, as the Python package name is `Demo`, the path is like below. The `demo.py` is the Python script, and its name could change to whatever you want.
+For example, using the package name `Demo`, the path structure is as follows. Here, `demo.py` is the Python script, and the filename of the Python script can be customized:
 
 ```shell
 datakit
@@ -61,11 +78,13 @@ datakit
        │   ├── demo.py
 ```
 
-You need the user to inherit the `DataKitFramework` class and then override the `run` method.
+The Python script needs users to inherit the `DataKitFramework` class and rewrite the `run` method.
 
->The `DataKitFramework` class source code file path is `datakit_framework.py` at `datakit/python.d/core/datakit_framework.py`.
+> The source code file path for the `DataKitFramework` class is `datakit_framework.py` located at `datakit/python.d/core/datakit_framework.py`.
+
 <!-- markdownlint-disable MD046 -->
-??? note "Python script example"
+???- note "Python Script Source Code Reference Example"
+
     ```python
     #encoding: utf-8
 
@@ -188,53 +207,54 @@ You need the user to inherit the `DataKitFramework` class and then override the 
         #         )
     ```
 <!-- markdownlint-enable -->
-Python SDK API definition (see `datakit_framework.py`):
 
-- Reporting metrics data: `feed_metric(self, input=None, measurement=None, tags=None, fields=None, time=None, **kwargs)`;
-- Reporting metrics data: `feed_logging(self, input=None, source=None, tags=None, message=None, time=None, **kwargs)`;
-- Reporting metrics data: `feed_object(self, input=None, cls=None, name=None, tags=None, fields=None, time=None, **kwargs)`; (`cls` is `class`. Since `class` is a Python keyword, `class` is abbreviated to `cls`.)
+Python SDK API Definition (for more details, see `datakit_framework.py`):
 
-### Write Python to Report Events {#report-event}
+- Report metrics data: `feed_metric(self, input=None, measurement=None, tags=None, fields=None, time=None, **kwargs)`;
+- Report logging data: `feed_logging(self, input=None, source=None, tags=None, message=None, time=None, **kwargs)`;
+- Report object data: `feed_object(self, input=None, cls=None, name=None, tags=None, fields=None, time=None, **kwargs)`; (`cls` stands for `class`. Since `class` is a keyword in Python, we abbreviate it as `cls`.)
+
+### Writing Pythond Reports for Event Events {#report-event}
 
 You can use the following three built-in functions to report event events:
 
-- Events reporting `df_source = user`: `feed_user_event(self, df_user_id=None, tags=None, df_date_range=10, df_status=None, df_event_id=None, df_title=None, df_message=None, **kwargs)`
-- Events reporting `df_source = monitor`: `feed_monitor_event(self, df_dimension_tags=None, tags=None, df_date_range=10, df_status=None, df_event_id=None, df_title=None, df_message=None, **kwargs)`
-- Events reporting `df_source = system`: `feed_system_event(self, tags=None, df_date_range=10, df_status=None, df_event_id=None, df_title=None, df_message=None, **kwargs)`
+- Report events where `df_source = user`: `feed_user_event(self, df_user_id=None, tags=None, df_date_range=10, df_status=None, df_event_id=None, df_title=None, df_message=None, **kwargs)`
+- Report events where `df_source = monitor`: `feed_monitor_event(self, df_dimension_tags=None, tags=None, df_date_range=10, df_status=None, df_event_id=None, df_title=None, df_message=None, **kwargs)`
+- Report events where `df_source = system`: `feed_system_event(self, tags=None, df_date_range=10, df_status=None, df_event_id=None, df_title=None, df_message=None, **kwargs)`
 
 General event field description:
 
-|  Field Name   | Type  | Required or not  | Description  |
-|  ----  | ----  | ----  | ----  |
-| df_date_range  | Integer | Required | Time range. Unit s |
-| df_source  | String | Required | Data source, value `system` , `monitor` , `user` |
-| df_status  | Enum | Required | Status, value `ok` , `info` , `warning` , `error` , `critical` , `nodata` |
-| df_event_id  | String | Required | event ID |
-| df_title  | String | Required | Title |
-| df_message  | String |  | Description |
-| {other field}  | `kwargs`, such as `k1=5, k2=6` |  | Other extra field |
+| Field Name        | Type                        | Required | Description                                                                   |
+| ----             | ----                        | ----     | ----                                                                         |
+| df_date_range    | Integer                     | Yes      | Time range. Unit s                                                           |
+| df_source        | String                      | Yes      | Data source. Values: `system` , `monitor` , `user`                           |
+| df_status        | Enum                        | Yes      | Status. Values: `ok` , `info` , `warning` , `error` , `critical` , `nodata` |
+| df_event_id      | String                      | Yes      | Event ID                                                                     |
+| df_title         | String                      | Yes      | Title                                                                        |
+| df_message       | String                      |          | Detailed description                                                         |
+| {Other Fields}   | `kwargs`, e.g., `k1=5, k2=6` |          | Other extra fields                                                          |
 
 - When `df_source = monitor`:
 
-Represent an event generated by Guance Cloud detection function, with the following additional fields:
+It indicates an event generated by the <<< custom_key.brand_name >>> detection function, with additional fields as follows:
 
-|  Extra Field Name   | Type  | Required or not  | Description  |
-|  ----  | ----  | ----  | ----  |
-| df_dimension_tags  | String(JSON format) | Required | Detect latitude labels, such as `{"host":"web01"}` |
+| Additional Field Name | Type                | Required | Description                                |
+| ----                 | ----                | ----     | ----                                       |
+| df_dimension_tags    | String(JSON format)| Yes      | Detection dimension tags, e.g., `{"host":"web01"}` |
 
 - When `df_source = user`:
 
-Represent an event created directly by the user, with the following additional fields:
+It indicates an event directly created by the user, with additional fields as follows:
 
-|  Extra Field Name   | Type  | Required or not | Description  |
-|  ----  | ----  | ----  | ----  |
-| df_user_id  | String | Required | 用户 ID |
+| Additional Field Name | Type   | Required | Description    |
+| ----                 | ----   | ----     | ----           |
+| df_user_id          | String | Yes      | User ID        |
 
 - When `df_source = system`:
 
-Represent an event generated by the system, and no additional fields exist.
+It indicates an event generated by the system, with no additional fields.
 
-Sample:
+Usage example:
 
 ```py
 #encoding: utf-8
@@ -282,29 +302,9 @@ class Demo(DataKitFramework):
             )
 ```
 
-### Collector Configuration {#config}
-
-Go to the `conf.d/pythond` directory under the DataKit installation directory, copy `pythond.conf.sample` and name it `pythond.conf`. Examples are as follows:
-
-```toml
-
-[[inputs.pythond]]
-  # Python input name
-  name = 'some-python-inputs'  # required
-
-  # System environments to run Python
-  #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
-
-  # Python path(recomment abstract Python path)
-  cmd = "python3" # required. python3 is recommended.
-
-  # Python scripts relative path
-  dirs = []
-```
-
 ### Git Support {#git}
 
-Support the use of git repo. Once git repo is enabled, the path filled in args in conf is relative to the path of `gitrepos` . For example, args will fill in `mytest` in the following case:
+Supports using git repo. Once the git repo feature is enabled, the paths filled in the args inside conf are relative to `gitrepos`. For example, in the case below, args would be filled as `mytest`:
 
 ```shell
 ├── datakit
@@ -319,7 +319,7 @@ Support the use of git repo. Once git repo is enabled, the path filled in args i
 
 ## Complete Example {#example}
 
-Step 1: Write a class that inherits `DataKitFramework`:
+Step 1: Write a class that inherits from `DataKitFramework`:
 
 ```python
 from datakit_framework import DataKitFramework
@@ -373,7 +373,7 @@ class MyTest(DataKitFramework):
         return self.report(in_data) # you must call self.report here
 ```
 
-Step 2: We don't turn on git repo here. Put `test.py` under the `mytest` folder of `python.d`:
+Step 2: We will not enable the git repo feature here. Place `test.py` in the `mytest` folder under `python.d`:
 
 ```shell
 └── python.d
@@ -381,7 +381,7 @@ Step 2: We don't turn on git repo here. Put `test.py` under the `mytest` folder 
     │   ├── test.py
 ```
 
-Step 3: Configure pythond.conf:
+Step 3: Configure *pythond.conf*:
 
 ```toml
 [[inputs.pythond]]
@@ -389,32 +389,33 @@ Step 3: Configure pythond.conf:
   # Python collector name
   name = 'some-python-inputs'  # required
 
-  # Environment variables required to run Python collector
+  # Environment variables needed to run the Python collector
   #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
 
-  # Python collector executable program path (write absolute path wherever possible)
+  # Executable path for the Python collector (absolute path recommended)
   cmd = "python3" # required. python3 is recommended.
 
-  # The relative path of the user script (fill in the folder, after which the modules and py files in the next directory of the folder will be applied)
+  # Relative path for user scripts (fill in the folder name, after filling, all modules and py files in the first-level subdirectory of this folder will be applied)
   dirs = ["mytest"]
 ```
 
-Step 3: Restart DataKit:
+Step 4: Restart DataKit:
 
 ```shell
 sudo datakit service -R
 ```
 
 ## FAQ {#faq}
-<!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to Troubleshoot Errors {#log}
-<!-- markdownlint-enable -->
-If the results are not as expected, you can view the following log files:
+
+### :material-chat-question: How to troubleshoot errors {#log}
+
+If the results are not as expected, check the following log files:
 
 - `~/_datakit_pythond_cli.log`
 - `_datakit_pythond_framework_[pythond name]_.log`
 
-### Error "[module] not found" {#found}
+### Error Message "[module] not found" {#found}
 
-1. First, check if the module name is consistent in capitalization;
-2. If there is no problem with '1', check if all the modules imported in the Python script are installed;
+1. First, check if the module name's case matches;
+2. If `1` has no issues, then verify whether all the modules imported in the Python script are installed;
+</example>

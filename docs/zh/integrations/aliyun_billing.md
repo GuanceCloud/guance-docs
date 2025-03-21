@@ -8,15 +8,18 @@ dashboard:
   - desc: '云账单分析视图'
     path: 'dashboard/zh/Intelligent_analysis_cloud_billing/'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/zh/aliyun_billing'
 ---
 
 ## 配置 {#config}
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考[自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考[自行部署 Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### 安装脚本
@@ -33,4 +36,4 @@ dashboard:
 
 ### 验证
 
-在观测云平台，在菜单「云账单」中查看是否有对应云账单数据
+在<<< custom_key.brand_name >>>，在菜单「云账单」中查看是否有对应云账单数据

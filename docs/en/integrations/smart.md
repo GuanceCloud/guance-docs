@@ -1,43 +1,56 @@
 ---
 title     : 'Disk S.M.A.R.T'
-summary   : 'Collect disk metrics through smartctl'
+summary   : 'Collect disk metrics through `smartctl`'
 tags:
   - 'HOST'
 __int_icon      : 'icon/smartctl'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Data collection of computer hard disk running state.
+Data collection for computer hard drive operational status
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requrements}
 
-Installing smartmontools
+Install `smartmontools`
 
 - Linux: `sudo apt install smartmontools -y`
 
-  If the solid state drive is nvme compliant, it is recommended to install nvme-cli for more nvme information: `sudo apt install nvme-cli -y`
-
-- MacOS: `brew install smartmontools -y`
-- WinOS: download [Windows version](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
-
-### Collector Configuration {#input-config}
+If the solid-state drive conforms to the NVMe standard, it is recommended to install `nvme-cli` to obtain more NVMe information:
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "Linux"
 
-    Go to the `conf.d/smart` directory under the DataKit installation directory, copy `smart.conf.sample` and name it `smart.conf`. Examples are as follows:
+    ```shell
+    sudo apt install nvme-cli -y
+    ```
+
+=== "macOS"
+
+    ```shell
+    brew install smartmontools -y
+    ```
+=== "Windows"
+
+    Download [Windows version](https://www.smartmontools.org/wiki/Download#InstalltheWindowspackage){:target="_blank"}
+<!-- markdownlint-enable -->
+
+### Collector Installation {#input-config}
+
+<!-- markdownlint-disable MD046 -->
+=== "HOST Installation"
+
+    Go to the `conf.d/smart` directory under the DataKit installation directory, copy `smart.conf.sample` and rename it to `smart.conf`. Example as follows:
     
     ```toml
         
@@ -88,12 +101,12 @@ Installing smartmontools
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    Currently, you can enable the collector by injecting its configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.smart.tags]`:
+All data collected below will append a global tag named `host` by default (tag value is the hostname where DataKit resides), or other tags can be specified through `[inputs.smart.tags]` in the configuration:
 
 ```toml
  [inputs.smart.tags]
@@ -121,7 +134,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`serial_no`|device serial number|
 |`wwn`|WWN Device Id|
 
-- Metrics
+- Metric List
 
 
 | Metric | Description | Type | Unit |
@@ -267,5 +280,3 @@ For all of the following data collections, a global tag named `host` is appended
 |`unknown_attribute_raw_value`|The raw value of unknown attribute.|int|-|
 |`unknown_attribute_value`|The value of unknown attribute.|int|-|
 |`unknown_attribute_worst`|The worst value of unknown attribute.|int|-|
-
-

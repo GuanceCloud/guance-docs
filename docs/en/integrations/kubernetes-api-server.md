@@ -1,6 +1,6 @@
 ---
 title     : 'Kubernetes API Server'
-summary   : 'Collect metrics related to the Kubernetes API Server'
+summary   : 'Collect metrics information related to the Kubernetes API Server'
 __int_icon: 'icon/kubernetes'
 tags      :
   - 'PROMETHEUS'
@@ -25,11 +25,12 @@ Create the following ConfigMap to manage the collector configuration:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: datakit-conf-kube-apiserver
+  name: datakit-conf
   namespace: datakit
 data:
   kube-apiserver.conf: |-
-    [[inputs.kubernetesprometheus.instances]]
+    [inputs.kubernetesprometheus]
+     [[inputs.kubernetesprometheus.instances]]
       role       = "pod"
       namespaces = ["kube-system"]
       selector   = "component=kube-apiserver,tier=control-plane"
@@ -55,11 +56,11 @@ data:
           ca_certs = ["/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"]
 ```
 
-For detailed configuration, refer to [Kubernetes Prometheus Discovery](../integrations/kubernetesprometheus.md).
+For detailed configuration, please refer to [Kubernetes Prometheus Discovery](../integrations/kubernetesprometheus.md).
 
 ### Mount Configuration File for DataKit
 
-Modify the DataKit resource file to mount the collection configuration, which will enable the corresponding collector:
+Modify the DataKit resource file and mount the collection configuration to enable the corresponding collector:
 
 ```yaml
 apiVersion: apps/v1
@@ -75,14 +76,14 @@ spec:
         ...
         volumeMounts:
           ...
-          - name: datakit-conf-kube-apiserver
+          - name: datakit-conf
             subPath: kube-apiserver.conf
             mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/kube-apiserver.conf
       volumes:
         ...
-        - name: datakit-conf-kube-apiserver
+        - name: datakit-conf
           configMap:
-            name: datakit-conf-kube-apiserver
+            name: datakit-conf
 ```
 
 ## Metrics {#metric}
@@ -92,12 +93,12 @@ The following table lists key metrics and their descriptions:
 | **Metric** | **Metric Type** | **Description** |
 | --- | --- | --- |
 | `apiserver_request_total` | Counter | Counts requests by verb, dry_run, group, version, resource, scope, component, and code |
-| `apiserver_current_inflight_requests` | Gauge | Tracks current read/write request counts by request_kind |
-| `apiserver_request_terminations_total` | Counter | Counts discarded requests due to self-protection by code, component, group, resource, scope, subresource, verb, and version |
+| `apiserver_current_inflight_requests` | Gauge | Counts current read/write requests by request_kind |
+| `apiserver_request_terminations_total` | Counter | Counts requests discarded for self-protection by code, component, group, resource, scope, subresource, verb, and version |
 | `apiserver_request_duration_seconds_bucket` | Histogram | Measures response latency distribution by verb, dry_run, group, version, resource, subresource, scope, and component |
 | `etcd_request_duration_seconds_bucket` | Histogram | Measures Etcd response latency distribution by operation and type |
 | `apiserver_admission_controller_admission_duration_seconds_bucket` | Histogram | Measures admission controller latency distribution by name, operation, rejected, and type |
 | `apiserver_admission_webhook_admission_duration_seconds_bucket` | Histogram | Measures admission Webhook response latency distribution by name, operation, rejected, and type |
-| `workqueue_queue_duration_seconds_bucket` | Histogram | Measures request duration in work queues by name |
-| `workqueue_work_duration_seconds_bucket` | Histogram | Measures request processing duration in queues by name |
-| `apiserver_storage_objects` | Gauge | Tracks the latest count of resources by resource |
+| `workqueue_queue_duration_seconds_bucket` | Histogram | Measures request dwell time distribution in work queues by name |
+| `workqueue_work_duration_seconds_bucket` | Histogram | Measures request processing time distribution in queues by name |
+| `apiserver_storage_objects` | Gauge | Counts latest resources by resource |

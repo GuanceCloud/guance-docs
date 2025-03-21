@@ -1,6 +1,6 @@
 ---
-title     : 'Profiling C++'
-summary   : 'Profling Golang applications'
+title     : 'Profiling Golang'
+summary   : 'Golang Profiling Integration'
 tags:
   - 'GOLANG'
   - 'PROFILE'
@@ -8,29 +8,29 @@ __int_icon: 'icon/profiling'
 ---
 
 
-Golang built-in tool `pprof` can be used to profiling go process.
+Go has a built-in performance analysis (Profiling) tool called `pprof`, which can collect performance data during program execution. It can be used in the following two ways:
 
-- `runtime/pprof`: By programming, output profiling data to a file.
-- `net/http/pprof`: Download profiling file by http request.
+- `runtime/pprof`: Through programming methods, customize the collection of runtime data and then save for analysis.
+- `net/http/pprof`: Calls `runtime/pprof` and encapsulates it into an interface, providing performance data via an HTTP Server.
 
-Types of profiles available::
+Performance data mainly includes the following:
 
-- `goroutine`: Stack traces of all current goroutines
-- `heap`: A sampling of memory allocations of live objects. You can specify the gc GET parameter to run GC before taking the heap sample.
-- `allocs`: A sampling of all past memory allocations
-- `threadcreate`: Stack traces that led to the creation of new OS threads
-- `block`: Stack traces that led to blocking on synchronization primitives
-- `mutex`: Stack traces of holders of contended mutexes
+- `goroutine`: Call stack analysis of running Goroutines
+- `heap`: Memory allocation status of active objects
+- `allocs`: Memory allocation status of all objects
+- `threadcreate`: OS thread creation analysis
+- `block`: Blocking analysis
+- `mutex`: Mutex lock analysis
 
-You can use official tool [`pprof`](https://github.com/google/pprof/blob/main/doc/README.md){:target="_blank"} to analysis generated profile file.
+The collected data can be analyzed using the official [`pprof`](https://github.com/google/pprof/blob/main/doc/README.md){:target="_blank"} tool.
 
-DataKit can use either [Pull mode](profile-go.md#pull-mode) or [Push mode](profile-go.md#push-mode) to generate profiling file.
+DataKit can obtain these data through [active pulling](profile-go.md#pull-mode) (pull) or [passive pushing](profile-go.md#push-mode) (push).
 
-## push mode {#push-mode}
+## Push Mode {#push-mode}
 
-### Config DataKit {#push-datakit-config}
+### DataKit Configuration {#push-datakit-config}
 
-Enable [profile](profile.md#config)  inputs
+DataKit enables the [profile](profile.md#config) collector and registers the profile http service.
 
 ```toml
 [[inputs.profile]]
@@ -40,9 +40,9 @@ Enable [profile](profile.md#config)  inputs
   endpoints = ["/profiling/v1/input"]
 ```
 
-### Integrate dd-trace-go {#push-app-config}
+### Go Application Configuration {#push-app-config}
 
-Import [dd-trace-go](https://github.com/DataDog/dd-trace-go){:target="_blank"}, Insert code as follows to your application:
+Integrate with [dd-trace-go](https://github.com/DataDog/dd-trace-go){:target="_blank"}, to collect application performance data and send it to DataKit. Code reference is as follows:
 
 ```go
 package main
@@ -64,8 +64,7 @@ func main() {
         profiler.WithProfileTypes(
             profiler.CPUProfile,
             profiler.HeapProfile,
-            // The profiles below are disabled by default to keep overhead
-            // low, but can be enabled as needed.
+            // The profiles below are disabled by default to keep overhead low, but can be enabled as needed.
 
             // profiler.BlockProfile,
             // profiler.MutexProfile,
@@ -94,13 +93,51 @@ func demo() {
 }
 ```
 
-Once your go app start, dd-trace-go will send profiling data to DataKit by interval(per 1min by default).
+After running this program, DDTrace will periodically (default every 1 minute) push the data to DataKit.
 
-## pull mode {#pull-mode}
+### Generating Performance Metrics {#metrics}
 
-### Enable profiling in app {#app-config}
+Datakit [:octicons-tag-24: Version-1.39.0](../datakit/changelog.md#cl-1.39.0) and above supports extracting a set of Go runtime-related metrics from the output of `dd-trace-go`. These metrics are placed under the `profiling_metrics` Measurement. Below are some of these metrics explained:
 
-import `pprof` package in your code:
+| Metric Name                              | Description                                                     | Unit         |
+|-----------------------------------|--------------------------------------------------------|------------|
+| prof_go_cpu_cores                 | Number of consumed CPU cores                                             | core       |
+| prof_go_cpu_cores_gc_overhead     | Number of CPU cores used by GC execution                                      | core       |
+| prof_go_alloc_bytes_per_sec       | Size of memory bytes allocated per second                                            | byte       |
+| prof_go_frees_per_sec             | Number of GC recycled objects per second                                            | count      |
+| prof_go_heap_growth_bytes_per_sec | Heap memory growth size per second                                              | byte       |
+| prof_go_allocs_per_sec            | Number of memory allocations executed per second                                             | count      |
+| prof_go_alloc_bytes_total         | Total memory size allocated during one profiling cycle (dd-trace defaults to a 60-second collection period) | byte       |
+| prof_go_blocked_time              | Total duration of coroutine blocking during one profiling cycle                              | nanosecond |
+| prof_go_mutex_delay_time          | Total time spent waiting for locks during one profiling cycle                          | nanosecond |
+| prof_go_gcs_per_sec               | Number of GC executions per second                                             | count      |
+| prof_go_max_gc_pause_time         | Longest interruption caused by GC during one profiling cycle                | nanosecond |
+| prof_go_gc_pause_time             | Total interruption time caused by GC during one profiling cycle                   | nanosecond |
+| prof_go_num_goroutine             | Current total number of goroutines                                                 | count      |
+| prof_go_lifetime_heap_bytes       | Total memory size occupied by live objects in the current heap                                     | byte       |
+| prof_go_lifetime_heap_objects     | Total number of live objects in the current heap                                          | count      |
+
+
+<!-- markdownlint-disable MD046 -->
+???+ tips
+
+    This feature is enabled by default. If not needed, you can disable it by modifying the configuration file `<DATAKIT_INSTALL_DIR>/conf.d/profile/profile.conf` and setting the configuration item `generate_metrics` to false, then restart Datakit.
+
+    ```toml
+    [[inputs.profile]]
+
+    ...
+
+    ## set false to stop generating apm metrics from ddtrace output.
+    generate_metrics = false
+    ```
+<!-- markdownlint-enable -->
+
+## Pull Mode {#pull-mode}
+
+### Enabling Profiling in Go Applications {#app-config}
+
+Enabling Profiling in applications only requires referencing the `pprof` package, as shown below:
 
 ```go
 package main
@@ -115,11 +152,11 @@ func main() {
 }
 ```
 
-Once start your app, you can view page `http://localhost:6060/debug/pprof/heap?debug=1` in browser to confirm running as your wish.
+After running the code, you can check if it's successfully enabled by accessing `http://localhost:6060/debug/pprof/heap?debug=1`.
 
-- Mutex and Block events
+- Mutex and Block Performance Analysis
 
-Mutex and Block events are disable by default, if you want to enable them, add below code to your app:
+By default, mutex and block performance collection are not enabled. If you need to enable them, add the following code:
 
 ```go
 var rate = 1
@@ -131,11 +168,11 @@ runtime.SetMutexProfileFraction(rate)
 runtime.SetBlockProfileRate(rate)
 ```
 
-Set the collection frequency, where 1/rate events are collected. Values set to 0 or less are not collected.
+`rate` sets the collection frequency, i.e., 1/rate events are collected. Setting it to 0 or less than 0 disables collection.
 
-### Config DataKit {#datakit-config}
+### DataKit Configuration {#datakit-config}
 
-[Enable Profile Input](profile.md), modify `[[inputs.profile.go]]` segment as follows.
+[Enable Profile collector](profile.md), configure `[[inputs.profile.go]]` as follows:
 
 ```toml
 [[inputs.profile]]
@@ -174,16 +211,17 @@ Set the collection frequency, where 1/rate events are collected. Values set to 0
 
 <!-- markdownlint-disable MD046 -->
 ???+ note
-    If there is no need to enable profile http endpoint, just comment `endpoints` item.
+
+    If you do not need to enable the Profile HTTP service, you can comment out the endpoints field.
 <!-- markdownlint-enable -->
 
-### Field introduction {#fields-info}
+### Field Explanation {#fields-info}
 
-- `url`: net/http/pprof listening address, such as `http://localhost:6060`
-- `interval`: upload interval, 最小 10s
-- `service`:  your service name
-- `env`:  your app running env
-- `version`: your app version
-- `enabled_types`: available events: `cpu, goroutine, heap, mutex, block`
+- `url`: Reporting address, such as `http://localhost:6060`
+- `interval`: Collection interval, minimum 10s
+- `service`: Service name
+- `env`: Application environment type
+- `version`: Application version
+- `enabled_types`: Performance types, such as `cpu, goroutine, heap, mutex, block`
 
-You should Restart DataKit after modification. After a minute or two, you can visualize your profiles on the [profile](https://console.guance.com/tracing/profile){:target="_blank"}.
+After configuring the Profile collector, start or restart DataKit. After a while, you can view Go performance data in the <<< custom_key.brand_name >>> center.

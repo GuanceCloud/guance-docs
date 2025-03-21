@@ -41,7 +41,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/acce
             "createAt": 1677808718,
             "creator": "acnt_xxxx32",
             "creatorInfo": {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "name": "88测试",
                 "username": "测试"

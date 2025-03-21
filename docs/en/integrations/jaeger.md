@@ -1,38 +1,34 @@
 ---
 title     : 'Jaeger'
-summary   : 'Receive Jaeger APM Data'
-tags:
+summary   : 'Receive Jaeger APM data'
+__int_icon      : 'icon/jaeger'
+tags      :
   - 'JAEGER'
   - 'APM'
-  - 'TRACING'
-__int_icon      : 'icon/jaeger'
 dashboard :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 monitor   :
-  - desc  : 'N/A'
+  - desc  : 'Not available'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze Jaeger Tracing protocol data.
+The Jaeger Agent embedded in Datakit is used to receive, process, and analyze data from the Jaeger Tracing protocol.
 
 ## Configuration {#config}
-
-### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    The current version of Jaeger supports the HTTP and UDP communication protocols and the Apache Thrift encoding specification.
+    The current Jaeger version supports HTTP and UDP communication protocols and Apache Thrift encoding specifications.
 
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/jaeger` directory under the DataKit installation directory, copy `jaeger.conf.sample` and name it `jaeger.conf`. Examples are as follows:
+    Navigate to the `conf.d/jaeger` directory under the DataKit installation directory, copy `jaeger.conf.sample` and rename it to `jaeger.conf`. Example as follows:
 
     ```toml
         
@@ -95,71 +91,71 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
     ```
 
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    It also supports modifying configuration parameters using environment variables (you need to add it as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+
     - **ENV_INPUT_JAEGER_HTTP_ENDPOINT**
     
-        Endpoint for receiving tracing span over HTTP
+        Endpoint that receives tracing spans through HTTP
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `endpoint`
+        **Collector Configuration Field**: `endpoint`
     
         **Example**: /apis/traces
     
     - **ENV_INPUT_JAEGER_UDP_ENDPOINT**
     
-        Agent URL for UDP transport
+        UDP proxy URL
     
-        **Type**: String
+        **Field Type**: String
     
-        **input.conf**: `address`
+        **Collector Configuration Field**: `address`
     
         **Example**: 127.0.0.1:6831
     
     - **ENV_INPUT_JAEGER_IGNORE_TAGS**
     
-        Ignore tags
+        Ignored tags
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `ignore_tags`
+        **Collector Configuration Field**: `ignore_tags`
     
         **Example**: ["block1","block2"]
     
     - **ENV_INPUT_JAEGER_KEEP_RARE_RESOURCE**
     
-        Keep rare tracing resources list switch
+        Keeps the list of rare tracing resources
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `keep_rare_resource`
+        **Collector Configuration Field**: `keep_rare_resource`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_JAEGER_DEL_MESSAGE**
     
-        Delete trace message
+        Deletes trace messages
     
-        **Type**: Boolean
+        **Field Type**: Boolean
     
-        **input.conf**: `del_message`
+        **Collector Configuration Field**: `del_message`
     
-        **Default**: false
+        **Default Value**: false
     
     - **ENV_INPUT_JAEGER_CLOSE_RESOURCE**
     
-        Ignore tracing resources that service (regular)
+        Ignores specified server tracings (regex matching)
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `close_resource`
+        **Collector Configuration Field**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -167,50 +163,50 @@ The Jaeger Agent embedded in Datakit is used to receive, calculate and analyze J
     
         Global sampling rate
     
-        **Type**: Float
+        **Field Type**: Float
     
-        **input.conf**: `sampler`
+        **Collector Configuration Field**: `sampler`
     
         **Example**: 0.3
     
     - **ENV_INPUT_JAEGER_THREADS**
     
-        Total number of threads and buffer
+        Number of threads and buffers
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `threads`
+        **Collector Configuration Field**: `threads`
     
         **Example**: {"buffer":1000, "threads":100}
     
     - **ENV_INPUT_JAEGER_STORAGE**
     
-        Local cache file path and size (MB) 
+        Local cache path and size (MB)
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `storage`
+        **Collector Configuration Field**: `storage`
     
         **Example**: {"storage":"./jaeger_storage", "capacity": 5120}
     
     - **ENV_INPUT_JAEGER_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If there are same-name tags in the configuration file, they will override them.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
 <!-- markdownlint-enable -->
 
-When using UDP protocol, pay attention to the data format in the protocol. By default, the protocol used for port 6831 is `Thrift CompactProtocol` format, while the protocol used for port 6832 is `Thrift Binary Protocol`.
-Jaeger uses the protocol from port 6831 by default.
+When using the UDP protocol, note the data format in the protocol. By default, port 6831 uses the `thrift CompactProtocol` format, and port 6832 uses the `thrift BinaryProtocol` format.
+Jaeger defaults to the protocol on port 6831, so if you are not using port 6832, do not uncomment it.
 
 ### Configure Jaeger HTTP Agent {#config-http-agent}
 
-endpoint represents Jaeger HTTP Agent routing
+The endpoint represents the Jaeger HTTP Agent route.
 
 ```toml
 [[inputs.jaeger]]
@@ -219,12 +215,12 @@ endpoint represents Jaeger HTTP Agent routing
   endpoint = "/apis/traces"
 ```
 
-- Modify the Agent Host Port of Jaeger Client to Datakit Port (default is 9529)
-- Modify the Agent endpoint of the Jaeger Client to the endpoint specified in the configuration above
+- Modify the Agent Host Port of the Jaeger Client to the Datakit Port (default is 9529).
+- Modify the Agent endpoint of the Jaeger Client to the endpoint specified in the above configuration.
 
 ### Configure Jaeger UDP Agent {#config-udp-agent}
 
-Modify the Agent UDP Host: Port of the Jaeger Client to the address specified in the following configuration:
+Modify the Agent UDP Host:Port of the Jaeger Client to the address specified in the following configuration:
 
 ```toml
 [[inputs.jaeger]]
@@ -232,13 +228,13 @@ Modify the Agent UDP Host: Port of the Jaeger Client to the address specified in
   address = "127.0.0.1:6831"
 ```
 
-Refer to [Datakit Tracing](datakit-tracing.md) for configuration of data sampling, data filtering, closing resources, and so on.
+For configurations related to data sampling, data filtering, and closing resources, please refer to [Datakit Tracing](datakit-tracing.md).
 
-## Sample {#demo}
+## Example {#demo}
 
-### Golang Sample {#go-http}
+### Golang Example (HTTP) {#go-http}
 
-Here is an example of an HTTP Agent:
+Below is an HTTP Agent example:
 
 ```golang
 package main
@@ -333,9 +329,9 @@ func send(urlstr string, i int) {
 }
 ```
 
-### Golang UDP Sample {#go-udp}
+### Golang Example (UDP) {#go-udp}
 
-Here is an example of a UDP Agent:
+Below is a UDP Agent example:
 
 ```golang
 package main
@@ -396,7 +392,7 @@ func foo() {
 }
 ```
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
@@ -429,7 +425,7 @@ func foo() {
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -445,7 +441,7 @@ func foo() {
 
 
 
-## Jaeger Official Documentation {#doc}
+## Official Jaeger Documentation {#doc}
 
 - [Quick Start](https://www.jaegertracing.io/docs/1.27/getting-started/){:target="_blank"}
 - [Docs](https://www.jaegertracing.io/docs/){:target="_blank"}

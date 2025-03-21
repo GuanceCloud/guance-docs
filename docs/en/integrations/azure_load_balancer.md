@@ -2,7 +2,7 @@
 title: 'Azure Load Balancer'
 tags: 
   - 'AZURE'
-summary: 'Collect Azure Load Balancer metric data'
+summary: 'Collect Azure Load Balancer Metrics data'
 __int_icon: 'icon/azure_load_balancer'
 dashboard:
   - desc: 'Azure Load Balancer monitoring view'
@@ -12,47 +12,47 @@ monitor   :
     path  : 'monitor/en/azure_load_balancer'
 ---
 
-Collect Azure Load Balancer metric data
+Collect Azure Load Balancer Metrics data
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend using the managed version of Func from Guance Cloud Integration Extensions: all prerequisites are automatically installed. Please proceed with the script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you choose to deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation Script
+### Install Script
 
-> Note: Ensure you have prepared the required Azure application registration information and assigned the `Monitoring Reader` role to the application registration.
+> Note: Please prepare the required Azure application registration information in advance and assign the `Monitoring Reader` role to the application registration.
 
-To synchronize Azure Load Balancer monitoring data, install the corresponding collection script: `ID:guance_azure_load_balancer`
+To synchronize the monitoring data of Azure Load Balancer, we install the corresponding collection script: 「Integration (Azure-Load Balancer Collection)」(ID: `guance_azure_load_balancer`)
 
-After clicking 【Install】, enter the following parameters:
+After clicking 【Install】, enter the corresponding parameters:
 
 - `Azure Tenant ID`: Tenant ID
-- `Azure Client ID`: Application Registration Client ID
-- `Azure Client Secret Value`: Client secret value, not the ID
-- `Subscriptions`: Subscription ID; use `,` to separate multiple subscriptions
+- `Azure Client ID`: Application registration Client ID
+- `Azure Client Secret Value`: Client secret value, note that it is not the ID
+- `Subscriptions`: Subscription ID, multiple subscriptions are separated by `,`
 
-Click 【Deploy Startup Script】. The system will automatically create a `Startup` script set and configure the necessary startup scripts.
+Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Once enabled, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and logs.
+After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to immediately execute once without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
 
-### Verify
+### Verification
 
-1. In 「Management / Automatic Trigger Configuration」, confirm that the corresponding task has an automatic trigger configuration. You can also check the task records and logs for any anomalies.
-2. On the Guance Cloud platform, under 「Infrastructure - Resource Catalog」, check if asset information exists.
-3. On the Guance Cloud platform, under 「Metrics」, check if the corresponding monitoring data is available.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」check if there is corresponding monitoring data.
 
-## Metric {#metric}
+## Metrics {#metric}
 
-Azure Load Balancer metrics can be collected through configuration. For more metrics supported by [Microsoft.Network/loadBalancers](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-network-loadbalancers-metrics){:target="_blank"}, please refer to the official documentation.
+Collect Azure Load Balancer Metrics, more metrics can be collected through configuration [Microsoft.Network/loadBalancers supported metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-network-loadbalancers-metrics){:target="_blank"}
 
 | Metric Name | Description | Unit |
 | ---- | ------ | ------ |
-|`byte_count_total`| Total bytes transferred during the period | byte|
-|`packet_count_total`| Total packets transferred during the period | count |
-|`syncount_total`| Total SYN packets transferred during the period | count |
-|`vip_availability_average`| Average availability of IP addresses over each duration | % |
-|`dip_availability_average`| Average availability of dedicated IPs | % |
+|`byte_count_total`| Total number of bytes transferred within the time period | byte|
+|`packet_count_total`| Total number of packets transferred within the time period| count |
+|`syncount_total`| Total number of SYN packets transferred within the time period| count |
+|`vip_availability_average`| Average availability of IP addresses for each duration | % |
+|`dip_availability_average`| Average availability of dedicated IPs| % |

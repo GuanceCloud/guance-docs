@@ -11,7 +11,7 @@ dashboard:
   - desc: 'Istio Service Monitoring View'
     path: 'dashboard/en/istio_service'
 monitor:
-  - desc: 'None'
+  - desc: 'Not exist'
     path: ''
 ---
 
@@ -27,9 +27,11 @@ Display of Istio performance Metrics, including Incoming Request Volume, Incomin
 
 ### Prerequisites
 
-- [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/) has been deployed.
-- DataKit has been deployed. Please refer to <[Install Datakit](../datakit/datakit-daemonset-deploy.md)>
-- Istio has been deployed.
+- [Kubernetes](https://kubernetes.io/docs/setup/production-environment/tools/) has been deployed
+
+- DataKit has been deployed. Please refer to the Kubernetes cluster <[Install Datakit](../datakit/datakit-daemonset-deploy.md)>
+
+- Istio has been deployed
 
 ---
 
@@ -52,7 +54,11 @@ data: # Below is the added part
       interval = "60s"
       tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
       metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+      #measurement_prefix = ""
       measurement_name = "istio_prom"
+      #[[inputs.prom.measurements]]
+      # prefix = "cpu_"
+      # name ="cpu"
       [inputs.prom.tags]
         app_id="istiod"
   #### ingressgateway
@@ -64,7 +70,11 @@ data: # Below is the added part
       interval = "60s"
       tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
       metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+      #measurement_prefix = ""
       measurement_name = "istio_prom"
+      #[[inputs.prom.measurements]]
+      # prefix = "cpu_"
+      # name ="cpu"
   #### egressgateway
   prom-egressgateway.conf: |-
     [[inputs.prom]] 
@@ -74,7 +84,11 @@ data: # Below is the added part
       interval = "60s"
       tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
       metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+      #measurement_prefix = ""
       measurement_name = "istio_prom"
+      #[[inputs.prom.measurements]]
+      # prefix = "cpu_"
+      # name ="cpu"
 ```
 
 ```yaml
@@ -82,7 +96,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 ...
 spec:
-  template:
+  template
     spec:
       containers:
       - env:
@@ -109,7 +123,7 @@ kubectl apply -f  datakit.yaml
 
 Enable Envoy Metrics Collector
 
-Add the following annotations under `spec.template.metadata` in the business Pod to collect Envoy metrics data.
+Add the following annotations to the business Pod (specific path under `spec.template.metadata`), so that Envoy's metrics data can be collected.
 
 ```yaml
 apiVersion: apps/v1
@@ -129,26 +143,30 @@ spec:
             interval = "60s"
             tags_ignore = ["cache","cluster_type","component","destination_app","destination_canonical_revision","destination_canonical_service","destination_cluster","destination_principal","group","grpc_code","grpc_method","grpc_service","grpc_type","reason","request_protocol","request_type","resource","responce_code_class","response_flags","source_app","source_canonical_revision","source_canonical-service","source_cluster","source_principal","source_version","wasm_filter"]
             metric_name_filter = ["istio_requests_total","pilot_k8s_cfg_events","istio_build","process_virtual_memory_bytes","process_resident_memory_bytes","process_cpu_seconds_total","envoy_cluster_assignment_stale","go_goroutines","pilot_xds_pushes","pilot_proxy_convergence_time_bucket","citadel_server_root_cert_expiry_timestamp","pilot_conflict_inbound_listener","pilot_conflict_outbound_listener_http_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_tcp","pilot_conflict_outbound_listener_tcp_over_current_http","pilot_virt_services","galley_validation_failed","pilot_services","envoy_cluster_upstream_cx_total","envoy_cluster_upstream_cx_connect_fail","envoy_cluster_upstream_cx_active","envoy_cluster_upstream_cx_rx_bytes_total","envoy_cluster_upstream_cx_tx_bytes_total","istio_request_duration_milliseconds_bucket","istio_request_duration_seconds_bucket","istio_request_bytes_bucket","istio_response_bytes_bucket"]
+            #measurement_prefix = ""
             measurement_name = "istio_prom"
+            #[[inputs.prom.measurements]]
+            # prefix = "cpu_"
+            # name = "cpu"
             [inputs.prom.tags]
             namespace = "$NAMESPACE"
 ```
 
-Parameter Explanation
+Parameter Description
 
 - url: Exporter address
 - source: Collector name
-- metric_types: Metric type filter
-- measurement_name: Name of the collected Measurement
-- interval: Collection frequency, in seconds
-- $IP: Wildcard for Pod's internal IP
+- metric_types: Metric type filtering
+- measurement_name: Measurement name after collection
+- interval: Metric collection frequency, in seconds
+- $IP: Wildcard for the internal network IP of the Pod
 - $NAMESPACE: Namespace where the Pod resides
 - tags_ignore: Ignored tags
 - metric_name_filter: Retained metric names
 
 ## Metrics {#metric}
 
-All the following data collection will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. You can also specify other tags in the configuration using `[inputs.{{.InputName}}.tags]`:
+By default, all the data collected will append a global tag named `host` (the tag value is the hostname of the host where DataKit is located). You can also specify other labels through `[inputs.{{.InputName}}.tags]` in the configuration:
 
 ```toml
  [inputs.{{.InputName}}.tags]
@@ -160,26 +178,26 @@ All the following data collection will append a global tag named `host` (tag val
 ### Metric Details
 
 | Metric                                                                 | Description                                                                                          | Data Type | Unit   |
-| ---                                                                  | ---                                                                                           | ---      | ---    |
-| `istio_agent_process_virtual_memory_bytes`                           | Virtual memory size in bytes                                                                  | int      | B      |
-| `istio_agent_go_memstats_alloc_bytes`                                | Number of bytes allocated and still in use.                                                   | int      | B      |
-| `istio_agent_go_memstats_heap_inuse_bytes`                           | Number of heap bytes that are in use.                                                         | int      | B      |
-| `istio_agent_go_memstats_stack_inuse_bytes`                          | Number of bytes in use by the stack allocator.                                                | int      | B      |
-| `istio_agent_go_memstats_last_gc_time_seconds`                       | Number of seconds since 1970 of last garbage collection                                       | int      | s      |
-| `istio_agent_go_memstats_next_gc_bytes`                              | Number of heap bytes when next garbage collection will take place.                            | int      | B      |
-| `istio_agent_process_cpu_seconds_total`                              | Total user and system CPU time spent in seconds.                                              | int      | count  |
-| `istio_agent_outgoing_latency`                                       | The latency of outgoing requests (e.g., to a token exchange server, CA, etc.) in milliseconds. | int      | count  |
-| `istio_requests_total`                                               | Total number of requests.                                                                     | int      | <br /> |
-| `istio_agent_pilot_xds`                                              | Number of endpoints connected to this pilot using XDS.                                        | int      | count  |
-| `istio_agent_pilot_xds_pushes`                                       | Pilot build and send errors for LDS, RDS, CDS, and EDS.                                       | int      | count  |
-| `istio_agent_pilot_xds_expired_nonce`                                | Total number of XDS requests with an expired nonce.                                           | int      | count  |
-| `istio_agent_pilot_push_triggers`                                    | Total number of times a push was triggered, labeled by reason for the push.                   | int      | count  |
-| `istio_agent_pilot_endpoint_not_ready`                               | Endpoint found in unready state.                                                              | int      | count  |
-| `envoy_cluster_upstream_cx_total`                                    | Total upstream connections in the Envoy cluster.                                             | int      | count  |
-| `istio_agent_pilot_conflict_inbound_listener`                        | Number of conflicting inbound listeners                                                       | int      | count  |
-| `istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp` | Number of conflicting wildcard HTTP listeners with current wildcard TCP listener.             | int      | count  |
-| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp`  | Number of conflicting TCP listeners with current TCP listener.                                | int      | count  |
-| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http` | Number of conflicting wildcard TCP listeners with current wildcard HTTP listener.             | int      | count  |
+| ---                                                                    | ---                                                                                                 | ---       | ---    |
+| `istio_agent_process_virtual_memory_bytes`                             | Virtual memory size in bytes                                                                        | int       | B      |
+| `istio_agent_go_memstats_alloc_bytes`                                  | Number of bytes allocated and still in use.                                                         | int       | B      |
+| `istio_agent_go_memstats_heap_inuse_bytes`                             | Number of heap bytes that are in use.                                                               | int       | B      |
+| `istio_agent_go_memstats_stack_inuse_bytes`                            | Number of bytes in use by the stack allocator.                                                      | int       | B      |
+| `istio_agent_go_memstats_last_gc_time_seconds`                         | Number of seconds since 1970 of last garbage collection                                              | int       | s      |
+| `istio_agent_go_memstats_next_gc_bytes`                                | Number of heap bytes when next garbage collection will take place.                                  | int       | B      |
+| `istio_agent_process_cpu_seconds_total`                                 | Total user and system CPU time spent in seconds                                                     | int       | count  |
+| `istio_agent_outgoing_latency`                                          | The latency of outgoing requests (e.g., to a token exchange server, CA, etc.) in milliseconds.        | int       | count  |
+| `istio_requests_total`                                                  | Total number of requests                                                                            | int       | <br /> |
+| `istio_agent_pilot_xds`                                                 | Number of endpoints connected to this pilot using XDS                                               | int       | count  |
+| `istio_agent_pilot_xds_pushes`                                          | Pilot build and send errors for lds, rds, cds and eds                                               | int       | count  |
+| `istio_agent_pilot_xds_expired_nonce`                                   | Total number of XDS requests with an expired nonce                                                  | int       | count  |
+| `istio_agent_pilot_push_triggers`                                       | Total number of times a push was triggered, labeled by reason for the push                           | int       | count  |
+| `istio_agent_pilot_endpoint_not_ready`                                  | Endpoint found in unready state                                                                     | int       | count  |
+| `envoy_cluster_upstream_cx_total`                                       | envoy cluster upstream cx total                                                                     | int       | count  |
+| `istio_agent_pilot_conflict_inbound_listener`                           | Number of conflicting inbound listeners                                                              | int       | count  |
+| `istio_agent_pilot_conflict_outbound_listener_http_over_current_tcp`    | Number of conflicting wildcard http listeners with current wildcard tcp listener                     | int       | count  |
+| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_tcp`     | Number of conflicting tcp listeners with current tcp listener                                        | int       | count  |
+| `istio_agent_pilot_conflict_outbound_listener_tcp_over_current_http`    | Number of conflicting wildcard tcp listeners with current wildcard http listener                      | int       | count  |
 
 ---
 
@@ -187,7 +205,7 @@ All the following data collection will append a global tag named `host` (tag val
 
 ### 1 Enable Zipkin Collector
 
-Modify `datakit.yaml` to mount `zipkin.conf` to DataKit's `/usr/local/datakit/conf.d/zipkin/zipkin.conf` directory via ConfigMap. Modify `datakit.yaml` as follows:
+Modify `datakit.yaml`, mount `zipkin.conf` via ConfigMap to `/usr/local/datakit/conf.d/zipkin/zipkin.conf` directory in DataKit. Modify `datakit.yaml` as follows:
 
 ```yaml
 apiVersion: v1
@@ -207,7 +225,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 ...
 spec:
-  template:
+  template
     spec:
       containers:
       - env:
@@ -223,7 +241,7 @@ kubectl apply -f  datakit.yaml
 ```
 
 Trace data will be sent to the **zipkin.istio-system** Service, and the reporting port is `9411`. <br />
-When deploying DataKit, the Zipkin collector for trace metrics has already been enabled. Since the DataKit service namespace is `datakit`, and the port is `9529`, a conversion is needed here.
+The Zipkin collector for trace metric collection has been enabled during DataKit deployment. Since the service namespace of DataKit is `datakit`, and the port is `9529`, a conversion is required here.
 
 ### 2 Define ClusterIP Service
 
@@ -242,7 +260,7 @@ spec:
       targetPort: 9529
 ```
 
-After deployment, containers within the cluster can access DataKit's port 9529 using `datakit-service-ext.datakit.svc.cluster.local:9411`.
+After deployment, containers within the cluster can access DataKit's port 9529 via `datakit-service-ext.datakit.svc.cluster.local:9411`.
 
 ### 3 Define ExternalName Service
 
@@ -257,22 +275,23 @@ spec:
   externalName: datakit-service-ext.datakit.svc.cluster.local
 ```
 
-After deployment, containers within the cluster can push data to DataKit using `zipkin.istio-system.svc.cluster.local:9411`.
+After deployment, within the cluster's containers, you can push data to DataKit via `zipkin.istio-system.svc.cluster.local:9411`.
 
 ---
 
-## Logging {#logging}
+## Logs {#logging}
 
-By default, DataKit collects logs output to `/dev/stdout` by containers.<br />
+DataKit's default configuration collects logs output by containers to `/dev/stdout`. <br />
 
 For more log collection, please refer to
 
 <[Pod Log Collection Best Practices](../best-practices/cloud-native/pod-log.md)>
 
-<[Several Ways of Log Collection in Kubernetes Clusters](../best-practices/cloud-native/k8s-logs.md)>
+<[Several Playbooks for Log Collection in Kubernetes Clusters](../best-practices/cloud-native/k8s-logs.md)>
+
 
 ---
 
 ## Best Practices
 
-Best practices include Istio installation, deployment of built-in projects, association of RUM/APM, and other extended operations. For details, please refer to [Microservices Observability Best Practices Based on Istio](../best-practices/cloud-native/istio.md).
+Best practices include Istio installation, deployment of Istio's built-in projects, RUM/APM association, and other extended operations. For details, please refer to [Best Practices for Achieving Microservices Observability Based on Istio](../best-practices/cloud-native/istio.md)

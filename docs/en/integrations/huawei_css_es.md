@@ -2,7 +2,7 @@
 title: 'Huawei Cloud Search Service CSS for Elasticsearch'
 tags: 
   - Huawei Cloud
-summary: 'The core performance Metrics of the Huawei Cloud Search Service CSS for Elasticsearch include query latency, indexing speed, search speed, disk usage, and CPU usage. These are key Metrics for evaluating and optimizing Elasticsearch performance.'
+summary: 'Collect monitoring Metrics for Huawei Cloud Search Service CSS for Elasticsearch'
 __int_icon: 'icon/huawei_css_es'
 dashboard:
 
@@ -15,98 +15,93 @@ monitor:
 
 ---
 
-<!-- markdownlint-disable MD025 -->
-# Huawei Cloud Search Service CSS for Elasticsearch
-<!-- markdownlint-enable -->
-
-The core performance Metrics of the Huawei Cloud Search Service CSS for Elasticsearch include query latency, indexing speed, search speed, disk usage, and CPU usage. These are key Metrics for evaluating and optimizing Elasticsearch performance.
+Collect monitoring Metrics for Huawei Cloud Search Service CSS for Elasticsearch
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with the script installation
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
-> Note: Please prepare a Huawei Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+> Note: Please prepare a qualified Huawei Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from the Huawei Cloud Search Service CSS for Elasticsearch, we install the corresponding collection script: visit the web service of func and enter 【Script Market】-【Details】, search by keyword "css", and install 「Guance Integration (Huawei Cloud-CSS)」(ID: `guance_huaweicloud_css`)
+To synchronize the monitoring data of Huawei Cloud Search Service CSS for Elasticsearch, we install the corresponding collection script: access the web service of func and enter 【Script Market】-【Details】, search by css keyword, and install 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-CSS)」(ID: `guance_huaweicloud_css`)
 
-After clicking 【Install】, input the required parameters: Huawei Cloud AK, SK, and Huawei Cloud account name.
+After clicking 【Install】, input the corresponding parameters: Huawei Cloud AK, SK, Huawei Cloud account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup scripts automatically.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set, and automatically configure the corresponding startup script.
 
-After the script is installed, find the script 「Guance Integration (Huawei Cloud-CSS)」 under 「Development」 in Func, expand and modify this script, locate `collector_configs` and `monitor_configs`, and edit the contents of `region_projects`. Change the region and Project ID to the actual ones, then click Save and Publish.
+After the script installation is complete, find the script 「<<< custom_key.brand_name >>> Integration (Huawei Cloud-CSS)」 in the "Development" section of Func, expand and modify this script. Find collector_configs and monitor_configs respectively and edit the content under region_projects. Change the region and Project ID to the actual region and Project ID, then click Save and Publish.
 
-Additionally, in 「Management / Automatic Trigger Configuration」, you will see the corresponding automatic trigger configuration. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
-
-By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-huaweicloud-css/){:target="_blank"}
+In addition, see the corresponding automatic trigger configuration in the 「Management / Automatic Trigger Configuration」. Click 【Execute】, and it will be executed immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
-1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the task records and logs to verify if there are any anomalies.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs to see if there are any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure - Resource Catalog」, check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Huawei Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration [Huawei Cloud Monitoring Metrics Details](https://support.huaweicloud.com/usermanual-css/css_01_0042.html){:target="_blank"}
+
+Configure Huawei Cloud CSS Metrics. More Metrics can be collected through configuration [Huawei Cloud CSS Metric Details](https://support.huaweicloud.com/usermanual-css/css_01_0042.html){:target="_blank"}
 
 ### Instance Monitoring Metrics
 
-The instance performance monitoring Metrics for the Huawei Cloud Search Service CSS for Elasticsearch are shown in the following table. For more Metrics, please refer to [Table 1](https://support.huaweicloud.com/usermanual-rds/rds_pg_06_0001.html){:target="_blank"}
+The instance performance monitoring Metrics for Huawei Cloud Search Service CSS for Elasticsearch are shown in the following table. For more Metrics, please refer to [Table 1](https://support.huaweicloud.com/usermanual-rds/rds_pg_06_0001.html){:target="_blank"}
 
-| Metric ID                                       | Metric Name                                | Metric Description                                                     | Value Range           | Monitoring Period (Original Metric) |
+| Metric ID                                       | Metric Name                                | Metric Meaning                                                     |           Value Range           | Monitoring Period (Raw Metric) |
 | -------------------------------------------- | --------------------------------------- | ------------------------------------------------------------ | ------------------ | -------------------- |
-| `status`|Cluster Health Status|This Metric measures the health status of the cluster.|0,1,2,3;<br>0: The cluster is 100% available.<br>1: Data is complete, but some replicas are missing. High availability is somewhat weakened, posing a risk. Monitor the cluster promptly.<br>2: Data is missing, leading to abnormal operation when using the cluster.<br>3: Cluster status not obtained.|1 minute|
-| `indices_count`|Number of Indices|Number of indices in the CSS cluster.|≥ 0|1 minute|
-| `total_shards_count`|Total Number of Shards|Total number of shards in the CSS cluster.|≥ 0|1 minute|
-| `primary_shards_count`|Number of Primary Shards|Number of primary shards in the CSS cluster.|≥ 0|1 minute|
-| `coordinating_nodes_count`|Number of Coordinating Nodes|Number of coordinating nodes in the CSS cluster.|≥ 0|1 minute|
-| `data_nodes_count`|Number of Data Nodes|Number of data nodes in the CSS cluster.|≥ 0|1 minute|
-| `SearchRate`|Average Query Rate|Query QPS, average number of queries per second performed by the cluster.|≥ 0|1 minute|
-| `IndexingRate`|Average Indexing Rate|TPS for indexing, average number of indexing operations per second performed by the cluster.|≥ 0|1 minute|
-| `IndexingLatency`|Average Indexing Latency|Average time taken for a shard to complete an indexing operation.|≥ 0 ms|1 minute|
-| `SearchLatency`|Average Query Latency|Average time taken for a shard to complete a search operation.|≥ 0 ms|1 minute|
+| `status`|Cluster Health Status|This Metric is used to statistically measure the status of the monitored object.|0,1,2,3;<br>0: The cluster is 100% available.<br>1: The data is complete, but some replicas are missing. High availability is somewhat weakened, posing risks, so please pay attention to the cluster situation promptly.<br>2: Data is missing, and anomalies will occur when using the cluster.<br>3: Cluster status not obtained.|1 minute|
+| `indices_count`|Index Count|Number of indices in the CSS cluster.|≥ 0|1 minute|
+| `total_shards_count`|Shard Count|Number of shards in the CSS cluster.|≥ 0|1 minute|
+| `primary_shards_count`|Primary Shard Count|Number of primary shards in the CSS cluster.|≥ 0|1 minute|
+| `coordinating_nodes_count`|Coordinating Node Count|Number of coordinating nodes in the CSS cluster.|≥ 0|1 minute|
+| `data_nodes_count`|Data Node Count|Number of data nodes in the CSS cluster.|≥ 0|1 minute|
+| `SearchRate`|Average Query Rate|Query QPS, the average number of query operations per second performed by the cluster.|≥ 0|1 minute|
+| `IndexingRate`|Average Indexing Rate|Ingest TPS, the average number of indexing operations per second performed by the cluster.|≥ 0|1 minute|
+| `IndexingLatency`|Average Indexing Latency|Average time required to complete an indexing operation on a shard.|≥ 0 ms|1 minute|
+| `SearchLatency`|Average Query Latency|Average time required to complete a search operation on a shard.|≥ 0 ms|1 minute|
 | `avg_cpu_usage`|Average CPU Usage|Average CPU utilization across all nodes in the CSS cluster.|0-100%|1 minute|
-| `avg_mem_used_percent`|Average Used Memory Ratio|Average ratio of used memory across all nodes in the CSS cluster.|0-100%|1 minute|
-| `disk_util`|Disk Utilization|This Metric measures the disk utilization of the object.|0-100%|1 minute|
-| `avg_load_average`|Average Node Load Value|Average value of the 1-minute average queue length of tasks in the operating system across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_mem_used_percent`|Average Used Memory Ratio|Average ratio of memory used across all nodes in the CSS cluster.|0-100%|1 minute|
+| `disk_util`|Disk Utilization|This Metric is used to statistically measure the disk usage of the object.|0-100%|1 minute|
+| `avg_load_average`|Average Node Load Value|Average value of the 1-minute average queue length across all nodes in the CSS cluster within the operating system.|≥ 0|1 minute|
 | `avg_jvm_heap_usage`|Average JVM Heap Usage|Average JVM heap memory usage across all nodes in the CSS cluster.|0-100%|1 minute|
-| `sum_current_opened_http_count`|Current Opened HTTP Connections|Sum of open and not yet closed HTTP connections across all nodes in the CSS cluster.|≥ 0|1 minute|
-| `avg_thread_pool_write_queue`|Average Queued Tasks in Write Queue|Average number of queued tasks in the write thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
-| `avg_thread_pool_search_queue`|Average Queued Tasks in Search Queue|Average number of queued tasks in the search thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
-| `avg_thread_pool_force_merge_queue`|Average Queued Tasks in ForceMerge Queue|Average number of queued tasks in the force merge thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
-| `avg_thread_pool_write_rejected`|Average Rejected Tasks in Write Queue|Average number of rejected tasks in the write thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
-| `avg_jvm_old_gc_count`|Average Old Generation GC Count|Average cumulative count of "old generation" garbage collection runs across all nodes in the CSS cluster.|≥ 0|1 minute|
-| `avg_jvm_old_gc_time`|Average Old Generation GC Time|Average cumulative time spent on "old generation" garbage collection across all nodes in the CSS cluster.|≥ 0 ms|1 minute|
-| `avg_jvm_young_gc_count`|Average Young Generation GC Count|Average cumulative count of "young generation" garbage collection runs across all nodes in the CSS cluster.|≥ 0|1 minute|
-| `avg_jvm_young_gc_time`|Average Young Generation GC Time|Average cumulative time spent on "young generation" garbage collection across all nodes in the CSS cluster.|≥ 0 ms|1 minute|
+| `sum_current_opened_http_count`|Current Opened HTTP Connections|Sum of Http connections opened and not yet closed across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_thread_pool_write_queue`|Average Number of Queued Tasks in Write Queue|Average number of queued tasks in the write thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_thread_pool_search_queue`|Average Number of Queued Tasks in Search Queue|Average number of queued tasks in the search thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_thread_pool_force_merge_queue`|Average Number of Queued Tasks in ForceMerge Queue|Average number of queued tasks in the force merge thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_thread_pool_write_rejected`|Average Number of Rejected Tasks in Write Queue|Average number of rejected tasks in the write thread pool across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_jvm_old_gc_count`|Average JVM Old Generation GC Count|Average cumulative value of the number of times "old generation" garbage collection has run across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_jvm_old_gc_time`|Average JVM Old Generation GC Time|Average cumulative value of the time spent executing "old generation" garbage collection across all nodes in the CSS cluster.|≥ 0 ms|1 minute|
+| `avg_jvm_young_gc_count`|Average JVM Young Generation GC Count|Average cumulative value of the number of times "young generation" garbage collection has run across all nodes in the CSS cluster.|≥ 0|1 minute|
+| `avg_jvm_young_gc_time`|Average JVM Young Generation GC Time|Average cumulative value of the time spent executing "young generation" garbage collection across all nodes in the CSS cluster.|≥ 0 ms|1 minute|
+
 
 ## Objects {#object}
 
-The object data structure collected from the Huawei Cloud Search Service CSS for Elasticsearch can be viewed under 「Infrastructure - Custom」.
+The Object data structure for the collected Huawei Cloud Search Service CSS for Elasticsearch can be seen in 「Infrastructure - Resource Catalog」
 
 ```json
 {
   "measurement": "huaweicloud_css",
   "tags": {
-    "name"                       : "xxxxx",
+    "RegionId"                   : "cn-north-4",
+    "project_id"                 : "xxxxxxx",
+    "enterpriseProjectId"        : "",
+    "instance_id"                : "xxxxxxx-xxxxxxx-xxxxxxx-00001",
+    "instance_name"              : "css-3384",
     "publicIp"                   : "xxxxx",
-    "id"                         : "xxxxx",
     "status"                     : "100",
     "endpoint"                   : "192.168.0.100:9200",
-    "vpc_id"                     : "3dda7d4b-aec0-4838-a91a-28xxxxxxxx",
-    "instance_name"              : "css-3384",
-    "subnetId"                   : "xxxxx",
-    "securityGroupId"            : "xxxxxxx",
-    "enterpriseProjectId"        : "xxxxxxx",
-    "project_id"                 : "xxxxxxx",
-    "RegionId"                   : "cn-north-4"
   },
   "fields": {
+    "vpc_id"                     : "3dda7d4b-aec0-4838-a91a-28xxxxxxxx",
+    "subnetId"                   : "xxxxx",
+    "securityGroupId"            : "xxxxxxx",
     "datastore"                           : "{\"supportSecuritymode\": false, \"type\": \"elasticsearch\", \"version\": \"7.6.2\"}",
     "instances"                           : "[{\"azCode\": \"cn-east-3a\", \"id\": \"95f61e90-507b-48d4-8ac5-53dcefd155a3\", \"ip\": \"192.168.0.140\", \"name\": \"css-test-ess-esn-1-1\", \"specCode\": \"ess.spec-kc1.xlarge.2\", \"status\": \"200\", \"type\": \"ess\", \"volume\": {\"size\": 40, \"type\": \"HIGH\"}}]",
     "publicKibanaResp"                    : "xxxx",
@@ -121,36 +116,40 @@ The object data structure collected from the Huawei Cloud Search Service CSS for
 }
 ```
 
-Parameter descriptions are as follows:
+Descriptions of some parameters are as follows:
+
 | Parameter Name     | Description         |
 | :------- | :----------- |
 | `status` | Cluster status value   |
-| `updated`  | Last modified time of the cluster, in ISO8601 format |
+| `updated`  | Last modified time of the cluster, ISO8601 format |
 | `bandwidthSize` | Public bandwidth, unit: `Mbit/s`   |
-| `actions` | Current action of the cluster   |
+| `actions` | Current actions of the cluster   |
 | `period` | Whether it is a subscription cluster   |
 
-Status (cluster status value) meanings:
+Meanings of the values for status (cluster status value):
+
 | Value     | Description         |
 | :------- | :----------- |
 | `100`|Creating|
 | `200`|Available|
 | `303`|Unavailable|
 
-Actions (current actions of the cluster) meanings:
+Meanings of the values for actions (current actions of the cluster):
+
 | Value     | Description         |
 | :------- | :----------- |
 | `REBOOTING` | Rebooting   |
 | `GROWING` | Scaling up   |
-| `RESTORING` | Restoring cluster   |
-| `SNAPSHOTTING` | Creating snapshot   |
+| `RESTORING` | Restoring the cluster   |
+| `SNAPSHOTTING` | Creating a snapshot   |
 
-Period meanings:
+Meanings of the values for period:
+
 | Value     | Description         |
 | :------- | :----------- |
 | `true` | Subscription-billed cluster   |
-| `false` | Pay-as-you-go cluster   |
+| `false` | Pay-as-you-go billed cluster   |
 
 > *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note: The `tags.name` value is the cluster ID, which serves as a unique identifier.
+> Hint: The value of `tags.instance_id` is the cluster ID, which serves as a unique identifier.

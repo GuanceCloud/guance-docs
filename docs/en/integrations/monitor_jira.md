@@ -1,45 +1,45 @@
 ---
-title: 'Incident Events and Jira Integration'
-summary: 'When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira, this method provides better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this approach also helps us analyze and solve problems more effectively, improving system stability and reliability.'
+title: 'Incident Events Integration with Jira'
+summary: 'When our applications or systems experience incidents, they usually need to be handled promptly to ensure normal system operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira to create issues, we gain better capabilities for managing and tracking incident events, thereby ensuring smoother system operations. Additionally, this method also helps us better analyze and solve problems, enhancing the stability and reliability of the system.'
 __int_icon: 'icon/monitor_jira'
 ---
 
 <!-- markdownlint-disable MD025 -->
 
-# Incident Events and Jira Integration
+# Incident Events Integration with Jira
 <!-- markdownlint-enable -->
 
-When our application or system encounters an incident, it usually needs to be handled promptly to ensure normal operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira, this method provides better management and tracking capabilities for incident events, thereby ensuring the normal operation of the system. Additionally, this approach also helps us analyze and solve problems more effectively, improving system stability and reliability.
+When our applications or systems experience incidents, they usually need to be handled promptly to ensure normal system operation. To better manage and track incident events, we can send these events to Jira to create issues, allowing us to track, analyze, and resolve these problems within Jira. By quickly sending incident events to Jira to create issues, we gain better capabilities for managing and tracking incident events, thereby ensuring smoother system operations. Additionally, this method also helps us better analyze and solve problems, enhancing the stability and reliability of the system.
 
 ## Configuration {#config}
 
 ### Preparation
 
-1. Deploy a [DataFlux Func (Automata)](https://func.guance.com/#/) to generate an authorization link.
-2. Create a [custom webhook notification target](<<< homepage >>>/monitoring/notify-object/#4-webhook) (the webhook URL should be the authorization link URL of DataFlux Func).
-3. Correctly configure the [monitor](<<< homepage >>>/monitoring/monitor/).
+1. Deploy a [DataFlux Func (Automata)](https://<<< custom_key.func_domain >>>/#/) to generate an authorization link.
+2. Create a [webhook custom notification target](<<< homepage >>>/monitoring/notify-object/#4-webhook) (the webhook URL should be the authorization link URL of the deployed DataFlux Func).
+3. Correctly configure the [monitors](<<< homepage >>>/monitoring/monitor/).
 
 ### Deployment Process
 
-#### Create Custom Webhook Notification Target
+#### Create Webhook Custom Notification Target
 
-In the Guance Studio under **Notification Targets Management**, create a new notification target, select **Custom Webhook**, and enter the authorization link URL of the deployed DataFlux Func.
+In the <<< custom_key.brand_name >>> Studio under ["Monitoring / Notification Targets Management"], create a new notification target by selecting **webhook custom** and filling in the authorization link address of the deployed DataFlux Func as the webhook URL.
 
 ![1693212890543.png](imgs/monitor_jira/monitor_jira01.png)
 
-> Note: In DataFlux Func, choose an authorization link without parameters.
+> Note: In Func, choose the authorization link without parameters.
 
 #### Create Monitor
 
-In the Guance Studio under **Monitors**, create a new monitor, select the metrics you want to observe, and after configuring the event notification content, specify the alert strategy's notification target as the **Custom Webhook** notification target name created earlier.
+In the <<< custom_key.brand_name >>> Studio under ["Monitoring / Monitors"], create a new monitor by selecting the metrics you want to observe. After configuring the event notification content, set the alert strategy's notification target to the name of the **webhook custom** notification target that we just created.
 
 ![1693212934306.png](imgs/monitor_jira/monitor_jira02.png)
 
 #### Write Listener Script
 
-After configuring the monitor's detection rules, we need to write a script in the already installed and configured DataFlux Func to retrieve new messages and send them to Jira to create issues.
+After configuring the detection rules for the monitor, we need to write a script in the already installed and configured DataFlux Func to fetch new messages and send them to Jira to create issues.
 
-First, we need to introduce some constants, such as `jira_server`, `username`, `password`, `project_key`, etc.
+First, we need to import some constants such as `jira_server`, `username`, `password`, `project_key`, etc.
 
 ```Python
 import json
@@ -51,7 +51,7 @@ password = "xxxxx"
 project_key = "XXXXXXXXX"
 ```
 
-After introducing the necessary constants, we need to understand the data structure of the monitoring events to parse and create events sent to Jira.
+After importing the required constants, we need to understand the data structure of the monitoring events so that we can parse and create issues to be sent to Jira.
 
 ```JSON
 {
@@ -71,8 +71,8 @@ After introducing the necessary constants, we need to understand the data struct
     "df_date_range":60,
     "df_dimension_tags":"{\"host\":\"share\"}",
     "df_event_id":"event-f20a38aa58b54c6c8d4c9a84e655db1a",
-    "df_event_link":"https://console.guance.com/keyevents/monitor?time=1693034040000%2C1693035000000&tags=%7B%22df_event_id%22%3A%22event-f20a38aa58b54c6c8d4c9a84e655db1a%22%7D&w=wksp_968577392a1c4714a464cd2f6ee42a9c",
-    "df_event_reason":"满足监控器中的故障认定条件，产生故障事件",
+    "df_event_link":"https://<<< custom_key.studio_main_site >>>/keyevents/monitor?time=1693034040000%2C1693035000000&tags=%7B%22df_event_id%22%3A%22event-f20a38aa58b54c6c8d4c9a84e655db1a%22%7D&w=wksp_968577392a1c4714a464cd2f6ee42a9c",
+    "df_event_reason":"\u6ee1\u8db3\u76d1\u63a7\u5668\u4e2d\u6545\u969c\u7684\u8ba4\u5b9a\u6761\u4ef6\uff0c\u4ea7\u751f\u6545\u969c\u4e8b\u4ef6",
     "df_exec_mode":"crontab",
     "df_issue_duration":3840,
     "df_issue_start_time":1693031100,
@@ -103,9 +103,9 @@ After introducing the necessary constants, we need to understand the data struct
 }
 ```
 
-This **Json** contains the event title `df_title`, event details `df_message`, and event status `df_status` that we need. It also includes other relevant information such as event creation time, anomaly value, workspace ID, etc., which can be included in the generated issue if needed.
+This **Json** contains the event title `df_title`, event details `df_message`, and event status `df_status` that we need to use. Of course, this **Json** also includes other related information such as the event creation time, anomaly value, workspace ID, etc., which can be included in the issues we need to generate if necessary.
 
-With the input data structure clear, we can now write the function to create Jira issues.
+Once the input data structure is clear, we can write the function to create Jira issues.
 
 ```Python
 @DFF.API('Create_JIRA_Issue_Reply')
@@ -113,7 +113,7 @@ def create_jira_issue_reply(**kwargs):
 
     # Create Jira instance
     jira = JIRA(server=jira_server, basic_auth=(username, password))
-    # Get Guance event data
+    # Get <<< custom_key.brand_name >>> event data
     event = json.dumps(kwargs)
     print(event)
     summary  = kwargs["df_title"]
@@ -136,12 +136,12 @@ def create_jira_issue_reply(**kwargs):
     print(f"Key of the newly created issue: {issue.key}")
 ```
 
-By creating a Jira instance, we use the obtained event details from Guance to create an issue dictionary and send it to Jira. After successful transmission, a log is generated, which is the `issue.key` we created.
+We create a Jira instance using the event details obtained from <<< custom_key.brand_name >>> to form an issue dictionary, which is then sent to Jira. After successful transmission, logs are generated, i.e., the `issue.key` we created.
 
 ![1693213100705.png](imgs/monitor_jira/monitor_jira03.png)
 
-We can then view the corresponding issue in Jira using the created `issue.key`.
+Then, we can view the corresponding issue in Jira using the created `issue.key`.
 
 ![1693213121459.png](imgs/monitor_jira/monitor_jira04.png)
 
-After writing the script, click Publish to complete the process.
+After writing the script, click Publish to proceed.

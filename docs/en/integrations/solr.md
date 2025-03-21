@@ -1,8 +1,8 @@
 ---
 title     : 'Solr'
-summary   : 'Collect Solr metrics'
+summary   : 'Collect metrics data from Solr'
 tags:
-  - 'DATA STORES'
+  - 'DATABASE'
 __int_icon      : 'icon/solr'
 dashboard :
   - desc  : 'Solr'
@@ -12,20 +12,20 @@ monitor   :
     path  : 'monitor/en/solr'
 ---
 
-
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Solr collector, which collects statistics of Solr Cache, Request Times, and so on.
+The Solr collector is used to collect statistical information such as Solr Cache and Request Times.
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requrements}
 
-DataKit uses the Solr Metrics API to collect metrics data and supports Solr 7.0 and above. Available for Solr 6.6, but the indicator data is incomplete.
+- DataKit uses the Solr Metrics API to collect metrics data, supporting Solr version 7.0 and above.
+- It can also be used for Solr 6.6, but the metrics data will not be complete.
 
-Already tested version:
+Tested versions:
 
 - [x] 8.11.2
 - [x] 7.0.0
@@ -33,9 +33,9 @@ Already tested version:
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `solr.conf.sample` and name it  `solr.conf`. Examples are as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `solr.conf.sample`, and rename it to `solr.conf`. An example is shown below:
     
     ```toml
         
@@ -64,27 +64,27 @@ Already tested version:
     
     
     ```
-
-    After configuration, restart DataKit.
+    
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    You can currently enable the collector by injecting its configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
 ---
 
-To collect Solr's log, open `files` in Solr.conf and write to the absolute path of the Solr log file. For example:
+If you need to collect logs from Solr, open the `files` option in *solr.conf* and enter the absolute path to the Solr log file. For example:
 
 ```toml
 [inputs.solr.log]
-    # fill in the absolute path
+    # Enter absolute path
     files = ["/path/to/demo.log"]
 ```
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.solr.tags]` if needed:
+All the following data collected will append the global election tag by default. You can also specify other tags in the configuration through `[inputs.solr.tags]`:
 
 ``` toml
  [inputs.solr.tags]
@@ -109,7 +109,7 @@ For all of the following data collections, the global election tags will added a
 |`instance`|Instance name, generated based on server address.|
 |`name`|Cache name.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -145,7 +145,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|System hostname.|
 |`instance`|Instance name, generated based on server address.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -180,7 +180,7 @@ For all of the following data collections, the global election tags will added a
 |`host`|System hostname.|
 |`instance`|Instance name, generated based on server address.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -192,19 +192,19 @@ For all of the following data collections, the global election tags will added a
 
 
 
-## Log Collection {#logging}
+## Logs {#logging}
 
-Example of cutting logs:
+Log splitting example:
 
 ```log
 2013-10-01 12:33:08.319 INFO (org.apache.solr.core.SolrCore) [collection1] webapp.reporter
 ```
 
-Cut fields:
+Fields after splitting:
 
-| Field Name | Field Value                   |
-| ---------- | ----------------------------- |
-| Reporter   | webapp.reporter               |
-| status     | INFO                          |
-| thread     | org.apache.solr.core.SolrCore |
-| time       | 1380630788319000000           |
+| Field Name     | Field Value                          |
+| --------       | -----------------------------        |
+| `Reporter`     | `webapp.reporter`                  |
+| `status`       | `INFO`                             |
+| `thread`       | `org.apache.solr.core.SolrCore`   |
+| `time`         | `1380630788319000000`              |
