@@ -223,12 +223,12 @@ android{
 | setEnableAccessAndroidID | Boolean | 否 | 开启获取 `Android ID`，默认为 `true`，设置为 `false`，则 `device_uuid` 字段数据将不进行采集,市场隐私审核相关[查看这里](#adpot-to-privacy-audits) |
 | addGlobalContext | Dictionary | 否 | 添加 SDK 全局属性，添加规则请查阅[此处](#key-conflict) |
 | setServiceName | String | 否 | 设置服务名，影响 Log 和 RUM 中 service 字段数据，默认为 `df_rum_android` |
-| setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true`。当为 false 时使用 `FTSdk.flushSyncData()` 自行管理数据同步 |  
+| setAutoSync | Boolean | 否 | 是否开启自动同步，默认为 `true`。当为 `false` 时使用 `FTSdk.flushSyncData()` 自行管理数据同步 |  
 | setSyncPageSize | Int | 否 | 设置同步请求条目数，`SyncPageSize.MINI` 5 条，`SyncPageSize.MEDIUM` 10 条，`SyncPageSize.LARGE` 50 条，默认 `SyncPageSize.MEDIUM`   |
 | setCustomSyncPageSize | Enum | 否 | 设置同步请求条目数，范围 [5,)，注意请求条目数越大，代表数据同步占用更大的计算资源，默认为 10 **注意：setSyncPageSize 和 setCustomSyncPageSize 只需要配置一个**   |
 | setSyncSleepTime | Int | 否 | 设置同步间歇时间，范围 [0,5000]，默认不设置  |
 | enableDataIntegerCompatible | Void | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题。1.6.9 版本默认开启  |
-| setNeedTransformOldCache | Boolean | 否 | 是否需要兼容同步 ft-sdk 1.6.0 以下的版本的旧缓存数据，默认为 false |
+| setNeedTransformOldCache | Boolean | 否 | 是否需要兼容同步 ft-sdk 1.6.0 以下的版本的旧缓存数据，默认为 `false` |
 | setCompressIntakeRequests | Boolean | 否 | 对同步数据进行压缩，ft-sdk 1.6.3 以上版本支持这个方法 |
 | enableLimitWithDbSize | Void | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：** 开启之后 `FTLoggerConfig.setLogCacheLimitCount` 及 `FTRUMConfig.setRumCacheLimitCount` 将失效。ft-sdk 1.6.6 以上版本支持这个方法 |
 

@@ -103,7 +103,7 @@ await FTMobileReactNative.sdkConfig(config);
 | syncSleepTime | number | 否 | 设置同步间歇时间。范围 [0,5000]，默认不设置 |
 | enableDataIntegerCompatible | boolean | 否 | 需要与 web 数据共存情况下，建议开启。此配置用于处理 web 数据类型存储兼容问题。0.3.12 以后版本默认开启 |
 | globalContext | object | 否 | 添加自定义标签。添加规则请查阅[此处](../android/app-access.md#key-conflict) |
-| compressIntakeRequests | boolean | 否 | 设置是否对同步数据进行压缩 |
+| compressIntakeRequests | boolean | 否 | 设置是否对同步数据进行压缩，默认关闭 |
 | enableLimitWithDbSize | boolean | 否 | 开启使用 db 限制数据大小，默认 100MB，单位 Byte，数据库越大，磁盘压力越大，默认不开启。<br>**注意：**开启之后 Log 配置  `logCacheLimitCount` 及 RUM 配置`rumCacheLimitCount` 将失效。SDK  0.3.10  以上版本支持该参数 |
 | dbCacheLimit | number | 否 | DB 缓存限制大小。范围 [30MB,)，默认 100MB，单位 byte，SDK 0.3.10  以上版本支持该参数 |
 | dbDiscardStrategy | string | 否 | 设置数据库中数据丢弃规则。<br>丢弃策略：`FTDBCacheDiscard.discard`丢弃新数据（默认）、`FTDBCacheDiscard.discardOldest`丢弃旧数据。SDK 0.3.10 以上版本支持该参数 |
