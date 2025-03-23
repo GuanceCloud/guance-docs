@@ -1,16 +1,16 @@
 ---
-title: 'Huawei Cloud ASM Trace Data to Guance'
+title: 'Huawei Cloud ASM Tracing TO <<< custom_key.brand_name >>>'
 tags: 
   - Huawei Cloud
-summary: 'Sending trace data from Huawei Cloud ASM to Guance for viewing and analysis.'
+summary: 'Output tracing data from Huawei Cloud ASM to <<< custom_key.brand_name >>> for viewing and analysis.'
 __int_icon: 'icon/huawei_asm'
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Huawei Cloud ASM Trace Data to Guance
+# Huawei Cloud ASM Tracing TO <<< custom_key.brand_name >>>
 <!-- markdownlint-enable -->
 
-Sending trace data from Huawei Cloud ASM to Guance for viewing and analysis.
+Output tracing data from Huawei Cloud ASM to <<< custom_key.brand_name >>> for viewing and analysis.
 
 ## Configuration {#config}
 
@@ -21,11 +21,11 @@ To use ASM, you need to purchase a CCE cluster and deploy the `datakit` [`daemon
 Service Mesh => Purchase Mesh => Basic Edition
 ![img](imgs/huawei_asm/huawei_asm.png)
 
-Specify the mesh name, select the `istio` version, choose the cluster version and `istio` control nodes, then submit directly.
+Grid name, select `istio` version, choose cluster version and `istio` control node, submit directly.
 
 ![img](imgs/huawei_asm/huawei_asm01.png)
 
-After approximately 1-3 minutes, the installation completion page will look like this:
+After about 1~3 minutes, the installation completed page looks like this:
 
 ![img](imgs/huawei_asm/huawei_asm02.png)
 
@@ -33,24 +33,25 @@ After installation, create the `bookinfo` application.
 
 ![img](imgs/huawei_asm/huawei_asm03.png)
 
-Before installation, prepare a load balancer. I have already prepared one; just select it. Choose port 80 for external access, and set the image repository address to `docker.io/istio`, then install.
+Before installation, we need to prepare a load balancer, which I have already done. Select it, choose external port as 80, select image repository address as `docker.io/istio`, then install.
 
 ![img](imgs/huawei_asm/huawei_asm04.png)
 
-View the created gateway and services.
+Check the created gateway and services.
 
 ![img](imgs/huawei_asm/huawei_asm05.png)
+
 ![img](imgs/huawei_asm/huawei_asm06.png)
 
-Access `http://124.70.68.49/productpage` to check if the service is working properly.
+Access `http://124.70.68.49/productpage` to check if the service is normal.
 
 ![img](imgs/huawei_asm/huawei_asm07.png)
 
-### Sending Trace Data to Guance
+### Sending Trace Data to <<< custom_key.brand_name >>>
 
 #### Enable OpenTelemetry Collector
 
-Refer to the [OpenTelemetry collector integration documentation](<<< homepage >>>/datakit/opentelemetry/).
+Refer to the [`OpenTelemetry` collector connection documentation](<<< homepage >>>/datakit/opentelemetry/)
 
 - Add to ConfigMap
 
@@ -82,7 +83,7 @@ Redeploy `datakit`
 kubectl apply -f datakit.yaml
 ```
 
-After deployment, check if `opentelemetry` is enabled in the monitor.
+After deployment, check in monitor whether `opentelemetry` has been enabled.
 
 ```shell
 # kubectl exec -it -n datakit pods/datakit-lfb95 datakit monitor
@@ -90,9 +91,9 @@ After deployment, check if `opentelemetry` is enabled in the monitor.
 
 ![img](imgs/huawei_asm/huawei_asm08.png)
 
-#### Modify ASM Output Address
+#### Modify asm Output Address
 
-For testing convenience, first modify the sampling rate of ASM.
+For easy testing, first modify the sampling rate of ASM.
 
 ```shell
 # kubectl edit -n istio-system cm istio-1-15-5-r4
@@ -101,7 +102,7 @@ sampling: 100   # Change this parameter from 1 to 100
 ...
 ```
 
-Modify ASM output to Guance.
+Modify asm output to <<< custom_key.brand_name >>>
 
 ```shell
 # kubectl edit -n monitoring cm otel-collector-conf
@@ -115,7 +116,7 @@ exporters:
         endpoint: "http://datakit-service.datakit:4317"
         tls:
           insecure: true
-        compression: none # Disable gzip
+        compression: none # Do not enable gzip
 ...
 traces/apm:
           receivers: [ zipkin ]
@@ -125,7 +126,7 @@ traces/apm:
 
 ![img](imgs/huawei_asm/huawei_asm09.png)
 
-After modifying the configuration, access `http://124.70.68.49/productpage` several times, then check the traces in the Guance workspace.
+After configuration modification, access the address `http://124.70.68.49/productpage` several times, then check the traces in <<< custom_key.brand_name >>> workspace.
 
 ![img](imgs/huawei_asm/huawei_asm10.png)
 
@@ -133,10 +134,11 @@ Click on a trace to view detailed information.
 
 ![img](imgs/huawei_asm/huawei_asm11.png)
 
-### Sending Metrics Data to Guance
+### Sending Metrics Data to <<< custom_key.brand_name >>>
 #### Metric Collection Configuration
 
-1. Enable `Prometheus Exporter` data collection in DataKit. Refer to [**Prometheus Exporter**](<<< homepage >>>/integrations/prom/#__tabbed_1_2). The ConfigMap is as follows:
+1. Enable `Prometheus Exportter` data collection in DataKit. Refer to [**Prometheus Exportter**](<<< homepage >>>/integrations/prom/#__tabbed_1_2), ConfigMap as follows:
+
 
    ``` yaml
        prom.conf: |
@@ -149,7 +151,8 @@ Click on a trace to view detailed information.
            measurement_name = "istio_prom"
    ```
 
-2. Mount the configuration file
+2. Mount configuration file
+
 
    ``` yaml
            - mountPath: /usr/local/datakit/conf.d/prom/prom.conf
@@ -158,6 +161,7 @@ Click on a trace to view detailed information.
    ```
 
 3. Redeploy DataKit
+
 
    ``` yaml
    Kubectl apply -f datakit.yml 

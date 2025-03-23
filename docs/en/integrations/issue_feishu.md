@@ -1,6 +1,6 @@
 ---
 title: 'Incident - Lark'
-summary: 'Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance'
+summary: '<<< custom_key.brand_name >>> Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to <<< custom_key.brand_name >>>.'
 __int_icon: 'icon/feishu'
 dashboard:
   - desc: 'None'
@@ -14,7 +14,7 @@ monitor:
 # Incident - Lark
 <!-- markdownlint-enable -->
 
-Guance Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to Guance.
+<<< custom_key.brand_name >>> Incident is deeply integrated with Lark, making it easy to send incident information to Lark and reply through Lark, which will be transmitted back to <<< custom_key.brand_name >>>.
 
 ---
 
@@ -22,18 +22,18 @@ Guance Incident is deeply integrated with Lark, making it easy to send incident 
 
 ### Prerequisites
 
-You need administrative permissions for both the "Guance Workspace" and the "Lark Open Platform".
+Requires management permissions for the "<<< custom_key.brand_name >>> workspace" and the "Lark Open Platform."
 
 ### Install Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-> We recommend deploying the GSE version.
+> It is recommended to deploy the GSE version.
 
 ### Install Script
 
-In the script market, install the corresponding collection script: "Guance Integration (Guance Incident - Lark)" (ID: `guance_issue_feishu`) to enable it.
+In the script market, install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (<<< custom_key.brand_name >>> Incident - Lark)" (ID: `guance_issue_feishu`) to enable it.
 
-For easier maintenance of the documentation, please navigate to [Lark Integration Configuration](https://func.guance.com/doc/script-market-guance-issue-feishu-integration/){:target="_blank"} for operation.
+For easier maintenance of the documentation, please proceed to [Lark Integration Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-issue-feishu-integration/){:target="_blank"} for operation.

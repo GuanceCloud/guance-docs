@@ -8,13 +8,13 @@ title: '128-bit Trace ID'
 
 DDTrace agent 默认的 trace-id 是 64 位，Datakit 在接收到的链路数据中 trace-id 也是 64 位，从 v1.11.0 开始支持 W3C 协议并支持接收 128 位的 trace-id。但是发送到链路中的 trace-id 依旧是 64 位。
 
-为此，观测云做了二次开发，将 trace_128_bit_id 放到链路数据中一并发往 Datakit ，这样就能实现 DDTrace 和 OTEL 的链路串联。
+为此，<<< custom_key.brand_name >>>做了二次开发，将 trace_128_bit_id 放到链路数据中一并发往 Datakit ，这样就能实现 DDTrace 和 OTEL 的链路串联。
 
 可以查看参考：[GitHub issue](https://github.com/GuanceCloud/dd-trace-java/issues/37){:target="_blank"}
 
 
 ## 实现方式 {#how}
-从 dd v1.11 开始已经支持 128 位的 traceID，目前 观测云的版本是 1.12.1。启动命令参数：
+从 dd v1.11 开始已经支持 128 位的 traceID，目前 <<< custom_key.brand_name >>>的版本是 1.12.1。启动命令参数：
 
 ```shell
 -Ddd.trace.128.bit.traceid.generation.enabled=true
@@ -45,7 +45,7 @@ DDTrace agent 默认的 trace-id 是 64 位，Datakit 在接收到的链路数�
 
 这样还是不够的，还需要在 Datakit 中进行筛选，如果有 `trace_128_bit_id` 则替换掉旧的 `trace-id` 。
 
-在 观测云 链路中，所有的链路 id 都会成为 128 位的。
+在 <<< custom_key.brand_name >>> 链路中，所有的链路 id 都会成为 128 位的。
 
 修改采集器 `ddtrace.conf` 的配置：
 

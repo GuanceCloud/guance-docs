@@ -52,7 +52,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/is
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
@@ -69,7 +69,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/is
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"

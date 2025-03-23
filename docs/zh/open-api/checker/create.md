@@ -307,7 +307,7 @@ permissionSet 字段示例:
 | extend.isNeedCreateIssue   | boolean | 是否关联异常追踪, 默认不关联 |
 | extend.issueDfStatus       | array   | 可选4中类型(critical, error, warning, nodata),  issueDfStatus 存在时: 监控器产生的事件 df_status 在 issueDfStatus 中 才会创建 Issue ,issueDfStatus不存在, 都会创建Issue |
 | extend.issueLevelUUID       | string   | issue 等级UUID      |
-| extend.manager       | array   | 创建Issue 时的负责人信息(邮箱/空间成员/团队) , 示列: ["xx@qq.com","acnt_yyyy", "group_"]   |
+| extend.manager       | array   | 创建Issue 时的负责人信息(邮箱/空间成员/团队) , 示列: ["xxx@<<< custom_key.brand_main_domain >>>","acnt_yyyy", "group_"]   |
 | extend.needRecoverIssue       | boolean   | 事件恢复是否需要 同步关闭 issue, 默认 false |
 | jsonScript.channels       | string   | isNeedCreateIssue 为true 时,该字段必传.  issue 频道信息, 示列: ["chan_xxx", "chan_yyy"]   |
 

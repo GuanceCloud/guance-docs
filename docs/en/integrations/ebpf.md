@@ -1,6 +1,6 @@
 ---
 title     : 'eBPF'
-summary   : 'Collect Linux network data through eBPF'
+summary   : 'Collect Linux network data via eBPF'
 tags:
   - 'EBPF'
   - 'NETWORK'
@@ -13,12 +13,11 @@ monitor   :
     path  : '-'
 ---
 
-
 :fontawesome-brands-linux: :material-kubernetes:
 
 ---
 
-eBPF collector, collecting host network TCP, UDP connection information, Bash execution log, etc. This collector mainly includes `ebpf-net`, `ebpf-conntrack` and `ebpf-bash` three plugins:
+The eBPF collector gathers HOST NETWORK TCP and UDP connection information, Bash execution logs, etc. The collector includes the following plugins:
 
 - `ebpf-net`:
     - Data category: Network
@@ -29,12 +28,12 @@ eBPF collector, collecting host network TCP, UDP connection information, Bash ex
     - Data category: Logging
     - Collect Bash execution log, including Bash process number, user name, executed command and time, etc.;
 
-- `ebpf-conntrack`: [:octicons-tag-24: Version-1.8.0](../datakit/changelog.md#cl-1.8.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
-    - Add two tags `dst_nat_ip` and `dst_nat_port` to the network flow data.
+- `ebpf-conntrack`: [:octicons-tag-24: Version-1.8.0](../datakit/changelog.md#cl-1.8.0)
+    - Adds two labels `dst_nat_ip` and `dst_nat_port` to network flow data, recording the target IP and port after `DNAT`; this plugin can be enabled when the kernel loads `nf_conntrack`;
 
-
-- `ebpf-trace`:
-    - Application call relationship tracking.
+- `ebpf-trace`: [:octicons-tag-24: Version-1.17.0](../datakit/changelog.md#cl-1.17.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
+    - Data categories: `Tracing`
+    - Used for tracking application network request call relationships, based on `ebpf-net`'s `httpflow` data and eBPF probes;
 
 - `bpf-netlog`:
     - Data categories: `Logging`, `Network`
@@ -108,7 +107,7 @@ setenforce 0
       # mem_limit = "4GiB"
       # net_limit = "100MiB/s"
     
-      ## automatically takes effect when running DataKit in 
+      ## Automatically takes effect when running DataKit in 
       ## Kubernetes daemonset mode
       ##
       # kubernetes_url = "https://kubernetes.default:443"
@@ -222,23 +221,23 @@ setenforce 0
     
     ```
     
-    After configuration, restart DataKit.
+    After configuring, restart DataKit.
 
 === "Kubernetes"
 
-    In Kubernetes, you can enable collection through ConfigMap or directly enable the eBPF collector by default:
+    In Kubernetes, there are two ways to enable the eBPF collector: through ConfigMap or by enabling it by default in *datakit.yaml*:
 
-    1. For the ConfigMap method, refer to the general [Installation Example](../datakit/datakit-daemonset-deploy.md#configmap-setting).
-    2. Add `ebpf` to the environment variable `ENV_ENABLE_INPUTS` in *datakit.yaml*. In this case, the default configuration is used, that is, only `ebpf-net` network data collection is enabled.
+    1. Refer to the generic [installation example](../datakit/datakit-daemonset-deploy.md#configmap-setting) for the ConfigMap method.
+    2. Append `ebpf` to the environment variable `ENV_ENABLE_INPUTS` in *datakit.yaml*, which uses the default configuration, i.e., only enables `ebpf-net` network data collection.
     
     ```yaml
     - name: ENV_ENABLE_INPUTS
            value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,ebpf
     ```
 
-### Environment variables and configuration items {#input-cfg-field-env}
+### Environment Variables and Configuration Fields {#input-cfg-field-env}
 
-The following environment variables can be used to adjust the eBPF collection configuration in Kubernetes:
+Adjust the eBPF collection configuration in Kubernetes via the following environment variables:
 
 Configuration items:
 
@@ -249,112 +248,112 @@ Configuration items:
 
 - `l7net_enabled`
     - Description: Enable http protocol data collection
-    - Environment variable: `ENV_INPUT_EBPF_L7NET_ENABLED`
+    - Environment Variable: `ENV_INPUT_EBPF_L7NET_ENABLED`
     - Example: `httpflow`
 
 - `interval`
     - Description: Set the sampling time interval
-    - Environment variable: `ENV_INPUT_EBPF_INTERVAL`
+    - Environment Variable: `ENV_INPUT_EBPF_INTERVAL`
     - Example: `1m30s`
 
 - `ipv6_disabled`
     - Description: Whether the system does not support IPv6
-    - Environment variable: `ENV_INPUT_EBPF_IPV6_DISABLED`
+    - Environment Variable: `ENV_INPUT_EBPF_IPV6_DISABLED`
     - Example: `false`
 
 - `ephemeral_port`
-    - Description: Ephemeral port start location
-    - Environment variable: `ENV_INPUT_EBPF_EPHEMERAL_PORT`
+    - Description: Starting position of the ephemeral port
+    - Environment Variable: `ENV_INPUT_EBPF_EPHEMERAL_PORT`
     - Example: `32768`
 
 - `pprof_host`
     - Description: pprof host
-    - Environment variable: `ENV_INPUT_EBPF_PPROF_HOST`
+    - Environment Variable: `ENV_INPUT_EBPF_PPROF_HOST`
     - Example: `127.0.0.1`
 
 - `pprof_port`
     - Description: pprof port
-    - Environment variable: `ENV_INPUT_EBPF_PPROF_PORT`
+    - Environment Variable: `ENV_INPUT_EBPF_PPROF_PORT`
     - Example: `6061`
 
 <!-- - `interval`
     - Description: Data aggregation period
-    - Environment variable: `ENV_INPUT_EBPF_INTERVAL`
+    - Environment Variable: `ENV_INPUT_EBPF_INTERVAL`
     - Example: `60s` -->
 
 - `trace_server`
-    - Description: The address of DataKit ELinker/Datakit to enable the `ebpftrace` collector
-    - Environment variable: `ENV_INPUT_EBPF_TRACE_SERVER`
+    - Description: Address of the DataKit ELinker/Datakit to enable the `ebpftrace` collector
+    - Environment Variable: `ENV_INPUT_EBPF_TRACE_SERVER`
     - Example: `<ip>:<port>`
 
 - `trace_all_process`
-    - Description: Trace all processes in the system
-    - Environment variable: `ENV_INPUT_EBPF_TRACE_ALL_PROCESS`
+    - Description: Trace all processes within the system
+    - Environment Variable: `ENV_INPUT_EBPF_TRACE_ALL_PROCESS`
     - Example: `false`
 
 - `trace_name_blacklist`
-    - Description: The process with the specified process name will be disabled from collecting trace data
-    - Environment variable: `ENV_INPUT_EBPF_TRACE_NAME_BLACKLIST`
+    - Description: Processes with specified process names will be prohibited from collecting link data
+    - Environment Variable: `ENV_INPUT_EBPF_TRACE_NAME_BLACKLIST`
     - Example:
 
 - `trace_env_blacklist`
-    - Description: Any process containing any of the specified environment variable names will be disabled from collecting trace data
-    - Environment variable: `ENV_INPUT_EBPF_TRACE_ENV_BLACKLIST`
+    - Description: Processes containing any one of the specified environment variable names will be prohibited from collecting link data
+    - Environment Variable: `ENV_INPUT_EBPF_TRACE_ENV_BLACKLIST`
     - Example: `DKE_DISABLE_ETRACE`
 
 - `trace_env_list`
-    - Description: Link data for processes with any specified environment variables will be traced and reported
-    - Environment variable: `ENV_INPUT_EBPF_TRACE_ENV_LIST`
+    - Description: Link data of processes containing any specified environment variables will be tracked and reported
+    - Environment Variable: `ENV_INPUT_EBPF_TRACE_ENV_LIST`
     - Example: `DK_BPFTRACE_SERVICE,DD_SERVICE,OTEL_SERVICE_NAME`
 
 - `trace_name_list`
-    - Description: Processes whose names are in the specified set will be traced and reported
-    - Environment variable: `ENV_INPUT_EBPF_TRACE_NAME_LIST`
+    - Description: Processes with process names in the specified set will be tracked and reported
+    - Environment Variable: `ENV_INPUT_EBPF_TRACE_NAME_LIST`
     - Example: `chrome,firefox`
 
 - `conv_to_ddtrace`
-    - Description: Convert all application side link IDs to decimal strings for compatibility purposes, not used unless necessary
-    - Environment variable: `ENV_INPUT_EBPF_CONV_TO_DDTRACE`
+    - Description: Convert all application-side link ids to strings represented in base 10, compatible usage, unnecessary not to use
+    - Environment Variable: `ENV_INPUT_EBPF_CONV_TO_DDTRACE`
     - Example: `false`
 
 - `netlog_blacklist`
     - Description: Used to filter packets after packet capture
-    - Environment variable: `ENV_INPUT_EBPF_NETLOG_BLACKLIST`
+    - Environment Variable: `ENV_INPUT_EBPF_NETLOG_BLACKLIST`
     - Example: `ip_saddr=='127.0.0.1' \|\| ip_daddr=='127.0.0.1'`
 
 - `netlog_metric`
-    - Description: Collect network metrics from network packet analysis
-    - Environment variable: `ENV_INPUT_EBPF_NETLOG_METRIC`
+    - Description: Collect network metrics by analyzing network packets
+    - Environment Variable: `ENV_INPUT_EBPF_NETLOG_METRIC`
     - Example: `true`
 
 - `netlog_log`
-    - Description: Collect network logs from network packet analysis
-    - Environment variable: `ENV_INPUT_EBPF_NETLOG_LOG`
+    - Description: Collect network logs by analyzing network packets
+    - Environment Variable: `ENV_INPUT_EBPF_NETLOG_LOG`
     - Example: `false`
 
 - `cpu_limit`
-    - Description: The maximum number of CPU cores used per unit time. When the upper limit is reached, the collector exits.
-    - Environment variable: `ENV_INPUT_EBPF_CPU_LIMIT`
-    - Example: "2.0"`
+    - Description: Maximum CPU core usage restriction per unit time, exit upon reaching the upper limit
+    - Environment Variable: `ENV_INPUT_EBPF_CPU_LIMIT`
+    - Example: `"2.0"`
 
 - `mem_limit`
-    - Description: Memory size usage limit
-    - Environment variable: `ENV_INPUT_EBPF_MEM_LIMIT`
+    - Description: Memory size usage restriction
+    - Environment Variable: `ENV_INPUT_EBPF_MEM_LIMIT`
     - Example: `"4GiB"`
 
 - `net_limit`
-    - Description: Network bandwidth (any network card) limit
-    - Environment variable: `ENV_INPUT_EBPF_NET_LIMIT`
+    - Description: Network bandwidth (any NIC) restriction
+    - Environment Variable: `ENV_INPUT_EBPF_NET_LIMIT`
     - Example: `"100MiB/s"`
 
 - `sampling_rate`
-    - Description: The sampling rate when the eBPF collector reports data, ranging from `0.01 to 1.00`; Mutually exclusive with the `samping_rate_pts_per_min` setting
-    - Environment variable: `ENV_INPUT_EBPF_SAMPLING_RATE`
+    - Description: Set the sampling rate for reporting data by the eBPF collector, range `0.01 ~ 1.00`; mutually exclusive with setting `samping_rate_pts_per_min`
+    - Environment Variable: `ENV_INPUT_EBPF_SAMPLING_RATE`
     - Example: `0.50`
 
-- `sampling_rate_pts_per_min`
-    - Description: Set the data volume threshold per minute when the eBPF collector reports data, and dynamically adjust the sampling rate
-    - Environment variable: `ENV_INPUT_EBPF_SAMPLING_RATE_PTSPERMIN`
+- `samping_rate_pts_per_min`
+    - Description: Set the threshold for the amount of data reported per minute by the eBPF collector, dynamically adjusting the sampling rate
+    - Environment Variable: `ENV_INPUT_EBPF_SAMPLING_RATE_PTSPERMIN`
     - Example: `1500`
 <!-- markdownlint-enable -->
 
@@ -372,16 +371,16 @@ Filter rule example:
 
 Single rule:
 
-The following rules filter network data with ip `1.1.1.1` and port 80. (Line breaks allowed after operator)
+The following rule filters out network data with an IP of `1.1.1.1` and port 80. (Operators allow line breaks)
 
 ```py
 (ip_saddr == "1.1.1.1" || ip_saddr == "1.1.1.1") &&
-      (src_port == 80 || dst_port == 80)
+     (src_port == 80 || dst_port == 80)
 ```
 
 Multiple rules:
 
-Use `;` or `\n` to separate the rules. If any rule is met, the data will be filtered.
+Rules are separated by `;` or `\n`, and data filtering occurs if any one rule is satisfied.
 
 ```py
 udp
@@ -391,9 +390,9 @@ ip_saddr == "10.10.0.1" && (src_port == 80 || dst_port == 80)
 ipnet_contains("127.0.0.0/8", ip_saddr); ipv6
 ```
 
-Data available for filtering:
+Data that can be filtered:
 
-This filter is used to filter network data. Comparable data is as follows:
+This filter is used to filter network data, and the comparable data is as follows:
 
 | key name      | type | description                                                                             |
 | ------------- | ---- | --------------------------------------------------------------------------------------- |
@@ -410,9 +409,9 @@ This filter is used to filter network data. Comparable data is as follows:
 | `k8s_src_pod` | str  | source `pod` name                                                                       |
 | `k8s_dst_pod` | str  | target `pod` name                                                                       |
 
-Operator:
+Operators:
 
-Operators from highest to lowest:
+Operator precedence from high to low:
 
 | Priority | Op     | Name                        | Binding Direction |
 | -------- | ------ | --------------------------- | ----------------- |
@@ -427,27 +426,27 @@ Operators from highest to lowest:
 | 4        | `&&`   | Logical AND                 | Left              |
 | 4        | `\|\|` | Logical OR                  | Left              |
 
-function:
+Functions:
 
 1. **ipnet_contains**
 
     Function signature: `fn ipnet_contains(ipnet: str, ipaddr: str) bool`
 
-    Description: Determine whether the address is within the specified network segment
+    Description: Determines if the address is within the specified subnet
 
-     Example:
+    Example:
 
     ```py
     ipnet_contains("127.0.0.0/8", ip_saddr)
     ```
 
-    If the `ip_saddr` value is "127.0.0.1", then this rule returns `true` and the TCP connection packet/UDP packet will be filtered.
+    If `ip_saddr` is "127.0.0.1", this rule returns `true`, and the TCP connection packet/UDP packet will be filtered.
 
 2. **has_prefix**
 
     Function signature: `fn has_prefix(s: str, prefix: str) bool`
 
-    Description: Specifies whether the field contains a certain prefix
+    Description: Checks if the specified field contains a certain prefix
 
     Example:
 
@@ -455,11 +454,11 @@ function:
     has_prefix(k8s_src_pod, "datakit-") || has_prefix(k8s_dst_pod, "datakit-")
     ```
 
-    This rule returns `true` if the pod name is `datakit-kfez321`.
+    If the pod name is `datakit-kfez321`, this rule returns `true`.
 
-## Network aggregation data {#network}
+## Aggregated Network Data {#network}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.ebpf.tags]`:
+All the following data collections append a global tag named `host` by default (tag value being the hostname where DataKit resides), and additional tags can also be specified through `[inputs.ebpf.tags]` in the configuration:
 
 ``` toml
  [inputs.ebpf.tags]
@@ -470,11 +469,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-
-
 ### `netflow`
 
-- Tags
+- Tag list
 
 
 | Tag | Description |
@@ -505,7 +502,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- Metrics
+- Field list
 
 
 | Metric | Description | Type | Unit |
@@ -523,10 +520,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-
 ### `dnsflow`
 
-- Tags
+- Tag list
 
 
 | Tag | Description |
@@ -553,7 +549,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- Metrics
+- Field list
 
 
 | Metric | Description | Type | Unit |
@@ -572,10 +568,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-
 ### `httpflow`
 
-- Tags
+- Tag list
 
 
 | Tag | Description |
@@ -606,7 +601,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`sub_source`|Some specific connection classifications, such as the sub_source value for Kubernetes network traffic is K8s|
 |`transport`|Transport layer protocol. (udp/tcp)|
 
-- Metrics
+- Field list
 
 
 | Metric | Description | Type | Unit |
@@ -653,18 +648,18 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `bash`
 
-- Tags
+- Tag list
 
 
 | Tag | Description |
 |  ----  | --------|
 |`host`|host name|
 
-- Metrics
+- Field list
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`cmd`|Command|string|-|
 |`message`|The bash execution record generated by the collector|string|-|
 |`pid`|Process identification number|string|-|
@@ -679,10 +674,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-
 ### `bpf_net_l4_log`
 
-- Tags
+- Tag list
 
 
 | Tag | Description |
@@ -721,11 +715,11 @@ For all of the following data collections, a global tag named `host` is appended
 |`vni_id`|Virtual Network Identifier|
 |`vxlan_packet`|Whether it is a VXLAN packet|
 
-- Metrics
+- Field list
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`chunk_id`|A connection may be divided into several chunks for upload based on time interval or TCP segment number|int|-|
 |`rx_bytes`|The number of bytes received by the network interface|int|B|
 |`rx_packets`|The number of packets received by the network interface|int|-|
@@ -744,10 +738,9 @@ For all of the following data collections, a global tag named `host` is appended
 
 
 
-
 ### `bpf_net_l7_log`
 
-- Tags
+- Tag list
 
 
 | Tag | Description |
@@ -789,11 +782,11 @@ For all of the following data collections, a global tag named `host` is appended
 |`vni_id`|Virtual Network Identifier|
 |`vxlan_packet`|Whether it is a VXLAN packet|
 
-- Metrics
+- Field list
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`http_method`|HTTP method|string|-|
 |`http_path`|HTTP path|string|-|
 |`http_status_code`|HTTP status code|int|-|
@@ -840,7 +833,7 @@ For all of the following data collections, a global tag named `host` is appended
 
 ### `dketrace`
 
-- Tags
+- Tag list
 
 
 | Tag | Description |
@@ -852,11 +845,11 @@ For all of the following data collections, a global tag named `host` is appended
 |`src_ip`|Source IP|
 |`src_port`|Source port|
 
-- Metrics
+- Field list
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :----: |
+| ---- |---- | :---:    | :---: |
 |`app_parent_id`|Parent span id carried by the application in the request|string|-|
 |`app_trace_id`|Trace id carried by the application in the request|string|-|
 |`bytes_read`|Bytes read|int|B|

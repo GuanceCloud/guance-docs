@@ -2,14 +2,14 @@
 title: 'Alibaba Cloud PolarDB Distributed 2.0'
 tags: 
   - Alibaba Cloud
-summary: 'Alibaba Cloud PolarDB Distributed 2.0 displays metrics for the compute layer and storage nodes, including CPU utilization, connection usage, disk usage, disk usage rate, memory utilization, network bandwidth, etc.'
+summary: 'Alibaba Cloud PolarDB Distributed 2.0 displays Metrics for the compute layer and storage nodes, including CPU utilization, connection usage, disk usage volume, disk usage rate, memory utilization, network bandwidth, etc.'
 __int_icon: 'icon/aliyun_polardb'
 dashboard:
-  - desc: 'Alibaba Cloud PolarDB Distributed 2.0 built-in view'
+  - desc: 'Alibaba Cloud PolarDB Distributed 2.0 built-in views'
     path: 'dashboard/en/aliyun_polardb_2.0/'
 
 monitor:
-  - desc: 'Alibaba Cloud PolarDB Distributed 2.0 monitor'
+  - desc: 'Alibaba Cloud PolarDB Distributed 2.0 monitors'
     path: 'monitor/en/aliyun_polardb_2.0/'
 ---
 
@@ -17,85 +17,87 @@ monitor:
 # Alibaba Cloud PolarDB Distributed 2.0
 <!-- markdownlint-enable -->
 
-Alibaba Cloud PolarDB Distributed 2.0 displays metrics for the compute layer and storage nodes, including CPU utilization, connection usage, disk usage, disk usage rate, memory utilization, network bandwidth, etc.
+Alibaba Cloud PolarDB Distributed 2.0 displays Metrics for the compute layer and storage nodes, including CPU utilization, connection usage, disk usage volume, disk usage rate, memory utilization, network bandwidth, etc.
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - expansion - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-### Install Script
 
-> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant read-only access `ReadOnlyAccess`)
+### Installation Script
 
-To synchronize monitoring data from PolarDB Distributed 2.0, we install the corresponding collection script: 「Guance Integration (Alibaba Cloud-PolarDB-X 2.0 Collection)」(ID: `guance_aliyun_polardbx_2`)
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-After clicking 【Install】, enter the required parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET, and Account Name.
+To synchronize monitoring data of PolarDB Distributed 2.0, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Alibaba Cloud-PolarDB-X 2.0 Collection)」(ID: `guance_aliyun_polardbx_2`)
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup script accordingly.
+After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK ID, Alibaba Cloud AK SECRET, and Account Name.
 
-Once enabled, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-By default, we collect some configurations; for more details, see [Customize Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-polardbx-1/){:target="_blank"}
+After it is enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to immediately execute once without waiting for the regular time. Wait for a moment, and you can view the execution task records and corresponding logs.
+
+We have collected some configurations by default, details can be found in the Metrics section [Customize cloud object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-polardbx-1/){:target="_blank"}
+
 
 ### Verification
 
-1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the appropriate automatic trigger configuration. You can also check the task records and logs for any anomalies.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」check if there is any asset information.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」check if there is any corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud PolarDB Distributed 2.0, the default metric sets are as follows. You can collect more metrics through configuration.
+After configuring Alibaba Cloud PolarDB Distributed 2.0, the default Measurement sets are as follows, and more Metrics can be collected through configuration.
 
-[Alibaba Cloud Cloud Monitoring - Cloud Native Distributed Database PolarDB-X 2.0 Compute Node Metric Details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardb-x_v2){:target="_blank"}
-[Alibaba Cloud Cloud Monitoring - Cloud Native Distributed Database PolarDB-X 2.0 Storage Node Metric Details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardbx_v2_dn){:target="_blank"}
+[Alibaba Cloud Cloud Monitoring - Cloud Native Distributed Database PolarDB-X 2.0 Compute Node Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardb-x_v2){:target="_blank"}
+[Alibaba Cloud Cloud Monitoring - Cloud Native Distributed Database PolarDB-X 2.0 Storage Node Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_drds/polardbx_v2_dn){:target="_blank"}
 
 ### Compute Node Metrics
 
 | Metric | Description                  |       Statistics        |     Unit     |
 | ---- |------------------------------|:-----------------------:|:------------:|
-|`ActiveConnectionsOfCN`| Number of active connections in PolarDB-X compute layer |         Sum         |    count     |
-|`CPUUsageOfCN`| CPU utilization of PolarDB-X compute layer |         Average         |    %     |
-|`ConnectionsOfCN`| Number of connections in PolarDB-X compute layer |         Sum         |    count    |
-|`ErrorCountOfCN`| Number of errors in PolarDB-X compute layer |         Sum         |    count/s     |
-|`FullGcTimeOfCN`| Full GC time in PolarDB-X compute layer |     Sum     |    nanoseconds     |
-|`LogicRTOfCN`| Logical response time of PolarDB-X compute layer      |         Average         |      μs       |
-|`LogicRequestCountOfCN`| Logical request count of PolarDB-X compute layer                   |     Sum     |     req/s    |
-|`LogicSlowOfCN`| Logical slow SQL count of PolarDB-X compute layer                  |     Sum     |     req/s       |
-|`MemUsageOfCN`| Memory utilization of PolarDB-X compute layer                  |     Average     |      %       |
-|`NetInOfCN`| Network traffic (in) of PolarDB-X compute layer |   Sum    |      B/s       |
-|`NetOutOfCN`| Network traffic (out) of PolarDB-X compute layer|         Sum         |      B/s       |
+|`ActiveConnectionsOfCN`| PolarDB-X compute layer active connection count |         Sum         |    count     |
+|`CPUUsageOfCN`| PolarDB-X compute layer CPU usage rate |         Average         |    %     |
+|`ConnectionsOfCN`| PolarDB-X compute layer connection count |         Sum         |    count    |
+|`ErrorCountOfCN`| PolarDB-X compute layer error count |         Sum         |    count/s     |
+|`FullGcTimeOfCN`| PolarDB-X Full GC time |     Sum     |    nanoseconds     |
+|`LogicRTOfCN`| PolarDB-X compute layer logical response time      |         Average         |      μs       |
+|`LogicRequestCountOfCN`| PolarDB-X compute layer logical request count                   |     Sum     |     req/s    |
+|`LogicSlowOfCN`| PolarDB-X compute layer logical slow SQL                  |     Sum     |     req/s       |
+|`MemUsageOfCN`| PolarDB-X compute layer memory usage rate                  |     Average     |      %       |
+|`NetInOfCN`| PolarDB-X compute layer network traffic (in) |   Sum    |      B/s       |
+|`NetOutOfCN`| PolarDB-X compute layer network traffic (out)|         Sum         |      B/s       |
 
 ### Storage Node Metrics
 
 | Metric | Description                  |       Statistics        |     Unit     |
 | ---- |------------------------------|:-----------------------:|:------------:|
-|`ActiveSessionsOfDN`| Active sessions of PolarDB-X storage node |         Average         |    count    |
-|`CPUUsageOfDN`| CPU utilization of PolarDB-X storage node |         Average         |    %     |
-|`ConnUsageOfDN`| Connection usage rate of PolarDB-X storage node |         Average         |    %    |
-|`DiskSizeOfDN`| Disk usage of PolarDB-X storage node |         Average         |    Megabytes     |
-|`DiskUsageOfDN`| Disk usage rate of PolarDB-X storage node |     Average     |    %     |
-|`IOPSUsageOfDN`| IOPS utilization rate of PolarDB-X storage node     |         Average         |      %       |
-|`IbufDirtyRatioOfDN`| Buffer pool dirty page percentage of PolarDB-X storage node                   |     Average     |     %    |
-|`IbufReadHitOfDN`| Buffer pool read hit rate of PolarDB-X storage node                  |     Average     |     %      |
-|`IbufUseRatioOfDN`| Buffer pool utilization rate of PolarDB-X storage node                  |     Average     |      %       |
-|`LogDiskSizeOfDN`| Log disk usage of PolarDB-X storage node |   Average    |      Megabytes      |
-|`MemUsageOfDN`| Memory utilization rate of PolarDB-X storage node |         Average         |      %       |
-|`NetworkInDN`| Network inbound bandwidth of PolarDB-X storage node |         Average         |     bits/s      |
-|`NetworkOutDN`| Network outbound bandwidth of PolarDB-X storage node |         Average         |     bits/s     |
-|`SlaveLagOfDN`| Replica delay of PolarDB-X storage node |         Average         |      seconds       |
-|`SlowQueriesOfDN`| Slow query count per second of PolarDB-X storage node |         Average         |      countSecond       |
-|`TempDiskTableCreatesOfDN`| Temporary table creation count per second of PolarDB-X storage node |         Average         |    countSecond       |
-|`ThreadsConnectedOfDN`| Thread connection count of PolarDB-X storage node |         Average         |      count      |
-|`ThreadsRunningOfDN`| Active thread count of PolarDB-X storage node |         Average         |      count      |
-|`TmpDiskSizeOfDN`| Temporary disk usage of PolarDB-X storage node |         Average         |     Megabytes      |
+|`ActiveSessionsOfDN`| PolarDB-X storage node ActiveSessions |         Average         |    count    |
+|`CPUUsageOfDN`| PolarDB-X storage node CPU usage rate |         Average         |    %     |
+|`ConnUsageOfDN`| PolarDB-X storage node connection usage rate |         Average         |    %    |
+|`DiskSizeOfDN`| PolarDB-X storage node disk usage volume |         Average         |    Megabytes     |
+|`DiskUsageOfDN`| PolarDB-X storage node disk usage rate |     Average     |    %     |
+|`IOPSUsageOfDN`| PolarDB-X storage node IOPS usage rate     |         Average         |      %       |
+|`IbufDirtyRatioOfDN`| PolarDB-X storage node BP dirty page percentage                   |     Average     |     %    |
+|`IbufReadHitOfDN`| PolarDB-X storage node BP read hit rate                  |     Average     |     %      |
+|`IbufUseRatioOfDN`| PolarDB-X storage node BP usage rate                  |     Average     |      %       |
+|`LogDiskSizeOfDN`| PolarDB-X storage node log disk usage volume |   Average    |      Megabytes      |
+|`MemUsageOfDN`| PolarDB-X storage node memory usage rate |         Average         |      %       |
+|`NetworkInDN`| PolarDB-X storage node network inbound bandwidth |         Average         |     bits/s      |
+|`NetworkOutDN`| PolarDB-X storage node network outbound bandwidth |         Average         |     bits/s     |
+|`SlaveLagOfDN`| PolarDB-X storage node standby delay |         Average         |      seconds       |
+|`SlowQueriesOfDN`| PolarDB-X storage node slow queries per second |         Average         |      countSecond       |
+|`TempDiskTableCreatesOfDN`| PolarDB-X storage node temporary tables created per second |         Average         |    countSecond       |
+|`ThreadsConnectedOfDN`| PolarDB-X storage node thread connections |         Average         |      count      |
+|`ThreadsRunningOfDN`| PolarDB-X storage node active threads |         Average         |      count      |
+|`TmpDiskSizeOfDN`| PolarDB-X storage node temporary disk usage volume |         Average         |     Megabytes      |
 
 
 ## Objects {#object}
-The object data structure collected from Alibaba Cloud PolarDB Distributed 2.0 can be viewed in "Infrastructure - Custom".
+The Alibaba Cloud PolarDB Distributed 2.0 object data structure collected can be viewed under 「Infrastructure - Custom」
 
 ``` json
 {
@@ -131,13 +133,13 @@ The object data structure collected from Alibaba Cloud PolarDB Distributed 2.0 c
     "ReadDBInstances"       : "[]",
     "ResourceGroupId"       : "rg-acfmv3ro3xnfwaa",
     "StorageUsed"           : 2343567360,
-    "message"               : "{instance JSON data}}",
+    "message"               : "{instance json data}}",
   }
 }
 ```
 
 > *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Note 1: The value of `tags.name` is the instance ID, used for unique identification.
+> Tip 1: The value of tags.name is the instance ID, used as unique identification.
 >
-> Note 2: All `fields.message` values are JSON serialized strings.
+> Tip 2: The fields.message are all JSON serialized strings.

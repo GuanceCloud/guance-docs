@@ -35,22 +35,22 @@ Collect related Metrics, Tracing, Logging, and Profiling information for .NET ap
 <!-- markdownlint-disable MD046 MD009 MD051-->
 ???+ info 
     
-    You can install the Datadog.NET Tracer system-wide to instrument all services on the machine or install it on a per-application basis to allow developers to manage instrumentation through application dependencies. To view system-wide installation instructions, click the `Windows` or `Linux` tab. To view per-application installation instructions, click the `NuGet` tab.
+    You can install Datadog.NET Tracer at the machine level to detect all services on the machine or install it on a per-application basis to allow developers to manage detection through application dependencies. To view machine-wide installation instructions, click the `Windows` or `Linux` tab. To view installation instructions for each application, click the `NuGet` tab.
 
 === "Windows"
     
-    To install the .NET Tracer system-wide, follow these steps:
+    To install the .NET Tracer at the machine level, follow these steps:
 
-    1. Download the [.NET Tracer MSI](https://github.com/DataDog/dd-trace-dotnet/releases) installer. Choose the MSI installer that matches your operating system architecture (x64 or x86).
-    2. Run the .NET Tracer MSI installer with administrative privileges.
+    1. Download the [.NET Tracer MSI](https://github.com/DataDog/dd-trace-dotnet/releases) installer. Select the MSI installer that matches the architecture of your operating system (x64 or x86).
+    2. Run the .NET Tracer MSI installer with administrator privileges.
     You can also script the MSI installer by running the following command in `PowerShell`: `Start-Process -Wait msiexec -ArgumentList '/qn /i datadog-apm.msi'`.
 
 === "Linux"
      
-    To install the .NET Tracer system-wide, follow these steps:
+    To install the .NET Tracer at the machine level, follow these steps:
 
-    1. Download the [.NET Tracer MSI](https://github.com/DataDog/dd-trace-dotnet/releases) installer. Choose the MSI installer that matches your operating system architecture (x64 or x86).
-    2. Run the appropriate installation package based on your operating system and create the directory `/var/log/datadog/dotnet` for the .NET tracer logs with appropriate permissions:
+    1. Download the [.NET Tracer MSI](https://github.com/DataDog/dd-trace-dotnet/releases) installer. Select the MSI installer that matches the architecture of your operating system (x64 or x86).
+    2. Depending on your operating system, run the relevant package with appropriate permissions and create the directory for .NET tracer logs `/var/log/datadog/dotnet`:
     > **Debian or Ubuntu**  
     > `sudo dpkg -i ./datadog-dotnet-apm_<TRACER_VERSION>_amd64.deb && /opt/datadog/createLogPath.sh`  
     > **CentOS or Fedora**  
@@ -63,23 +63,23 @@ Collect related Metrics, Tracing, Logging, and Profiling information for .NET ap
 === "Nuget"
 
     ???+ info 
-        Note: This installation will not instrument applications running in `IIS`. For applications running in `IIS`, follow the system-wide installation process for `Windows`.
+        Note: This installation will not detect applications running in `IIS`. For applications running in `IIS`, follow the machine-wide installation process for `Windows`.
     Add .NET Tracer to your application
 
     1. Use the [NuGet package](https://www.nuget.org/packages/Datadog.Trace.Bundle) to add `Datadog.Trace.Bundle` to your application.
 
 ### Enable Tracer for Applications {#tracer}
 
-To enable the .NET Tracer for application services, set the required environment variables and restart the application.
+To enable the .NET Tracer for your service, set the required environment variables and restart the application.
 
-For information on different methods of setting environment variables, see the configuration process [Environment Variables](dotnet.md#env).
+For more information on setting environment variables, see the configuration flow [Environment Variables](dotnet.md#env).
 
 === "Windows"
     
-    Internet Information Services (IIS)：
+    Internet Information Services (IIS):
 
     1. The .NET Tracer MSI installer adds all necessary environment variables. Additional environment variables need to be configured here.
-    2. To automatically instrument applications hosted in `IIS`, run the following commands as an administrator to fully stop and start `IIS`:
+    2. To automatically detect applications hosted in `IIS`, run the following commands as an administrator to fully stop and start `IIS`:
     ```bash
     net stop /y was
     net start w3svc
@@ -89,7 +89,7 @@ For information on different methods of setting environment variables, see the c
 
     Non-IIS Applications
 
-    1. Set the following required environment variables for auto-instrumentation to attach to the application:
+    1. Set the following required environment variables for auto-detection to attach to your application:
     ```bash
     CORECLR_ENABLE_PROFILING=1
     CORECLR_PROFILER={846F5F1C-F9AE-4B07-969E-05C26BC060D8}
@@ -98,7 +98,7 @@ For information on different methods of setting environment variables, see the c
 
 === "Linux"
     
-    1. Add the required environment variables for auto-instrumentation to the application:
+    1. Add the required environment variables for auto-detection to your application:
     ```bash
     CORECLR_ENABLE_PROFILING=1  
     CORECLR_PROFILER={846F5F1C-F9AE-4B07-969E-05C26BC060D8}  
@@ -112,14 +112,13 @@ For information on different methods of setting environment variables, see the c
 
     Add custom probes to .NET applications:
 
-    1. In the application code, access the global tracer via the `Datadog.Trace.Tracer.Instance` property to create new `span`s.
-
+    1. In your application code, access the global tracer via the `Datadog.Trace.Tracer.Instance` property to create new `spans`.
 
 ### Environment Variable Configuration {#env}
 
-To attach auto-instrumentation to services, you must set the required environment variables before starting the application. Refer to the [Enable Tracer for Applications](dotnet.md#tracer) section to determine which environment variables need to be set based on the .NET tracer installation method and correctly set the environment variables according to the service's environment as shown in the examples below.
+To attach auto-detection to services, you must set the required environment variables before launching the application. Refer to the [Enable Tracer for Applications](dotnet.md#tracer) section to determine which environment variables should be set based on the .NET tracer installation method, and correctly set them according to the examples below based on the environment of the service being instrumented.
 
-The following variables need to be added regardless of the method used:
+The following require corresponding variable information regardless of the method used:
 
 > DD_TRACE_AGENT_PORT=9529
 
@@ -132,7 +131,7 @@ The following variables need to be added regardless of the method used:
     
     === "Registry Editor"
 
-        In the Registry Editor, create a multi-string value named `Environment` under the key `HKLM\System\CurrentControlSet\Services\<SERVICE NAME>` and set the value data to:
+        In the registry editor, create a multi-string value named `Environment` under the key `HKLM\System\CurrentControlSet\Services\<SERVICE NAME>` and set the value data to:
         
         ```bash
         CORECLR_ENABLE_PROFILING=1
@@ -149,9 +148,9 @@ The following variables need to be added regardless of the method used:
         
 
 === "IIS"
-    After installing the MSI, IIS sites are automatically instrumented without additional configuration. To set additional environment variables inherited by all IIS sites, follow these steps:
+    After installing the MSI, automatic detection of IIS sites requires no additional configuration. To set additional environment variables inherited by all IIS sites, follow these steps:
 
-    1. Open the Registry Editor and find the multi-string value named `Environment` under the registry item `HKLM\System\CurrentControlSet\Services\WAS`, then add environment variables, one per line. For example, to add log injection and runtime metrics, add the following lines to the value data:  
+    1. Open the registry editor, find the multi-string value named `Environment` under the registry item `HKLM\System\CurrentControlSet\Services\WAS`, and then add environment variables, one per line. For example, to add log injection and runtime metrics, add the following lines to the value data:  
     ```bash
     DD_LOGS_INJECTION=true
     DD_RUNTIME_METRICS_ENABLED=true
@@ -161,13 +160,13 @@ The following variables need to be added regardless of the method used:
     ```bash
     net stop /y was
     net start w3svc
-    # Additionally, any other services stopped when WAS shuts down have been started.
+    # Additionally, any other services stopped when WAS shuts down have been restarted.
     ```
     ![Img](./imgs/dotnet-02.png)
 
 === "Console"
 
-    To automatically instrument console applications, set the environment variables from a batch file before starting the application:
+    To automatically detect console applications, set environment variables from a batch file before starting the application:
 
     ```powershell
     rem Set environment variables
@@ -186,7 +185,7 @@ The following variables need to be added regardless of the method used:
 #### Linux
 
 === "Bash script"
-    Set the required environment variables from `bash` before starting the application:
+    Before starting the application, set the required environment variables from `bash`:
 
     ```shell
     # Set environment variables
@@ -205,7 +204,7 @@ The following variables need to be added regardless of the method used:
 
 === "Docker container"
 
-    Configure environment variables in a `Docker container`:
+    Configure environment variables in the `Docker container`:
     ```shell
     # Set environment variables
     ENV CORECLR_ENABLE_PROFILING=1
@@ -224,7 +223,7 @@ The following variables need to be added regardless of the method used:
 
 
 === "systemctl(per service)"
-    When running .NET applications as services using `systemctl`, you can add the required environment variables to be loaded for specific services.
+    When running a .NET application as a service using `systemctl`, you can add the required environment variables to load for a specific service.
 
     1. Create a file named `environment.env` containing:
     ```shell
@@ -239,7 +238,7 @@ The following variables need to be added regardless of the method used:
     DD_RUNTIME_METRICS_ENABLED=true
     ```
 
-    2. In the service configuration file, reference it as `EnvironmentFile` within the service block:
+    2. Reference it as `EnvironmentFile` in the service block of the service's configuration file:
     ```bash
     [Service]
     EnvironmentFile=/path/to/environment.env
@@ -248,12 +247,13 @@ The following variables need to be added regardless of the method used:
 
     3. Restart the .NET service.
 
-=== "systemctl(all services)"
+
+=== "systemctl(all service)"
     ???+ info 
         
-        Note: The .NET runtime will attempt to load the profiler into any .NET process started after these environment variables are set. Instrumentation should be limited to applications that require tracing. Do not set these environment variables globally, as this will cause all .NET processes on the host to load the probe.
+        Note: The .NET runtime will attempt to load the profiler into any .NET process started after these environment variables are set. You should limit detection to only those applications that need tracing. Do not set these environment variables globally, as this will cause all .NET processes on the host to load the probe.
 
-    When running .NET applications as services using `systemctl`, you can also set environment variables to be loaded for all services managed by `systemctl`.
+    When running .NET applications as services using `systemctl`, you can also set environment variables to load for all services run by `systemctl`.
 
     1. Set the required environment variables by running `systemctl-set-environment`:
     ```bash
@@ -267,7 +267,7 @@ The following variables need to be added regardless of the method used:
     systemctl set-environment DD_RUNTIME_METRICS_ENABLED=true
     ```
 
-    2. Verify that the environment variables were successfully set by running `systemctl show environment`.
+    2. Run `systemctl show environment` to verify that the environment variables have been set successfully.
     3. Restart the application service.
 <!-- markdownlint-enable -->
 
@@ -275,7 +275,7 @@ The following variables need to be added regardless of the method used:
 <!-- markdownlint-disable MD046 MD009 -->
 ???+ success "Runtime Metrics"
     
-    Enable runtime metrics in `.NET Tracer 1.23.0+` by setting the environment variable `DD_RUNTIME_METRICS_ENABLED=true`.
+    Enable runtime metrics in `.NET Tracer 1.23.0+` by using the `DD_RUNTIME_METRICS_ENABLED=true` environment variable.
 <!-- markdownlint-enable -->
 ### Runtime Metrics Compatibility
 
@@ -289,18 +289,18 @@ The following variables need to be added regardless of the method used:
 
 1. Enable the [`statsd`](statsd.md) collector in DataKit.
 2. Default port is `8125`
-3. If running the Agent as a container, ensure `DD_DOGSTATSD_NON_LOCAL_TRAFFIC` is set to `true` and port `8125` on the Agent is open.
+3. If running the Agent as a container, ensure `DD_DOGSTATSD_NON_LOCAL_TRAFFIC` is set to `true` and that port `8125` on the Agent is open.
 
 ### Metric Information
 
 [Detailed metric information](https://docs.datadoghq.com/tracing/metrics/runtime_metrics/dotnet/)
 
 
-## Logging {#logging}
+## Logs {#logging}
 
-### Log Directory
+### File Directories
 
-By default, log files are saved in the following directories. Use `DD_TRACE_LOG_DIRECTORY` to change these paths.
+By default, log files are saved in the following directories. The paths can be changed using `DD_TRACE_LOG_DIRECTORY`.
 
 | Platform | Directory |
 | -- | -- |
@@ -309,7 +309,7 @@ By default, log files are saved in the following directories. Use `DD_TRACE_LOG_
 | Linux (`when using Kubernetes library injection`) | `/datadog-lib/logs` |
 | Azure App Service | `%AzureAppServiceHomeDirectory%\LogFiles\datadog` |
 
-Note: On Linux, you must first create the log directory before enabling debug mode.
+Note: On Linux, the log directory must be created first before enabling debug mode.
 
 <!-- markdownlint-disable MD004 -->
 - `dotnet-tracer-managed-{processName}-{timestamp}.log` contains configuration logs.
@@ -318,11 +318,11 @@ Note: On Linux, you must first create the log directory before enabling debug mo
 <!-- markdownlint-enable -->
 ## Profiler {#profiling}
 
-Refer to the documentation [Profiling for .NET](profile-dotnet.md)
+Refer to the documentation [.NET profiling](profile-dotnet.md)
 
 ## Official Documentation {#docs}
 
-[.NET Configuration Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/dotnet-core/?tab=environmentvariables)
+[.NET Parameters Documentation](https://docs.datadoghq.com/tracing/trace_collection/library_config/dotnet-core/?tab=environmentvariables)
 
 [.NET Tracer](https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/dotnet-core)
 

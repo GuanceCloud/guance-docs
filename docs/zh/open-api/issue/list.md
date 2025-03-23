@@ -88,13 +88,13 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/list' \
                 "creator": "acnt_xxxx32",
                 "creatorInfo": {
                     "acntWsNickname": "",
-                    "email": "962584902@qq.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "",
                     "name": "kj1",
-                    "username": "962584902@qq.com"
+                    "username": "xxx@<<< custom_key.brand_main_domain >>>"
                 },
                 "deleteAt": -1,
-                "description": "<span><span><span><span><span data-at-embedded=\"\" data-insert-by=\"@\" data-info=\"{&quot;item&quot;:{&quot;uuid&quot;:&quot;acnt_xxxx32&quot;}}\" contenteditable=\"false\">&nbsp;<span data-v-52ded4e5=\"\"><span data-v-52ded4e5=\"\" class=\"key-word\">@jiangyd@jiagouyun.com</span></span>&nbsp;</span><span data-at-embedded=\"\" data-insert-by=\"#\" data-info=\"{&quot;item&quot;:{&quot;uuid&quot;:&quot;chan_xxxx32&quot;}}\" contenteditable=\"false\">&nbsp;<span data-v-52ded4e5=\"\"><span data-v-52ded4e5=\"\"><span data-v-52ded4e5=\"\" class=\"key-word\">#jjj</span></span></span>&nbsp;</span>nn</span></span></span></span>",
+                "description": "<span><span><span><span><span data-at-embedded=\"\" data-insert-by=\"@\" data-info=\"{&quot;item&quot;:{&quot;uuid&quot;:&quot;acnt_xxxx32&quot;}}\" contenteditable=\"false\">&nbsp;<span data-v-52ded4e5=\"\"><span data-v-52ded4e5=\"\" class=\"key-word\">@xxx@<<< custom_key.brand_main_domain >>></span></span>&nbsp;</span><span data-at-embedded=\"\" data-insert-by=\"#\" data-info=\"{&quot;item&quot;:{&quot;uuid&quot;:&quot;chan_xxxx32&quot;}}\" contenteditable=\"false\">&nbsp;<span data-v-52ded4e5=\"\"><span data-v-52ded4e5=\"\"><span data-v-52ded4e5=\"\" class=\"key-word\">#jjj</span></span></span>&nbsp;</span>nn</span></span></span></span>",
                 "extend": {
                     "channels": [
                         {
@@ -111,7 +111,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/list' \
                         }
                     ],
                     "sourceLink": "/tracing/service/table?leftActiveKey=Tracing&activeName=LinkToTrackService&w=wksp_xxxx32&time=15m",
-                    "text": "@jiangyd@jiagouyun.com  #jjj nn"
+                    "text": "@xxx@<<< custom_key.brand_main_domain >>>  #jjj nn"
                 },
                 "id": 108010,
                 "level": 2,
@@ -126,10 +126,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/list' \
                 "updator": "acnt_xxxx32",
                 "updatorInfo": {
                     "acntWsNickname": "",
-                    "email": "962584902@qq.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "",
                     "name": "kj1",
-                    "username": "962584902@qq.com"
+                    "username": "xxx@<<< custom_key.brand_main_domain >>>"
                 },
                 "uuid": "issue_xxxx32",
                 "workspaceUUID": "wksp_xxxx32"

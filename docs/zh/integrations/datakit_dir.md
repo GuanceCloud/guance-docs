@@ -1,7 +1,3 @@
----
-skip: 'reason: 不属于集成文档'
----
-
 # DataKit 目录
 
 ## Windows

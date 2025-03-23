@@ -1,6 +1,6 @@
 ---
-title     : 'Health Check'
-summary   : 'Regularly check the host process and network health status'
+title     : 'HOST Health Check'
+summary   : 'Periodically check the health of HOST processes and NETWORK'
 tags:
   - 'HOST'
 __int_icon      : 'icon/healthcheck'
@@ -20,7 +20,7 @@ monitor   :
 
 ---
 
-The health check collector can regularly monitor the health of processes and networks (such as TCP and HTTP) of the main computer. If it doesn't meet the health requirements, DataKit will collect corresponding information and report the metric data.
+The health check collector can periodically monitor the health status of HOST processes and NETWORK (such as TCP and HTTP). If the health requirements are not met, DataKit will collect the corresponding information and report Metrics data.
 
 ## Configuration {#config}
 
@@ -28,10 +28,10 @@ The health check collector can regularly monitor the health of processes and net
 
 <!-- markdownlint-disable MD046 -->
 
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/host` directory under the DataKit installation directory, copy `host_healthcheck.conf.sample` and name it `host_healthcheck.conf`. Examples are as follows:
-    
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `host_healthcheck.conf.sample` and rename it to `host_healthcheck.conf`. An example is as follows:
+
     ```toml
         
     [[inputs.host_healthcheck]]
@@ -93,32 +93,32 @@ The health check collector can regularly monitor the health of processes and net
       # ...
     
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
 
-    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-    
+    It also supports modifying configuration parameters via environment variables (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
+
     - **ENV_INPUT_HEALTHCHECK_INTERVAL**
     
-        Collect interval
+        Collector repeat interval duration
     
-        **Type**: Duration
+        **Field Type**: Duration
     
-        **input.conf**: `interval`
+        **Collector Configuration Field**: `interval`
     
-        **Default**: 10s
+        **Default Value**: 10s
     
     - **ENV_INPUT_HEALTHCHECK_PROCESS**
     
-        Check process
+        Check processor
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `process`
+        **Collector Configuration Field**: `process`
     
         **Example**: [{"names":["nginx","mysql"],"min_run_time":"10m"}]
     
@@ -126,9 +126,9 @@ The health check collector can regularly monitor the health of processes and net
     
         Check TCP
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `tcp`
+        **Collector Configuration Field**: `tcp`
     
         **Example**: [{"host_ports":["10.100.1.2:3369","192.168.1.2:6379"],"connection_timeout":"3s"}]
     
@@ -136,27 +136,27 @@ The health check collector can regularly monitor the health of processes and net
     
         Check HTTP
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `http`
+        **Collector Configuration Field**: `http`
     
         **Example**: [{"http_urls":["http://local-ip:port/path/to/api?arg1=x&arg2=y"],"method":"GET","expect_status":200,"timeout":"30s","ignore_insecure_tls":false,"headers":{"Header1":"header-value-1","Hedaer2":"header-value-2"}}]
     
     - **ENV_INPUT_HEALTHCHECK_TAGS**
     
-        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+        Custom tags. If there are same-name tags in the configuration file, they will overwrite it.
     
-        **Type**: JSON
+        **Field Type**: JSON
     
-        **input.conf**: `tags`
+        **Collector Configuration Field**: `tags`
     
         **Example**: {"some_tag":"some_value","more_tag":"some_other_value"}
 
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.host_healthcheck.tags]`:
+All the following data collection will append a global tag named `host` by default (the tag value is the hostname where DataKit resides), or you can specify other tags via `[inputs.host_healthcheck.tags]` in the configuration:
 
 ```toml
  [inputs.host_healthcheck.tags]
@@ -164,8 +164,6 @@ For all of the following data collections, a global tag named `host` is appended
   # more_tag = "some_other_value"
   # ...
 ```
-
-<!-- markdownlint-disable MD024 -->
 
 
 
@@ -185,7 +183,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`process`|The name of the process|
 |`type`|The type of the exception|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -212,7 +210,7 @@ For all of the following data collections, a global tag named `host` is appended
 |`port`|The port|
 |`type`|The type of the exception|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
@@ -237,12 +235,9 @@ For all of the following data collections, a global tag named `host` is appended
 |`host`|System hostname|
 |`url`|The URL|
 
-- Metrics
+- Field List
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`exception`|Exception value, 1 or 0|int|-|
-
-
-

@@ -1,9 +1,9 @@
 ---
 title     : 'Dameng Database (DM8)'
-summary   : 'Collect runtime Metrics information from Dameng Database'
+summary   : 'Collect operational Metrics information from Dameng Database'
 __int_icon: 'icon/dm'
 dashboard :
-  - desc  : 'Dameng Database (DM8) monitoring view'
+  - desc  : 'Dameng Database (DM8) Monitoring View'
     path  : 'dashboard/en/dm_v8'
 monitor   :
   - desc  : 'Not available'
@@ -21,35 +21,39 @@ monitor   :
 - [x] Install DM8
 - [x] Install DEM
 
-**DEM** stands for `Dameng Enterprise Manager`, a web tool provided by Dameng, written in `Java` for monitoring the Dameng database.
+**DEM**, which stands for `Dameng Enterprise Manager`, is a web-based tool provided by Dameng, written in `java`, used to monitor the Dameng database.
 
-The directory is `$DM_HOME/web`, which contains the DEM installation manual (`DEM.pdf`) and the runtime program `dem.war`. Follow the manual for deployment.
+The directory is `$DM_HOME/web`, where this directory contains the DEM installation manual (`DEM.pdf`) and the running program `dem.war`. Deployment can be carried out according to the manual.
 
-### Exposing Metrics
+### Metric Exposure
 
-DEM exposes metrics on port `8090` by default. You can view metric information via a browser at `http://clientIP:8090/dem/metrics`. If access is not possible, it indicates that the metrics exposure capability has not been enabled. Follow these steps to enable it:
+DEM exposes metrics on port `8090` by default. You can view metric-related information through a browser at `http://clientIP:8090/dem/metrics`. If access fails, it indicates that the capability to expose metrics has not been enabled. Follow the steps below to enable it.
 
 - Add Database
 
-By default, DEM does not monitor databases after installation; configuration is required to start monitoring.
+By default, after a successful installation of DEM, it does not directly monitor databases; configuration is required for the database to be monitored.
 
-1. Click the menu **Intelligent O&M** -> **Resource Monitoring**, switch the bottom Tab to **Database**.
-2. Click `Add` **Single Instance/Cluster**, and fill in the details of the database to be monitored.
+1. Click on the menu **Intelligent Inspection** -> **Resource Monitoring**, switch the bottom Tab to **Database**,
+2. Click `Add` **Single Instance/Cluster**, fill in the details of the database to be monitored.
+
 
 - Configure Prometheus
 
-1. Click the menu **System Management** -> **System Settings**, select `prometheus_metric_nodes` under the **Other Features** module.
-2. Check the databases you want to monitor. Click the **Confirm** button to complete the configuration.
+1. Click on the menu **System Management** -> **System Settings**, select `prometheus_metric_nodes` under the **Other Features** module,
+2. Select the databases that need to be monitored. Click the **Confirm** button to complete the configuration.
 
 - Verification
 
-View metric information via a browser at `http://clientIP:8090/dem/metrics`. The port is the DEM access port, which may vary; use the actual port number.
+View metric-related information through a browser at `http://clientIP:8090/dem/metrics`. The port is the DEM access port, which may vary. Use the actual port as appropriate.
+
 
 ### DataKit Collector Configuration
 
-Since `DEM` can directly expose `metrics` URLs, you can collect metrics using the [`prom`](./prom.md) collector.
+Since `DEM` can directly expose a `metrics` url, collection can be performed using the [`prom`](./prom.md) collector.
 
-Adjust the content as follows:
+
+
+Adjustments are as follows:
 
 ```toml
 
@@ -62,10 +66,10 @@ interval = "10s"
 <!-- markdownlint-disable MD033 -->
 <font color="red">*Other configurations can be adjusted as needed*</font>
 <!-- markdownlint-enable -->
-Parameter adjustment notes:
+, parameter adjustment description:
 
-- urls: Prometheus Metrics URL, enter the exposed Metrics URL of the corresponding component.
-- source: Collector alias, recommended to differentiate.
+- urls: `Prometheus` Metrics address, fill in the corresponding component-exposed Metrics url here.
+- source: Collector alias, recommended for differentiation.
 - interval: Collection interval.
 
 ### Restart DataKit
@@ -80,12 +84,12 @@ systemctl restart datakit
 | --- | --- |
 | `global_status_sessions` | Number of sessions |
 | `global_status_threads` | Threads |
-| `global_status_tps` | Transactions per second (TPS) |
-| `global_status_qps` | Queries per second (QPS) |
-| `global_status_ddlps` | DDL operations per second |
-| `global_status_ips` | Insert operations per second |
-| `global_status_ups` | Update operations per second |
-| `global_status_dps` | Delete operations per second |
+| `global_status_tps` | TPS |
+| `global_status_qps` | QPS |
+| `global_status_ddlps` | `ddlps` |
+| `global_status_ips` | Number of `insert` per second |
+| `global_status_ups` | Number of `update` per second |
+| `global_status_dps` | Number of `delete` per second |
 | `mf_status_memory_mem_used_bytes` | Used memory size |
 | `mf_status_memory_mem_total_bytes` | Total memory size |
 | `mf_status_disk_used_bytes` | Used disk size |
@@ -93,4 +97,4 @@ systemctl restart datakit
 | `mf_status_disk_read_speed_bytes` | Disk read speed |
 | `mf_status_disk_write_speed_bytes` | Write speed |
 | `mf_status_network_receive_speed_bytes` | Receive speed |
-| `mf_status_network_transmit_speed_bytes` | Transmit speed |
+| `mf_status_network_transmit_speed_bytes` | Send speed |

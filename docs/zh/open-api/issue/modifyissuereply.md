@@ -68,7 +68,7 @@ extend 字段示例:
     "extra": {
                 "updator": {
                   "name": "yyy",
-                  "email": "yyy@qq.com",
+                  "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 }
             }
 }

@@ -4,25 +4,25 @@ summary   : 'Receive MQTT protocol data'
 __int_icon: 'icon/mqtt'
 ---
 
-MQTT (Message Queuing Telemetry Transport, message queue telemetry transport protocol) is a lightweight, publish/subscribe-based messaging transport protocol designed for low-bandwidth, high-latency, or unreliable network environments. It is widely used in the Internet of Things (IoT), mobile applications, and distributed systems to achieve efficient communication between devices. By reducing data transmission volume and simplifying communication processes, it ensures reliable message delivery while supporting multiple Quality of Service (QoS) levels to meet different business needs.
+MQTT (Message Queuing Telemetry Transport, a messaging transport protocol based on the publish/subscribe model) is a lightweight messaging transfer protocol specifically designed for low-bandwidth, high-latency, or unreliable network environments. It is widely used in Internet of Things (IoT), mobile applications, and distributed systems to achieve efficient communication between devices. By reducing the amount of data transmitted and simplifying the communication process, it ensures reliable message transmission and supports multiple Quality of Service (QoS) levels to meet different business needs.
 
-## Installation and Configuration {#config}
+## Installation Configuration {#config}
 
 - [x] MQTT Broker
 
-Guance supports receiving MQTT protocol data through Func.
+<<< custom_key.brand_name >>> supports receiving MQTT protocol data through Func.
 
 ### Install Func
 
-We recommend enabling Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-hosted Func Deployment](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-> We recommend deploying the GSE version
+> It is recommended to deploy the GSE version
 
-FUNC has already implemented integration with MQTT data sources. Follow these steps to connect:
+FUNC has already implemented the connection with the MQTT data source. Follow these steps to integrate:
 
-- 1 Write Script
+- 1. Write a script
 
 Write a script in Func to consume MQTT data.
 
@@ -32,22 +32,24 @@ import json
 @DFF.API('Message Handler')
 def message_handler(topic, message):
     print(f"Received message: {message} on topic {topic}")
+
 ```
 
 After writing the script, click the 【Publish】 button.
 
 ![Img](./imgs/mqtt-code.png)
 
-- 2 Configure MQTT Connector
+
+- 2. Configure the MQTT connector
 
 ① Select type as `MQTT Broker (v5.0)`
 
-② Fill in ID, host, port
+② Fill in the ID, host, and port
 
 ③ Topic and corresponding script for topic consumption
 
-④ Click test connectivity to ensure MQTT can connect normally
+④ Click to test connectivity to ensure MQTT can connect properly
 
-⑤ Click save to complete
+⑤ Click save when done
 
 ![Img](./imgs/mqtt-func-config.png)

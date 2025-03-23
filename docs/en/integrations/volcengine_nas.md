@@ -1,138 +1,134 @@
 ---
-title: 'VolcEngine NAS File Storage'
+title: 'Volcengine NAS File Storage'
 tags: 
-  - VolcEngine
-summary: 'Collect VolcEngine NAS Metrics data'
+  - Volcengine
+summary: 'Collecting Volcengine NAS Metrics data'
 __int_icon: 'icon/volcengine_nas'
 dashboard:
 
-  - desc: 'VolcEngine NAS built-in views'
+  - desc: 'Volcengine NAS built-in views'
     path: 'dashboard/en/volcengine_nas'
 monitor:
-  - desc: 'VolcEngine NAS Monitor'
+  - desc: 'Volcengine NAS monitors'
     path: 'monitor/en/volcengine_nas'
 ---
 
-Collect VolcEngine NAS Metrics data
+Collecting Volcengine NAS Metrics data
 
 ## Configuration {#config}
 
-### Install Func
+### Installing Func
 
-We recommend enabling the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func manually, refer to [Manually Deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-### Install Script
+### Installing Script
 
-> Note: Prepare a VolcEngine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+> Note: Please prepare a Volcengine AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from NAS cloud resources, we install the corresponding collection script: "Guance Integration (VolcEngine-NAS Collection)" (ID: `guance_volcengine_nas`)
+To synchronize the monitoring data of NAS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-NAS Collection)" (ID: `guance_volcengine_nas`)
 
-After clicking 【Install】, enter the required parameters: VolcEngine AK, VolcEngine account name, and Regions.
+After clicking 【Install】, enter the corresponding parameters: Volcengine AK, Volcengine account name, Regions.
 
-Click 【Deploy Startup Script】. The system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script automatically.
 
-Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, then check the task execution records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
 ### Verification
 
-1. Confirm in "Manage / Automatic Trigger Configuration" whether the corresponding task has an automatic trigger configuration. You can also view the task records and log checks for any anomalies.
-2. In the Guance platform, under "Infrastructure - Resource Catalog", check if asset information exists.
-3. In the Guance platform, under "Metrics", check if there is corresponding monitoring data.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs to check for any anomalies.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure - Resource Catalog", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
 
-Configure VolcEngine NAS monitoring metrics. More metrics can be collected through configuration. Refer to [VolcEngine NAS Extreme Type Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_FileNAS){:target="_blank"} and [VolcEngine NAS Capacity Type Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_veFileNAS)
+Configuring Volcengine NAS monitoring metrics allows you to collect more metrics through configuration. [Volcengine NAS Extreme Type Metric Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_FileNAS){:target="_blank"} and [Volcengine NAS Capacity Type Metric Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_veFileNAS)
 
-### VolcEngine NAS Extreme Type Monitoring Metrics
+### Volcengine NAS Extreme Type Monitoring Metrics
 
-|`MetricName` |`Subnamespace` |Metric Name |Metric Unit | Dimension|
+|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
 | ----------- |---------------| :----: |:--------: |:-------: |
 | `Nfsv3ReadBandwidth` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv4ReadBandwidth` | `bandwidth` | NFSv4 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv3WriteBandwidth` | `bandwidth` | NFSv3 Write Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv4WriteBandwidth` | `bandwidth` | NFSv4 Write Bandwidth | Bytes/Second(SI) | ResourceID |
-| `TotalStorage` | `capacity` | Total Storage Information | Mebibytes | ResourceID |
-| `UsedStorage` | `capacity` | Used Storage Information | Mebibytes | ResourceID |
+| `TotalStorage` | `capacity` | Total Capacity Information | Mebibytes | ResourceID |
+| `UsedStorage` | `capacity` | Used Capacity Information | Mebibytes | ResourceID |
 | `TotalInode` | `capacity` | Total Inode Information | Count | ResourceID |
 | `UsedInode` | `capacity` | Used Inode Information | Count | ResourceID |
-| `StorageUtil` | `capacity` | Storage Utilization | Percent | ResourceID |
+| `StorageUtil` | `capacity` | Capacity Utilization | Percent | ResourceID |
 | `InodeUtil` | `capacity` | Inode Utilization | Percent | ResourceID |
 | `TotalConnection` | `connection` | Total Connections | Count | ResourceID |
 | `CurrentConnection` | `connection` | Current Connections | Count | ResourceID |
 | `ConnectionUtil` | `connection` | Connection Utilization | Percent | ResourceID |
 | `Nfsv3ReadIops` | `iops` | NFSv3 Read IOPS | Count/Second | ResourceID |
 | `Nfsv3WriteIops` | `iops` | NFSv3 Write IOPS | Count/Second | ResourceID |
-| `Nfsv4ReadIops` | `iops` | NFSv4 Read IOPS | Count/Second | ResourceID |
-| `Nfsv4WriteIops` | `iops` | NFSv4 Write IOPS | Count/Second | ResourceID |
-| `Nfsv3WriteLatency` | `latency` | NFSv3 Write Latency | Milliseconds | ResourceID |
-| `Nfsv3ReadLatency` | `latency` | NFSv3 Read Latency | Milliseconds | ResourceID |
-| `Nfsv4ReadLatency` | `latency` | NFSv4 Read Latency | Milliseconds | ResourceID |
-| `Nfsv4WriteLatency` | `latency` | NFSv4 Write Latency | Milliseconds | ResourceID |
-| `NfsMetaLatency` | `latency` | NFS Metadata Latency | Milliseconds | ResourceID |
+| `Nfsv3ReadBandwidth` | `iops` | NFSv4 Read IOPS | Count/Second | ResourceID |
+| `Nfsv3ReadBandwidth` | `iops` | NFSv4 Write IOPS | Count/Second | ResourceID |
+| `Nfsv3WriteLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `Nfsv3ReadLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `Nfsv4ReadLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `Nfsv4WriteLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `NfsMetaLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `NfsMetaQps` | `qps` | NFS Metadata QPS | Count/Second | ResourceID |
 
-### VolcEngine NAS Capacity Type Monitoring Metrics
+### Volcengine NAS Capacity Type Monitoring Metrics
 
-|`MetricName` |`Subnamespace` |Metric Name |Metric Unit | Dimension|
+|`MetricName` |`Subnamespace` |Metric Name |MetricUnit | Dimension|
 | ----------- |---------------| :----: |:--------: |:-------: |
 | `Nfsv3ReadBandwidth` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv4ReadBandwidth` | `bandwidth` | NFSv4 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv3WriteBandwidth` | `bandwidth` | NFSv3 Write Bandwidth | Bytes/Second(SI) | ResourceID |
 | `Nfsv4WriteBandwidth` | `bandwidth` | NFSv4 Write Bandwidth | Bytes/Second(SI) | ResourceID |
-| `TotalStorage` | `capacity` | Total Storage Information | Mebibytes | ResourceID |
-| `UsedStorage` | `capacity` | Used Storage Information | Mebibytes | ResourceID |
+| `TotalStorage` | `capacity` | Total Capacity Information | Mebibytes | ResourceID |
+| `UsedStorage` | `capacity` | Used Capacity Information | Mebibytes | ResourceID |
 | `TotalInode` | `capacity` | Total Inode Information | Count | ResourceID |
 | `UsedInode` | `capacity` | Used Inode Information | Count | ResourceID |
-| `StorageUtil` | `capacity` | Storage Utilization | Percent | ResourceID |
+| `StorageUtil` | `capacity` | Capacity Utilization | Percent | ResourceID |
 | `InodeUtil` | `capacity` | Inode Utilization | Percent | ResourceID |
 | `Nfsv3ReadIops` | `iops` | NFSv3 Read IOPS | Count/Second | ResourceID |
 | `Nfsv3WriteIops` | `iops` | NFSv3 Write IOPS | Count/Second | ResourceID |
-| `Nfsv4ReadIops` | `iops` | NFSv4 Read IOPS | Count/Second | ResourceID |
-| `Nfsv4WriteIops` | `iops` | NFSv4 Write IOPS | Count/Second | ResourceID |
-| `Nfsv3WriteLatency` | `latency` | NFSv3 Write Latency | Milliseconds | ResourceID |
-| `Nfsv3ReadLatency` | `latency` | NFSv3 Read Latency | Milliseconds | ResourceID |
-| `Nfsv4ReadLatency` | `latency` | NFSv4 Read Latency | Milliseconds | ResourceID |
-| `Nfsv4WriteLatency` | `latency` | NFSv4 Write Latency | Milliseconds | ResourceID |
-| `NfsMetaLatency` | `latency` | NFS Metadata Latency | Milliseconds | ResourceID |
+| `Nfsv3ReadBandwidth` | `iops` | NFSv4 Read IOPS | Count/Second | ResourceID |
+| `Nfsv3ReadBandwidth` | `iops` | NFSv4 Write IOPS | Count/Second | ResourceID |
+| `Nfsv3WriteLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `Nfsv3ReadLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `Nfsv4ReadLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `Nfsv4WriteLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
+| `NfsMetaLatency` | `bandwidth` | NFSv3 Read Bandwidth | Bytes/Second(SI) | ResourceID |
 | `NfsMetaQps` | `qps` | NFS Metadata QPS | Count/Second | ResourceID |
 
 ## Objects {#object}
 
-The structure of the VolcEngine NAS object data collected can be seen in "Infrastructure - Resource Catalog"
+The structure of the collected Volcengine NAS object data can be seen in "Infrastructure - Resource Catalog"
 
 ``` json
-{
-  "measurement": "volcengine_nas",
-  "tags": {
-    "RegionId": "cn-guangzhou",
-    "ProjectName": "default",
-    "AccountId": "2102598xxxx",
-    "FileSystemId": "enas-cngza0cfd219xxxxx",
-    "FileSystemName": "xxxxx",
-    "FileSystemType": "Extreme",
-    "Status": "Active"
-  },
-  "fields": {
-    "ZoneId": "cn-guangzhou-a",
-    "Capacity": "{JSON data}",
-    "StorageType": "Standard",
-    "ChargeType": "PayAsYouGo",
-    "Description": "xxxxxx",
-    "CreateTime": "2024-12-16T02:43:11Z",
-    "UpdateTime": "2024-12-16T06:33:36Z",
-    "Tags": "[]"
+  {
+    "measurement": "volcengine_nas",
+    "tags": {
+    "RegionId"        : "cn-guangzhou",
+    "ProjectName"     : "default",
+    "AccountId"       : "2102598xxxx",
+    "FileSystemId"    : "enas-cngza0cfd219xxxxx ",
+    "FileSystemName"  : "xxxxx",
+    "FileSystemType"  : "Extreme",
+    "Status"          : "Active"
+    },
+    "fileds": {
+      "ZoneId": "cn-guangzhou-a",
+      "Capacity": "{JSON data}",
+      "StorageType": "Standard",
+      "ChargeType": "PayAsYouGo",
+      "Description": "xxxxxx",
+      "Description": "xxxxxx",
+      "CreateTime": "2024-12-16T02:43:11Z",
+      "UpdateTime": "2024-12-16T06:33:36Z",
+      "Tags": "[]"
+    }
   }
-}
 ```
 
 > *Note: The fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: `FileSystemType` indicates the file type, including Extreme and Capacity types.
+> Tip 1: `FileSystemType` refers to file types, including Extreme and Capacity types.
 >
-</input_content>
-<target_language>英语</target_language>
-</input>
-
-Please continue translating.

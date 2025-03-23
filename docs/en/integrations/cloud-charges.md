@@ -1,42 +1,45 @@
 ---
-title: 'Cloud Billing Cost Inquiry'
-summary: 'Cloud billing cost inquiry, which can query public cloud billing information from AWS, Huawei Cloud, Alibaba Cloud, Tencent Cloud, etc.'
-__int_icon: 'icon/asset/'
+title: 'Cloud Billing Cost Query'
+summary: 'Cloud billing cost query, which can retrieve billing information from public clouds such as AWS, Huawei Cloud, Alibaba Cloud, and Tencent Cloud.'
+__int_icon: 'icon/cloud_billing/'
 dashboard:
-  - desc: 'Billing Analysis Monitoring View'
-    path: 'dashboard/en/asset/'
+  - desc: 'Cloud billing analysis view'
+    path: 'dashboard/en/Intelligent_analysis_cloud_billing/'
 monitor:
   - desc: 'No'
     path: '-'
+
 ---
 
 <!-- markdownlint-disable MD025 -->
-# Cloud Billing Cost Inquiry
+# Cloud Billing Cost Query
 <!-- markdownlint-enable -->
 ---
 
-Cloud billing cost inquiry, which can query public cloud billing information from AWS, Huawei Cloud, Alibaba Cloud, Tencent Cloud, etc.
+Cloud billing cost query, which can retrieve billing information from public clouds such as AWS, Huawei Cloud, Alibaba Cloud, and Tencent Cloud.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance Integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-### Install Script
+### Script Installation
 
-- Enter the corresponding script market, select **Official Script Market**, click **Enter**, and enter **billing** in the top-right corner.
-- Choose the corresponding cloud billing, such as for **AWS**, select **Guance Integration (AWS-Billing Collection-Instance Level)**, and click the **Install** button.
+- Enter the corresponding script market, select **Official Script Market**, click **Enter**, and input **billing** in the upper-right corner.
+- Select the corresponding cloud billing, for example, if integrating **AWS**, choose **<<< custom_key.brand_name >>> Integration (AWS-Billing Collection-Instance Level)**, and click the **Install** button.
 - Fill in the authentication information in the pop-up box and click **Deploy and Start Script**.
-- Click to go to **Automatic Trigger Configuration**, find the corresponding function, and click **Execute**.
+- Click **Go to Automatic Trigger Configuration**, find the corresponding function, and click **Execute**.
 
-The script is limited to running once a day, meaning it retrieves the billing information once daily.
+The script limits execution to once a day, meaning it retrieves the billing information once daily.
 
-### View Dashboard
+### View Analysis
 
-Go to the Guance console, select **Use Cases**, **Create Dashboard**, search for **Billing Analysis Monitoring View**, click **Billing Analysis Monitoring View**, and click the **Confirm** button.
+Go to the <<< custom_key.brand_name >>> console, select **Use Cases**, **Create Dashboard**, search for **Billing Analysis Monitoring View**, click **Billing Analysis Monitoring View**, and click the **Confirm** button.
 
-Adjust the time to `3d` to view the billing information.
+Adjust the time to `3d` to view the billing information. 
+
+---

@@ -2,14 +2,14 @@
 title: 'Alibaba Cloud RDS MySQL'
 tags: 
   - Alibaba Cloud
-summary: 'Display of Alibaba Cloud RDS MySQL metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.'
+summary: 'Display of Alibaba Cloud RDS MySQL Metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.'
 __int_icon: 'icon/aliyun_rds_mysql'
 dashboard:
   - desc: 'Built-in views for Alibaba Cloud RDS MySQL'
     path: 'dashboard/en/aliyun_rds_mysql/'
 
 monitor:
-  - desc: 'Alibaba Cloud RDS monitor'
+  - desc: 'Alibaba Cloud RDS Monitor'
     path: 'monitor/en/aliyun_rds_mysql/'
 ---
 
@@ -18,88 +18,88 @@ monitor:
 # Alibaba Cloud RDS MySQL
 <!-- markdownlint-enable -->
 
-Display of Alibaba Cloud RDS MySQL metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.
+Display of Alibaba Cloud RDS MySQL Metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.
 
 ## Configuration {#config}
 
 ### Install Func
 
-We recommend enabling the Guance integration - Extensions - DataFlux Func (Automata): all prerequisites are automatically installed. Please proceed with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/)
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
 
-> We recommend deploying the GSE version.
+> GSE version deployment is recommended.
 
 ### Installation Script
 
-> Note: Prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data from RDS cloud resources, we install the corresponding collection script: "Guance Integration (Alibaba Cloud - RDS Collection)" (ID: `guance_aliyun_rds`)
+To synchronize monitoring data of RDS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Collection)" (ID: `guance_aliyun_rds`).
 
-After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
+After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the startup script accordingly.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Additionally, you can see the corresponding automatic trigger configuration in the "Manage / Automatic Trigger Configuration". Clicking 【Execute】will immediately execute it once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
 
-By default, we collect some configurations; see the Metrics section for details.
+We default collect some configurations; for details, see the metrics section.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-aliyun-rds/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 
 
 ### Verification
 
-1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have the automatic trigger configuration and check the task records and logs for any abnormalities.
-2. On the Guance platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the Guance platform, under "Metrics", check if there are corresponding monitoring data.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration, and check the corresponding task records and logs for any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics through configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id                    |          Metric Name           | Dimensions        | Statistics              | Unit        |
 | ---- | :----: | ------ | ------ | ---- |
-| `ConnectionUsage`     |          Connection Usage Rate          | userId,instanceId | Average,Minimum,Maximum | %           |
-| `CpuUsage`        |           CPU Usage Rate            | userId,instanceId | Average,Minimum,Maximum | %           |
-| `DiskUsage`           |           Disk Usage Rate           | userId,instanceId | Average,Minimum,Maximum | %           |
-| `IOPSUsage`         |           IOPS Usage Rate           | userId,instanceId | Average,Minimum,Maximum | %           |
-| `MemoryUsage`        |           Memory Usage Rate           | userId,instanceId | Average,Minimum,Maximum | %           |
-| `MySQL_ComDelete`     |       MySQL Deletes per Second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_ComInsert`    |       MySQL Inserts per Second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_ComInsertSelect`   |    MySQL InsertSelects per Second     | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_ComReplace`   |       MySQL Replaces per Second       | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_ComReplaceSelect`  |    MySQL ReplaceSelects per Second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_ComSelect`  |       MySQL Selects per Second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_ComUpdate`   |       MySQL Updates per Second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_DataDiskSize`    |      MySQL Data Disk Usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| `MySQL_IbufDirtyRatio`  |       MySQL BP Dirty Page Ratio       | userId,instanceId | Average,Maximum,Minimum | %           |
-| `MySQL_IbufReadHit`  |        MySQL BP Read Hit Rate        | userId,instanceId | Average,Maximum,Minimum | %           |
-| `MySQL_IbufRequestR`    |      MySQL Logical Reads per Second       | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_IbufRequestW`    |      MySQL Logical Writes per Second       | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_IbufUseRatio`   |         MySQL BP Utilization Rate         | userId,instanceId | Average,Maximum,Minimum | %           |
-| `MySQL_InnoDBDataRead`  |   MySQL_InnoDB Data Reads per Second   | userId,instanceId | Average,Maximum,Minimum | **Kbyte**   |
-| `MySQL_InnoDBDataWritten` |   MySQL_InnoDB Data Writes per Second   | userId,instanceId | Average,Maximum,Minimum | **Kbyte**   |
-| `MySQL_InnoDBLogFsync`   |  MySQL_InnoDB Log fsyncs per Second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_InnoDBLogWriteRequests` | MySQL_InnoDB Log Write Requests per Second | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_InnoDBLogWrites` | MySQL_InnoDB Log Physical Writes per Second | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_InnoDBRowDelete`  |    MySQL_InnoDB Rows Deleted per Second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_InnoDBRowInsert` |    MySQL_InnoDB Rows Inserted per Second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_InnoDBRowRead` |    MySQL_InnoDB Rows Read per Second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_InnoDBRowUpdate` |    MySQL_InnoDB Rows Updated per Second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_InstanceDiskSize`   |      MySQL Instance Disk Usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| `MySQL_LogDiskSize`   |      MySQL Log Disk Usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| `MySQL_NetworkInNew`   |       MySQL Network Inbound Bandwidth        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
-| `MySQL_NetworkOutNew`    |       MySQL Network Outbound Bandwidth        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
-| `MySQL_OtherDiskSize`   |      MySQL Other Disk Usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
-| `MySQL_QPS`    |        MySQL Queries per Second         | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_SlowQueries`  |       MySQL Slow Queries per Second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_TPS`  |        MySQL Transactions per Second         | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_TempDiskTableCreates` |    MySQL Temporary Tables Created per Second     | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| `MySQL_ThreadsConnected` |        MySQL Connected Threads        | userId,instanceId | Average,Maximum,Minimum | count       |
-| `MySQL_ThreadsRunning` |        MySQL Active Threads        | userId,instanceId | Average,Maximum,Minimum | count       |
+| `ConnectionUsage`     |          Connection usage rate         | userId,instanceId | Average,Minimum,Maximum | %           |
+| `CpuUsage`        |           CPU usage rate            | userId,instanceId | Average,Minimum,Maximum | %           |
+| `DiskUsage`           |           Disk usage rate           | userId,instanceId | Average,Minimum,Maximum | %           |
+| `IOPSUsage`         |           IOPS usage rate           | userId,instanceId | Average,Minimum,Maximum | %           |
+| `MemoryUsage`        |           Memory usage rate           | userId,instanceId | Average,Minimum,Maximum | %           |
+| `MySQL_ComDelete`     |       MySQL Delete per second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComInsert`    |       MySQL Insert per second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComInsertSelect`   |    MySQL InsertSelect per second     | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComReplace`   |       MySQL Replace per second       | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComReplaceSelect`  |    MySQL ReplaceSelect per second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComSelect`  |       MySQL Select per second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ComUpdate`   |       MySQL Update per second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_DataDiskSize`    |      MySQL_data disk usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_IbufDirtyRatio`  |       MySQL_BP dirty page percentage       | userId,instanceId | Average,Maximum,Minimum | %           |
+| `MySQL_IbufReadHit`  |        MySQL_BP read hit rate        | userId,instanceId | Average,Maximum,Minimum | %           |
+| `MySQL_IbufRequestR`    |      MySQL logical read per second       | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_IbufRequestW`    |      MySQL logical write per second       | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_IbufUseRatio`   |         MySQL_BP utilization         | userId,instanceId | Average,Maximum,Minimum | %           |
+| `MySQL_InnoDBDataRead`  |   MySQL_InnoDB data read per second   | userId,instanceId | Average,Maximum,Minimum | **Kbyte**   |
+| `MySQL_InnoDBDataWritten` |   MySQL_InnoDB data written per second   | userId,instanceId | Average,Maximum,Minimum | **Kbyte**   |
+| `MySQL_InnoDBLogFsync`   |  MySQL_InnoDB log fsync per second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBLogWriteRequests` | MySQL_InnoDB log write requests per second | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBLogWrites` | MySQL_InnoDB log physical writes per second | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowDelete`  |    MySQL_InnoDB rows deleted per second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowInsert` |    MySQL_InnoDB rows inserted per second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowRead` |    MySQL_InnoDB rows read per second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InnoDBRowUpdate` |    MySQL_InnoDB rows updated per second    | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_InstanceDiskSize`   |      MySQL_instance disk usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_LogDiskSize`   |      MySQL_log disk usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_NetworkInNew`   |       MySQL network inbound bandwidth        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
+| `MySQL_NetworkOutNew`    |       MySQL network outbound bandwidth        | userId,instanceId | Average,Minimum,Maximum | bits/s      |
+| `MySQL_OtherDiskSize`   |      MySQL_other disk usage      | userId,instanceId | Average,Maximum,Minimum | Megabytes   |
+| `MySQL_QPS`    |        MySQL queries per second         | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_SlowQueries`  |       MySQL slow queries per second        | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_TPS`  |        MySQL transactions per second         | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_TempDiskTableCreates` |    MySQL temporary tables created per second     | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| `MySQL_ThreadsConnected` |        MySQL_threads connected        | userId,instanceId | Average,Maximum,Minimum | count       |
+| `MySQL_ThreadsRunning` |        MySQL_active threads        | userId,instanceId | Average,Maximum,Minimum | count       |
 
 ## Objects {#object}
 
-The collected Alibaba Cloud SLB object data structure can be viewed under "Infrastructure - Custom".
+The collected Alibaba Cloud SLB object data structure can be viewed in "Infrastructure - Custom".
 
 ```json
 {
@@ -128,12 +128,12 @@ The collected Alibaba Cloud SLB object data structure can be viewed under "Infra
     "LogSize"          : "10000",
     "BackupLogSize"    : "10000",
     "BackupDataSize"   : "10000",
-    "ConnectionString" : "{connection address JSON data}",
+    "ConnectionString" : "{Connection address JSON data}",
     "DBInstanceStorage": "100",
-    "accounts"         : "{user permission information JSON data}",
-    "databases"        : "{database information JSON data}",
+    "accounts"         : "{User privilege information JSON data}",
+    "databases"        : "{Database information JSON data}",
     "SSLExpireTime"    : "2022-10-11T08:16:43Z",
-    "message"          : "{instance JSON data}",
+    "message"          : "{Instance JSON data}",
   }
 }
 ```
@@ -144,21 +144,21 @@ The collected Alibaba Cloud SLB object data structure can be viewed under "Infra
 
 #### Prerequisites for Slow Query Statistics
 
-> Note 1: The code execution of this script depends on the collection of RDS instance objects. If RDS custom object collection is not configured, the slow log script cannot collect slow log data.
-> Note 2: Due to a delay of 6~8 hours in returning statistics from Alibaba Cloud, the collector's data update may also be delayed. Refer to the Alibaba Cloud documentation: Cloud Database RDS Query Slow Log Statistics for more details.
-> Note 3: This collector supports all versions of MySQL (except the Basic Edition of MySQL 5.7), SQL Server 2008 R2, MariaDB 10.3. For other types of databases, use the [Alibaba Cloud-RDS Slow Query Details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
+> Note 1: The code execution of this script depends on the collection of RDS instance objects. If the custom object collection for RDS is not configured, the slow log script cannot collect slow log data.
+> Note 2: Due to a 6~8 hour delay in returning statistics from Alibaba Cloud, the collector's data update may also have a delay. Refer to the Alibaba Cloud documentation: Cloud Database RDS Slow Log Statistics Query.
+> Note 3: This collector supports all versions of MySQL (except the basic edition of MySQL 5.7), SQL Server 2008 R2, and MariaDB 10.3 type databases. To collect other types of databases, please use the [Alibaba Cloud - RDS Slow Query Detail](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
 
-#### Installation Script for Slow Query Statistics
+#### Slow Query Statistics Installation Script
 
-On top of the previous setup, install the corresponding script for collecting **RDS slow query statistics logs**.
+Based on the previous setup, you need to install another script for **RDS Slow Query Statistics Log Collection**.
 
-In the "Manage / Script Market", click and install the corresponding script package:
+In "Management / Script Market," click and install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud - RDS Slow Query Statistics Log Collection)" (ID: `guance_aliyun_rds_slowlog`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Slow Query Statistics Log Collection)" (ID: `guance_aliyun_rds_slowlog`)
 
-After data synchronization is successful, you can view the data in the "Logs" section of Guance.
+After the data synchronizes normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
-An example of reported data is as follows:
+An example of the reported data is as follows:
 
 ```json
 {
@@ -188,22 +188,23 @@ An example of reported data is as follows:
     "SQLServerTotalExecutionCounts": 0,
     "MySQLTotalExecutionCounts"    : 0,
     "SQLServerAvgExecutionTime"    : 0,
-    "message"                      : "{log JSON data}"
+    "message"                      : "{Log JSON data}"
   }
 }
+
 ```
 
-Partial parameter descriptions are as follows:
+Descriptions of some parameters are as follows:
 
 | Field                            | Type | Description                                   |
 | :------------------------------ | :--- | :------------------------------------- |
-| `SQLServerTotalExecutionTimes`  | int  | Total execution time for SQL Server (in milliseconds)      |
-| `AvgExecutionTime`              | int  | Average execution time (unit: seconds)             |
-| `SQLServerAvgExecutionTime`     | int  | Average execution time for SQL Server (unit: seconds)             |
-| `MySQLTotalExecutionTimes`      | int  | Total execution time for MySQL (unit: seconds)         |
-| `SQLServerTotalExecutionTimes`  | int  | Total execution time for SQL Server (unit: milliseconds) |
-| `SQLServerTotalExecutionCounts` | int  | Total execution counts for SQL Server            |
-| `MySQLTotalExecutionCounts`     | int  | Total execution counts for MySQL                 |
+| `SQLServerTotalExecutionTimes`  | int  | Total execution time of SQL Server (in milliseconds)      |
+| `AvgExecutionTime`              | int  | Execution time (average value) unit: seconds             |
+| `SQLServerAvgExecutionTime`     | int  | Execution time (average value) unit: seconds             |
+| `MySQLTotalExecutionTimes`      | int  | Total execution time of MySQL (unit: seconds)         |
+| `SQLServerTotalExecutionTimes`  | int  | Total execution time of SQL Server (unit: milliseconds) |
+| `SQLServerTotalExecutionCounts` | int  | Total execution count of SQL Server            |
+| `MySQLTotalExecutionCounts`     | int  | Total execution count of MySQL                 |
 
 > *Note: Fields such as `AvgExecutionTime`, `SQLServerAvgExecutionTime`, `SQLServerTotalExecutionTimes`, etc., are only supported by SQL Server instances.*
 > *Note: Fields in `tags` and `fields` may change with subsequent updates.*
@@ -212,21 +213,21 @@ Partial parameter descriptions are as follows:
 
 #### Prerequisites for Slow Query Details
 
-> Note: The code execution of this script depends on the collection of RDS instance objects. If RDS custom object collection is not configured, the slow log script cannot collect slow log data.
+> Note: The code execution of this script depends on the collection of RDS instance objects. If the custom object collection for RDS is not configured, the slow log script cannot collect slow log data.
 
-#### Installation Script for Slow Query Details
+#### Slow Query Details Installation Script
 
-On top of the previous setup, install the corresponding script for collecting **RDS slow query detail logs**.
+Based on the previous setup, you need to install another script for **RDS Slow Query Details Log Collection**.
 
-In the "Manage / Script Market", click and install the corresponding script package:
+In "Management / Script Market," click and install the corresponding script package:
 
-- "Guance Integration (Alibaba Cloud - RDS Slow Query Detail Log Collection)" (ID: `guance_aliyun_rds_slowlog_record`)
+- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Slow Query Details Log Collection)" (ID: `guance_aliyun_rds_slowlog_record`)
 
-After data synchronization is successful, you can view the data in the "Logs" section of Guance.
+After the data synchronizes normally, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
 
-Refer to the [Cloud Database RDS Slow Query Details](https://func.guance.com/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
+Configure [Cloud Database RDS Slow Query Details](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
 
-An example of reported data is as follows:
+An example of the reported data is as follows:
 
 ```json
 {
@@ -259,12 +260,13 @@ An example of reported data is as follows:
     "CpuTime"                      : 1,
     "RowsAffectedCount"            : 0,
     "LastRowsAffectedCount"        : 0,
-    "message"                      : "{log JSON data}"
+    "message"                      : "{Log JSON data}"
   }
 }
+
 ```
 
-Partial parameter descriptions are as follows:
+Descriptions of some fields are as follows:
 
 | Field                    | Type | Description                       |
 | :---------------------- | :--- | :------------------------- |
@@ -277,6 +279,6 @@ Partial parameter descriptions are as follows:
 | `RowsAffectedCount`     | int  | Number of affected rows                   |
 | `LastRowsAffectedCount` | int  | Number of affected rows for the last statement       |
 
-> *Note: Fields such as `CpuTime`, `RowsAffectedCount`, `LastRowsAffectedCount`, etc., are only supported by SQL Server instances.*
+> *Note: Fields such as `CpuTime`, `RowsAffectedCount`, `LastRowsAffectedCount` are only supported by SQL Server instances.*
 > *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 > Note: `fields.message` is a JSON serialized string.

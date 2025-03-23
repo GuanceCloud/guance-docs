@@ -1,31 +1,29 @@
 ---
-title      : 'ClickHouse'
-summary    : 'Collect metrics of ClickHouse'
-__int_icon : 'icon/clickhouse'
+title: "ClickHouse"
+summary: "Collect metrics data from ClickHouse"
+__int_icon: "icon/clickhouse"
 tags:
-  - 'DATA STORES'
-dashboard :
-  - desc  : 'ClickHouse'
-    path  : 'dashboard/en/clickhouse'
-monitor   :
-  - desc  : 'N/A'
-    path  : '-'
+  - "DATABASE"
+dashboard:
+  - desc: "ClickHouse"
+    path: "dashboard/en/clickhouse"
+monitor:
+  - desc: "Not available"
+    path: "-"
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-ClickHouse collector can collect various metrics actively exposed by ClickHouse server instances, such as the number of statements executed, memory storage, IO interaction and other metrics, and collect the metrics into Guance Cloud to help you monitor and analyze various abnormal situations of ClickHouse.
+The ClickHouse collector can collect various types of metrics actively exposed by the ClickHouse server instance, such as statement execution counts and memory storage volumes, IO interactions, etc., and send these metrics to <<< custom_key.brand_name >>> for monitoring and analyzing various abnormal situations in ClickHouse.
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-ClickHouse version >=v20.1.2.4
-
-Find the following code snippet in the config.xml configuration file of ClickHouse-server, uncomment it, and set the port number exposed by metrics (which is unique if you choose it yourself). Restart after modification (if it is a cluster, every machine needs to operate).
+- ClickHouse version >=v20.1.2.4
+- Locate the following code segment in the `config.xml` configuration file of the ClickHouse Server, uncomment it, and set the port number for metrics exposure (choose any unique one). After modification, restart (if it's a cluster, each machine must be operated on).
 
 ```shell
 vim /etc/clickhouse-server/config.xml
@@ -41,22 +39,22 @@ vim /etc/clickhouse-server/config.xml
 </prometheus>
 ```
 
-Field description:
+Field descriptions:
 
-- HTTP Routing of `endpoint` Prometheus Server Fetch Metrics
-- `port` number of the port endpoint
-- `metrics` grabs exposed metrics flags from ClickHouse's `system.metrics` table
-- `events` grabs exposed event flags from ClickHouse's `table.events`.
-- `asynchronous_metrics` grabs exposed asynchronous_metrics flags from ClickHouse's `system.asynchronous_metrics` table
+- `endpoint`: The HTTP route for Prometheus server to scrape metrics.
+- `port`: Port number for the endpoint.
+- `metrics`: Flag indicating if metrics exposed from ClickHouse's `system.metrics` table should be scraped.
+- `events`: Flag indicating if events exposed from ClickHouse's `system.events` table should be scraped.
+- `asynchronous_metrics`: Flag indicating if asynchronous metrics exposed from ClickHouse's `system.asynchronous_metrics` table should be scraped.
 
-See [ClickHouse official documents](https://ClickHouse.com/docs/en/operations/server-configuration-parameters/settings/#server_configuration_parameters-prometheus){:target="_blank"}
+See [ClickHouse Official Documentation](https://ClickHouse.com/docs/en/operations/server-configuration-parameters/settings/#server_configuration_parameters-prometheus){:target="_blank"}
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST"
 
-    Go to the `conf.d/clickhousev1` directory under the DataKit installation directory, copy `clickhousev1.conf.sample` and name it `clickhousev1.conf`. Examples are as follows:
+    Navigate to the `conf.d/clickhousev1` directory under the DataKit installation directory, copy `clickhousev1.conf.sample`, and rename it to `clickhousev1.conf`. Example:
     
     ```toml
         
@@ -186,22 +184,22 @@ See [ClickHouse official documents](https://ClickHouse.com/docs/en/operations/se
       # timeout = "30s"
       
     ```
-    
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
-=== "Kubernetes"
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
-    At present, you can [inject collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting)。
+=== "KUBERNETES"
+
+    Currently, you can enable the collector via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
-For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.clickhousev1.tags]` if needed:
+By default, all data collected will append global election tags unless specified otherwise in the configuration:
 
 ``` toml
 [inputs.prom.tags]
-# some_tag = "some_value"
-# more_tag = "some_other_value"
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
 ```
 
 
@@ -380,6 +378,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `ClickHouseMetrics`
 
 
@@ -431,7 +430,7 @@ For all of the following data collections, the global election tags will added a
 |`CacheDetachedFileSegments`|Number of existing detached cache file segments|float|count|
 |`CacheDictionaryThreads`|Number of threads in the CacheDictionary thread pool.|float|count|
 |`CacheDictionaryThreadsActive`|Number of threads in the CacheDictionary thread pool running a task.|float|count|
-|`CacheDictionaryUpdateQueueBatches`|Number of 'batches' (a set of keys) in update queue in CacheDictionaries.|float|count|
+|`CacheDictionaryUpdateQueueBatches`|Number of `batches` (a set of keys) in update queue in CacheDictionaries.|float|count|
 |`CacheDictionaryUpdateQueueKeys`|Exact number of keys in update queue in CacheDictionaries.|float|count|
 |`CacheFileSegments`|Number of existing cache file segments|float|count|
 |`ContextLockWait`|Number of threads waiting for lock in Context. This is global lock.|float|count|
@@ -591,6 +590,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `ClickHouseProfileEvents`
 
 
@@ -649,7 +649,7 @@ For all of the following data collections, the global election tags will added a
 |`CreatedReadBufferMMap`|Number of times a read buffer using `mmap` was created for reading data (while choosing among other read methods).|float|count|
 |`CreatedReadBufferMMapFailed`|Number of times a read buffer with `mmap` was attempted to be created for reading data (while choosing among other read methods), but the OS did not allow it (due to lack of filesystem support or other reasons) and we fallen back to the ordinary reading method.|float|count|
 |`CreatedReadBufferOrdinary`|Number of times ordinary read buffer was created for reading data (while choosing among other read methods).|float|count|
-|`DNSError`|Total count of errors in DNS resolution|float|count|
+|`DNSError`|Total count of errors in DNSresolution|float|count|
 |`DataAfterMergeDiffersFromReplica`|Number of times data after merge is not byte-identical to the data on another replicas. There could be several reasons|float|count|
 |`DataAfterMutationDiffersFromReplica`|Number of times data after mutation is not byte-identical to the data on another replicas. In addition to the reasons described in 'DataAfterMergeDiffersFromReplica', it is also possible due to non-deterministic mutation.|float|count|
 |`DelayedInserts`|Number of times the INSERT of a block to a MergeTree table was throttled due to high number of active data parts for partition.|float|count|
@@ -1051,6 +1051,7 @@ For all of the following data collections, the global election tags will added a
 
 
 
+
 ### `ClickHouseStatusInfo`
 
 
@@ -1069,5 +1070,3 @@ For all of the following data collections, the global election tags will added a
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`DictionaryStatus`|Dictionary Status.|float|-|
-
-

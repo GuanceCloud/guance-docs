@@ -1,66 +1,66 @@
 ---
-title: 'Volc Engine CLB'
+title: 'Volcengine CLB'
 tags: 
-  - Volc Engine
-summary: 'Collect Volc Engine CLB Metrics data'
+  - Volcengine
+summary: 'Collect Volcengine CLB Metrics data'
 __int_icon: 'icon/volcengine_clb'
 dashboard:
 
-  - desc: 'Volc Engine CLB built-in views'
+  - desc: 'Volcengine CLB built-in views'
     path: 'dashboard/en/volcengine_clb'
 
 monitor:
-  - desc: 'Volc Engine CLB monitors'
+  - desc: 'Volcengine CLB monitors'
     path: 'monitor/en/volcengine_clb'
 ---
 
-Collect Volc Engine CLB Metrics data
+Collect Volcengine CLB Metrics data
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+It is recommended to activate <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Deploy Func on Your Own](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Install Script
 
-> Note: Please prepare a qualified Volc Engine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Note: Please prepare a qualified Volcengine AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-To synchronize monitoring data of CLB cloud resources, we install the corresponding collection script: 「Guance Integration (Volc Engine-CLB Collection)」(ID: `guance_volcengine_clb`)
+To synchronize the monitoring data of CLB cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Volcengine-CLB Collection)" (ID: `guance_volcengine_clb`)
 
-After clicking 【Install】, enter the corresponding parameters: Volc Engine AK, Volc Engine account name, regions.
+After clicking 【Install】, enter the corresponding parameters: Volcengine AK, Volcengine account name, Regions.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and configure the corresponding startup script automatically.
 
-Once enabled, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
+After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding task has an automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
-2. On the Guance platform, in 「Infrastructure - Resource Catalog」check if asset information exists.
-3. On the Guance platform, in 「Metrics」check if there are corresponding monitoring data.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding task has the corresponding automatic trigger configuration. You can also check the corresponding task records and logs for any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure - Resource Catalog", check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 
-Configure Volc Engine CLB monitoring metrics, and collect more metrics through configuration [Volc Engine CLB Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_CLB){:target="_blank"}
+Configure Volcengine CLB monitoring metrics. You can collect more metrics through configuration [Volcengine CLB Metrics Details](https://console.volcengine.com/cloud_monitor/docs?namespace=VCM_CLB){:target="_blank"}
 
-|`MetricName` |`Subnamespace` |Metric Name |Metric Unit | Dimension|
+|`MetricName` |`Subnamespace` | Metric Name | MetricUnit | Dimension|
 | ----------- |---------------| :----: |:--------: |:-------: |
 | `listener_max_conn` | `listener` | Concurrent Connections | Count | ResourceID,ListenerID |
 | `listener_new_conn` | `listener` | New Connections | Count/Second | ResourceID,ListenerID |
 | `listener_active_conn` | `listener` | Active Connections | Count | ResourceID,ListenerID |
-| `listener_inactive_conn` | `listener` | Inactive Connections | Count | ResourceID,ListenerID |
+| `listener_inactive_conn` | `listener` | Concurrent Connections | Count | ResourceID,ListenerID |
 | `listener_lost_conn` | `listener` | Lost Connections | Count/Second | ResourceID,ListenerID |
 | `listener_in_packets` | `listener` | Incoming Packets | Packet/Second | ResourceID,ListenerID |
 | `listener_out_packets` | `listener` | Outgoing Packets | Packet/Second | ResourceID,ListenerID |
-| `listener_in_drop_packets` | `listener` | Dropped Incoming Packets | Packet/Second | ResourceID,ListenerID |
-| `listener_out_drop_packets` | `listener` | Dropped Outgoing Packets | Packet/Second | ResourceID,ListenerID |
+| `listener_in_drop_packets` | `listener` | Incoming Dropped Packets | Packet/Second | ResourceID,ListenerID |
+| `listener_out_drop_packets` | `listener` | Outgoing Dropped Packets | Packet/Second | ResourceID,ListenerID |
 | `listener_in_bytes` | `listener` | Incoming Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
 | `listener_out_bytes` | `listener` | Outgoing Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_in_drop_bytes` | `listener` | Dropped Incoming Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
-| `listener_out_drop_bytes` | `listener` | Dropped Outgoing Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
+| `listener_in_drop_bytes` | `listener` | Incoming Dropped Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
+| `listener_out_drop_bytes` | `listener` | Outgoing Dropped Bandwidth | Bits/Second(SI) | ResourceID,ListenerID |
 | `listener_healthy_rs_count` | `listener` | Healthy Backend Servers | Count | ResourceID,ListenerID |
 | `listener_unhealthy_rs_count` | `listener` | Unhealthy Backend Servers | Count | ResourceID,ListenerID |
 | `listener_http_2xx_send_count` | `listener` | Sent 2xx Status Codes | Count/Second | ResourceID,ListenerID |
@@ -88,12 +88,12 @@ Configure Volc Engine CLB monitoring metrics, and collect more metrics through c
 | `load_balancer_new_conn_utilization` | `loadbalancer` | New Connection Utilization | Percent | ResourceID |
 | `load_balancer_in_packets` | `loadbalancer` | Incoming Packets | Packet/Second | ResourceID |
 | `load_balancer_out_packets` | `loadbalancer` | Outgoing Packets | Packet/Second | ResourceID |
-| `load_balancer_in_drop_packets` | `loadbalancer` | Dropped Incoming Packets | Packet/Second | ResourceID |
-| `load_balancer_out_drop_packets` | `loadbalancer` | Dropped Outgoing Packets | Packet/Second | ResourceID |
+| `load_balancer_in_drop_packets` | `loadbalancer` | Incoming Dropped Packets | Packet/Second | ResourceID |
+| `load_balancer_out_drop_packets` | `loadbalancer` | Outgoing Dropped Packets | Packet/Second | ResourceID |
 | `load_balancer_in_bytes` | `loadbalancer` | Incoming Bandwidth | Bits/Second(SI) | ResourceID |
 | `load_balancer_out_bytes` | `loadbalancer` | Outgoing Bandwidth | Bits/Second(SI) | ResourceID |
-| `load_balancer_in_drop_bytes` | `loadbalancer` | Dropped Incoming Bandwidth | Bits/Second(SI) | ResourceID |
-| `load_balancer_out_drop_bytes` | `loadbalancer` | Dropped Outgoing Bandwidth | Bits/Second(SI) | ResourceID |
+| `load_balancer_in_drop_bytes` | `loadbalancer` | Incoming Dropped Bandwidth | Bits/Second(SI) | ResourceID |
+| `load_balancer_out_drop_bytes` | `loadbalancer` | Outgoing Dropped Bandwidth | Bits/Second(SI) | ResourceID |
 | `load_balancer_http_2xx_send_count` | `loadbalancer` | Sent 2xx Status Codes | Count/Second | ResourceID |
 | `load_balancer_http_3xx_send_count` | `loadbalancer` | Sent 3xx Status Codes | Count/Second | ResourceID |
 | `load_balancer_http_4xx_send_count` | `loadbalancer` | Sent 4xx Status Codes | Count/Second | ResourceID |
@@ -109,41 +109,42 @@ Configure Volc Engine CLB monitoring metrics, and collect more metrics through c
 | `load_balancer_http_404_recv_count` | `loadbalancer` | Received 404 Status Codes | Count/Second | ResourceID |
 | `load_balancer_http_502_recv_count` | `loadbalancer` | Received 502 Status Codes | Count/Second | ResourceID |
 | `load_balancer_qps` | `loadbalancer` | QPS | Count/Second | ResourceID |
-| `load_balancer_qps_utilization` | `loadbalancer` | QPS Utilization | Percent | ResourceID |
+| `load_balancer_qps_utilization` | `loadbalancer` | QPS Utilization | Count/Second | ResourceID |
 | `load_balancer_response_time` | `loadbalancer` | Average Response Time | Millisecond | ResourceID |
 | `load_balancer_ups_response_time` | `loadbalancer` | Average Request Time | Millisecond | ResourceID |
-| `load_balnacer_in_out_bandwidth_utilization` | `loadbalancer` | Inbound/Outbound Bandwidth Utilization | Percent | ResourceID |
+| `load_balnacer_in_out_bandwidth_utilization` | `loadbalancer` | In/Out Bandwidth Utilization | Percent | ResourceID |
 
-## Object {#object}
+## Objects {#object}
 
-The structure of the collected Volc Engine CLB object data can be viewed in 「Infrastructure - Resource Catalog」
+The collected Volcengine CLB object data structure can be viewed in "Infrastructure - Resource Catalog".
 
-```json
-{
-  "measurement": "volcengine_clb",
-  "tags": {
-    "RegionId": "cn-guangzhou",
-    "ProjectName": "default",
-    "AccountId": "2102598xxxx",
-    "LoadBalancerId": "LoadBalancerId:clb-3rfdnib02lzpc16nf3olxxxx",
+``` json
+  {
+    "measurement": "volcengine_clb",
+    "tags": {
+    "RegionId"        : "cn-guangzhou",
+    "ProjectName"     : "default",
+    "AccountId"       : "2102598xxxx",
+    "LoadBalancerId"  : "LoadBalancerId:clb-3rfdnib02lzpc16nf3olxxxx",
     "LoadBalancerName": "CLB",
-    "Type": "public",
-    "Status": "Active"
-  },
-  "fields": {
-    "Listeners": "[{JSON data}]",
-    "MasterZoneId": "cn-guangzhou-b",
-    "SlaveZoneId": "cn-guangzhou-a",
-    "VpcId": "vpc-11vrlrg75588w40yrhbxxxx",
-    "EniAddress": "172.31.0.xx",
-    "EipAddress": "118.145.xxx.170",
-    "LoadBalancerBillingType": "2",
-    "LoadBalancerSpec": "small_1",
-    "Description": "xxxxxx",
-    "CreateTime": "2024-12-11T02:43:11Z",
-    "UpdateTime": "2024-12-11T06:33:36Z",
-    "ExpiredTime": "xxxxxxxx",
-    "Tags": "[]"
+    "Type"            : "public",
+    "Status"          : "Active"
+    },
+    "fileds": {
+      "Listeners": "[{JSON data}]",
+      "MasterZoneId": "cn-guangzhou-b",
+      "SlaveZoneId": "cn-guangzhou-a",
+      "VpcId": "vpc-11vrlrg75588w40yrhbxxxx",
+      "EniAddress": "172.31.0.xx",
+      "EipAddress": "118.145.xxx.170",
+      "LoadBalancerBillingType": "2",
+      "LoadBalancerSpec": "small_1",
+      "Description": "xxxxxx",
+      "CreateTime": "2024-12-11T02:43:11Z",
+      "UpdateTime": "2024-12-11T06:33:36Z",
+      "ExpiredTime": "xxxxxxxx",
+      "Tags": "[]"
+    }
   }
-}
+
 ```

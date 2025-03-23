@@ -47,7 +47,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/notifica
                     "acntWsNickname": null,
                     "attributes": {},
                     "customAttributes": {},
-                    "email": "jinlei940@guance.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "exterId": "acnt-Rk865yTF5z6UiqqVPAzEua",
                     "id": 3498,
                     "mobile": "17621725046",

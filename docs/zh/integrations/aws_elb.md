@@ -2,7 +2,7 @@
 title: 'AWS ELB'
 tags: 
   - AWS
-summary: '使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云'
+summary: '使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>'
 __int_icon: 'icon/aws_elb'
 
 dashboard:
@@ -10,10 +10,6 @@ dashboard:
     path: 'dashboard/zh/aws_application_elb'
   - desc: 'AWS Network ELB 内置视图'
     path: 'dashboard/zh/aws_network_elb'
-  - desc: 'AWS Gateway ELB 内置视图'
-    path: 'dashboard/zh/aws_gateway_elb'
-  - desc: 'AWS Classic ELB 内置视图'
-    path: 'dashboard/zh/aws_classic_elb'
 
 monitor:
   - desc: 'AWS Application ELB 监控器'
@@ -28,16 +24,16 @@ monitor:
 # AWS ELB
 <!-- markdownlint-enable -->
 
-使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云
+使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>
 
 
 ## 配置 {#config}
 
 ### 安装 Func
 
-推荐开通 观测云集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
 
-如果自行部署 Func 参考 [自行部署 Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+如果自行部署 Func 参考 [自行部署 Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### 安装脚本
@@ -46,13 +42,13 @@ monitor:
 
 同步 ECS 云资源的监控数据，我们安装对应的采集脚本：
 
-AWS 应用程序负载均衡器（ AWS Application ELB ）请选择「观测云集成（AWS-ApplicationELB采集）」(ID：`guance_aws_applicationelb`)
+AWS 应用程序负载均衡器（ AWS Application ELB ）请选择「<<< custom_key.brand_name >>>集成（AWS-ApplicationELB采集）」(ID：`guance_aws_applicationelb`)
 
-AWS 网络负载均衡器（ AWS Network ELB ）请选择「观测云集成（AWS-NetworkELB采集）」(ID：`guance_aws_networkelb`)
+AWS 网络负载均衡器（ AWS Network ELB ）请选择「<<< custom_key.brand_name >>>集成（AWS-NetworkELB采集）」(ID：`guance_aws_networkelb`)
 
-AWS 网关负载均衡器（ AWS Gateway ELB ）请选择「观测云集成（AWS-GatewayELB采集）」(ID：`guance_aws_gatewayelb`)
+AWS 网关负载均衡器（ AWS Gateway ELB ）请选择「<<< custom_key.brand_name >>>集成（AWS-GatewayELB采集）」(ID：`guance_aws_gatewayelb`)
 
-AWS Classic 负载均衡器 请选择「观测云集成（AWS-ClassicELB采集）」(ID：`guance_aws_elb`)
+AWS Classic 负载均衡器 请选择「<<< custom_key.brand_name >>>集成（AWS-ELB采集）」(ID：`guance_aws_elb`)
 
 点击【安装】后，输入相应的参数：亚马逊云 AK、亚马逊云账户名。
 
@@ -63,14 +59,14 @@ AWS Classic 负载均衡器 请选择「观测云集成（AWS-ClassicELB采集�
 > 如果要采集对应的日志，还要开启相应的日志采集脚本。如果要采集账单，要开启云账单采集脚本。
 
 
-我们默认采集了一些配置, 具体见指标一栏[配置自定义云对象指标](https://func.guance.com/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+我们默认采集了一些配置, 具体见指标一栏[配置自定义云对象指标](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
 
 
 ### 验证
 
 1. 在「管理 / 自动触发配置」确认对应的任务是否已存在对应的自动触发配置，同时可以查看对应任务记录及日志检查是否有异常
-2. 在观测云平台，「基础设施 / 自定义」中查看是否存在资产信息
-3. 在观测云平台，「指标」查看是否有对应监控数据
+2. 在<<< custom_key.brand_name >>>，「基础设施 / 自定义」中查看是否存在资产信息
+3. 在<<< custom_key.brand_name >>>，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
 配置好亚马逊-云监控,默认的指标集如下.可以通过配置的方式采集更多的指标:

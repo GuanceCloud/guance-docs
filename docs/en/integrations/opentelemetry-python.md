@@ -1,42 +1,42 @@
 ---
 title     : 'OpenTelemetry Python'
-summary   : 'OpenTelemetry Python integration'
+summary   : 'OpenTelemetry Python Integration'
 tags      :
   - 'Python'
   - 'OTEL'
-  - 'Tracing'
+  - 'APM'
 __int_icon: 'icon/opentelemetry'
 ---
 
 
 ## Configuration {#config}
 
-Before using OTEL to send Traces to DataKit, ensure that you have configured the [collector](opentelemetry.md).
+Before using OTEL to send Traces to DataKit, please ensure that you have configured the [collector](opentelemetry.md).
 
 
-This page shows how to use automatic instrumentation with Python in OpenTelemetry. The examples are based on an OpenTracing example. You can download or view the [source files](https://github.com/open-telemetry/opentelemetry-python/tree/main/docs/examples/auto-instrumentation) used here from the opentelemetry-python repository.
+This page shows how to use Python auto-instrumentation in OpenTelemetry. The example is based on an OpenTracing example. You can download or view the [source files](https://github.com/open-telemetry/opentelemetry-python/tree/main/docs/examples/auto-instrumentation) used in this page from the opentelemetry-python repository.
 
-The example uses three different scripts. The main difference lies in the method of instrumentation:
+The example uses three different scripts. Their main differences lie in the instrumentation methods:
 
 - `server_manual.py`: Manual instrumentation.
 - `server_automatic.py`: Automatic instrumentation.
 - `server_programmatic.py`: Programmatic instrumentation.
 
-Programmatic instrumentation is a method that requires adding only a small amount of instrumentation code to your application. Only certain instrumentation libraries provide additional features when used programmatically, giving you more control over the instrumentation process.
+Programmatic instrumentation is a method that requires adding only a small amount of instrumentation code to the application. Only certain instrumentation libraries provide additional features when used programmatically, giving you more control over the instrumentation process.
 
-Please run the first script (without using the auto-instrumentation agent) and the second script (using the agent). They should produce the same results, indicating that the auto-instrumentation agent performs the same operations as manual instrumentation.
+Please run the first script (without using the automatic instrumentation agent) and the second script (using the agent). They should produce the same results, indicating that the automatic instrumentation agent performs the same operations as manual instrumentation.
 
-Automatic instrumentation dynamically rewrites methods and classes at runtime using monkey-patching provided by instrumentation libraries, reducing the effort required to integrate OpenTelemetry into application code. Below, you will see the differences between manual, automatic, and programmatic instrumentation in Flask routes.
+Automatic instrumentation reduces the effort required to integrate OpenTelemetry into application code by dynamically rewriting methods and classes at runtime using monkey-patching through instrumentation libraries. Below, you will see the differences between manual, automatic, and programmatic instrumentation in Flask routes.
 
 <!-- markdownlint-disable MD046 MD034 -->
 
-### Install Dependencies
+### Install Dependency Libraries
 
-Before running the following demo, install the current dependencies:
+Before running the following demo, you need to install the current dependencies first.
 
 > pip install opentelemetry-api opentelemetry-instrumentation
 
-### Automatically Instrumented
+### Automatically-instrumented
 
 - Install dependencies
 
@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
 > curl http://localhost:8082/server_request?param=automatic
 
-### Manually Instrumented
+### Manually instrumented
 
 - Install dependencies
 
@@ -136,9 +136,9 @@ if __name__ == "__main__":
 
 > curl http://localhost:8082/server_request?param=manual
 
-### Programmatically Instrumented
+### Programmatically-instrumented
 
-You can use instrumentation libraries (e.g., opentelemetry-instrumentation-flask) individually, which may offer customization benefits. However, choosing this approach means you will not benefit from automatic instrumentation when starting the application with opentelemetry-instrument, as these two methods are mutually exclusive.
+You can use instrumentation libraries separately (e.g., opentelemetry-instrumentation-flask), which may offer the advantage of custom options. However, choosing this method means you will not benefit from automatic instrumentation when starting the application via opentelemetry-instrument, as these two methods are mutually exclusive.
 
 - Install dependencies
 
@@ -200,4 +200,4 @@ if __name__ == "__main__":
 
 ### Effect
 
-![opentelemetry python instrument to Guance](imgs/opentelemetry-python.png)
+![opentelemetry python instrument to guance](imgs/opentelemetry-python.png)
