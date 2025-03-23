@@ -1,8 +1,8 @@
-# Issue-Reply Modification
+# Modify Issue-Reply
 
 ---
 
-<br />**POST /api/v1/issue/reply/{reply_uuid}/modify**
+<br />**POST /api/v1/issue/reply/\{reply_uuid\}/modify**
 
 ## Overview
 
@@ -12,41 +12,41 @@
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------|
-| reply_uuid | string | Y | reply_uuid<br> |
+|:---------------------|:---------|:-----------|:------------------------|
+| reply_uuid           | string   | Y          | reply_uuid<br>         |
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------|
-| issueUUID | string | Y | UUID of the issue<br>Example: issueUUID <br>Can be empty: False <br> |
-| attachmentUuids | array |  | List of UUIDs for uploaded reply attachments<br>Example: [] <br>Can be empty: True <br> |
-| content | string |  | Reply content<br>Example: answer_xxx <br>Can be empty: True <br>Can be an empty string: True <br> |
-| extend | json | Y | Additional extended information, defaults to {} if no content<br>Example: {} <br>Can be empty: True <br> |
+|:---------------------|:---------|:-----------|:------------------------|
+| issueUUID            | string   | Y          | UUID of the issue<br>Example: issueUUID <br>Can be empty: False <br> |
+| attachmentUuids      | array    |            | List of reply attachment UUIDs<br>Example: [] <br>Can be empty: True <br> |
+| content              | string   |            | Reply content<br>Example: answer_xxx <br>Can be empty: True <br>Can be an empty string: True <br> |
+| extend               | json     | Y          | Additional extension information, defaults to {} if no content is provided<br>Example: {} <br>Can be empty: True <br> |
 
-## Additional Parameter Notes
+## Supplementary Parameter Explanation
 
 
-**Basic Parameter Explanation**
+**Basic Parameter Description**
 
-| Parameter Name      | Parameter Type | Required | Parameter Description                   |
-|:---------------:|:--------:|:--------:|:-------------------------------------------:|
-| issueUUID       |  string  |    Y     | UUID of the issue corresponding to the reply                |
-| attachmentUuids      | array  |    N     | List of UUIDs for attachments corresponding to the issue reply; must be uploaded via the /api/v1/attachment/upload interface             |
-| content    |  string  |    N     | Content of the reply                      |
-| extend      |   json   |    Y     | Extended fields, default is {}                  |
+| Parameter Name       | Parameter Type | Required | Parameter Description                  |
+|:--------------------:|:--------------:|:---------:|:--------------------------------------:|
+| issueUUID           | string         | Y         | UUID corresponding to the reply issue  |
+| attachmentUuids      | array          | N         | List of UUIDs for attachments related to the reply issue; must be uploaded via the /api/v1/attachment/upload interface first |
+| content             | string         | N         | Content of the reply                   |
+| extend              | json           | Y         | Extension fields, default value is {}  |
 
 
 **Explanation of the Extend Field**
 
-**In update scenarios, channels and channelUUIDs will be associated with the default channels and additional channels by default. If an empty array `[]` is passed, it will only exist in the default space channel**
+**In update scenarios, channels and channelUUIDs will be associated by default with both the default channels and any appended channels. If an empty array `[]` is passed, the issue will only exist in the default space channel.**
 
-| Parameter Name  | Parameter Type | Required | Parameter Description         |
-|:--------:|:--------:|:--------:|:-----------------------:|
-| channels |  array   |    N     | List of resources where the issue should be delivered |
-| members  |     array     |     N     | Members who should receive notifications for the issue    |
-| extra  |     json     |     N     | Information related to the updater, used for frontend display    |
+| Parameter Name | Parameter Type | Required | Parameter Description                  |
+|:-------------:|:--------------:|:---------:|:--------------------------------------:|
+| channels      | array          | N         | List of resources where the issue should be delivered |
+| members       | array          | N         | Members of notification targets expected for the issue |
+| extra         | json           | N         | Information related to the updater, used for front-end display |
 
 Example of the extend field:
 ```json
@@ -68,7 +68,7 @@ Example of the extend field:
     "extra": {
                 "updator": {
                   "name": "yyy",
-                  "email": "yyy@qq.com",
+                  "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 }
             }
 }

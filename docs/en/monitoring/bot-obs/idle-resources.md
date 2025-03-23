@@ -1,77 +1,77 @@
-# Idle Host Inspection
+# Idle HOST Inspection
 ---
 
 ## Background
 
-As business grows, the volume of resource usage increases, and enterprise data centers become larger. The problem of significant waste from idle hosts becomes more pronounced. Especially within enterprises, due to demand fluctuations and departmental isolation, some hosts cannot be fully utilized, resulting in a large amount of idle resources. This situation can lead to a direct increase in cloud service costs, reduced resource efficiency, and potential decreases in security and performance levels.
+As businesses grow, the amount of resource usage also increases, leading to larger enterprise data centers and making the problem of significant waste from idle hosts even more prominent. Especially within enterprises, due to fluctuations in demand and isolation between departments, some hosts are not fully utilized, resulting in a large amount of idle resources. This situation can directly increase the cloud service costs for enterprises, reduce resource efficiency, and possibly lower security and performance levels.
 
 ## Prerequisites
 
-1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
-3. In <<< custom_key.brand_name >>> under "Manage / API Key Management," create an [API Key](../../management/api-key/open-api.md) for operations.
+1. Self-built [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
+3. In <<< custom_key.brand_name >>>'s "Manage / API Key Management," create an [API Key](../../management/api-key/open-api.md) for operations.
 
-> **Note**: If you plan to use a cloud server for offline deployment of DataFlux Func, consider deploying it with the current SaaS deployment of <<< custom_key.brand_name >>> on [the same provider and region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, ensure it is with the same operator and region as the current SaaS deployment of <<< custom_key.brand_name >>>. Refer to [Same Operator Same Region](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Enable Inspection
+## Start Inspection
 
-In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-built Inspection (Idle Host Inspection)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key as prompted to enable it.
+In your self-built DataFlux Func, install the "<<< custom_key.brand_name >>> Self-Built Inspection (Idle Host Inspection)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key according to the instructions to start.
 
-Select the inspection scenario you want to enable in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
+In the DataFlux Func Script Market, select the required inspection scenario to click on installation, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration. You can directly jump to view the corresponding configuration via the link.
+After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration. You can directly jump to view the corresponding configuration through the link.
 
 ![image](../img/success_checker.png)
 
 ## Configure Inspection
 
-### Configuration in <<< custom_key.brand_name >>>
+### Configuration of Inspection in <<< custom_key.brand_name >>>
 
 ![image](../img/idle-resources03.png)
 
 #### Enable/Disable
-Idle host inspection is enabled by default. It can be manually disabled. Once enabled, it will inspect the configured list of idle host inspection configurations.
+The idle host inspection is by default "Enabled" and can be manually "Disabled." After enabling, it will inspect the configured list of idle host inspections.
 
 #### Edit
-The intelligent inspection "Idle Host Inspection" supports manual addition of filtering conditions. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
+The "Idle Host Inspection" supports users adding manual filtering conditions. Under the operation menu on the right side of the intelligent inspection list, click the **Edit** button to edit the inspection template.
 
-* Filtering Conditions: No parameters need to be configured; it will inspect all workspace cloud hosts by default.
-* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
+* Filtering Conditions: No parameters need to be configured; by default, it inspects all cloud hosts in the workspace.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity level, notification targets, and alert mute periods.
 
-Click Edit in the entry parameter configuration, fill in the corresponding detection object in the parameter configuration, click Save, and start the inspection:
+To configure the entry parameters, click **Edit**, fill in the corresponding detection objects in the parameter configuration, and save to start the inspection:
 
 ![image](../img/idle-resources04.png)
 
 ## View Events
-<<< custom_key.brand_name >>> inspects the host status of the current workspace. When idle hosts are detected, the intelligent inspection generates corresponding events. Click the **View Related Events** button in the operation menu on the right side of the intelligent inspection list to view the corresponding anomaly events.
+<<< custom_key.brand_name >>> inspects the status of the hosts in the current workspace. When it detects that a host is idle, the intelligent inspection generates a corresponding event. Under the operation menu on the right side of the intelligent inspection list, click the **View Related Events** button to view the corresponding abnormal events.
 
 ![image](../img/idle-resources05.png)
 
 ### Event Details Page
-Click **Event** to view the details page of the intelligent inspection event, which includes event status, occurrence time of anomalies, anomaly name, basic attributes, event details, alert notifications, history, and related events.
+Click **Event** to view the details page of the intelligent inspection event, including event status, time of anomaly occurrence, anomaly name, basic attributes, event details, alert notifications, history records, and related events.
 
-* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the current intelligent inspection configuration.
+* Clicking the small icon in the top-right corner of the details page labeled "View Monitor Configuration" allows you to view and edit the current intelligent inspection configuration details.
 
 #### Basic Attributes
-* Detection Dimensions: Based on the filtering conditions configured in the intelligent inspection, it supports copying `key/value` pairs, adding filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, synthetic tests, and CI data.
-* Extended Attributes: After selecting extended attributes, it supports copying in `key/value` format and performing forward/reverse filtering.
+* Detection Dimensions: Based on the screening conditions of the intelligent inspection configuration, it supports copying `key/value`, adding to filters, and viewing logs, containers, processes, security checks, traces, user analysis, synthetic tests, and CI-related data.
+* Extended Attributes: After selecting extended attributes, it supports copying in `key/value` form, forward/reverse filtering.
 
 ![image](../img/idle-resources06.png)
 
 #### Event Details
 
-The idle host inspection detects the running state of cloud hosts and generates event reports when they are found to be idle.
+Idle host inspection detects the operational status of cloud hosts and generates corresponding event reports when idle conditions are detected.
 
-* Event Overview: Describes the object and content of the anomaly inspection event.
-* Idle Host Details: View detailed information about currently idle hosts.
-* Process Details: Displaying the process status of idle hosts provides support for business diagnostics.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Idle Host Details: Displays detailed information about currently idle hosts.
+* Process Details: Displays the process state of the idle host to support business diagnostics.
 
 ![image](../img/idle-resources07.png)
 
-#### History
+#### History Records
 
-Supports viewing the inspected objects, anomaly/recovery times, and duration.
+Supports viewing inspected objects, anomaly/recovery times, and duration.
 
 ![image](../img/idle-resources08.png)
 
@@ -80,23 +80,23 @@ Supports viewing related events through filtered fields and selected time compon
 
 ![image](../img/idle-resources09.png)
 
-## FAQs
-**1. How to configure the inspection frequency for idle hosts**
+## Common Issues
+**1. How to configure the detection frequency of idle host inspections**
 
-* In the self-hosted DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the self-built inspection handling function, and then configure it in "Manage / Automatic Trigger Configuration".
+* In your self-built DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator while writing the self-built inspection processing function. Then configure it in "Manage / Automatic Trigger Configuration."
 
-**2. Why there might be no anomaly analysis during inspection**
+**2. Why might there be no anomaly analysis during idle host inspection triggers**
 
-If the inspection report lacks anomaly analysis, check the current `datakit` data collection status.
+If there is no anomaly analysis in the inspection report, check the data collection status of the current `datakit`.
 
-**3. Previously normal scripts fail during inspection**
+**3. During the inspection, previously normally running scripts may produce error exceptions**
 
-Update the referenced script set in the DataFlux Func Script Market. You can refer to the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to view the update records of the script market for timely updates.
+Update the referenced script sets in the DataFlux Func Script Market. You can refer to the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to view the update records of the script market for timely updates.
 
-**4. During script upgrades, the Startup script set does not change**
+**4. During the upgrade of the inspection script, why does the corresponding script set in Startup show no changes**
 
-Delete the corresponding script set first, then click the Upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
+First delete the corresponding script set, then click the upgrade button and configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
 **5. How to determine if the inspection has taken effect after enabling**
 
-In "Manage / Automatic Trigger Configuration," check the inspection status. First, ensure it is enabled, then verify the inspection script by clicking Execute. If it shows "Executed successfully xx minutes ago," the inspection is running normally and has taken effect.
+In "Manage / Automatic Trigger Configuration," view the corresponding inspection status. First, the status should be enabled, and secondly, you can validate whether the inspection script works by clicking execute. If there is a message indicating successful execution minutes ago, then the inspection is running effectively.

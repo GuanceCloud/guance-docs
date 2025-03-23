@@ -1,27 +1,23 @@
 # API Key Management
 ---
 
-<<< custom_key.brand_name >>> supports obtaining and updating <<< custom_key.brand_name >>> workspace data through calling Open API interfaces. Before calling the API interface, you need to create an API Key as the authentication method.
+<<< custom_key.brand_name >>> supports obtaining and updating data in the workspace by calling Open API interfaces. Before calling the API interface, you need to create an API Key first, which is used for identity authentication.
 
-> For API introduction, refer to [OpenAPI](../../management/api-key/open-api.md).
+> For more information about APIs, refer to [OpenAPI](../../management/api-key/open-api.md).
 
 
-## Create API Key
+## Create
 
-In <<< custom_key.brand_name >>> workspace **Management > API Key Management**, click **Create Key** in the top-right corner, enter the Key name, and click Confirm.
+1. Define the Key name;
+2. Select the role for this API Key;
+3. Click confirm.
 
-**Note**: API Key management supports editing by administrators and above.
+**Note**: If multiple roles are selected for this API Key, the final permissions will be the **union** of the selected role permissions.
 
 <img src="../img/3_apikey_1.png" width="80%" >
 
-After clicking **Confirm**, you can obtain the API Key ID and secret key for use.
-
-![](../img/3_apikey_2.png)
-
-Alternatively, you can obtain the API Key ID and secret key by clicking the view icon on the right side of the API Key management list. If it is no longer needed or there is a risk of leakage, you can delete it and recreate it.
+After successfully creating, you will obtain the API Key ID and secret key used for calling.
 
 ![](../img/3.apikey_3.png)
 
-Creating or deleting an API Key will generate an audit event, which can be viewed under **Management > Basic Settings** in <<< custom_key.brand_name >>> workspace's operation audit.
-
-![](../img/3.apikey_4.png)
+![](../img/3_apikey_2.png)

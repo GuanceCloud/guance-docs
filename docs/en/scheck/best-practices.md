@@ -3,22 +3,28 @@
 
 - Version: 1.0.7-7-g251eead
 - Release Date: 2023-04-06 11:17:57
-- Supported Operating Systems: windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64
+- Operating System Support: windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64
 
 # Introduction
 
-    In general, one of the most important tasks in operations and maintenance is to inspect the status of systems, software, logs, etc. Traditional solutions often involve engineers writing shell (bash) scripts for such tasks and using remote script management tools to manage clusters. However, this method is actually very risky because system inspection operations often require high privileges, usually running with root permissions. If a malicious script is executed, the consequences can be disastrous. In practice, there are two types of malicious scripts: one is a malicious command, such as `rm -rf`, and the other involves data theft, such as leaking data via network I/O. Therefore, Security Checker aims to provide a new type of secure scripting method (limiting command execution, local I/O, and network I/O) to ensure all actions are safe and controllable. Moreover, Security Checker will collect inspection events through a unified network model in log format. At the same time, Security Checker will provide a vast, updatable rule library, including system, container, network, security, and other inspections.
+    Generally, in the operation and maintenance process, one of the most important tasks is to inspect the status of systems, software, including logs, etc. Traditional solutions often rely on engineers writing shell (bash) scripts for similar tasks, and using some remote script management tools to achieve cluster management. However, this method is actually very risky because system inspection operations usually require high privileges, often running as root. If a malicious script is executed, the consequences can be catastrophic. In practice, there are two types of malicious scripts: one is malicious commands, such as rm -rf; the other involves data theft, such as leaking data through network IO. Therefore, Security Checker aims to provide a new type of secure scripting method (restricting command execution, local IO, and network IO) to ensure all actions are safe and controllable. Additionally, Security Checker will collect inspection events via a unified network model in log form. At the same time, Security Checker will provide a massive updatable rule library, including inspections for systems, containers, networks, security, and more.
 
-> scheck is the abbreviation for Security Checker.
+> scheck is the abbreviation for Security Checker
 >
-> scheck only pushes security check events and does not provide recovery notifications.
+> scheck only pushes security inspection events and does not provide recovery notifications
+
+
 
 # Prerequisites
 
-| Service Name | Version                                                         | Must Be Installed | Purpose            |
-| ------------ | --------------------------------------------------------------- | ----------------- | ------------------ |
-| Datakit      | 1.1.6 or later [Installation Method](../datakit/datakit-install.md) | Required          | Accept scheck signals |
-| DataFlux     | [DataFlux SaaS](https://<<< custom_key.brand_main_domain >>>) or other private deployment versions | Required          | View security checks |
+
+| Service Name | Version                                                         | Is Installation Required | Purpose            |
+| ------------ | --------------------------------------------------------------- | ----------------------- | ------------------ |
+| Datakit      | 1.1.6 or higher [Installation Method](../datakit/datakit-install.md) | Required                | Accepts scheck signals |
+| DataFlux     | [DataFlux SaaS](https://<<< custom_key.brand_main_domain >>>) or other private deployment versions      | Required                | View security inspections |
+
+
+
 
 # Configuration
 
@@ -28,10 +34,12 @@
 sudo -- bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/security-checker/install.sh)"
 ```
 
-### 2 Check Installation Status and Datakit Running Status
+
+
+### 2 Check installation status and datakit operational status
 - Check scheck status
 ```sh
-$ systemctl status scheck
+$systemctl status scheck
 ● scheck.service - security checker with lua script
    Loaded: loaded (/usr/lib/systemd/system/scheck.service; enabled; vendor preset: disabled)
    Active: active (running) since Sat 2021-07-03 00:13:15 CST; 2 days ago
@@ -45,7 +53,7 @@ $ systemctl status scheck
 - Check datakit status
 ```shell
 $ systemctl status datakit
-● datakit.service - Collects data and uploads it to DataFlux.
+● datakit.service - Collects data and upload it to DataFlux.
    Loaded: loaded (/etc/systemd/system/datakit.service; enabled; vendor preset: disabled)
    Active: active (running) since Sat 2021-07-03 01:07:44 CST; 2 days ago
  Main PID: 27371 (datakit)
@@ -55,15 +63,20 @@ $ systemctl status datakit
            └─27371 /usr/local/datakit/datakit
 ```
 
-### 3 Log in to the DataFlux Console to View Security Check Records ([SaaS Platform](https://dataflux.cn))
 
-- Select Security Check from the left sidebar to view inspection content
+### 3 Log in to the DataFlux console to view security inspection records ([SaaS Platform](https://dataflux.cn))
+
+- Select Security Inspection from the left sidebar to view inspection content	
 
   ![](img/bestpractices-2.png)
 
-# Relevant Commands
+
+
+
+
+# Related Commands
 > Security Checker cmd
-- View help
+- Check help
 ```sh
 $scheck -h
 Usage of scheck:
@@ -86,19 +99,20 @@ Usage of scheck:
   -tpl
         Generate doc document from template file
   -dir
-        Use with `-doc` `-tpl` to output files to a specified directory
+        Used with `-doc` `-tpl`, outputs files to the specified directory
   -luastatus
-        Show all Lua runtime statuses and output to the current directory in Markdown format.
+        Displays all lua runtime statuses and outputs them to the current directory in Markdown format.
   -sort
-        Use with `-luastatus`. Sorting parameters include: name, time, count. Default sorting is by count.
+        Used with `-luastatus`, sort parameters include: name: name, runtime duration: time, run count: count, default uses count
      ./scheck -luastatus -sort=time
   -check
-        Precompile all Lua files in the user directory once to check for syntax errors.
+        Pre-compiles all lua files under the user directory once, checking for syntax errors.
   -box
-        Show all files loaded into the binary
+        Displays a list of all files loaded into the binary
 ```
 
-- Start/Stop Commands
+
+- Start/Stop Commands 
 ```sh
 systemctl start/stop/restart/status scheck 
 ## or 

@@ -1,24 +1,24 @@
-# Spring Boot Project with External Tomcat for Observable Tracing
+# Spring Boot Project with External Tomcat Scenario for Observable Tracing
 
 ---
 
 ## Introduction
 
-Different enterprises use different technology stacks when building their enterprise-level frameworks within the Java ecosystem. For example, some companies use Spring Boot + Spring Cloud, while others use Spring Boot + Dubbo.<br/>
-<<< custom_key.brand_name >>> supports various APM tools to integrate microservice tracing into <<< custom_key.brand_name >>>. You can choose the appropriate APM tool based on your needs.
+Different enterprises use varying technology stacks when building their enterprise-level frameworks within the Java ecosystem. For instance, some companies use Spring Boot + Spring Cloud, while others use Spring Boot + Dubbo for microservice frameworks.<br/>
+<<< custom_key.brand_name >>> supports various APM tools to integrate microservice tracing into <<< custom_key.brand_name >>>, allowing you to choose the appropriate APM tool based on your needs.
 
-Typically, microservices are run as JAR files. This article focuses on how to build these microservices into WAR packages and deploy them on Tomcat, and then integrate the tracing data into <<< custom_key.brand_name >>>. If it is a traditional WAR package project, the integration method is the same.
+Typically, microservices are run as Jar files, but this article focuses on how to build these microservices into WAR packages and deploy them under Tomcat, and then integrate the tracing data into <<< custom_key.brand_name >>>. If it is a traditional WAR package project, the integration method is the same.
 
 ## SkyWalking Scenario
 
 ### Prerequisites
 
-- Cloud server (CentOS 7.9)
+- Cloud host (CentOS 7.9)
 - Install JDK
 - Install Zookeeper
 - <<< custom_key.brand_name >>> account
-- Two Tomcat instances deployed at `/usr/local/df-demo/tomcat8080` and `/usr/local/df-demo/tomcat8081`
-- The cloud server has <[DataKit installed](../../datakit/datakit-install.md)>
+- Two Tomcat deployments with paths `/usr/local/df-demo/tomcat8080` and `/usr/local/df-demo/tomcat8081`
+- The cloud host has <[DataKit installed](../../datakit/datakit-install.md)>
 
 ### Steps
 
@@ -26,18 +26,18 @@ Typically, microservices are run as JAR files. This article focuses on how to bu
 
     **This case uses DataKit version `1.4.9`, Spring Cloud `3.1.1`, Spring Boot `2.6.6`, Dubbo `2.7.15`, Zookeeper `3.7.1`, JDK `1.8`, and Tomcat `9.0.48` for testing**
 
-### 1 Configure DataKit
+### 1 DataKit Configuration
 
 #### 1.1 Modify http_api (Optional)
 
-Edit the `/usr/local/datakit/conf.d/datakit.conf` file and change the `http_api` listen value to `0.0.0.0:9529` to ensure that other hosts can access port `9529` on this host.<br/>
+Edit the `/usr/local/datakit/conf.d/datakit.conf` file, change the listen value of `http_api` to `0.0.0.0:9529` to ensure that other hosts can access the `9529` port on this host.<br/>
 If you do not want other hosts to access DataKit, you can skip this step.
 
 ![image](../images/springboot-tomcat-1.png)
 
 #### 1.2 Enable SkyWalking Collector
 
-Log in to the host, copy the sample file, and enable the SkyWalking collector.
+Log in to the host, copy the sample file, and enable the skywalking collector.
 
 ```bash
 cd /usr/local/datakit/conf.d/skywalking
@@ -54,7 +54,7 @@ systemctl restart datakit
 
 ##### 2.1 Download SkyWalking
 
-Download [apache-skywalking-java-agent-8.11.0](https://www.apache.org/dyn/closer.cgi/skywalking/java-agent/8.11.0/apache-skywalking-java-agent-8.11.0.tgz), extract it, and rename the folder to `agent`. Upload it to the directories `/usr/local/df-demo/tomcat8080` and `/usr/local/df-demo/tomcat8081` on the host.
+Download [apache-skywalking-java-agent-8.11.0](https://www.apache.org/dyn/closer.cgi/skywalking/java-agent/8.11.0/apache-skywalking-java-agent-8.11.0.tgz), extract the file and name it `agent`, upload it to the directories `/usr/local/df-demo/tomcat8080` and `/usr/local/df-demo/tomcat8081` on the host.
 
 ##### 2.2 Configure Tomcat
 
@@ -66,10 +66,10 @@ export CATALINA_OPTS="$CATALINA_OPTS -javaagent:/usr/local/df-demo/tomcat8080/ag
 
 ![image](../images/springboot-tomcat-2.png)
 
-Parameter descriptions:
+Parameter explanation:
 
 - `-Dskywalking.agent.service_name`: Service name
-- `-Dskywalking.collector.backend_service`: DataKit address + SkyWalking collector port for trace reporting
+- `-Dskywalking.collector.backend_service`: DataKit address for trace reporting + SkyWalking collector port
 
 Modify the `/usr/local/df-demo/tomcat8081/bin/catalina.sh` file and add the following content:
 
@@ -86,18 +86,18 @@ cd /usr/local/df-demo/tomcat8081/bin
 ./startup.sh
 ```
 
-##### 2.3 Deploy Projects
+##### 2.3 Deploy the Project
 
-[Download](https://github.com/stevenliu2020/springboot-tomcat) the WAR packages and obtain `consumer.war` and `provider.war` from the `skywalking` directory.
+[Download](https://github.com/stevenliu2020/springboot-tomcat) the WAR package, obtain `consumer.war` and `provider.war` from the skywalking directory.
 
 - Place `provider.war` in the `/usr/local/df-demo/tomcat8081/webapps` directory.
 - Place `consumer.war` in the `/usr/local/df-demo/tomcat8080/webapps` directory.
 
 ### 3 Observable Tracing
 
-Access `http://192.168.0.100:8080/consumer/ping` in your browser, where the IP is the address of the host.<br/>
-Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」-「APM」, and you should see the `tomcat-customer` and `tomcat-provider` services.<br/>
-Click on a trace to view flame graphs, span lists, call relationships, etc.
+Access `http://192.168.0.100:8080/consumer/ping` in the browser; here, the IP is the host's address.<br/>
+Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」-「Application Performance Monitoring」, and you will see the `tomcat-customer` and `tomcat-provider` services.<br/>
+Click on a trace to view the flame graph, span list, and call relationships.
 
 ![image](../images/springboot-tomcat-3.png)
 

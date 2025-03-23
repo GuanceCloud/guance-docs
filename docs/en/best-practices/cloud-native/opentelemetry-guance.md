@@ -2,71 +2,72 @@
 
 ---
 
-In the previous two articles, we demonstrated and introduced how to perform observability based on OpenTelemetry.
+In the previous two articles, we demonstrated and introduced how to conduct observability based on OpenTelemetry.
 
 [OpenTelemetry to Jaeger, Grafana, ELK](./opentelemetry-elk.md)
 
-As a classic observability architecture, different types of data are stored on different platforms, such as logs in ELK, traces in APM systems like Jaeger, and metrics in Prometheus with visualization through Grafana.
+As a classic observability architecture, different types of data are stored on different platforms, such as logs in ELK, traces in Jaeger-like APMs, and metrics saved in Prometheus with visualization through Grafana.
 
 [OpenTelemetry to Grafana](./opentelemetry-grafana.md) 
 
-The combination of Grafana Tempo and Loki allows us to intuitively see the log trace situation. However, the characteristics of Loki also determine that it cannot provide good log processing and analysis capabilities for large production systems. Log tracing is only part of observability; querying through log traces alone cannot solve most problems, especially in the era of microservices and cloud-native architectures where the diversity of issues requires comprehensive analysis from multiple aspects. For example, user access delays may not be due to program issues but could also result from other factors like current system network or CPU. In multi-cloud scenarios, Grafana cannot effectively support business development.
+The combination of Grafana Tempo and Loki allows us to intuitively see the log trace situation. However, Loki's characteristics also determine that it cannot provide good log processing and analysis capabilities for large production systems. Log tracing is only part of observability, and merely querying log traces cannot solve most problems, especially in the era of microservices and cloud-native architecture where the diversity of issues requires us to analyze from multiple aspects. For example, user access delays may not necessarily be program-related but could also be due to other comprehensive factors like the current system network or CPU. In multi-cloud user scenarios, Grafana cannot effectively support business development.
 
 [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 
-is a unified platform for collecting and managing various types of data including metrics, logs, APM, RUM, infrastructure, containers, middleware, and network performance. Using <<< custom_key.brand_name >>> allows for comprehensive observability of applications, not just between log traces. For more information about <<< custom_key.brand_name >>>, please refer to [Product Advantages](../../product-introduction/index.md).
+is a unified collection and management platform for various types of data including Metrics data, LOG data, APM, RUM, infrastructure, CONTAINERS, MIDDLEWARE, NETWORK performance, etc. Using <<< custom_key.brand_name >>> enables us to observe applications comprehensively rather than just between log traces. For more <<< custom_key.brand_name >>> information, please refer to [Product Advantages](../../product-introduction/index.md).
 
-DataKit acts as a gateway for <<< custom_key.brand_name >>>. To send data to <<< custom_key.brand_name >>>, you need to configure DataKit correctly, which offers several advantages:
+DataKit is the gateway preceding <<< custom_key.brand_name >>>. To send data to <<< custom_key.brand_name >>>, DataKit needs to be correctly configured, and using DataKit offers the following advantages:
 
-1. In host environments, each host has one DataKit instance. Data is first sent to the local DataKit, cached, pre-processed, and then reported, reducing network jitter while providing edge processing capabilities, thus relieving pressure on backend data processing.
-2. In Kubernetes environments, each node has a DataKit daemonset. By utilizing Kubernetes' local traffic mechanism, data from pods on each node is first sent to the local node's DataKit, reducing network jitter and adding pod and node labels to APM data, facilitating positioning in distributed environments.
+1. In a HOST environment, each host has one DataKit instance. Data is first sent to the local DataKit, cached, preprocessed, and then reported, avoiding network fluctuations while providing edge processing capabilities, thereby relieving pressure on backend data processing.
 
-Since DataKit accepts oltp protocol, it can bypass the collector and send data directly to DataKit, or the collector's exporter can be set to oltp (DataKit).
+2. In a k8 environment, each node has a DataKit daemonset. By utilizing k8s' local traffic mechanism, data from each pod on the node is sent to the local node’s DataKit, avoiding network fluctuations while adding pod and node tags to APM data, facilitating positioning in distributed environments.
+
+Since DataKit accepts oltp protocol, it can bypass the collector and directly send data to DataKit or set the collector's exporter to oltp (DataKit).
 
 ## Architecture
 ![image.png](../images/opentelemetry-guance-1.png)
 
-There are still two options available for this architecture.
+There are still two solutions available for selection in the architecture.
 
-> DataKit collects logs in multiple ways. This best practice primarily uses the socket method for log collection. Springboot applications mainly use Logback-logstash to push logs to DataKit.
+> Datakit collects logs in multiple ways; this best practice mainly involves collecting logs via the socket method. Springboot applications primarily use Logback-logstash to push logs to DataKit.
 
-## Option One
+## Solution One
 
-1. Application server and client push metric and trace data to otel-collector via otlp-exporter.
-2. Front-end app pushes trace information to otel-collector and accesses application service APIs.
-3. Otel-collector collects and transforms data, then sends metric and trace data to DataKit via otlp-exporter.
+1. Application server and client push metric and trace data through otlp-exporter to otel-collector.
+2. Front-end app acts as the front-end chain, pushing chain information to otel-collector and accessing application service APIs.
+3. Otel-collector collects and transforms the data, then transmits metric and trace data through otlp-exporter to DataKit.
 4. Simultaneously, the application server and client push logs to DataKit.
 
 ### Exporter
 
-Otel-collector is configured with one exporter: otlpExporter.
+Otel-collector is configured with 1 exporter: otlpExporter.
 
 ```yaml
   otlp:
     endpoint: "http://192.168.91.11:4319"
     tls:
       insecure: true
-    compression: none # gzip not enabled
+    compression: none # gzip disabled
 ```
 
-Parameter descriptions
+Parameter Description
 
 > endpoint: "[http://192.168.91.11:4319](http://192.168.91.11:4319)" # Currently filled with the DataKit OpenTelemetry collector address, using GRPC protocol.
 >
->tls.insecure : true # TLS security check disabled
+>tls.insecure : true # Disable TLS security verification
 >
->compression: none # gzip not enabled by default
+>compression: none # Gzip disabled by default
 
 Note
 
-> All applications are deployed on the same machine with IP 192.168.91.11. If applications and some middleware are deployed separately, ensure you modify the corresponding IP. If using cloud servers, ensure related ports are open to avoid access failures.
+> All applications are deployed on the same machine, with an IP of 192.168.91.11. If applications and some middleware are separately deployed, remember to modify the corresponding IPs. If it's a cloud server, ensure relevant ports are open to avoid access failures.
 
 
-## Option Two
+## Solution Two
 
-Option Two essentially replaces otel-collector with DataKit.
+Solution Two essentially replaces otel-collector with DataKit directly.
 
-Backend server and client start by modifying the `otel.exporter.otlp.endpoint` address to point directly to DataKit.
+When starting back-end servers and clients, modify the `otel.exporter.otlp.endpoint` address to point directly to DataKit.
 
 > -Dotel.exporter.otlp.endpoint=http://192.168.91.11:4319
 
@@ -85,19 +86,20 @@ const otelExporter = new OTLPTraceExporter({
 ### Installing DataKit
 
 - <[Install DataKit](../../datakit/datakit-install.md)>
-- DataKit version >=1.2.12
+
+- DataKit version >= 1.2.12
 
 ### Enabling OpenTelemetry Collector
 
-Refer to [OpenTelemetry Collector Integration Documentation](../../integrations/opentelemetry.md).
+Refer to the [OpenTelemetry Collector Integration Document](../../integrations/opentelemetry.md).
 
-#### Adjust the following parameters
+#### Adjust the Following Parameters
 
-[inputs.opentelemetry.grpc] parameter descriptions
-	
-- trace_enable：true 		# Enable grpc trace
-- metric_enable： true 	    # Enable grpc metric
-- addr: 0.0.0.0:4319 		    # Enable port
+[inputs.opentelemetry.grpc] Parameter Description
+
+- trace_enable: true 	# Enable grpc trace
+- metric_enable: true 	# Enable grpc metric
+- addr: 0.0.0.0:4319 	# Enable port
 
 #### Restart DataKit
 
@@ -107,7 +109,7 @@ datakit service restart
 
 ### Enabling Log Collection
 
-1. Enable the Logging plugin and copy the sample file
+1. Enable Logging plugin, copy Sample file
 
 ```shell
 cd /usr/local/datakit/conf.d/log
@@ -160,15 +162,15 @@ cp logging.conf.sample logging-socket-4560.conf
   # more_tag = "some_other_value"
 ```
 
-Parameter descriptions
+Parameter Description
 
 - sockets # Configure socket information
 - pipeline: log_socket.p # Log parsing
 
-3. Configure pipeline
+3. Configure Pipeline
 
 > cd pipeline
-> vim log_socket.p
+> vim  log_socket.p
 
 ```toml
 json(_,message,"message")
@@ -191,7 +193,7 @@ datakit --restart
 
 ### Enabling Metric Collection
 
-1. Enable the prom plugin and copy the sample file
+1. Enable prom plugin, copy Sample file
 
 ```shell
 cd /usr/local/datakit/conf.d/prom
@@ -208,39 +210,39 @@ cp prom.conf.sample prom-otel.conf
   ## Ignore request errors for URLs
   ignore_req_err = false
 
-  ## Source alias
+  ## Collector alias
   source = "prom"
 
   ## Output source for collected data
-  # Configure this to write collected data to a local file instead of sending it to the center
-  # You can then debug locally saved Metrics with the command `datakit --prom-conf /path/to/this/conf`
-  # If URL is already configured as a local file path, the `--prom-conf` option will prioritize debugging output path data
+  # Configuring this item can write collected data to a local file instead of sending it to the center
+  # Later, you can debug locally saved Measurements using the command datakit --prom-conf /path/to/this/conf
+  # If the URL is already configured as a local file path, --prom-conf will prioritize debugging output path data
   # output = "/abs/path/to/file"
 
-  ## Maximum size limit for collected data in bytes
-  # Set a maximum size limit for collected data when writing to a local file
-  # If the size of the collected data exceeds this limit, the data will be discarded
-  # Default maximum size limit is set to 32MB
+  ## Upper limit for the size of collected data, in bytes
+  # When outputting data to a local file, you can set an upper limit for the size of collected data
+  # If the size of the collected data exceeds this limit, the collected data will be discarded
+  # The default upper limit for the size of collected data is set to 32MB
   # max_file_size = 0
 
-  ## Filter metric types, possible values are counter, gauge, histogram, summary, untyped
+  ## Metric type filtering, optional values are counter, gauge, histogram, summary, untyped
   # By default, only counter and gauge type metrics are collected
-  # If empty, no filtering is applied
+  # If empty, no filtering is performed
   metric_types = []
 
-  ## Filter metric names: matching metrics will be retained
-  # Supports regex, multiple configurations allowed, i.e., meeting any one condition suffices
-  # If empty, no filtering is applied, all metrics are retained
+  ## Metric name filtering: metrics that meet the conditions will be retained
+  # Supports regex, multiple configurations can be made, i.e., satisfying any one condition is sufficient
+  # If empty, no filtering is performed, all metrics are retained
   # metric_name_filter = ["cpu"]
 
-  ## Prefix for measurement names
-  # Configure this to add a prefix to measurement names
+  ## Measurement prefix
+  # Configuring this item can add a prefix to the measurement name
   measurement_prefix = ""
 
   ## Measurement name
-  # By default, the measurement name is derived from the first segment of the metric name split by "_", with the remaining segments forming the metric name
-  # If `measurement_name` is configured, no splitting of the metric name occurs
-  # The final measurement name includes the `measurement_prefix` prefix
+  # By default, the metric name will be split by underscores "_", with the first field after splitting as the measurement name and the remaining fields as the current metric name
+  # If measurement_name is configured, the metric name will not be split
+  # The final measurement name will have the measurement_prefix prefix added
   # measurement_name = "prom"
 
   ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
@@ -256,16 +258,16 @@ cp prom.conf.sample prom-otel.conf
   # tls_cert = "/tmp/peer.crt"
   # tls_key = "/tmp/peer.key"
 
-  ## Custom authentication method, currently supports Bearer Token
-  # Only one of `token` and `token_file` needs to be configured
+  ## Custom authentication method, currently only supports Bearer Token
+  # token and token_file: only one needs to be configured
   # [inputs.prom.auth]
   # type = "bearer_token"
   # token = "xxxxxxxx"
   # token_file = "/tmp/token"
 
   ## Custom measurement names
-  # Metrics containing the prefix `prefix` can be grouped into one measurement set
-  # Custom measurement name configuration takes precedence over `measurement_name`
+  # Metrics containing the prefix prefix can be grouped into a class of measurements
+  # Custom measurement name configuration takes precedence over the measurement_name configuration item
   #[[inputs.prom.measurements]]
   #  prefix = "cpu_"
   #  name = "cpu"
@@ -275,22 +277,23 @@ cp prom.conf.sample prom-otel.conf
   # name = "mem"
 
   ## Rename prom data tag keys
-	[inputs.prom.tags_rename]
-		overwrite_exist_tags = false
-		[inputs.prom.tags_rename.mapping]
-			# tag1 = "new-name-1"
-			# tag2 = "new-name-2"
-			# tag3 = "new-name-3"
+  [inputs.prom.tags_rename]
+    overwrite_exist_tags = false
+    [inputs.prom.tags_rename.mapping]
+      # tag1 = "new-name-1"
+      # tag2 = "new-name-2"
+      # tag3 = "new-name-3"
 
   ## Custom Tags
   [inputs.prom.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
+
 ```
 
-Parameter descriptions
+Parameter Description
 
-- urls # otel-collector metrics URL
+- urls # otel-collector metric URL
 - metric_types = []: Collect all metrics
 
 3. Restart DataKit
@@ -301,13 +304,13 @@ datakit --restart
 
 ## Installing OpenTelemetry-Collector
 
-### Source Code Location
+### Source Code Address
 
 [https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-to-guance](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-collector-to-guance)
 
 ### Configure otel-collector-config.yaml
 
-Add a new collector configuration with one receiver (otlp) and four exporters (prometheus, zipkin, jaeger, and elasticsearch).
+Add collecter configuration, configure 1 receiver (otlp) and 4 exporters (prometheus, zipkin, jaeger, and elasticsearch).
 
 ```yaml
 receivers:
@@ -324,7 +327,7 @@ exporters:
     endpoint: "http://192.168.91.11:4319"
     tls:
       insecure: true
-    compression: none # gzip not enabled
+    compression: none # gzip disabled
 
 processors:
   batch:
@@ -351,7 +354,7 @@ service:
 
 ```
 
-Install otel-collector using docker-compose
+Install otel-collector via docker-compose
 
 ```yaml
 version: '3.3'
@@ -390,11 +393,11 @@ docker-compose ps
 
 ## Springboot Application Integration (APM & Log)
 
-Mainly through the socket method provided by Logstash-logback to upload logs to Logstash, requiring some adjustments to the code.
+Primarily using the socket method provided by Logstash-logback to upload logs to Logstash, requiring partial code adjustments.
 
 ### 1. Add Maven Dependency for Logstash-logback
 
-```xml
+```toml
 <dependency>
   <groupId>net.logstash.logback</groupId>
   <artifactId>logstash-logback-encoder</artifactId>
@@ -404,18 +407,18 @@ Mainly through the socket method provided by Logstash-logback to upload logs to 
 
 ### 2. Add logback-logstash.xml
 
-```xml
+```java
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
     <!-- Some parameters need to come from properties files -->
     <springProperty scope="context" name="logName" source="spring.application.name" defaultValue="localhost.log"/>
-    <!-- Configuration allows dynamic modification of log levels -->
+    <!-- After configuration, dynamic modification of log levels can be done -->
     <jmxConfigurator />
     <property name="log.pattern" value="%d{HH:mm:ss} [%thread] %-5level %logger{10} [traceId=%X{trace_id} spanId=%X{span_id} userId=%X{user-id}] %msg%n" />
 
     <springProperty scope="context" name="logstashHost" source="logstash.host" defaultValue="logstash"/>
     <springProperty scope="context" name="logstashPort" source="logstash.port" defaultValue="4560"/>
-    <!-- %m outputs message, %p log level, %t thread name, %d date, %c full class name,,,, -->
+    <!-- %m outputs the message, %p the log level, %t the thread name, %d the date, %c the full class name,,,, -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${log.pattern}</pattern>
@@ -424,7 +427,7 @@ Mainly through the socket method provided by Logstash-logback to upload logs to 
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/${logName}/${logName}.log</file>    <!-- Usage -->
+        <file>logs/${logName}/${logName}.log</file>    <!-- Usage Example -->
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>logs/${logName}/${logName}-%d{yyyy-MM-dd}.log.%i</fileNamePattern>
@@ -440,7 +443,7 @@ Mainly through the socket method provided by Logstash-logback to upload logs to 
 
     <!-- LOGSTASH output settings -->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <!-- Configure LogStash service address -->
+        <!-- Configure logStash service address -->
         <destination>${logstashHost}:${logstashPort}</destination>
         <!-- Log output encoding -->
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
@@ -466,7 +469,7 @@ Mainly through the socket method provided by Logstash-logback to upload logs to 
                 </pattern>
             </providers>
         </encoder>
-        <!-- Keep alive -->
+        <!-- Keep-alive -->
         <keepAliveDuration>5 minutes</keepAliveDuration>
     </appender>
 
@@ -483,7 +486,7 @@ Mainly through the socket method provided by Logstash-logback to upload logs to 
 
 ### 3. Add application-logstash.yml
 
-```yaml
+```java
 logstash:
   host: localhost
   port: 4560
@@ -491,15 +494,15 @@ logging:
   config: classpath:logback-logstash.xml
 ```
 
-### 4. Rebuild
+### 4. Repackage
 
-```shell
+```java
 mvn clean package -DskipTests
 ```
 
 ### 5. Start Service
 
-```shell
+```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 -Dotel.traces.exporter=otlp \
 -Dotel.exporter.otlp.endpoint=http://localhost:4350 \
@@ -511,7 +514,7 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 --logstash.host=192.168.91.11 \
 --logstash.port=4560
 ```
-```shell
+```yaml
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 -Dotel.traces.exporter=otlp \
 -Dotel.exporter.otlp.endpoint=http://localhost:4350 \
@@ -526,7 +529,7 @@ java -javaagent:opentelemetry-javaagent-1.13.1.jar \
 
 ## JS Integration (RUM)
 
-### Source Code Location
+### Source Code Address
 
 [https://github.com/lrwh/observable-demo/tree/main/opentelemetry-js](https://github.com/lrwh/observable-demo/tree/main/opentelemetry-js)
 
@@ -540,7 +543,7 @@ const otelExporter = new OTLPTraceExporter({
 });
 ```
 
-This URL is the otlp receiving address of otel-collector (HTTP protocol).
+This URL is the otlp receiving address of otel-collector (http protocol).
 
 ### Configure server_name
 
@@ -555,13 +558,13 @@ const providerWithZone = new WebTracerProvider({
 
 ### Install
 
-```shell
+```toml
 npm install
 ```
 
 ### Start
 
-```shell
+```toml
 npm start
 ```
 
@@ -569,33 +572,33 @@ Default port `8090`
 
 ## APM and RUM Correlation
 
-APM and RUM are mainly correlated through header parameters. To maintain consistency, a uniform propagator (`Propagator`) must be configured. Here, RUM uses `B3`, so APM also needs to configure `B3`. Just add `-Dotel.propagators=b3` to the APM startup parameters.
+APM and RUM are mainly associated through header parameters. To maintain consistency, a unified propagator (`Propagator`) needs to be configured. Here, RUM uses `B3`, so APM also needs to configure `B3`. This can be done by simply adding `-Dotel.propagators=b3` to the APM startup parameters.
 
 ## APM and Log Correlation
 
-APM and logs are mainly correlated through traceId and spanId embedded in log entries. Different log integration methods have varying embedding differences.
+APM and Logs are mainly correlated through traceId and spanId embedded in log points. Differences exist depending on the method of log integration.
 
 ## <<< custom_key.brand_name >>>
 
-By accessing the frontend URL, trace information is generated.
+By accessing the front-end URL, trace information is generated.
 
 ![image.png](../images/opentelemetry-guance-2.png)
 
-### Log Viewer
+### Log Explorer
 
 ![guance-log.gif](../images/opentelemetry-guance-4.gif)
 
-### Trace (Application Performance Monitoring)
+### Trace (**Application Performance Monitoring**)
 
 ![guance-trace.gif](../images/opentelemetry-guance-5.gif)
 
-### View Corresponding Logs from Trace
+### View Corresponding Logs from Traces
 
 ![guance-trace-log.gif](../images/opentelemetry-guance-6.gif)
 
 ### Application Metrics
 
-Application metrics are stored in the `otel-service` measurement set.
+All application Metrics are stored in the Measurement named `otel-service`.
 
 ![guance-metrics.gif](../images/opentelemetry-guance-7.png)
 

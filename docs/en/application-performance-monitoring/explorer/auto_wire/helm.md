@@ -11,10 +11,10 @@ Edit the `datakit.yaml` file and append `ddtrace` to the default enabled collect
    value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,ddtrace
 ```
 
-After completing the configuration, restart DataKit:
+After configuration is complete, restart DataKit:
 
 ```
-kubectl apply -f datakit.yaml
+kubectl apply -f datakit.yam
 ```
 
 
@@ -30,7 +30,7 @@ $ helm install datakit-operator datakit-operator \
 
 ### Update Configuration File
 
-The DataKit Operator configuration is in JSON format and is stored separately as a ConfigMap in Kubernetes, loaded into the container via environment variables.
+The Datakit Operator configuration is in JSON format, stored separately as a ConfigMap in Kubernetes, and loaded into the container via environment variables.
 
 ```
 {
@@ -65,14 +65,14 @@ The DataKit Operator configuration is in JSON format and is stored separately as
 }
 ```
 
-Configuration parameters:
+Parameter configurations:
 
 1. `service`: Service name;
-2. `env`: Environment information for the application service;
-3. Customize the DataKit listening address; if not set, it will follow the default address;
-4. Set sampling rate: When enabled, it can reduce the actual amount of generated data; the number range is from 0.0(0%) ~ 1.0(100%);
-5. Collect Profiling data: When enabled, you can see more runtime information about the application;
-6. Enable JVM Metrics collection: Requires enabling the [statsd collector](../../../integrations/jvm.md) simultaneously.
+2. `env`: Application service environment information;
+3. Custom DataKit listener address; if not set, it will follow the default address;
+4. Set sampling rate: After enabling, this can reduce the actual amount of generated data; the number range is from 0.0(0%) ~ 1.0(100%);
+5. Collect Profiling data: After enabling, more runtime information about the application can be seen;
+6. Enable JVM Metrics collection: Requires simultaneous activation of the [statsd collector](../../../integrations/jvm.md).
 
 
 ### Execute Installation Command
@@ -84,4 +84,5 @@ kubectl apply -f datakit-operator.yaml
 
 ## Restart Application
 
-After installation is complete, restart the application Pod.
+
+After installation is complete, simply restart the application Pod.

@@ -2,11 +2,11 @@
 
 ## Introduction
 
-TDengine is a high-performance, distributed, SQL-supporting time series database (Database), whose core code, including cluster functionality, is entirely open-source (under the AGPL v3.0 license). TDengine can be widely used in areas such as IoT, Industrial Internet, connected vehicles, IT operations, finance, and more. In addition to its core time series database (Database) functions, TDengine also provides caching, data subscription, stream processing, and other big data platform functionalities, minimizing the complexity of development and maintenance.
+TDengine is a high-performance, distributed, SQL-supported time-series database (Database), whose core code, including the cluster function, is fully open source (open source license, AGPL v3.0). TDengine can be widely applied in fields such as IoT, Industrial Internet, connected vehicles, IT operations and maintenance, finance, etc. In addition to the core time-series database (Database) functionality, TDengine also provides a series of functions required by big data platforms, such as caching, data subscription, streaming computation, etc., to minimize the complexity of development and operations.
 
 ## Prerequisites
 
-- [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed.
+- [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed
 
 - (Optional) Public cloud storage block components (public cloud)
 - (Optional) [OpenEBS storage plugin](openebs-install.md)
@@ -24,41 +24,43 @@ openebs-ndm-vlcrv                              1/1     Running   0          23h
 ## Basic Information and Compatibility
 
 
-| Name | Description |
+|     Name     |                   Description                   |
 | :------------------: | :---------------------------------------------: |
-| TDengine Version | 2.6.0 |
-| Supports Offline Installation | Yes |
-| Supported Architectures | amd64/arm64 |
+|     TDengine Version     |                   2.6.0                 |
+|    Whether supports offline installation    |                       Yes                        |
+|       Supported Architecture       |                   amd64/arm64                   |
 
 
 ## Default Configuration
 
-| TDengine URL | taos-tdengine.middleware |
+|  TDengine url   | taos-tdengine.middleware |
 | :---------------: | :----------------------------------: |
-| TDengine Port | 6041 |
-| TDengine Account | zhuyun/jfdlEGFH2143 |
-| TDengine Replicas | 3 |
+| TDengine Port |                 6041                 |
+|  TDengine Accounts  |         zhuyun/jfdlEGFH2143          |
+|  TDengine Replica Count  |                  3                 |
+
+
 
 
 
 ## Installation Steps
 
-### 1. Installation
+### 1、Installation
 
-#### 1.1 Cluster Label Configuration
+#### 1.1 Cluster Label Settings
 
-Since TDengine consumes significant resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
+Since tdengine consumes a lot of resources and requires exclusive use of cluster resources, we need to configure cluster scheduling in advance.
 
 
-Execute commands to label the cluster:
+Run the command to label the cluster
 
 ```shell
-# Based on cluster planning, apply labels to the k8s nodes that will host the TDengine service. It is recommended to use three nodes.
-# Replace `xxx` with actual node names from your cluster, separated by spaces or using the tab key for auto-completion in the command line terminal.
+# According to the cluster plan, apply labels to k8s nodes where tdengine services will be deployed. It is recommended to use three nodes.
+# xxx represents actual nodes in the cluster. Separate multiple node IPs with spaces or use tab keys in the terminal for auto-completion.
 kubectl label nodes xxx tdengine=true
 ```
 
-Check the labels:
+Check the labels
 
 ```shell
 kubectl get nodes --show-labels  | grep 'tdengine'
@@ -66,22 +68,22 @@ kubectl get nodes --show-labels  | grep 'tdengine'
 
 
 
-#### 1.2 Taint Configuration
+#### 1.2 Cluster Taint Settings
 
-Execute commands to set taints on the cluster:
+Run the command to set the cluster taint
 
 ```shell
-kubectl taint node xxxx infrastructure=middleware:NoExecute
+kubectl taint node  xxxx infrastructure=middleware:NoExecute
 ```
 
 
 
-#### 1.3 StorageClass Configuration
+#### 1.3 Configure StorageClass
 
-Configure a dedicated StorageClass for TDengine
+Configure a dedicated storage class for tdengine
 
 ```yaml
-# Copy the following YAML content into the k8s cluster as sc-td.yaml, modify it according to your needs, and deploy it.
+# Copy the following yaml content into the k8s cluster as sc-td.yaml, modify it according to actual conditions, and then deploy.
 apiVersion: storage.k8s.io/v1
 allowVolumeExpansion: true
 kind: StorageClass
@@ -91,22 +93,22 @@ metadata:
       - name: StorageType
         value: "hostpath"
       - name: BasePath
-        value: "/data/tdengine"  # Modify this path based on actual conditions, ensuring sufficient storage space and path existence
-  name: openebs-tdengine   # The name must be unique within the cluster; synchronize changes before deployment in /etc/kubeasz/guance/infrastructure/yaml/taos.yaml 
+        value: "/data/tdengine"  # This path can be modified according to actual needs. Please ensure sufficient storage space and that the path exists.
+  name: openebs-tdengine   # The name must be unique within the cluster and should be synchronized and modified before deployment in /etc/kubeasz/guance/infrastructure/yaml/taos.yaml 
 provisioner: openebs.io/local
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 ```
 
-> Ensure that the `/data/tdengine` directory has sufficient disk capacity.
+> Ensure that `/data/tdengine` directory has enough disk capacity.
 
 
 
 #### 1.4 Installation
 
-Save `tdengine.yaml` and deploy it.
+Save tdengine.yaml and deploy.
 
-???- note "tdengine.yaml (click to expand)"
+???- note "tdengine.yaml (Click to open)" 
     ```yaml hl_lines='433 424'
     ---
     # Source: tdengine/templates/configmap.yaml
@@ -515,9 +517,9 @@ Save `tdengine.yaml` and deploy it.
                 # - NET_BIND_SERVICE
                 # AllowedHostPaths:
                 # - pathPrefix: "/proc"
-                #   readOnly: true # Only allow read-only mounting
+                #   readOnly: true # 仅允许只读模式挂载
                 # - pathPrefix: "/sys"
-                #   readOnly: true # Only allow read-only mounting
+                #   readOnly: true # 仅允许只读模式挂载
               resources: {}
                 #limits:
                 #  cpu: 100m
@@ -547,14 +549,14 @@ Save `tdengine.yaml` and deploy it.
               storage: "100Gi"
     ```
 
-Execute the installation commands:
+Run the command to install:
 
 ```shell
 kubectl create namespace middleware
 kubectl apply -f tdengine.yaml
 ```
 
-### 2. Verification
+### 2、Verify Deployment
 
 #### 2.1 Check Pod Status
 

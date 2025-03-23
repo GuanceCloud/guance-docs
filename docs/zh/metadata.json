@@ -12,8 +12,9 @@
     "last_translated": "2025-03-07T17:49:31.157319"
   },
   "deployment/experience-function.md": {
-    "hash": "bcc1af00fae5110405a12753df76fcc6c9396f59d3462de86e8c0f2bde7c1985",
-    "last_translated": "2025-03-07T17:49:54.955940"
+    "hash": "71a30ce3f0c7261b211da57337c93f616b1d6e327024790b5489380dbe92912f",
+    "last_translated": "2025-03-23T21:16:03.441960",
+    "translation_time": 23.03
   },
   "deployment/customize-frontend-color.md": {
     "hash": "14cadb149ba6df5d7f1aee19b25b7dd4a17c58df5c1c43a8cd73588bb024d0bf",
@@ -28,8 +29,9 @@
     "last_translated": "2025-03-07T17:51:03.377849"
   },
   "deployment/upgrade-version.md": {
-    "hash": "ea524848bcc6f5b9677c806c3b616af4b85a0211152494c497f49bc45fe33ec9",
-    "last_translated": "2025-03-07T17:52:18.802003"
+    "hash": "64bc6f566887130de3074cc2b5f4be36b3b5c144f65eb72d834907a44e4aac8a",
+    "last_translated": "2025-03-23T20:29:12.452567",
+    "translation_time": 62.48
   },
   "real-user-monitoring/ios/.pages": {
     "hash": "aff28a6cd24ae9bd76aa96dc140f58b5bd7fb5f7742ac722b17373c8f879d17d",
@@ -60,8 +62,9 @@
     "last_translated": "2025-03-07T17:55:48.284545"
   },
   "others/custom-object-observable.md": {
-    "hash": "04ad53e226cd923669fd3125b2a89c9312d92f8d740d689413315bc08c6663d1",
-    "last_translated": "2025-03-07T17:56:22.456725"
+    "hash": "40cfa8a97034b2b0b1bc850cea82232f0139adfad60730f41357cb85ff78bdc8",
+    "last_translated": "2025-03-23T21:20:20.505160",
+    "translation_time": 26.64
   },
   "deployment/ip-access.md": {
     "hash": "1926a1cb66038d5a8c1a0f4b5fcf214eb7b4875a3ea0679e14d3fbc9c78a7215",
@@ -72,8 +75,9 @@
     "last_translated": "2025-03-07T18:03:51.341387"
   },
   "developers/custom-how-to.md": {
-    "hash": "ab899adbd75629ba61c63a3bfcb6690a4336acc3aa60995df381e84c8180ebf0",
-    "last_translated": "2025-03-07T18:05:22.220971"
+    "hash": "c8451ee073ccd866846e0bbb1bd6c6d39b581da20ff88456cfb537cd071690e0",
+    "last_translated": "2025-03-23T20:36:03.395025",
+    "translation_time": 100.4
   },
   "real-user-monitoring/ios/sdk-changelog.md": {
     "hash": "ab15ced2bb6b8629f646def346a170b7a66592ad7f3e549fef1ba763e487d6b6",
@@ -144,24 +148,28 @@
     "last_translated": "2025-03-07T18:28:02.124387"
   },
   "best-practices/insight/slo-part2.md": {
-    "hash": "bc1903531454bf10a0c01878bbc75665dcef5b5ad3209b01c8306dc123a7cc9d",
-    "last_translated": "2025-03-07T18:29:32.651816"
+    "hash": "bab1f0bd943965e672fabffc0bd349ce08c420e89625578da5832ee0908e62f0",
+    "last_translated": "2025-03-23T21:06:32.846914",
+    "translation_time": 51.74
   },
   "application-performance-monitoring/service-manag/.pages": {
     "hash": "de82aa418e51c38363ad25582086e21d42f3030043e2557b307f923460f3cdc1",
     "last_translated": "2025-03-07T18:29:35.060259"
   },
   "management/sso/azure-ad.md": {
-    "hash": "aad842ccc579a4f3455c29f1f786a5c7d85959e23baa8c91d53f2be6f6957921",
-    "last_translated": "2025-03-07T18:30:35.051953"
+    "hash": "8d34810bb0fc0a51dc96b9d2e9702898aba17495d26e6c83946852fc88c3ddca",
+    "last_translated": "2025-03-23T21:24:34.426659",
+    "translation_time": 50.65
   },
   "open-api/sso/saml-create.md": {
-    "hash": "d1efa10e4b24309f2fb6d5d290f1d0bb6ce0f4fd4b5abb04f45c468edee78750",
-    "last_translated": "2025-03-09T22:53:03.379735"
+    "hash": "af44045d89f3233ef0c2e7b4c03b18372df5e48723030aef70e8fb0394b6c926",
+    "last_translated": "2025-03-23T20:32:55.256792",
+    "translation_time": 267.63
   },
   "monitoring/bot-obs/Kubernetes/k8s-health.md": {
-    "hash": "1acfd0428b5e95689b022d6be2223bec74b213c9689db93c4876e9805baf6e30",
-    "last_translated": "2025-03-07T18:37:44.916022"
+    "hash": "b253a36d48ecb55f161a96209219a0dc79d93f4045e1179cf85faeeb6c9e431a",
+    "last_translated": "2025-03-23T21:02:19.346365",
+    "translation_time": 118.09
   },
   "integrations/monitor_jira.md": {
     "hash": "d84215ba8f6350d522251105f42a075d89d55afcecad92f4d6345123c92d0314",
@@ -228,12 +236,14 @@
     "last_translated": "2025-03-07T18:55:37.228330"
   },
   "best-practices/insight/order.md": {
-    "hash": "c7e53615543d332b18360052b83f23d819311ac7867ef7243fcc3729524303c7",
-    "last_translated": "2025-03-07T18:57:39.370802"
+    "hash": "d8e5c9f109aeb41c950079d5bbd3eaf42633434fdd1d8d183838ef1b7ae785c3",
+    "last_translated": "2025-03-23T20:23:59.034166",
+    "translation_time": 191.5
   },
   "external-api/account/modify.md": {
-    "hash": "4e82fc8810fe18e537f130a3b8941fa5d180cfc35dfef99bd4837d4c004f0b84",
-    "last_translated": "2025-03-07T18:58:02.476893"
+    "hash": "a4c38bb6f34b53c8855ceca38c1ef7b8485c95f95faf9f314141f2fb6e884035",
+    "last_translated": "2025-03-23T21:25:03.712367",
+    "translation_time": 35.46
   },
   "integrations/jaeger.md": {
     "hash": "fc84e84885ecdfc36bd9dfea847b557d26ac52641f6de33059b51c02b238cb61",
@@ -272,12 +282,14 @@
     "last_translated": "2025-03-07T19:09:09.161222"
   },
   "application-performance-monitoring/error.md": {
-    "hash": "407d2307bfc9fe1a17ee0c1a943e7392ba1c1a1b2e001db6223eecb72d952520",
-    "last_translated": "2025-03-07T19:10:20.423190"
+    "hash": "f7e06c9ad5d3acae69a2f92abd4eb12d1d4fa010da39b0d236fd8bc1b7408cfc",
+    "last_translated": "2025-03-23T20:23:20.716181",
+    "translation_time": 79.34
   },
   "real-user-monitoring/ios/app-access.md": {
-    "hash": "2a91b54c492eb6b52772bc4ae5f0b696f0fa2fdfc8d3a647ca97cc975598d5c0",
-    "last_translated": "2025-03-10T06:28:43.375482"
+    "hash": "95254cb4b2848e4cee6b5e02dc93bf06d3363fa4bb59dcf390dcb43ebf704fc6",
+    "last_translated": "2025-03-23T21:31:21.757131",
+    "translation_time": 961.86
   },
   "open-api/custom-login-mapping/batch-delete.md": {
     "hash": "5a52e0c18c9959f0466145d5449b5d9bbac9453c9b691622ae246f574430ee6b",
@@ -368,8 +380,9 @@
     "last_translated": "2025-03-07T19:33:43.478204"
   },
   "monitoring/bot-obs/cloud-idle-resources.md": {
-    "hash": "98434c25429b7b6206ef089719e9faf048e308dcd3c1034fb7b0e4f6854f4e48",
-    "last_translated": "2025-03-07T19:35:21.596684"
+    "hash": "ad165045a6e433f759be0754317d26e6e727f0cf31b3650c9f7f42016877edac",
+    "last_translated": "2025-03-23T20:29:16.421682",
+    "translation_time": 78.48
   },
   "infrastructure/network.md": {
     "hash": "fec05e2dc73c6c882e5b288bd7fa356b62f0f86f7eca3886b67fcd8afc621c17",
@@ -384,20 +397,23 @@
     "last_translated": "2025-03-07T19:43:11.107294"
   },
   "product-introduction/glossary.md": {
-    "hash": "8688172f4c7cb5f796c769ec84962034bb8dd88a5a9be7e22f284918b1836721",
-    "last_translated": "2025-03-07T19:45:37.847428"
+    "hash": "33252e108ff3325d9131bff5d3bec9af0b1220eb2f5267c9f06d7a7b21b7b590",
+    "last_translated": "2025-03-23T21:27:24.354609",
+    "translation_time": 140.22
   },
   "best-practices/partner/rancher-datakit-install.md": {
-    "hash": "dfa40057ebefefb993ce036634c37c0b6850f711a16dca9ce20b5b04465173e4",
-    "last_translated": "2025-03-07T19:47:15.857170"
+    "hash": "9a94618c0135b88213603fd0a7871856962a0bf83ded6671b7b0ab9f29758713",
+    "last_translated": "2025-03-23T20:27:32.464547",
+    "translation_time": 56.8
   },
   "real-user-monitoring/web/custom-sdk/index.md": {
     "hash": "0e36f0f20056b2a0fabf234eb1718a840e2a7d203cbc2ee00bc3659a6a508741",
     "last_translated": "2025-03-07T19:47:22.462684"
   },
   "open-api/service-manage/add.md": {
-    "hash": "da700851dead61b4fb85b28ee6080830220ca8737d5dc2cf8dd383b16149faae",
-    "last_translated": "2025-03-09T23:31:12.931333"
+    "hash": "d305aa6897dd020b77f74149d2f858d8a00501ffc521b6052b80f75aebc26623",
+    "last_translated": "2025-03-23T21:21:07.828868",
+    "translation_time": 45.35
   },
   "scheck/scheck-userchange.md": {
     "hash": "767828054ad9a52a3dcbba7b4648babe6fefdb3778c529914689b121d614a274",
@@ -408,8 +424,9 @@
     "last_translated": "2025-03-10T02:35:09.545810"
   },
   "plans/commercial-register.md": {
-    "hash": "3eed4843737113f546348ee96dae0f08e61fa4386838172caae604ea9568181f",
-    "last_translated": "2025-03-07T19:52:06.777232"
+    "hash": "bb5ca24da62f154bc0c4dbb143ea2d4343b16e57fdfb7e5fa494e1ef1194fb15",
+    "last_translated": "2025-03-23T21:26:29.212205",
+    "translation_time": 114.77
   },
   "scheck/0097-net-snmp-uninstalled.md": {
     "hash": "4496cfc77bd5460d8c3b46ff9c0547892f4b1ac7f3466cded593339c621c1bb5",
@@ -468,8 +485,9 @@
     "last_translated": "2025-03-07T20:09:19.351543"
   },
   "cloud-billing/index.md": {
-    "hash": "699c71140410310ed1beef14958a0e7fb50ead091804c13d68b98dd6d7aa2ac5",
-    "last_translated": "2025-03-07T20:09:50.044511"
+    "hash": "48ff71836485e5afd1890c9e2fe92e91e3138b1292f9376bcae4cab4825f61a3",
+    "last_translated": "2025-03-23T21:22:19.285717",
+    "translation_time": 22.63
   },
   "management/.pages": {
     "hash": "bf9a12995aa5a837ad7a3b030255f18f1d095494fc321b777357e005d399d390",
@@ -480,32 +498,37 @@
     "last_translated": "2025-03-07T20:10:14.524158"
   },
   "billing-center/login.md": {
-    "hash": "3ad6a0e45728a14b5d758614427f38aee7b7f2087ea26b7d80f2d79a871c28eb",
-    "last_translated": "2025-03-07T20:10:27.657039"
+    "hash": "80b68bcdfda38355fa10f478979702671bbb42ff25ff2e3dbfc4538a2716527c",
+    "last_translated": "2025-03-23T20:19:33.946319",
+    "translation_time": 16.0
   },
   "deployment/nfs-provisioner.md": {
-    "hash": "c8018689a58e211cb6b1e752d56e4777567a706919de46289bad0fc31c48dc13",
-    "last_translated": "2025-03-07T20:12:06.679722"
+    "hash": "8c0a2d7c19f47e5144788d1be0d2c090d4ef0ba76f9911bd6cc2796966a6a926",
+    "last_translated": "2025-03-23T20:44:02.585378",
+    "translation_time": 133.58
   },
   "open-api/billing/billsummary.md": {
     "hash": "6a177a77e2f8a37bcd46ece87e464d9e19ba0d02b5d3b7fe77c4ed932a788e0f",
     "last_translated": "2025-03-10T03:05:45.340711"
   },
   "open-api/service-manage/export.md": {
-    "hash": "e4a31606e3a8c9e27e705a345cf31d86f452ccb9e99115c8056841b20db7d3c7",
-    "last_translated": "2025-03-10T03:07:46.352247"
+    "hash": "eaf08f18be4c82931d81ab5152acf8c24adc1aaf9cdbb0f8cfe88b1b4e035288",
+    "last_translated": "2025-03-23T21:07:28.455769",
+    "translation_time": 53.08
   },
   "scheck/0022-sshd-restart.md": {
     "hash": "89adedcf2810ff49fe59602a95a0624abcccc03f7159531d88ba2af14916b219",
     "last_translated": "2025-03-07T20:13:21.995769"
   },
   "management/work-order-management.md": {
-    "hash": "bc2f1065b4ac874ef743ac0ddd6476224a27d8c4903a55d4561eafd482e4cec4",
-    "last_translated": "2025-03-07T20:14:16.713461"
+    "hash": "2d3eb94f6868b985d22408a73edc90f1abb2f51e5c974be4c894619c6dcd4cdb",
+    "last_translated": "2025-03-23T21:05:14.912914",
+    "translation_time": 76.45
   },
   "monitoring/bot-obs/memory-leak.md": {
-    "hash": "5edb65b2921eb40a0a46c7fa93190fdb573fc50fb510d125f0bdef9b4fb9bb1b",
-    "last_translated": "2025-03-07T20:15:37.176886"
+    "hash": "fe4390edb5e4e0104eb667de9a0a672aebaee3df267f08b1bd765845b4f725e7",
+    "last_translated": "2025-03-23T20:35:54.649225",
+    "translation_time": 111.7
   },
   "integrations/jvm_micrometer.md": {
     "hash": "00305451014c1959367b6f2939ce0eb4375133544860807ad5c813c81abe09ba",
@@ -556,8 +579,9 @@
     "last_translated": "2025-03-10T02:17:56.235851"
   },
   "developers/custom-object.md": {
-    "hash": "ec52f6dac37ac9c7c0b73bfded35b0f3a45c1a44097b433fa099e14163183079",
-    "last_translated": "2025-03-07T20:32:40.616160"
+    "hash": "5091d3fdf0ecbdeffaed9d296bb99dea83db292662d4993cb40bbff6f0ec1405",
+    "last_translated": "2025-03-23T20:48:49.263881",
+    "translation_time": 19.37
   },
   "open-api/dialing-region/.pages": {
     "hash": "1e5561177b745100945c36cac62447345eedab452d393634b70f397a2a8ecd84",
@@ -588,8 +612,9 @@
     "last_translated": "2025-03-07T20:37:13.322196"
   },
   "scene/visual-chart/alert-statistics.md": {
-    "hash": "a945dd938d1327782c0e23470a9421123b3fc180810f6ef61e25da3e73f7f8ef",
-    "last_translated": "2025-03-07T20:37:31.404034"
+    "hash": "6e06d5765f11c5685ab064cb0e7694acf479395b7d9cb364bb5ea73ba4fdf7da",
+    "last_translated": "2025-03-23T21:01:56.628890",
+    "translation_time": 29.12
   },
   "developers/pythond.md": {
     "hash": "bdc285f1add9098bcbb3d36c5fdc5fda68f5ff61ec8ec208f68cea8f6007cf49",
@@ -604,24 +629,28 @@
     "last_translated": "2025-03-07T20:41:24.649854"
   },
   "real-user-monitoring/session-replay/web/replay.md": {
-    "hash": "977d0db05d96fedc4076d27fc39eeaf0b2fb3bca96d1b3df652625853733b892",
-    "last_translated": "2025-03-10T00:06:16.465611"
+    "hash": "58411551c8e957ce09ddde4ff37f98bcfe9bc7a50aaadbed5bbaf0b1653f7269",
+    "last_translated": "2025-03-23T20:25:18.664105",
+    "translation_time": 50.95
   },
   "scheck/4506-nginx-pid-secured.md": {
     "hash": "dd2b9586c726e9ee5045cbca9b879f045f6c24ec0fc710b6db24469637444891",
     "last_translated": "2025-03-07T20:42:36.096264"
   },
   "best-practices/insight/scene-dubbo.md": {
-    "hash": "47e012a54e4b68967566954bed8dd82c8052a659041813fd6551f85a510c7065",
-    "last_translated": "2025-03-10T00:31:21.953527"
+    "hash": "b2a7f4a759890f1073bc882323cb04be5a451c0c4425115327eb91251cdd22f9",
+    "last_translated": "2025-03-23T20:32:46.060547",
+    "translation_time": 150.58
   },
   "getting-started/function-details/explorer-search.md": {
-    "hash": "2a0224ef31851e2ff0522d763848aa23f7e2345fdc37cf1c91dd2927f44f99b8",
-    "last_translated": "2025-03-07T20:51:06.886250"
+    "hash": "92844a90079ba460d9c12f137d63ab0f380e98f113865c69ee1615decd169777",
+    "last_translated": "2025-03-23T20:26:35.645702",
+    "translation_time": 360.02
   },
   "events/event-explorer/index.md": {
-    "hash": "d6ae30126a4fead43960915a9954d4afac7f1d4379f0988c82e33b72c3928724",
-    "last_translated": "2025-03-07T20:51:13.548893"
+    "hash": "4934dd1b81d7c724c02fe55c2787a2579241adc750cbb5e5c2c106197cb3bd78",
+    "last_translated": "2025-03-23T20:26:03.328770",
+    "translation_time": 5.64
   },
   "datakit/datakit-batch-deploy.md": {
     "hash": "15b2ebe1dcadcebb76080e6ee78ea1a9a45b165e2dc75ec590c515a2edf0fe26",
@@ -636,16 +665,18 @@
     "last_translated": "2025-03-10T00:45:48.578787"
   },
   "scene/note.md": {
-    "hash": "df0591637d52737d260b64c71be992e8e72b22b31ad4f0f9c47851a1e706c71d",
-    "last_translated": "2025-03-07T20:53:36.936186"
+    "hash": "5cdaa7fddf64e282b0bd360f63c2826445a04464762eee78cc5fd2ba393fb25f",
+    "last_translated": "2025-03-23T20:42:04.674687",
+    "translation_time": 35.07
   },
   "open-api/slo/delete.md": {
     "hash": "85976331440dcdf42f3bf4858ad5bc1c89fb0f494d14187c13002f47eaa2f09e",
     "last_translated": "2025-03-10T00:50:09.018004"
   },
   "best-practices/monitoring/jenkins.md": {
-    "hash": "7e10420726f0290eecc73efaa54736df3bd051c651d66f8dff79f68b0d3da777",
-    "last_translated": "2025-03-07T20:54:37.672161"
+    "hash": "e97c79e03ff253d68c06f52e5ed6e3193fe96c6a1b9f7e05bea5a9c271d1be58",
+    "last_translated": "2025-03-23T21:03:21.742175",
+    "translation_time": 62.37
   },
   "datakit/confd.md": {
     "hash": "75598301034c74f24d6ac966c2b73bf1a43e0f66df038fba02187dd127dbdd67",
@@ -676,16 +707,18 @@
     "last_translated": "2025-03-10T01:36:55.472688"
   },
   "events/event-explorer/event-list.md": {
-    "hash": "a2d53d954519603cffd5a208761ad0ea777dde1d59ddf1b3ba982a93be108e0b",
-    "last_translated": "2025-03-07T21:01:20.087751"
+    "hash": "8eaac94d35bb34cb5eb6b1056c65918df0acc69e540cd602551e6be88528ee15",
+    "last_translated": "2025-03-23T20:47:36.155173",
+    "translation_time": 32.71
   },
   "open-api/rum-sourcemap/upload-cancel.md": {
     "hash": "d5be2da7cc9fb58aa165a4d11a350405e75d40e6ed11cc47dcf50d032c6ab786",
     "last_translated": "2025-03-10T04:49:06.025666"
   },
   "deployment/infra-metric.md": {
-    "hash": "b0ce9004ec9c335a7c3b289abf01b39d448de2e87a68967e3423875b320e53be",
-    "last_translated": "2025-03-10T05:19:18.834277"
+    "hash": "f7557749eef616a1195168246cfc3b081561e2d950784d30645cffa3ef130cef",
+    "last_translated": "2025-03-23T20:48:10.738082",
+    "translation_time": 302.25
   },
   "studio-backend/unrecovered-event-query.md": {
     "hash": "041395d2b83e311ca5aa08fd641b53e95fac4d6998beddc49330e391083f8547",
@@ -700,8 +733,9 @@
     "last_translated": "2025-03-07T21:13:29.822974"
   },
   "management/sso/configuration-faq.md": {
-    "hash": "9a11f638e233fadd5c38ab4a004b4919600d5bf25f38f817557bb4217f5f054d",
-    "last_translated": "2025-03-07T21:14:49.895334"
+    "hash": "d2d08c64ca41f3c8dedd62cef0d01c1df190c5a460af194b33699dc8025caaaf",
+    "last_translated": "2025-03-23T20:30:15.465139",
+    "translation_time": 75.1
   },
   "open-api/board/.pages": {
     "hash": "dc27fe0c809142cd3708456f6a2a84b154108d5b256ec1b0ca2bd54ba77907f2",
@@ -720,8 +754,9 @@
     "last_translated": "2025-03-07T21:19:56.692722"
   },
   "scheck/custom-how-to.md": {
-    "hash": "38c030cc35086af35a13ba0e996e44b0e93e61c69459bd0d37698841ef8069c2",
-    "last_translated": "2025-03-07T21:21:22.588706"
+    "hash": "ba8e8d9a82d16bbbbcf784b1df357f371e045a04d303b145183eac20dc747e6d",
+    "last_translated": "2025-03-23T20:42:24.191745",
+    "translation_time": 81.02
   },
   "deployment/switch-metricengine.md": {
     "hash": "9e1383f77e9f1186ac6ff28353f7e323b427f881aa6f710b20ff85bdfe71b351",
@@ -776,8 +811,9 @@
     "last_translated": "2025-03-09T23:27:25.674198"
   },
   "pipeline/use-pipeline/pipeline-offload.md": {
-    "hash": "0c45ad55e8c37778ad8757a6e1fa5a013d2fea5929feccd0fe1b33c4c1fb4367",
-    "last_translated": "2025-03-07T21:33:04.566857"
+    "hash": "3b1238dfe5e200d2b200194abfe94ae473f5bc7a33782042b0fdca747366ab8d",
+    "last_translated": "2025-03-23T20:39:01.959400",
+    "translation_time": 23.33
   },
   "scheck/0102-ypbind-uninstalled.md": {
     "hash": "09ce0f0cde00465f3c92fc09a1e17f0ca5d20e7597725e1efc1483889541ce85",
@@ -808,8 +844,9 @@
     "last_translated": "2025-03-09T23:43:46.090388"
   },
   "best-practices/monitoring/opentelemetry-operator.md": {
-    "hash": "cf0ee8869dcfd95373a18adc54dfd13f80772da3deea2b7af766cdd2ba83fbcc",
-    "last_translated": "2025-03-07T21:44:31.966404"
+    "hash": "6d9fb18a8c4b21afd1bef54626c6d2ad94c1c526daa2b377ffb577443ae453d6",
+    "last_translated": "2025-03-23T20:31:54.230873",
+    "translation_time": 206.59
   },
   "open-api/offline-token/.pages": {
     "hash": "180ae02a1ad470fa46dfaa53c56439a5e3af2072da673bfa985a9d4c3c98b9c1",
@@ -832,16 +869,19 @@
     "last_translated": "2025-03-07T21:52:02.662005"
   },
   "open-api/issue/list.md": {
-    "hash": "fe15102dbe09b3afe5b8b8089f2a5bc2f5ebd71a9c76a8669ea7b2b8f278b5b8",
-    "last_translated": "2025-03-10T01:40:12.398459"
+    "hash": "ccbbfa2c29959cc1de87ebab478a9d83176518cecb33e0c51e35da8785b0a310",
+    "last_translated": "2025-03-23T20:41:19.312513",
+    "translation_time": 96.16
   },
   "best-practices/insight/guance-elk-efk.md": {
-    "hash": "59ac98a805be08fb7c109e4104fe44118479366d580d665d34f471b70d093d16",
-    "last_translated": "2025-03-07T21:59:58.248127"
+    "hash": "face28f2b0b9a6978c907ab80a2aaef0211612a0db4a2d5469fd9c05e361ade8",
+    "last_translated": "2025-03-23T20:41:57.889989",
+    "translation_time": 640.97
   },
   "open-api/dialing-task/.pages": {
-    "hash": "b1f5f91bf8cc4242cebf1b99bcd9e3b00fbdcb5a951b4ba8bba0bdd9b3831707",
-    "last_translated": "2025-03-07T22:00:02.696422"
+    "hash": "682d5c46714e02b30b6e872dfc3533b13c0ce494106a5ace256e2cbba886222b",
+    "last_translated": "2025-03-23T20:56:27.452782",
+    "translation_time": 4.45
   },
   "dataflux-func/.pages": {
     "hash": "c955e51788b25e234b114c63ecc0f3cf9529e74e74de30d45b940242320ba4f5",
@@ -888,8 +928,9 @@
     "last_translated": "2025-03-07T22:07:14.822814"
   },
   "deployment/dataway-sink.md": {
-    "hash": "7e211fad0386ba866be201120bfe28cb922c307b3a8186dd23af9e095f68cc79",
-    "last_translated": "2025-03-07T22:11:45.457822"
+    "hash": "5b65da46296757e96b94d89a9c171c88863e9fc6d598f245d95be96a8ce59d81",
+    "last_translated": "2025-03-23T20:55:28.219880",
+    "translation_time": 359.81
   },
   "open-api/sso/.pages": {
     "hash": "8d152835b5ec6f2a7f6417d7e295a225d74df271e0c68beedb88fd55dce186a3",
@@ -908,40 +949,46 @@
     "last_translated": "2025-03-07T22:16:23.652393"
   },
   "best-practices/cloud-native/ingress-crd.md": {
-    "hash": "7ca2a1e00b5da9774e55221849fba3607b2a40448ff160135e60b6ffe334fd0b",
-    "last_translated": "2025-03-07T22:22:29.588050"
+    "hash": "684a126ba04363d5daf2a75863e31fa9f85ce440766ec03c84f859f8ea1921db",
+    "last_translated": "2025-03-23T21:15:56.595606",
+    "translation_time": 372.14
   },
   "monitoring/intelligent-monitoring/application-intelligent-detection.md": {
     "hash": "0ac0d0fb9e5820430dc475d7ebb49ce50e578ba7bdf2603e3285e042e44d5306",
     "last_translated": "2025-03-07T22:22:54.094753"
   },
   "management/api-key/open-api.md": {
-    "hash": "0a8d5f47ac9822c6cde6aa04835d6b25459a03cebd2a787f8ea0c076ffcf8c69",
-    "last_translated": "2025-03-07T22:23:34.361217"
+    "hash": "c797c7ca1e35a0c810a2d711cc7eee3e56e2d66ffbe8047e9f3be64d258f7d26",
+    "last_translated": "2025-03-23T21:02:22.659525",
+    "translation_time": 62.39
   },
   "open-api/issue/modifyissuereply.md": {
-    "hash": "0275aa2e0d0420e3a26dc697517d5d38c2583d973c7d5c9c029b7d29faef7e62",
-    "last_translated": "2025-03-10T05:52:44.678190"
+    "hash": "22f5f32cb9f7bbae6f145bd4c715824fa065d95677e57b37fbb4b6ba4c987647",
+    "last_translated": "2025-03-23T20:37:27.185602",
+    "translation_time": 45.35
   },
   "scheck/0044-libbin-del.md": {
     "hash": "968bc640dd8df18bc1db806b2d03016aa7db544fba43f2d9e8903a4279936dc9",
     "last_translated": "2025-03-07T22:24:30.977605"
   },
   "monitoring/bot-obs/idle-resources.md": {
-    "hash": "261900c0d8302943e17d559eea8280649e8dd834c93bcddc46960f414cc06a40",
-    "last_translated": "2025-03-07T22:25:25.491983"
+    "hash": "9c2a8366919644463221767919d1d1f62f262c40c1171742ae868ee55cd96f9d",
+    "last_translated": "2025-03-23T21:22:49.200284",
+    "translation_time": 34.86
   },
   "usability-monitoring/explorer.md": {
     "hash": "1f96baee70717614f0b4a79ffb4c2296dee764e08be374461ac12af01a90ad7e",
     "last_translated": "2025-03-10T05:28:44.850844"
   },
   "others/k8s-observable.md": {
-    "hash": "dae8668f00bb76a129f0489b87444b6d76fe13d767af16b03f8687190204b9d1",
-    "last_translated": "2025-03-10T02:31:26.585956"
+    "hash": "29fc49c4eddfa14b1b4c4d2c00fec5ef3d4bbe944d9cf170f3f5a81ee03edb72",
+    "last_translated": "2025-03-23T20:47:03.432997",
+    "translation_time": 45.05
   },
   "deployment/ingress-nginx-install.md": {
-    "hash": "c42521246bfeba178d5dc292021eebff16f0b1787b62922f6431aa79b93d8724",
-    "last_translated": "2025-03-07T22:27:54.352372"
+    "hash": "4dc6187ec21fe8b3391633f544f05fa3fb738b26e35b338d0ce6dc7da7933523",
+    "last_translated": "2025-03-23T20:42:48.668583",
+    "translation_time": 43.98
   },
   "open-api/mute/list.md": {
     "hash": "46e1965435911e672a9b2a888c215707b34b1664eb4d4f6d43f5723c851ca555",
@@ -980,16 +1027,18 @@
     "last_translated": "2025-03-07T22:39:23.770548"
   },
   "usability-monitoring/request-task/index.md": {
-    "hash": "53a3098f99f5fac7e400b431f7c1f7acac4d2c85afaf47f05c7ce7436f0c800f",
-    "last_translated": "2025-03-07T22:39:43.982319"
+    "hash": "e41360aa6b05e74abc3bed3548fd947e0c9b320a37ff3c1eccce9b3212e7f8ef",
+    "last_translated": "2025-03-23T21:18:24.681650",
+    "translation_time": 17.96
   },
   "integrations/.pages": {
     "hash": "3a17031ecf13b3a8ae3a028eab46695d72144f046865aa6df6d824e71725010c",
     "last_translated": "2025-03-07T22:39:45.094433"
   },
   "scene/index.md": {
-    "hash": "02335d64be7cdc1dd05cc434419d213368a0acd501ca6bbdad9dbdc256cae7d4",
-    "last_translated": "2025-03-07T22:40:03.347979"
+    "hash": "977bb4f186a7f24c25c25ca75290b18926672082edbecec9f8ce0fabde8e2f55",
+    "last_translated": "2025-03-23T21:20:22.454093",
+    "translation_time": 15.45
   },
   "scheck/0100-ypserv-uninstalled.md": {
     "hash": "b86fe4474629e62899e4c7d54edf0bdf19e8cf7b15aab651a4dafaf88df5d774",
@@ -1008,8 +1057,9 @@
     "last_translated": "2025-03-07T22:41:09.893474"
   },
   "logs/explorer.md": {
-    "hash": "f85a39a00038152dda40b559c599a225a93c7dcd499b0c08fc2a941290d3c609",
-    "last_translated": "2025-03-07T22:41:47.141877"
+    "hash": "a72061e9fac6e6303fb2718ed4624609ada9b1d0c3cdc4a54ac5db5a68b47a51",
+    "last_translated": "2025-03-23T20:24:27.699237",
+    "translation_time": 28.65
   },
   "pipeline/.pages": {
     "hash": "1ac074881798a665ea9686c1987d15de67fa9c9c91dfac1b98b4954240582377",
@@ -1032,8 +1082,9 @@
     "last_translated": "2025-03-07T22:44:43.834507"
   },
   "logs/manag-explorer.md": {
-    "hash": "287fa56c99c7ab23fccb56e7ef8d102191785a1a20d707d22ec6c83ecd29ef40",
-    "last_translated": "2025-03-07T22:46:30.349472"
+    "hash": "8ecdd19e2b2d596ba5af1f84341181bb0df398851a85142acf6049b481065dc8",
+    "last_translated": "2025-03-23T20:50:47.649516",
+    "translation_time": 142.66
   },
   "integrations/kubernetesprometheus.md": {
     "hash": "36058462768e25823e7765ab626d495a153d226ff326061700542b4022848a09",
@@ -1056,8 +1107,9 @@
     "last_translated": "2025-03-07T22:52:24.776329"
   },
   "external-api/account/.pages": {
-    "hash": "ceedd304b6d0c654cdc8f5c8eac6eadd8e9a52bfc3cd38d339c2aea396bac8c4",
-    "last_translated": "2025-03-07T22:52:33.948787"
+    "hash": "a5463791d3f8a22e09ad42c68978ecfe7db9b5cda766b4914d2ad9c5ad9050cf",
+    "last_translated": "2025-03-23T20:19:39.876469",
+    "translation_time": 5.1
   },
   "open-api/issue/attachmentdelete.md": {
     "hash": "2bfbe11a1176053e688f62b7b24971002840586a765b8c410b38d3f493c8af80",
@@ -1080,8 +1132,9 @@
     "last_translated": "2025-03-07T22:58:38.468679"
   },
   "open-api/role/get.md": {
-    "hash": "72eabda49cb2e2a981d4bc58a89eb26d0a256bc544e0ff2a3e242dc81c0b93a1",
-    "last_translated": "2025-03-10T02:33:27.646130"
+    "hash": "282a4089ca9af9cbbb141e7fddfd3ad5135cbb8e354f1543d642515b3e2f9275",
+    "last_translated": "2025-03-23T20:55:13.205482",
+    "translation_time": 37.41
   },
   "monitoring/intelligent-monitoring/log-intelligent-monitoring.md": {
     "hash": "2d0a5198d71b9682649fa7bf33434e67d497ceb2d0d32329d4afea583d8e180d",
@@ -1092,12 +1145,14 @@
     "last_translated": "2025-03-07T22:59:44.163225"
   },
   "best-practices/cloud-native/opentelemetry-observable.md": {
-    "hash": "8298f3e277300c4d5d320a2e67a6fe9cff1fae1726f876486c678b0d4b972722",
-    "last_translated": "2025-03-07T23:01:01.213493"
+    "hash": "d56e35ac5be855c5b93aff46f5d7f6e90aaf338f1a2d515ea53c7f8287ec1128",
+    "last_translated": "2025-03-23T20:37:52.213081",
+    "translation_time": 87.7
   },
   "open-api/workspace-member/list.md": {
-    "hash": "ddf5fd60e2b2caa90c22562292f71ea8444cc9301f7021069a5b0cdf1d9c8743",
-    "last_translated": "2025-03-10T00:02:12.452725"
+    "hash": "4b8d43bf260cea84de75db8e1ef3c3e8ebf711e9bc1474a64c5d0252a6967447",
+    "last_translated": "2025-03-23T20:28:33.029012",
+    "translation_time": 24.49
   },
   "usability-monitoring/self-node.md": {
     "hash": "d577ce2c777d9f413b37e92f7fd5a0724251220831f20033f8aa935d5e184453",
@@ -1120,8 +1175,9 @@
     "last_translated": "2025-03-09T23:37:33.144354"
   },
   "others/host-observable.md": {
-    "hash": "1ddfc06393a29b6cbc0e72084f2944d3c55dff4fc90bf87dbadb3ae1b27f1120",
-    "last_translated": "2025-03-10T01:50:47.050185"
+    "hash": "169d58e100204b1e10db3032e9b0f80ebc096826a7363670b302ad7b37a4ca3b",
+    "last_translated": "2025-03-23T20:30:20.225974",
+    "translation_time": 67.76
   },
   "best-practices/monitoring/ddtrace-custom-traceId.md": {
     "hash": "466f9cd46655c646bb7efca93bbf9e28e434a16dbad4cd1a0c2f40dc7616fca9",
@@ -1140,12 +1196,14 @@
     "last_translated": "2025-03-07T23:11:56.675569"
   },
   "billing-center/account-management.md": {
-    "hash": "c4e3d5886a1bffa32d60d01931b125660070d9bb5a5e67a628dd034dd724fa85",
-    "last_translated": "2025-03-07T23:12:20.273058"
+    "hash": "c8756e895063bb3df60e08d848ca4bbba5aa0f9908de1e64c5ef1f0a608dc7e7",
+    "last_translated": "2025-03-23T20:37:10.203667",
+    "translation_time": 44.03
   },
   "deployment/changelog/index.md": {
-    "hash": "bcaffb68c962592915c60604a565ad5d3c61566afda2172e00ff98082fd3925c",
-    "last_translated": "2025-03-10T05:09:03.114579"
+    "hash": "09050a3f512739fca1c9dfd3c42c395a947aaf92010d6b2f16a7b1cb769c43b8",
+    "last_translated": "2025-03-23T21:04:43.513324",
+    "translation_time": 166.87
   },
   "integrations/ebpf.md": {
     "hash": "edbe745d08b22a08a36e89f669e92b27e4a0030dd6882b46ff082568d2324d74",
@@ -1168,16 +1226,19 @@
     "last_translated": "2025-03-07T23:32:27.691154"
   },
   "open-api/workspace-ak/get.md": {
-    "hash": "920d44943c02c50ee58b98b73002f08acf209b3a480c28db0bbfedb338853d8f",
-    "last_translated": "2025-03-10T02:23:47.572817"
+    "hash": "4d41f11faaa07c3e73469c89f13258eff2c4a32f793afc6137f2fc312dcef8b7",
+    "last_translated": "2025-03-23T20:53:59.164107",
+    "translation_time": 11.41
   },
   "best-practices/insight/datakit-daemonset.md": {
-    "hash": "c7591ad7988f36b2e6a103f4d42c78c0a5a0ad57c71ac413708bcd4d83a56141",
-    "last_translated": "2025-03-10T02:58:40.658906"
+    "hash": "9c87f7487acc2dc99d2d42be519f91e18a2dcbc22a2816ece3204a564009f0d8",
+    "last_translated": "2025-03-23T20:41:40.951292",
+    "translation_time": 158.98
   },
   "getting-started/function-details/inform-group.md": {
-    "hash": "ad837c43baecdb033873276b8268caddfcbe404bb9e3324a837c183c689e7c67",
-    "last_translated": "2025-03-07T23:36:38.171629"
+    "hash": "166e539f257cd5e7e7502cf81b069d1ca80073234e3e2dd23cbb3a78d89d63af",
+    "last_translated": "2025-03-23T20:23:17.199572",
+    "translation_time": 53.46
   },
   "open-api/query-data/query-data.md": {
     "hash": "266efa14c8e0c29060347ef5edbc352e6a00b088b21b665b83c8dd3571106338",
@@ -1188,16 +1249,18 @@
     "last_translated": "2025-03-07T23:43:53.534695"
   },
   "agreements/upgrade-agreement-en.md": {
-    "hash": "20060d12467afc685ce8f6858c8121abae8c00b1253dea1616f5d1bc3f026f13",
-    "last_translated": "2025-03-07T23:48:24.721825"
+    "hash": "f8ad2bbb0ce752815ce4e166a846e3ff29848773c303a4695595e8e965944c88",
+    "last_translated": "2025-03-23T21:00:46.175871",
+    "translation_time": 289.39
   },
   "application-performance-monitoring/service-manag/service-performance.md": {
     "hash": "0d3a488c180d514b95c82f8e9860ef7a40fb062f85a313e4adc597b41a70daed",
     "last_translated": "2025-03-07T23:48:40.665333"
   },
   "deployment/changelog/2023.md": {
-    "hash": "960ca5d41d4f12bdaa4a5041694fca72d598100894cfa46cba3ef3ca0ef507f4",
-    "last_translated": "2025-03-08T00:01:34.308303"
+    "hash": "72ab396bd1adf55948183f60f44aa18badafa4abc1ddb43ed4f7668dc4445e94",
+    "last_translated": "2025-03-23T20:53:34.822898",
+    "translation_time": 833.9
   },
   "scene/visual-chart/chart-json.md": {
     "hash": "b34eaddfd537ba49bf49f82b0f5281f8e35ba73d37b654f87f07209703b0e250",
@@ -1220,8 +1283,9 @@
     "last_translated": "2025-03-08T00:05:09.845867"
   },
   "deployment/infra-logengine.md": {
-    "hash": "16ae954aa65461b8b2a51101d6a7170ee5af0ace9c1e7e258e37873f55217768",
-    "last_translated": "2025-03-08T00:11:13.702332"
+    "hash": "c3a8c26ffd5c605b567beb91dcdc4b03cbb875d83c8eebca4d8b4040206fd4e2",
+    "last_translated": "2025-03-23T20:45:27.743857",
+    "translation_time": 552.68
   },
   "scheck/0008-hostname.md": {
     "hash": "b2b4583232757641ef9acb2b92854cc4b9f3b9b32a35237e9d9c5af6c25305ca",
@@ -1232,8 +1296,9 @@
     "last_translated": "2025-03-08T00:12:12.729295"
   },
   "datakit/changelog.md": {
-    "hash": "b002b525b2588dae45902acedfec05e0f7e7f78c2bdbe7d44b69cf202bdaf677",
-    "last_translated": "2025-03-08T01:04:37.682613"
+    "hash": "b6b517aeafda616f9cc4cacb91dfc2754228ce522d6a694a9dc88ea20485f9b6",
+    "last_translated": "2025-03-23T21:55:09.350566",
+    "translation_time": 2328.36
   },
   "integrations/kubernetes-prometheus-operator-crd.md": {
     "hash": "57a5eac1aac688f4508b307eaeba0c1688c5a2d775c7f08bc413ae35f581276b",
@@ -1280,8 +1345,9 @@
     "last_translated": "2025-03-08T01:18:42.542869"
   },
   "management/faq.md": {
-    "hash": "25e77ba717122af8239737a41b47b46a276f2ef0d0e021dadbe0a8cfd3e64e57",
-    "last_translated": "2025-03-08T01:19:06.896675"
+    "hash": "46b468f3ff16b78dd1b5dfa6af8fa4a2691f1a697c94639d2a69fedd28c0fad0",
+    "last_translated": "2025-03-23T21:02:16.801243",
+    "translation_time": 17.82
   },
   "management/access_mask_combine.md": {
     "hash": "083b586d6535491e68bf1c886dc22a8ebd5458bb01be97c25e9c3acbe6fedc7a",
@@ -1324,8 +1390,9 @@
     "last_translated": "2025-03-10T03:08:04.727617"
   },
   "scheck/best-practices.md": {
-    "hash": "afb6ef09ea2d77c26f5d8e63b03a48cfdfe1bf88baea3cbc759f47d06c6d167d",
-    "last_translated": "2025-03-10T00:15:48.547334"
+    "hash": "c7341ff58a98d8da7a5eb88024d5b59efa23e8ad4e8983ea7913d20850df6d8a",
+    "last_translated": "2025-03-23T20:19:34.767292",
+    "translation_time": 81.57
   },
   "integrations/ddtrace-nodejs.md": {
     "hash": "20b7a26b379a58a9eced8c6413d889dbcc6b806b2ecb57f599a5647565c48759",
@@ -1344,8 +1411,9 @@
     "last_translated": "2025-03-08T01:33:59.747669"
   },
   "best-practices/insight/slo-part3.md": {
-    "hash": "c0b9a89ca45ec3587d93b4b93e8f450ffbeb97dfcd21b64a6d95524c6050d556",
-    "last_translated": "2025-03-08T01:34:53.787839"
+    "hash": "2d1b2695976266b43da31d4a4df34569d982fd7e4195acab8075d5cb88c00380",
+    "last_translated": "2025-03-23T20:41:48.985442",
+    "translation_time": 29.66
   },
   "integrations/npd.md": {
     "hash": "da0eefd0c0300faaece75131ad9a848678538821a3b827e1977d6bd8e6e37b4c",
@@ -1416,16 +1484,18 @@
     "last_translated": "2025-03-10T04:36:23.387412"
   },
   "best-practices/monitoring/chai-havesters.md": {
-    "hash": "697004c3231d5a659694f3a03ed796e6b40305915729254e067fa0203a9b9e7c",
-    "last_translated": "2025-03-08T02:04:46.041758"
+    "hash": "15c4a1a403d4381cef02648967b53fede2dad466afa336b528a89d30e5b60ecf",
+    "last_translated": "2025-03-23T21:11:56.103096",
+    "translation_time": 195.56
   },
   "integrations/consul.md": {
     "hash": "7f51ae7429bea4ac7a1526df70e35b82809ebd140946eae8514c50b4d3a48df0",
     "last_translated": "2025-03-08T02:06:07.260528"
   },
   "best-practices/cloud-native/pod-log.md": {
-    "hash": "a6af192c0e4c6161cc9365eb7e01367d9886ec9abaead42622eb1a8c8ec7e0f3",
-    "last_translated": "2025-03-08T02:08:52.029933"
+    "hash": "9d5de1dc18051c93426359f831084d8d86ce3461fb44339229b35ca3cb301a1d",
+    "last_translated": "2025-03-23T21:28:29.752943",
+    "translation_time": 156.6
   },
   "dca/index.md": {
     "hash": "162b0a73f9249f19bd1121e14dcc3897486baebd84a1e5d494bbe507cfd1c20b",
@@ -1448,8 +1518,9 @@
     "last_translated": "2025-03-08T02:15:47.419811"
   },
   "best-practices/monitoring/skywalking-jvm.md": {
-    "hash": "12b37a0f098a9242a4044dd930ea5eb0c252216ecc4e27ce94f73356c49a31a6",
-    "last_translated": "2025-03-08T02:17:35.827402"
+    "hash": "9c558f8e9097f909053623eb293cedc205aa863dd7ee04411f7f878e14c5872b",
+    "last_translated": "2025-03-23T20:59:40.034196",
+    "translation_time": 61.44
   },
   "best-practices/insight/ddtrace-skill-api.md": {
     "hash": "d70e57f4b7b0eadc43dcbafb8be0d9675b23e24a7cb6e57ccced57a0219c4a31",
@@ -1492,8 +1563,9 @@
     "last_translated": "2025-03-08T02:28:16.010696"
   },
   "open-api/issue/createissuereply.md": {
-    "hash": "9f5e39b5f012a97f4a8a79a9dabf19585e6b9c754a7d885106bebed0c8c2ed13",
-    "last_translated": "2025-03-10T01:29:25.105815"
+    "hash": "aed9fb3e36a3aa4c7b71c5acf1dd111e2112013d844c1ed6139eb14a194059bf",
+    "last_translated": "2025-03-23T20:45:50.536359",
+    "translation_time": 44.62
   },
   "billing-center/.pages": {
     "hash": "59f8ae1e2efc691a935479d29cbe777345acd057010e49deab544ca21547089f",
@@ -1508,8 +1580,9 @@
     "last_translated": "2025-03-08T02:31:26.514616"
   },
   "open-api/checker/list.md": {
-    "hash": "b750f8d6a92b41cf95e0adf16073e5ed8a60a3b27a4b430e769bc6980c7b7505",
-    "last_translated": "2025-03-10T03:29:22.576081"
+    "hash": "c47963efab68e96ce4ecf45bdc8e726e58b52b5c1392a02d23f727b2daefb9dd",
+    "last_translated": "2025-03-23T21:01:20.251290",
+    "translation_time": 84.82
   },
   "integrations/ipmi.md": {
     "hash": "5d6f1fe7cbdb43ae5a76643c7045f79b3d74fa2710304b34384c379bcf13f694",
@@ -1532,12 +1605,14 @@
     "last_translated": "2025-03-10T06:05:44.685520"
   },
   "pipeline/index.md": {
-    "hash": "ce2893b21c7b88fc83b71dc6d10172f8625d4029e81d853b564c9a572f770ebb",
-    "last_translated": "2025-03-08T02:38:58.295206"
+    "hash": "d1bcfc63a168b552cd0989d435e6b6489dab4292204d70141c6575ab741dcad8",
+    "last_translated": "2025-03-23T21:22:09.378459",
+    "translation_time": 84.8
   },
   "best-practices/monitoring/kafka.md": {
-    "hash": "881d6cbfdd67bf62796151f67f4f50c1077e482c6cf806d1573dbe2488c2cd1f",
-    "last_translated": "2025-03-08T02:41:40.651248"
+    "hash": "458bd381e33055f6a61049374abc77e8e213d7e8e134c467fd4e5c67493241b3",
+    "last_translated": "2025-03-23T20:25:43.602864",
+    "translation_time": 146.39
   },
   "open-api/alert-policy/get.md": {
     "hash": "4c921f6bd12b3b3a5e6cec692faa2985257c11799209dfa1fa781778a3bd3165",
@@ -1624,12 +1699,14 @@
     "last_translated": "2025-03-10T00:10:13.762451"
   },
   "others/container-observable.md": {
-    "hash": "3d7533fe5586946c0ed356d89011b155f25cbc09b673741039ab4c2a8fbec777",
-    "last_translated": "2025-03-08T03:01:32.137482"
+    "hash": "75383edc205a128590b184a5e75afe896e35ef49f66c49827aaff005bc7d9e45",
+    "last_translated": "2025-03-23T20:55:51.933958",
+    "translation_time": 23.71
   },
   "billing/faq/settlement-bill.md": {
-    "hash": "e32d8d9ce5eef51bb0ac3d67994733a7bac4c8d16a83927da4a059963f9bf529",
-    "last_translated": "2025-03-08T03:02:24.634208"
+    "hash": "ed258bdae1a2b10a4776ab69a37a42ef695da08813a11959a472324e7a8d7d80",
+    "last_translated": "2025-03-23T20:58:05.745855",
+    "translation_time": 35.97
   },
   "integrations/socket.md": {
     "hash": "44ee288dc363b173a5df44e4cb275fbae1b88bd03d46888448b9115a4ebe0e9b",
@@ -1664,8 +1741,9 @@
     "last_translated": "2025-03-08T03:07:52.233102"
   },
   "plans/trail.md": {
-    "hash": "7ba3241c6828b231cf2f46fb2896b70fa8e177f9cb4cb81a2d1ed77c3778fbfd",
-    "last_translated": "2025-03-08T03:09:28.383809"
+    "hash": "0b50226a613c6211838255b2e6a58f8da0c62fe3efbef0416d0e08c74402d3e9",
+    "last_translated": "2025-03-23T20:59:35.242522",
+    "translation_time": 89.47
   },
   "deployment/logengine-capacity-planning.md": {
     "hash": "767c06110947bc043ccea66f194b74e31df9969507fb642c60f85486e45774fe",
@@ -1676,16 +1754,19 @@
     "last_translated": "2025-03-08T03:10:22.853436"
   },
   "deployment/get-license.md": {
-    "hash": "6415732556e26e5447da270cc0db0c9dd45d5dc36f0f2c77ddf288c4d2d1b70e",
-    "last_translated": "2025-03-08T03:10:56.111454"
+    "hash": "309330d4241ea3094eb9115e9a78098c83c9bb1de990eee2d144f008f46e12d8",
+    "last_translated": "2025-03-23T21:23:22.428121",
+    "translation_time": 15.7
   },
   "monitoring/bot-obs/cloudasset.md": {
-    "hash": "09bd69339aa3db4ebc50cd69f487db402c8e0f0b8e605c4949235e4ca840d195",
-    "last_translated": "2025-03-08T03:12:08.476828"
+    "hash": "0c78be1f1b495c472464b3dcbe3fe5991f2b51f2f43a52a256b2c66608488fe6",
+    "last_translated": "2025-03-23T20:18:57.458016",
+    "translation_time": 44.25
   },
   "deployment/launcher-install.md": {
-    "hash": "8f0c4c16dd442c24d304c323b877e69f06b0aa8782de1439c282df0c51d0edbc",
-    "last_translated": "2025-03-09T22:48:08.288259"
+    "hash": "5c057733542539fa428454b12569e116ab8d04301ae3c1e4b0ae2b4717f7a636",
+    "last_translated": "2025-03-23T20:57:54.172724",
+    "translation_time": 145.95
   },
   "open-api/workspace-data-mask/set-disable.md": {
     "hash": "19cd4d8935b832a57d8905e481193af14a2944841a2aa645d783e2f671d7dbf6",
@@ -1712,8 +1793,9 @@
     "last_translated": "2025-03-08T03:19:03.865967"
   },
   "application-performance-monitoring/collection/sampling.md": {
-    "hash": "390b043429eb46172381dcc081d332ae14067644897454d4b40ccf700b30d88f",
-    "last_translated": "2025-03-08T03:21:47.606580"
+    "hash": "af8099744244660c82226ef4d47aaa62a84e9452e4d2ab9a5ec10d893a5537e0",
+    "last_translated": "2025-03-23T20:47:11.618229",
+    "translation_time": 89.23
   },
   "scheck/0060-fat-disabled.md": {
     "hash": "d24de432294cf2692e986dd39750197fa8717ad899739c87ceb367d4fe79272b",
@@ -1740,8 +1822,9 @@
     "last_translated": "2025-03-08T03:26:41.430228"
   },
   "ci-visibility/data-collection.md": {
-    "hash": "7cd46e19f25a5f2a828c7f86a2690480502c89715454b2509eea51abf800a0ac",
-    "last_translated": "2025-03-08T03:26:53.923862"
+    "hash": "6a16a4ebc13a199351fe82b6cc0333198addf139f2936b4fb556db86d26bb81d",
+    "last_translated": "2025-03-23T20:50:03.456673",
+    "translation_time": 9.22
   },
   "scheck/0052-libusrsbin-priv.md": {
     "hash": "35346cf402d09030d669c63ef8bed2ed3eaf019c184acacf1f046c87e7de0998",
@@ -1776,8 +1859,9 @@
     "last_translated": "2025-03-10T02:09:42.266364"
   },
   "monitoring/event-template.md": {
-    "hash": "dac05570691900c3711ac4412ddd6e56f4ac790dd1861db52bc8900078e56836",
-    "last_translated": "2025-03-08T03:36:30.954050"
+    "hash": "2e70aaf7c61bdcbe058cd470a718e88f35d71d547f94083f91ca89e3187028b1",
+    "last_translated": "2025-03-23T20:48:29.881095",
+    "translation_time": 111.14
   },
   "scheck/0017-resolv-exist.md": {
     "hash": "576a8d8767f6f52b137281f72cd40368c68da6010612e3408b147fbf3e132f5e",
@@ -1788,8 +1872,9 @@
     "last_translated": "2025-03-08T03:46:38.355068"
   },
   "deployment/ha-tdengine.md": {
-    "hash": "27247e28839c0129572202e09624194d8b41c0d20651a383ced12364418701a3",
-    "last_translated": "2025-03-08T03:50:15.574129"
+    "hash": "e4a682242a8e0b51b5d6bb9df427fd59fb23592a01953c4131e4f426eb99b6ab",
+    "last_translated": "2025-03-23T20:52:29.926579",
+    "translation_time": 201.11
   },
   "open-api/notes/import.md": {
     "hash": "958852c95ba1c6bab37e6bca9b2dbc9fc71eeec0a340c14b7b67b9ccb72bd5ed",
@@ -1844,20 +1929,24 @@
     "last_translated": "2025-03-08T04:10:02.284765"
   },
   "open-api/aggs-to-metric/list.md": {
-    "hash": "128e8d16eb21e8f61bde07a09f20c0cb798eea648db7c0d4b7255db412ce20ad",
-    "last_translated": "2025-03-10T00:25:39.215724"
+    "hash": "bfe9739e2e473074d700dc3fb4fafb2fed7dc278bde87c41d9005931f4d12b06",
+    "last_translated": "2025-03-23T21:18:57.896263",
+    "translation_time": 33.19
   },
   "scene/dashboard/history-version.md": {
-    "hash": "6a12db73e6a53e890543bf224342beffabaff5b936a66986e4a814d9e505ebe3",
-    "last_translated": "2025-03-08T04:11:00.769005"
+    "hash": "f9c371d92283582b81551e23863792cb33ae543637d7286f73d8a477f485778f",
+    "last_translated": "2025-03-23T20:26:18.358483",
+    "translation_time": 15.02
   },
   "open-api/service-manage/get.md": {
-    "hash": "61ef8c7650aeb1e93281bcaa86b35f8bb67ebedc1032dfb535eecc01a7313e0a",
-    "last_translated": "2025-03-10T00:41:35.000543"
+    "hash": "985cc754bd74079a1baf2278247d4907d7720593ea5caab7fe188a53f2dbab6b",
+    "last_translated": "2025-03-23T21:23:03.399646",
+    "translation_time": 44.09
   },
   "management/sso/keycloak.md": {
-    "hash": "56849616f5ab33fd533f4c740b40d5325d8e6fece6b040a2d330efc99a02db99",
-    "last_translated": "2025-03-08T04:13:42.178551"
+    "hash": "1cf1e196c20774fef68fefad9da631793da4a720e769dc0a2f4a8741092e24c2",
+    "last_translated": "2025-03-23T21:05:11.355425",
+    "translation_time": 137.26
   },
   "integrations/prom_remote_write.md": {
     "hash": "9347a7559a1b0cd22ea644b97493549f9aebc1de2968b0a09788d983efb8900a",
@@ -1884,8 +1973,9 @@
     "last_translated": "2025-03-08T04:20:23.753499"
   },
   "others/log-observable.md": {
-    "hash": "14046c8a4d5b64e9fb25be0796bdee0b582c281e1b17e2fb490cf7ccfc0ebf53",
-    "last_translated": "2025-03-08T04:21:46.627278"
+    "hash": "78c1b700d873893b985229819f3cd86a8f7ea0f268566a5e01b3c4611dc20a0a",
+    "last_translated": "2025-03-23T20:57:29.755111",
+    "translation_time": 102.47
   },
   "scene/visual-chart/leaderboard.md": {
     "hash": "4d55d72c96d225a5a2ee7a4c4c260b48c2232d5e58e0813b9860dfd91a6efd53",
@@ -1896,16 +1986,18 @@
     "last_translated": "2025-03-08T04:23:10.673237"
   },
   "others/pod-observable.md": {
-    "hash": "f19fa57648d8336fb8b9d0a1f4364572916a1949b159fd3225536a412b1d5129",
-    "last_translated": "2025-03-10T06:12:08.816829"
+    "hash": "7d6bfcac7c366bb509665cfbb338f2dbb4e64f42d13dfc9f21498dea748358e3",
+    "last_translated": "2025-03-23T21:17:21.953554",
+    "translation_time": 25.24
   },
   "best-practices/insight/ddtrace-skill-sampling.md": {
     "hash": "6778779ab1443be5e9104f8d393cb49a5f1747e2fce4bb1b94800c104a611d5a",
     "last_translated": "2025-03-08T04:24:11.358272"
   },
   "billing-center/account-wallet/yearly-package/purchase.md": {
-    "hash": "6612fd3a837c32b580f67d7dbcd40cdec1aa655d43e5502614f1dd98d7273ed4",
-    "last_translated": "2025-03-08T04:24:49.939941"
+    "hash": "3702ab4a214d1d552443857ecc2460007d77d00b5d71073adcd59cc6b905bcb8",
+    "last_translated": "2025-03-23T21:00:21.237902",
+    "translation_time": 45.98
   },
   "best-practices/monitoring/mysql.md": {
     "hash": "df76d95730a7d885386df1a267f171af4c6a1731a1dc61a1c7ea9b7946a40174",
@@ -1916,8 +2008,9 @@
     "last_translated": "2025-03-08T04:27:14.079977"
   },
   "open-api/log-index-cfg/add.md": {
-    "hash": "a2eb76db28be4f5e1ded8e5c7fbd2cdc91bb9e25d195a473d1ece45becd0a2b0",
-    "last_translated": "2025-03-10T06:35:17.409543"
+    "hash": "cc19d213a998260fd432ab76ce3235edf8a182053a430516166a0f4e2e1b01ca",
+    "last_translated": "2025-03-23T20:46:18.367515",
+    "translation_time": 49.38
   },
   "open-api/error-definition.md": {
     "hash": "ac19c88e6bb168e3fbf367fc01e22e8494655aaceb4ad9b63ff2114bab000288",
@@ -1928,8 +2021,9 @@
     "last_translated": "2025-03-10T05:30:14.752442"
   },
   "agreements/boss-account-cancellation.md": {
-    "hash": "d829f9ba6a0237f4bdb90b02fb7581fa408c012eb03c387ceb6de36a6b83c711",
-    "last_translated": "2025-03-08T04:29:47.860410"
+    "hash": "8a6257aab40d9d831d7f218adf4186dec4036bbb2894eb7099f0f127e032d356",
+    "last_translated": "2025-03-23T20:20:35.606749",
+    "translation_time": 61.65
   },
   "datakit/bug-report-how-to.md": {
     "hash": "209f5f61937e10ce92dc5ca098ba0276dbe53bd1939afea17abba83b2f67024a",
@@ -1940,8 +2034,9 @@
     "last_translated": "2025-03-08T04:33:40.339425"
   },
   "real-user-monitoring/session-replay/mobile/ios/index.md": {
-    "hash": "c73886c716efe1e0ad608521a260a4b77f98b8881a1f8284f4d5a9918b7c416b",
-    "last_translated": "2025-03-10T02:15:22.055237"
+    "hash": "4af19fa8bb69addf06b31701d1a9aa077389f7cfb1b1275a88842a04718ebbea",
+    "last_translated": "2025-03-23T21:27:11.382815",
+    "translation_time": 64.15
   },
   "open-api/self-built-checker/enable.md": {
     "hash": "c0faad34f367dfb3c07096163f35ab532b0add873efe2698f47de58e0c68f4e4",
@@ -1952,8 +2047,9 @@
     "last_translated": "2025-03-10T05:24:09.740735"
   },
   "deployment/oidc-custom-url.md": {
-    "hash": "6c83576b95bc6240ce55fbfebfec2d9c28fed5548291a79ee8235ce34fc60edb",
-    "last_translated": "2025-03-08T04:36:29.917571"
+    "hash": "51254e51dab0101331d2aabb34cebe97a531297a333e6c248b92492fff201ff7",
+    "last_translated": "2025-03-23T20:38:08.750418",
+    "translation_time": 125.34
   },
   "integrations/aliyun_redis_shard.md": {
     "hash": "45b68937a3596cd5e6ac4071eeacf52d05b27ca16d743014468d02ef84a2be92",
@@ -1964,8 +2060,9 @@
     "last_translated": "2025-03-08T04:40:14.915117"
   },
   "open-api/service-manage/list.md": {
-    "hash": "be6448d3a80770484dcbea0986f2b3b7e4474179d2b21e8face0cf6b0edcac80",
-    "last_translated": "2025-03-09T23:28:48.553906"
+    "hash": "2ec18040be889cc650839318f6f4a64fff42c35f781232e7449982494ad8abc1",
+    "last_translated": "2025-03-23T20:27:22.798729",
+    "translation_time": 64.43
   },
   "usability-monitoring/request-task/multistep_test.md": {
     "hash": "744f07f4157c4e1de23f1ca1d9377cdb2b63221d87e4bc19e1a8af05db32605a",
@@ -2012,12 +2109,14 @@
     "last_translated": "2025-03-08T04:49:52.880606"
   },
   "release-notes/2024.md": {
-    "hash": "9289d29b95381bd17fee0106d65048fab09ec304f1b93c7ea97dc74fab08c927",
-    "last_translated": "2025-03-08T05:06:23.038217"
+    "hash": "e293b723af48fbb52757966820bdbee141d1851b197933a7a3bca5d1928a2361",
+    "last_translated": "2025-03-23T21:05:41.085050",
+    "translation_time": 1051.38
   },
   "best-practices/cloud-native/opentelemetry-guance.md": {
-    "hash": "49e56bfc8eb4212ef8b93df287a1135659774bca9cf1c64b6181cbb337335b98",
-    "last_translated": "2025-03-08T05:09:46.414933"
+    "hash": "24691392f95a8d7fa3fafae41a4badc2f480586708ae307435257b704c305432",
+    "last_translated": "2025-03-23T20:49:28.395239",
+    "translation_time": 253.72
   },
   "integrations/fluentd.md": {
     "hash": "d33f1b618b542931b20f1b54538bcd96fec8a287cae9a85af23bd9eb2e994b29",
@@ -2032,8 +2131,9 @@
     "last_translated": "2025-03-08T05:13:25.788464"
   },
   "deployment/how-to-start.md": {
-    "hash": "ccf52c1f247b7637eea1b063199a27ef71afaff2ae59c647b886dd0de3dd1d5d",
-    "last_translated": "2025-03-08T05:14:23.552170"
+    "hash": "cb5768b17065d9adb654a56ee3169d93e06e6984f84be9e5e060e0eca064484e",
+    "last_translated": "2025-03-23T20:55:47.265261",
+    "translation_time": 34.04
   },
   "integrations/datakit-tracing-struct.md": {
     "hash": "1629416aa104bca210833bea073c430e68ab7b99c66dc30d774d0478f0249350",
@@ -2060,8 +2160,9 @@
     "last_translated": "2025-03-08T05:23:10.172553"
   },
   "best-practices/cloud-native/istio.md": {
-    "hash": "d1be12bb092d178c9af423540bccf434b4179a3e45cd8479b7fae7466eb6e9fd",
-    "last_translated": "2025-03-08T05:32:46.135858"
+    "hash": "7727476fe58dd0aeaed1ec9aac76670572ce638f4f1cb7f90f04b67823e7cc6e",
+    "last_translated": "2025-03-23T20:30:44.354857",
+    "translation_time": 516.86
   },
   "integrations/ddtrace-ruby.md": {
     "hash": "d4cec2923607295e9a2fb5050c6bab46026102e844018adb6a02487faf9daf8b",
@@ -2072,8 +2173,9 @@
     "last_translated": "2025-03-08T05:33:08.622709"
   },
   "monitoring/monitor/custom-template.md": {
-    "hash": "23fa49c82834396599c57eac7a6a348022865c14d5c6a7f918c509358382f761",
-    "last_translated": "2025-03-08T05:33:29.122016"
+    "hash": "fa5e8c726dd17f0d3590d98c58d110456b4c262fd49042718ea5a07d33b76ac0",
+    "last_translated": "2025-03-23T20:19:20.941547",
+    "translation_time": 19.35
   },
   "open-api/channel/.pages": {
     "hash": "18cf7ceca81800285eace35dd5e9f85120dbe961dd8d167a86ffc1278f37f705",
@@ -2092,8 +2194,9 @@
     "last_translated": "2025-03-08T05:37:50.756750"
   },
   "best-practices/monitoring/ansible-batch-processing.md": {
-    "hash": "4f95cc1ceab425a8ddd254cc8c3a855af978da0b52edf03c275bab31680c6851",
-    "last_translated": "2025-03-09T23:20:33.426727"
+    "hash": "e3d462614b52061d6e70d551450599627351663f17a9662ca94ae61cc2d44a7b",
+    "last_translated": "2025-03-23T21:26:53.908777",
+    "translation_time": 97.54
   },
   "scheck/4213-k8s-kubelet-tls-cipher-suites.md": {
     "hash": "3600848a1f8fa9b767e00fad64f0c7d912808c9d2fbf53035b5ee66b49962a3f",
@@ -2148,8 +2251,9 @@
     "last_translated": "2025-03-10T02:28:43.261323"
   },
   "open-api/board/crontab-report-list.md": {
-    "hash": "88073df640d318cd429ebc74167390393d120121f37ad1ee1c87047d042c9be3",
-    "last_translated": "2025-03-10T03:05:29.851489"
+    "hash": "7aceaddbbafa8fc84d6a83e989a522cfe46a341a64d2e7a00bae494c57dfdfc1",
+    "last_translated": "2025-03-23T20:34:32.995938",
+    "translation_time": 124.06
   },
   "open-api/blacklist/list.md": {
     "hash": "b0084086b161ec2e8c7670541c1a0071f0d55af524eb0a50d11fca678fcdf4b1",
@@ -2180,8 +2284,9 @@
     "last_translated": "2025-03-08T06:13:59.673563"
   },
   "studio-backend/studio-change-log.md": {
-    "hash": "b980d9c54c2d0e69c2eba27aa823eb67ecd1faf71e332b51b9492c3b7331bb53",
-    "last_translated": "2025-03-08T06:14:21.068918"
+    "hash": "74055a136ebf8d5d646fa57a6f3eb8a4e0aa32fac71d7efb449aa5596f09e688",
+    "last_translated": "2025-03-23T20:53:47.731991",
+    "translation_time": 12.9
   },
   "monitoring/monitor/real-user-detection.md": {
     "hash": "f494958728a888154091f4ba78753131d2ec0d013eb1433b9272e2e160d47d91",
@@ -2224,16 +2329,18 @@
     "last_translated": "2025-03-10T00:51:07.245014"
   },
   "best-practices/insight/im_jira.md": {
-    "hash": "840ec1795fbbf53fea3a8d13d34011e0a632d99394db4d432d62433e85e1d1c7",
-    "last_translated": "2025-03-08T06:37:24.628901"
+    "hash": "26f313b9aa2795810c4df13ea021afe2c7576957004e44a98292e52698d35e68",
+    "last_translated": "2025-03-23T20:32:56.789714",
+    "translation_time": 85.94
   },
   "monitoring/index.md": {
     "hash": "8bf5acf7b16815e757b96c87a30e837a342764409fc75bdfe8a5132e0c830a95",
     "last_translated": "2025-03-08T06:38:01.094258"
   },
   "open-api/pipeline/add.md": {
-    "hash": "461ef8ab650115a3cf3e08578012dd570b209bf34e95f000fef951feca8fb33d",
-    "last_translated": "2025-03-10T05:47:46.898705"
+    "hash": "a2aaae7389a04bfd1ffa6c75e24310d0cfbd5ec40574efab75b97cd99d41fd16",
+    "last_translated": "2025-03-23T20:50:39.289279",
+    "translation_time": 35.81
   },
   "management/role-auth.md": {
     "hash": "67fc916a6500ecfdedff0794ea2772afebc97c1112ef050e6f9ab3c9981f9d47",
@@ -2248,8 +2355,9 @@
     "last_translated": "2025-03-08T06:43:04.842934"
   },
   "logs/manual.md": {
-    "hash": "b6547e068370a11ab162654afe044ba53f60868d6ba6ca5fc3511dad5cb90b6e",
-    "last_translated": "2025-03-08T06:45:11.344239"
+    "hash": "bcdad4ac963d870144d28f904b5799b3986db98265f4497a4f662de484203a47",
+    "last_translated": "2025-03-23T20:57:17.499494",
+    "translation_time": 200.35
   },
   "real-user-monitoring/explorer/action.md": {
     "hash": "3b0752d3c5ad6d617cdd0259a6b25acb4fa4be2dbab06dd99485125c210058cd",
@@ -2272,8 +2380,9 @@
     "last_translated": "2025-03-08T06:47:09.111478"
   },
   "open-api/index.md": {
-    "hash": "086f968923c903d40bc7685c01a9aeb998cd532342e174a657b287bb09bfc45b",
-    "last_translated": "2025-03-10T01:03:16.173874"
+    "hash": "5410bfdf49943ed5713476bd591e221e4ec41dbea0c99bf31437a6d7fa51d81c",
+    "last_translated": "2025-03-23T20:20:47.516501",
+    "translation_time": 67.63
   },
   "logs/bpf-log.md": {
     "hash": "fc43dbb98c39b41636fdac744b00d969b8a179247fa0759babc44951cae5e8bf",
@@ -2296,12 +2405,14 @@
     "last_translated": "2025-03-08T06:50:36.510561"
   },
   "external-api/index.md": {
-    "hash": "ad779d6958d64309a2875c85b8bed2bed2aad5ba60071a6bd9a2804ab4263c44",
-    "last_translated": "2025-03-08T06:50:52.824027"
+    "hash": "4ff0bce59a1f4f4f2b04965d2748af85328b9b01fad452438158c92e26a9f49e",
+    "last_translated": "2025-03-23T20:51:52.733770",
+    "translation_time": 9.5
   },
   "scene/view-variable.md": {
-    "hash": "fd4b4b1ac496edd8f9963d432851cb41071f6e119affff93c02f3ce630413e94",
-    "last_translated": "2025-03-08T06:53:33.753956"
+    "hash": "48cba1fb0a906634272226a486c178d8265ead1688b7de8dd20920992718b50b",
+    "last_translated": "2025-03-23T21:23:09.697285",
+    "translation_time": 149.38
   },
   "integrations/huawei_SYS_DDMS.md": {
     "hash": "0cd3bfbb005133b20a7d817c8350fdcf33e7e2240656875c118916747839e486",
@@ -2316,8 +2427,9 @@
     "last_translated": "2025-03-10T00:10:25.898084"
   },
   "billing-center/faq.md": {
-    "hash": "fe21b7502bf123093b0373f65c672c780d39becac50e7e01ad0900423338e21b",
-    "last_translated": "2025-03-08T06:57:55.050231"
+    "hash": "095acd62acfa38687180452c788c87dc444185d3410684518843a234fa0c08ae",
+    "last_translated": "2025-03-23T20:30:27.338775",
+    "translation_time": 7.1
   },
   "integrations/aliyun_polardb_oracle.md": {
     "hash": "07eccfaf75fb046b826b5c2e56238a8327be22919df97736ea1ad8d7527b8c35",
@@ -2336,16 +2448,18 @@
     "last_translated": "2025-03-08T07:01:54.858688"
   },
   "others/process-observable.md": {
-    "hash": "d6c0278aa2ee748d237f8135f26b955b18d4d997ae89084702b2ad816d0e0a47",
-    "last_translated": "2025-03-08T07:02:33.032105"
+    "hash": "2202abe877354c99f5e3f426975f9d3ccb0b5e77371530d34c230c1b967bf35c",
+    "last_translated": "2025-03-23T20:58:01.779382",
+    "translation_time": 69.31
   },
   "real-user-monitoring/session-replay/mobile/index.md": {
     "hash": "271d2f93a3cdc8e6f11c0d26500cfd7a3ccb2a82f6b6dfebeaca84fe5212f5d8",
     "last_translated": "2025-03-08T07:02:52.715654"
   },
   "billing/billing-account/huawei-account.md": {
-    "hash": "ceca0da982f46173c1ac980aef246dc00331bddd1e903ec1253a937d7adcb847",
-    "last_translated": "2025-03-08T07:03:46.414758"
+    "hash": "c2fde1c3027fd68a6a439aa38ad3017ae4504a2d8969deb640df0446dffabb16",
+    "last_translated": "2025-03-23T20:33:26.796726",
+    "translation_time": 31.52
   },
   "open-api/workspace/menu-set.md": {
     "hash": "be35a4e775dce13da05faf2ce8bc1e950980534b66e7e71db592b468c0db9919",
@@ -2360,8 +2474,9 @@
     "last_translated": "2025-03-08T07:05:28.267845"
   },
   "best-practices/monitoring/tomcat_ruoyi.md": {
-    "hash": "5562262172bf58211ecd3963b041a3fe86ba4af8fce6a5b5d5fb860bc4866083",
-    "last_translated": "2025-03-10T03:46:10.480237"
+    "hash": "4c964cfa59d52b863d411399ab998b206b7d542044ef0427179712b748d52706",
+    "last_translated": "2025-03-23T21:24:28.299494",
+    "translation_time": 99.08
   },
   "release-notes/2020.md": {
     "hash": "18503138d9341256e3f56d182e1b21fdcd4baa0c4425588872d707cdf7b19813",
@@ -2380,32 +2495,36 @@
     "last_translated": "2025-03-08T07:15:04.886474"
   },
   "best-practices/cloud-native/logback-socket.md": {
-    "hash": "0a558b154d0acde49cc674d5cd5a7a239e312a0fef3d6473411dd600ad4040fe",
-    "last_translated": "2025-03-08T07:17:18.130037"
+    "hash": "5a90b16186a02c505b880e2df0d3ad8b09cdd1ab05f4e832a5058c2a4d272d07",
+    "last_translated": "2025-03-23T21:20:06.986632",
+    "translation_time": 69.07
   },
   "open-api/alert-policy/modify-v2.md": {
     "hash": "9e624e71be3a39b1371383cd87c7f86f436df86d37b2788ed468ff55e3f95599",
     "last_translated": "2025-03-10T05:32:04.556936"
   },
   "billing/billing-account/aws-account.md": {
-    "hash": "1a96756e60799e79064e38e3726c0e3b0dd061af0f96bd5176ebe263b67ffc67",
-    "last_translated": "2025-03-08T07:18:56.080971"
+    "hash": "8230473e4f0b2019fedebc6056c3fa99f16ed0bc731e43625957b6137ead3fea",
+    "last_translated": "2025-03-23T21:00:40.560201",
+    "translation_time": 22.41
   },
   "integrations/swap.md": {
     "hash": "92c05691971f0e09f33c97cbcb15e1059316687eff4e665c6d210199d8134b91",
     "last_translated": "2025-03-08T07:19:29.242810"
   },
   "deployment/single-deploy.md": {
-    "hash": "c961f52087974f828cb3ee26cc8532a84457a0b9b9ec45a95182acc09213ef7c",
-    "last_translated": "2025-03-10T06:31:55.600596"
+    "hash": "f40feefe4940403d73abfbb5c9e3f72127aa188575e3011f84fb87a0376d8331",
+    "last_translated": "2025-03-23T20:27:57.921542",
+    "translation_time": 108.09
   },
   "best-practices/monitoring/java-oom.md": {
     "hash": "e775d936bd6e01ab90a3b3bd44d9b7bdb269f4187826cae743686ac8d94f214f",
     "last_translated": "2025-03-08T07:24:00.370971"
   },
   "monitoring/notify-object.md": {
-    "hash": "c172c15655c8fac272df1a4d45e6b763974a9809b2a3b3257540b693f70cbe64",
-    "last_translated": "2025-03-08T07:25:23.826185"
+    "hash": "5ca249006012e1a81c1e5af6069f5e0368a3522dce8d489b2e3ee20390195fc3",
+    "last_translated": "2025-03-23T20:21:24.128457",
+    "translation_time": 190.93
   },
   "pipeline/use-pipeline/pipeline-refer-table.md": {
     "hash": "231960bb703906d75d3fbf1fdd5a0ffb074dd9a10a0e6dceb4ad61a156c82f3c",
@@ -2436,8 +2555,9 @@
     "last_translated": "2025-03-08T07:33:41.852922"
   },
   "best-practices/monitoring/trace-glame-graph.md": {
-    "hash": "eee3c4b22c8ac0e093f6b29cc97f56a2637f52c6d6275357f5d4c445421d5706",
-    "last_translated": "2025-03-08T07:37:04.734794"
+    "hash": "207333fec5576667ef97643026f9c579147407364a27194ae41a6ed695865bbb",
+    "last_translated": "2025-03-23T20:31:16.906518",
+    "translation_time": 209.67
   },
   "scene/explorer/custom-explorer.md": {
     "hash": "fcee8372711c9f5c656505a1c45b2ea0ee1f97ed99c137ae55b34c6610692203",
@@ -2472,16 +2592,18 @@
     "last_translated": "2025-03-08T07:39:56.002268"
   },
   "best-practices/monitoring/jvm.md": {
-    "hash": "e33e2ae67783b207d3e0d10dab76ed8a58a46b487ad6bab72ebe312af0f98bf3",
-    "last_translated": "2025-03-08T07:45:39.604843"
+    "hash": "8cd38daacdc32f0e3748f30700695a0e368168d3ebc4318bff335986203d50d9",
+    "last_translated": "2025-03-23T21:11:09.422013",
+    "translation_time": 425.79
   },
   "external-api/workspace-ak/list.md": {
     "hash": "8786e1fcef80ebd87e6a97cff0291f6b20683c44e4f84a9b10b52db9d8318bfa",
     "last_translated": "2025-03-08T07:45:50.381077"
   },
   "best-practices/insight/opentelemetry-params-for-java.md": {
-    "hash": "7b30b456f23da942806e08d8ec9432bb543570c78606200430a92f4999916ce4",
-    "last_translated": "2025-03-08T07:49:06.556234"
+    "hash": "9bc838e32869df24a02b3b37cf63ff2cc9e62fdee8ae990bd0f5007b3b8e96ca",
+    "last_translated": "2025-03-23T20:27:10.165170",
+    "translation_time": 229.43
   },
   "application-performance-monitoring/issue-auto-generate.md": {
     "hash": "265145cdfa61fb348cb1c8a2c25cdd62f7292d694859038e342a06779f10b950",
@@ -2508,8 +2630,9 @@
     "last_translated": "2025-03-08T08:05:27.822434"
   },
   "deployment/get-guance-images.md": {
-    "hash": "101aaa3e6886b17ff4bd52b98dc243badecba995fc3171f3a2b262be1ebe6e63",
-    "last_translated": "2025-03-09T23:32:30.494481"
+    "hash": "447df92ec6cdf561b865ae9347e40f96acd985e2dc856cf5ef6b9257d3253b70",
+    "last_translated": "2025-03-23T21:21:56.637044",
+    "translation_time": 48.79
   },
   "others/create-workspace-member.md": {
     "hash": "900de96865c846fd16f8e87567c30b7516cb9f396ded542ced6767f4ca58b73c",
@@ -2620,16 +2743,18 @@
     "last_translated": "2025-03-08T08:24:22.936081"
   },
   "management/role-management.md": {
-    "hash": "91335568bf9a14db5c372befe1b58372064ac444ade6eb89824660635a2c4d52",
-    "last_translated": "2025-03-08T08:25:25.960086"
+    "hash": "b8283aafa78e9140c55304a6e53f82929d9d6bd14472b194c56d1b85dbc1a769",
+    "last_translated": "2025-03-23T20:34:22.810393",
+    "translation_time": 86.0
   },
   "application-performance-monitoring/faq.md": {
     "hash": "919665e4496fd4b90407528668fa3e8fe560f69c729970ac447880f618d0a539",
     "last_translated": "2025-03-08T08:25:57.683943"
   },
   "monitoring/bot-obs/host-restart.md": {
-    "hash": "3f4461dd71b0532952c0b2816941204a3eba3ace301b560dbbf065798dd3b455",
-    "last_translated": "2025-03-08T08:27:22.781654"
+    "hash": "6bc0532344c701faf836e730dc7768a2428c70685099d697c0945baae4eeafd8",
+    "last_translated": "2025-03-23T21:17:04.304959",
+    "translation_time": 53.25
   },
   "open-api/notes/get.md": {
     "hash": "dee14491d656f00707be2bb37463beebedf3fb4b43cdb6f4b02adb28198561a6",
@@ -2704,8 +2829,9 @@
     "last_translated": "2025-03-08T09:00:06.205836"
   },
   "real-user-monitoring/android/app-access.md": {
-    "hash": "d01469fa7438b538bd366fa020cc70adc48ad736403953f44bfaecd407a2bcee",
-    "last_translated": "2025-03-10T04:34:00.559646"
+    "hash": "ba81c1e1c7e9e15fa109638070db34108421866aa5b46fb61bae565f06df2417",
+    "last_translated": "2025-03-23T21:19:53.843951",
+    "translation_time": 891.27
   },
   "real-user-monitoring/web/sampling.md": {
     "hash": "50d5df21e11f6db759ceb4307c8fed535aae7afdbeeae20bd368043918d59e3a",
@@ -2716,16 +2842,18 @@
     "last_translated": "2025-03-08T09:17:10.162859"
   },
   "deployment/faq-k8s.md": {
-    "hash": "7c7c5238807d4466fcbe1f883d54f27d314f14048e10942a6dea06cfd050bbd7",
-    "last_translated": "2025-03-08T09:17:53.137622"
+    "hash": "c8c1f575a2b9022088b265608f219c8612ce57bd6c3684b776e41c7e7b746cf1",
+    "last_translated": "2025-03-23T21:09:44.442390",
+    "translation_time": 28.48
   },
   "open-api/public-request-params.md": {
     "hash": "1d15b1384880d05b0870448e6fda4e70d28986a96bd6806bc11aa471a584e6ca",
     "last_translated": "2025-03-08T09:17:57.865258"
   },
   "plans/index.md": {
-    "hash": "9a12fe78ed5f2812848e5f64a3981efbc828b6509cb720301e9bcf2363cc001b",
-    "last_translated": "2025-03-08T09:19:14.951236"
+    "hash": "8f134d00e07170ca95ade72866976621a3bdffe4fb80cf3f07a316e943602670",
+    "last_translated": "2025-03-23T21:20:55.900717",
+    "translation_time": 55.32
   },
   "logs/multi-index/sls.md": {
     "hash": "f95c413f4bbd0904508a77238b0edc48486f1721cac8c9ab993f41bca72c4399",
@@ -2748,8 +2876,9 @@
     "last_translated": "2025-03-08T09:21:27.489474"
   },
   "open-api/notes/list.md": {
-    "hash": "b0064a0aa99693d0c23a9987693be56cf64d2f36bb40e59077119724f2823fb6",
-    "last_translated": "2025-03-10T05:34:07.836841"
+    "hash": "fbb186aaca2f8aafc00a12aeccee96ca7bd66d5f3a893862c4fcb52578361068",
+    "last_translated": "2025-03-23T20:35:20.588249",
+    "translation_time": 25.38
   },
   "integrations/otel-ext-changelog.md": {
     "hash": "36ae6cddf66ca15e357215240a17a677f03258a3d5ec5f5b9cef6642fd6e9436",
@@ -2760,8 +2889,9 @@
     "last_translated": "2025-03-08T09:23:40.751307"
   },
   "real-user-monitoring/sourcemap/vite-upload-sourcemaps.md": {
-    "hash": "d6ceaebecb888874bdef91ebe37ed201ed1bcb4ce1fc1edd5977db43ca777321",
-    "last_translated": "2025-03-08T09:25:17.827735"
+    "hash": "ca558ecfb9f44ae0939ba94edec2b78832a30d267af2e3e580338a02c879fa39",
+    "last_translated": "2025-03-23T20:55:56.768093",
+    "translation_time": 84.5
   },
   "scheck/0058-squashfs-disabled.md": {
     "hash": "1c324e0015206a5067ea6fd18627bf8dcdc0df1240644471cb6421f111dac663",
@@ -2776,8 +2906,9 @@
     "last_translated": "2025-03-08T09:26:39.997277"
   },
   "deployment/switch-domain.md": {
-    "hash": "a6d6a5efa1e17e3d741c3816ca6b4685fa71d0fd50df6956634bb74d6466c8d4",
-    "last_translated": "2025-03-08T09:27:22.073645"
+    "hash": "fce5e2b2c902b4dcd29428416be43eb7cf25d6df25ec7b2809aca8a61666efb4",
+    "last_translated": "2025-03-23T20:34:55.190517",
+    "translation_time": 32.36
   },
   "open-api/inner-dashboard/add.md": {
     "hash": "88bdadd41db9eb8829001b2c02a09011a56d163a44a011f5ef9d32b2ef788cc5",
@@ -2804,8 +2935,9 @@
     "last_translated": "2025-03-08T09:34:36.048804"
   },
   "real-user-monitoring/react-native/app-access.md": {
-    "hash": "495cedb76e428555ded32a64b7ce0a38afbb72eb3a05e842c9ce9aa40907b4ff",
-    "last_translated": "2025-03-10T05:46:55.629508"
+    "hash": "d44509aa33f1a97a5d262e2eb05d352ace61c9af872884cf5d3437ad6097cd26",
+    "last_translated": "2025-03-23T21:22:14.321979",
+    "translation_time": 377.71
   },
   "scene/visual-chart/china-map.md": {
     "hash": "9fe7742a0a19f11220be5fd0844430e783f64d2f704cfcaf3755e4378ff126a7",
@@ -2832,16 +2964,18 @@
     "last_translated": "2025-03-08T09:46:57.518959"
   },
   "best-practices/cloud-native/microservices2.md": {
-    "hash": "4d90aef1a762f52dcc6df613c91993e3ac4b522473662a9592dc098b22ba098d",
-    "last_translated": "2025-03-08T09:48:45.183198"
+    "hash": "7dfcee12262eed39aa8fdb8177d172fe139a0b63f3f5c2290210d4ded0174f69",
+    "last_translated": "2025-03-23T20:39:40.898409",
+    "translation_time": 150.68
   },
   "integrations/kubecost.md": {
     "hash": "7ea14ce775bb1541c4638ce1e8202cef54667a5a68045f364a9e9db8807781d4",
     "last_translated": "2025-03-10T01:26:48.442540"
   },
   "billing/index.md": {
-    "hash": "d26b23c59667d2c76978f1c191c211d4e1d273e7899ea21f90ab429f944bb614",
-    "last_translated": "2025-03-08T09:50:19.018026"
+    "hash": "aa601adb233fbf1d93b3392184ed66d89bbdc0e5f23fa33f994e4e4bbbe2b702",
+    "last_translated": "2025-03-23T21:25:53.125287",
+    "translation_time": 49.39
   },
   "scheck/0426-k8s-protect-kernel.md": {
     "hash": "befbf45f0d90ec4857f119c90b8e18cbfa91a90e3ede2c0f8a4d92f45ac84329",
@@ -2864,8 +2998,9 @@
     "last_translated": "2025-03-08T09:54:11.792082"
   },
   "best-practices/monitoring/nginx.md": {
-    "hash": "27e33c8ed9506f7c2b5cdf72a787acf11d635ac6766007b5c43dcc246369639d",
-    "last_translated": "2025-03-08T09:57:45.829444"
+    "hash": "a3723cb94f5b45551776f44db83483fbb7469213d5ef1bfe9f69711c96dcf2b8",
+    "last_translated": "2025-03-23T21:17:50.019918",
+    "translation_time": 238.61
   },
   "open-api/inner-dashboard/export.md": {
     "hash": "81f8c101ed839bdbab79ef74eadc50fb9f9038056261bd229a3e90535c089aea",
@@ -2876,8 +3011,9 @@
     "last_translated": "2025-03-08T10:06:11.950393"
   },
   "deployment/iframe.md": {
-    "hash": "3cd48e64cf4590a93f0dacc68bbd89157c122354b1b265330c6da6af68c6131b",
-    "last_translated": "2025-03-08T10:06:34.384894"
+    "hash": "a391b04c1debd021713b51bef77dfe3c91d940fcce39d69666e88b9070eea923",
+    "last_translated": "2025-03-23T20:43:11.727594",
+    "translation_time": 23.04
   },
   "pipeline/use-pipeline/pipeline-built-in-function.md": {
     "hash": "ce5071c3a9cc495afbcb0d99aeb1a15d94803ea228e8ba457e98b031ac18354c",
@@ -2924,8 +3060,9 @@
     "last_translated": "2025-03-08T11:26:46.931962"
   },
   "best-practices/insight/tracing_method.md": {
-    "hash": "115826651a97304f154517f9396ad1c373322d85789f678371ac1283c5238f56",
-    "last_translated": "2025-03-08T11:27:50.351276"
+    "hash": "a4361a1301fd28ad47050365c1c82995e1e49525a319215fbfe596bbb60bac25",
+    "last_translated": "2025-03-23T20:53:39.761206",
+    "translation_time": 79.58
   },
   "management/aliyun-account.md": {
     "hash": "b334cbcf87e6f8365d5816fdf8f0c21f3bfae4fbc32b450346d5079ab28fc4af",
@@ -2956,8 +3093,9 @@
     "last_translated": "2025-03-10T02:00:45.728370"
   },
   "infrastructure/custom/data-reporting.md": {
-    "hash": "1c1751fceb006191b165f262925e3e1195beafba461b3d39376ac17f2777af8a",
-    "last_translated": "2025-03-08T11:31:19.492296"
+    "hash": "f9edec9af1d283fd839882b355ec7be0ba4ca603d49ea3de3d640a472a69d7dd",
+    "last_translated": "2025-03-23T20:55:28.205045",
+    "translation_time": 50.71
   },
   "deployment/user.md": {
     "hash": "05772cee2916e9d56d248678c1fcc91d23500915a33c215ae3dc030bdc0edf3b",
@@ -3016,8 +3154,9 @@
     "last_translated": "2025-03-10T01:09:31.179915"
   },
   "release-notes/2022.md": {
-    "hash": "fd2b271b6296586fe80ce621b458929ad842712f013a7425ce2357d03a17ec5a",
-    "last_translated": "2025-03-09T22:37:58.508806"
+    "hash": "97baa9e9f89f65b611a8274f2a410e3b515b1040f882ee52e160e689e131d5a6",
+    "last_translated": "2025-03-23T21:15:19.879758",
+    "translation_time": 1082.36
   },
   "external-api/workspace-ak/delete.md": {
     "hash": "fe42eba9a1cca0829614ce03d3d87e6813702bbde7174d5c409e629c501f1354",
@@ -3036,8 +3175,9 @@
     "last_translated": "2025-03-08T12:09:29.574240"
   },
   "datakit/datakit-conf.md": {
-    "hash": "b544e197b2394df35b050897983e834abbf4172cc27d631456b1b9be395f9220",
-    "last_translated": "2025-03-08T12:18:47.683290"
+    "hash": "be4870a09a901e4009b82e29bbcb7542ba0fa9c15afb3294b1938db9f15419fb",
+    "last_translated": "2025-03-23T21:20:00.561565",
+    "translation_time": 518.34
   },
   "real-user-monitoring/web/custom-sdk/add-action.md": {
     "hash": "f126f51470997c2887c432e5daef43a633d7118bae8ce06db4733d0cadb76b1b",
@@ -3080,8 +3220,9 @@
     "last_translated": "2025-03-10T06:10:07.370929"
   },
   "monitoring/bot-obs/spot-alive.md": {
-    "hash": "da239fb504e7c7aec9202f935e2acd8a3abbe165ccff7c77032d75be0c107c4e",
-    "last_translated": "2025-03-08T12:32:00.428750"
+    "hash": "8501d6fc24f03dd81bfdb7e8d3e966be3dfcbe84cdb3a72ab9ffc08c5bb2f456",
+    "last_translated": "2025-03-23T21:11:22.200254",
+    "translation_time": 75.93
   },
   "agreements/app-sdk-privacy-policy.md": {
     "hash": "d46fb9e7c8c531c750ff789264dd87e94c2b52ecc8a92fb70d132bd483de0260",
@@ -3092,8 +3233,9 @@
     "last_translated": "2025-03-08T12:50:36.462659"
   },
   "best-practices/cloud-native/k8s-logback-socket.md": {
-    "hash": "557aa78ce25dffd71ca4021ef08d0715b5af04f062bc0f968bc67b42aa7c9c05",
-    "last_translated": "2025-03-08T12:55:19.871094"
+    "hash": "cea6a1c0698f0b8a4fb47091a2e9b810cd4388290aed14a64c72d60d7b224079",
+    "last_translated": "2025-03-23T20:39:43.138840",
+    "translation_time": 402.39
   },
   "external-api/workspace/delete.md": {
     "hash": "0156f2fb8ae630c8ca6774e18fd9e8795ba22b48d9e0832a705c3fbcf7cbd794",
@@ -3112,8 +3254,9 @@
     "last_translated": "2025-03-08T12:56:59.155470"
   },
   "best-practices/insight/springboot-tomcat.md": {
-    "hash": "7011a83374cafb2721a559037984a539e6ba85c4671c3cb6dd16d195f4083db2",
-    "last_translated": "2025-03-08T12:57:59.053768"
+    "hash": "e904ec97700afd930be88faa6efd7a4c1ba3d3b26ae2bbdc38579b16de70a86e",
+    "last_translated": "2025-03-23T21:04:00.268680",
+    "translation_time": 38.51
   },
   "management/client-token.md": {
     "hash": "4b50ef2ae2b0b48efa745d5a701869ae60ef9265018bd52e5fedf855e8064270",
@@ -3132,16 +3275,18 @@
     "last_translated": "2025-03-08T13:00:18.154565"
   },
   "monitoring/bot-obs/rum-performance.md": {
-    "hash": "fa5634028ca01c1fe06f0965caa792e99f6d967e6a2670bb9c5190d332daa6aa",
-    "last_translated": "2025-03-08T13:01:59.388523"
+    "hash": "5d9d3e398550140f6194cb9b41c332e6251e19206cca57002efae17283329b84",
+    "last_translated": "2025-03-23T21:09:04.329051",
+    "translation_time": 95.85
   },
   "scene/built-in-view/.pages": {
     "hash": "37568e2075acf00bd8fb3b04cfc9ee8d73e05f654fe15ede418c0e86d9fff3ab",
     "last_translated": "2025-03-08T13:02:01.184367"
   },
   "open-api/data-query-rule/list.md": {
-    "hash": "ae94cb857e551738daa0e7cf9a6ea36e3dd49d54e81e774bf007d45d65828dd4",
-    "last_translated": "2025-03-10T01:49:23.581398"
+    "hash": "7d9dacbc01d518fe87c44dade968725815fc4ec8237e91dfcd060677cf790d3d",
+    "last_translated": "2025-03-23T20:22:23.721351",
+    "translation_time": 250.52
   },
   "open-api/board/import.md": {
     "hash": "54b3dad29ddde5f5effa3ffc5bd390d8db32185207eada2f6675df38ce546a6f",
@@ -3164,8 +3309,9 @@
     "last_translated": "2025-03-08T13:14:11.357225"
   },
   "real-user-monitoring/self-tracking.md": {
-    "hash": "eecced3a468f257a7a7c9bf1490047b76444e516eddeaa5ffb35b56e73f6807a",
-    "last_translated": "2025-03-10T06:01:07.602283"
+    "hash": "9809db7d0b0721eab59e50a3501c99e7bf30e2d1cb3bc1fd3b7312112f90840b",
+    "last_translated": "2025-03-23T21:01:58.963354",
+    "translation_time": 29.92
   },
   "scheck/4503-nginx-nologin.md": {
     "hash": "c672e62988bd0420ff9742fd8af4b98b74865c4d93c1018572aaecfc9f7d8a6a",
@@ -3176,28 +3322,32 @@
     "last_translated": "2025-03-08T13:17:16.965726"
   },
   "deployment/application-configuration-guide.md": {
-    "hash": "0e42577966504cf5b78d4a966db4570f530ea1c033ca8a2a2e2ec43aac43d119",
-    "last_translated": "2025-03-10T06:00:34.448096"
+    "hash": "2e80de4a1cac3a42b19ac595cb682d8c5187b9a3a3e0f82795a459b07a1d25a3",
+    "last_translated": "2025-03-23T20:32:12.488376",
+    "translation_time": 389.56
   },
   "management/logdata-access.md": {
     "hash": "df3419f3fc98d045aeb5cc26ab9ae1426c19da0e66a265e17a195791cf42878a",
     "last_translated": "2025-03-08T13:25:38.989704"
   },
   "agreements/upgrade-agreement.md": {
-    "hash": "00ac6b7bcbbabfedca86d8832ce88237b603a6404447892b9142ce5e2b8181bd",
-    "last_translated": "2025-03-08T13:30:29.854036"
+    "hash": "d3d8e1b1ff101eabea9b6e20a4a3d7c9096d9b2460c9c94266589cd35f2f449b",
+    "last_translated": "2025-03-23T20:36:15.047482",
+    "translation_time": 261.37
   },
   "scheck/join-sls.md": {
     "hash": "47775ceff69f5ac394e0e67efb0cb295a176fed81c55509ada7bab30a7e65dc9",
     "last_translated": "2025-03-08T13:31:48.194695"
   },
   "best-practices/monitoring/spring-cloud-sample.md": {
-    "hash": "9784344fbba96c32b460d7f23ae50135ace219d7874d9b77cfd51b97915fea8e",
-    "last_translated": "2025-03-10T00:57:56.729036"
+    "hash": "1cae4f32fd4e60a6597d0cc3a2207159548c172abda63e32c08544b50f4a3d6b",
+    "last_translated": "2025-03-23T20:43:08.470792",
+    "translation_time": 473.74
   },
   "best-practices/partner/eks.md": {
-    "hash": "b99af71659d78834e888704d2e98d47ee85744b4358fea30638c5e80a3ad2520",
-    "last_translated": "2025-03-08T13:40:03.138752"
+    "hash": "d70021c6f35590984d5a46170b98f2da1013f60222b0be576c27ca16937d3dde",
+    "last_translated": "2025-03-23T20:54:15.821396",
+    "translation_time": 80.88
   },
   "deployment/aliyun-eci.md": {
     "hash": "266b1072da0bcca8e82ad1186bbe5382aa53e60b1cf2284b44dc6239450ffefc",
@@ -3208,16 +3358,18 @@
     "last_translated": "2025-03-08T13:41:48.907712"
   },
   "scene/visual-chart/timeseries-chart.md": {
-    "hash": "d9a1f78a9920a429ec5d357848f0754092054103874aff9040bd7f348d86fd51",
-    "last_translated": "2025-03-08T13:43:42.855522"
+    "hash": "b459f122f445089670058266eccd92d980f35c625b9dd0d16ceff9bd5f5fb927",
+    "last_translated": "2025-03-23T20:28:27.634563",
+    "translation_time": 132.13
   },
   "integrations/elasticsearch.md": {
     "hash": "2f8dfbabd37dd9e2bff5a9bc29146abe85196888f12fab45e01ad688f68824c0",
     "last_translated": "2025-03-08T13:48:39.023090"
   },
   "open-api/checker/receive.md": {
-    "hash": "f67a079b49903cfa6262966dd76ee7a6acab7e4e8417d09f982448551e04188d",
-    "last_translated": "2025-03-10T02:25:02.424076"
+    "hash": "a36bb68c2fc7a9b3e6f4255bd9ea5ac364af9059336962d3266454622467e325",
+    "last_translated": "2025-03-23T20:51:29.752768",
+    "translation_time": 50.45
   },
   "open-api/custom-login-mapping/list.md": {
     "hash": "298c0d41d1ab5e5a771f5fe30f4bb85962747f3eea08024cd1a1f9bad8321f79",
@@ -3248,8 +3400,9 @@
     "last_translated": "2025-03-10T00:05:13.903445"
   },
   "open-api/issue/modify.md": {
-    "hash": "9a71ba5f4ccc1dadf3c739399617e5a8d1df8d9b670bebe76ac7f5dc0bcb50e4",
-    "last_translated": "2025-03-10T01:28:37.969457"
+    "hash": "02e526139396df7e25a4c18479f147eb46275237026e949776ee853756b64ab1",
+    "last_translated": "2025-03-23T20:23:39.630039",
+    "translation_time": 80.87
   },
   "open-api/snapshot/.pages": {
     "hash": "8dc27fa14e7f2237bd1ed09768ae677a06c5cf7d1c76bb589d55ba45e51426b7",
@@ -3276,8 +3429,9 @@
     "last_translated": "2025-03-08T14:12:42.568901"
   },
   "datakit/datakit-operator.md": {
-    "hash": "4decaa33a3b78825d4d509d7e07040605e70211bf1214d98d5f68c3c1e9b14da",
-    "last_translated": "2025-03-08T14:19:09.213589"
+    "hash": "c84788870e9e47f0456120caef8d77b4bb8464f6711f4f1968d3cdb58426accf",
+    "last_translated": "2025-03-23T21:19:04.825390",
+    "translation_time": 378.61
   },
   "scheck/0062-shm-noexec.md": {
     "hash": "5bb9e43e136c91a933ba85a2d153a1a2ce3cbde4e6bf232ca814a794ef8d1408",
@@ -3292,8 +3446,9 @@
     "last_translated": "2025-03-10T05:52:55.836410"
   },
   "deployment/openebs-install.md": {
-    "hash": "487532291f474df93da687e2d96a8f2e8c9644862ec59650225a1fa5632151da",
-    "last_translated": "2025-03-08T14:21:21.761753"
+    "hash": "a76c7125a64b712d9470f218856a3d2742fd6de1abe31e5afa669ba7fd118d8f",
+    "last_translated": "2025-03-23T21:08:40.524609",
+    "translation_time": 88.44
   },
   "integrations/pinpoint.md": {
     "hash": "e6fc7523aed369d7fb433bd185d9bc031706e2ee378f7c29112e61a447d5e399",
@@ -3312,24 +3467,28 @@
     "last_translated": "2025-03-08T14:25:06.709112"
   },
   "management/status-page.md": {
-    "hash": "aee8992ffbd8aa6a2ee16a23388fe137d722830558497e851d5a814efcdc0cbd",
-    "last_translated": "2025-03-08T14:26:07.326375"
+    "hash": "395761eea5db2b6914b485c66d8193933a8f41241d6e6792d7d20cf4d7ebc943",
+    "last_translated": "2025-03-23T20:48:13.205248",
+    "translation_time": 58.54
   },
   "logs/multi-index/index.md": {
-    "hash": "47504ffd3a7e51bbdf934bfb00b1dd21d6cb52b31f4b6cb4e79030531f4df1bb",
-    "last_translated": "2025-03-08T14:27:45.253656"
+    "hash": "9728a65f31017e7f4b6771cad513eefb5cc35ec5f7e8b7a9df0e6c7ac80575f1",
+    "last_translated": "2025-03-23T20:45:08.092199",
+    "translation_time": 116.35
   },
   "scene/visual-chart/chart-query.md": {
     "hash": "4ff44d99a4eb603403a350e34054752d18fb7f9aa48ab1ae1a68a7a9efd8f6de",
     "last_translated": "2025-03-08T14:30:41.372506"
   },
   "application-performance-monitoring/service-manag/service-data-definitions.md": {
-    "hash": "06ca43c2394c92baaa71cc6955e48cceafbb9bd3fe888963ebd5bff3751a92dd",
-    "last_translated": "2025-03-08T14:34:07.020209"
+    "hash": "392914303b3a4cbeb98882402b32c31db09e34277f5524949bb9f5ef8c2d3d3c",
+    "last_translated": "2025-03-23T20:22:01.362077",
+    "translation_time": 228.16
   },
   "logs/browser-collection.md": {
-    "hash": "f231f5961ffc128ac83fe3c057157fafa0e83b458e6b61a6cdd11ddce0df94bc",
-    "last_translated": "2025-03-10T01:01:26.113062"
+    "hash": "aaf231dcf60eb689680e9196c4617ba56c2725505ffc6c7665839592433ba7d3",
+    "last_translated": "2025-03-23T21:00:18.137759",
+    "translation_time": 203.46
   },
   "integrations/resin.md": {
     "hash": "2782aa33c03e3cbf51f7374464233206054243a82fbbd811de28159c488c80e6",
@@ -3364,8 +3523,9 @@
     "last_translated": "2025-03-08T14:42:56.114565"
   },
   "best-practices/cloud-native/k8s-rum-apm-log.md": {
-    "hash": "ab78993b7cda5b8f9b75b6910f0e03feddb5b163b1024ccc547fd635b5981f31",
-    "last_translated": "2025-03-10T03:43:04.543926"
+    "hash": "cc06cc389a7308faf9bb2fd48748c9ae2e27c603f815d8e90d82522bd9da657a",
+    "last_translated": "2025-03-23T21:10:35.115038",
+    "translation_time": 588.92
   },
   "integrations/kubernetes_audit.md": {
     "hash": "824c9847e92b55f95447ac775dfb33e73af76a893bb6e7f20e964be57e26fae0",
@@ -3404,8 +3564,9 @@
     "last_translated": "2025-03-08T15:07:23.397474"
   },
   "real-user-monitoring/user_insight_funnel.md": {
-    "hash": "59d46323a866fdac8b38b59349a8c0fbe26b6d67a270c7895ab5ed28d4a06cb0",
-    "last_translated": "2025-03-08T15:07:42.747161"
+    "hash": "e479d7cb5e47f581c24bca79fa8d8188adf9721c86a75e63390d04bf024274e0",
+    "last_translated": "2025-03-23T20:38:10.806155",
+    "translation_time": 18.58
   },
   "integrations/huawei_gaussdb_redis.md": {
     "hash": "660a4a96b729eb60858979c2603740c9fe6944a32ffad3228f9b7a3978b01a35",
@@ -3444,16 +3605,18 @@
     "last_translated": "2025-03-08T15:16:27.905418"
   },
   "scene/dashboard/config_list.md": {
-    "hash": "a355c68399831dd4988b348cfe4644851655916118e3dc0b5071dca4ddc4d36f",
-    "last_translated": "2025-03-08T15:17:10.214847"
+    "hash": "5453178f4a4a82979a48bd013c6f2d8aff1ad6284c865f67a86c78b5b22420df",
+    "last_translated": "2025-03-23T21:26:56.134598",
+    "translation_time": 35.18
   },
   "integrations/pinpoint-java.md": {
     "hash": "d13fb4ba5fab04da4e963362cdb663162d670c55ddef472825bf42553e090be0",
     "last_translated": "2025-03-08T15:17:55.144078"
   },
   "best-practices/monitoring/spring-native.md": {
-    "hash": "496c98376eb1add48b86aeedf67a9e076eb8a755227e37b1b442c065e783a37c",
-    "last_translated": "2025-03-08T15:18:52.528846"
+    "hash": "0847fc5f7ef86b492dba894d94a9d85a3721be7b215d949a61f4c1b83f8aa3b2",
+    "last_translated": "2025-03-23T20:52:54.928383",
+    "translation_time": 62.39
   },
   "integrations/aws_lambda.md": {
     "hash": "eb67313c0ec283632bdbe1a2c36088161b13d8e8cd1d665bfd7368e66c1c3e95",
@@ -3492,8 +3655,9 @@
     "last_translated": "2025-03-08T15:28:18.842523"
   },
   "open-api/workspace-ak/list.md": {
-    "hash": "3cc0c3584713492721bcb6b1684c05393c949502dfb200cdac7f88c97373417e",
-    "last_translated": "2025-03-10T00:36:00.862550"
+    "hash": "6524ecc5fe933d67d4497ec424f1519a64419feb235d6ad9b0ca47ecdb38c386",
+    "last_translated": "2025-03-23T20:48:24.970320",
+    "translation_time": 11.75
   },
   "scheck/0019-hosts-exist.md": {
     "hash": "617da2682a14aaa7e43f375e6d5d19ede1d589d32876a426a9bd5e2959c77f75",
@@ -3524,20 +3688,23 @@
     "last_translated": "2025-03-08T15:38:37.040961"
   },
   "scene/dashboard/index.md": {
-    "hash": "d5256e5e01a9a0cf03e42ea457b18a45e6da63ba5b78c76c54b5a2e69dc8edd9",
-    "last_translated": "2025-03-08T15:39:13.597802"
+    "hash": "bcfcdfd6e2e3ccc587b4acecac64e85919036341ce9db5615ea21562cf600e75",
+    "last_translated": "2025-03-23T20:36:24.490324",
+    "translation_time": 30.78
   },
   "deployment/admin-management.md": {
-    "hash": "e12cb5abc2fada6bec86b384b1fd0d54609bc953aaf860206b362dfa2c1dace6",
-    "last_translated": "2025-03-08T15:39:48.840411"
+    "hash": "9d9cdfc49757188b198480d87b1cc8fd5dbce3bc10955cf849bab4853512e4cf",
+    "last_translated": "2025-03-23T20:22:50.861298",
+    "translation_time": 37.74
   },
   "billing/faq/register-plan.md": {
     "hash": "5898e44e288bc0e9f03fb5ff433527f3d0c83db75bf04f1959a59f8a8e5ff48d",
     "last_translated": "2025-03-08T15:40:26.888679"
   },
   "best-practices/cloud-native/multi-cluster.md": {
-    "hash": "e70a447d69f1351de517a67c203740b359959e92777911e8db8cf9c058fc3609",
-    "last_translated": "2025-03-08T15:41:23.764452"
+    "hash": "88b8af781e055d9bcfe5083b901e936b2496be1341b1ab5406098f4292decd19",
+    "last_translated": "2025-03-23T20:28:09.959082",
+    "translation_time": 37.48
   },
   "scheck/0301-docker-lxc-notuse.md": {
     "hash": "6b68484c2ff0296b1215791721b671cde82e7e7d2c823b1497785a0dcd03746a",
@@ -3560,8 +3727,9 @@
     "last_translated": "2025-03-08T15:47:01.339611"
   },
   "open-api/notification-schedule/modify.md": {
-    "hash": "0ac79059dac9b308906ba7699ccaa2472bf78de37ae4566cfad468497eb97bfd",
-    "last_translated": "2025-03-10T00:22:45.284739"
+    "hash": "c454b6009ee26e614073cc12f75d23ef7f600d05afc47815155c15e19fbc2a9c",
+    "last_translated": "2025-03-23T20:56:52.449210",
+    "translation_time": 40.28
   },
   "monitoring/monitor/mutation-detection.md": {
     "hash": "7e4369188f5d17878224369a19d77cd6b775d75b5e145b17a510d91b0c235a46",
@@ -3604,8 +3772,9 @@
     "last_translated": "2025-03-08T16:09:45.420037"
   },
   "scene/visual-chart/chart-config.md": {
-    "hash": "9ced223a8ec54040f8e6835bad0b3fe3f6572ef0b383a5b9b1df558ffab8f566",
-    "last_translated": "2025-03-08T16:11:25.854772"
+    "hash": "0922e38fc6b7ee6820643e698935ac69984a9620430f8b556b52aa21ca22e08e",
+    "last_translated": "2025-03-23T20:22:13.108673",
+    "translation_time": 101.55
   },
   "integrations/aws_redshift.md": {
     "hash": "ea8f6197394dc904901c801969cd8145c8c619d49129676543807572be7152e4",
@@ -3624,8 +3793,9 @@
     "last_translated": "2025-03-08T16:21:10.904551"
   },
   "datakit/datakit-install.md": {
-    "hash": "e50dfe8704acc7e094807f2679a48ed267e66a3293970350e42b12da821aebf6",
-    "last_translated": "2025-03-08T16:25:14.860390"
+    "hash": "dd0e0b0d8ce627362343bb34e7203f5e1f45b96b52bd52f0a1d21450be5f4c32",
+    "last_translated": "2025-03-23T21:06:35.359702",
+    "translation_time": 415.3
   },
   "scheck/0004-user-passwd-exist.md": {
     "hash": "0a3eb2a6866f016e36833ca84927596eb67ef5ce30b421729fb74f3ec47332fe",
@@ -3636,8 +3806,9 @@
     "last_translated": "2025-03-08T16:33:02.215527"
   },
   "monitoring/bot-obs/apm.md": {
-    "hash": "7b1eed7b2ade745235fca24e49a67ce4daf6777abaf3ef5ac3dfe87b5b38f8b8",
-    "last_translated": "2025-03-08T16:35:02.512952"
+    "hash": "351bae22d95e48a899fcdcd1705e262c3db13a726918f708cd41ebfbc7f296d0",
+    "last_translated": "2025-03-23T20:51:43.216847",
+    "translation_time": 55.55
   },
   "open-api/mute/delete.md": {
     "hash": "ed77f0b76f88003e92aceb557cf50b6be86e81027c92913da9b2bc0a1c3ae442",
@@ -3648,8 +3819,9 @@
     "last_translated": "2025-03-08T16:35:35.239515"
   },
   "open-api/issue-auto-discovery/list.md": {
-    "hash": "32b7e561926dfa64d6f66d78282122c75c62eb1e6cddae5aa4e77d5bcbde9161",
-    "last_translated": "2025-03-09T23:38:19.836705"
+    "hash": "1b9d2885dcf81495319a40aa96ffe0e9e9db9564fc807db9803dc42410459fdd",
+    "last_translated": "2025-03-23T20:20:31.542621",
+    "translation_time": 70.58
   },
   "integrations/aliyun_rds_mariadb.md": {
     "hash": "dc15ca0bc79c225941f9e1e652441221f2ed65f1cd86c637b28f93ae94024129",
@@ -3668,8 +3840,9 @@
     "last_translated": "2025-03-08T16:43:02.379475"
   },
   "best-practices/partner/aliyun-bill.md": {
-    "hash": "aebe2179e647e7f3a1d49c26d9a4fbc44bb9a6727e6b7aad20204b90869f3986",
-    "last_translated": "2025-03-08T16:48:16.672497"
+    "hash": "226b41eb0a3ed4f68ff089068401869c108f3f94107caa014fde67a66359d0c9",
+    "last_translated": "2025-03-23T21:02:48.883380",
+    "translation_time": 339.82
   },
   "real-user-monitoring/web/tracking-user-actions.md": {
     "hash": "960ca785357b988cee2019ac789805c9a8f35b2bb538c23ab0cde234b10a57df",
@@ -3688,8 +3861,9 @@
     "last_translated": "2025-03-08T16:53:10.632437"
   },
   "best-practices/cloud-native/stdout-log.md": {
-    "hash": "929a504a69e7cfd9754f114810124d667ab0c4a848ab71eb23c403a79b25405f",
-    "last_translated": "2025-03-08T16:54:54.097229"
+    "hash": "a597de0b3f44c337066e515541016f85df504b4e5e5969457298343957f33745",
+    "last_translated": "2025-03-23T20:58:22.390927",
+    "translation_time": 114.92
   },
   "developers/scheck-filechange.md": {
     "hash": "3825198a39ec81d0e94d42368396e32db104e1c9f5ecc701e7525ebcd5aeed7e",
@@ -3716,8 +3890,9 @@
     "last_translated": "2025-03-08T17:02:56.458189"
   },
   "scene/built-in-view/index.md": {
-    "hash": "42cad3a5831008aad66cea4f798b6af92b8bceb14cd5de0b035ef5de39511dd2",
-    "last_translated": "2025-03-08T17:03:46.481638"
+    "hash": "2ea50bb131d839d40a23a562fc10b563aa8e5c040033de61653c3b473e8ba742",
+    "last_translated": "2025-03-23T20:22:18.742336",
+    "translation_time": 31.38
   },
   "scene/visual-chart/bar-chart.md": {
     "hash": "0c594857d97158bcb54c3490e6c5aacf22b203a1d742d6cc9f98e6e0256f9808",
@@ -3728,8 +3903,9 @@
     "last_translated": "2025-03-08T17:03:57.289469"
   },
   "open-api/logging-query-rule/modify.md": {
-    "hash": "59ae5b47437efa3090cc31b6d48308fec728d9a2adab4093880fa70c3e229ea5",
-    "last_translated": "2025-03-10T02:37:07.607365"
+    "hash": "2e4823a88b63371db7cad359366eb420f3b2c16d8bbc40fe5c7ade6eb5af187d",
+    "last_translated": "2025-03-23T20:25:57.673886",
+    "translation_time": 54.29
   },
   "integrations/aws_dynamodb.md": {
     "hash": "187847fea8a1cf086c385c8c67bda1a1ecec98b7168a2239bcf2c795bda45c45",
@@ -3740,8 +3916,9 @@
     "last_translated": "2025-03-08T17:07:18.076010"
   },
   "open-api/issue/add.md": {
-    "hash": "e252914b4b1390e6a0821f4ad49416fad86919cd84bed16a47cc7ccdc6457a5f",
-    "last_translated": "2025-03-10T01:42:02.288857"
+    "hash": "0f5ec0f1516f64ba9ffcca8c9e7999bbd9f467d9729b7233440bc9eab78cfb22",
+    "last_translated": "2025-03-23T20:20:33.108154",
+    "translation_time": 139.91
   },
   "integrations/tencent_mongodb.md": {
     "hash": "6b1f16828f27b7cfab6fccaabff52fc3d455cbc08bfcf1c8ba06dd13496c9fcc",
@@ -3756,16 +3933,18 @@
     "last_translated": "2025-03-08T17:14:53.459747"
   },
   "monitoring/monitor/template.md": {
-    "hash": "4acabb19ef3499a031f13da753497ce490f79064dc15123927d544ba1bb887b4",
-    "last_translated": "2025-03-08T17:16:14.176582"
+    "hash": "e11e61c8c166f35d1f9d0f027b489f777879f1910a8b8947be1f68eece100610",
+    "last_translated": "2025-03-23T20:32:28.918409",
+    "translation_time": 104.55
   },
   "integrations/aliyun_polardb_1.0.md": {
     "hash": "afc221a84d120fb199f4e10320a5c1229314df7b5e812686c934ebac2002c4bd",
     "last_translated": "2025-03-08T17:17:13.377661"
   },
   "getting-started/index.md": {
-    "hash": "2d3666ce9d576862111561ed9ec59e95fbcd19802cea859a8bf7097b88af5935",
-    "last_translated": "2025-03-08T17:17:28.269173"
+    "hash": "fdc2c74f2cad1e6cbf8b2291dcc59a4813e7665c90904626951acc459f3b72ec",
+    "last_translated": "2025-03-23T20:54:32.253212",
+    "translation_time": 4.6
   },
   "deployment/es-disk-full.md": {
     "hash": "55bcc7ba991bb388be9722112ff19669b29f8d6fd2bd8f49c6fba557281df930",
@@ -3776,16 +3955,19 @@
     "last_translated": "2025-03-10T05:20:57.288934"
   },
   "best-practices/cloud-native/k8s-skywalking.md": {
-    "hash": "07764d8335ea3c9f9501f8a869e6b9ed0fdd205cedcaec05b1a8c39abec3e579",
-    "last_translated": "2025-03-08T17:20:02.768988"
+    "hash": "008e8b6bfe4c7dd5bbd9647e76dbbd7fa3592604d5aa4a33357af507bde2ee50",
+    "last_translated": "2025-03-23T20:21:47.352718",
+    "translation_time": 83.55
   },
   "best-practices/cloud-native/amazon-ecs.md": {
-    "hash": "6e67b063b899528b1465b32020fc48747422c0b38b7d9aec378412d7ca489378",
-    "last_translated": "2025-03-08T17:21:36.552868"
+    "hash": "12797a47166e4ad20e8b52618b57330aafc7147e01a6477b235a2cd61de8263e",
+    "last_translated": "2025-03-23T20:51:52.524699",
+    "translation_time": 62.89
   },
   "open-api/board/crontab-report-add.md": {
-    "hash": "0f8f731a2c35e8fc36c156f82667ee17f1e3bd46eb3e3ddc2dd6b58444544124",
-    "last_translated": "2025-03-10T01:43:45.685485"
+    "hash": "340af599e425f79d03f736d09411922216b518e2f22157e3aa503b1e20414158",
+    "last_translated": "2025-03-23T20:24:39.003015",
+    "translation_time": 66.57
   },
   "deployment/Launcher-deployment.md": {
     "hash": "4cc624f8d4e84449d23e7d0fbb8d99402755eb504374c39fe1b1c149b17d5bce",
@@ -3796,8 +3978,9 @@
     "last_translated": "2025-03-10T02:35:23.522041"
   },
   "events/event_data_sharding.md": {
-    "hash": "65a9709aeea3d9f998d157fb584d6f1636602e8c530b1c621014024c107915ea",
-    "last_translated": "2025-03-08T17:27:36.781342"
+    "hash": "4c5b42ed5fa14b7583d422278800d9031ddbbe695b6fc31b14048148250fb47c",
+    "last_translated": "2025-03-23T20:28:27.617320",
+    "translation_time": 164.0
   },
   "real-user-monitoring/generate-metrics.md": {
     "hash": "97a36569a5fdcf3e120fcc5cd61dd760439abc7482f5d7f6d7d5ab30f4406878",
@@ -3844,8 +4027,9 @@
     "last_translated": "2025-03-10T00:10:01.375594"
   },
   "infrastructure/host.md": {
-    "hash": "c43f95cc49d3826d81dbbf0799ea8827a57d0c38c4e8ea2cc821fef1ad54d460",
-    "last_translated": "2025-03-08T17:43:56.155779"
+    "hash": "daf539fdcbfd9fae343754005035cc2c31abe7b70fb0d9024b7eb3dbb422eaa0",
+    "last_translated": "2025-03-23T21:24:28.235862",
+    "translation_time": 66.6
   },
   "scheck/0090-ldap-uninstalled.md": {
     "hash": "11b0b36223279667aa1324ea8b110c035d514a87e58dee0f5e1a54074b4352bd",
@@ -3856,8 +4040,9 @@
     "last_translated": "2025-03-08T17:45:21.429562"
   },
   "monitoring/bot-obs/cloudfee-instance.md": {
-    "hash": "12cdc80f6a37e66b2d636f4ef121f5c7c83989d5fc3ac45c07cb89ed6f6880ea",
-    "last_translated": "2025-03-08T17:46:41.677921"
+    "hash": "4a009c27acfeed9ec1acb1b9001461dcfe856d525d0739af1878cda6f8d2e0b0",
+    "last_translated": "2025-03-23T20:39:20.967460",
+    "translation_time": 113.77
   },
   "dql/funcs.md": {
     "hash": "c68b569acfb93d50bf15fe694c4e9feccc1bac23cd35560c2c0691205d74db89",
@@ -3872,8 +4057,9 @@
     "last_translated": "2025-03-10T01:04:11.125410"
   },
   "release-notes/2021.md": {
-    "hash": "0c379af85f86ca571b3ca3cc7bc57446c370ea5040bed79daf3424e850c4eb6e",
-    "last_translated": "2025-03-08T18:18:35.869944"
+    "hash": "e15136ec2dfa9d9f9c51cc3c82f47b25e00c72258203d7739461ffc54f471f82",
+    "last_translated": "2025-03-23T20:53:57.129638",
+    "translation_time": 948.37
   },
   "open-api/alert-policy/list.md": {
     "hash": "c4e7f43cda27ef78aef230932ffc524a797c8f11637676023ada07278a8508c1",
@@ -3900,8 +4086,9 @@
     "last_translated": "2025-03-08T18:22:13.094177"
   },
   "application-performance-monitoring/explorer/auto_wire/helm.md": {
-    "hash": "ea3eb96844962682ce7b3b18c5b500f7c0125e6c7288ed7cf503c9c08ec68db0",
-    "last_translated": "2025-03-08T18:22:59.147447"
+    "hash": "1055a4e75003e64ac7f09106877369360b36c9bca2c945e150e3687f2303e3b9",
+    "last_translated": "2025-03-23T21:22:16.807486",
+    "translation_time": 24.37
   },
   "monitoring/alert-template.md": {
     "hash": "e9da14c4b3c67903264e1441b8150036b859eedc0ecbafb3f329cb83ec7a5a81",
@@ -3936,12 +4123,14 @@
     "last_translated": "2025-03-08T18:26:33.681667"
   },
   "monitoring/monitor/monitor-rule.md": {
-    "hash": "27faf517f22aac2a22bc0c36b29324ac5dc87b7dbb3dddc9f74381523d38af0d",
-    "last_translated": "2025-03-08T18:28:07.190812"
+    "hash": "c15573896d8abc8c1e8469ea184e14c1fc075fd928504fcd83a94c15595686ec",
+    "last_translated": "2025-03-23T21:04:03.615110",
+    "translation_time": 106.79
   },
   "billing/billing-account/enterprise-account.md": {
-    "hash": "662cdfa6299f8668e4d934223a9f179237824fb45709d482a8611d8da9001afa",
-    "last_translated": "2025-03-08T18:28:20.233392"
+    "hash": "48ec20e0ce333758f0da467880f5f3f76e36723c297df637c4cc701344cc14ad",
+    "last_translated": "2025-03-23T21:18:06.700076",
+    "translation_time": 16.66
   },
   "real-user-monitoring/unity/app-access.md": {
     "hash": "cc262d984e9e0565788349088cfa55bff5d4a423ea7ac9e8a696cef974214e89",
@@ -3960,8 +4149,9 @@
     "last_translated": "2025-03-08T18:33:57.321824"
   },
   "real-user-monitoring/flutter/app-access.md": {
-    "hash": "8e9c9ef96e20def130e17f49bbaaba9425350928f101e6a83ccf213cac693a44",
-    "last_translated": "2025-03-10T05:13:28.374120"
+    "hash": "70cd2f6fc500c22e71e616cb6b0ea16689550c639d228743250c00ac05481191",
+    "last_translated": "2025-03-23T20:41:29.590601",
+    "translation_time": 357.69
   },
   "open-api/viewer/modify.md": {
     "hash": "0162a67027e482a1848ad5373ec90934b4d01a4b201646ba8eced7ba5db775bf",
@@ -4020,24 +4210,28 @@
     "last_translated": "2025-03-09T23:56:36.927412"
   },
   "open-api/log-index-cfg/bind.md": {
-    "hash": "eda5ed7af52bfb665d11e70afc3e3dd226f9ec2600010374cc954d72f39da8b2",
-    "last_translated": "2025-03-10T06:33:44.499217"
+    "hash": "32f2ace50f4915d2e2d4b04d7536fb0aeada30549d0ecb3bf10f7b2a0c2d03b2",
+    "last_translated": "2025-03-23T20:53:22.378357",
+    "translation_time": 52.43
   },
   "open-api/notification-schedule/add.md": {
-    "hash": "0a2ffa9e55745904d89042f6152d59b2b8c357568dbc921e88ac8ddbd9c6ff37",
-    "last_translated": "2025-03-10T00:35:40.325234"
+    "hash": "2e8750162176fa01de2a8f3a0269639ff0763887a01199df994816b019696888",
+    "last_translated": "2025-03-23T21:20:33.562163",
+    "translation_time": 35.72
   },
   "best-practices/insight/datakit-update.md": {
     "hash": "d02edd963079a050d7cf6641f63a7055377743ff782508c13dfa0423b46a6aa2",
     "last_translated": "2025-03-10T01:06:08.505586"
   },
   "deployment/self-monitoring.md": {
-    "hash": "5604d7c75bbf1706b0dc79e52973dab454eeedf77c62c638d8c235a2ac1d0e88",
-    "last_translated": "2025-03-09T23:07:54.853516"
+    "hash": "86d4c4cbff8b205d4c48ca97bdb8dccf916f293fd93df0df72fcde7515550825",
+    "last_translated": "2025-03-23T20:32:13.556776",
+    "translation_time": 555.91
   },
   "billing-center/account-wallet/index.md": {
-    "hash": "4bdb5cff75c1057a4f95b84477b6a9f96892b180b077d85403a6d13204f19b56",
-    "last_translated": "2025-03-08T19:14:32.216539"
+    "hash": "650dae1102071bdc9ad550823177c8a50714b8339ef02e59efcedd3132008d1e",
+    "last_translated": "2025-03-23T21:23:06.711825",
+    "translation_time": 57.31
   },
   "deployment/query-metrics-error.md": {
     "hash": "9164956a3acaf8ed91c779f947340693873ae3bd10c8d3b7b461e08c4592c366",
@@ -4072,8 +4266,9 @@
     "last_translated": "2025-03-08T19:23:06.438386"
   },
   "developers/custom-bot-obs.md": {
-    "hash": "5a3b6cf42fd66fa5137ba33621852fc086cbd416b7e30d109bac5bfa5f24da3e",
-    "last_translated": "2025-03-08T19:24:59.163882"
+    "hash": "cb2750a2ba166c58865c94edb854b6e351d074fe58d969935b8cfd31f8dc7a76",
+    "last_translated": "2025-03-23T21:24:07.843314",
+    "translation_time": 111.02
   },
   "plans/commercial-azure.md": {
     "hash": "6fb6ade70878c03117986568490fc3a7514d4da0920ea185232dd17140cce637",
@@ -4092,8 +4287,9 @@
     "last_translated": "2025-03-08T19:27:44.756367"
   },
   "management/sso/aliyun-idaas.md": {
-    "hash": "36ec6316db23344595f601ed77b9bb1d586b187df1f7016ac5e047b598830a50",
-    "last_translated": "2025-03-08T19:28:34.386945"
+    "hash": "8efb1712aa97df9948e607b99619b226938791ac66b6e540df9c1c0bd70f3c48",
+    "last_translated": "2025-03-23T21:15:31.036953",
+    "translation_time": 60.84
   },
   "open-api/objc-set/create.md": {
     "hash": "22e7dc04e7d42189b3469732ce30cc5cc5d74589f819ae6272a05bd988136cce",
@@ -4132,16 +4328,18 @@
     "last_translated": "2025-03-08T20:27:26.328424"
   },
   "open-api/issue/getissuereplylist.md": {
-    "hash": "88cc1847c406dd89a13e2075c2c6394ca16396b4ef6da605efd6f5975ef0dc0b",
-    "last_translated": "2025-03-10T06:34:18.479318"
+    "hash": "7e52962b42b7f7deabaec332a8dcb8210e257d0035e1740609c6e8266f3d6f6a",
+    "last_translated": "2025-03-23T21:12:32.487627",
+    "translation_time": 36.37
   },
   "open-api/issue/.pages": {
     "hash": "cefbf793261a0e5ace1930c682ff8abc860ccc15a0f7d0f74af5dff41393d382",
     "last_translated": "2025-03-08T20:28:08.601497"
   },
   "open-api/board/list.md": {
-    "hash": "7d8d2fcd10f073910da03630cb412452898f4b3fd53e9b4e9f81f1435db4ca45",
-    "last_translated": "2025-03-10T02:34:14.194458"
+    "hash": "638ca1ac6b4311fd8b321e4518d663112db5050e2164e82db2e283f1c9005f59",
+    "last_translated": "2025-03-23T21:09:06.943339",
+    "translation_time": 34.36
   },
   "scheck/4122-k8s-etcd-dir-ownership.md": {
     "hash": "884d0c1fdad3323f4c56ec9172064b4edf968d5ec31c85add04335240353728e",
@@ -4156,8 +4354,9 @@
     "last_translated": "2025-03-08T20:30:56.294683"
   },
   "open-api/logging-query-rule/add.md": {
-    "hash": "4dd2ae8ccdb070736b406fcff49f74d1103ede2788c0fa933b61f4b7a31c2369",
-    "last_translated": "2025-03-10T02:51:31.063705"
+    "hash": "9ff18a0e60e4031c70f952600788f8eec2bb683c2273bd2d72c13731e5866370",
+    "last_translated": "2025-03-23T20:22:07.483311",
+    "translation_time": 94.37
   },
   "open-api/dialing-task/get.md": {
     "hash": "aafd75bf7bb2846eab3966294d95637e63d8bdeadf2c67df9c2053ae8801cae2",
@@ -4172,8 +4371,9 @@
     "last_translated": "2025-03-08T20:36:38.118359"
   },
   "deployment/infra-mysql.md": {
-    "hash": "f9a3c4719087ebca6fe1458d076002d1ad82a3a01917157a8ce488097dd8e424",
-    "last_translated": "2025-03-08T20:37:37.735424"
+    "hash": "fd74d585e20fe6857c5078e25ea34d13af4615837d41a2b19d6d52e229554e5a",
+    "last_translated": "2025-03-23T20:35:31.887603",
+    "translation_time": 58.88
   },
   "integrations/cloud-index.md": {
     "hash": "dca68616f0390263a8b4054d616ecbf0dd1525f434044b5dc77fec627afe2541",
@@ -4228,8 +4428,9 @@
     "last_translated": "2025-03-08T20:54:57.481503"
   },
   "open-api/notify-object/create.md": {
-    "hash": "69ec7d7753d02d31bd720c040006687407f7d07ecc6af85e006a4d3ac332504e",
-    "last_translated": "2025-03-08T20:55:42.911599"
+    "hash": "5d60f997ece2455a0e11cde975f9c4d1a074ee311f6e235911e5de6d4636ca97",
+    "last_translated": "2025-03-23T20:28:20.291140",
+    "translation_time": 57.48
   },
   "deployment/custom-mapping.md": {
     "hash": "dad2440ebf3657772890171e5990aedeb779ce2a565ad5edea006261bca14e96",
@@ -4328,12 +4529,14 @@
     "last_translated": "2025-03-08T21:27:38.480641"
   },
   "agreements/legal-declaration.md": {
-    "hash": "64b9fc655a10303c5b14b98984aa94b293028ce56d6bd99f21a9b64f99722d64",
-    "last_translated": "2025-03-08T21:29:28.487632"
+    "hash": "f23105299be8152d0b04a763c717155b304c0c8f9d16adb13f5e33ddd9325d36",
+    "last_translated": "2025-03-23T20:50:49.617765",
+    "translation_time": 130.76
   },
   "datakit/datakit-metrics.md": {
-    "hash": "9c8e6ac075da5aec5fe5de28b275b44dc4c60bad4c31879ee894b24e5e370427",
-    "last_translated": "2025-03-08T21:38:38.288697"
+    "hash": "df19339c3bdcb7f80c4edc60151d34991f3ebd142b0dc3e36178e93738b3f045",
+    "last_translated": "2025-03-23T21:32:51.490649",
+    "translation_time": 558.26
   },
   "integrations/opentelemetry-python.md": {
     "hash": "311eac7722b78485bb53c437b2ef8aba4335f4e06c4f9883fa6962f0f0718cfc",
@@ -4352,8 +4555,9 @@
     "last_translated": "2025-03-10T01:03:59.476025"
   },
   "deployment/dataway.md": {
-    "hash": "3357335feb933a580c67303006108aa41615b4841bdb7abc7230deec895dd8fa",
-    "last_translated": "2025-03-10T04:45:00.559422"
+    "hash": "85c406d6e635c8f2c8a14e9c69231fe93fa2f2e8a17ca1714e37dab23354f8b8",
+    "last_translated": "2025-03-23T20:46:06.165655",
+    "translation_time": 611.5
   },
   "datakit/index.md": {
     "hash": "9aac4002246ee9de89b6f1be9a937bc0dd50a82f309e407dac84a23e6cc685ae",
@@ -4376,8 +4580,9 @@
     "last_translated": "2025-03-08T21:57:24.910546"
   },
   "others/website-monitoring.md": {
-    "hash": "15e56c4f8f83b636927cde8f28f275198b10369f2920c6ef78f7b83cd3809074",
-    "last_translated": "2025-03-08T21:58:25.679809"
+    "hash": "f8f2561048a5243fbdeb3d6f80e35e575ddff67da288f72ddab9f1d5f5f18746",
+    "last_translated": "2025-03-23T20:54:37.477380",
+    "translation_time": 57.7
   },
   "integrations/oracle.md": {
     "hash": "e9ea07fbd938e446a930ea544d7e2014d774827c196f7b308e7b2e199e47c0c7",
@@ -4512,8 +4717,9 @@
     "last_translated": "2025-03-08T22:37:54.747648"
   },
   "release-notes/index.md": {
-    "hash": "be2f707699b92a96dfb09caab706fafc2fb7e3bd1cb42878b96bbe204b7a8994",
-    "last_translated": "2025-03-08T22:40:36.017315"
+    "hash": "42874fa3820984e5ae4fffe398ca94b40407f0fab4f4c9b261cc30121fe0cc06",
+    "last_translated": "2025-03-23T20:57:34.566040",
+    "translation_time": 215.39
   },
   "open-api/viewer/export.md": {
     "hash": "e05e1842fb256e024c2744aeee5cb032276cb45cca913c9c10a60e28c8274a11",
@@ -4544,16 +4750,18 @@
     "last_translated": "2025-03-10T05:37:11.267019"
   },
   "open-api/issue-notification-policy/list.md": {
-    "hash": "b9f1e9fbc1a1501c7911370319339572af7b81427cab19a969d1e070c51bef54",
-    "last_translated": "2025-03-10T04:51:45.321099"
+    "hash": "a3aba1d2850286d21c96f9ff3bccfd29effc40265f41bad079f1dcf3c85bbd94",
+    "last_translated": "2025-03-23T20:43:50.803271",
+    "translation_time": 129.83
   },
   "scene/visual-chart/log-stream.md": {
     "hash": "843232bd4c8a3c6545759dd9786cad409b137fe5e146dc075c07c530c4cdf92f",
     "last_translated": "2025-03-08T22:45:59.619097"
   },
   "billing/commercial-version.md": {
-    "hash": "14b7275d52731a2d314437a30def8d9ea04b522d9aa2654c8116cc23b5949a74",
-    "last_translated": "2025-03-08T22:46:20.445780"
+    "hash": "85d0b8bc3854dcf7858346c022ca76e743e079368f411cd1a340902307f57bec",
+    "last_translated": "2025-03-23T20:54:00.109476",
+    "translation_time": 37.71
   },
   "integrations/aws_hirehose_http_endpoint.md": {
     "hash": "1f518b535d5ccea047ad06429e265408ef800ecc3e706cdf908d4d45faa1c8e4",
@@ -4568,8 +4776,9 @@
     "last_translated": "2025-03-08T22:49:47.482919"
   },
   "open-api/service-manage/modify.md": {
-    "hash": "f38bd6c95f1be0980f79383a0ea4efb409ee1f2e1766eabc63e1d70fa67b5578",
-    "last_translated": "2025-03-09T23:13:27.424656"
+    "hash": "18c93a5f5d8b22da36e753c62b656288da2b5900c619abb8f1e9e6cd02c4ea2a",
+    "last_translated": "2025-03-23T21:23:43.757037",
+    "translation_time": 80.19
   },
   "scheck/0076-Translation-uninstalled.md": {
     "hash": "85f816949af10145e9ffada99805290a5a2b69a7309a86b2448c33a418d6d11a",
@@ -4620,8 +4829,9 @@
     "last_translated": "2025-03-09T00:44:10.589245"
   },
   "exception/index.md": {
-    "hash": "2a4b9cbf1c2cbf71c08fc3c7a9f76125ae9c9635ab3dc3c5b7e2eae72833f6f1",
-    "last_translated": "2025-03-09T00:44:31.323299"
+    "hash": "b76566e8a168feac5eb2bc5a0c084e469b6d3a14278f43c23f802a613cdfd715",
+    "last_translated": "2025-03-23T20:24:37.933044",
+    "translation_time": 37.04
   },
   "open-api/logging-query-rule/.pages": {
     "hash": "c49bfaaa79eeb2e7604bae811693ca4f1635be1dc821ede109d5d54c9abf84ba",
@@ -4640,8 +4850,9 @@
     "last_translated": "2025-03-09T00:48:36.004473"
   },
   "others/network-observable.md": {
-    "hash": "5f4345b8ea6877b8f526236ba417f522728cc8446a4a63fdcdc0f570a84616e7",
-    "last_translated": "2025-03-09T00:49:24.236063"
+    "hash": "bdcecd8b4f51d5b09898349258a843d05e3a249f06fb605ea1af9bde327cae7d",
+    "last_translated": "2025-03-23T21:13:51.382747",
+    "translation_time": 78.87
   },
   "scheck/0309-docker-env-priv.md": {
     "hash": "aceff119cce94a8d9fa2cfa608103cd049d37581fb0df599100f60c802052305",
@@ -4656,12 +4867,14 @@
     "last_translated": "2025-03-09T00:50:06.170814"
   },
   "external-api/workspace/create.md": {
-    "hash": "023be0e2c3649f24d09676bfd1867490cce5a56b6d43d6a3b9a715b69b9e6f32",
-    "last_translated": "2025-03-09T00:50:36.004254"
+    "hash": "f3bb8549aaecdeaedc16058b8c73273a2d04349a3d436682d3551b0148b68a0c",
+    "last_translated": "2025-03-23T20:58:46.028226",
+    "translation_time": 51.84
   },
   "monitoring/bot-obs/disk-usage.md": {
-    "hash": "bc94df2a5b8e1f1b0ea7b0d0e0ad0473850cf58b211cd9a928d1ff42a3600fe5",
-    "last_translated": "2025-03-09T00:51:52.674551"
+    "hash": "dc70bdb817e194e5102d7395409c42c5cc64796460e1ebb7c688b0a553273fa0",
+    "last_translated": "2025-03-23T21:06:18.862085",
+    "translation_time": 63.93
   },
   "monitoring/intelligent-monitoring/k8s.md": {
     "hash": "6051d6709c38724842b456f781e59491dc755329bb081af98c4b3b8979dc1143",
@@ -4692,8 +4905,9 @@
     "last_translated": "2025-03-09T00:57:15.244037"
   },
   "best-practices/insight/data-link.md": {
-    "hash": "4e76d36b39c89fccbe274da65fe5a24c195d3b92f56f1729e8487be8200abb45",
-    "last_translated": "2025-03-09T00:58:48.347947"
+    "hash": "e9f43c5d3dd40652b69e6cabffd69e99010fec5c07dbbfa71d2092c6f685a3ee",
+    "last_translated": "2025-03-23T20:35:53.695890",
+    "translation_time": 151.84
   },
   "events/.pages": {
     "hash": "80d8d2345ca0011efbae1814b2ce450759e9c00877b3a22951815c05633af6ec",
@@ -4724,24 +4938,27 @@
     "last_translated": "2025-03-09T01:02:10.005961"
   },
   "management/cloud-account-manag.md": {
-    "hash": "2b9af5ec810f56dd16245e68e68697eb4cfdf7f8730dec11307b997d117f0d68",
-    "last_translated": "2025-03-09T01:02:55.443695"
+    "hash": "769d16e679e67f85034db1ef7d4b13bee17f70934297ea1e6d73fef64e3cd02d",
+    "last_translated": "2025-03-23T20:24:00.877635",
+    "translation_time": 70.0
   },
   "real-user-monitoring/session-replay/mobile/react-native/.pages": {
     "hash": "5177097deb1d0cb755e24436e1853e23c4700127d4e411d93825a366f4138114",
     "last_translated": "2025-03-09T01:02:56.620897"
   },
   "best-practices/insight/slo-part1.md": {
-    "hash": "e68924b498880368aca163eab44ece73f9ed22a8aa9b3380503f3fd4508b8453",
-    "last_translated": "2025-03-09T01:04:29.480187"
+    "hash": "ab7f1c55f20b832a0527ed01dde22bdf35a46a981aa2f90839ca35577c084280",
+    "last_translated": "2025-03-23T20:35:01.139902",
+    "translation_time": 135.06
   },
   "integrations/huawei_dds.md": {
     "hash": "392f80bbd7b070747fbbf5a02aea82f1cf428a8be882b281fd499daac880121c",
     "last_translated": "2025-03-09T01:10:43.874099"
   },
   "open-api/log-backup-cfg/modify.md": {
-    "hash": "923fd6cdfcc0b034ae409e98bb787861007c6e5d4fcb923ae0801f05a08b92d2",
-    "last_translated": "2025-03-10T02:17:45.288826"
+    "hash": "82617194e6cd44d644011f411d256605194e9aecb886bf2368d7289c9f60feda",
+    "last_translated": "2025-03-23T20:26:09.811681",
+    "translation_time": 51.14
   },
   "integrations/kube_state_metrics.md": {
     "hash": "af2fab30d38a0647a4ed47b32da43289e63bc888813970c3c7eb6816b0124a74",
@@ -4776,8 +4993,9 @@
     "last_translated": "2025-03-09T01:15:54.472992"
   },
   "monitoring/bot-obs/rum_errors.md": {
-    "hash": "454a010398bc8a2352c879201bcfda2e94d9e82c92601fba9d9c057b4811e69c",
-    "last_translated": "2025-03-09T01:17:13.696456"
+    "hash": "deff19b9743e42aee680703b75e3615ebfbc4ddc6b90174d11308428c2f7b2cf",
+    "last_translated": "2025-03-23T20:31:30.834912",
+    "translation_time": 63.48
   },
   "integrations/huawei_css_es.md": {
     "hash": "34c9e2847c4641ae128f66213801f7d9f0c45dd44ef81ffaf7c73c9bed9cebb3",
@@ -4812,8 +5030,9 @@
     "last_translated": "2025-03-09T22:16:59.484255"
   },
   "product-introduction/index.md": {
-    "hash": "6fe4a5eba31d402d97d56121cb3f0c72c84fe356d36b06b27ea1bc738cc02a2e",
-    "last_translated": "2025-03-09T01:27:25.720177"
+    "hash": "66366e905b228bc39993daef8449595a1c139b0e8e2a9c5d6080ca5d39bb8c57",
+    "last_translated": "2025-03-23T20:19:47.457433",
+    "translation_time": 49.98
   },
   "external-api/login-mapping/modify.md": {
     "hash": "25c96701abca584b5c971c8a9162fe68b27cf25c74c2a3eba9c5d889864b7756",
@@ -4852,36 +5071,41 @@
     "last_translated": "2025-03-09T01:33:03.239922"
   },
   "best-practices/cloud-native/opentelemetry-simpling.md": {
-    "hash": "f77ce92c44bafa3e02fb77f7fd0b06d651fc6b6e399d5e57d3c58338cb22f4ed",
-    "last_translated": "2025-03-09T01:35:36.317943"
+    "hash": "cb581e4ccbe7a7a8a114a9a9e9f774b9a62283745986f9189630d6d898e203c3",
+    "last_translated": "2025-03-23T21:14:30.180414",
+    "translation_time": 200.74
   },
   "agreements/legal-declaration-en.md": {
-    "hash": "259bf998539ddec5487829fa278b9da2749a54699fe7d3217cacc54d5786aaee",
-    "last_translated": "2025-03-09T01:37:21.697326"
+    "hash": "271b22e28fa89c7980046e1652dd5d83e0b9d0c8c804d32ad77c8597d9603d16",
+    "last_translated": "2025-03-23T20:59:40.443064",
+    "translation_time": 78.04
   },
   "integrations/ddtrace.md": {
     "hash": "a98c0b780739d0204c3d6b5ef19a02944952141d5788c09ed4cb5cc02e9853bc",
     "last_translated": "2025-03-09T01:41:05.038549"
   },
   "management/sso/okta.md": {
-    "hash": "09368b24659044f983ad1fbabb989d4bb62aa7e10aa016fae766e3a1c1118a01",
-    "last_translated": "2025-03-09T01:42:06.526528"
+    "hash": "f982cb73ab68a00f801ea6bceaf8bda8860fe6dea931d3aae1fe2293df5311b4",
+    "last_translated": "2025-03-23T21:01:29.022731",
+    "translation_time": 48.45
   },
   "real-user-monitoring/session-replay/.pages": {
     "hash": "dec70363cf87b1f9cb3b6f2da44c957ac2d7e70d83df6cbbe842e8fa5b7038c1",
     "last_translated": "2025-03-09T01:42:08.270613"
   },
   "best-practices/cloud-native/k8s-logs.md": {
-    "hash": "02e9abd64fb48f2dac48fdaac6ff47bafe9434082d7ddea8a704b85a654b0230",
-    "last_translated": "2025-03-09T01:44:35.420428"
+    "hash": "faa1e9664aecb67ad2be34ec269d4215e5500b3b749d8b1a6aacab13ccc5a677",
+    "last_translated": "2025-03-23T20:28:08.525706",
+    "translation_time": 166.68
   },
   "ci-visibility/index.md": {
     "hash": "97745b0480e141f4c8d5cca6a4d214d319a7344d77d9686181edd3bcc2fd5ba0",
     "last_translated": "2025-03-09T01:44:51.500598"
   },
   "best-practices/monitoring/swarm-bee.md": {
-    "hash": "602a158bdc33824b4624e2107c6c716d1a8e29e8864e06c1a2a022bf4837d1e6",
-    "last_translated": "2025-03-09T01:47:19.594124"
+    "hash": "f85a20bc3ced5d07fe87b314255223324e9d5372e47c0b32f8ca910da8b2c366",
+    "last_translated": "2025-03-23T21:23:33.217068",
+    "translation_time": 134.76
   },
   "integrations/volcengine_alb.md": {
     "hash": "2f99321ef77eb7ee61257736d77f546fa401fce207d0260d37c24269ecd8e0dc",
@@ -4916,8 +5140,9 @@
     "last_translated": "2025-03-10T00:58:47.312213"
   },
   "management/api-key/index.md": {
-    "hash": "3fdfbf23a134fe2f6979ed0a8dca1fd0f2f36e9eee29c93127ad7f6b71fdc911",
-    "last_translated": "2025-03-09T01:58:57.247317"
+    "hash": "c8381225ac4670aac076f797e1d04212d36524d7db84a6704668603ac5421211",
+    "last_translated": "2025-03-23T21:10:06.255581",
+    "translation_time": 8.47
   },
   "best-practices/cloud-native/opentelemetry-grafana.md": {
     "hash": "481165378c6cab43a21b3fc5a20e1dba1dfbfff8c85bfde87af0623e97cac5a2",
@@ -4960,20 +5185,23 @@
     "last_translated": "2025-03-09T02:07:05.600799"
   },
   "events/event-explorer/event-details.md": {
-    "hash": "ddc9168d9bbfeb313e07915e7687385042598b64b26770e6f30682cf04fc3d9d",
-    "last_translated": "2025-03-09T02:08:12.101542"
+    "hash": "93966d70a0db7b4d1715a5fd6f9737bb03dad0d78abe1ae381fdd1e7d02548bd",
+    "last_translated": "2025-03-23T20:20:40.401544",
+    "translation_time": 52.93
   },
   "billing-center/billing-management.md": {
     "hash": "f278afd630e8ff8acdf5fcd7ae4b46f210ec26065621a2d86988b5e957151e13",
     "last_translated": "2025-03-09T02:08:34.079966"
   },
   "product-introduction/customer-value.md": {
-    "hash": "f0af3bf51ff7753f6f6f4dae29cd4abcad6c1a92d312d3d44e67fb3e553dee45",
-    "last_translated": "2025-03-09T02:09:02.460931"
+    "hash": "85fa3e00e09821dadefba5ecb2e9527a668d9b21c1be7d70188e86e7fa94ca35",
+    "last_translated": "2025-03-23T21:08:32.567610",
+    "translation_time": 47.76
   },
   "real-user-monitoring/react-native/sdk-changelog.md": {
-    "hash": "0120248c6051aec119ab2d35d3567befe691ac84d31ab87d96da513ff027d713",
-    "last_translated": "2025-03-09T23:53:24.425844"
+    "hash": "bea02ceb7b569f36e44608fcd84d4e9191c67e4041da6c141a117e2cc2e7cb6c",
+    "last_translated": "2025-03-23T20:46:38.721864",
+    "translation_time": 90.62
   },
   "open-api/data-query-rule/set-disable.md": {
     "hash": "87b7c02945bdb2394a3b2ecf64d1bfb9f3943299a1184108bbe31fd4f621d187",
@@ -4996,8 +5224,9 @@
     "last_translated": "2025-03-09T02:12:29.733907"
   },
   "open-api/sso/saml-list.md": {
-    "hash": "d7301c8f57544245c3177bd8be4863530d36351a5638dbed5971a54245a3feee",
-    "last_translated": "2025-03-10T02:38:13.181941"
+    "hash": "b21343ebb340e4695417b24cc7b676b2e8c0f4b066bc3c6a116c7d3f37e27aca",
+    "last_translated": "2025-03-23T20:23:32.416622",
+    "translation_time": 41.54
   },
   "datakit/datakit-helm.md": {
     "hash": "4d9ff94e6bb616d89c2358ac2093a1b8686327e40c39c70f16985bab3c5a7fbc",
@@ -5028,8 +5257,9 @@
     "last_translated": "2025-03-09T02:36:21.552573"
   },
   "best-practices/insight/java-rum-apm-log.md": {
-    "hash": "5770d7b8586fdc88aef2a3841aedd2a8077f3bde5ebad9ee5e939e36af3e4dc2",
-    "last_translated": "2025-03-10T04:58:18.196018"
+    "hash": "1a71f2be52fd754f9f467122ceda64da7d257e079652e10156933f0fdadda97e",
+    "last_translated": "2025-03-23T21:26:07.206963",
+    "translation_time": 177.49
   },
   "scheck/0051-libusrsbin-add.md": {
     "hash": "43ce8067512bc9caf01157186b02a04b9b9bf04ef200ca8779b787fc92fcc6d7",
@@ -5092,8 +5322,9 @@
     "last_translated": "2025-03-09T03:00:35.252869"
   },
   "metrics/collection.md": {
-    "hash": "18c30b9fa360739c041395717fb4e49bcb90e4aa36c7bd7180274ae503f64334",
-    "last_translated": "2025-03-09T03:00:42.878783"
+    "hash": "55bb8c90c50cec145993a929be07236d4f6102f4dc62cb56e373657253a763e7",
+    "last_translated": "2025-03-23T20:20:47.546668",
+    "translation_time": 7.13
   },
   "external-api/login-mapping/delete.md": {
     "hash": "ed9e5bb51e1caadf52ec7cafa6388d719c200daad6a62d444ae200124a0eb395",
@@ -5216,20 +5447,23 @@
     "last_translated": "2025-03-09T03:21:01.646549"
   },
   "open-api/log-backup-cfg/add.md": {
-    "hash": "cae08aa86814f566a98bc6535020f2f39186e9d5833f6ff158302df566b28898",
-    "last_translated": "2025-03-10T02:29:44.129036"
+    "hash": "00b42358bced9565854a8d603f4ba6498b2390841f0609da83743fc4df347f91",
+    "last_translated": "2025-03-23T20:45:28.975013",
+    "translation_time": 98.15
   },
   "open-api/sso/saml-modify.md": {
-    "hash": "c965a1ed3791928feffca87757c12680b3f3b542043055ac123f2f86fef86468",
-    "last_translated": "2025-03-10T01:53:18.761875"
+    "hash": "033e043b8b6ee1e7f2dbebcafa1b1fa37e454708b482b1cc95ef3f5ca0e5666b",
+    "last_translated": "2025-03-23T21:21:18.435813",
+    "translation_time": 133.59
   },
   "others/rum-observable.md": {
     "hash": "354672728187fd3586a0314dcf2f27b6fe3e84df38996a9eb31a053ed88a33f4",
     "last_translated": "2025-03-09T03:25:38.607520"
   },
   "open-api/blacklist/add.md": {
-    "hash": "dc15766214b21262e260a60ea232377215ac8131e1a25a5df58e84e18088829e",
-    "last_translated": "2025-03-10T01:55:30.273041"
+    "hash": "8f60d880f30526aec5b22d6c2535c201c12258b8d591a0fe275d0ea1caea5dc3",
+    "last_translated": "2025-03-23T20:20:05.840762",
+    "translation_time": 112.64
   },
   "datakit/development.md": {
     "hash": "dd1f96575b4d1ea7a86e30f8bf30e7b6346b8763efe8cd49a925e7f8d59a0149",
@@ -5264,8 +5498,9 @@
     "last_translated": "2025-03-09T03:45:51.419681"
   },
   "open-api/workspace/role-sensitive-mask-field-get.md": {
-    "hash": "1844c36e15491b05a7825a1518138be9f52524ed9cdac16c43b63d1ba0e5e2c5",
-    "last_translated": "2025-03-10T02:15:36.310828"
+    "hash": "babf4a15f090e750ab2c9f5a968f7a83617f547acac4afa820b74ea01b07b7c3",
+    "last_translated": "2025-03-23T20:44:47.931196",
+    "translation_time": 13.89
   },
   "integrations/argocd.md": {
     "hash": "a41f8bd89e0e26832e90312a35ae0f470f09f90676df2d2803f9991926befe2f",
@@ -5276,8 +5511,9 @@
     "last_translated": "2025-03-09T03:48:22.608704"
   },
   "open-api/field-cfg/list.md": {
-    "hash": "09ce5a893eb8f31748d449e91a607d9b92db3bd650e2453f4d484d1684d60c45",
-    "last_translated": "2025-03-10T04:35:10.501847"
+    "hash": "0d8fd6de825e25baf8bd13d0304984de7fe6313fec57e68309f61af7a0781fcb",
+    "last_translated": "2025-03-23T20:27:47.225769",
+    "translation_time": 37.05
   },
   "open-api/permission/.pages": {
     "hash": "fe47d075baad51752a8b9e75e3381d186d81f1d9faee6df169533507794d94e4",
@@ -5292,12 +5528,14 @@
     "last_translated": "2025-03-09T03:56:19.160158"
   },
   "getting-started/function-details/network-analysis.md": {
-    "hash": "b3bd27a55b52f679afb92e962cddc50bf5ab6c68527eb2fa85711fa785087a0a",
-    "last_translated": "2025-03-09T03:56:59.196426"
+    "hash": "dbe3b73987a619360f1d74a5572cd21ffeb14e28e005a1e39a3a765a52d2ad44",
+    "last_translated": "2025-03-23T20:29:00.344278",
+    "translation_time": 27.3
   },
   "events/index.md": {
-    "hash": "5131cf15274a246c33c9901d08f9c30dbb832c3e36c733d62d498cbe4f4a1df5",
-    "last_translated": "2025-03-09T03:58:42.204180"
+    "hash": "ae528744b2262ab033f10b433b88cd12431fcca6188fbe1e55ead16f86fb5661",
+    "last_translated": "2025-03-23T21:11:56.120350",
+    "translation_time": 80.99
   },
   "best-practices/insight/index.md": {
     "hash": "599b81250f22c89a6b503fef88286248a9c2552c1e27c13b7a29c7d0c3abaace",
@@ -5316,12 +5554,14 @@
     "last_translated": "2025-03-09T04:00:37.040755"
   },
   "management/sso/authing.md": {
-    "hash": "fb2447b32abe677fa68534019a2909dd883b64f77cc89106cd36722745a0455b",
-    "last_translated": "2025-03-09T04:01:09.738123"
+    "hash": "a6fc821f861a67ef62bb56e23f5edfc8662797603d5b19bd960dbda2da1e1c1a",
+    "last_translated": "2025-03-23T21:07:44.790537",
+    "translation_time": 23.2
   },
   "best-practices/partner/rancher-datakit.md": {
-    "hash": "92c1c0389fb79a24c74e91609ff25772330395f8ef38fc229ac00ef99f332949",
-    "last_translated": "2025-03-09T04:11:34.299267"
+    "hash": "1ecf7ae3640549badbe390ae0b103437e3058442f447451a87835c75d97cce41",
+    "last_translated": "2025-03-23T21:20:40.299715",
+    "translation_time": 695.95
   },
   "open-api/issue/level-add.md": {
     "hash": "ef14371f36590ec30cb13aa2f052fb576d623bdce67910f63b407c89ca8a991d",
@@ -5352,32 +5592,38 @@
     "last_translated": "2025-03-09T04:13:38.661961"
   },
   "agreements/center-service.md": {
-    "hash": "cb1ae6c261208ad86e582aa5be948aa95172387ae2f6be328ca0696bb5fd285c",
-    "last_translated": "2025-03-09T04:18:37.314766"
+    "hash": "b65c4feb6e48a3f209b2901677bc70b0612598b60c1cf16eae3d30888e4f7d46",
+    "last_translated": "2025-03-23T20:36:26.153129",
+    "translation_time": 429.72
   },
   "deployment/change-boce-center.md": {
-    "hash": "b44a1a4189c7371825543ec90016877e3dcd7a353f8b5cf528fc9b471fc83436",
-    "last_translated": "2025-03-09T04:19:05.383755"
+    "hash": "ed8c8e119400e183d8c05826bc7ee86d022e90704bd4a83a466d30a71d64de73",
+    "last_translated": "2025-03-23T20:28:40.702983",
+    "translation_time": 20.39
   },
   "open-api/issue/get.md": {
-    "hash": "518073dd96410c40c71f7b4bf0388c6b95ddd1e30b0e67e483b811596add2da3",
-    "last_translated": "2025-03-10T03:30:32.031966"
+    "hash": "09e7b11880baf4593eba5542bf47f8655c9a18459f1e95aedc2e917aa14e154b",
+    "last_translated": "2025-03-23T20:22:50.851399",
+    "translation_time": 49.95
   },
   "deployment/infra-redis.md": {
-    "hash": "4944fba1dfb77bc989d20006ff69ca6e9dd78a7c81ae303ee060497612a30e14",
-    "last_translated": "2025-03-09T04:20:07.258846"
+    "hash": "bc4c1388b7d4e6b59c8195ab3419f18399c5028affe35e28d4049a7e56485f37",
+    "last_translated": "2025-03-23T21:26:11.238912",
+    "translation_time": 49.4
   },
   "open-api/blacklist/export-blacklist.md": {
     "hash": "5644e09020f200b266048f06ec82e04e7916d055a7797356262c8184ef7c86d1",
     "last_translated": "2025-03-10T05:06:56.306079"
   },
   "application-performance-monitoring/explorer/explorer-analysis.md": {
-    "hash": "3fcc0531108cc0aac5ca0e56b39fc683e7011c9e77320bb878ce3833e41df95c",
-    "last_translated": "2025-03-09T04:23:36.719041"
+    "hash": "4100dff05b40dee3791d844dfde0b2ecd4c3b3dc84c87a509caf21e77d3df46b",
+    "last_translated": "2025-03-23T20:57:09.042496",
+    "translation_time": 188.92
   },
   "datakit/datakit-offline-install.md": {
-    "hash": "f77d9e98f6c99495b6bf64f8d3f3f164853777c9a48474059046c8e07659aa68",
-    "last_translated": "2025-03-09T04:28:30.880800"
+    "hash": "a78f4461ef708d9c2d6929c5fd87de7cc8e5e5032762e0077a96d0d49a8691b9",
+    "last_translated": "2025-03-23T20:56:54.660069",
+    "translation_time": 324.89
   },
   "integrations/aliyun_polardb_postgresql.md": {
     "hash": "5c0928b723be7a0443aced1db99727fad369868432f881f4ae73aa3d57380e20",
@@ -5512,12 +5758,14 @@
     "last_translated": "2025-03-09T04:58:32.082917"
   },
   "others/write-text.md": {
-    "hash": "5b6691a9f5a87b2a239e99226584021f8c843c95492f66dc59c94080ef052420",
-    "last_translated": "2025-03-09T23:49:10.377073"
+    "hash": "5fee4f21a7d40cc3fd2803dd9f040cd3bba19fab3f8908c6ad1a7fd52a9f1f90",
+    "last_translated": "2025-03-23T21:25:21.818240",
+    "translation_time": 34.95
   },
   "best-practices/cloud-native/log-report-one-node.md": {
-    "hash": "7ac3e8aeaaf6267efc4ff027d40a4a2686bf82bb736d9226f686b09778ea3bb2",
-    "last_translated": "2025-03-09T05:03:22.018245"
+    "hash": "58cd7ff03bfea4d23df0ac0523bae31f1310a39b8bc184723afad97b683ef8a4",
+    "last_translated": "2025-03-23T20:26:15.493825",
+    "translation_time": 210.24
   },
   "integrations/aliyun_redis.md": {
     "hash": "9207802b0c752936ab80b5ac0889f50b6c480a42e08e251761ca6b79fea8c37f",
@@ -5528,8 +5776,9 @@
     "last_translated": "2025-03-09T05:05:39.530116"
   },
   "external-api/query-data/query-data.md": {
-    "hash": "ac7ce866c23c122d3cfd2c3e2db028b53f7513d2b5c2d56633df146fb4f3b757",
-    "last_translated": "2025-03-09T05:06:31.185832"
+    "hash": "e01fea6d5079864d0b20bf242462425ddfe6b2f7097fb7174e0a2a221a6831c6",
+    "last_translated": "2025-03-23T20:36:41.812909",
+    "translation_time": 81.21
   },
   "management/data-scanner.md": {
     "hash": "b381ca7fca5b02ad7626b3c88b98b14f3c18d380df1d21bd74b900d05011bcf2",
@@ -5548,8 +5797,9 @@
     "last_translated": "2025-03-09T05:10:53.759382"
   },
   "datakit/datakit-update.md": {
-    "hash": "df45a85d4584c6b084e792755b867b5e6315688fbf6d0a2eea6d87aeedc225a3",
-    "last_translated": "2025-03-09T05:13:09.170025"
+    "hash": "07a9bb950de5a880f0aacd0567dfbd8769e497b789ecb98a6f7c65b8055a7439",
+    "last_translated": "2025-03-23T21:22:23.553609",
+    "translation_time": 75.7
   },
   "integrations/pagerduty.md": {
     "hash": "04aa4407a7cf47c142deed5ea3884e056572c65d189ea77e4fbf33d93f4e4a41",
@@ -5572,16 +5822,18 @@
     "last_translated": "2025-03-09T05:17:11.951465"
   },
   "dataflux-func/headless.md": {
-    "hash": "1e43ed300f534d0b6a7abe272e829467f7c27aa741e27d7bbed37ea17c523ea5",
-    "last_translated": "2025-03-09T05:17:50.826170"
+    "hash": "4b11c32a1ea7cd34f9b45bb7c70d91d23a394dbc7cb620919338292a7b41dca4",
+    "last_translated": "2025-03-23T20:19:05.923862",
+    "translation_time": 52.72
   },
   "scheck/0069-sudo-logfile.md": {
     "hash": "a6894e472c6f67a53ca9974abbca1f7686d01c648ba3ca2cff90e342869cf8ef",
     "last_translated": "2025-03-09T05:18:12.261859"
   },
   "external-api/workspace-ak/add.md": {
-    "hash": "057d44d2b6eac5a01f9a16b3c7ca01dea91d589c9777abcf1a7206771d253e67",
-    "last_translated": "2025-03-09T05:18:18.370890"
+    "hash": "fb08430e10f0d9621cdf67413a9c5a327e3d230b5f70e9fd7351ec37d09338ee",
+    "last_translated": "2025-03-23T20:25:03.367223",
+    "translation_time": 5.32
   },
   "usability-monitoring/index.md": {
     "hash": "265d0c1126b9de2d4fee0c91aedf63593d07204f62a513df07fe8fbbff1183b8",
@@ -5612,36 +5864,41 @@
     "last_translated": "2025-03-09T05:23:01.850958"
   },
   "application-performance-monitoring/explorer/auto_wire/apm_datakit_operator.md": {
-    "hash": "f2c52791fbef406e311396a8770407c714703bbabe4cdf773f261505ae12bd1c",
-    "last_translated": "2025-03-10T05:27:21.684318"
+    "hash": "05bfd2f35072b74b39ba2e96e9874dec1f05c99f6857856f6ed1d7d8d522eb5e",
+    "last_translated": "2025-03-23T20:33:00.734096",
+    "translation_time": 47.17
   },
   "management/sso/index.md": {
-    "hash": "9d01303d01362fee68cc2ddbbadad50dfd754a6e662bdde1f15ded96ff35323d",
-    "last_translated": "2025-03-09T23:59:14.665317"
+    "hash": "b8c815f87f06f1e6cafc6934769c54ad98639655cac3ffe3d2e356dedce4d524",
+    "last_translated": "2025-03-23T21:18:33.398034",
+    "translation_time": 71.43
   },
   "integrations/aliyun_clickhouse_community.md": {
     "hash": "4f4957495b5edeba571159f1d39f6d3f03b757328ecf18d08bb435515a7f4fa8",
     "last_translated": "2025-03-09T05:27:08.737485"
   },
   "plans/commercial.md": {
-    "hash": "61b6f2acee4df8b821faadfe0ea2062d7bb2d0431b1efe05857bb7974af58b41",
-    "last_translated": "2025-03-09T05:27:31.769053"
+    "hash": "ddd5c7c5d688ada0637e71121f4ae4566a9f6d3ce4aa7d0f1f04dac831d572b5",
+    "last_translated": "2025-03-23T20:25:42.916349",
+    "translation_time": 18.21
   },
   "open-api/log-backup-cfg/.pages": {
     "hash": "4bf3bc5d706245227c8b981edd91c59dcd29384d904a3ad3c8a4fee9400fdc42",
     "last_translated": "2025-03-09T05:27:35.053554"
   },
   "monitoring/bot-obs/Kubernetes/k8s-pod-restart.md": {
-    "hash": "780498e21cb24e8ba81b3ade2a13e89edbcfb0e7d91e47fdc3991e7e689b3c7a",
-    "last_translated": "2025-03-09T05:28:54.605633"
+    "hash": "e93f2b3e9cc701ff5d7cc23310b85090e5c167d433761c8b4a99dfdf8a10b1bc",
+    "last_translated": "2025-03-23T21:28:07.325779",
+    "translation_time": 98.1
   },
   "open-api/blacklist/.pages": {
     "hash": "93f7fc0bc8499c5c0aae3431aa56642ce7b8e9d0f9dc5fa0ed18b44455ffdbfe",
     "last_translated": "2025-03-09T05:28:58.572809"
   },
   "monitoring/bot-obs/aws_ak_errorlog.md": {
-    "hash": "0a508635fa97611686d073af9a6308d612b18fe5287f10400eed412a0a8f3a5b",
-    "last_translated": "2025-03-09T05:30:04.462391"
+    "hash": "cf62286c19946051890d806f89e9a1ca17580bf9c2d56e6f4f1459cb1be430ad",
+    "last_translated": "2025-03-23T21:01:27.489452",
+    "translation_time": 107.02
   },
   "management/backup/index.md": {
     "hash": "9ca1c6d07dc59f02288e6ea6a134d3b5ab2b43418d4d40e46e33f40c78604682",
@@ -5668,36 +5925,42 @@
     "last_translated": "2025-03-09T05:37:19.251988"
   },
   "deployment/changelog/2024.md": {
-    "hash": "d7c3cde53897c8e3082f9cc6244b5af072e03046e675970bd8550f33849d977d",
-    "last_translated": "2025-03-10T00:40:45.130783"
+    "hash": "59199c08315bf2a7e127be6ed8d63d035f1046a39bb671370a968955e7a63da1",
+    "last_translated": "2025-03-23T21:16:56.693887",
+    "translation_time": 1143.68
   },
   "integrations/coredns.md": {
     "hash": "48fdb2028cc07e87611b33d97d73d77e61877c8399e3f2123e36acacc74281f0",
     "last_translated": "2025-03-09T05:43:21.426454"
   },
   "open-api/notification-schedule/get.md": {
-    "hash": "96af715aec3eee33789842dc0b9c5c10719b03c7d2f354d4ecb1636587f5de9d",
-    "last_translated": "2025-03-10T02:22:39.451893"
+    "hash": "4fdc975db606dce5d366ed3c05ada70e463aee8fa9a302875839814f996e4fcf",
+    "last_translated": "2025-03-23T20:56:12.151401",
+    "translation_time": 20.2
   },
   "best-practices/monitoring/rum-datakit-cluster.md": {
-    "hash": "61cecdbe2e66cb37aed9ac741c783b739533adadbd452252204a2a244d2bae15",
-    "last_translated": "2025-03-09T05:44:34.466901"
+    "hash": "57b6daba4169f8b4d1a3c66c8d5fbd42ddeba8f5165967d97cb1a8bfcb6ada0a",
+    "last_translated": "2025-03-23T21:02:54.079828",
+    "translation_time": 31.4
   },
   "scheck/example.md": {
     "hash": "3b9b0787208bd378daec61e2e9b1c2fbff7bc68197891daf902436a34264151a",
     "last_translated": "2025-03-09T05:45:01.128709"
   },
   "dataflux-func/external_data.md": {
-    "hash": "c281b409e51766edbb20bace76311a8a50dd8a956582a98dceee0111649d22e4",
-    "last_translated": "2025-03-09T05:46:55.182980"
+    "hash": "dc26f42a51c731da1d12522b018ce51c5821e58471a6e819687e4809956007f7",
+    "last_translated": "2025-03-23T21:19:57.824966",
+    "translation_time": 111.96
   },
   "management/index.md": {
-    "hash": "e250669fad1581a2a1eb80687a603de20d060399a19999519cf354265e7212d5",
-    "last_translated": "2025-03-09T05:48:13.685977"
+    "hash": "819210aff0051779dee9a48ddaac2ff94b14f4271e442aa68260bd83646abccc",
+    "last_translated": "2025-03-23T20:44:30.510547",
+    "translation_time": 74.34
   },
   "exception/calendar.md": {
-    "hash": "fb5a441feff8895d5ffb03f52fad7ceddbf804f91b3fd025b1750e0218d152b3",
-    "last_translated": "2025-03-09T05:48:44.746955"
+    "hash": "5c39e5eba4981b6744d120855ef2895fadbdd9281b87b6aad512adbeb3035d3a",
+    "last_translated": "2025-03-23T20:58:38.577208",
+    "translation_time": 36.78
   },
   "real-user-monitoring/.pages": {
     "hash": "141e9792d43347c96b19748739ec3a9bac05a83b671c01c9207f41976abc2b24",
@@ -5716,8 +5979,9 @@
     "last_translated": "2025-03-09T05:53:40.326506"
   },
   "others/scheck.md": {
-    "hash": "213a19fdcba1142b63ddec8f8419a9cb01239253222da1d80a0c638db7bb9403",
-    "last_translated": "2025-03-09T05:54:39.258364"
+    "hash": "b85d53dd49a34fd4f041d66104e597ac29793755104faa9df2956fb7248f0164",
+    "last_translated": "2025-03-23T20:48:09.683670",
+    "translation_time": 37.27
   },
   "open-api/service-manage/performance-export.md": {
     "hash": "13feddaf73831fadf413897fccefbf2fcc89ae0fcc5fa0081305798d1c4bf15a",
@@ -5744,12 +6008,14 @@
     "last_translated": "2025-03-09T05:57:35.873515"
   },
   "mobile/index.md": {
-    "hash": "e191d4d83fdea2b570f3cef4d7c07ad58dc90a5008b09a86b6f7ce965d8d05f5",
-    "last_translated": "2025-03-09T05:59:39.599368"
+    "hash": "422724bd2bb2f84954339b5672b71ead2af8d53fd6199e46cd7d3cc9a37e94fc",
+    "last_translated": "2025-03-23T20:41:03.157147",
+    "translation_time": 96.5
   },
   "open-api/workspace/create.md": {
-    "hash": "6f3e937fe16cec14b598c1a16d9270236d16c76f9950628558781df923b3c4b3",
-    "last_translated": "2025-03-10T02:25:47.895174"
+    "hash": "6cf41e14d244b6eb79283c721fb07dbc75edc401fcfd64233026ce0779212fd9",
+    "last_translated": "2025-03-23T21:25:04.106833",
+    "translation_time": 56.24
   },
   "application-performance-monitoring/collection/connect-web-app.md": {
     "hash": "ebfd2d90221661331ef302149897cf8b4a0e87c0ac33cd0dd05607619d5c5864",
@@ -5800,8 +6066,9 @@
     "last_translated": "2025-03-09T06:18:29.391922"
   },
   "agreements/account-cancellation.md": {
-    "hash": "5cd6130452ebcb2c0feaf9c3296e52ea58ec9d7a0125e796d3fcc23cf1e60d60",
-    "last_translated": "2025-03-09T06:19:23.734212"
+    "hash": "e7a20a3b55acc7ac4c84cc7d7dfcfec9f0d122b68d99b1a63c72acf244aa1833",
+    "last_translated": "2025-03-23T20:19:17.932027",
+    "translation_time": 64.73
   },
   "datakit/pb-vs-lp.md": {
     "hash": "6e2bb5f0a40a9cf5efa92081728a475639cecb579f63e75e79c5d36745ca1c64",
@@ -5816,8 +6083,9 @@
     "last_translated": "2025-03-10T06:07:46.108283"
   },
   "open-api/notification-schedule/list.md": {
-    "hash": "799cd45531467ab232ff58500183f43b9b4313f533c0c6878fd048775ef81e79",
-    "last_translated": "2025-03-10T00:33:36.723902"
+    "hash": "7787da0ddef9c5900c19c92d142b9cbd0cbf213677af7a83b5a4db2342e997cb",
+    "last_translated": "2025-03-23T21:21:12.810827",
+    "translation_time": 39.24
   },
   "deployment/Influxdb-deployment.md": {
     "hash": "b39971c80aceb230d21f0106584446a7acdb026878b6db28564b65ede7041281",
@@ -5840,8 +6108,9 @@
     "last_translated": "2025-03-10T03:08:18.879577"
   },
   "open-api/logging-query-rule/get.md": {
-    "hash": "aef4e3d429cbdd68ca18724a88e91465b9816c490672fe9ed35b7b92c08bff03",
-    "last_translated": "2025-03-10T00:04:50.841904"
+    "hash": "d7658dbd915527e206ed2758a9ebcb1f4c8755432e4f1b7530b965c69fdd4cd3",
+    "last_translated": "2025-03-23T20:25:21.832249",
+    "translation_time": 42.82
   },
   "integrations/aliyun_mongodb.md": {
     "hash": "cc947ba391a21e9d59977c0eb3f7dc988e660a90ad81fa261c24996e43dd367d",
@@ -5892,8 +6161,9 @@
     "last_translated": "2025-03-09T06:38:18.422802"
   },
   "open-api/checker/create.md": {
-    "hash": "46ba7564493fb4c0303f442fcb00090a8144e58b5de84e64aa9c9de470b2de68",
-    "last_translated": "2025-03-10T02:44:32.670023"
+    "hash": "7204805d8312cc3fb25bde42c4725c418edcd22c5139a49c96430ef448842a3e",
+    "last_translated": "2025-03-23T20:56:22.982318",
+    "translation_time": 453.7
   },
   "deployment/ldap.md": {
     "hash": "13aa83c3097c076dbc1fedf013b8ed6a8528faa6e8c2e8e3016ce721f6936a94",
@@ -5960,8 +6230,9 @@
     "last_translated": "2025-03-09T07:01:59.435008"
   },
   "logs/explorer-details.md": {
-    "hash": "69e5ff630ec0fa9fe8a28b7e9bae11a6b34dbfd69c9bf92fd2f2303b51ec3e05",
-    "last_translated": "2025-03-09T07:03:56.294737"
+    "hash": "e0dfac50cb59e5c77c5d5eb30faba918c1a4aa201c2008521b44d5e0fc017a21",
+    "last_translated": "2025-03-23T20:48:38.844935",
+    "translation_time": 152.66
   },
   "deployment/Redis-deployment.md": {
     "hash": "385045fb3f6b777508899e6774bd6d2ed2745a117a1f3f7f43a4ae3c915b442f",
@@ -5980,8 +6251,9 @@
     "last_translated": "2025-03-10T03:08:38.246379"
   },
   "deployment/hwcloud-deployment-manual.md": {
-    "hash": "658932c3ca9371f5f8e813d928259523995f4ebcb30b5bf084f46366ac5ff437",
-    "last_translated": "2025-03-09T07:07:31.346148"
+    "hash": "6952e99785d036ef6eeb34f4e0934ee01c6875caca058d6d335094a632059e0f",
+    "last_translated": "2025-03-23T20:22:00.884733",
+    "translation_time": 115.03
   },
   "real-user-monitoring/react-native/app-troubleshooting.md": {
     "hash": "035f0f018ba87d9129953588ba746015982047ca615e082a7950dc8537f6e3c4",
@@ -6000,12 +6272,14 @@
     "last_translated": "2025-03-09T07:09:50.250174"
   },
   "monitoring/monitor/index.md": {
-    "hash": "e9bdacd5aea7812f58edada39cc293f866fe60fc8eea18a709fa471a64bd5eee",
-    "last_translated": "2025-03-09T07:10:05.710756"
+    "hash": "f1c089d31748408e44aaf232a3ebadd094380cdf37f5e2e6d70b17ab36273fd2",
+    "last_translated": "2025-03-23T20:39:26.522710",
+    "translation_time": 5.53
   },
   "best-practices/monitoring/host-linux.md": {
-    "hash": "6d8b17c668301a09205ec70288a7f14c023c05444047ce7f34da5d2d97b54098",
-    "last_translated": "2025-03-09T07:12:05.803590"
+    "hash": "1cbc1991be358fe59642f721827799c8914eb8fb5ac40c25cc3e1182c70d9e16",
+    "last_translated": "2025-03-23T21:07:21.568791",
+    "translation_time": 158.03
   },
   "studio-backend/role.md": {
     "hash": "a393416065382c4c79f357173eecf126fa44281d4245890ee30293066d923cff",
@@ -6016,16 +6290,18 @@
     "last_translated": "2025-03-09T07:12:16.793438"
   },
   "real-user-monitoring/uni-app/sdk-changelog.md": {
-    "hash": "79b218854291550c632ed9b8de43975731487c4b41f0599fc9f0a36242b6c304",
-    "last_translated": "2025-03-09T07:12:32.203015"
+    "hash": "13f5cc9a6844fb0f7f462115cf9e039affcbd011cb116308989c95327efc2259",
+    "last_translated": "2025-03-23T20:24:58.033609",
+    "translation_time": 20.09
   },
   "security/index.md": {
     "hash": "bcd2d09b0397fb67fd3d0ec6fd66e6092c93b1fb2aad97f15e71f8d34fbd454d",
     "last_translated": "2025-03-09T07:13:50.501224"
   },
   "billing-method/faq.md": {
-    "hash": "4f2a09842748a26803646962648b0a28e060c818861a4c0e6eb233c145784737",
-    "last_translated": "2025-03-09T07:13:55.760410"
+    "hash": "4fb6b47627d89fd1e86e911b178b136170aff7f3da187cb550154214bb0f12a5",
+    "last_translated": "2025-03-23T20:43:16.157293",
+    "translation_time": 7.93
   },
   "management/operation-audit.md": {
     "hash": "de6c53ae9c4687b0d2f6cde66de35df97a72d27545127dedae5d092bdf43febe",
@@ -6048,24 +6324,27 @@
     "last_translated": "2025-03-10T06:10:30.566039"
   },
   "real-user-monitoring/sourcemap/webpack-upload-sourcemaps.md": {
-    "hash": "a4041bd86f95b715dc547144892b83a03ef29852860320ee5ac15451f77e28dd",
-    "last_translated": "2025-03-09T07:17:34.468011"
+    "hash": "001dabf0695eb56f1c80f92ffa6278f17f6b5a698db903fd0ad490e1458a5e1b",
+    "last_translated": "2025-03-23T20:22:45.240954",
+    "translation_time": 81.1
   },
   "agreements/data-access.md": {
     "hash": "680482eb8f1d24477b984270f066d64d16d825c0455a7ef571444d36f35129fd",
     "last_translated": "2025-03-09T07:19:38.032220"
   },
   "external-api/workspace/.pages": {
-    "hash": "4b271473d734a0b78cf5db71f76afd30a71bbd315e56d00c3df2968ff9421f18",
-    "last_translated": "2025-03-09T07:19:45.697206"
+    "hash": "64f05ea061323c2a6b733120e9fd685faa3446b9593d91eec10469e883ce449f",
+    "last_translated": "2025-03-23T20:57:52.999487",
+    "translation_time": 12.44
   },
   "usability-monitoring/request-task/websocket.md": {
     "hash": "81ac2f4d1326c324374ebaaa37f0554ea38b1bb24c394269ccb4da715bf54083",
     "last_translated": "2025-03-10T05:21:27.071099"
   },
   "dataflux-func/index.md": {
-    "hash": "b9223112eafded27b1b5a0da423c9d50242d405e1ca42eddbdcf607086caf0d5",
-    "last_translated": "2025-03-09T07:20:08.127326"
+    "hash": "a21864e9325c8a883b24258df56ca4376ee956cbcc0308d73341c677ece04c94",
+    "last_translated": "2025-03-23T21:16:11.039475",
+    "translation_time": 7.58
   },
   "open-api/data-query-rule/delete.md": {
     "hash": "ed612a6d1fdcc56e1c133d43dfd84bb1273f0f24bc025b485a9145bd86aad2d8",
@@ -6100,8 +6379,9 @@
     "last_translated": "2025-03-09T07:22:55.492787"
   },
   "events/inte-monitoring-event.md": {
-    "hash": "90eb145a2ba06e4264b38349a78d48a5ab74612fa3e327703213bc2059d17833",
-    "last_translated": "2025-03-09T07:23:15.368958"
+    "hash": "895c7f51d02421e10bfe1bc3101e4fdc3ec05795e826c30b469d30e6899d18d5",
+    "last_translated": "2025-03-23T20:35:14.712308",
+    "translation_time": 13.56
   },
   "developers/.pages": {
     "hash": "ac63e48e1e61734734a025e8816baa904c42060a24362ebc173a43b4a7268d8e",
@@ -6132,8 +6412,9 @@
     "last_translated": "2025-03-09T07:30:06.387553"
   },
   "others/apm-observable.md": {
-    "hash": "dff7c04b79fe96a8a593707abc3f58dccbdb4d3a97f47409062d5a2b2fe4956a",
-    "last_translated": "2025-03-10T02:48:52.758593"
+    "hash": "a3b17206f30808b2826b11db711ef308970290702a1c9973afa757341ebb094d",
+    "last_translated": "2025-03-23T20:47:30.550973",
+    "translation_time": 122.79
   },
   "open-api/alert-policy-notice-date/get.md": {
     "hash": "17c968ae8fb53af1a0268c9fa520aea31470f882873d47abaeee44e4b3a72b21",
@@ -6144,8 +6425,9 @@
     "last_translated": "2025-03-09T07:32:29.162326"
   },
   "open-api/viewer/list.md": {
-    "hash": "a71bc332abea136640e7782dde9b7caef77ce06feba191744f0a4e6ef2eb8477",
-    "last_translated": "2025-03-10T00:24:52.139289"
+    "hash": "7f592162b96ed713932b3a12e517b50ce9c8763af75bb98438734358ac675248",
+    "last_translated": "2025-03-23T20:20:23.792004",
+    "translation_time": 77.85
   },
   "open-api/workspace/set-bind-info.md": {
     "hash": "011da10a2600d26decf66887c478bfa2d336ce73aef571dcd03cd62f39b96c0d",
@@ -6160,8 +6442,9 @@
     "last_translated": "2025-03-09T07:36:19.393187"
   },
   "datakit/.pages": {
-    "hash": "93317b5b1ccf2eaa2e98bdf11a5a0d766c31d26cb8341d88d0108a281a067798",
-    "last_translated": "2025-03-09T07:36:44.073479"
+    "hash": "1507f9fe1857aa05e76a0b26633ec2f4d9c4e78658b1c2e63ce9d7e8c603c771",
+    "last_translated": "2025-03-23T20:38:38.616916",
+    "translation_time": 27.8
   },
   "open-api/notify-object/batch-delete.md": {
     "hash": "296a5e8b38ed5f7da4623eb23850c86f453a1871049e8533b7ca8546cc85556b",
@@ -6176,16 +6459,19 @@
     "last_translated": "2025-03-09T07:36:59.575475"
   },
   "open-api/workspace-member/batch-invitation.md": {
-    "hash": "ebd98ff1f8c7aa318a01deafd822ed6fab102f3a86422a925342a28110774f4d",
-    "last_translated": "2025-03-09T23:20:50.638382"
+    "hash": "dbb81c89c88afdd603c084c90847d4c49198d38067291548b167db657c67cb43",
+    "last_translated": "2025-03-23T20:45:42.380139",
+    "translation_time": 13.42
   },
   "logs/miniapp-collection.md": {
-    "hash": "32b19a150a58bb2851fdf6cdc8efc350e922e546627d7b928e3251c5fe4091ec",
-    "last_translated": "2025-03-10T00:37:44.258497"
+    "hash": "70484143db9f6e1ffd85b51ef7d54497154445b14a2c7c230630f928ee50fe95",
+    "last_translated": "2025-03-23T20:29:23.096015",
+    "translation_time": 42.37
   },
   "real-user-monitoring/uni-app/app-access.md": {
-    "hash": "0c203380a161b0410040285ab9b167e463564edf0a1ff1a61984247770fc5855",
-    "last_translated": "2025-03-10T03:23:47.438513"
+    "hash": "7f66b63b5cd9907f2f74c903497fadcfe6681700f78d50d130652ea9a6d9712f",
+    "last_translated": "2025-03-23T20:54:35.776341",
+    "translation_time": 419.6
   },
   "best-practices/insight/pythond.md": {
     "hash": "2077022bd08eee072dbdd7e376bb5438811941e83fa6dc4bae5a8c4537e6b814",
@@ -6200,8 +6486,9 @@
     "last_translated": "2025-03-09T07:47:47.834861"
   },
   "scene/built-in-view/bind-view.md": {
-    "hash": "7fbcb3beb5267eab39aea1dad44d226d2eb3730b984c1a126c14eefc804a1806",
-    "last_translated": "2025-03-09T07:48:44.522741"
+    "hash": "42c322d8f34cead5042d1fa39afc202404e5d71c80dc749b1801d6961d936311",
+    "last_translated": "2025-03-23T20:45:14.662702",
+    "translation_time": 26.72
   },
   "scene/visual-chart/world-map.md": {
     "hash": "d8bae035d4d791999834324971446e3e493e37569c2f524d6346b2aeb815e9dc",
@@ -6216,8 +6503,9 @@
     "last_translated": "2025-03-09T07:58:03.987424"
   },
   "best-practices/monitoring/gitlab-ci.md": {
-    "hash": "2d52ba651099763ce7e3b7adea94fe577c81f70e7cb6d941a59b2806448c124d",
-    "last_translated": "2025-03-09T08:00:00.057420"
+    "hash": "525b632051be20a75446dbaa2df867f41da047fbbdd3c979bf5ee241dd347a9b",
+    "last_translated": "2025-03-23T20:49:08.795137",
+    "translation_time": 98.23
   },
   "index.md": {
     "hash": "a4c53d49fd534198a0643122d7f3a7b4d3e863a008cacd347b411cb62bf2fdbd",
@@ -6292,16 +6580,18 @@
     "last_translated": "2025-03-09T08:23:13.328677"
   },
   "best-practices/monitoring/apm.md": {
-    "hash": "e192e3545a51be188fdb6871b12251935072ac18fe3b7097ea17673cc5c9eb4a",
-    "last_translated": "2025-03-09T08:25:46.185195"
+    "hash": "0745d6ad2981924ab46fcae63113602321d0863aeec4fcb51b8689fb85cacf29",
+    "last_translated": "2025-03-23T20:45:05.903786",
+    "translation_time": 188.0
   },
   "agreements/confidentiality.md": {
     "hash": "4dbb870f57bff1d97daddf4220d33354c4713db6705294025af9b9b5ce28e7ec",
     "last_translated": "2025-03-09T08:26:24.643747"
   },
   "monitoring/bot-obs/workspace-weekly-report.md": {
-    "hash": "e60e3089fbd55e1563990ad3f59d9f6deb466c5a850833e100d01e271c958f32",
-    "last_translated": "2025-03-09T08:27:50.274208"
+    "hash": "58927e81f4c80b240221c4519e1e8a2a843ea95191f4810db32c0ea1ded7fd67",
+    "last_translated": "2025-03-23T20:22:57.630861",
+    "translation_time": 130.08
   },
   "open-api/metric/metric-info-get.md": {
     "hash": "1b514d09f39e3d5e5862dac2e5636007f9c97a117615f8cfb6a5731f01a5ba98",
@@ -6340,8 +6630,9 @@
     "last_translated": "2025-03-09T08:34:51.974109"
   },
   "scene/dashboard/config_page.md": {
-    "hash": "52803a7cabe2ab516cf90efed214184de7d18a2a43075e5a74e3a658852ca7e8",
-    "last_translated": "2025-03-09T08:35:32.571973"
+    "hash": "8963d96549c662262d2a243dc18d82688c93bd7c87b9d408c8208003806254ff",
+    "last_translated": "2025-03-23T21:21:52.418680",
+    "translation_time": 39.59
   },
   "scheck/0086-X11-uninstalled.md": {
     "hash": "ce0f4f6eafdbc0163768d51737431332cf92b4d144ed46352a6121a3841469eb",
@@ -6364,16 +6655,18 @@
     "last_translated": "2025-03-09T08:43:27.790269"
   },
   "datakit/datakit-docker-deploy.md": {
-    "hash": "7179328887c44cf0633e3b192a677ba8b52cee8c0ee09aed2098311e9710107f",
-    "last_translated": "2025-03-09T08:44:22.642456"
+    "hash": "fa698957628e0099a4091d1ae384a3d76c5fbfa27896dcb9feba5e28d10ef4e7",
+    "last_translated": "2025-03-23T20:34:22.979243",
+    "translation_time": 56.17
   },
   "open-api/custom-login-mapping/add.md": {
     "hash": "9296807b0fce208b2664d17bbbb27eef0a3b7e99d027c26e3715dcafb24b1317",
     "last_translated": "2025-03-10T03:48:16.457662"
   },
   "exception/channel.md": {
-    "hash": "8486a554b8bd3642e3e141ba9c12fd9d6870a9431bc1654aa9695c092134eb02",
-    "last_translated": "2025-03-09T08:45:48.382499"
+    "hash": "234aa79615f8dace34af5356a2087489aae656605483d674f677c0c97c8673d0",
+    "last_translated": "2025-03-23T21:20:44.566572",
+    "translation_time": 50.25
   },
   "management/settings/.pages": {
     "hash": "b9e43d956272646658461466f5e4e9d33e1b0c4428de7f3f4799162a5fc7ee60",
@@ -6396,12 +6689,14 @@
     "last_translated": "2025-03-09T08:50:44.525268"
   },
   "getting-started/function-details/logs-blacklist.md": {
-    "hash": "55cb9ff7818102e3ec729577057334c2be21bea7c0ae3fb46bded2432617df66",
-    "last_translated": "2025-03-09T08:51:11.195472"
+    "hash": "a9cfb0eb855f9a7f3f2ffc596c18f8671cc4450d08d125b2d2f6dcb7cba66a12",
+    "last_translated": "2025-03-23T20:19:01.571834",
+    "translation_time": 48.37
   },
   "best-practices/cloud-native/ingress-nginx.md": {
-    "hash": "d2c33d341a89bf0dbc1e90854e66e38c750c8ed5d7c07d4b656bc0ecb02e60d5",
-    "last_translated": "2025-03-09T08:52:27.175032"
+    "hash": "b96c1f66c805286673117e06a92cb06fccca3c68f81dbe96dc873a9b317e4db2",
+    "last_translated": "2025-03-23T21:19:54.295878",
+    "translation_time": 80.88
   },
   "scheck/lualib.md": {
     "hash": "cfd7c9114df3bbfebc100ada4ecdcfbb23a58be510ab2ac8c05d006fd8c1216c",
@@ -6440,16 +6735,18 @@
     "last_translated": "2025-03-09T08:59:39.179421"
   },
   "best-practices/cloud-native/microservices3.md": {
-    "hash": "8e4b874287227a1c2d14a80e8194025c4527d1b1eec208faca16492506aaa223",
-    "last_translated": "2025-03-09T09:02:05.155479"
+    "hash": "d4a44bff958a2517ba342cf74dafb2dce54e06d55b6ad6ad9a0887c7e7872554",
+    "last_translated": "2025-03-23T20:47:14.645541",
+    "translation_time": 84.1
   },
   "external-api/manage-account/.pages": {
     "hash": "01051e68c45fd644faf27e941e33dc6389710baaa6915cc8174bd0f7a73b744b",
     "last_translated": "2025-03-09T09:02:10.021869"
   },
   "open-api/member-group/get.md": {
-    "hash": "3fce956a0c230ef2774c5fcff741ea267572188fe7e6fe703e5c7adc6b757bd9",
-    "last_translated": "2025-03-10T02:22:54.956465"
+    "hash": "44c09be650a0ff8f5d31a33c78e3e8d36ad639864231dd4473f24c9d4eb436b8",
+    "last_translated": "2025-03-23T20:54:27.637357",
+    "translation_time": 11.8
   },
   "real-user-monitoring/session-replay/web/.pages": {
     "hash": "81f7f9cb3bff4e1fe74404aa7a542c14a6a6dc13899304456716131d6d90b1d6",
@@ -6460,8 +6757,9 @@
     "last_translated": "2025-03-09T09:04:46.522098"
   },
   "deployment/ha-opensearch.md": {
-    "hash": "c3544582a6ecdb9415f1de56f27d2d9c283eaa32a2819f522a9f77a28b1cebb6",
-    "last_translated": "2025-03-09T09:06:54.856540"
+    "hash": "b21738d134d18990cb3112b159cee474b52f0c0025fc8d48c2c4ade995094ccb",
+    "last_translated": "2025-03-23T20:25:24.696205",
+    "translation_time": 105.05
   },
   "open-api/log-index-cfg/delete.md": {
     "hash": "70e0ccae71828a224a088db8f5db387aaa5b780922ad7c1d7fb914a5d17538b1",
@@ -6488,8 +6786,9 @@
     "last_translated": "2025-03-09T09:10:48.989424"
   },
   "open-api/aggs-to-metric/get.md": {
-    "hash": "f5cabdbf56a106743aeeaae4c46905fe985724e2a1a59484ca08ff8320a53994",
-    "last_translated": "2025-03-10T02:14:44.542078"
+    "hash": "ce8a85d863658d3ec5aa977f8da89bf06b4318f2fa47429674c1db557f95f55b",
+    "last_translated": "2025-03-23T20:52:20.162046",
+    "translation_time": 27.41
   },
   "developers/datakit-pl-how-to.md": {
     "hash": "0327e6c612fee3863f780273e344e99b35346eabb11b80a194841e7650bdd238",
@@ -6528,8 +6827,9 @@
     "last_translated": "2025-03-09T09:23:13.900377"
   },
   "logs/collection.md": {
-    "hash": "1bc06fd18f5279705b833fe9f9f45f4f9113faa6cea09ae9cc99eec776f1a500",
-    "last_translated": "2025-03-09T09:23:44.166410"
+    "hash": "e0dc169c30060ee5f710a6b2338dd0c69576a65371a1cb2e622e2e0f32e257cd",
+    "last_translated": "2025-03-23T21:25:16.349153",
+    "translation_time": 48.04
   },
   "open-api/permission/list.md": {
     "hash": "9af20276a1d4da1c486c656a75b1070742741ab116ab7abc81283ba7ce09e6f0",
@@ -6572,16 +6872,18 @@
     "last_translated": "2025-03-09T09:37:49.446291"
   },
   "open-api/pipeline/modify.md": {
-    "hash": "ac5fc7e181a0b2055b17651f606691513c543f60c3d6afb03d61692c961f4408",
-    "last_translated": "2025-03-10T05:30:02.026418"
+    "hash": "9e396806266235bc4f0ebf20d66f5d9931975bf3235971b6236015511195ed78",
+    "last_translated": "2025-03-23T20:31:53.662827",
+    "translation_time": 37.08
   },
   "real-user-monitoring/cpp/.pages": {
     "hash": "7499554d6bf594cc47aeee46601cea08c0849e9c80dede42507414bd030ec545",
     "last_translated": "2025-03-09T09:38:33.905419"
   },
   "billing/billing-account/aliyun-account.md": {
-    "hash": "ee4c67fb0bd699fda890706135b4cccf1e092e9277263f0a17550e673ac004ed",
-    "last_translated": "2025-03-09T09:39:15.179864"
+    "hash": "927e5d427f2630ac8036fef6909fabb3e071168c629c4ea18197d7a796d53472",
+    "last_translated": "2025-03-23T21:16:20.963933",
+    "translation_time": 49.91
   },
   "integrations/zadigx.md": {
     "hash": "86ee214b8e3bbf7f1d7ea34ea004c88354caee19f252b520ec2efef4e1a0c636",
@@ -6592,8 +6894,9 @@
     "last_translated": "2025-03-09T09:40:01.706199"
   },
   "deployment/infra-kubernetes.md": {
-    "hash": "189c4043b65caa6e59469aa2fa6a7fce666cddbd4c7d3d53467aa2fe58aa961d",
-    "last_translated": "2025-03-10T00:47:20.193336"
+    "hash": "0b09ecc8433529735df64234b1c8b46185b42d60d011d2e73f92607e9145828a",
+    "last_translated": "2025-03-23T20:49:54.224588",
+    "translation_time": 103.47
   },
   "monitoring/monitor-internal.md": {
     "hash": "ef5254824ed354cb57d849fe109d4594e43fef31be7ba46c47d0a52aad8a59d3",
@@ -6604,28 +6907,32 @@
     "last_translated": "2025-03-09T09:43:10.341711"
   },
   "open-api/workspace-ak/add.md": {
-    "hash": "d5ba35d9ecd49955688545755120a4f8773d742fad5a8c2d48edbdd46a860166",
-    "last_translated": "2025-03-10T00:36:16.442716"
+    "hash": "e0e2a516b7440b95b8f480cd66c1a0f3242daf70d23764305e2fe36f996a073e",
+    "last_translated": "2025-03-23T20:47:32.392125",
+    "translation_time": 20.76
   },
   "integrations/datakit-tracing-introduction.md": {
     "hash": "6b77df33d0738d0922a0b70bbdd9657b45d51f8cb4f7afdc8180cb5a0187a1a0",
     "last_translated": "2025-03-09T09:44:34.326622"
   },
   "deployment/clouddial-troubleshooting.md": {
-    "hash": "873be1f80e9b70df337087c74a0f291279d0e2b963bbeeed37effc7f9dccb03f",
-    "last_translated": "2025-03-09T09:45:53.875560"
+    "hash": "d53904eed1cee1708576664b7d51fa79a8a3b6460d129bf8ce83cf6c71584ed7",
+    "last_translated": "2025-03-23T20:59:55.410560",
+    "translation_time": 69.36
   },
   "open-api/inner-dashboard/innerlist.md": {
     "hash": "ba2d6867ecaad5aa3a35e8d2d63868513e9ac26e6d47ef7f078c334888df9dc7",
     "last_translated": "2025-03-10T02:54:04.250852"
   },
   "external-api/account/create.md": {
-    "hash": "cf6a85bd84cbda8f8a450415da058f8ec4d5e585bd78be1975be0bc4cc3eca3a",
-    "last_translated": "2025-03-09T09:47:21.091612"
+    "hash": "1b97eefc9717443a27609ff2393f6458a6499ccecbdb7a83b1205cb466eafa82",
+    "last_translated": "2025-03-23T21:12:46.183716",
+    "translation_time": 50.05
   },
   "dql/advanced-funcs/local-funcs.md": {
-    "hash": "fad2124136c99e5e91064379930cb88aa6e2d62a902e76dc0022595de245459c",
-    "last_translated": "2025-03-09T09:47:48.442397"
+    "hash": "b5c2f6767e652e7fe44c3983e4521c9e7ddbf14a7b04edf9295755ac54a0bb2e",
+    "last_translated": "2025-03-23T20:44:34.033945",
+    "translation_time": 31.43
   },
   "dql/out-funcs.md": {
     "hash": "d57b5fb32212028ca25c0b9bc23e3b9a7a465768496d5be7b282c8d724f25097",
@@ -6656,12 +6963,14 @@
     "last_translated": "2025-03-09T09:55:31.990940"
   },
   "plans/commercial-aws.md": {
-    "hash": "75004390805f95c4bcf1c475951b1c90652dda470eece90ac7aaa571a1c8aeea",
-    "last_translated": "2025-03-09T09:57:36.357642"
+    "hash": "4c3e9fa5a3e1efbcb275311500e0c8459126cfcf602e3985e2866858109b64dc",
+    "last_translated": "2025-03-23T20:31:16.557112",
+    "translation_time": 113.45
   },
   "deployment/changelog/2022.md": {
-    "hash": "d362811817a54aa3073bef5b6af141f543ba49f3a4f04bef1f9578d12f6a5b96",
-    "last_translated": "2025-03-09T10:06:41.894312"
+    "hash": "38a0c25144ecbd7d1e64f5d5c4866dd86c68ae71bc5924f3ad437f7f5e6e55a0",
+    "last_translated": "2025-03-23T21:15:40.400466",
+    "translation_time": 547.54
   },
   "real-user-monitoring/android/app-data-collection.md": {
     "hash": "f14f3af48a4aebd418572a8ce019e84631499daea6b5eedf26061a8dac54cad4",
@@ -6692,8 +7001,9 @@
     "last_translated": "2025-03-09T10:13:11.997985"
   },
   "agreements/center-charge.md": {
-    "hash": "674b235ad0a34eecb86941f84d10c801d819eb63160ab25eccfd17a422ff193d",
-    "last_translated": "2025-03-09T10:15:49.380708"
+    "hash": "848b5a46fd88e6c3e499f412a0af542ac1fc823382423fc1d7cdda76336a5e5b",
+    "last_translated": "2025-03-23T21:07:12.072909",
+    "translation_time": 120.7
   },
   "scheck/0041-yum-repos.d-del.md": {
     "hash": "1ffd70d4673edcea45671d1e42c6983d5d11075a628395f39ee7ca21b9961a26",
@@ -6704,8 +7014,9 @@
     "last_translated": "2025-03-10T02:23:20.469396"
   },
   "events/event-explorer/unrecovered-events.md": {
-    "hash": "e09809d4f035330cbb5d405b4e57100822614d3db0dfd81522a0c3d8a1b615db",
-    "last_translated": "2025-03-09T10:17:48.422356"
+    "hash": "c2257acea5c2c7958650c8a137057c24ab9043403ce2c3584cbbc524d35682ce",
+    "last_translated": "2025-03-23T21:18:05.844169",
+    "translation_time": 61.52
   },
   "scheck/4132-k8s-apiserver-anonymous.md": {
     "hash": "f5254bed1c9b84f6ee93a95344c786b606285dafd6fece7c32c26d98d41f681c",
@@ -6728,16 +7039,18 @@
     "last_translated": "2025-03-09T10:20:18.542883"
   },
   "best-practices/monitoring/datakit-operator.md": {
-    "hash": "c0071467bf5aeeb08efb56a3da1fafbd758ef6ed2cf655c2175d0c1fb87e5e8e",
-    "last_translated": "2025-03-10T05:14:23.343601"
+    "hash": "99203b38de8953ea702e22095bca5d82d1cfef45baa15db4367513d7bb24b840",
+    "last_translated": "2025-03-23T21:21:07.816566",
+    "translation_time": 47.29
   },
   "agreements/confidentiality-en.md": {
     "hash": "7c3fc5e541f39e4633f24e105aee2dd549c3d45459f00c298924398a05daeb3e",
     "last_translated": "2025-03-09T10:21:54.714146"
   },
   "monitoring/bot-obs/apm-errors.md": {
-    "hash": "bc30a3399cdaf0142b9a25448a87fdc67626e1c4367b4b5adfc05ffa2c5a2735",
-    "last_translated": "2025-03-09T10:23:22.260674"
+    "hash": "47e3c91d92e4aaf621348e26e7825ac28f7f4f6ee7223ee325e83ce36ab2a517",
+    "last_translated": "2025-03-23T21:24:46.851551",
+    "translation_time": 84.4
   },
   "open-api/custom-login-mapping/.pages": {
     "hash": "b178ba1b0a07c10dbf270b35dcaab98eb0cdd7b8eaadeb01b61f97f828d4b506",
@@ -6792,12 +7105,14 @@
     "last_translated": "2025-03-09T10:37:20.585956"
   },
   "monitoring/bot-obs/mysql-performance.md": {
-    "hash": "1babda9f8003302226adf013556f540047708b99702b116df4521de208b99acb",
-    "last_translated": "2025-03-09T10:38:31.072878"
+    "hash": "c86fa8a4bf7389f7499bec60d6c2f841857bac5c9285e11e305ef23621b2ccaa",
+    "last_translated": "2025-03-23T21:03:58.444292",
+    "translation_time": 69.54
   },
   "open-api/board/crontab-report-modify.md": {
-    "hash": "226ee3311856643375ac72df30d7331375b6298efc831ab363c0294db37eac74",
-    "last_translated": "2025-03-10T00:04:12.667191"
+    "hash": "e3b24ea7258ed946525ee1cc0bb56cd51fddf8728f14632c21a411d0aea7bb5d",
+    "last_translated": "2025-03-23T21:05:02.552715",
+    "translation_time": 62.26
   },
   "real-user-monitoring/web/.pages": {
     "hash": "f84f2b5886af5193c0f868f529faeb97b6c50a873c634c884666f2dab70caa30",
@@ -6812,8 +7127,9 @@
     "last_translated": "2025-03-09T10:39:44.433452"
   },
   "best-practices/cloud-native/microservices1.md": {
-    "hash": "7dd3652e699fb8a4b996463850407a4b00fbda9ec0c1cfca6ded0660aca7b987",
-    "last_translated": "2025-03-09T10:45:37.232391"
+    "hash": "242784bb1b0d0c33427681e6b586243e5d4f03c7c84f1606e95f6db1dc187ae8",
+    "last_translated": "2025-03-23T21:26:20.928480",
+    "translation_time": 325.01
   },
   "cloud-billing/.pages": {
     "hash": "98b11a68358c101da6e864e03a439e073d1b19e45bfb4f634cf4fcb1dd01706f",
@@ -6824,8 +7140,9 @@
     "last_translated": "2025-03-09T10:45:59.756075"
   },
   "best-practices/insight/skywalking-apm-rum-log.md": {
-    "hash": "601b0369bc6ffe4979e11e0fc7cff5ddd76217043094ed6e43a46bae642c1d46",
-    "last_translated": "2025-03-09T10:47:19.270329"
+    "hash": "3c803b039d37d43c5cc7fd07f237de94b50b8713b30c2109a4d7ca852b6fae36",
+    "last_translated": "2025-03-23T20:34:02.928812",
+    "translation_time": 128.68
   },
   "scene/visual-chart/treemap.md": {
     "hash": "c9690cbcd1ea36395154c4055102317c3b5c7972b661489eaeafd4abde95d956",
@@ -6864,8 +7181,9 @@
     "last_translated": "2025-03-09T10:58:24.558352"
   },
   "scene/report.md": {
-    "hash": "cac3ecaeecbdb0e50fe15048e90d884060b1626d6dfac292eab16f96939463c6",
-    "last_translated": "2025-03-09T10:59:01.448483"
+    "hash": "1ed440e14c48bf8bb78707917138175c93c88d794adfc6faf76e2cc2b09669b5",
+    "last_translated": "2025-03-23T21:23:21.610250",
+    "translation_time": 18.19
   },
   "integrations/logging_socket.md": {
     "hash": "b3ac7fd74ce75f007e6fdb03e9f6aa7a59fcea00dafc5d7d7217b48a6d1daa9e",
@@ -6888,8 +7206,9 @@
     "last_translated": "2025-03-10T00:28:57.846851"
   },
   "dataflux-func/automata.md": {
-    "hash": "d3c290f9a8ca0367521ad7386cd2579fa12a227ff4b66ed0ec998e948c9be947",
-    "last_translated": "2025-03-09T11:04:34.909451"
+    "hash": "45c907a576b25ef03920337dc2b91cc7613a88a2f5ab0956c3dcbc2fc02aac0d",
+    "last_translated": "2025-03-23T20:43:08.215552",
+    "translation_time": 44.0
   },
   "management/ali-cross-account.md": {
     "hash": "b1414ef37b2c90555ba5136940a522234e42455e9a80e273bb59dd7cc299cb7a",
@@ -6916,8 +7235,9 @@
     "last_translated": "2025-03-09T11:07:30.687141"
   },
   "deployment/velero-install.md": {
-    "hash": "a44974ec2309019780a9516668e3a25cbdc94b9f9b96750bee0d9fe246f5c8c2",
-    "last_translated": "2025-03-10T06:04:50.251720"
+    "hash": "6d95a33c9abca96c26e0e1756c47144e9ced94912e92cc55d408461890b9f7e5",
+    "last_translated": "2025-03-23T21:09:57.763036",
+    "translation_time": 218.88
   },
   "external-api/login-mapping/login-mapping-set-disable.md": {
     "hash": "43beb0589f487e937472f0017acba85f24441bf57bc7d306cc6cff5d1926ac1f",
@@ -6960,11 +7280,32 @@
     "last_translated": "2025-03-09T23:47:46.261200"
   },
   "management/sso/aws_iam_sso.md": {
-    "hash": "362c35bbb55bb0b63b5cdf6117b7395c6901645bd9d1595184beab31342496aa",
-    "last_translated": "2025-03-10T02:16:47.556629"
+    "hash": "2e881bf76d090db38fba7d3fe0663aae291b5dff8bb44b7705239f1ae4e2f86b",
+    "last_translated": "2025-03-23T20:33:21.841021",
+    "translation_time": 69.33
   },
   "usability-monitoring/faq.md": {
     "hash": "afa33c4e4051eca50c91bd35c021db07715e9aa88745851c97d5a2a45a48f104",
     "last_translated": "2025-03-10T05:32:13.843944"
+  },
+  "datakit/changelog-2025.md": {
+    "hash": "6f676b0a514d8193e84210569b0d6b20d31ba0d32a6eef984e82c1623d34f4bb",
+    "last_translated": "2025-03-23T20:45:28.939981",
+    "translation_time": 58.41
+  },
+  "external-api/workspace/change-brand-key.md": {
+    "hash": "4f91c31b1941f229950fc9d65604d251fc6ee6a0f55b1e8ccec0ae83c6120c91",
+    "last_translated": "2025-03-23T20:57:40.540940",
+    "translation_time": 5.97
+  },
+  "external-api/account/change-brand-key.md": {
+    "hash": "e84b7a14c333711973a3c71b70e2785a31d4ad2457371a0bf1c681efd2cb5c14",
+    "last_translated": "2025-03-23T21:09:15.944759",
+    "translation_time": 8.98
+  },
+  "open-api/dialing-task/default-region-list.md": {
+    "hash": "9e31838cf24614b3402b07d17aebbd6a9b969a9a1f1c57b52ef6a453624906a6",
+    "last_translated": "2025-03-23T21:26:46.968324",
+    "translation_time": 35.7
   }
 }

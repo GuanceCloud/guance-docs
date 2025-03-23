@@ -1,25 +1,25 @@
-# Mini Program Log Collection
+# Miniapp Log Collection
 
 ---
 
-The mini program actively sends log data of different levels (`corresponding source: browser_log` Metrics type log data) to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/).
+Miniapps actively send log data of different levels (`corresponding source:browser_log` Metrics type log data) to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/).
 
-## Feature Overview
+## Features Overview
 
-- Custom log data collection: Integrate the SDK into client applications to collect different log data for various scenarios.
-- Automatically collect error information from the application end (including network errors, console errors, and JS errors) and report it to DataFlux.
-- Customize error levels (`debug`, `critical`, `error`, `info`, `warn`), custom Logger objects, and custom Log fields.
-- Automatically collect [RUM](../real-user-monitoring/miniapp/app-access.md) related data and associate it with RUM business scenarios (requires updating rum,sdk to the latest version).
+- Custom log data collection, by integrating SDK into client applications for collecting log data in various scenarios;
+- Automatically collect error information from the application end (including network errors, console errors, and js errors) and report it to DataFlux;
+- Custom error levels (`debug`, `critical`, `error`, `info`, `warn`), custom Logger objects, and custom Log fields;
+- Automatically collect [RUM](../real-user-monitoring/miniapp/app-access.md) related data, linking RUM business scenarios (requires rum, sdk updates to the latest version).
 
 ## Getting Started
 
 ### Prerequisites
 
-- **DataKit**: Send log data to the DataFlux platform via the DataKit Log Collection API.
+- **DataKit**: Send log data to the DataFlux platform through the DataKit log collection API;
 
-- **Integrate SDK**: You can introduce the SDK into your application via `NPM` or `CDN`. After initialization, you can store it in a global variable for easy reference by other pages.
+- **Integrate SDK**: The SDK can be integrated via `NPM`, `CDN`, initializing it after which it can be stored in a global variable for easy reference by other pages;
 
-- **Support for Mini Program Clients**: WeChat, Baidu, Alipay, Toutiao, and most other mini program clients.
+- **Supports Miniapp Clients**: WeChat, Baidu, Alipay, Toutiao and most other miniapp clients.
 
 ### NPM Integration
 
@@ -28,10 +28,10 @@ The mini program actively sends log data of different levels (`corresponding sou
 const { datafluxLogs } = require('@cloudcare/dataflux-rum-miniapp-logs')
 // Initialize Rum
 datafluxLogs.init({
-	datakitOrigin: '<DATAKIT ORIGIN>',
-	service: 'minapp',
-	env: 'prod',
-	version: '1.0.0'
+	datakitOrigin: '<DATAKIT ORIGIN>'
+  service: 'minapp',
+  env: 'prod',
+  version: '1.0.0'
 })
 //#endif
 ```
@@ -43,10 +43,10 @@ datafluxLogs.init({
 const { datafluxLogs } = require('@cloudcare/dataflux-rum-miniapp-logs')
 // Initialize Rum
 datafluxLogs.init({
-	datakitOrigin: '<DATAKIT ORIGIN>',
-	service: 'miniapp',
-	env: 'prod',
-	version: '1.0.0'
+	datakitOrigin: '<DATAKIT ORIGIN>'
+  service: 'miniapp',
+  env: 'prod',
+  version: '1.0.0'
 })
 //#endif
 ```
@@ -55,20 +55,20 @@ datafluxLogs.init({
 
 ### Initialization Parameters
 
-| Parameter            | Type   | Required | Default Value | Description                                                                                                                                                                                                 |
-| -------------------- | ------ | -------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `datakitOrigin`      | String | Yes      |               | DataKit data reporting Origin. Format: `protocol (including: //), domain name (or IP address) [and port number]`<br>Example: [https://www.datakit.com](https://www.datakit.com), [http://100.20.34.3:8088](http://100.20.34.3:8088) |
-| `clientToken`        | String | Yes      |               | Data token for reporting data in openway mode, obtained from the <<< custom_key.brand_name >>> console (required for public openway access).                                                                 |
-| `site`               | String | Yes      |               | Data reporting URL for public openway mode, obtained from the <<< custom_key.brand_name >>> console (required for public openway access).                                                                   |
-| `service`            | String | No       | `browser`     | Name of the log Service.                                                                                                                                                                                    |
-| `env`                | String | No       |               | Current environment of the web application, e.g., Prod: production environment; Gray: gray release environment; Pre: pre-release environment; Common: daily environment; Local: local environment.             |
-| `version`            | String | No       |               | Version number of the web application.                                                                                                                                                                      |
-| `sampleRate`         | Number | No       | `100`         | Percentage of Metrics data collection: `100` means full collection, `0` means no collection.                                                                                                                 |
-| `forwardErrorsToLogs`| Boolean| No       | `true`        | Set to `false` to stop collecting console.error, JS, and network errors into DataFlux log data.                                                                                                             |
+| Parameter            | Type    | Required | Default Value | Description                                                                                                                                                                                                 |
+| ------------------- | ------- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `datakitOrigin`     | String  | Yes      |               | DataKit data reporting Origin Note: `protocol (including: //), domain name (or IP address)[and port number]`<br>Example: [https://www.datakit.com](https://www.datakit.com), [http://100.20.34.3:8088](http://100.20.34.3:8088) |
+| `clientToken`       | String  | Yes      |               | Data token reported in openway method, obtained from <<< custom_key.brand_name >>> console, required (public openway access method).                                                                                          |
+| `site`              | String  | Yes      |               | Public openway data reporting address, obtained from <<< custom_key.brand_name >>> console, required (public openway access method).                                                                                             |
+| `service`           | String  | No       | `browser`     | Log Service name                                                                                                                                                                                           |
+| `env`               | String  | No       |               | Current environment of Web application, such as Prod: online environment; Gray: gray release environment; Pre: pre-release environment Common: daily environment; Local: local environment;                         |
+| `version`           | String  | No       |               | Version number of Web application                                                                                                                                                                          |
+| `sampleRate`        | Number  | No       | `100`         | Percentage of Metrics data collected: `100` indicates full collection, `0` indicates no collection                                                                                                             |
+| `forwardErrorsToLogs` | Boolean | No       | `true`        | Setting to `false` stops the collection of console.error, js, and network errors reporting to DataFlux log data                                                                                              |
 
 ## Usage
 
-After initializing the SDK in the application, you can customize log data through exposed SDK APIs.
+After initializing the SDK in your application, you can customize the log data configuration using exposed SDK APIs.
 
 ```javascript
 logger.debug | info | warn | error | critical (message: string, messageContext = Context)
@@ -136,7 +136,7 @@ datafluxLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 }
 ```
 
-## Status Parameter
+## Status Parameters
 
 After initializing the SDK, you can use the provided `log` API to define different types of statuses.
 
@@ -149,13 +149,13 @@ log (message: string, messageContext: Context, status? = 'debug' | 'info' | 'war
 ```javascript
 import { datafluxLogs } from '@cloudcare/dataflux-rum-miniapp-logs'
 
-datafluxLogs.logger.log(<MESSAGE>, <JSON_ATTRIBUTES>, <STATUS>);
+datafluxLogs.logger.log(<MESSAGE>,<JSON_ATTRIBUTES>,<STATUS>);
 ```
 
-## Parameter Description
+## Parameter Explanation
 
-| Parameter          | Description                                                                 |
-| ------------------ | --------------------------------------------------------------------------- |
-| `<MESSAGE>`        | The Message field in Dataflux logs.                                         |
-| `<JSON_ATTRIBUTES>`| Additional data describing the Message, represented as a JSON object.       |
-| `<STATUS>`         | Log level, optional values: `debug`, `info`, `warning`, `error`, `critical`.|
+| Parameter             | Description                                                                                       |
+| -------------------- | ----------------------------------------------------------------------------------------------- |
+| `<MESSAGE>`           | Message field in Dataflux logs.                                                                 |
+| `<JSON_ATTRIBUTES>`   | Additional data describing the Message, in Json format.                                           |
+| `<STATUS>`            | Log level, optional values: `debug`, `info`, `warning`, `error`, `critical`.                    |

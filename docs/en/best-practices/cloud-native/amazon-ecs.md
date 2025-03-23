@@ -5,9 +5,9 @@
 ## Introduction
 
 Amazon Elastic Container Service (Amazon ECS) is a highly scalable and fast container management service that can easily run, stop, and manage containers on clusters. These containers can run on their own EC2 servers or on serverless infrastructure managed by AWS Fargate.<br/>
-For tasks using the Fargate launch type, it is necessary to start the [awslogs log driver](https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/using_awslogs.html). Logs output by applications running in containers via STDOUT and STDERR I/O streams are sent to the log group in CloudWatch Logs, which are then collected by Func. Func sends these logs through DataKit deployed on EC2 to <<< custom_key.brand_name >>>.
+For tasks using the Fargate launch type, it is necessary to start the [awslogs log driver](https://docs.aws.amazon.com/zh_cn/AmazonECS/latest/developerguide/using_awslogs.html). The logs output by applications running in the container via STDOUT and STDERR I/O streams will be sent to the log group in CloudWatch Logs, then these logs are collected through Func. Func then writes the logs into <<< custom_key.brand_name >>> via DataKit deployed on EC2.
 
-This document focuses on collecting logs from containers managed by AWS Fargate.
+This article focuses on collecting logs from containers managed by AWS Fargate.
 
 ![image](../images/ecs/ecs-log-1.png)
 
@@ -15,14 +15,14 @@ This document focuses on collecting logs from containers managed by AWS Fargate.
 
 - First, create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/)
 - [Install DataKit](../../datakit/datakit-install.md)
-- [Install Func Portable Edition](https://<<< custom_key.func_domain >>>/doc/maintenance-guide-installation/)
+- [Install Func portable version](https://<<< custom_key.func_domain >>>/doc/maintenance-guide-installation/)
 - Already have a Java application running on ECS
 
-The ECS cluster name used here is `cluster-docker`. Below, we will view sample logs and log groups. Log in to [AWS](https://www.amazonaws.cn/), enter "Elastic Container Service" - click on "Clusters" - "cluster-docker".
+The ECS cluster name used here is cluster-docker. Below, we check the example logs and log groups. Log in to «[AWS](https://www.amazonaws.cn/)», enter «Elastic Container Service» - click «Clusters» - «cluster-docker».
 
 ![image](../images/ecs/ecs-log-2.png)
 
-Click on "Service Name"
+Click «Service Name»
 
 ![image](../images/ecs/ecs-log-3.png)
 
@@ -30,85 +30,85 @@ Enter the task
 
 ![image](../images/ecs/ecs-log-4.png)
 
-Under the "Containers" section in the details tab, find the log configuration.
+Find the log configuration under the Containers section in the Details tab.
 
 ![image](../images/ecs/ecs-log-5.png)
 
-Click on the "Log Label", where you can see the application logs. We will collect these logs next.
+Click «Log Tags». Inside are the application logs; next, we collect these logs.
 
 ![image](../images/ecs/ecs-log-6.png)
 
-## Procedure
+## Procedures
 
 ???+ warning
 
-    The version used in this example is DataKit 1.4.18
+    The version used in the example is DataKit 1.4.18
 
-### Step 1: AWS Configuration
+### Step 1 AWS Configuration
 
 #### 1.1 User Key {#1.1}
 
-Use the `Access key ID` and `Secret access key` provided when creating the AWS user for ECS deployment. These will be needed later.
+Use the account deploying ECS, provided during AWS user creation `Access key ID` and `Secret access key` will be used later.
 
 #### 1.2 Set AWS User Permissions
 
-Log in to the AWS IAM console, under Users, find the user associated with ECS and click "Add permissions".
+Log in to the AWS IAM console, find the ECS «User» under Users - click «Add Permissions».
 
 ![image](../images/ecs/ecs-log-7.png)
 
-Click "Attach existing policies directly", select `CloudWatchLogsReadOnlyAccess`, `CloudWatchEventsReadOnlyAccess`, then click "Next: Review".
+Click «Directly Attach Existing Policies», select `CloudWatchLogsReadOnlyAccess`, `CloudWatchEventsReadOnlyAccess`, then click «Next: Review».
 
 ![image](../images/ecs/ecs-log-8.png)
 
-### Step 2: Func Configuration
+### Step 2 Func Configuration
 
 #### 2.1 Configure Environment Variables {#2.1}
 
-Log in to "Func" - "Development" - "Environment Variables" - "Add Environment Variable". Add three environment variables:
+Log in to «Func» - «Development» - «Environment Variables» - «Add Environment Variable». Add three environment variables here:
 
-- `AWS_LOG_KEY` corresponds to the `Access key ID` of the AWS user from [Step 1.1](#1.1)
-- `AWS_LOG_SECRET_ACCESS_KEY` corresponds to the `Secret access key` of the AWS user from [Step 1.1](#1.1)
-- `AWS_REGION_NAME` corresponds to the `REGION` of the AWS user.
+- `AWS_LOG_KEY` corresponds to [Step 1.1](#1.1) AWS user's `Access key ID`
+- `AWS_LOG_SECRET_ACCESS_KEY` corresponds to [Step 1.1](#1.1) AWS user's `Secret access key`
+- `AWS_REGION_NAME` corresponds to the `REGION` where the AWS user is located.
 
 ![image](../images/ecs/ecs-log-9.png)
 
 #### 2.2 Configure Connector
 
-Log in to "Func" - "Development" - "Connectors" - "Add Connector".<br/>
-Here, the ID must be set to `DataKit`, the host should correspond to the address where DataKit is installed, and the port should be the DataKit port. (In this example, use IP directly, so the protocol is HTTP)<br/>
-Click "Test Connectivity", if :white_check_mark: returns, it indicates DataKit is available.
+Log in to «Func» - «Development» - «Connectors» - «Add Connector». <br/>
+Here, the ID must be DataKit, the host corresponds to the address where DataKit is installed, and the port is DataKit's port. (In this example, IP is directly used, so the protocol is HTTP)<br/>
+Click «Test Connectivity», if :white_check_mark: returns, it indicates DataKit is available.
 
 ![image](../images/ecs/ecs-log-10.png)
 
 #### 2.3 PIP Tool Configuration
 
-Log in to "Func" - "Management" - "Experimental Features", select "Enable PIP Tool Module" on the right.
+Log in to «Func» - «Management» - «Experimental Features», select «Enable PIP Tool Module» on the right side.
 
 ![image](../images/ecs/ecs-log-11.png)
 
-Click on the left side "PIP Tool" - choose "Alibaba Cloud Mirror" - input `boto3` - click "Install".
+Click «PIP Tool» on the left - choose «Alibaba Cloud Mirror» - input `boto3` - click «Install».
 
 ![image](../images/ecs/ecs-log-12.png)
 
 #### 2.4 Script Library
 
-Log in to "Func" - "Development" - "Script Library" - "Add Script Set", the ID can be customized, click "Save".
+Log in to «Func» - «Development» - «Script Library» - «Add Script Set», the ID can be customized, click «Save».
 
 ![image](../images/ecs/ecs-log-13.png)
 
-Find "AWS Log Collection" - click "Add Script".
+Find «AWS Log Collection» - click «Add Script».
 
 ![image](../images/ecs/ecs-log-14.png)
 
-Input ID, in this example defined as `aws_ecs__log`, click "Save".
+Input ID, for this example define as `aws_ecs__log`, click «Save».
 
 ![image](../images/ecs/ecs-log-15.png)
 
-Click "Edit".
+Click «Edit».
 
 ![image](../images/ecs/ecs-log-16.png)
 
-Enter the following content:
+Input the following content:
 
 ??? quote "Input Content"
 
@@ -225,39 +225,39 @@ Enter the following content:
 
 ???+ warning
 
-    - Ensure that `ecs_log` on line 4 is unique within the same Func instance; it can be changed to other letters.<br/>
-    - `awc_ecs` on line 6 is the ID of the script set added earlier.<br/>
-    - `AWS_LOG_KEY`, `AWS_LOG_SECRET_ACCESS_KEY`, and `AWS_REGION_NAME` on lines 40, 41, and 42 correspond to the environment variable names from [Step 2.1](#2.1). If the environment variable names change, make corresponding adjustments.
+    - Ensure the `ecs_log` on line 4 of the above content is unique within the same Func; it can be changed to other letters.<br/>
+    - Line 6's `awc_ecs` is the script set ID added earlier.<br/>
+    - Lines 40, 41, and 42's `AWS_LOG_KEY`, `AWS_LOG_SECRET_ACCESS_KEY`, and `AWS_REGION_NAME` correspond to the environment variable names in [Step 2.1](#2.1). If the environment variable names change, corresponding modifications are required.
 
 #### 2.5 Test Script
 
-As shown below, select "run", and in the second red box:
+As shown below, select «run». In the second red box:
 
-- Input `ecs_log_source` for `measurement`, which corresponds to the log source in <<< custom_key.brand_name >>> logs;
-- Input the value of `logGroupName` found in the log configuration under **Prerequisites**;
-- Input the collection frequency for `interval`, which is 60 seconds in this example.
+- Input `ecs_log_source` for `measurement`; this value corresponds to the log source in <<< custom_key.brand_name >>> logs;
+- Input the value for `logGroupName` corresponding to the `awslogs-group` found in the «Prerequisites» log configuration;
+- Input the value for `interval` corresponding to the collection frequency; in this example, it is 60 seconds.
 
 ![image](../images/ecs/ecs-log-17.png)
 
-Click "Execute", and the output `total 8` indicates eight log entries were reported.
+Click «Execute», the output `total 8` indicates eight logs reported.
 
 ![image](../images/ecs/ecs-log-18.png)
 
-Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), enter the "Logs" module, select `ecs_log_source` as the data source, and you can view the logs.
+Log in to «[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)», enter the «Logs» module, select «ecs_log_source» as the data source, and you can see the logs.
 
 ![image](../images/ecs/ecs-log-19.png)
 
-Click the "Publish" button in the upper right corner
+Click the «Publish» button at the top right corner
 
 ![image](../images/ecs/ecs-log-20.png)
 
-Click "End Edit" in the upper right corner
+Click «End Editing» at the top right corner
 
 ![image](../images/ecs/ecs-log-21.png)
 
-#### 2.6 Automate Log Collection
+#### 2.6 Automatically Collect Logs
 
-Log in to "Func" - "Management" - "Automatic Trigger Configuration" - "Create", input the parameters used earlier.
+Log in to «Func» - «Management» - «Automatic Trigger Configuration» - «Create», input the parameters executed earlier.
 
 ```json
 {
@@ -269,14 +269,14 @@ Log in to "Func" - "Management" - "Automatic Trigger Configuration" - "Create", 
 
 ![image](../images/ecs/ecs-log-22.png)
 
-Select every minute or every five minutes, then click "Save"
+Choose every minute or every 5 minutes, click «Save»
 
 ![image](../images/ecs/ecs-log-23.png)
 
-In the "Automatic Trigger Configuration" list, there should be an entry for `aws_ecs log`.
+In the «Automatic Trigger Configuration» list, there is a record for «aws_ecs log»
 
 ![image](../images/ecs/ecs-log-24.png)
 
-Click "Recent Executions" to check the execution status
+Click «Recent Execution» to view execution details
 
 ![image](../images/ecs/ecs-log-25.png)

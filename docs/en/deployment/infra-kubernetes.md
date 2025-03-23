@@ -2,38 +2,41 @@
 
 ## Introduction
 
-Sealos is a simple Go binary that can be installed on most Linux operating systems. It can be flexibly used to deploy Kubernetes clusters.
+Sealos is a simple Go binary file that can be installed on most Linux operating systems. It can be flexibly used to deploy Kubernetes clusters.
 
 ## Prerequisites
 
 - Each cluster node should have a different hostname. Hostnames should not contain underscores.
 - Time synchronization across all nodes.
-- All nodes must be able to SSH into each other using the root user, and all nodes must have the same root password.
-- Run the `sealos run` command on the first node of the Kubernetes cluster; currently, external nodes do not support cluster installation.
+- All nodes can log in to each other via SSH using the root user, and all nodes must have the same root password.
+- Run the `sealos run` command on the first node of the Kubernetes cluster. Currently, external nodes are not supported for cluster installation.
 - It is recommended to use a clean operating system to create the cluster. Do not install Docker manually.
-- Supports most Linux distributions, such as Ubuntu, CentOS, Rocky Linux.
+- Supports most Linux distributions, such as: Ubuntu CentOS Rocky Linux.
 - Supports using containerd as the container runtime.
-- Use private IPs in public clouds.
+- Use private IPs on public clouds.
+
 
 ## Basic Information and Compatibility
 
-|   Hostname   |     IP Address      |  Role  |          Configuration         |
-| :----------: | :-----------------: | :----: | :----------------------------: |
-| k8s-master   | 192.168.100.101     | master | 4 CPU, 16G MEM, 100G DISK       |
-| K8s-node01   | 192.168.100.102     | node01 | 4 CPU, 16G MEM, 100G DISK       |
-| K8s-node02   | 192.168.100.103     | node02 | 4 CPU, 16G MEM, 100G DISK       |
+|   Hostname   |     IP Address      |  Role  |          k8 Configuration          |
+| :--------: | :-------------: | :----: | :----------------------: |
+| k8s-master | 192.168.100.101 | master | 4 CPUs, 16GB MEM, 100GB DISK |
+| K8s-node01 | 192.168.100.102 | node01 | 4 CPUs, 16GB MEM, 100GB DISK |
+| K8s-node02 | 192.168.100.103 | node02 | 4 CPUs, 16GB MEM, 100GB DISK |
 
-|     Name     |                   Description                  |
-| :-----------: | :--------------------------------------------: |
-| Offline Installation Support |                        Yes                         |
-| Supported Architectures |                 amd64/arm64                  |
+|     Name     |                   Description                   |
+| :------------------: | :---------------------------------------------: |
+|    Whether offline installation is supported    |                       Yes                        |
+|       Supported architectures       |                   amd64/arm64                   |
+
+
 
 
 ## Installation Steps
 
 ### 1. Set Hostnames
 
-Run the following commands respectively:
+Run the following commands separately:
 
 ```shell
 hostnamectl set-hostname k8s-master
@@ -41,7 +44,7 @@ hostnamectl set-hostname k8s-node01
 hostnamectl set-hostname k8s-node02
 ```
 
-### 2. Synchronize Host Time
+### 2. Synchronize Host Times
 
 Run the following commands on each node:
 
@@ -52,15 +55,15 @@ yum install ntpdate -y
 # Synchronize local time
 ntpdate time.windows.com
 
-# Synchronize with network source
+# Sync with network source
 ntpdate cn.pool.ntp.org
 ```
 
-> You can also set up crontab:
+> You can also set up crontab
 > 
 > `* */1 * * * /usr/sbin/ntpdate cn.pool.ntp.org`
 
-### 3. Install Sealos Command
+### 3. Install sealos Command
 
 Run the following command to install:
 
@@ -77,19 +80,19 @@ Run the following command to install:
        && tar zxvf sealos_4.1.5_linux_arm64.tar.gz sealos && chmod +x sealos && mv sealos /usr/bin
     ```
 
-Verify the installation:
+Verify if the deployment was successful:
 
 ```shell
 $ sealos -h
 
-simplest way install kubernetes tools.
+Simplest way to install Kubernetes tools.
 
 Usage:
   sealos [command]
 
 Available Commands:
   add         add some node
-  apply       apply a kubernetes cluster
+  apply       apply a Kubernetes cluster
   build       build an cloud image from a Kubefile
   completion  Generate the autocompletion script for the specified shell
   create      Create a cluster without running the CMD
@@ -106,7 +109,7 @@ Available Commands:
   push        push cloud image
   reset       Simplest way to reset your cluster
   rmi         Remove one or more cloud images
-  run         Simplest way to run your kubernetes HA cluster
+  run         Simplest way to run your Kubernetes HA cluster
   save        save cloud image to a tar file
   scp         copy local file to remote on all node.
   tag         tag a image as a new one
@@ -119,10 +122,10 @@ Flags:
 
 Use "sealos [command] --help" for more information about a command.
 ```
-> Installation is only required on one machine.
+> You only need to install it on one machine.
 
 
-### 4. Install the Cluster
+### 4. Install Cluster
 
 ```shell
 sealos run pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kubernetes:v1.24.0 \
@@ -132,18 +135,18 @@ sealos run pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kubernetes:
     --passwd [your-ssh-passwd] 
 ```
 
-> Note: Modify the IP addresses and password in the command.
+> Note that the IP addresses and passwords in the command need to be modified.
 
-> Ensure you are logged in as the root user, and ensure ports are open between nodes.
+> Make sure you are logged in as the root user, and the ports in the node environment must be accessible to each other.
 
-Parameter Description:
+Parameter descriptions:
 
-| Parameter Name |           Example Value            |            Parameter Description            |
-| :------------: | :--------------------------------: | :----------------------------------------: |
-|  --masters    |         192.168.100.101         | List of Kubernetes master node IP addresses |
-|   --nodes     | 192.168.100.102,192.168.100.103 | List of Kubernetes node IP addresses        |
-|   --passwd    |        [your-ssh-passwd]        |              SSH login password             |
-|  kubernetes   |   pubrepo.<<< custom_key.brand_main_domain >>>/googleimages/kubernetes:v1.24.0 | Kubernetes image                           |
+|    Parameter Name    |           Parameter Value Example            |            Parameter Description            |
+| :----------: | :-----------------------------: | :----------------------------: |
+|  --masters   |         192.168.100.101         | Kubernetes master node address list |
+|   --nodes    | 192.168.100.102,192.168.100.103 |  Kubernetes node node address list  |
+|   --passwd   |        [your-ssh-passwd]        |          SSH login password          |
+|  Kubernetes  |   labring/kubernetes:v1.24.0    |        Kubernetes image         |
 
 
 
@@ -153,7 +156,7 @@ Parameter Description:
 kubectl get nodes
 ```
 
-## Additional Operations
+## Others
 
 ### Add Nodes
 
@@ -183,7 +186,7 @@ sealos delete --nodes 192.168.100.104,192.168.100.105
 sealos delete --masters 192.168.100.104,192.168.100.105
 ```
 
-### Uninstall
+### How to Uninstall
 
 ```shell
 sealos reset

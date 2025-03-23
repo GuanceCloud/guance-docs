@@ -4,46 +4,46 @@
 
 ## Use Case Introduction
 
-For enterprises, the most important source of revenue is business operations, and in today's environment, most business operations are supported by corresponding IT systems. Therefore, ensuring the stability of business operations ultimately comes down to ensuring the reliability of internal IT systems. When a business system encounters anomalies or failures, colleagues from various departments such as business, application development, and operations often need to coordinate to investigate issues, which can involve **cross-platform, cross-departmental, and cross-domain** challenges, making the process both **time-consuming and labor-intensive**.
+The most important source of revenue for enterprises is business, and currently, the majority of businesses are supported by corresponding IT systems. So how to ensure the stability of a company's business boils down to ensuring the stability of internal IT systems within the enterprise. When the business system encounters anomalies or malfunctions, it often requires coordination among colleagues from various aspects such as business, application development, and operations for troubleshooting, which involves **cross-platform, cross-department, and cross-professional domain** issues, making the process **both time-consuming and labor-intensive**.
 
-To address this issue, the industry has developed a mature method: achieving unified monitoring of the entire business system’s **front-end, back-end, and logs** through **RUM + APM + LOG**, while integrating data from these three sources via key fields for **joint analysis**. This approach enhances work efficiency and ensures smooth system operation.
+To address this issue, there are already relatively mature methods in the industry, which involve using **RUM + APM + LOG** to achieve unified monitoring of the entire business system’s **front-end and back-end, logs**, while connecting the three-party data through key fields to enable **joint analysis**, thereby enhancing the efficiency of relevant staff and ensuring smooth system operation.
 
-- APM: Application Performance Monitoring (APM)
-- RUM: Real User Monitoring (RUM)
+- APM: Application Performance Monitoring
+- RUM: Real User Monitoring
 - LOG: Logs
 
-This article will discuss how to integrate these three types of monitoring and perform joint analysis using <<< custom_key.brand_name >>>. The demo used here is the Ruoyi permission management system. For more details, see <[From 0 to 1 Building Observability for Spring Cloud Services with <<< custom_key.brand_name >>>](../monitoring/spring-cloud-sample.md)>.
+This article will elaborate on how to integrate these three types of monitoring and how to use <<< custom_key.brand_name >>> for joint analysis. The demo used is the RuoYi permission management system. For more details, please refer to <[From 0 to 1 Utilizing <<< custom_key.brand_name >>> to Build Observability for Spring Cloud Services](../monitoring/spring-cloud-sample.md)>.
 
-Regarding logs, this article will use DataKit’s Logfwd collector to collect logs from business Pods. By adding the Logfwd sidecar to the Pod, it collects logs from the business container and sends them to DataKit. Since the business can see the sidecar, log files do not need to be stored on the host machine. For detailed usage, refer to the [Deployment System](#system) module below. After receiving the logs, DataKit uses configured Pipelines to parse the log files.
+Regarding logs, this article will use DataKit's Logfwd collector to gather logs from the business Pod. DataKit enables the Logfwd collector, adds lgfwd Sidecar to Pods to collect logs from the business container and send them to DataKit. Since the business is visible to the Sidecar, log files do not need to be stored on the host machine. Please see the [Deploy System](#system) module below for detailed usage. After receiving the logs, DataKit uses the configured Pipeline to parse the log files.
 
 ## Prerequisites
 
 ### Account Registration
 
-Go to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) to register an account and log in using your registered credentials.
+Go to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) to register an account, and log in with your registered account/ password.
 
 ![image](../images/k8s-rum-apm-log/1.png)
 
 ---
 
-### Deploy DataKit Using DaemonSet
+### Deploy DataKit via DaemonSet
 
-#### Obtain OpenWay Token
+#### Obtain OpenWay Address Token
 
-Click on 「Manage」 - 「Basic Settings」 and copy the token shown in the image below.
+Click 「Manage」 - 「Basic Settings」, copy the token shown in the following image.
 
 ![image](../images/k8s-rum-apm-log/2.png)
 
-Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `datakit.yaml` file.
+Click 「Integration」 - 「DataKit」 - 「Kubernetes」 to obtain the latest `datakit.yaml` file.
 
 ![image](../images/k8s-rum-apm-log/3.png)
 
 #### Execute Installation
 
-- Follow the steps in the `datakit.yaml` file obtained above and replace `your-token` in the file with the copied token.
-- Enable the container collector, logfwd collector, and ddtrace collector by mounting the `container.conf`, `logfwdserver.conf`, and `ddtrace.conf` files in the DataKit container.
+- Follow the steps in the `datakit.yaml` file, replacing `your-token` in the file with the token obtained from the above step.
+- Enable the container collector, logfwd collector, and ddtrace collector by mounting `container.conf`, `logfwdserver.conf`, and `ddtrace.conf` files in the DataKit container.
 
-> **Note:** Due to version differences, configurations may vary. Please refer to the latest version. This YAML contains complete deployment configurations, including subsequent operational steps for DataKit.
+> **Note:** Different versions of DataKit may have different configurations; please follow the latest version. This yaml includes complete deployment configurations and subsequent steps for configuring DataKit.
 
 ??? quote "Complete YAML Content"
 
@@ -194,11 +194,11 @@ Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `d
               value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
             - name: ENV_ENABLE_ELECTION
               value: enable
-            - name: ENV_GLOBAL_ENV_TAGS # Only useful for election tags
+            - name: ENV_GLOBAL_ENV_TAGS # Useful only for election tags
               value: cluster_name_k8s=k8s-prod
             - name: ENV_HTTP_LISTEN
               value: 0.0.0.0:9529
-            - name: ENV_NAMESPACE # Used for election
+            - name: ENV_NAMESPACE # For election
               value: guance-k8s-demo
             #- name: ENV_LOG_LEVEL
             #  value: debug
@@ -350,7 +350,7 @@ Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `d
       #### logfwdserver
       logfwdserver.conf: |-
         [inputs.logfwdserver]
-          ## logfwd receiver listens on address and port
+          ## logfwd receiving end listens on address and port
           address = "0.0.0.0:9531"
 
           [inputs.logfwdserver.tags]
@@ -358,11 +358,11 @@ Click on 「Integrate」 - 「DataKit」 - 「Kubernetes」 to get the latest `d
           # more_tag = "some_other_value"
     ```
 
-Different Kubernetes clusters require distinguishing between DataKit DaemonSets deployed within the same cluster by adding the `ENV_NAMESPACE` environment variable, ensuring that values under the same token are unique.
+Different Kubernetes clusters require distinguishing DaemonSets deployed DataKit elections by adding the `ENV_NAMESPACE` environment variable, where values under the same token cannot repeat.
 
-To distinguish between different Kubernetes clusters under the same token, add a global tag with the value `cluster_name_k8s=k8s-prod`.
+Global tags must be added under the same token to distinguish different Kubernetes clusters, with the value being `cluster_name_k8s=k8s-prod`.
 
-> Refer to <[Best Practices for Collecting Metrics from Multiple Kubernetes Clusters](multi-cluster.md)> for more details.
+> Refer to <[Best Practices for Multiple Kubernetes Cluster Metrics Collection](multi-cluster.md)> for details.
 
 Execute the commands:
 
@@ -374,54 +374,54 @@ $ kubectl get pod -n datakit
 
 ![image](../images/k8s-rum-apm-log/4.png)
 
-After DataKit installation, common Linux host plugins are enabled by default. You can view them under 「<<< custom_key.brand_name >>>」 - 「Scenarios」 - 「Linux Host Monitoring View」.
+After DataKit installation, Linux host common plugins are enabled by default. You can view them in 「<<< custom_key.brand_name >>>」 - 「Scenarios」 - 「Infrastructure Linux Host Monitoring View」.
 
 | Collector Name | Description |
 | -------------- | ----------- |
-| cpu            | Collects CPU usage information from the host. |
-| disk           | Collects disk usage information. |
-| diskio         | Collects disk I/O information from the host. |
-| mem            | Collects memory usage information from the host. |
-| swap           | Collects Swap memory usage information. |
-| system         | Collects operating system load information from the host. |
-| net            | Collects network traffic information from the host. |
-| host_process   | Collects a list of long-running processes (over 10 minutes). |
-| hostobject     | Collects basic host information (e.g., OS info, hardware info). |
-| kubernetes     | Collects Kubernetes cluster metrics. |
-| container      | Collects possible container objects and container logs on the host. |
+| cpu | Collect CPU usage statistics for the host |
+| disk | Collect disk usage statistics |
+| diskio | Collect disk IO statistics for the host |
+| mem | Collect memory usage statistics for the host |
+| swap | Collect Swap memory usage statistics |
+| system | Collect operating system load for the host |
+| net | Collect network traffic statistics for the host |
+| host_process | Collect resident (survived over 10 minutes) processes on the host |
+| hostobject | Collect basic information about the host (such as OS info, hardware info, etc.) |
+| kubernetes | Collect Kubernetes cluster metrics |
+| container | Collect possible container objects and container logs on the host |
 
-Click on the 「Infrastructure」 module to view the list of all hosts with installed DataKit.
+Click the 「Infrastructure」 module to view the list of all hosts where DataKit is installed.
 
 ![image](../images/k8s-rum-apm-log/5.png)
 
-Click on the 「Hostname」 to view detailed system information and integration status (all installed plugins on the host).
+Click 「Hostname」 to view detailed system information and integration running status (all installed plugins on that host).
 
 ![image](../images/k8s-rum-apm-log/6.png)
 
 ![image](../images/k8s-rum-apm-log/7.png)
 
-### Deploy Sample Application
+### Deploy Application Example
 
-#### Sample Description
+#### Example Explanation
 
-The Web layer accesses the backend Auth and System services via a gateway. The Web frontend is built with Vue, and the backend is developed in Java.<br />
-In this example, Statsd collects JVM metrics, and the images used come from `172.16.0.215:5000`. ddtrace collects JVM metrics from Java applications, and Nacos, Redis, and MySQL have internal IPs of `172.16.0.230`.
+The Web layer accesses the backend Auth and System services through the gateway. The Web is developed using Vue, while the backend is developed in Java.<br />
+In the example, Statsd collects JVM metrics, and the image repository used is `172.16.0.215:5000`. In the example, ddtrace collects JVM metrics for the Java application, and Nacos, Redis, MySQL internal network IP is `172.16.0.230`.
 
 ![image](../images/k8s-rum-apm-log/8.png)
 
 #### Write Web Deployment File
 
-Copy the Web application content to the `/usr/local/k8s/dist` directory.
+Copy the Web application content to `/usr/local/k8s/dist`.
 
 ![image](../images/k8s-rum-apm-log/9.png)
 
-Create the `/usr/local/k8s/DockerfileWeb` file.
+Create `/usr/local/k8s/DockerfileWeb`.
 
 ```shell
 $ vim /usr/local/k8s/DockerfileWeb
 ```
 
-Content:
+Content as follows:
 
 ```
 FROM nginx:1.21.0
@@ -437,7 +437,7 @@ EXPOSE 80
 EXPOSE 443
 ```
 
-Create `/usr/local/k8s/nginx.conf` with the following content:
+Create `/usr/local/k8s/nginx.conf`.
 
 ??? quote "`/usr/local/k8s/nginx.conf`"
 
@@ -481,7 +481,7 @@ Create `/usr/local/k8s/nginx.conf` with the following content:
 
             #error_page  404              /404.html;
 
-            # Redirect server error pages to the static page /50x.html
+            # redirect server error pages to the static page /50x.html
             #
             error_page   500 502 503 504  /50x.html;
             location = /50x.html {
@@ -491,7 +491,7 @@ Create `/usr/local/k8s/nginx.conf` with the following content:
     }
     ```
 
-Create `/usr/local/k8s/web-deployment.yaml` with the following content:
+Create `/usr/local/k8s/web-deployment.yaml`.
 
 ??? quote "`/usr/local/k8s/web-deployment.yaml`"
 
@@ -545,15 +545,15 @@ Create `/usr/local/k8s/web-deployment.yaml` with the following content:
 
 #### dd-java-agent Image
 
-When starting a user's jar using `java -jar`, you need to use `-javaagent:/usr/local/datakit/data/dd-java-agent.jar`. However, this jar may not exist in the user's image. To avoid modifying the customer's business image, we provide an image containing `dd-java-agent.jar` that runs as an Init container before the business container starts, sharing storage to provide `dd-java-agent.jar`.
+When starting the user's jar with `java -jar`, you need to use `-javaagent:/usr/local/datakit/data/dd-java-agent.jar`. However, this jar may not exist in the user's image. To avoid modifying the customer's business image, we need to create an image containing `dd-java-agent.jar` and start it as an Init container before the business container, providing `dd-java-agent.jar` via shared storage.
 
-<<< custom_key.brand_name >>> already provides this image.
+<<< custom_key.brand_name >>> has already provided this image.
 
 ```
 pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init
 ```
 
-If you want to directly embed the jar into the image, download [dd-java-agent](https://github.com/GuanceCloud/dd-trace-java) and reference the following script in your Dockerfile to embed the jar into the image. In the deployment yaml, change the `-javaagent` jar to the one you embedded.
+This example uses the Sidecar method. If you want to directly embed the jar into the image, please download [dd-java-agent](https://github.com/GuanceCloud/dd-trace-java), and refer to the script below in your Dockerfile to embed the jar into the image. In the deployment yaml, change the -javaagent jar to the one you embedded.
 
 ```
 FROM openjdk:8u292
@@ -561,18 +561,18 @@ FROM openjdk:8u292
 ENV workdir /data/app/
 RUN mkdir -p ${workdir}
 
-COPY  dd-java-agent.jar ${workdir}  # Embed dd-java-agent into the image
+COPY  dd-java-agent.jar ${workdir}  # Here is embedding the dd-java-agent into the image
 ```
 
 #### Write Gateway Deployment File
 
-Create `/usr/local/k8s/DockerfileGateway`
+Create `/usr/local/k8s/DockerfileGateway`.
 
 ```bash
 $ vim /usr/local/k8s/DockerfileGateway
 ```
 
-File content:
+File content as follows:
 
 ```
 FROM openjdk:8u292
@@ -586,7 +586,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /dev/null"]
 ```
 
-Create `/usr/local/k8s/gateway-deployment.yaml` with the following content:
+Create `/usr/local/k8s/gateway-deployment.yaml`.
 
 ??? quote "`/usr/local/k8s/gateway-deployment.yaml`"
 
@@ -669,13 +669,13 @@ Create `/usr/local/k8s/gateway-deployment.yaml` with the following content:
 
 #### Write Auth Deployment File
 
-Create `/usr/local/k8s/DockerfileAuth`
+Create `/usr/local/k8s/DockerfileAuth`.
 
 ```shell
 $ vim  /usr/local/k8s/DockerfileAuth
 ```
 
-File content:
+File content as follows:
 
 ```
 FROM openjdk:8u292
@@ -689,7 +689,7 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS} -jar ${jar} ${PARAMS} 2>&1 > /dev/null"]
 ```
 
-Create `/usr/local/k8s/auth-deployment.yaml` with the following content:
+Create `/usr/local/k8s/auth-deployment.yaml`.
 
 ??? quote "`/usr/local/k8s/auth-deployment.yaml`"
 
@@ -771,13 +771,13 @@ Create `/usr/local/k8s/auth-deployment.yaml` with the following content:
 
 #### Write System Deployment File
 
-Create `/usr/local/k8s/DockerfileSystem`
+Create `/usr/local/k8s/DockerfileSystem`.
 
 ```shell
 $ vim /usr/local/k8s/DockerfileSystem
 ```
 
-File content:
+File content as follows:
 
 ```
 FROM openjdk:8u292
@@ -792,10 +792,10 @@ WORKDIR ${workdir}
 ENTRYPOINT ["sh", "-ec", "exec java ${JAVA_OPTS}   -jar ${jar} ${PARAMS}  2>&1 > /dev/null"]
 ```
 
-Create `/usr/local/k8s/system-deployment.yaml`, using three images `172.16.0.238/df-ruoyi/demo-system:v1`, `pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.7`, and `pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init`. <br />
-Here, `dd-lib-java-init` provides the `dd-java-agent.jar` file for the system-container business container, and `logfwd` collects logs from the business container. The configuration file for `logfwd` is mounted into the container via a ConfigMap, specifying the location of the logs to be collected and the source name.
+Create `/usr/local/k8s/system-deployment.yaml`, which uses 3 images `172.16.0.238/df-ruoyi/demo-system:v1`, `pubrepo.<<< custom_key.brand_main_domain >>>/datakit/logfwd:1.2.7`, `pubrepo.<<< custom_key.brand_main_domain >>>/datakit-operator/dd-lib-java-init`. <br />
+Among them, dd-lib-java-init provides the `dd-java-agent.jar` file for the system-container business container, and logfwd collects the log files from the business container. The configuration file for logfwd is mounted into the container via ConfigMap, specifying the location of the logs to be collected, source name, etc., in the configuration file.
 
-Complete content of `system-deployment.yaml`:
+The complete content of `system-deployment.yaml` is as follows:
 
 ??? quote "`system-deployment.yaml`"
 
@@ -941,25 +941,25 @@ Complete content of `system-deployment.yaml`:
 
 Additionally, `system-deployment.yaml` uses environment variables to specify DataKit and logfwd ports.
 
-Environment variable explanation:
+Environment Variable Description:
 
 - LOGFWD_DATAKIT_HOST: DataKit address
 - LOGFWD_DATAKIT_PORT: logfwd port
 
-logfwd-conf parameter explanation:
+logfwd-conf Parameter Description:
 
 - logfiles: List of log files.
-- ignore: File path filter using glob rules; files matching any condition will not be collected.
+- ignore: File path filter, using glob rules, any matching condition will prevent collection of that file.
 - source: Data source.
-- service: Additional tag, defaults to `$source` if empty.
-- pipeline: Defines script path when using pipelines.
-- character_encoding: Select encoding.
-- multiline_match: Multiline matching.
-- remove_ansi_escape_codes: Whether to remove ANSI escape codes, e.g., text color in standard output. Values can be true or false.
+- service: Additional tag if left blank defaults to `$source`.
+- pipeline: Script path when using pipeline.
+- character_encoding: Choose encoding.
+- multiline_match: Multi-line matching.
+- remove_ansi_escape_codes: Whether to remove ANSI escape codes, such as text color in standard output, value is true or false.
 
-#### Add node_ip Label to Tracing Data
+#### Add node_ip Tag to Trace Data
 
-Add a ConfigMap in `datakit.yaml`:
+Add ConfigMap in `datakit.yaml`:
 
 ```toml
 ddtrace.conf: |-
@@ -969,7 +969,7 @@ ddtrace.conf: |-
     customer_tags = ["node_ip"]
 ```
 
-Under `volumeMounts`, add:
+Add under volumeMounts:
 
 ```yaml
 - mountPath: /usr/local/datakit/conf.d/ddtrace/ddtrace.conf
@@ -981,7 +981,7 @@ Under `volumeMounts`, add:
 
 #### Create Application
 
-Log in to the 「<<< custom_key.brand_name >>> platform」, choose 「User Access Monitoring」 - 「Create Application」 - 「Select Web Type」 - 「Sync Load」, and input the application name `web-k8s-demo`
+Log in to the 「<<< custom_key.brand_name >>> platform」, choose 「User Access Monitoring」 - 「Create Application」 - 「Select Web Type」 - 「Sync Load」, and input the application name web-k8s-demo.
 
 ![image](../images/k8s-rum-apm-log/10.png)
 
@@ -994,9 +994,10 @@ Enable the RUM collector in DataKit by adding `rum` to the `ENV_DEFAULT_ENABLED_
   value: cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,ebpf,rum
 ```
 
-For user access monitoring, the DataKit address must be accessible from the user's network. Modify the DataKit configuration file `/usr/local/datakit/conf.d/datakit.conf` to set `listen="0.0.0.0:9529"`. In this example, DataKit is deployed using DaemonSet, so the default configuration has been modified. In production, it is recommended to deploy a separate DataKit instance for RUM.
+The DataKit address used for user access monitoring needs to be accessible by the customer's network, so modify the DataKit configuration file `/usr/local/datakit/conf.d/datakit.conf` to `listen="0.0.0.0:9529"`. <br />
+In this example, DataKit is deployed via DaemonSet, and the default configuration has been modified. It is recommended to deploy a separate DataKit for production RUM usage.
 
-Modify the `/usr/local/k8s/dist/index.html` file and add the following content to the head section:
+Modify the `/usr/local/k8s/dist/index.html` file, add the following content in the head section:
 
 ```
 <script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
@@ -1013,34 +1014,33 @@ Modify the `/usr/local/k8s/dist/index.html` file and add the following content t
     })
 </script>
 ```
+Parameter Description:
 
-Parameter explanations:
+- applicationId: Application id.
 
-- applicationId: Application ID.
+- datakitOrigin: The address or domain name of DataKit accessible by users, here 172.16.0.230 is the ip address of k8s node1.
 
-- datakitOrigin: The DataKit address or domain accessible by users, where `172.16.0.230` is the IP address of k8s node1.
+- env: Required, the environment to which the application belongs, either test or product or other fields.
 
-- env: Required, specifies the environment (test, production, etc.).
+- version: Required, the version number to which the application belongs.
 
-- version: Required, specifies the application version number.
+- allowedTracingOrigins: RUM integrated with APM, configure the backend server address or domain name. Since both frontend and backend access addresses in this example are [http://8.1.136.193.105:30000/](http://8.136.193.105:30000/), the port 30000 needs to be included during configuration.
 
-- allowedTracingOrigins: Connects RUM and APM by configuring backend server addresses or domains. Since both frontend and backend access addresses are `[http://8.136.193.105:30000/](http://8.136.193.105:300- allowedTracingOrigins: Connects RUM and APM by configuring backend server addresses or domains. Since both frontend and backend access addresses are `http://8.136.193.105:30000/`, the port 30000 needs to be included in the configuration.
+- trackInteractions: User behavior statistics, such as clicking buttons and submitting information.
 
-- trackInteractions: User interaction tracking, such as button clicks and form submissions.
+- traceType: Not mandatory, default is ddtrace. Currently supports 6 types: ddtrace, zipkin, skywalking_v3, jaeger, zipkin_single_header, w3c_traceparent.
 
-- traceType: Optional, defaults to `ddtrace`. Currently supports six types: `ddtrace`, `zipkin`, `skywalking_v3`, `jaeger`, `zipkin_single_header`, and `w3c_traceparent`.
-
-> For more detailed information on user access monitoring, refer to <[Best Practices for Web Application Monitoring (RUM)](../monitoring/web.md)>.
+> For a detailed understanding of user access monitoring, refer to <[Best Practices for Web Application Monitoring (RUM)](../monitoring/web.md)>.
 
 ## Application Performance Monitoring (APM)
 
 #### Enable ddtrace
 
-Refer to <[Add node_ip Label to Tracing Data](#node_ip)>.
+Refer to <[Add node_ip Tag to Trace Data](#node_ip)>.
 
 #### Java Application Integration with ddtrace
 
-In the `DockerfileSystem` used to build the system image, the command to start the jar is:
+In the `DockerfileSystem` used to create the system image file, the command to start the jar is:
 
 ```
 exec java ${JAVA_OPTS}   -jar ${jar}
@@ -1054,24 +1054,24 @@ The environment variable `JAVA_OPTS` is defined in the deployment file `system-d
     -javaagent:/usr/dd-java-agent/agent/dd-java-agent.jar -Ddd.service.name=demo-k8s-system  -Ddd.tags=container_host:$(POD_NAME) -Ddd.service.mapping=mysql:mysql-k8s,redis:redisk8s -Ddd.env=dev -Ddd.agent.port=9529
 ```
 
-Detailed explanation of `JAVA_OPTS`:
+Detailed explanation of JAVA_OPTS:
 
 ```
--Ddd.env: Environment type of the application, optional.
--Ddd.tags: Custom tags, multiple tags separated by commas, optional.
--Ddd.service.name: Name of the JVM data source application, required.
--Ddd.agent.host=localhost: DataKit address, optional.
--Ddd.agent.port=9529: DataKit port, required.
+-Ddd.env: The application's environment type, optional.
+-Ddd.tags: Custom tags, multiple separated by commas, optional.
+-Ddd.service.name: The application name for JVM data source, required.
+-Ddd.agent.host=localhost    DataKit address, optional.
+-Ddd.agent.port=9529         DataKit port, required.
 -Ddd.version: Version, optional.
--Ddd.jmxfetch.check-period: Collection frequency in milliseconds, default 1500, optional.
--Ddd.jmxfetch.statsd.host=127.0.0.1: Statsd collector connection address same as DataKit address, optional.
--Ddd.jmxfetch.statsd.port=8125: UDP connection port for DataKit's statsd collector, default 8125, optional.
--Ddd.trace.health.metrics.statsd.host=127.0.0.1: Address for sending health metrics data, same as DataKit address, optional.
--Ddd.trace.health.metrics.statsd.port=8125: Port for sending health metrics data, optional.
--Ddd.service.mapping: Aliases for services like Redis, MySQL, optional.
+-Ddd.jmxfetch.check-period Indicates collection frequency in milliseconds, default 1500, optional.
+-Ddd.jmxfetch.statsd.host=127.0.0.1 statsd collector connection address same as DataKit address, optional.
+-Ddd.jmxfetch.statsd.port=8125 Indicates the UDP connection port of the statsd collector on DataKit, default 8125, optional.
+-Ddd.trace.health.metrics.statsd.host=127.0.0.1 Own metric data collection send address same as DataKit address, optional.
+-Ddd.trace.health.metrics.statsd.port=8125 Own metric data collection send port, optional.
+-Ddd.service.mapping: Alias for redis, mysql applications called, optional.
 ```
 
-> **Note:** The `JAVA_OPTS` does not specify the DataKit address for reporting tracing data. Instead, it uses the environment variable `DD_AGENT_HOST` defined in the YAML to specify the DataKit address for reporting tracing data. In a Kubernetes cluster, tracing data from a POD is reported to the DataKit deployed on the same host. Detailed configuration can be found in `system-deployment.yaml`.
+> **Note:** The `JAVA_OPTS` does not specify the DataKit address where the trace data should be reported; instead, it specifies the DataKit address through the environment variable `DD_AGENT_HOST` defined in the yaml file. In Kubernetes clusters, the principle of reporting trace data is that POD trace data is reported to the DataKit deployed on the same host machine. Detailed configurations can be found in `system-deployment.yaml`.
 
 ```yaml
 - name: DD_AGENT_HOST
@@ -1081,7 +1081,7 @@ Detailed explanation of `JAVA_OPTS`:
       fieldPath: status.hostIP
 ```
 
-#### Set Cross-Origin Request Whitelist
+#### Set Cross-origin Request Whitelist
 
 response.headers.add('Access-Control-Allow-Headers','x-datadog-parent-id,x-datadog-sampled,x-datadog-sampling-priority,x-datadog-trace-id')
 
@@ -1089,18 +1089,18 @@ response.headers.add('Access-Control-Allow-Headers','x-datadog-parent-id,x-datad
 
 #### Configure logback.xml
 
-Modify `logback.xml` to output `traceId`, `spanId`, and `service` to logs for correlation with traces.
+Modify `logback.xml` to output traceId, spanId, and service to logs for association with traces.
 
 ![image](../images/k8s-rum-apm-log/11.png)
 
 #### Enable Log Collection
 
-For Kubernetes log collection, it is recommended to use DataKit’s logfwd collector.
+For Kubernetes log collection, it is recommended to use DataKit's logfwd collector,
 
 ```toml
     logfwdserver.conf: |-
       [inputs.logfwdserver]
-        ## logfwd receiver listens on address and port
+        ## logfwd receiving end listens on address and port
         address = "0.0.0.0:9531"
 
         [inputs.logfwdserver.tags]
@@ -1108,7 +1108,7 @@ For Kubernetes log collection, it is recommended to use DataKit’s logfwd colle
         # more_tag = "some_other_value"
 ```
 
-Under `volumeMounts`, add:
+Add under volumeMounts:
 
 ```yaml
 - mountPath: /usr/local/datakit/conf.d/log/logfwdserver.conf
@@ -1118,12 +1118,12 @@ Under `volumeMounts`, add:
 
 #### Log Segmentation Pipeline
 
-Use Pipeline to parse logs generated by the System module, extracting key information into tags such as `traceID` for correlation with traces.
+Use Pipeline to segment logs generated by the System system, cutting key information into tags, such as traceID, to associate with traces.
 
-Click on the 「Logs」 module, enter 「Pipelines」, create a new Pipeline, select `Source: k8s-log-system` set during log collection in the System module, input the following content, test successfully, and click 「Save」.
+Click the 「Logs」 module, enter 「Pipelines*」, create a new Pipeline, select `Source: k8s-log-system` set when collecting logs in the System module, input the following content, test successfully and click 「Save」.
 
 ```
-#2022-08-09 13:39:57.392 [http-nio-9201-exec-4] INFO  c.r.s.c.SysUserController - [list,70] - demo-k8s-system 1241118275256671447 9052729774571622516 - Query user list starts
+#2022-08-09 13:39:57.392 [http-nio-9201-exec-4] INFO  c.r.s.c.SysUserController - [list,70] - demo-k8s-system 1241118275256671447 9052729774571622516 - Start querying user list
 
 grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - %{DATA:service_name} %{DATA:trace_id} %{DATA:span_id} - %{GREEDYDATA:msg}")
 
@@ -1134,7 +1134,7 @@ default_time(time,"Asia/Shanghai")
 
 ## Deploy Application
 
-#### Build Images and Upload to Harbor Repository
+#### Build Image and Upload to Harbor Repository
 
 ```shell
 $ cd /usr/local/k8s/
@@ -1165,21 +1165,21 @@ $ kubectl apply -f system-deployment.yaml
 
 ## Trace Analysis
 
-#### RUM-APM Correlation
+#### RUM APM Linkage
 
-Access the Web application, click on 「System Management」 - 「User Management」. This triggers a user list query request `list`. The `dataflux-rum.js` script generates a `trace-id` stored in the header, showing that the `trace-id` for the `list` interface is `2772508174716324531`. When the request calls the backend `list` interface, the backend’s ddtrace reads the `trace-id` and records it in its own trace data. Adding `%X{dd.trace_id}` in `logback.xml` ensures the `trace_id` is included in the log output, achieving **correlation between RUM, APM, and Logs**.
+Access the Web application, click 「System Management」 - 「User Management」, at this point trigger the user list query request list, `dataflux-rum.js` will generate a trace-id stored in the header, you can see that the trace-id corresponding to the list interface is 2772508174716324531. After calling the backend list interface, the backend ddtrace reads the trace-id and records it in its own trace data. Adding `%X{dd.trace_id}` in `logback.xml`, the trace_id will be output with the logs, thus achieving **RUM, APM, and Log linkage**.
 
 ![image](../images/k8s-rum-apm-log/13.png)
 
-Click on 「User Access Monitoring」 - 「ruoyi-k8s-web」 - 「Explorer」 - 「View」. Since the previous operation queried the user management list, click on `/system/user` in the list.
+Click 「User Access Monitoring」 - 「ruoyi-k8s-web」 - 「Explorer」 - 「View」, the previous operation was querying the user management list, so click `/system/user` in the list.
 
 ![image](../images/k8s-rum-apm-log/14.png)
 
-Click on 「Fetch/XHR」
+Click 「Fetch/XHR」
 
 ![image](../images/k8s-rum-apm-log/15.png)
 
-Click on `prod-api/system/user/list` in the above image. `prod-api` is an nginx proxy request, and `/system/user/list` is the backend API endpoint. Inside, you can see specific request details and response times.
+Click `prod-api/system/user/list` in the above figure, prod-api is the forwarding request added by nginx, `/system/user/list` is the backend API interface, entering inside you can see specific request and response time details.
 
 ![image](../images/k8s-rum-apm-log/16.png)
 
@@ -1189,14 +1189,14 @@ Click on `prod-api/system/user/list` in the above image. `prod-api` is an nginx 
 
 #### Log Analysis
 
-Click on the 「Logs」 module, select 「All Sources」, and by default, query logs from the last 15 minutes. Based on the `trace_id 2772508174716324531` generated by the frontend, fill it in the 「Search Bar」 and press Enter to search.
+Click the 「Logs」 module, choose 「All Sources」, default query logs from the last 15 minutes. According to the frontend-generated `trace_id 2772508174716324531`, fill it in the 「Search Bar」, press Enter to search.
 
 ![image](../images/k8s-rum-apm-log/19.png)
 
-Click on 「Application Performance Monitoring」 - 「Trace Filter Box」 - input `trace_id:704229736283371775`, press Enter to retrieve the trace call details.
+Click 「Application Performance Monitoring」 - 「Trace Filter」 - Input `trace_id:704229736283371775`, press Enter to retrieve the trace call situation.
 
 ![image](../images/k8s-rum-apm-log/20.png)
 
-Click on 「SysUserController.list」 to view detailed information.
+Click 「SysUserController.list」 to view detailed information.
 
 ![image](../images/k8s-rum-apm-log/21.png)

@@ -5,7 +5,7 @@
 <br />**GET /api/v1/workspace/role/sensitive_mask_fields**
 
 ## Overview
-Get the current workspace feature menu
+Get workspace role sensitive data masking fields
 
 
 
@@ -55,4 +55,4 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/role
 
 
 
-In this translation, specific terms such as "工作空间" are translated to "workspace," and "敏感数据脱敏字段" is translated to "sensitive data masking fields." The API endpoint and response structure are kept intact to ensure compatibility and accuracy.
+

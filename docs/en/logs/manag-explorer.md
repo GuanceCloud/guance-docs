@@ -1,16 +1,17 @@
-# Log List
+# Logs List
 
 ---
 
-The log viewer is one of the core tools for you to perform log analysis and troubleshoot issues. Facing the massive amount of log data collected and reported by <<< custom_key.brand_name >>>, you can achieve efficient log management through various operations such as searching, filtering, and exporting.
+The log explorer is one of your core tools for log analysis and troubleshooting. Facing the massive amount of log data collected and reported by <<< custom_key.brand_name >>>, you can perform various operations such as searching, filtering, and exporting to efficiently manage log information.
+
 
 ## View Mode {#mode}
 
-- Standard Mode: Fields are displayed in columns;
+- Standard mode: Fields are displayed in columns;
 
 <img src="../img/log_view_model.png" width="70%" >
 
-- Stacked Mode: Except for the time field (`time`), all other fields will be merged into a single column and displayed in multiple lines within the cell.
+- Stacked mode: Except for the time field (`time`), all other fields will be merged into a single column and displayed in multiple lines within the cell.
 
 <img src="../img/log_view_model_1.png" width="70%" >
 
@@ -20,98 +21,88 @@ In stacked mode, you can perform graphical operations on specific fields:
 
 ## Status Distribution Chart
 
-<<< custom_key.brand_name >>> automatically divides several time points based on the selected time range, displaying the number of different log statuses via a stacked bar chart to assist with statistical analysis. If logs have been filtered, the bar chart will display the results after filtering.
+Based on the selected time range, the system will automatically divide into multiple time points and display the quantity of different log statuses in the form of a stacked bar chart, assisting in efficient statistical analysis. When logs are filtered, the bar chart will synchronize in real-time to display the filtered results.
 
-- You can export the chart by hovering over it, ultimately exporting it to dashboards, notes, or clipboard;
+- You can hover over the chart to export it, eventually exporting it to a dashboard, note, or copying it to the clipboard;
 - You can customize the time interval selection.
 
-![](../img/10.export_pic.png)
+![](../img/export_chart.png)
 
-## Time Widget
-
-The <<< custom_key.brand_name >>> viewer defaults to displaying log data from the past 15 minutes. You can customize the [time range](../getting-started/function-details/explorer-search.md#time) for data display.
 
 ## Log Index
 
-You can set up [multi-log indices](./multi-index/index.md) to filter and save logs that meet certain criteria in different log indices. By selecting different data storage policies for log indices, you can save on log data storage costs.
+By setting up [Log Multi-Indexes](./multi-index/index.md), logs that meet certain conditions can be stored in different indexes, and an appropriate data storage strategy can be selected for each index, effectively saving log data storage costs.
 
-After setting up indices, you can switch between different indices in the viewer to view corresponding log content.
+After setting up, you can easily switch between different indexes in the explorer to view corresponding log content.
 
-<img src="../img/5.log_3.1.png" width="70%" >
+<img src="../img/log_explorer_index.png" width="80%" >
 
 ## Search and Filtering
 
-In the search bar of the log viewer, you can use [various search and filtering methods](../getting-started/function-details/explorer-search.md).
+In the search bar of the log explorer, multiple [search and filter methods](../getting-started/function-details/explorer-search.md) are supported.
 
-After entering search or filter conditions, you can preview the query results. You can copy these conditions for direct use in charts or query tools.
+After entering search or filter conditions, you can preview the query effects. You can also copy these conditions for direct use in charts or query tools.
 
 <img src="../img/bar-preview.png" width="70%" >
 
-## DQL Search {#dql}
 
-**Prerequisite**: The DQL search function is currently only supported in the log viewer.
+### DQL Search {#dql}
 
-In the log viewer, you can switch to DQL manual input query mode by clicking the toggle button :fontawesome-solid-code: inside the search box, allowing you to customize and input filtering and search conditions.
+**Prerequisite**: The DQL search function is currently only supported for use with the log explorer.
 
-- Filter Conditions: Supports `and / or` combinations, supports using `()` parentheses to indicate search priority, supports `=` and `!=` operators;
-- Search Conditions: Supports using the DQL function `query_string()` for string queries, such as entering `message = query_string()` to search log content.
+By clicking the toggle button :fontawesome-solid-code: on the right side of the search box, you can enter the manual input query mode for DQL.
+
+- Filter conditions: Supports arbitrary combinations of `and / or`, supports specifying priority through `()` parentheses, and supports operators such as `=` and `!=`;
+- Search conditions: Supports using the DQL function `query_string()` for string queries. For example, entering `message = query_string()` allows for full-text searches of log content.
 
 > For more DQL syntax, refer to [DQL Definition](../dql/define.md).
 
-## Quick Filters {#filter}
 
-On the left side of the log viewer, you can edit [quick filters](../getting-started/function-details/explorer-search.md#quick-filter).
-
-**Note**: If the values listed in quick filters are affected by sampling, the sampling rate will be displayed, and users can temporarily disable sampling.
-
-## Custom Display Columns
-
-The log viewer defaults to displaying the `time` and `message` fields. You can perform operations like sorting ascending/descending, moving columns left/right, adding/removing columns, adding to quick filters, grouping, etc.
-
-> For more details, refer to [Display Column Explanation](../getting-started/function-details/explorer-search.md#columns).
 
 ### JSON Field Return {#json-content}
 
-**Note**: This feature is only available to user roles with DQL query permissions.
+**Note**: This feature is only applicable to user roles with DQL query permissions.
 
-<<< custom_key.brand_name >>> DQL queries support extracting embedded values from JSON fields in log data by adding fields with the `@` symbol in the DQL query statement. The system will recognize this configuration and display it as an independent field in the query results. For example:
+DQL queries support extracting nested values from JSON fields in log data. You just need to add fields with the `@` symbol in the DQL query statement, and the system will automatically recognize this configuration and display the extracted values as independent fields in the query results. For example:
 
-- Normal Query:
+- Normal query:
 
 <img src="../img/json.png" width="70%" >
 
-- Expected Query After Extracting Embedded Fields:
+- Query after extracting embedded fields:
 
 <img src="../img/json-1.png" width="70%" >
 
-In the log viewer, if you want to specify viewing extracted values from each log's `message` JSON text directly in the data list, add a field in the display columns with the format `@target_fieldname`. As shown below, we added `@fail_reason` configured in the DQL query statement to the display columns:
+In the log explorer, if you want to directly specify in the data list the values extracted from the JSON text of each log's `message`, add fields in the format `@targer_fieldname` in the display columns. As shown below, we added `@fail_reason` configured in the DQL query statement to the display columns:
 
 ![](../img/json-3.gif)
 
 ## Create Monitor {#new}
 
-While filtering log data, if you wish to implement further alert monitoring on the filtered data, you can set up monitors with one click. <<< custom_key.brand_name >>> will automatically apply your selected index, data source, and search conditions, simplifying the configuration process.
+While filtering log data, if you need to further alert monitor the filtered results, you can achieve this by setting up a monitor with one click. The system will automatically apply the selected index, data source, and search conditions, simplifying the configuration process.
 
-**Note**:
 
-1. If another workspace is selected in the top-left corner of the viewer, the search conditions will not be synchronized, and the monitor configuration page will be empty by default.
-2. In the standard Commercial Plan, site-level `left*` queries are enabled by default. You only need to enable workspace-level `left*` queries to support monitor `left*` queries. For the Deployment Plan, you can independently enable or disable site-level `left*` queries. Only when both site and workspace-level `left*` queries are enabled can the monitor perform `left*` queries. Otherwise, if the log viewer configures a `left*` query, switching to the monitor will result in an error.
+???+ warning "Note"
+
+    - If another workspace is selected in the upper left corner of the log explorer, the search conditions will not be synchronized to the monitor configuration page, and the monitor configuration page will default to being empty.
+    - In the standard commercial edition, the site-level `left*` query function is enabled by default. You only need to enable the workspace-level `left*` query to support the monitor's `left*` query. For the deployment edition, you can independently enable or disable the site-level `left*` query. Only when both the site and workspace-level `left*` queries are enabled can the monitor perform `left*` queries. Otherwise, if the log explorer is configured with a `left*` query, an error may occur when switching to the monitor.
 
 ![](../img/explorer-monitor.png)
 
 ![](../img/explorer-monitor-1.png)
 
+
 ## Copy as cURL
 
-The log viewer supports obtaining log data via command line. On the right side of the log data list under **Settings**, click **Copy as cURL** to copy the cURL command line. Execute this command on your host terminal to retrieve log data for the current time period based on the selected filters and search conditions.
+In the log explorer, you can obtain log data via command-line form. In the **Settings** section on the right side of the log data list, click the **Copy as cURL** button to copy the corresponding cURL command. Pasting and executing this command in the host terminal will retrieve log data that meets the filtering and search criteria within the current time period.
 
 ![](../img/logexport-1.png)
 
-<u>**Example**</u>
+*Example*
 
-After copying the cURL command line, it looks like the following: Replace `<Endpoint>` with the domain name, and `<DF-API-KEY>` should be replaced with the **Key ID** from [API Management](../management/api-key/index.md).
+After copying the cURL command line, it looks like the following figure: where `<Endpoint>` needs to be replaced with the domain name, and `<DF-API-KEY>` needs to be replaced with the **Key ID** from [API Management](../management/api-key/index.md).
 
-> For more parameter explanations, refer to [DQL Data Query](../open-api/query-data/query-data.md).
+> For more related parameter explanations, refer to [DQL Data Query](../open-api/query-data/query-data.md).
 > 
 > For more API information, refer to [Open API](../management/api-key/open-api.md).
 
@@ -122,67 +113,62 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 - -insecure
 ```
 
-**Note**: Only **Standard Member and above** can perform the copy command line operation.
 
-Apart from this export path, you can also use [other log data export](#logexport) methods.
+**Note**: Only **Standard Members and Above** can perform the copy command-line operation.
 
-## Set Status Colors {#status-color}
+Besides this export path, you can also adopt [other log data export](#logexport) methods.
 
-<<< custom_key.brand_name >>> has predefined system default colors for status values. If you need to modify the color displayed for data in different states in the viewer, you can do so by clicking **Set Status Colors**.
+
+## Set Status Color {#status-color}
+
+The system has pre-set default colors for status values. If you need to customize the colors displayed for different statuses in the explorer, you can modify them by clicking **Set Status Color**.
 
 <img src="../img/status-color.png" width="70%" >
 
 ## Formatting Configuration
 
-<font size=2>**Note**: Only administrators and above can configure formatting settings for the viewer.</font>
+<font size=2>**Note**: Only administrators and above can configure the explorer formatting.</font>
 
-Formatting configuration allows you to hide sensitive log data or highlight important log data, and you can quickly filter by replacing original log content.
+Through formatting configuration, you can hide sensitive log content, highlight important log content, or quickly filter by replacing log content.
 
-Click the **Settings** in the top-right corner of the viewer list, then click **Formatting Configuration** to add mappings, enter the following content, and click Save to replace the original log content containing "DEBUG" with the format you want to display.
+1. Click the **Settings** icon in the upper-right corner of the explorer list;
+2. Click **Formatting Configuration**;
+3. Add mapping rules, input the following contents, and save:
 
-- Field: e.g., Content
-- Matching Method: e.g., match (currently supports `=`, `!=`, `match`, `not match`)
-- Matching Content: e.g., DEBUG
-- Display as Content: e.g., `******`
+    - Field: Specify the log field (such as `content`).
+    - Matching method: Choose the matching method (currently supports =, !=, match, not match).
+    - Matching content: Input the content to match (such as DEBUG).
+    - Display content: Input the replacement content to display (such as ******).
+
 
 ![](../img/11.log_format_2.gif)
 
 ## Log Data Export {#logexport}
 
-In **Logs**, you can first filter out the desired log data and then export it for viewing and analysis via :octicons-gear-24:, supporting export to CSV files or dashboards and notes.
+In **Logs**, you can first filter out the required log data, then export it as a CSV file or save it to a dashboard and notes via :octicons-gear-24: > Export button for further viewing and analysis.
 
 ![](../img/5.log_explorer_3.png)
 
-If you need to export a specific log entry, open the log detail page and click the :material-tray-arrow-up: icon in the top-right corner.
+If you need to export a specific log data, open the detail page of the log and click the :material-tray-arrow-up: icon in the upper-right corner.
 
 ![](../img/export-log-0808.png)
 
+
 ## Log Color Highlighting
 
-To help you quickly obtain key log information, <<< custom_key.brand_name >>> uses different colors to highlight different parts of the log content, divided into light and dark themes.
+To help quickly locate key information in logs, the system uses color highlighting to display log content. When entering keywords in the search bar, only the matched keywords will be highlighted.
 
-**Note**: When searching logs in the search bar, only the matched keywords remain highlighted in the returned list.
 
-| Log Content | Light Theme | Dark Theme |
-| --- | --- | --- |
-| Date (log occurrence time) | Yellow | Light Yellow |
-| Keywords (HTTP protocol related, such as GET) | Green | Light Green |
-| Text (quoted strings) | Blue | Light Blue |
-| Default (unmarked text) | Black | Gray |
-| Numbers (log status codes, such as 404) | Purple | Light Purple |
+## Single Log Line Expansion and Copy
 
-![](../img/2.log_1.png)
+- Click the :material-chevron-down: button in the log entry to view the complete content of the log. If the log supports JSON format, it will be displayed in JSON format; otherwise, it will display normally.
 
-## Single-line Log Expansion and Copy
+- Click the :octicons-copy-16: button to copy the entire log content to the clipboard.
 
-Click :material-chevron-down: on a log entry to expand and view its full content;
-
-Click the :octicons-copy-16: button to copy the entire log entry. When expanded, if JSON display is supported, the log will be shown in JSON format; otherwise, it will display normally.
-
-![](../img/5.log_explorer_1.png)
+![](../img/log_explorer_expand_copy.png)
 
 ## Multi-line Log Browsing
 
-<<< custom_key.brand_name >>>'s log data list defaults to showing the trigger time and content of logs. You can choose to display logs in "1 Line", "3 Lines", "10 Lines", or "All" in the **Display Columns** to view complete log content.
+In the log data list, the trigger time and content of each log are displayed by default. Through the Explorer > Display Columns, you can choose to display "1 Line", "3 Lines", "10 Lines" or all content to view complete log information.
 
-![](../img/5.log_explorer_2.gif)
+![](../img/log_explorer_lines.png)

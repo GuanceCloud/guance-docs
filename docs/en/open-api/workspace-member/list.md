@@ -1,4 +1,4 @@
-# Get Member List
+# Get member list
 
 ---
 
@@ -9,24 +9,28 @@ List all members in the current workspace
 
 
 
-## Query Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
+## Query request parameters
+
+| Parameter name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| search | string | No  | Search by name/email<br>Example: supper_workspace <br>Can be empty: False <br> |
-| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| search | string |  | Search by name/email<br>Example: supper_workspace <br>Can be empty: False <br> |
+| pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of returns per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Notes
+## Additional parameter notes
 
 
 
-## Request Example
+
+
+## Request example
 ```shell
 curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/members/list?pageIndex=1&pageSize=2' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 
 
@@ -39,7 +43,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/memb
             "createAt": 1614149795,
             "creator": "extend",
             "deleteAt": -1,
-            "email": "88@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "extend": {
                 "user_icon": "acnt_xxxx32.png"
             },
@@ -54,7 +58,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/memb
             "updator": "external",
             "userIconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
             "userType": "common",
-            "username": "88@qq.com",
+            "username": "xxx@<<< custom_key.brand_main_domain >>>",
             "uuid": "acnt_xxxx32",
             "waitAudit": 0
         }

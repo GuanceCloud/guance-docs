@@ -13,7 +13,7 @@
 
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
-| issue_uuid | string | Y | Issue UUID<br> |
+| issue_uuid | string | Y | issueUUID<br> |
 
 
 ## Body Request Parameters
@@ -21,49 +21,49 @@
 | Parameter Name        | Type     | Required   | Description              |
 |:-------------------|:-------|:-----|:----------------|
 | name | string |  | Title name<br>Example: name <br>Can be empty: False <br>$maxCustomLength: 256 <br> |
-| level | string |  | Level, corresponding to the level configuration UUID<br>Example: level <br>Can be empty: False <br>Can be an empty string: True <br> |
+| level | string |  | Level, corresponding to level configuration uuid<br>Example: level <br>Can be empty: False <br>Can be an empty string: True <br> |
 | description | string |  | Description<br>Example: description <br>Can be empty: False <br> |
 | statusType | integer |  | Status of the issue<br>Example: statusType <br>Can be empty: False <br>Possible values: [10, 15, 20, 25, 30] <br> |
-| extend | json | Y | Additional extended information, defaults to {} if no content<br>Example: {} <br>Can be empty: True <br> |
-| attachmentUuids | array |  | List of attachment UUIDs<br>Example: [] <br>Can be empty: True <br> |
+| extend | json | Y | Additional extension information, default is {} if no content<br>Example: {} <br>Can be empty: True <br> |
+| attachmentUuids | array |  | List of attachment upload uuids<br>Example: [] <br>Can be empty: True <br> |
 
-## Additional Parameter Notes
+## Additional Parameter Explanations
 
 
 **Basic Parameter Explanation**
 
-| Parameter Name      | Parameter Type | Required | Parameter Description                   |
+|     Parameter Name      | Parameter Type | Mandatory |                  Parameter Description                   |
 |:---------------:|:--------:|:--------:|:-------------------------------------------:|
-|      name       |  string  |    N     | Title name of the issue                |
-|      level      | string  |    N    | Issue level corresponding to the configuration level UUID        |
-|      statusType      | integer  |    N     | Issue status, 10: Open, 15: Working, 20: Resolved, 25: Closed, 30: Pending     |
-|   description    |  string  |    N     | Description information of the issue                |
-| attachmentUuids |  array   |    N     | List of attachment UUIDs, must first be uploaded via the /api/v1/attachment/upload endpoint          |
-|     extend      |   json   |    N    | Extended fields, default is {}                  |
+|      name       |  string  |    N     |                Issue title name                |
+|      level      | string  |    N    |        Issue level corresponding to configuration level uuid        |
+|      statusType      | integer  |    N     |        Issue status, 10: Open, 15: Working, 20: Resolved, 25: Closed, 30: Pending     |
+|   decription    |  string  |    N     |                Issue description information                |
+| attachmentUuids |  array   |    N     |              List of attachment upload uuids, must first be uploaded through the /api/v1/attachment/upload interface          |
+|     extend      |   json   |    N    |                  Extension fields, default send {}                  |
 
 **Level Field Explanation**
-The level can be either a system-defined level or a custom level (configurable in the configuration management)
+Level is divided into system levels/custom levels (can be configured in Configuration Management)
 
-|     Level      | Value | Parameter Description                   |
+|     Level      | Value |                  Parameter Description                   |
 |:---------------:|:--------:|:-------------------------------------------:|
-|      P0       |  system_level_0  |      Pass level: system_level_0, indicating system level P0               |
-|      P1       |  system_level_1  |      Pass level: system_level_1, indicating system level P1               |
-|      P2       |  system_level_2  |      Pass level: system_level_2, indicating system level P2               |
-|      P3       |  system_level_3  |      Pass level: system_level_3, indicating system level P3               |
-|      xxx      |  issl_yyyyy      |      Pass level: issl_yyyyy, indicating custom level xxx            |
+|      P0       |  system_level_0  |      Send parameter level: system_level_0, represents system level P0               |
+|      P1       |  system_level_1  |      Send parameter level: system_level_1, represents system level P1               |
+|      P2       |  system_level_2  |      Send parameter level: system_level_2, represents system level P2               |
+|      P3       |  system_level_3  |      Send parameter level: system_level_3, represents system level P3               |
+|      xxx      |  issl_yyyyy      |      Send parameter level: issl_yyyyy, represents custom level xxx            |
 
 
-**Extended Field `extend` Explanation**
+**Extension Field Extend Explanation**
 
-| Parameter Name  | Parameter Type | Required | Parameter Description         |
+|  Parameter Name  | Parameter Type | Mandatory |        Parameter Description         |
 |:--------:|:--------:|:--------:|:-----------------------:|
-| channels |  array   |    N     | Resources list expected for issue delivery, marked with # in the description content |
-| linkList |  array   |    N     | Add links to the issue |
-| members  |     array     |     N     | Notification target members expected for issue notifications, marked with @ in the description content |
-| manager |  array   |    N     | User account UUID, email, team UUID |
-| extra  |     json     |     N     | Information about the updater/responsible person's email and name, used for front-end display |
+| channels |  array   |    N     | Description content with # : Expected list of resources for issue delivery, |
+| linkList |  array   |    N     | Add issue links |
+| members  |     array     |     N     |       Description content with @ expected notification target members for issue notification    |
+| manager |  array   |    N     |              User account uuid, email, team uuid        |
+| extra  |     json     |     N     |      Updater/responsible person's email corresponding name information for issue, used for front-end reflection    |
 
-Example of the `extend` field:
+Extend field example:
 ```json
 {
     "members": [
@@ -82,9 +82,9 @@ Example of the `extend` field:
     ],
     "manager": [
         "acnt_xxxxx",
-        "111@qq.com",
+        "xxx@<<< custom_key.brand_main_domain >>>",
         "group_xxx",
-        "222@qq.com"
+        "xxx@<<< custom_key.brand_main_domain >>>"
     ],
     "linkList": [
         {
@@ -95,11 +95,11 @@ Example of the `extend` field:
     "extra":{
               "updator": {
                   "name": "xxx",
-                  "email": "xxx@qq.com",
+                  "email": "xxx@<<< custom_key.brand_main_domain >>>",
               },
               "managerInfos": {
-                  "111@qq.com": {"name": "111"},
-                  "222@qq.com": {"name": "222"}
+                  "xxx@<<< custom_key.brand_main_domain >>>": {"name": "111"},
+                  "xxx@<<< custom_key.brand_main_domain >>>": {"name": "222"}
               }
             }
 }
@@ -129,10 +129,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/issue_xx
         "creator": "acnt_xxxx32",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "1061379682@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "wanglei-testing",
-            "username": "1061379682@qq.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "deleteAt": -1,
         "description": "",
@@ -159,10 +159,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/issue_xx
         "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "1061379682@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "wanglei-testing",
-            "username": "1061379682@qq.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "uuid": "issue_xxxx32",
         "workspaceUUID": "wksp_xxxx32"

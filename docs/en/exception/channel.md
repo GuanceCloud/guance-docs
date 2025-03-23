@@ -1,110 +1,137 @@
 # Manage Issues
 ---
 
-After **[Issue creation is completed](./issue.md)**, to present Issue details more intuitively to users, **Incident** further manages all Issues generated within the current workspace through **Channels**.
 
-Based on channels, you can customize the scope of Issues you want to subscribe to, view subscribers or notification targets, use time widgets, or collaborate through replying to Issues. This article will introduce <u>how to manage Issues at the channel level and related operations and configurations</u>.
+After **[Issue Creation Completion](./issue.md)**, to more intuitively present specific Issue information to users, **Incident** further manages all Issues generated within the current workspace through **Channels**.
+
+Based on channels, you can customize the scope of Issues you want to subscribe to, view subscribed members or notification targets, use time widgets, or collaborate through multiple methods such as replying to Issues. This article will introduce <u>how to manage Issues and related operations and configurations at the channel level</u>.
 
 ## Channel List
 
-Navigate to **Incident > Channels**, each workspace defaults to having an **All** channel where all Issues are displayed. You can also create custom channels.
+Enter **Incident > Channel**, each workspace defaults to having an **All** channel, where all Issues are displayed within this channel. You can also create a custom channel.
 
-### Create a Channel
 
-Enter **Incident**, click **Add Channel** below the channel list on the left side of the current page, enter the channel name, and it will be added immediately.
+### Create Channel {#create}
 
-![Create Channel](../img/exception-1.png)
+Enter **Incident**, below the channel list on the left side of the current page, click **Add Channel**, enter the channel name, and it is added upon completion.
 
-You can also create a new channel in the following situations:
+<img src="../img/exception-1.png" width="80%" >
 
-- When [replying to an Issue](#reply-issue), input `#` in the reply content, and choose **Add** from the popup to create a new channel;
+You can also create a new channel in the following paths:
 
-- In [one of the Issue creation entries](./issue.md#others) > Monitoring, under **Event Notification > Channel**, click the channel dropdown box to create a new channel as needed.
+- When [Replying to Issues](#reply-issue), input `#` in the reply content, and select **Add** in the popup window to create a new channel;
 
-## Channel Management
+- In [Issue's New Entry](./issue.md#others) > Monitoring > Event Notifications > Channel, click the channel dropdown box to create a new channel as needed.
 
-Once channels are created, they can be managed as required. On the right side of the channel list, you can perform subscriptions, notification target management, filtering & searching, etc.; meanwhile, all Issues associated with the current channel will be listed individually, clicking on an Issue opens its detail page.
+#### Channel List {#list}
+
+- For all created channels, hover over the right side of the channel to choose whether to pin the channel.
+
+<img src="../img/top_channel.png" width="50%" >
+
+- Click multi-select to batch display Issues from multiple channels.
+
+<img src="../img/batch_channel.png" width="50%" >
+
+- Select "Only Show Mine", to view and manage all incident tracking under the current workspace that is personally responsible for.
+
+<img src="../img/own_channel.png" width="60%" >
+
+> If you need to uniformly manage incidents personally responsible for, go to [Personal Center > Incident Tracking Management](../management/index.md#personal_incidents) for viewing.
+
+## Channel Management {#manag}
+
+After creating a channel, you can configure subscriptions, notification targets, filtering, and searching on the right side of the channel list. All Issues under the current channel will be listed, and clicking on a specific Issue opens its detail page.
 
 ### Basic Information
 
-You can view or modify the current channel's name, add a description, explaining the background of the channel's creation and the scope of incident handling.
+You can view or modify the current channel name, add a description for the current channel, detailing the background of its creation and the scope of abnormal problem handling, etc.
 
 **Note**: The default channel name cannot be changed; and the default channel cannot be deleted, only exited.
 
 ### Upgrade Channel Notifications {#upgrade}
 
-In the top-left corner of the Issue list, click the icon :material-bell:, or click **Settings**, expand the display page.
+In the upper left corner of the Issue list, click the icon :material-bell:, or click **Settings**, to expand the display page.
 
-- Directly select [notification policies](./config-manag.md#create);
+- You can directly select [Notification Strategies](./config-manag.md#reate);
 
-- Select notification targets; click the dropdown box, choose a notification target to receive Issue updates for the current channel;
+- Select notification targets; click the dropdown box and select a specific notification target to receive updates on Issues in the current channel;
 
-- Upgrade configuration: Set up notifications to be sent to specified notification targets if a new Issue exceeds a certain number of minutes without an assigned responsible person.
+- Upgrade Configuration: Set up so that if a new Issue exceeds a certain number of minutes without assigning a responsible person, an upgrade notification is sent to the corresponding notification target.
 
-![Upgrade Notification](../img/exception-5.png)
+
+<img src="../img/exception-5.png" width="50%" >
+
 
 ### Subscribe to Channels
 
-In the top-left corner of the Issue list, click the icon :material-bookmark-plus-outline:, you can choose subscription options as needed.
+In the upper left corner of the Issue list, click the icon :material-bookmark-plus-outline:, and you can choose subscription functions as needed.
 
-1. Responsible: Subscribing will receive notifications for new Issues, replies to existing Issues, and daily Issue summaries;
+1. Responsible: After subscribing, you will receive notifications for new Issues, replies to existing Issues, and daily Issue summaries;
 
-2. Participate: Subscribing will receive notifications for new Issues;
+2. Participate: After subscribing, you will receive notifications for new Issues;
 
-3. Follow: Subscribing will receive daily Issue summaries at 9:00 AM;
+3. Follow: After subscribing, you will receive a daily Issue summary notification at 9:00 AM;
 
-4. None: Unsubscribe.
+4. None: Cancel subscription.
+
+
 
 ### Time Range Filtering {#time}
 
-By default, all Issues are listed automatically. You can add a time range for further filtering.
+By default, all Issues are automatically listed, and you can add a time range for further filtering.
 
-After selecting a date range, all audit events within that period will be listed based on the selected time range. Default start time `00:00:00`, default end time `23:59:59`.
+After selecting a date range, all audit events within the selected time range will be listed. Default start time `00:00:00`, default end time `23:59:59`.
 
-- After selecting a time range, click **Select Time** to define a custom time range;
-- Click **Clear** to remove the time filter.
+- After selecting the time range, click **Select Time** to customize the time range;
+- Click **Clear** to remove the time filter condition.
 
-![](img/exception-2.png)
+<img src="../img/exception-2.png" width="50%" >
 
-### Filtering & Searching
+### Filter & Search
 
-In the filtering and search bar at the top-left corner of the Issue list, enter the corresponding filtering & search conditions to precisely locate your target Issue.
+In the filter and search bar above the Issue list on the left, input the corresponding filter & search conditions to accurately locate your target Issue.
 
-- Filter conditions: Source, Severity, Status, Creator, Updater
+- Filter Conditions: Source, Level, Status, Creator, Updater
 
-- Search conditions: Issue Title, Issue Description
+- Search Conditions: Issue Title, Issue Description
 
-> For more information on search methods, refer to [Search Instructions](../getting-started/function-details/explorer-search.md#search).
+> For more information about search methods, refer to [Search Instructions](../getting-started/function-details/explorer-search.md#search).
 
-### Issue Association Analysis
+### Issue Correlation Analysis
 
-If an Issue is associated with certain events, the Icon will be displayed along with the corresponding count. Clicking on it will redirect you to the event viewer listing the related event statistics: including all associated events (whether triggered by Incident or subsequently added in comments).
+If the current Issue is already associated with some events, the Icon will be displayed along with the corresponding quantity. Click to jump to the event viewer to display statistics for all related events: including all associated events (whether triggered by incident tracking or subsequently appended in comments).
 
 ### Issue Detail Page
 
-Clicking on an Issue within a channel opens its detail page where you can view the Issue's [status, severity, source, description, attachments](./issue.md#concepts).
+Clicking on an Issue within a channel opens its detail page, where you can view the [status, level, source, description, attachments](./issue.md#concepts) of that Issue;
 
-> You can also modify this information here; refer to [Permission List](../management/role-list.md).
+> You can also change the information here. Refer to [Permission List](../management/role-list.md).
 
-![Issue Detail](../img/exception-6.png)
+<img src="../img/exception-6.png" width="70%" >
 
-### Reply to Issues {#reply-issue}
+### Reply to Issue {#reply-issue}
 
-Issue replies generally originate from two scenarios:
+An Issue typically has a reply record due to two scenarios:
 
-1. A member initially creates an Issue or changes the Issue’s status, severity, or description;
-2. Manual input replies. For this scenario, follow these instructions:
+1. A member initially creates an Issue or changes the status, level, or description-related information of the Issue;
 
-1) If you need to mention a `member` in your reply and the `member` exists, automatic notifications will be triggered; if the `member` does not exist, no notification will be triggered;
+2. Manual input of replies. For this case, please refer to the following instructions:
 
-2) If you input `#` in your reply, there are two possible scenarios:
-   - The channel already exists: Once your reply is successful, the Issue will be delivered to the corresponding channel;
-   - The channel does not exist: Choose **Add** from the popup to create a new channel;
+1) If you need to mention a `member` in your reply, and the `member` exists, it will automatically trigger a notification; if the `member` does not exist, no notification will be triggered;
 
-3) You can add links or upload images, videos, text files (CSV/TXT/JSON/PDF, etc.) in your reply.
 
-#### Modify or Delete Replies
+2) If you input `#` in the reply content, there may be two scenarios:
 
-Click the edit and delete buttons to the right of the **Reply** to **edit** or **delete** the reply.
+- The channel already exists: once your reply is successfully created, the Issue will be delivered to the corresponding channel for display;
 
-**Note**: Only the creator of the reply can modify it.
+- The channel does not exist: you can select **Add** in the popup window to create a new channel;
+
+
+3) You can add links or upload images, videos, texts (CSV/TXT/JSON/PDF, etc.) in your reply.
+
+#### Modify, Delete Replies
+
+Click the edit and delete buttons to the right of the **Reply** to **Edit** or **Delete** that particular reply.
+
+**Note**: Only the creator of the reply supports modifying the reply.

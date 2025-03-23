@@ -1,12 +1,11 @@
 # How to Enable Security Check
-
 ---
 
 ## Introduction
 
-<<< custom_key.brand_name >>> supports you in conducting a "Security Check" on the status of systems, containers, networks, security, and logs. It ensures all actions are secure and controllable through a new type of secure scripting method (restricted command execution, restricted local IO, restricted network IO).
+<<< custom_key.brand_name >>> supports you in performing "Security Checks" on systems, containers, networks, security, including logs and other statuses through a new type of secure script method (restricted command execution, restricted local IO, restricted network IO) to ensure all actions are safe and controllable.
 
-In general, one of the most critical tasks in operations and maintenance is inspecting the status of systems, software, and logs. Traditional solutions often involve engineers writing shell (bash) scripts for similar tasks and managing clusters using remote script management tools. However, this method can be very dangerous due to the high permissions required for system inspections, which typically run as root. If a malicious script executes, the consequences can be catastrophic. There are two types of malicious scripts: one involves harmful commands like `rm -rf`, and the other involves data theft, such as leaking data via network IO. Therefore, Security Checker aims to provide a new, secure scripting method (restricted command execution, restricted local IO, restricted network IO) to ensure all actions are safe and controllable. Additionally, Security Checker will collect inspection events via a unified network model in log format. Security Checker also provides a vast, updatable rule library, including inspections for systems, containers, networks, and security.
+In general, an important task during operations and maintenance is to inspect the status of systems, software, including logs. Traditional solutions often involve engineers writing shell (bash) scripts for similar tasks and using some remote script management tools to achieve cluster management. However, this method is actually very dangerous because system inspection operations often have excessively high permissions and usually run with root privileges. If malicious scripts are executed, the consequences can be unimaginable. In practice, there are two types of malicious scripts: one is malicious commands, such as `rm -rf`, and the other involves data theft, such as leaking data via network IO to external parties. Therefore, Security Checker aims to provide a new type of secure scripting method (restricted command execution, restricted local IO, restricted network IO) to ensure all actions are safe and controllable. Additionally, Security Checker will collect inspection events through log methods using a unified network model. At the same time, Security Checker will offer a massive updatable rule library of scripts, including inspections for systems, containers, networks, security, and more.
 
 ## Prerequisites
 
@@ -15,7 +14,7 @@ In general, one of the most critical tasks in operations and maintenance is insp
 
 ## Method Steps
 
-### Step 1: Install Scheck
+### Step1: Install Scheck
 
 Install Security Checker via DataKit:
 
@@ -23,47 +22,47 @@ Install Security Checker via DataKit:
 $ sudo datakit --install scheck
 ```
 
-**Note**: By default, Security Checker sends data to the DataKit `:9529/v1/write/security` interface after installation.
+**Note**: After installation, Security Checker will send data by default to the DataKit `:9529/v1/write/security` interface.
 
-### Step 2: Configure Data Collection
+### Step2: Configure Data Collection
 
-- Navigate to the default installation directory `/usr/local/scheck` and open the configuration file `scheck.conf`. The configuration file uses the [TOML](https://toml.io/en/) format, with the following instructions:
+- Enter the default installation directory `/usr/local/scheck`, open the configuration file `scheck.conf`. The configuration file uses the [TOML](https://toml.io/en/) format, as explained below:
 
 ```toml
 rule_dir = '/usr/local/scheck/rules.d'
 
-# ##(Required) Where to send the inspection results, supporting local files or http(s) URLs
-# ##For local files, use the prefix file://, e.g., file:///your/file/path
-# ##For remote servers, e.g., http(s)://your.url
+# ##(Required) Where to collect the detection results, supporting local files or http(s) links
+# ##Local files require the prefix file://, example: file:///your/file/path
+# ##Remote server, example: http(s)://your.url
 output = ''
 
-# ##(Optional) Configuration for program logs
+# ##(Optional) Program's own log configuration
 disable_log = false # Whether to disable logging
 log = '/usr/local/scheck/log'
 log_level = 'info'
 ```
 
-- After configuring, restart the service for changes to take effect.
+- After completing the configuration, restart the service to take effect.
 
-```shell
+```
 systemctl restart scheck
 ```
 
-### Step 3: Configure Inspection Rules
+### Step3: Configure Detection Rules
 
-Inspection rules are stored in the directory specified by `rule_dir` in the configuration file. Each rule corresponds to two files:
+Detection rules are placed in the rule directory specified by the `rule_dir` in the configuration file. Each rule corresponds to two files:
 
-1. Script file: written in [Lua](http://www.lua.org/) and must have a `.lua` extension.
-2. Manifest file: written in [TOML](https://toml.io/en/) format and must have a `.manifest` extension.
+1. Script file: Written in [Lua](http://www.lua.org/) language, must have the `.lua` extension.
+1. Manifest file: Uses the [TOML](https://toml.io/en/) format, must have the `.manifest` extension.
 
-By adding/modifying manifest files and Lua code, you can configure the inspection rules.
+By adding/modifying manifest files and Lua code, you can complete the configuration of detection rules.
 
 **Note**:
 
 - The script file and manifest file must have the same name.
-- No service restart is needed after adding/modifying rules; they will automatically take effect within 10 seconds.
+- No service restart is required after adding/modifying rules; they will automatically take effect within 10 seconds.
 
-### Step 4: View Installation Status and DataKit Running Status
+### Step4: View Installation Status and DataKit Operation Status
 
 - View scheck status
 
@@ -79,11 +78,11 @@ $ systemctl status scheck
            └─15337 /usr/local/scheck/scheck -config /usr/local/scheck/scheck.conf
 ```
 
-- View DataKit status
+- View datakit status
 
 ```shell
 $ systemctl status datakit
-● datakit.service - Collects data and uploads it to DataFlux.
+● datakit.service - Collects data and upload it to DataFlux.
    Loaded: loaded (/etc/systemd/system/datakit.service; enabled; vendor preset: disabled)
    Active: active (running) since Sat 2021-07-03 01:07:44 CST; 2 days ago
  Main PID: 27371 (datakit)
@@ -93,9 +92,9 @@ $ systemctl status datakit
            └─27371 /usr/local/datakit/datakit
 ```
 
-### Step 5: Log in to <<< custom_key.brand_name >>> to View Security Check Records
+### Step5: Log into <<< custom_key.brand_name >>> to view security check records
 
-- Select Security Check from the left sidebar to view inspection content
+- Select the left sidebar - Security Check to view inspection content
 
 ![](img/e1.png)
 
@@ -103,33 +102,31 @@ $ systemctl status datakit
 
 ### Secure Observability
 
-<<< custom_key.brand_name >>> provides users with a Security Check function that can discover malicious programs, system vulnerabilities, and security defects with one click. Through "Security Check," you can not only promptly identify vulnerabilities and anomalies in hosts, systems, containers, and networks but also detect some daily management issues (e.g., data leakage via network IO).
+"<<< custom_key.brand_name >>>" provides users with a security inspection function that allows them to discover malicious programs, system vulnerabilities, and security defects at the click of a button. Through "Security Inspection", you can not only promptly detect vulnerabilities and anomalies in hosts, systems, containers, and networks but also identify some daily management issues (e.g., leaking data via network IO).
 
-#### Simulate Hacker Intrusion Operations
+#### Simulating Hacker Intrusion Operations
 
-- Log in to the host terminal
+- Log into the host terminal
 
 ![](img/e2.png)
 
-- Simulate adding a user and crontab record
+- Simulate adding a user and adding crontab records  
 
 ```
 useradd xlsm
 crontab -e
 ```
 
-#### Log in to <<< custom_key.brand_name >>> to View and Analyze Security Check Information
+#### Log into <<< custom_key.brand_name >>> to view security inspection information and analyze
 
-You can see that a user was added at 18:52 on December 19th. How should we handle this issue?
+You can see that a user was added on 12/19 at 18:52. How should we handle this issue?
 
 ![](img/e3.png)
 
-Click on the record to view recommendations for remediation on the host
+Click the record to view suggestions for host remediation.
 
 ![](img/e4.png)
 
-Execute the command on the host console: `userdel xlsm`
-
+Execute the command in the host console: `userdel xlsm`
 ## More References
-
-For more details, refer to the documentation [Security Check](../scheck/explorer.md).
+For more details, refer to the document [Security Inspection](../scheck/explorer.md).
