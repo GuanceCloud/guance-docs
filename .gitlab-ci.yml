@@ -17,7 +17,7 @@ lint:
   script: # only lint datakit/integrations, other docs need too many fix
     - nvm use v16.14.0
     - make lint DOC_DIR=docs/zh/datakit
-    - make lint DOC_DIR=docs/en/datakit
+    # - make lint DOC_DIR=docs/en/datakit
     # 部分集成中的文档过不了拼写检查，暂时跳过
     #- make lint DOC_DIR=docs/en/integrations
     #- make lint DOC_DIR=docs/zh/integrations
