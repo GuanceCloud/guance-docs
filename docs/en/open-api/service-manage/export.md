@@ -1,4 +1,4 @@
-# 【Service List】Export
+# [Service List] Export
 
 ---
 
@@ -9,13 +9,16 @@ Service list export
 
 
 
+
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:--------------------------|
-| originStr          | string | No      | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Allow empty: False <br> |
+|:-------------------|:-------|:-----|:----------------|
+| originStr | string |  | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -29,8 +32,9 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
 
 
 
+
 ## Response
-```json
+```shell
 [
     {
         "colour": "#40C922",
@@ -49,8 +53,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "serviceCatelog": {
             "Docs": [
                 {
-                    "link": "https://www.docs.guance.com",
-                    "name": "Guance",
+                    "link": "<<< homepage >>>",
+                    "name": "guance",
                     "provider": "Guance"
                 },
                 {
@@ -70,8 +74,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
             },
             "Repos": [
                 {
-                    "link": "https://<<< custom_key.brand_main_domain >>>",
-                    "name": "Guance",
+                    "link": "https://www.<<< custom_key.brand_main_domain >>>",
+                    "name": "guance",
                     "provider": "Guance"
                 },
                 {
@@ -85,8 +89,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 "oncall": [
                     {
                         "emails": [
-                            "test1@guance.com",
-                            "test3@guance.com"
+                            "xxx@<<< custom_key.brand_main_domain >>>",
+                            "xxx@<<< custom_key.brand_main_domain >>>"
                         ],
                         "name": "Guance",
                         "type": "email"
@@ -127,10 +131,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "createType": "manual",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "test@jiagouyun.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "test",
-            "username": "test@jiagouyun.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "dfStatus": "ok",
         "isFavorite": false,
@@ -148,12 +152,12 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "updateAt": 1693728357,
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "test@jiagouyun.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "test",
-            "username": "test@jiagouyun.com"
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "uuid": "sman_xxxx32"
     }
-]
+] 
 ```

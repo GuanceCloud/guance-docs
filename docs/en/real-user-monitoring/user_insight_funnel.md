@@ -1,25 +1,25 @@
 # Funnel Analysis
 ---
 
-Funnel analysis, as a data analysis model, is used to visualize and quantify user conversion through a series of predefined steps. By capturing user session data, it displays user behavior in critical workflows step by step, forming a funnel shape that narrows from wide at the top. The retention and churn of users at each step are clearly visible, helping analysts monitor the success rate of business processes and identify friction points that may lead to user loss.
+Funnel analysis, as a data analysis model, is used to visualize and quantify user conversion across a series of predefined steps. By capturing user session data, it displays user behaviors in key workflows step by step, forming a funnel shape that narrows from wide at the top. The retention and loss of users at each step are clearly visible, helping analysts intuitively monitor the success rate of business processes and identify friction points that may lead to user loss.
 
-**Note**: Only supports workspaces using the Doris engine.
+**Note**: Only supports workspaces with Doris engine.
 
 ## Use Cases
 
-- Webpage Optimization: Analyze the conversion path of users from the homepage to the target page to optimize page layout and content;
-- E-commerce Conversion Improvement: Monitor conversion rates at various stages of the purchasing process, identify and improve dropout stages, and increase the completion rate of purchases;
-- Application Functionality Improvement: Evaluate the process users follow to complete tasks within the app, optimize the function experience, and enhance user retention.
+- Webpage Optimization: Analyze the conversion path of users from the homepage to the target page, optimizing the layout and content of pages;
+- E-commerce Conversion Improvement: Monitor the conversion rates at each stage of the purchasing process, identifying and improving loss stages to increase purchase completion rates;
+- Application Function Enhancement: Evaluate the process users take to complete tasks within an application, optimizing the function experience and enhancing user retention.
 
-## Configuration
+## Start Configuration
 
-### :material-numeric-1-circle: Define Conversion Steps
+### 1. Define Conversion Steps
 
 By default, two step types are provided: [View](./explorer/view.md) and [Action](./explorer/action.md).
 
 1. Click the copy button on the right side of the step to directly duplicate and add the current step;
-2. Add more steps as needed;
-3. Reset steps as needed;
+2. You can continue adding steps as needed;
+3. You can reset steps as needed;
 
 #### Operators
 
@@ -32,24 +32,28 @@ By default, two step types are provided: [View](./explorer/view.md) and [Action]
 | Action      | is          |  |
 |       | contains        |  |
 
-### :material-numeric-2-circle: Filter User Scope
 
-Determine the `session` data range using filtering conditions such as city, environment, version, browser, session duration, and the path of the first page visited.
+### 2. Filter User Scope
 
-Click "More" to search and add additional filtering conditions.
+Determine the `session` data scope through filtering conditions such as city, environment, version, browser, session duration, and the first page path of the session.
 
-![User Insight Funnel](../img/user_insight_funnel.png)
+Click "More" to search and add more filtering conditions.
+
+<img src="../img/user_insight_funnel.png" width="80%" >
 
 ## Funnel Chart
 
-Visualize end-to-end conversion rates in chart form.
+Visually presents end-to-end conversion rates in chart form.
 
-As shown in the figure below, in the RUM application list, out of 11 `sessions`, only 1 `session` performed the `export` action, resulting in a conversion rate of 9.09%.
+As shown in the figure below, in the RUM application list, out of 10 `sessions`, only 1 `session` performed the `export` action, resulting in a conversion rate of 90% for this behavior.
 
-![User Insight Funnel 1](../img/user_insight_funnel_1.png)
+<img src="../img/user_insight_funnel_1.png" width="80%" >
 
-For this chart, you can export it to a dashboard/note or save it as a PNG image.
+- For this chart, you can export it to a dashboard/note or save it as a PNG image.
+- On the right side of the Session, you can click to jump to the session replay.
 
-## Time-Based Conversion Rate
+> For more details, refer to [Web Session Replay](./session-replay/web/index.md)
 
-Conversion behaviors can also be presented and evaluated through time trends.
+## Time-based Conversion Rate
+
+Conversion behaviors can also be presented and judged through time trends.

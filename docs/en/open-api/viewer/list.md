@@ -5,22 +5,25 @@
 <br />**GET /api/v1/viewer/list**
 
 ## Overview
-List all Explorers that meet the specified conditions
+List all Explorers that meet the conditions
+
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| sortKey       | string | No       | Sorting field, default is to sort by `updateAt`. If the current value does not exist, it will be sorted by default.<br>Can be empty: False <br>Can be an empty string: True <br>Optional values: ['name', 'updateAt'] <br> |
-| sortMethod    | string | No       | Sorting method, default is to sort by `desc`<br>Can be empty: False <br>Can be an empty string: True <br>Optional values: ['desc', 'asc'] <br> |
-| search        | string | No       | Search by Explorer name<br>Can be empty: False <br> |
-| pageIndex     | integer| No       | Page number<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize      | integer| No       | Number of items returned per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
-| filter        | string | No       | Filtering condition<br>Can be empty: False <br>Optional values: ['total', 'favorite', 'import', 'myCreate', 'oftenBrowse', 'ofenBrowse', 'selfVisibleOnly'] <br> |
-| tagNames      | json   | No       | Tag names used for filtering<br>Can be empty: False <br>Example: [] <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:------|:--------------------|
+| sortKey | string |  | Sorting field, default sorting by updateAt. If the current value does not exist, it sorts by default.<br>Nullable: False <br>Nullable as empty string: True <br>Optional values: ['name', 'updateAt'] <br> |
+| sortMethod | string |  | Sorting method, default sorting by desc.<br>Nullable: False <br>Nullable as empty string: True <br>Optional values: ['desc', 'asc'] <br> |
+| search | string |  | Explorer name search.<br>Nullable: False <br> |
+| pageIndex | integer |  | Page number.<br>Nullable: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of returns per page.<br>Nullable: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| filter | string |  | Filtering condition.<br>Nullable: False <br>Optional values: ['total', 'favorite', 'import', 'myCreate', 'oftenBrowse', 'ofenBrowse', 'selfVisibleOnly'] <br> |
+| tagNames | json |  | Tag names used for filtering.<br>Nullable: False <br>Example: [] <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -30,6 +33,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/list' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
+
 
 
 ## Response
@@ -44,7 +49,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/list' \
             "createdWay": "import",
             "creator": "acnt_xxxx32",
             "creatorInfo": {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "name": "88 test",
                 "username": "test"
@@ -164,7 +169,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/list' \
             "updateAt": 1677662452,
             "updator": "acnt_xxxx32",
             "updatorInfo": {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "name": "88 test",
                 "username": "test"

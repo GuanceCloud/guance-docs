@@ -2,20 +2,24 @@
 
 ---
 
-<br />**GET /api/v1/workspace/accesskey/\{ak_uuid\}/get**
+<br />**GET /api/v1/workspace/accesskey/{ak_uuid}/get**
 
 ## Overview
-Retrieve a key
+Get a Key
+
+
 
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:-----------------|:-------|:-----|:----------------|
 | ak_uuid | string | Y | UUID of the access key<br> |
 
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -37,7 +41,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/acce
         "createAt": 1677808718,
         "creator": "acnt_xxxx32",
         "creatorInfo": {
-            "email": "88@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
             "name": "88 Test",
             "username": "Test"

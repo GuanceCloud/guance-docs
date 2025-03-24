@@ -1,4 +1,4 @@
-# List Schedules
+# Schedules List
 
 ---
 
@@ -12,14 +12,14 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------------|
-| mySchedule | string | No  | View my schedules, default false: view all schedules<br>Can be empty: True <br>Optional values: ['true', 'false'] <br> |
-| notificationScheduleUUIDs | commaArray | No  | Filter schedule UUIDs<br>Can be empty: False <br> |
-| issueNotificationPolicyUUIDs | commaArray | No  | Filter notification policy UUIDs<br>Can be empty: False <br> |
-| notifyTargets | commaArray | No  | Filter notification targets, acnt_xxx,notify_yyy,jj@qq.com<br>Can be empty: False <br> |
-| search | string | No  | Search name<br>Can be empty: True <br> |
-| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:-------------------|:-------|:-------|:--------------------|
+| mySchedule | string |  | View my schedules, default false: view all schedules<br>Can be empty: True <br>Optional values: ['true', 'false'] <br> |
+| notificationScheduleUUIDs | commaArray |  | Filter schedule UUIDs<br>Can be empty: False <br> |
+| issueNotificationPolicyUUIDs | commaArray |  | Filter notification policies UUIDs<br>Can be empty: False <br> |
+| notifyTargets | commaArray |  | Filter notification targets, acnt_xxx,notify_yyy,xxx@<<< custom_key.brand_main_domain >>><br>Can be empty: False <br> |
+| search | string |  | Search name<br>Can be empty: True <br> |
+| pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of returns per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
 
@@ -108,7 +108,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_s
                 "inEffectNotifyTargetsInfos": [
                     {
                         "acntWsNickname": "",
-                        "email": "jinlei940@guance.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "17621725046",
                         "name": "Jin Lei lll",
@@ -119,14 +119,14 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_s
                     }
                 ],
                 "issueNotificationPolicyInfos": [],
-                "name": "schecule_modify",
+                "name": "schedule_modify",
                 "notifyTargets": [
                     "acnt_8b4bd2b8782646f3ba8f6554193f5997"
                 ],
                 "notifyTargetsInfos": [
                     {
                         "acntWsNickname": "",
-                        "email": "jinlei940@guance.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "17621725046",
                         "name": "Jin Lei lll",

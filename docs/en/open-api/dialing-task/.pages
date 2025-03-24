@@ -1,6 +1,7 @@
 nav:
-  - 'Create a Test task': add.md
-  - 'Delete a Test task': delete.md
-  - 'Modify a Test task': modify.md
-  - 'Get the list of Test tasks': list.md
-  - 'Get details of a Test task': get.md
+  - 'Create a testing task': add.md
+  - 'Delete a testing task': delete.md
+  - 'Modify a testing task': modify.md
+  - 'Get testing task list': list.md
+  - 'Get testing task details': get.md
+  - 'Get official default node list': default-region-list.md

@@ -2,54 +2,54 @@
 
 ---
 
-## Introduction to Use Cases
+## Use Case Introduction
 
-For enterprises, the most important source of revenue is business operations, and nowadays, most enterprise businesses are supported by corresponding IT systems. Ensuring the stability of business operations translates internally into ensuring the stability of internal IT systems. When a business system experiences anomalies or failures, colleagues from various departments such as business, application development, and operations often need to coordinate to diagnose issues, facing challenges like **cross-platform, cross-departmental, and cross-disciplinary** problems, which can be **time-consuming and labor-intensive**.
+The most important source of revenue for enterprises is business, and nowadays, the majority of businesses are supported by corresponding IT systems. Therefore, ensuring the stability of a company's business ultimately comes down to ensuring the reliability of internal IT systems. When the business system experiences abnormalities or failures, it often requires coordination among colleagues from various departments such as business, application development, and operations, dealing with issues like **cross-platform, cross-department, and cross-disciplinary domains**, which can be **time-consuming and labor-intensive**.
 
-To address this issue, a mature approach in the industry is to deeply monitor the application layer and log layer in addition to infrastructure monitoring. By using **RUM+APM+LOG**, it enables unified management of the core **front-end and back-end applications and logs** of the entire business system. Advanced monitoring solutions can also correlate these three data sources through key fields for **linked analysis**, thereby improving work efficiency and ensuring stable system operation.
+To address this problem, an already mature approach in the industry involves not only monitoring infrastructure but also deeply monitoring the application layer and log layer. Through **RUM+APM+LOG**, unified management of the entire business system’s core **front-end and back-end applications and logs** is achieved. Advanced monitoring systems can further integrate these three types of data via key fields to achieve **linked analysis**, thereby improving the efficiency of relevant staff and ensuring smooth system operation.
 
 - APM: Application Performance Monitoring
 - RUM: Real User Monitoring
 - LOG: Logs
 
-Currently, **<<< custom_key.brand_name >>>** has this capability. This article uses the Ruoyi office system as a demo to illustrate how to integrate RUM+APM+LOG monitoring and how to perform linked analysis using <<< custom_key.brand_name >>>.
+Currently, **<<< custom_key.brand_name >>>** has the capability to do this. This article uses Ruoyi Office System as a demo to explain how to connect RUM+APM+LOG monitoring and how to use <<< custom_key.brand_name >>> for linked analysis.
 
-## Installing DataKit
+## Install DataKit
 
 ### 1 Copy Installation Command
 
-Register and log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>), choose 「Integration」 - 「DataKit」, select an installation command suitable for your environment, and copy it.
+Register and log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>), select "Integration" - "DataKit", choose the installation command suitable for your environment, and copy it.
 
 ![image](../images/java-rum-apm-log/1.png)
 
-### 2 Install DataKit on Server
+### 2 Install DataKit on the Server
 
 ![image](../images/java-rum-apm-log/2.png)
 
 ### 3 Check DataKit Status
 
-Run the command `systemctl status datakit`
+Execute the command `systemctl status datakit`
 
 ![image](../images/java-rum-apm-log/3.png)
 
 ### 4 View Data
 
-After installing DataKit, it will default collect the following content. You can view related data directly in 「<<< custom_key.brand_name >>>」 - 「Infrastructure」 - 「Host」
+After installing DataKit, it will default collect the following content, which can be viewed directly in 「<<< custom_key.brand_name >>>」 - 「Infrastructure」 - 「HOST」.
 
-| Collector Name | Description                                             |
-| -------------- | ------------------------------------------------------- |
-| cpu            | Collects host CPU usage                                 |
-| disk           | Collects disk usage                                     |
-| diskio         | Collects host disk IO                                   |
-| mem            | Collects host memory usage                              |
-| swap           | Collects Swap memory usage                              |
-| system         | Collects host operating system load                     |
-| net            | Collects host network traffic                           |
-| host_process   | Collects resident processes (surviving over 10 minutes) |
-| hostobject     | Collects basic host information (OS info, hardware info)|
-| docker         | Collects container objects and container logs           |
+| Collector Name | Description                                                   |
+| -------------- | ------------------------------------------------------------- |
+| cpu            | Collects CPU usage statistics                                 |
+| disk           | Collects disk usage                                          |
+| diskio         | Collects disk IO information                                  |
+| mem            | Collects memory usage                                         |
+| swap           | Collects Swap memory usage                                    |
+| system         | Collects operating system load                                |
+| net            | Collects network traffic                                      |
+| host_process   | Collects resident processes (alive for more than 10 minutes)  |
+| hostobject     | Collects basic host information (such as OS and hardware info)|
+| docker         | Collects container objects and container logs                 |
 
-By choosing different integration input names, you can view corresponding monitoring views. Below the monitoring view, you can also view other data such as logs, processes, containers, etc.
+By selecting different integration input names, you can view corresponding monitoring views. Below the monitoring views, you can also check other data such as logs, processes, containers, etc.
 
 ![image](../images/java-rum-apm-log/4.png)
 
@@ -59,13 +59,13 @@ By choosing different integration input names, you can view corresponding monito
 
 ### 1 Copy JS Code
 
-Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>), choose 「User Access Monitoring」 - 「Create Application」 - 「Web」 - Load Type choose 「Synchronous Loading」
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>), select 「Synthetic Tests」 - 「Create」 - 「Web」 - Load Type as 「Synchronous Loading」
 
 ![image](../images/java-rum-apm-log/5.png)
 
 ### 2 Embed JS
 
-Paste the JS code in the head of the front-end page `/usr/local/ruoyi/dist/index.html`
+Paste the JS code into the head section of the front-end page `/usr/local/ruoyi/dist/index.html`.
 
 ```javascript
 <script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js" type="text/javascript"></script>
@@ -87,31 +87,31 @@ Paste the JS code in the head of the front-end page `/usr/local/ruoyi/dist/index
 
 Parameter Explanation:
 
-- **datakitOrigin**: Data transmission address. In production environments, if configured with a domain name, requests can be forwarded to any server running datakit on port 9529. If frontend traffic is high, you can add a load balancer (SLB) between the domain name and the datakit server. The frontend JS sends data to the SLB, which then forwards the request to multiple servers running datakit on port 9529. Multiple datakits handle RUM data without interrupting session data due to frontend request reuse, thus not affecting RUM data presentation.
-- **allowedTracingOrigins**: Enables linking between frontend (RUM) and backend (APM). This only works when RUM is deployed on the frontend and APM on the backend. Enter the domain names (production environment) or IPs (test environment) of backend application servers that interact with the frontend pages. **Use Case**: If a frontend user's access is slow due to backend code logic issues, you can jump from the RUM slow request data directly to APM data to check the backend code call situation during that period, identifying the root cause. **Implementation Principle**: When users access the frontend application, the frontend application calls resources and requests, triggering rum-js performance data collection. rum-js generates a trace-id and writes it into the request header. When the request reaches the backend, ddtrace reads this trace_id and records it in its own trace data, thus achieving linked analysis of application performance monitoring and user access monitoring data through the same trace_id.
-- **env**: Required, specifies the environment the application belongs to, such as test or product or other fields.
-- **version**: Required, specifies the version number of the application.
-- **trackInteractions**: Tracks user interactions, such as button clicks, form submissions, etc.
+- **datakitOrigin**: The data transmission address. In production environments, if configured as a domain name, the domain request can be forwarded to any server running datakit on port 9529. If the frontend traffic is too high, an SLB can be added between the domain and the datakit server. Frontend JS sends data to the SLB, which forwards the requests to multiple servers running datakit on port 9529. Multiple datakits handle RUM data; due to frontend request reuse, session data won't be interrupted, nor will it affect the display of RUM data.
+- **allowedTracingOrigins**: Achieves linkage between frontend and backend (APM and RUM). This scenario works when RUM is deployed on the frontend and APM on the backend. Here, you should fill in the domain names (for production) or IPs (for testing) of the backend application servers that interact with the frontend pages. **Use Case**: If a frontend user access is slow due to backend code logic anomalies, you can jump directly from the RUM slow request data to the APM data to view the backend code invocation details and determine the root cause of slowness. **Principle**: When users access the frontend application, the frontend application calls resources and requests, triggering rum-js performance data collection. Rum-js generates a trace-id written in the request_header. When the request reaches the backend, the ddtrace reads this trace_id and records it in its own trace data, thus enabling linked analysis of application performance monitoring and real-user monitoring data through the same trace_id.
+- **env**: Mandatory, the environment the application belongs to, either test or product or other fields.
+- **version**: Mandatory, the version number of the application.
+- **trackInteractions**: User behavior statistics, such as button clicks, form submissions, etc.
 
 ### 3 Publish
 
 Save, validate, and publish the page.
 
-Open the browser and visit the target page. Use F12 developer tools to check if there are `rum`-related requests in the network requests, and ensure the status code is `200`.
+Open the browser and visit the target page. Use F12 Developer Tools to check whether there are `rum` related requests in the page network requests and whether the status code is `200`.
 
 ![image](../images/java-rum-apm-log/7.png)
 
 ???+ warning
 
-    If F12 developer tools show data cannot be reported and displays "port refused," you can use `telnet IP:9529` to verify if the port is open.<br/>
-    If not, modify `/usr/local/datakit/conf.d/datakit.conf`, changing the first line `http_listen` to `0.0.0.0`;<br/>
-    If still not working, check if the security group has opened port `9529`.
+    If the Developer Tools show that data cannot be reported and the port is refused, you can `telnet IP:9529` to verify whether the port is accessible.<br/>
+    If it is inaccessible, modify `/usr/local/datakit/conf.d/datakit.conf`, changing the first line `http_listen` to `0.0.0.0`;<br/>
+    If still inaccessible, check if the security group has opened port `9529`.
 
     ![image](../images/java-rum-apm-log/8.png)
 
 ### 4 View RUM Data
 
-View RUM-related data under 「User Access Monitoring」
+In 「Synthetic Tests」, you can view RUM-related data.
 
 ![image](../images/java-rum-apm-log/9.png)
 
@@ -119,25 +119,25 @@ View RUM-related data under 「User Access Monitoring」
 
 > For detailed steps, refer to the document [Distributed Tracing (APM) Best Practices](../monitoring/apm.md)
 
-<<< custom_key.brand_name >>> supports APM integration methods including ddtrace, SkyWalking, Zipkin, Jaeger, and other OpenTracing protocol-supported APM tools. Here, we demonstrate observability using **ddtrace** for APM.
+<<< custom_key.brand_name >>> supports APM integration methods including ddtrace, SkyWalking, Zipkin, Jaeger, and other tools supporting the OpenTracing protocol. This example demonstrates achieving observability in APM using **ddtrace**.
 
 ### 1 Modify Inputs
 
-Modify APM (ddtrace) inputs in DataKit.
+Modify the APM (ddtrace) inputs in DataKit.
 
-By default, no changes are needed for jvm inputs; just copy the generated conf file.
+By default, there is no need to modify jvm inputs; simply copying the generated conf file is sufficient.
 
 ```shell
 $ cd /usr/local/datakit/conf.d/ddtrace/
 $ cp ddtrace.conf.sample ddtrace.conf
 $ vim ddtrace.conf
 
-# No modifications needed by default
+# Default modification not required
 ```
 
 ### 2 Modify Java Application Startup Script
 
-APM observability requires adding an agent to the Java application. This agent, when started with the application, uses bytecode injection to collect performance data on method calls, SQL calls, external system calls, etc., within the application, enabling observability of application code quality.
+For APM observability, a Java agent needs to be added to the Java application. This agent, when accompanying the application startup, achieves bytecode injection to collect performance data related to internal method calls, SQL calls, external system calls, etc., thereby enabling observability of the application system's code quality.
 
 ```shell
 # Original application startup script
@@ -162,26 +162,26 @@ $ nohup java -Dfile.encoding=utf-8 -javaagent:dd-java-agent-0.80.0.jar -XX:Fligh
 
 - Ddd.env: Custom environment type, optional.
 - Ddd.tags: Custom application tags, optional.
-- Ddd.service.name: Custom application name, required.
-- Ddd.agent.port: Data upload port (default 9529), required.
+- Ddd.service.name: Custom application name, mandatory.
+- Ddd.agent.port: Data upload port (default 9529), mandatory.
 - Ddd.version: Application version, optional.
-- Ddd.trace.sample.rate: Set sampling rate (default is full sampling), optional. If sampling is needed, set a value between 0 and 1, e.g., 0.6 for 60% sampling.
-- Ddd.service.mapping: Add aliases for redis, mysql, etc., called by the current application to distinguish them from those called by other applications, optional. Use case: If projects A and B both call mysql but to different databases mysql-a and mysql-b, without adding mapping configuration, df platform will show both projects calling the same database named mysql. Adding mapping configurations as mysql-a and mysql-b will show project A calling mysql-a and project B calling mysql-b.
-- Ddd.agent.host: Data transmission target IP, default is localhost, optional.
+- Ddd.trace.sample.rate: Set sampling rate (default full sampling), optional. If sampling is needed, set a number between 0~1, e.g., 0.6 means 60% sampling.
+- Ddd.service.mapping: Redis, MySQL, etc., called by the current application can be given aliases via this parameter to distinguish them from those called by other applications, optional. Use case: If both Project A and Project B call MySQL, specifically mysql-a and mysql-b, without adding mapping configuration, on the df platform, it would show both projects calling the same database named mysql. With mapping configurations like mysql-a and mysql-b, the df platform will show Project A calling mysql-a and Project B calling mysql-b.
+- Ddd.agent.host: Data transmission target IP, default localhost, optional.
 
 ### 3 View APM Data
 
-APM is a built-in module in <<< custom_key.brand_name >>>, so no additional scene or view creation is required for viewing.
+APM is a default built-in module in <<< custom_key.brand_name >>>, and no scene or view creation is required to view it.
 
-Example view:<br/>
-This view allows quick inspection of application call situations, topology diagrams, anomaly data, and other APM-related data.
+View Example:<br/>
+Through this view, you can quickly check application invocation situations, topology maps, exception data, and other APM-related data.
 
 ![image](../images/java-rum-apm-log/10.png)
 
 ![image](../images/java-rum-apm-log/11.png)
 
-Call chain problem tracking:<br/>
-Can help diagnose interface and database issues.
+Issue tracking in the call chain:<br/>
+You can troubleshoot interface and database problems.
 
 ![image](../images/java-rum-apm-log/12.png)
 
@@ -191,7 +191,7 @@ Can help diagnose interface and database issues.
 
 Examples: Nginx, MySQL, Redis, etc.
 
-By enabling various built-in inputs in DataKit, you can directly start collecting relevant logs, such as [Nginx](../../integrations/nginx.md), [Redis](../../integrations/datastorage/redis.md), [containers](../../integrations/container/docker.md), [ES](../../integrations/datastorage/elasticsearch.md).
+By enabling various built-in inputs in DataKit, you can directly start collecting related logs, such as [Nginx](../../integrations/nginx.md), [Redis](../../integrations/datastorage/redis.md), [Containers](../../integrations/container/docker.md), [ES](../../integrations/datastorage/elasticsearch.md).
 
 **Example: Nginx**
 
@@ -200,12 +200,12 @@ $ cd /usr/local/datakit/conf.d/nginx/
 $ cp nginx.conf.sample nginx.conf
 $ vim nginx.conf
 
-## Modify log path to the correct nginx path
+## Modify the log path to the correct nginx path
 $ [inputs.nginx.log]
 $     files = ["/usr/local/nginx/logs/access.log","/usr/local/nginx/logs/error.log"]
 $     pipeline = "nginx.p"
 
-## Pipeline is grok statement mainly used for text log parsing. Datakit has built-in pipelines for nginx, mysql, etc., default directory is /usr/local/datakit/pipeline/, no need to modify pipeline path, datakit will automatically read it.
+## Pipeline refers to grok statements mainly used for text log splitting. DataKit has built-in various pipelines including nginx, mysql, etc. The default directory for pipelines is /usr/local/datakit/pipeline/, and here there is no need to modify the pipeline path, as DataKit automatically reads it by default.
 ```
 
 ![image](../images/java-rum-apm-log/13.png)
@@ -221,15 +221,15 @@ $     pipeline = "nginx.p"
 Examples: Application logs, business logs, etc.
 
 **Example: Application Logs**
-Pipeline (log grok parsing) [**Official Documentation**](../../pipeline/use-pipeline/pipeline-quick-start.md)
+Pipeline (log grok splitting) [**Official Documentation**](../../pipeline/use-pipeline/pipeline-quick-start.md)
 
 ```shell
 $ cd /usr/local/datakit/conf.d/log/
 $ cp logging.conf.sample system-logging.conf
 $ vim system-logging.conf
 
-## Modify log path to the correct application log path
-## Source and service are required fields, can use application name to distinguish different log names
+## Modify the log path to the correct application log path
+## Source and service are mandatory fields, which can directly use the application name to differentiate different log names
 
 [[inputs.logging]]
   ## required
@@ -241,20 +241,20 @@ $ vim system-logging.conf
   ## glob filter
   ignore = [""]
 
-  ## your logging source, if empty, use 'default'
+  ## Your logging source, if empty, use 'default'
   source = "system-log"
 
-  ## add service tag, if empty, use $source.
+  ## Add service tag, if empty, use $source.
   service = "system-log"
 
-  ## grok pipeline script path
+  ## Grok pipeline script path
   pipeline = "log_demo_system.p"
 
-  ## optional statuses:
+  ## Optional statuses:
   ##   "emerg","alert","critical","error","warning","info","debug","OK"
   ignore_status = []
 
-  ## optional encodings:
+  ## Optional encodings:
   ##    "utf-8", "utf-16le", "utf-16le", "gbk", "gb18030" or ""
   character_encoding = ""
 
@@ -262,12 +262,12 @@ $ vim system-logging.conf
   ## regexp link: https://golang.org/pkg/regexp/syntax/#hdr-Syntax
   multiline_match = '''^\d{4}-\d{2}-\d{2}'''
 
-  ## removes ANSI escape codes from text strings
+  ## Removes ANSI escape codes from text strings
   remove_ansi_escape_codes = false
 
 
 
-## Pipeline is grok statement mainly used for text log parsing. If this configuration is not enabled, df platform will display raw log text. If filled, it will parse the corresponding log using grok. The .p file needs to be manually created.
+## Pipeline refers to grok statements mainly used for text log splitting. If this configuration is not open, the raw log content will be displayed by default on the df platform. If filled, the corresponding logs will be split by grok. The .p file mentioned here must be manually created.
 ```
 
 ![image](../images/java-rum-apm-log/16.png)
@@ -287,11 +287,11 @@ default_time(time)
 
 ![image](../images/java-rum-apm-log/18.png)
 
-## Demonstration of RUM and APM Data Linkage
+## RUM and APM Data Linkage Demonstration
 
-**Principle Explanation**: When users access the frontend application (with RUM monitoring and configured **allowedTracingOrigins** field), the frontend application calls resources and requests, triggering rum-js performance data collection. rum-js generates a trace-id written in the request header. When the request reaches the backend, ddtrace reads this trace_id and records it in its own trace data, thus achieving linked analysis of application performance monitoring and user access monitoring data through the same trace_id.
+**Principle Introduction**: Users accessing the frontend application (already added RUM monitoring and configured the **allowedTracingOrigins** field), trigger rum-js performance data collection when the frontend application calls resources and requests. Rum-js generates a trace-id written in the request_header. When the request reaches the backend, the backend's ddtrace reads this trace_id and records it in its own trace data, thus achieving linked analysis of application performance monitoring and real-user monitoring data through the same trace_id.
 
-**Use Case**: Correlating frontend and backend, binding frontend requests and backend method execution performance data one-to-one, making it easier to locate frontend-backend associated issues. For example, if frontend user login is slow due to backend service querying the database taking too long, linked analysis can quickly pinpoint the problem across teams and departments. Example below:
+**Use Case**: Frontend-backend association binds frontend request data with backend method execution performance data one-to-one, making it easier to locate issues related to frontend-backend associations. For example, if the frontend user login is slow because the backend service takes too long querying the database, you can quickly identify the issue across teams and departments through frontend-backend linked analysis, as shown below:
 
 **Configuration Method**: [Web Application Monitoring (RUM) Best Practices](../monitoring/web.md)
 
@@ -299,21 +299,21 @@ default_time(time)
 
 ![image](../images/java-rum-apm-log/19.png)
 
-### 2 Navigate to Backend APM Data
+### 2 Jump to Backend APM Data
 
 ![image](../images/java-rum-apm-log/20.png)
 
 ![image](../images/java-rum-apm-log/21.png)
 
-## Demonstration of APM and LOG Data Linkage
+## APM and LOG Data Linkage Demonstration
 
 ### 1 Enable APM Monitoring
 
-Refer to [Kubernetes Application RUM-APM-LOG Linked Analysis](../cloud-native/k8s-rum-apm-log.md) APM section, no additional actions required.
+Refer to the APM part of [Kubernetes Application RUM-APM-LOG Linked Analysis](../cloud-native/k8s-rum-apm-log.md), no additional actions are required.
 
 ### 2 Modify Application Log Output Format
 
-**Developer involvement required** to modify the application log output format file `logback/log4j`
+**This step requires developer involvement**, modify the application log output format file `logback/log4j`
 
 ![image](../images/java-rum-apm-log/22.png)
 
@@ -323,7 +323,7 @@ Refer to [Kubernetes Application RUM-APM-LOG Linked Analysis](../cloud-native/k8
 <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] %X{dd.service} %X{dd.trace_id} %X{dd.span_id} - %msg%n" />
 ```
 
-Save the XML file and redeploy the application.
+Save the xml file and re-publish the application.
 
 ### 3 Enable Log Monitoring
 
@@ -334,23 +334,23 @@ $ cd /usr/local/datakit/conf.d/log/
 $ cp log.conf.sample ruoyi-system.conf
 $ vim ruoyi-system.conf
 
-## Modify as shown in the image
-## logfiles is the absolute path of the application log
-## service and source are required fields for easy searching on df platform
-## Pipeline can be set based on requirements, primarily used for log field parsing. Parsed log content can be stored as metrics for visualization. There's no need to parse trace-id related content for visualization.
+## Modify the following content
+## logfiles are absolute paths of application logs
+## service and source are mandatory fields, convenient for searching on the df platform
+## Pipeline can be set according to requirements. Pipeline is mainly used for log field splitting, and after splitting, log contents can be stored as metrics for visualization. There is no need to visualize trace-id related content, so splitting may not be necessary.
 ```
 
 ![image](../images/java-rum-apm-log/23.png)
 
 ### 4 APM & LOG Linked Analysis
 
-- **Forward Association [APM —— Log]**<br/>
-  In APM trace data, directly search for `trace_id` in the log module below to view the application logs generated by this trace call.
+- **Forward Association [APM —— Logs]**<br/>
+  In APM trace data, search for `trace_id` directly in the log module below to view the corresponding application logs generated during this trace call.
 
 ![image](../images/java-rum-apm-log/24.png)
 
-- **Reverse Association [Log —— APM]**<br/>
-  View error logs, copy the `trace_id`, and search for this `trace_id` in the trace tracking page search box. This will retrieve all related trace and span data for that id. Click to view.
+- **Reverse Association [Logs —— APM]**<br/>
+  View abnormal logs, copy the `trace_id` from the logs, and search for this `trace_id` in the tracing page search box. You can find all trace and span data related to this id, and click to view.
 
 ![image](../images/java-rum-apm-log/25.png)
 

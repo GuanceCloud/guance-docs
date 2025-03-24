@@ -1,20 +1,19 @@
 # Alert Statistics Chart
 ---
 
-Displays unresolved alert events in a list format, allowing for quick identification and response to urgent issues in the system.
+Displays unresolved alert events in list form to help quickly identify and respond to urgent issues in the system.
 
 <img src="../../img/warning.png" width="70%" >
 
-The alert events based on anomaly detection are divided into two sections in the alert statistics chart:
+The alert statistics chart is based on alert events from anomaly detection and is divided into two parts:
 
-- Statistics Chart: Groups events by severity level and counts the number of events at each level;
-- Alert List: Displays all unresolved alert events within the selected time range.
+- Statistics Chart: Groups events by severity level and counts the number of events for each level;
+- Alert List: Includes all unresolved alert events generated within the selected time range.
+
+You can input keywords in the query box to search and locate, or add a `by` condition for data aggregation display.
 
 
-
-You can query and locate events by entering keywords or further add `by` conditions for data aggregation and display.
-
-In the alert list, hovering over an event allows you to choose to [create an Issue related to that event](../../events/event-explorer/unrecovered-events.md#issue) or [recover the event directly](../../events/event-explorer/unrecovered-events.md#recover).
+In the alert list, hovering over a specific event allows you to directly [create an Issue related to that event](../../events/event-explorer/unrecovered-events.md#issue) or directly [recover that event](../../events/event-explorer/unrecovered-events.md#recover).
 
 
 ## Chart Configuration
@@ -23,13 +22,13 @@ In the alert list, hovering over an event allows you to choose to [create an Iss
 
 ### Display Settings
 
-:material-numeric-1-circle: Display Items: Choose which parts of the current chart to display, including:
+- Display Items: Choose which part of the chart to show, including:
 
-- All
-- Statistics Chart Only
-- Alert List Only
+    - All
+    - Statistics Chart Only
+    - Alert List Only
 
-:material-numeric-2-circle: Pagination Quantity: The number of unresolved events displayed in the alert list on the left side, with options of 10, 20, 50, or 100 events per page; the system default is 50 events per page.
+- Pagination Quantity: Set the number of unresolved events displayed in the left alert list; selectable options are 10 items, 20 items, 50 items, 100 items; default is 50 items.
 
 
 
@@ -41,7 +40,7 @@ In the alert list, hovering over an event allows you to choose to [create an Iss
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Unrecovered Event Explorer</font>](../../events/event-explorer/unrecovered-events.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Unresolved Events Explorer</font>](../../events/event-explorer/unrecovered-events.md)
 
 </div>
 

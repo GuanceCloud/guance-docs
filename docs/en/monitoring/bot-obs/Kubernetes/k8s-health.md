@@ -3,21 +3,21 @@
 
 ## Background
 
-Nowadays, Kubernetes has swept through the entire container ecosystem, acting as the brain for distributed deployment of containers. It aims to manage service-oriented applications using containers distributed across host clusters. Kubernetes provides mechanisms for application deployment, scheduling, updates, service discovery, and scaling. However, how can we ensure the health of Kubernetes nodes? Through intelligent inspection, we can accelerate incident investigation, reduce pressure on engineers, decrease mean time to repair, and improve end-user experience by retrieving and identifying issues from current node resource status, APM, and service failure logs.
+Nowadays, Kubernetes has swept through the entire container ecosystem. It acts as the brain for distributed container deployments, aiming to manage service-oriented applications using containers distributed across host clusters. Kubernetes provides mechanisms for application deployment, scheduling, updates, service discovery, and scaling. However, how can we ensure the health of Kubernetes nodes? Through intelligent inspection, issues can be discovered by searching for information such as current node resource status, application performance management, and service failure logs, thus accelerating incident investigation, reducing pressure on engineers, minimizing mean time to repair, and improving end-user experience.
 
 ## Prerequisites
 
-1. Enable "Container Data Collection" in <<< custom_key.brand_name >>> [Container Data Collection](<<< homepage >>>/datakit/container/)
-2. Set up a self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or subscribe to [DataFlux Func (Automata)](../../../dataflux-func/index.md)
-4. Create an API Key for operations in <<< custom_key.brand_name >>> under "Management / API Key Management" [API Key](../../../management/api-key/open-api.md)
+1. Enable " [Container Data Collection](<<< homepage >>>/datakit/container/)" in <<< custom_key.brand_name >>>
+2. Set up a self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate the [DataFlux Func (Automata)](../../../dataflux-func/index.md)
+4. Create an [API Key](../../../management/api-key/open-api.md) for operations under "Management / API Key Management" in <<< custom_key.brand_name >>>
 
-> **Note**: If you are considering using cloud servers for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current <<< custom_key.brand_name >>> SaaS deployment [Same Operator and Region](../../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current SaaS-based <<< custom_key.brand_name >>> deployment [here](../../../../getting-started/necessary-for-beginners/select-site/).
 
-## Enabling Inspection
+## Starting the Inspection
 
-In your self-hosted DataFlux Func, install "<<< custom_key.brand_name >>> Self-built Inspection (K8S Health Inspection)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to enable it.
+In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-Hosted Inspection (K8S Health Inspection)" script via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to start.
 
-Select the required inspection scenario in the DataFlux Func Script Market, click Install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose Deploy to start the script.
+In the DataFlux Func Script Market, select the required inspection scenario and click Install. Configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) then choose to deploy and start the script.
 
 ![image](../../img/create_checker.png)
 
@@ -25,26 +25,26 @@ After successfully deploying the startup script, it will automatically create th
 
 ![image](../../img/success_checker.png)
 
-## Configuring Inspection
+## Configuring the Inspection
 
 ### Configuring Inspection in <<< custom_key.brand_name >>>
 
 ![image](../../img/k8s_health03.png)
 
 #### Enable/Disable
-Kubernetes health inspection is enabled by default and can be manually disabled. Once enabled, it will inspect the configured Kubernetes health inspection list.
+The Kubernetes Health Inspection is by default set to "Enabled". It can be manually "Disabled". After enabling, inspections will run based on the configured Kubernetes health inspection list.
 
 #### Editing
-Intelligent inspection "Kubernetes Health Inspection" supports users adding filter conditions manually. Click the **Edit** button in the operation menu on the right side of the intelligent inspection list to edit the inspection template.
+The "Kubernetes Health Inspection" supports users adding filter conditions. Under the operation menu on the right side of the intelligent inspection list, click the **Edit** button to modify the inspection template.
 
-* Filter Conditions: Configure `cluster_name` cluster name, `host` nodes to be inspected
-* Alert Notifications: Supports selecting and editing alert strategies, including event levels, notification targets, and alert mute periods
+* Filter Conditions: Configure `cluster_name` for the cluster name and `host` for the nodes to inspect.
+* Alert Notifications: Supports selecting and editing alert strategies including event severity levels, notification targets, and alert silence periods.
 
-Click Edit after configuring entry parameters, fill in the corresponding inspection objects in the parameter configuration, and save to start the inspection:
+To configure entry parameters, click Edit, fill in the corresponding detection objects in the parameter configuration, and save to start the inspection:
 
 ![image](../../img/k8s_health04.png)
 
-You can refer to the following JSON configuration for multiple application information
+You can refer to the following JSON configuration to add multiple application details:
 
 ```json
 // Example:
@@ -54,11 +54,11 @@ You can refer to the following JSON configuration for multiple application infor
          cluster_name_3
 ```
 
-> **Note**: In your self-hosted DataFlux Func, when writing custom inspection handling functions, you can also add filtering conditions (refer to sample code configuration). Note that parameters configured in <<< custom_key.brand_name >>> Studio will override those set in the custom inspection handling function.
+> **Note**: In the self-hosted DataFlux Func, when writing custom inspection handling functions, you can also add filtering conditions (refer to example code configurations). Note that parameters configured in <<< custom_key.brand_name >>> studio will override those set in the custom inspection handling function.
 
 ### Configuring Inspection in DataFlux Func
 
-In DataFlux Func, after configuring the necessary filtering conditions for inspection, you can test by clicking the `run()` method directly on the page. After publishing, the script will run normally. You can also view or modify configurations in <<< custom_key.brand_name >>> under "Monitoring / Intelligent Inspection".
+In DataFlux Func, after configuring the necessary filter conditions, you can test the inspection by clicking the `run()` method directly on the page. After publishing, the script will execute normally. You can also view or modify configurations in <<< custom_key.brand_name >>> under "Monitoring / Intelligent Inspection".
 
 ```python
 from guance_monitor__runner import Runner
@@ -68,8 +68,8 @@ import guance_monitor_k8s_health__main as main
 # Support for using filtering functions to filter the objects being inspected, for example:
 def filter_cluster(cluster_name_k8s):
     '''
-    Filter `cluster_name_k8s`, define conditions that match `cluster_name_k8s`. Return True if matched, otherwise False.
-    return True｜False
+    Filters `cluster_name_k8s`, defines conditions for acceptable `cluster_name_k8s`. Returns True if matches, False otherwise.
+    return True|False
     '''
     if cluster_name_k8s in ['ningxia']:
         return True
@@ -79,104 +79,106 @@ def filter_cluster(cluster_name_k8s):
 @DFF.API('K8S-Health Inspection', timeout=900, fixed_crontab='*/15 * * * *')
 def run(configs=None):
     """
-    The inspection script depends on the `cluster_name_k8s` Metrics of k8s. Before enabling inspection, ensure that the `cluster_name_k8s` Metrics collection for containers is enabled.
+    The inspection script depends on the `cluster_name_k8s` metrics from k8s. Before starting the inspection, ensure the `cluster_name_k8s` metric collection for containers is enabled.
 
     Parameters:
         configs:
-            Configure the cluster_name (cluster name, leave blank to inspect all)
+            Configures the clusters to inspect (cluster names, leave blank to inspect all).
 
-        Configs Example:
+        configs Configuration Example:
              cluster_name_1
              cluster_name_2
              cluster_name_3
 
     """
     checkers = [
-        k8s__health__inspection.K8SHealthCheck(configs=configs, filters=[filter_cluster]), # Support for user-configured multiple filtering functions that are executed in sequence.
+        k8s__health__inspection.K8SHealthCheck(configs=configs, filters=[filter_cluster]), # Support for user-configured multiple filtering functions executed sequentially.
     ]
 
     Runner(checkers, debug=False).run()
 ```
 
+
+
 ## Viewing Events
 
-<<< custom_key.brand_name >>> inspects the current state of the Kubernetes cluster and generates corresponding events when memory, disk, CPU, or POD anomalies are detected. In the intelligent inspection list's operation menu on the right, click the **View Related Events** button to view corresponding anomaly events.
+<<< custom_key.brand_name >>> inspects the current state of the Kubernetes cluster. When memory, disk, CPU, or POD anomalies are detected, the intelligent inspection generates corresponding events. Under the operation menu on the right side of the intelligent inspection list, click the **View Related Events** button to see the corresponding abnormal events.
 
 ![image](../../img/k8s_health05.png)
 
 ### Event Details Page
-Click **Event** to view the details page of the intelligent inspection event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
+Clicking **Event**, you can view the details page of the intelligent inspection event, including event status, time of anomaly occurrence, anomaly name, basic attributes, event details, alert notifications, history records, and associated events.
 
-* Click the small icon "View Monitor Configuration" in the upper-right corner of the details page to view and edit the current intelligent inspection configuration.
+* Click the small icon in the upper-right corner of the details page labeled "View Monitor Configuration" to view and edit the current intelligent inspection configuration.
 
 #### Basic Attributes
-* Inspection Dimensions: Based on the filtering conditions configured for intelligent inspection, support copying `key/value`, adding to filters, and viewing related logs, containers, processes, security inspections, traces, RUM, Synthetic Tests, and CI data.
-* Extended Attributes: Select extended attributes to copy in `key/value` format, apply forward/reverse filtering.
+* Detection Dimensions: Based on the filter conditions set in the intelligent inspection configuration, supports copying detection dimensions as `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, synthetic tests, and CI data.
+* Extended Attributes: Selecting extended attributes allows copying in `key/value` format, forward/reverse filtering.
 
 ![image](../../img/k8s_health06.png)
 
 #### Event Details
 
-##### Memory Usage Anomaly
+##### Abnormal Memory Usage Rate
 
 ![image](../../img/k8s_health07.png)
 
-* Event Overview: Describes the object and content of the anomaly inspection event.
-* Anomaly Details: View detailed metrics of memory anomalies.
-* Top 5 Memory Usage List: View information about the top 5 PODs by memory usage. Clicking a POD redirects to the POD details page for more information.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Anomaly Details: View detailed memory anomaly metrics.
+* Top 5 Memory Usage List: View the top 5 PODs consuming the most memory. You can click on the POD to go to the POD detail page for more information.
 
-##### Disk Usage Anomaly
+##### Abnormal Disk Usage Rate
 
 ![image](../../img/k8s_health08.png)
 
-* Event Overview: Describes the object and content of the anomaly inspection event.
-* Anomaly Details: View detailed metrics of disk anomalies.
-* Anomaly Analysis: View the usage situation of hosts with abnormal disk usage rates. Clicking a host redirects to the host details page for more information.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Anomaly Details: View detailed disk anomaly metrics.
+* Anomaly Analysis: View the usage of hosts with abnormal disk usage rates. You can click on the host to go to the host detail page for more information.
 
-##### CPU Usage Anomaly
+##### Abnormal CPU Usage Rate
 
 ![image](../../img/k8s_health09.png)
 
-* Event Overview: Describes the object and content of the anomaly inspection event.
-* Anomaly Details: View detailed metrics of CPU usage anomalies.
-* Abnormal Containers: View information about the top 10 PODs by CPU usage rate. Clicking a POD redirects to the POD details page for more information.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Anomaly Details: View detailed CPU anomaly metrics.
+* Abnormal Containers: View the top 10 PODs with high CPU usage. You can click on the POD to go to the POD detail page for more information.
 
 ##### High Pod Pending Ratio
 
 ![image](../../img/k8s_health10.png)
 
-* Event Overview: Describes the object and content of the anomaly inspection event.
-* Abnormal POD: View detailed information about the abnormal Pod. You can also jump to the corresponding Pod details page via the Pod name.
-* Pod Logs: View logs for the corresponding abnormal Pod. You can jump to the respective anomaly details via log sources and abnormal Pods.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Abnormal PODs: View detailed information about the abnormal Pods, and you can jump to the corresponding Pod details via the Pod name.
+* Pod Logs: View logs for the corresponding abnormal Pods, and you can jump to the relevant anomaly details via log sources or abnormal Pods.
 
-#### History
+#### Historical Records
 
 Supports viewing detection objects, anomaly/recovery times, and duration.
 
 ![image](../../img/k8s_health11.png)
 
-#### Related Events
-Supports viewing related events through selected fields and time component information.
+#### Associated Events
+Supports viewing associated events by filtering fields and selected time components.
 
 ![image](../../img/k8s_health12.png)
 
 ## Common Issues
-**1. How to configure the inspection frequency for Kubernetes health inspection**
+**1. How to configure the detection frequency for Kubernetes Health Inspection**
 
-* In your self-hosted DataFlux Func, add `fixed_crontab='*/15 * * * *', timeout=900` in the decorator when writing custom inspection handling functions, and configure it in "Management / Automatic Trigger Configuration".
+* In the self-hosted DataFlux Func, when writing custom inspection handling functions, add `fixed_crontab='*/15 * * * *', timeout=900` in the decorator, then configure it under "Management / Automatic Trigger Configuration".
 
-**2. Why might there be no anomaly analysis during Kubernetes health inspection**
+**2. Why might there be no anomaly analysis during Kubernetes Health Inspection triggers**
 
-When there is no anomaly analysis in the inspection report, check the current `datakit` data collection status.
+When the inspection report lacks anomaly analysis, check the current `datakit` data collection status.
 
-**3. What to do if previously running scripts fail during inspection**
+**3. During the inspection process, previously normal scripts now have errors**
 
-Update the referenced script set in the DataFlux Func Script Market. You can view the update records of the script market via the [Change Log](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates to the script.
+Update the referenced script sets in the DataFlux Func Script Market. You can view the update records of the Script Market via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely script updates.
 
-**4. Why does the script set not change during inspection script upgrades**
+**4. During script upgrades, why does the Startup script set remain unchanged**
 
-First delete the corresponding script set, then click the upgrade button and configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
+Delete the corresponding script set first, then click the Upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**5. How to determine if the inspection is effective after enabling**
+**5. How to determine if the inspection has taken effect after enabling**
 
-In "Management / Automatic Trigger Configuration," view the corresponding inspection status. First, ensure it is enabled, then verify if the inspection script works by clicking Execute. If it shows "Executed Successfully xxx minutes ago," the inspection is running effectively.
+Under "Management / Automatic Trigger Configuration", check the corresponding inspection status. First, ensure it is enabled, then verify the inspection script by clicking Execute. If you see a success message indicating execution minutes ago, the inspection is running properly.

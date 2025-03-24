@@ -9,23 +9,20 @@ List data access rules of various types
 
 
 
-
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
+|:---------------------|:---------|:-----------|:------------------------|
 | type | string | Y | Filter field, type<br>Can be empty: True <br>Optional values: ['logging', 'rum', 'tracing', 'metric'] <br> |
 | roleUUIDs | commaArray |  | Filter field, role UUID, comma-separated<br>Can be empty: False <br> |
 | indexUUIDs | commaArray |  | Filter field, index UUID, comma-separated<br>Can be empty: False <br> |
 | sources | commaArray |  | Filter field, resource name, comma-separated<br>Can be empty: False <br> |
 | isMask | string |  | Filter field, whether masked<br>Can be empty: False <br>Optional values: ['true', 'false'] <br> |
 | search | string |  | Search name<br>Can be empty: True <br> |
-| pageSize | integer |  | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
+| pageSize | integer |  | Number of items returned per page<br>Can be empty: False <br>Example: 10 <br> |
 | pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 10 <br> |
 
-## Additional Parameter Notes
-
-
+## Parameter Supplementary Notes
 
 
 
@@ -86,23 +83,23 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                 "relMemberInfos": [
                     {
                         "acntWsNickname": "",
-                        "email": "dcl@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_664f5b3cfe7841a89143817f27267066.png",
                         "mobile": "",
                         "name": "dcl",
                         "status": 0,
-                        "username": "dcl@qq.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_664f5b3cfe7841a89143817f27267066",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "why@jiagouyun.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "whyPAAS",
                         "status": 0,
-                        "username": "why@jiagouyun.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_dd1bb947d2ac4c96ad99be7aa86c0e43",
                         "wsAccountStatus": 0
                     }
@@ -114,7 +111,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                         "uuid": "role_a1e8215c25474f0bb3809f2d56749ed9"
                     },
                     {
-                        "name": "Shortcut",
+                        "name": "Shortcut Customization",
                         "status": 0,
                         "uuid": "role_aa49795a5a5a4753a2a6350ab57f9497"
                     }
@@ -134,7 +131,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                             "type": "web"
                         },
                         "wsInfo": {
-                            "name": "[Doris] Development and Testing Together_",
+                            "name": "[Doris] Development Testing Together_",
                             "status": 0
                         }
                     }
@@ -163,7 +160,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                 "creator": "acnt_decf86471e4e4210a333b9f49bdec3da",
                 "creatorInfo": {
                     "acntWsNickname": "",
-                    "email": "newadmin@qq.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "",
                     "mobile": "16543443437",
                     "name": "newadmin-hd",
@@ -185,18 +182,18 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                 "relMemberInfos": [
                     {
                         "acntWsNickname": "",
-                        "email": "dcl@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_664f5b3cfe7841a89143817f27267066.png",
                         "mobile": "",
                         "name": "dcl",
                         "status": 0,
-                        "username": "dcl@qq.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_664f5b3cfe7841a89143817f27267066",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "b@mm.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "b",
@@ -207,7 +204,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "xujiqiu@guance.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "xujiqiu",
@@ -218,7 +215,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "test100@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "test100",
@@ -229,7 +226,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "jd@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "jd",
@@ -240,18 +237,18 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "gw77@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "gw7",
                         "status": 0,
-                        "username": "gw77@qq.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_671f6b0bb58142efb9fd74450b584015",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "chaixinyi@guance.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "13966421853",
                         "name": "chaii",
@@ -262,21 +259,21 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "why@jiagouyun.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "whyPAAS",
                         "status": 0,
-                        "username": "why@jiagouyun.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_dd1bb947d2ac4c96ad99be7aa86c0e43",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "66@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_e85847e7fe894ea9938dd29c22bc1f9b.png",
                         "mobile": "10345678901",
-                        "name": "I am 66",
+                        "name": "I am 66 ya",
                         "status": 0,
                         "username": "66",
                         "uuid": "acnt_e85847e7fe894ea9938dd29c22bc1f9b",
@@ -284,43 +281,43 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "yz03@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
-                        "name": "yz03@qq.com",
+                        "name": "xxx@<<< custom_key.brand_main_domain >>>",
                         "status": 0,
                         "username": "yz03",
                         "uuid": "acnt_ab3b0f6304cf4bb687a49541f19be50d",
                         "wsAccountStatus": 0
                     },
                     {
-                        "acntWsNickname": "Standard User No.2",
-                        "email": "testd_standB@qq.com",
+                        "acntWsNickname": "Second Standard User",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "16332254353",
                         "name": "standB",
                         "status": 0,
-                        "username": "testd_standB@qq.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_629cfa1ef372423b95a93ac15bb0e40b",
                         "wsAccountStatus": 0
                     },
                     {
-                        "acntWsNickname": "Standard User No.1",
-                        "email": "testd_standA@qq.com",
+                        "acntWsNickname": "First Standard User",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "15435364654",
                         "name": "standA",
                         "status": 0,
-                        "username": "testd_standA@qq.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_4f3302d7503546848266e5eb167fb6a3",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "liuyl@jiagouyun.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
-                        "name": "liuyl@jiagouyun.com",
+                        "name": "xxx@<<< custom_key.brand_main_domain >>>",
                         "status": 0,
                         "username": "18521300004",
                         "uuid": "acnt_a71564d3390f486dba9f7c1580b9e02a",
@@ -328,40 +325,40 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "jinlei940@guance.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "17621725046",
-                        "name": "Jinlei lll",
+                        "name": "Jin Lei lll",
                         "status": 0,
-                        "username": "Jinlei lll",
+                        "username": "Jin Lei lll",
                         "uuid": "acnt_8b4bd2b8782646f3ba8f6554193f5997",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "lwc_local_test1@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "lwc_local_test1",
                         "status": 0,
-                        "username": "lwc_local_test1@qq.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_3dfb55c16128420e8ca70756f7292b67",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "lwc_local_test2@qq.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "",
                         "name": "lwc_local_test2",
                         "status": 0,
-                        "username": "lwc_local_test2@qq.com",
+                        "username": "xxx@<<< custom_key.brand_main_domain >>>",
                         "uuid": "acnt_e2b3368ceb074efe8c6d96cf49362629",
                         "wsAccountStatus": 0
                     },
                     {
                         "acntWsNickname": "",
-                        "email": "jon.jinlei@gmail.com",
+                        "email": "xxx@<<< custom_key.brand_main_domain >>>",
                         "iconUrl": "",
                         "mobile": "17621725789",
                         "name": "jon_jinlei",
@@ -392,7 +389,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                             "type": "web"
                         },
                         "wsInfo": {
-                            "name": "[Doris] Development and Testing Together_",
+                            "name": "[Doris] Development Testing Together_",
                             "status": 0
                         }
                     }
@@ -402,13 +399,13 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/data_query_rul
                 "updateAt": 1730084928,
                 "updator": "acnt_57a717791e094f35966907d4cf80b45f",
                 "updatorInfo": {
-                    "acntWsNickname": "Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname nicn Nickname nic Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nick",
-                    "email": "liuyl@guance.com",
+                    "acntWsNickname": "Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nicn Nickname Nic Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nickname Nick",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_57a717791e094f35966907d4cf80b45f.png",
                     "mobile": "18511111112",
-                    "name": "Modified Modified Modified",
+                    "name": "Modify Modify Modify",
                     "status": 0,
-                    "username": "liuyl@guance.com",
+                    "username": "xxx@<<< custom_key.brand_main_domain >>>",
                     "uuid": "acnt_57a717791e094f35966907d4cf80b45f",
                     "wsAccountStatus": 0
                 },

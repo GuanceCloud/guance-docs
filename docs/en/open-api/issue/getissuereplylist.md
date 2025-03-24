@@ -1,4 +1,4 @@
-# List Issue Replies
+# List of Issue-Replies
 
 ---
 
@@ -11,18 +11,18 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| issue_uuid | string | Y | Issue UUID<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| issue_uuid           | string   | Y          | issueUUID<br>          |
 
 
 ## Query Request Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| ordering | string |  | Sorting method, e.g., ordering=-createAt<br>Can be empty: False <br> |
-| pageSize | integer |  | Number of items per page<br>Can be empty: False <br>Example: 10 <br> |
-| pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 10 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| ordering             | string   |            | Sorting method ordering=-createAt<br>Can be empty: False <br> |
+| pageSize            | integer  |            | Number of items returned per page<br>Can be empty: False <br>Example: 10 <br> |
+| pageIndex           | integer  |            | Page number<br>Can be empty: False <br>Example: 10 <br> |
 
 ## Additional Parameter Notes
 
@@ -52,9 +52,9 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/is
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
-                "name": "Test 88",
+                "name": "88Test",
                 "username": "Test"
             },
             "deleteAt": -1,
@@ -69,9 +69,9 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/reply/is
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://testing-static-res.cloudcare.cn/icon/acnt_xxxx32.png",
-                "name": "Test 88",
+                "name": "88Test",
                 "username": "Test"
             },
             "uuid": "repim_xxxx32",

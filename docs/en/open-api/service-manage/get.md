@@ -1,11 +1,11 @@
-# 【Service List】Retrieve
+# [Service List] Retrieval
 
 ---
 
 <br />**GET /api/v1/service_manage/\{service_uuid\}/get**
 
 ## Overview
-Retrieve information for a single service list entry
+Retrieve information for a single service entry.
 
 
 
@@ -13,33 +13,32 @@ Retrieve information for a single service list entry
 
 | Parameter Name        | Type     | Required   | Description              |
 |:------------------|:-------|:-----|:----------------|
-| service_uuid | string | Y | UUID corresponding to the service<br>Example: xxxx <br>Allow empty string: False <br> |
+| service_uuid | string | Y | UUID corresponding to the service<br>Example: xxxx <br>Can be empty string: False <br> |
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
 |:------------------|:-------|:-----|:----------------|
-| originStr | string |  | Pass 1 for raw string, 0 for structured data, defaults to 1<br>Allow empty: False <br> |
+| originStr | string |  | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
 
 
-**Request Body Structure Explanation**
+**Request Body Structure Description**
 
 |  Parameter Name        |   Type  | Required  |          Description          |
 |----------------------|----------|----|------------------------|
-| service_uuid    |  string  |  Y | Unique UUID of the service list entry, prefixed with sman_ |
-| originStr |  string  |  N | Whether to return the serviceCatelog as a raw string, 1 for yes, 0 for no. Defaults to 1 |
+| service_uuid    |  string  |  Y | Unique UUID of the service list, prefix is sman_ |
+| originStr |  string  |  N | Whether to return the serviceCatelog as a raw string, 1 for yes, 0 for no. Default is 1 |
 
-**Response Body Structure Explanation**
+**Response Body Structure Description**
 
 |  Parameter Name                |   Type  |          Description          |
-|-------------------------------|----------|------------------------|
-| serviceCatelog         | string, dict |  Raw string or structured data of the service list entry |
-| service         | string |  Service name |
-| type         | string |  Service type |
-
+|-----------------------------|----------|------------------------|
+|serviceCatelog         |string,dict |  Raw string or structured data of the service list |
+|service         |string |  Service name |
+|type         |string |  Service type |
 
 
 
@@ -72,14 +71,14 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
         "serviceCatelog": {
             "Docs": [
                 {
-                    "link": "https://www.docs.guance.com",
-                    "name": "Guance",
-                    "provider": "Guance"
+                    "link": "<<< homepage >>>",
+                    "name": "guance",
+                    "provider": "guanceyun"
                 },
                 {
                     "link": "https://<<< custom_key.func_domain >>>/doc",
                     "name": "func",
-                    "provider": "Guance"
+                    "provider": "guanceyun"
                 }
             ],
             "Related": {
@@ -95,14 +94,14 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
             },
             "Repos": [
                 {
-                    "link": "https://<<< custom_key.brand_main_domain >>>",
-                    "name": "Guance",
-                    "provider": "Guance"
+                    "link": "https://www.<<< custom_key.brand_main_domain >>>",
+                    "name": "guance",
+                    "provider": "guanceyun"
                 },
                 {
                     "link": "https://<<< custom_key.func_domain >>>",
                     "name": "func",
-                    "provider": "Guance"
+                    "provider": "guanceyun"
                 }
             ],
             "Team": {
@@ -110,10 +109,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 "oncall": [
                     {
                         "emails": [
-                            "test1@guance.com",
-                            "test2@guance.com"
+                            "xxx@<<< custom_key.brand_main_domain >>>",
+                            "xxx@<<< custom_key.brand_main_domain >>>"
                         ],
-                        "name": "Guance",
+                        "name": "guanceyun",
                         "type": "email"
                     },
                     {

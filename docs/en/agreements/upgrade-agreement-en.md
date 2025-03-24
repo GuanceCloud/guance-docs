@@ -17,19 +17,19 @@ The indexed keywords listed before the terms of this Service Agreement are only 
  
 ## Service Terms
 
-### 1. Subject and Scope of Agreement
+### 1. Subject and scope of agreement
 
-This Service Agreement is signed between you and Shanghai Futuroscope Information Technology Co., Ltd. for your use of the "Commercial Plan" of the one-stop data monitoring cloud platform of Guance.
+This Service Agreement is signed between you and Shanghai Futuroscope Information Technology Co., Ltd. for your use of "Commercial Plan" of the one-stop data monitoring cloud platform of Guance.
 
 ### 2. Service Content
 
-"Service" in this clause refers to the "Commercial Plan" service of the one-stop data monitoring cloud platform of Guance displayed by the Guance website (https://<<< custom_key.brand_main_domain >>>/) and client (hereinafter referred to as "Guance website" individually or collectively), which you apply for and Guance agrees to provide to you. (For details, please refer to the service contents and pricing methods on relevant pages of the Guance website.)
+"Service" in this clause refers to "commercial plan" service of one-stop data monitoring cloud platform of Guance displayed by Guance website (https://<<< custom_key.brand_main_domain >>>/) and client (hereinafter referred to as "Guance website" individually or collectively), which you apply for and Guance agrees to provide to you. (For details, please refer to the service contents and pricing methods on relevant pages of Guance website.)
  
 ### 3. Service Fee
  
 3.1 The Guance Billing Center will automatically generate and send your monthly usage bill of Guance products to inform you of your monthly consumption.
 
-3.2 Guance One-stop Data Monitoring Cloud Platform is one of the products of the Guance Billing Center, and its use fee will be paid through your wallet of the Guance Billing Center.
+3.2 Guance One-stop Data Monitoring Cloud Platform is one of the products of Guance Billing Center, and its use fee will be paid through your wallet of Guance Billing Center.
 
 3.2.1 You will use the wallet function opened by the Guance Billing Center for each enterprise member to settle accounts, and the wallet will include the account balance formed by your recharge.
 
@@ -39,7 +39,7 @@ This Service Agreement is signed between you and Shanghai Futuroscope Informatio
 
 3.2.4 When your account balance is used up, you have entered the suspension state, and Guance has the right to temporarily cancel your qualification for using Guance products.
 
-3.2.5 When you enter the suspension state for more than "15" days (including "15" days), you have been in the arrears state, and Guance has the right to take one or more of the following measures at the same time:
+3.2. 5 When you enter the suspension state for more than "15" days (including "15" days), you have been in the arrears state, and Guance has the right to take one or more of the following measures at the same time:
 
 I. Guance has the right to temporarily disqualify you from using Guance products.
 
@@ -55,7 +55,7 @@ V. Guance allows you to unlock the pause state through the Billing Center. After
 
 3.3 Invoice Request 
 
-After you receive the monthly bill or purchase a prepaid card in the Guance Billing Center, you can contact Guance sales staff or submit a ticket in the Guance Billing Center to apply for an invoice. When applying for an invoice, you need to provide accurate billing information. Electronic invoices are supported, and the invoice tax rate is determined according to national tax laws and regulations. After Guance receives the invoice application, it will complete the invoicing within 5 working days after receiving the payment, and the invoice will be sent directly to the email address you submitted when applying.
+After you receive the monthly bill or purchase a prepaid card in the Guane Billing Center, you can contact Guance sales staff or submit a ticket in the Guane Billing Center to apply for an invoice. When applying for an invoice, you need to provide accurate billing information. Electronic invoices are supported, and the invoice tax rate is determined according to national tax laws and regulations. After Guance receives the invoice application, it will complete the invoicing within 5 working days after receiving the payment, and the invoice will be sent directly to the email address you submitted when applying.
 
  
 ### 4. Your Rights and Obligations
@@ -86,7 +86,7 @@ After you receive the monthly bill or purchase a prepaid card in the Guance Bill
 
 5.2.2 Guance will provide you with fault support services, and you should declare faults through online work orders; Guance will provide timely support for failures caused by your non-human operation, except for your human reasons and/or force majeure and other matters beyond the control of Guance.
 
-5.3 You can also obtain other paid after-sales services through Guance. For details, please refer to the paid after-sales service contents on relevant pages of the Guance website and "Guance SaaS Service Level Agreement".
+5.3 You can also obtain other paid after-sales services through Guance. For details, please refer to the paid after-sales service contents on relevant pages of Guance website and "Guance SaaS Service Level Agreement".
 
 5.4 You understand that Guance cannot guarantee that the services it provides are flawless (Guance Platform products cannot guarantee the absolute security of your hardware or software), but Guance promises to continuously improve the service quality and service level. Therefore, you agree that even if there are defects in the services provided by Guance, the above defects are inevitable at the technical level of the industry at that time, and they will not be regarded as breaches of Guance. You agree to work with Guance to solve the above defects.
 
@@ -96,7 +96,7 @@ After you receive the monthly bill or purchase a prepaid card in the Guance Bill
  
 ### 6. User Business Data
 
-6.1 Guance understands and recognizes that the data you process, store, upload, download, distribute and process by other means through the Guance Platform are all your user business data, and you fully own your user business data.
+6.1 Guance understands and recognizes that the data you process, store, upload, download, distribute and process by other means through Guance Platform are all your user business data, and you fully own your user business data.
 
 6.2 For user business data, Guance will not make any unauthorized use and disclosure except to implement your service requirements; Except in the following cases:
 
@@ -111,7 +111,7 @@ After you receive the monthly bill or purchase a prepaid card in the Guance Bill
 6.5 Once the user's business data is deleted, it cannot be recovered; You shall bear the consequences and responsibilities arising from the deletion of the data, and you understand and agree that Guance has no obligation to continue to retain, export or return the user's business data.
 
 6.6 Guance abides by its security commitment to users and protects the data stored by users on the Guance platform according to applicable laws.
- 
+
 ### 7. Intellectual Property
 
 7.1 The intellectual property rights of any information, technology or technical support, software and services provided by one party to the other party under this service agreement belong to the provider or its legal right holder; Except with the express consent of the provider or the legal obligee, the other party has no right to copy, disseminate, transfer, license or provide others with the above knowledge achievements, otherwise it shall bear corresponding responsibilities.
@@ -122,7 +122,7 @@ After you receive the monthly bill or purchase a prepaid card in the Guance Bill
  
 ### 8. Confidentiality Clause
 
-8.1 Confidential information referred to in this clause means business secrets (including financial secrets), technical secrets, business know-how and/or other confidential information and materials obtained by one party (hereinafter referred to as "the receiving party") from the other party (hereinafter referred to as "the disclosing party") or arising from the performance of this agreement by both parties. Scope of the Confidential Information includes product information, product planning, pricing, financial and marketing planning, business strategy, customer information, customer data, research and development, software, hardware, technical specifications, design, special formulas, special algorithms, etc. This clause shall take effect regardless of the form or carrier of the above information and materials, and whether the disclosing party indicates its confidentiality orally, graphically or in writing at the time of disclosure.
+8.1 Confidential information referred to in this clause means business secrets (including financial secrets), technical secrets, business know-how and/or other confidential information and materials obtained by one party (hereinafter referred to as "the receiving party") from the other party (hereinafter referred to as "the disclosing party") or arising from the performance of this agreement by both parties. Scope of the Confidential Information include product information, product planning, pricing, financial and marketing planning, business strategy, customer information, customer data, research and development, software, hardware, technical specifications, design, special formulas, special algorithms, etc. This clause shall take effect regardless of the form or carrier of the above information and materials, and whether the disclosing party indicates its confidentiality orally, graphically or in writing at the time of disclosure.
 
 8.2 Both parties shall take appropriate measures to properly preserve the confidential information provided by the other party, and the measures shall be no less prudent than when protecting their own confidential information. The Confidential Information shall only be used by the Parties for purposes or purposes related to this Service Agreement.
 

@@ -1,56 +1,62 @@
-# Best Practices for Bidirectional Integration between Incident and JIRA
+# Best Practices for Two-way Synchronization Between Incident and JIRA
 
 ---
 
 > _Authors: Su Tongtong, Liu Rui_
 
-[**Incident**](/exception/) is a communication management tool launched by <<< custom_key.brand_name >>> for effective coordination of internal incidents.
+[**Incidents**](/exception/) is a tool launched by <<< custom_key.brand_name >>> that facilitates effective coordination and communication management based on internal anomalies.
 
 **JIRA** is an enterprise-level project management tool.
 
 ???+ info
 
-    When an application or system encounters an incident, it typically needs to be handled promptly to ensure normal system operation. By integrating [**Incident**](/exception/) with JIRA bidirectionally, relevant personnel within the enterprise can quickly understand and analyze the cause of the problem, trace and record the handling process, effectively improving communication efficiency and significantly reducing incident resolution costs.
+    When an application or system experiences an anomaly, it usually needs to be handled promptly to ensure the normal operation of the system. Through two-way synchronization between [**Incidents**](/exception/) and JIRA, relevant personnel within the enterprise can quickly understand and analyze the causes of problem failures, trace and record the handling process of the failure, effectively improving communication efficiency and significantly reducing the cost of fault handling.
 
-![Incident Interaction Process with IM —— Jira Flowchart](../images/im_jira_01.png)
 
-## Preparation
 
-- [x] Jira platform (requires administrator privileges)
+![Incident Interaction Flow with IM —— Jira Flowchart](../images/im_jira_01.png)
+
+
+## Preparations
+
+- [x] Jira platform (admin privileges required)
 - [x] <<< custom_key.brand_name >>> workspace account
 - [x] [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/) 
 
+
 ## Jira
 
-Obtain the corresponding project key, project URL, API token, and username from the Jira platform. These will be used in subsequent <<< custom_key.brand_name >>> scripts.
+Obtain the corresponding project's `project`, project URL, `api_token`, and `username` from the Jira platform. These will be used in subsequent <<< custom_key.brand_name >>> scripts.
 
-**Only administrators have permission to perform these operations**
+**Only administrators have permission to perform the above operations**
+
+
 
 ## <<< custom_key.brand_name >>>
 
 ### Create API Key
 
-Refer to the documentation for [API Key](/management/api-key/index.md).
+Refer to the documentation [API Key](/management/api-key/index.md) for creating an API key.
 
-Set the key name to `Jira System` to distinguish whether the comment information originates from <<< custom_key.brand_name >>> or Jira. The key name will also appear as the user in <<< custom_key.brand_name >>> `issue`.
+Set the key name as `Jira System`, which helps distinguish whether the comment information originates from <<< custom_key.brand_name >>> or Jira, and the key name will be displayed as the user in <<< custom_key.brand_name >>> `issue`.
 
-### Func Script Development
+### Func Script Writing
 
 - Log in to Func
 
-Log in to the deployed [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/)
+Log in to the already deployed [Dataflux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/) 
 
 - Add Python Dependencies
 
 1. Click on the **Manage** menu
-2. Click **Experimental Features**, turn on the **Enable PIP Tool** switch. If already enabled, ignore this step.
-3. Click **PIP Tool**, install the **Python package**, enter **jira**, select the default data source. If the default data source does not contain the current dependency, switch to another data source and click the **Install** button to complete the dependency installation.
+2. Click on **Experimental Features**, turn on the **Enable PIP Tool** switch; if already enabled, ignore this step.
+3. Click on **PIP Tool**, install the **Python package**, enter **jira**, select the default data source. If the default data source does not contain the current dependency, you can switch to another data source, click the **Install** button to complete the installation of dependencies.
 
 - Write the Script
 
 1. Click on the **Development** menu;
-2. Click the **Create Script Set** button, fill in the script **ID**, which can be customized. Here, fill in `Issue_to_jira`, then click the **Save** button;
-3. Select `Issue_to_jira`, click **Create Script**, this ID can also be customized;
+2. Click the **Create Script Set** button, fill in the script **ID**, which can be customized, here fill in `Issue_to_jira`, click the **Save** button;
+3. Select `Issue_to_jira`, click **Create Script**, this ID can also be freely written;
 4. Paste the following script content and adjust the configuration information.
 
 ```python
@@ -60,14 +66,14 @@ import time
 from datetime import datetime, timedelta
 from jira import JIRA
 
-# <<< custom_key.brand_name >>> configuration, note to modify df_api_key
+# <<< custom_key.brand_name >>> configuration, remember to modify df_api_key
 base_url = 'https://openapi.<<< custom_key.brand_main_domain >>>'
 channel_list_url = base_url + '/api/v1/channel/quick_list'
 issue_list_url = base_url + '/api/v1/issue/list'
 create_issue_reply_url = base_url + '/api/v1/issue/reply/create'
 df_api_key = 'vy2EV......fuTtn'
 
-# JIRA configuration, all configurations are mandatory, modify them for your environment
+# JIRA configuration, all configurations below are mandatory, modify them to your own environment
 username = 'sutt'
 api_token = 'ATATT3xFfGF0eVvhZUkO0tTas8JnNYEsxGIJqWGinVyQL0ME......B6E'
 jira_server_url = 'https://***.net/'
@@ -118,7 +124,7 @@ def sync_issues_from_guance_to_jira():
                             'project': {'key': project_key},
                             'summary': issue["name"],
                             'description': issue["description"],
-                            'issuetype': {'name': 'Bug'},
+                            'issuetype': {'name': 'Defect'},
                             'priority': {'name': 'Medium'},
                             'labels': [issue_uuid]  # Use label to store issue_id
                         }
@@ -182,47 +188,49 @@ def guance():
 
 - Publish Script
 
-Click the **Publish** button to complete the publication. After publishing, the API is successfully published and can provide external services.
+Click the **Publish** button to complete the publishing. After publishing, it indicates that the API has been successfully published and can provide external services.
 
 - Automatic Trigger Configuration
 
-**Automatic Trigger Configuration** can schedule API execution.
+**Automatic Trigger Configuration** can schedule periodic execution of APIs.
 
-1. From the **Manage** menu, click the **Automatic Trigger Configuration** button;
-2. Click the **New** button in the top-right corner to create a new configuration;
-3. Select the script to execute. Parameters can be left unspecified. Choose the execution frequency, here set it to **Repeat Every Minute**, and **Save**.
+1. Enter from the **Manage** menu, click the **Automatic Trigger Configuration** button;
+2. Click the **New** button at the top right corner to create a new trigger;
+3. Select the script to execute, parameters can be left unspecified, select the appropriate execution frequency, adjust it to repeat every **minute**, then **save**.
 
 ![Img](../images/im_jira_03.png)
 
+
 ### Create Issue
 
-<<< custom_key.brand_name >>> supports two methods for creating issues:
+There are two ways to create issues in <<< custom_key.brand_name >>>
 
-- [x] Direct Creation
-- [x] Creation via Monitor
+- [x] Direct creation
+- [x] Creation through monitors
 
 #### Direct Creation
 
-1. Log in to the <<< custom_key.brand_name >>> console
-2. Click the **Incident** menu, then click the **Create Issue** button in the top-right corner. Fill in the issue information and save.
+1. Log in to <<< custom_key.brand_name >>> console
+2. Click the **Incident** menu, click the **Create Issue** button at the top right corner, fill in the issue information, and save.
 
-#### Creation via Monitor
+#### Creation through Monitors
 
-**Creation via Monitor** involves generating event information through monitors to create issues.
+**Creation through monitors** means generating event information via monitors to create issues.
 
-1. Log in to the <<< custom_key.brand_name >>> console
+1. Log in to <<< custom_key.brand_name >>> console
 2. Click the **Monitoring** menu on the left
 3. You can add new monitors or adjust existing ones. Edit the corresponding monitor, enable the **Synchronize Issue Creation** switch, and save.
 
-## Screenshots
+## Effect Diagrams
 
 ### Jira Effect:
 
 ![Img](../images/im_jira_04.png)
-Jira issues are automatically generated, and when comments are made, the handling process of the `issue` can be displayed on <<< custom_key.brand_name >>>.
+Automatically generates Jira issues, and after commenting, the handling process of the `issue` can be displayed on <<< custom_key.brand_name >>>.
+
 
 ### <<< custom_key.brand_name >>> Effect
 
-<<< custom_key.brand_name >>> synchronizes the Jira `issue` handling process.
+The handling process of Jira `issues` will also be synchronized on <<< custom_key.brand_name >>>.
 
 ![Img](../images/im_jira_05.png)

@@ -1,15 +1,15 @@
 # Login Methods
 ---
 
-The Billing Center provides two login methods: direct login via the Billing Center link and login to the Billing Center through <<< custom_key.brand_name >>> single sign-on.
+The Billing Center has two login methods: direct login via the Billing Center link and login-free access to the Billing Center through <<< custom_key.brand_name >>>.
 
 ## <<< custom_key.brand_name >>> Billing Center Login Method
 
 You can directly log in to the <<< custom_key.brand_name >>> Billing Center via the link ([https://<<< custom_key.boss_domain >>>/](https://<<< custom_key.boss_domain >>>/)).
 
-After logging into the Billing Center, you can view your account balance, recharge your account with cash, coupons, or prepaid cards, change payment methods, manage accounts, and view detailed billing statements.
+After logging into the Billing Center, you can check your account balance, recharge with cash, vouchers, or prepaid cards, change settlement methods, manage accounts, and view detailed bills.
 
-**Note**: If you forget your password, you can recover it through the **Forgot Password** option on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) login page.
+**Note**: If you forget your password, you can recover it on the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) login page by selecting **Forgot Password**.
 
 ![](img/3.billing_cost_1.png)
 
@@ -17,8 +17,8 @@ After logging into the Billing Center, you can view your account balance, rechar
 
 1. Open [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site_auth >>>/login/pwd), select the login site, and enter your username and password to log in.
 
-2. In the <<< custom_key.brand_name >>> workspace **Paid Plans & Billing**, click **Billing Center** to access the <<< custom_key.brand_name >>> Billing Center for account management.
+2. In the <<< custom_key.brand_name >>> workspace **Billing**, click **Billing Center** to access the <<< custom_key.brand_name >>> Billing Center for account management.
 
-**Note**: Only workspace owners can log in to the Billing Center without entering credentials from the <<< custom_key.brand_name >>> workspace.
+**Note**: Only workspace owners can access the Billing Center without logging in via the <<< custom_key.brand_name >>> workspace.
 
 ![](img/3.billing_cost_2.png)

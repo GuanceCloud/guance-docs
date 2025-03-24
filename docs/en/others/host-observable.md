@@ -3,56 +3,57 @@
 
 ## Introduction
 
-<<< custom_key.brand_name >>> can help you easily monitor any host facility, whether it is a traditional host, server, or public cloud or private cloud object. By installing DataKit, you can monitor the host's status, name, operating system, processor, memory, network, disk, connection tracking, files, and more in real-time on the dashboard. With rich features such as associated queries, custom labels, interactive host distribution maps, and more, you can not only manage hosts uniformly but also observe the overall state of the hosts.
+<<< custom_key.brand_name >>> can help you easily monitor any host facility, whether it is a traditional host, server, or public cloud or private cloud object. By installing DataKit, you can monitor the status, name, operating system, processor, memory, network, disk, connection tracking, files, etc., of the host in real-time on the dashboard. There are also rich features such as associated queries, custom labels, and interactive host distribution maps. You can not only manage hosts uniformly but also observe the overall state of the hosts.
 
 ## Prerequisites
 
 - You need to first create a [<<< custom_key.brand_name >>> account](https://<<< custom_key.brand_main_domain >>>/).
 - [Install DataKit](../datakit/datakit-install.md)
-- Supported operating systems: `windows/amd64, windows/386, linux/arm, linux/arm64, linux/386, linux/amd64, darwin/amd64`
+- Supported operating systems: `windows/amd64,windows/386,linux/arm,linux/arm64,linux/386,linux/amd64,darwin/amd64`
 
 ## Methods/Steps
 
-### Step 1: Enable the Host Object Collector
+### Step1: Enable the Host Object Collector
 
-After completing the installation of DataKit on the host/server, you can enable host object data collection by following these steps:
+After completing the installation of DataKit on the host/server, you can enable the collection of host object data according to the following steps:
 
-1. Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `hostobject.conf.sample`, and rename it to `hostobject.conf`.
+1. Go to the `conf.d/host` directory under the DataKit installation directory, copy `hostobject.conf.sample` and rename it to `hostobject.conf`.
 
 2. After configuration, use the command `datakit --restart` to restart DataKit.
 
-3. After configuration, the system will automatically enable a set of collectors related to the host and proactively report data to the "<<< custom_key.brand_name >>>" workspace. The default enabled collectors are listed below:
+3. After the configuration is complete, the system will automatically enable a batch of collectors related to the host and actively report data to the "<<< custom_key.brand_name >>>" workspace. The default enabled collector list is as follows:
 
 | Collector Name | Description |
 | --- | --- |
-| `cpu` | Collects CPU usage information from the host |
-| `disk` | Collects disk usage information |
-| `diskio` | Collects disk IO information from the host |
-| `mem` | Collects memory usage information from the host |
-| `swap` | Collects Swap memory usage information |
-| `system` | Collects operating system load information from the host |
-| `net` | Collects network traffic information from the host |
-| `host_processes` | Collects a list of long-running (surviving over 10 minutes) processes on the host |
-| `hostobject` | Collects basic information about the host (e.g., OS information, hardware information, etc.) |
-| `container` | Collects container objects and container logs on the host |
+| `cpu` | Collects CPU usage of the host |
+| `disk` | Collects disk usage |
+| `diskio` | Collects disk IO conditions of the host |
+| `mem` | Collects memory usage of the host |
+| `swap` | Collects swap memory usage |
+| `system` | Collects host operating system load |
+| `net` | Collects host network traffic conditions |
+| `host_processes` | Collects processes resident (alive for more than 10 minutes) on the host |
+| `hostobject` | Collects basic information about the host (such as operating system information, hardware information, etc.) |
+| `container` | Collects possible container objects and container logs on the host |
 
-For more host object data collection, refer to the documentation [DataKit Host Object Collector](../integrations/hostobject.md).
+For more host object data collection, refer to the help documentation [DataKit Host Object Collector](../integrations/hostobject.md).
 
-### Step 2: Enable Cloud Sync
+### Step2: Enable Cloud Synchronization
 
-If the host where DataKit is installed is a **cloud host**, you can enable cloud sync using the `cloud_provider` tag. Follow these steps:
+If the host where DataKit resides is a **cloud host**, you can enable cloud synchronization via the `cloud_provider` tag. The specific steps are as follows:
 
-1. Navigate to the `conf.d/host` directory under `/usr/local/datakit`, copy `hostobject.conf.sample`, and rename it to `hostobject.conf`.
+1. Go to the `conf.d/host` directory under `/usr/local/datakit`, copy `hostobject.conf.sample` and rename it to `hostobject.conf`.
 
 2. Open the `hostobject.conf` file and enable the following configurations:
+
    - Enable `inputs.hostobject.tags`
    - Enable `cloud_provider = "aliyun"`
 
 ![](img/2.host_2.png)
 
-3. After configuration, use the command `datakit --restart` to restart DataKit for changes to take effect.
+3. After the configuration is complete, use the command `datakit --restart` to restart DataKit for the changes to take effect.
 
-4. After enabling cloud sync, the system will proactively report the following fields to the "<<< custom_key.brand_name >>>" workspace (based on synchronized fields):
+4. After enabling cloud synchronization, the system will actively report the following fields to the "<<< custom_key.brand_name >>>" workspace (based on synchronized fields):
 
 | Field Name | Description |
 | --- | --- |
@@ -64,46 +65,46 @@ If the host where DataKit is installed is a **cloud host**, you can enable cloud
 | `instance_charge_type` | Instance billing type |
 | `instance_network_type` | Instance network type |
 | `instance_status` | Instance status |
-| `security_group_id` | Instance security group |
+| `security_group_id` | Instance group |
 | `private_ip` | Instance private IP |
 | `zone_id` | Instance Zone ID |
 | `region` | Instance Region ID |
 
-For more host object data collection, refer to the documentation [DataKit Host Object Collector](../integrations/hostobject.md).
+For more host object data collection, refer to the help documentation [DataKit Host Object Collector](../integrations/hostobject.md).
 
-### Step 3: View Host Data
+### Step3: View Host Data
 
-In the <<< custom_key.brand_name >>> workspace under "Infrastructure" - "Host", you can view each host's data information within the last 24 hours via the **Host Object List**, including host names and tags, CPU usage rate, MEM usage rate, single-core CPU load, etc.
+In the <<< custom_key.brand_name >>> workspace under "Infrastructure" - "Host", you can view the data information of each host in the current space within the last 24 hours through the **host object list**, including host names and tags, CPU usage rates, MEM usage rates, single-core CPU loads, etc.
 
 ![](img/image111.png)
 
-Clicking on a host name in the host object list will pull out the **Host Detail Page** where you can view detailed information about the host, such as hardware model, resource consumption, associated logs, processes, events, etc.
+Clicking on the host name in the host object list will display the **host details page** where you can view detailed information about the host, such as hardware model, basic resource consumption, associated logs, processes, events, etc.
 
 ![](img/1.png)
 
-For more host object analysis, refer to the documentation [Host](../infrastructure/host.md).
+For more host object analysis, refer to the help documentation [Host](../infrastructure/host.md).
 
-## Advanced References
+## Advanced Reference
 
 ### Correlation Analysis
 
-- **Mining Correlated Data**
+- **Discover Associated Data**
 
-To build comprehensive observability for hosts, after enabling other data collectors related to hosts, you can dig into correlated logs, processes, incidents, containers, networks, and security checks through the <<< custom_key.brand_name >>> dashboard with one click.
+If you need to build a comprehensive and deep observability for the host, enabling other data collectors related to the host allows you to instantly discover host-related logs, processes, abnormal events, containers, networks, security checks through the "<<< custom_key.brand_name >>>" dashboard.
 
 ![](img/2.png)
 
-Enabling other data collectors related to hosts can be found in [Logs](../integrations/logging.md), [Processes](../integrations/host_processes.md), [Containers](../integrations/container.md), [Network](../integrations/net.md), [Security Check](../integrations/sec-checker.md).
+To enable other data collectors related to the host, refer to [Logs](../integrations/logging.md), [Processes](../integrations/host_processes.md), [Containers](../integrations/container.md), [Networks](../integrations/net.md), [Security Checks](../integrations/sec-checker.md).
 
 - **Custom Built-in Views**
 
-Custom built-in views allow you to [bind associated views](../scene/built-in-view/bind-view.md) to the host detail page, enabling linked data viewing. Based on your analysis needs, you can choose official system views or user-defined views as built-in views. This not only helps you quickly expand the scope of host correlation analysis using official templates but also supports you in creating new monitoring views.
+Custom built-in views can help you [bind associated views](../scene/built-in-view/bind-view.md) to the host detail page, enabling linked data viewing. Based on your analysis needs, by selecting official system views or custom user views as built-in views, you can not only quickly expand the scope of host correlation analysis using official templates but also support editing new monitoring views.
 
-For example, to add the system view "CPU Monitoring View" as a built-in view for a host object labeled "test" and link it to query the host's CPU status, follow these steps:
+Taking the observation of label-tagged "Test" host objects' CPU as an example, adding the system view "CPU Monitoring View" as a built-in view to the host details page allows you to query the CPU status of the host. The specific steps are as follows:
 
-1. In the <<< custom_key.brand_name >>> workspace under "Manage" - "Built-in Views," select the system view "CPU Monitoring View."
+1. In the <<< custom_key.brand_name >>> workspace under "Management" - "Built-in Views," select the system view "CPU Monitoring View."
 
-2. Click "Edit" and bind the object with the label "test".
+2. Click "Edit" and choose objects with the field label: Test as the binding relationship.
 
 3. Click "Confirm" to create the binding relationship.
 
@@ -113,26 +114,26 @@ For example, to add the system view "CPU Monitoring View" as a built-in view for
 
 ![](img/4.png)
 
-For more configuration details, refer to [Binding Built-in Views](../scene/built-in-view/bind-view.md).
+For more configuration details, refer to [Bind Built-in Views](../scene/built-in-view/bind-view.md).
 
 ### Interactive Host Topology Map
 
-To achieve observability in multi-host environments, an intuitive topology map that clearly displays the data center operations environment is essential. In the <<< custom_key.brand_name >>> dashboard, switching the Explorer in the top-left corner to "Host Topology Map" allows you to visualize and query the size of metrics for hosts, helping you quickly analyze the operational status of hosts under different systems, statuses, versions, regions, and custom labels.
+Achieving observability in a multi-host environment requires a topology map that clearly displays the operations and maintenance environment of the data center. On the "<<< custom_key.brand_name >>>" dashboard, switching the viewer in the top-left corner of the page to "Host Topology Map" helps you visually query the size of host metric data, allowing you to quickly analyze the operational status of hosts under different systems, statuses, versions, regions, and custom tags.
 
 ![](img/5.png)
 
-Learn more at [Host Topology Map](../infrastructure/host.md).
+Learn more by referring to [Host Topology Map](../infrastructure/host.md).
 
-### Custom Metrics Set
+### Custom Measurement Sets
 
-To facilitate the classification of familiar metrics, <<< custom_key.brand_name >>> supports defining new characteristics for host objects by configuring `[inputs.hostobject.tags]` in the host collector. This characteristic can be used to filter related host objects.
+To make it easier for you to classify familiar metrics, "<<< custom_key.brand_name >>>" supports you in defining custom tags for host objects in the host collector through the configuration `[inputs.hostobject.tags]`. This characteristic can then be used to filter relevant host objects.
 
 ![](img/6.png)
 
-For detailed configuration methods, refer to [DataKit Host Object Collector](../integrations/hostobject.md).
+Detailed configuration methods can be found at: [DataKit Host Object Collector](../integrations/hostobject.md).
 
 ### Custom Labels
 
-To help you manage IT infrastructure environments more flexibly and effectively, <<< custom_key.brand_name >>> provides the functionality of infrastructure labels. This allows you to categorize, search, filter, and centrally manage hosts based on label tags.
+To allow you to manage IT infrastructure environments more flexibly and effectively, <<< custom_key.brand_name >>> provides the infrastructure label feature, supporting you in categorizing, searching, filtering, and centrally managing hosts based on label tags.
 
 ![](img/7.png)

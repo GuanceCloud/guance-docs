@@ -5,19 +5,23 @@
 <br />**GET /api/v1/dashboards/list**
 
 ## Overview
-Retrieve the list of dashboards, sorted by update time in descending order by default
+Get the dashboard list, default sorting by update time in descending order.
+
+
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                          |
-|:--------------|:-------|:---------|:-------------------------------------|
-| search        | string |          | Search by name<br>Allow empty: False <br> |
-| tagNames      | json   |          | Tag names for filtering<br>Allow empty: False <br>Example: [] <br> |
-| pageIndex     | integer|          | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
-| pageSize      | integer|          | Number of items per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-----------------|:-------|:-----|:----------------|
+| search | string |  | Search by name<br>Allow empty: False <br> |
+| tagNames | json |  | Tag names for filtering<br>Allow empty: False <br>Example: [] <br> |
+| pageIndex | integer |  | Page number<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of results per page<br>Allow empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -27,6 +31,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/lis
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed 
 ```
+
 
 
 
@@ -81,7 +86,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/dashboards/lis
             "updatorInfo": {
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "66",
-                "username": "66@qq.com"
+                "username": "xxx@<<< custom_key.brand_main_domain >>>"
             },
             "uuid": "dsbd_xxxx32",
             "workspaceUUID": "wksp_xxxx32"
