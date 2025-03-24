@@ -6,8 +6,8 @@ dashboard :
   - desc  : 'EMQX Monitoring View'
     path  : 'dashboard/en/emqx'
 monitor   :
-  - desc  : 'Not available'
-    path  : '-'
+  - desc  : 'EMQX'
+    path  : 'monitor/en/emqx'
 ---
 
 <!-- markdownlint-disable MD025 -->

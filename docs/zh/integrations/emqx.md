@@ -6,8 +6,8 @@ dashboard :
   - desc  : 'EMQX 监控视图'
     path  : 'dashboard/zh/emqx'
 monitor   :
-  - desc  : '暂无'
-    path  : '-'
+  - desc  : 'EMQX'
+    path  : 'monitor/zh/emqx'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -110,8 +110,7 @@ systemctl restart datakit
 详细指标信息参考[官方文档](https://www.emqx.io/docs/zh/v5.1/observability/metrics-and-stats.html#%E6%8C%87%E6%A0%87%E5%AF%B9%E7%85%A7%E6%89%8B%E5%86%8C)
 
 
-
-## 常见问题排查 {#faq}
-
-[无数据上报排查](../datakit/why-no-data.md)
-
+## 最佳实践 {#best-practices}
+<div class="grid cards" data-href="https://learning.guance.com/uploads/banner_e4008e857e.png" data-title="EMQX 可观测性最佳实践" data-desc="通过将 EMQX 指标数据接入到观测云，让用户更好地理解和控制 EMQX 集群的行为，从而提高系统的可靠性和效率。"  markdown>
+<[EMQX 可观测性最佳实践](https://www.guance.com/learn/articles/EMQX)>
+</div>
