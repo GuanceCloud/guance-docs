@@ -226,3 +226,9 @@ add_key(client_ip,jsonData["client_ip"])
 trace_id = requestJson["headers"]["traceparent"]
 grok(trace_id, "%{DATA}-%{DATA:trace_id}-%{DATA}") 
 ```
+
+
+## 最佳实践 {#best-practices}
+<div class="grid cards" data-href="https://learning.guance.com/uploads/banner_3840a1da19.png" data-title="APISIX 可观测性最佳实践" data-desc="本文介绍如何通过观测云采集 APISIX 指标、日志、链路数据，优化 APISIX 性能，保障业务连续性，并为用户提供更好的体验。"  markdown>
+<[APISIX 可观测性最佳实践](https://www.guance.com/learn/articles/apisix){:target="_blank"}>
+</div>

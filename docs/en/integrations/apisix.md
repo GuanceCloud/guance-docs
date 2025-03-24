@@ -224,3 +224,15 @@ add_key(client_ip,jsonData["client_ip"])
 trace_id = requestJson["headers"]["traceparent"]
 grok(trace_id, "%{DATA}-%{DATA:trace_id}-%{DATA}") 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
