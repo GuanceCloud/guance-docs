@@ -39,7 +39,7 @@ implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay-mate
 | **方法名** | **类型** | **必须** | **含义** |
 | --- | --- | --- | --- |
 | setSampleRate | Float | 否 | 设置采集率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。 |
-| setPrivacy | SessionReplayPrivacy | 否 |`SessionReplayPrivacy.ALLOW` 不进行屏蔽隐私数据, `SessionReplayPrivacy.MASK` 屏蔽所有数据，包括文字、CheckBox，RadioButton，Switch； `SessionReplayPrivacy.USER_INPUT`（推荐）屏蔽用户输入的部份数据,包括输入框中文字、CheckBox，RadioButton，Switch, 默认，为 `SessionReplayPrivacy.MASK`。**即将废弃，可以兼容使用，建议您优先使用 `setTouchPrivacy` 、`setTextAndInputPrivacy` 进行屏蔽设置**|
+| setPrivacy | SessionReplayPrivacy | 否 |`SessionReplayPrivacy.ALLOW` 不进行屏蔽隐私数据, `SessionReplayPrivacy.MASK` 屏蔽所有数据，包括文字、CheckBox，RadioButton，Switch； `SessionReplayPrivacy.USER_INPUT`（推荐）屏蔽用户输入的部份数据,包括输入框中文字、CheckBox，RadioButton，Switch, 默认，为 `SessionReplayPrivacy.MASK`。**即将废弃，可以兼容使用，建议优先使用 `setTouchPrivacy` 、`setTextAndInputPrivacy` 进行屏蔽设置**|
 | setTextAndInputPrivacy | TextAndInputPrivacy | 否 |`TextAndInputPrivacy.MASK_SENSITIVE_INPUTS` 只对密码等信息进行屏蔽, `TextAndInputPrivacy.MASK_ALL_INPUTS` 屏蔽用户输入的部份数据，包括输入框中文字、CheckBox，RadioButton，Switch，`TextAndInputPrivacy.MASK_ALL`，屏蔽所有数据，包括文字、CheckBox，RadioButton，Switch。默认 `TextAndInputPrivacy.MASK_ALL`，**设置后覆盖 `setPrivacy` 的配置**，`ft-session-replay` 0.1.1-alpha01 以上版本支持， |
 | setTouchPrivacy | TouchPrivacy | 否 |`TouchPrivacy.SHOW` 不进行触控数据屏蔽, `TouchPrivacy.HIDE` 屏蔽触控数据。**设置后覆盖 `setPrivacy` 的配置** `ft-session-replay` 0.1.1-alpha01 以上版本支持|
 | addExtensionSupport | ExtensionSupport | 否 |添加额外自定义支持。使用 `ft-session-replay-material` 可以使用 `MaterialExtensionSupport` 提供额外 Material 组件采集支持  |

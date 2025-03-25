@@ -44,9 +44,10 @@
 | 属性                | 类型                       | 必须 | 含义                                                         |
 | ------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | sampleRate          | int                        | 否   | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。此采样率是 RUM 采样基础上的采样率。 |
-| privacy             | FTSRPrivacy                | 否   | 设置 Session Replay 中内容屏蔽的隐私级别。默认`FTSRPrivacyMask`。<br/>屏蔽处理：文本替换为 * 或 # <br>`FTSRPrivacyAllow`: 除了敏感输入控件外记录所有内容，例如密码输入<br/>`FTSRPrivacyMaskUserInput`:屏蔽输入元素。例如 `UITextField`、`UISwitch` 等<br>`FTSRPrivacyMask`：屏蔽所有内容。<br>**已废弃，仅作为历史兼容保留，强烈建议您优先使用 `touchPrivacy` 、`textAndInputPrivacy` 进行细粒度的屏蔽隐私级别设置 ** |
-| touchPrivacy        | FTTouchPrivacyLevel        | 否   | 会话重放中触控屏蔽的可用隐私级别。默认`FTTouchPrivacyLevelHide`。<br>`FTTouchPrivacyLevelShow`: 显示所有用户触控<br>`FTTouchPrivacyLevelHide`:屏蔽所有用户触控<br>**设置后将覆盖 `privacy` 的配置  **<br> SDK 1.6.1 以上版本支持这个参数 |
-| textAndInputPrivacy | FTTextAndInputPrivacyLevel | 否   | 会话重放中文本和输入屏蔽的可用隐私级别。默认 `FTTextAndInputPrivacyLevelMaskAll`<br>`FTTextAndInputPrivacyLevelMaskSensitiveInputs`:显示除敏感输入外的所有文本，例如密码输入<br>`FTTextAndInputPrivacyLevelMaskAllInputs`:屏蔽所有输入字段，例如 `UITextField`、`UISwitch`、`UISlider` 等<br>`FTTextAndInputPrivacyLevelMaskAll`:屏蔽所有文本和输入<br>**设置后将覆盖 `privacy` 的配置 **<br/>SDK 1.6.1 以上版本支持这个参数 |
+| privacy             | FTSRPrivacy                | 否   | 设置 Session Replay 中内容屏蔽的隐私级别。默认`FTSRPrivacyMask`。<br/>屏蔽处理：文本替换为 * 或 # <br>`FTSRPrivacyAllow`: 除了敏感输入控件外记录所有内容，例如密码输入<br/>`FTSRPrivacyMaskUserInput`:屏蔽输入元素。例如 `UITextField`、`UISwitch` 等<br>`FTSRPrivacyMask`：屏蔽所有内容。<br>**即将废弃，可兼容使用，建议优先使用 `touchPrivacy` 、`textAndInputPrivacy` 进行细粒度的屏蔽隐私级别设置** |
+| touchPrivacy        | FTTouchPrivacyLevel        | 否   | 会话重放中触控屏蔽的可用隐私级别。默认`FTTouchPrivacyLevelHide`。<br>`FTTouchPrivacyLevelShow`: 显示所有用户触控<br>`FTTouchPrivacyLevelHide`:屏蔽所有用户触控<br>**设置后覆盖 `privacy` 的配置**<br> SDK 1.6.1 以上版本支持这个参数 |
+| textAndInputPrivacy | FTTextAndInputPrivacyLevel | 否   | 会话重放中文本和输入屏蔽的可用隐私级别。默认 `FTTextAndInputPrivacyLevelMaskAll`<br>`FTTextAndInputPrivacyLevelMaskSensitiveInputs`:显示除敏感输入外的所有文本，例如密码输入<br>`FTTextAndInputPrivacyLevelMaskAllInputs`:屏蔽所有输入字段，例如 `UITextField`、`UISwitch`、`UISlider` 等<br>`FTTextAndInputPrivacyLevelMaskAll`:屏蔽所有文本和输入<br>**设置后覆盖 `privacy` 的配置**<br/>SDK 1.6.1 以上版本支持这个参数 |
+
 ## 隐私覆盖
 
 > SDK 1.6.1 以上版本支持
