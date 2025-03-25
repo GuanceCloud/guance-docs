@@ -2,31 +2,33 @@
 
 ## Introduction
 
-Nginx Ingress is an implementation of Kubernetes Ingress. It watches the Ingress resources in the Kubernetes cluster, converts Ingress rules into Nginx configurations, and allows Nginx to perform Layer 7 traffic forwarding.
+Nginx Ingress is an implementation of Kubernetes Ingress. It watches the Ingress resources in the Kubernetes cluster, converts Ingress rules into Nginx configurations, and enables Nginx to perform layer 7 traffic forwarding.
+
 
 ## Prerequisites
 
-- A Kubernetes cluster has been deployed; if not, refer to [Kubernetes Deployment](infra-kubernetes.md)
-- (Optional) Helm tool has been deployed; if not, refer to [Helm Installation](helm-install.md)
+- A Kubernetes cluster has been deployed. If not, refer to [Kubernetes Deployment](infra-kubernetes.md)
+- (Optional) Helm tool has been deployed. If not, refer to [Helm Installation](helm-install.md)
 
 ## Basic Information and Compatibility
 
-| Name               | Description                        |
+|     Name     |                   Description                   |
 | :------------------: | :---------------------------------------------: |
-| Ingress-nginx Version | 1.3.0                                         |
-| Supported Cluster Version | 1.18+                                       |
-| Ingress-nginx Port Number | 32280                                      |
-| Offline Installation Support | Yes                                        |
-| Supported Architecture | amd64/arm64                                 |
+|     Ingress-nginx Version     |                   1.3.0                   |
+|      Supported Cluster Versions       |  1.18+  |
+| Ingress-nginx Port Number |                      32280                      |
+|    Does it Support Offline Installation?    |                       Yes                        |
+|       Supported Architectures       |                   amd64/arm64                   |
+
 
 ## Deployment Steps
 
 ### 1. Installation
-For deploying the Kubernetes Ingress component, refer to [https://github.com/kubernetes/ingress-nginx](https://github.com/kubernetes/ingress-nginx)
+For Kubernetes Ingress component deployment, refer to [https://github.com/kubernetes/ingress-nginx](https://github.com/kubernetes/ingress-nginx)
 
 === "Helm"
 
-    - For Kubernetes > 1.18
+    - Kubernetes > 1.18
 
       ```shell
       helm install ingress-nginx ingress-nginx \
@@ -34,7 +36,7 @@ For deploying the Kubernetes Ingress component, refer to [https://github.com/kub
           -n ingress-nginx --create-namespace
       ``` 
 
-    - For Kubernetes = 1.18
+    - Kubernetes = 1.18
 
       ```shell
       helm install ingress-nginx ingress-nginx \
@@ -43,29 +45,33 @@ For deploying the Kubernetes Ingress component, refer to [https://github.com/kub
           -n ingress-nginx --create-namespace
       ``` 
 
+
 === "Yaml"
 
-    - For Kubernetes > 1.18
+    - Kubernetes > 1.18
 
       Download [ingress-nginx.yaml](ingress-nginx.yaml)
 
-      Execute the following command to install:
+      Run the following command to install:
 
       ```shell
       kubectl apply -f ingress-nginx.yaml
       ``` 
       
-    - For Kubernetes = 1.18
+    - Kubernetes = 1.18
 
       Download [ingress-nginx4.1.4.yaml](ingress-nginx4.1.4.yaml)
 
-      Execute the following command to install:
+      Run the following command to install:
 
       ```shell
       kubectl apply -f ingress-nginx4.1.4.yaml
       ``` 
 
-### 2. Verification
+
+
+   
+### 2. Verify Deployment
 
 #### 2.1 Check Pod Status
 ```shell
@@ -87,6 +93,8 @@ kubectl get svc -n ingress-nginx
 ```
 ![ingress-nginx-svc.png](img/21.deployment_1.png)
 
+
+
 #### 2.3 Create Test Service
 ```shell
 # Create test deployment
@@ -97,11 +105,11 @@ kubectl expose deployment ingress-test --port=80 --target-port=80
 kubectl create ingress ingress-test --rule='foo.com/=ingress-test:80'
 ```
 
-#### 2.4 Testing
+#### 2.4 Test
 
 ???+ warning "Note"
 
-     `192.168.100.101` is the IP address of the Kubernetes node.
+     `192.168.100.101` is the Kubernetes node IP
 
 ```shell
  curl -H 'Host:foo.com' 192.168.100.101:32280
@@ -140,6 +148,7 @@ kubectl delete svc ingress-test
 kubectl delete ingress ingress-test
 ```
 
+
 ## Uninstallation
 
 === "Helm"
@@ -147,6 +156,7 @@ kubectl delete ingress ingress-test
     ```shell
     helm uninstall ingress-nginx  -n ingress-nginx 
     ``` 
+
 
 === "Yaml"
 

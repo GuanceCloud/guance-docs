@@ -1,79 +1,85 @@
-# Create a Single Index Configuration
+# Create a single index configuration
 
 ---
 
 <br />**POST /api/v1/log_index_cfg/add**
 
 ## Overview
-Modify a single default storage index configuration
+Modify the configuration of a single default storage index
+
+
 
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| name | string | Y | Index name<br>Example: xxx <br>Can be empty: False <br>Maximum length: 256 <br> |
-| extend | json |  | Frontend custom data<br>Can be empty: True <br> |
-| duration | string |  | Data retention period<br>Can be empty: False <br>Example: 7d <br> |
-| setting | json |  | Configuration information<br>Can be empty: False <br> |
-| setting.hot_retention | int |  | Volc Engine Storage, Standard Storage - Hot Data<br>Can be empty: False <br> |
-| setting.cold_retention | int |  | Volc Engine Storage, Infrequent Access Storage - Cold Data<br>Can be empty: False <br> |
-| setting.archive_retention | int |  | Volc Engine Storage, Archive Storage - Archived Data<br>Can be empty: False <br> |
+|:------------------|:-------|:-----|:----------------|
+| name | string | Y | Index name<br>Example: xxx <br>Allow empty: False <br>Maximum length: 256 <br> |
+| extend | json |  | Front-end custom data<br>Allow empty: True <br> |
+| duration | string |  | Data retention period<br>Allow empty: False <br>Example: 7d <br> |
+| setting | json |  | Related Configuration information<br>Allow empty: False <br> |
+| setting.hot_retention | int |  | Volcengine storage, Standard storage - Hot storage<br>Allow empty: False <br> |
+| setting.cold_retention | int |  | Volcengine storage, Infrequent storage - Cold data<br>Allow empty: False <br> |
+| setting.archive_retention | int |  | Volcengine storage, Archive storage - Archival data<br>Allow empty: False <br> |
 
 ## Additional Parameter Explanation
 
+
+
 **1. Request Parameter Explanation**
 
-| Parameter Name                | Type  | Required  | Description          |
+|  Parameter Name                |   type  | Required  |          Description          |
 |-----------------------|----------|----|------------------------|
 |name                   |String|Required| Index name|
-|extend                   |Json|| Extended information for frontend display|
-|duration                   |Json|| Total storage duration of the index, Example: 60d|
-|setting                   |Json|| Configuration information when logs are stored in Volc Engine Storage|
+|extend                   |Json|| Extended information for front-end recall|
+|duration                   |Json|| Total storage duration of the index, example: 60d|
+|setting                   |Json|| When logs are stored in Volcengine, index configuration information|
 
 --------------
 
-**2. Parameter Explanation within `setting`**
+**2. **Explanation of parameters in `setting`
 
-| Parameter Name                | Type  | Required  | Description          |
+|  Parameter Name                |   type  | Required  |          Description          |
 |-----------------------|----------|----|------------------------|
-|hot_retention                   |int|Required| Standard Storage - Hot Data, must be whole hours, Unit: hours h |
-|cold_retention                   |int|| Infrequent Access Storage - Cold Data, must be whole hours, Unit: hours h|
-|archive_retention                   |int|| Archive Storage - Archived Data, must be whole hours, Unit: hours h|
+|hot_retention                   |int|Required| Standard storage - Hot data, must be whole hours unit: hours h |
+|cold_retention                   |int|| Infrequent storage - Cold data, must be whole hours unit: hours h|
+|archive_retention                   |int|| Archive storage - Archival data, must be whole hours unit: hours h|
 
-2.1. Volc Engine Storage Duration Limits:
+2.1. Volcengine storage duration restrictions:
       <br/>
-Standard Storage: Hot Data Storage, Data range: 1-1800 days. If Infrequent Access Storage is used, the data range is: 7-1800 days; if Archive Storage is used, the data range is: 30-1800 days.
+Standard storage: Hot data storage, data range: 1-1800 days. If there is infrequent storage, data range: 7-1800 days; if there is archive storage, data range: 30-1800 days.
       <br/>
-Infrequent Access Storage: Cold Data Storage, Data range: 30-1800 days.
+Infrequent storage: Cold data storage, data range: 30-1800 days.
       <br/>
-Archive Storage: Archived Data Storage, Data range: 60-1800 days.
+Archive storage: Archival data storage, data range: 60-1800 days.
       <br/>
-2.2. Volc Engine Storage Duration Limits:
+2.2. Volcengine storage duration restrictions:
       <br/>
-Total storage duration (Standard Storage + Infrequent Access Storage + Archive Storage) cannot exceed 1800 days.
+Total storage duration (Standard storage + Infrequent storage + Archive storage) cannot exceed 1800 days.
 
 --------------
 
-**3. Parameter Explanation within `extend`**
+**3. **Explanation of parameters in `extend`
 
-| Parameter Name                | Type  | Required  | Description          |
+|  Parameter Name                |   type  | Required  |          Description          |
 |-----------------------|----------|----|------------------------|
-|filters                   |Array[dict]|| List of filter conditions|
+|filters                   |Array[dict]|| List of filtering conditions|
+|extendFields                   |string|| Index extended field information, multiple fields separated by commas (,)|
 
 --------------
 
-**4. Main Structure of `extend.filters`**
+**4. Main structure explanation of `extend.filters`**
 
-| Parameter Name             | Type  | Required  | Description          |
+|  Parameter Name             |   type  | Required  |          Description          |
 |--------------------|----------|----|------------------------|
-|condition           |string |  | Relationship with the previous filter condition, possible values: `and`, `or`; default value: `and` |
+|condition           |string |  | Relationship with the previous filter condition, optional values: `and`, `or`; default value: `and` |
 |name                |string |  | Field name to be filtered |
-|operation           |string |  | Operator, possible values: `in`, `not_in`|
+|operation           |string |  | Operator, optional values:  `in`, `not_in`|
 |value               |array |  | Value list |
-|value[#]            |string/int/boolean |  | Can be string/numeric/boolean type|
+|value[#]            |string/int/boolean |  | Can be string/numeric/boolean types|
 
 --------------
+
 
 
 
@@ -81,12 +87,13 @@ Total storage duration (Standard Storage + Infrequent Access Storage + Archive S
 ```shell
 curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/log_index_cfg/add' \
 -H 'Accept: application/json, text/plain, */*' \
--H 'Accept-Language: zh' \
+-H 'Accept-Language: en' \
 -H 'Content-Type: application/json;charset=UTF-8' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --data-raw '{"name": "test_index", "duration":"14d","extend":{"filters":[{"condition":"and","name":"host","operation":"in","value":["custom_host1"]}]}}' \
 --compressed
 ```
+
 
 
 

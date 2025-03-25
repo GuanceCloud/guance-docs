@@ -1,21 +1,24 @@
-# [Aggregation to Metrics] Get
+# 【Aggregation Generated Metrics】Acquisition
 
 ---
 
 <br />**GET /api/v1/aggs_to_metric/\{rule_uuid\}/get**
 
 ## Overview
-Retrieve the aggregation to metrics rule
+Acquisition of generated metrics rules
+
 
 
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:--------|:--------------------------|
-| rule_uuid     | string | Y       | ID of the aggregation to metrics rule<br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| rule_uuid | string | Y | ID of the aggregation generated metric<br> |
 
 
-## Additional Parameter Notes
+## Supplementary Parameter Notes
+
+
 
 
 
@@ -25,6 +28,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
+
 
 
 ## Response
@@ -85,7 +90,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric
             "username": "xxxx",
             "name": "xxxx",
             "iconUrl": "",
-            "email": "xxxx@guance.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "mobile": "xxxx",
             "acntWsNickname": ""
         },

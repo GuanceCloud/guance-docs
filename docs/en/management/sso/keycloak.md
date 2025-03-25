@@ -1,17 +1,18 @@
 # Keycloak Single Sign-On Example
 ---
 
-Keycloak is an open-source solution for identity and access management for modern applications and distributed services.
 
-This article uses a built Keycloak server to demonstrate how to achieve Keycloak user SSO login to the <<< custom_key.brand_name >>> management console using the SAML 2.0 protocol.
+Keycloak is an open-source solution for identity and access management designed for modern applications and distributed services.
 
-> For instructions on achieving Keycloak user SSO login to the <<< custom_key.brand_name >>> management console using the OpenID Connect protocol, refer to [Keycloak Single Sign-On (Deployment Plan)](../../deployment/keycloak-sso.md).
+This article uses a built Keycloak server to demonstrate how to use the SAML 2.0 protocol to achieve Keycloak user SSO login to <<< custom_key.brand_name >>> Management Console.
+
+> For using OpenID Connect protocol to achieve Keycloak user SSO login to <<< custom_key.brand_name >>> Management Console, please refer to [Keycloak Single Sign-On (Deployment Plan)](../../deployment/keycloak-sso.md).
 
 ## Prerequisites
 
 A Keycloak server has been set up, and you can log in to the Keycloak server to perform configurations.
 
-If you do not have a Keycloak environment, follow these steps to set it up:
+If there is no Keycloak environment, follow the steps below to set it up:
 
 ```
 sudo yum update         # Update
@@ -20,18 +21,18 @@ sudo yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel      # Install J
 
 wget https://downloads.jboss.org/keycloak/11.0.2/keycloak-11.0.2.zip   # Download Keycloak
 
-yum install unzip       # Install unzip
+yum install unzip       # Install unzip utility
 
-unzip keycloak-11.0.2.zip       # Extract Keycloak
+unzip keycloak-11.0.2.zip       # Extract downloaded Keycloak
 
-cd keycloak-11.0.2/bin         # Enter the bin directory
+cd keycloak-11.0.2/bin         # Enter bin directory
 
-./add-user-keycloak.sh -r master -u admin -p admin     # Create server administrator credentials
+./add-user-keycloak.sh -r master -u admin -p admin     # Create server administrator login credentials
 
-nohup bin/standalone.sh -b 0.0.0.0 &     # Return to the bin directory and start Keycloak service in the background
+nohup bin/standalone.sh -b 0.0.0.0 &     # Return to bin directory and start Keycloak service in background
 ```
 
-After setting up the Keycloak environment, enter `https://IP Address:8443/auth` in your browser, click “Administration Console” to open the Keycloak management console.
+After the Keycloak environment is set up, input `https://IP Address:8443/auth` in the browser, click "Administration Console" to open the Keycloak management console.
 
 ![](../img/05_keycloak_01.png)
 
@@ -41,80 +42,80 @@ Below are explanations of basic concepts involved in the Keycloak configuration 
 
 | Field      | Description                          |
 | ----------- | ------------------------------------ |
-| Realm      | A realm, similar to a workspace, used to manage users, credentials, roles, and user groups; realms are isolated from each other.                          |
-| Clients | Clients are applications or services that can request Keycloak to authenticate users. |
-| Users      | User accounts that can log into the system, requiring configuration of email and Credentials.                          |
-| Credentials | Credentials used to verify user identity, such as setting the login password for user accounts. |
+| Realm      | A domain, similar to a workspace, used to manage users, credentials, roles, and user groups; realms are isolated from each other.                          |
+| Clients | Applications or services that can request Keycloak to authenticate users. |
+| Users      | User accounts that can log into the system, requiring configuration of login email and Credentials.                          |
+| Credentials | Credentials used to verify user identity, which can be used to set the login password for user accounts. |
 | Authentication      | The process of identifying and verifying users.                          |
 | Authorization | The process of granting users access permissions. |
-| Roles      | Used to identify types of user identities, such as administrator, regular user, etc.                          |
-| User Role Mapping | The mapping relationship between users and roles, allowing one user to be associated with multiple roles. |
-| Groups | Management of user groups, supporting role mapping to groups. |
+| Roles      | Used to identify types of user identities, such as administrators, regular users, etc.                          |
+| User role mapping | Mapping relationship between users and roles, where one user can be associated with multiple roles. |
+| Groups | Manage user groups, supporting mapping roles to groups. |
 
-## Configuration Steps
+## Procedure Steps
 
 ### 1. Create a Keycloak Realm
 
-**Note**: Keycloak itself has a master realm (Master), and we need to create a new realm (similar to a workspace).
+**Note**: Keycloak itself has a main realm (Master), we need to create a new realm (similar to a workspace).
 
 1) In the Keycloak management console, click **Master > Add realm**.
 
 ![](../img/05_keycloak_02.png)
 
-2) On the **Add realm** page, input the realm name in the **Name** field, such as "gcy", and click **Create** to create a new realm.
+2) On the **Add realm** page, enter the realm name in the **Name** field, such as "gcy", then click **Create**, which will create a new realm.
 
 ![](../img/05_keycloak_03.png)
 
 
 ### 2. Create Client and Configure SAML {#step2}
 
-**Note**: This step will create a Keycloak client and configure SAML to establish a trust relationship between Keycloak and <<< custom_key.brand_name >>> so they trust each other.
+**Note**: This step will create a Keycloak client and configure SAML to establish a trust relationship between Keycloak and <<< custom_key.brand_name >>> so they can trust each other.
 
-1) Under the newly created "gcy" realm, click **Client**, and on the right side, click **Create**.
+1) Under the newly created "gcy" realm, click **Client**, then click **Create** on the right side.
 
 ![](../img/05_keycloak_04.png)
 
-2) On the **Add Client** page, fill in the following details and click **Save**.
+2) On the **Add Client** form, fill in the following content and then click **Save**.
 
-- Client ID (Entity ID): [https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml);  
-- Client Protocol: Select **SAML**;   
-- Client SAML Endpoint (Assertion URL), temporarily use: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/).   
+- Client ID (Entity ID): [https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml](https://<<< custom_key.studio_main_site_auth >>>/saml/metadata.xml);
+- Client Protocol: Select **SAML**;
+- Client SAML Endpoint (Assertion URL), temporarily use: [https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/).
 
-**Note**: This configuration is only for obtaining metadata documents in the next step. After enabling SSO single sign-on in <<< custom_key.brand_name >>>, obtain the correct **Entity ID** and **Assertion URL** and replace them accordingly.
+**Note**: This configuration is only used to obtain metadata documents for the next step. After enabling SSO single sign-on in <<< custom_key.brand_name >>>, you must replace these fields with the correct **Entity ID** and **Assertion URL**.
 
 ![](../img/05_keycloak_05.png)
 
-After creating the client, under **Settings**, you can see the Entity ID, protocol, and Assertion URL filled in the previous step. Set the following parameters and save.
+After creating the client, in **Settings**, you can see the Entity ID, protocol, and assertion address filled out in the previous step. Set the following parameters and save them.
 
-- Sign Assertions: ON (to prevent data tampering during transmission from IdP to SP, ensuring data security).
+- Sign Assertions: ON (Used to prevent data transmitted by IdP from being tampered with, ensuring the security of data transmitted from IdP to SP.)
 
 ![](../img/05_keycloak_06.png)
 
-- IDP Initiated SSO URL Name: Can be any name, e.g., "gcy". After filling this, an SSO single sign-on URL will be generated, as shown below;
-- Base URL: Enter the SSO single sign-on URL generated in the previous parameter, such as `/auth/realms/gcy/protocol/saml/clients/gcy`. This is mainly used to generate a direct access link for single sign-on to <<< custom_key.brand_name >>> from Keycloak Clients.
+- IDP Initiated SSO URL Name: Can be filled arbitrarily, such as "gcy". After filling this, an SSO single sign-on URL will be generated, as shown in the figure below;
+- Base URL: Fill in the SSO single sign-on URL generated by the above parameter, such as `/auth/realms/gcy/protocol/saml/clients/gcy`. This is mainly used to generate direct access links in Keycloak clients for single sign-on to <<< custom_key.brand_name >>>.
 
 ![](../img/05_keycloak_07.png)
 
-3) Under **Clients**'s **Mappers**, click **Create** to create an email mapper. This content is mandatory and must be filled out; otherwise, SSO single sign-on cannot be achieved.
+3) In **Mappers** under **Clients**, click **Create** to create an email mapper. This part is mandatory, and if left unfilled, SSO single sign-on cannot be achieved.
 
 ![](../img/05_keycloak_08.png)
 
-On the **Create Protocol Mapper** page, input the following and save.
+On the **Create Protocol Mapper** page, after entering the following content, save it.
 
-- Name: Can be any name, e.g., "mail mapper";
+- Name: Can be filled arbitrarily, such as "mail mapper";
 - Mapper Type: Select "User Property";
 - Property: Fill in **Email** according to the rules supported by the identity provider;
-- SAML Attribute Name: Must be **Email**.
+- SAML Attribute Name: Must fill in **Email**.
 
-**Note**: <<< custom_key.brand_name >>> defines a mapped field that must be filled with **Email** to associate the identity provider's user email (i.e., the identity provider maps the logged-in user's email to Email).
+**Note**: <<< custom_key.brand_name >>> defines a mapped field that must be filled with **Email** to associate the user's email provided by the identity provider (i.e., the identity provider maps the logged-in user's email to Email).
 
 ![](../img/05_keycloak_09.png)
 
-### 3. Obtain Keycloak Metadata Document {#step3}
+### 3. Obtain KeyCloak Metadata Document {#step3}
 
-**Note**: This step allows you to obtain the metadata document required to create an identity provider in <<< custom_key.brand_name >>>.
+**Note**: This step allows obtaining the metadata document required to create an identity provider in <<< custom_key.brand_name >>>.
 
-1) Under **Clients**'s **Installation**, select **Mod Auth Mellon files**, and click **Download** to download the metadata document.
+1) In **Installation** under **Clients**, select **Mod Auth Mellon files**, then click **Download** to download the metadata document.
 
 ![](../img/05_keycloak_10.png)
 
@@ -122,55 +123,55 @@ On the **Create Protocol Mapper** page, input the following and save.
 
 ![](../img/05_keycloak_11.png)
 
-3) Since Keycloak’s cloud metadata document is at the **realm** level, add the client parameter `/clients/<IDP Initiated SSO URL Name>` to the access URL in the metadata document **idp-metadata.xml**. As this document sets `IDP Initiated SSO URL Name: gcy`, add `/clients/gcy` in the XML file as shown below. Save the XML file after completing the addition.
+3) Since Keycloak's cloud data documents are at the **Realm** level, you need to add the client parameter `/clients/<IDP Initiated SSO URL Name>` to the access address in the metadata document **idp-metadata.xml**. As this document sets `IDP Initiated SSO URL Name: gcy`, fill in `/clients/gcy` in the XML file, as shown in the figure below. After adding, save the XML file.
 
 ![](../img/05_keycloak_12.png)
 
 ### 4. Enable SSO Single Sign-On in <<< custom_key.brand_name >>>
 
-1) Enable SSO single sign-on in <<< custom_key.brand_name >>> workspace **Management > Member Management > SSO Management**, and click **Enable**.
+1) To enable SSO single sign-on, go to <<< custom_key.brand_name >>> workspace **Management > Member Management > SSO Management**, then click **Enable**.
 
 > Refer to the documentation [Create SSO](../../management/sso/index.md).
 
-**Note**: Considering account security, <<< custom_key.brand_name >>> supports configuring only one SSO per workspace. If you have previously configured SAML 2.0, the last updated SAML 2.0 configuration will be considered the final single sign-on authentication entry.
+**Note**: For account security considerations, <<< custom_key.brand_name >>> supports configuring only one SSO per workspace. If you have already configured SAML 2.0 previously, the last updated SAML 2.0 configuration will be considered as the final single sign-on verification entry.
 
 ![](../img/1.sso_enable.png)
 
-2) Upload the **metadata document** downloaded in [Step 3](#step3), configure the **domain name (email suffix domain)**, and select the **role** to obtain the identity provider's **Entity ID** and **Assertion URL**, which support directly copying the **login URL** for login.
+2) Upload the **Metadata Document** downloaded in [Step 3](#step3), configure the **Domain (email suffix domain)**, select the **Role**, then you can obtain the **Entity ID** and **Assertion URL** of the identity provider, supporting direct copying of the **Login URL** for login.
 
-**Note**: The domain name is used for email domain mapping between <<< custom_key.brand_name >>> and the identity provider to achieve single sign-on, i.e., the email suffix domain of the user must match the domain added in <<< custom_key.brand_name >>>.
+**Note**: The domain is used for email domain mapping between <<< custom_key.brand_name >>> and the identity provider to achieve single sign-on, i.e., the email suffix domain of the user must match the domain added in <<< custom_key.brand_name >>>.
 
 ![](../img/1.sso_enable_2.png)
 
-### 5. Replace SAML Assertion URL in Keycloak
+### 5. Replace the SAML Assertion URL in KeyCloak
 
-1) Return to Keycloak and update the **Entity ID** and **Assertion URL** from [Step 2](#step2).
+1) Return to Keycloak and update the **Entity ID** and **Assertion URL** in [Step 2](#step2).
 
-**Note**: When configuring single sign-on in <<< custom_key.brand_name >>>, the Assertion URL configured in the identity provider SAML must match the one in <<< custom_key.brand_name >>> to achieve single sign-on.
+**Note**: When configuring single sign-on in <<< custom_key.brand_name >>>, the assertion URL configured in the identity provider's SAML must match that in <<< custom_key.brand_name >>> to achieve single sign-on.
 
 ![](../img/05_keycloak_18.png)
 
 ### 6. Configure Keycloak Users
 
-**Note**: This step configures authorized user email accounts in <<< custom_key.brand_name >>> via the identity provider. By configuring the Keycloak user email accounts, users can log in to <<< custom_key.brand_name >>> through single sign-on.
+**Note**: This step configures authorized user email accounts for the identity provider created in <<< custom_key.brand_name >>>. Configured Keycloak user email accounts can be used for single sign-on to <<< custom_key.brand_name >>> platform.
 
-1) In the created gcy realm, click **User**, and then click **Add user**.
+1) In the created gcy domain, click **User**, then click **Add user**.
 
 ![](../img/05_keycloak_13.png)
 
-2) Input **Username** and **Email**. Email is a required field and must match the user whitelist email configured in <<< custom_key.brand_name >>> for matching email mapping to log in to <<< custom_key.brand_name >>>.
+2) Input **Username** and **Email**, where Email is a required field and must match the email whitelist configured in <<< custom_key.brand_name >>>'s identity provider, used to map emails for logging into <<< custom_key.brand_name >>>.
 
 ![](../img/05_keycloak_14.png)
 
-3) After creating the user, set the password for the user under **Credentials**.
+3) After creating the user, set the password for the user in **Credentials**.
 
 ![](../img/05_keycloak_15.png)
 
-### 7. Use Keycloak Account to Log in to <<< custom_key.brand_name >>> via SSO
+### 7. Use Keycloak Account for Single Sign-On to <<< custom_key.brand_name >>>
 
-After all configurations are completed, there are two ways to log in to <<< custom_key.brand_name >>> via single sign-on.
+After all configurations are completed, there are two ways to perform single sign-on to <<< custom_key.brand_name >>>.
 
-#### Method One: Log in to <<< custom_key.brand_name >>> from Keycloak
+#### Method One: Log in to <<< custom_key.brand_name >>> via Keycloak
 
 1) In Keycloak's Clients, click the **Base URL** on the right side.
 
@@ -182,17 +183,17 @@ After all configurations are completed, there are two ways to log in to <<< cust
 
 3) Log in to the corresponding workspace in <<< custom_key.brand_name >>>.
 
-**Note**: If multiple workspaces have configured the same identity provider SSO single sign-on, users can switch between different workspaces to view data after logging in via SSO.
+**Note**: If multiple workspaces are configured with the same identity provider SSO single sign-on, after logging in through SSO, users can click the workspace option in the top-left corner of <<< custom_key.brand_name >>> to switch between different workspaces to view data.
 
 ![](../img/1.sso_okta_23.png)
 
-#### Method Two: Log in to <<< custom_key.brand_name >>> Using Keycloak Account
+#### Method Two: Single Sign-On to <<< custom_key.brand_name >>> Using Keycloak Account
 
-1) After SSO configuration is complete, log in via [<<< custom_key.brand_name >>> website](https://www.dataflux.cn/) or [<<< custom_key.brand_name >>> console](https://auth.dataflux.cn/loginpsw) and select **Single Sign-On** on the login page.
+1) After SSO configuration is complete, log in through [<<< custom_key.brand_name >>> Official Website](https://www.dataflux.cn/) or [<<< custom_key.brand_name >>> Console](https://auth.dataflux.cn/loginpsw), and select **Single Sign-On** on the login page.
 
 ![](../img/9.sso_2.png)
 
-2) Enter the email address configured for SSO creation and click **Get Login URL**.
+2) Enter the email address used during SSO creation and click **Get Login URL**.
 
 ![](../img/9.sso_3.png)
 
@@ -200,12 +201,12 @@ After all configurations are completed, there are two ways to log in to <<< cust
 
 ![](../img/03_authing_13.png)
 
-4) Enter the enterprise common email (configured in Keycloak and <<< custom_key.brand_name >>> SSO management) and password.
+4) Enter the enterprise universal email (the enterprise email address configured in Keycloak and <<< custom_key.brand_name >>> SSO Management) and password.
 
 ![](../img/4.keycloak_9.1.png)
 
 5) Log in to the corresponding workspace in <<< custom_key.brand_name >>>.
 
-**Note**: If multiple workspaces have configured the same identity provider SSO single sign-on, users can switch between different workspaces to view data after logging in via SSO.
+**Note**: If multiple workspaces are configured with the same identity provider SSO single sign-on, after logging in through SSO, users can click the workspace option in the top-left corner of <<< custom_key.brand_name >>> to switch between different workspaces to view data.
 
 ![](../img/1.sso_okta_23.png)

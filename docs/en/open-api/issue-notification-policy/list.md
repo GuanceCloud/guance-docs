@@ -1,4 +1,4 @@
-# List Notification Policies
+# List of Notification Policies
 
 ---
 
@@ -12,12 +12,12 @@
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| search | string | No  | Search name<br>Can be empty: True <br> |
-| pageIndex | integer | Yes  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:---------------------|:---------|:-----------|:------------------------|
+| search | string |  | Search name<br>Can be empty: True <br> |
+| pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of items to return per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
@@ -47,7 +47,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/notifica
                     "acntWsNickname": null,
                     "attributes": {},
                     "customAttributes": {},
-                    "email": "jinlei940@guance.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "exterId": "acnt-Rk865yTF5z6UiqqVPAzEua",
                     "id": 3498,
                     "mobile": "17621725046",

@@ -5,16 +5,20 @@
 <br />**GET /api/v1/sso/saml_list**
 
 ## Overview
-Retrieve the list of SAML SSO login configurations
+Get the list of SAML SSO login configurations
+
+
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:--------|:-------------------------|
-| type          | string |         | Type<br>Example: <br>Can be empty: False <br>Optional values: ['saml', 'oidc'] <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| type | string |  | Type<br>Example:  <br>Allow empty: False <br>Optional values: ['saml', 'oidc'] <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -24,6 +28,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list'
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
+
 
 
 ## Response
@@ -37,7 +43,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list'
             "deleteAt": -1,
             "id": 71,
             "idpMd5": "d178c9e1b52bd37bfa0595223439fec5",
-            "idpName": "LWC Test SSO",
+            "idpName": "LWC SSO Test",
             "isOpenSAMLMapping": 1,
             "memberCount": 0,
             "remark": "",
@@ -50,7 +56,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list'
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 Test",
                 "username": "Test"
@@ -64,7 +70,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list'
             "deleteAt": -1,
             "id": 49,
             "idpMd5": "d178c9e1b52bd37bfa0595223439fec5",
-            "idpName": "LWC Test SSO",
+            "idpName": "LWC SSO Test",
             "isOpenSAMLMapping": 0,
             "memberCount": 0,
             "remark": "lwc test",
@@ -77,7 +83,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_list'
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 Test",
                 "username": "Test"

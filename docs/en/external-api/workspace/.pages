@@ -4,8 +4,9 @@ nav:
   - '【Workspace】Get Details': get.md
   - '【Workspace】Modify': modify.md
   - '【Workspace】Delete': delete.md
-  - '【Workspace】Query Usage Limit': usage-limit-get.md
-  - '【Workspace】Update Usage Limit': update-usage-limit.md
-  - '【Workspace】Upload Workspace-related Images and Resources': upload-logo-image.md
-  - '【Workspace】Get Workspace-related Image URLs': get-logo-url.md
-  - '【Workspace】Set Custom Workspace Binding Information': set-bind-info.md
+  - '【Workspace】Query Usage Restrictions': usage-limit-get.md
+  - '【Workspace】Update Usage Restrictions': update-usage-limit.md
+  - '【Workspace】Upload Related Resources for Space Images': upload-logo-image.md
+  - '【Workspace】Get Related Resources for Space Images': get-logo-url.md
+  - '【Workspace】Custom Workspace Binding Information': set-bind-info.md
+  - '【Workspace】Change Brand Identifier': change-brand-key.md

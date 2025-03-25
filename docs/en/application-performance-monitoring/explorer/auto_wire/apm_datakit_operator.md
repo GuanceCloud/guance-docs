@@ -5,12 +5,12 @@
 
 | Field    | Description        |
 | ----------- | ---------- |
-| `namespaces`, `selectors`    | `enabled_namespaces` and `enabled_labelselectors` are specific to ddtrace. They are arrays of objects that require specifying `namespace` and `language`. The relationship between the arrays is "OR". Currently, only `java` is supported.<br />If a Pod matches both `enabled_namespaces` and `enabled_labelselectors`, the configuration in `enabled_labelselectors` takes precedence.        |
+| `namespaces`, `selectors`    | `enabled_namespaces` and `enabled_labelselectors` are exclusive to ddtrace. They are arrays of objects that require specifying `namespace` and `language`. The relationship between the arrays is "OR". Currently, only the `java` language is supported.<br />If a Pod satisfies both the `enabled_namespaces` rule and the `enabled_labelselectors`, the configuration of `enabled_labelselectors` will take precedence.        |
 
 
 ## Enable DDTrace Collector
 
-Edit the datakit.yaml file to append DDTrace to the default enabled collectors.
+Modify the datakit.yaml file and append DDTrace to the default enabled collector configurations.
 
 ```
  - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -20,7 +20,7 @@ Edit the datakit.yaml file to append DDTrace to the default enabled collectors.
 Restart the application:
 
 ```
-kubectl apply -f datakit.yaml
+kubectl apply -f datakit.yam
 ```
 
 ## Install DataKit Operator
@@ -37,7 +37,7 @@ $ wget https://static.<<< custom_key.brand_main_domain >>>/datakit-operator/data
 
 ### Update Configuration File
 
-The Datakit Operator configuration is in JSON format and is stored separately as a ConfigMap in Kubernetes, loaded into the container via environment variables.
+The Datakit Operator configuration is in JSON format, stored separately as a ConfigMap in Kubernetes, and loaded into the container via environment variables.
 
 
 ```
@@ -73,12 +73,12 @@ The Datakit Operator configuration is in JSON format and is stored separately as
 }
 ```
 
-Configuration parameters:
+Parameter configuration:
 
 1. `service`: Service name;
-2. `env`: Environment information for the application service;
-3. Customize the DataKit listening address; if not set, it follows the default address;
-4. Collect Profiling data: Enabling this allows you to see more runtime information about the application;
+2. `env`: Environmental information for the application service;
+3. Custom DataKit listener address; if not set, it will follow the default address;
+4. Collect Profiling data: After enabling, more runtime information about the application can be seen;
 5. Configure `namespaces`;
 6. Configure `selectors`.
 
@@ -91,4 +91,4 @@ kubectl apply -f datakit-operator.yaml
 
 ## Restart Application
 
-After installation, restart the application Pod.
+After installation is complete, simply restart the application Pod.

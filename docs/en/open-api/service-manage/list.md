@@ -1,4 +1,4 @@
-# [Service List] Listing
+# [Service List] Listed
 
 ---
 
@@ -8,41 +8,42 @@
 List service list information
 
 
+
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-----------------|:-------|:-----|:----------------|
-| search | string | No  | Search service name<br>Example: mysql <br>Can be empty: False <br> |
-| originStr | string | No  | Pass 1 for raw string, pass 0 for structured data, default is 1<br>Can be empty: False <br> |
-| filter | string | No  | Filter condition<br>Example: total <br>Can be empty: False <br>Optional values: ['total', 'favorite', 'myCreate', 'oftenBrowse'] <br> |
-| createType | commaArray | No  | Creation type<br>Example: openapi,manual,automatic <br>Can be empty: False <br> |
-| serviceType | commaArray | No  | Service type<br>Example: web,custom <br>Can be empty: False <br> |
-| teamUUID | commaArray | No  | Team UUID<br>Example: group_x,group_y <br>Can be empty: False <br> |
-| pageIndex | integer | No  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | No  | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+|:-------------------|:-------|:-----|:----------------|
+| search | string |  | Search for service name<br>Example: mysql <br>Can be empty: False <br> |
+| originStr | string |  | Pass 1 for original string, pass 0 for structured data, default is 1<br>Can be empty: False <br> |
+| filter | string |  | Filter condition<br>Example: total <br>Can be empty: False <br>Optional values: ['total', 'favorite', 'myCreate', 'oftenBrowse'] <br> |
+| createType | commaArray |  | Creation type<br>Example: openapi,manual,automatic <br>Can be empty: False <br> |
+| serviceType | commaArray |  | Service type<br>Example: web,custom <br>Can be empty: False <br> |
+| teamUUID | commaArray |  | Team UUID<br>Example: group_x,group_y <br>Can be empty: False <br> |
+| pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of returns per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
-## Additional Parameter Explanation
-
-
-**Request Body Structure Explanation**
-
-| Parameter Name        | Type  | Required  | Description          |
-|---------------|----------|----|------------------------|
-| search    | string  | No | Search service name |
-| originStr | string  | No | Whether to return the serviceCatelog as a raw string, 1 for yes, 0 for no. Default is 1|
-| filter    | string  | No | Filter condition |
-| createType| string  | No | Filter service creation type, separated by ',', manual,openapi,automatic|
-| serviceType| string  | No | Filter service type, separated by ',', app,framework,cache,message_queue,custom,db,web |
-| teamUUID    | string  | No | Filter teams, separated by ',' |
-| pageIndex | string  | No | Pagination page number |
-| pageSize  | string  | No | Number of items per page |
+## Additional Parameter Notes
 
 
-**Response Body Structure Explanation**
+**Request Body Structure Description**
 
-| Parameter Name                | Type  | Description          |
-|-----------------------|----------|------------------------|
-|serviceCatelog         |string,dict | Raw string or structured data of the service list |
+| Parameter Name        | type  | Required | Description          |
+|---------------------|----------|----|------------------------|
+| search    | string  | N | Search for service name |
+| originStr | string  | N | Whether the returned serviceCatelog needs to be an original string, 1 for yes, 0 for no. Default is 1|
+| filter    | string  | N | Filter condition |
+| createType| string  | N | Filter service creation types, separated by ',', manual,openapi,automatic|
+| serviceType| string  | N | Filter service types, separated by ',', app,framework,cache,message_queue,custom,db,web |
+| teamUUID    | string  | N | Filter teams, separated by ',' |
+| pageIndex | string  | N | Pagination page number |
+| pageSize  | string  | N | Number of returns per page |
+
+
+**Response Body Structure Description**
+
+| Parameter Name                | type  | Description          |
+|-----------------------------|----------|------------------------|
+|serviceCatelog         |string,dict | Original string or structured data of the service list |
 |service         |string | Service name |
 |type         |string | Service type |
 |dfStatus         |string | Service status |
@@ -58,6 +59,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
   -H 'DF-API-KEY: <DF-API-KEY>' \
   --compressed
 ```
+
 
 
 
@@ -101,8 +103,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                             "name": "Guance",
                             "type": "email",
                             "emails": [
-                                "test1@guance.com",
-                                "test3@guance.com"
+                                "xxx@<<< custom_key.brand_main_domain >>>",
+                                "xxx@<<< custom_key.brand_main_domain >>>"
                             ]
                         },
                         {
@@ -122,8 +124,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 },
                 "Repos": [
                     {
-                        "link": "https://<<< custom_key.brand_main_domain >>>",
-                        "name": "Guance",
+                        "link": "https://www.<<< custom_key.brand_main_domain >>>",
+                        "name": "guance",
                         "provider": "Guance"
                     },
                     {
@@ -134,8 +136,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
                 ],
                 "Docs": [
                     {
-                        "link": "https://www.docs.guance.com",
-                        "name": "Guance",
+                        "link": "<<< homepage >>>",
+                        "name": "guance",
                         "provider": "Guance"
                     },
                     {
@@ -160,18 +162,18 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/service_manage
             "createAt": 1693728357,
             "updateAt": 1693728357,
             "creatorInfo": {
-                "username": "test@jiagouyun.com",
+                "username": "xxx@<<< custom_key.brand_main_domain >>>",
                 "name": "test",
                 "iconUrl": "",
-                "email": "test@jiagouyun.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "acntWsNickname": ""
             },
             "colour": "",
             "updatorInfo": {
-                "username": "test@jiagouyun.com",
+                "username": "xxx@<<< custom_key.brand_main_domain >>>",
                 "name": "test",
                 "iconUrl": "",
-                "email": "test@jiagouyun.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "acntWsNickname": ""
             },
             "dfStatus": "ok",

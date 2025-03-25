@@ -2,40 +2,40 @@
 
 ---
 
-<<< custom_key.brand_name >>> application monitoring can collect metrics data from various iOS applications and analyze the performance of iOS applications in a visualized manner.
+<<< custom_key.brand_name >>> application monitoring can collect various iOS application Metrics data and analyze the performance of each iOS application endpoint in a visualized way.
 
 ## Prerequisites
 
-**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites are automatically configured for you, and you can directly integrate the application.
+**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites will be automatically configured for you, and you can directly integrate your application.
 
-- Install [DataKit](../../datakit/datakit-install.md);
-- Configure the [RUM Collector](../../integrations/rum.md);
-- Configure DataKit to be [publicly accessible and install the IP geographic information database](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- Install [DataKit](../../datakit/datakit-install.md);  
+- Configure [RUM Collector](../../integrations/rum.md);
+- DataKit must be configured as [publicly accessible with IP geolocation information database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
 ## Application Integration {#iOS-integration}
 
-Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis** page, click the **[Create Application](../index.md#create)** in the top-left corner to start creating a new application.
+Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Monitoring** page, click on the top-left **[Create Application](../index.md#create)** to start creating a new application.
 
 ![](../img/6.rum_ios.png)
 
 ## Installation
 
-![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img-shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img-shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![tvOS](https://img-shields.io/badge/dynamic/json?label=tvOS&color=brightgreen&query=$.tvos_api_support&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)
+![](https://img.shields.io/badge/dynamic/json?label=platform&color=lightgrey&query=$.platform&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=pod&color=orange&query=$.version&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/version.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img-shields.io/badge/dynamic/json?label=license&color=lightgrey&query=$.license&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![](https://img.shields.io/badge/dynamic/json?label=iOS&color=brightgreen&query=$.ios_api_support&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios) ![tvOS](https://img.shields.io/badge/dynamic/json?label=tvOS&color=brightgreen&query=$.tvos_api_support&uri=https://static.<<< custom_key.brand_main_domain >>>/ft-sdk-package/badge/ios/info.json&link=https://github.com/GuanceCloud/datakit-ios)
 
-**Source Code Location**: [https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
+**Source Code Address**: [https://github.com/GuanceCloud/datakit-ios](https://github.com/GuanceCloud/datakit-ios)
 
 **Demo**: [https://github.com/GuanceDemo/guance-app-demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo)
 
 === "CocoaPods"
 
-    1. Configure the `Podfile` file.
+    1. Configure the `Podfile`.
     
-        * Using Dynamic Library
+        * Use Dynamic Library
           ```
           use_frameworks!
           def shared_pods
             pod 'FTMobileSDK', '[latest_version]'
-            # If you need to collect widget Extension data
+            # If widget Extension data collection is needed
             pod 'FTMobileSDK', :subspecs => ['Extension'] 
           end
     
@@ -50,7 +50,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
           end
           ```
     
-        * Using Static Library
+        * Use Static Library
           ```
           use_modular_headers!
           # Main project
@@ -63,9 +63,9 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
           end
           ```
     
-        * [Using the repository downloaded locally](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
+        * [Download the repository locally and use it](https://guides.cocoapods.org/using/the-podfile.html#using-the-files-from-a-folder-local-to-the-machine)
           
-          **`Podfile` File:**
+          **`Podfile`:**
           ```
           use_modular_headers!
           # Main project
@@ -77,9 +77,9 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
             pod 'FTMobileSDK', :subspecs => ['Extension'] , :path => '[folder_path]'
           end
           ```
-          `folder_path`: The path to the folder containing the `FTMobileSDK.podspec` file.
+          `folder_path`: The path to the folder where `FTMobileSDK.podspec` is located.
     
-          **`FTMobileSDK.podspec` File:**
+          **`FTMobileSDK.podspec` file:**
           
           Modify `s.version` and `s.source` in the `FTMobileSDK.podspec` file.
           ```
@@ -90,7 +90,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
           end
           ```
           
-          `s.version`: Change to the specified version, it is recommended to be consistent with the `SDK_VERSION` in `FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`.
+          `s.version`: Change to the specified version, preferably consistent with `SDK_VERSION` in `FTMobileSDK/FTMobileAgent/Core/FTMobileAgentVersion.h`.
           
           `s.source`: `tag => s.version`
     
@@ -98,14 +98,14 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
 
 === "Carthage" 
 
-    1. Configure the `Cartfile` file.
+    1. Configure the `Cartfile`.
         ```
         github "GuanceCloud/datakit-ios" == [latest_version]
         ```
     
     2. Update dependencies.
     
-        Depending on your target platform (iOS or tvOS), execute the corresponding `carthage update` command with the `--use-xcframeworks` parameter to generate XCFrameworks:
+        Depending on your target platform (iOS or tvOS), execute the corresponding `carthage update` command and add the `--use-xcframeworks` parameter to generate XCFrameworks:
        
         * For iOS platform:
           ```
@@ -117,15 +117,15 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
           carthage update --platform tvOS --use-xcframeworks
           ```
        
-        The generated xcframework can be used similarly to ordinary Frameworks. Add the compiled libraries to your project.
+        The generated xcframework is used the same way as an ordinary Framework. Add the compiled libraries to your project.
         
-        `FTMobileAgent`: Add to the main project Target, supporting both iOS and tvOS platforms.
+        `FTMobileAgent`: Add to the main project Target, supporting iOS and tvOS platforms.
         
         `FTMobileExtension`: Add to the Widget Extension Target.
     
-    3. In `TARGETS` -> `Build Setting` -> `Other Linker Flags`, add `-ObjC`.
+    3. Add `-ObjC` to `TARGETS` -> `Build Setting` -> `Other Linker Flags`.
     
-    4. When using Carthage integration, the supported SDK versions are:
+    4. When using Carthage integration, SDK versions supported:
        
         `FTMobileAgent`: >=1.3.4-beta.2 
     
@@ -133,24 +133,24 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
 
 === "Swift Package Manager"
 
-    1. Select `PROJECT` -> `Package Dependency`, and click the **+** under the `Packages` section.
+    1. Select `PROJECT` -> `Package Dependency`, click the **+** under the `Packages` column.
     
-    2. Enter `https://github.com/GuanceCloud/datakit-ios.git` in the search box on the popped-up page.
+    2. In the search box of the pop-up page, input `https://github.com/GuanceCloud/datakit-ios.git`.
     
-    3. After Xcode successfully retrieves the package, it will display the SDK configuration page.
+    3. After Xcode successfully retrieves the package, the SDK configuration page will be displayed.
     
-        `Dependency Rule`: It is recommended to choose `Up to Next Major Version`.
+        `Dependency Rule`: It is recommended to select `Up to Next Major Version`.
     
         `Add To Project`: Choose the supported project.
         
-        Click the `Add Package` button after filling out the configuration and wait for the loading to complete.
+        After filling out the configuration, click the `Add Package` button and wait for the loading to complete.
     
-    4. In the pop-up `Choose Package Products for datakit-ios`, select the Targets where you want to add the SDK, then click the `Add Package` button. At this point, the SDK has been added successfully.
+    4. In the pop-up `Choose Package Products for datakit-ios`, select the Target that needs to add the SDK, click the `Add Package` button. At this point, the SDK has been successfully added.
     
         `FTMobileSDK`: Add to the main project Target
-    
+        
         `FTMobileExtension`: Add to the Widget Extension Target
-    
+        
         If your project is managed by SPM, add the SDK as a dependency, adding `dependencies` to `Package.swift`.
     
         ```plaintext
@@ -160,16 +160,16 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
             .upToNextMajor(from: "[latest_version]"))]
         ```
     
-    5. Support Swift Package Manager starting from 1.4.0-beta.1.
+    5. Swift Package Manager is supported from version 1.4.0-beta.1 and above.
 
 ### Adding Header Files
 
 === "Objective-C"
 
     ```
-    // CocoaPods, SPM 
+    //CocoaPods, SPM 
     #import "FTMobileSDK.h"
-    // Carthage 
+    //Carthage 
     #import <FTMobileSDK/FTMobileSDK.h>
     ```
 
@@ -190,7 +190,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
         // SDK FTMobileConfig settings
          // Local environment deployment, Datakit deployment
          //FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatakitUrl:datakitUrl];
-         // Use public DataWay deployment
+         // Using public DataWay deployment
         FTMobileConfig *config = [[FTMobileConfig alloc]initWithDatawayUrl:datawayUrl clientToken:clientToken];
         config.enableSDKDebugLog = YES;
         // Start SDK
@@ -208,7 +208,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
          // SDK FTMobileConfig settings
            // Local environment deployment, Datakit deployment
            //let config = FTMobileConfig(datakitUrl: url)
-           // Use public DataWay deployment
+           // Using public DataWay deployment
          let config = FTMobileConfig(datawayUrl: datawayUrl, clientToken: clientToken)
          config.enableSDKDebugLog = true
          FTMobileAgent.start(withConfigOptions: config)
@@ -217,31 +217,31 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
     }
     ```
 
-| Property | **Type** | **Required** | **Description |
+| Property | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
-| datakitUrl | NSString | Yes | Datakit access URL, example: [http://10.0.0.1:9529](http://10.0.0.1:9529/), default port 9529, the device where the SDK is installed must be able to access this address. **Note: Choose either datakit or dataway configuration** |
-| datawayUrl | NSString | Yes | Public Dataway access URL, example: [http://10.0.0.1:9528](http://10.0.0.1:9528/), default port 9528, the device where the SDK is installed must be able to access this address. **Note: Choose either datakit or dataway configuration** |
+| datakitUrl | NSString | Yes | Datakit access address, example: [http://10.0.0.1:9529](http://10.0.0.1:9529/), default port 9529, the device installing the SDK needs to access this address. **Note: Only one of datakit and dataway configurations should be selected** |
+| datawayUrl | NSString | Yes | Public Dataway access address, example: [http://10.0.0.1:9528](http://10.0.0.1:9528/), default port 9528, the device installing the SDK needs to access this address. **Note: Only one of datakit and dataway configurations should be selected** |
 | clientToken | NSString | Yes | Authentication token, must be used together with datawayUrl                               |
-| enableSDKDebugLog | BOOL | No | Set whether to allow logging. Default `NO` |
-| env | NSString | No | Set the collection environment. Default `prod`, supports customization, can also set according to the provided `FTEnv` enumeration through `-setEnvWithType:` method |
-| service | NSString | No | Set the name of the business or service. Affects the `service` field data in Logs and RUM. Default: `df_rum_ios` |
+| enableSDKDebugLog | BOOL | No | Set whether to allow printing logs. Default `NO` |
+| env | NSString | No | Set the collection environment. Default `prod`, supports customization, can also set via the provided `FTEnv` enumeration through `-setEnvWithType:` method |
+| service | NSString | No | Set the name of the business or service it belongs to. Affects Log and RUM service field data. Default: `df_rum_ios` |
 | globalContext | NSDictionary |     No | Add custom tags. Refer to [here](#key-conflict) for addition rules |
-| groupIdentifiers | NSArray | No | Array of AppGroups Identifier for the Widget Extensions that need to be collected. If Widget Extensions data collection is enabled, you must set [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups) and configure the Identifier to this property |
+| groupIdentifiers | NSArray | No | Array of AppGroups Identifier corresponding to the Widget Extensions that need to be collected. If Widget Extensions data collection is enabled, then this must be set [App Groups](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups), and configure the Identifier to this property |
 | autoSync | BOOL | No | Whether to enable automatic synchronization. Default `YES`. When set to `NO`, use `[[FTMobileAgent sharedInstance] flushSyncData]` to manage data synchronization manually |
-| syncPageSize | int | No | Set the number of entries per sync request. Range [5,). Note: The larger the number of entries requested, the more computing resources are used for data synchronization. Default is 10 |
-| syncSleepTime | int | No | Set the interval between syncs. Range [0,5000], default not set |
-| enableDataIntegerCompatible | BOOL | No | Enable if coexistence with web data is required. This setting handles web data type storage compatibility issues. |
-| compressIntakeRequests | BOOL | No | Compress sync data. Supported by SDK version 1.5.6 and above |
-| enableLimitWithDbSize | BOOL | No | Enable DB cache size limit feature.<br>**Note:** When enabled, `FTLoggerConfig.logCacheLimitCount` and `FTRUMConfig.rumCacheLimitCount` will become invalid. Supported by SDK version 1.5.8 and above |
-| dbCacheLimit | long | No | DB cache size limit. Range [30MB,), default 100MB, unit byte, supported by SDK version 1.5.8 and above |
-| dbDiscardType | FTDBCacheDiscard | No | Set the rule for discarding data in the database. Default `FTDBDiscard` <br/>`FTDBDiscard` discards appended data when the data count exceeds the maximum value. `FTDBDiscardOldest` discards old data when the count exceeds the maximum value. Supported by SDK version 1.5.8 and above |
+| syncPageSize | int | No | Set the number of entries per synchronization request. Range [5,), Note: The larger the number of entries requested, the more computational resources are consumed for data synchronization, default is 10 |
+| syncSleepTime | int | No | Set the interval between synchronizations. Range [0,5000], default not set |
+| enableDataIntegerCompatible | BOOL | No | Suggest enabling if coexistence with web data is required. This setting handles storage compatibility issues for web data types |
+| compressIntakeRequests | BOOL | No | Compress synchronized data. Supported by SDK version 1.5.6 and above, default off |
+| enableLimitWithDbSize       | BOOL             | No       | Enable the feature of limiting total cache size using DB.<br>**Note:** Enabling this will make `FTLoggerConfig.logCacheLimitCount` and `FTRUMConfig.rumCacheLimitCount` ineffective. Supported by SDK version 1.5.8 and above |
+| dbCacheLimit                | long             | No       | DB cache limit size. Range [30MB,), default 100MB, unit byte, Supported by SDK version 1.5.8 and above |
+| dbDiscardType               | FTDBCacheDiscard | No       | Set data discard rules in the database. Default `FTDBDiscard`<br/>`FTDBDiscard` discards appended data when the number exceeds the maximum value. `FTDBDiscardOldest` discards old data when the number exceeds the maximum value. Supported by SDK version 1.5.8 and above |
 
 ### RUM Configuration {#rum-config}
 
 === "Objective-C"
 
     ```objective-c
-        // Enable rum
+        //Enable rum
         FTRumConfig *rumConfig = [[FTRumConfig alloc]initWithAppid:appid];
         rumConfig.samplerate = 80;
         rumConfig.enableTrackAppCrash = YES;
@@ -272,33 +272,33 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
         FTMobileAgent.sharedInstance().startRum(withConfigOptions: rumConfig)
     ```
 
-| **Property** | **Type** | **Required** | **Description |
+| **Property** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
-| appid | NSString | Yes | Unique identifier for the user analysis application ID. Corresponding to the RUM `appid`, enabling the collection function of RUM requires setting this value, [method to obtain appid](#iOS-integration) |
-| samplerate | int | No | Sampling rate. Value range [0,100], 0 means no collection, 100 means full collection, default value is 100. Applies to all View, Action, LongTask, Error data within the same session_id |
+| appid | NSString | Yes | User access monitoring application ID uniquely identifies. Corresponds to setting RUM `appid`, enabling the collection function of `RUM`, [How to obtain appid](#iOS-integration) |
+| samplerate | int | No | Sampling rate. Range [0,100], 0 means no collection, 100 means full collection, default value is 100. Scope includes all View, Action, LongTask, Error data within the same session_id |
 | enableTrackAppCrash | BOOL | No | Set whether to collect crash logs. Default `NO` |
-| enableTrackAppANR | BOOL | No | Collect ANR unresponsive events. Default `NO` |
+| enableTrackAppANR | BOOL | No | Collect ANR events where the app is unresponsive. Default `NO` |
 | enableTrackAppFreeze | BOOL | No | Collect UI freeze events. Default `NO`<br>Can set freeze threshold via `-setEnableTrackAppFreeze:freezeDurationMs:` method |
-| freezeDurationMs | long | No | Set the threshold for UI freeze duration. Value range [100,), unit milliseconds, default 250ms. Supported by SDK version 1.5.7 and above |
+| freezeDurationMs | long | No | Set UI freeze threshold, range [100,), unit milliseconds, default 250ms. Supported by SDK version 1.5.7 and above |
 | enableTraceUserView | BOOL | No | Set whether to track user View operations. Default `NO` |
 | enableTraceUserAction | BOOL | No | Set whether to track user Action operations. Default `NO` |
-| enableTraceUserResource | BOOL | No | Set whether to track user network requests. Default `NO`, only applies to native http <br>Note: Network requests initiated via `[NSURLSession sharedSession]` cannot collect performance data;<br>SDK version 1.5.9 and above support collecting network requests initiated via **Swift's URLSession async/await APIs**. |
-| resourceUrlHandler | FTResourceUrlHandler | No | Custom resource collection rules. Default does not filter. Returns: NO indicates to collect, YES indicates not to collect. |
-| errorMonitorType | FTErrorMonitorType | No | Additional error event monitoring types. Adds monitored information to the collected crash data. `FTErrorMonitorBattery` for battery level, `FTErrorMonitorMemory` for memory usage, `FTErrorMonitorCpu` for CPU occupancy. |
-| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | No | Performance monitoring types for views. Adds corresponding monitoring items to the collected **View** data. `FTDeviceMetricsMonitorMemory` monitors current application memory usage, `FTDeviceMetricsMonitorCpu` monitors CPU jumps, `FTDeviceMetricsMonitorFps` monitors screen frame rate. |
-| monitorFrequency | FTMonitorFrequency | No | Performance monitoring sampling period for views. Set `monitorFrequency` to configure the sampling period for **View** monitoring items. `FTMonitorFrequencyDefault` 500ms (default), `FTMonitorFrequencyFrequent` 100ms, `FTMonitorFrequencyRare` 1000ms. |
-| enableResourceHostIP | BOOL | No | Whether to collect the IP address of the target domain of the request. Supported by `>= iOS 13.0` `>= tvOS 13.0` |
-| globalContext | NSDictionary | No | Add custom tags for distinguishing user monitoring data sources. If tracking functionality is needed, the `key` should be `track_id`, and `value` can be any numerical value. Refer to [here](#key-conflict) for additional notes on adding rules. |
-| rumCacheLimitCount | int | No | Maximum RUM cache size. Default 100_000, supported by SDK version 1.5.8 and above |
-| rumDiscardType | FTRUMCacheDiscard | No | Set the RUM discard rule. Default `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard` discards appended data when RUM data count exceeds the maximum value. `FTRUMDiscardOldest` discards old data when RUM data count exceeds the maximum value. Supported by SDK version 1.5.8 and above |
-| resourcePropertyProvider | FTResourcePropertyProvider | No | Add custom attributes to RUM Resource via block callback. Priority lower than [URLSession Custom Collection](#urlsession_interceptor). Supported by SDK version 1.5.10 and above |
+| enableTraceUserResource | BOOL | No | Set whether to track user network requests. Default `NO`, only applies to native http<br>Note: Network requests initiated via `[NSURLSession sharedSession]` cannot collect performance data;<br>SDK 1.5.9 and above support collecting network requests initiated via **Swift's URLSession async/await APIs**. |
+| resourceUrlHandler | FTResourceUrlHandler | No | Custom resource collection rules. Default does not filter. Return: NO means to collect, YES means not to collect. |
+| errorMonitorType | FTErrorMonitorType | No | Additional error event monitoring type. Adds monitoring information to the collected crash data. `FTErrorMonitorBattery` for battery level, `FTErrorMonitorMemory` for memory usage, `FTErrorMonitorCpu` for CPU occupancy |
+| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | No | View performance monitoring type. Adds corresponding monitoring item information to the collected **View** data. `FTDeviceMetricsMonitorMemory` monitors current application memory usage, `FTDeviceMetricsMonitorCpu` monitors CPU jump count, `FTDeviceMetricsMonitorFps` monitors screen frame rate |
+| monitorFrequency | FTMonitorFrequency | No | View performance monitoring sampling cycle. Configure `monitorFrequency` to set the sampling cycle for **View** monitoring item information. `FTMonitorFrequencyDefault`500ms (default), `FTMonitorFrequencyFrequent`100ms, `FTMonitorFrequencyRare`1000ms. |
+| enableResourceHostIP | BOOL | No | Whether to collect the IP address of the requested target domain name. Supported on `>= iOS 13.0` `>= tvOS 13.0` |
+| globalContext | NSDictionary | No | Add custom tags for user monitoring data source differentiation. If tracking functionality is needed, the parameter `key` should be `track_id`, `value` any numerical value. Refer to [here](#key-conflict) for addition rule notes |
+| rumCacheLimitCount | int                        | No | Maximum RUM cache volume. Default 100_000, SDK 1.5.8 and above support this parameter |
+| rumDiscardType | FTRUMCacheDiscard          | No | Set RUM discard rules. Default `FTRUMCacheDiscard` <br/>`FTRUMCacheDiscard` discards appended data when RUM data exceeds the maximum value. `FTRUMDiscardOldest` discards old data when RUM data exceeds the maximum value. SDK 1.5.8 and above support this parameter |
+| resourcePropertyProvider | FTResourcePropertyProvider | No | Add custom attributes to RUM Resource via block callback. SDK 1.5.10 and above support this parameter. Priority lower than [URLSession custom collection](#urlsession_interceptor) |
 
 ### Log Configuration {#log-config}
 
 === "Objective-C"
 
     ```objective-c
-        // Enable logger
+        //Enable logger
         FTLoggerConfig *loggerConfig = [[FTLoggerConfig alloc]init];
         loggerConfig.enableCustomLog = YES;
         loggerConfig.enableLinkRumData = YES;
@@ -318,23 +318,23 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
         FTMobileAgent.sharedInstance().startLogger(withConfigOptions: loggerConfig)
     ```
 
-| Property | **Type** | **Required** | **Description |
+| Property | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
-| samplerate | int | No | Sampling rate. Value range [0,100], 0 means no collection, 100 means full collection, default value is 100. |
-| enableCustomLog | BOOL | No | Whether to upload custom logs. Default `NO` |
-| printCustomLogToConsole | BOOL | No | Set whether to output custom logs to the console. Default `NO`, custom logs [output format](#printCustomLogToConsole) |
-| logLevelFilter | NSArray | No | Set the status array for custom logs to collect. Default is full collection |
-| enableLinkRumData | BOOL | No | Whether to associate with RUM data. Default `NO` |
-| globalContext | NSDictionary |     No | Add custom tags to logs. Refer to [here](#key-conflict) for addition rules |
-| logCacheLimitCount | int | No | Maximum local cache log entry limit [1000,), the larger the log, the greater the disk cache pressure, default is 5000 |
-| discardType | FTLogCacheDiscard | No | Set the log discard rule when the log reaches the limit. Default `FTDiscard` <br/>`FTDiscard` discards appended data when log data count exceeds the maximum value (5000). `FTDiscardOldest` discards old data when log data count exceeds the maximum value. |
+| samplerate | int | No | Sampling rate. Range [0,100], 0 means no collection, 100 means full collection, default value is 100. |
+| enableCustomLog | BOOL | No | Whether to upload custom log. Default `NO` |
+| printCustomLogToConsole | BOOL | No | Set whether to output custom logs to the console. Default `NO`, refer to [output format](#printCustomLogToConsole) for custom logs |
+| logLevelFilter | NSArray | No | Set the status array of custom logs to be collected. Default collects all |
+| enableLinkRumData | BOOL | No | Whether to link with RUM data. Default `NO` |
+| globalContext | NSDictionary |     No | Add custom log tags. Refer to [here](#key-conflict) for addition rules |
+| logCacheLimitCount | int | No | Local maximum log entry cache limit [1000,), the larger the log, the greater the disk cache pressure, default 5000 |
+| discardType | FTLogCacheDiscard | No | Set log discard rules when the limit is exceeded. Default `FTDiscard` <br/>`FTDiscard` discards appended log data when the log data quantity exceeds the maximum value (5000). `FTDiscardOldest` discards old data when log data exceeds the maximum value. |
 
 ### Trace Configuration {#trace-config}
 
 === "Objective-C"
 
     ```objective-c
-       // Enable trace
+       //Enable trace
        FTTraceConfig *traceConfig = [[FTTraceConfig alloc]init];
        traceConfig.enableLinkRumData = YES;
     	 traceConfig.enableAutoTrace = YES;
@@ -351,17 +351,17 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis**
        FTMobileAgent.sharedInstance().startTrace(withConfigOptions: traceConfig)
     ```
 
-| Property | Type | Required | Description |
+| Property | Type | Required | Meaning |
 | --- | --- | --- | --- |
-| samplerate | int | No | Sampling rate. Value range [0,100], 0 means no collection, 100 means full collection, default value is 100. |
-| networkTraceType | FTNetworkTraceType | No | Set the type of link tracing. Default is `DDTrace`, currently supports `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C). When integrating with OpenTelemetry, please refer to the supported types and agent configurations |
-| enableLinkRumData | BOOL | No | Whether to associate with RUM data. Default `NO` |
-| enableAutoTrace | BOOL | No | Set whether to enable automatic HTTP trace. Default `NO`, currently only supports NSURLSession |
-| traceInterceptor | FTTraceInterceptor | No | Supports determining whether to perform custom link tracing via URLRequest. Confirm interception and return `TraceContext`, otherwise return nil. Supported by SDK version 1.5.10 and above. Priority lower than [URLSession Custom Collection](#urlsession_interceptor) |
+| samplerate | int | No | Sampling rate. Range [0,100], 0 means no collection, 100 means full collection, default value is 100. |
+| networkTraceType | FTNetworkTraceType | No | Set the type of link tracing. Default is `DDTrace`, currently supports `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C). If choosing a corresponding link type when integrating OpenTelemetry, please check the supported types and agent related configurations |
+| enableLinkRumData | BOOL | No | Whether to link with RUM data. Default `NO` |
+| enableAutoTrace | BOOL | No | Set whether to enable automatic http trace. Default `NO`, currently only supports NSURLSession |
+| traceInterceptor | FTTraceInterceptor | No | Supports determining whether to perform custom link tracing via URLRequest. Confirm interception and return `TraceContext`, return nil if not intercepted. SDK 1.5.10 and above support this parameter. Priority lower than [URLSession custom collection](#urlsession_interceptor) |
 
 ## RUM User Data Tracking {#rum}
 
-Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` to achieve automatic data acquisition or manually use `FTExternalDataManager` to add these data. Examples are shown below:
+Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` to achieve automatic data acquisition effects or manually use `FTExternalDataManager` to add these data. Example below:
 
 ### View
 
@@ -372,29 +372,29 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
     ```objective-c
     /// Create a page
     ///
-    /// Call before the `-startViewWithName` method, this method records the page load time. If the load time cannot be obtained, this method can be omitted.
+    /// Call before the `-startViewWithName` method. This method records the page load time. If the load time cannot be obtained, this method can be omitted.
     /// - Parameters:
     ///  - viewName: Page name
     ///  - loadTime: Page load time (nanoseconds)
     -(void)onCreateView:(NSString *)viewName loadTime:(NSNumber *)loadTime;
     
-    /// Enter a page
+    /// Enter the page
     ///
     /// - Parameters:
     ///  - viewName: Page name
     -(void)startViewWithName:(NSString *)viewName;
     
-    /// Enter a page
+    /// Enter the page
     /// - Parameters:
     ///  - viewName: Page name
-    ///  - property: Custom properties for the event (optional)
+    ///  - property: Event custom properties (optional)
     -(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
     
-    /// Leave a page
+    /// Leave the page
     -(void)stopView;
     
-    /// Leave a page
-    /// - Parameter property: Custom properties for the event (optional)
+    /// Leave the page
+    /// - Parameter property: Event custom properties (optional)
     -(void)stopViewWithProperty:(nullable NSDictionary *)property;
     ```
 
@@ -403,29 +403,29 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
     ```swift
     /// Create a page
     ///
-    /// Call before the `-startViewWithName` method, this method records the page load time. If the load time cannot be obtained, this method can be omitted.
+    /// Call before the `-startViewWithName` method. This method records the page load time. If the load time cannot be obtained, this method can be omitted.
     /// - Parameters:
     ///  - viewName: Page name
     ///  - loadTime: Page load time (ns)
     open func onCreateView(_ viewName: String, loadTime: NSNumber)
     
-    /// Enter a page
+    /// Enter the page
     ///
     /// - Parameters:
     ///  - viewName: Page name
     open func startView(withName viewName: String)
     
-    /// Enter a page
+    /// Enter the page
     /// - Parameters:
     ///  - viewName: Page name
-    ///  - property: Custom properties for the event (optional)
+    ///  - property: Event custom properties (optional)
     open func startView(withName viewName: String, property: [AnyHashable : Any]?)
     
-    /// Leave a page
+    /// Leave the page
     open func stopView() 
     
-    /// Leave a page
-    /// - Parameter property: Custom properties for the event (optional)
+    /// Leave the page
+    /// - Parameter property: Event custom properties (optional)
     open func stopView(withProperty property: [AnyHashable : Any]?)
     ```
 
@@ -480,22 +480,22 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
     ```objectivec
     /// Start RUM Action.
     ///
-    /// RUM binds this Action to potential Resource, Error, LongTask events. Avoid adding multiple times within 0.1 seconds, only one Action can be associated with the same View at the same time. New Actions added while the previous Action has not ended will be discarded.
-    /// Adding Actions with `addAction:actionType:property` does not affect each other.
+    /// RUM binds the possible triggered Resource, Error, LongTask events of this Action. Avoid adding multiple times within 0.1 s. Only one Action is associated with the same View at the same time. New Actions added while the previous Action has not ended will be discarded.
+    /// This method of adding Action does not affect the Action added via `addAction:actionType:property`.
     ///
     /// - Parameters:
     ///   - actionName: Event name
     ///   - actionType: Event type
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     - (void)startAction:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
     
-    /// Add Action event. No duration, no discard logic
+    /// Add Action event without duration and discard logic.
     ///
-    /// Adding Actions with `startAction:actionType:property:` does not affect each other.
+    /// Does not affect the RUM Action started via `startAction:actionType:property:`.
     /// - Parameters:
     ///   - actionName: Event name
     ///   - actionType: Event type
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     - (void)addAction:(NSString *)actionName actionType:(NSString *)actionType property:(nullable NSDictionary *)property;
     ```
 
@@ -504,22 +504,22 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
     ```swift
     /// Start RUM Action.
     ///
-    /// RUM binds this Action to potential Resource, Error, LongTask events. Avoid adding multiple times within 0.1 seconds, only one Action can be associated with the same View at the same time. New Actions added while the previous Action has not ended will be discarded.
-    /// Adding Actions with `addAction:actionType:property` does not affect each other.
+    /// RUM binds the possible triggered Resource, Error, LongTask events of this Action. Avoid adding multiple times within 0.1 s. Only one Action is associated with the same View at the same time. New Actions added while the previous Action has not ended will be discarded.
+    /// This method of adding Action does not affect the Action added via `addAction:actionType:property`.
     ///
     /// - Parameters:
     ///   - actionName: Event name
     ///   - actionType: Event type
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     open func startAction(_ actionName: String, actionType: String, property: [AnyHashable : Any]?)
     
-    /// Add Action event. No duration, no discard logic
+    /// Add Action event without duration and discard logic.
     ///
-    /// Adding Actions with `startAction:actionType:property:` does not affect each other.
+    /// Does not affect the RUM Action started via `startAction:actionType:property:`.
     /// - Parameters:
     ///   - actionName: Event name
     ///   - actionType: Event type
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     open func addAction(_ actionName: String, actionType: String, property: [AnyHashable : Any]?)
     ```
 #### Code Example
@@ -551,26 +551,26 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
     /// Add Error event
     ///
     /// - Parameters:
-    ///   - type: Error type
+    ///   - type: error type
     ///   - message: Error message
     ///   - stack: Stack trace
     - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
     
     /// Add Error event
     /// - Parameters:
-    ///   - type: Error type
+    ///   - type: error type
     ///   - message: Error message
     ///   - stack: Stack trace
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
     
     /// Add Error event
     /// - Parameters:
-    ///   - type: Error type
-    ///   - state: Application running state
+    ///   - type: error type
+    ///   - state: Program running state
     ///   - message: Error message
     ///   - stack: Stack trace
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     - (void)addErrorWithType:(NSString *)type state:(FTAppState)state  message:(NSString *)message stack:(NSString *)stack property:(nullable NSDictionary *)property;
     ```
 
@@ -580,26 +580,26 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
     /// Add Error event
     ///
     /// - Parameters:
-    ///   - type: Error type
+    ///   - type: error type
     ///   - message: Error message
     ///   - stack: Stack trace
     open func addError(withType: String, message: String, stack: String)
     
     /// Add Error event
     /// - Parameters:
-    ///   - type: Error type
+    ///   - type: error type
     ///   - message: Error message
     ///   - stack: Stack trace
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     open func addError(withType: String, message: String, stack: String, property: [AnyHashable : Any]?)
     
     /// Add Error event
     /// - Parameters:
-    ///   - type: Error type
-    ///   - state: Application running state
+    ///   - type: error type
+    ///   - state: Program running state
     ///   - message: Error message
     ///   - stack: Stack trace
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     open func addError(withType type: String, state: FTAppState, message: String, stack: String, property: [AnyHashable : Any]?)
     ```
 #### Code Example
@@ -634,36 +634,36 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 === "Objective-C"
 
     ```objectivec
-    /// Add Freeze event
+    /// Add freeze event
     ///
     /// - Parameters:
-    ///   - stack: Freeze stack trace
+    ///   - stack: Freeze stack
     ///   - duration: Freeze duration (nanoseconds)
     - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
     
-    /// Add Freeze event
+    /// Add freeze event
     /// - Parameters:
-    ///   - stack: Freeze stack trace
+    ///   - stack: Freeze stack
     ///   - duration: Freeze duration (nanoseconds)
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration property:(nullable NSDictionary *)property;
     ```
 
 === "Swift"
 
     ```swift
-    /// Add Freeze event
+    /// Add freeze event
     ///
     /// - Parameters:
-    ///   - stack: Freeze stack trace
+    ///   - stack: Freeze stack
     ///   - duration: Freeze duration (nanoseconds)
     func addLongTask(withStack: String, duration: NSNumber)
     
-    /// Add Freeze event
+    /// Add freeze event
     /// - Parameters:
-    ///   - stack: Freeze stack trace
+    ///   - stack: Freeze stack
     ///   - duration: Freeze duration (nanoseconds)
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     func addLongTask(withStack: String, duration: NSNumber, property: [AnyHashable : Any]?)
     ```
 
@@ -695,104 +695,69 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 === "Objective-C"
 
     ```objectivec
-    /// Start HTTP request
+    /// HTTP request start
     ///
     /// - Parameters:
     ///   - key: Request identifier
     - (void)startResourceWithKey:(NSString *)key;
-    /// Start HTTP request
+    /// HTTP request start
     /// - Parameters:
     ///   - key: Request identifier
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     - (void)startResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
     
-    /// Add request data
+    /// HTTP add request data
     ///
     /// - Parameters:
     ///   - key: Request identifier
-    ///   - metrics: Related performance attributes of the request
-    ///   - content: Related data of the request
+    ///   - metrics: Request related performance attributes
+    ///   - content: Request related data
     - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
-    /// End HTTP request
+    /// HTTP request end
     ///
     /// - Parameters:
     ///   - key: Request identifier
     - (void)stopResourceWithKey:(NSString *)key;
-    /// End HTTP request
+    /// HTTP request end
     /// - Parameters:
     ///   - key: Request identifier
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     - (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
     ```
 === "Swift"
 
     ```swift
-    /// Start HTTP request
+    /// HTTP request start
     ///
     /// - Parameters:
     ///   - key: Request identifier
     open func startResource(withKey key: String)
     
-    /// Start HTTP request
+    /// HTTP request start
     /// - Parameters:
     ///   - key: Request identifier
-    ///   - property: Custom properties for the event (optional)
-    - (void)startResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
-    
-    /// Add request data
-    ///
-    /// - Parameters:
-    ///   - key: Request identifier
-    ///   - metrics: Related performance attributes of the request
-    ///   - content: Related data of the request
-    - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
-    
-    /// End HTTP request
-    ///
-    /// - Parameters:
-    ///   - key: Request identifier
-    - (void)stopResourceWithKey:(NSString *)key;
-    
-    /// End HTTP request with custom properties
-    /// - Parameters:
-    ///   - key: Request identifier
-    ///   - property: Custom properties for the event (optional)
-    - (void)stopResourceWithKey:(NSString *)key property:(nullable NSDictionary *)property;
-    ```
-
-=== "Swift"
-
-    ```swift
-    /// Start HTTP request
-    ///
-    /// - Parameters:
-    ///   - key: Request identifier
-    open func startResource(withKey key: String)
-    
-    /// Start HTTP request with custom properties
-    /// - Parameters:
-    ///   - key: Request identifier
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     open func startResource(withKey key: String, property: [AnyHashable : Any]?)
     
-    /// End HTTP request
+    /// HTTP request end
     ///
+```swift
     /// - Parameters:
     ///   - key: Request identifier
     open func stopResource(withKey key: String)
     
-    /// End HTTP request with custom properties
+    /// HTTP request end
     /// - Parameters:
     ///   - key: Request identifier
-    ///   - property: Custom properties for the event (optional)
+    ///   - property: Event custom properties (optional)
     open func stopResource(withKey key: String, property: [AnyHashable : Any]?)
     
-    /// Add request data
+    /// HTTP add request data
     ///
     /// - Parameters:
     ///   - key: Request identifier
-    ///   - metrics: Related performance attributes of the request
-    ///   - content: Related data of the request
+    ///   - metrics: Request related performance attributes
+    ///   - content: Request related data
     open func addResource(withKey key: String, metrics: FTResourceMetricsModel?, content: FTResourceContentModel)
     ```
 
@@ -801,42 +766,42 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 === "Objective-C"
 
     ```objectivec
-    // Step 1: Before starting the request
+    // Step 1: Before the request starts
     [[FTExternalDataManager sharedManager] startResourceWithKey:key];
     
-    // Step 2: After completing the request
+    // Step 2: When the request completes
     [[FTExternalDataManager sharedManager] stopResourceWithKey:key];
     
     // Step 3: Concatenate Resource data
-    // FTResourceContentModel data
+    // FTResourceContentModel Data
     FTResourceContentModel *content = [[FTResourceContentModel alloc]init];
     content.httpMethod = request.HTTPMethod;
     content.requestHeader = request.allHTTPHeaderFields;
     content.responseHeader = httpResponse.allHeaderFields;
     content.httpStatusCode = httpResponse.statusCode;
     content.responseBody = responseBody;
-    // iOS native
+    // ios native
     content.error = error;
     
     // If time data for each stage can be obtained 
     // FTResourceMetricsModel
-    // For iOS native, obtain NSURLSessionTaskMetrics data and use FTResourceMetricsModel's initializer method directly
+    // Directly use the initialization method of FTResourceMetricsModel if NSURLSessionTaskMetrics data is obtained from ios native
     FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]initWithTaskMetrics:metrics];
     
-    // For other platforms, all time data is in nanoseconds
+    // Other platforms with all time data in nanoseconds
     FTResourceMetricsModel *metricsModel = [[FTResourceMetricsModel alloc]init];
     
-    // Step 4: Add resource if no time data, pass nil for metrics
+    // Step 4: Add resource. Pass nil for metrics if no time data is available
     [[FTExternalDataManager sharedManager] addResourceWithKey:key metrics:metricsModel content:content];
     ```
 
 === "Swift"
 
     ```swift
-    // Step 1: Before starting the request
+    // Step 1: Before the request starts
     FTExternalDataManager.shared().startResource(withKey: key)
     
-    // Step 2: After completing the request
+    // Step 2: When the request completes
     FTExternalDataManager.shared().stopResource(withKey: resource.key)
     
     // Step 3: ① Concatenate Resource data
@@ -844,24 +809,23 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
     
     // ② If time data for each stage can be obtained 
     // FTResourceMetricsModel
-    // For iOS native, obtain NSURLSessionTaskMetrics data and use FTResourceMetricsModel's initializer method directly
+    // Directly use the initialization method of FTResourceMetricsModel if NSURLSessionTaskMetrics data is obtained from ios native
     var metricsModel:FTResourceMetricsModel?
     if let metrics = resource.metrics {
        metricsModel = FTResourceMetricsModel(taskMetrics:metrics)
     }
-    // For other platforms, all time data is in nanoseconds
+    // All time data in nanoseconds for other platforms
     metricsModel = FTResourceMetricsModel()
     ...
     
-    // Step 4: Add resource if no time data, pass nil for metrics
+    // Step 4: Add resource. Pass nil for metrics if no time data is available
     FTExternalDataManager.shared().addResource(withKey: resource.key, metrics: metricsModel, content: contentModel)
     ```
 
-## Logger Logging {#user-logger}
+## Logger Log Printing {#user-logger}
 
-When initializing the SDK in [Log Configuration](#log-config), configure `enableCustomLog` to allow adding custom logs.
-> Currently, log content is limited to 30 KB, and any exceeding part will be truncated.
-
+During SDK initialization [Log Configuration](#log-config), configure `enableCustomLog` to allow custom log addition.
+> Currently, the log content is limited to 30 KB, and any exceeding characters will be truncated.
 ### Usage Method
 
 === "Objective-C"
@@ -871,12 +835,12 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
     //  FTMobileSDK
     
     /// Log reporting
-    /// @param content Log content, can be a JSON string
+    /// @param content Log content, can be a json string
     /// @param status Event level and status
     -(void)logging:(NSString *)content status:(FTStatus)status;
     
     /// Log reporting
-    /// @param content Log content, can be a JSON string
+    /// @param content Log content, can be a json string
     /// @param status Event level and status
     /// @param property Event properties
     -(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
@@ -887,31 +851,31 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
     //  FTLogger.h
     //  FTMobileSDK
     
-    /// Add info type custom log
+    /// Add custom info type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     -(void)info:(NSString *)content property:(nullable NSDictionary *)property;
     
-    /// Add warning type custom log
+    /// Add custom warning type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     -(void)warning:(NSString *)content property:(nullable NSDictionary *)property;
     
-    /// Add error type custom log
+    /// Add custom error type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     -(void)error:(NSString *)content  property:(nullable NSDictionary *)property;
     
-    /// Add critical type custom log
+    /// Add custom critical type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     -(void)critical:(NSString *)content property:(nullable NSDictionary *)property;
     
-    /// Add ok type custom log
+    /// Add custom ok type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
@@ -925,15 +889,15 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
     /// Add custom log
     ///
     /// - Parameters:
-    ///   - content: Log content, can be a JSON string
+    ///   - content: Log content, can be a json string
     ///   - status: Event level and status
     open func logging(_ content: String, status: FTLogStatus)
     
     /// Add custom log
     /// - Parameters:
-    ///   - content: Log content, can be a JSON string
+    ///   - content: Log content, can be a json string
     ///   - status: Event level and status
-    ///   - property: Custom properties (optional)
+    ///   - property: Event custom properties (optional)
     open func logging(_ content: String, status: FTLogStatus, property: [AnyHashable : Any]?)
     }
     ```
@@ -941,46 +905,45 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
     ```swift
     open class FTLogger : NSObject, FTLoggerProtocol {}
     public protocol FTLoggerProtocol : NSObjectProtocol {
-    /// Add info type custom log
+    /// Add custom info type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     optional func info(_ content: String, property: [AnyHashable : Any]?)
     
-    /// Add warning type custom log
+    /// Add custom warning type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     optional func warning(_ content: String, property: [AnyHashable : Any]?)
     
-    /// Add error type custom log
+    /// Add custom error type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     optional func error(_ content: String, property: [AnyHashable : Any]?)
     
-    /// Add critical type custom log
+    /// Add custom critical type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     optional func critical(_ content: String, property: [AnyHashable : Any]?)
     
-    /// Add ok type custom log
+    /// Add custom ok type log
     /// - Parameters:
     ///   - content: Log content
     ///   - property: Custom properties (optional)
     optional func ok(_ content: String, property: [AnyHashable : Any]?)
     }
     ```
-
-#### Log Level
+#### Log Levels
 
 === "Objective-C"
 
     ```objective-c
     /// Event level and status, default: FTStatusInfo
     typedef NS_ENUM(NSInteger, FTLogStatus) {
-        /// Info
+        /// Information
         FTStatusInfo         = 0,
         /// Warning
         FTStatusWarning,
@@ -988,7 +951,7 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
         FTStatusError,
         /// Critical
         FTStatusCritical,
-        /// Ok
+        /// OK
         FTStatusOk,
     };
     ```
@@ -997,7 +960,7 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
     ```swift
     /// Event level and status, default: FTStatusInfo
     public enum FTLogStatus : Int, @unchecked Sendable {
-        /// Info
+        /// Information
         case statusInfo = 0
         /// Warning
         case statusWarning = 1
@@ -1005,7 +968,7 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
         case statusError = 2
         /// Critical
         case statusCritical = 3
-        /// Ok
+        /// OK
         case statusOk = 4
     }
     ```
@@ -1015,12 +978,12 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
 === "Objective-C"
 
     ```objectivec
-    // Method one: Through FTMobileAgent
-    // Note: Ensure that the SDK has been initialized successfully when using it, otherwise it will fail and crash in the test environment.
+    // Method One: Through FTMobileAgent
+    // Note: Ensure that the SDK has been initialized successfully when using it, otherwise it will fail and crash in the testing environment.
     [[FTMobileAgent sharedInstance] logging:@"test_custom" status:FTStatusInfo];
     
-    // Method two: Through FTLogger (recommended)
-    // If the SDK initialization fails, adding custom logs via FTLogger methods will fail but will not cause an assertion failure and crash.
+    // Method Two: Through FTLogger (Recommended)
+    // If the SDK is not initialized successfully, adding custom logs via methods in FTLogger will fail but there will be no assertion failure or crash.
     [[FTLogger sharedInstance] info:@"test" property:@{@"custom_key":@"custom_value"}];
     
     ```
@@ -1028,18 +991,19 @@ When initializing the SDK in [Log Configuration](#log-config), configure `enable
 === "Swift"
 
     ```swift
-    // Method one: Through FTMobileAgent
-    // Note: Ensure that the SDK has been initialized successfully when using it, otherwise it will fail and crash in the test environment.
+    // Method One: Through FTMobileAgent
+    // Note: Ensure that the SDK has been initialized successfully when using it, otherwise it will fail and crash in the testing environment.
     FTMobileAgent.sharedInstance().logging("contentStr", status: .statusInfo, property:["custom_key":"custom_value"])
     
-    // Method two: Through FTLogger (recommended)
-    // If the SDK initialization fails, adding custom logs via FTLogger methods will fail but will not cause an assertion failure and crash.
+    // Method Two: Through FTLogger (Recommended)
+    // If the SDK is not initialized successfully, adding custom logs via methods in FTLogger will fail but there will be no assertion failure or crash.
     FTLogger.shared().info("contentStr", property: ["custom_key":"custom_value"])
     ```
 
 ### Custom Logs Output to Console {#printCustomLogToConsole}
 
-Set `printCustomLogToConsole = YES` to enable custom logs output to the console. You will see the following format logs in the Xcode debug console:
+
+Set `printCustomLogToConsole = YES`, enabling custom logs to be output to the console. The following format logs will be visible in the xcode debugging console:
 
 ```
 2023-06-29 13:47:56.960021+0800 App[64731:44595791] [IOS APP] [INFO] content ,{K=V,...,Kn=Vn}
@@ -1047,24 +1011,24 @@ Set `printCustomLogToConsole = YES` to enable custom logs output to the console.
 
 `2023-06-29 13:47:56.960021+0800 App[64731:44595791]`: Standard prefix for os_log output;
 
-`[IOS APP]`: Prefix to distinguish SDK output custom logs;
+`[IOS APP]`: Prefix to distinguish custom logs output by the SDK;
 
-`[INFO]`: Custom log level;
+`[INFO]`: Level of the custom log;
 
-`content`: Custom log content;
+`content`: Content of the custom log;
 
 `{K=V,...,Kn=Vn}`: Custom properties.
 
 ## Trace Network Link Tracing
 
-You can configure `FTTraceConfig` to enable automatic mode or manually add related Trace data. The relevant APIs are provided below:
+You can enable automatic mode through `FTTraceConfig` configuration, or support user-defined addition of Trace-related data. Relevant APIs for custom addition are as follows:
 
 === "Objective-C"
 
     ```objectivec
     NSString *key = [[NSUUID UUID]UUIDString];
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
-    // Manually get traceHeader before the request and add it to the request header
+    // Manual operation required: Get traceHeader before the request and add it to the request header
     NSDictionary *traceHeader = [[FTTraceManager sharedInstance] getTraceHeaderWithKey:key url:url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     if (traceHeader && traceHeader.allKeys.count>0) {
@@ -1087,7 +1051,7 @@ You can configure `FTTraceConfig` to enable automatic mode or manually add relat
     let url:URL = NSURL.init(string: "https://www.baidu.com")! as URL
     if let traceHeader = FTExternalDataManager.shared().getTraceHeader(withKey: NSUUID().uuidString, url: url) {
          let request = NSMutableURLRequest(url: url)
-         // Manually get traceHeader before the request and add it to the request header
+         // Manual operation required: Get traceHeader before the request and add it to the request header
          for (a,b) in traceHeader {
              request.setValue(b as? String, forHTTPHeaderField: a as! String)
          }
@@ -1098,30 +1062,30 @@ You can configure `FTTraceConfig` to enable automatic mode or manually add relat
     }
     ```
 
-## Intercept URLSession Delegate for Custom Network Collection {#urlsession_interceptor}
+## Intercept URLSession Delegate to Customize Network Collection {#urlsession_interceptor}
 
-The SDK provides a class `FTURLSessionDelegate`, which can be used to customize **RUM Resource collection** and **trace tracking** for network requests initiated by a specific URLSession.
+The SDK provides a class `FTURLSessionDelegate`, which can be used to customize **RUM Resource collection** and **link tracing** for network requests initiated by a specific URLSession.
 
-* `FTURLSessionDelegate` supports intercepting `URLResquest` via the `traceInterceptor` block to perform custom trace tracking (supported by SDK version 1.5.9 and above). This has higher priority than `FTTraceConfig.traceInterceptor`.
-* `FTURLSessionDelegate` supports setting the `provider` block to customize additional attributes for RUM Resource collection, with higher priority than `FTRumConfig.resourcePropertyProvider`.
-* When used together with `FTRumConfig.enableTraceUserResource` and `FTTraceConfig.enableAutoTrace`, the priority order is: **Custom > Auto Collection**.
+* `FTURLSessionDelegate` supports setting `traceInterceptor` block to intercept `URLResquest` for custom link tracing (Supported by SDK version 1.5.9 and above), priority > `FTTraceConfig.traceInterceptor`.
+* `FTURLSessionDelegate` supports setting `provider` block to customize additional attributes that need to be collected for RUM Resources, priority > `FTRumConfig.resourcePropertyProvider`.
+* When used together with `FTRumConfig.enableTraceUserResource` and `FTTraceConfig.enableAutoTrace`, priority: **Custom > Automatic Collection**.
 
-Below are three methods to meet different user scenarios.
+Below are three methods provided to meet different user scenarios.
 
 ### Method One
 
-Directly set the URLSession delegate object to an instance of `FTURLSessionDelegate`.
+Directly set the delegate object of URLSession to an instance of `FTURLSessionDelegate`.
 
 === "Objective-C"
 
     ```objective-c
     id<NSURLSessionDelegate> delegate = [[FTURLSessionDelegate alloc]init];
-    // Add custom RUM resource attributes, it is recommended to add project abbreviation prefix to tag names, e.g., `df_tag_name`.
+    // Add custom RUM resource attributes, suggest adding project abbreviation prefix to tag names, e.g., `df_tag_name`.
     delegate.provider = ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
-    // Support custom trace, confirm interception and return TraceContext, return nil if not intercepted
+    // Support custom trace, return TraceContext if confirmed interception, return nil if not intercepted
     delegate.traceInterceptor = ^FTTraceContext * _Nullable(NSURLRequest *request) {
             FTTraceContext *context = [FTTraceContext new];
             context.traceHeader = @{@"trace_key":@"trace_value"};
@@ -1136,7 +1100,7 @@ Directly set the URLSession delegate object to an instance of `FTURLSessionDeleg
 
     ```swift
     let delegate = FTURLSessionDelegate.init()
-    // Add custom RUM resource attributes, it is recommended to add project abbreviation prefix to tag names, e.g., `df_tag_name`.
+    // Add custom RUM resource attributes, suggest adding project abbreviation prefix to tag names, e.g., `df_tag_name`.
     delegate.provider = { request,response,data,error in
                 var extraData:Dictionary<String, Any> = Dictionary()
                 if let data = data,let requestBody = String(data: data, encoding: .utf8) {
@@ -1147,7 +1111,7 @@ Directly set the URLSession delegate object to an instance of `FTURLSessionDeleg
                 }
                 return extraData
             }
-    // Support custom trace, confirm interception and return TraceContext, return nil if not intercepted   
+    // Support custom trace, return TraceContext if confirmed interception, return nil if not intercepted   
     delegate.traceInterceptor = { request in
                 let traceContext = FTTraceContext()
                 traceContext.traceHeader = ["trace_key":"trace_value"]
@@ -1161,9 +1125,9 @@ Directly set the URLSession delegate object to an instance of `FTURLSessionDeleg
 
 ### Method Two
 
-Make the URLSession delegate object inherit from the `FTURLSessionDelegate` class.
+Make the delegate object inherit from the `FTURLSessionDelegate` class.
 
-If the delegate object implements the following methods, ensure you call the corresponding super methods within them.
+If the delegate object implements the following methods, ensure that the corresponding methods in the parent class are called within these methods.
 
 * `-URLSession:dataTask:didReceiveData:`
 * `-URLSession:task:didCompleteWithError:`
@@ -1180,12 +1144,12 @@ If the delegate object implements the following methods, ensure you call the cor
         self = [super init];
         if(self){
             _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
-            // Add custom RUM resource attributes, it is recommended to add project abbreviation prefix to tag names, e.g., `df_tag_name`.
+            // Add custom RUM resource attributes, suggest adding project abbreviation prefix to tag names, e.g., `df_tag_name`.
             self.provider = ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
             NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
             return @{@"df_requestbody":body};
         };
-            // Support custom trace, confirm interception and return TraceContext, return nil if not intercepted
+            // Support custom trace, return TraceContext if confirmed interception, return nil if not intercepted
            self.traceInterceptor = ^FTTraceContext * _Nullable(NSURLRequest *request) {
             FTTraceContext *context = [FTTraceContext new];
             context.traceHeader = @{@"trace_key":@"trace_value"};
@@ -1197,9 +1161,9 @@ If the delegate object implements the following methods, ensure you call the cor
         return self;
     }
     -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didFinishCollectingMetrics:(NSURLSessionTaskMetrics *)metrics{
-        // Make sure to call the superclass method
+        // Make sure to call the parent class method
         [super URLSession:session task:task didFinishCollectingMetrics:metrics];
-        // Your logic
+        // Your own logic
         // ......
     }
     @end
@@ -1218,7 +1182,7 @@ If the delegate object implements the following methods, ensure you call the cor
             session = URLSession.init(configuration: configuration, delegate:self, delegateQueue: nil)
             override init() {
             super.init()
-            // Add custom RUM resource attributes, it is recommended to add project abbreviation prefix to tag names, e.g., `df_tag_name`.
+            // Add custom RUM resource attributes, suggest adding project abbreviation prefix to tag names, e.g., `df_tag_name`.
             provider = { request,response,data,error in
                 var extraData:Dictionary<String, Any> = Dictionary()
                 if let data = data,let requestBody = String(data: data, encoding: .utf8) {
@@ -1229,7 +1193,7 @@ If the delegate object implements the following methods, ensure you call the cor
                 }
                 return extraData
             }
-            // Support custom trace, confirm interception and return TraceContext, return nil if not intercepted
+            // Support custom trace, return TraceContext if confirmed interception, return nil if not intercepted
             traceInterceptor = { request in
                 let traceContext = FTTraceContext()
                 traceContext.traceHeader = ["trace_key":"trace_value"]
@@ -1241,7 +1205,7 @@ If the delegate object implements the following methods, ensure you call the cor
         }
     
         override func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-            // Make sure to call the superclass method
+            // Make sure to call the parent class method
             super.urlSession(session, task: task, didFinishCollecting: metrics)
             // User's own logic
             // ......
@@ -1251,9 +1215,9 @@ If the delegate object implements the following methods, ensure you call the cor
 
 ### Method Three
 
-Make the URLSession delegate object conform to the `FTURLSessionDelegateProviding` protocol.
+Make the delegate object conform to the `FTURLSessionDelegateProviding` protocol.
 
-* Implement the getter method for the `ftURLSessionDelegate` property in the protocol.
+* Implement the get method for the `ftURLSessionDelegate` property in the protocol.
 * Forward the following URLSession delegate methods to `ftURLSessionDelegate` so that the SDK can collect data.
     * `-URLSession:dataTask:didReceiveData:`
     * `-URLSession:task:didCompleteWithError:`
@@ -1270,12 +1234,12 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
     - (nonnull FTURLSessionDelegate *)ftURLSessionDelegate {
         if(!_ftURLSessionDelegate){
             _ftURLSessionDelegate = [[FTURLSessionDelegate alloc]init];
-             // Add custom RUM resource attributes, it is recommended to add project abbreviation prefix to tag names, e.g., `df_tag_name`.
+             // Add custom RUM resource attributes, suggest adding project abbreviation prefix to tag names, e.g., `df_tag_name`.
             _ftURLSessionDelegate.provider =  ^NSDictionary * _Nullable(NSURLRequest *request, NSURLResponse *response, NSData *data, NSError *error) {
                     NSString *body = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
                     return @{@"df_requestbody":body};
                 };
-              // Support custom trace, confirm interception and return TraceContext, return nil if not intercepted
+              // Support custom trace, return TraceContext if confirmed interception, return nil if not intercepted
             _ftURLSessionDelegate.requestInterceptor = ^NSURLRequest * _Nonnull(NSURLRequest * _Nonnull request) {
                 NSDictionary *traceHeader = [[FTExternalDataManager sharedManager] getTraceHeaderWithUrl:request.URL];
                 NSMutableURLRequest *newRequest = [request mutableCopy];
@@ -1314,7 +1278,7 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
             let configuration = URLSessionConfiguration.default
             configuration.timeoutIntervalForRequest = 30
             session = URLSession.init(configuration: configuration, delegate:self, delegateQueue: nil)
-            // Add custom RUM resource attributes, it is recommended to add project abbreviation prefix to tag names, e.g., `df_tag_name`.
+            // Add custom RUM resource attributes, suggest adding project abbreviation prefix to tag names, e.g., `df_tag_name`.
             ftURLSessionDelegate.provider = { request,response,data,error in
                 var extraData:Dictionary<String, Any> = Dictionary()
                 if let data = data,let requestBody = String(data: data, encoding: .utf8) {
@@ -1325,7 +1289,7 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
                 }
                 return extraData
             }
-            // Support custom trace, confirm interception and return TraceContext, return nil if not intercepted
+            // Support custom trace, return TraceContext if confirmed interception, return nil if not intercepted
             ftURLSessionDelegate.traceInterceptor = { request in
                 let traceContext = FTTraceContext()
                 traceContext.traceHeader = ["trace_key":"trace_value"]
@@ -1334,7 +1298,7 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
                 return traceContext
             }
         }
-        // The following methods must be implemented
+        // Below methods must be implemented
         func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
             ftURLSessionDelegate.urlSession(session, dataTask: dataTask, didReceive: data)
         }
@@ -1359,13 +1323,13 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
     /// Bind user information
     ///
     /// - Parameters:
-    ///   - Id:  User ID
+    ///   - Id: User ID
     - (void)bindUserWithUserID:(NSString *)userId;
     
     /// Bind user information
     ///
     /// - Parameters:
-    ///   - Id:  User ID
+    ///   - Id: User ID
     ///   - userName: User name
     ///   - userEmailL: User email
     - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail;
@@ -1373,7 +1337,7 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
     /// Bind user information
     ///
     /// - Parameters:
-    ///   - Id:  User ID
+    ///   - Id: User ID
     ///   - userName: User name
     ///   - userEmail: User email
     ///   - extra: Additional user information
@@ -1389,13 +1353,13 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
     /// Bind user information
     ///
     /// - Parameters:
-    ///   - Id:  User ID
+    ///   - Id: User ID
     open func bindUser(withUserID userId: String)
     
     /// Bind user information
     ///
     /// - Parameters:
-    ///   - Id:  User ID
+    ///   - Id: User ID
     ///   - userName: User name
     ///   - userEmailL: User email
     open func bindUser(withUserID Id: String, userName: String?, userEmail: String?)
@@ -1403,7 +1367,7 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
     /// Bind user information
     ///
     /// - Parameters:
-    ///   - Id:  User ID
+    ///   - Id: User ID
     ///   - userName: User name
     ///   - userEmail: User email
     ///   - extra: Additional user information
@@ -1418,47 +1382,47 @@ Make the URLSession delegate object conform to the `FTURLSessionDelegateProvidin
 === "Objective-C"
 
     ```objectivec
-    // Call this method after a successful user login to bind user information
+    // You can call this method after the user logs in successfully to bind user information
     [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID];
     // or
     [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
     // or
     [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
     
-    // Call this method after a user logs out to unbind user information
+    // You can call this method after the user logs out to unbind user information
     [[FTMobileAgent sharedInstance] unbindUser];
     ```
 === "Swift"
 
     ```swift
-    // Call this method after a successful user login to bind user information
+    // You can call this method after the user logs in successfully to bind user information
     FTMobileAgent.sharedInstance().bindUser(withUserID: USERID)
     // or
     FTMobileAgent.sharedInstance().bindUser(withUserID: USERID, userName: USERNAME, userEmail: USEREMAIL)
     // or
     FTMobileAgent.sharedInstance().bindUser(withUserID: USERID, userName: USERNAME, userEmail: USEREMAIL,extra:[EXTRA_KEY:EXTRA_VALUE])
     
-    // Call this method after a user logs out to unbind user information
+    // You can call this method after the user logs out to unbind user information
     FTMobileAgent.sharedInstance().unbindUser()
     ```
 
-## Shutdown SDK
+## Closing the SDK
 
-Use `FTMobileAgent` to shut down the SDK.
+Use `FTMobileAgent` to close the SDK.
 
 ### Usage Method
 
 === "Objective-C"
 
     ```objective-c
-    /// Shutdown running objects inside the SDK
+    /// Shut down running objects within the SDK
     + (void)shutDown;
     ```
 
 === "Swift"
 
     ```swift
-    /// Shutdown running objects inside the SDK
+    /// Shut down running objects within the SDK
     open class func shutDown()
     ```
 ### Code Example
@@ -1466,27 +1430,27 @@ Use `FTMobileAgent` to shut down the SDK.
 === "Objective-C"
 
     ```objective-c
-    // If dynamically changing the SDK configuration, shutdown first to avoid incorrect data generation
+    // If dynamically changing SDK configurations, you need to shut it down first to avoid incorrect data generation
     [FTMobileAgent  shutDown];
     ```  
 
 === "Swift"
 
     ```swift
-    // If dynamically changing the SDK configuration, shutdown first to avoid incorrect data generation
+    // If dynamically changing SDK configurations, you need to shut it down first to avoid incorrect data generation
     FTMobileAgent.shutDown()
     ```
 
-## Clear SDK Cache Data
+## Clearing SDK Cache Data
 
-Use `FTMobileAgent` to clear unsent cached data.
+Use `FTMobileAgent` to clear unsent cache data 
 
 ### Usage Method
 
 === "Objective-C"
 
 	```objective-c
-	/// Clear all unsent data to the server
+	/// Clear all data yet to be uploaded to the server
 	+ (void)clearAllData;
 	```
 
@@ -1494,7 +1458,7 @@ Use `FTMobileAgent` to clear unsent cached data.
 
 
 	``` swift
-	/// Clear all unsent data to the server
+	/// Clear all data yet to be uploaded to the server
 	open class func clearAllData()
 	```
 
@@ -1512,23 +1476,23 @@ Use `FTMobileAgent` to clear unsent cached data.
 	FTMobileAgent.clearAllData()
 	```
 
-## Sync Data Actively
+## Synchronizing Data Actively
 
-Use `FTMobileAgent` to sync data actively.
-> Only need to manually sync data when `FTMobileConfig.autoSync = NO`
+Use `FTMobileAgent` to actively synchronize data.
+> Active data synchronization is required only when FTMobileConfig.autoSync = NO.
 ### Usage Method
 
 === "Objective-C"
 
     ```objective-c
-    /// Sync data actively
+    /// Actively synchronize data
     - (void)flushSyncData;
     ```
 
 === "Swift"
 
     ```swift
-    /// Sync data actively
+    /// Actively synchronize data
     func flushSyncData()
     ```
 
@@ -1543,11 +1507,11 @@ Use `FTMobileAgent` to sync data actively.
 === "Swift"
 
     ```swift
-    // If dynamically changing the SDK configuration, shutdown first to avoid incorrect data generation
+    // If dynamically changing SDK configurations, you need to shut it down first to avoid incorrect data generation
     FTMobileAgent.sharedInstance().flushSyncData()
     ```
 
-## Add Custom Tags 
+## Adding Custom Tags 
 
 Use `FTMobileAgent` to dynamically add tags while the SDK is running.
 
@@ -1556,15 +1520,15 @@ Use `FTMobileAgent` to dynamically add tags while the SDK is running.
 === "Objective-C"
 
     ```objective-c
-    /// Add global tags for the SDK, applied to RUM and Log data
+    /// Add global tags to the SDK, applicable to RUM, Log data
     /// - Parameter context: Custom data
     + (void)appendGlobalContext:(NSDictionary <NSString*,id>*)context;
     
-    /// Add custom RUM tags, applied to RUM data
+    /// Add custom RUM tags, applicable to RUM data
     /// - Parameter context: Custom data
     + (void)appendRUMGlobalContext:(NSDictionary <NSString*,id>*)context;
     
-    /// Add global Log tags, applied to Log data
+    /// Add global tags to Log, applicable to Log data
     /// - Parameter context: Custom data
     + (void)appendLogGlobalContext:(NSDictionary <NSString*,id>*)context;
     ```
@@ -1572,15 +1536,15 @@ Use `FTMobileAgent` to dynamically add tags while the SDK is running.
 === "Swift"
 
     ```swift
-    /// Add global tags for the SDK, applied to RUM and Log data
+    /// Add global tags to the SDK, applicable to RUM, Log data
     /// - Parameter context: Custom data
     open class func appendGlobalContext(_ context: [String : Any])
     
-    /// Add custom RUM tags, applied to RUM data
+    /// Add custom RUM tags, applicable to RUM data
     /// - Parameter context: Custom data
     open class func appendRUMGlobalContext(_ context: [String : Any])
     
-    /// Add global Log tags, applied to Log data
+    /// Add global tags to Log, applicable to Log data
     /// - Parameter context: Custom data
     open class func appendLogGlobalContext(_ context: [String : Any])
     ```
@@ -1600,73 +1564,73 @@ Use `FTMobileAgent` to dynamically add tags while the SDK is running.
     ```swift
     let globalContext = ["global_key":"global_value"]
     FTMobileAgent.appendGlobalContext(globalContext)
-    let rumGlobalContext = ["rum_key":"rum_value"]
+    let rumGlobalContext = = ["rum_key":"rum_value"]
     FTMobileAgent.appendRUMGlobalContext(rumGlobalContext)
-    let logGlobalContext = ["log_key":"log_value"]
+    let logGlobalContext = = ["log_key":"log_value"]
     FTMobileAgent.appendLogGlobalContext(logGlobalContext)
     ```
 
-## Symbol File Upload {#source_map}
+## Uploading Symbol Files {#source_map}
 
 ### Adding Run Script Phase in Xcode
 
-1. Add a custom Run Script Phase in Xcode: `Build Phases -> + -> New Run Script Phase`
+1. Add a custom Run Script Phase in Xcode: ` Build Phases -> + -> New Run Script Phase`
 
-2. Copy the script into the run script phase of your Xcode project, and set parameters like `<app_id>`, `<datakit_address>`, `<env>`, `<dataway_token>` in the script.
+2. Copy the script into the run script phase of the Xcode project, and set parameters such as ＜app_id＞、＜datakit_address＞、＜env＞、＜dataway_token＞ in the script.
 
 3. Script: [FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
 ```sh
-# Parameters that need to be configured in the script
+# Parameters to be configured in the script
 #＜app_id＞
 FT_APP_ID="YOUR_APP_ID"
 #<datakit_address>
 FT_DATAKIT_ADDRESS="YOUR_DATAKIT_ADDRESS"
-#<env> Environment field. Values: prod/gray/pre/common/local. Must match the SDK settings
+#<env> Environment field. Property values: prod/gray/pre/common/local. Must be consistent with SDK settings
 FT_ENV="common"
-#<dataway_token> Token from the dataway section in the `datakit.conf` file
+#<dataway_token> Token in the configuration file datakit.conf for dataway
 FT_TOKEN="YOUR_DATAWAY_TOKEN"
-# Whether to only zip dSYM files (optional, default 0 upload), 1=do not upload, only zip dSYM, 0=upload, you can find the DSYM_SYMBOL.zip file path by searching for `FT_DSYM_ZIP_FILE` in the script logs
+# Whether to only zip dSYM files (optional, default 0 upload), 1=do not upload, only zip dSYM, 0=upload, you can search for FT_DSYM_ZIP_FILE in the script output logs to view the path of DSYM_SYMBOL.zip
 FT_DSYM_ZIP_ONLY=0
 ```
 
-If you need to upload symbol files for multiple environments, refer to the following approach.
+If you need to upload symbol files for multiple environments, you can refer to the method below.
 
-#### Multi-environment Configuration Parameters {#multi_env_param}
+#### Multiple Environment Configuration {#multi_env_param}
 
-Example: Using `.xcconfig` files for multi-environment configuration
+Example: Using .xcconfig configuration file for multi-environment configuration
 
-**1. Create xcconfig files and configure variables in the `.xcconfig` file**
+**1. Create xcconfig configuration file, configure variables in the .xcconfig file**.
 
-Creating xcconfig files can be done by referring to: [Adding a Build Configuration File to Your Project](https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project)
+Create xcconfig configuration file method can be referenced: [Adding a build configuration file to your project](https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project)
 
 ```sh
-// If using CocoaPods, add the path of the Pods' .xcconfig file to your .xcconfig file
-// Import corresponding .xcconfig of Pods
+// If using cocoapods, need to add the path of pods .xcconfig to your .xcconfig file
+// Import corresponding .xcconfig of pod
 #include "Pods/Target Support Files/Pods-GuanceDemo/Pods-GuanceDemo.pre.xcconfig"
 
 SDK_APP_ID = app_id_common
 SDK_ENV = common
-// URL // Needs to include $()
+// URL // needs to add $()
 SDK_DATAKIT_ADDRESS = http:/$()/xxxxxxxx:9529
 SDK_DATAWAY_TOKEN = token
 ```
 
-At this point, user-defined parameters have been automatically added and can be viewed through `Target —> Build Settings -> + -> Add User-Defined Setting`
+At this point, the user-defined parameters have been automatically added and can be viewed via `Target —> Build Settings -> + -> Add User-Defined Setting`
 
 ![](../img/multi-environment-configuration2.png)
 
 **2. Configure parameters in the script**
 
 ```sh
-# Parameters that need to be configured in the script
+# Parameters to be configured in the script
 #＜app_id＞
 FT_APP_ID=${SDK_APP_ID}
 #<datakit_address>
 FT_DATAKIT_ADDRESS=${SDK_DATAKIT_ADDRESS}
-#<env> Environment field. Values: prod/gray/pre/common/local. Must match the SDK settings
+#<dev> Environment field. Property values: prod/gray/pre/common/local. Must be consistent with SDK settings
 FT_ENV=${SDK_ENV}
-#<dataway_token> Token from the dataway section in the `datakit.conf` file
+#<dataway_token> Token in the configuration file datakit.conf for dataway
 FT_TOKEN=${SDK_DATAWAY_TOKEN}
 ```
 
@@ -1676,7 +1640,7 @@ Map parameters in the `Info.plist` file
 
 ![](../img/multi-environment-configuration8.png)
 
-Get parameters from `Info.plist` to configure the SDK
+Retrieve parameters from `Info.plist` to configure the SDK
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -1692,9 +1656,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-Detailed configurations can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo) for multi-environment usage.
 
-### Terminal Script Execution
+Detailed details can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/tree/master/src/ios/demo) for multi-environment usage.
+
+### Terminal Running Script
 
 [Script: FTdSYMUpload.sh](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTdSYMUploader.sh)
 
@@ -1709,41 +1674,42 @@ Detailed configurations can be found in the [SDK Demo](https://github.com/Guance
 **Parameter Description:**
 
 - `<datakit_address>`: Address of the DataKit service, such as `http://localhost:9529`
-- `<app_id>`: Corresponds to the RUM `applicationId`
-- `<env>`: Corresponds to the RUM `env`
-- `<version>`: Application version, value of `CFBundleShortVersionString`
-- `<dataway_token>`: Token from the `dataway` section in the `datakit.conf` file
-- `<dSYMBOL_src_dir>`: Path to the directory containing all `.dSYM` files.
-- `<dSYM_ZIP_ONLY>`: Whether to only zip dSYM files. Optional. 1=do not upload, only zip dSYM; 0=upload, you can find the Zip file path by searching for `FT_DSYM_ZIP_FILE` in the script logs.
+- `<app_id>`: Corresponds to RUM's `applicationId`
+- `<env>`: Corresponds to RUM's `env`
+- `<version>`: Application's `version`, value of `CFBundleShortVersionString`
+- `<dataway_token>`: Token in the configuration file `datakit.conf` for `dataway`
+- `<dSYMBOL_src_dir>`: Directory path containing all `.dSYM` files.
+- `<dSYM_ZIP_ONLY>`: Whether to only zip dSYM files. Optional. 1=do not upload, only zip dSYM, 0=upload, you can search for `FT_DSYM_ZIP_FILE` in the script output logs to view the Zip file path.
 
 ### Manual Upload
 
-Refer to [Sourcemap Upload](../sourcemap/set-sourcemap.md#uplo)
+[Source Map Upload](../sourcemap/set-sourcemap.md#uplo)
 
 ## Widget Extension Data Collection
 
 ### Widget Extension Data Collection Support
 
-* Logger Custom Logs
-* Trace Link Tracing
-* RUM Data Collection
-    * Manual Collection ([RUM User Data Tracking](#rum))
-    * Automatic Collection of Crash Logs and HTTP Resource Data
+* Logger custom logs
+* Trace link tracing
+* RUM data collection
+    * Manual collection ([RUM User Data Tracking](#rum))
+    * Automatically collect crash logs, HTTP Resource data
 
-Since HTTP Resource data is bound to Views, users need to manually collect View data.
+Since HTTP Resource data is bound to View, users need to manually collect View data.
 
 ### Widget Extension Collection Configuration
 
-Use `FTExtensionConfig` to configure automatic switches and file sharing Group Identifier for Widget Extension data collection. Other configurations use the main project SDK settings.
+Use `FTExtensionConfig` to configure the automatic switch and file sharing Group Identifier for Widget Extension data collection, other configurations use the already set configurations in the main project SDK.
 
 | **Field**                   | **Type**  | **Required**           | **Description**                                       |
 | -------------------------- | --------- | ------------------ | ---------------------------------------------- |
 | groupIdentifier            | NSString  | Yes                 | File sharing Group Identifier                      |
 | enableSDKDebugLog          | BOOL      | No (default NO)       | Set whether to allow SDK to print Debug logs               |
-| enableTrackAppCrash        | BOOL      | No (default NO)       | Set whether to collect crash logs                       |
-| enableRUMAutoTraceResource | BOOL      | No (default NO)       | Set whether to track user network requests (only for native http) |
-| enableTracerAutoTrace      | BOOL      | No (default NO)       | Set whether to enable automatic HTTP trace                |
-| memoryMaxCount             | NSInteger | No (default 1000 entries) | Maximum number of data entries saved in Widget Extension         |
+| enableTrackAppCrash        | BOOL```swift
+| No (default NO) | Set whether to collect crash logs |
+| enableRUMAutoTraceResource | BOOL | No (default NO) | Set whether to track user network requests (only applies to native http) |
+| enableTracerAutoTrace | BOOL | No (default NO) | Set whether to enable automatic http link tracing |
+| memoryMaxCount | NSInteger | No (default 1000 entries) | Maximum number of data saved in Widget Extension |
 
 Widget Extension SDK usage example:
 
@@ -1757,7 +1723,7 @@ FTExtensionManager.start(with: extensionConfig)
 FTExternalDataManager.shared().startView(withName: "WidgetDemoEntryView")
 ```
 
-In the main project, ensure that `FTMobileConfig` is set with `groupIdentifiers`.
+At the same time, when setting `FTMobileConfig` in the main project, you must set `groupIdentifiers`.
 
 === "Objective-C"
 
@@ -1770,15 +1736,15 @@ In the main project, ensure that `FTMobileConfig` is set with `groupIdentifiers`
 
 === "Swift"
 
-    ```swift
+    ````swift
     let config = FTMobileConfig.init(metricsUrl: url)
     config.enableSDKDebugLog = true
     config.groupIdentifiers = ["group.com.ft.widget.demo"]
-    ```
+    ````
 
-### Uploading Collected Data from Widget Extension
+### Uploading Data Collected by Widget Extension
 
-The Widget Extension SDK only implements data collection, and the data upload logic is handled by the main project's SDK. The timing for syncing collected data to the main project is customized by the user.
+The Widget Extension SDK only implements data collection; the data upload logic is handled by the main project's SDK. The timing for syncing collected data to the main project is customized by the user.
 
 #### Usage Method
 
@@ -1789,7 +1755,7 @@ The Widget Extension SDK only implements data collection, and the data upload lo
     /// Track cached data in App Extension groupIdentifier
     /// - Parameters:
     ///   - groupIdentifier: groupIdentifier
-    ///   - completion: Callback after tracking is complete
+    ///   - completion: Callback after tracking is completed
     - (void)trackEventFromExtensionWithGroupIdentifier:(NSString *)groupIdentifier completion:(nullable void (^)(NSString *groupIdentifier, NSArray *events)) completion;
     ```
 
@@ -1799,7 +1765,7 @@ The Widget Extension SDK only implements data collection, and the data upload lo
     /// Track cached data in App Extension groupIdentifier
     /// - Parameters:
     ///   - groupIdentifier: groupIdentifier
-    ///   - completion: Callback after tracking is complete
+    ///   - completion: Callback after tracking is completed
     open func trackEventFromExtension(withGroupIdentifier groupIdentifier: String, completion: ((String, [Any]) -> Void)? = nil)
     ```
 
@@ -1823,26 +1789,26 @@ The Widget Extension SDK only implements data collection, and the data upload lo
     ```
 
 ## WebView Data Monitoring
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) into the accessed web pages.
+To monitor WebView data, integrate the [Web Monitoring SDK](../web/app-access.md) on the accessed page.
 
-## Custom Tag Usage Examples {#user-global-context}
+## Custom Tag Usage Example {#user-global-context}
 
 ### Compilation Configuration Method
 
-You can create multiple Configurations and use preprocessor directives to set values.
+You can create multiple Configurations and use precompiled directives to set values.
 
 1. Create multiple Configurations
 
 ![](../img/image_9.png)
 
-2. Set preset properties to distinguish different Configurations
+2. Set predefined properties to distinguish different Configurations
 
 ![](../img/image_10.png)
 
-3. Use preprocessor directives
+3. Use precompiled directives
 
 ```objectivec
-//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS for configuration
+//Target -> Build Settings -> GCC_PREPROCESSOR_DEFINITIONS for configuration preset definitions
 #if PRE
 #define Track_id       @"0000000001"
 #define STATIC_TAG     @"preprod"
@@ -1860,13 +1826,13 @@ rumConfig.globalContext = @{@"track_id":Track_id,@"static_tag":STATIC_TAG};
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-You can also refer to the [Multi-environment Configuration Parameters](#multi_env_param) method for configuration.
+You can also refer to the [multi-environment configuration parameters](#multi_env_param) method for configuration.
 
 ### Runtime Read/Write File Method
 
-Because RUM starts with globalContext settings that will not take effect, users can save changes locally, such as using `NSUserDefaults`, and set them when configuring the SDK for the next app launch.
+Since RUM globalContext settings after startup will not take effect, users can save them locally and add code to retrieve tag data during the next app launch.
 
-1. Save custom tag data to a local file, e.g., `NSUserDefaults`, and add code to retrieve tag data during SDK configuration.
+1. Save files locally via `NSUserDefaults`, configure and add code to retrieve tag data where the SDK is configured.
 
 ```objectivec
 NSString *dynamicTag = [[NSUserDefaults standardUserDefaults] valueForKey:@"DYNAMIC_TAG"]?:@"NO_VALUE";
@@ -1877,20 +1843,20 @@ rumConfig.globalContext = @{@"dynamic_tag":dynamicTag};
 [[FTMobileAgent sharedInstance] startRumWithConfigOptions:rumConfig];
 ```
 
-2. Add methods to change file data at any location.
+2. Add a method anywhere to change file data.
 
 ```objectivec
  [[NSUserDefaults standardUserDefaults] setValue:@"dynamic_tags" forKey:@"DYNAMIC_TAG"];
 ```
 
-3. Finally, restart the application to take effect.
+3. Finally, restart the application for it to take effect.
 
 ### Adding Tags During SDK Runtime
 
-After initializing the SDK, use `[FTMobileAgent appendGlobalContext:globalContext]`, `[FTMobileAgent appendRUMGlobalContext:globalContext]`, and `[FTMobileAgent appendLogGlobalContext:globalContext]` to dynamically add tags. These settings will take effect immediately. Subsequently, RUM or Log data reported will automatically include tag data. This method is suitable for scenarios where tag data needs to be obtained via network request.
+After initializing the SDK, use `[FTMobileAgent appendGlobalContext:globalContext]`, `[FTMobileAgent appendRUMGlobalContext:globalContext]`, `[FTMobileAgent appendLogGlobalContext:globalContext]` to dynamically add tags. These settings will take effect immediately. Subsequently, the data reported by RUM or Log will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be delayed, such as when tag data requires network requests to obtain.
 
 ```objective-c
-// Pseudo-code for SDK initialization, get
+//SDK initialization pseudo-code, retrieving
 [FTMobileAgent startWithConfigOptions:config];
 
 -(void)getInfoFromNet:(Info *)info{
@@ -1901,7 +1867,7 @@ After initializing the SDK, use `[FTMobileAgent appendGlobalContext:globalContex
 
 ## tvOS Data Collection
 
-> API >= tvOS 12.0
+> api >= tvOS 12.0
 
 The initialization and usage of the SDK are consistent with iOS.
 
@@ -1909,91 +1875,94 @@ The initialization and usage of the SDK are consistent with iOS.
 
 * `WebView` data detection
 
-* `FTRumConfig.errorMonitorType` for device battery monitoring
+* `FTRumConfig.errorMonitorType` battery monitoring for devices
 
 ## Common Issues {#FAQ}
 
 ### About Crash Log Analysis {#crash-log-analysis}
 
-During development in **Debug** and **Release** modes, captured thread traces when a **Crash** occurs are symbolicated. However, for release packages without symbol tables, key threads in the crash log show up as hexadecimal memory addresses and cannot pinpoint the crashing code. Therefore, it is necessary to parse the 16-bit hexadecimal memory addresses back to the corresponding classes and methods.
+In **Debug** and **Release** modes during development, captured thread traces at the time of **Crash** are symbolized.
+However, in the release package without symbol tables, key threads of the exception will display the image name and won't convert into valid code symbols. The obtained **crash log** information will all be 16-bit memory addresses and cannot locate the crashing code, so it is necessary to parse the 16-bit memory addresses into corresponding classes and methods.
 
-#### How to Find dSYM Files After Compilation or Packaging
+#### How to find dSYM files after compiling or packaging
 
-* In Xcode, dSYM files are typically generated alongside the compiled .app file and located in the same directory.
-* If you have archived your project, you can find the archive in Xcode’s `Window` menu by selecting `Organizer`, then choose the corresponding archive. Right-click on the archive and select `Show in Finder`. In Finder, locate the corresponding `.xcarchive` file. Right-click on the `.xcarchive` file and choose `Show Package Contents`, then navigate to the `dSYMs` folder to find the corresponding dSYM file.
+* In Xcode, dSYM files are typically generated along with the compiled .app file and located in the same directory.
+* If you have archived the project, you can select `Organizer` from the `Window` menu in Xcode, then choose the corresponding archive file. Right-click the archive file and select `Show in Finder`. In Finder, locate the corresponding `.xcarchive` file. Right-click the `.xcarchive` file and choose `Show Package Contents`, then enter the `dSYMs` folder to find the corresponding dSYM file.
 
-#### Why Are There No dSYM Files Generated After Xcode Compilation?
+#### Why isn’t a dSYM file generated after Xcode compilation?
 
-Xcode Release builds generate dSYM files by default, while Debug builds do not. Corresponding Xcode settings are as follows:
+XCode Release compilation defaults to generating a dSYM file, while Debug compilation defaults to not generating one. Corresponding Xcode configurations are as follows:
 
-`Build Settings -> Code Generation -> Generate Debug Symbols -> Yes` 
+ ` Build Settings -> Code Generation -> Generate Debug Symbols -> Yes` 
 
 ![](../img/dsym_config1.png)
 
 
-`Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
+` Build Settings -> Build Option -> Debug Information Format -> DWARF with dSYM File`
 
 ![](../img/dsym_config2.png)
 
-#### How to Upload Symbol Tables When BitCode is Enabled?
 
-When you upload your bitcode-enabled App to the App Store, check the box to declare symbol file (dSYM file) generation in the submission dialog:
 
-- Before configuring symbol table files, download the corresponding dSYM file for the version from App Store. Do not integrate the script into the Target of the Xcode project, nor use the locally generated dSYM file to generate symbol table files because the symbol information in the locally compiled dSYM file is hidden. If you upload the locally generated dSYM file, the deobfuscated results will be similar to “__hidden#XXX”.
 
-#### How to Retrieve dSYM Files for Apps Already Released to the App Store?
+#### How to upload symbol tables if bitCode is enabled?
 
-| Distribution Options in App Store Connect | dSym File                                                     |
+When you upload your bitcode App to App Store, check the option to declare symbol files (dSYM files) generation in the submission dialog box:
+
+- Before configuring symbol table files, download the corresponding dSYM file for the version from App Store, then process and upload the symbol table file according to input parameters using the script.
+- Do not integrate the script into the Target of the Xcode project, nor use the locally generated dSYM file to generate the symbol table file because the symbol table information of the locally compiled dSYM file is hidden. If the locally compiled dSYM file is uploaded, the restored result will be similar to symbols like “__hiden#XXX”.
+
+#### How to recover dSYM files corresponding to apps already published to App Store?
+
+| Application uploaded to App Store Connect Distribution options | dSym files                                                     |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| Don’t include bitcode<br>Upload symbols            | Through Xcode                                                |
-| Include bitcode<br>Upload symbols                  | Through iTunes Connect<br />Through Xcode, requiring `.bcsymbolmap` for obfuscation handling. |
-| Include bitcode<br>Don’t upload symbols            | Through Xcode, requiring `.bcsymbolmap` for obfuscation handling.       |
-| Don’t include bitcode<br>Don’t upload symbols      | Through Xcode                                                |
+| Don’t include bitcode<br>Upload symbols            | Recovered through Xcode                                              |
+| Include bitcode<br>Upload symbols                  | Recovered through iTunes Connect<br />Recovered through Xcode, requiring `.bcsymbolmap` processing for obfuscation. |
+| Include bitcode<br>Don’t upload symbols            | Recovered through Xcode, requiring `.bcsymbolmap` processing for obfuscation.       |
+| Don’t include bitcode<br>Don’t upload symbols      | Recovered through Xcode                                              |
 
-##### Retrieving via Xcode
+##### Recover through Xcode
 
-1. `Xcode -> Window -> Organizer`
+1. `Xcode -> Window -> Organizer ` 
 
-2. Select the `Archives` tab
+2. Select `Archives` tab
 
     ![](../img/xcode_find_dsym2.png)
    
-3. Find the released archive, right-click on the corresponding archive and choose `Show in Finder`
+3. Find the published archive, right-click the corresponding archive and choose `Show in Finder` operation
 
     ![](../img/xcode_find_dsym3.png)
 
    
 
-4. Right-click on the located archive file and choose `Show Package Contents`
+4. Right-click the located archive file and choose `Show Package Contents` operation 
 
     ![](../img/xcode_find_dsym4.png)
 
    
 
-5. Choose the `dSYMs` directory; the directory contains the downloaded dSYM files
+5. Select the `dSYMs` directory; the directory contains the downloaded dSYM files.
 
     ![](../img/xcode_find_dsym5.png)
 
-##### Retrieving via iTunes Connect
+##### Recover through iTunes Connect
 
-1. Log in to [App Store Connect](https://appstoreconnect.apple.com);
-2. Go to "My Apps"
-3. In "App Store" or "TestFlight", choose a specific version, click "Build Metadata". On this page, click the button "Download dSYM" to download the dSYM file.
+1. Login to [App Store Connect](https://appstoreconnect.apple.com);
+2. Enter "My Apps (My Apps)"
+3. In "App Store" or "TestFlight", select a specific version, click "Build Metadata". On this page, click the button "Download dSYM" to download the dSYM file.
 
-##### Handling `.bcsymbolmap` Deobfuscation
+##### Processing with `.bcsymbolmap` for Deobfuscation
 
-When finding dSYM files through Xcode, you can see the BCSymbolMaps directory
+When finding dSYM files through Xcode, you can see the BCSymbolMaps directory.
 
 ![](../img/BCSymbolMaps.png)
+
 
 Open the terminal and use the following command for deobfuscation
 
 `xcrun dsymutil -symbol-map <BCSymbolMaps_path> <.dSYM_path>`
 
-### Adding Global Variables to Avoid Field Conflicts {#key-conflict}
+### Adding Global Variables to Avoid Conflicting Fields {#key-conflict}
 
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix tag names with an abbreviation of the project, such as `df_tag_name`. You can [query source code](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTMobileSDK/FTSDKCore/BaseUtils/Base/FTConstants.m) for key values used in the project. When global variables in the SDK conflict with RUM or Log variables, RUM or Log will override the global variables in the SDK.
-
-## Conclusion
-
-This document provides comprehensive guidance on integrating the Guance SDK into iOS/tvOS applications, including prerequisites, installation steps, SDK initialization, configuration options for RUM, Log, and Trace functionalities, and advanced topics like customizing data collection and handling crashes. It also covers best practices for ensuring accurate and efficient data collection and troubleshooting common issues. By following these instructions, developers can effectively monitor and analyze the performance and behavior of their iOS/tvOS applications using Guance's powerful monitoring capabilities.
+To avoid conflicts between custom fields and SDK data, it is recommended to add a **project abbreviation** prefix to tag names, e.g., `df_tag_name`. You can [query source code](https://github.com/GuanceCloud/datakit-ios/blob/develop/FTMobileSDK/FTSDKCore/BaseUtils/Base/FTConstants.m) for keys used in the project. When global variables in the SDK appear identical to RUM and Log variables, RUM and Log will override the global variables in the SDK.
+```

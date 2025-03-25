@@ -3,7 +3,7 @@
 
 ???+ warning "Note"
 
-     Please make sure to change the Redis password
+     Be sure to change the Redis password.
 
 
 ## Introduction {#intro}
@@ -11,9 +11,9 @@
 | ---------- |--------------------------------------------------------------------------------------------------------------------------|
 | **Deployment Method**    | Kubernetes container deployment                                                                                                          |
 | **Redis Version** | 6.0.20                                                                                                                   |       
-| **Prerequisites** | [Kubernetes](infra-kubernetes.md#kubernetes-install) is deployed <br> [Kubernetes Storage](infra-kubernetes.md#kube-storage) is deployed |
+| **Deployment Prerequisites** | [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed <br> [Kubernetes Storage](infra-kubernetes.md#kube-storage) has been deployed |
 
-## Default Configuration Information
+## Default Deployment Configuration Information
 |      |     |
 | ---------- | ------- |
 |   **Default Address**  | redis.middleware |
@@ -23,9 +23,9 @@
 
 ## Installation {#install}
 
-Save redis.yaml and deploy it.
+Save redis.yaml and deploy.
 
-???- note "redis.yaml (Click to expand)" 
+???- note "redis.yaml (Click to open)" 
     ```yaml
     ---
     apiVersion: v1
@@ -102,7 +102,7 @@ Save redis.yaml and deploy it.
 
     ```
 
-Run the following commands to install:
+Execute the following commands to install:
 ```shell
 kubectl create namespace middleware
 kubectl apply -f redis.yaml

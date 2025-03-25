@@ -5,108 +5,113 @@
 <br />**POST /api/v1/sso/saml_create**
 
 ## Overview
-Enable a SAML configuration.
+Enable a SAML
+
+
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description |
-|:--------------|:-------|:--------|:------------|
-| type | string | Y | Type<br>Example: <br>Allow empty: False <br>Optional values: ['saml', 'oidc'] <br> |
-| idpData | string | Y | XML document content (required for SAML type)<br>Example: <br>Allow empty: False <br> |
-| config | json |  | Access configuration table (required for OIDC type)<br>Example: <br>Allow empty: False <br> |
-| emailDomains | array | Y | Email domain names<br>Example: ['jiagouyun.com', 'guance.com'] <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| type | string | Y | Type<br>Example: <br>Allow empty: False <br>Possible values: ['saml', 'oidc'] <br> |
+| idpData | string | Y | XML document content (mandatory for saml type)<br>Example:  <br>Allow empty: False <br> |
+| config | json |  | Access configuration table (mandatory for oidc type)<br>Example:  <br>Allow empty: False <br> |
+| emailDomains | array | Y | Email domain<br>Example: ['<<< custom_key.brand_main_domain >>>'] <br> |
 | idpName | string | Y | Provider<br>Example: Default provider <br>Maximum length: 64 <br>$matchRegExp: [a-zA-Z_一-龥-]* <br> |
-| role | string | Y | Role<br>Allow empty: False <br>Optional values: ['general', 'readOnly'] <br> |
-| remark | string |  | Remarks<br>Allow empty: False <br>Allow empty string: True <br> |
-| tokenHoldTime | integer |  | Token retention duration, in seconds, default value 14400<br>Allow empty: False <br>Allow empty string: False <br>$minValue: 1800 <br>$maxValue: 86400 <br> |
+| role | string | Y | Role<br>Allow empty: False <br>Possible values: ['general', 'readOnly'] <br> |
+| remark | string |  | Note<br>Allow empty: False <br>Allow empty string: True <br> |
+| tokenHoldTime | integer |  | Token holding duration, in seconds, default value 14400<br>Allow empty: False <br>Allow empty string: False <br>$minValue: 1800 <br>$maxValue: 86400 <br> |
 | tokenMaxValidDuration | integer |  | Maximum validity period of the token, in seconds, default value 604800<br>Allow empty: False <br>Allow empty string: False <br>$minValue: 86400 <br>$maxValue: 604800 <br> |
 
 ## Additional Parameter Explanation
 
-*OIDC Type Config Explanation*
+
+*OIDC Type config Configuration Explanation*
 
 --------------
-When `type='oidc'`, the `config` field is effective. The data structure information is as follows:
+When type='oidc', the config field takes effect. Its data structure information is as follows:
 <br/>
-1. Explanation of the `config` field
+1. config Field Explanation
 
-| Parameter Name | Type  | Required | Default Value | Description |
-|---------------|----------|----|-----|-----------------------|
-| modeType     | enum  |   | easy  | Configuration file editing mode. Optional values:<br/> easy: Simple UI editing mode. In this mode, users only need to configure the basic data required by the OIDC interaction protocol; other data are set to default values.<br/>expert: Expert configuration file mode, requiring users to upload an OIDC configuration file. This mode supports user-defined request information in the OIDC protocol. |
-| wellKnowURL | string  |  Y |   | Standard service discovery address in the OIDC protocol.<br/> [For example, Microsoft AAD](https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration)|
-| clientId    | string  |  Y |   | Client ID created by the authentication service for «<<< custom_key.brand_name >>>» |
-| clientSecret    | string  |  Y |    | Secret key corresponding to the client ID created by the authentication service for «<<< custom_key.brand_name >>>» |
-| sslVerify    | boolean  |   |    | Whether SSL verification is enforced when requesting service discovery configuration information;<br/> Defaults based on the protocol address of the wellKnowURL parameter, if it is https, then defaults to true; otherwise, defaults to false |
-| grantType    | string  |  Y | authorization_code   | Grant type created by the authentication service for «<<< custom_key.brand_name >>>» |
-| scope    | array  |  Y | ["openid", "email"]   | Data access permissions<br/>Required value: openid<br/>Other optional values, such as profile, email<br/>This depends on the scopes allocated by the authentication service for «<<< custom_key.brand_name >>>» |
-| authSet    | dict  |   |    | Configuration serving the OIDC protocol's authentication request URL.<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) |
-| getTokenSet    | dict  |   |    | Configuration serving the OIDC protocol's code-to-token request.<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#TokenRequest) |
+| Parameter Name        | type  | Required | Default Value | Description          |
+|-----------------------|----------|----|-----|-----------------------|
+| modeType     | enum  |   | easy  | Configuration file editing mode. Possible values:<br/>easy: Simple UI editing mode. In this mode, users only need to configure the basic data required by the OIDC interaction protocol, and other data are default values.<br/>expert: Expert configuration file mode, requiring users to upload an OIDC configuration file. This mode supports user-defined various request information in the OIDC protocol |
+| wellKnowURL | string  |  Y |   | Standard service discovery address in the OIDC protocol.<br/>[For example Microsoft AAD](https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration)|
+| clientId    | string  |  Y |   | Client ID created by the "authentication service" for "<<< custom_key.brand_name >>>" |
+| clientSecret    | string  |  Y |    | Secret key corresponding to the client created by the "authentication service" for "<<< custom_key.brand_name >>>" |
+| sslVerify    | boolean  |   |    | Whether SSL certification is enforced during service discovery configuration information requests;<br/> Defaults according to the protocol address of the wellKnowURL parameter, if it is https, then defaults to true; otherwise defaults to false |
+| grantType    | string  |  Y | authorization_code   | Client ID created by the "authentication service" for "<<< custom_key.brand_name >>>" |
+| scope    | array  |  Y | ["openid", "email"]   | Accessible data permissions<br/>One of the mandatory values: openid<br/>Other optional values, such as profile, email<br/>This value depends on the "authentication service" assigned scop for "<<< custom_key.brand_name >>>" |
+| authSet    | dict  |   |    | This configuration serves the authentication request address acquisition in the OIDC protocol.<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) |
+| getTokenSet    | dict  |   |    | This configuration serves the code exchange token request in the OIDC protocol.<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#TokenRequest) |
 | verifyTokenSet    | dict  |   |    | ID_token validation configuration.<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation), [jwks_urls data structure protocol source](https://datatracker.ietf.org/doc/html/rfc7515)|
-| getUserInfoSet    | dict  |   |    | Configuration serving the OIDC protocol's user information request.<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) |
-| claimMapping    | dict  |   |    | Field mapping configuration for user information/id_token. Used by «<<< custom_key.brand_name >>>» to obtain corresponding information from the account based on this mapping configuration |
+| getUserInfoSet    | dict  |   |    | This configuration serves the user information request acquisition in the OIDC protocol.<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo) |
+| claimMapping    | dict  |   |    | User information/id_token field mapping configuration. Used by "<<< custom_key.brand_name >>>" to obtain corresponding information in the account based on this mapping configuration |
 
 <br/>
-2. Internal structure parameter explanation of `config.authSet`
+2. config.authSet Internal Structure Parameter Explanation
 
-| Parameter Name | Type  | Required | Default Value | Description |
+| Parameter Name  | type  | Required  | Default Value  | Description  |
 | :------------ | :------------ | :-----| :---------- | :------------ |
-| url | string  |   |   | Authentication request URL.<br/>If not provided, it defaults to the `authorization_endpoint` value pointed to by wellKnowURL configuration |
-| verify | boolean  |   |   | Whether SSL verification is enabled for this request; if not specified, it defaults to true if the URL uses the https protocol, otherwise it defaults to false. |
-| paramMapping | dict  |   |   | Mapping of request parameter fields, generally used by non-standard OIDC clients to adjust relevant parameter fields according to their own authentication process. Detailed explanation below |
+|  url | string  |   |   | Authentication request address.<br/>If not provided, the default value will be taken from the authorization_endpoint in the wellKnowURL configuration   |
+|  verify | boolean  |   |   | Whether SSL verification needs to be enabled for this request; If not specified, when the URL uses the https protocol, it is enabled by default, otherwise it is disabled.  |
+|  paramMapping | dict  |   |   | Mapping of request parameters fields, generally used by non-standard OIDC customers to adjust related parameter fields according to their own authentication process. Details see the following explanation |
 
 <br/>
-3. Internal structure parameter explanation of `config.getTokenSet`
+3. config.getTokenSet Internal Structure Parameter Explanation
 
-| Parameter Name | Type  | Required | Default Value | Description |
+| Parameter Name  | type  | Required  | Default Value  | Description  |
 | :------------ | :------------ | :-----| :---------- | :------------ |
-| url | string  |   |   | Code-to-token request URL.<br/>If not provided, it defaults to the `token_endpoint` value pointed to by wellKnowURL configuration |
-| method | enum  |   | post | Request method, options: post, get |
-| verify | boolean  |   |   | Whether SSL verification is enabled for this request; if not specified, it defaults to true if the URL uses the https protocol, otherwise it defaults to false. |
-| authMethod | enum  |   | basic  | Signature data location and method. Options:<br/>client_secret_basic or basic: Authentication information is located in the Authorization header of the request, using basic authentication<br/>client_secret_post: client_id and client_secret are located in the body<br/>none: client_id and client_secret are located in the query |
-| paramMapping | dict  |   |   | Mapping of request parameter fields, generally used by non-standard OIDC clients to adjust relevant parameter fields according to their own authentication process. Detailed explanation below |
+|  url | string  |   |   | Code-to-token exchange request address.<br/>If not provided, the default value will be taken from the token_endpoint in the wellKnowURL configuration   |
+|  method | enum  |   |  post | Request method, possible values: post, get  |
+|  verify | boolean  |   |   | Whether SSL verification needs to be enabled for this request; If not specified, when the URL uses the https protocol, it is enabled by default, otherwise it is disabled.  |
+|  authMethod | enum  |   | basic  | Signature data position and method. Possible values:<br/>client_secret_basic or basic: Authentication information is located in the Authorization header of the request, which is basic authentication<br/>client_secret_post: client_id and client_secret are located in the body<br/>none: client_id and client_secret are located in the query |
+|  paramMapping | dict  |   |   | Mapping of request parameters fields, generally used by non-standard OIDC customers to adjust related parameter fields according to their own authentication process. Details see the following explanation |
 
 <br/>
-4. Internal structure parameter explanation of `config.verifyTokenSet`
+4. config.verifyTokenSet Internal Structure Parameter Explanation
 
-| Parameter Name | Type  | Required | Default Value | Description |
+| Parameter Name  | type  | Required  | Default Value  | Description  |
 | :------------ | :------------ | :-----| :---------- | :------------ |
-| url | string  |   |   | Code-to-token request URL.<br/>If not provided, it defaults to the `token_endpoint` value pointed to by wellKnowURL configuration |
-| verify | boolean  |   |   | Whether SSL verification is enabled for this request; if not specified, it defaults to true if the URL uses the https protocol, otherwise it defaults to false. |
-| keys | array  |   |   | JWT algorithm data information pointed to by the URL<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation), [jwks_urls data structure protocol source](https://datatracker.ietf.org/doc/html/rfc7515)|
+|  url | string  |   |   | Code-to-token exchange request address.<br/>If not provided, the default value will be taken from the token_endpoint in the wellKnowURL configuration   |
+|  verify | boolean  |   |   | Whether SSL verification needs to be enabled for this request; If not specified, when the URL uses the https protocol, it is enabled by default, otherwise it is disabled.  |
+|  keys | array  |   |   | URL pointing to JWT algorithm data information<br/>[Protocol source](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation), [jwks_urls data structure protocol source](https://datatracker.ietf.org/doc/html/rfc7515)|
 
 <br/>
-5. Internal structure parameter explanation of `config.getUserInfoSet`
+5. config.getUserInfoSet Internal Structure Parameter Explanation
 
-| Parameter Name | Type  | Required | Default Value | Description |
+| Parameter Name  | type  | Required  | Default Value  | Description  |
 | :------------ | :------------ | :-----| :---------- | :------------ |
-| source | enum  |   | id_token | Method of obtaining user information. Options:<br/>id_token: Parsed from id_token<br/>origin: Obtained by calling the authentication service interface |
-| url | string  |   |   | User information request URL.<br/>If not provided, it defaults to the `userinfo_endpoint` value pointed to by wellKnowURL configuration. Valid when source=origin |
-| verify | boolean  |   |   | Whether SSL verification is enabled for this request; if not specified, it defaults to true if the URL uses the https protocol, otherwise it defaults to false. |
-| method | enum  |   | post | Request method, options: post, get; valid when source=origin |
-| authMethod | enum  |   | bearer  | Signature data location and method. Options:<br/>bearer: HTTP Bearer authentication<br/>client_secret_basic or basic: Authentication information is located in the Authorization header of the request, using basic authentication<br/>client_secret_post: client_id and client_secret are located in the body<br/>none: client_id and client_secret are located in the query |
-| paramMapping | dict  |   |   | Mapping of request parameter fields, generally used by non-standard OIDC clients to adjust relevant parameter fields according to their own authentication process. Detailed explanation below |
+|  source | enum  |   |  id_token | Source of user information acquisition. Possible values:<br/>id_token: Data parsed from id_token; <br/>origin: Call the "authentication service" interface to get user information |
+|  url | string  |   |   | User information request address.<br/>If not provided, the default value will be taken from the userinfo_endpoint in the wellKnowURL configuration. Effective when source=origin.   |
+|  verify | boolean  |   |   | Whether SSL verification needs to be enabled for this request; If not specified, when the URL uses the https protocol, it is enabled by default, otherwise it is disabled.  |
+|  method | enum  |   |  post | Request method, possible values: post, get; Effective when source=origin |
+|  authMethod | enum  |   | bearer  | Signature data position and method. Possible values:<br/>bearer: HTTP Bearer authentication<br/>client_secret_basic or basic: Authentication information is located in the Authorization header of the request, which is basic authentication<br/>client_secret_post: client_id and client_secret are located in the body<br/>none: client_id and client_secret are located in the query |
+|  paramMapping | dict  |   |   | Mapping of request parameters fields, generally used by non-standard OIDC customers to adjust related parameter fields according to their own authentication process. Details see the following explanation |
 
 <br/>
-6. Internal structure parameter explanation of `config.claimMapping`
+6. config.claimMapping Internal Structure Parameter Explanation
 
-| Parameter Name | Type  | Required | Default Value | Description |
+| Parameter Name  | type  | Required  | Default Value  | Description  |
 | :------------ | :------------ | :-----| :---------- | :------------ |
-| email | string  | Y  | email | Represents the user's email field |
-| username | string  | Y | preferred_username  | Represents the user's username field |
-| mobile | string  |   |   | User's phone number |
+|  email | string  | Y  |  email | Represents the user's email field |
+|  username | string  |  Y | preferred_username  | Represents the user's username field |
+|  mobile | string  |   |   | User's phone number |
 
 <br/>
-7. Internal structure parameter explanation of `paramMapping` in `getTokenSet`, `getUserInfoSet` configurations
-Note: When `paramMapping` exists, it directly follows the custom request parameter flow.
+7. Explanation of the internal structure of the paramMapping parameter in the getTokenSet, getUserInfoSet configurations
+Note that when paramMapping exists, the customized request parameter process will be followed directly.
 
-| Parameter Name | Type  | Required | Default Value | Description |
+| Parameter Name  | type  | Required  | Default Value  | Description  |
 | :------------ | :------------ | :-----| :---------- | :------------ |
-| client_id | string  |   | $client_id | Client ID, corresponding to the `client_id` in the protocol |
-| scope | string  |   | $scope | Data scope. Space-separated string of data scopes;<br/>Note: This is the scope in the request parameters, different from the external configuration's scope which is an array type;<br/>Here, the scope as a request parameter is a string type.<br/>For example: "openid email profile" |
-| code | string  |   | $code | Code passed by the authentication service for token exchange |
-| state | string  |   | $state | Similar to CSRF functionality |
-| redirect_uri | string  |   | $redirect_uri | Redirect URI where the response will be sent to. |
-| response_type | string  |   | $response_type | Response type, value for authorization code flow is code |
+|  client_id | string  |   |  $client_id | Client ID, corresponding to the client_id in the protocol |
+|  scope | string  |   |  $scope | Data range. Space-separated data range string;<br/>Note that this is the scope in the request parameter, its data type differs from the external configuration. The scope in the external configuration exists as a default configuration and is an array type;<br/>However, the scope here exists as a request parameter and is a string type.<br/> For example: “openid email profile” |
+|  code | string  |   |  $code | Code passed by the "authentication service" used to exchange tokens |
+|  state | string  |   |  $state | Similar to CSRF function |
+|  redirect_uri | string  |   |  $redirect_uri | Redirect URI where the response will be sent to. |
+|  response_type | string  |   |  $response_type | Response type, the value for the authorization code flow is code |
+
+
 
 ## Request Example
 ```shell
@@ -117,6 +122,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/sso/saml_creat
   --compressed \
   --insecure
 ```
+
+
 
 ## Response
 ```shell

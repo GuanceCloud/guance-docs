@@ -1,4 +1,4 @@
-# Modify a Single Data Forwarding Rule
+# Modify a single data forwarding rule
 
 ---
 
@@ -9,39 +9,44 @@ Modify a single data forwarding rule
 
 
 
+
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| cfg_uuid | string | Y | Configuration UUID<br> |
+|:---------------------|:---------|:-----------|:------------------------|
+| cfg_uuid             | string   | Y          | Configuration uuid<br>  |
 
 
 ## Body Request Parameters
 
-| Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
-| extend | json |  | Front-end custom data<br>Can be empty: True <br> |
-| syncExtensionField | boolean |  | Synchronize backup extension fields, true for synchronization, false for no synchronization, default is no synchronization<br>Can be empty: False <br> |
-| accessCfg | json |  | External resource access configuration information<br>Can be empty: False <br> |
-| accessCfg.provider | string |  | Provider<br>Can be empty: False <br>Optional values: ['aliyun', 'aws', 'huawei'] <br> |
-| accessCfg.grantType | string |  | Authorization type<br>Can be empty: False <br>Optional values: ['role', 'ram'] <br> |
-| accessCfg.cloudAccountId | string |  | Cloud account ID<br>Can be empty: False <br> |
-| accessCfg.bucket | string |  | Storage bucket<br>Can be empty: False <br> |
-| accessCfg.externalId | string |  | External unique identifier ID (external unique identifier ID in AWS role authorization)<br>Can be empty: False <br> |
-| accessCfg.role | string |  | Role name<br>Can be empty: False <br> |
-| accessCfg.ak | string |  | Access key ID<br>Can be empty: False <br> |
-| accessCfg.sk | string |  | Secret key<br>Can be empty: False <br> |
-| accessCfg.topic | string |  | Topic<br>Can be empty: False <br>Can be an empty string: True <br> |
-| accessCfg.url | string |  | Connection address (used for Kafka)<br>Can be empty: False <br> |
-| accessCfg.securityProtocol | string |  | Security protocol (used for Kafka)<br>Can be empty: False <br>Optional values: ['plaintext', 'sasl_plaintext', 'sasl_ssl'] <br> |
-| accessCfg.ca | string |  | Client SSL certificate content<br>Can be empty: False <br>Can be an empty string: True <br> |
-| accessCfg.mechanism | string |  | Authentication method<br>Can be empty: False <br>Can be an empty string: True <br>Optional values: ['plain', 'scram-sha-256', 'scram-sha-512'] <br> |
-| accessCfg.username | string |  | Username<br>Can be empty: False <br>Can be an empty string: True <br> |
-| accessCfg.password | string |  | Password<br>Can be empty: False <br>Can be an empty string: True <br> |
-| accessCfg.region | string |  | Region (optional value, if not entered it defaults to the corresponding vendor region matching the current site)<br>Can be empty: False <br> |
-| accessCfg.bucketPath | string |  | Storage bucket path<br>Can be empty: False <br> |
+| Parameter Name               | Type     | Required   | Description                                                                                         |
+|:---------------------------|:---------|:-----------|:---------------------------------------------------------------------------------------------------|
+| extend                     | json     |            | Front-end custom data<br>Allow empty: True <br>                                                   |
+| syncExtensionField         | boolean  |            | Synchronize backup extension fields, true for synchronization, false for no synchronization, default is no synchronization<br>Allow empty: False <br> |
+| openPermissionSet          | boolean  |            | Enable custom permission configuration, (default false: not enabled), after enabling, the permission to read the data of the forwarding rule is based on readPermissionSet (added in iteration on 2025-03-26)<br>Allow empty: False <br> |
+| readPermissionSet          | array    |            | Permission configuration for reading data forwarding rule data, configurable roles (excluding owners) (added in iteration on 2025-03-26)<br>Example: ['wsAdmin', 'general'] <br>Allow empty: False <br> |
+| accessCfg                  | json     |            | External resource access configuration information<br>Allow empty: False <br>                       |
+| accessCfg.provider         | string   |            | Provider<br>Allow empty: False <br>Optional values: ['aliyun', 'aws', 'huawei'] <br>               |
+| accessCfg.grantType       | string   |            | Authorization type<br>Allow empty: False <br>Optional values: ['role', 'ram'] <br>                 |
+| accessCfg.cloudAccountId  | string   |            | Cloud account ID<br>Allow empty: False <br>                                                      |
+| accessCfg.bucket          | string   |            | Bucket<br>Allow empty: False <br>                                                                |
+| accessCfg.externalId      | string   |            | External unique identifier ID (external unique identifier ID in aws role authorization method)<br>Allow empty: False <br> |
+| accessCfg.role            | string   |            | Role name<br>Allow empty: False <br>                                                             |
+| accessCfg.ak              | string   |            | Key Id<br>Allow empty: False <br>                                                                 |
+| accessCfg.sk              | string   |            | Key<br>Allow empty: False <br>                                                                    |
+| accessCfg.topic           | string   |            | Topic<br>Allow empty: False <br>Allow empty string: True <br>                                     |
+| accessCfg.url             | string   |            | Link address (used for kafka)<br>Allow empty: False <br>                                          |
+| accessCfg.securityProtocol| string   |            | Security protocol (used for kafka)<br>Allow empty: False <br>Optional values: ['plaintext', 'sasl_plaintext', 'sasl_ssl'] <br> |
+| accessCfg.ca              | string   |            | Client ssl certificate content<br>Allow empty: False <br>Allow empty string: True <br>              |
+| accessCfg.mechanism       | string   |            | Authentication method<br>Allow empty: False <br>Allow empty string: True <br>Optional values: ['plain', 'scram-sha-256', 'scram-sha-512'] <br> |
+| accessCfg.username        | string   |            | Username<br>Allow empty: False <br>Allow empty string: True <br>                                   |
+| accessCfg.password        | string   |            | Password<br>Allow empty: False <br>Allow empty string: True <br>                                    |
+| accessCfg.region          | string   |            | Region (optional value, if not entered, it will default to the corresponding vendor region matching the current site)<br>Allow empty: False <br> |
+| accessCfg.bucketPath      | string   |            | Bucket path<br>Allow empty: False <br>                                                           |
 
-## Additional Parameter Notes
+## Supplementary Parameter Explanation
+
+
 
 
 

@@ -1,7 +1,8 @@
 nav:
-  - '【Front-end Account】List': list.md
-  - '【Front-end Account】Get': get.md
-  - '【Front-end Account】Create': create.md
+  - '【Billing Center account】List': list.md
+  - '【Billing Center account】Get': get.md
+  - '【Billing Center account】Create': create.md
   - 'Account - Modify': modify.md
-  - '【Front-end Account】Enable/Disable': set-disable.md
-  - '【Front-end Account】Delete': delete.md
+  - '【Billing Center account】Enable/Disable': set-disable.md
+  - '【Billing Center account】Delete': delete.md
+  - '【Billing Center account】Change brand identifier': change-brand-key.md

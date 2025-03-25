@@ -1,40 +1,40 @@
-
-# Host Installation
+# HOST Installation
 ---
 
-This article describes the basic installation of DataKit.
+This article introduces the basic installation of DataKit.
 
-## Register/log in to Guance Cloud {#login-guance}
+## Register/Login to Guance {#login-guance}
 
-The browser visits the [Guance Cloud registration](https://auth.guance.com/redirectpage/register){:target="_blank"} portal, fills in the corresponding information, and then [logs in to Guance Cloud](https://console.guance.com/pageloading/login){:target="_blank"}.
+Access [Guance registration entry](https://auth.guance.com/redirectpage/register){:target="_blank"} via browser, fill in the corresponding information, and then you can [log in to Guance](https://console.guance.com/pageloading/login){:target="_blank"}
 
-## Get the Installation Command {#get-install}
+## Get Installation Command {#get-install}
 
-Log in to the workspace, click "Integration" on the left and select "Datakit" at the top, and you can see the installation commands of various platforms.
+Log in to your workspace, click on the left-hand "Integration" and select top "Datakit" to see the installation commands for various platforms.
 
-> Note that the following Linux/Mac/Windows installer can automatically identify the hardware platform (arm/x86, 32bit/64bit) without making a hardware platform selection.
+> Note, the following Linux/Mac/Windows installation procedures can automatically identify hardware platforms (arm/x86, 32bit/64bit), so there is no need to choose a hardware platform.
+
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
 
-    The installation command supports `bash` and `ash`([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)), and the command is roughly as follows:
+    The installation command supports `bash` and `ash`([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)) :
 
     - `bash`
-    
+
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)" 
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
-    
+
     - `ash`
 
     ```shell
     DK_DATAWAY=https://openway.guance.com?token=<TOKEN> ash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
-    After the installation is completed, you will see a prompt that the installation is successful at the terminal.
+    After installation is complete, you will see a success message in the terminal.
 
 === "Windows"
 
-    Installation on Windows requires a Powershell command line installation and must run Powershell as an administrator. Press the Windows key, enter powershell to see the pop-up powershell icon, and right-click and select "Run as an administrator".
+    On Windows, installation must be done in Powershell, and Powershell must be run as an administrator. Press the Windows key, type powershell, and right-click to select "Run as administrator".
     
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
@@ -45,9 +45,11 @@ Log in to the workspace, click "Integration" on the left and select "Datakit" at
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
-### Install DataKit lite {#lite-install}
 
-You can specify the environment variable `DK_LITE` to install DataKit lite ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)):
+### Install Lightweight Version of DataKit {#lite-install}
+
+You can install the lightweight version of DataKit by adding the `DK_LITE` environment variable to the installation command ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0)):
+
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
 
@@ -66,30 +68,32 @@ You can specify the environment variable `DK_LITE` to install DataKit lite ([:oc
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
-<!-- markdownlint-enable -->
-DataKit lite only contains collectors as below:
-
-| Collector Name                                                 | Description                                                                                                   |
-| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [`cpu`](../integrations/cpu.md)                                | Collect the CPU usage of the host                                                                             |
-| [`disk`](../integrations/disk.md)                              | Collect disk occupancy                                                                                        |
-| [`diskio`](../integrations/diskio.md)                          | Collect the disk IO status of the host                                                                        |
-| [`mem`](../integrations/mem.md)                                | Collect the memory usage of the host                                                                          |
-| [`swap`](../integrations/swap.md)                              | Collect Swap memory usage                                                                                     |
-| [`system`](../integrations/system.md)                          | Collect the load of host operating system                                                                     |
-| [`net`](../integrations/net.md)                                | Collect host network traffic                                                                                  |
-| [`host_processes`](../integrations/host_processes.md)          | Collect the list of resident (surviving for more than 10min) processes on the host                            |
-| [`hostobject`](../integrations/hostobject.md)                  | Collect basic information of host computer (such as operating system information, hardware information, etc.) |
-| [DataKit(dk)](../integrations/dk.md)                           | Collect Datakit running metrics                                                                               |
-| [RUM(rum)](../integrations/rum.md)                             | Collect user access monitoring data                                                                           |
-| [Net dialtesting(dialtesting)](../integrations/dialtesting.md) | Collect the data generated by dialing test                                                                    |
-| [Prom (prom)](../integrations/prom.md)                         | Collect data exposed by Prometheus Exporters                                                                  |
-| [logging](../integrations/logging.md)                          | Collect file log data                                                                                         |
 
 <!-- markdownlint-enable -->
-### Install DataKit eBPF Span Linker Version {#elinker-install}
 
-You can specify the environment variable `DK_ELINKER` to install DataKit ELinker ([:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0)):
+The lightweight version of DataKit only includes the following collectors:
+
+| Collector Name                                                        | Description                                           |
+| ----------------------------------------------------------------- | ---------------------------------------------- |
+| [CPU (`cpu`)](../integrations/cpu.md)                            | Collects HOST CPU usage                        |
+| [Disk (`disk`)](../integrations/disk.md)                         | Collects disk usage                               |
+| [Disk IO (`diskio`)](../integrations/diskio.md)                  | Collects HOST disk IO status                         |
+| [Memory (`mem`)](../integrations/mem.md)                           | Collects HOST memory usage                         |
+| [Swap (`swap`)](../integrations/swap.md)                         | Collects Swap memory usage                         |
+| [System (`system`)](../integrations/system.md)                   | Collects HOST operating system load                           |
+| [Net (`net`)](../integrations/net.md)                            | Collects HOST network traffic status                           |
+| [HOST processes (`host_processes`)](../integrations/host_processes.md) | Collects HOST resident (alive for more than 10min) process list      |
+| [HOST object (`hostobject`)](../integrations/hostobject.md)         | Collects HOST basic information (such as OS information, hardware information, etc.) |
+| [Datakit (`dk`)](../integrations/dk.md)                          | Collects Datakit's own operational Metrics collection                  |
+| [User Analysis (`rum`)](../integrations/rum.md)                    | Used to collect User Analysis data                       |
+| [Network TESTING (`dialtesting`)](../integrations/dialtesting.md)        | Collects network TESTING data                               |
+| [Prom Collection (`prom`)](../integrations/prom.md)                     | Collects Prometheus Exporters exposed Metrics data   |
+| [LOG Collection (`logging`)](../integrations/logging.md)                | Collects file LOG data                               |
+
+### Install eBPF Trace Linker Version of DataKit {#elinker-install}
+
+You can install the ELinker version of DataKit used for connecting eBPF Spans and generating eBPF Trace by adding the `DK_ELINKER` environment variable to the installation command ([:octicons-tag-24: Version-1.30.0](changelog.md#cl-1.30.0)):
+
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
 
@@ -109,30 +113,29 @@ You can specify the environment variable `DK_ELINKER` to install DataKit ELinker
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
-DataKit ELinker only contains collectors as below:
+DataKit ELinker only includes the following collectors:
 
-| Collector Name                                | Description                                                                                                   |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [`cpu`](../integrations/cpu.md)               | Collect the CPU usage of the host                                                                             |
-| [`disk`](../integrations/disk.md)             | Collect disk occupancy                                                                                        |
-| [`diskio`](../integrations/diskio.md)         | Collect the disk IO status of the host                                                                        |
-| [`ebpftrace`](../integrations/ebpftrace.md)   | Receive eBPF trace span and link these spans to generate trace id                                             |
-| [`mem`](../integrations/mem.md)               | Collect the memory usage of the host                                                                          |
-| [`swap`](../integrations/swap.md)             | Collect Swap memory usage                                                                                     |
-| [`system`](../integrations/system.md)         | Collect the load of host operating system                                                                     |
-| [`net`](../integrations/net.md)               | Collect host network traffic                                                                                  |
-| [`hostobject`](../integrations/hostobject.md) | Collect basic information of host computer (such as operating system information, hardware information, etc.) |
-| [`DataKit(dk)`](../integrations/dk.md)        | Collect Datakit running metrics                                                                               |
+| Collector Name                                                       | Description                                                        |
+| ---------------------------------------------------------------- | ----------------------------------------------------------- |
+| [CPU (`cpu`)](../integrations/cpu.md)                           | Collects HOST CPU usage                                     |
+| [Disk (`disk`)](../integrations/disk.md)                        | Collects disk usage                                            |
+| [Disk IO (`diskio`)](../integrations/diskio.md)                 | Collects HOST disk IO status                                      |
+| [eBPF Trace Linker (`ebpftrace`)](../integrations/ebpftrace.md) | Receives eBPF link spans and connects these spans to generate trace id information |
+| [Swap (`swap`)](../integrations/swap.md)                        | Collects Swap memory usage                                      |
+| [System (`system`)](../integrations/system.md)                  | Collects HOST operating system load                                        |
+| [Net (`net`)](../integrations/net.md)                           | Collects HOST network traffic status                                        |
+| [HOST object (`hostobject`)](../integrations/hostobject.md)        | Collects HOST basic information (such as OS information, hardware information, etc.)              |
+| [DataKit (`dk`)](../integrations/dk.md)                         | Collects DataKit's own operational Metrics collection                               |
 
-### Install Specific Version {#version-install}
+### Install Specific Version of DataKit {#version-install}
 
-We can install specific DataKit version, for example 1.2.3:
+You can specify a version number in the installation command to install a specific version of DataKit, such as installing version 1.2.3 of DataKit:
 
 ```shell
 DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install-1.2.3.sh)"
 ```
 
-And the same as Windows:
+For Windows, it works similarly:
 
 ```powershell
 Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
@@ -143,14 +146,15 @@ start-bitstransfer  -source https://static.guance.com/datakit/install-1.2.3.ps1 
 powershell ./.install.ps1;
 ```
 
-## Additional Supported Environment Variable {#extra-envs}
+## Additional Supported Environment Variables {#extra-envs}
 
-If you need to define some DataKit configuration during the installation phase, you can add environment variables to the installation command, just append them before `DK_DATAWAY` For example, append the `DK_NAMESPACE` setting:
+If you need to define some DataKit configurations during the installation stage, you can add environment variables to the installation command, appending them before `DK_DATAWAY`. For example, appending `DK_NAMESPACE` setting:
+
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=<namespace> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DATAWAY=https://openway.guance.com?token=<TOKEN> DK_NAMESPACE=[NAMESPACE] bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -158,46 +162,47 @@ If you need to define some DataKit configuration during the installation phase, 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
     $env:DK_DATAWAY="https://openway.guance.com?token=<TOKEN>";
-    $env:DK_NAMESPACE="<namespace>";
+    $env:DK_NAMESPACE="[NAMESPACE]";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
     start-bitstransfer  -source https://static.guance.com/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
----
 <!-- markdownlint-enable -->
-The setting format of the two environment variables is:
+
+The format for setting two types of environment variables is as follows:
 
 ```shell
-# Windows: Multiple environment variables are divided by semicolons
+# Windows: Multiple environment variables are separated by semicolons
 $env:NAME1="value1"; $env:Name2="value2"
 
-# Linux/Mac: Multiple environment variables are divided by spaces
+# Linux/Mac: Multiple environment variables are separated by spaces
 NAME1="value1" NAME2="value2"
 ```
 
-The environment variables supported by the installation script are as follows (supported by the whole platform).
+The installation script supports the following environment variables (supported on all platforms).
+
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    1. These environment variable settings are not supported for [full offline installation](datakit-offline-install.md#offline). However, these environment variables can be set by [proxy](datakit-offline-install.md#with-datakit) and [setting local installation address](datakit-offline-install.md#with-nginx).
-    1. These environment variables are only effective in installation mode; they do not take effect in upgrade mode.
+    [Full offline installation](datakit-offline-install.md#offline) does not support these environment variable settings. However, they can be set through [proxy](datakit-offline-install.md#with-datakit) or [setting local installation address](datakit-offline-install.md#with-nginx).
 <!-- markdownlint-enable -->
 
 ### Most Commonly Used Environment Variables {#common-envs}
 
-- `DK_DATAWAY`: Specify the DataWay address, and the DataKit installation command has been brought by default
-- `DK_GLOBAL_TAGS`: Deprecated, DK_GLOBAL_HOST_TAGS instead
-- `DK_GLOBAL_HOST_TAGS`: Support the installation phase to fill in the global host tag, format example: `host=__datakit_hostname,host_ip=__datakit_ip` (multiple tags are separated by English commas)
-- `DK_GLOBAL_ELECTION_TAGS`: Support filling in the global election tag during the installation phase，format example: `project=my-porject,cluster=my-cluster` (support filling in the global election tag during the installation phase)
-- `DK_DEF_INPUTS`: List of collector names opened by default, format example: `cpu,mem,disk`. We can also ban some default inputs by putting a `-` prefix at input name, such as `-cpu,-mem,-disk`. But if mixed them, such as `cpu,mem,-disk,-system`, we only accept the banned list, the effect is only `disk` and `system` disabled, but others enabled.
-- `DK_CLOUD_PROVIDER`: Support filling in cloud vendors during installation (Currently support following clouds `aliyun/aws/tencent/hwcloud/azure`). **Deprecated:** Datakit can infer cloud type automatically.
-- `DK_USER_NAME`：Datakit service running user name. Default is `root`. More details is in *Attention* below.
-- `DK_LITE`： When installing the simplified DataKit, you can set this variable to `1`. ([:octicons-tag-24: Version-1.14.0](changelog.md#cl-1.14.0))
-<!-- markdownlint-disable MD046 -->
-???+ tip "Disable all default inputs[:octicons-tag-24: Version-1.5.5](changelog.md#cl-1.5.5)"
+- `DK_DATAWAY`: Specifies the DataWay address, which is already included by default in the DataKit installation command.
+- `DK_GLOBAL_TAGS`: Deprecated, replaced with DK_GLOBAL_HOST_TAGS.
+- `DK_GLOBAL_HOST_TAGS`: Supports filling out global HOST tags at the installation stage. Example format: `host=__datakit_hostname,host_ip=__datakit_ip` (multiple tags are separated by commas).
+- `DK_GLOBAL_ELECTION_TAGS`: Supports filling out global election tags at the installation stage. Example format: `project=my-porject,cluster=my-cluster` (multiple tags are separated by commas).
+- `DK_CLOUD_PROVIDER`: Supports specifying cloud vendors (currently supporting the following types of cloud HOSTs `aliyun/aws/tencent/hwcloud/azure`). **This function has been deprecated**, Datakit can now automatically recognize the type of cloud HOST.
+- `DK_USER_NAME`: Username under which the Datakit service runs. Default is `root`. More detailed explanations are below in the "Precautions" section.
+- `DK_DEF_INPUTS`: Configuration for [default enabled collectors](datakit-input-conf.md#default-enabled-inputs). If you want to disable certain collectors, you need to manually block them, for example, to disable `cpu` and `mem` collectors, specify as follows: `-cpu,-mem`, meaning that except for these two collectors, all other default collectors are enabled.
+- `DK_LITE`: When installing the lightweight version of DataKit, this variable can be set to `1`. ([Version-1.14.0](changelog.md#cl-1.14.0))
 
-    We can set `DK_DEF_INPUTS` to `-` to disable all default inputs:
+<!-- markdownlint-disable MD046 -->
+???+ tip "Disable All Default Collectors [:octicons-tag-24: Version-1.5.5](changelog.md#cl-1.5.5)"
+
+    If you want to disable all default collectors, set `DK_DEF_INPUTS` to `-`, like this:
 
     ```shell
     DK_DEF_INPUTS="-" \
@@ -205,125 +210,141 @@ The environment variables supported by the installation script are as follows (s
     bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
     ```
 
-    Beside, if Datakit has been installed before, we must delete all default inputs *.conf* files manually. During installing, Datakit able to add new inputs configure, not cant delete them.
+    Additionally, if Datakit has been installed previously, you must delete all previous default collector configurations because Datakit can only add collector configurations during installation but cannot remove them.
 
-???+ attention "Attention"
+???+ attention "Precautions"
 
-    For privilege reason, using `DK_USER_NAME` with not `root` name could cause following collector unavailable:
+    Due to permission issues, if you modify the username under which the Datakit service runs via `DK_USER_NAME` to something other than `root`, the following collectors will not be usable:
 
     - [eBPF](../integrations/ebpf.md){:target="_blank"}
 
-    In addition, the following items need to be noted.
+    Also, note the following points:
 
-    - Manually create user and group first, then start install. There are difference between Linux distribution releases, below commands are for reference:
+    - You must manually create the user and user group first, ensuring that the usernames and group names are consistent before proceeding with the installation. The creation commands may vary depending on the Linux distribution; the following commands are provided for reference:
 
         === "CentOS/RedHat"
 
             ```sh
+            # Create system user group datakit
             groupadd --system datakit
 
+            # Create system user datakit and add user datakit to group datakit (here both the username and group name are datakit)
             adduser --system --no-create-home datakit -g datakit
 
+            # Prohibit username datakit from logging in (for CentOS/RedHat series Linux)
             usermod -s /sbin/nologin datakit
             ```
 
         === "Ubuntu/Debian"
 
             ```sh
+            # On Ubuntu, simultaneously creating a user and adding them to a group may result in errors, so it needs to be done in two steps
+
+            # Create system user group datakit
             groupadd --system datakit
 
+            # Create system user datakit
             adduser --system --no-create-home datakit
             
+            # Add user datakit to group datakit
             usermod -a -G datakit datakit
 
+            # Prohibit username datakit from logging in (for Ubuntu/Debian series Linux)
             usermod -s /usr/sbin/nologin datakit
             ```
 
-        === "其它 Linux"
+        === "Other Linux"
 
             ```sh
+            # On other Linux distributions, simultaneously creating a user and adding them to a group may result in errors, so it needs to be done in two steps
+
+            # Create system user group datakit
             groupadd --system datakit
             
+            # Create system user datakit
             adduser --system --no-create-home datakit
             
+            # Add user datakit to group datakit
             usermod -a -G datakit datakit
             
+            # Prohibit username datakit from logging in (for other Linux)
             usermod -s /bin/false datakit
             ```
 
         ```sh
+        # Install Datakit
         DK_USER_NAME="datakit" DK_DATAWAY="..." bash -c ...
         ```
+
 <!-- markdownlint-enable -->
-### On DataKit's Own Log  {#env-logging}
 
-- `DK_LOG_LEVEL`: Optional info/debug
-- `DK_LOG`: If changed to stdout, the log will not be written to the file, but will be output by the terminal.
-- `DK_GIN_LOG`: If changed to stdout, the log will not be written to the file, but will be output by the terminal.
+### DataKit Self-Logging Related {#env-logging}
 
-### On DataKit pprof  {#env-pprof}
+- `DK_LOG_LEVEL`: Options are info/debug
+- `DK_LOG`: If changed to stdout, logs will not be written to files but instead output to the terminal.
+- `DK_GIN_LOG`: If changed to stdout, logs will not be written to files but instead output to the terminal.
 
-- `DK_ENABLE_PPROF`(deprecated): whether to turn on `pprof`
+### DataKit pprof Related {#env-pprof}
+
+- `DK_ENABLE_PPROF`: Whether to enable `pprof`. It has been enabled by default since [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2).
 - `DK_PPROF_LISTEN`: `pprof` service listening address
 
-> [:octicons-tag-24: Version-1.9.2](changelog.md#cl-1.9.2) enabled pprof by default.
+### DataKit Election Related {#env-election}
 
-### On DataKit Election  {#env-election}
+- `DK_ENABLE_ELECTION`: Enable election, disabled by default. To enable, give this environment variable any non-empty string value (e.g., `True`/`False`).
+- `DK_NAMESPACE`: Support specifying namespace at installation stage (used for elections)
 
-- `DK_ENABLE_ELECTION`: Open the election, not by default. If you need to open it, give any non-empty string value to the environment variable. (eg `True`/`False`)
-- `DK_NAMESPACE`: Supports namespaces specified during installation (for election)
+### HTTP/API Related Environment Variables {#env-http-api}
 
-### On HTTP/API  Environment {#env-http-api}
-
-- `DK_HTTP_LISTEN`: Support the installation-stage specified DataKit HTTP service binding network card (default `localhost`)
-- `DK_HTTP_PORT`: Support specifying the port of the DataKit HTTP service binding during installation (default `9529`)
+- `DK_HTTP_LISTEN`: Support specifying DataKit HTTP service bound NIC at installation stage (default `localhost`)
+- `DK_HTTP_PORT`: Support specifying DataKit HTTP service bound port at installation stage (default `9529`)
 - `DK_RUM_ORIGIN_IP_HEADER`: RUM-specific
-- `DK_DISABLE_404PAGE`: Disable the DataKit 404 page (commonly used when deploying DataKit RUM on the public network. Such as `True`/`False`)
-- `DK_INSTALL_IPDB`: Specify the IP library at installation time (currently only `iploc` and `geolite2` is supported)
-- `DK_UPGRADE_IP_WHITELIST`: Starting from Datakit [1.5.9](changelog.md#cl-1.5.9), we can upgrade Datakit by access remote http API. This environment variable is used to set the IP whitelist of clients that can be accessed remotely(multiple IPs could be separated by commas `,`). Access outside the whitelist will be denied (default not restricted).
-- `DK_UPGRADE_LISTEN`: Specify DK-Upgrader HTTP server address(default `0.0.0.0:9542`)[:octicons-tag-24: Version-1.38.1](changelog.md#cl-1.38.1)
-- `DK_HTTP_PUBLIC_APIS`: Specify which Datakit HTTP APIs can be accessed by remote, generally config combined with RUM input，support from Datakit [1.9.2](changelog.md#cl-1.9.2).
+- `DK_DISABLE_404PAGE`: Disable DataKit 404 page (commonly used when deploying DataKit RUM publicly. Such as `True`/`False`)
+- `DK_INSTALL_IPDB`: Specify IP library during installation (currently only supports `iploc/geolite2`)
+- `DK_UPGRADE_IP_WHITELIST`: Starting from Datakit [1.5.9](changelog.md#cl-1.5.9), remote API access to upgrade Datakit is supported, this environment variable is used to set the whitelist of client IPs that can remotely access (IPs separated by commas `,`), access from IPs not in the whitelist will be rejected (default is no IP restriction).
+- `DK_UPGRADE_LISTEN`: Specifies the HTTP address bound by the upgrade service (default `0.0.0.0:9542`)[:octicons-tag-24: Version-1.38.1](changelog.md#cl-1.38.1)
+- `DK_HTTP_PUBLIC_APIS`: Sets the HTTP APIs that Datakit allows remote access to, RUM functionality usually requires this configuration, starting from Datakit [1.9.2](changelog.md#cl-1.9.2).
 
-### On DCA  {#env-dca}
+### DCA Related {#env-dca}
 
-- `DK_DCA_ENABLE`: Support DCA service to be turned on during installation (not turned on by default)
-- `DK_DCA_WEBSOCKET_SERVER`:  DCA websocket server address that can be accessed by DataKit
+- `DK_DCA_ENABLE`: Support enabling DCA service at installation stage (default not enabled)
+- `DK_DCA_WEBSOCKET_SERVER`: Support customizing the websocket address for DCA at installation stage
 
-### On External Collector  {#env-external-inputs}
+### External Collector Related {#env-external-inputs}
 
-- `DK_INSTALL_EXTERNALS`: Used to install external collectors not packaged with DataKit
+- `DK_INSTALL_EXTERNALS`: Can be used to install external collectors not packaged with DataKit
 
-### On Confd Configuration  {#env-connfd}
+### Confd Configuration Related {#env-connfd}
 
-| Environment Variable Name | Type   | Applicable Scenario           | Description            | Sample Value                               |
-| ------------------------- | ------ | ----------------------------- | ---------------------- | ------------------------------------------ |
-| DK_CONFD_BACKEND          | string | All                           | Backend Source Type    | `etcdv3`, `zookeeper`, `redis` or `consul` |
-| DK_CONFD_BASIC_AUTH       | string | `etcdv3`, `consul`            | Optional               |                                            |
-| DK_CONFD_CLIENT_CA_KEYS   | string | `etcdv3`, `consul`            | Optional               |                                            |
-| DK_CONFD_CLIENT_CERT      | string | `etcdv3`, `consul`            | Optional               |                                            |
-| DK_CONFD_CLIENT_KEY       | string | `etcdv3`, `consul` or `redis` | Optional               |                                            |
-| DK_CONFD_BACKEND_NODES    | string | All                           | Backend Source Address | `[IP 地址：2379,IP address 2:2379]`        |
-| DK_CONFD_PASSWORD         | string | `etcdv3`, `consul`            | Optional               |                                            |
-| DK_CONFD_SCHEME           | string | `etcdv3`, `consul`            | Optional               |                                            |
-| DK_CONFD_SEPARATOR        | string | `redis`                       | Optional default 0     |                                            |
-| DK_CONFD_USERNAME         | string | `etcdv3`, `consul`            | Optional               |                                            |
+| Environment Variable Name       | Type   | Applicable Scenario          | Description       | Example Value                                         |
+| ----------------------------- | ------ | -------------------------- | -------------- | ---------------------------------------------------- |
+| DK_CONFD_BACKEND             | string | All                         | Backend source type | `etcdv3` or `zookeeper` or `redis` or `consul`        |
+| DK_CONFD_BASIC_AUTH          | string | `etcdv3` or `consul`        | Optional       |                                                     |
+| DK_CONFD_CLIENT_CA_KEYS     | string | `etcdv3` or `consul`        | Optional       |                                                     |
+| DK_CONFD_CLIENT_CERT         | string | `etcdv3` or `consul`        | Optional       |                                                     |
+| DK_CONFD_CLIENT_KEY          | string | `etcdv3` or `consul` or `redis` | Optional       |                                                     |
+| DK_CONFD_BACKEND_NODES       | string | All                         | Backend source address | `[IP:2379, IP2:2379]`                                 |
+| DK_CONFD_PASSWORD           | string | `etcdv3` or `consul`        | Optional       |                                                     |
+| DK_CONFD_SCHEME             | string | `etcdv3` or `consul`        | Optional       |                                                     |
+| DK_CONFD_SEPARATOR         | string | `redis`                    | Optional default 0 |                                                     |
+| DK_CONFD_USERNAME          | string | `etcdv3` or `consul`        | Optional       |                                                     |
 
-### On Git Configuration {#env-gitrepo}
+### Git Configuration Related {#env-gitrepo}
 
-- `DK_GIT_URL`: The remote git repo address for managing configuration files. (e.g. `http://username:password@github.com/username/repository.git`)
-- `DK_GIT_KEY_PATH`: The full path of the local PrivateKey. (e.g.  `/Users/username/.ssh/id_rsa`)
-- `DK_GIT_KEY_PW`: The password to use the local PrivateKey. (e.g.  `passwd`)
-- `DK_GIT_BRANCH`: Specify the branch to pull. **If it is empty, it is the default**, and the default is the remotely specified main branch, which is usually `master`.
-- `DK_GIT_INTERVAL`: The interval of the timed pull. (e.g. `1m`)
+- `DK_GIT_URL`: Remote git repo address for managing configuration files. (e.g., `http://username:password@github.com/username/repository.git`)
+- `DK_GIT_KEY_PATH`: Full path to the local PrivateKey. (e.g., `/Users/username/.ssh/id_rsa`)
+- `DK_GIT_KEY_PW`: Password for using the local PrivateKey. (e.g., `passwd`)
+- `DK_GIT_BRANCH`: Specify the branch to pull. **Empty means default**, which is the main branch specified remotely, usually `master`.
+- `DK_GIT_INTERVAL`: Interval for scheduled pulls. (e.g., `1m`)
 
-### WAL {#env-wal}
+### WAL Disk Cache {#env-wal}
 
-- `DK_WAL_WORKERS`: Set WAL workers, default to limited-CPU-cores * 4
-- `DK_WAL_CAPACITY`: Set single WAL max disk size, default to 2GB
+- `DK_WAL_WORKERS`: Set the number of WAL consumption workers, default is CPU limit core count * 4
+- `DK_WAL_CAPACITY`: This is the maximum disk space occupied by a single WAL, default is 2GB
 
-### On Sinker Configuration {#env-sink}
+### Sinker Related Configuration {#env-sink}
 
-`DK_SINKER_GLOBAL_CUSTOMER_KEYS` used to setup sinker tag/field keys, here is the example:
+Use `DK_SINKER_GLOBAL_CUSTOMER_KEYS` to set sinker filtering tag/field key names, its form is as follows:
 
 <!-- markdownlint-disable MD046 -->
 === "Linux/macOS"
@@ -346,29 +367,30 @@ The environment variables supported by the installation script are as follows (s
     ```
 <!-- markdownlint-enable -->
 
-### On Resource Limit Configuration {#env-cgroup}
+### Resource Restriction Configuration Related {#env-cgroup}
 
-Only Linux and Windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) operating system are supported.
+Currently only supports Linux and Windows ([:octicons-tag-24: Version-1.15.0](changelog.md#cl-1.15.0)) operating systems.
 
-- `DK_LIMIT_DISABLED`: Turn off Resource limit function (on by default)
-- `DK_LIMIT_CPUMAX`: Maximum CPU power, default 30.0
-- `DK_LIMIT_MEMMAX`: Limit memory (including swap), default 4096 (4GB)
+- `DK_LIMIT_DISABLED`: Turn off resource limitation feature (enabled by default)
+- `DK_LIMIT_CPUMAX`: Limit the maximum percentage of CPU usage, default is 30.0, maximum value is 100 (deprecated, recommend using `DK_LIMIT_CPUCORES`)
+- `DK_LIMIT_CPUCORES`: Limit the number of CPU cores used, default is 2.0 (i.e., 2 cores)
+- `DK_LIMIT_MEMMAX`: Limit the maximum memory (including swap) usage, default is 4096 (4GB)
 
 ### APM Instrumentation {#apm-instrumentation}
 
 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0) · [:octicons-beaker-24: Experimental](index.md#experimental)
 
-By specifying `DK_APM_INSTRUMENTATION_ENABLED` in the installation command, you can automatically inject APM for Java/Python applications:
+In the installation command, specify `DK_APM_INSTRUMENTATION_ENABLED` to automatically inject APM for Java/Python applications:
 
-- Enable host inject
+- Enable HOST injection:
 
 ```shell
 DK_APM_INSTRUMENTATION_ENABLED=host \
-  DK_DATAWAY=https://openway.guance.com?token=<TOKEN>  \
+  DK_DATAWAY=https://openway.guance.com?token=<TOKEN> \
   bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
 ```
 
-- Enable host inject:
+- Enable DOCKER injection:
 
 ```shell
 DK_APM_INSTRUMENTATION_ENABLED=docker \
@@ -376,107 +398,113 @@ DK_APM_INSTRUMENTATION_ENABLED=docker \
   bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
 ```
 
-For host deployment, after DataKit is installed, reopen a terminal and restart the corresponding Java/Python application.
+For HOST deployment, after DataKit installation, restart a new terminal and restart the corresponding Java/Python application.
 
 To enable or disable this feature, modify the value of the `instrumentation_enabled` configuration under `[apm_inject]` in the `datakit.conf` file:
 
-- Value `"host"`, `"docker"` or `"host,docker"`, enable
-- Value `""` or `"disable"`, disable
+- Values `"host"`, `"docker"`, or `"host,docker"` to enable
+- Values `""` or `"disable"` to disable
 
-Notes:
+Precautions:
 
-1. Before deleting the files in the DataKit installation directory, you need to uninstall the feature first. Please execute **`datakit tool --remove-apm-auto-inject`** to clean up the system settings and Docker settings.
+1. Before deleting files in the DataKit installation directory, uninstall this feature first by executing **`datakit tool --remove-apm-auto-inject`** to clean up system settings and Docker settings.
 
-2. For Docker injection, additional steps are required to install and configure Docker injection and delete injection-related files in the DataKit installation directory
+2. For Docker injection, additional steps are required to install and configure Docker injection and delete injected-related files in the DataKit installation directory.
 
-   - After installing and configuring Docker injection, if you need to make it effective for the created container:
+   - After installing and configuring Docker injection, if you want it to take effect on already created containers:
 
    ```shell
-   # stop docker service
+   # Stop docker service
    systemctl stop docker docker.socket
 
-   # change the runtime of the created container from runc to dk-runc provided by datakit
+   # Change the runtime of already created containers from runc to dk-runc provided by datakit
    datakit tool --change-docker-containers-runtime dk-runc
 
-   # start docker service
+   # Start docker service
    systemctl start docker
 
-   # restart the container that exited due to dockerd restart
+   # Restart the containers that exited due to dockerd restart
    docker start <container_id1> <container_id2> ...
    ```
 
-   - After uninstalling the feature (with Docker injection enabled), if you need to delete all files in the DataKit installation directory:
+   - After uninstalling this feature (if Docker injection was enabled), if you want to delete all files in the DataKit installation directory:
 
    ```shell
-   # stpp docker service
+   # Stop docker service
    systemctl stop docker docker.socket
 
-   # Change the runtime of the created container from dk-runc back to runc
+   # Change the runtime of already created containers back from dk-runc to runc
    datakit tool --change-docker-containers-runtime runc
 
-   # start docker service
+   # Start docker service
    systemctl start docker
 
-   # restart the container that exited due to dockerd restart
+   # Restart the containers that exited due to dockerd restart
    docker start <container_id1> <container_id2> ...
    ```
 
-Operating environment requirements:
+Runtime requirements:
 
 - Linux system
     - CPU architecture: x86_64 or arm64
-    - C standard library: glibc 2.4 and above, or musl
-    - Java 8 and above
-    - Python 3.7 and above
+    - C standard library: glibc 2.4 or higher versions, or musl
+    - Java 8 or higher versions
+    - Python 3.7 or higher versions
 
-In Kubernetes, you can inject APM through the [Datakit Operator](datakit-operator.md#datakit-operator-inject-lib).
+In Kubernetes, you can use [Datakit Operator to inject APM](datakit-operator.md#datakit-operator-inject-lib).
 
 ### Other Installation Options {#env-others}
 
-| Environment Variable Name        | Sample                      | Description                                                                                                                                                                                 |
-| -------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `DK_INSTALL_ONLY`                | `on`                        | Install only, not run                                                                                                                                                                       |
-| `DK_HOSTNAME`                    | `some-host-name`            | Support custom configuration hostname during installation                                                                                                                                   |
-| `DK_UPGRADE`                     | `1`                         | Upgrade to the latest version                                                               |
-| `DK_UPGRADE_MANAGER`             | `on`                        | Whether we upgrade the **Remote Upgrade Service** when upgrading Datakit, it's used in conjunction with `DK_UPGRADE`, supported start from [1.5.9](changelog.md#cl-1.5.9)                   |
-| `DK_INSTALLER_BASE_URL`          | `https://your-url`          | You can choose the installation script for different environments, default to `https://static.guance.com/datakit`                                                                           |
-| `DK_PROXY_TYPE`                  | -                           | Proxy type. The options are: `datakit` or `nginx`, both lowercase                                                                                                                           |
-| `DK_NGINX_IP`                    | -                           | Proxy server IP address (only need to fill in IP but not port). With the highest priority, this is mutually exclusive with the above "HTTP_PROXY" and "HTTPS_PROXY" and will override both. |
-| `DK_INSTALL_LOG`                 | -                           | Set the setup log path, default to *install.log* in the current directory, if set to `stdout`, output to the command line terminal.                                                         |
-| `HTTPS_PROXY`                    | `IP:Port`                   | Installed through the Datakit agent                                                                                                                                                         |
-| `DK_INSTALL_RUM_SYMBOL_TOOLS`    | `on`                        | Install source map tools for RUM, support from Datakit [1.9.2](changelog.md#cl-1.9.2).                                                                                                      |
-| `DK_VERBOSE`                     | `on`                        | Enable more verbose info during install(only for Linux/Mac)[:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0)                                                                       |
-| `DK_CRYPTO_AES_KEY`              | `0123456789abcdfg`          | Use the encrypted password decryption key to protect plaintext passwords in the collector.  [:octicons-tag-24: Version-1.31.0](changelog.md#cl-1.31.0)                                      |
-| `DK_CRYPTO_AES_KEY_FILE`         | `/usr/local/datakit/enc4dk` | Another way to configure the secret key takes priority over the previous one. Put the key into the file and configure the configuration file path through environment variables.            |
+| Environment Variable Name               | Example Value                     | Description                                                                                                                             |
+| -------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `DK_INSTALL_ONLY`                     | `on`                              | Only install, do not run                                                                                                                |
+| `DK_HOSTNAME`                         | `some-host-name`                  | Support customizing hostnames at the installation stage                                                                                   |
+| `DK_UPGRADE`                          | `1`                               | Upgrade to the latest version                                                   |
+| `DK_UPGRADE_MANAGER`                  | `on`                              | Whether to upgrade the **remote upgrade service** along with Datakit, needs to be used with `DK_UPGRADE`, supported starting from [1.5.9](changelog.md#cl-1.5.9) |
+| `DK_INSTALLER_BASE_URL`               | `https://your-url`                 | Choose different environment installation scripts, default is `https://static.guance.com/datakit`                                             |
+| `DK_PROXY_TYPE`                       | -                                 | Proxy type. Options are: `datakit` or `nginx`, both lowercase                                                                                 |
+| `DK_NGINX_IP`                         | -                                 | Proxy server IP address (only fill in IP without port). This is mutually exclusive with the above "HTTP_PROXY" and "HTTPS_PROXY" and takes precedence, overriding the above two  |
+| `DK_INSTALL_LOG`                      | -                                 | Set the installation program log path, default is *install.log* under the current directory, if set to `stdout` then output to the command-line terminal                                   |
+| `HTTPS_PROXY`                         | `IP:Port`                          | Install via Datakit proxy                                                                                                               |
+| `DK_INSTALL_RUM_SYMBOL_TOOLS`         | `on`                               | Whether to install RUM source map tools, supported starting from Datakit [1.9.2](changelog.md#cl-1.9.2)                                               |
+| `DK_VERBOSE`                          | `on`                               | Enable verbose options during the installation process (only supported on Linux/Mac), outputs more debugging information [:octicons-tag-24: Version-1.19.0](changelog.md#cl-1.19.0) |
+| `DK_CRYPTO_AES_KEY`                   | `0123456789abcdfg`                 | Use encrypted password decryption keys for protecting plain-text passwords in collectors [:octicons-tag-24: Version-1.31.0](changelog.md#cl-1.31.0)                  |
+| `DK_CRYPTO_AES_KEY_FILE`              | `/usr/local/datakit/enc4dk`        | Another way to configure the key, takes precedence over the previous one. Place the key in this file and configure the file path via environment variables.                               |
 
 ## FAQ {#faq}
-<!-- markdownlint-disable MD013 -->
-### :material-chat-question: How to Deal with the Unfriendly Host Name {#bad-hostname}
-<!-- markdownlint-enable -->
-Because DataKit uses Hostname as the basis for data concatenation, in some cases, some host names are not very friendly, such as  `iZbp141ahn....`, but for some reasons, these host names cannot be modified, which brings some troubles to use. In DataKit, this unfriendly host name can be overwritten in the main configuration.
 
-In `datakit.conf`, modify the following configuration and the DataKit will read `ENV_HOSTNAME` to overwrite the current real hostname:
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: How to deal with unfriendly HOST names {#bad-hostname}
+<!-- markdownlint-enable -->
+
+Since DataKit uses the HOST name (Hostname) as the basis for data serialization, in some cases, some HOST names are not very friendly, for example, `iZbp141ahn....`, but due to some reasons, these HOST names cannot be modified, which brings certain inconvenience. In DataKit, you can override this unfriendly HOST name in the main configuration.
+
+In `datakit.conf`, modify the following configuration, and DataKit will read `ENV_HOSTNAME` to override the actual current HOST name:
 
 ```toml
 [environments]
     ENV_HOSTNAME = "your-fake-hostname-for-datakit"
 ```
 
-> Note: If a host has collected data for a period of time, after changing the host name, the historical data will no longer be associated with the new host name. Changing the host name is equivalent to adding a brand-new host.
+<!-- markdownlint-disable MD046 -->
+???+ attention
 
-<!-- markdownlint-disable MD013 -->
-### :material-chat-question: Issue on macOS installation {#mac-failed}
+    If a certain HOST has already collected data for a period of time, changing the HOST name afterward will no longer associate these historical data with the new HOST name. Changing the HOST name is equivalent to adding a brand-new HOST.
 <!-- markdownlint-enable -->
 
-If it appears during the installation/upgrade process when installing on macOS:
+<!-- markdownlint-disable MD013 -->
+### :material-chat-question: MAC installation issues {#mac-failed}
+<!-- markdownlint-enable -->
+
+On Mac, if you encounter issues during installation/upgrade:
 
 ```shell
 "launchctl" failed with stderr: /Library/LaunchDaemons/cn.dataflux.datakit.plist: Service is disabled
-# or
+# Or
 "launchctl" failed with stderr: /Library/LaunchDaemons/com.guance.datakit.plist: Service is disabled
 ```
 
-Execute:
+Execute
 
 ```shell
 sudo launchctl enable system/datakit
@@ -486,58 +514,56 @@ Then execute the following command:
 
 ```shell
 sudo launchctl load -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
-# or
+# Or
 sudo launchctl load -w /Library/LaunchDaemons/com.guance.datakit.plist
 ```
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: Are there any high-risk operations on files and data in Datakit? {#danger-ops}
+### :material-chat-question: Does Datakit perform high-risk operations on files and data? {#danger-ops}
 <!-- markdownlint-enable -->
 
-During its operation, Datakit reads a significant amount of system information based on the collection configuration, such as process lists, hardware and software information (e.g., OS information, CPU, memory, disk, network card, etc.). However, it does not proactively execute deletion or modification of data outside of itself. About file reading and writing, there are two parts: one related to data collection read file/port operations, and one for the necessary file reading and writing operations during Datakit's own runtime.
+During operation, Datakit reads a lot of system information based on the collection configuration, such as process lists, software and hardware information (such as OS information, CPU, memory, disk, network card, etc.). However, it does not actively execute deletion or modification of other data outside itself. Regarding file reading and writing, it is divided into two parts: one related to data collection, and another necessary file reading and writing during the operation of Datakit itself.
 
-Host files read/write during data collecting:
+Files that need to be read for collection:
 
-- During process information collection and hardware and software information collection, Linux systems will read relevant information from the */proc* directory; Windows systems mainly use WMI and the Golang Windows SDK to obtain these information.
+- During the collection of process information and software/hardware information, Linux reads related information under the */proc* directory; Windows mainly acquires this information through WMI and Golang Windows SDK.
 
-- If log collection is configured, Datakit will scan and read logs that match the configuration (e.g., syslog, user application logs, etc.).
+- If relevant log collection is configured, according to the collection configuration, it scans and reads logs that match the configuration (such as syslog, user application logs, etc.).
 
-- Port usage: Datakit may open some ports to receive external data for interfacing with other systems. [These ports](datakit-port.md) are opened as needed based on the collector.
+- Port occupation: To interface with some other systems, Datakit opens some ports separately to receive external data. These ports are opened as needed depending on the collector.
 
-- eBPF collection: Due to its particularity, eBPF requires more binary information of the Linux kernel and processes, resulting in the following actions:
+- eBPF Collection: Due to its special nature, eBPF requires more Linux kernel and process binary information, including the following actions:
 
-    - Analyze the binary files of all (or specified) running programs (dynamic libraries, processes within containers) for symbols and addresses.
-    - Read and write files under the kernel DebugFS mount point or interact with the PMU (Performance Monitoring Unit) to place kprobe/uprobe/tracepoint eBPF probes.
-    - uprobe probes will modify the CPU instructions of user processes to read relevant data.
+    - Analyze all (or specified) running programs' binary files containing symbol addresses.
+    - Read and write files under the kernel DebugFS mount point or PMU (Performance Monitoring Unit) to place kprobe/uprobe/tracepoint eBPF probes.
+    - Uprobe probes modify user process CPU instructions to read related data.
 
-In addition to collection, Datakit performs the following file reading and writing operations:
+Besides collection, Datakit itself performs the following file read/write operations:
 
 - Its own log files
 
-On Linux, these are located in the */var/log/datakit/* directory; on Windows, they are located in the *C:\Program Files\datakit* directory.
+When installed on Linux, they are located under the */var/log/datakit/* directory; on Windows, they are located under the *C:\Program Files\datakit* directory.
 
-Log files will automatically rotate when they reach a specified size (default 32MB), with a maximum number of rotations (default maximum of 5 + 1 segments).
+Log files rotate automatically when they reach a specified size (default 32MB) and have a maximum rotation count limit (default maximum 5 + 1 shards).
 
 - Disk cache
 
-Some data collection requires the use of disk cache functionality (which must be manually enabled). This cache will involve file creation and deletion during the generation and consumption process. Disk cache also has a maximum capacity setting; when full, it will automatically perform FIFO deletion operations to prevent disk overflow.
+Some data collection requires disk caching functionality (manual activation required). During generation and consumption, there will be file additions and deletions in the disk cache. The disk cache also has a maximum capacity setting, and when full, automatic FIFO deletion occurs to prevent disk overflow.
 
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: How does Datakit control its own resource consumption? {#resource-limit}
 <!-- markdownlint-enable -->
 
-Datakit's resource usage can be limited through mechanisms such as cgroup. For more information, see [here](datakit-conf.md#resource-limit). If Datakit is deployed in Kubernetes, see [here](datakit-daemonset-deploy.md#requests-limits).
+You can restrict Datakit's own resource usage through mechanisms such as cgroups, refer to [here](datakit-conf.md#resource-limit). If Datakit is deployed in Kubernetes, refer to [here](datakit-daemonset-deploy.md#requests-limits).
 
 <!-- markdownlint-disable MD013 -->
-### :material-chat-question: What is Datakit's own observability? {#self-obs}
+### :material-chat-question: Observability of Datakit itself? {#self-obs}
 <!-- markdownlint-enable -->
 
-During its operation, Datakit exposes many [internal metrics](datakit-metrics.md). By default, Datakit collects these metrics using the [built-in collector](../integrations/dk.md) and reports them to the user's workspace.
+During operation, Datakit exposes many [its own Metrics](datakit-metrics.md). By default, Datakit collects these metrics through [built-in collectors](../integrations/dk.md) and reports them to the user's workspace.
 
-In addition, Datakit also comes with a [monitor command-line](datakit-monitor.md) tool that allows users to view the current operational status as well as the collection and reporting status.
+Additionally, Datakit comes with a [monitor command-line](datakit-monitor.md) tool, which can be used to view the current running status and collection/reporting situations.
 
-<!-- markdownlint-disable MD013 -->
-## :material-chat-question: More Readings {#more-reading}
-<!-- markdownlint-enable -->
+## Further Reading {#more-reading}
 
-- [Getting started with DataKit](datakit-service-how-to.md)
+- [Getting Started with DataKit](datakit-service-how-to.md)

@@ -3,15 +3,15 @@
 
 ## Prerequisites
 
-**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites are automatically configured for you, and you can directly integrate your application.
+**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you. You can directly integrate your application.
 
 - Install [DataKit](../../datakit/datakit-install.md);
-- Configure the [RUM Collector](../../integrations/rum.md);
-- Ensure DataKit is [publicly accessible and has the IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- Configure [RUM Collector](../../integrations/rum.md);
+- DataKit must be configured as [publicly accessible and with IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
 ## Application Integration
 
-The current Flutter version supports only Android and iOS platforms. Log in to the <<< custom_key.brand_name >>> console, go to the **Synthetic Tests** page, click on the top-left **[Create Application](../index.md#create)**, and start creating a new application.
+The current Flutter version supports only Android and iOS platforms. Log in to the <<< custom_key.brand_name >>> console, go to the **User Analysis** page, click on the top-left **[Create]**, and start creating a new application.
 
 
 ![](../img/image_13.png)
@@ -21,23 +21,23 @@ The current Flutter version supports only Android and iOS platforms. Log in to t
 
 **Pub.Dev**: [ft_mobile_agent_flutter](https://pub.dev/packages/ft_mobile_agent_flutter)
 
-**Source Code**: [https://github.com/GuanceCloud/datakit-flutter](https://github.com/GuanceCloud/datakit-flutter)
+**Source Code Address**: [https://github.com/GuanceCloud/datakit-flutter](https://github.com/GuanceCloud/datakit-flutter)
 
 **Demo Address**: [https://github.com/GuanceCloud/datakit-flutter/example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example)
 
-In the project directory, run the Flutter command in the terminal:
+In the project directory, run the following Flutter command in the terminal:
 
 ```bash
  $ flutter pub add ft_mobile_agent_flutter
 ```
 
-This will add the following line to the package's pubspec.yaml (and implicitly run `flutter pub get`):
+This will add the following line to the `pubspec.yaml` file (and implicitly run `flutter pub get`):
 
 ```yaml
 dependencies:
   ft_mobile_agent_flutter: [lastest_version]
   
-  # For compatibility with Flutter 2.0, use the following reference method
+  # For compatibility with flutter 2.0, use the reference below
   ft_mobile_agent_flutter:
     git:
       url: https://github.com/GuanceCloud/datakit-flutter.git
@@ -50,16 +50,16 @@ Now in your Dart code, you can use:
 import 'package:ft_mobile_agent_flutter/ft_mobile_agent_flutter.dart';
 ```
 
-**Additional Configuration for Android**
+**Additional Android Integration Configuration**
 
 * Configure Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting) to collect App startup events and Android Native related events (page transitions, click events, Native network requests, WebView data).
-* Customize `Application` and declare its use in `AndroidMainifest.xml`. The code is as follows:
+* Customize `Application` and declare its usage in `AndroidMainifest.xml`, as shown below.
 
 ```kotlin
 import io.flutter.app.FlutterApplication
 
 /**
-* Add custom Application here if you need to track launch counts and launch times.
+* To track the number of launches and launch time, customize the Application here.
 */
 class CustomApplication : FlutterApplication() {
 }
@@ -80,7 +80,7 @@ class CustomApplication : FlutterApplication() {
 ```dart
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
-    // Local environment deployment or Datakit deployment
+    // Local environment deployment, Datakit deployment
     await FTMobileFlutter.sdkConfig(
       datakitUrl: datakitUrl
     );
@@ -95,16 +95,24 @@ void main() async {
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| datakitUrl | String | Yes | Datakit access URL, example: http://10.0.0.1:9529, default port 9529, the device with the installed SDK must be able to access this address. **Note: Choose either datakit or dataway configuration** |
-| datawayUrl | String | Yes | Dataway access URL, example: http://10.0.0.1:9528, default port 9528, the device with the installed SDK must be able to access this address. **Note: Choose either datakit or dataway configuration** |
-| cliToken | String | Yes | Authentication token, must be configured with datawayUrl |
-| debug | bool | No | Enable log printing, default `false` |
-| env | String | No | Environment configuration, default `prod`, any string, it is recommended to use a single word, e.g., `test` |
-| envType | enum EnvType | No | Environment configuration, default `EnvType.prod`. **Note: Only one of env or envType needs to be configured** |
+| datakitUrl | String | Yes | The URL address to access datakit, example: http://10.0.0.1:9529, default port is 9529. The device with SDK installed must be able to access this address. **Note:** Choose either datakit or dataway configuration.|
+| datawayUrl | String | Yes | The URL address to access dataway, example: http://10.0.0.1:9528, default port is 9528. The device with SDK installed must be able to access this address. **Note:** Choose either datakit or dataway configuration. |
+| cliToken | String | Yes | Authentication token, needs to be configured along with datawayUrl |
+| debug | bool | No | Set whether to allow log printing, default is `false` |
+| env | String | No | Environment configuration, default is `prod`, any character string, it is recommended to use a single word, such as `test` etc.|
+| envType | enum EnvType | No | Environment configuration, default is `EnvType.prod`. **Note:** Only one of `env` or `envType` needs to be configured |
+| autoSync | bool | No | Whether to enable automatic synchronization, default is `true`. When set to `false`, use `FTMobileFlutter.flushSyncData()` to manage data synchronization manually |
+| syncPageSize | enum | No | Set the number of items per sync request, `SyncPageSize.mini` 5 items, `SyncPageSize.medium` 10 items, `SyncPageSize.large` 50 items, default is `SyncPageSize.medium` |
+| customSyncPageSize | number | No | Set the number of items per sync request. Range [5,), Note: Larger item counts mean more computational resources are used for data synchronization |
+| syncSleepTime | number | No | Set the intermittent time for synchronization. Range [0,5000], default not set |
+| globalContext | object | No | Add custom tags. Refer to [here](../android/app-access.md#key-conflict) for addition rules |
 | serviceName | String | No | Service name |
-| enableLimitWithDbSize | boolean | No | Enable db size limit for data, default 100MB, unit Byte, larger databases increase disk pressure, default not enabled.<br>**Note:** After enabling, the Log configuration `logCacheLimitCount` and RUM configuration `rumCacheLimitCount` become ineffective. Supported by SDK versions 0.3.10 and above |
-| dbCacheLimit | number | No | DB cache size limit. Range [30MB,), default 100MB, unit byte, supported by SDK versions 0.3.10 and above |
-| dbDiscardStrategy | string | No | Set the data discard rule in the database.<br>Discard strategy: `FTDBCacheDiscard.discard` discard new data (default), `FTDBCacheDiscard.discardOldest` discard old data. Supported by SDK versions 0.3.10 and above |
+| enableLimitWithDbSize | boolean | No | Enable db size limit for data, default is 100MB, unit Byte, larger databases increase disk pressure, default is not enabled.<br>**Note:** After enabling, Log configuration `logCacheLimitCount` and RUM configuration `rumCacheLimitCount` will be invalid. Supported by SDK versions 0.5.3-pre.2 and above |
+| dbCacheLimit | number | No | DB cache size limit. Range [30MB,), default 100MB, unit byte, supported by SDK versions 0.5.3-pre.2 and above |
+| dbCacheDiscard | string | No | Set data discard rule in the database.<br>Discard strategy: `FTDBCacheDiscard.discard` discards new data (default), `FTDBCacheDiscard.discardOldest` discards old data. Supported by SDK versions 0.5.3-pre.2 and above |
+| compressIntakeRequests | boolean | No | Set whether to compress synchronized data, supported by SDK versions 0.5.3-pre.2 and above, default is disabled |
+| enableDataIntegerCompatible | boolean | No | It is recommended to enable when coexisting with web data. This configuration handles storage compatibility issues for web data types. Default is enabled for SDK versions 0.5.4-pre.1 and above |
+
 
 ### RUM Configuration {#rum-config}
 
@@ -118,27 +126,27 @@ void main() async {
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| androidAppId | String | Yes | appId, obtained from monitoring application |
-| iOSAppId | String | Yes | appId, obtained from monitoring application |
-| sampleRate | double | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Applies to all View, Action, LongTask, Error data under the same session_id |
-| enableUserResource | bool | No | Whether to automatically capture HTTP `Resource` data, default `false`, achieved by modifying `HttpOverrides.global`. If there are customization needs, inherit `FTHttpOverrides` |
-| enableNativeUserAction | bool | No | Whether to track `Native Action`, native system `Button` click events, app startup events, default `false` |
-| enableNativeUserView | bool | No | Whether to automatically track `Native View`, recommend disabling for pure `Flutter` applications, default `false` |
-| enableNativeUserResource | bool | No | Whether to automatically track `Native Resource`, recommend disabling for pure `Flutter` applications, default `false` |
+| androidAppId | String | Yes | appId, applied during monitoring |
+| iOSAppId | String | Yes | appId, applied during monitoring |
+| sampleRate | double | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Scope applies to all View, Action, LongTask, Error data under the same session_id |
+| enableUserResource | bool | No | Whether to enable automatic capture of http `Resource` data, default is `false`, achieved by modifying `HttpOverrides.global`. If the project has customization needs in this aspect, inherit from `FTHttpOverrides`. |
+| enableNativeUserAction | bool | No | Whether to perform `Native Action` tracking, native system `Button` click events, app startup events, default is `false` |
+| enableNativeUserView | bool | No | Whether to perform `Native View` automatic tracking, pure `Flutter` applications are recommended to disable, default is `false` |
+| enableNativeUserResource | bool | No | Whether to perform `Native Resource` automatic tracking, pure `Flutter` applications are recommended to disable, default is `false` |
 | errorMonitorType | enum ErrorMonitorType | No | Set auxiliary monitoring information, add additional monitoring data to `RUM` Error data, `ErrorMonitorType.battery` for battery level, `ErrorMonitorType.memory` for memory usage, `ErrorMonitorType.cpu` for CPU usage |
-| deviceMetricsMonitorType | enum DeviceMetricsMonitorType | No | In the View lifecycle, add monitoring data, `DeviceMetricsMonitorType.battery` monitors the highest output current, `DeviceMetricsMonitorType.memory` monitors the application's memory usage, `DeviceMetricsMonitorType.cpu` monitors CPU frequency, `DeviceMetricsMonitorType.fps` monitors screen frame rate |
+| deviceMetricsMonitorType | enum DeviceMetricsMonitorType | No | In the View lifecycle, add monitoring data, `DeviceMetricsMonitorType.battery` monitors the maximum output current for the current page, `DeviceMetricsMonitorType.memory` monitors the memory usage of the current application, `DeviceMetricsMonitorType.cpu` monitors CPU jumps, `DeviceMetricsMonitorType.fps` monitors screen frame rate |
 | globalContext | Map | No | Custom global parameters |
-| rumDiscardStrategy | string | No | Discard strategy: `FTRUMCacheDiscard.discard` discard new data (default), `FTRUMCacheDiscard.discardOldest` discard old data |
-| rumCacheLimitCount | number | No | Maximum number of local cached RUM entries [10_000,), default 100_000 |
-| isInTakeUrl | callBack | No | Set conditions to filter Resources, default no filtering |
+| rumDiscardStrategy | string | No | Discard strategy: `FTRUMCacheDiscard.discard` discards new data (default), `FTRUMCacheDiscard.discardOldest` discards old data |
+| rumCacheLimitCount | number | No | Maximum local cache RUM entry limit [10_000,), default is 100_000 |
+| isInTakeUrl | callBack | No | Set filtering conditions for Resources, default does not filter |
 
 #### Adding Custom Tags
 
 ##### Static Usage
 
-1. Split the original main.dart into two parts, one part being main(), the other part being the MaterialApp component;
-2. Create corresponding entry files for different environments, such as main_prod.dart, main_gray.dart, etc.;
-3. Configure custom tags in the corresponding environment files. For example:
+1. Split the original `main.dart` into two parts: one part is `main()`, the other part is `App()` `MaterialApp` component;
+2. Create corresponding entry files for each environment, such as: `main_prod.dart`, `main_gray.dart`, etc.;
+3. Perform custom tag configuration in the corresponding environment file. Example:
 
 ```dart
 ///main_prod.dart
@@ -156,11 +164,12 @@ void main() async {
     );
     runApp(MyApp());
   };
+
 ```
 
 ##### Dynamic Usage
 
-1. Use file-based data storage, such as the `shared_preferences` library `SharedPreferences`, configure `SDK` and add code to retrieve tag data at the configuration point.
+1. Use file-type data storage, such as the `shared_preferences` library `SharedPreferences`, configure the `SDK`, and add code to retrieve tag data at the configuration point.
 
 ```dart
 final prefs = await SharedPreferences.getInstance();
@@ -187,8 +196,8 @@ String customDynamicValue = prefs.getString("customDynamicValue") ?? "not set";
 
 **Note**:
 
-1. Special key: track_id (used for tracking features).
-2. When users add custom tags via `globalContext` that conflict with SDK-owned tags, SDK tags will override user settings. It is recommended to prefix tag names with project abbreviations, e.g., `df_tag_name`. Project keys can be found in the [source code](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java).
+1. Special key: `track_id` (used for tracking functionality).
+2. When users add custom tags through `globalContext` that conflict with SDK's own tags, SDK tags will override user settings. It is recommended to prefix tag names with project abbreviations, such as `df_tag_name`. Key values used in the project can be [queried in the source code](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java).
 
 ### Log Configuration {#log-config}
 
@@ -200,12 +209,13 @@ String customDynamicValue = prefs.getString("customDynamicValue") ?? "not set";
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| sampleRate | double | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
+| sampleRate | double | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1.     |
 | enableLinkRumData | bool | No | Whether to link with `RUM` data |
 | enableCustomLog | bool | No | Whether to enable custom logs |
-| logLevelFilters | List<FTLogStatus> | No | Log level filters |
-| logCacheLimitCount | int | No | Maximum number of locally cached log entries [1000,), larger logs mean more disk cache pressure, default 5000 |
-| discardStrategy | enum FTLogCacheDiscard | No | Set the log discard rule when the limit is reached. Default `FTLogCacheDiscard.discard`, `discard` discards appended data, `discardOldest` discards old data |
+| logLevelFilters | List<FTLogStatus> | No | Log level filtering |
+| logCacheLimitCount | int | No | Maximum local cache log entry limit [1000,), larger logs indicate greater disk cache pressure, default is 5000 |
+| discardStrategy | enum FTLogCacheDiscard | No | Set log discard rules after reaching the limit. Default is `FTLogCacheDiscard.discard`, `discard` discards appended data, `discardOldest` discards old data |
+
 
 ### Trace Configuration {#trace-config}
 
@@ -219,11 +229,11 @@ await FTTracer().setConfig(
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| sampleRate | double | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
-| traceType | enum TraceType | No | Trace type, default `TraceType.ddTrace`. |
-| enableLinkRUMData | bool | No | Whether to link with `RUM` data, default `false`. |
-| enableAutoTrace | bool | No | Whether to add `Trace Header` to `http` requests, default `false`, achieved by modifying `HttpOverrides.global`. If there are modification needs, inherit `FTHttpOverrides` |
-| enableNativeAutoTrace | bool | No | Whether to enable automatic tracing of native network requests iOS `NSURLSession`, Android `OKhttp`, default `false`. |
+| sampleRate | double | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1.   |
+| traceType | enum TraceType | No | Trace type, default is `TraceType.ddTrace`. |
+| enableLinkRUMData | bool | No | Whether to link with `RUM` data, default is `false`. |
+| enableAutoTrace | bool | No | Whether to add `Trace Header` in `http` requests, default is `false`, achieved by modifying `HttpOverrides.global`. If the project has modification requirements in this area, inherit from `FTHttpOverrides` |
+| enableNativeAutoTrace |  bool | No | Whether to enable native network auto-tracking for iOS `NSURLSession` and Android `OKhttp`, default is `false`. |
 
 ## RUM User Data Tracking
 
@@ -233,7 +243,7 @@ await FTTracer().setConfig(
   /// Add action
   /// [actionName] action name
   /// [actionType] action type
-  /// [property] additional properties (optional)
+  /// [property] Additional attribute parameters (optional)
   Future<void> startAction(String actionName, String actionType, 
   {Map<String, String>? property})
 ```
@@ -244,7 +254,7 @@ FTRUMManager().startAction("action name", "action type");
 
 ### View {#rum-view}
 #### Automatic Collection {#view-auto-track-config}
-* **Method 1**: Add `FTRouteObserver` to `MaterialApp.navigatorObservers`, set `MaterialApp.routes` for pages to navigate to, where the `routes` keys are the page names (`view_name`).
+* **Method 1**: Add `FTRouteObserver` to `MaterialApp.navigatorObservers`, set the pages to navigate in `MaterialApp.routes`, the `key` in `routes` is the page name (`view_name`).
 
 ```dart
 class MyApp extends StatelessWidget {
@@ -253,11 +263,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomeRoute(),
       navigatorObservers: [
-        // RUM View: Monitor page lifecycle during navigation
+        //RUM View: Monitor page lifecycle during route navigation
         FTRouteObserver(),
       ],
       routes: <String, WidgetBuilder>{
-        // Set Route navigation
+        //Set Route navigation
         'logging': (BuildContext context) => Logging(),
         'rum': (BuildContext context) => RUM(),
         'tracing_custom': (BuildContext context) => CustomTracing(),
@@ -267,12 +277,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Navigate to a page named "logging"
+//Navigate to the page named "logging" using this method
 Navigator.pushNamed(context, "logging");
 
 ```
 
-* **Method 2**: Add `FTRouteObserver` to `MaterialApp.navigatorObservers`, use `FTMaterialPageRoute` to generate the route, where the widget class name is the page name (`view_name`).
+* **Method 2**: Add `FTRouteObserver` to `MaterialApp.navigatorObservers`, generate with `FTMaterialPageRoute`, where the `widget` class name is the page name (`view_name`).
 
 ```dart
 
@@ -282,19 +292,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomeRoute(),
       navigatorObservers: [
-        // RUM View: Monitor page lifecycle during navigation
+        //RUM View: Monitor page lifecycle during route navigation
         FTRouteObserver(),
       ],
     );
   }
 }
 
-// Here "Page Name" is NoRouteNamePage
+//Here the "page name" is NoRouteNamePage
 Navigator.of(context).push(FTMaterialPageRoute(builder: (context) => 
 	new NoRouteNamePage()
 ```
 
-* **Method 3**: Add `FTRouteObserver` to `MaterialApp.navigatorObservers`, customize the `RouteSettings.name` attribute in `Route` type pages. `FTRouteObserver`'s collection logic will prioritize the value assigned to `RouteSettings.name`. This method also applies to `Dialog` type pages like `showDialog()`, `showTimePicker()`.
+* **Method 3**: Add `FTRouteObserver` to `MaterialApp.navigatorObservers`, customize the `RouteSettings.name` attribute in `Route` type pages, `FTRouteObserver`'s collection logic will prioritize getting the `RouteSettings.name` assignment. This method also applies to Dialog type pages such as `showDialog()`, `showTimePicker()`.
 
 ```dart
 
@@ -304,24 +314,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomeRoute(),
       navigatorObservers: [
-        // RUM View: Monitor page lifecycle during navigation
+        //RUM View: Monitor page lifecycle during route navigation
         FTRouteObserver(),
       ],
     );
   }
 }
 
-// Here "Page Name" is "RouteSettingName"
+//Here the "page name" is "RouteSettingName"
 Navigator.of(context).push(
           MaterialPageRoute(
               builder: (context) => new NoRouteNamePage(),
               settings: RouteSettings(name: "RouteSettingName"))
 ```
 
-* All three methods can be mixed within a single project.
+* All three methods can be mixed in the same project.
 
-* Sleep and Wake Events Collection
-For versions below 0.5.1-pre.1, if you need to collect application sleep and wake behavior, add the following code:
+* Sleep and Wakeup Event Collection
+For versions below 0.5.1-pre.1, if you need to collect application sleep and wakeup behaviors, add the following code:
 
 ```dart
 class _HomeState extends State<HomeRoute> {
@@ -329,14 +339,14 @@ class _HomeState extends State<HomeRoute> {
 	@override
 	void initState(){
 	
-		// Add sleep and wake listeners
+		//Add application sleep and wakeup listeners
 		FTLifeRecycleHandler().initObserver();
 	}
 	
 	@override
 	void dispose(){
 	
-		// Remove sleep and wake listeners
+		//Remove application sleep and wakeup listeners
 		FTLifeRecycleHandler().removeObserver();
 	}
 }
@@ -351,10 +361,10 @@ Only supported in versions 0.5.0-pre.1 and above
 ```dart
 MaterialApp(
   navigatorObservers: [
-        // RUM View: Filter out pages that should not be monitored using routeFilter
+        // RUM View: routeFilter filters out pages that do not need to participate in monitoring
          FTRouteObserver(routeFilter: (Route? route, Route? previousRoute) {
           if (filterConfig) {
-            // Do not collect
+            //Do not collect
             return true;
            }
            return false;
@@ -365,7 +375,7 @@ MaterialApp(
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| routeFilter | RouteFilter | No | Page callback method, returns true to filter out matching data, otherwise does not filter |
+| routeFilter | RouteFilter | No | Page method callback, judge based on entering and previous route details, returning true represents filtering out data that meets the condition, otherwise it does not filter  |
 
 **FTDialogRouteFilterObserver**
 
@@ -374,11 +384,11 @@ Filters `DialogRoute` type pages, such as `showDialog()`, `showTimePicker()`.
 ```dart
 MaterialApp(
   navigatorObservers: [
-    // RUM View filter DialogRoute components
+    //RUM View Filter components of DialogRoute type
     FTDialogRouteFilterObserver(filterOnlyNoSettingName: true)
 ])
 
-// This Dialog will be collected if filterOnlyNoSettingName is true.
+// Here the Dialog will be collected under the premise that filterOnlyNoSettingName is true.
 // view_name is “About”
 showAboutDialog(
             context: context, routeSettings: RouteSettings(name: "About"));
@@ -386,26 +396,26 @@ showAboutDialog(
 
 | **Field** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
-| filterOnlyNoSettingName | bool | No | Filters only Routes with null `RouteSettings.name` |
+| filterOnlyNoSettingName | bool | No | Filters only Routes with `RouteSettings.name` being null  |
 
 #### Custom View
 ##### Usage Method
 
 ```dart
 
-  /// Create view, this method must be called before [starView], currently not available in Flutter routes
-  /// [viewName] page name
+  /// Create a view, this method must be called before [starView], currently there is none in the Flutter route
+  /// [viewName] Interface name
   /// [duration]
   Future<void> createView(String viewName, int duration)
 
-  /// Start view
-  /// [viewName] page name
-  /// [viewReferer] previous page name
-  /// [property] additional properties (optional)
+  /// Start a view
+  /// [viewName] Interface name
+  /// [viewReferer] Previous interface name
+  /// [property] Additional attribute parameters (optional)
   Future<void> starView(String viewName, {Map<String, String>? property})
 
-  /// Stop view
-  /// [property] additional properties (optional)
+  /// Stop a view
+  /// [property] Additional attribute parameters (optional)
   Future<void> stopView({Map<String, String>? property})
 
 ```
@@ -434,11 +444,11 @@ void main() async {
         iOSAppId: appIOSId,
     );
     
-    // Flutter exception handling
+    // Flutter exception capture
     FlutterError.onError = FTRUMManager().addFlutterError;
     runApp(MyApp());
   }, (Object error, StackTrace stack) {
-    // Add Error data
+    //Add Error data
     FTRUMManager().addError(error, stack);
   });
  
@@ -447,12 +457,12 @@ void main() async {
 ##### Usage Method
 
 ```dart
-  /// Add custom error
-  /// [stack] stack trace
-  /// [message] error message
-  /// [appState] application state
-  /// [errorType] custom errorType
-  /// [property] additional properties (optional)
+  ///Add custom error
+  /// [stack] Stack log
+  /// [message] Error message
+  /// [appState] Application state
+  /// [errorType] Custom errorType
+  /// [property] Additional attribute parameters (optional)
   Future<void> addCustomError(String stack, String message,
    {Map<String, String>? property, String? errorType}) 
 ```
@@ -460,37 +470,37 @@ void main() async {
 ##### Code Example
 
 ```dart 
- /// Custom error
+ ///Custom error
  FTRUMManager().addCustomError("error stack", "error message");
 ```
 
 ### Resource
 
 #### Automatic Collection
-Enable `enableUserResource` through the [configuration](#rum-config) `FTRUMManager().setConfig`.
+Enable `enableUserResource` via the [configuration](#rum-config) `FTRUMManager().setConfig`.
 
 #### Custom Resource
 ##### Usage Method
 
 ```dart
-  /// Start resource request
-  /// [key] unique id
-  /// [property] additional properties (optional)
+  ///Start resource request
+  /// [key] Unique id
+  /// [property] Additional attribute parameters (optional)
   Future<void> startResource(String key, {Map<String, String>? property})
 
-  /// End resource request
-  /// [key] unique id
-  /// [property] additional properties (optional)
+  ///End resource request
+  /// [key] Unique id
+  /// [property] Additional attribute parameters (optional)
   Future<void> stopResource(String key, {Map<String, String>? property})
 
-  /// Send resource metrics data
-  /// [key] unique id
-  /// [url] request URL
-  /// [httpMethod] HTTP method
-  /// [requestHeader] request headers
-  /// [responseHeader] response headers
-  /// [responseBody] response body
-  /// [resourceStatus] response status code
+  /// Send resource data metrics
+  /// [key] Unique id
+  /// [url] Request address
+  /// [httpMethod] Request method
+  /// [requestHeader] Request header parameters
+  /// [responseHeader] Response header parameters
+  /// [responseBody] Response content
+  /// [resourceStatus] Response status code
   Future<void> addResource(
       {required String key,
       required String url,
@@ -504,7 +514,7 @@ Enable `enableUserResource` through the [configuration](#rum-config) `FTRUMManag
 ##### Code Example
 
 ```dart
-/// Using httpClient  
+/// Use httpClient  
 void httpClientGetHttp(String url) async {
     var httpClient = new HttpClient();
     String key = Uuid().v4();
@@ -544,7 +554,7 @@ void httpClientGetHttp(String url) async {
   }
 ```
 
-> Using the http library and dio library, refer to [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib).
+> Using the http library or dio library, refer to [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib).
 
 ## Logger Log Printing 
 ### Custom Logs
@@ -553,10 +563,10 @@ void httpClientGetHttp(String url) async {
 #### Usage Method
 ```dart
 
-  /// Output log
-  /// [content] log content
-  /// [status] log status
-  /// [property] additional properties (optional)
+  ///Output log
+  ///[content] Log content
+  ///[status] Log status
+  ///[property] Additional attribute parameters (optional)
   Future<void> logging(String content, FTLogStatus status, {Map<String, String>? property})
 
 ```
@@ -569,30 +579,30 @@ FTLogger().logging("info log content", FTLogStatus.info);
 
 | **Method Name** | **Meaning** |
 | --- | --- |
-| FTLogStatus.info | Info |
+| FTLogStatus.info | Information |
 | FTLogStatus.warning | Warning |
 | FTLogStatus.error | Error |
 | FTLogStatus.critical | Critical |
-| FTLogStatus.ok | OK |
+| FTLogStatus.ok | Recovery |
 
 
 ## Tracer Network Link Tracing
 ### Automatic Collection
-Enable `enableAutoTrace` through the [configuration](#trace-config) `FTTracer().setConfig`.
+Enable `enableAutoTrace` via the [configuration](#trace-config) `FTTracer().setConfig`.
 
 ### Custom Tracer
 #### Usage Method
 ```dart
-  /// Get trace HTTP header data
-  /// [key] unique id
-  /// [url] request URL
+  /// Get trace http request header data
+  /// [key] Unique id
+  /// [url] Request address
   ///
   Future<Map<String, String>> getTraceHeader(String url, {String? key})
 ```
 #### Code Example
 
 ```dart
-/// Using httpClient    
+/// Use httpClient    
 void httpClientGetHttp() async {
     var url = 'http://www.google.cn';
     var httpClient = new HttpClient();
@@ -621,26 +631,25 @@ void httpClientGetHttp() async {
           responseHeader[name] = values;
         });
       }
-    }
   }
 ```
 
-> Using the http library and dio library, refer to [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib).
+> Using the http library or dio library, refer to [example](https://github.com/GuanceCloud/datakit-flutter/tree/dev/example/lib).
 
 ## Binding and Unbinding User Information
 ### FTMobileFlutter
 #### Usage Method
 ```dart
-  /// Bind user
+  ///Bind user
   ///
-  /// [userid] user id
-  /// [userName] username
-  /// [userEmail] email
-  /// [userExt] extended data
+  ///[userid] User id
+  ///[userName] Username
+  ///[userEmail] User email
+  ///[userExt] Extended data
   static Future<void> bindRUMUserData(String userId,
       {String? userName, String? userEmail, Map<String, String>? ext})
 
-  /// Unbind user
+  ///Unbind user
   static Future<void> unbindRUMUserData()
 
 ```
@@ -651,28 +660,44 @@ void httpClientGetHttp() async {
  FTMobileFlutter.unbindUser();
 ```
 
+## Active Synchronization of Data
+### FTMobileFlutter
+#### Usage Method
+
+```dart
+/// Immediately synchronize data
+static Future<void> flushSyncData())
+```
+
+#### Usage Example
+
+```dart
+FTMobileFlutter.flushSyncData();
+```
+
 ## WebView Data Monitoring
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) into the WebView accessed page.
+WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the accessed WebView page.
 
-## Hybrid Development with Native and Flutter {#hybrid}
 
-If your project is natively developed with some pages or workflows implemented in Flutter, follow these steps for SDK installation and initialization:
+## Native and Flutter Hybrid Development {#hybrid}
 
-* Installation: Follow the [installation](#install) method unchanged.
-* Initialization: Refer to [iOS SDK initialization configuration](../ios/app-access.md#init) and [Android SDK initialization configuration](../android/app-access.md#init) for initializing in the native project.
+If your project is natively developed, with some pages or business processes implemented using Flutter, follow these steps for SDK installation and initialization:
+
+* Installation: [Installation](#install) method remains unchanged
+* Initialization: Refer to [iOS SDK Initialization Configuration](../ios/app-access.md#init) and [Android SDK Initialization Configuration](../android/app-access.md#init) for initialization within the native project
 * Flutter Configuration:
-    * View, Resource, Error use the same configuration as pure Flutter projects.
-    * Flutter Resource and Trace automatic collection use the following configuration:
+    * View, Resource, Error are configured in the same way as a pure Flutter project
+    * Flutter Resource and Trace automatic collection uses the following configuration method
     ```dart
-        // Set traceHeader, supported from version 0.5.3-pre.1
+        // Set traceHeader, supported from 0.5.3-pre.2
         FTHttpOverrideConfig.global.traceHeader = true;   
-        // Set to collect Resource data, supported from version 0.5.3-pre.1
+        // Set Resource data collection, supported from 0.5.3-pre.2
         FTHttpOverrideConfig.global.traceResource = true; 
     ```
    
-## Publish Package Configuration
+## Publish Package Related Configurations
 ### Android
-* [Android R8/Proguard Configuration](../android/app-access.md#r8_proguard)
+* [Android R8/Prograd Configuration](../android/app-access.md#r8_proguard)
 * [Android Symbol File Upload](../android/app-access.md#source_map)
 
 ### iOS

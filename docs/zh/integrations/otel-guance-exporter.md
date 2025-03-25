@@ -1,6 +1,6 @@
 ---
-title      : '<<< custom_key.brand_name >>> OpenTelemetry Exportor'
-summary    : '直接将 OpenTelemetry 的数据输出给<<< custom_key.brand_name >>>'
+title      : 'OpenTelemetry Exportor'
+summary    : '直接将 OpenTelemetry 的数据输出给观测云'
 __int_icon : 'icon/opentelemetry'
 tags       :
   - 'OTEL'

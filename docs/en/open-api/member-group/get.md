@@ -5,16 +5,20 @@
 <br />**GET /api/v1/workspace/member_group/get**
 
 ## Overview
-Retrieve a team
+Get a team
+
+
 
 
 ## Query Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:---------------------|:---------|:-----------|:-------------------------|
-| groupUUID            | string   | No         | Team UUID, if retrieving member information for a new team, do not pass this value<br> |
+|:---------------------|:---------|:-----------|:------------------------|
+| groupUUID            | string   |            | Team UUID, if getting member information for a new entry, do not pass this value<br> |
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -27,6 +31,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/memb
 
 
 
+
 ## Response
 ```shell
 {
@@ -34,7 +39,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/memb
     "content": {
         "groupMembers": [
             {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "name": "88 Test",
                 "uuid": "acnt_xxxx32"
             }

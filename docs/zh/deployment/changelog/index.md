@@ -1,5 +1,23 @@
 # 版本历史
 
+## 1.107.194（2025 年 03 月 12 日） {#1.107.194}
+
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.107.194:launcher-e747002-1742390108
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.107.194.tar.gz
+    - MD5: `03acc2e8d325b7b1be25b5971497cd8c`
+
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.107.194.tar.gz
+    - MD5: `f60ae5208194381346fbdc3d22df707b`
+
+### Breaking Changes {#breakingchanges0312}
+
+[事件](../events/index.md) `df_alert_info` 字段定义调整，新增告警策略未匹配原因说明，仍然需要通过 `isIgnored` 做过滤判断获取实际对外发送的通知对象。
+
+更多产品功能更新说明，请参考产品功能 [更新日志 -> 2025 年 03 月 12 日](../../release-notes/index.md#20250312)
+
 ## 1.106.193（2025 年 03 月 08 日） {#1.106.193}
 
 pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.106.193:launcher-2ce6b5a-1741359234

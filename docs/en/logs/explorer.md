@@ -1,14 +1,15 @@
 # Log Explorer
 ---
 
-After log data is collected in <<< custom_key.brand_name >>>, you can view all log content within the workspace through the **Log Explorer** in the <<< custom_key.brand_name >>> console.
 
-**Note**: If the current logged-in account role has set the option **[Data Access](../management/logdata-access.md#list)** to "Show only rules related to me" under **Logs > Data Access**, the queried log content will be affected accordingly.
+After log data is collected in <<< custom_key.brand_name >>>, you can view all log content within the workspace using the Log Explorer.
+
+**Note**: If the current logged-in account role has set "Only show rules related to me" in **Logs > [Data Access](../management/logdata-access.md#list)**, the queried log content will also be affected accordingly.
 
 
 ## View Modes
 
-<<< custom_key.brand_name >>> Log Explorer supports three view modes, including:
+The Log Explorer supports three viewing modes, including:
 
 - [All Logs](#all);
 - [Pattern Analysis](#cluster);
@@ -16,43 +17,45 @@ After log data is collected in <<< custom_key.brand_name >>>, you can view all l
 
 ### All Logs {#all}
 
-**All Logs**: Based on the raw log data for viewing and analysis.
+View and analyze based on the raw log data that has been collected.
     
-![](img/5.log_1.png)
+![](img/log_explorer_all_logs.png)
 
 ### Pattern Analysis {#cluster}
 
-The Log Explorer provides efficient pattern analysis functionality, which involves similarity calculations on the raw log data.
+The Log Explorer provides an efficient clustering function. It performs similarity analysis on logs based on the `message` field and automatically displays the most recent 50 logs.
 
-By default, the system performs log clustering based on the `message` field, automatically displaying the most recent 50 log entries. You can also customize the clustering fields according to business needs. After selecting a time range using the [Time Widget](../getting-started/function-details/explorer-search.md#time) in the top-right corner, the system will filter and analyze up to 10,000 log entries within that period, automatically aggregating similar logs, summarizing, and finally displaying common characteristics.
+You can also customize the clustering fields. After selecting a time range in the Time Widget, the system will analyze 10,000 logs within that period and aggregate similar entries.
 
-![](img/4.log_2.png)
+![](img/log_explorer_patterns.png)
 
-In the pattern analysis list, you can manage the data with the following actions:
 
-1. Click the :octicons-triangle-up-16: & :octicons-triangle-down-16: icons to sort by document count, defaulting to descending order.
+In the Pattern Analysis list, you can manage the data with the following actions:
+
+- Click :octicons-triangle-up-16: & :octicons-triangle-down-16: to sort by document count (default descending order);
     
-2. Click the :octicons-gear-24: button to choose display options of 1 row, 3 rows, 10 rows, or all.
+- Click :octicons-gear-24:, choose to display 1 line, 3 lines, 10 lines, or all content.
     
-3. Click the material-tray-arrow-up: button to export all clustered log data.
+- Click :material-tray-arrow-up:, export all clustered log data.
 
 ![](img/manage-cluster.gif)
 
 ### Chart Analysis {#charts}
 
-In the **Analysis** mode of the explorer, the system groups and statistically analyzes the raw log data based on <u>1-3 tags</u>, reflecting the distribution characteristics and trends of log data across different groups over time.
+In the **Analysis** mode of the viewer, the system groups log data based on 1-3 tags and displays the distribution characteristics and trends at different times.
 
-![](img/manage-charts.png)
+It supports four types of charts: time series charts, top lists, pie charts, and treemap charts.
 
-Upon entering analysis mode, four types of charts are available: Time Series, Top List, Pie Chart, and Treemap.
 
 You can manage the chart analysis mode with the following operations:
 
-1. Below the chart, you can perform filtering queries based on various fields;
-2. In Time Series mode, you can choose between Area, Line, and Bar chart styles;
-3. For displayed cluster data, in Time Series mode, you can set `slimit` to 5/10/20/50/100; in Top List/Pie Chart/Treemap modes, you can set `limit to` maximum or minimum of 5/10/20/50/100;
-4. Click the :material-list-box: button to choose legend positions: hidden, bottom, or right;
-5. Click the :art: button to customize the color style of the legend;
-6. Click the :material-tray-arrow-up: button to export the current chart as a CSV file, to notes, dashboard, or directly copy the chart.
+- Field-based filtering queries are supported below the chart;
+- In time series chart mode, you can choose between area charts, line charts, or bar charts;
+- For displayed cluster data:
+    - In time series chart mode, you can select `slimit` as 5/10/20/50/100;
+    - In top list/pie chart/treemap chart modes, you can select `limit to` maximum or minimum values of 5/10/20/50/100;
+- Click :material-list-box:, choose legend display position (hidden, bottom, right side);
+- Click :art:, customize legend colors;
+- Click :material-tray-arrow-up:, export the chart as a CSV file, export to notes or dashboards, or copy the chart.
     
 ![](img/5.log_analysis.gif)

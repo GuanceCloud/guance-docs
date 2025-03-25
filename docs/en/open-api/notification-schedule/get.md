@@ -1,8 +1,8 @@
-# Get Schedule
+# Schedule Retrieval
 
 ---
 
-<br />**GET /api/v1/notification_schedule/\{notification_schedule_uuid\}/get**
+<br />**GET /api/v1/notification_schedule/{notification_schedule_uuid}/get**
 
 ## Overview
 
@@ -11,12 +11,12 @@
 
 ## Route Parameters
 
-| Parameter Name        | Type     | Required | Description              |
-|:---------------------|:---------|:---------|:------------------------|
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
 | notification_schedule_uuid | string | Y | Schedule UUID<br> |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
@@ -59,7 +59,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/notification_s
         "notifyTargetsInfos": [
             {
                 "acntWsNickname": "",
-                "email": "jinlei940@guance.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "mobile": "17621725046",
                 "name": "Jin Lei lll",

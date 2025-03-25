@@ -1,6 +1,6 @@
 ---
-title      : '<<< custom_key.brand_name >>> OpenTelemetry Exportor'
-summary    : 'Directly output OpenTelemetry data to <<< custom_key.brand_name >>>'
+title      : 'OpenTelemetry Exportor'
+summary    : 'Directly output OpenTelemetry data to platform'
 __int_icon : 'icon/opentelemetry'
 tags       :
   - 'OTEL'

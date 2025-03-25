@@ -3,20 +3,20 @@
 
 ## Background
 
-To provide additional data access capabilities for <<< custom_key.brand_name >>>, making it easier for users to understand the performance status of cloud provider products.
+To provide <<< custom_key.brand_name >>> with additional data access capabilities, allowing users to better understand the performance status of cloud provider products.
 
 ## Prerequisites
 
-1. Set up [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
-3. Create an [API Key](../../management/api-key/open-api.md) in <<< custom_key.brand_name >>> under «Management / API Key Management» for operations.
-5. Enable the corresponding objects in «<<< custom_key.brand_name >>> Self-built Inspection (Alibaba Cloud)» and configure collectors (e.g., Alibaba Cloud ECS) [Collector](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/)
-7. Write self-built inspection processing functions in the self-hosted DataFlux Func.
+1. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or activate [DataFlux Func (Automata)](../../dataflux-func/index.md)
+3. Create an [API Key](../../management/api-key/open-api.md) in the <<< custom_key.brand_name >>> "Manage / API Key Management" section for operational purposes.
+5. Enable the corresponding objects in the "[<<< custom_key.brand_name >>> Self-hosted Inspection (Alibaba Cloud)]" (e.g., [Alibaba Cloud ECS](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/)).
+7. Write self-hosted inspection processing functions in your DataFlux Func instance.
 
-> **Note**: If you are considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as your current <<< custom_key.brand_name >>> SaaS deployment [same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the same operator and region as the current <<< custom_key.brand_name >>> SaaS deployment [here](../../../getting-started/necessary-for-beginners/select-site/).
 
 ## Configure Inspection
 
-In the self-hosted DataFlux Func, create a new script set to enable cloud account instance-level billing inspection configuration. After creating the new script set, select the corresponding script template when creating the inspection script, and modify it as needed in the generated script file.
+In the self-hosted DataFlux Func, create a new script set to enable billing inspections at the cloud account instance level. After creating the script set, select the corresponding script template when creating the inspection script, save it, and modify it according to your needs in the newly generated script file.
 
 ![image](../img/cloudasset11.png)
 
@@ -24,7 +24,7 @@ In the self-hosted DataFlux Func, create a new script set to enable cloud accoun
 
 ### Register Inspection Items in <<< custom_key.brand_name >>>
 
-After configuring the inspection in DataFlux Func, you can test by clicking the `run()` method directly on the page. After publishing, you can view and configure the inspection in <<< custom_key.brand_name >>> under «Monitoring / Smart Inspection».
+After configuring the inspection in DataFlux Func, you can test it by clicking the `run()` method directly on the page. After publishing, you can view and configure the inspection under <<< custom_key.brand_name >>> "Monitoring / Intelligent Inspection."
 
 ### Configure Alibaba Cloud Asset Inspection in <<< custom_key.brand_name >>>
 
@@ -32,65 +32,65 @@ After configuring the inspection in DataFlux Func, you can test by clicking the 
 
 #### Enable/Disable
 
-The «Alibaba Cloud Asset Inspection» feature in Smart Inspection is enabled by default but can be manually disabled. Once enabled, it will inspect the configured cloud accounts.
+The "Alibaba Cloud Asset Inspection" in Intelligent Inspection is **enabled** by default but can be manually turned off. Once enabled, it will inspect the configured cloud accounts.
 
 #### Edit
 
-Smart Inspection «Alibaba Cloud Asset Inspection» supports manual addition of filter conditions. Click the **Edit** button in the operation menu on the right side of the Smart Inspection list to edit the inspection template.
+The "Alibaba Cloud Asset Inspection" in Intelligent Inspection supports manual addition of filtering conditions. To edit the inspection template, click the **Edit** button in the operation menu on the right side of the intelligent inspection list.
 
-* Filter Conditions: No parameters need to be configured for this inspection.
-* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
+* Filtering Conditions: This inspection does not require configuration parameters.
+* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert mute cycles.
 
-After clicking **Edit**, fill in the corresponding inspection objects in the parameter configuration and click Save to start the inspection:
+To configure entry parameters, click **Edit**, fill in the corresponding detection objects in the parameter configuration, and start the inspection after saving:
 
 ![image](../img/cloudasset02.png)
 
 ## View Events
 
-Based on <<< custom_key.brand_name >>> smart algorithms, Smart Inspection identifies anomalies in cloud asset metrics. For anomalies, Smart Inspection generates corresponding events. Click the **View Related Events** button in the operation menu on the right side of the Smart Inspection list to view the associated anomaly events.
+Based on <<< custom_key.brand_name >>> intelligent algorithms, intelligent inspection will identify anomalies in cloud asset metrics, such as sudden abnormalities in cloud asset metrics. For anomalies, intelligent inspection generates corresponding events. To view related anomaly events, click the **View Related Events** button in the operation menu on the right side of the intelligent inspection list.
 
 ![image](../img/cloudasset03.png)
 
-When the self-built inspection is properly configured, inspections will generate events upon detecting anomalies to assist in troubleshooting error information.
+After setting up the self-hosted inspection, the inspection will generate events upon detecting anomalies to help us troubleshoot error information.
 
 ### Event Details Page
-Clicking **Event** allows you to view the detailed page of the Smart Inspection event, including event status, time of occurrence, anomaly name, basic attributes, event details, alert notifications, history, and related events.
+Click **Event** to view the details page of the intelligent inspection event, which includes event status, time of anomaly occurrence, anomaly name, basic attributes, event details, alert notifications, historical records, and associated events.
 
-* Click the small icon labeled «View Monitor Configuration» in the top-right corner of the detail page to view and edit the current Smart Inspection configuration details.
+* Click the small icon labeled "View Monitor Configuration" in the top-right corner of the details page to view and edit the configuration details of the current intelligent inspection.
 
 ![image](../img/cloudasset04.png)
 
 #### Basic Attributes
 
-* Inspection Dimensions: Based on the filter conditions configured in Smart Inspection, it supports copying `key/value` pairs, adding filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, availability monitoring, and CI data.
-* Extended Attributes: Selecting extended attributes allows copying `key/value` pairs and performing forward/reverse filtering.
+* Detection Dimensions: Based on the filtering conditions configured in intelligent inspection, supports copying `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, user analysis, synthetic tests, and CI data.
+* Extended Attributes: After selecting extended attributes, supports copying in `key/value` form, forward/reverse filtering.
 
 ![image](../img/cloudasset05.png)
 
-#### Event Overview
+#### Event Details
 
-- Event Summary: Describes the object and content of the anomaly inspection event. Different collectors may have different event details.
+- Event Overview: Describes the object and content of the abnormal inspection event. The event details may vary depending on different collectors.
 
-#### History
-Supports viewing the inspected object, anomaly/recovery times, and duration.
+#### Historical Records
+Supports viewing detection objects, anomaly/recovery times, and duration.
 
 ![image](../img/cloudasset06.png)
 
-#### Related Events
-Supports viewing related events through filtered fields and selected time components.
+#### Associated Events
+Supports viewing associated events through filtered fields and selected time component information.
 
 ![image](../img/cloudasset07.png)
 
 
 ## Common Issues
-**1. How to configure the inspection frequency for Alibaba Cloud assets**
+**1. How to configure the detection frequency for Alibaba Cloud Asset Inspection**
 
-In DataFlux Func, set the automatic trigger time for the inspection function via «Management / Automatic Trigger Configuration». It is recommended to configure the inspection interval to no less than 30 minutes to avoid task accumulation.
+In DataFlux Func, go to "Manage / Automatic Trigger Configuration" to set the automatic trigger time for the detection function. It is recommended to configure an interval of no less than half an hour to avoid task accumulation.
 
-**2. How to view the collected metrics for Alibaba Cloud assets**
+**2. How to view the relevant metric sets collected by Alibaba Cloud Asset Inspection**
 
-Refer to the [Alibaba Cloud integration documentation](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/) for the data format of reported metrics.
+Refer to the [Alibaba Cloud integration documentation](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-ecs/) for the format of reported data from the metric set.
 
-**3. What to do if a previously working script encounters an error during inspection**
+**3. During the inspection process, previously normal scripts are now encountering abnormal errors**
 
-Update the referenced script set in the DataFlux Func script market. You can check the update records via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates to the scripts.
+Update the referenced script set in the DataFlux Func Script Market. You can view the update history via the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate immediate script updates.
