@@ -1,14 +1,14 @@
-# Best Practices for Host Observability (Linux)
+# Host Observability Best Practices (Linux)
 
 ---
 
 ## Basic Overview
 
-Linux, fully known as GNU/Linux, is a free-to-use and freely distributed Unix-like operating system. As the most widely used operating system in enterprises, its stability is crucial. Guance, through years of customer experience, has achieved comprehensive host observability, helping customers quickly gain insights into infrastructure operations and significantly reducing maintenance costs.
+Linux, fully named GNU/Linux, is a freely usable and freely distributable Unix-like operating system. As the most widely used operating system in enterprises, its stability is necessarily the most critical aspect. <<< custom_key.brand_name >>> has achieved full coverage of host observability through years of customer experience accumulation, helping customers quickly understand the operation of their infrastructure and drastically reducing maintenance costs.
 
-## Scenario Overview
+## Scene Overview
 
-< Guance - Scenario - Dashboard - Create Dashboard - Host Overview_Linux >
+< <<< custom_key.brand_name >>> - Scene - Dashboard - Create Dashboard - Host Overview_Linux >
 
 ![image.png](../images/host-linux-1.png)
 ![image.png](../images/host-linux-2.png)
@@ -19,15 +19,15 @@ Linux, fully known as GNU/Linux, is a free-to-use and freely distributed Unix-li
 
 ## Prerequisites
 
-Visit the official website [Guance](https://www.guance.com/) to register an account and log in using your registered credentials.
+Go to the official website [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) to register an account, and log in using the registered account/password.
 
 ## Deployment Implementation
 
-### One-click Installation
+### One-Click Installation
 
-DataKit is the official data collection application released by Guance, supporting the collection of hundreds of types of data.
+DataKit is the official data collection application released by <<< custom_key.brand_name >>>, supporting the collection of hundreds of types of data.
 
-Log in to the Guance console, click on "Integration" - "DataKit", copy the command line, and run it directly on the server.
+Log in to the <<< custom_key.brand_name >>> console, click on "Integration" - "DataKit", copy the command line and run it directly on the server.
 
 ![image.png](../images/host-linux-7.png)
 
@@ -42,7 +42,7 @@ Log in to the Guance console, click on "Integration" - "DataKit", copy the comma
 
 ### Default Plugins
 
-After installation, some plugins (data collection) are enabled by default, which can be viewed in the main configuration file `datakit.conf`
+After installation, some plugins (data collection) will be enabled by default. These can be viewed in the main configuration file `datakit.conf`.
 
 ```bash
 default_enabled_inputs = ["cpu", "disk", "diskio", "mem", "swap", "hostobject", "net", "host_processes", "container", "system"]
@@ -50,82 +50,82 @@ default_enabled_inputs = ["cpu", "disk", "diskio", "mem", "swap", "hostobject", 
 
 Plugin Description:
 
-Metric data can be viewed in [ Guance - Metrics ], and object data can be viewed directly on the relevant pages.
+Metric data can be viewed in [ <<< custom_key.brand_name >>> - Metrics ], and object data can be viewed directly on relevant pages.
 
 | Plugin Name       | Description                                           | Data Type |
 | -------------- | ---------------------------------------------- | -------- |
-| cpu            | Collects CPU usage information                        | Metrics     |
+| cpu            | Collects CPU usage information from the host                     | Metrics     |
 | disk           | Collects disk usage information                               | Metrics     |
-| diskio         | Collects disk IO information                         | Metrics     |
-| mem            | Collects memory usage information                         | Metrics     |
+| diskio         | Collects disk IO usage information from the host                 | Metrics     |
+| mem            | Collects memory usage information from the host                  | Metrics     |
 | swap           | Collects Swap memory usage information                         | Metrics     |
-| system         | Collects host OS load information                           | Metrics     |
-| net            | Collects network traffic information                           | Metrics     |
-| host_processes | Collects long-running (more than 10 minutes) process lists      | Object     |
-| hostobject     | Collects basic host information (such as OS information, hardware information, etc.) | Object     |
+| system         | Collects operating system load information from the host          | Metrics     |
+| net            | Collects network traffic information from the host               | Metrics     |
+| host_processes | Collects a list of resident processes (alive for over 10 minutes) on the host | Objects     |
+| hostobject     | Collects basic host information (such as OS information, hardware information, etc.) | Objects     |
 
 ## Data Collection
 
-When viewing metrics using Guance, you can use tags for quick condition filtering.
+When viewing metrics with <<< custom_key.brand_name >>>, you can use tags for quick condition filtering.
 
 ### Default Collection
 
 #### CPU Metrics
 
-[ Guance - Metrics - cpu, view CPU status data ]
-[ Guance - Metrics - system, view CPU load and core count data ]
+[ <<< custom_key.brand_name >>> - Metrics - cpu, view CPU status data ]
+[ <<< custom_key.brand_name >>> - Metrics - systecm, view CPU load and core count data ]
 
 ![image.png](../images/host-linux-8.png)
 
 #### Memory Metrics
 
-[ Guance - Metrics - mem, view memory data ]
-[ Guance - Metrics - swap, view swap memory data ]
+[ <<< custom_key.brand_name >>> - Metrics - mem, view memory data ]
+[ <<< custom_key.brand_name >>> - Metrics - swap, view memory swap data ]
 
 ![image.png](../images/host-linux-9.png)
 
 #### Disk Metrics
 
-[ Guance - Metrics - disk, view disk data ]
-[ Guance - Metrics - diskio, view disk IO data ]
+[ <<< custom_key.brand_name >>> - Metrics - disk, view disk data ]
+[ <<< custom_key.brand_name >>> - Metrics - disk, view disk IO data ]
 
 ![image.png](../images/host-linux-10.png)
 
 #### Network Metrics
 
-[ Guance - Metrics - net, view network data ]
+[ <<< custom_key.brand_name >>> - Metrics - net, view network data ]
 
 ![image.png](../images/host-linux-11.png)
 
 #### Host Objects
 
-[ Guance - Infrastructure - Host, view all host object lists ]
+[ <<< custom_key.brand_name >>> - Infrastructure - Host, view all host object lists ]
 
 ![image.png](../images/host-linux-12.png)
 
-[ Guance - Infrastructure - Host - Click any host to view basic system information ]
+[ <<< custom_key.brand_name >>> - Infrastructure - Host - Click any host to view basic system information ]
 
-_Integration status represents the list of plugins running on that server_
+_Integration runtime status represents the list of plugins already running on this server_
 
 ![image.png](../images/host-linux-13.png)
 
 #### Process Objects
 
-[ Guance - Infrastructure - Process, view all process object lists ]
+[ <<< custom_key.brand_name >>> - Infrastructure - Process, view all process object lists ]
 
 ![image.png](../images/host-linux-14.png)
 
-[ Guance - Infrastructure - Process - Click any process name to view related information ]
+[ <<< custom_key.brand_name >>> - Infrastructure - Process - Click any process name to view related process information ]
 
 ![image.png](../images/host-linux-15.png)
 
 ### Advanced Collection
 
-In addition to the default metrics/object data, DataKit can enhance OS monitoring data with other plugins.
+In addition to the default metric/object data, DataKit can also complete operating system monitoring data through other plugins.
 
 #### Process List
 
-To get real-time process list information from all hosts, enable the process plugin (global top feature)
+To understand real-time process list information for all hosts, enable the process plugin (global top functionality).
 
 1. Enter the plugin configuration directory and copy the sample file
 
@@ -149,13 +149,13 @@ vi host_processes.conf
 systemctl restart datakit
 ```
 
-[ Guance - Metrics - host_processes, view process data ]
+[ <<< custom_key.brand_name >>> - Metrics - host_processes, view process data ]
 
 ![image.png](../images/host-linux-16.png)
 
 #### Network Interface Metrics
 
-Use ebpf technology to collect TCP/UDP connection information from host network interfaces
+Use ebpf technology to collect tcp/udp connection information for the host's network interface.
 
 1. Install the ebpf plugin
 
@@ -188,13 +188,13 @@ vi ebpf.conf
 systemctl restart datakit
 ```
 
-[ Guance - Infrastructure - Host - Click the host with the ebpf plugin installed - Network, view system network interface information ]
+[ <<< custom_key.brand_name >>> - Infrastructure - Host - Click on the host where the ebpf plugin is installed - Network, view system network interface information ]
 
 ![image.png](../images/host-linux-17.png)
 
 #### Security Check
 
-Perform real-time detection of security vulnerabilities on the host operating system
+Perform real-time detection of security vulnerabilities on the host operating system.
 
 1. Install the Scheck service
 
@@ -226,17 +226,17 @@ log_level='info'
 systemctl start scheck
 ```
 
-[ Guance - Security Check - Explorer, view all security events ]
+[ <<< custom_key.brand_name >>> - Security Check - Explorer, view all security events ]
 
 ![image.png](../images/host-linux-18.png)
 
 ### Extended Collection
 
-In addition to its own data collection, DataKit is fully compatible with the Telegraf collector.
+In addition to its own data collection, DataKit is fully compatible with the telegraf collector.
 
-Install Telegraf, for CentOS as an example, refer to the [Telegraf Official Documentation](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/) for other systems
+Install Telegraf, taking CentOS as an example; for other systems, refer to the [Telegraf Official Documentation](https://docs.influxdata.com/telegraf/v1.19/introduction/installation/)
 
-1. Add yum repository
+1. Add yum source
 
 ```bash
 cat <<EOF | tee /etc/yum.repos.d/influxdb.repo
@@ -249,7 +249,7 @@ gpgkey = https://repos.influxdata.com/influxdb.key
 EOF
 ```
 
-2. Install the Telegraf collector
+2. Install the telegraf collector
 
 ```bash
 yum -y install telegraf
@@ -261,7 +261,7 @@ yum -y install telegraf
 vi /etc/telegraf/telegraf.conf
 ```
 
-4. Disable influxdb, enable outputs.http (to upload data to DataKit)
+4. Disable influxdb, enable outputs.http (to upload data to datakit)
 
 ```bash
 #[[outputs.influxdb]]
@@ -269,7 +269,7 @@ vi /etc/telegraf/telegraf.conf
 url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 ```
 
-5. Disable default Telegraf collections
+5. Disable telegraf default collection
 
 ```bash
 #[[inputs.cpu]]
@@ -286,7 +286,7 @@ url = "http://127.0.0.1:9529/v1/write/metric?input=telegraf"
 #[[inputs.system]]
 ```
 
-6. Start Telegraf
+6. Start telegraf
 
 ```bash
 systemctl start telegraf
@@ -294,7 +294,7 @@ systemctl start telegraf
 
 #### Port Metrics
 
-Monitor important ports in the operating system
+Detect important ports in the operating system.
 
 1. Modify the main configuration file telegraf.conf
 
@@ -302,7 +302,7 @@ Monitor important ports in the operating system
 vi /etc/telegraf/telegraf.conf
 ```
 
-2. Enable port monitoring
+2. Enable port detection
 
 ```bash
 [[inputs.net_response]]
@@ -315,19 +315,19 @@ vi /etc/telegraf/telegraf.conf
   timeout = "3s"
 ```
 
-3. Restart Telegraf
+3. Restart telegraf
 
 ```bash
 systemctl restart telegraf
 ```
 
-[ Guance - Metrics - net_response, view port data ]
+[ <<< custom_key.brand_name >>> - Metrics - net_response, view port data ]
 
 ![image.png](../images/host-linux-19.png)
 
 #### Process Metrics
 
-Monitor important processes in the operating system
+Detect important processes in the operating system.
 
 1. Modify the main configuration file telegraf.conf
 
@@ -335,7 +335,7 @@ Monitor important processes in the operating system
 vi /etc/telegraf/telegraf.conf
 ```
 
-2. Enable process monitoring
+2. Enable process detection
 
 ```bash
 [[inputs.procstat]]
@@ -344,21 +344,21 @@ vi /etc/telegraf/telegraf.conf
     pattern = "httpd"
 ```
 
-3. Restart Telegraf
+3. Restart telegraf
 
 ```bash
 systemctl restart telegraf
 ```
 
-[ Guance - Metrics - procstat, view process data ]
+[ <<< custom_key.brand_name >>> - Metrics - procstat, view process data ]
 
 ![image.png](../images/host-linux-20.png)
 
-#### Single-point Dial Testing
+#### Single-point Testing
 
-Use this machine as a dial test point to monitor important interfaces/sites
+Using the local machine as a testing point, detect important interfaces/sites.
 
-For multi-point dial testing, see Synthetic Tests
+For multi-point testing, see Synthetic Tests.
 
 1. Modify the main configuration file telegraf.conf
 
@@ -366,65 +366,65 @@ For multi-point dial testing, see Synthetic Tests
 vi /etc/telegraf/telegraf.conf
 ```
 
-2. Enable HTTP monitoring
+2. Enable HTTP detection
 
 ```bash
 [[inputs.http_response]]
-    urls = ["https://www.baidu.com","https://guance.com","http://localhost:9090"]
+    urls = ["https://www.baidu.com","https://<<< custom_key.brand_main_domain >>>","http://localhost:9090"]
 ```
 
-3. Restart Telegraf
+3. Restart telegraf
 
 ```bash
 systemctl restart telegraf
 ```
 
-[ Guance - Metrics - http_response, view dial test data ]
+[ <<< custom_key.brand_name >>> - Metrics - http_response, view test data ]
 
 ![image.png](../images/host-linux-21.png)
 
 ## Monitoring Rules
 
-Set up alert rules and notification targets to understand system stability in real-time
+Used to set alarm rules and notification targets to monitor system stability in real time.
 
 ### Built-in Templates
 
-Guance already includes some built-in templates for monitoring libraries, which can be used directly
+<<< custom_key.brand_name >>> already includes some built-in detection library templates that can be used directly.
 
-[ Guance - Monitoring - Create from Template - Host Monitoring Library]
-[ Guance - Monitoring - Create from Template - Ping Status Monitoring Library]
-[ Guance - Monitoring - Create from Template - Port Monitoring Library]
+[ <<< custom_key.brand_name >>> - Monitoring - Create from Template - Host Detection Library]
+[ <<< custom_key.brand_name >>> - Monitoring - Create from Template - Ping Status Detection Library]
+[ <<< custom_key.brand_name >>> - Monitoring - Create from Template - Port Detection Library]
 
-### Custom Monitoring Libraries
+### Custom Detection Libraries
 
-Add monitoring rules via customization; Guance supports multiple types of monitoring, such as thresholds, processes, logs, and network monitoring.
+Add detection rules through customization. <<< custom_key.brand_name >>> supports multiple detections such as thresholds, processes, logs, and network detection.
 
-#### Threshold Monitoring
+#### Threshold Detection
 
-[ Guance - Monitoring - Create Monitor - Threshold Monitoring ]
+[ <<< custom_key.brand_name >>> - Monitoring - Create Monitor - Threshold Detection ]
 
-Monitored metric: Alarm rule expression, where <mem> is the data table, <used_percent> is the monitored metric, and <host> is the tag (only tags in the by clause can be referenced in event content)
+Detection Metric: Alarm rule expression, where <mem> is the data table, <used_percent> is the monitoring metric, <host> is the tag (only tags in the by conditions can be referenced in the event content).
 
 ![image.png](../images/host-linux-22.png)
 
-Trigger Conditions: Final threshold range, triggering an alarm when conditions are met; after triggering, if the conditions are no longer met, it can recover (specify the check cycle in Normal).
+Trigger Condition: Final threshold range, triggers an alarm when the condition is met; after triggering, if the threshold is not met again upon rechecking, it can recover (normal needs to have a detection cycle filled out).
 
 ![image.png](../images/host-linux-23.png)
 
-Event names/content can reference variables, and event content uses markdown text format (e.g., a new line is two spaces)
+Event name/content can reference variables, event content uses markdown text format (for example, a new line requires two spaces).
 
 ![image.png](../images/host-linux-24.png)
 
 ## Notification Targets
 
-Customize alarm rule notification targets
+Customize settings for alarm rule notification targets.
 
-[ Guance - Manage - Notification Targets ]
+[ <<< custom_key.brand_name >>> - Manage - Notification Targets ]
 
 ![image.png](../images/host-linux-25.png)
 
-Group monitors and add notification targets
+Group monitors and add notification targets according to the monitors.
 
-[ Guance - Monitoring - Monitors - Grouping - Alert Configuration ]
+[ <<< custom_key.brand_name >>> - Monitoring - Monitors - Grouping - Alert Configuration ]
 
 ![image.png](../images/host-linux-26.png)

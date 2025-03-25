@@ -1,110 +1,111 @@
 ---
 skip: 'not-searchable-on-index-page'
-title: 'Overview of DataKit Log Collection'
+title: 'DataKit Log Collection Overview'
 ---
 
-For the overall observability of log data, it provides a flexible and changeable way of information combination. For this reason, compared with metrics and Tracing, there are more ways to collect and process logs to adapt to different environments, architectures and collection scenarios of technology stacks.
+Log data provides a flexible and varied way of combining information for overall observability. For this reason, compared to Metrics and Tracing, there are more collection and processing schemes for logs to adapt to different environments, architectures, and technology stacks.
 
-In general, DataKit has the following log collection schemes:
+In general, DataKit has the following log collection methods:
 
-- [Get log from disk file](logging.md)
-- Collect container stdout logs
-- Push logs to DataKit remotely
-- [Log collection in Sidecar form](logfwd.md)
+- [Obtaining logs from disk files](logging.md)
+- Collecting container stdout logs
+- Remotely pushing logs to DataKit
+- [Sidecar form of log collection](logfwd.md)
 
-Due to different specific environments, the above collection methods will have some variants, but they are the combination of these methods on the whole. The following categories are introduced one by one.
+All these various collection methods may have some variations depending on specific environments, but in general, they are combinations of these few methods. Below, we will introduce them one by one.
 
-## Get Log from Disk File {#raw-disk-file}
+## Obtaining Logs from Disk Files {#raw-disk-file}
 
-This is the most primitive log processing method. No matter for developers or traditional log collection schemes, logs are generally written directly to disk files at the beginning. Logs written to disk files have the following characteristics:
-
-<figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-from-disk.png){ width="300" }
-  <figcaption>extract logs from disk files</figcaption>
-</figure>
-
-- Sequential writing: The general log framework can guarantee the log in the disk file and keep the sequence of time.
-- Automatic slicing: As the disk log files are physically incremented, the general log framework will automatically cut, or through some external resident scripts to achieve log cutting in order to avoid the disk burst by the log.
-
-Based on the above characteristics, it is easy to think that DataKit only needs to keep an eye on the changes of these files (that is, collect the latest updates). Once a log is written, DataKit can collect it, and its deployment is very simple. It only needs to fill in the file path (or wildcard path) to be collected in the conf of the log collector.
-
-> It is recommended to use a wildcard path (you can even configure files that do not exist at present but will appear in the future) instead of writing the log path to death, because the log of the application may not appear immediately (for example, the error log of some applications will only appear when the error occurs).
-
-One thing to note about disk file collection is that it only collects log files that have been updated since DataKit started, and if the configured log files (since DataKit started) have not been updated, their historical data will not be collected.
-
-Because of this feature, if the log file is continuously updated and the DataKit is stopped in the middle, the log in this empty window period will not be collected, and some strategies may be taken later to alleviate this problem.
-
-## Container stdout Log {#container-stdout}
-
-At present, this collection method is mainly aimed at [stdout logs in container environment](container.md), which requires applications running in container (or Kubernetes Pod) to output logs to stdout. These stdout logs will actually be dropped on Node, and DataKit can find corresponding log files through corresponding container ID, and then collect them in the way of ordinary disk files.
+This is the most primitive method of log processing. Whether it's for developers or traditional log collection solutions, logs usually start by being directly written to disk files. Logs written to disk files have the following characteristics:
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-stdout.png){ width="300" }
-  <figcaption>collect container stdout logs</figcaption>
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-from-disk.png){ width="300" }
+  <figcaption>Extracting logs from disk files</figcaption>
 </figure>
 
-In the existing stdout collection scheme of DataKit (mainly for k8s environment), log collection has the following characteristics:
+- Sequential writing: Most log frameworks can ensure that logs in disk files maintain time sequence.
+- Automatic slicing: Since disk log files are physically incremental, to avoid filling up the disk with logs, most log frameworks automatically cut logs, or achieve log cutting through some external resident scripts.
 
-- Because of the application deployed in the container environment, it is necessary to build the corresponding container image. For DataKit, log collection can be selectively done for some applications based on the image name
-    - Collect stdout logs at a fixed point by [selecting part of the image name](container-log.md#logging-with-image-config) (or its wildcard) in ConfigMap's container.conf
-    - Dyeing tags: [By modifying Pod tags through Annotation](container-log.md#logging-with-annotation-or-label), DataKit can identify these special Pods and then collect their stdout logs
+Based on the above features, it's easy to think that DataKit only needs to continuously monitor changes in these files (i.e., collect the latest updates). Once logs are written, DataKit can collect them, and its deployment is very simple; you just need to fill in the file paths (or wildcard paths) to be collected in the conf of the log collector.
 
-This is also a defect of this strategy, that is, applications are required to output logs to stdout. In general application development, logs are not directly written to stdout (but mainstream logging frameworks generally support output to stdout), which requires developers to adjust log configuration. However, with the increasing popularity of containerized deployment schemes, this scheme is a feasible way to collect logs.
+> Here, it is recommended to use wildcard paths (even configure paths that do not currently exist but will appear in the future), rather than hardcoding the log path, because application logs may not immediately appear (for example, error logs for some applications only appear when an error occurs).
 
-## Push Logs to DataKit Remotely {#push}
+One thing to note about disk file collection is that it **only collects log files updated since DataKit was started**, if the configured log files (since DataKit was started) have not been updated, their **historical data will not be collected**.
 
-For remote log push, it is mainly
+Because of this characteristic, if the log file continues to update and DataKit stops in between, **logs during this downtime period will not be collected**, and later we may implement some strategies to alleviate this issue.
 
-- Developers [push application logs directly to services specified by DataKit](logging_socket.md), such as [Java log4j](logging_socket.md#java) and [Python's native `SocketHandler`](logging_socket.md#python), which support sending logs to remote services.
+## Container Stdout Logs {#container-stdout}
 
-- [Third-party platform log access](logstreaming.md)
+This collection method mainly targets [stdout logs in container environments](container.md). These logs require applications running in containers (or Kubernetes Pods) to output logs to stdout. These stdout logs actually get written to disk on the Node, and DataKit can find the corresponding log files via the container ID, then collect them as ordinary disk files.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-remote.png){ width="300" }
-  <figcaption>third-party platform log access</figcaption>
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-stdout.png){ width="300" }
+  <figcaption>Collecting container stdout logs</figcaption>
 </figure>
 
-The characteristic of this form is that the log is sent directly to DataKit, and there is no need to drop the disk in the middle. This form of log collection should pay attention to the following points:
+In DataKit's existing stdout collection scheme (mainly targeting k8s environments), log collection has the following features:
 
-- If the log type (`source/service`) of TCP type log push is varied, it is necessary to open multiple TCP ports on DataKit.
+- Since applications deployed in container environments all need to build corresponding container images, DataKit can selectively collect logs for certain applications based on image names.
 
-> If you want to open only a single (or a few) TCP ports on the DataKit, you need to identify the characteristics of the cut fields in the subsequent [Pipeline](../pipeline/use-pipeline/index.md) processing, and mark their `service` through the function [`set_tag()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-set-tag) (the `source` field of the log cannot be modified at present, and this function is only [supported by versions above 1.2.8](../datakit/changelog.md#cl-1.2.8)）。
+    - By selecting partial image names in the ConfigMap's container.conf (or their wildcards) to pinpoint collect stdout logs.
+    - Stain marking: [Modify Pod annotations through Annotations](container-log.md#logging-with-annotation-or-label), DataKit can recognize these special Pods and thus collect their stdout logs.
 
-- For HTTP log push, developers need to [mark the characteristics on the HTTP request parameters](logstreaming.md#args), which is convenient for DataKit to do subsequent processing.
+This is also a drawback of this strategy, which requires applications to output logs to stdout. In general application development, logs aren't often written directly to stdout (but mainstream log frameworks generally support outputting to stdout), requiring developers to adjust log configurations. However, with the increasing popularity of containerized deployment schemes, this is still a viable log collection method.
 
-## Log Collection in the Form of Sidecar {#logfwd-sidecar}
+## Remote Push Logs to DataKit {#push}
 
-In fact, this method of collection is a combination of disk log collection and log remote push. Specifically, a Sidecar application matched with DataKit (i.e. [logfwd](logfwd.md)）) is added to the user's Pod, and its collection method is as follows:
+For remote log pushing, it mainly involves
+
+- Developers directly [sending application logs to the specified service on DataKit](logging_socket.md), such as [Java's log4j](logging_socket.md#java) and [Python's native `SocketHandler`](logging_socket.md#python) both support sending logs to remote services.
+
+- [Third-party platform log integration](logstreaming.md)
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/datakit-logging-sidecar.png){ width="300" }
-  <figcaption>log collection in the form of Sidecar</figcaption>
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-remote.png){ width="300" }
+  <figcaption>Third-party log integration</figcaption>
 </figure>
 
-- Get the log in the form of disk file through logfwd
-- logfwd then remotely pushes the log (WebSocket) to DataKit
+The feature of this form is that logs are sent directly to DataKit without intermediate disk writing. For this type of log collection, the following points should be noted:
 
-This method can only be used in k8s environment at present, and it has the following characteristics:
+- For TCP-based log pushing, if the log type (`source/service`) varies, multiple TCP ports need to be opened on DataKit.
 
-- Compared with simple remote log push, it can automatically append some k8s attribute fields of Pod, such as Pod name and k8s namespace information
-- Developers can still output the log to disk without modifying the log configuration. In k8s environment, logfwd can even retrieve logs from pod's own storage and push them out without plug-in storage (but logs need to be automatically cut to avoid filling pod storage)
+> If you want DataKit to open only one (or a few) TCP ports, then subsequent [Pipeline](../pipeline/use-pipeline/index.md) processing is required to identify the characteristics of the fields split out and mark the `service` using the function [`set_tag()`](../pipeline/use-pipeline/pipeline-built-in-function.md#fn-set-tag) (currently unable to modify the `source` field of logs, and this feature is only supported in versions [1.2.8 and above](../datakit/changelog.md#cl-1.2.8)).
 
-## Processing of Logs {#logging-process}
+- For HTTP-based log pushing, developers need to [mark characteristics in the HTTP request parameters](logstreaming.md#args) to facilitate subsequent processing by DataKit.
 
-After the above logs are collected, they all support subsequent Pipeline cutting, but the configuration forms are slightly different:
+## Sidecar Form Log Collection {#logfwd-sidecar}
 
-- Disk Log Collection: Directly configured in logging.conf, where the Pipeline name can be specified.
-- Container stdout log collection: Pipeline cannot be configured in container.conf, because this is for log collection of all containers, and it is difficult to process all logs with a common Pipeline. Therefore, the [Pipeline configuration of related Pod must be specified](container-log.md#logging-with-annotation-or-label) by Annotation.
-- Remote log collection: For TCP/UDP transport, you can also specify the Pipeline configuration in logging.conf. For HTTP transmission, developers need to [configure Pipeline on HTTP request parameters](logstreaming.md#args).
-- Sidecar log collection: In [the configuration of logfwd](logfwd.md#config), configure the Pipeline of the host Pod, which is essentially similar to the container stdout, and is a fixed-point tag for the Pod
+This method of collection is essentially a combination of disk log collection and remote log pushing. Specifically, it involves adding a Sidecar application ([logfwd](logfwd.md)) that is paired with DataKit in the user's Pod, and its collection method is as follows:
 
-## Additional Options for Log Collection {#other-options-common}
+<figure markdown>
+  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-logging-sidecar.png){ width="300" }
+  <figcaption>Sidecar form log collection</figcaption>
+</figure>
 
-All log collection, regardless of the collection method used, supports the following collection configuration except Pipeline cutting mentioned above:
+- Obtain logs via logfwd using disk files.
+- Then logfwd remotely pushes (via WebSocket) the logs to DataKit.
 
-- Multi-line cutting: Most logs are single-line logs, but some logs are multi-line, such as call stack logs, and some special application logs (such as MySQL slow logs)
-- Encoding: The final logs need to be converted to UTF8 storage, and some Windows logs may need to be coded and decoded
+This method can currently only be used in k8s environments and has the following features:
+
+- Compared to pure remote log pushing, it can automatically append some k8s Pod attribute fields, such as Pod name and k8s namespace information.
+- Developers do not need to modify log configurations and can still output logs to disk. Even in k8s environments, external storage does not need to be attached, and logfwd can directly fetch logs from pod internal storage and push them out (but automatic log cutting must be done to avoid filling up pod storage).
+
+## Log Processing {#logging-process}
+
+After the above logs are collected, they all support subsequent Pipeline parsing, but the configuration forms differ slightly:
+
+- Disk log collection: Directly configured in logging.conf, where the Pipeline name is specified.
+- Container stdout log collection: **Pipeline cannot be configured in container.conf**, because here it targets all container log collections, making it difficult to handle all logs with a universal Pipeline. Therefore, Pipeline configuration for related Pods must be specified via Annotation [in the container-log section](container-log.md#logging-with-annotation-or-label).
+- Remote log collection: For TCP/UDP transmission methods, Pipeline configuration can also be specified in logging.conf. For HTTP transmission methods, developers need to [configure Pipeline via HTTP request parameters](logstreaming.md#args).
+- Sidecar log collection: In [logfwd's configuration](logfwd.md#config), configure the host Pod's Pipeline. Essentially, this is similar to container stdout, both involving targeted marking for Pods.
+
+## Common Additional Options for Log Collection {#other-options-common}
+
+Regardless of the collection method used, all log collections, besides the aforementioned Pipeline parsing, support the following collection configurations:
+
+- Multi-line parsing: Most logs are single-line logs, but some logs are multi-line, such as stack trace logs, some special application logs (e.g., MySQL slow logs).
+- Encoding: The final logs need to be stored in UTF8 format. Some Windows logs may require encoding/decoding handling.
 
 ## Summary {#summary}
 
-The above describes the current log collection scheme of DataKit as a whole. Generally speaking, these schemes can basically cover the mainstream log data scenarios. With the continuous iteration of software technology, new log data forms will emerge constantly, and DataKit will make corresponding adjustments to adapt to the new scene.
+The above provides an overall introduction to DataKit's current log collection solutions. Generally speaking, these current solutions basically cover mainstream log data scenarios. As software technology continues to iterate, new forms of log data will continue to emerge, and at that time, DataKit will also make corresponding adjustments to adapt to new scenarios.

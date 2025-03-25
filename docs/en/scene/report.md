@@ -1,77 +1,62 @@
 # Scheduled Reports {#report}
 
-<<< custom_key.brand_name >>> supports exporting dashboards as reports and sending them through various channels at scheduled intervals such as daily, weekly, or monthly to relevant personnel.
+<<< custom_key.brand_name >>> supports exporting dashboards as reports and can automatically send them to relevant personnel through various channels based on time dimensions such as daily, weekly, or monthly.
 
-To access **Use Cases > Scheduled Reports**:
 
-![Scheduled Report](../img/report-9.png)
+## Create
 
-Or **Use Cases > Dashboards > Scheduled Reports**:
+### Basic Information
 
-![Scheduled Report from Dashboard](img/report-1.png)
+1. Dashboard: Select the dashboard for which you need to send a scheduled report;    
+2. Modify View Variables: Customize and modify the view variables of the dashboard in the scheduled report;
+3. Query Range: Set the time range of the dashboard when sending the report. The default is "Last 1 Day," but you can also manually input a custom time range.      
 
-On this page, you can view information about the scheduled report name, associated dashboard, report frequency, notification targets, etc.
+???+ warning "Note"
 
-![Scheduled Report Info](img/report-2.png)
+    - The modified view variables here apply only to the generated report and do not affect the original default configuration of the dashboard;
+    - If the dashboard does not define any view variables, this option will not be displayed.
 
-## Create a Report
+### Scheduling Plan
 
-1. **Basic Information**:
+1. Time Zone: Default display is `UTC+08:00`, modification is temporarily unsupported.               
+2. Report Time: Set the specific time for sending the scheduled report. Enter positive integers within the following ranges: hour 0-23; minute 0-59.               
+3. Report Cycle: Set the frequency of sending scheduled reports. Options include:
 
-![Basic Info](img/report-4.png)
+    - One-time: Send only once at the specified time;
+    - Daily: Choose to send every day or specify certain dates (multiple selections supported);
+    - Weekly: Choose the frequency based on the weekly time dimension;
+    - Monthly: Choose to send every month or specify certain months and dates (multiple selections supported).              
 
-:material-numeric-1-circle-outline: Dashboard: Select the dashboard for which you need to send the scheduled report.
-:material-numeric-2-circle-outline: Modify View Variables: You can choose to customize and modify the view variables of the dashboard in the scheduled report.
+### Notification Methods
 
-**Note**:
+Currently supports 5 types of notifications: email groups, DingTalk bots, WeCom bots, Lark bots, Webhook.
 
-- Modifications here only affect the report and do not impact the original default settings of the dashboard.
-- If the dashboard does not have any view variables, this option will not be displayed.
+1. Notification Targets: Recipients of the current scheduled report. You can create new notification targets in [Monitoring > Notification Targets Management](../monitoring/notify-object.md);               
+2. Title: The name displayed in the email for the scheduled report.               
+3. Content: The specific content displayed in the email for the scheduled report.               
 
-:material-numeric-3-circle-outline: Query Range: This is the time range queried by the dashboard when sending the report; it defaults to "Last 1 Day," but you can manually enter a different time range.
 
-2. **Schedule Settings**:
+### Sharing Methods
 
-![Schedule Settings](img/report-5.png)
+1. Image: Choose the image format for sharing the scheduled report, including dashboard screenshots or chart screenshots.
+        
+    - Email/DingTalk bot notifications: By default, the dashboard content is exported as an image. If the data query time range of the dashboard is too long, contains too much data, or includes complex calculations, it may result in blank charts.
+    - WeCom bot: Supports default mode and image mode (under this mode, only images can be shared, text cannot be sent, and the image size should be limited to within 2MB)
+    - Webhook: Supports sharing image links, accessible via the link to the dashboard image.
 
-:material-numeric-1-circle-outline: Time Zone: The time zone defaults to `UTC+08:00` and currently cannot be modified.
-:material-numeric-2-circle-outline: Report Time: The time at which the current scheduled report is sent; enter a positive integer within the ranges: hours 0-23, minutes 0-59.
-:material-numeric-3-circle-outline: Report Frequency: The sending frequency of the current scheduled report; options include ["One-time"]["Daily"]["Weekly"]["Monthly"]. Choose based on your needs.
+2. Sharing Method:
 
-- One-time: If selected, the report will only be sent at the specified time.
-- Daily: You can select every day or specific days for sending the scheduled report.
-- Weekly: You can choose to send the report weekly.
-- Monthly: You can select specific months and days for sending the scheduled report.
+    - Public Sharing: Short links for publicly shared scheduled reports can be opened directly;
 
-3. **Notification Methods**:
+    - Encrypted Sharing: Requires setting a 4～8 character password using English letters and numbers. After completion, the correct password must be entered to open the short link of the scheduled report.
 
-Currently supports 4 types of notifications: email group, DingTalk bot, WeCom bot, Lark bot.
 
-![Notification Methods](img/report-6.png)
 
-:material-numeric-1-circle-outline: Notification Targets: The recipients of the current scheduled report; you can create new notification targets under **Monitoring > Notification Targets Management**.
-:material-numeric-2-circle-outline: Title: The title that appears in the email for the current scheduled report.
-:material-numeric-3-circle-outline: Content: The content that appears in the email for the current scheduled report.
+## Manage Rules
 
-4. **Sharing Methods**:
+On the scheduled report list page, you can view information such as the name of the scheduled report, associated dashboard, report cycle, and notification targets, and perform the following operations:
 
-![Sharing Methods](img/report-3.png)
 
-:material-numeric-1-circle-outline: Image Format: You can choose the image format for sharing the scheduled report, including dashboard screenshots or chart screenshots.
-
-**Note**: Email notifications default to exporting the dashboard content as an image. If the data query time range of your dashboard is too long, the data volume is too large, or there are complex calculations involved, charts may appear blank.
-
-:material-numeric-2-circle-outline: Sharing Method:
-
-- **Public Sharing**: The short link for publicly shared scheduled reports can be opened directly.
-- **Encrypted Sharing**: Requires setting a 4-8 character password consisting of English letters and numbers. After setting, the correct password must be entered to open the short link of the scheduled report.
-
-Once the scheduled report is created, each chart within the dashboard will generate a corresponding image and be sent to the specified email according to the set schedule.
-
-## Manage Reports
-
-In the report list, you can perform the following actions:
-
-- Hover over the dashboard name to display detailed information, including the dashboard name and view variables; click to navigate to the corresponding dashboard page.
-- Hover over the report frequency and notification targets to display detailed information.
-- On the right side of the report under **Actions**, you can view the creator of the scheduled report and choose to disable, edit, or delete the report.
+- Hover over the dashboard name to display detailed information, including the dashboard name and view variables, and navigate to the corresponding dashboard page by clicking;
+- Hover over the report cycle or notification targets to display corresponding detailed information;
+- In the action bar on the right side of the report, you can view the creator of the scheduled report and choose to disable, edit, or delete the report.

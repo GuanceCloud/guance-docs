@@ -1,7 +1,7 @@
 # Event Data Sharding Practice: Implementation Based on Dataway Sink
 ---
 
-This document provides a detailed explanation of how to achieve intelligent event data (`keyevent`) sharding through **injecting HTTP Headers using DataFlux Func** and **Dataway Sinker rule configuration**. With this solution, you can route event data with different business attributes and environmental characteristics to designated workspaces.
+This document provides a detailed explanation of how to achieve intelligent sharding of event data (`keyevent`) through **injecting HTTP Headers via DataFlux Func** and **Dataway Sinker rule configuration**. Through this solution, you can route event data with different business attributes and environment characteristics to specified workspaces.
 
 
 
@@ -13,28 +13,28 @@ This document provides a detailed explanation of how to achieve intelligent even
 ![](img/event_data_sharding.png)
 
 
-### Core Mechanism Explanation
+### Core Mechanism Description
 
-1. **Injection of Identifiers by DataFlux Func**: During the reporting of event data, dynamically generate the `X-Global-Tags` Header via Func configuration, which includes key-value pairs required for sharding (e.g., `env=prod`).
+1. **DataFlux Func Side Injection Identifier**: During the reporting of event data, dynamically generate the `X-Global-Tags` Header via Func configuration, which includes key-value pairs required for sharding (e.g., `env=prod`).
 
-2. **Dataway Routing Match**: Dataway forwards events carrying specific identifiers to corresponding workspaces based on rules defined in `sinker.json`.
+2. **Dataway Routing Match**: Dataway forwards events carrying specific identifiers to corresponding workspaces based on the rules defined in `sinker.json`.
 
 
 
-## :material-numeric-1-circle: Dataway Configuration
+## 1. Dataway Configuration
 
 Before using this feature, ensure that Dataway is deployed and the Sinker sharding function is enabled.
 
 > For configuring Sinker, refer to: [Dataway Sinker Configuration Guide](../deployment/dataway-sink.md);
 
-**Note**: The Dataway used in the deployment version with built-in DataFlux Func is located under the `utils` namespace as `internal-dataway`.
+**Note**: The version of DataFlux Func used in deployment is located under the `utils` namespace as `internal-dataway`.
 
 
 
-## :material-numeric-2-circle: DataFlux Func Configuration
+## 2. DataFlux Func Configuration
 
 
-### Inject X-Global-Tags into Header
+### Injecting X-Global-Tags into Header
 
 
 #### Core Parameter Description
@@ -42,7 +42,7 @@ Before using this feature, ensure that Dataway is deployed and the Sinker shardi
 
 | Parameter Name | Type | Description |
 | --- | --- | --- |
-| `CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS` | list/string | Defines the generation rules for event data sharding tags |
+| `CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS` | list/string | Defines the generation rules for event data sharding identifiers |
 
 
 #### Simple Example
@@ -50,21 +50,23 @@ Before using this feature, ensure that Dataway is deployed and the Sinker shardi
 
 Route all workspace events to the "Event Central Management" workspace:
 
+
 1. Access the Launcher console;
 
-2. Go to the top-right corner > Modify Application Configuration;
+2. Navigate to the top-right > Modify Application Configuration;
 
-3. Find the `func2Config` configuration item under the `func2` namespace;
+3. Locate the `func2Config` configuration item under the `func2` namespace;
 
 4. Add configuration:
 
     ```yaml
     CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
       - category: keyevent     # Data category
-        fields: df_source      # Field used for sharding, enter the fixed identifier field of the event here
+        fields: df_source      # Field used for sharding; here, enter the fixed identifier field for the event
     ```
 
-5. Configure Dataway Sinker rules: modify the `sinker.json` configuration file to set data routing rules:
+
+5. Configure the Dataway Sinker rule: Modify the sinker.json configuration file and set the data routing rules:
 
 ```json
 {
@@ -82,15 +84,15 @@ Route all workspace events to the "Event Central Management" workspace:
 
 
 
-#### Special Fields Description
+#### Special Field Description
 
 
 | Field Name | Description |
 | --- | --- |
 | `DF_WORKSPACE_UUID` | Workspace ID |
 | `DF_WORKSPACE_NAME` | Workspace name |
-| `DF_MONITOR_CHECKER_ID` | Monitor checker ID |
-| `DF_MONITOR_CHECKER_NAME` | Monitor checker name |
+| `DF_MONITOR_CHECKER_ID` | Monitor ID |
+| `DF_MONITOR_CHECKER_NAME` | Monitor name |
 
 
 
@@ -100,46 +102,46 @@ Route all workspace events to the "Event Central Management" workspace:
 | Configuration Method | Example | Description |
 | --- | --- | --- |
 | Direct Extraction | `-host` | Extract the `host` field from the event data's `tags` or `fields` |
-| Rename Fields | `-src:service; dest:business_type` | Rename the `service` field to `business_type` |
+| Rename Field | `-src:service; dest:business_type` | Rename the `service` field to `business_type` |
 | Value Mapping | `remap:{order:ecommerce}` | Map the original value `order` to `ecommerce` |
-| Default Value | `default:unknown` | Use a default value if the specified field does not exist |
+| Default Value | `default:unknown` | Use the default value if the field does not exist |
 | Fixed Value | `- dest:env; fixed:prod` | Directly inject the fixed value `env=prod` |
 
 ##### Global Tags Generation Rules {#rule}
 
 | Field Name | Type | Default Value | Description |
-| --- | --- | --- | --- |
-| `[#].category` | string/[string] | `"*"` | Matches the Category of the data |
-| `[#].fields` | string/dict [string]/[dict] | - | Extract data fields (including Tags and Fields); supports direct extraction and rule-based extraction |
-| `[#].fields[#]` | string | - | Extracted field name, supporting additional extraction fields (see table below) |
-| `[#].fields[#]` | dict | - | Extraction field rules |
-| `[#].fields[#].src` | string | - | Extracted field name, supporting additional extraction fields (see table below) |
-| `[#].fields[#].dest` | string | Same as `src` | Field name written to the Header after extraction |
-| `[#].fields[#].default` | string | - | Default value written to the Header when the specified field does not exist |
-| `[#].fields[#].fixed` | string | - | Fixed value written to the Header |
-| `[#].fields[#].remap` | dict | `null` | Maps extracted field values |
-| `[#].fields[#].remap_default` | string | - | Default value when no mapping value exists during remapping<br>If not specified, the original value is used<br>If specified as `null`, the field is ignored |
-| `[#].filter` | dict/string | `null` | Filter for matching data<br>Supports Tag filtering and filterString filtering |
+| ----------------- | ---------------- | ------------- | --------------- |
+| `[#].category`                | string/[string]             | `"*"`         | Matches the Category of the data                                          |
+| `[#].fields`                  | string/dict [string]/[dict] | -             | Extracts data fields (including Tags and Fields); supports direct extraction and rule-based extraction  |
+| `[#].fields[#]`               | string                      | -             | Extracts field names and supports additional extraction fields (see table below)                   |
+| `[#].fields[#]`               | dict                        | -             | Extraction field rules                                                 |
+| `[#].fields[#].src`           | string                      | -             | Extracts field names and supports additional extraction fields (see table below)                   |
+| `[#].fields[#].dest`          | string                      | Same as `src` | Field name to write into the Header after extraction                                   |
+| `[#].fields[#].default`       | string                      | -             | Default value to write into the Header when the specified field does not exist                     |
+| `[#].fields[#].fixed`         | string                      | -             | Fixed value written to the Header                                       |
+| `[#].fields[#].remap`         | dict                        | `null`        | Maps extracted field values                                             |
+| `[#].fields[#].remap_default` | string                      | -             | Default value when mapping extracted field values without a corresponding map<br />If not specified, retains the original value<br />Specifying `null` ignores this field |
+| `[#].filter`                  | dict/string                 | `null`        | Filters data<br />Supports Tag filtering and filterString filtering      |
 
 ##### Custom Global Tags Generation Function ID {#id}
 
 
 Function ID format is `{script set ID}__{script ID}.{function name}`
 
-Function definition as follows:
+Function definition:
 
 | Parameter | Type | Description |
-| --- | --- | --- |
+| ------------------- | ------ | ---------------------- |
 | `category` | string | Category, e.g., `"keyevent"` |
 | `point` | dict | Single data point to be processed |
 | `point.measurement` | string | Data `measurement` |
-| `point.tags` | dict | Content of data `tags` |
-| `point.fields` | dict | Content of data `fields` |
+| `point.tags` | dict | Data `tags` content |
+| `point.fields` | dict | Data `fields` content |
 | `extra_fields` | dict | Additional extracted fields (see table below) |
 
 Example:
 
-- Value of `point` parameter
+- `point` parameter value
 
 ```
 {
@@ -154,31 +156,34 @@ Example:
 }
 ```
 
-- Value of `extra_fields` parameter
+- `extra_fields` parameter value
 
 ```
 {
   "DF_WORKSPACE_UUID"      : "wksp_xxxxx",
   "DF_MONITOR_CHECKER_ID"  : "rul_xxxxx",
-  "DF_MONITOR_CHECKER_NAME": "Monitor Checker XXXXX",
+  "DF_MONITOR_CHECKER_NAME": "Monitor XXXXX",
   "DF_WORKSPACE_NAME"      : "Workspace XXXXX"
 }
 ```
 
 
 
+
+
 #### Verification of Generated Effects
 
-Adding `key:value` to the Header example {#example}
+An example of adding `key:value` in the Header {#example}
 
 
 ##### Writing Event Data to the Same Workspace
 
 
-:material-numeric-1-circle-outline: Extracting fields from events
+1. Extract fields from events
 
 
 **Example Configuration**
+
 
 ```yaml
 CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
@@ -193,6 +198,7 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 
 **Example Data**
 
+
 ```yaml
 {
   "measurement": "keyevent",
@@ -207,7 +213,8 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 ```
 
 
-**Example Header Written**
+**Example Written Header**
+
 
 ```yaml
 X-Global-Tags: host=web-001,name=Tom,DF_WORKSPACE_UUID=wksp_xxxxx
@@ -216,10 +223,11 @@ X-Global-Tags: host=web-001,name=Tom,DF_WORKSPACE_UUID=wksp_xxxxx
 
 
 
-:material-numeric-2-circle-outline: Extracting a Single Field from Events
+2. Extract a single field from events
 
 
 **Example Configuration**
+
 
 ```yaml
 CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
@@ -244,7 +252,8 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 ```
 
 
-**Example Header Written**
+**Example Written Header**
+
 
 ```yaml
 X-Global-Tags: host=web-001
@@ -255,7 +264,7 @@ X-Global-Tags: host=web-001
 ##### Writing All Data to the Same Workspace
 
 
-:material-numeric-1-circle-outline: Not specifying `category` indicates processing all data
+1. Omitting `category` indicates processing all data
 
 **Example Configuration**
 
@@ -278,15 +287,15 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 }
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: DF_WORKSPACE_UUID=wksp_xxxxx
 ```
 
-##### Other Scenarios
+##### Other Situations
 
-:material-numeric-1-circle-outline: Changing Field Names When Extracting Fields
+1. Changing field names while extracting fields
 
 
 **Example Configuration**
@@ -312,7 +321,7 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 }
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: HOST=web-001
@@ -320,7 +329,7 @@ X-Global-Tags: HOST=web-001
 
 
 
-:material-numeric-2-circle-outline: Mapping Field Values When Extracting Fields
+2. Mapping field values while extracting fields
 
 **Example Configuration**
 
@@ -351,14 +360,14 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 }
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: result=ok
 ```
 
 
-:material-numeric-3-circle-outline: Using Default Values When Extracting Fields
+3. Using default values while extracting fields
 
 **Example Configuration**
 
@@ -383,14 +392,14 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 }
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: result=unknown
 ```
 
 
-:material-numeric-4-circle-outline: Writing Fixed Values
+4. Writing fixed values
 
 **Example Configuration**
 
@@ -415,14 +424,14 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 }
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: app=guance
 ```
 
 
-:material-numeric-5-circle-outline: Matching Data Using Tags
+5. Matching data using Tag method
 
 **Example Configuration**
 
@@ -453,14 +462,14 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: host=app-001
 ```
 
 
-:material-numeric-6-circle-outline: Matching Data Using filterString
+6. Matching data using filterString method
 
 **Example Configuration**
 
@@ -488,13 +497,13 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 }
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: host=app-001
 ```
 
-:material-numeric-7-circle-outline: Custom Function Method to Extract Prefixes/Suffixes of Event Fields
+7. Extracting event field prefixes and suffixes using custom functions
 
 **Example Configuration**
 
@@ -502,7 +511,7 @@ X-Global-Tags: host=app-001
 CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS: my_script_set__my_script.make_global_tags
 ```
 
-**Example Function Located in Script Set `my_script_set`, Script `my_script`**
+**Example Function located in script set my_script_set, script my_script**
 
 ```yaml
 def make_global_tags(category, point, extra_fields):
@@ -512,16 +521,16 @@ def make_global_tags(category, point, extra_fields):
 
     global_tags_list = {}
 
-    # Get name and region fields from data's fields or tags
+    # Get name and region fields from the data's fields or tags
     name   = point['fields'].get('name')   or point['tags'].get('name')
     region = point['fields'].get('region') or point['tags'].get('region')
 
-    # Get prefix of name
+    # Get the prefix of name
     if name:
         prefix = str(name).split('-')[0]
         global_tags_list['name_prefix'] = prefix
 
-    # Get suffix of region
+    # Get the suffix of region
     if region:
         suffix = str(region).split('-').pop()
         global_tags_list['region_suffix'] = suffix
@@ -545,7 +554,7 @@ def make_global_tags(category, point, extra_fields):
 }
 ```
 
-**Example Header Written**
+**Example Written Header**
 
 ```yaml
 X-Global-Tags: name_prefix=Tom,region_suffix=shanghai
@@ -553,7 +562,7 @@ X-Global-Tags: name_prefix=Tom,region_suffix=shanghai
 
 
 
-**Sample Event Report**:
+**Example Reported Events**:
 
 ```json
 {
@@ -571,33 +580,33 @@ X-Global-Tags: host=web-01,business_type=ecommerce,DF_WORKSPACE_UUID=wksp_123
 ```
 
 
-## :material-numeric-3-circle: Dataway Sinker Rule Configuration
+## 3. Dataway Sinker Rule Configuration
 
 
-### Sample Rule File (`sinker.json`)
+### Example Rule File (`sinker.json`)
 
 ```json
 {
   "strict": false,
   "rules": [
     {
-      "rules": ["{ business_type = 'ecommerce' }"],  // Match ecommerce events
-      "url": "https://kodo.guance.com?token=tkn_ecommerce_workspace_token"
+      "rules": ["{ business_type = 'ecommerce' }"],  // Matches ecommerce events
+      "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_ecommerce_space_token"
     },
     {
-      "rules": ["{ DF_WORKSPACE_UUID = 'wksp_123' }"],  // Match specified workspace
-      "url": "https://backup.guance.com?token=tkn_backup_workspace_token"
+      "rules": ["{ DF_WORKSPACE_UUID = 'wksp_123' }"],  // Matches specified workspace
+      "url": "https://backup.<<< custom_key.brand_main_domain >>>?token=tkn_backup_space_token"
     },
     {
       "rules": ["*"],  // Default rule (must exist)
-      "url": "https://default.guance.com?token=tkn_default_workspace_token"
+      "url": "https://default.<<< custom_key.brand_main_domain >>>?token=tkn_default_space_token"
     }
   ]
 }
 ```
 
 
-### Rule Syntax Explanation
+### Rule Syntax Description
 
 | Operator | Example | Description |
 | --- | --- | --- |
@@ -608,7 +617,7 @@ X-Global-Tags: host=web-01,business_type=ecommerce,DF_WORKSPACE_UUID=wksp_123
 
 
 
-## :material-numeric-4-circle: Datakit End Configuration Instructions
+## 4. Datakit End Configuration Instructions
 
 
 ### Basic Configuration
@@ -624,16 +633,16 @@ X-Global-Tags: host=web-01,business_type=ecommerce,DF_WORKSPACE_UUID=wksp_123
 
 
 
-### Precautions
+### Notes
 
-- **Field Type Limitation**: Only string-type fields are supported (all Tag values are strings)
+- **Field Type Restrictions**: Only string-type fields are supported (all Tag values are strings)
 
-- **Binary Data Support**: Supports binary data sharding like Session Replay, Profiling
+- **Binary Data Support**: Supports Session Replay, Profiling, etc., binary data sharding
 
-- **Performance Impact**: Each additional sharding field increases memory usage by about 5%
+- **Performance Impact**: Each additional sharding field increases memory usage by approximately 5%
 
 
-## :material-numeric-5-circle: Impact of Global Tags
+## 5. Impact of Global Tags
 
 
 ### 1. Global Tag Example
@@ -648,9 +657,9 @@ X-Global-Tags: host=web-01,business_type=ecommerce,DF_WORKSPACE_UUID=wksp_123
 
 
 
-### 2. Sharding Identifier Merge Logic
+### 2. Sharding Identifier Merging Logic
 
-Assuming the event data contains the following Tags:
+Assume the event data contains the following Tags:
 
 ```json
 {
@@ -668,7 +677,7 @@ X-Global-Tags: cluster=cluster-B,region=cn-east
 
 
 
-## Extended Explanation: Sharding of Other Data Types
+## Extended Explanation: Sharding for Other Data Types
 
 
 ### 1. Custom Sharding Rules
@@ -677,7 +686,7 @@ For non-event data (such as `logging`, `metric`),分流 is achieved by specifyin
 
 
 ```yaml
-# Func configuration example: Processing logging data
+# Func Configuration Example: Handling logging data
 CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
   - category: logging
     fields:
@@ -693,9 +702,9 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 
 - **Isolated Configuration**: Different data categories (`keyevent`/`logging`/`metric`) use independent configuration blocks
 
-- **Field Simplification**: Sharding identifiers for a single data category do not exceed 3
+- **Field Simplification**: The number of sharding identifiers for a single data category should not exceed 3
 
-- **Avoid Conflicts**: Sharding fields for different categories should use different naming conventions
+- **Avoid Conflicts**: It is recommended to use different naming conventions for sharding fields across different categories
 
 
 ## Troubleshooting
@@ -704,11 +713,11 @@ CUSTOM_INTERNAL_DATAWAY_X_GLOBAL_TAGS:
 
 ### Common Issues
 
-| Issue | Troubleshooting Steps |
+| Phenomenon | Troubleshooting Steps |
 | --- | --- |
 | **Sharding Not Effective** | 1. Check Dataway logs `grep 'sinker reload'`<br>2. Verify Header using `curl -v`<br>3. Check Sinker rule priority |
-| **Partial Data Loss** | 1. Confirm `strict` mode status<br>2. Check if the default rule exists |
-| **Identifier Not Injected** | 1. Validate Func configuration syntax<br>2. Check if the field is of string type |
+| **Partial Data Loss** | 1. Confirm `strict` mode status<br>2. Check if default rule exists |
+| **Identifier Not Injected** | 1. Verify Func configuration syntax<br>2. Check if field is of string type |
 
 
 

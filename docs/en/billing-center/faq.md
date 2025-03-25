@@ -1,18 +1,20 @@
 # FAQ
 ---
 
-:material-chat-question: Voucher Distribution Method
+:material-chat-question: Coupon distribution method
 
-Direct Distribution: The voucher will be directly credited to your Billing Center account. You can log in to the [Billing Center](https://<<< custom_key.boss_domain >>>/) > Account Overview > Voucher Balance to check it.
+Direct distribution: Coupons will be directly distributed to your Billing Center account, and you can log in to [Billing Center](https://<<< custom_key.boss_domain >>>/) > Account Overview > Coupon Balance to check.
 
-:material-chat-question: Voucher Usage Scope
+:material-chat-question: Scope of coupon usage
 
-Vouchers are only applicable for <<< custom_key.brand_name >>> Commercial Plan.
+Coupons are only applicable to the <<< custom_key.brand_name >>> Commercial Plan.
 
-:material-chat-question: Can the amount paid using vouchers be invoiced?
 
-The amount paid using vouchers cannot be invoiced.
+:material-chat-question: Can invoices be issued for amounts paid with coupons?
 
-:material-chat-question: Can vouchers be refunded or exchanged after use?
+Amounts paid with coupons cannot be invoiced.
 
-Vouchers cannot be refunded or exchanged once they have been used.
+
+:material-chat-question: Can coupons be returned or exchanged after use?
+
+Coupons cannot be returned or exchanged once they have been used.

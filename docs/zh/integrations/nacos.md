@@ -6,8 +6,8 @@ dashboard :
   - desc  : 'Nacos'
     path  : 'dashboard/zh/nacos'
 monitor   :
-  - desc  : 'Nacos'
-    path  : 'monitor/zh/nacos'
+  - desc  : '暂无'
+    path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -139,3 +139,8 @@ cp prom.conf.sample nacos-prom.conf
 
 
 更多 Nacos 指标，可以参考 [Nacos 官方网站-监控](https://nacos.io/zh-cn/docs/monitor-guide.html)
+
+## 最佳实践 {#best-practices}
+<div class="grid cards" data-href="https://learning.guance.com/uploads/banner_f446194a3c.png" data-title="Nacos 可观测性最佳实践" data-desc=" 本文介绍如何通过观测云采集 Nacos 的指标数据，监控 Nacos 的运行状态，确保服务稳定性和可靠性。"  markdown>
+<[Nacos 可观测性最佳实践](https://www.guance.com/learn/articles/nacos)>
+</div>

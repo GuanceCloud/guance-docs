@@ -15,7 +15,7 @@
 
 ## <<< custom_key.brand_name >>>登录方式
 
-1、打开[<<< custom_key.brand_name >>>](https://auth.guance.com/login/pwd)，选择登录站点，输入用户名和密码进行登录。
+1、打开[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site_auth >>>/login/pwd)，选择登录站点，输入用户名和密码进行登录。
 
 2、在<<< custom_key.brand_name >>>工作空间**付费计划与账单**，点击**费用中心**，即可进入<<< custom_key.brand_name >>>费用中心进行账户管理。
 

@@ -50,7 +50,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/list' \
             "createdWay": "import",
             "creator": "acnt_xxxx32",
             "creatorInfo": {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "name": "88测试",
                 "username": "测试"
@@ -170,7 +170,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/viewer/list' \
             "updateAt": 1677662452,
             "updator": "acnt_xxxx32",
             "updatorInfo": {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "name": "88测试",
                 "username": "测试"

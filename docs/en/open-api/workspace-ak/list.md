@@ -5,16 +5,20 @@
 <br />**GET /api/v1/workspace/accesskey/list**
 
 ## Overview
-Get the list of keys
+Get Key List
+
+
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:-------|:--------|:------------------------|
-| search        | string | No      | Search by name<br>Example: supper_workspace <br>Allow empty: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| search | string |  | Search by name<br>Example: supper_workspace <br>Can be empty: False <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
+
+
 
 
 
@@ -27,6 +31,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/acce
 
 
 
+
 ## Response
 ```shell
 {
@@ -36,7 +41,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/acce
             "createAt": 1677808718,
             "creator": "acnt_xxxx32",
             "creatorInfo": {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "",
                 "name": "88 Test",
                 "username": "Test"
@@ -58,3 +63,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/acce
     "traceId": "TRACE-B73F5F23-046C-4A84-8B33-D028C92994C4"
 } 
 ```
+
+
+
+
+<!-- Note: This section is preserved as it was in the original content -->

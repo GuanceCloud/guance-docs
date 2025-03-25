@@ -23,6 +23,8 @@
 |:-----------|:-------|:-----|:----------------|
 | extend | json |  | 前端自定义数据<br>允许为空: True <br> |
 | syncExtensionField | boolean |  | 同步备份扩展字段, true为同步, false不同步, 默认不同步<br>允许为空: False <br> |
+| openPermissionSet | boolean |  | 开启 自定义权限配置, (默认 false:不开启), 开启后 读取转发规则的数据的权限, 根据 readPermissionSet (2025-03-26 迭代新增)<br>允许为空: False <br> |
+| readPermissionSet | array |  | 读取数据转发规则数据的权限配置, 可配置角色(除拥有者) (2025-03-26 迭代新增)<br>例子: ['wsAdmin', 'general'] <br>允许为空: False <br> |
 | accessCfg | json |  | 外部资源访问配置信息<br>允许为空: False <br> |
 | accessCfg.provider | string |  | 供应商<br>允许为空: False <br>可选值: ['aliyun', 'aws', 'huawei'] <br> |
 | accessCfg.grantType | string |  | 授权类型<br>允许为空: False <br>可选值: ['role', 'ram'] <br> |

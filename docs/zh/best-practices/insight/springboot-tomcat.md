@@ -96,7 +96,7 @@ export  CATALINA_OPTS="$CATALINA_OPTS -javaagent:/usr/local/df-demo/tomcat8081/a
 ### 3 链路可观测
 
 浏览器访问 `http://192.168.0.100:8080/consumer/ping` ，这里的 IP 是主机的地址。<br/>
-登录 「[<<< custom_key.brand_name >>>](https://console.guance.com/)」-「应用性能监测」，可看到 `tomcat-customer` 和 `tomcat-provider` 服务。<br/>
+登录 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」-「应用性能监测」，可看到 `tomcat-customer` 和 `tomcat-provider` 服务。<br/>
 点击一个链路进去，可以查看火焰图、span 列表、调用关系等。
 
 ![image](../images/springboot-tomcat-3.png)

@@ -35,7 +35,7 @@
 DialingServer:
   # 拨测服务中心的地址配置
   use_https: true                           ## 是否使用https
-  host: dflux-dial.guance.com               ## 拨测中心地址，换成私有部署的ingress域名，如果要切换回来记得使用原本的地址
+  host: <<< custom_key.dial_server_domain >>>               ## 拨测中心地址，换成私有部署的ingress域名，如果要切换回来记得使用原本的地址
   port: 443
   timeout: 10
 ```
@@ -59,12 +59,12 @@ DialingServer:
 ```shell
 [[inputs.dialtesting]]
   # We can also configure a JSON path like "file:///your/dir/json-file-name"
-  server = "https://dflux-dial.guance.com"
+  server = "https://<<< custom_key.dial_server_domain >>>"
 
   # [require] node ID
   region_id = "default"
 
-  # if server are dflux-dial.guance.com, ak/sk required
+  # if server are <<< custom_key.dial_server_domain >>>, ak/sk required
   ak = ""
   sk = ""
 ```

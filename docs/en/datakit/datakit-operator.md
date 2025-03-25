@@ -1,4 +1,4 @@
-# Datakit Operator User Guide
+# Datakit Operator
 
 ---
 
@@ -8,26 +8,26 @@
 
 ## Overview and Installation {#datakit-operator-overview-and-install}
 
-Datakit Operator is a collaborative project between Datakit and Kubernetes orchestration. It aims to assist the deployment of Datakit as well as other functions such as verification and injection.
+Datakit Operator is a joint project of Datakit in Kubernetes orchestration, aimed at assisting with more convenient deployment of Datakit, as well as features like validation and injection.
 
-Currently, Datakit Operator provides the following functions:
+Currently, Datakit-Operator provides the following functionalities:
 
-- Injection DDTrace SDK(Java/Python/Node.js) and related environments. See [documentation](datakit-operator.md#datakit-operator-inject-lib).
-- Injection Sidecar logfwd to collect Pod logging. See [documentation](datakit-operator.md#datakit-operator-inject-logfwd).
-- Support task distribution for Datakit plugins. See [documentation](election.md#plugins-election).
+- Injection of DDTrace SDK (Java/Python/Node.js) along with corresponding environment variable information, see [documentation](datakit-operator.md#datakit-operator-inject-lib)
+- Injection of Sidecar logfwd service to collect container logs, see [documentation](datakit-operator.md#datakit-operator-inject-logfwd)
+- Support for election tasks of Datakit collectors, see [documentation](election.md#plugins-election)
 
 Prerequisites:
 
-- Recommended Kubernetes version 1.24.1 or above and internet access (to download yaml file and pull images).
-- Ensure `MutatingAdmissionWebhook` and `ValidatingAdmissionWebhook` [controllers](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#prerequisites){:target="_blank"} are enabled.
-- Ensure `admissionregistration.k8s.io/v1` API is enabled.
+- Recommended Kubernetes v1.24.1 or higher, and access to the internet (download yaml file and pull corresponding images)
+- Ensure that `MutatingAdmissionWebhook` and `ValidatingAdmissionWebhook` [controllers](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/extensible-admission-controllers/#prerequisites){:target="_blank"} are enabled
+- Ensure that the `admissionregistration.k8s.io/v1` API is enabled
 
 ### Installation Steps {#datakit-operator-install}
 
 <!-- markdownlint-disable MD046 -->
 === "Deployment"
 
-    Download [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}, and follow these steps:
+    Download [*datakit-operator.yaml*](https://static.guance.com/datakit-operator/datakit-operator.yaml){:target="_blank"}, steps as follows:
     
     ``` shell
     $ kubectl create namespace datakit
@@ -41,7 +41,7 @@ Prerequisites:
 
 === "Helm"
 
-    Precondition:
+    Prerequisites
 
     * Kubernetes >= 1.14
     * Helm >= 3.0+
@@ -52,13 +52,13 @@ Prerequisites:
          -n datakit --create-namespace
     ```
 
-    View deployment status:
+    Check deployment status:
 
     ```shell
     $ helm -n datakit list
     ```
 
-    Upgrade with the following command:
+    You can upgrade via the following command:
 
     ```shell
     $ helm -n datakit get values datakit-operator -a -o yaml > values.yaml
@@ -68,7 +68,7 @@ Prerequisites:
         -f values.yaml
     ```
 
-    Uninstall with the following command:
+    You can uninstall via the following command:
 
     ```shell
     $ helm uninstall datakit-operator -n datakit
@@ -78,17 +78,17 @@ Prerequisites:
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - There is a strict correspondence between Datakit-Operator's program and yaml files. If an outdated yaml file is used, it may not be possible to install the new version of Datakit-Operator. Please download the latest yaml file.
-    - If you encounter `InvalidImageName` error, you can manually pull the image.
+    - Datakit-Operator has a strict correspondence between its procedures and yaml files. Using an outdated yaml file may prevent the installation of the latest version of Datakit-Operator; please download the latest version.
+    - If you encounter an `InvalidImageName` error, you can manually pull the image.
 <!-- markdownlint-enable -->
 
-## Configuration Explanation {#datakit-operator-jsonconfig}
+## Configuration Description {#datakit-operator-jsonconfig}
 
 [:octicons-tag-24: Version-1.4.2](changelog.md#cl-1.4.2)
 
-The Datakit Operator configuration is in JSON format and is stored in Kubernetes as a separate ConfigMap. It is loaded into the container as environment variables.
+The configuration for Datakit Operator is in JSON format, stored separately in Kubernetes as a ConfigMap, and loaded into the container via environment variables.
 
-The default configuration is as follows:
+Default configuration:
 
 ```json
 {
@@ -99,7 +99,7 @@ The default configuration is as follows:
             "enabled_namespaces":     [],
             "enabled_labelselectors": [],
             "images": {
-                "java_agent_image":   "pubrepo.guance.com/datakit-operator/dd-lib-java-init:v1.30.1-guance",
+                "java_agent_image":   "pubrepo.guance.com/datakit-operator/dd-lib-java-init:v1.30.1-guance"
             },
             "envs": {
                 "DD_AGENT_HOST":           "datakit-service.datakit.svc",
@@ -133,66 +133,72 @@ The default configuration is as follows:
                 "DK_PROFILE_SCHEDULE": "0 * * * *"
             }
         }
+    },
+    "admission_mutate": {
+        "loggings": [
+            {
+                "namespace_selectors": ["test01"],
+                "label_selectors":     ["app=logging"],
+                "config":"[{\"disable\":false,\"type\":\"file\",\"path\":\"/tmp/opt/**/*.log\",\"source\":\"logging-tmp\"},{\"disable\":true,\"type\":\"file\",\"path\":\"/var/log/opt/**/*.log\",\"source\":\"logging-var\"}]"
+            }
+        ]
     }
 }
 ```
 
-The main configuration items are `ddtrace`, `logfwd`, and `profiler`, which specify the injected images and environment variables. In addition, `ddtrace` also supports batch injection based on `enabled_namespaces` and `enabled_selectors`, as detailed in the section below.
+The main configuration items are `ddtrace`, `logfwd`, and `profiler`, which specify injected images and environment variables. Additionally, ddtrace supports batch injection based on `enabled_namespaces` and `enabled_selectors`; see the subsequent section on "Injection Methods."
 
-### Configuration of Images {#datakit-operator-config-images}
+### Specifying Image Addresses {#datakit-operator-config-images}
 
-The primary function of the Datakit Operator is to inject images and environment variables, using the `images` configuration to specify the image addresses. The `images` configuration consists of multiple Key/Value pairs, where the Key is fixed, and the Value is modified to specify the image address.
+The primary role of Datakit Operator is injecting images and environment variables, using the `images` configuration to specify image addresses. The `images` consists of multiple Key/Value pairs, where the keys are fixed, and the values specify the image addresses.
 
-Under normal circumstances, images are stored in `pubrepo.guance.com/datakit-operator`. However, for some special environments where accessing this image repository is not convenient, you can use the following method (taking the `dd-lib-java-init` image as an example):
+Under normal circumstances, images are uniformly stored in `pubrepo.guance.com/datakit-operator`. For some special environments that cannot conveniently access this image repository, the following method can be used (taking the `dd-lib-java-init` image as an example):
 
-1. In an environment where `pubrepo.guance.com` is accessible, pull the image `pubrepo.guance.com/datakit-operator/dd-lib-java-init:v1.30.1-guance`, and then re-store it in your own image repository, for example, `inside.image.hub/datakit-operator/dd-lib-java-init:v1.30.1-guance`.
-1. Modify the JSON configuration, changing `admission_inject`->`ddtrace`->`images`->`java_agent_image` to `inside.image.hub/datakit-operator/dd-lib-java-init:v1.30.1-guance`, and apply this YAML file.
-1. After this, the Datakit Operator will use the new Java Agent image path.
+1. In an environment that can access `pubrepo.guance.com`, pull the image `pubrepo.guance.com/datakit-operator/dd-lib-java-init:v1.30.1-guance` and store it in your own image repository, such as `inside.image.hub/datakit-operator/dd-lib-java-init:v1.30.1-guance`
+1. Modify the JSON configuration by changing `admission_inject`->`ddtrace`->`images`->`java_agent_image` to `inside.image.hub/datakit-operator/dd-lib-java-init:v1.30.1-guance`, then apply this yaml.
+1. Thereafter, Datakit Operator will use the new Java Agent image path.
 
-<!-- markdownlint-disable MD046 -->
-???+ attention
-
-    The Datakit Operator does not validate the image. If the image path is incorrect, Kubernetes will throw an error when creating the Pod.**
-<!-- markdownlint-enable -->
+**Datakit Operator does not verify images; if the image path is incorrect, Kubernetes will report an error when creating Pods.**
 
 ### Adding Environment Variables {#datakit-operator-config-envs}
 
-All environment variables that need to be injected must be specified in the configuration file, as the Datakit Operator does not add any environment variables by default.
+All required environment variables must be specified in the configuration file; Datakit Operator does not default add any environment variables.
 
-The environment variable configuration is called `envs`, `envs` consists of multiple Key/Value pairs: the Key is a fixed value, and the Value can either be a fixed value or a placeholder, depending on the actual situation.
+The environment variable configuration item is `envs`, consisting of multiple Key/Value pairs: the key is a fixed value; the value can either be a fixed value or a placeholder, taking actual values according to the situation.
 
-For example, to add an environment variable `testing-env` in `envs`:
+For instance, adding a `testing-env` in `envs`:
 
 ```json
+{
     "admission_inject": {
         "ddtrace": {
-            # other..
             "envs": {
-                "DD_AGENT_HOST":           "datakit-service.datakit.svc",
-                "DD_TRACE_AGENT_PORT":     "9529",
-                "FAKE_ENV":                "ok"
+                "DD_AGENT_HOST":       "datakit-service.datakit.svc",
+                "DD_TRACE_AGENT_PORT": "9529",
+                "testing-env":         "ok"
             }
         }
     }
+}
 ```
 
-All containers that have `ddtrace` agent injected into them will have five environment variables added to their `envs`.
+All containers injected with the `ddtrace` agent will have 3 environment variables added from `envs`.
 
-In Datakit Operator v1.4.2 and later versions, `envs` `envs` support for the Kubernetes Downward API [environment variable fetch field](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#available-fields). The following are now supported:
+In Datakit Operator v1.4.2 and later versions, `envs` supports Kubernetes Downward API's [environment variable field reference](https://kubernetes.io/zh-cn/docs/concepts/workloads/pods/downward-api/#downwardapi-fieldRef). Currently supported fields include:
 
-- `metadata.name`: The pod's name.
-- `metadata.namespace`:  The pod's namespace.
-- `metadata.uid`:  The pod's unique ID.
-- `metadata.annotations['<KEY>']`:  The value of the pod's annotation named `<KEY>` (for example, metadata.annotations['myannotation']).
-- `metadata.labels['<KEY>']`:  The text value of the pod's label named `<KEY>` (for example, metadata.labels['mylabel']).
-- `spec.serviceAccountName`:  The name of the pod's service account.
-- `spec.nodeName`:  The name of the node where the Pod is executing.
-- `status.hostIP`:  The primary IP address of the node to which the Pod is assigned.
-- `status.hostIPs`:  The IP addresses is a dual-stack version of status.hostIP, the first is always the same as status.hostIP. The field is available if you enable the PodHostIPs feature gate.
-- `status.podIP`:  The pod's primary IP address (usually, its IPv4 address).
-- `status.podIPs`:  The IP addresses is a dual-stack version of status.podIP, the first is always the same as status.podIP.
+- `metadata.name`: Pod name
+- `metadata.namespace`: Pod's namespace
+- `metadata.uid`: Pod's unique ID
+- `metadata.annotations['<KEY>']`: Value of Pod annotation `<KEY>` (e.g., metadata.annotations['myannotation'])
+- `metadata.labels['<KEY>']`: Value of Pod label `<KEY>` (e.g., metadata.labels['mylabel'])
+- `spec.serviceAccountName`: Name of Pod's service account
+- `spec.nodeName`: Name of node where Pod runs
+- `status.hostIP`: Main IP address of the node where Pod resides
+- `status.hostIPs`: This set of IP addresses represents the dual-stack version of status.hostIP, with the first IP always matching status.hostIP. This field is available after enabling the PodHostIPs feature gate.
+- `status.podIP`: Main IP address of the Pod (usually its IPv4 address)
+- `status.podIPs`: This set of IP addresses represents the dual-stack version of status.podIP, with the first IP always matching status.podIP.
 
-For example, if there is a Pod with the name `nginx-123` and the namespace `middleware`, and you want to inject the environment variables `POD_NAME` and `POD_NAMESPACE`, refer to the following configuration:
+For example, there is a Pod named nginx-123 in the middleware namespace, and we want to inject environment variables `POD_NAME` and `POD_NAMESPACE`:
 
 ```json
 {
@@ -207,7 +213,7 @@ For example, if there is a Pod with the name `nginx-123` and the namespace `midd
 }
 ```
 
-Eventually, the environment variables can be seen in the Pod:
+Ultimately, within the Pod, you can see:
 
 ``` shell
 $ env | grep POD
@@ -218,32 +224,33 @@ POD_NAMESPACE=middleware
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    If the placeholder in the Value is unrecognized, it will be added to the environment variable as a plain string. For example, `"POD_NAME": "{fieldRef:metadata.PODNAME}"` is incorrect, and the environment variable will be set as `POD_NAME={fieldRef:metadata.PODNAME}`.
+    If the placeholder for Value cannot be recognized, it will be added to the environment variable as a plain string. For example, `"POD_NAME": "{fieldRef:metadata.PODNAME}"` is an incorrect writing method, resulting in the environment variable being `POD_NAME={fieldRef:metadata.PODNAME}`.
 <!-- markdownlint-enable -->
 
 ## Injection Methods {#datakit-operator-inject}
 
-Datakit-Operator supports two methods for resource injection `global configuration namespaces and selectors`, and adding specific annotations to target Pods. The differences between them are as follows:
+Datakit-Operator supports two resource input methods: "global namespaces and selectors configuration" and adding specific Annotations to target Pods. Their differences are as follows:
 
-- Global Configuration: Namespace and Selector: By modifying the Datakit-Operator configuration, you specify the target Pod's Namespace and Selector. If a Pod matches the criteria, the resource injection will occur.
-    - Advantages: No need to add annotations to the target Pod (but the target Pod must be restarted).
-    - Disadvantages: The scope is not precise enough, which may lead to unnecessary injections.
+- Global namespace and selector configuration: By modifying the Datakit-Operator config, specify the Namespace and Selector for target Pods. If a Pod matches the conditions, resources are injected.
+    - Advantage: No need to add Annotations to target Pods (but requires restarting target Pods)
+    - Disadvantage: Not precise enough, potential for invalid injections
 
-- Adding Annotations to Target Pods: Add annotations to the target Pod, and Datakit-Operator will check the Pod's annotations to decide whether to perform the injection based on the conditions.
-    - Advantages: Precise scope, preventing unnecessary injections.
-    - Disadvantages: You must manually add annotations to the target Pod, and the Pod needs to be restarted.
+- Adding Annotations to target Pods: Add Annotations to target Pods, Datakit-Operator checks the Pod Annotations and injects if they match.
+    - Advantage: Precise range, no invalid injections
+    - Disadvantage: Must add Annotations to target Pods, and requires restarting target Pods
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    As of Datakit-Operator v1.5.8, the `global configuration namespaces and selectors` method only applies to `DDtrace injection`. It does not apply to `logfwd` and `profiler`, for which annotations are still required.
+    As of Datakit-Operator v1.5.8, the global namespaces and selectors configuration only works for DDtrace injection, while logfwd and profiler still require adding annotations for injection.
 <!-- markdownlint-enable -->
+
 
 <!-- markdownlint-disable MD013 -->
-### Global Configuration: Namespaces and Selectors {#datakit-operator-config-ddtrace-enabled}
+### Global namespaces and selectors configuration {#datakit-operator-config-ddtrace-enabled}
 <!-- markdownlint-enable -->
 
-The `enabled_namespaces` and `enabled_labelselectors` fields are specific to `ddtrace`. They are object arrays that require the specification of `namespace` and `language`. The relationships between the arrays are "OR" (i.e., any match in the array will trigger injection). The configuration is written as follows (refer to the configuration details later):
+`enabled_namespaces` and `enabled_labelselectors` are exclusive to `ddtrace`, they are object arrays requiring specification of `namespace` and `language`. The relationship between array elements is "OR", written as follows (see detailed configuration notes below):
 
 ```json
 {
@@ -253,14 +260,14 @@ The `enabled_namespaces` and `enabled_labelselectors` fields are specific to `dd
         "ddtrace": {
             "enabled_namespaces": [
                 {
-                    "namespace": "testns",  # Specify the namespace
-                    "language": "java"      # Specify the language for the agent to inject
+                    "namespace": "testns",  # Specify namespace
+                    "language": "java"      # Specify language for the agent to inject
                 }
             ],
             "enabled_labelselectors": [
                 {
-                    "labelselector": "app=log-output",  # Specify the label selector
-                    "language": "java"                  # Specify the language for the agent to inject
+                    "labelselector": "app=log-output",  # Specify labelselector
+                    "language": "java"                  # Specify language for the agent to inject
                 }
             ]
             # other..
@@ -269,67 +276,61 @@ The `enabled_namespaces` and `enabled_labelselectors` fields are specific to `dd
 }
 ```
 
-If a Pod satisfies both the `enabled_namespaces` rule and the `enabled_labelselectors` rule, the configuration in `enabled_labelselectors` will take precedence (usually applied when the `language` value is used).
+If a Pod satisfies both `enabled_namespaces` rules and `enabled_labelselectors`, the configuration of `enabled_labelselectors` takes precedence (usually used in `language` values).
 
-For guidelines on how to write `labelselector`, please refer to the [official documentation](https://kubernetes.io/en/docs/concepts/overview/working-with-objects/labels/#label-selectors).
+Refer to this [official documentation](https://kubernetes.io/zh-cn/docs/concepts/overview/working-with-objects/labels/#label-selectors){:target="_blank"} for guidelines on writing labelselectors.
 
 <!-- markdownlint-disable MD046 -->
 ???+ note
 
-    - In Kubernetes versions 1.16.9 or earlier, Admission does not record the Pod Namespace, so the `enabled_namespaces` feature cannot be used.
+    - In Kubernetes 1.16.9 or earlier, Admission does not record Pod Namespace, so the `enabled_namespaces` function cannot be used.
 <!-- markdownlint-enable -->
 
-<!-- markdownlint-disable MD013 -->
 ### Adding Annotation Configuration for Injection {#datakit-operator-config-annotation}
-<!-- markdownlint-enable -->
 
-To inject the `ddtrace` file into a Pod, add the specified annotation to the Deployment. Make sure to add the annotation to the `template` section.
+Add the specified Annotation to Deployment, indicating the need to inject the `ddtrace` file. Note that the Annotation should be added in the template.
 
-The annotation format is as follows:
+Its format is:
 
-- The key is `admission.datakit/%s-lib.version`, where `%s` should be replaced with the desired language. Currently, it supports `java`.
-- The value is the specified version number. By default, it uses the version specified by the Datakit-Operator configuration in the `java_agent_image` setting. For more details, see the configuration explanation below.
+- Key is `admission.datakit/%s-lib.version`, `%s` needs to be replaced with the specified language, currently supporting `java`
+- Value specifies the version number. Default is the version specified in Datakit-Operator's `java_agent_image` configuration
 
-For example, to add an annotation:
+For example, add the Annotation as follows:
 
 ```yaml
       annotations:
         admission.datakit/java-lib.version: "v1.36.2-guance"
 ```
 
-This indicates that the image version to be injected for this Pod is `v1.36.2-guance`. The image address is taken from the configuration `admission_inject` -> `ddtrace` -> `images` -> `java_agent_image`, where the image version is replaced with `"v1.36.2-guance"`, similar to `pubrepo.guance.com/datakit-operator/dd-lib-java-init:v1.36.2-guance`.
+This indicates that the Pod needs to inject the image version `v1.36.2-guance`, and the image address comes from the configuration `admission_inject`->`ddtrace`->`images`->`java_agent_image`, replacing the image version with "v1.36.2-guance", i.e., `pubrepo.guance.com/datakit-operator/dd-lib-java-init:v1.36.2-guance`.
 
-<!-- markdownlint-disable MD013 -->
-## Using Datakit-Operator to Inject Files and Programs {#datakit-operator-inject-sidecar}
-<!-- markdownlint-enable -->
+## Datakit Operator Injection {#datakit-operator-inject-sidecar}
 
-In large Kubernetes clusters, it can be quite difficult to make bulk configuration changes. Datakit-Operator will determine whether or not to modify or inject data based on Annotation configuration.
+In large Kubernetes clusters, batch modification of configurations can be cumbersome. Datakit-Operator decides whether to modify or inject based on the Annotation configuration.
 
-The following functions are currently supported:
+Currently supported functions include:
 
-- Injection of `ddtrace` agent and environment
-- Mounting of `logfwd` sidecar and enabling log collection
-- Inject [`async-profiler`](https://github.com/async-profiler/async-profiler){:target="_blank"} for JVM profiling [:octicons-beaker-24: Experimental](index.md#experimental)
-- Inject [`py-spy`](https://github.com/benfred/py-spy){:target="_blank"} for Python profiling [:octicons-beaker-24: Experimental](index.md#experimental)
+- Injection of `ddtrace` agent and environment functionality
+- Mounting of `logfwd` sidecar and enabling log collection functionality
+- Injection of [`async-profiler`](https://github.com/async-profiler/async-profiler){:target="_blank"} to collect JVM program profile data [:octicons-beaker-24: Experimental](index.md#experimental)
+- Injection of [`py-spy`](https://github.com/benfred/py-spy){:target="_blank"} to collect Python application profile data [:octicons-beaker-24: Experimental](index.md#experimental)
 
 <!-- markdownlint-disable MD046 -->
 ???+ info
 
-    Only version v1 of `deployments/daemonsets/cronjobs/jobs/statefulsets` Kind is supported, and because Datakit-Operator actually operates on the PodTemplate, Pod is not supported. In this article, we will use `Deployment` to describe these five kinds of Kind.
+    Only supports v1 versions of `deployments/daemonsets/cronjobs/jobs/statefulsets` these five kinds of Kind, and because Datakit-Operator actually operates on PodTemplate, it does not support Pod. In this article, `Deployment` is used to describe these five kinds of Kind.
 <!-- markdownlint-enable -->
 
-<!-- markdownlint-disable MD013 -->
-### DDTrace Agent {#datakit-operator-inject-lib}
-<!-- markdownlint-enable -->
+### DDtrace Agent {#datakit-operator-inject-lib}
 
-#### Usage {#datakit-operator-inject-lib-usage}
+#### Usage Instructions {#datakit-operator-inject-lib-usage}
 
-1. On the target Kubernetes cluster, [download and install Datakit-Operator](datakit-operator.md#datakit-operator-overview-and-install).
-1. Add a Annotation `admission.datakit/java-lib.version: ""` in deployment.
+1. In the target Kubernetes cluster, [download and install Datakit-Operator](datakit-operator.md#datakit-operator-overview-and-install)
+2. Add the specified Annotation `admission.datakit/java-lib.version: ""` to the deployment, indicating the need to inject the default version of DDtrace Java Agent.
 
 #### Example {#datakit-operator-inject-lib-example}
 
-The following is an example of Deployment that injects `dd-java-lib` into all Pods created by Deployment:
+Below is a Deployment example, injecting `dd-java-lib` into all Pods created by the Deployment:
 
 ```yaml
 apiVersion: apps/v1
@@ -357,42 +358,43 @@ spec:
         - containerPort: 80
 ```
 
-Create a resource using yaml file:
+Create resources using the yaml file:
 
 ```shell
-kubectl apply -f nginx.yaml
+$ kubectl apply -f nginx.yaml
+...
 ```
 
 Verify as follows:
 
 ```shell
 $ kubectl get pod
+
 NAME                                   READY   STATUS    RESTARTS      AGE
 nginx-deployment-7bd8dd85f-fzmt2       1/1     Running   0             4s
 
 $ kubectl get pod nginx-deployment-7bd8dd85f-fzmt2 -o=jsonpath={.spec.initContainers\[\*\].name}
+
 datakit-lib-init
 ```
 
-<!-- markdownlint-disable MD013 -->
 ### logfwd {#datakit-operator-inject-logfwd}
-<!-- markdownlint-enable -->
 
 #### Prerequisites {#datakit-operator-inject-logfwd-prerequisites}
 
-[logfwd](../integrations/logfwd.md#using) is a proprietary log collection application for Datakit. To use it, you need to first deploy Datakit in the same Kubernetes cluster and satisfy the following two conditions:
+[logfwd](../integrations/logfwd.md#using) is a dedicated log collection application for Datakit, requiring prior deployment of Datakit in the same Kubernetes cluster, and achieving the following two points:
 
-1. The Datakit `logfwdserver` collector is enabled, for example, listening on port `9533`.
-2. The Datakit service needs to open port `9533` to allow other Pods to access `datakit-service.datakit.svc:9533`.
+1. Datakit enables the `logfwdserver` collector, for example, listening on port `9533`
+2. Datakit service needs to expose port `9533`, allowing other Pods to access `datakit-service.datakit.svc:9533`
 
-#### Instructions {#datakit-operator-inject-logfwd-instructions}
+#### Usage Instructions {#datakit-operator-inject-logfwd-instructions}
 
-1. On the target Kubernetes cluster, [download and install Datakit-Operator](datakit-operator.md#datakit-operator-overview-and-install).
-1. In the deployment, add the specified Annotation to indicate that a logfwd sidecar needs to be mounted. Note that the Annotation should be added in the template.
-    - The key is uniformly `admission.datakit/logfwd.instances`.
-    - The value is a JSON string of specific logfwd configuration, as shown below:
+1. In the target Kubernetes cluster, [download and install Datakit-Operator](datakit-operator.md#datakit-operator-overview-and-install)
+2. Add the specified Annotation to the deployment, indicating the need to mount the logfwd sidecar. Note that the Annotation must be added in the template
+    - Key is unified as `admission.datakit/logfwd.instances`
+    - Value is a JSON string specifying the logfwd configuration, as shown below:
 
-```json
+``` json
 [
     {
         "datakit_addr": "datakit-service.datakit.svc:9533",
@@ -416,28 +418,30 @@ datakit-lib-init
 ]
 ```
 
-Parameter explanation can refer to [logfwd configuration](../integrations/logfwd.md#config):
+Parameter description, refer to [logfwd configuration](../integrations/logfwd.md#config):
 
-- `datakit_addr` is the Datakit logfwdserver address.
-- `loggings` is the main configuration and is an array that can refer to [Datakit logging collector](../integrations/logging.md).
-    - `logfiles` is a list of log files, which can specify absolute paths and support batch specification using glob rules. Absolute paths are recommended.
-    - `ignore` filters file paths using glob rules. If it meets any filtering condition, the file will not be collected.
-    - `source` is the data source. If it is empty, `'default'` will be used by default.
-    - `service` adds a new tag. If it is empty, `$source` will be used by default.
-    - `pipeline` is the Pipeline script path. If it is empty, `$source.p` will be used. If `$source.p` does not exist, the Pipeline will not be used. (This script file exists on the DataKit side.)
-    - `character_encoding` selects an encoding. If the encoding is incorrect, the data cannot be viewed. It is recommended to leave it blank. Supported encodings include `utf-8`, `utf-16le`, `utf-16le`, `gbk`, `gb18030`, or "".
-    - `multiline_match` is for multiline matching, as described in [Datakit Log Multiline Configuration](../integrations/logging.md#multiline). Note that since it is in the JSON format, it does not support the "unescaped writing method" of three single quotes. The regex `^\d{4}` needs to be written as `^\\d{4}` with an escape character.
-    - `tags` adds additional tags in JSON map format, such as `{ "key1":"value1", "key2":"value2" }`.
+- `datakit_addr` is the Datakit logfwdserver address
+- `loggings` is the main configuration, an array, refer to [Datakit logging collector](../integrations/logging.md)
+    - `logfiles` list of log files, absolute paths can be specified, supports glob rules for bulk designation, recommend using absolute paths
+    - `ignore` file path filtering, uses glob rules, files matching any condition will not be collected
+    - `source` data source, defaults to 'default' if empty
+    - `service` additional tag, defaults to $source if empty
+    - `pipeline` Pipeline script path, defaults to $source.p if empty, will not use Pipeline if $source.p does not exist (this script file exists on the DataKit end)
+    - `character_encoding` choose encoding, if encoding is wrong it may result in unreadable data, default is empty. Supports `utf-8/utf-16le/utf-16le/gbk/gb18030`
+    - `multiline_match` multiline matching, see [Datakit log multiline configuration](../integrations/logging.md#multiline), note that due to JSON format triple single quotes for "non-escaped writing" are not supported, regular expression `^\d{4}` needs to be escaped as `^\\d{4}`
+    - `tags` add extra `tag`, written in JSON map format, e.g., `{ "key1":"value1", "key2":"value2" }`
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    That there is a difference between paths with and without a trailing slash. `/var/log` and `/var/log/` are considered different paths and cannot be reused.
+    When injecting logfwd, Datakit Operator reuses volumes with the same path by default to avoid errors caused by existing identical paths.
+
+    Paths ending with a slash and without a slash have different meanings, for example `/var/log` and `/var/log/` are different paths and cannot be reused.
 <!-- markdownlint-enable -->
 
 #### Example {#datakit-operator-inject-logfwd-example}
 
-Here is an example Deployment that continuously writes data to a file using shell and configures the collection of that file:
+Below is a Deployment example that continuously writes data to a file and configures the collection of that file:
 
 ```yaml
 apiVersion: apps/v1
@@ -464,7 +468,7 @@ spec:
         args: [/bin/sh, -c, 'mkdir -p /var/log/log-test; i=0; while true; do printf "$(date "+%F %H:%M:%S") [%-8d] Bash For Loop Examples.\\n" $i >> /var/log/log-test/1.log; i=$((i+1)); sleep 1; done']
 ```
 
-Creating Resources Using yaml File:
+Create resources using the yaml file:
 
 ```shell
 $ kubectl apply -f logging.yaml
@@ -475,6 +479,7 @@ Verify as follows:
 
 ```shell
 $ kubectl get pod
+
 NAME                                   READY   STATUS    RESTARTS      AGE
 logging-deployment-5d48bf9995-vt6bb       1/1     Running   0             4s
 
@@ -482,22 +487,211 @@ $ kubectl get pod logging-deployment-5d48bf9995-vt6bb -o=jsonpath={.spec.contain
 log-container datakit-logfwd
 ```
 
-Finally, you can check whether the logs have been collected on the Guance Cloud Log Platform.
+Finally, check if the logs are collected on the Guance log platform.
+
+### async-profiler {#inject-async-profiler}
+
+#### Prerequisites {#async-profiler-prerequisites}
+
+- The cluster has installed [Datakit](https://docs.guance.com/datakit/datakit-daemonset-deploy/){:target="_blank"}.
+- Enable the [profile](https://docs.guance.com/datakit/datakit-daemonset-deploy/#using-k8-env){:target="_blank"} collector.
+- Linux kernel parameter [kernel.perf_event_paranoid](https://www.kernel.org/doc/Documentation/sysctl/kernel.txt){:target="_blank"} value is set to 2 or lower.
+
+<!-- markdownlint-disable MD046 -->
+???+ note
+
+    `async-profiler` uses [`perf_events`](https://perf.wiki.kernel.org/index.php/Main_Page){:target="_blank"} tools to capture Linux kernel call stacks, non-privileged processes depend on corresponding kernel settings, you can modify the kernel parameters using the following commands:
+    ```shell
+    $ sudo sysctl kernel.perf_event_paranoid=1
+    $ sudo sysctl kernel.kptr_restrict=0
+    # Or
+    $ sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
+    $ sudo sh -c 'echo 0 >/proc/sys/kernel/kptr_restrict'
+    ```
+<!-- markdownlint-enable -->
+
+Add the annotation `admission.datakit/java-profiler.version: "latest"` under the `.spec.template.metadata.annotations` node in your [Pod controller](https://kubernetes.io/docs/concepts/workloads/controllers/){:target="_blank"} resource configuration file, then apply the configuration file,
+Datakit-Operator will automatically create a container named `datakit-profiler` in the corresponding Pod to assist with profiling.
+
+Next, an example is provided using a `Deployment` resource configuration file named `movies-java`.
+
+```yaml
+kind: Deployment
+metadata:
+  name: movies-java
+  labels:
+    app: movies-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movies-java
+  template:
+    metadata:
+      name: movies-java
+      labels:
+        app: movies-java
+      annotations:
+        admission.datakit/java-profiler.version: "0.4.4"
+    spec:
+      containers:
+        - name: movies-java
+          image: zhangyicloud/movies-java:latest
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            seccompProfile:
+              type: Unconfined
+          env:
+            - name: JAVA_OPTS
+              value: ""
+
+      restartPolicy: Always
+```
+
+Apply the configuration file and check if it takes effect:
+
+```shell
+$ kubectl apply -f deployment-movies-java.yaml
+
+$ kubectl get pods | grep movies-java
+movies-java-784f4bb8c7-59g6s   2/2     Running   0          47s
+
+$ kubectl describe pod movies-java-784f4bb8c7-59g6s | grep datakit-profiler
+      /app/datakit-profiler from datakit-profiler-volume (rw)
+  datakit-profiler:
+      /app/datakit-profiler from datakit-profiler-volume (rw)
+  datakit-profiler-volume:
+  Normal  Created    12m   kubelet            Created container datakit-profiler
+  Normal  Started    12m   kubelet            Started container datakit-profiler
+```
+
+After a few minutes, you can view the application performance data on the Guance console [APM Profiling](https://console.guance.com/tracing/profile){:target="_blank"} page.
+
+<!-- markdownlint-disable MD046 -->
+???+ note
+
+    By default, the command `jps -q -J-XX:+PerfDisableSharedMem | head -n 20` is used to find JVM processes in the container. For performance reasons, data from a maximum of 20 processes will be collected.
+
+???+ note
+
+    You can configure the behavior of profiling by modifying the environment variables under `datakit-operator-config` in the `datakit-operator.yaml` configuration file.
+    
+    | Environment Variable              | Description                                                                                                                                               | Default Value                        |
+    | ----                  | --                                                                                                                                                 | -----                         |
+    | `DK_PROFILE_SCHEDULE` | The scheduling plan for profiling, using the same syntax as Linux [Crontab](https://man7.org/linux/man-pages/man5/crontab.5.html){:target="_blank"}, such as `*/10 * * * *` | `0 * * * *` (scheduled once per hour) |
+    | `DK_PROFILE_DURATION` | Duration of each profiling session, in seconds                                                                                                                  | 240 (4 minutes)                 |
+
+
+???+ note
+
+    If no data is visible, enter the `datakit-profiler` container to check the corresponding logs for troubleshooting:
+    ```shell
+    $ kubectl exec -it movies-java-784f4bb8c7-59g6s -c datakit-profiler -- bash
+    $ tail -n 2000 log/main.log
+    ```
+<!-- markdownlint-enable -->
+
+### py-spy {#inject-py-spy}
+
+#### Prerequisites {#py-spy-prerequisites}
+
+- Currently only supports the official Python interpreter (`CPython`)
+
+Add the annotation `admission.datakit/python-profiler.version: "latest"` under the `.spec.template.metadata.annotations` node in your [Pod controller](https://kubernetes.io/docs/concepts/workloads/controllers/){:target="_blank"} resource configuration file, then apply the configuration file,
+Datakit-Operator will automatically create a container named `datakit-profiler` in the corresponding Pod to assist with profiling.
+
+Next, an example is provided using a `Deployment` resource configuration file named "movies-python".
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movies-python
+  labels:
+    app: movies-python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movies-python
+  template:
+    metadata:
+      name: movies-python
+      labels:
+        app: movies-python
+      annotations:
+        admission.datakit/python-profiler.version: "latest"
+    spec:
+      containers:
+        - name: movies-python
+          image: zhangyicloud/movies-python:latest
+          imagePullPolicy: Always
+          command:
+            - "gunicorn"
+            - "-w"
+            - "4"
+            - "--bind"
+            - "0.0.0.0:8080"
+            - "app:app"
+```
+
+Apply the configuration file and verify if it takes effect:
+
+```shell
+$ kubectl apply -f deployment-movies-python.yaml
+
+$ kubectl get pods | grep movies-python
+movies-python-78b6cf55f-ptzxf   2/2     Running   0          64s
+ 
+$ kubectl describe pod movies-python-78b6cf55f-ptzxf | grep datakit-profiler
+      /app/datakit-profiler from datakit-profiler-volume (rw)
+  datakit-profiler:
+      /app/datakit-profiler from datakit-profiler-volume (rw)
+  datakit-profiler-volume:
+  Normal  Created    98s   kubelet            Created container datakit-profiler
+  Normal  Started    97s   kubelet            Started container datakit-profiler
+```
+
+After a few minutes, you can view the application performance data on the Guance console [APM Profiling](https://console.guance.com/tracing/profile){:target="_blank"} page.
+
+<!-- markdownlint-disable MD046 -->
+???+ note
+
+    By default, the command `ps -e -o pid,cmd --no-headers | grep -v grep | grep "python" | head -n 20` is used to find `Python` processes in the container. For performance reasons, data from a maximum of 20 processes will be collected.
+
+???+ note
+
+    You can configure the behavior of profiling by modifying the environment variables under the ConfigMap `datakit-operator-config` in the `datakit-operator.yaml` configuration file.
+
+    | Environment Variable              | Description                                                                                                                                               | Default Value                        |
+    | ----                  | --                                                                                                                                                 | -----                         |
+    | `DK_PROFILE_SCHEDULE` | The scheduling plan for profiling, using the same syntax as Linux [Crontab](https://man7.org/linux/man-pages/man5/crontab.5.html){:target="_blank"}, such as `*/10 * * * *` | `0 * * * *` (scheduled once per hour) |
+    | `DK_PROFILE_DURATION` | Duration of each profiling session, in seconds                                                                                                                  | 240 (4 minutes)                 |
+
+
+???+ note
+
+    If no data is visible, enter the `datakit-profiler` container to check the corresponding logs for troubleshooting:
+    ```shell
+    $ kubectl exec -it movies-python-78b6cf55f-ptzxf -c datakit-profiler -- bash
+    $ tail -n 2000 log/main.log
+    ```
+<!-- markdownlint-enable -->
 
 ## Datakit Operator Resource Changes {#datakit-operator-mutate-resource}
 
-### Adding Configuration for Datakit Logging {#add-logging-configs}
+### Adding Configurations Required for Datakit Logging Collection {#add-logging-configs}
 
-The Datakit Operator can automatically add the configuration required for Datakit Logging collection to the specified Pods, including the `datakit/logs` annotation and the corresponding file path volume/volumeMount. This simplifies the tedious manual configuration steps. As a result, users do not need to manually intervene in each Pod's configuration to enable log collection functionality automatically.
+Datakit Operator can automatically add the configurations required for Datakit Logging collection to specified Pods, including `datakit/logs` annotations and corresponding file path volume/volumeMount, simplifying manual configuration steps. Thus, users do not need to manually intervene in each Pod configuration to enable automatic log collection functionality.
 
-Below is an example of a configuration that shows how to implement the automatic injection of log collection configuration through the Datakit Operator's `admission_mutate` configuration:
+Below is an example configuration showing how to automatically inject log collection configurations through the `admission_mutate` configuration of Datakit Operator:
 
 ```json
 {
     "server_listen": "0.0.0.0:9543",
     "log_level":     "info",
     "admission_inject": {
-        # Other configurations...
+        # Other configurations
     },
     "admission_mutate": {
         "loggings": [
@@ -511,15 +705,15 @@ Below is an example of a configuration that shows how to implement the automatic
 }
 ```
 
-`admission_mutate.loggings`: This is an array of objects that contains multiple log collection configurations. Each log configuration includes the following fields:
+`admission_mutate.loggings`: This is an array of objects containing multiple log collection configurations. Each log configuration includes the following fields:
 
-- `namespace_selectors`: Specifies the namespaces where Pods must be located to meet the criteria. Multiple namespaces can be set, and a Pod must match at least one namespace to be selected. It operates as an "OR" relation with `label_selectors`.
-- `label_selectors`: Specifies the labels of Pods that must meet the criteria. A Pod must match at least one label selector to be selected. It operates as an "OR" relation with `namespace_selectors`.
-- `config`: This is a JSON string that will be added to the Pod's annotation under the key `datakit/logs`. If the key already exists, it will not be overwritten or added again. This configuration tells Datakit how to collect logs.
+- `namespace_selectors`: Limits the Namespaces of Pods that meet the conditions. Multiple Namespaces can be set; Pods must match at least one Namespace to be selected. It has an "OR" relationship with `label_selectors`.
+- `label_selectors`: Limits the labels of Pods that meet the conditions. Pods must match at least one label selector to be selected. It has an "OR" relationship with `namespace_selectors`.
+- `config`: This is a JSON string that will be added to the Pod's annotations, with the Key being `datakit/logs`. If the Key already exists, it will not be overwritten or duplicated. This configuration tells Datakit how to collect logs.
 
-The Datakit Operator will automatically parse the `config` configuration and create corresponding volumes and volumeMounts for the Pod based on the paths (`path`) specified within.
+Datakit Operator will automatically parse the `config` configuration and create corresponding volumes and volumeMounts for the Pod based on the paths (`path`) in it.
 
-Taking the above Datakit Operator configuration as an example, if a Pod's Namespace is middleware or its Labels match app=logging, an annotation and mount will be added to the Pod. For example:
+Using the above Datakit Operator configuration as an example, if a Pod's Namespace is `middleware` or Labels match `app=logging`, annotations and mounts will be added to the Pod. For example:
 
 ```yaml
 apiVersion: v1
@@ -561,12 +755,12 @@ spec:
     name: datakit-logs-volume-0
 ```
 
-This Pod has the label `app=logging`, which allows it to match the selector. As a result, Datakit Operator adds the `datakit/logs` annotation and mounts an EmptyDir volume at the path `/tmp/opt`.
+This Pod has the label `app=logging`, which matches, so Datakit Operator adds the `datakit/logs` annotation and mounts the path `/tmp/opt` as an EmptyDir.
 
-Once Datakit Log Collection detects the Pod, it will customize the log collection according to the contents of the `datakit/logs` annotation.
+Once Datakit detects the Pod, it will customize log collection based on the content of `datakit/logs`.
 
 ### FAQ {#datakit-operator-faq}
 
-- How to specify that a certain Pod should not be injected? Add the annotation `"admission.datakit/enabled": "false"` to the Pod. This will prevent any actions from being performed on it, with the highest priority.
+- How to specify that a certain Pod should not be injected? Add the Annotation `"admission.datakit/enabled": "false"` to the Pod, and no operations will be performed on it, this has the highest priority.
 
-- Datakit-Operator utilizes Kubernetes Admission Controller functionality for resource injection. For detailed mechanisms, please refer to the [official documentation](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/){:target="_blank"}
+- Datakit-Operator uses the Kubernetes Admission Controller feature for resource injection; for detailed mechanisms, please see the [official documentation](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/admission-controllers/){:target="_blank"}

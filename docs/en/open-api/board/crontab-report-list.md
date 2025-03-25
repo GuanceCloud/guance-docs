@@ -11,13 +11,13 @@
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description              |
-|:--------------|:------|:-------|:----------------|
-| search | string | No | Search scheduled report name<br>Can be empty: True <br> |
-| pageIndex | integer | Yes | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize | integer | Yes | Number of items per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| search | string |  | Search scheduled report name<br>Can be empty: True <br> |
+| pageIndex | integer |  | Page number<br>Can be empty: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of returns per page<br>Can be empty: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 10000 <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
 
 
 
@@ -127,7 +127,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 test",
                 "username": "test"
@@ -147,7 +147,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 test",
                 "username": "test"
@@ -175,9 +175,9 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "recipientInfo": {
                 "acnt_xxxx32": {
                     "acntWsNickname": "",
-                    "email": "66@qq.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
-                    "name": "I am 66 ya",
+                    "name": "I am 66 ah",
                     "username": "66"
                 }
             },
@@ -190,7 +190,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 test",
                 "username": "test"
@@ -205,7 +205,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 test",
                 "username": "test"
@@ -233,9 +233,9 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "recipientInfo": {
                 "acnt_xxxx32": {
                     "acntWsNickname": "",
-                    "email": "sunhui@jiagouyun.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "",
-                    "name": "Sun Hui",
+                    "name": "g Sun Shu Sada Ah Shi",
                     "username": "sunhui"
                 }
             },
@@ -248,7 +248,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 test",
                 "username": "test"

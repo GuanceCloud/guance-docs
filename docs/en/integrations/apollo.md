@@ -1,55 +1,58 @@
 ---
-title: 'Apollo'
-summary: 'Collect Apollo-related Metrics information'
+title     : 'Apollo'
+summary   : 'Collect Apollo related metrics information'
 __int_icon: 'icon/apollo'
-dashboard:
-  - desc: 'Apollo monitoring view'
-    path: 'dashboard/en/apollo'
-monitor:
-  - desc: 'None'
-    path: '-'
+dashboard :
+  - desc  : 'Apollo monitoring view'
+    path  : 'dashboard/en/apollo'
+monitor   :
+  - desc  : 'Not exist'
+    path  : '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
 # Apollo
 <!-- markdownlint-enable -->
 
-Collect Apollo-related Metrics information.
+Collect Apollo related metrics information.
 
-## Installation and Configuration {#config}
+## Installation Configuration {#config}
 
 - [x] Apollo >= 1.5.0
 
 ### Apollo Metrics
 
-Apollo exposes the metrics port by default at `8070`. You can view the metrics information via a browser at `http://clientIP:8070/prometheus`.
+The default metrics port exposed by Apollo is `8070`. You can view the metrics-related information via a browser: `http://clientIP:8070/prometheus`.
 
 ### DataKit Collector Configuration
 
-Since `Apollo` can directly expose a `metrics` URL, you can use the [`prom`](./prom.md) collector for data collection.
+Since `Apollo` can directly expose a `metrics` URL, it can be collected directly using the [`prom`](./prom.md) collector.
+
+
 
 Adjust the content as follows:
 
 ```toml
-urls = ["http://clientIP:8070/prometheus"]
 
-source = "apollo"
+  urls = ["http://clientIP:8070/prometheus"]
 
-[inputs.prom.tags]
-  component = "apollo"
-interval = "10s"
+  source = "apollo"
+
+  [inputs.prom.tags]
+    component="apollo"
+  interval = "10s"
+
 ```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Other configurations should be adjusted as needed*</font>
+<font color="red">*Other configurations can be adjusted as needed*</font>
 <!-- markdownlint-enable -->
-
-Explanation of adjustable parameters:
+, parameter adjustment explanation:
 
 <!-- markdownlint-disable MD004 -->
-- urls: The `prometheus` metrics address; enter the metrics URL exposed by the corresponding component.
-- source: Alias for the collector; it is recommended to differentiate it.
-- interval: Collection interval
+- urls: The `prometheus` metrics address, fill in the metrics URL exposed by the corresponding component here.
+- source: Collector alias, recommended for differentiation.
+- interval: Collection interval.
 
 <!-- markdownlint-enable -->
 ### Restart DataKit
@@ -60,42 +63,44 @@ Explanation of adjustable parameters:
 
 ### Tags
 
-| Tags       | Description            |
-| ---------- | ---------------------- |
-| component  | Component name `apollo` |
+| Tags | Description |
+| -- | -- |
+| component | Component name `apollo` |
 
-### Metrics Set `jvm`
 
-| Metrics               | Description          |
-| --------------------- | -------------------- |
-| threads_states_threads | Thread states        |
-| memory_used_bytes     | Memory usage         |
+### Metric Set `jvm`
 
-### Metrics Set `jdbc`
+| Metrics | Description |
+| -- | -- |
+| threads_states_threads | Thread states |
+| memory_used_bytes | Memory usage |
 
-| Metrics             | Description    |
-| ------------------- | -------------- |
-| connections_idle    | Idle connections |
-| connections_active  | Active connections |
-| connections_max     | Maximum connections |
-| connections_min     | Minimum connections |
 
-### Metrics Set `process`
+### Metric Set `jdbc`
 
-| Metrics           | Description      |
-| ----------------- | ---------------- |
-| uptime_seconds    | JVM uptime in seconds |
+| Metrics | Description |
+| -- | -- |
+| connections_idle | Idle connections |
+| connections_active | Active connections |
+| connections_max | Maximum active connections |
+| connections_min | Minimum active connections |
 
-### Metrics Set `system`
+### Metric Set `process`
 
-| Metrics      | Description      |
-| ------------ | ---------------- |
-| cpu_usage    | CPU usage rate   |
-| cpu_count    | Available CPUs   |
+| Metrics | Description |
+| -- | -- |
+| uptime_seconds | JVM uptime in seconds |
 
-### Metrics Set `http`
+### Metric Set `system`
 
-| Metrics                       | Description      |
-| ----------------------------- | ---------------- |
-| server_requests_seconds_count  | Requests per second |
-| cpu_count                     | Available CPUs   |
+| Metrics | Description |
+| -- | -- |
+| cpu_usage | CPU usage |
+| cpu_count | Number of available CPUs |
+
+### Metric Set `http`
+
+| Metrics | Description |
+| -- | -- |
+| server_requests_seconds_count | Number of requests per second for the service |
+| cpu_count | Number of available CPUs |

@@ -6,29 +6,30 @@ icon: zy/pipeline
 
 ---
 
-Pipelines is a lightweight scripting language that runs on DataKit, used for custom parsing and modification of collected data. By defining parsing rules, they can finely slice and convert different types of data into structured formats to meet specific data management needs. For example, users can extract timestamps, status, and other key fields from logs using Pipelines and use this information as labels.
+Pipelines is a lightweight scripting language that runs on DataKit, used for custom parsing and modification of collected data. By defining parsing rules, they can finely slice and convert different types of data into structured formats to meet specific data management needs. For example, users can extract timestamps, status, and other key fields from logs via Pipelines and use these pieces of information as tags.
 
-DataKit leverages the powerful capabilities of Pipelines, allowing users to write and debug Pipeline scripts directly on the <<< custom_key.brand_name >>> workspace page, thus achieving finer-grained structured processing of data. This not only enhances data manageability but also supports standardized operations on common data through the rich function library provided by Pipeline, such as parsing time strings and enriching IP address geographic information.
+DataKit leverages the powerful functionality of Pipelines, allowing users to directly write and debug Pipeline scripts on the <<< custom_key.brand_name >>> workspace page, thus enabling finer-grained structural processing of data. This not only enhances the manageability of data but also provides a rich library of functions through Pipeline, supporting standardized operations on common data, such as parsing time strings and completing geographic information for IP addresses.
 
-Key features of Pipeline include:
+The main features of Pipeline include:
 
-- As a lightweight scripting language, Pipeline offers efficient data processing capabilities.
-- It has a rich function library supporting standardized operations on various common data types.
-- Users can write and debug Pipeline scripts directly on the <<< custom_key.brand_name >>> workspace page, making script creation and batch application more convenient.
+- As a lightweight scripting language, Pipeline offers efficient data processing capabilities;
+- It has a rich function library that supports standardized operations on various common data types;
+- Users can directly write and debug Pipeline scripts on the <<< custom_key.brand_name >>> workspace page, making script creation and batch effectiveness more convenient.
+
 
 Currently, <<< custom_key.brand_name >>> supports configuring local Pipelines and central Pipelines.
 
-- Local Pipeline: Runs during data collection, requiring DataKit collector version 1.5.0 or higher.
-- Central Pipeline: Runs after data is uploaded to the console center.
+- Local Pipeline: Runs during data collection, requiring DataKit collector version 1.5.0 or higher;
+- Central Pipeline: Runs after data is uploaded to the console center;
 
 ## Use Cases
 
 | <div style="width: 130px">Type</div> | Scenario       |
 | ------ | -------- |
-| Local Pipeline | Processing logs before forwarding.       |
-| Central Pipeline | 1. User access (Session) data, Profiling data, Synthetic Tests data;<br />2. Processing user access data in the trace, such as extracting `session`, `view`, `resource` fields from the `message` in the trace.       |
+| Local Pipeline  | Process logs before data forwarding.       |
+| Central Pipeline  | 1. User access (Session) data, Profiling data, Synthetic Tests data;<br />2. Process user access data in the chain, such as extracting `session`, `view`, `resource` fields from the `message` in the chain.       |
 
-In addition to the above scenarios, both local and central Pipelines can handle other types of data.
+All other data mentioned above can be handled by both local/central Pipelines.
 
 ## Prerequisites
 
@@ -37,33 +38,33 @@ In addition to the above scenarios, both local and central Pipelines can handle 
 === "Local Pipeline"
 
     - [Install DataKit](../datakit/datakit-install.md);
-    - DataKit version must be >= 1.5.0.
+    - DataKit version requirement >= 1.5.0.
 
-    To ensure normal usage of Pipeline, upgrade DataKit to version 1.5.0 or higher. A lower version may cause some Pipeline functions to fail.
+    To ensure normal use of Pipeline, please upgrade DataKit to version 1.5.0 or higher. A lower version may cause some Pipeline functions to fail.
 
     In versions of `DataKit<1.5.0`:
 
     - Default Pipeline functionality is not supported;
-    
-    - Multiple data sources are not supported; each Pipeline can only select one `source`. Therefore, if your version is below 1.5.0 and you have selected multiple data sources, it will not take effect;
 
-    - Pipeline names are fixed and cannot be modified. For example, if the log source is `nginx`, the Pipeline name is fixed as `nginx.p`. If your version is below 1.5.0 and the Pipeline name does not match the data source name, the Pipeline will not take effect.
+    - Data sources do not support multiple selections; each Pipeline can only choose one `source`. Therefore, if your version is below 1.5.0 and you have selected multiple data sources, it will not take effect;
+
+    - Pipeline names are fixed and cannot be modified. For example, if the log source selects `nginx`, then the Pipeline name is fixed as `nginx.p`. Therefore, if your version is below 1.5.0 and the Pipeline name does not match the data source name, the Pipeline will not take effect.
 
 === "Central Pipeline"
 
-    This feature requires a paid plan.
+    This feature requires paid usage.
 
 </div>
 
-## Create
+## Create 
 
-In the <<< custom_key.brand_name >>> workspace **Management > Pipelines**, click **Create Pipeline**.
+On the <<< custom_key.brand_name >>> workspace **Management > Pipelines**, click **Create Pipeline**.
 
-Alternatively, you can create Pipelines by clicking **Pipelines** in the menu directory entries for Metrics, Logs, RUM PV, APM, Infrastructure, Security Check.
+Alternatively, you can create by clicking **Pipelines** in the menu directory entries for Metrics, Logs, User Analysis, APM, Infrastructure, Security Check.
 
-![](img/1-pipeline-2.png)
+<img src="img/1-pipeline-2.png" width="50%" >
 
-**Note**: After creating a Pipeline file, it will only take effect after installing DataKit. DataKit periodically retrieves configured Pipeline files from the workspace, with a default interval of 1 minute, which can be modified in `conf.d/datakit.conf`.
+**Note**: After creating a Pipeline file, DataKit must be installed for it to take effect. DataKit periodically retrieves configured Pipeline files from the workspace, with a default time of 1 minute, which can be modified in `conf.d/datakit.conf`.
 
 ```
 [pipeline]
@@ -71,66 +72,70 @@ Alternatively, you can create Pipelines by clicking **Pipelines** in the menu di
 ```
 
 
-1. Select the Pipeline type;
-2. Choose the data type and add filtering conditions;
-3. Enter the Pipeline name, i.e., the custom Pipeline filename;
-4. Provide test samples;
-5. Input the function script and configure [parsing rules](#config);
+1. Select Pipeline type;
+2. Select data type and add filtering conditions;
+3. Input Pipeline name, i.e., the custom Pipeline filename;
+4. Provide [test samples](#sample);
+5. Input function scripts and configure [parsing rules](#config);
 6. Click save.
 
 
 **Note**:
 
-1. If you choose logs as the filtering object, <<< custom_key.brand_name >>> will automatically filter out Test data. When setting as the default Pipeline, it will not apply to Test data.
-2. When you choose "Synthetic Tests" as the filtering object, the type automatically defaults to "Central Pipeline," and you cannot choose a local Pipeline.
-3. Avoid duplicate Pipeline filenames. If necessary, understand the [storage, indexing, and matching logic of Pipeline scripts](./use-pipeline/pipeline-category.md#script-store-index-match).
-4. Each data type can only have one default Pipeline. When creating/importing a new one, a confirmation box will appear asking if you want to replace it. The default Pipeline will have a `default` tag after its name.
+- If the filtering object is selected as logs, <<< custom_key.brand_name >>> will automatically filter out Testing data, even if the Pipeline is set as default, it will not apply to Testing data.
+- If the filtering object is selected as "Synthetic Tests", the type will automatically be set to "Central Pipeline" and the local Pipeline cannot be selected.
+- Pipeline filenames should avoid duplication. If necessary, please refer to [Pipeline Script Storage, Indexing, Matching Logic](./use-pipeline/pipeline-category.md#script-store-index-match).
+- Each data type only supports setting one default Pipeline. When creating or importing new ones, if duplicates appear, the system will prompt a confirmation box asking whether to replace. The name of the Pipeline already set as default will display the `default` identifier.
 
 
-### Test Samples
+### Test Samples {#sample}
 
-Based on the selected data type, input corresponding data to test based on the configured parsing rules.
+Based on the selected data type, input corresponding data for testing according to the configured parsing rules.
 
-- One-click sample retrieval: Automatically retrieves already collected data;
-- Add: Add multiple sample data (up to 3);
-- Start testing: Returns multiple test results; if you input multiple sample data in the same test text box, only one result is returned.
+1. One-click sample acquisition: Automatically acquires already collected data, including Message and all fields;
+2. Add: You can add multiple sample data (up to 3).
 
-**Note**: Pipelines created in the <<< custom_key.brand_name >>> workspace are saved under `<DataKit installation directory>/pipeline_remote`. Each type of Pipeline file is stored in corresponding subdirectories, with the top-level directory's files being default log Pipelines. For example, `cpu.p` metrics are saved in `<DataKit installation directory>/pipeline_remote/metric/cpu.p`.
+**Note**: Pipeline files created in the workspace are uniformly saved under the `<datakit installation directory>/pipeline_remote` directory. Among them:
 
-> For more details, refer to [Pipeline data processing by category](./use-pipeline/pipeline-category.md).
+- Files under the first-level directory are default Log Pipelines.
+- Each type of Pipeline file is saved in the corresponding second-level directory. For example, the Metrics Pipeline file `cpu.p` is saved in the `<datakit installation directory>/pipeline_remote/metric/cpu.p` path.
 
-#### One-click Sample Retrieval
+> For more details, please refer to [Pipeline Category Data Processing](./use-pipeline/pipeline-category.md).
 
-<<< custom_key.brand_name >>> supports one-click sample retrieval for testing data. When creating/editing a Pipeline, click **Sample Parsing Test > One-click Sample Retrieval**. The system will automatically select the latest data within the filtered range from the data reported to the workspace and fill it into the test sample box for testing. One-click sample retrieval queries data only from the last 6 hours. If there is a gap in reporting within the last 6 hours, it will not retrieve any data.
+
+#### One-click Sample Acquisition
+
+When creating/editing a Pipeline, click **Sample Parsing Test > One-click Sample Acquisition**, and the system will automatically select the latest piece of data within the filtered data range from the data already collected and reported to the workspace, filling it into the test sample box for testing. Each click of "One-click Sample Acquisition" will only query data from the last 6 hours; if no data has been reported in the last 6 hours, automatic sample acquisition will not be possible.
 
 *Debugging Example:*
 
-The following is a sample of reported metric data, with the measurement set as `cpu`, tags as `cpu` and `host`, and fields from `usage_guest` to `usage_user` representing metric data, with the final 1667732804738974000 being the timestamp. From the returned result, you can clearly understand the structure of the one-click retrieved sample data.
+Below is an automatically acquired Metrics data sample, with the Measurement being `cpu` and the tags being `cpu` and `host`. Fields from `usage_guest` to `usage_user` are all Metrics data, and the final `1667732804738974000` is the timestamp. Through the returned result, you can clearly understand the data structure of the one-click sample acquisition.
 
 ![](img/7.pipeline_2.png)
 
 #### Manual Sample Input
 
-You can also manually input sample data for testing. <<< custom_key.brand_name >>> supports two format types:
+You can also manually input sample data for testing, supporting two format types:
 
-- Log data can be directly input as `message` content for testing;
-- Other data types should be converted into "line protocol" format before inputting for sample parsing tests.
+- Log data can directly input `message` content for testing in the sample parsing test;
+- Other data types first convert the content into "line protocol" format, then input it for sample parsing testing.
 
-> For more details on log Pipelines, refer to the [Log Pipeline User Guide](../logs/manual.md).
+> For more details about Log Pipelines, please refer to [Log Pipeline User Manual](../logs/manual.md).
 
 ##### Line Protocol Example
 
 <img src="img/pipeline_line_protocal.png" width="60%" >
 
-- `cpu`, `redis` are measurements; `tag1`, `tag2` are tag sets; `f1`, `f2`, `f3` are field sets (`f1=1i` indicates `int`, `f2=1.2` indicates `float`, `f3="abc"` indicates `string`); `162072387000000000` is the timestamp;
+
+- `cpu`, `redis` are Measurements; `tag1`, `tag2` are tag sets; `f1`, `f2`, `f3` are field sets (`f1=1i` indicates `int`, `f2=1.2` indicates default as `float`, `f3="abc"` indicates `string`); `162072387000000000` is the timestamp;
 - Measurements and tag sets are separated by commas; multiple tags are separated by commas;
 - Tag sets and field sets are separated by spaces; multiple fields are separated by commas;
 - Field sets and timestamps are separated by spaces; timestamps are mandatory;
-- If it is object data, it must have a `name` tag, otherwise the protocol will error; it is best to have a `message` field for full-text search.
+- If the data is object data, it must have a `name` tag, otherwise the protocol will error; preferably have a `message` field, mainly for convenience in full-text search.
 
-> For more details on line protocol, refer to [DataKit API](../datakit/apis.md).
+> For more details about line protocols, please refer to [DataKit API](../datakit/apis.md).
 
-To obtain more line protocol data, configure the `output_file` in `conf.d/datakit.conf` and view the line protocol in that file.
+To obtain more line protocol data, you can configure the `output_file` in `conf.d/datakit.conf` and view the line protocol in this file.
 
   ```
   [io]
@@ -139,21 +144,22 @@ To obtain more line protocol data, configure the `output_file` in `conf.d/dataki
 
 ### Define Parsing Rules {#config}
 
-Manually write or AI-generate parsing rules for different data sources. Support multiple script functions, and you can directly view their syntax formats via the script function list provided on the right side of <<< custom_key.brand_name >>>, such as `add_pattern()`.
 
-> For more details on how to define parsing rules, refer to the [Pipeline Manual](./use-pipeline/index.md).
+By manually writing or AI-defining parsing rules for different data sources, support for various script functions is provided, and the syntax format of the script functions provided on the right side of <<< custom_key.brand_name >>> can be directly viewed, such as `add_pattern()`.
+
+> For how to define parsing rules, please refer to [Pipeline Manual](./use-pipeline/index.md).
 
 #### Manual Writing
 
-Autonomously write data parsing rules, enabling automatic line breaks or content overflow settings.
+Autonomously write data parsing rules, text auto-wrap or content overflow can be set.
 
 #### AI Generation
 
 AI-generated parsing rules are based on model-generated Pipeline parsing, aiming to quickly provide an initial parsing solution.
 
-<font size=2>**Note**: Since model-generated rules may not cover all complex cases or scenarios, the returned results may not be entirely accurate. It is recommended to use them as a reference and starting point, and make further adjustments and optimizations based on specific log formats and requirements.</font>
+<font size=2>**Note**: Since the rules generated by the model may not cover all complex situations or scenarios, the returned results may not be entirely accurate. It is recommended to use it as a reference and starting point, and make further adjustments and optimizations after generation based on the specific log format and requirements.</font>
 
-For example, based on the sample input needing extracted content and names:
+Now, based on the sample input, specify the content and names to extract, for example:
 
 ```
 -"date_pl":"2024-12-25 07:25:33.525",
@@ -164,29 +170,33 @@ Click to generate Pipeline:
 
 ![](img/pipeline_ai.png)
 
-After testing, the returned result is:
+
+After testing, the returned result is as follows:
 
 <img src="img/pipeline_ai_1.png" width="70%" >
 
-> For more details, refer to the [Rule Writing Guide](./use-pipeline/pipeline-built-in-function.md).
+> For more details, please refer to [Rule Writing Guide](./use-pipeline/pipeline-built-in-function.md).
 
 #### Start Testing {#test}
 
-In the Pipeline editing page, you can test the entered parsing rules by inputting data in the **Sample Parsing Test** section. If the parsing rule is incorrect, it will return an error message. Sample parsing tests are optional, and the tested data will be saved synchronously.
+In the Pipeline editing page, you can test the filled-in parsing rules. Just input data in the **Sample Parsing Test** section for testing. If the parsing rule does not conform, it will return an error message. The Sample Parsing Test is not mandatory, and the tested data will be synchronized and saved after the test.
 
-## Terminal Command Line Debugging
 
-In addition to debugging Pipelines on the <<< custom_key.brand_name >>> console, you can also debug them via terminal command lines.
 
-> For more details, refer to [How to Write Pipeline Scripts](./use-pipeline/pipeline-quick-start.md).
+## Terminal Command-line Debugging
 
-## Further Reading
+In addition to debugging Pipelines on the <<< custom_key.brand_name >>> console, you can also debug Pipelines via terminal command lines.
+
+> For more details, please refer to [How to Write Pipeline Scripts](./use-pipeline/pipeline-quick-start.md).
+
+
+## More Reading
 
 <font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Log Pipeline User Guide**</font>](../logs/manual.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Log Pipeline User Manual**</font>](../logs/manual.md)
 
 </div>
 

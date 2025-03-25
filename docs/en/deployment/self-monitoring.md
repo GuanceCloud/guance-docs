@@ -1,43 +1,45 @@
-# Enable Observability for Deployment Edition
+# Enable observability for Deployment Plan
 
 ## Overview
 
-The purpose of this document is to assist private deployment edition users in implementing observability for the deployment edition, thereby enhancing the overall reliability of <<< custom_key.brand_name >>> services. This document describes two classic observability patterns and how to deploy **Datakit data collection, log slicing, APM, Synthetic Tests, RUM**, etc., in a Kubernetes environment. Additionally, we provide one-click import template files for **infrastructure and middleware observability** and **application service observability** to facilitate better monitoring of your own environment.
+The purpose of this document is to assist private Deployment Plan users in how to implement observability for the Deployment Plan, thereby enhancing the overall reliability of <<< custom_key.brand_name >>> services. This article discusses two classic observability patterns, as well as how to deploy **Datakit data collection, logs and slicing, APM, Synthetic Tests, RUM** in a Kubernetes environment. Additionally, we provide one-click import template files for **infrastructure and MIDDLEWARE observability** and **application service observability**, making it easier for everyone to observe their own environment.
 
-## Observability Patterns for Deployment Edition
 
-=== "Self-Observation Mode"
+=== "Self-observability Mode"
 
-    In this mode, the system observes itself. In other words, it sends data to its own space. This means that if the environment goes down, it cannot observe its own information data and further troubleshooting becomes impossible. The advantage of this solution is ease of deployment. The disadvantage is that data is continuously generated, leading to self-iteration, resulting in an endless loop, and when the cluster crashes, it cannot observe its own issues.
+    This mode refers to self-observation. In other words, it means sending data to your own space. This implies that if the environment goes down, you will also be unable to observe your information data, and further troubleshooting will not be possible. The advantage of this solution is: easy deployment. The disadvantage is: data is continuously generated, leading to self-iteration of data, causing a continuous loop, and when the cluster crashes, you cannot observe its own issues.
 
-=== "One-to-Many Unified Observation Mode"
 
-    In this mode, multiple <<< custom_key.brand_name >>> instances send data to the same node. Advantage: It avoids creating a data transmission loop and allows real-time monitoring of the cluster's status.
+
+=== "One-to-many Unified Observability Mode"
+
+    This mode refers to multiple <<< custom_key.brand_name >>> instances sending data to the same node. Advantages: no data transmission closed-loop situation occurs, and real-time monitoring of the cluster's status is possible.
     
     ![guance2](img/self-guance2.jpg)
 
-## Infrastructure and Middleware Observability
+
+## Infrastructure and MIDDLEWARE Observability
 
 ???+ warning "Note"
-     Enabling infrastructure and middleware observability can meet basic needs for observing the state of middleware and infrastructure. For more detailed application service observation, refer to **Application Service Observability** below.
+     Enabling infrastructure and MIDDLEWARE observability can meet basic needs for observing the state of MIDDLEWARE and infrastructure. If more detailed observation of application services is desired, refer to the following **Application Service Observability**.
 
-### Configuring Data Collection
+### Configure Data Collection
 
 1) [Download datakit.yaml](datakit.yaml)
 
 ???+ warning "Note"
-     Note: The default configurations for middleware in DataKit are already set up; minor modifications can be made before use.
+     Note: All default configurations for DataKit are already configured, requiring minor adjustments before use.
 
 2) Modify the `DaemonSet` template file in datakit.yaml
 
 ```yaml
    - name: ENV_DATAWAY
-     value: https://openway.guance.com?token=tkn_a624xxxxxxxxxxxxxxxxxxxxxxxx74 ## Replace with the actual DataWay URL
+     value: https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_a624xxxxxxxxxxxxxxxxxxxxxxxx74 ## Enter the actual dataway address here
    - name: ENV_GLOBAL_TAGS
-     value: host=__datakit_hostname,host_ip=__datakit_ip,guance_site=guance,cluster_name_k8s=guance # Adjust panel variables as needed
+     value: host=__datakit_hostname,host_ip=__datakit_ip,guance_site=guance,cluster_name_k8s=guance # Modify panel variables according to your actual situation
    - name: ENV_GLOBAL_ELECTION_TAGS
-     value: guance_site=guance,cluster_name_k8s=guance     # Adjust according to your panel variables
-   image: pubrepo.jiagouyun.com/datakit/datakit:1.65.2     ## Update to the latest image version
+     value: guance_site=guance,cluster_name_k8s=guance     # Modify according to your actual panel variable situation
+   image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.65.2     ## Update to the latest image version
 ```
 
 3) Modify the `ConfigMap` related configurations in datakit.yaml
@@ -51,20 +53,20 @@ metadata:
 data:
     mysql.conf: |-
         [[inputs.mysql]]
-          host = "xxxxxxxxxxxxxxx"      ## Modify the MySQL connection address
+          host = "xxxxxxxxxxxxxxx"      ## Modify the corresponding MySQL connection address
           user = "ste3"                 ## Modify the MySQL username
           pass = "Test1234"             ## Modify the MySQL password
           ......
           
     redis.conf: |-
         [[inputs.redis]]
-          host = "r-xxxxxxxxx.redis.rds.ops.ste3.com"            ## Modify the Redis connection address
+          host = "r-xxxxxxxxx.redis.rds.ops.ste3.com"            ## Modify Redis connection address
           port = 6379                                                   
           # unix_socket_path = "/var/run/redis/redis.sock"
-          # Configure multiple dbs; if dbs are configured, they will be included in the collection list. If dbs=[] or not configured, all non-empty dbs in Redis will be collected
+          # Configure multiple dbs; if dbs=[] or not configured, all non-empty dbs in Redis will be collected
           # dbs=[]
           # username = "<USERNAME>"
-           password = "Test1234"                                        ## Modify the Redis password
+           password = "Test1234"                                        ## Modify Redis password
           ......
           
     openes.conf: |-
@@ -93,7 +95,7 @@ data:
 	  election = true
 ```
 
-4) Configure DataKit's own log collection function
+4) Configure the log collection function of the DataKit collector itself
 
 ```yaml
   template:
@@ -108,7 +110,8 @@ data:
 
 ```
 
-5) Mount operations
+
+5) Mount Operations
 
 ```yaml
         - mountPath: /usr/local/datakit/conf.d/db/mysql.conf
@@ -117,7 +120,7 @@ data:
           readOnly: false
 ```
 
-> Note: Multiple configurations are similar. Add them sequentially.
+> Note: The same applies for multiple configurations. Add them sequentially.
 
 6) Deploy DataKit after modification
 
@@ -125,31 +128,31 @@ data:
 kubectl apply -f datakit.yaml
 ```
 
-### Import View and Monitor Templates
+### Import Views and Monitor Templates
 
-[Infrastructure and Middleware Template Download Link](easy_resource.zip)
+[Infrastructure and MIDDLEWARE Template Download Address](easy_resource.zip)
 
 - **Import Template**
 
 ![allin](img/self-allin.jpg)
 
 ???+ warning "Note"
-     After importing, modify the corresponding jump link configurations in **Monitoring**. Replace `dsbd_xxxx` with the appropriate dashboard and `wksp_xxxx` with the target workspace.
+     After importing the **monitor**, modify the corresponding jump link configuration. Replace dsbd_xxxx with the corresponding dashboard and wksp_xxxx with the monitored workspace.
 
 ## Application Service Observability (Optional)
 
-???+ warning "Note"
-     Enabling application service observability consumes a significant amount of storage resources. Please evaluate before enabling.
+???+ warning "Note" 
+     Enabling application service observability consumes a large amount of storage resources. Please evaluate before enabling.
 
 ### Configure Logs
 
 ???+ "Prerequisites"
 
-     1. Install DataKit on your host [Install DataKit](<<< homepage >>>/datakit/datakit-install/) 
+     1. Your HOST must have [DataKit installed](<<< homepage >>>/datakit/datakit-install/) 
     
-     2. If you are unfamiliar with Pipeline knowledge, please refer to the [Log Pipeline User Manual](../logs/manual.md)
+     2. If you do not understand Pipeline knowledge, please check the [Log Pipeline User Manual](../logs/manual.md)
 
-#### Configure Log and Metrics Collection
+#### Configure Log and Metric Collection
 
 1) Inject via `ConfigMap` + `Container Annotation` through command line
 
@@ -158,25 +161,25 @@ kubectl apply -f datakit.yaml
 kubectl edit -n forethought-kodo cm <configmap_name>
 ```
 
-2) Change the log output to stdout in the `ConfigMap` under the `forethought-kodo` Namespace.
+2) Change the log output in the `ConfigMap` under the forethought-kodo Namespace to stdout.
 
-3) Enable metrics collection for the services listed in the table below
+3) Enable metric collection for the corresponding services listed below
 
-| `Namespace`      | Service Name         | Enable Metrics Collection | Enable DDtrace Collection |
-| ---------------- | -------------------- | ------------------------- | -------------------------- |
-| forethought-core | front-backend        | No                        | Yes                        |
-|                  | inner                | Yes                       | Yes                        |
-|                  | management-backend   | No                        | Yes                        |
-|                  | openapi              | No                        | Yes                        |
-|                  | websocket            | No                        | Yes                        |
-| forethought-kodo | kodo                 | Yes                       | Yes                        |
-|                  | kodo-inner           | Yes                       | Yes                        |
-|                  | kodo-x               | Yes                       | Yes                        |
-|                  | kodo-asynq-client    | Yes                       | Yes                        |
-|                  | kodo-x-backuplog     | Yes                       | Yes                        |
-|                  | kodo-x-scan          | Yes                       | No                         |
+| `Namespace`      | Service Name       | Enable Metric Collection | Enable DDtrace Collection |
+| ---------------- | ------------------ | ------------------------ | -------------------------- |
+| forethought-core | front-backend      | No                       | Yes                        |
+|                  | inner              | Yes                      | Yes                        |
+|                  | management-backend | No                       | Yes                        |
+|                  | openapi            | No                       | Yes                        |
+|                  | websocket          | No                       | Yes                        |
+| forethought-kodo | kodo               | Yes                      | Yes                        |
+|                  | kodo-inner         | Yes                      | Yes                        |
+|                  | kodo-x             | Yes                      | Yes                        |
+|                  | kodo-asynq-client  | Yes                      | Yes                        |
+|                  | kodo-x-backuplog   | Yes                      | Yes                        |
+|                  | kodo-x-scan        | Yes                      | No                         |
 
-- Configure `Deployment Annotations` in the corresponding application without modifying the following content
+- Configure `Deployment Annotations` in the corresponding applications, no changes needed below
 
 ```yaml
 spec:
@@ -198,18 +201,18 @@ spec:
             metric_types = []
 
             ## Metric name filtering
-            # Supports regular expressions, multiple configurations can be made, i.e., meeting any one condition suffices
+            # Supports regex, multiple configurations can be set, meeting any one of them is sufficient
             # If empty, no filtering is performed
             # metric_name_filter = ["cpu"]
 
-            ## Measurement name prefix
-            # Configuring this item adds a prefix to the measurement name
+            ## Metric set name prefix
+            # Configuring this item adds a prefix to the metric set name
             measurement_prefix = ""
 
-            ## Measurement name
-            # By default, the metric name is split by underscores "_", with the first field being the measurement name and the remaining fields being the current metric name
-            # If `measurement_name` is configured, no splitting of the metric name will occur
-            # The final measurement name will have the `measurement_prefix` added as a prefix
+            ## Metric set name
+            # By default, the metric name is split by underscore "_", the first field after splitting becomes the metric set name, the remaining fields become the current metric name
+            # If measurement_name is configured, the metric name will not be split
+            # The final metric set name will have the measurement_prefix added as a prefix
             # measurement_name = "prom"
 
             ## Collection interval "ns", "us" (or "µs"), "ms", "s", "m", "h"
@@ -219,15 +222,15 @@ spec:
             # Matching tags will be ignored
             # tags_ignore = ["xxxx"]
 
-            ## TLS configuration
+            ## TLS Configuration
             tls_open = false
             # tls_ca = "/tmp/ca.crt"
             # tls_cert = "/tmp/peer.crt"
             # tls_key = "/tmp/peer.key"
 
-            ## Custom measurement names
-            # Can group metrics containing the prefix `prefix` into one category of measurements
-            # Custom measurement name configuration takes precedence over the `measurement_name` option
+            ## Custom metric set names
+            # Metrics containing the prefix can be grouped into one metric set
+            # Custom metric set name configuration takes precedence over measurement_name configuration
             [[inputs.prom.measurements]]
               prefix = "kodo_api_"
               name = "kodo_api"
@@ -251,31 +254,31 @@ spec:
 ```
 
 ???+ warning "Note"
-     The above only enables log collection. To perform **log segmentation**, corresponding **Pipelines** need to be configured.
+     The above only enables log collection. To perform **slicing** on the logs' status, you need to configure the corresponding **Pipeline**.
+    
 
+#### Use Pipeline to Slice Logs
 
-#### Use Pipeline to Segment Logs
+**Import Pipeline template with one click on the interface**
 
-**Import Pipeline Template with One Click from the Interface**
-
-[Pipeline Download Link](Pipelines 模板.json)
+[Pipeline Download Address](Pipelines 模板.json)
 
 ![pipeline001](img/self-pipeline001.jpg)
 
 
    
 
-### Configure Application Performance Monitoring
+### Configure APM
 
 ???+ "Prerequisites"
 
-     1. Install DataKit on your host [Install DataKit](<<< homepage >>>/datakit/datakit-install/)
+     1. Your HOST must have [DataKit installed](<<< homepage >>>/datakit/datakit-install/) 
     
-     2. Enable ddtrace collector on DataKit [Enable ddtrace collector](../integrations/ddtrace.md), inject using K8S `ConfigMap`
+     2. And enable the [ddtrace collector on DataKit](../integrations/ddtrace.md), injecting it via K8S `ConfigMap`.
 
 **Start Configuration**
 
-- Modify the Deployment configuration under the `forethought-core` Namespace
+- Modify the Deployment configuration under the forethought-core Namespace
 
   ```shell
   kubectl edit -n <namespace> deployment <service_name>
@@ -299,7 +302,7 @@ spec:
         - RUN_APP_CODE=front
         - --timeout
         - "300"
-        env:                     ## Enable DDtrace collection, add the following content (including services under the `forethought-kodo` Namespace)
+        env:                     ## Enable DDtrace collection, add the following content (including services under the forethought-kodo Namespace in the table)
         - name: DD_PATCH_MODULES
           value: redis:true,urllib3:true,httplib:true,httpx:true
         - name: DD_AGENT_PORT
@@ -318,43 +321,37 @@ spec:
 ```
 
 ???+ warning "Note"
-     **forethought-core** Namespace has multiple services that can be enabled. If you see all default configurations in the YAML file, enable them all.
+     There are multiple services under the **forethought-core** namespace that can be enabled. If you see all arg defaults in yaml files need to be enabled.
 
-- Display on Page
+- Page Display
 
 ![img](<<< homepage >>>/application-performance-monitoring/img/9.apm_explorer_1.png)
 
-### Configure Availability Monitoring
+### Configure Synthetic Tests
 
 1) Create a new website to monitor
 
   ![boce1](img/self-boce1.jpg)
 
-2) Configure dial test tasks
+2) Configure the Synthetic Testing task
 
   ![boce2](img/self-boce2.jpg)
 
 ???+ warning "Note"
-     Modify based on the actual domain settings
+     Modify according to the actual domain name settings
 
-| Name               | Dial Test Address                                                     | Type | Task Status | Operation                                                         |
-| ------------------ | ------------------------------------------------------------ | ---- | -------- | ------------------------------------------------------------ |
-| cn4-console-api    | https://cn4-console-api.guance.com                           | HTTP | Start     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-auth           | https://cn4-auth.guance.com                                  | HTTP | Start     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-openway        | https://cn4-openway.guance.com                               | HTTP | Start     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-static-res     | https://cn4-static-res.guance.com/dataflux-template/README.md | HTTP | Start     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-console        | https://cn4-console.guance.com                               | HTTP | Start     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-management-api | https://cn4-management-api.guance.com                        | HTTP | Start     | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-auth           | https://cn4-auth.guance.com                                          | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-openway        | https://cn4-openway.guance.com                                       | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-static-res     | https://cn4-static-res.guance.com/dataflux-template/README.md       | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-console        | https://cn4-console.guance.com                                       | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-management-api | https://cn4-management-api.guance.com                               | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
-| cn4-management     | https://cn4-management.guance.com                                   | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+| Name                | Synthetic Testing Address                                                       | Type | Task Status | Operation                                                         |
+| ------------------- | ----------------------------------------------------------------------------- | ---- | ----------- | ----------------------------------------------------------------- |
+| cn4-console-api     | https://cn4-console-api.<<< custom_key.brand_main_domain >>>                           | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+| cn4-auth            | https://cn4-auth.<<< custom_key.brand_main_domain >>>                                  | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+| cn4-openway         | https://cn4-openway.<<< custom_key.brand_main_domain >>>                               | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+| cn4-static-res      | https://cn4-static-res.<<< custom_key.brand_main_domain >>>/dataflux-template/README.md | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+| cn4-console         | https://cn4-<<< custom_key.studio_main_site >>>                               | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
+| cn4-management-api  | https://cn4-management-api.<<< custom_key.brand_main_domain >>>                        | HTTP | Start       | ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAUCAYAAAD/Rn+7AAAAAXNSR0IArs4c6QAAA59JREFUSEutll9sFFUUxr8zs/23ZKUUSjRAFAnQBU0Wuq1pin0gxqTEaOtCytqYPmiiYvyHJBiTtYI0vAASEhpCJSGVPrQqxLYKBJJCCG7dbRHbIoTQbo1arIBotEg7c+8xd+i2SzqbsLM7mcnM3NzzzW/OyT33IyQ5Sr/f6BdMLxJzKZgWgzAXoCyA1eUCiOxCmXl6OP6oxggMCRMEgxkGgFsAYkQUEcTHLpa3Ru30ZnzEH64tB+QeAKXJ4JONz4BTYPdOuLUclM3xwffQchRmz4HJAqPjtxD5qx+9f/8EAyKiMzb3VLSdT9S/D7CkO/gBM3YA0DMBp/hc0PHygudQt+gFeFxuW9nrd2+gcbgV3944J0hDqHdN2874xCnA4u6XQsS8PVWw+Pyp7Kl0MYMlY7buwa4V72N1vveBZNuvd6HhWhMEZH1vRavFYgE+1V37rIA8Ab73nuphB5cFFw48GYIvvygluaMjp9Ew2KR+s/JCRdtJQtsG3b/QdRWEx1NSSphsAcYzp+5C4o1Ha/DqYwFHklsGdqHrz8jQhVEsI393MADGl46UrGpOLlV1k2y955MHnWX7kafnOJIdHvsNgeh7YJ3WU3E4eISAWkdKiYAKTrIFWTV/LULe151KWnG10a24MjbcQv5w8BqAJU7V7iuvgjQlGoreRuUjTzuVtOI+vdqMz0c6B1WJ/wVjllO1KcDJDEpT4jPfxyguWOlU0opr+bkTu4eaxzIGaJVXSEhDomnVNvjnpgd4JNaBPTEFmKESTwFOCDR438G6hRVpZXD35cNoUSXOyCJRXSaewQmBqsK1qPe9mRZg8NwWXBmPtWSmzSQCGhKzTTeOP3MQea5cR5Cxf35F1dm3oOfq69Nu1HaLRN4xsGlJEK95axwBvhveia7b0aG+da5laW91dm1Gjgtod4FDa3Zg1bwVKUF+MXgCnww0spaTXflj5Vcnp83Cd8GPiLAtJbUkjVqtZPmfCY90Y2/Zh/DPf+KBZI/FTmH7D40QWVzf//zX02YhHu3EbtltdapZxyF1g1C3tAqveDfAk23fbkfG/sC+/mZ888sZoWXpob7q9pl2Kw7pxLDamQUpGDwhoMotJwTclIPyh4uxet5KFOYVQLCJ3+/cRHj0InpuDkCQjLCmbb4UaE9uWBPrUHK+pkTqWjUxlYJ4MTBp+Xmm5bezW2pPtiBNCVaQpmQ2pUkMQ4INYmX5KQaNotDp6KVAh63l/x/CLxkxSh9tAgAAAABJRU5ErkJggg==) |
 
-### Configure User Access Monitoring
+### Configure RUM
 
-1) Deploy a Deployment status DataKit
+1) Deploy a DataKit in Deployment status
 
 ```yaml
 ## deployment-datakit.yaml
@@ -387,7 +384,7 @@ spec:
       containers:
       - env:
         - name: ENV_DATAWAY
-          value: http://internal-dataway.utils:9528?token=xxxxxx    ## Replace with the actual token
+          value: http://internal-dataway.utils:9528?token=xxxxxx    ## Modify the token here
         - name: ENV_DISABLE_404PAGE
           value: "1"
         - name: ENV_GLOBAL_TAGS
@@ -400,7 +397,7 @@ spec:
           value: X-Forwarded-For
         - name: ENV_DEFAULT_ENABLED_INPUTS
           value: rum
-        image: pubrepo.jiagouyun.com/datakit/datakit:1.5.0
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/datakit:1.5.0
         imagePullPolicy: Always
         name: test-rum-datakit
         resources: {}
@@ -426,14 +423,14 @@ spec:
         command:
         - bash
         - -c
-        image: pubrepo.jiagouyun.com/datakit/iploc:1.0
+        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit/iploc:1.0
         imagePullPolicy: IfNotPresent
         name: init-volume
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /usr/local/datakit/data/ipdb/iploc/
+        - mountPath: /usr/local/datakit/data/iploc/
           name: datakit-ipdb
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -462,32 +459,30 @@ status:
   loadBalancer: {}
 ```
 
-2) Modify the `ConfigMap` configuration named config.js for the `forethought-webclient` service
+2) Modify the `ConfigMap` configuration named config.js for the forethought-webclient service
 
 ???+ warning "Note"
-     Replace all inner-app domain names with the actual corresponding domains.
+     All inner-app domain names below should be modified to the actual corresponding domain names
 
 ```shell
 window.DEPLOYCONFIG = {
-    cookieDomain: '.guance.com',
-    apiUrl: 'https://cn4-console-api.guance.com',
-    wsUrl: 'wss://.guance.com',
+    cookieDomain: '.<<< custom_key.brand_main_domain >>>',
+    apiUrl: 'https://cn4-console-api.<<< custom_key.brand_main_domain >>>',
+    wsUrl: 'wss://.<<< custom_key.brand_main_domain >>>',
     innerAppDisabled: 0,
-    innerAppLogin: 'https://cn4-auth.guance.com/redirectpage/login',
-    innerAppRegister: 'https://cn4-auth.guance.com/redirectpage/register',
-    innerAppProfile: 'https://cn4-auth.guance.com/redirectpage/profile',
-    innerAppCreateworkspace: 'https://cn4-auth.guance.com/redirectpage/createworkspace',
-    staticFileUrl: 'https://cn4-static-res.guance.com',
+    innerAppLogin: 'https://cn4-auth.<<< custom_key.brand_main_domain >>>/redirectpage/login',
+    innerAppRegister: 'https://cn4-auth.<<< custom_key.brand_main_domain >>>/redirectpage/register',
+    innerAppProfile: 'https://cn4-auth.<<< custom_key.brand_main_domain >>>/redirectpage/profile',
+    innerAppCreateworkspace: 'https://cn4-auth.<<< custom_key.brand_main_domain >>>/redirectpage/createworkspace',
+    staticFileUrl: 'https://cn4-static-res.<<< custom_key.brand_main_domain >>>',
     staticDatakit: 'https://static.<<< custom_key.brand_main_domain >>>',
     cloudDatawayUrl: '',
     isSaas: '1',
     showHelp: 1,
-    rumEnable: 1,                                                                              ## 0 to disable, 1 to enable, enabling here
-    rumDatakitUrl: "",                                                                         ## Modify to the DataKit address of the deployment
-    rumApplicationId: "",                                                                      ## Modify to the actual application ID
+    rumEnable: 1,                                                                              ## 0 means off, 1 means on, enable it here
+    rumDatakitUrl: "",                                                                         ## Modify to the deployment datakit address
+    rumApplicationId: "",                                                                      ## Modify to the actual appid
     rumJsUrl: "https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v2/dataflux-rum.js",
-    rumDataEnv: 'prod',
-   ```yaml
     rumDataEnv: 'prod',
     shrineApiUrl: '',
     upgradeUrl: '',
@@ -496,47 +491,45 @@ window.DEPLOYCONFIG = {
 };
 ```
 
-3) Modify the `ConfigMap` configuration named `dataway-config` under the `utils` namespace
+3) Modify the ConfigMap configuration named dataway-config under utils
 
 ```yaml
-token: xxxxxxxxxxx       ## Replace with the actual token
+token: xxxxxxxxxxx       ## Modify to the actual token
 ```
 
-### Import View and Monitor Templates
+### Import Views and Monitor Templates
 
-[Application Service Monitoring Template Download Link](pro_resource.zip)
+[Application Service Monitoring Template Download Address](pro_resource.zip)
 
 - **Import Template**
 
 ![allin](img/self-allin.jpg)
 
 ???+ warning "Note"
-     After importing, modify the corresponding jump link configurations in **Monitoring**. Replace `dsbd_xxxx` with the appropriate dashboard and `wksp_xxxx` with the target workspace.
+     After importing, modify the corresponding jump link configurations in the **monitor**. Replace dsbd_xxxx with the corresponding dashboard and wksp_xxxx with the monitored workspace.
 
-## Func Self-Observation (Optional)
+## Func Self-Observability (Optional)
 
 ### Func Task Log Data Reporting
 
-The function execution logs and automatic trigger configurations of DataFlux Func can be directly reported to <<< custom_key.brand_name >>>. The steps are shown in the following figure:
+The function execution logs and automatic trigger configurations of DataFlux Func can be directly reported to <<< custom_key.brand_name >>>. Follow the steps shown in the figure below:
 
 ![allin](img/self-func.png)
 
-In <<< custom_key.brand_name >>> data reporting, fill in the DataWay/OpenWay address and Token information as follows:
+
+Fill in the DataWay/OpenWay address and Token information in the <<< custom_key.brand_name >>> data reporting section, as follows:
 
 ```shell
-https://openway.guance.com?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+https://openway.<<< custom_key.brand_main_domain >>>?token=tkn_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> *Note: If Func data reporting fails, you can refer to the [DataFlux Func Documentation](https://<<< custom_key.func_domain >>>/doc/ui-guide-management-module-system-setting/){:target="_blank"}*
+> *Note: If Func data reporting fails, you can check the [DataFlux Func documentation](https://<<< custom_key.func_domain >>>/doc/ui-guide-management-module-system-setting/){:target="_blank"}*
 
-## Verification Methods
 
-- Check if there is data on the dashboard in the scenario.
-- Check if there is relevant DataKit host information in the infrastructure.
-- Check if the metrics contain MySQL, Redis, etc., database metrics data.
-- Check if there are logs and if the corresponding states have been enabled.
-- Check if the APM has RUM data.
+## Verification Method
 
----
-
-This completes the translation of the provided content. If you need any further assistance or additional sections translated, please let me know!
+- Check if there are any data on the dashboards in the scenario
+- Check if there is any related information from DataKit enabled HOSTs in the infrastructure
+- Check if the metrics contain MySQL, Redis, etc., database metric data
+- Check if there are any logs and if the corresponding statuses are enabled
+- Check if APM has RUM data

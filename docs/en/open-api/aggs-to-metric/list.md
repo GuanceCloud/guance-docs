@@ -1,23 +1,26 @@
-# [Aggregation to Metrics] List
+# 【Aggregation Generation Metrics】List
 
 ---
 
 <br />**GET /api/v1/aggs_to_metric/list**
 
 ## Overview
-List aggregation to metrics rules
+List of generated metrics rules
+
 
 
 ## Query Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                 |
-|:--------------|:-------|:---------|:----------------------------------------------------------------------------|
-| search        | string |          | Search by Measurement name or metric name<br>Allow null: False <br>Allow empty string: True <br> |
-| scriptType    | string |          | Type<br>Allow null: False <br>Optional values: ['rumToMetric', 'apmToMetric', 'logToMetric', 'securityToMetric', 'metricToMetric'] <br> |
-| pageIndex     | integer|          | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
-| pageSize      | integer|          | Number of items per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-----------------|:-------|:-----|:----------------|
+| search | string |  | Search by name of Measurement or Metric in the generated metric.<br>Allow null: False <br>Allow empty string: True <br> |
+| scriptType | string |  | Type<br>Allow null: False <br>Optional values: ['rumToMetric', 'apmToMetric', 'logToMetric', 'securityToMetric', 'metricToMetric'] <br> |
+| pageIndex | integer |  | Page number<br>Allow null: False <br>Example: 1 <br>$minValue: 1 <br> |
+| pageSize | integer |  | Number of items returned per page<br>Allow null: False <br>Example: 10 <br>$minValue: 1 <br>$maxValue: 100 <br> |
 
 ## Additional Parameter Notes
+
+
 
 
 
@@ -27,6 +30,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
+
 
 
 ## Response
@@ -89,7 +94,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/aggs_to_metric
                     "username": "xxxx",
                     "name": "xxxx",
                     "iconUrl": "",
-                    "email": "xxxx@guance.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "mobile": "xxxx",
                     "acntWsNickname": ""
                 },

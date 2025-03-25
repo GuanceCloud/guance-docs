@@ -4,15 +4,15 @@
 
 ## Introduction
 
-To meet the needs of rapid iteration and traffic surges, e-commerce systems often use microservices for development and deployment. Performance bottlenecks in a microservice can directly impact the customer shopping experience, especially when payment anomalies or order cancellations occur. We need to observe the entire order chain, track the number of successfully paid orders, abnormal orders, and canceled orders in real-time. These metrics are very helpful for analyzing business bottlenecks. This best practice is based on a distributed e-commerce platform using Java, combined with <<< custom_key.brand_name >>> to monitor the number of successfully paid orders from an order perspective and analyze the reasons for unsuccessful payments in real-time.
+To meet the demands of rapid iteration and surging traffic, e-commerce systems often use microservices for development and deployment. A performance bottleneck in a single microservice can directly impact the customer's shopping experience, especially when payment anomalies or order cancellations occur. In such cases, we need to observe the entire chain of events related to an order, tallying up real-time paid orders, abnormal orders, and canceled orders. These metrics are very helpful in analyzing business bottlenecks. This best practice is based on a distributed e-commerce platform built with Java, using <<< custom_key.brand_name >>> to observe the number of successfully paid orders and analyze the reasons for unsuccessful payments from an order perspective.
 
 ## Prerequisites
 ### Install Datakit
 
-- [Install Datakit](/datakit/datakit-install/)
-## Data Ingestion
+- <[Install Datakit](/datakit/datakit-install/)>
+## Data Integration
 
-The way to ingest order data into <<< custom_key.brand_name >>> is through logs. Microservices output log files to cloud servers, and DataKit is installed on these servers to enable log collection by specifying the path to the log files. To parse the order number, user, and order status from the log files, you need to write a Pipeline to split the log file content accordingly.
+The method of integrating order data into <<< custom_key.brand_name >>> is through logs, where microservices output log files to cloud servers. On this cloud server, install DataKit and enable log collection by specifying the path to the log files. To parse out the order ID, buyer, and order status from the log file, you need to write a Pipeline script that splits these fields.
 
 ### Enable Input
 
@@ -23,17 +23,17 @@ cd /usr/local/datakit/conf.d/ddtrace
 cp ddtrace.conf.sample ddtrace.conf  
 ```
 
-2. Write Pipeline
+2. Write Pipeline Script
 
 ```shell
 cd /usr/local/datakit/pipeline
 vi log_book_order.p
 ```
 
-Here **%{DATA:username}** is the user, **%{DATA:order_no}** is the order number, and **%{DATA:order_status}** is the order status.
+Here **%{DATA:username}** represents the buyer, **%{DATA:order_no}** is the order ID, and **%{DATA:order_status}** is the order status.
 
 ```toml
-#2021-12-22 10:09:53.443 [http-nio-7001-exec-7] INFO  c.d.s.b.s.i.OrderServiceImpl - [createOrder,164] - ecs009-book-order 7547183777837932733 2227975860088333788 test d6a3337d-ff82-4b00-9b4d-c07fb00c0cfb - User:test has placed an order, Order No: d6a3337d-ff82-4b00-9b4d-c07fb00c0cfb
+#2021-12-22 10:09:53.443 [http-nio-7001-exec-7] INFO  c.d.s.b.s.i.OrderServiceImpl - [createOrder,164] - ecs009-book-order 7547183777837932733 2227975860088333788 test d6a3337d-ff82-4b00-9b4d-c07fb00c0cfb - User:test has placed an order, Order ID: d6a3337d-ff82-4b00-9b4d-c07fb00c0cfb
 
 
 grok(_, "%{TIMESTAMP_ISO8601:time} %{NOTSPACE:thread_name} %{LOGLEVEL:status}%{SPACE}%{NOTSPACE:class_name} - \\[%{NOTSPACE:method_name},%{NUMBER:line}\\] - %{DATA:service1} %{DATA:trace_id} %{DATA:span_id} %{DATA:username} %{DATA:order_no} %{DATA:order_status} - %{GREEDYDATA:msg}")
@@ -42,13 +42,13 @@ default_time(time)
 
 ```
 
-3. Enable Logging Plugin, copy sample file
+3. Enable Logging Plugin, Copy Sample File
 
 ```shell
 cd /usr/local/datakit/conf.d/log
 cp logging.conf.sample log_book_order.conf
 ```
-Modify the `log_book_order.conf` file, specify the log files and the Pipeline created in the previous step. Set the source to `log_book_order` for easy use in views.
+Modify the log_book_order.conf file, specify the log file in logfiles, and set the Pipeline to the log_book_order.p created in the previous step. Set source to log_book_order for easier use in views.
 
 ```toml
 [[inputs.logging]]
@@ -70,7 +70,7 @@ Modify the `log_book_order.conf` file, specify the log files and the Pipeline cr
   ## grok pipeline script path
   pipeline = "log_book_order.p"
 
-  ## optional status:
+  ## optional statuses:
   ##   "emerg","alert","critical","error","warning","info","debug","OK"
   ignore_status = []
 
@@ -97,15 +97,15 @@ Modify the `log_book_order.conf` file, specify the log files and the Pipeline cr
 ```shell
 systemctl restart datakit
 ```
-### Ingesting E-commerce Data
+### Integrating E-commerce Data
 
-Project source code: [book-store](https://github.com/devdcores/BookStoreApp-Distributed-Application).
+Project Source Code: [book-store](https://github.com/devdcores/BookStoreApp-Distributed-Application).
 
-The logs processed by the Pipeline are generated by microservices, so the user, order number, and order status need to be output to the logs. In this example, the logging tool used is Logback. To output business data via Logback, you need to use the MDC mechanism, which involves putting the user, order number, and order status into MDC before logging, and then outputting them in the `logback-spring.xml` PATTERN. This requires modifying the `bookstore-order-service` microservice code.
+Using the log split by the Pipeline, since these logs are generated by microservices, you need to output the buyer, order ID, and order status to the logs. In this example, the logging tool used is Logback. To output business data via Logback, you need to use the MDC mechanism, which involves putting the buyer, order ID, and order status into MDC before logging, and then outputting them in the PATTERN section of logback-spring.xml. For this example, you need to modify the bookstore-order-service microservice code.
 
-1. Create a Slice
+1. Create Slices
 
-Create a slice to add `userName`, `orderNo`, and `orderStatus` to MDC, and remove them when the request ends.
+Create slices, adding userName, orderNo, and orderStatus to MDC, and removing them after the request ends.
 
 ```java
 @Component
@@ -138,11 +138,11 @@ public class LogAop {
 
 2. Write Order Data to Logs
 
-Output logs after a successful order placement.
+Output logs after successful order placement.
 
 ![1641289006.png](../images/order-1.png)
 
-3. Configure `logback-spring.xml`
+3. Configure logback-spring.xml
 
 ```xml
 <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %X{dd.service} %X{dd.trace_id} %X{dd.span_id} %X{userName} %X{orderNo} %X{orderStatus} - %msg%n" />
@@ -150,7 +150,7 @@ Output logs after a successful order placement.
 
 ### Packaging and Deployment
 
-- Frontend packaging, generates a build directory
+- Frontend packaging, generates build directory
 
 ```shell
 cd bookstore-frontend-react-app
@@ -159,33 +159,39 @@ yarn build
 
 - Backend packaging, generates:
 
-`bookstore-account-service-0.0.1-SNAPSHOT.jar`,
-`bookstore-payment-service-0.0.1-SNAPSHOT.jar`,
-`bookstore-api-gateway-service-0.0.1-SNAPSHOT.jar`,
-`bookstore-billing-service-0.0.1-SNAPSHOT.jar`,
-`bookstore-catalog-service-0.0.1-SNAPSHOT.jar`,
-`bookstore-eureka-discovery-service-0.0.1-SNAPSHOT.jar`,
-`bookstore-order-service-0.0.1-SNAPSHOT.jar`
+bookstore-account-service-0.0.1-SNAPSHOT.jar,
+
+bookstore-payment-service-0.0.1-SNAPSHOT.jar,
+
+bookstore-api-gateway-service-0.0.1-SNAPSHOT.jar,
+
+bookstore-billing-service-0.0.1-SNAPSHOT.jar,
+
+bookstore-catalog-service-0.0.1-SNAPSHOT.jar,
+
+bookstore-eureka-discovery-service-0.0.1-SNAPSHOT.jar,
+
+bookstore-order-service-0.0.1-SNAPSHOT.jar 
 
 ```shell
 mvn clean install -DskipTests
 ```
-
 ### Enable RUM
 
-- Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/)
+- Login to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)
 
-Click on 【User Analysis】 -> 【Create】 to input `book-shop`, select Web, and copy the JS.
+Click 【User Analysis】- 【Create】 enter book-shop, choose Web, copy the js.
 
 ![image.png](../images/order-2.png)
 
-- Copy the build directory to the server
+- Copy build Directory to Server
 
-Open `index.html`, paste the copied JS into the `<head>` section, and modify the `datakitOrigin` value to the address of the DataKit deployed on the current cloud server. The value of `allowedDDtracingOrgins` is the Gateway address.
+
+Open index.html, paste the copied js into the head, and modify the datakitOrigin value to the DataKit address deployed on the current cloud server, and set allowedDDtracingOrgins to the Gateway address.
 
 ![image.png](../images/order-3.png)
 
-- Install Nginx, deploy the web project
+- Install Nginx, Deploy Web Project
 
 ```
 server {
@@ -203,7 +209,7 @@ server {
 
 ### Enable APM
 
-To collect Trace data, use `/usr/local/datakit/data/dd-java-agent.jar`.
+<<< custom_key.brand_name >>> collects Trace data using: /usr/local/datakit/data/dd-java-agent.jar.
 
 ```shell
 java -jar bookstore-eureka-discovery-service-0.0.1-SNAPSHOT.jar
@@ -249,21 +255,21 @@ java  -javaagent:/usr/local/datakit/data/dd-java-agent.jar \
  -Ddd.agent.port=9529   \
  -jar bookstore-catalog-service-0.0.1-SNAPSHOT.jar 
 ```
+ 
+### Order Monitoring View
 
-### Order Monitoring Dashboard
-
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Use Cases】->【Create New Dashboard】->【Create Blank Dashboard】, input “Order Monitoring Dashboard”, and click 【Confirm】.
+Login to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), 【Use Cases】-> 【Create Dashboard】-> 【Create Blank Dashboard】, input “Order Monitoring View”, click 【Confirm】.
 
 ![1641360132(1).png](../images/order-4.png)
 
-Click on the dashboard created in the previous step, click 【Edit】, drag a “Time Series Chart”, set the chart title to “Number of Orders Placed”. In the Time Series Chart, select “Logs”, then choose `log_book_order`. `log_book_order` is the source value from `log_book_order.conf`, then select `order_no`, and sort by “Count_distinct_by”. Filter conditions select “order_status” with the value “Placed”. This Time Series Chart will count the number of placed orders. Finally, click “+” -> Transformation Function -> cumsum, converting the order count into a cumulative sum over time.
+Click the dashboard created in the previous step, click 【Edit】, drag a “Time Series Chart”, title the chart as “Number of Orders Placed”. In the time series chart, select “Logs”, then select log_book_order. log_book_order is the source value in log_book_order.conf, then select order_no, and choose “Count_distinct_by” as the sorting method. Select “order_status” as the filtering condition, and set its value to “Placed”. This time series chart counts the number of placed orders. Finally, click “+” -> Conversion Function -> cumsum, converting the number of orders within a unit of time into cumulative totals.
 
 ![1642059188(1).png](../images/order-5.png)
 
-Drag another “Time Series Chart”, set the chart title to “Number of Paid Orders”. In the Time Series Chart, select “Logs”, then choose `log_book_order`. `log_book_order` is the source value from `log_book_order.conf`, then select `order_no`, and sort by “Count_distinct_by”. Filter conditions select “order_status” with the value “Paid”. This Time Series Chart will count the number of paid orders. Finally, click “+” -> Transformation Function -> Cumsum, converting the order count into a cumulative sum over time.
+Drag a “Time Series Chart”, title the chart as “Number of Paid Orders”. In the time series chart, select “Logs”, then select log_book_order. log_book_order is the source value in log_book_order.conf, then select order_no, and choose “Count_distinct_by” as the sorting method. Select “order_status” as the filtering condition, and set its value to “Paid”. This time series chart counts the number of paid orders. Finally, click “+” -> Conversion Function -> Cumsum, converting the number of orders within a unit of time into cumulative totals.
 
 ![1642059204(1).png](../images/order-6.png)
 
-Drag another “Time Series Chart”, set the chart title to “Number of Abnormal Orders”. In the Time Series Chart, select “Logs”, then choose `log_book_order`. `log_book_order` is the source value from `log_book_order.conf`, then select `order_no`, and sort by “Count_distinct_by”. Filter conditions select “order_status” with the value “Payment Anomaly”. This Time Series Chart will count the number of orders with payment anomalies. Finally, click “+” -> Transformation Function -> Cumsum, converting the order count into a cumulative sum over time.
+Drag a “Time Series Chart”, title the chart as “Number of Abnormal Orders”. In the time series chart, select “Logs”, then select log_book_order. log_book_order is the source value in log_book_order.conf, then select order_no, and choose “Count_distinct_by” as the sorting method. Select “order_status” as the filtering condition, and set its value to “Payment Anomaly”. This time series chart counts the number of orders with payment anomalies. Finally, click “+” -> Conversion Function -> Cumsum, converting the number of orders within a unit of time into cumulative totals.
 
 ![1642059222(1).png](../images/order-7.png)

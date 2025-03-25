@@ -1,31 +1,33 @@
-# Troubleshooting Availability Monitoring
+# Synthetic Tests Troubleshooting
 
-## Managing Self-built Nodes for Synthetic Tests Name or service not known {#service-not-known}
+## Testing Self-built Nodes Management Name or service not known {#service-not-known}
 
 ### Problem Overview {#overview}
 
-The "Name or service not known" error occurs in the self-built node management.
+【Self-built Nodes Management】reports `Name or service not known`.
 
 ![](img/selfnode-01.png)
 
 ### Error Cause {#error-cause}
 
-- Due to load balancing issues with some cloud providers, services cannot access their own ingress domain.
+- Due to load balancing issues with some cloud providers, the service cannot access its own ingress domain.
 
 ### Steps {#steps}
 
+
 #### 1. Open Launcher and Modify Application Configuration {#step-one}
 
-Access the Launcher service and click on `Modify Application Configuration` in the top-right corner.
+Access the Launcher service and click on `Modify Application Configuration` in the top right corner.
 
 ![](img/selfnode-02.png)
 
+
 #### 2. Add Parameters {#step-two}
 
-Edit the `internal_server` parameter under the namespace `forethought-core` - `core`:
+Modify the 「Namespace: forethought-core」 - 「core」 by adding the `internal_server` parameter:
 
 ```yaml
-# Cloud Synthetic Tests service
+# Cloud testing service
 
 DialingServer:
    ...
@@ -34,15 +36,17 @@ DialingServer:
 
 #### 3. Automatically Restart Related Services After Modifying Configuration {#step-three}
 
-Select the option to automatically restart related services after modifying the configuration.
+Check the box to automatically restart related services after modifying the configuration.
 
 ![](img/selfnode-03.png)
 
-## Data Discontinuity in Synthetic Tests Explorer {#no-data}
+
+
+## Synthetic Tests Explorer Data Interruption {#no-data}
 
 ### Problem Overview {#overview}
 
-This section describes how to troubleshoot data discontinuity issues in the Synthetic Tests Explorer.
+This chapter will introduce how to troubleshoot data interruptions in the Synthetic Tests Explorer.
 
 ### Flowchart
 
@@ -50,25 +54,25 @@ This section describes how to troubleshoot data discontinuity issues in the Synt
 
 ### Troubleshooting Approach
 
-#### Step One: Verify Configuration
+#### Step One: Validate Configuration
 
-1. First, check if the configuration files are correct:
+1. First, check if the configuration file is correct.
 
-- Verify the ConfigMap named `core` under the `forethought-core` Namespace:
+- Check if the ConfigMap named `core` under the forethought-core Namespace is correctly configured.
 
 ```shell
-# Synthetic Tests service
+# Cloud testing service
 DialingServer:
-  # Address configuration for the Synthetic Tests center
+  # Testing service center address configuration
   use_https: true
-  port: 443                                     ## Modify based on actual conditions
-  host: 'dflux-dial.guance.com'                 ## Modify based on actual conditions
+  port: 443                                     ## Modify according to actual conditions
+  host: '<<< custom_key.dial_server_domain >>>'                 ## Modify according to actual conditions
   timeout: 10
 ```
 
-> **dflux-dial.guance.com** is the official Synthetic Tests center. If switching to a private Synthetic Tests center, please refer to the ingress configuration.
+> **<<< custom_key.dial_server_domain >>>** is the official testing center; if switching to a private testing center, refer to the ingress configuration.
 
-- Verify the ConfigMap named `dialtesting-config` under the `utils` Namespace:
+- Check if the ConfigMap named dialtesting-config under the utils Namespace is correctly configured.
 
 ```shell
 global:
@@ -78,9 +82,9 @@ global:
     sys_external_id: "ak_R5Fxxxxxxxxx8Go8-wksp_system"
 ```
 
-> **sys_external_id** consists of the **uuid** + **external_id** from the **aksk** table below.
+> **sys_external_id** is composed of the **uuid** + **external_id** from the **aksk** table below.
 
-2. Confirm the data in the `aksk` table within the MySQL `df_dialtesting` database:
+2. Confirm the data in the `aksk` table within the MySQL df_dialtesting database.
 
 ```sql
 mysql -u <user_name> -p -h <mysql_address>
@@ -92,7 +96,7 @@ select * from aksk;
 | ---- | ------------------- | -------------------- | -------------------------- | ------ | --------- | ----------- | ------ | ------- | ------------- | ------------- |
 | 1    | ak_R5Fxxxxxxxxx8Go8 | asjTxxxxxxxxxxxxxXMJ | zeiX99gxxxxxxxxxxxxxxxx2h5 | system | -1        | wksp_system | OK     | 0       | 1,686,218,468 | 1,686,218,468 |
 
-3. Compare with the data in the `main_config` table in the `df_core` database where `keyCode` is `DialingServerSet`:
+3. Compare with the data in the df_core database's main_config where `Keycode` is `DialingServerSet` to ensure consistency.
 
 ```sql
 use df_core;
@@ -101,48 +105,48 @@ select * from main_config;
 
 | id   | keyCode          | description  | value                                                        |
 | ---- | ---------------- | ------------ | ------------------------------------------------------------ |
-| 6    | DialingServerSet | Synthetic Tests service configuration | "{\"ak\": \"asjTxxxxxxxxxxxxxXMJ\", \"sk\": \"zeiX99gxxxxxxxxxxxxxxxx2h5\", \"dataway\": \"http://deploy-openway.dataflux.cn?token={}\"}" |
+| 6    | DialingServerSet | Testing service configuration | "{\"ak\": \"asjTxxxxxxxxxxxxxXMJ\", \"sk\": \"zeiX99gxxxxxxxxxxxxxxxx2h5\", \"dataway\": \"http://deploy-openway.dataflux.cn?token={}\"}" |
 
-4. Compare with the data in the `dialServiceAK` module in launcher:
+4. Compare with the data in the `dialServiceAK` module of launcher for consistency.
 
-Steps: Log in to the launcher interface ---> Top-right button ---> Others
+Steps: Log in to the launcher interface ---> Top right button ---> Others
 
  ![](img/boce-no-data_2.png)
 
 Correspondence table:
 
-| Key name in aksk table | Key name in dialServiceAK module of launcher others configuration |
-| ---------------------- | ------------------------------------------------------------------ |
-| uuid                   | ak_id                                                             |
-| accessKey              | ak                                                                |
-| secretKey              | sk                                                                |
+| Key name in aksk table | Key name in the dialServiceAK module of launcher others configuration |
+| ---------------- | ------------------------------------------------- |
+| uuid             | ak_id                                             |
+| accessKey        | ak                                                |
+| secretKey        | sk                                                |
 
-> If there are inconsistencies, make changes according to the database.
+> If inconsistencies are found, make modifications based on the database values.
 
-5. If you have switched the Synthetic Tests center or made modifications, reactivate the license on the launcher page to rewrite the information.
+5. If you have switched the testing center or made modifications, reactivate the license on the launcher page to rewrite the information.
 
-> No need to change the license configuration; just reactivate it.
+> No need to change the license configuration, just activate it directly.
 
 ![](img/boce-no-data_3.png)
 
 ![](img/boce-no-data_4.png)
 
-> Confirm that the data gateway address matches the example format exactly. **token={}** does not need to be modified.
+> Confirm the data gateway address matches the example format exactly. **token={}** does not require modification.
 
 #### Step Two: Confirm Communication
 
-Use the `ping` command on the **Synthetic Tests node** machine to confirm communication with the Synthetic Tests center and DataWay.
+On the **Testing Node** machine, use the `ping` command to confirm communication with the testing center and DataWay.
 
-#### Step Three: Check Data Reporting
+#### Step Three: Check if Data is Reported
 
-Run the following commands on the Synthetic Tests node machine to check if data is being reported:
+Run the following commands on the testing node machine to check if data is reported.
 
-- Check I/O communication:
+- Check if I/O communication is normal
 
 ```shell
 sudo datakit monitor -M IO
 
-## DYNAMIC_DW represents the Synthetic Tests center service; Points(ok/total) being consistent indicates no issues.
+## DYNAMIC_DW represents the testing center service; Points(ok/total) being consistent indicates no issues.
 ┌IO Info───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │       Cat│ChanUsage│   Points(ok/total)│                     Bytes(ok/total/gz)                                                                                                                                                          │
 │DYNAMIC_DW│      0/1│          626 /626 │         389.392 k/389.392 k(267.603 k)                                                                                                                                                          │
@@ -152,12 +156,12 @@ sudo datakit monitor -M IO
 
 ```
 
-- Check input:
+- Check if input is normal
 
 ```shell
 
 sudo datakit monitor -M In
-## Feeds and TotalPts of dialtesting not being zero means data is being uploaded.
+## Feeds and TotalPts of dialtesting being non-zero indicates data upload.
 ┌Inputs Info(11 inputs)────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │                Input│Cat│    Feeds│ TotalPts│Filtered│      LastFeed│     AvgCost│Errors                                                                                                                                                 │
 │          dialtesting│ L │     626 │     626 │      0 │25 minutes ago│          0s│  0                                                                                                                                                    │
@@ -167,7 +171,7 @@ sudo datakit monitor -M In
 
 #### Step Four: Check Logs
 
-Use the following command to view the `DataKit` logs on the Synthetic Tests node for further troubleshooting.
+Use the following command to view the `DataKit` logs on the testing node for further problem determination.
 
 ```shell
 tail -f /var/log/datakit/log | grep dial

@@ -2,21 +2,23 @@
 
 ## Introduction {#intro}
 
-MySQL is one of the most popular relational database management systems and is among the best RDBMS (Relational Database Management System) applications for web applications.
+MySQL is the most popular relational database management system and is one of the best RDBMS (Relational Database Management System) application softwares for WEB applications.
+
 
 ## Prerequisites
 
 - A Kubernetes cluster has been deployed; if not, refer to [Kubernetes Deployment](infra-kubernetes.md)
-- nfs-subdir-external-provisioner has been deployed; if not, refer to [Kubernetes Storage](infra-kubernetes.md#kube-storage)
+- nfs-subdir-external-provisioner has been deployed; if not, refer to [Kubernetes Storage](infra-kubernetes.md#kube-storage) 
 
 ## Basic Information and Compatibility
 
 |     Name     |     Description      |
 | :------------------: |:-----------:|
 |     MySQL Version     |     8.0     |
-|      Supported Cluster Version       |    1.18+    |
-|    Offline Installation Support    |      Yes      |
-|       Supported Architecture       | amd64/arm64 |
+|      Supported Cluster Versions       |    1.18+    |
+|    Whether Offline Installation is Supported    |      Yes      |
+|       Supported Architectures       | amd64/arm64 |
+
 
 ## Default Configuration Information for Deployment
 
@@ -28,17 +30,17 @@ MySQL is one of the most popular relational database management systems and is a
 
 ## Installation {#install}
 ???+ warning "Note"
-     Create an administrator account (it must be an **administrator account**; this account will be used for initializing various application DBs during subsequent installation. If remote connection is required, enable it accordingly).
+     Create an administrator account (it must be an **administrator account**, as it will be used for subsequent installation initialization to create and initialize DBs for various applications; enable remote connections if necessary)
 
      If the deployment fails, you can deploy MySQL using Docker.
 
-     The highlighted `storageClassName` should be set according to your actual situation.
+     The highlighted `storageClassName` should be determined based on actual conditions.
 
-     Please ensure that you modify the MySQL administrator account.
+     Be sure to modify the MySQL administrator account.
 
-Save `mysql.yaml` and deploy.
+Save mysql.yaml and deploy.
 
-???- note "mysql.yaml (click to expand)" 
+???- note "mysql.yaml (Click to expand)" 
     ```yaml hl_lines='17'
     ---
     apiVersion: v1
@@ -56,7 +58,7 @@ Save `mysql.yaml` and deploy.
       resources:
         requests:
           storage: 10Gi
-      storageClassName:  standard-nfs-storage ## Specify an existing StorageClass
+      storageClassName:  standard-nfs-storage ## Specify an existing StorageClass #
 
 
     ---
@@ -169,7 +171,7 @@ Save `mysql.yaml` and deploy.
 
     ```
 
-Execute the commands to install:
+Run the following commands to install:
 ```shell
 kubectl create namespace middleware
 kubectl apply -f mysql.yaml
@@ -177,11 +179,12 @@ kubectl apply -f mysql.yaml
 
 ## Verify Deployment
 
-- Check the pod status
+- Check pod status
 
 ```shell
 kubectl get pods -n middleware | grep mysql
 ```
+
 
 ## How to Uninstall
 

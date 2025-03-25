@@ -1,4 +1,4 @@
-# Invite One or Multiple Members
+# Invite one/multiple members
 
 ---
 
@@ -8,15 +8,18 @@
 Invite one or multiple members
 
 
+
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description                                                                                       |
-|:-------------|:-------|:--------|:-------------------------------------------------------------------------------------------------|
-| to           | array  | Y       | List of invitees<br>Example: ['xx1@jiagouyun.com', 'xx2@jiagouyun.com'] <br>Can be empty: True <br> |
-| roleUUIDs    | array  | Y       | List of role UUIDs for invitees<br>Example: ['xxx', 'xxx'] <br>Can be empty: False <br>              |
-| method       | string | Y       | Invitation method<br>Example: None <br>Can be empty: False <br>Optional values: ['email'] <br>      |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| to | array | Y | List of invitees<br>Example: ['xxx@<<< custom_key.brand_main_domain >>>', 'xxx@<<< custom_key.brand_main_domain >>>'] <br>Can be empty: True <br> |
+| roleUUIDs | array | Y | List of UUIDs for the roles of invitees<br>Example: ['xxx', 'xxx'] <br>Can be empty: False <br> |
+| method | string | Y | Invitation method<br>Example: None <br>Can be empty: False <br>Possible values: ['email'] <br> |
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
+
+
 
 
 
@@ -25,9 +28,10 @@ Invite one or multiple members
 curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/member/batch_invitation' \
 -H 'DF-API-KEY: <DF-API-KEY>' \
 -H 'Content-Type: application/json;charset=UTF-8' \
---data-raw '{"to": ["241927@qq.com"], "method": "email", "roleUUIDs": ["general"]}' \
+--data-raw '{"to": ["xxx@<<< custom_key.brand_main_domain >>>"], "method": "email", "roleUUIDs": ["general"]}' \
 --compressed 
 ```
+
 
 
 

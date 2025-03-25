@@ -1,6 +1,6 @@
 ---
 title     : 'APISIX'
-summary   : 'Collect APISIX related Metrics, logs, and trace information'
+summary   : 'Collect APISIX related metrics, logs, and tracing information'
 __int_icon: 'icon/apisix'
 dashboard :
   - desc  : 'APISIX Monitoring View'
@@ -19,11 +19,11 @@ monitor   :
 
 ### APISIX Configuration
 
-The configuration file for APISIX is `config.yaml`. Note that `datakit_host` should be adjusted to the actual address, such as an IP for host environments or `datakit-service.datakit.svc` for Kubernetes environments.
+The configuration file for APISIX is `config.yaml`. Note that `datakit_host` should be adjusted to the actual address, such as the IP in a host environment or `datakit-service.datakit.svc` in a Kubernetes environment.
 
 #### Metrics
 
-APISIX supports exposing metrics via the Prometheus protocol. Add the following configuration in the APISIX configuration file:
+APISIX supports exposing metrics via the Prometheus protocol. Add the following configuration to the APISIX configuration file:
 
 ```yaml
 apisix:
@@ -36,11 +36,11 @@ apisix:
     - prometheus
 ```
 
-You also need to enable the `prometheus` plugin in the global plugins of APISIX.
+You also need to enable the `prometheus` plugin in the global plugins section of APISIX.
 
-#### Logs
+### Logs
 
-APISIX supports multiple methods for reporting log information, primarily using the `http-logger` plugin:
+APISIX supports multiple methods for reporting log information. Here we mainly use the `http-logger` plugin for reporting:
 
 ```yaml
 apisix:
@@ -48,7 +48,7 @@ apisix:
     - http-logger
 ```
 
-You also need to configure the `http-logger` reporting address on the APISIX route, with the following content:
+Additionally, configure the `http-logger` reporting address on the APISIX route, with the following content:
 
 ```json
 {
@@ -57,9 +57,9 @@ You also need to configure the `http-logger` reporting address on the APISIX rou
 }
 ```
 
-#### Traces
+### Tracing
 
-APISIX supports reporting trace information via the Opentelemetry protocol by enabling the `opentelemetry` plugin:
+APISIX supports reporting trace information via the Opentelemetry protocol. Enable the opentelemetry plugin for reporting:
 
 ```yaml
 apisix:
@@ -75,19 +75,20 @@ apisix:
         request_timeout: 3
 ```
 
+
 ### DataKit
 
 #### Host
 
-DataKit runs on the host and can collect data through host-based collection. Enter the DataKit installation directory for configuration.
+DataKit running on a host can collect data using the host method. Enter the DataKit installation directory for configuration.
 
-- **Metrics**
+- Metrics
 
-Enable the `prometheus` collector to collect APISIX metrics. Navigate to the `[DataKit installation directory](./datakit_dir.md)` under `conf.d/prom`, and execute the following command:
+Enable the prometheus collector to collect APISIX metrics. Navigate to the [DataKit installation directory](./datakit_dir.md)`conf.d/prom` and execute the following command:
 
-> `cp prom.conf.sample apisix.conf`
+> cp prom.conf.sample apisix.conf
 
-Adjust the content of `apisix.conf`, mainly changing `urls`, as follows:
+Adjust the apisix.conf content, mainly adjusting the urls, as follows:
 
 ```toml
 [[inputs.prom]]
@@ -95,35 +96,35 @@ Adjust the content of `apisix.conf`, mainly changing `urls`, as follows:
   urls = ["http://localhost:9091/apisix/prometheus/metrics"]
 ```
 
-- **Logs**
+- Logs
 
-Enable the `logstreaming` collector to collect APISIX logs. Navigate to the `[DataKit installation directory](./datakit_dir.md)` under `conf.d/log`, and execute the following command:
+Enable the logstreaming collector to collect APISIX logs. Navigate to the [DataKit installation directory](./datakit_dir.md)`conf.d/log` and execute the following command:
 
-> `cp logstreaming.conf.sample logstreaming.conf`
-
-No adjustments are needed for this configuration.
-
-- **Traces**
-
-Enable the `opentelemetry` collector to collect APISIX trace data. Navigate to the `[DataKit installation directory](./datakit_dir.md)` under `conf.d/opentelemetry`, and execute the following command:
-
-> `cp opentelemetry.conf.sample opentelemetry.conf`
+> cp logstreaming.conf.sample logstreaming.conf
 
 No adjustments are needed for this configuration.
 
-- **Restart**
+- Tracing
+
+Enable the opentelemetry collector to collect APISIX trace data. Navigate to the [DataKit installation directory](./datakit_dir.md)`conf.d/opentelemetry` and execute the following command:
+
+> cp opentelemetry.conf.sample opentelemetry.conf
+
+No adjustments are needed for this configuration.
+
+- Restart
 
 After making changes, restart DataKit.
 
 #### Kubernetes
 
-DataKit runs on Kubernetes and can be configured as follows:
+DataKit running on Kubernetes can be configured as follows:
 
-- **Metrics**
+- Metrics
 
-Use the KubernetesPrometheus collector to gather metrics from `Prometheus`.
+Use the KubernetesPrometheus collector to collect Prometheus metrics.
 
-Edit `datakit.yaml` and add the `apisix.conf` section in the ConfigMap.
+Edit `datakit.yaml` and add the `apisix.conf` part in the ConfigMap.
 
 ```yaml
 apiVersion: v1
@@ -158,7 +159,7 @@ data:
            host             = "__kubernetes_mate_host"
 ```
 
-Then mount `apisix.conf` to DataKit's `/usr/local/datakit/conf.d/kubernetesprometheus/` directory.
+Mount `apisix.conf` to the DataKit's `/usr/local/datakit/conf.d/kubernetesprometheus/` directory.
 
 ```yaml
     - mountPath: /usr/local/datakit/conf.d/kubernetesprometheus/apisix.conf
@@ -166,7 +167,7 @@ Then mount `apisix.conf` to DataKit's `/usr/local/datakit/conf.d/kubernetesprome
         subPath: apisix.conf
 ```
 
-- **Logs**
+- Logs
 
 Edit `datakit.yaml` and append `logstreaming` to the `ENV_DEFAULT_ENABLED_INPUTS` environment variable value, as shown below:
 
@@ -175,9 +176,9 @@ Edit `datakit.yaml` and append `logstreaming` to the `ENV_DEFAULT_ENABLED_INPUTS
           value: dk,cpu,disk,diskio,mem,swap,system,hostobject,net,host_processes,container,statsd,logstreaming
 ```
 
-- **Traces**
+- Tracing
 
-Edit `datakit.yaml` and append `opentelemetry` to the `ENV_DEFAULT_ENABLED_INPUTS` environment variable value. Also, enable `ENV_INPUT_DDTRACE_COMPATIBLE_OTEL` for OTEL and DDTrace data compatibility.
+Edit `datakit.yaml` and append `opentelemetry` to the `ENV_DEFAULT_ENABLED_INPUTS` environment variable value, while enabling `ENV_INPUT_DDTRACE_COMPATIBLE_OTEL` for `OTEL` and `DDTrace` data compatibility.
 
 ```yaml
         - name: ENV_DEFAULT_ENABLED_INPUTS
@@ -186,33 +187,34 @@ Edit `datakit.yaml` and append `opentelemetry` to the `ENV_DEFAULT_ENABLED_INPUT
           value: 'true'
 ```
 
-- **Restart**
+- Restart
 
 After making changes, restart DataKit.
 
+
 ## Metrics {#metric}
 
-| Metric                        | Description                                       | Type  |
-|-------------------------------|--------------------------------------------------|------|
-| bandwidth                     | APISIX traffic (ingress/egress)                   | int  |
-| etcd_modify_indexes           | Number of etcd index records                      | int  |
-| etcd_reachable                | Etcd availability, 1 means available, 0 means unavailable | int  |
-| http_latency_bucket           | Service request time delay                       | int  |
-| http_latency_count            | Number of service request time delays             | int  |
-| http_latency_sum              | Total service request time delays                 | int  |
-| http_requests_total           | Total HTTP requests                              | int  |
-| http_status                   | HTTP status                                     | int  |
-| nginx_http_current_connections| Current number of nginx connections               | int  |
-| nginx_metric_errors_total     | Number of nginx error metrics                    | int  |
-| node_info                     | Node information                                | int  |
-| shared_dict_capacity_bytes    | Capacity of APISIX nginx                         | int  |
-| shared_dict_free_space_bytes  | Available space of APISIX nginx                  | int  |
+| Metric                         | Description                                       | Type   |
+|--------------------------------|--------------------------------------------------|--------|
+| bandwidth                      | APISIX traffic (ingress/egress)                   | int    |
+| etcd_modify_indexes            | Number of etcd index records                     | int    |
+| etcd_reachable                 | Etcd availability, 1 indicates available, 0 indicates unavailable | int    |
+| http_latency_bucket            | Service request time delay                       | int    |
+| http_latency_count             | Number of service request time delays            | int    |
+| http_latency_sum               | Total service request time delay                 | int    |
+| http_requests_total            | Total number of HTTP requests                    | int    |
+| http_status                    | HTTP status                                      | int    |
+| nginx_http_current_connections | Current number of nginx connections              | int    |
+| nginx_metric_errors_total      | Number of erroneous nginx metrics                | int    |
+| node_info                      | Node information                                 | int    |
+| shared_dict_capacity_bytes     | Capacity of APISIX nginx                         | int    |
+| shared_dict_free_space_bytes   | Available space of APISIX nginx                  | int    |
 
 ## Logs {#logging}
 
-Use a Pipeline to extract the `trace_id` from APISIX logs to achieve correlation between traces and logs.
+Use Pipeline to extract the `trace_id` from APISIX logs to achieve correlation between traces and logs.
 
-```python
+```yaml
 jsonData=load_json(_)
 requestJson = jsonData["request"]
 responseJson = jsonData["response"]
@@ -222,3 +224,15 @@ add_key(client_ip,jsonData["client_ip"])
 trace_id = requestJson["headers"]["traceparent"]
 grok(trace_id, "%{DATA}-%{DATA:trace_id}-%{DATA}") 
 ```
+
+
+
+
+
+
+
+
+
+
+
+

@@ -141,13 +141,13 @@ guance-storage 进程内状态不多，内存中主要是保存的一些查询 c
     ### Helm 安装或升级 GuanceDB {#helm-install}
 
       ```shell
-      helm upgrade -i guancedb-cluster  guancedb-cluster --repo https://pubrepo.jiagouyun.com/chartrepo/guancedb -n middleware \
+      helm upgrade -i guancedb-cluster  guancedb-cluster --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/guancedb -n middleware \
            --set guance_storage.persistentVolume.storageClass="<YOUR StorageClass Name>" \
            --set ingress.enabled=false \
            --create-namespace
       ```
       
-      > `<YOUR StorageClass Name>` 需替换你的存储类名称，建议使用高性能数据块。如果需要其他参数，请执行 `helm pull guancedb-cluster --repo https://pubrepo.jiagouyun.com/chartrepo/guancedb --untar`，修改 values.yaml。
+      > `<YOUR StorageClass Name>` 需替换你的存储类名称，建议使用高性能数据块。如果需要其他参数，请执行 `helm pull guancedb-cluster --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/guancedb --untar`，修改 values.yaml。
 
     ### 查看状态 {#helm-check}
 

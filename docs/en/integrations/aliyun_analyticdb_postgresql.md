@@ -2,13 +2,13 @@
 title: 'Alibaba Cloud AnalyticDB PostgreSQL'
 tags: 
   - Alibaba Cloud
-summary: 'Alibaba Cloud AnalyticDB PostgreSQL Metrics display, including CPU, memory, disk, coordinator node, instance queries, etc.'
+summary: 'Alibaba Cloud AnalyticDB PostgreSQL Metrics Display, including CPU, memory, disk, coordination nodes, instance queries, etc.'
 __int_icon: 'icon/aliyun_analyticdb_postgresql'
 dashboard:
-  - desc: 'Alibaba Cloud AnalyticDB PostgreSQL built-in views'
+  - desc: 'Alibaba Cloud AnalyticDB PostgreSQL Built-in Views'
     path: 'dashboard/en/aliyun_analyticdb_postgresql/'
 monitor:
-  - desc: 'Alibaba Cloud AnalyticDB PostgreSQL monitor'
+  - desc: 'Alibaba Cloud AnalyticDB PostgreSQL Monitors'
     path: 'monitor/en/aliyun_analyticdb_postgresql/'
 ---
 
@@ -17,57 +17,60 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-Alibaba Cloud AnalyticDB PostgreSQL Metrics display, including CPU, memory, disk, coordinator node, instance queries, etc.
+Alibaba Cloud AnalyticDB PostgreSQL metrics display, including CPU, memory, disk, coordination nodes, instance queries, etc.
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with script installation.
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
+
 
 ### Installation Script
 
-> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data from Alibaba Cloud AnalyticDB PostgreSQL, install the corresponding collection script: 「Guance Integration (Alibaba Cloud-AnalyticDB PostgreSQL Collection)」(ID: `guance_aliyun_analyticdb_postgresql`)
+To synchronize monitoring data for Alibaba Cloud AnalyticDB PostgreSQL, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-AnalyticDB PostgreSQL Collection)" (ID: `guance_aliyun_analyticdb_postgresql`)
 
-After clicking 【Install】, enter the required parameters: Alibaba Cloud AK and Alibaba Cloud account name.
+After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup scripts.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
+Once enabled, you can see the corresponding automatic trigger configuration under "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately run it without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-We collect some default configurations; for more details, see the Metrics section.
+We default collect some configurations; for more details, see the metrics section.
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-analyticdb-postgresql/){:target="_blank"}
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-analyticdb-postgresql/){:target="_blank"}
+
+
 
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm that the corresponding automatic trigger configuration exists for the task. You can also check the task records and logs for any anomalies.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. On the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding tasks have been configured with automatic triggers. You can also check the corresponding task records and logs for any anomalies.
+2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there are asset information entries.
+3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud AnalyticDB PostgreSQL, the default Metrics set is as follows. You can collect more Metrics through configuration. [Alibaba Cloud Monitoring Metrics Details](https://cms.console.aliyun.com/metric-meta/acs_hybriddb/gpdb?spm=a2c4g.11186623.0.0.5da976abPs9zNS){:target="_blank"}
+After configuring Alibaba Cloud AnalyticDB PostgreSQL, the default metric sets are as follows. You can collect more metrics through configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://cms.console.aliyun.com/metric-meta/acs_hybriddb/gpdb?spm=a2c4g.11186623.0.0.5da976abPs9zNS){:target="_blank"}
 
-| MetricName                   |         MetricCategory         | MetricDescription                          | Dimensions                                    | Statistics              | Unit  | MinPeriods |
+| MetricName                   |         MetricCategory         | MetricDescribe                          | Dimensions                                    | Statistics              | Unit  | MinPeriods |
 | ---- | :----: | ---- | ---- | ---- | ---- | ---- |
 | node_cpu_used_percent        |              `gpdb`              | 【Storage Elastic & Serverless】Node CPU Usage Rate | userId,instanceId,instance_component,hostname | Average,Maximum,Minimum | %     | 60 s       |
 | node_mem_used_percent        |              `gpdb`              | 【Storage Elastic & Serverless】Node Memory Usage Rate | userId,instanceId,instance_component,hostname | Average,Maximum,Minimum | %     | 60 s    |
 | node_disk_used_percent       |              `gpdb`              | 【Storage Elastic & Serverless】Node Disk Usage Rate | userId,instanceId,instance_component,hostname | Average,Maximum,Minimum | %     | 60 s        |
-| `adbpg_conn_count`             |              `gpdb`              | 【Storage Elastic & Serverless】Coordinator Node Total Connections | userId,instanceId,instance_component,hostname | Average,Maximum,Minimum | count | 60 s        |
-| `adbpg_master_cnt_unhealth`    |              `gpdb`              | 【Storage Elastic & Serverless】Coordinator Node Unhealthy Count | userId,instanceId                             | Average,Maximum,Minimum | count | 60 s    |
-| `adbpg_query_blocked`          |              `gpdb`              | 【Storage Elastic & Serverless】Instance Blocked Query Count | userId,instanceId                             | Average,Maximum,Minimum | count | 60 s    |
-| `adbpg_query_queued`           |              `gpdb`              | 【Storage Elastic & Serverless】Instance Queued Query Count | userId,instanceId                             | Average,Maximum,Minimum | count | 60 s    |
+| `adbpg_conn_count`             |              `gpdb`              | 【Storage Elastic & Serverless】Total Number of Coordination Node Connections | userId,instanceId,instance_component,hostname | Average,Maximum,Minimum | count | 60 s        |
+| `adbpg_master_cnt_unhealth`    |              `gpdb`              | 【Storage Elastic & Serverless】Number of Unhealthy Coordination Nodes | userId,instanceId                             | Average,Maximum,Minimum | count | 60 s    |
+| `adbpg_query_blocked`          |              `gpdb`              | 【Storage Elastic & Serverless】Number of Blocked Instance Queries | userId,instanceId                             | Average,Maximum,Minimum | count | 60 s    |
+| `adbpg_query_queued`           |              `gpdb`              | 【Storage Elastic & Serverless】Number of Queued Instance Queries | userId,instanceId                             | Average,Maximum,Minimum | count | 60 s    |
 
 
 
 ## Objects {#object}
 
-The collected Alibaba Cloud AnalyticDB PostgreSQL object data structure can be viewed in 「Infrastructure - Custom」.
+The collected Alibaba Cloud AnalyticDB PostgreSQL object data structure can be viewed from "Infrastructure - Custom"
 
 ```json
 {

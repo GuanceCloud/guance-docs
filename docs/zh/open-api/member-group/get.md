@@ -39,7 +39,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/memb
     "content": {
         "groupMembers": [
             {
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "name": "88测试",
                 "uuid": "acnt_xxxx32"
             }

@@ -1,4 +1,4 @@
-# Best Practices for Implementing Observability with Istio
+# Best Practices for Microservices Observability Based on Istio
 
 ---
 
@@ -6,46 +6,46 @@
 
 ### What is Service Mesh
 
-In recent years, microservices have rapidly gained popularity in software applications. Large applications are broken down into multiple microservices, and while each microservice can run independently within its own container, the network topology of inter-service communication remains very complex. Since network communication between microservices is critical, it's essential to implement a foundational component that ensures secure and robust communication channels between services through multiple service proxies.<br />
-A service mesh (Service Mesh) is used to describe the network of microservices that make up these applications and their interactions. Individual service calls are represented as Sidecars. If there are a large number of services, they form a mesh, where green squares represent application microservices, blue squares represent Sidecars, and lines indicate the call relationships between services. Connections between Sidecars form a network.
+In the past few years, microservices have rapidly gained popularity in software applications. Large applications are broken down into multiple microservices, and although each microservice can run independently in its own container through containerization, the network topology of communication between services remains very complex. Since network communication between microservices is crucial, it is necessary to have foundational components that implement multiple service proxies to ensure secure and robust communication channels between services.<br />
+The service mesh (Service Mesh) is used to describe the network of microservices that make up these applications and their interactions. A single service call manifests as a Sidecar. If there are a large number of services, it will appear as a grid. In the figure below, the green squares represent application microservices, the blue squares represent Sidecars, and the lines indicate the calling relationships between services. The connections between Sidecars form a network.
 ![image](../images/istio/1.png)
 
 ### Introduction to Istio
 
-Istio is an open-source service mesh that transparently layers on top of existing distributed applications. It provides insights into the behavior of the entire service mesh and operational control capabilities, along with a comprehensive solution that meets various needs of microservice applications.
+Istio is an open-source service mesh that transparently layers onto existing distributed applications. It provides insights into and operational control over the behavior of the entire service mesh, along with a complete solution that meets various needs of microservice applications.
 
 ### Core Components of Istio
 
 The Istio service mesh consists of a data plane and a control plane.
 
-- The data plane comprises a set of intelligent proxies (Envoy), which are deployed as sidecars. Communication between microservices via Sidecars is achieved through policy control and telemetry collection (Mixer).
-- The control plane manages and configures proxies to route traffic. Citadel provides strong service-to-service and end-user authentication through built-in identity and credential management. Pilot provides service discovery, intelligent routing (such as A/B testing, canary deployments), traffic management, and error handling (timeouts, retries, and circuit breakers) for Envoy sidecars. Galley is the component responsible for configuration validation, acquisition, processing, and distribution in Istio.
+- The data plane consists of a set of intelligent proxies (Envoy), which are deployed as sidecars. Communication between microservices and Sidecars is achieved through policy control and telemetry collection (Mixer).
+- The control plane is responsible for managing and configuring proxies to route traffic. Citadel provides strong service-to-service and end-user authentication through built-in identity and credential management. Pilot is used for service discovery for Envoy sidecars, intelligent routing (such as A/B testing, canary deployments, etc.), traffic management, and error handling (timeouts, retries, and circuit breakers). Galley is the component for Istio configuration validation, acquisition, processing, and distribution.
 
 ![image](../images/istio/2.png)
 
-### Istio Tracing
+### Istio Trace Tracking
 
-Envoy natively supports Jaeger. Headers starting with x-b3 (`x-b3-traceid`, `x-b3-spanid`, `x-b3-parentspanid`, `x-b3-sampled`, `x-b3-flags`) and `x-request-id` are passed between different services by business logic and reported to Jaeger by Envoy, ultimately generating complete trace information.<br />
+Envoy natively supports Jaeger, and the x-b3 prefixed Headers (`x-b3-traceid`, `x-b3-spanid`, `x-b3-parentspanid`, `x-b3-sampled`, `x-b3-flags`) and x-request-id are passed between different services by business logic and reported to Jaeger by Envoy, ultimately generating complete trace information.<br />
 In Istio, the relationship between Envoy and Jaeger is as follows:
 
 ![image](../images/istio/3.png)
 
-In the diagram, Front [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) refers to the first [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) [Sidecar](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar) that receives the request. It is responsible for creating the Root Span and appending it to the request headers. When requests reach different services, [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) [Sidecar](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar) reports tracing information.<br />
-Envoy natively supports Jaeger for link tracing. Envoy supports integrating external tracing services and is compatible with Zipkin and Zipkin-compatible backends (Jaeger). Istio link tracing provides global configuration zipkinAddress, which is passed to Envoy's reporting address through the --zipkinAddress parameter of proxy_init.
+In the diagram, Front [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) refers to the first [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) [Sidecar](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar) that receives the request. It is responsible for creating the Root Span and appending it to the request Header. When the request reaches different services, [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy) [Sidecar](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#sidecar) reports the trace information.<br />
+Envoy's trace tracking natively supports Jaeger. Envoy supports integration with external tracing services, supporting zipkin and zipkin-compatible backends (jaeger). Istio's trace tracking provides global configuration zipkinAddress, and [Envoy](https://www.servicemesher.com/istio-handbook/GLOSSARY.html#envoy)'s reporting address is passed via the --zipkinAddress parameter of proxy_init.
 
 ### Istio Observability
 
-Istio's robust tracing, monitoring, and logging features provide deep insights into your service mesh deployment. Through Istio's monitoring capabilities, you can truly understand how service performance impacts upstream and downstream processes; its custom dashboards offer visualization of all service performance metrics and show how they affect other processes. All these features enable you to more effectively set up, monitor, and enforce service SLOs.
+Istio's robust tracing, monitoring, and logging features allow you to gain deep insights into the deployment of the service mesh. Through Istio's monitoring capabilities, you can truly understand how service performance affects upstream and downstream processes; its customizable dashboards provide visualizations of the performance of all services and show how they impact other processes. All these features enable you to more effectively set, monitor, and strengthen the SLOs of your services.
 
-### Introduction to BookInfo
+### BookInfo Overview
 
-This example deploys an application to demonstrate various Istio features. The application consists of four separate microservices and mimics a category in an online bookstore, displaying information about a book. The page shows the book's description, details (ISBN, pages, etc.), and reviews.<br />
+This example deploys an application that demonstrates several Istio features. The application consists of four separate microservices. This application mimics a category in an online bookstore, displaying information about a book. The page shows the book's description, details (ISBN, number of pages, etc.), and some reviews about the book.<br />
 The Bookinfo application is divided into four separate microservices:
 
 - productpage: The productpage (python) microservice calls the details and reviews microservices to populate the page.
-- details: The details (ruby) microservice contains the book's detailed information.
-- reviews: The reviews (java) microservice contains book reviews and also calls the ratings microservice.
-- ratings: The ratings (node js) microservice contains book rating information.
+- details: The details (ruby) microservice contains book details.
+- reviews: The reviews (java) microservice contains reviews, and it also calls the ratings microservice.
+- ratings: The ratings (node js) microservice contains book ranking information.
 
 The reviews microservice has three versions:
 
@@ -55,7 +55,7 @@ The reviews microservice has three versions:
 
 ![image](../images/istio/4.png)
 
-To send Bookinfo's trace data to DataKit, simply modify the istio's configmap and set zipkin.address to the DataKit address. Ensure DataKit has the Zipkin collector enabled to achieve pushing trace data to DataKit.
+To push the trace data of Bookinfo to DataKit, simply modify the zipkin.address in Istio's configmap to the DataKit address, and enable the zipkin collector in DataKit.
 
 ![image](../images/istio/5.png)
 
@@ -65,24 +65,24 @@ To send Bookinfo's trace data to DataKit, simply modify the istio's configmap an
 
 #### Kubernetes
 
-This example uses minikube to create a Kubernetes cluster version 1.21.2 on CentOS 7.9.
+This example uses a Kubernetes cluster version 1.21.2 created via minikube on CentOS 7.9.
 
-#### Deploy DataKit
+#### Deploying DataKit
 
-Refer to < [Daemonset Deploy DataKit](../insight/datakit-daemonset.md) >.
+Refer to <[Daemonset Deployment of DataKit](../insight/datakit-daemonset.md)>.
 
-#### Enable Collectors
+#### Enabling Collectors
 
-Using the `datakit.yaml` file from [Daemonset Deploy DataKit](../insight/datakit-daemonset.md), upload it to the master node `/usr/local/df-demo/datakit.yaml` of the Kubernetes cluster, edit the `datakit.yaml` file, add ConfigMap and mount files to enable Zipkin and Prom collectors. The final result is a successfully deployed DataKit.
+Use the `datakit.yaml` file from [Daemonset Deployment of DataKit](../insight/datakit-daemonset.md), upload it to the master node of the Kubernetes cluster at `/usr/local/df-demo/datakit.yaml`. Modify the `datakit.yaml` file, add ConfigMap and mount files to enable Zipkin and Prom collectors, resulting in the final deployment of DataKit.
 
-- Add file `/usr/local/datakit/conf.d/zipkin/zipkin.conf` to enable the Zipkin metric collector
-- Add file `/usr/local/datakit/conf.d/prom/prom_istiod.conf` to enable the Istiod pod metric collector
-- Add file `/usr/local/datakit/conf.d/prom/prom-ingressgateway.conf` to enable the Ingressgateway metric collector
-- Add file `/usr/local/datakit/conf.d/prom/prom-egressgateway.conf` to enable the Egressgateway metric collector
+- Add the file `/usr/local/datakit/conf.d/zipkin/zipkin.conf` to enable the Zipkin metrics collector
+- Add the file `/usr/local/datakit/conf.d/prom/prom_istiod.conf` to enable the Istiod pod metrics collector
+- Add the file `/usr/local/datakit/conf.d/prom/prom-ingressgateway.conf` to enable the Ingressgateway metrics collector
+- Add the file `/usr/local/datakit/conf.d/prom/prom-egressgateway.conf` to enable the Egressgateway metrics collector
 
 ![image](../images/istio/6.png)
 
-Access ingressgateway and egressgateway using Service to access port `15020`, so you need to create Services for ingressgateway and egressgateway.
+Since ingressgateway and egressgateway use Services to access port `15020`, create new Services for ingressgateway and egressgateway.
 
 ??? quote "`istio-ingressgateway-service-ext.yaml`"
 
@@ -124,14 +124,14 @@ Access ingressgateway and egressgateway using Service to access port `15020`, so
       type: ClusterIP
     ```
 
-Create Services
+Create the Services
 
 ```bash
 kubectl apply -f istio-ingressgateway-service-ext.yaml
 kubectl apply -f istio-egressgateway-service-ext.yaml
 ```
 
-Below are the modified parts of the `datakit.yaml` file:
+Below is the modified part of the `datakit.yaml` file:
 
 ??? quote "ConfigMap Addition"
 
@@ -203,7 +203,7 @@ Below are the modified parts of the `datakit.yaml` file:
         spec:
           containers:
           - env:
-            volumeMounts: # Below are the added parts
+            volumeMounts: # Below is the added part
             - mountPath: /usr/local/datakit/conf.d/zipkin/zipkin.conf
               name: datakit-conf
               subPath: zipkin.conf
@@ -220,13 +220,13 @@ Below are the modified parts of the `datakit.yaml` file:
 
 #### Replace Token
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), under 「Integration」 - 「DataKit」 copy the token and replace `<your-token>` in `datakit.yaml`.
+Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), under "Integration" - "DataKit", copy the token and replace `<your-token>` in `datakit.yaml`.
 
 ![image](../images/istio/7.png)
 
 ![image](../images/istio/8.png)
 
-#### Redeploy DataKit
+#### Re-deploy DataKit
 
 ```bash
 cd /usr/local/df-demo
@@ -239,11 +239,11 @@ kubectl apply -f datakit.yaml
 
 #### Download Istio
 
-Download **Source Code** and `istio-1.11.2-linux-amd64.tar.gz` from [here](https://github.com/istio/istio/releases).
+[Download](https://github.com/istio/istio/releases) **Source Code** and `istio-1.11.2-linux-amd64.tar.gz`
 
 #### Install Istio
 
-Upload `istio-1.11.2-linux-amd64.tar.gz` to the `/usr/local/df-demo/` directory and check the internal IP address of the server running Kubernetes is `172.16.0.15`. Replace `172.16.0.15` with your IP.
+Upload `istio-1.11.2-linux-amd64.tar.gz` to `/usr/local/df-demo/` directory, check that the internal IP address of the server where Kubernetes resides is `172.16.0.15`, please replace `172.16.0.15` with your IP.
 
 ```bash
 su minikube
@@ -254,11 +254,12 @@ export PATH=$PWD/bin:$PATH$
 cp -ar /usr/local/df-demo/istio-1.11.2/bin/istioctl /usr/bin/
 
 istioctl install --set profile=demo
+
 ```
 
 #### Verify Installation
 
-After successful deployment, ingressgateway, egressgateway, and istiod will be in Running status.
+After successful deployment, ingressgateway, egressgateway, and istiod will be in Running state.
 
 ```bash
 kubectl get pods -n istio-system
@@ -268,9 +269,9 @@ kubectl get pods -n istio-system
 
 ### Deploy BookInfo
 
-#### File Copy
+#### Copy Files
 
-Unpack the source code and copy the `/usr/local/df-demo/istio-1.11.2/samples/bookinfo/src/productpage` directory to `/usr/local/df-demo/bookinfo`. Copy the required YAML files for deploying BookInfo.
+Unpack the source code, copy the `/usr/local/df-demo/istio-1.11.2/samples/bookinfo/src/productpage` directory to `/usr/local/df-demo/bookinfo` directory. Copy the yaml files needed to deploy bookInfo.
 
 ```bash
 cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/networking/bookinfo-gateway.yaml /usr/local/df-demo/bookinfo/bookinfo-gateway.yaml
@@ -282,7 +283,7 @@ cp /usr/local/df-demo/istio-1.11.2/samples/bookinfo/platform/kube/bookinfo.yaml 
 
 #### Enable Automatic Injection
 
-Create a new prod namespace and enable automatic Sidecar injection for Pods created in this namespace to route inbound and outbound Pod traffic through the Sidecar.
+Create a new prod namespace, enable automatic injection of Sidecar for Pods created in this namespace, allowing Pod traffic to be handled by Sidecar.
 
 ```bash
 kubectl create namespace prod
@@ -291,8 +292,8 @@ kubectl label namespace prod istio-injection=enabled
 
 #### Enable RUM
 
-- 1 Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), under 「User Access Monitoring」 - 「Create Application」, enter bookinfo,<br />
-  copy the JS code to `/usr/local/df-demo/bookinfo/productpage/templates/productpage.html` and change <DATAKIT ORIGIN> to `http://<your-public-ip>:9529`.
+- 1 Log in to [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), under "User Analysis" - "Create Application", input bookinfo,<br />
+  copy the js to `/usr/local/df-demo/bookinfo/productpage/templates/productpage.html`, and change <DATAKIT ORIGIN> to `http://<your-external ip>:9529`.
 
 ![image](../images/istio/12.png)
 
@@ -324,13 +325,13 @@ kubectl edit configmap istio -n istio-system -o yaml
 
 ![image](../images/istio/16.png)
 
-In the above image, the trace data is pushed to `zipkin.istio-system:9411` by default. Since the DataKit service namespace is datakit and the port is 9529, some conversion is needed here.
+In the above figure, you can see that the trace data is pushed to the default address `zipkin.istio-system:9411`. Since the namespace for the DataKit service is datakit, and the port is 9529, a conversion is required here.
 
-> For more details, refer to <[Kubernetes Cluster Using ExternalName to Map DataKit Service](./kubernetes-external-name.md)>
+> For details, refer to <[Kubernetes Cluster Using ExternalName to Map DataKit Service](./kubernetes-external-name.md)>
 
 #### Add Namespace
 
-Modify the BookInfo YAML files to add `namespace: prod` under all resource metadata.
+Modify the yaml of bookinfo, add `namespace: prod` under all resource metadatas.
 
 ```bash
 vi /usr/local/df-demo/bookinfo/bookinfo.yaml
@@ -348,16 +349,16 @@ Modify `bookinfo.yaml`
 vi /usr/local/df-demo/bookinfo/bookinfo.yaml
 ```
 
-Add annotations to all Deployment controllers and Pod templates.<br />
+Add annotations to all Pod templates controlled by Deployment controllers.<br />
 
-Parameter Description
+Parameter Explanation
 
 - url: Exporter address
 - source: Collector name
-- metric_types: Metric type filter
-- measurement_name: Name of the collected metric set
-- interval: Metric collection frequency, s seconds
-- $IP: Wildcard for the Pod's internal IP
+- metric_types: Metric type filtering
+- measurement_name: Name of the collected Measurement
+- interval: Metric collection frequency, in seconds
+- $IP: Wildcard for Pod's internal IP
 - $NAMESPACE: Namespace where the Pod resides
 - tags_ignore: Ignored tags.
 
@@ -713,7 +714,7 @@ annotations:
           containers:
           - name: productpage
             #image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.2
-            image: product-page:v1
+            image: image: product-page:v1
             imagePullPolicy: IfNotPresent
             ports:
             - containerPort: 9080
@@ -786,11 +787,11 @@ kubectl apply -f bookinfo.yaml
 kubectl apply -f bookinfo-gateway.yaml
 ```
 
-#### nginx Proxy for Productpage Service
+#### Nginx Proxy for Productpage Service
 
-Since this example uses minikube, the internal cluster services are proxied through nginx, so you need to configure nginx.
+Since this example uses minikube, the cluster internal services are proxied via nginx, so you need to configure nginx.
 
-- View the minikube http2 URL:
+- Check the minikube http2 URL:
 
 ```
 minikube service istio-ingressgateway -n istio-system
@@ -798,10 +799,10 @@ minikube service istio-ingressgateway -n istio-system
 
 ![image](../images/istio/19.png)
 
-- Log in as root and modify `proxy_pass` to the http2 service address
+- Log in as root on the server and modify `proxy_pass` to the http2 service address
 
 ```bash
-vim /etc/nginx/nginx.conf
+vim  /etc/nginx/nginx.conf
 ```
 
 ![image](../images/istio/20.png)
@@ -814,15 +815,15 @@ systemctl restart nginx
 
 #### Access Productpage
 
-[http://121.43.225.226/productpage](http://121.43.225.226/productpage)
+[http://121.43.225.226/productpage](http://121.43.226.226/productpage)
 
-## Observability Exercises
+## Observability Exercise
 
 ### Metrics
 
-When deploying BookInfo, custom Pod collection is enabled with `measurement_name = "istio_prom"` configured.
+When deploying BookInfo, Pod custom collection was enabled with the configuration `measurement_name = "istio_prom"`.
 
-Log in to 「<<< custom_key.brand_name >>>」 - 「Metrics」, view the istio_prom metric set.
+Log in to '<<< custom_key.brand_name >>>' - 'Metrics', and view the istio_prom Measurement.
 
 ![image](../images/istio/21.png)
 
@@ -830,7 +831,7 @@ Log in to 「<<< custom_key.brand_name >>>」 - 「Metrics」, view the istio_pr
 
 #### RUM
 
-Through the User Access Monitoring module, view UV, PV, session count, visited pages, etc.
+Through the user analysis module, view information such as UV, PV, session count, and visited pages.
 
 ![image](../images/istio/22.png)
 
@@ -838,7 +839,7 @@ Through the User Access Monitoring module, view UV, PV, session count, visited p
 
 #### APM
 
-Through Application Performance Monitoring, view trace data.
+Through application performance monitoring, view trace data.
 
 ![image](../images/istio/24.png)
 
@@ -854,9 +855,9 @@ DataKit defaults to collecting logs output to `/dev/stdout`. For more advanced f
 
 #### Log Files
 
-This example does not involve log file collection. Refer to <[Kubernetes Application RUM-APM-LOG Linked Analysis](./k8s-rum-apm-log.md)> if needed.
+This example does not involve log file collection; if needed, refer to <[Kubernetes Application's RUM-APM-LOG Joint Analysis](./k8s-rum-apm-log.md)>
 
-### Timeout Analysis
+### Trace Timeout Analysis
 
 - Execute `virtual-service-ratings-test-delay.yaml`
 
@@ -865,7 +866,7 @@ cd /usr/local/df-demo/bookinfo
 kubectl apply -f virtual-service-ratings-test-delay.yaml
 ```
 
-- Log in using jason, password is empty, access the productpage interface
+- Log in using jason, with an empty password, and access the productpage interface
 
 ![image](../images/istio/27.png)
 
@@ -874,4 +875,3 @@ kubectl apply -f virtual-service-ratings-test-delay.yaml
 ![image](../images/istio/28.png)
 
 ![image](../images/istio/29.png)
-```

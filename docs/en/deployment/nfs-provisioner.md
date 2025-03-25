@@ -2,32 +2,38 @@
 
 ## Introduction
 
-nfs-subdir-external-provisioner can dynamically provide PV volumes for Kubernetes. It is a simple external NFS provisioner for Kubernetes, but it does not provide NFS itself; it requires an existing NFS server to provide storage. The naming rule for persistent volume directories is: ${namespace}-${pvcName}-${pvName}.
+nfs-subdir-external-provisioner can dynamically provide pv volumes for Kubernetes. It is a simple NFS external provisioner for Kubernetes and does not provide NFS itself but requires an existing NFS server for storage. The naming rule for persistent volume directories is: ${namespace}-${pvcName}-${pvName}.
 
-For deploying the Kubernetes nfs subdir external provisioner component, refer to [https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
+Kubernetes nfs subdir external provisioner component deployment reference [https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
+
 
 ## Prerequisites
 
-- An NFS service has been deployed. If not, refer to [NFS Deployment](nfs-install.md)
-- A Kubernetes cluster has been deployed. If not, refer to [Kubernetes Deployment](infra-kubernetes.md)
-- (Optional) Helm tool has been deployed. If not, refer to [Helm Installation](helm-install.md)
+- NFS service has been deployed, if not deployed, please refer to [NFS Deployment](nfs-install.md) 
+- Kubernetes cluster has been deployed, if not deployed, please refer to [Kubernetes Deployment](infra-kubernetes.md) 
+- (Optional) Helm tool has been deployed, if not deployed, please refer to [Helm Installation](helm-install.md) 
 
 ## Basic Information and Compatibility
 
-|     NFS IP      | NSF Path | storageClass name |              Description               |
-| :-------------: | :------: | :---------------: | :------------------------------------: |
-| 192.168.100.105 | /nfsdata |   df-nfs-storage  | Modify configuration according to actual conditions |
+|     NFS IP      | NSF Path | storageClass name |              Description              |
+| :-------------: | :------: | :---------------: | :----------------------------: |
+| 192.168.100.105 | /nfsdata |  df-nfs-storage   | Modify the configuration according to the actual situation during deployment |
 
-|                  Name                   | Version | Offline Deployment Supported | Supported Architectures | Supported Cluster Versions |
-| :-------------------------------------: | :-----: | :--------------------------: | :----------------------: | :-------------------------: |
-| nfs subdir external provisioner         | 4.0.16  |             Yes              |        amd64/arm64       |            1.18+           |
+
+
+|              Name               |  Version  | Offline Deployment Support |  Supported Architectures   | Supported Cluster Versions |
+| :-----------------------------: | :----: | :--------------: | :---------: | :----------: |
+| nfs subdir external provisioner | 4.0.16 |        Yes        | amd64/arm64 |    1.18+     |
+
+
+
 
 ## Deployment Steps
 
-### 1. Deploy Kubernetes nfs subdir external provisioner
+### 1. Kubernetes nfs subdir external provisioner Deployment
 
 ???+ warning "Note"
-     All Kubernetes nodes must have nfs-utils installed. If not installed, execute the following command:
+     All Kubernetes nodes must have nfs-utils installed. If not installed, please execute the following command:
      ``` shell
      yum install -y nfs-utils
      ```
@@ -35,7 +41,7 @@ For deploying the Kubernetes nfs subdir external provisioner component, refer to
 === "Helm"
 
     Execute the command to install:
-
+    
     ```bash
     helm install nfs-provisioner nfs-subdir-external-provisioner \
         --repo https://pubrepo.<<< custom_key.brand_main_domain >>>/chartrepo/dataflux-chart \
@@ -47,13 +53,13 @@ For deploying the Kubernetes nfs subdir external provisioner component, refer to
     
     ???+ warning "Note"
     
-         Note that `nfs.server` is the NFS address and `nfs.path` is the path, do not confuse them.
+         Note that `nfs.server` is the `nfs` address, and `nfs.path` is the path, which cannot be mistaken.
 
 === "Yaml"
      
-    Modify the highlighted parts of the following YAML and deploy.
-
-    ???- note "nfs-provisioner.yaml (Click to expand)"
+    Modify the highlighted parts of the following yaml and deploy.
+    
+    ???- note "nfs-provisioner.yaml(Click to open)"
         ```yaml hl_lines='103 105 109-110'
         ---
         apiVersion: v1
@@ -157,13 +163,13 @@ For deploying the Kubernetes nfs subdir external provisioner component, refer to
                     - name: PROVISIONER_NAME
                       value: k8s-sigs.io/nfs-subdir-external-provisioner
                     - name: NFS_SERVER
-                      value: 192.168.100.105   # Replace with actual NFS server
+                      value: 192.168.100.105   # Fill in the actual nfs server
                     - name: NFS_PATH
                       value: /nfsdata   # Actual shared directory       
               volumes:
                 - name: nfs-client-root
                   nfs:
-                    server: 192.168.100.105 # Replace with actual NFS server address
+                    server: 192.168.100.105 # Fill in the actual nfs server address
                     path: /nfsdata  # Actual shared directory
         ---
         apiVersion: storage.k8s.io/v1
@@ -188,7 +194,7 @@ For deploying the Kubernetes nfs subdir external provisioner component, refer to
 
 ### 2. Verify Deployment
 
-#### 2.1 Check Pod Status
+#### 2.1 Check pod status
 
 ```shell
 $ kubectl get pod -n kube-system | grep  nfs-provisione
@@ -198,7 +204,7 @@ nfs-provisioner-nfs-subdir-external-provisioner-79d448b5d7tbp7v   1/1     Runnin
 
 #### 2.2 Create PVC
 
-Execute the command to create a PVC:
+Execute the command to create PVC:
 
 ```shell
 $ cat <<EOF | kubectl apply -f -
@@ -216,7 +222,7 @@ spec:
 EOF
 ```
 
-#### 2.3 Check PVC Status
+#### 2.3 Check PVC status
 
 ```shell
 $ kubectl get pvc | grep cfs-pvc001
@@ -224,7 +230,7 @@ $ kubectl get pvc | grep cfs-pvc001
 cfs-pvc001       Bound    pvc-a17a0e50-04d2-4ee0-908d-bacd8d53aaa4   1Gi        RWO            df-nfs-storage           3d7h
 ```
 
->`Bound` indicates successful deployment
+>`Bound` is the standard for successful deployment
 
 
 ## How to Uninstall

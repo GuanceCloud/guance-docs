@@ -1,153 +1,157 @@
 ---
 icon: fontawesome/solid/mobile-screen
 ---
-# Mobile
-
+# MOBILE
 ---
 
-<<< custom_key.brand_name >>> App can help you view event data, log data, scene views, and more from <<< custom_key.brand_name >>> on mobile devices anytime, anywhere.
+<<< custom_key.brand_name >>> App can help you view event data, log data, scene views, etc., from <<< custom_key.brand_name >>> on mobile devices anytime and anywhere.
 
 ## Installation {#app-install}
 
-Within the <<< custom_key.brand_name >>> workspace, you can download the app through "Integration" - "Mobile", or by scanning the QR code below.
+Within <<< custom_key.brand_name >>> workspace, you can download the app through "Integration" - "Mobile", or by scanning the code below.
 
 <img src="img/1.mobile_qrcode.png" width=300px  />
 
-Or you can directly click the following links to download.             
+Or you can also directly click the following links to download.             
 
-- [Download for iOS](https://apps.apple.com/cn/app/dataflux-mobile/id1494097190)
+- [ iOS System Download ](https://apps.apple.com/cn/app/dataflux-mobile/id1494097190)
 
-- [Download for Android](https://android.myapp.com/myapp/detail.htm?apkName=com.cloudcare.ft.dataflux.mobile&info=BC6B6D70A723FAA93DB84F11BF50AE8A)
+- [Android System Download](https://android.myapp.com/myapp/detail.htm?apkName=com.cloudcare.ft.dataflux.mobile&info=BC6B6D70A723FAA93DB84F11BF50AE8A)
 
 ## Login
 
-Existing <<< custom_key.brand_name >>> Free Plan / Commercial Plan users can log in to the <<< custom_key.brand_name >>> App by using their registered account credentials or phone verification codes, selecting the corresponding site for their account. If you do not have a <<< custom_key.brand_name >>> account yet, you can visit the <<< custom_key.brand_name >>> website [Sign Up](https://auth.guance.com/register) to register an appropriate site account.
+Existing <<< custom_key.brand_name >>> Free Plan/Commercial Plan users can log in to <<< custom_key.brand_name >>> App by using their registered account password or mobile verification code, selecting the site corresponding to their account. If you do not have a <<< custom_key.brand_name >>> account yet, you can go to the <<< custom_key.brand_name >>> official website [Apply Now](https://<<< custom_key.studio_main_site_auth >>>/register) and choose to register an appropriate site account.
 
 ## Account Management
 
-After logging into the <<< custom_key.brand_name >>> App, you can switch workspaces, enable message notifications, configure dashboard shortcuts, clear cache, view service agreements, privacy policies, and the current mobile version under the "Me" menu. To switch accounts, you can log out of the current user first.
+After logging into <<< custom_key.brand_name >>> App, you can switch workspaces, enable message notifications, configure dashboard shortcuts, clear cache, view service agreements, privacy policies, and the current mobile version under the "My" menu. If you need to switch accounts, you can log out of the current user first.
 
 ![](img/1.mobile_account.png)
 
-### Switching Workspaces
 
-The <<< custom_key.brand_name >>> App supports viewing data content from all workspaces under your account. By switching workspaces, you can view logs, events, scenes & views in different workspaces.
+### Switch Workspace
 
-After logging into the <<< custom_key.brand_name >>> App, you need to select a default workspace to view the corresponding data; during use, if you need to switch to another workspace, you can change it via "Me" - "Switch Workspace".
+<<< custom_key.brand_name >>> App supports viewing all workspace data content under the account. By switching workspaces, you can view logs, events, scenes & views within different workspaces.
 
-If you currently do not have a workspace, you can go to the <<< custom_key.brand_name >>> web version to [Create a New Workspace](../management/space-management.md), or be invited by other workspace administrators to [become a new member of other workspaces](../management/member-management.md).
+After logging into <<< custom_key.brand_name >>> App, you need to select a default workspace to view the corresponding data; during use, if you need to switch to another workspace, you can change the workspace through "My" - "Switch Workspace".
+
+If you currently do not have a workspace, you can go to the <<< custom_key.brand_name >>> web version [Create a New Workspace](../management/space-management.md), or be invited by other space administrators [to become a new member of other spaces](../management/member-management.md).
 
 ### Notifications {#notification}
 
-The <<< custom_key.brand_name >>> App provides mobile intelligent push notifications based on alert notifications from the <<< custom_key.brand_name >>> dashboard, helping you quickly integrate notifications into your alerts for efficient, precise, and real-time information delivery. You can enable or disable alert notification pushes via "Me" - "Notification Switch".
+<<< custom_key.brand_name >>> App provides mobile intelligent push services based on <<< custom_key.brand_name >>> console alert notifications, helping you quickly integrate notifications into your alert events for efficient, precise, and real-time information delivery. You can enable or disable alert notification pushes through "My" - "Message Notification Switch".
 
-### Configuring Dashboard Shortcuts {#shortcut-entry}
+### Configure Dashboard Shortcut Entry {#shortcut-entry}
 
-The <<< custom_key.brand_name >>> App allows you to configure dashboard shortcuts to quickly view key dashboard data. You can configure the dashboards you want to access quickly via "Me" - "Configure Dashboard Shortcuts".
+<<< custom_key.brand_name >>> App offers configuration of dashboard shortcut entries to help you quickly view key dashboard data. You can configure dashboards that need quick access through "My" - "Configure Dashboard Shortcut Entry".
 
 ![](img/1.mobile_board_shortcut.png)
 
-### Clearing Cache
+### Clear Cache
 
-The cache files of <<< custom_key.brand_name >>> App include temporary files generated by the application, which may slow down the app. You can clear file caches and more via "Me" - "Clear Cache".
+The cache files of <<< custom_key.brand_name >>> App include some temporary files generated by the application, which may cause the application to run slowly. You can clear file caches through "My" - "Clear Cache".
 
 ## Common Components
 
-The <<< custom_key.brand_name >>> App supports searching and filtering data. You can choose different time ranges to quickly locate data, promptly discover, investigate, and resolve issues. You can also share the data you are currently viewing or use macOS's Handoff feature to sync data between mobile and desktop.
+<<< custom_key.brand_name >>> App supports searching and filtering data. You can select different time ranges to quickly locate data, promptly discover, investigate, and solve problems. At the same time, you can share the data you are currently viewing, or use macOS system's Handoff to synchronize data between mobile and computer.
 
 ### Time Widget
 
-The <<< custom_key.brand_name >>> App supports setting the time range for scene views, logs, and event data display via the time widget. You can quickly select preset time ranges or customize the start and end times.
+<<< custom_key.brand_name >>> App supports setting the time range for scene views, logs, and event data display through the time component. You can quickly select preset time ranges or customize the time range by selecting start and end times.
 
 ![](img/1.mobile_time_1.png) &nbsp;![](img/1.mobile_time_2.png)
 
 ### Search and Filter {#search-filter}
 
-The <<< custom_key.brand_name >>> App supports quick location queries in scene views, logs, and event viewers using keyword searches and `key:value` field filters. For more details on field filtering, refer to the [Search Documentation](../getting-started/function-details/explorer-search.md#filter).
+<<< custom_key.brand_name >>> App supports you in performing quick positioning queries in scene views, logs, and event explorers through search and filters. It supports keyword searches and `key:value` field filters. For more details about field filtering, refer to the documentation [Search Instructions](../getting-started/function-details/explorer-search.md#filter).
 
 ![](img/1.mobile_filter.png) &nbsp;![](img/1.mobile_search.png)
 
 ### Share {#share}
 
-The <<< custom_key.brand_name >>> App provides sharing features for event details, log details, dashboards, notes, and viewers. Click the "Share" button in the top-right corner to share links with others for viewing.
+<<< custom_key.brand_name >>> App provides sharing features for event details, log details, dashboards, notes, and explorers. Click the "Share" button in the top right corner to share links with others for viewing.
 
-> Note: Viewing shared link content requires that you also have permissions to the workspace of the shared content.
+> Note: To view shared link content, you must also have permission to the workspace of the shared content.
 
 ![](img/1.mobile_share.png)
 
-**Scenario One: Sharing to PC**
+**Scenario One: Share to PC**
 
-In this scenario, clicking the received share link will allow you to view the corresponding data on the PC.
+In this scenario, clicking the received share link allows you to log in and view the corresponding data on the PC.
 
-**Scenario Two: Sharing to Android or iOS Devices with <<< custom_key.brand_name >>> App Installed**
+**Scenario Two: Share to Android or iOS Mobile Devices with <<< custom_key.brand_name >>> App Installed**
 
-In this scenario, clicking the received share link will open the corresponding data in the <<< custom_key.brand_name >>> App.
+In this scenario, clicking the received share link opens the corresponding data.
+
 
 #### Link {#link}
-If the <<< custom_key.brand_name >>> App is installed on your iOS or Android device, opening any web link from <<< custom_key.brand_name >>> will redirect you to the corresponding content page in the <<< custom_key.brand_name >>> App, including DingTalk, Lark, and email [alert notifications](../monitoring/alert-setting.md).
->Currently only supported for events, scene details, and log pages
+If <<< custom_key.brand_name >>> App is installed on your iOS or Android device, then opening any web link from <<< custom_key.brand_name >>> will redirect you to the corresponding content page in <<< custom_key.brand_name >>> App, including DingTalk, Lark, and email [Alert Notifications](../monitoring/alert-setting.md).
+> Currently only supports events, scene details, and log pages
 
 
 ### Handoff {#hand-off}
 
-The <<< custom_key.brand_name >>> App supports Handoff, allowing you to sync data between mobile and desktop devices for quick issue resolution.
+<<< custom_key.brand_name >>> App supports synchronizing data viewing between mobile and computer through Handoff, allowing you to quickly switch devices when necessary to handle issues.
 
-> Note: Using Handoff requires macOS on the computer and iOS on the mobile device, with Handoff enabled on each device and logged in with the same Apple ID on iCloud. For more settings, refer to the [How to Use Handoff](https://support.apple.com/zh-cn/HT209455) documentation.
+> Note: When using Handoff, the computer needs to be macOS, and the mobile device needs to be iOS. Each device should have Handoff enabled and be logged into iCloud with the same Apple ID. For more settings, refer to the documentation [How to Use Handoff](https://support.apple.com/zh-cn/HT209455).
 
-**Scenario One: Viewing <<< custom_key.brand_name >>> Events on Mobile, Computer Prompts Sync View**
+**Scenario One: Viewing <<< custom_key.brand_name >>> Events on Mobile, Synchronizing to Computer**
 
-In this scenario, when you view events on the mobile device, your computer browser will prompt you to view the corresponding event content. Clicking the browser opens the event. See the diagram below.
+In this scenario, when you view events on mobile, there will be a prompt to view on your computer browser. Clicking the browser opens the corresponding event content. See the following diagram.
 
 <img src="img/1.mobile_handoff_2.jpg" width=240px border=1px/>
 <img src="img/1.mobile_handoff_1.1.png" width=370px />
 
-**Scenario Two: Viewing <<< custom_key.brand_name >>> Events on Computer, Mobile Prompts Sync View**
+**Scenario Two: Viewing <<< custom_key.brand_name >>> Events on Computer, Synchronizing to Mobile**
 
-In this scenario, when you view events on the computer, your mobile device will show a <<< custom_key.brand_name >>> view prompt at the bottom. Clicking it opens the relevant event content on the mobile device. See the diagram below.
-
+In this scenario, when you view events on the computer, there will be a <<< custom_key.brand_name >>> prompt at the bottom of your mobile device. Clicking it opens the relevant event content on the mobile device. See the following diagram.
+ 
 <img src="img/1.mobile_handoff_3.png" width=640px/>
+
 
 ### Widget Functionality {#widget}
 
-<<< custom_key.brand_name >>> supports Widget functionality, allowing you to add <<< custom_key.brand_name >>> mobile widgets to your home screen and quickly view related data via the widget.
+<<< custom_key.brand_name >>> supports Widget functionality, allowing you to add <<< custom_key.brand_name >>> mobile widgets on your desktop and quickly view related <<< custom_key.brand_name >>> data through the widget's information display function.
 
-> Note: Using Widget functionality requires iOS 14 or later if you are using an iOS system.
+> Note: When using Widget functionality, if you are using an iOS system, you need to upgrade to iOS 14 or higher.
 
-You can add <<< custom_key.brand_name >>> widgets as shown in the diagrams below:
+You can follow the steps in the following diagram to add <<< custom_key.brand_name >>> widgets:
 
-1. Download and install <<< custom_key.brand_name >>> and log in to the workspace you want to view.
-2. In the widget search, type <<< custom_key.brand_name >>> to search.
+1. Download and install <<< custom_key.brand_name >>>, and log in to the workspace you want to view.
+2. In the widget search, input <<< custom_key.brand_name >>> to search.
 3. Open <<< custom_key.brand_name >>> and click "Add Widget".
-4. After adding, you can view <<< custom_key.brand_name >>> data information in real-time on your mobile home screen.
+4. After adding, you can view <<< custom_key.brand_name >>> related data information in real-time on your mobile desktop.
 
-<img src="img/1.mobile_widget_1.png" width=210px border=1px/>&nbsp;<img src="img/1.mobile_widget_2.png" width=210px border=1px />&nbsp;<img src="img/1.mobile_widget_3.png" width=210px border=1px/>
+<img src="img/1.mobile_widget_1.png" width=210px border=1px/>&nbsp;<img src="img/1.mobile_widget_2.png" width= 210px border=1px />&nbsp;<img src="img/1.mobile_widget_3.png"  width= 210px border=1px/>
 
 ## Scenarios {#scene}
 
-The Scenarios module supports users in viewing all accessible dashboards, notes, and viewers within their workspace.
+The scenarios module supports users viewing all accessible dashboards, notes, and explorers within their workspace.
 
 ### Dashboards {#board}
 
-**Dashboards**, i.e., data insight scenarios, support adding various visual charts for data presentation, helping users track, analyze, and display key performance indicators (KPIs) and monitor overall operations intuitively. Switching the viewer to "Dashboard" allows you to view all dashboards that meet different business needs in the current space.
+**Dashboards**, i.e., data insight scenarios, support adding various visual charts for data presentation, helping users track, analyze, and display key performance indicators and monitor overall operational status intuitively. Switching the explorer to "Dashboard," you can view all dashboards under the current space that meet different business scenarios.
 
-<<< custom_key.brand_name >>> supports you in switching via the dropdown menu between "All Dashboards", "My Favorites", "Imported Projects", "My Creations", and "Frequently Browsed" to quickly filter and find corresponding dashboards. Dashboards are synchronized with web content; see [Dashboards](../scene/dashboard/index.md) for details.
+<<< custom_key.brand_name >>> supports you in quickly filtering and finding corresponding dashboards by clicking the drop-down menu to switch between "All Dashboards," "My Favorites," "Imported Projects," "My Creations," and "Frequently Browsed." Dashboards are synchronized with the web version, for more details, refer to [Dashboards](../scene/dashboard/index.md).    
 
-**Dashboard Icon Legend**
+**Dashboard Icon Explanation**
 
 - Search: Quick search via keywords or fields
-- Filter: Quickly switch views using dashboard variables
+- Filter: Quickly switch views via dashboard variables
 - Share: Share the current dashboard with others
-- Dropdown Switch: Click the dropdown to switch between different charts in the dashboard view
+- Drop-down Switch: In the dashboard view, click the drop-down to switch between different charts
+
+​        
 
 <img src="img/1.mobile_board_1.png"/>&nbsp;<img src="img/1.mobile_board_2.png"  />
 
 ### Notes {#note}
 
-Notes support inserting real-time visual charts and text document explanations, combining charts and documents for data analysis and report summarization, assisting in problem tracing, locating, and solving. Switching the viewer to "Notes" allows you to view all notes within the current space that you have permission to view.
+Notes support inserting real-time visual charts and text document descriptions to combine charts and documents for data analysis and summary reports, assisting in problem tracing, locating, and solving. Switching the explorer to "Note," you can view all notes under the current space that you have viewing permissions for.
 
-<<< custom_key.brand_name >>> supports you in switching via the dropdown menu between "All Notes", "My Favorites", and "My Creations" to quickly filter and find corresponding notes. Notes are synchronized with web content; see [Notes](../scene/note.md) for details.
+<<< custom_key.brand_name >>> supports you in quickly filtering and finding corresponding notes by clicking the drop-down menu to switch between "All Notes," "My Favorites," and "My Creations." Notes are synchronized with the web version, for more details, refer to [Notes](../scene/note.md).
 
-**Note Icon Legend**
+**Note Icon Explanation**
 
 - Search: Quick search via keywords or fields
 - Share: Share the current note with others
@@ -156,41 +160,41 @@ Notes support inserting real-time visual charts and text document explanations, 
 
 ### Explorers {#explorer}
 
-**Explorers**, i.e., custom log viewers, support viewing customized log viewing needs within the space. Switching to "Explorer" allows you to view all explorers within the current space that you have permission to view.
+**Explorers**, i.e., custom log explorers, support viewing various customized log viewing requirements within the space. Switching to "Explorer," you can view all explorers under the current space that you have viewing permissions for.
 
-<<< custom_key.brand_name >>> supports you in switching via the dropdown menu between "All Explorers", "My Favorites", "Imported Projects", "My Creations", and "Frequently Browsed" to quickly filter and find corresponding explorers. Explorers are synchronized with web content; see [Explorers](../scene/explorer/custom-explorer.md) for details.
+<<< custom_key.brand_name >>> supports you in quickly filtering and finding corresponding explorers by clicking the drop-down menu to switch between "All Explorers," "My Favorites," "Imported Projects," "My Creations," and "Frequently Browsed." Explorers are synchronized with the web version, for more details, refer to [Explorers](../scene/explorer/custom-explorer.md).
 
-**Explorer Icon Legend**
+**Explorer Icon Explanation**
 
 - Search: Quick search via keywords or fields
-- Filter: Quickly filter by explorer data status
+- Filter: Quickly filter data states via the explorer
 - Share: Share the current explorer with others
 
 <img src="img/1.mobile_viewer_1.png"  />&nbsp;<img src="img/1.mobile_viewer_2.png"  />
 
 ## Log Data {#log}
 
-In "Logs", you can view log data from the <<< custom_key.brand_name >>> dashboard. By selecting different log sources, you can query and analyze log data within the workspace. <<< custom_key.brand_name >>> mobile defaults to displaying the most recent 15 minutes of log data. To view more log data, you can select a time range to search and view related data. For more details, refer to [Log Explorer](../logs/explorer.md).
+In "Logs," you can synchronously view <<< custom_key.brand_name >>> console log data. By selecting different log sources, you can query and analyze log data within the workspace. <<< custom_key.brand_name >>> mobile defaults to displaying log data from the last 15 minutes. If you need to view more log data, you can select the time range to search and view related data. For more details, refer to [Log Explorer](../logs/explorer.md).
 
-**Log Icon Legend**
+**Log Icon Explanation**
 
 - Search: Quick search via keywords or fields
-- Filter: Quickly filter by log status
+- Filter: Quickly filter log statuses
 - Share: Share the current log with others
 
 <img src="img/1.mobile_log_1.png"  width=210px/>&nbsp;<img src="img/1.mobile_log_2.png"  width=210px />&nbsp;<img src="img/1.mobile_log_3.png"  width=210px />
 
+
 ## Events {#event}
+<<< custom_key.brand_name >>> mobile supports you staying connected with <<< custom_key.brand_name >>> console anytime and anywhere. Through "All" events, you can view, search, and filter all unrecovered events, urgent events, important events, warning event contents triggered by **monitors**; through "My" events, you can view events notified to you via email, DingTalk bot, WeCom bot, Webhook, etc., and that remain unrecovered. After receiving notifications of alerts, <<< custom_key.brand_name >>> mobile will send you timely notifications to ensure you can quickly respond and resolve related issues. For more details, refer to [Events](../events/index.md).
 
-<<< custom_key.brand_name >>> mobile supports you in staying connected with the <<< custom_key.brand_name >>> dashboard anytime, anywhere. Through "All Events", you can view, search, and filter all unrecovered events, critical events, important events, warning event contents, etc., triggered by **monitors**. Through "My Events", you can view events notified to you via email, DingTalk bots, WeCom bots, Webhook, etc., that are still unresolved. Upon receiving a notification of an alert event, <<< custom_key.brand_name >>> mobile will promptly notify you to ensure quick response and resolution of related issues. For more details, refer to [Events](../events/index.md).
+> Note: <<< custom_key.brand_name >>> mobile only provides you with 1000 event data entries in "All" events/"My" events. To view more events, please visit the web version.
 
-> Note: <<< custom_key.brand_name >>> mobile only provides 1000 event records in "All Events" / "My Events". To view more events, please visit the web version.
+**Event Icon Explanation**
 
-**Event Icon Legend**
-
-- Collapse: Expand/collapse the window function of unrecovered events
+- Collapse: Expand/Collapse window functions of unrecovered events
 - All Events/Unrecovered Events: Switch between viewing all events and unrecovered events
-- Filter: Quickly filter by event status
+- Filter: Quickly filter event statuses
 - Search: Quick search via keywords or fields
 - Share: Share the current event with others
 

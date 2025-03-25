@@ -19,42 +19,42 @@ Collect metrics data from Azure SQL Servers.
 
 ### Install Func
 
-It is recommended to enable the Guance integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+We recommend enabling the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please proceed with the script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-> It is recommended to deploy the GSE version.
+> We recommend deploying the GSE version.
 
-### Install Script
+### Installation Script
 
 > Note: Please prepare the required Azure application registration information in advance and assign the `Monitoring Reader` role to the application registration.
 
-To synchronize Azure-SQL Server monitoring data, we install the corresponding collection script: 「Guance Integration (Azure-SQL Server Database Collection)」(ID: `guance_azure_sql_server_database`)
+To synchronize Azure-SQL Server monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (Azure-SQL Server Database Collection)」(ID: `guance_azure_sql_server_database`)
 
 After clicking 【Install】, enter the corresponding parameters:
 
 - `Azure Tenant ID`: Tenant ID
-- `Azure Client ID`: Application Registration Client ID
-- `Azure Client Secret Value`: Client secret value, not the ID
-- `Subscriptions`: Subscription ID, multiple subscriptions are separated by `,`
+- `Azure Client ID`: Application registration Client ID
+- `Azure Client Secret Value`: Client secret value, note it is not the ID
+- `Subscriptions`: Subscription ID, multiple subscriptions can be separated by `,`
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup scripts.
 
-Once enabled, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
+After starting, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run immediately without waiting for the scheduled time. After a short while, you can check the execution task records and corresponding logs.
 
-We have collected some configurations by default; for more details, see the Metrics section.
+We collect some configurations by default; for more details, see the Metrics section.
 
-[Configure custom cloud object metrics](https://func.guance.com/doc/script-market-guance-azure-sql-server-database/){:target="_blank"}
+[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-azure-sql-server-database/){:target="_blank"}
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm that the corresponding tasks have the automatic trigger configuration, and check the task records and logs for any anomalies.
-2. On the Guance platform, under 「Infrastructure / Custom」, check if there is asset information.
-3. On the Guance platform, under 「Metrics」, check if there is corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and at the same time, you can check the corresponding task records and logs to see if there are any abnormalities.
+2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」check if there is asset information.
+3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
 
-After configuring Azure SQL Servers monitoring data, the default metric set is as follows. More metrics can be collected through configuration. [Supported metrics for Microsoft.Sql/servers/databases](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-sql-servers-databases-metrics){:target="_blank"}
+After configuring Azure Sql Servers monitoring data, the default metric set is as follows. You can collect more metrics through configuration [Microsoft.Sql/servers/databases supported metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/supported-metrics/microsoft-sql-servers-databases-metrics){:target="_blank"}
 
 | Metric Name | Description| Unit |
 | ---- | ------ | ------ |
@@ -62,19 +62,19 @@ After configuring Azure SQL Servers monitoring data, the default metric set is a
 |`app_cpu_billed_total`|Billed application CPU| count|
 |`app_cpu_percent_average`|Application CPU usage| %|
 |`app_memory_percent_average`|Application memory usage percentage| %|
-|`availability_average`|Average availability| count|
+|`availability_average`|Availability average| count|
 |`blocked_by_firewall_total`|Total number blocked by firewall| count|
-|`connection_failed_user_error_total`|Total number of connection failures due to user error| count|
-|`connection_successful_total`|Total number of successful connections| count|
-|`cpu_limit_average`|Average CPU limit| count|
-|`cpu_percent_average`|Average CPU usage percentage| %|
+|`connection_failed_user_error_total`|Total connection failures due to user error| count|
+|`connection_successful_total`|Total successful connections| count|
+|`cpu_limit_average`|CPU limit average| count|
+|`cpu_percent_average`|CPU usage percentage average| %|
 |`cpu_used_average`|Average CPU usage| count|
-|`deadlock_total`|Total number of deadlocks| count|
+|`deadlock_total`|Total deadlocks| count|
 |`diff_backup_size_bytes_maximum`|Maximum differential backup size in bytes| byte|
 |`full_backup_size_bytes_maximum`|Maximum full backup size in bytes| byte|
 |`log_backup_size_bytes_maximum`|Maximum log backup size in bytes| byte|
-|`log_write_percent_average`|Average log write percentage| %|
-|`physical_data_read_percent_average`|Average physical data read percentage| %|
+|`log_write_percent_average`|Log write percentage average| %|
+|`physical_data_read_percent_average`|Physical data read percentage average| %|
 |`sessions_count_average`|Average session count| count|
 |`sessions_percent_average`|Average session percentage| %|
 |`sql_instance_cpu_percent_maximum`|Maximum SQL instance CPU percentage| %|
@@ -82,4 +82,4 @@ After configuring Azure SQL Servers monitoring data, the default metric set is a
 |`storage_maximum`|Used data space| byte|
 |`storage_percent_maximum`|Used data space percentage| %|
 |`workers_percent_average`|Average worker thread percentage| %|
-|`xtp_storage_percent_average`|Average XTP storage percentage| %|
+|`xtp_storage_percent_average`|XTP storage percentage average| %|

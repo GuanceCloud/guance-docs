@@ -67,11 +67,11 @@ DialingServer:
   # 拨测服务中心的地址配置
   use_https: true
   port: 443                                     ## 根据实际情况修改
-  host: 'dflux-dial.guance.com'                 ## 根据实际情况修改
+  host: '<<< custom_key.dial_server_domain >>>'                 ## 根据实际情况修改
   timeout: 10
 ```
 
-> **dflux-dial.guance.com** 为官方拨测中心，如要切换成私有拨测中心，请查看 ingress 配置。
+> **<<< custom_key.dial_server_domain >>>** 为官方拨测中心，如要切换成私有拨测中心，请查看 ingress 配置。
 
 - 查看 utils Namespace 下名为 dialtesting-config 的 ConfigMap 配置是否正确
 

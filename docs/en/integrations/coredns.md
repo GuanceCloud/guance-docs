@@ -1,6 +1,6 @@
 ---
 title     : 'CoreDNS'
-summary   : 'Collect CoreDNS metrics and logs'
+summary   : 'Collect Metrics data related to CoreDNS'
 tags:
   - 'MIDDLEWARE'
 __int_icon      : 'icon/coredns'
@@ -8,7 +8,7 @@ dashboard :
   - desc  : 'CoreDNS'
     path  : 'dashboard/en/coredns'
 monitor   :
-  - desc  : 'CoreDNS'
+  - desc  : 'Not available'
     path  : 'monitor/en/coredns'
 ---
 
@@ -17,20 +17,20 @@ monitor   :
 
 ---
 
-CoreDNS collector is used to collect metric data related to CoreDNS.
+The CoreDNS collector is used to collect metrics data related to CoreDNS.
 
 ## Configuration {#config}
 
-### Preconditions {#requirements}
+### Prerequisites {#requirements}
 
-- CoreDNS [configuration](https://coredns.io/plugins/metrics/){:target="_blank"}; Enable the `prometheus` plug-in
+- Enable the `prometheus` plugin in the CoreDNS [configuration](https://coredns.io/plugins/metrics/){:target="_blank"}
 
-### Collector Configuration {#input-conifg}
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host Installation"
+=== "HOST Installation"
 
-    Go to the `conf.d/coredns` directory under the DataKit installation directory, copy `coredns.conf.sample` and name it `coredns.conf`. Examples are as follows:
+    Navigate to the `conf.d/coredns` directory under the DataKit installation directory, copy `coredns.conf.sample` and rename it to `coredns.conf`. Example as follows:
     
     ```toml
         
@@ -88,12 +88,12 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
       prefix = "coredns_dns_"
       name = "coredns"
     ```
-    
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Enable [`kubernetesprometheus`(https://docs.guance.com/integrations/kubernetesprometheus/) through DataKit .
+    Enable the [`kubernetesprometheus` collector](<<< homepage >>>/integrations/kubernetesprometheus/) through DataKit.
 
     ```yaml
     [inputs.kubernetesprometheus]
@@ -106,10 +106,9 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
           [inputs.kubernetesprometheus.instances.custom.tags]
             cluster = "demo"
     ```
-
 <!-- markdownlint-enable -->
 
-## Metric {#metric}
+## Metrics {#metric}
 
 
 
@@ -125,7 +124,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`server`|Server responsible for the request.|
 |`zone`|Zone name used for the request/response.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -150,7 +149,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`type`|Cache type|
 |`zones`|Zone name used for the request/response|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -178,7 +177,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`server`|Server responsible for the request|
 |`type`|signature|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -202,7 +201,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -230,7 +229,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`rcode`|Upstream returned `RCODE`|
 |`to`|Upstream server|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -251,7 +250,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`host`|Host name|
 |`instance`|Instance endpoint|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -278,7 +277,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`view`|View name|
 |`zone`|Zone name|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -313,7 +312,7 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`view`|View name|
 |`zone`|Zone name used for the request/response|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -336,5 +335,3 @@ CoreDNS collector is used to collect metric data related to CoreDNS.
 |`local_localhost_requests_total`|Counter of localhost. `domain` requests|float|count|
 |`reload_failed_total`|Counter of the number of failed reload attempts|float|count|
 |`reload_version_info`|A metric with a constant '1' value labeled by hash, and value which type of hash generated|float|bool|
-
-

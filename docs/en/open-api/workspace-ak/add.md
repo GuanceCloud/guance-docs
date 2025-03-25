@@ -1,20 +1,32 @@
-# Create an Access Key
+# Create a Key
 
 ---
 
 <br />**POST /api/v1/workspace/accesskey/add**
 
 ## Overview
-Create an access key
+Create a Key
+
+
 
 
 ## Body Request Parameters
 
-| Parameter Name | Type   | Required | Description               |
-|:--------------|:-------|:---------|:--------------------------|
-| name          | string | Y        | AK name information<br>Example: xxx <br>Allow empty: False <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:-------------------|:-------|:-----|:----------------|
+| name | string | Y | AK name information<br>Example: xxx <br>Can be empty: False <br> |
+| roleUUIDs | array |  | Specify the role list of the API key (excluding owner)<br>Can be empty: False <br> |
 
 ## Additional Parameter Notes
+
+
+**1. Request Parameter Notes*
+
+| Parameter Name | Type | Required | Description |
+| :---- | :-- | :--- | :------- |
+| name   | string | Required | API Key Name |
+| roleUUIDs   | array | | Specify the role UUID of the API Key (excluding owner, default is ['wsAdmin']), added in the iteration on 2025-03-12 |
+
 
 
 
@@ -27,6 +39,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/acce
   --compressed \
   --insecure
 ```
+
+
 
 
 ## Response

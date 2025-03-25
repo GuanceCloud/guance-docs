@@ -1,14 +1,14 @@
-# Enable Ingress Observability Using CRD
+# Use CRD to Start Your Ingress Observability Journey
 
 ---
 
 ## Introduction
 
-CRD stands for Custom Resource Definition, a built-in resource type in Kubernetes that allows users to define new resource types. **<<< custom_key.brand_name >>> implements the customization of CRD resources**, and then manages these customized CRD objects through a CRD controller. Using CRD to collect metrics can decouple the collection process from the application.
+CRD stands for Custom Resource Definition, a built-in resource type of Kubernetes that allows users to define new resource types. **<<< custom_key.brand_name >>> implements the customization of CRD resources**, and then manages the customized CRD objects through a CRD controller. Using CRD for metric collection can decouple from the application.
 
-For collecting Ingress metrics, annotations need to be added to the Deployment resource in the YAML file where Ingress is deployed. This way, DataKit can collect metrics from the Ingress Pod via these custom annotations. However, annotations are tightly coupled with Pods, which can be inconvenient. Using CRD simplifies this process; you only need to know the namespace of the Ingress and the name of the Deployment.
+For example, in collecting Ingress metrics, annotations need to be added to the Deployment resource in the yaml file where Ingress is deployed, so DataKit can collect metrics from the Ingress Pod via these custom annotations. A drawback is that annotations are too tightly coupled with Pods; using CRD makes it much easier as you only need to know the namespace of the Ingress and the name of the Deployment.
 
-Next, let's walk through enabling observability for Ingress using CRD step by step.
+Next, let's use CRD step by step to achieve observability for Ingress.
 
 ## Prerequisites
 
@@ -19,25 +19,25 @@ Next, let's walk through enabling observability for Ingress using CRD step by st
 
 ???+ warning
 
-    This example uses DataKit version `1.4.11` and Nginx Ingress Controller version `1.1.1`.
+    This example uses version DataKit `1.4.11` and Nginx Ingress Controller `1.1.1`
 
 ### 1 Deploy DataKit
 
 #### 1.1 Obtain Token
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Manage" module, find the Token in the basic settings interface, and click the "Copy Icon".
+Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」, click on the 「Manage」 module, find the Token in the basic settings interface, and click the 「Copy Icon」.
 
 ![1643275020(1).png](../images/ingress-crd/1.png)
 
 #### 1.2 Download DataKit Deployment File
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Integration" module - "DataKit" - "Kubernetes", and download the `datakit.yaml` file.
+Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」, click on the 「Integration」 module - 「DataKit」 - 「Kubernetes」, download the `datakit.yaml` file.
 
 ![1643275020(1).png](../images/ingress-crd/2.png)
 
 #### 1.3 Deploy DataKit
 
-Open the `datakit.yaml` file, replace `<your-token>` with the copied Token. To distinguish clusters and facilitate elections, add a few environment variables. You can define `k8s-containerd` yourself.
+Open the `datakit.yaml` file, replace the copied Token in the file with <your-token>. To distinguish clusters and enable election, add a few environment variables. `k8s-containerd` can be defined yourself.
 
 ```yaml
 - name: ENV_GLOBAL_HOST_TAGS
@@ -50,7 +50,7 @@ Open the `datakit.yaml` file, replace `<your-token>` with the copied Token. To d
 
 ![1643275020(1).png](../images/ingress-crd/3.png)
 
-Upload the `datakit.yaml` file to the master node of the Kubernetes cluster and deploy DataKit using the command:
+Upload the `datakit.yaml` file to the master node of the Kubernetes cluster and execute the command to deploy DataKit.
 
 ```shell
 kubectl apply -f datakit.yaml
@@ -763,7 +763,7 @@ kubectl apply -f datakit.yaml
 
 #### 2.2 Deploy Ingress
 
-Upload the `ingress-deployment.yaml` file to the master node of the Kubernetes cluster and deploy Ingress using the command:
+Upload the `ingress-deployment.yaml` file to the master node of the Kubernetes cluster and execute the command to deploy Ingress.
 
 ```shell
 kubectl apply -f ingress-deployment.yaml
@@ -845,7 +845,7 @@ kubectl apply -f ingress-deployment.yaml
 
 #### 3.3 Deploy Nginx
 
-Upload the `nginx-deployment.yaml` and `nginx-ingress.yaml` files to the master node of the Kubernetes cluster and execute the commands.
+Upload `nginx-deployment.yaml` and `nginx-ingress.yaml` to the master node of the Kubernetes cluster and execute the commands.
 
 ```shell
 kubectl apply -f nginx-deployment.yaml
@@ -862,9 +862,9 @@ kubectl apply -f nginx-ingress.yaml
     apiVersion: apiextensions.k8s.io/v1
     kind: CustomResourceDefinition
     metadata:
-      name: datakits.guance.com
+      name: datakits.<<< custom_key.brand_main_domain >>>
     spec:
-      group: guance.com
+      group: <<< custom_key.brand_main_domain >>>
       versions:
         - name: v1beta1
           served: true
@@ -904,7 +904,7 @@ kubectl apply -f nginx-ingress.yaml
 ??? quote "`ingress-crd.yaml`"
 
     ```yaml
-    apiVersion: "guance.com/v1beta1"
+    apiVersion: "<<< custom_key.brand_main_domain >>>/v1beta1"
     kind: Datakit
     metadata:
       name: prom-ingress
@@ -940,11 +940,11 @@ kubectl apply -f datakit-crd.yaml
 kubectl apply -f ingress-crd.yaml
 ```
 
-### 5 Scenario View
+### 5 Scenario Views
 
 #### 5.1 Access Nginx
 
-Execute `kubectl get svc -n ingress-nginx` to get the node port corresponding to port 80, which is 30049.
+Execute `kubectl get svc -n ingress-nginx` to obtain the node port corresponding to port 80 which is 30049.
 
 ![1643275020(1).png](../images/ingress-crd/4.png)
 
@@ -956,10 +956,10 @@ while true; do sleep 1;curl -v http://8.136.207.182 -H 'host: mynginx.com'; done
 
 #### 5.2 Ingress Observability
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), click on the "Scenarios" module, create a new dashboard, search for ingress, and click "Confirm".
+Log in to 「[<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/)」, click on the 「Scenario」 module, create a new dashboard, search for ingress, and click 「Confirm」.
 
 ![1643275020(1).png](../images/ingress-crd/5.png)
 
-The while loop command executed above will simulate visits to `mynginx.com`, and the monitoring view will display the usage of Ingress.
+The while command executed in the previous step simulates accessing `mynginx.com`, and the monitoring view displays the usage of Ingress.
 
 ![1643275020(1).png](../images/ingress-crd/6.png)

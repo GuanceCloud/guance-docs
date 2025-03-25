@@ -4,82 +4,85 @@
 
 ## Background
 
-"APM Performance Check" is based on the APM Incident Root Cause Analysis Detector. It allows you to select the `service`, `resource`, `project`, and `env` information to be inspected, and regularly performs intelligent checks on application performance. By automatically analyzing anomalies in application service metrics, it identifies upstream and downstream service information to pinpoint root cause issues.
+"Application Performance Monitoring" is based on the APM anomaly root cause analysis detector. It selects the `service`, `resource`, `project`, and `env` information to be monitored, and regularly performs intelligent inspections of application performance. Through the anomalies in application service Metrics, it automatically analyzes the upstream and downstream information of the service to confirm the root cause of the anomaly for that application.
 
 ## Prerequisites
 
-1. <<< custom_key.brand_name >>> "[APM](../../application-performance-monitoring/collection/index.md)" already has integrated applications.
-2. Self-hosted [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/), or subscribe to [DataFlux Func (Automata)](../../dataflux-func/index.md)
-4. In <<< custom_key.brand_name >>> "Manage / API Key Management," create an [API Key](../../management/api-key/open-api.md) for operations.
+1. <<< custom_key.brand_name >>> "[Application Performance Monitoring](../../application-performance-monitoring/collection/index.md)" has already integrated applications
+2. Self-built [DataFlux Func <<< custom_key.brand_name >>> Special Edition](https://<<< custom_key.func_domain >>>/#/) or enable [DataFlux Func (Automata)](../../dataflux-func/index.md)
+4. In <<< custom_key.brand_name >>> "Management / API Key Management", create an [API Key](../../management/api-key/open-api.md) for operations
 
-> **Note**: If considering using a cloud server for offline deployment of DataFlux Func, please ensure it is deployed with the current <<< custom_key.brand_name >>> SaaS [in the same operator and region](../../../getting-started/necessary-for-beginners/select-site/).
+> **Note**: If you consider using a cloud server for offline deployment of DataFlux Func, please ensure it's with the same operator and region as the current SaaS deployment of <<< custom_key.brand_name >>> [Select Site](../../../getting-started/necessary-for-beginners/select-site/).
 
-## Enabling Checks
+## Enable Inspection
 
-In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-hosted Check (APM Performance)" from the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the setup.
+In your self-hosted DataFlux Func, install the "<<< custom_key.brand_name >>> Self-built Inspection (APM Performance)" via the "Script Market" and configure the <<< custom_key.brand_name >>> API Key to complete the activation.
 
-Choose the desired check scenario in the DataFlux Func Script Market, click install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/) settings, then select deploy to start the script.
+In the DataFlux Func Script Market, select the inspection scenario you want to activate, click to install, configure the <<< custom_key.brand_name >>> API Key and [GuanceNode](https://<<< custom_key.func_domain >>>/doc/script-market-guance-monitor-connect-to-other-guance-node/), then choose to deploy and start the script.
 
 ![image](../img/create_checker.png)
 
-After successfully deploying the startup script, it will automatically create the startup script and auto-trigger configuration, which can be viewed directly via the provided link.
+After the startup script deployment is successful, it will automatically create the startup script and automatic trigger configuration, which can be directly accessed through the link.
 
 ![image](../img/success_checker.png)
 
-## Configuring Checks
 
-Configure the desired filtering conditions for the checks in either the <<< custom_key.brand_name >>> studio's Monitoring - Intelligent Check module or the automatically generated startup script in DataFlux Func. Refer to the following two configuration methods:
+## Configure Inspection
 
-### Configuring Checks in <<< custom_key.brand_name >>>
+In the <<< custom_key.brand_name >>> studio monitoring - Intelligent Inspection module or in the automatically created startup script in DataFlux Func, configure the inspection conditions you wish to filter. You can refer to the following two configuration methods:
+
+### Configure Inspection in <<< custom_key.brand_name >>>
 
   ![image](../img/apm02.png)
 
+
 #### Enable/Disable
 
-APM Performance Check defaults to "Enabled" status but can be manually "Disabled." When enabled, it will perform checks on the configured APM monitoring.
+Application performance inspection is by default "Enabled". You can manually "Disable" it. After enabling, it will inspect the configured application performance monitoring.
 
-#### Editing
 
-The "APM Performance Check" under Intelligent Checks supports manual addition of filter conditions. Click the **Edit** button in the operation menu on the right side of the Intelligent Check list to edit the check template.
+#### Edit
 
-* Filter Conditions: Configure the project of the service (`project`), `service_sub` including service (`service`), environment (`env`), version (`version`) concatenated by ":".
-* Alert Notifications: Supports selecting and editing alert strategies, including event severity levels, notification targets, and alert silence periods.
+The "Application Performance Inspection" under Intelligent Inspection supports users to manually add filtering conditions. Under the operation menu on the right side of the intelligent inspection list, click the **Edit** button to edit the inspection template.
 
-Click Edit in the configuration entry parameters, fill in the corresponding detection objects in the parameter configuration, and click Save to start the check:
+* Filtering Conditions: Configure the project of the application service, including service (service), environment (env), version (version) concatenated with ":".
+* Alert Notifications: Supports selecting and editing alert strategies, including event levels to notify, notification targets, and alert silence periods.
+
+After clicking edit in the parameter configuration entry, fill in the corresponding detection objects and save to start the inspection:
 
   ![image](../img/apm03.png)
 
-You can refer to the following configuration for multiple projects, environments, versions, and services:
+You can reference the configuration of multiple projects, environments, versions, and services as follows:
 
   ```json
    // Configuration Example:
-  configs configured in TOML format:
+  configs are configured in toml format as follows:
           enabled_service = [
               "project1:service1:env1:version1",
               "project2:service2:env2:version2"
           ]
   
-  				# Specify services to check; default is the entire workspace
+  				# Specifies the services to be inspected, default is the entire workspace
           disabled_service = [
               "project2:service2:env2:version2"
           ]
   
-  				# Specify error rate for services; default is 0
+  				# Specifies the error rate for services, default is 0
           [service_error_rate_threshold]
           "project1:service1:env1:version1"=0.1
           "project2:service2:env2:version2"=0.2
   
-  				# Specify p99 threshold for services; default is 15s 
+  				# Specifies the p99 threshold for services, default is 15s 
           [service_p99_threshold]
           "project1:service1:env1:version1"=15000000
           "project2:service2:env2:version2"=90000000
   ```
 
-> **Note**: In the self-hosted DataFlux Func, when writing self-hosted check handling functions, you can also add filter conditions (refer to example code configuration). Note that parameters configured in <<< custom_key.brand_name >>> studio will override those set in the self-hosted check handling function.
+> **Note**: In the self-hosted DataFlux Func, when writing custom inspection handling functions, you can also add filtering conditions (refer to example code configurations). Note that parameters configured in <<< custom_key.brand_name >>> studio will override those set in the custom inspection handling function.
 
-### Configuring Checks in DataFlux Func
+### Configure Inspection in DataFlux Func
 
-In DataFlux Func, after configuring the required filtering conditions for checks, you can test by clicking the `run()` method directly on the page. After publishing, the script will run normally. You can also view or change configurations in <<< custom_key.brand_name >>> "Monitoring / Intelligent Checks."
+In DataFlux Func, after configuring the necessary filtering conditions for inspection, you can directly select the `run()` method on the page to test it. After clicking publish, the script will execute normally. You can also view or modify the configuration in <<< custom_key.brand_name >>> "Monitoring / Intelligent Inspection".
 
 ```python
 from guance_monitor__register import self_hosted_monitor
@@ -89,7 +92,7 @@ import guance_monitor_apm_performance__main as main
 # Support for using filtering functions to filter the objects being inspected, for example:
 def filter_project_servcie_sub(data):
     '''
-    Filter project, service_sub, inspect objects that meet requirements, return True if matched, False otherwise
+    Filters project, service_sub, detecting objects that meet requirements, returning True if matched, False otherwise
     '''
     project = data['project']
     service_sub = data['service_sub']
@@ -104,14 +107,14 @@ def run(configs=None):
     en:
         title: APM Performance Check
         doc: |
-            Optional parameter:
+            Optional parameters:
                 configs :
                     You can specify the detection service (enabled_service), otherwise all services will be detected.
                     You can specify the filtering service (disabled_service), and do not specify no filtering
                     You can set the p99 threshold (service_p99_threshold) and error rate threshold (service_error_rate_threshold) separately for services
                     Note: Each service by service belongs to the project (project), service (service), environment (env), version (version) by ":" patchwork, example: "project1: service: env: version"
 
-                Example of configuring configs in TOML format:
+                Example of configuring configs in toml format:
 
                     enabled_service = [
                         "project1:service1:env1:version1",
@@ -138,69 +141,74 @@ def run(configs=None):
     Runner(checkers).run_v2()
 ```
 
-## Viewing Events
+## View Events
 
-Based on <<< custom_key.brand_name >>> inspection algorithms, Intelligent Checks identify anomalies in APM metrics, such as sudden anomalies in `resource`. For any anomalies, Intelligent Checks generate corresponding events. In the Intelligent Check list's operation menu, click the **View Related Events** button to view the corresponding anomaly events.
+Intelligent inspection based on <<< custom_key.brand_name >>> inspection algorithms will look for anomalies in APM Metrics, such as sudden anomalies in `resources`. For anomalies, intelligent inspection will generate corresponding events. Under the operation menu on the right side of the intelligent inspection list, click the **View Related Events** button to view corresponding abnormal events.
 
 ![image](../img/apm04.png)
 
+
 ### Event Details Page
 
-Clicking **Event**, you can view the details page of the Intelligent Check event, including event status, anomaly occurrence time, anomaly name, basic attributes, event details, alert notifications, history, and related events.
+Clicking **Event**, you can view the details page of the intelligent inspection event, including event status, time of anomaly occurrence, anomaly name, basic attributes, event details, alert notifications, history records, and related events.
 
-* Click the "View Monitor Configuration" icon in the top-right corner of the details page to view and edit the current Intelligent Check configuration details.
+* Clicking the small icon in the top-right corner of the details page labeled "View Monitor Configuration" allows you to view and edit the configuration details of the current intelligent inspection.
 
 #### Basic Attributes
 
-* Detection Dimensions: Based on the Intelligent Check configuration's filter conditions, it supports copying `key/value`, adding filters, and viewing related logs, containers, processes, Security Checks, traces, RUM PV, Synthetic Tests, and CI data.
-* Extended Attributes: Select extended attributes to support copying in `key/value` form, forward/reverse filtering.
+* Detection Dimensions: Based on the filtering conditions configured for intelligent inspection, supports copying detection dimensions `key/value`, adding to filters, and viewing related logs, containers, processes, security checks, traces, user access monitoring, availability monitoring, and CI data.
+* Extended Attributes: After selecting extended attributes, supports copying in `key/value` form, forward/reverse filtering.
 
 ![image](../img/apm05.png)
 
+
 #### Event Details
 
-* Event Overview: Describes the object and content of the anomaly check event.
-* Error Trend: View the performance metrics of the current application over the past hour.
-* Anomaly Impact: View the services and resources affected by the abnormal service in the current trace.
-* Anomaly Trace Sampling: View detailed error times, services, resources, and trace IDs. Clicking on services or resources enters the corresponding data viewer; clicking on trace ID enters the specific trace detail page.
+* Event Overview: Describes the object and content of the abnormal inspection event.
+* Error Trend: Can view the performance metrics of the current application over the last hour.
+* Anomaly Impact: Can view the services and resources affected by the current trace anomaly.
+* Anomaly Trace Sampling: View detailed error times, services, resources, trace IDs; clicking on services and resources enters the corresponding data Explorer; clicking on the trace ID enters the specific trace detail page.
 
 ![image](../img/apm06.png)
 ![image](../img/apm07.png)
 
+
 #### History Records
 
-Supports viewing the detection object, anomaly/recovery times, and duration.
+Supports viewing detection objects, anomaly/recovery times, and duration.
 
 ![image](../img/apm08.png)
 
+
 #### Related Events
 
-Supports viewing related events through filter fields and selected Time Widget information.
+Supports viewing associated events through selected fields and time component information.
 
 ![image](../img/apm09.png)
 
+
 ## Common Issues
 
-**1. How to configure the frequency of APM Performance Checks**
+**1. How to configure the detection frequency of application performance inspection**
 
-  * In self-hosted DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing the self-hosted check handling function, and configure it in "Manage / Auto Trigger Configuration."
+* In the self-hosted DataFlux Func, add `fixed_crontab='0 * * * *', timeout=900` in the decorator when writing custom inspection handling functions, and then configure it in "Management / Automatic Trigger Configuration".
 
-**2. Why might there be no anomaly analysis in APM Performance Checks**
+**2. Why might there be no anomaly analysis when application performance inspection is triggered**
 
-  When there is no anomaly analysis in the check report, check the current `datakit` data collection status.
+When there is no anomaly analysis in the inspection report, check the data collection status of the current `datakit`.
 
-**3. Under what circumstances will APM Performance Check events be generated**
+**3. Under what circumstances will application performance inspection events be generated**
 
-  Using error rates, P90, etc., as indicators, when one of these indicators shows abnormal changes and affects upstream and downstream services, it triggers the collection of alarm information and root cause analysis.
+Using error rates, P90, and other Metrics as entry points, when one of these Metrics experiences an abnormal change and affects the upstream and downstream chains, it triggers the collection of alarm information and performs root cause analysis.
 
-**4. What should be done if previously running scripts encounter errors during checks**
+**4. During inspection, a previously normal script now throws errors**
 
-Update the referenced script sets in the DataFlux Func Script Market. You can view the update records of the script market through the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates of the scripts.
+Update the referenced script sets in the DataFlux Func Script Market. You can view the update records of the Script Market through the [**Change Log**](https://<<< custom_key.func_domain >>>/doc/script-market-guance-changelog/) to facilitate timely updates of the scripts.
 
-**5. Why does the corresponding script set remain unchanged during script upgrade**
+**5. During the upgrade of the inspection script, the corresponding script set in Startup shows no changes**
 
-Delete the corresponding script set first, then click the upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
+First delete the corresponding script set, then click the upgrade button to configure the corresponding <<< custom_key.brand_name >>> API key to complete the upgrade.
 
-**6. How to determine if the check has taken effect after enabling**
+**6. After enabling inspection, how to determine if the inspection is effective**
 
-In "Manage / Auto Trigger Configuration," view the corresponding check status. The status should be enabled, and you can verify the check script by clicking execute. If it shows successful execution within the last xx minutes, the check is functioning properly.
+In "Management / Automatic Trigger Configuration", check the corresponding inspection status. First, the status should be Enabled, and secondly, you can verify whether there are issues with the inspection script by clicking Execute. If the message "Executed successfully xxx minutes ago" appears, the inspection is running effectively.

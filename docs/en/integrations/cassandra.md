@@ -1,15 +1,15 @@
 ---
-title   : 'Cassandra'
-summary : 'Collect Cassandra metrics'
-tags    :
-  - 'DATA STORES'
-__int_icon : 'icon/cassandra'
-dashboard  :
-  - desc   : 'Cassandra'
-    path   : 'dashboard/en/cassandra'
-monitor    :
-  - desc   : 'Cassandra'
-    path   : 'monitor/en/cassandra'
+title     : 'Cassandra'
+summary   : 'Collect Cassandra Metrics data'
+tags      :
+  - 'DATABASE'
+__int_icon: 'icon/cassandra'
+dashboard :
+  - desc  : 'Cassandra'
+    path  : 'dashboard/en/cassandra'
+monitor   :
+  - desc  : 'Cassandra'
+    path  : 'monitor/en/cassandra'
 ---
 
 
@@ -17,37 +17,30 @@ monitor    :
 
 ---
 
-Cassandra metrics can be collected by using [DDTrace](ddtrace.md).
-The flow of the collected data is as follows: Cassandra -> DDTrace -> DataKit(StatsD).
+You can use [DDTrace](ddtrace.md) to collect Cassandra Metrics. The data flow is as follows: Cassandra -> DDTrace -> DataKit(StatsD).
 
-You can see that Datakit has integrated the [StatsD](https://github.com/statsd/statsd){:target="_blank"} server, DDTrace collects Cassandra metric data and reports it to Datakit using StatsD protocol.
+You can see that DataKit has already integrated the [StatsD](https://github.com/statsd/statsd){:target="_blank"} server side, and after DDTrace collects Cassandra data, it reports using the StatsD protocol to Datakit.
 
 ## Configuration {#config}
 
-### Preconditions {#requrements}
+### Prerequisites {#requrements}
 
-- Already tested Cassandra version:
+- Tested versions:
     - [x] 5.0
     - [x] 4.1.3
     - [x] 3.11.15
     - [x] 3.0.24
     - [x] 2.1.22
 
-### DDtrace Configuration {#config-ddtrace}
+- Download the `dd-java-agent.jar` package, see [here](ddtrace.md){:target="_blank"};
 
-- Download `dd-java-agent.jar`, see [here](ddtrace.md){:target="_blank"};
+- On the Datakit side: see the configuration for [StatsD](statsd.md){:target="_blank"}.
 
-- Datakit configuration:
+- On the Cassandra side:
 
-See the configuration of [StatsD](statsd.md){:target="_blank"}.
+Create a file named *setenv.sh* in */usr/local/cassandra/bin* with execution permissions, then insert the following content:
 
-Restart Datakit to make configuration take effect.
-
-- Cassandra configuration:
-
-Create the file `setenv.sh` under `/usr/local/cassandra/bin` and give it execute permission, then write the following:
-
-```sh
+```shell
 export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
                       -Ddd.jmxfetch.enabled=true \
                       -Ddd.jmxfetch.statsd.host=${DATAKIT_HOST} \
@@ -55,22 +48,22 @@ export CATALINA_OPTS="-javaagent:dd-java-agent.jar \
                       -Ddd.jmxfetch.cassandra.enabled=true"
 ```
 
-The parameters are described below:
+Parameter descriptions are as follows:
 
-- `javaagent`: Fill in the full path to `dd-java-agent.jar`;
-- `Ddd.jmxfetch.enabled`: Fill in `true`, which means the DDTrace collection function is enabled;
-- `Ddd.jmxfetch.statsd.host`: Fill in the network address that Datakit listens to. No port number is included;
-- `Ddd.jmxfetch.statsd.port`: Fill in the port number that Datakit listens to. Usually `11002`, as determined by the Datakit side configuration;
-- `Ddd.jmxfetch.cassandra.enabled`: Fill in `true`, which means the Cassandra collect function of DDTrace is enabled. When enabled, the metrics set named `cassandra` will showing up;
+- `javaagent`: This should be the full path of `dd-java-agent.jar`;
+- `Ddd.jmxfetch.enabled`: Set to `true`, indicating enabling DDTrace collection;
+- `Ddd.jmxfetch.statsd.host`: Fill in the network address listened by Datakit. Exclude port number;
+- `Ddd.jmxfetch.statsd.port`: Fill in the port number listened by Datakit. Generally set to `11002`, determined by Datakit-side configuration;
+- `Ddd.jmxfetch.Cassandra.enabled`: Set to `true`, indicating enabling DDTrace's Cassandra collection function. After enabling, there will be an additional measurement set named `cassandra`;
 
-Restart Datakit to make configuration take effect.
+Restart Cassandra to make the configuration take effect.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "Host deployment"
+=== "HOST Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `cassandra.conf.sample` and name it `cassandra.conf`. Examples are as follows:
+    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `cassandra.conf.sample` and rename it to `cassandra.conf`. Example as follows:
     
     ```toml
         
@@ -78,7 +71,7 @@ Restart Datakit to make configuration take effect.
       ## Collector alias.
       source = "statsd/cassandra"
     
-      ## Collect interval, default is 10 seconds. (optional)
+      ## Collection interval, default is 10 seconds. (optional)
       # interval = '10s'
     
       protocol = "udp"
@@ -105,7 +98,7 @@ Restart Datakit to make configuration take effect.
       ## Percentiles to calculate for timing & histogram stats
       percentiles = [50.0, 90.0, 99.0, 99.9, 99.95, 100.0]
     
-      ## separator to use between elements of a statsd metric
+      ## Separator to use between elements of a statsd metric
       metric_separator = "_"
     
       ## Parses tags in the datadog statsd format
@@ -145,19 +138,19 @@ Restart Datakit to make configuration take effect.
         # some_tag = "some_value"
         # more_tag = "some_other_value"
     ```
-
-    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
+    You can inject collector configurations via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or configure [ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
 
-<!-- markdownlint-enable -->
 ---
 
-## Metric {#metric}
+<!-- markdownlint-enable -->
 
-<!-- markdownlint-disable MD024 -->
+## Metrics {#metric}
+
 
 
 ### `cassandra`
@@ -181,7 +174,7 @@ Restart Datakit to make configuration take effect.
 |`table`|table=IndexInfo,table=available_ranges,table=batches,table=built_views,|
 |`type`|Object type.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -286,7 +279,7 @@ Restart Datakit to make configuration take effect.
 |`service`|Service name.|
 |`type`|Object type.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -344,7 +337,7 @@ Restart Datakit to make configuration take effect.
 |`service`|Service name.|
 |`type`|Object type.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -386,7 +379,7 @@ Restart Datakit to make configuration take effect.
 |`stat`|Stat.|
 |`tracer_version`|Tracer version.|
 
-- Metrics
+- Metrics List
 
 
 | Metric | Description | Type | Unit |
@@ -408,6 +401,3 @@ Restart Datakit to make configuration take effect.
 |`tracer_trace_agent_send_time`|Tracer trace agent send time.|float|count|
 |`tracer_trace_pending_created`|Tracer trace pending created.|float|count|
 |`tracer_tracer_trace_buffer_fill_time`|Tracer trace buffer fill time.|float|count|
-
-
-<!-- markdownlint-enable -->

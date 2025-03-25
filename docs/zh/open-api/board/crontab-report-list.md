@@ -127,7 +127,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
@@ -147,7 +147,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
@@ -175,7 +175,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "recipientInfo": {
                 "acnt_xxxx32": {
                     "acntWsNickname": "",
-                    "email": "66@qq.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                     "name": "我是66吖",
                     "username": "66"
@@ -190,7 +190,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
@@ -205,7 +205,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "creator": "acnt_xxxx32",
             "creatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"
@@ -233,7 +233,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "recipientInfo": {
                 "acnt_xxxx32": {
                     "acntWsNickname": "",
-                    "email": "sunhui@jiagouyun.com",
+                    "email": "xxx@<<< custom_key.brand_main_domain >>>",
                     "iconUrl": "",
                     "name": "g孙书撒打啊实",
                     "username": "sunhui"
@@ -248,7 +248,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/crontab_report
             "updator": "acnt_xxxx32",
             "updatorInfo": {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88测试",
                 "username": "测试"

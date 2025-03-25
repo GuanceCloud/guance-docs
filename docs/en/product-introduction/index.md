@@ -7,28 +7,28 @@ icon: zy/product-introduction
 
 ## Observability
 
-In the cloud-native era, enterprises adopt deployment methods such as microservices, containers, and Serverless while following changes in IT architecture and cloud-native technology practices. At the same time, they must integrate the perspectives of development and business departments and possess broader and more proactive capabilities than traditional monitoring. This has led to traditional monitoring technologies and tools no longer meeting the requirements of complex IT systems in terms of controllability and stability.
+In the cloud-native era, enterprises adopt microservices, containers, Serverless, and other deployment methods while following changes in IT architecture and cloud-native technology practices. At the same time, they need to incorporate the perspectives of development and business departments while possessing capabilities broader and more proactive than traditional monitoring. This has led to traditional monitoring technologies and tools no longer meeting the requirements for complex IT systems in terms of controllability and stability.
 
-In 2018, CNCF introduced the term <font color="coral">**"Observability"**</font> into the IT field, stating that observability is a capability that must be possessed in the cloud-native era. Since then, "observability" has become one of the hottest topics in the cloud-native technology domain. Subsequently, CNCF published the [Observability White Paper](https://github.com/cncf/tag-observability/blob/main/whitepaper.md)
-([:material-hand-pointing-right: Read the Chinese version](https://github.com/chenmudu/tag-observability/blob/main/whitepaper-zh.md)), which provides detailed explanations. The white paper mentions the "three pillars of observability," namely Metrics, Logs, and Traces, which have since become common knowledge in the IT field.
+In 2018, CNCF introduced the term <font color="coral">**"observability"**</font> into the IT field and stated that observability is a capability that must be possessed in the cloud-native era. Since then, "observability" has become one of the hottest topics in the cloud-native technology field. Subsequently, the CNCF published the [Observability White Paper](https://github.com/cncf/tag-observability/blob/main/whitepaper.md)
+([:material-hand-pointing-right:Translated Chinese Version](https://github.com/chenmudu/tag-observability/blob/main/whitepaper-zh.md)), which provided a detailed introduction. The "three major signals of observability" mentioned therein—metrics (Metrics), logs (Logs), traces (Traces)—have also become common knowledge in the IT field.
 
 
 ## <<< custom_key.brand_name >>>
 
-Based on our foresight and firm belief in IT observability, our company started developing <font color="coral">**"the cloud-era system observability platform —— <<< custom_key.brand_name >>>"**</font> as early as 2018. After five years of meticulous refinement by a professional team, <<< custom_key.brand_name >>> was officially launched on April 28, 2022.<br/>
-Since entering the market, <<< custom_key.brand_name >>> has maintained its long-standing <font color="coral">**["bi-weekly iteration"](../release-notes/index.md)**</font> update frequency, actively collecting feedback from users of different types, expanding coverage across various technology stacks, optimizing user experience in product usage details, and enhancing the robust stability of public cloud and private platforms.
+Based on predictions and firm beliefs about IT observability, our company began developing <font color="coral">**"the cloud-era system observability platform — <<< custom_key.brand_name >>>"**</font> as early as 2018. After five years of careful refinement by a professional team, <<< custom_key.brand_name >>> was officially launched on April 28, 2022.<br/>
+After entering the market, <<< custom_key.brand_name >>> still maintains the update frequency of <font color="coral">**[“biweekly iteration”](../release-notes/index.md)**</font>, actively collecting feedback from users of different types, continuously expanding coverage across various technology stacks, optimizing user experience in product usage details, and enhancing the strong stability of public cloud and private platforms.
 
-As a unified real-time monitoring application with observability, [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) helps users quickly achieve system observability, uniformly meeting monitoring needs related to cloud platforms, cloud-native environments, applications, and businesses, building <u>end-to-end observability</u> for every complete application. Moreover, <<< custom_key.brand_name >>> aims not only to focus on observability within the "three pillars of observability" but also to help enterprises pursue observability in "testing, pre-production, and production environments." It even effectively connects "development, testing, and operations teams" throughout the enterprise architecture, achieving <u>full lifecycle observability of software development</u>.
+As a unified real-time monitoring application with observability capabilities, [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>/) can help users quickly achieve system observability, uniformly meeting monitoring needs related to cloud platforms, cloud-native applications, and businesses, building <u>full-chain observability</u> for every complete application. Moreover, <<< custom_key.brand_name >>> is not content with observability limited to the "three major signals of observability"; it also aims to help enterprises further pursue observability in "testing, pre-release, and production environments." Even more so, it effectively connects "development, testing, and operations teams" across the entire enterprise architecture, achieving enterprise-level <u>observability throughout the software development lifecycle</u>.
 
 
 ## Core Modules
 
-<<< custom_key.brand_name >>>, as an end-to-end observable application system platform, can also be understood as a **powerful data analysis platform**. Corresponding to the flow of observability data, several core modules of <<< custom_key.brand_name >>> run through it.
+<<< custom_key.brand_name >>>, as a platform for full-chain observability of application systems, can also be understood as a **powerful data analysis platform**. Corresponding to the flow of data in observability, the several core modules of <<< custom_key.brand_name >>> are integrated throughout.
 
 
 <div class="grid" markdown>
 
-=== "Flow of Observability Data"
+=== "Data Flow in Observability"
 
     ![](img/product-index-1.png)
 
@@ -44,6 +44,7 @@ As a unified real-time monitoring application with observability, [<<< custom_ke
 
     ![](img/product-index-4.png)
 
+
 </div>
 
 
@@ -53,7 +54,7 @@ As a unified real-time monitoring application with observability, [<<< custom_ke
 
 <div class="grid" markdown>
 
-=== "Product Feature Competitive Advantage"
+=== "Product Function Competitive Advantages"
 
     ![](img/product-index-5.png)
 

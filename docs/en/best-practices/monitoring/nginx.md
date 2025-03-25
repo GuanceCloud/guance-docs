@@ -3,15 +3,15 @@
 
 ## Background Introduction
 
-Nginx is an open-source, free, and high-performance HTTP and reverse proxy server that can also be used as an IMAP/POP3 proxy server. Due to its asynchronous non-blocking working model, Nginx has the characteristics of high concurrency and low resource consumption. Its highly modular design also makes Nginx highly extensible. In handling static files and reverse proxy requests, Nginx shows significant advantages. Additionally, it is easy to deploy and maintain, making it widely used in most enterprises. Currently, the most common use cases for Nginx include:
+Nginx is an open-source, free, high-performance HTTP and reverse proxy server that can also be used as an IMAP/POP3 proxy server. Because Nginx uses an asynchronous non-blocking working model, it has the characteristics of high concurrency and low resource consumption. Its highly modularized design also makes Nginx very extensible in handling static files, reverse proxy requests, etc., showing significant advantages. Additionally, its simple deployment and maintenance make it widely used by most enterprises. The current most common use cases for Nginx are as follows:
 
 - **WEB Server (Static Resource Server)**
 
-- **Load Balancer (Traffic Distribution)**
+- **Load Balancing (Traffic Distribution)**
 - **Reverse Proxy**
 - **Others**
 
-Although Nginx is simple, due to its wide range of application scenarios, it is relatively important within enterprises. Ensuring the health and stability of Nginx is a matter of great concern to internal operations personnel. Nginx's built-in performance metrics module **with-http_stub_status_module** can directly obtain relevant data from Nginx, such as the number of request connections and handled connections. Additionally, Nginx logs (access.log, error.log) can be used for specific request-level analysis, such as PV counts, UV counts, and request error statistics. Combining these two types of data allows for a quick understanding of Nginx's status.
+Although Nginx is simple, due to its wide range of application scenarios, it is relatively important within enterprises. To ensure the health and stability of Nginx is something enterprise operations personnel care about very much. Nginx's built-in performance metrics module **with-http_stub_status_module** supports directly obtaining relevant data from Nginx, such as the number of request connections, the number of processed connections, etc. Simultaneously, Nginx logs (access.log, error.log) can be used for specific request-level analysis, such as PV counts, UV counts, and request error statistics. Combining these two types of data allows for a quick understanding of Nginx's own status.
 
 - **Nginx (with-http_stub_status_module)**
 
@@ -21,73 +21,75 @@ For example:
 
 ![image.png](../images/nginx-1.png)
 
-Although Nginx provides enough data sources to reflect its own status, textual or log-based data formats are not only inconvenient and unattractive to view but also cannot provide real-time feedback on changes in Nginx's request count or server request status. Are there any good visualization tools that can quickly present this type of data or metrics? Currently, enterprises often use log processing tools (ELK, Splunk) for Nginx log processing and presentation. Performance data from Nginx is typically visualized using tools that support visualization. These two methods can lead to data fragmentation or overly expensive solutions. To address this issue, DataKit decided to handle it at the source, such as collecting both Nginx performance status and logs with a single configuration item, and presenting the data on the same platform and interface, thereby improving user efficiency.
+Although Nginx itself provides sufficient data sources to reflect its own status, textual or log-like data formats are inconvenient and unattractive to view. Furthermore, these data formats cannot provide real-time feedback on changes in Nginx-related request counts or server request states. Is there a good visualization tool that can quickly display this type of data or metric? Currently, enterprises often use log processing tools (ELK, Splunk) to handle and present Nginx logs. Performance data from Nginx is usually presented using visualization-supporting tools. These two methods tend to result in data fragmentation or overly costly solutions. To address this issue, DataKit decided to handle things at the source, such as collecting both Nginx performance status and logs using the same configuration item, and presenting the data on the same platform and interface, thereby improving user efficiency.
 
-**DataKit Configuration Interface and Final Monitoring Effect Presentation:**
+**DataKit Configuration Interface and Final Monitoring Results Display:**
 
 ![image.png](../images/nginx-2.png)
 
-## Prerequisites for Nginx Monitoring Integration with <<< custom_key.brand_name >>>
+
+## Nginx Monitoring Access <<< custom_key.brand_name >>> Prerequisites
 
 ### Account Registration
 
-Go to [<<< custom_key.brand_name >>>](https://www.guance.com) to register an account and log in using your registered account/password.
+Go to [<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>) to register an account, then log in with your registered account/password.
 
 ### Install Datakit
 
 #### Obtain Command
 
-Click on the [**Integration**] module, and in the top-right corner, click [**Quickly Get DataKit Installation Command**], then choose the appropriate installation command based on your operating system and system type.
+Click the [**Integration**] module, then select [**Quickly Get DataKit Installation Command**] in the top-right corner. Choose the appropriate installation command based on your operating system and system type.
 
 ![](../images/nginx-3.png)
 
 #### Execute Installation
 
-Copy the DataKit installation command and run it directly on the server that needs to be monitored.
+Copy the DataKit installation command and run it directly on the server you want to monitor.
 
-- Installation directory: `/usr/local/datakit/`
-- Log directory: `/var/log/datakit/`
-- Main configuration file: `/usr/local/datakit/conf.d/datakit.conf`
-- Plugin configuration directory: `/usr/local/datakit/conf.d/`
+- Installation Directory /usr/local/datakit/
 
-After DataKit is installed, commonly used Linux host plugins are enabled by default. You can view them under Infrastructure > Built-in Views.
+- Log Directory /var/log/datakit/
+- Main Configuration File /usr/local/datakit/conf.d/datakit.conf
+- Plugin Configuration Directory /usr/local/datakit/conf.d/
+
+After installing DataKit, default Linux host plugins are enabled, which can be viewed under Infrastructure - Built-in Views.
 
 | Collector Name | Description |
 | --- | --- |
-| cpu | Collects CPU usage on the host |
+| cpu | Collects CPU usage of the host |
 | disk | Collects disk usage |
-| diskio | Collects disk IO usage on the host |
-| mem | Collects memory usage on the host |
-| swap | Collects Swap memory usage on the host |
-| system | Collects host OS load |
-| net | Collects network traffic on the host |
-| host_process | Collects long-running processes (surviving more than 10 minutes) on the host |
-| hostobject | Collects basic host information (e.g., OS information, hardware information) |
-| docker | Collects container objects and logs on the host |
+| diskio | Collects disk IO conditions of the host |
+| mem | Collects memory usage of the host |
+| swap | Collects Swap memory usage |
+| system | Collects host operating system load |
+| net | Collects host network traffic conditions |
+| host_process | Collects resident processes (alive for more than 10min) on the host |
+| hostobject | Collects basic information about the host (such as OS information, hardware information, etc.) |
+| docker | Collects possible container objects and container logs on the host |
 
-Click on the [**Infrastructure**] module to view all hosts where Datakit is installed along with their basic information, such as hostname, CPU, and memory.
+Click the [**Infrastructure**] module to view the list of all hosts where Datakit is installed along with basic information such as hostname, CPU, and memory.
 
 ![image.png](../images/nginx-4.png)
 
-### Create New Monitoring Scenario:
+### Create Monitoring Scenario:
 
-Log in to [DataFlux](https://console.dataflux.cn/) and enter the specific project space. Click on create new scenario - create blank scenario - view template (it is recommended to directly select the Nginx view template from the system views in DF):
+Log into [DataFlux](https://console.dataflux.cn/) and enter the specific project space. Click Create Scenario - Create Blank Scenario - View Template (it is recommended to directly choose the Nginx view template in the system views of DF):
 
 ![image.png](../images/nginx-5.png)
 
-**Monitoring View Example:**
+**Monitoring View as Follows:**
 
 ![image.png](../images/nginx-6.png)
 
-## Steps to Enable Nginx Collection Configuration:
+## Steps to Enable Nginx Collection Related Configurations:
 
-### Prerequisites for Enabling `datakit.inputs` Nginx .conf:
+### Prerequisites for Enabling Nginx.conf in Datakit.inputs:
 
-Verify if the Nginx **with-http_stub_status_module** module is enabled. If this module is not installed, you need to install it.
+Verify if the Nginx (**with-http_stub_status_module**) module is enabled. If this module is not installed, you will need to install it.
 
 #### Linux Environment:
 
-For Nginx installed via yum, you can check if the **with-http_stub_status_module** module is enabled by running `nginx -V` in the console. If the module exists, you can proceed directly to the [**Datakit Nginx .inputs**](#datakit-nginx-inputs) section.
+If Nginx was installed via yum, you can check in the console by entering **nginx -V** to see if the **with-http_stub_status_module** module is enabled. If this module exists, you can skip directly to the [**Datakit Enable Nginx.inputs**](#datakit-nginx-inputs) section.
 
 ```shell
 $ nginx -V
@@ -95,7 +97,7 @@ $ nginx -V
 
 ![image.png](../images/nginx-7.png)
 
-If Nginx is custom-installed, you can check by running `/usr/local/nginx/sbin/nginx -V` in the console. If the module exists, you can proceed directly to the [**Datakit Nginx .inputs**](#datakit-nginx-inputs) section.
+If you have a custom-installed Nginx, you can check by entering **/usr/local/nginx/sbin/nginx -V** in the console. If this module exists, you can skip directly to the [**Datakit Enable Nginx.inputs**](#datakit-nginx-inputs) section.
 
 ```shell
 $ /usr/local/nginx/sbin/nginx -V
@@ -105,7 +107,7 @@ $ /usr/local/nginx/sbin/nginx -V
 
 #### Windows Environment:
 
-Run `.\nginx.exe -V` in PowerShell to check. If the module exists, you can proceed directly to the [**Datakit Nginx .inputs**](#datakit-nginx-inputs) section.
+In PowerShell, execute **.\nginx.exe -V** to check. If this module exists, you can skip directly to the [**Datakit Enable Nginx.inputs**](#datakit-nginx-inputs) section.
 
 ```shell
 $ .\nginx.exe -V
@@ -113,15 +115,16 @@ $ .\nginx.exe -V
 
 ![image.png](../images/nginx-9.png)
 
-#### Installing the `with-http_stub_status_module` Module (Linux):
 
-**Skip this step if the module is already installed.**
+#### Installing with-http_stub_status_module Module (Linux):
+
+**If this module is already installed, please skip this step.**
 
 Enabling this module requires recompiling Nginx. The specific commands are as follows:
 
 **./configure --with-http_stub_status_module**
 
-To find the location of the configure file: `find / | grep configure | grep nginx`
+The method to find the configure file location: **find / | grep configure | grep nginx**
 
 ```shell
 $ find / | grep configure | grep nginx
@@ -133,20 +136,20 @@ $ ./configure --with-http_stub_status_module
 
 ---
 
-#### Adding `nginx_status` Location Forwarding in Nginx.conf (Example)
+#### Adding Nginx_status Location Forwarding in Nginx.conf (Example)
 
 ```
 $ cd /etc/nginx   
-   // Path to nginx may vary depending on actual circumstances
+   // Nginx path should be adjusted according to actual circumstances
 $ vim nginx.conf
 
-$  server {
+$ server {
      listen 80;   
      server_name localhost;
      // Port can be customized
      
       location /nginx_status {
-          stub_status  on;
+          stub_status on;
           allow 127.0.0.1;
           deny all;
                              }
@@ -156,17 +159,18 @@ $  server {
 
 ![image.png](../images/nginx-11.png)
 
-**Next, execute `nginx -s reload` to reload Nginx**
+**Next, execute nginx -s reload to reload Nginx**
 
-Check if the module is enabled:
+Check if the module has been successfully enabled:
 
-Linux environment: `curl http://127.0.0.1/nginx_status`
+Linux Environment: **curl http://127.0.0.1/nginx_status**
 
-Windows environment: Access `http://127.0.0.1/nginx_status` via browser
+Windows Environment: **Access http://127.0.0.1/nginx_status via browser**
 
-The following data should appear:
+You should see the following data:
 
 ![image.png](../images/nginx-12.png)
+
 
 ### Enabling Nginx.inputs in Datakit:
 
@@ -178,7 +182,7 @@ $ cp nginx.conf.sample nginx.conf
 $ vim nginx.conf
 ```
 
-Modify the following content:
+Modify the following content
 
 ```toml
 [[inputs.nginx]]
@@ -187,153 +191,154 @@ Modify the following content:
     files = ["/var/log/nginx/access.log", "/var/log/nginx/error.log"]
     
 pipeline = "nginx.p"
-# The pipeline file is responsible for parsing nginx logs into key-value pairs for easier visualization on the DF platform.
-# The default nginx.p pipeline file is placed in /usr/local/datakit/pipeline/, containing predefined access and error format parsing statements.
+# The pipeline file is responsible for splitting and processing nginx logs, converting complete text files into key-value pairs for easier visualization on the DF platform.
+# The nginx.p pipeline configuration is placed by default in /usr/local/datakit/pipeline/, containing pre-configured splitting statements for access and error formats.
+
 ```
 
-**Restart Datakit after saving the nginx.conf file**
+**Save the nginx.conf file and restart datakit**
 
-**# For customizing the pipeline, refer to [Text Processing (Pipeline)](/logs/pipelines/text-processing/)**
+**# If you need to customize modifications to the pipeline, refer to [Text Processing (Pipeline)](/logs/pipelines/text-processing/)**
 
 #### Windows Environment:
 
-**$ Navigate to C:\Program Files\datakit\conf.d\nginx**
+**$ Navigate to C:\Program Files\datakit\conf.d\Nginx**
 
 **$ Copy nginx.conf.sample and rename it to nginx.conf**
 
 **$ Edit the nginx.conf file**
 
-Modify the following content:
+Modify the following content
 
 ```toml
 [[inputs.nginx]]
     url = "http://localhost/nginx_status"
 [inputs.nginx.log]
-    files = ["C:/logs/access.log", "C:/logs/error.log"]
+    files = ["/logs/access.log", "/logs/error.log"]
 ```
 
-**Save the nginx.conf file and restart Datakit**
+**Save the nginx.conf file and restart datakit**
 
-## Introduction to Nginx and Related Metrics
+## Nginx and Related Metrics Introduction
 
 ### What is Nginx?
 
-Nginx (pronounced "engine X") is a commonly used HTTP server and reverse proxy server. As an HTTP server, Nginx efficiently and reliably serves static content with minimal memory consumption. As a reverse proxy, it can act as a single controlled access point for multiple backend servers or applications like caching and load balancing. Nginx can be downloaded as an open-source version or used through the feature-rich commercial release Nginx Plus. Nginx can also be used as a mail proxy and a generic TCP proxy, though monitoring for these scenarios is not covered in this article.
+Nginx (pronounced “engine X”) is a commonly used HTTP server and reverse proxy server. As an HTTP server, Nginx can serve static content effectively and reliably with minimal memory consumption. As a reverse proxy, it can act as a single controlled access point for multiple backend servers or other applications like caching and load balancing. Nginx can be downloaded as an open-source version for use, or through the more feature-rich commercial release Nginx Plus. Nginx can also be used as a mail proxy and general TCP proxy, though monitoring for these scenarios won't be directly discussed in this article.
 
 ### Key Nginx Metrics
 
-By monitoring Nginx, you can identify two types of issues: 1) resource problems with Nginx itself, and 2) development issues elsewhere in the web infrastructure. Some of the key metrics that most Nginx users benefit from include **requests per second**, which provides a high-level view of end-user activity; **server error rate**, which indicates the proportion of failed or invalid server requests among total requests; and **request processing time**, which describes how long the server takes to process client requests (which might indicate slower request speeds or other issues in the environment).
-
-In general, at least three key categories of metrics should be watched:
+By monitoring Nginx, you can discover two types of issues: 1) Nginx's own resource issues, 2) development issues elsewhere in the Web infrastructure. Some of the metrics most beneficial to Nginx users include **requests per second** (RPS), which provides a high-level view of end-user activity combinations; **server error rate**, which refers to the ratio of failed or invalid server requests out of total requests; and **request processing time**, which describes how long your server takes to process client requests (this may indicate slower request speeds or other problems in your environment). <br /> Generally, at least three key categories of metrics should be monitored:
 
 - Basic Activity Metrics
+
 - Error Metrics
 - Performance Metrics
 
-Below, we will break down some of the most important Nginx metrics in each category, along with a particularly common use case worth mentioning: using Nginx Plus as a reverse proxy. We will also cover how to monitor all these metrics using your chosen graphing or monitoring tool.
+Below, we will break down some of the most important Nginx metrics in each category, as well as a quite common use case worth special mention: using Nginx Plus as a reverse proxy. We'll also discuss how to monitor all these metrics using your chosen graphing or monitoring tools.
 
 ### Basic Activity Metrics
 
-Regardless of which Nginx use case you have, you undoubtedly want to monitor how many client requests the server is receiving and how they are being processed.
+Regardless of the Nginx use case you employ, you will undoubtedly want to monitor how many client requests the server receives and how they are handled.
 
-Nginx Plus reports basic activity metrics just like open-source Nginx, but it also provides an additional module that reports slightly different metrics. We first discuss open-source Nginx and then move on to the additional reporting capabilities provided by Nginx Plus.
+Nginx Plus reports basic activity metrics just like open-source Nginx does, but it also provides an auxiliary module that reports slightly different metrics. We'll first discuss open-source Nginx, then move on to additional reporting features provided by Nginx Plus.
 
 #### Nginx
 
-The following diagram shows the lifecycle of a client connection and how open-source Nginx collects metrics during the connection.
+The diagram below shows the lifecycle of a client connection and how the open-source version of Nginx collects metrics during the connection.
 
 ![image.png](../images/nginx-13.png)
 
-Accepts (Accepted), Handled (Handled), and Requests (Requests) increase incrementally. Active (Active), Waiting (Waiting), Reading (Reading), and Writing (Writing) fluctuate based on request volume.
+Accepts (Accepted), Handled (Handled), and Requests (Requests) increase continuously as counters. Active (Active), Waiting (Waiting), Reading (Reading), and Writing (Writing) vary depending on the volume of requests.
 
 | **Name** | **Description** | **Metric Type** |
 | --- | --- | --- |
 | Accepts (Accepted) | Count of client connections attempted by Nginx | Resource: Utilization |
-| Handled (Handled) | Count of successful client connections | Resource: Utilization |
+| Handled (Handled) | Successful client connections | Resource: Utilization |
 | Active (Active) | Current active client connections | Resource: Utilization |
-| Requests (Requests) | Client request count | Work: Throughput |
+| Requests (Requests) | Number of client requests | Work: Throughput |
 
 ![image.png](../images/nginx-14.png)
 
-When Nginx receives a connection request from the operating system, the counter increments. If the worker cannot establish the connection (by creating a new one or reusing an existing one), the connection is dropped. Connections are usually dropped when resource limits (such as Nginx's worker_connections limit) are reached.
+When Nginx receives a connection request from the operating system, the counter increases. If the worker cannot obtain the connection for the request (either by establishing a new connection or reusing an open one), the connection will be dropped. Typically, this happens due to reaching resource limits (for example, Nginx’s worker_connections limit).
 
-- Waiting (Waiting): If there are no active requests, active connections may be in a "waiting" state. New connections can bypass this state and move directly to Reading, especially when using "accept filters" or "deferred accept." In this case, Nginx continues working only once there is enough data to start responding. If connections are set to keep-alive, they remain in the "waiting" state after sending responses.
+- waiting (Waiting): If there are no active requests currently, active connections may also be in the "waiting" state. New connections can bypass this state and directly move to Reading, most commonly when using "accept filters" or "delayed accept." In this case, Nginx only continues working once enough data is available to start responding. If the connection is set to keep-alive, after sending a response, the connection will also remain in the "waiting" state.
 
-- Reading (Reading): When a request is received, the connection exits the waiting state, and the request itself is considered in the reading state. At this stage, Nginx reads the client request headers. Request headers are generally lightweight, so this operation is usually quick.
-- Writing (Writing): After reading the request, it transitions to the writing state and remains there until the response is sent back to the client. This means while Nginx waits for results from upstream systems (behind Nginx) and operates on the response, the request is in the writing state. Requests typically spend most of their time in the writing state.
+- reading (Reading): When a request is received, the connection exits the waiting state, and the request itself is considered to be in the reading state. In this state, Nginx is reading the client request headers. Request headers are generally lightweight, so this is typically a fast operation.
+- writing (Writing): After reading the request, the request is considered to be in the writing state and remains in that state until the response is returned to the client. This means that while Nginx waits for results from upstream systems (the systems behind Nginx) and operates on the response, the request is in the writing state. Typically, the request spends most of its time in the writing state.
 
-Typically, one connection supports one request at a time. In this case, the number of active connections equals the sum of waiting + reading + writing. However, HTTP/2 allows multiplexing multiple concurrent requests/responses over a single connection, so Active may be less than the sum of Waiting, Reading, and Writing.
+Usually, a connection supports only one request at a time. In this case, the number of active connections == waiting connections + reading requests + writing requests. However, HTTP/2 allows multiplexing multiple concurrent requests/responses over a single connection, so Active might be less than the sum of Waiting, Reading, and Writing.
 
 #### Nginx Plus
 
-As mentioned earlier, Nginx Plus includes all the metrics available in open-source Nginx but also provides additional metrics. This section covers metrics exclusive to Nginx Plus.
+As mentioned above, Nginx Plus includes all the metrics available in open-source Nginx, but Nginx Plus also exposes additional metrics. This section will introduce metrics that are only available from Nginx Plus.
 
 ![image.png](../images/nginx-15.png)
 
-Accepted (Accepted), Dropped (Dropped), and Total (Total) counters continuously increase. Active (Active), Idle (Idle), and Current (Current) track current connections or request totals in each state, thus fluctuating with request volume.
+The Accepted (Received), Dropped (Dropped), and Total (Total) counters are constantly increasing. Active (Active), Idle (Idle), and Current (Current) track the number of current connections or the total number of requests in each state, so they increase or decrease with the volume of requests.
 
 | **Name** | **Description** | **Metric Type** |
 | --- | --- | --- |
-| Accepted (Accepted) | Count of client connections attempting to connect to Nginx | Resource: Utilization |
-| Dropped (Dropped) | Count of disconnected connections | Work: Error Count |
+| Accepted (Received) | Number of client connections attempting Nginx requests | Resource: Utilization |
+| Dropped (Dropped) | Number of disconnected connections | Work: Error count |
 | Active (Active) | Current active client connections | Resource: Utilization |
 | Idle (Idle) | Client connections with zero current requests | Resource: Utilization |
-| Total (Total) | Client request count | Work: Throughput |
+| Total (Total) | Number of client requests | Work: Throughput |
+| _*Strictly speaking, disconnections are a measure of resource saturation, but since saturation causes Nginx to stop servicing certain tasks (rather than queuing them for later service), it is best to consider "disconnections" as critical indicators._ |  |  |
 
-Strictly speaking, disconnections are a measure of resource saturation, but since saturation causes Nginx to stop serving certain requests (rather than queueing them for later service), it's best to consider "disconnections" as a critical metric.
 
-When Nginx Plus workers receive an **Accepted** connection request from the operating system, the counter increments. If the worker cannot establish the connection (by creating a new one or reusing an open one), the connection is **Dropped**, and the drop count increments. Connections are usually dropped when resource limits (like Nginx Plus' worker_connections limit) are reached.
+When an Nginx Plus worker receives a connection request from the operating system (Accepted), the counter increases. If the worker cannot obtain the connection for the request (either by establishing a new connection or reusing an open one), the connection will be Dropped, and the drop count will increment. Typically, this happens due to reaching resource limits (for example, Nginx Plus’s worker_connections limit).
 
-**Active** and **Idle** states work similarly to "active" and "waiting" states in open-source Nginx, with a key exception: in open-source Nginx, "waiting" is included in "active," while in Nginx Plus, "idle" connections are excluded from the "active" count. **Current** corresponds to the combined "Reading+Writing" state in open-source Nginx.
+**Active** (Active) and **Idle** (Idle) are similar to "active" and "waiting" states in open-source Nginx, except for one key difference: in open-source Nginx, "waiting" belongs to the "active" scope, whereas in Nginx Plus, "idle" connections are excluded from the "active" count. **Current** (Current) is equivalent to the combined "Reading+Writing" state in open-source Nginx.
 
-Total (Total) is the cumulative count of client requests. Note that a single client connection can involve multiple requests, so this count can significantly exceed the cumulative connection count. In practice, (total / accepted) represents the average number of requests per connection.
+Total (Total) is the cumulative count of client requests. Note that a single client connection may involve multiple requests, so this number can be much larger than the cumulative count of connections. In fact, (total / accepted) represents the average number of requests per connection.
 
 | Nginx (Open Source) | Nginx Plus |
 | --- | --- |
 | accepts | accepted |
-| dropped (calculated) | dropped (reported directly) |
+| dropped (requires calculation) | dropped (reported directly as a metric) |
 | reading + writing | current |
 | waiting | idle |
-| active (includes “waiting” states) | active (excludes “idle” states) |
+| active (includes "waiting" states) | active (excludes "idle" states) |
 | requests | total |
+
 
 #### Alert Metric: Connection Drops
 
-The number of Dropped connections equals the difference between accepts and handled or is directly reported by Nginx Plus. Under normal conditions, drops should be zero. If the rate of dropped connections starts increasing over time, investigate potential factors causing resource saturation.
+The number of Dropped (Dropped) connections equals the difference between Accepts (Accepted) and Handled (Handled), or can be directly obtained from Nginx Plus metrics. Under normal circumstances, dropped connections should be zero. If the rate of dropped connections per unit time starts to rise, look for factors causing resource saturation.
 
 #### Alert Metric: Requests Per Second
 
-Sampling request data at fixed intervals (**Requests** in the open-source Nginx or **Total** in Nginx Plus) provides the number of requests received per unit time—usually minutes or seconds. Monitoring this metric alerts you to peaks in incoming network traffic, whether legitimate or malicious, or sudden drops, which often indicate issues. Sudden changes in requests per second can signal problems somewhere in your environment, although it won't pinpoint the exact location. Note that all requests are counted regardless of their URL.
+Sampling request data at fixed intervals (**Requests from Nginx Open Source or Total from Nginx Plus**) can give you the number of requests received per unit time—usually minutes or seconds. Monitoring this metric can alert you to peaks in incoming network traffic, whether legitimate or malicious, or sudden drops, which often indicate issues. Significant changes in requests per second can alert you to something happening somewhere in your environment, although it cannot exactly tell you where those issues occur. Note that all requests are counted, regardless of their URL.
 
 #### Collecting Activity Metrics
-
-Open-source Nginx exposes these basic server metrics on a simple status page. Since the status information is presented in a standardized format, almost any graphing or monitoring tool can be configured to parse the relevant data for analysis, visualization, or alerting. Nginx Plus provides a JSON feed with richer data. Refer to the accompanying article on [Nginx Metrics Collection](../../integrations/nginx.md) for instructions on enabling metrics collection.
+Open-source Nginx exposes these basic server metrics on a simple status page. Since the status information is displayed in a standardized format, almost any graphing or monitoring tool can be configured to parse the relevant data for analysis, visualization, or alerts. Nginx Plus provides a JSON feed with richer data. For more details on enabling metric collection, read our accompanying article on [Nginx Metric Collection](../../integrations/nginx.md).
 
 ### Error Metrics
 
 | **Name** | **Description** | **Metric Type** | **Availability** |
 | --- | --- | --- | --- |
-| 4xx Codes | Count of client errors, e.g., "403 Forbidden" or "404 Not Found" | Work: Error Count | Nginx Logs <br /> Nginx Plus |
-| 5xx Codes | Count of server errors, e.g., "500 Internal Server Error" or "502 Bad Gateway" | Work: Error Count | Nginx Logs <br /> Nginx Plus |
+| 4xx Codes | Client error count, e.g., "403 Forbidden" or "404 Not Found" | Work: Error count | Nginx Logs<br />Nginx Plus |
+| 5xx Codes | Server error count, e.g., "500 Internal Server Error" or "502 Bad Gateway" | Work: Error count | Nginx Logs<br />Nginx Plus |
 
 ![image.png](../images/nginx-16.png)
 
-Nginx error metrics tell you when the server returns an error instead of successfully processing a valid request. Client errors are indicated by 4xx status codes, and server errors by 5xx status codes.
+Nginx error metrics inform you when the server returns errors instead of processing valid requests. Client errors are indicated by 4xx status codes, while server errors are indicated by 5xx status codes.
 
 #### Alert Metric: Server Error Rate
 
-Your server error rate is the number of 5xx errors (e.g., "502 Bad Gateway") per unit time (usually 1 to 5 minutes) divided by the total number of requests (including 1xx, 2xx, 3xx, 4xx, 5xx). If your error rate starts climbing over time, investigation may be needed. A sudden increase might require urgent action, as clients could be reporting errors to end-users.
+Your server error rate equals the number of 5xx errors (e.g., "502 Bad Gateway") per unit time (typically 1 to 5 minutes) divided by the total number of requests (including 1xx, 2xx, 3xx, 4xx, 5xx). If your error rate starts climbing over time, investigation may be necessary. A sudden increase may require urgent action, as clients may be reporting errors to end-users.
 
-Note on client errors: 4xx errors mostly represent client-side issues, and the information derived from 4xx errors is limited because they primarily indicate client anomalies without providing insight into specific URLs. In other words, changes in 4xx errors might be noise, for instance, from Web scanners blindly looking for vulnerabilities.
+Note on client errors: 4xx mostly represents client-side errors, and the information gained from 4xx is limited because it mainly indicates client anomalies without providing detailed insights into specific URLs. In other words, variations in 4xx could be noise, such as web scanning programs blindly looking for vulnerabilities.
 
 #### Collecting Error Metrics
 
-While open-source Nginx does not directly provide an error rate for observability, there are at least two ways to capture this information:
+Although open-source Nginx does not directly provide an error rate usable for observability, there are at least two ways to capture this information:
 
 1. Using the extended status module included with commercially supported Nginx Plus
+
 2. Configuring Nginx's log module to write response codes in the access log
 
-Refer to the accompanying article on [Nginx Metrics Collection](../../integrations/nginx.md) for detailed instructions on both methods.
+Refer to our accompanying article on Nginx Metric Collection for detailed instructions on both methods.
 
 ### Performance Metrics
 
@@ -343,51 +348,53 @@ Refer to the accompanying article on [Nginx Metrics Collection](../../integratio
 
 #### Alert Metric: Request Processing Time
 
-Nginx records request time metrics that document the duration of each request from the first byte read from the client to completing the request. Longer response times may indicate upstream server-side response issues.
+Nginx records request time metrics that record the time taken to process each request, from reading the first client byte to completing the request. Longer response times may indicate issues with upstream, i.e., server-side responses.
 
-#### Collecting Request Processing Time Metrics
+#### Collecting Processing Time Metrics
 
-Nginx and Nginx Plus users can capture request processing time data by adding the `$request_time` variable to the access log format. For more details on configuring logs for monitoring, see our accompanying article on [Nginx Logs](../../integrations/nginx.md).
+Nginx and Nginx Plus users can capture processing time data by adding the $request_time variable to the access log format. For more details on configuring logs for monitoring, see our accompanying article on [Nginx Logs](../../integrations/nginx.md).
 
 ### Reverse Proxy Metrics
 
 | **Name** | **Description** | **Metric Type** | **Availability** |
 | --- | --- | --- | --- |
 | Active Connections to Upstream Servers | Current active client connections | Resource: Utilization | Nginx Plus |
-| 5xx Status Codes Generated by Upstream Servers | Server-side errors | Work: Error Count | Nginx Plus |
-| Available Servers in Each Upstream Group | Servers passing health checks | Resource: Availability | Nginx Plus |
+| 5xx Status Codes Generated by Upstream Servers | Server-side errors | Work: Error count | Nginx Plus |
+| Available Upstream Server Groups | Servers passing health checks | Resource: Availability | Nginx Plus |
 
-One of the most common uses of Nginx is as a reverse proxy. The commercial version of Nginx Plus exposes numerous metrics related to backend ("upstream") servers in reverse proxy setups. This section focuses on some key upstream metrics of interest to Nginx Plus users.
 
-Nginx Plus breaks down upstream metrics by group and then by individual servers. For example, if your reverse proxy distributes requests to five upstream Web servers, you can instantly see if any individual server is overloaded and if there are enough healthy servers in the upstream group to ensure good response times.
+One of the most common uses of Nginx is as a reverse proxy. The commercial version of Nginx Plus exposes a large number of metrics related to backend ("upstream") servers concerning reverse proxy settings. This section will focus on some key upstream metrics of interest to Nginx Plus users.
+
+Nginx Plus first segments upstream metrics by group, then by individual server. Thus, for example, if your reverse proxy distributes requests among five upstream web servers, you can easily see if any of these individual servers are overloaded and if there are enough healthy servers in the upstream group to ensure good response times.
 
 #### Activity Metrics
 
-The number of active connections per upstream server helps verify whether the reverse proxy is distributing work correctly among the server group. If you're using Nginx as a load balancer and notice significant deviations in the number of connections handled by any server, it may indicate that the server is struggling to handle requests promptly or that the configured load-balancing method (e.g., round-robin or IP hash) needs optimization for your traffic patterns.
+The number of active connections per upstream server helps you verify if the reverse proxy correctly distributes work within the server group. If you use Nginx as a load balancer and notice a significant deviation in the number of connections processed by any server, it may indicate that the server is struggling to handle requests promptly, or that the load-balancing method you configured (such as round-robin or IP hashing) needs optimization for your traffic pattern.
 
 #### Error Metrics
 
-Reviewing the error metrics section above, 5xx (server errors) codes like "502 Bad Gateway" or "503 Service Unavailable" are important indicators, especially as a percentage of total response codes. Nginx Plus easily provides the number of 5xx status codes and total responses for each upstream server, allowing you to determine the error rate for specific servers.
+Reviewing the error metrics section above, 5xx (server errors) codes like "502 Bad Gateway" or "503 Service Temporarily Unavailable" are worth monitoring, especially as a proportion of total response codes. Nginx Plus makes it easy to get the number of 5xx status codes and total responses per upstream server to determine the error rate for specific servers.
 
 #### Availability Metrics
 
-Another perspective on Web server health, Nginx Plus allows you to easily monitor the health of upstream groups by showing the number of currently available servers in each group. In large reverse proxy setups, you may not be overly concerned about the status of individual servers as long as the available server pool can handle the load. However, monitoring the total number of healthy servers in each upstream group provides a comprehensive view of overall Web server health.
+Another perspective on web server health, Nginx also enables you to easily monitor the health of upstream groups: the number of currently available servers per group. In large reverse proxy setups, as long as your pool of available servers can handle the load, you may not be overly concerned with the status of a single server. However, monitoring the total number of running servers in each upstream group gives a comprehensive view of overall web server health.
 
 #### Collecting Upstream Metrics
 
-Nginx Plus exposes upstream metrics on the Nginx Plus monitoring dashboard and can provide metrics to nearly any external monitoring platform via a JSON interface.
+Nginx Plus upstream metrics are exposed on the Nginx Plus monitoring dashboard and can also be provided to almost any external monitoring platform via a JSON interface.
 
 ## Conclusion
 
-In this article, we've touched upon some of the most valuable metrics you can monitor on your Nginx server. If you're new to Nginx, monitoring most or all of the following metrics will provide a good visibility into the health and activity level of your network infrastructure:
+In this article, we touched on some of the most valuable metrics. In this article, we've explored some of the most useful metrics you can monitor on Nginx servers. If you're just starting with Nginx, monitoring most or all of the following metrics will provide good visibility into the health and activity level of your network infrastructure:
 
 - Connection Drops
+
 - Requests Per Second
 - Server Error Rate
 - Request Processing Time
 
-Ultimately, you will recognize other more specialized metrics relevant to your own infrastructure and use case. Of course, what you monitor will depend on the tools you have and the available metrics.
+Ultimately, you will recognize other more specialized metrics that are particularly relevant to your own infrastructure and use case. Of course, what you monitor will depend on the tools you have and the available metrics.
 
-## Learn More:
+## For More Information:
 
-[How to Collect Nginx Metrics Using DataKit](../../integrations/nginx.md)
+[How to Use DataKit to Collect Nginx Metrics](../../integrations/nginx.md)

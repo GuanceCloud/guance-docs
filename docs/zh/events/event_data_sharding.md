@@ -592,15 +592,15 @@ X-Global-Tags: host=web-01,business_type=电商业务,DF_WORKSPACE_UUID=wksp_123
   "rules": [
     {
       "rules": ["{ business_type = '电商业务' }"],  // 匹配电商业务事件
-      "url": "https://kodo.guance.com?token=tkn_电商空间令牌"
+      "url": "https://kodo.<<< custom_key.brand_main_domain >>>?token=tkn_电商空间令牌"
     },
     {
       "rules": ["{ DF_WORKSPACE_UUID = 'wksp_123' }"],  // 匹配指定工作空间
-      "url": "https://backup.guance.com?token=tkn_备份空间令牌"
+      "url": "https://backup.<<< custom_key.brand_main_domain >>>?token=tkn_备份空间令牌"
     },
     {
       "rules": ["*"],  // 默认规则（必须存在）
-      "url": "https://default.guance.com?token=tkn_默认空间令牌"
+      "url": "https://default.<<< custom_key.brand_main_domain >>>?token=tkn_默认空间令牌"
     }
   ]
 }

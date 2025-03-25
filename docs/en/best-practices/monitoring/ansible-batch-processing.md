@@ -2,39 +2,39 @@
 
 ---
 
-## Software Overview
+## Software Introduction
 
-Ansible is an automation operations tool developed in Python. It integrates the advantages of many operations tools (such as Puppet, Chef, Func, Fabric) and achieves functions like batch system configuration, batch program deployment, and batch command execution.
+Ansible is an automation operations tool developed in Python. It integrates the advantages of many operations tools (puppet, chef, func, fabric), achieving functionalities such as batch system configuration, batch program deployment, and batch command execution.
 
 ## Features
 
-1. Easy deployment, requiring only the setup of the Ansible environment on the control node; no operation is needed on the managed nodes.
-2. By default, it uses the SSH protocol to manage devices.
-3. It has a large number of common operations modules that can handle most daily tasks.
-4. Simple configuration, powerful functionality, and high extensibility.
-5. Supports APIs and custom modules, which can be easily extended via Python.
-6. Customizes powerful configuration and state management through Playbooks.
+1. Simple deployment; only the Ansible environment needs to be deployed on the control end, while no operation is required on the managed end.
+2. Uses SSH protocol by default for device management.
+3. Comes with a large number of regular operations modules that can handle most daily tasks.
+4. Simple configuration, powerful functions, and highly extensible.
+5. Supports APIs and custom modules, which can be easily extended through Python.
+6. Customizes powerful configurations and status management via Playbooks.
 
 ## Basic Architecture
 
 ![image.png](../images/ansible-1.png)
 
-- **Ansible**: Core program of Ansible.
+- **Ansible**: The core program of Ansible.
 - **HostInventory**: Records information about hosts managed by Ansible, including ports, passwords, IPs, etc.
-- **Playbooks**: YAML formatted files that define multiple tasks in one file, specifying which modules need to be called to complete certain functionalities.
-- **CoreModules**: Core modules, mainly used to perform management tasks by calling core modules.
-- **CustomModules**: Custom modules that accomplish tasks not covered by core modules, supporting multiple languages.
+- **Playbooks**: YAML format files where multiple tasks are defined in one file, specifying which modules should be called to complete the required functions.
+- **CoreModules**: Core modules, primarily used to complete management tasks by calling these modules.
+- **CustomModules**: Custom modules, used to achieve functions that cannot be completed by core modules, supporting various languages.
 - **ConnectionPlugins**: Connection plugins used for communication between Ansible and Hosts.
 
 ## Task Execution
 
-The Ansible system categorizes operations performed by the control host on managed nodes into two types: **adhoc** and **playbook**
+The Ansible system divides the operation methods of control host nodes into two types: **adhoc** and **playbook**.
 
-- **Ad-hoc Mode (Point-to-Point Mode)**
-  Uses a single module, supporting the batch execution of single commands. Ad-hoc commands are quick input commands that do not need to be saved, similar to a shell command in bash.
+- **ad-hoc mode (point-to-point mode)**
+  Uses a single module and supports batch execution of single commands. Ad-hoc commands are quick-to-enter commands that do not need to be saved, similar to a shell command in bash.
 
-- **Playbook Mode (Script Mode)**
-  The main management method of Ansible, and the key to its powerful features. Playbooks achieve a set of functionalities through multiple tasks, such as installing and deploying web services or batch backups of database servers. Playbooks can be simply understood as configuration files that combine multiple ad-hoc operations.
+- **playbook mode (script mode)**
+  The main management method of Ansible and the key to its powerful functionality. Playbooks accomplish a set of functions through a collection of multiple tasks, such as installing and deploying Web services or performing bulk backups of database servers. Playbooks can simply be understood as configuration files that combine multiple ad-hoc operations.
 
 ## Batch Processing in Practice
 
@@ -54,36 +54,36 @@ Log in to ansible01 and execute the installation command
 yum install -y ansible
 ```
 
-Main programs:
+Main Programs:
 
-- `/usr/bin/ansible` Main program
-- `/usr/bin/ansible-doc` Configuration documentation
-- `/usr/bin/ansible-playbook` Tool for customizing automated tasks and orchestrating playbooks
-- `/usr/bin/ansible-pull` Tool for remote command execution
+- `/usr/bin/ansible` Main Program
+- `/usr/bin/ansible-doc` Configuration Documentation
+- `/usr/bin/ansible-playbook` Customizes automated tasks, orchestration script tool
+- `/usr/bin/ansible-pull` Remote command execution tool
 - `/usr/bin/ansible-vault` File encryption tool
 
-Main configuration files:
+Main Configuration Files:
 
-- `/etc/ansible/ansible.cfg` Main configuration file
-- `/etc/ansible/hosts` Host inventory (add managed hosts to this file)
+- `/etc/ansible/ansible.cfg` Main Configuration File
+- `/etc/ansible/hosts` Host List (place managed hosts here)
 - `/etc/ansible/roles/` Directory for storing roles
 
 ### Passwordless Login
 
-Log in to ansible01 and generate keys, default path is `/root/.ssh/id_rsa`, `/root/.ssh/id_rsa.pub`
+Log in to ansible01 and generate a key, default path is `/root/.ssh/id_rsa, /root/.ssh/id_rsa.pub`
 
 ```bash
 ssh-keygen
 ```
 
-Distribute keys to the nodes that need to be managed
+Distribute the key to the nodes that need to be managed
 
 ```bash
 ssh-copy-id root@10.0.0.66
 ssh-copy-id root@10.0.0.67
 ```
 
-Modify the host inventory file `/etc/ansible/hosts`, add group names and host IPs
+Modify the host list file `/etc/ansible/hosts`, add group name and host IPs
 
 ```bash
 [guance]
@@ -103,9 +103,9 @@ ansible guance -m ping
 
 #### Shell Module
 
-The Shell module can invoke the shell interpreter on remote hosts to run commands, supporting various shell features such as pipes.
+The Shell module can invoke the shell interpreter on remote hosts to run commands, supporting various shell features like pipes.
 
-- View current user ID
+- View current user id
 
 ```bash
 ansible guance -m shell -a 'id'
@@ -123,9 +123,9 @@ ansible guance -m shell -a 'who'
 
 #### Copy Module
 
-This module copies files to remote hosts and supports generating files with specified content and modifying permissions.
+This module copies files to remote hosts and also supports generating files from given content and modifying permissions.
 
-- Copy `ansible.cfg` file to remote hosts and set permissions to "read-write" `-rw-rw-rw-`
+- Copy `ansible.cfg` file to remote host and specify permission as "read-write" `-rw-rw-rw-`
 
 ```bash
 ansible guance -m copy -a 'src=/etc/ansible/ansible.cfg dest=/tmp/ansible.cfg mode=666'
@@ -133,7 +133,7 @@ ansible guance -m copy -a 'src=/etc/ansible/ansible.cfg dest=/tmp/ansible.cfg mo
 
 ![image.png](../images/ansible-5.png)
 
-View the `ansible.cfg` file on remote hosts
+View `ansible.cfg` file on remote host
 
 ```bash
 ansible guance -m shell -a 'ls -l /tmp/ansible.cfg'
@@ -141,7 +141,7 @@ ansible guance -m shell -a 'ls -l /tmp/ansible.cfg'
 
 ![image.png](../images/ansible-6.png)
 
-- Generate a file with specified content
+- Specify content and generate a file
 
 ```bash
 ansible guance -m copy -a 'content="hello world" dest=/tmp/hello mode=666'
@@ -149,7 +149,7 @@ ansible guance -m copy -a 'content="hello world" dest=/tmp/hello mode=666'
 
 ![image.png](../images/ansible-7.png)
 
-View the file on remote hosts
+View file on remote host
 
 ```bash
 ansible guance -m shell -a 'cat /tmp/hello'
@@ -159,9 +159,9 @@ ansible guance -m shell -a 'cat /tmp/hello'
 
 #### File Module
 
-This module sets file attributes, such as creating files, creating symbolic links, deleting files, etc.
+This module sets file attributes, such as creating files, creating link files, deleting files, etc.
 
-- Create the `app` directory under `/tmp`
+- Create `app` directory under `/tmp`
 
 ```bash
 ansible guance -m file -a 'path=/tmp/app state=directory'
@@ -169,7 +169,7 @@ ansible guance -m file -a 'path=/tmp/app state=directory'
 
 ![image.png](../images/ansible-9.png)
 
-View the `/tmp` directory
+View `/tmp` directory
 
 ```bash
 ansible guance -m shell -a 'ls -l /tmp'
@@ -177,7 +177,7 @@ ansible guance -m shell -a 'ls -l /tmp'
 
 ![image.png](../images/ansible-10.png)
 
-- Delete the previously copied `ansible.cfg` file from ansible01
+- Delete `ansible.cfg` file previously copied from ansible01
 
 ```bash
 ansible guance -m file -a 'path=/tmp/ansible.cfg state=absent'
@@ -189,7 +189,7 @@ ansible guance -m file -a 'path=/tmp/ansible.cfg state=absent'
 
 This module retrieves (copies) files from remote hosts to the local machine.
 
-- Fetch the `/tmp/hello` file from remote hosts to the `/root` directory
+- Pull `/tmp/hello` file from remote host to `/root` directory
 
 ```bash
 ansible guance -m fetch -a 'src=/tmp/hello dest=/root'
@@ -197,7 +197,7 @@ ansible guance -m fetch -a 'src=/tmp/hello dest=/root'
 
 ![image.png](../images/ansible-12.png)
 
-In the `/root` directory, you will see two new directories (the remote host IPs are the directory names)
+In `/root` directory, you can see two new directories (remote host IPs are used as directory names)
 
 ```bash
 yum -y install tree
@@ -208,12 +208,12 @@ tree /root
 
 ### <<< custom_key.brand_name >>> Application
 
-#### Batch Installation
+#### Bulk Installation
 
-Use the Shell module to install DataKit (note to modify the corresponding token)
+Use Shell module to install DataKit (note to modify the corresponding token)
 
 ```bash
-ansible guance -m shell -a 'DK_DATAWAY="https://openway.guance.com?token=token" bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"'
+ansible guance -m shell -a 'DK_DATAWAY="https://openway.<<< custom_key.brand_main_domain >>>?token=token" bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"'
 ```
 
 Check if the process has started
@@ -224,34 +224,34 @@ ansible guance -m shell -a 'ps -ef|grep datakit|grep -v grep'
 
 ![image.png](../images/ansible-14.png)
 
-#### Batch Configuration
+#### Bulk Configuration
 
-- Enable the netstat plugin
+- Enable netstat plugin
 
-Use the shell module to copy the `netstat.conf.sample` file to `netstat.conf`
+Use shell module to copy file `netstat.conf.sample` as `netstat.conf`
 
 ```bash
 ansible guance -m shell -a 'cp /usr/local/datakit/conf.d/host/netstat.conf.sample /usr/local/datakit/conf.d/host/netstat.conf'
 ```
 
-Batch restart DataKit
+Bulk restart DataKit
 
 ```bash
 ansible guance -m shell -a 'systemctl restart datakit'
 ```
 
-#### Batch Upgrade
+#### Bulk Upgrade
 
-Create a DataKit upgrade YAML file, `/etc/ansible/dk_upgrade.yaml`
+Create a DataKit upgrade yaml file, `/etc/ansible/dk_upgrade.yaml`
 
 ```bash
 - hosts: guance
   remote_user: root
   tasks:
-    - name: Check DK version
+    - name: dk version check
       shell: datakit --version|grep -i upgrade|wc -l
       register: version
-    - name: Upgrade DK
+    - name: dk upgrade
       when: version.stdout > "0"
       shell: DK_UPGRADE=1 bash -c "$(curl -L https://static.<<< custom_key.brand_main_domain >>>/datakit/install.sh)"
 ```
@@ -264,7 +264,7 @@ ansible-playbook /etc/ansible/dk_upgrade.yaml
 
 ![image.png](../images/ansible-15.png)
 
-Check if the DataKit version is up-to-date
+Check if DataKit version is updated
 
 ```bash
 ansible guance -m shell -a 'datakit --version'
@@ -272,7 +272,7 @@ ansible guance -m shell -a 'datakit --version'
 
 ![image.png](../images/ansible-16.png)
 
-Add a cron job (`crontab -e`) to perform batch upgrades at 02:02 AM every day
+Add scheduled task crontab -e (execute bulk upgrade at 02:02 AM every day)
 
 ```bash
 02 02 * * * ansible-playbook /etc/ansible/dk_upgrade.yaml

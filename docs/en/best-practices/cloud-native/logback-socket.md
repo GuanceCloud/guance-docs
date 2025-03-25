@@ -4,21 +4,17 @@
 
 ## Introduction
 
-For a company, the <<< custom_key.brand_name >>> workspace will collect logs from multiple applications. Distinguishing which log comes from which Service is a challenge we face. Next, we will explore how to use Pipelines to add Service tags to logs in order to differentiate their sources.
-
-DataKit has many ways to collect logs. This article focuses on collecting logs via Socket for Java Springboot applications, transmitting logs to DataKit through Logback's Socket. First, operations staff enable the Socket collector in DataKit and restart DataKit. Then developers add an Appender in the application’s logback-spring.xml file and declare springProperty to write the Service name into the logs when starting the jar. Developers then start the jar, passing the Service name that needs to be written into the logs. Finally, developers log into <<< custom_key.brand_name >>>, create a new Pipeline under the Pipeline tab of the Logs module, and specify the Source of the Socket collector enabled by the operations team. This way, the logs will be distinguished using Tags.
-
-The following solution will be implemented from both the development and operations perspectives.
+For a company, the <<< custom_key.brand_name >>> workspace will collect logs from multiple applications, and distinguishing which Service these logs come from is a pain point we encounter. Next, we will explore together how to use Pipelines to add Service tags to logs, in order to distinguish log sources. <br /> DataKit has many ways to collect logs. This article focuses on collecting logs through Socket in Java Springboot applications, transmitting logs to DataKit via Logback's Socket. First, operations staff enable the Socket collector in DataKit and restart DataKit. Then developers add an Appender in the application's logback-spring.xml file and declare springProperty, which is used to write the Service name into the logs when starting the jar. Then developers start the jar, passing the Service name that needs to be written into the logs into the application. Finally, developers log into <<< custom_key.brand_name >>>, create a new Pipeline under the Pipeline tag in the log module, specifying the Source of the Socket collector enabled by the operations staff. This way, logs will be distinguished by Tags. <br /> The solution provided below will implement this feature from both the developer's and operations staff's perspectives.
 
 ## Solution
 
-### Operations
+### Operations Staff
 
 #### Linux Environment
 
 ##### 1 Enable Collector
 
-Log in to the Linux server where DataKit is deployed and create a logging-socket.conf file.
+Log into the Linux server where DataKit is deployed and create a new logging-socket.conf file.
 
 ```
 cd /usr/local/datakit/conf.d/log
@@ -56,9 +52,9 @@ systemctl restart datakit
 
 #### Kubernetes Environment
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Integration】->【Datakit】-> 【Kubernetes】, and follow the instructions to install DataKit. You need to modify the datakit.yaml used for deployment. The steps involve creating a logging-socket.conf file and mounting it into DataKit.
+Log into [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), 【Integration】->【Datakit】->【Kubernetes】, follow the instructions to install DataKit. You will need to modify the datakit.yaml used for deployment. The steps involve creating a logging-socket.conf file and mounting it into DataKit.
 
-##### 1 Add Configuration to ConfigMap
+##### 1 Add ConfigMap Configuration
 
 ```yaml
     logging-socket.conf: |-
@@ -100,15 +96,15 @@ kubectl apply -f datakit.yaml
 #### Parameter Explanation
 
 - sockets: Protocol ports.
-- ignore: File path filtering using glob rules; files matching any filter condition will not be collected.
+- ignore: File path filtering, using glob rules. Files matching any filter condition will not be collected.
 - source: Data source.
-- service: Additional tag; if empty, defaults to $source.
-- pipeline: Script path when using Pipeline.
-- character_encoding: Character encoding selection.
-- multiline_match: Multi-line matching.
-- remove_ansi_escape_codes: Whether to remove ANSI escape codes (e.g., text colors in standard output); values can be true or false.
+- service: Additional tagging, if empty, defaults to $source.
+- pipeline: Script path definition when using pipelines.
+- character_encoding: Encoding selection.
+- multiline_match: Multiline matching.
+- remove_ansi_escape_codes: Whether to remove ANSI escape codes (e.g., text colors in standard output). Value can be true or false.
 
-### Development
+### Developers
 
 #### 1 Add Dependencies
 
@@ -124,7 +120,7 @@ Add the following dependencies to the project's pom.xml:
 
 #### 2 Add Appender to Log Configuration
 
-In this step, we define DataKit address, Socket port, Service, and Source as external parameters. In the project's logback-spring.xml file, add an Appender and define datakitHostIP, datakitSocketPort, datakitSource, and datakitService, whose values are passed from external parameters guangce.datakit.host_ip, guangce.datakit.socket_port, guangce.datakit.source, and guangce.datakit.service.
+In this step, we define the DataKit address, Socket port, Service, and Source as external parameters. In the project’s logback-spring.xml file, add an Appender and define datakitHostIP, datakitSocketPort, datakitSource, and datakitService, whose values are passed in externally through guangce.datakit.host_ip, guangce.datakit.socket_port, guangce.datakit.source, and guangce.datakit.service.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -186,22 +182,22 @@ In this step, we define DataKit address, Socket port, Service, and Source as ext
 
 #### 3 Configure Default Values
 
-Add the following configuration to the application.yml file. These default parameters will be passed to Logback.
+Add the following configuration in the application.yml file; these default parameters will be passed into Logback.
 
 ```yaml
 guangce:
   datakit:
-    host_ip: 127.0.0.1  # DataKit address
-    socket_port: 9542   # DataKit socket port
-    #source: mySource   # If not specified, it will use the source defined by the socket collector
-    #service: myService # If not specified, it will use the service defined by the socket collector
+    host_ip: 127.0.0.1  # datakit address
+    socket_port: 9542   # datakit socket port
+    #source: mySource   # If not opened, it will use the source defined by the socket collector
+    #service: myService # If not opened, it will use the service defined by the socket collector
 ```
 
 #### 4 Run Application
 
 ##### 1 Linux Environment
 
-Execute the following command to start the application. If no parameters are passed, it will use the default values from application.yml.
+Execute the following command to start the application; if no parameters are passed, it will use the default values in application.yml.
 
 ```shell
 java -jar pay-service-1.0-SNAPSHOT.jar --guangce.datakit.host_ip=172.26.0.231 --guangce.datakit.socket_port=9542 --guangce.datakit.source=pay-socket-source --guangce.datakit.service=pay-socket-service
@@ -209,7 +205,7 @@ java -jar pay-service-1.0-SNAPSHOT.jar --guangce.datakit.host_ip=172.26.0.231 --
 
 ##### 2 Kubernetes Environment
 
-Add PARAMS to the Dockerfile to receive external parameters.
+Add PARAMS in Dockerfile to receive external parameters.
 
 ```
 FROM openjdk:8u292
@@ -229,7 +225,7 @@ docker build -t 172.16.0.238/df-demo/istio-pay:v1 -f DockerfilePay .
 docker push 172.16.0.238/df-demo/istio-pay:v1
 ```
 
-Write the pay-deployment.yaml file and add the PARAMS environment variable to pass guangce.datakit.host_ip, guangce.datakit.socket_port, guangce.datakit.source, and guangce.datakit.service values. If not passed, it will use the default values.
+Write the pay-deployment.yaml deployment file, add the PARAMS environment variable here, and pass in the values of guangce.datakit.host_ip, guangce.datakit.socket_port, guangce.datakit.source, and guangce.datakit.service. If they are not passed, the default values will be used.
 
 ```yaml
 apiVersion: apps/v1
@@ -283,9 +279,9 @@ kubectl apply -f pay-deployment.yaml
 
 #### 5 Configure Pipeline
 
-Since the Socker Appender outputs logs in JSON format, DataKit needs to use Pipeline to parse the JSON string. The source and service are default Tags, so set_tag needs to be used.
+Since the logs output by the Socker Appender are in JSON format, DataKit needs to use a Pipeline to extract the JSON string. Since source and service are default Tags, set_tag needs to be used.
 
-Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Logs】->【Pipelines】, click 【Create Pipeline】, and select the source name socketdefault defined when enabling the Socket collector. Define the parsing rules as follows:
+Log into [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/), 【Logs】->【Pipelines】, click 【Create Pipeline】, select the source name socketdefault defined when the operations staff enabled the Socket collector. Define the parsing rules as follows:
 
 ```toml
         json(_,msg,"message")
@@ -302,7 +298,7 @@ Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to �
         default_time(time) 
 ```
 
-After testing with log samples and ensuring it works, click 【Save】. Note that these parsing rules correspond to the pattern added in the logback-spring.xml file.
+After testing with a log sample and confirming it passes, click 【Save】. Note that the parsing rules here correspond to the pattern added in the logback-spring.xml file.
 
 ```toml
                     <pattern>
@@ -320,7 +316,7 @@ After testing with log samples and ensuring it works, click 【Save】. Note tha
 
 ### View Log Files
 
-Access the application's interface to generate application logs. Log in to [<<< custom_key.brand_name >>>](https://console.guance.com/), go to 【Logs】->【Data Collection】-> select pay-socket-source to view log details. Here you can see that the source and service have been replaced by the externally passed parameters.
+Access the application interface to generate application logs. Log into [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/) and navigate to 【Logs】->【Data Collection】-> Select pay-socket-source to view log details. Here you can see that the source and service have been replaced by the external parameters passed in.
 
 ![image](../images/logback-socket/1.png)
 

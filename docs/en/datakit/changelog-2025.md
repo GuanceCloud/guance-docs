@@ -1,151 +1,163 @@
-# Changelog
+# Release Notes
 
-## 1.69.0 (March 12, 2025) {#cl-1.69.0}
+## 1.69.1 (2025/03/18) {#cl-1.69.1}
 
+This release is a hotfix, with the following content:
+
+### Issue Fixes {#cl-1.69.1-fix}
+
+- Fixed an issue where Docker CONTAINERS CPU collection was incorrect (#2589)
+- Fixed memory leak caused by script execution in multi-step TESTING collectors (#2588)
+- Improved error messages for multi-step TESTING (#2567)
+- Updated some documents (#2590)
+
+---
+
+## 1.69.0 (2025/03/12) {#cl-1.69.0}
 This release is an iterative release, with the following updates:
 
 ### New Features {#cl-1.69.0-new}
 
-- APM auto instructions adds support for injecting statsd (#2573).
-- Pipeline adds support for key event data (#2585).
+- Added statsd support to APM automatic instrumentation (#2573)
+- Added key event data processing in Pipeline (#2585)
 
-### Bug Fixes {#cl-1.69.0-fix}
+### Issue Fixes {#cl-1.69.0-fix}
 
-- Fixed the issue that `host_ip` cannot be obtained after the host restarts (#2543).
+- Fixed the issue of not being able to retrieve `host_ip` after HOST reboot (#2543)
 
-### Function Optimization {#cl-1.69.0-opt}
+### Functional Improvements {#cl-1.69.0-opt}
 
-- Optimized the process collector and added several process related metrics (#2366).
-- Optimized the processing of the trace-id field in DDTrace (#2569).
-- Added the `base_service` field in OpenTelemetry collection (#2575).
-- Adjusted the default settings of WAL. The number of workers is defaulted to the CPU-limit cores * 8, and the number of workers and the disk cache size can be specified during the installation/upgrade stage (#2582).
-- Removed the pid detection when Datakit runs in the container environment (#2586).
+- Optimized process collectors by adding several process-related Metrics (#2366)
+- Improved DDTrace trace-id field handling (#2569)
+- Added `base_service` field in OpenTelemetry collection (#2575)
+- Adjusted WAL default settings; worker count is now set to CPU core limit * 8. Also added support for specifying worker count and disk cache size during installation/upgrade (#2582)
+- Removed pid detection when running Datakit in container environments (#2586)
 
 ### Compatibility Adjustments {#cl-1.69.0-brk}
 
-- Optimized the disk collector to ignore some file system types and mount points (#2366).
+- Optimized disk collectors by default ignoring certain file system types and mount points (#2566)
 
-    Adjusted the disk metric collection and updated the disk list collection in the host object. The main differences are as follows:
+    Adjusted disk Metrics collection, and updated disk list collection in HOST objects, with the following differences:
 
-    1. Added the mount point ignore option: This adjustment is mainly to optimize the process of Datakit obtaining the disk list in Kubernetes, filtering out some unnecessary mount points, such as the ConfigMap configuration mount (`/usr/local/datakit/.*`) and the mount caused by Pod log collection (`/run/containerd/.*`); meanwhile, it avoids the addition of invalid time series(these new time series are mainly caused by different mount points).
-    1. Added the file system ignore option: Some file systems that are not necessary to collect, such as `tmpfs/autofs/devpts/overlay/proc/squashfs`, etc., are default ignored.
-    1. In the host object collection, the same default ignore strategy as the disk metric collection is adopted.
+    1. Added mount point ignore options: This adjustment mainly optimizes Datakit disk list acquisition in Kubernetes, filtering out unnecessary mount points such as ConfigMap mounts (`/usr/local/datakit/.*`) and Pod log collection mounts (`/run/containerd/.*`). It also avoids creating invalid Time Series caused by different mount points.
+    1. Added file system ignore options: Ignored file systems that are less necessary to collect (such as `tmpfs/autofs/devpts/overlay/proc/squashfs`) by default.
+    1. In HOST object collection, applied the same default ignore strategy as disk Metrics collection.
 
-    After such adjustments, the number of time series can be greatly reduced. Meanwhile, when we configure monitoring, it is easier to understand and avoid the trouble caused by numerous mount points.
+    After this adjustment, the number of Time Series can be significantly reduced. Additionally, when configuring monitoring, it becomes easier to understand and avoids confusion caused by numerous mount points.
 
----
-
-## 1.68.1 (February 28, 2025) {#cl-1.68.1}
-
-This release is a hotfix, the content is as follows:
-
-### Bug Fixes {#cl-1.68.1-fix}
-
-- Fixed the memory consumption problem of OpenTelemetry metric collection (#2568).
-- Fixed the crash problem caused by eBPF parsing the PostgreSQL protocol (!3420).
 
 ---
 
-## 1.68.0 (February 27, 2025) {#cl-1.68.0}
+## 1.68.1 (2025/02/28) {#cl-1.68.1}
 
+This release is a hotfix, with the following content:
+
+### Issue Fixes {#cl-1.68.1-fix}
+
+- Fixed memory consumption issues in OpenTelemetry Metrics collection (#2568)
+- Fixed crash caused by eBPF parsing PostgreSQL protocol (!3420)
+
+---
+
+## 1.68.0 (2025/02/27) {#cl-1.68.0}
 This release is an iterative release, with the following updates:
 
 ### New Features {#cl-1.68.0-new}
 
-- Added the multi-step dial-test function (#2482).
+- Added Multistep Tests functionality (#2482)
 
-### Bug Fixes {#cl-1.68.0-fix}
+### Issue Fixes {#cl-1.68.0-fix}
 
-- Fixed the problem of clearing the multi-line cache in log collection (!3419).
-- Fixed the default configuration problem of xfsquota (!3419).
+- Fixed multiline buffer cleanup issue in LOG collection (!3419)
+- Fixed default configuration issue for xfsquota (!3419)
 
-### Function Optimization {#cl-1.68.0-opt}
+### Functional Improvements {#cl-1.68.0-opt}
 
-- The Zabbix Exporter collector added compatibility with lower versions (v4.2+) (#2555).
-- The `setopt()` function is provided to customize the processing of log levels when Pipeline processes logs (#2545).
-- When the OpenTelemetry collector collects histogram metrics, it is defaulted to convert them into Prometheus style histograms (#2556).
-- Adjusted the CPU-limit method when installing Datakit on the host. The newly installed Datakit defaults to using the limit mechanism based on the number of CPU cores (#2557).
-- The Proxy collector added the source IP whitelist mechanism (#2558).
-- The collection of Kubernetes container and Pod metrics allows for targeted collection by namespace/image, etc. (#2562).
-- The memory/CPU completion of Kubernetes containers and Pods is collected based on the percentage of Limit and Request (#2563).
-- AWS cloud synchronization added IPv6 support (#2559).
-- Other problem fixes (!3418/!3416).
+- Zabbix Exporter collector added compatibility for older versions (v4.2+) (#2555)
+- Provided `setopt()` function in Pipeline to customize LOG level processing (#2545)
+- Default conversion of Histogram type Metrics collected by OpenTelemetry into Prometheus-style histograms (#2556)
+- Adjusted CPU limit mechanism for Datakit installations on HOSTs, using a new limit based on CPU core count (#2557)
+- Added source IP whitelist mechanism for Proxy collectors (#2558)
+- Allowed targeted collection of CONTAINERS and Pods metrics based on namespace/image methods in Kubernetes (#2562)
+- Added percentage collection for CONTAINERS and Pods memory/CPU based on Limit and Request in Kubernetes (#2563)
+- Added IPv6 support in AWS cloud sync (#2559)
+- Other fixes (!3418/!3416)
 
 ### Compatibility Adjustments {#cl-1.68.0-brk}
 
-- When collecting OpenTelemetry metrics, the name of the measurement was adjusted. The original `otel-service` was changed to `otel_service` (!3412).
+- Adjusted Metrics set names during OpenTelemetry collection, renaming `otel-service` to `otel_service` (!3412)
 
 ---
 
-## 1.67.0 (February 12, 2025) {#cl-1.67.0}
-
+## 1.67.0 (2025/02/12) {#cl-1.67.0}
 This release is an iterative release, with the following updates:
 
 ### New Features {#cl-1.67.0-new}
 
-- KubernetesPrometheus supports adding HTTP header settings during collection and, incidentally, supports configuring the bearer token in string form (#2554).
-- Added the xfsquota collector (#2550).
-- AWS cloud synchronization added IMDSv2 support (#2539).
-- Added the Pyroscope collector for collecting Java/Golang/Python Profiling data based on Pyroscope (#2496).
+- Added HTTP header settings for KubernetesPrometheus collection, along with bearer token string configuration support (#2554)
+- Added xfsquota collector (#2550)
+- Added IMDSv2 support in AWS cloud sync (#2539)
+- Added Pyroscope collector for collecting Java/Golang/Python Profiling data based on Pyroscope (#2496)
 
-### Bug Fixes {#cl-1.67.0-fix}
-### Function Optimization {#cl-1.67.0-opt}
+### Issue Fixes {#cl-1.67.0-fix}
+### Functional Improvements {#cl-1.67.0-opt}
 
-- Improved the documentation related to DCA configuration (#2553).
-- OpenTelemetry collection supports extracting the event field as a first-level field (#2551).
-- Improved the DDTrace Golang documentation and added instructions for compile time instrumentation (#2549).
+- Enhanced DCA configuration documentation (#2553)
+- OpenTelemetry collection supports extracting event fields as top-level fields (#2551)
+- Enhanced DDTrace-Golang documentation, adding compile-time instrumentation instructions (#2549)
 
 ---
 
-## 1.66.2(2025/01/17) {#cl-1.66.2}
+## 1.66.2 (2025/01/17) {#cl-1.66.2}
 
-This release is a hotfix update, with the following enhancements and fixes:
+This release is a hotfix, with additional minor feature additions. Content includes:
 
-### Bug Fixes {#cl-1.66.2-fix}
+### Issue Fixes {#cl-1.66.2-fix}
 
-- Fixed Pipeline debug API compatible issue (!3392)
-- Fixed UDS listen bug (#25344)
-- Added `linux/arm64` support for UOS images (#2529)
-- Fixed prom v2 tag precedence bug (#2546) and Bearer Token bug (#2547)
+- Fixed compatibility issues with Pipeline debugging interfaces (!3392)
+- Fixed UDS listening problems (#2544)
+- Added `linux/arm64` support to UOS images (#2529)
+- Fixed tag priority issues in prom v2 collector (#2546) and Bearer Token issues (#2547)
 
 ---
 
 ## 1.66.1 (2025/01/10) {#cl-1.66.1}
 
-This release is a hotfix update, with the following enhancements and fixes:
+This release is a hotfix, with additional minor feature additions. Content includes:
 
-### Bug Fixes {#cl-1.66.1-fix}
+### Issue Fixes {#cl-1.66.1-fix}
 
-- Fixed the timestamp precision issue in the prom v2 collector (#2540).
-- Resolved the conflict between the PostgreSQL `index` tag and DQL keywords (#2537).
-- Fixed the missing `service_instance` field in SkyWalking collection (#2542).
-- Removed unnecessary configuration fields in OpenTelemetry and fixed the missing `unit` tags for some metrics (#2541).
+- Fixed timestamp precision issues in prom v2 collector (#2540)
+- Fixed conflict between PostgreSQL index tag and DQL keywords (#2537)
+- Fixed missing `service_instance` field in SkyWalking collection (#2542)
+- Removed unused configuration fields in OpenTelemetry and fixed missing unit tags (`unit`) in some Metrics (#2541)
 
 ---
 
 ## 1.66.0 (2025/01/08) {#cl-1.66.0}
 
-This release is an iterative release. The main updates are as follows:
+This release is an iterative release, with the following main updates:
 
 ### New Features {#cl-1.66.0-new}
 
-- Added KV mechanism to support pulling updates for collector configurations (#2449)
-- Added AWS/Huawei Cloud object storage support for remote job (#2475)
-- Added new [NFS collector](../integrations/nfs.md) (#2499)
-- The test data for the Pipeline debugging API supports more HTTP `Content-Type` (#2526)
-- Added Docker container support for APM Automatic Instrumentation (#2480)
+- Added KV mechanism, supporting fetching updated collection configurations via pull (#2449)
+- Added AWS/Huawei Cloud storage support in task dispatching functions (#2475)
+- Added [NFS Collector](../integrations/nfs.md) (#2499)
+- Added support for more HTTP `Content-Type` in Pipeline debugging interface test data (#2526)
+- Added Docker CONTAINERS support in APM Automatic Instrumentation (#2480)
 
-### Bug Fixes {#cl-1.66.0-fix}
+### Issue Fixes {#cl-1.66.0-fix}
 
-- Fixed the issue where the OpenTelemetry collector could not handle micrometer data (#2495)
+- Fixed inability to connect micrometer data in OpenTelemetry collector (#2495)
 
-### Optimizations {#cl-1.66.0-opt}
+### Functional Improvements {#cl-1.66.0-opt}
 
-- Optimized disk metric collection and disk collection in host objects (#2523)
-- Optimized Redis slow log collection, adding client information to the slow log. Meanwhile, slow log provides some support for low-version (<4.0) Redis (such as Codis) (#2525)
-- Adjusted the error-retry mechanism of the KubernetesPrometheus collector during metric collection. When the target service is temporarily offline, it will no longer be removed from collection (#2530)
-- Optimized the default configuration of the PostgreSQL collector (#2532)
-- Added a configuration entry for trimming metric names for Prometheus metrics collected by KubernetesPrometheus (#2533)
-- DDTrace/OpenTelemetry collectors now support actively extracting the `pod_namespace` tag (#2534)
-- Enhanced the log collection scan mechanism by mandating a 1-minute scan interval to prevent log file missing in extreme scenarios (#2536).
+- Optimized disk Metrics collection and disk collection in objects (#2523)
+- Improved Redis slow log collection, adding client information in slow logs. Also selectively supported lower versions (<4.0) of Redis (e.g., Codis) (#2525)
+- Adjusted retry mechanisms in KubernetesPrometheus collector when collecting Metrics, no longer excluding targets temporarily offline (#2530)
+- Optimized default configurations for PostgreSQL collector (#2532)
+- Added metric name trimming configuration entry for Prometheus Metrics collected by KubernetesPrometheus (#2533)
+- Supported active extraction of `pod_namespace` tag in DDTrace/OpenTelemetry collectors (#2534)
+- Enhanced scan mechanism for LOG collection, forcing a 1-minute scan mechanism to avoid missing log files in extreme cases (#2536)
 
+---

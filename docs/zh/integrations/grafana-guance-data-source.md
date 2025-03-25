@@ -1,6 +1,6 @@
 ---
 title     : 'Grafana Guance Datasource'
-summary   : 'Grafana 接入观测云数据提供的 Datasource 源'
+summary   : 'Grafana 接入<<< custom_key.brand_name >>>数据提供的 Datasource 源'
 __int_icon: 'icon/grafana_datasource'
 ---
 
@@ -8,11 +8,11 @@ __int_icon: 'icon/grafana_datasource'
 # Grafana Guance Datasource
 <!-- markdownlint-enable -->
 
-本插件目的为在 Grafana 中展示观测云数据，提供的 Datasource 插件。
+本插件目的为在 Grafana 中展示<<< custom_key.brand_name >>>数据，提供的 Datasource 插件。
 
 ## 配置 {#config}
 
-- 1 [点击下载插件](https://static.guance.com/grafana-plugins/guance-guance-datasource.zip){:target="_blank"}
+- 1 [点击下载插件](https://static.<<< custom_key.brand_main_domain >>>/grafana-plugins/guance-guance-datasource.zip){:target="_blank"}
 
 - 2 找到 Grafana 配置文件，默认路径参考[官方文档](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#configuration-file-location){:target="_blank"}
 

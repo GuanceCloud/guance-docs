@@ -1,19 +1,19 @@
 # Upgrade to Commercial Plan
 ---
 
-For a comparison of the differences between the [Guance Free Plan and Commercial Plan](../plans/trail.md#trail-vs-commercial), Commercial Plan users support connecting larger volumes of data and can customize data retention periods more flexibly.
+Compare the [differences between <<< custom_key.brand_name >>> Free Plan and Commercial Plan](../plans/trail.md#trail-vs-commercial). Commercial Plan users support ingesting larger volumes of data and can customize data storage durations more flexibly.
 
 ## Prerequisites
 
-- Register for a [Guance Console](https://console.guance.com/) account and use the Free Plan workspace.
-- Register for a [Guance Billing Center](https://<<< custom_key.boss_domain >>>/) account to connect with subsequent billing functions.
+- Register a <<< custom_key.brand_name >>> Console account and use the Free Plan workspace.
+- Register a <<< custom_key.brand_name >>> Billing Center account to connect with subsequent billing functions.
 
 ## Upgrading from Free Plan to Commercial Plan
 
 ???+ warning "Upgrade Notice"
 
-    - Once the Free Plan is successfully upgraded to the Commercial Plan, <u>it cannot be reverted</u>;
-    - Collected data will continue to be reported to the Guance workspace, but <u>data collected during the Free Plan period will no longer be viewable</u>.
+    - After successfully upgrading from Free Plan to Commercial Plan, <u>rollback is not possible</u>;
+    - Collected data will continue to be reported to the <<< custom_key.brand_name >>> workspace, but <u>data collected during the Free Plan period will no longer be accessible</u>.
 
 ### Enter the Upgrade Page
 
@@ -21,48 +21,56 @@ Free Plan users of the workspace should log in to the console, go to **Billing**
 
 ![](img/9.upgrade_1.png)
 
-On the **Plan Upgrade** page, click **Upgrade**. Guance supports on-demand purchasing and pay-as-you-go pricing.
+On the **Plan Upgrade** page, click **Upgrade**. <<< custom_key.brand_name >>> supports on-demand purchasing and pay-as-you-go billing.
 
-> For more information on version billing logic, refer to the documentation on [Billing Methods](../billing-method/index.md).
+> For more information about version pricing logic, refer to the document [Billing Method](../billing-method/index.md).
 
 ![](img/9.upgrade_2.png)
 
 ### Bind Billing Center Account
 
-Enter the username of an account already registered with the [Guance Billing Center](https://<<< custom_key.boss_domain >>>/) for binding. This section will validate the **username**, so please enter the **username** of an account that has been activated in the Guance Billing Center.
+
+Input the account already registered at the [<<< custom_key.brand_name >>> Billing Center](https://<<< custom_key.boss_domain >>>/) for binding. Username validation will occur here; please input the **username** of an already activated <<< custom_key.brand_name >>> Billing Center account.
 
 ![](img/0626.png)
 
-Review and agree to the terms of service. After agreeing, you will receive an activation confirmation email.
+Review and agree to the activation agreement, and after agreeing, you will receive an activation confirmation email.
 
 ### Successful Upgrade
 
-After agreeing to the terms, the workspace will successfully upgrade to the Commercial Plan.
+After agreeing to the terms, the workspace successfully upgrades to the Commercial Plan.
 
 ![](img/9.upgrade_5.png)
 
 ### Select Settlement Method
 
-After successfully upgrading from the Free Plan to the Commercial Plan, the default settlement method uses the Guance Billing Center account.
+After successfully upgrading from Free Plan to Commercial Plan, the default settlement method uses the <<< custom_key.brand_name >>> Billing Center account.
 
-If you need to change the settlement method, you can click the **Bind Cloud Account** button. Currently, Guance supports [four settlement methods](./billing-account/index.md).
+If you need to change to another settlement method, click the **Bind Settlement Cloud Account** button in the image above. Currently, <<< custom_key.brand_name >>> supports [four types of settlement methods](./billing-account/index.md).
+
+<!--
+- [<<< custom_key.brand_name >>> Account Settlement](../billing/billing-account/enterprise-account.md): Direct top-up and settlement in <<< custom_key.brand_name >>> Billing Center;
+- [Alibaba Cloud Account Settlement](../billing/billing-account/aliyun-account.md): Direct top-up and settlement via Alibaba Cloud account;
+- [AWS Account Settlement](../billing/billing-account/aws-account.md): Direct top-up and settlement via AWS account;
+- [Huawei Cloud Account Settlement](../billing/commercial-huaweiyun.md): Direct top-up and settlement via Huawei Cloud account.
+-->
 
 ![](img/1.upgrade_account.png)
 
-If you have not registered a cloud account, you can choose **Alibaba Cloud account**, **AWS Cloud account**, or **Huawei Cloud account** and select the settlement method as needed in the pop-up dialog box.
+If you have not registered a cloud account, you can choose **Alibaba Cloud Account**, **AWS Cloud Account**, or **Huawei Cloud Account** and select the desired settlement method in the pop-up dialog box.
 
 <!--
 ![](img/9.upgrade_7.png)
 
-If you choose to use the Guance account for settlement, you can close the **Change Settlement Method** dialog box directly. You can also change the settlement method under **Workspace Management** in the Guance Billing Center.
+If you choose to use <<< custom_key.brand_name >>> account settlement, you can directly close the **Change Settlement Method** dialog box. You can also change the settlement method under **Workspace Management** in <<< custom_key.brand_name >>> Billing Center.
 
 ![](img/9.upgrade_9.png)
 -->
 
 ## View Commercial Plan
 
-Return to the Guance **Billing** section, and you will see that the current workspace has been upgraded to the **Commercial Plan**.
+Return to <<< custom_key.brand_name >>> Billing and see that your current workspace has been upgraded to **Commercial Plan**.
 
-Click **Billing Center** to automatically redirect to the Guance Billing Center.
+Click **Billing Center** to automatically redirect to the <<< custom_key.brand_name >>> Billing Center.
 
 ![](img/9.upgrade_10.png)

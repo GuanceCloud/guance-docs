@@ -11,19 +11,19 @@ It primarily manages the following operations:
 - OpenTelemetry Collector
 - Auto-instrumentation: Automatically instrumenting workloads using OpenTelemetry detection libraries
 
-<<< custom_key.brand_name >>> DataKit has adopted OpenTelemetry design concepts and is compatible with the `OTLP` protocol, so it can bypass OpenTelemetry Collector and directly send data to DataKit, or set the exporter of OpenTelemetry Collector to `OTLP` with the address pointing to DataKit.
+<<< custom_key.brand_name >>> DataKit incorporates OpenTelemetry design concepts and is compatible with the `OTLP` protocol, so it can bypass the OpenTelemetry Collector to directly send data to DataKit. It can also set the exporter of the OpenTelemetry Collector to `OTLP`, pointing the address to DataKit.
 
 We will use two methods to integrate APM data into <<< custom_key.brand_name >>>.
 
-- APM data pushed to <<< custom_key.brand_name >>> via OpenTelemetry Collector;
-- APM data directly pushed to <<< custom_key.brand_name >>>.
+- APM data pushed through OpenTelemetry Collector to <<< custom_key.brand_name >>>
+- APM data directly pushed to <<< custom_key.brand_name >>>
 
 ## Prerequisites
 
 - [x] `k8s` environment
 - [x] <<< custom_key.brand_name >>> account
 
-## Installation of OpenTelemetry Components
+## Installation of OpenTelemetry Related Components
 
 ### Installing OpenTelemetry Operator
 
@@ -95,10 +95,10 @@ spec:
     exporters:
       logging:
       otlp:
-        endpoint: "http://datakit-service.datakit:4319" # Send trace information to <<< custom_key.brand_name >>> platform
+        endpoint: "http://datakit-service.datakit:4319" # Output link information to <<< custom_key.brand_name >>> platform
         tls:
           insecure: true
-        #compression: none # Disable gzip
+        #compression: none # Do not enable gzip
 
     service:
       pipelines:
@@ -133,9 +133,9 @@ demo-collector-59b9447bf9-dz47k      1/1     Running   0          61m
 
 ### Installing Instrumentation
 
-OpenTelemetry Operator can inject and configure OpenTelemetry auto-instrumentation libraries. Currently supports `Apache HTTPD`, `DotNet`, `Go`, `Java`, `NodeJS`, and `Python`.
+OpenTelemetry Operator can inject and configure OpenTelemetry auto-detection libraries. Currently supports `Apache HTTPD`, `DotNet`, `Go`, `Java`, `NodeJS`, and `Python`.
 
-To use auto-instrumentation, configure the SDK and instrumentation resources.
+If you want to use auto-detection, configure the SDK and detection configurations for the detection resources.
 
 - Write `opentelemetry-instrumentation.yaml`
 
@@ -147,7 +147,7 @@ metadata:
 spec:
   exporter:
     endpoint: http://demo-collector:4317 # Opentelemetry collector address
-    # endpoint: http://datakit-service.datakit:4319 # Guance DataKit Opentelemetry collector address
+    # endpoint: http://datakit-service.datakit:4319 # Guance datakit opentelemetry collector address
   propagators:
     - tracecontext
     - baggage
@@ -163,10 +163,10 @@ spec:
     image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python:latest
 ```
 
-- Exporter: Data reporting address, which can be an Opentelemetry collector or any other collector that accepts `otlp` protocol data.
-- Propagators: Trace data propagator, for more details on propagator behavior, refer to the [documentation](https://juejin.cn/post/7254125867177443365)
+- Exporter: Data reporting address, which can be Opentelemetry collector or any other collector that can receive `otlp` protocol data.
+- Propagators: Trace data propagator. For more behavior about propagators, refer to [documentation](https://juejin.cn/post/7254125867177443365)
 - Sampler: Sampling
-- Java\nodejs\python: Different language agents, fill in according to actual project needs.
+- Java\nodejs\python: Agents for different languages, fill according to actual project needs.
 
 - Execute `opentelemetry-instrumentation.yaml`
 
@@ -198,7 +198,7 @@ my-instrumentation   71m   http://demo-collector:4317
 
 ### OpenTelemetry Collector Configuration
 
-- Add `volumeMounts` under `DaemonSet` in `datakit.yaml`:
+- Add `volumeMounts` under the `DaemonSet` in `datakit.yaml`:
 
 ```yaml
 apiVersion: apps/v1
@@ -229,7 +229,7 @@ spec:
       ....
 ```
 
-- Add `opentelemetry.conf` under `ConfigMap` data in `datakit.yaml`
+- Add `opentelemetry.conf` under the `ConfigMap` data in `datakit.yaml`
 
 ```yaml
 apiVersion: v1
@@ -243,7 +243,7 @@ data:
             [inputs.opentelemetry.grpc]
             trace_enable = true
             metric_enable = true
-            addr = "0.0.0.0:4319" # default 4317
+            addr = "0.0.0.0:4319" # defalut 4317
             [inputs.opentelemetry.http]
             enable = false
             http_status_ok = 200
@@ -379,9 +379,9 @@ Containers:
 
 ```
 
-Init Containers: Initialization containers, executed `opentelemetry-auto-instrumentation` sidecar.
+Init Containers: Initialization container, executes the `opentelemetry-auto-instrumentation` sidecar.
 
-Default JAVA application injected environment variables
+Default injected environment variables for JAVA applications
 
 ```shell
     Environment:
@@ -394,7 +394,7 @@ Default JAVA application injected environment variables
       OTEL_RESOURCE_ATTRIBUTES:            k8s.container.name=app,k8s.deployment.name=springboot-server,k8s.namespace.name=default,k8s.node.name=$(OTEL_RESOURCE_ATTRIBUTES_NODE_NAME),k8s.pod.name=$(OTEL_RESOURCE_ATTRIBUTES_POD_NAME),k8s.replicaset.name=springboot-server-64b78f4487
 ```
 
-Thus, the JAVA application has successfully injected the `opentelemetry-auto-instrumentation` sidecar.
+At this point, the JAVA application has successfully injected the `opentelemetry-auto-instrumentation` sidecar.
 
 ### Generating Trace Data
 
@@ -404,7 +404,7 @@ Thus, the JAVA application has successfully injected the `opentelemetry-auto-ins
     [root@k8s-master ~]# curl http://100.111.156.108:8080/gateway
     {"msg":"Order placed successfully","code":200}
     ```
-    **100.111.156.108** is the corresponding `ip` of the pod.
+    **100.111.156.108** is the `ip` corresponding to the pod.
 
 - You can also generate `trace` data by accessing the svc port
     ```shell
@@ -412,7 +412,7 @@ Thus, the JAVA application has successfully injected the `opentelemetry-auto-ins
     {"msg":"Order placed successfully","code":200}
     ```
 
-### Viewing Application Log Information
+### Checking Application Log Information
 
 ```shell
 [root@k8s-master ~]# kubectl logs -f springboot-server-64b78f4487-9hv9r
@@ -430,13 +430,14 @@ connection				:keep-alive
 
 ```
 
-You can see that trace-related information such as `traceparent` and `b3` has been generated.
+You can see that trace-related information has been generated: `traceparent`, `b3`.
 
-Here you can see that `traceId` and `spanId` have also been generated in the logs. For how logs are associated with `trace`, refer to the [documentation](/integrations/java/#logging).
+Here it is found that `traceId` and `spanId` are also generated in the logs. For how logs are associated with `trace`, refer to the documentation [Log Correlation](/integrations/java/#logging).
 
-## Directly Pushing Application Data to <<< custom_key.brand_name >>>
 
-- Adjust the `OTEL_EXPORTER_OTLP_ENDPOINT` in the `opentelemetry-instrumentation.yaml` file
+## Direct Push of Application Data to <<< custom_key.brand_name >>>
+
+- Adjust the `OTEL_EXPORTER_OTLP_ENDPOINT` in the `opentelemetry-instrumentation.yaml` file 
 
 ```shell
 [root@k8s-master ~]# kubectl describe pod springboot-server-64b78f4487-t7gph |grep OTEL_EXPORTER_OTLP_ENDPOINT

@@ -2,145 +2,148 @@
 
 ---
 
-This section includes common and advanced configurations for charts.
+Includes commonly used configurations and advanced configurations for charts.
 
 ## Common Configurations {#general}
 
 ### Title
 
-:material-numeric-1-circle: **Title**: Set a title for the chart. After setting, it will be displayed in the top-left corner of the chart. You can choose to hide it.
-
-:material-2-circle: **Description**: Add a description to the chart. After setting, an [i] prompt will appear after the chart title; if not set, it will not be displayed.
+1. Title: Set a title name for the chart. After setting, it will be displayed in the top-left corner of the chart and supports hiding.
+2. Description: Add a description to the chart. After setting, an [i] prompt will appear after the chart title; if not set, it will not be displayed.
 
 Based on <<< custom_key.brand_name >>>'s large model natural language generation capabilities, you can use the "Auto Generate" function to quickly generate semantically appropriate titles and descriptions for the chart.
 
-![Chart Configuration](../../img/chart-config-ai.png)
+<img src="../../img/chart-config-ai.png" width="80%" > 
 
 ### Units
 
-:material-numeric-1-circle: **Global**: Includes common unit formats across different dimensions, such as data size, time intervals, and timestamps. You can input custom units in the dropdown box and press Enter to apply them to the current chart.
-
-:material-numeric-2-circle: **Custom**: Select the metrics included under the current query conditions and input custom units.
+1. Global: Includes common unit formats for different dimensions, such as data size, time intervals, timestamps, etc. You can input custom units in the dropdown box, and after pressing Enter, they will be applied to the current chart.
+2. Custom: Select the metrics included under the current query conditions and input custom units.
 
 ???+ abstract "About Unit Display for Metric Data"
 
-    1. **Default Unit Display**:
-        - If the queried data is metric data and you have set units for the metrics in [Metric Management](../../metrics/dictionary.md), the default display will follow the metric's unit settings.
-        - If no related unit configuration exists in **Metric Management**, the data will be displayed using thousand separators (as described in [chart-query.md#thousand](chart-query.md#thousand)).
+    1. Default Unit Display:
+    
+        - If the queried data is metric data, and you have set a unit for the metric in [Metric Management](../../metrics/dictionary.md), then by default, the display will follow the unit of the metric;
+        - If there are no related unit settings in **Metric Management**, the data will be displayed using the thousand separator (as described in [chart-query.md#thousand]) with comma-separated numerical increments.
 
-    2. **After Setting Units**: The configured custom units take precedence. For metric data, two options are available for number formatting:
+    2. After Configuring Units: The system will prioritize displaying the units that you have customized. For metric-type data, two options are supported for numerical values:
         
-        - **Default Scaling**: Units are in thousands, millions, etc., e.g., 10,000 displays as 10K, 1,000,000 displays as 1M. Two decimal places are retained.
-        - **Short Scale**: Units are K, M, B, representing thousand, million, billion, trillion, etc. For example, 1,000 is 1k, 10,000 is 10k, and 1,000,000 is 1M. Two decimal places are retained.
+        - Default Scaling: Units include ten thousand and million. For example, 10,000 displays as 1 ten thousand, and 1,000,000 displays as 1 million. Two decimal places are retained.
+        - Short Scale: Units include K, M, B. That is, thousand, million, billion, trillion, etc., represent thousands, millions, billions, trillions, etc., in Chinese contexts. For example, 1,000 is 1k, 10,000 is 10k, and 1,000,000 is 1 million. Two decimal places are retained.
 
 
 ### Legend {#legend}
 
-:material-numeric-1-circle: **Alias**: After adding an alias, the legend name changes accordingly, making it easier to distinguish related metrics.
+1. Alias: After adding an alias, the legend's name will also change, making it easier to distinguish between related metrics.
 
-Aliases support template variables for one-click replacement:
+Aliases support one-click replacement using template variables. For example:
 
-- `{tags}` replaces with all "tag names" and "tag values";
-- `{host}` replaces with the "tag value" of `host`;
-- `{__name__}` replaces with all metric names.
+- `{tags}` replaces all "tag names" and "tag values";
+- `{host}` replaces the `host` "tag value";
+- `{__name__}` replaces all metric names.
 
-*Example scenarios based on metric aliases:*
+*Example: Based on metrics, setting aliases will result in the following scenarios:*
 
-Without adding an alias:
+Effect without adding an alias:
 
-![Legend Without Alias](../../img/alias-1.png)
+<img src="../../img/alias-1.png" width="60%" > 
 
 Effect of replacing with plain text:
 
-![Legend With Plain Text](../../img/alias-2.png)
+<img src="../../img/alias-2.png" width="60%" > 
 
-Using the variable `{tags}` based on the `by` condition:
+Using variables {tags} based on by condition:
 
-**Note**: When your query contains a `by` condition, all legend series returned will be displayed.
+**Note**: When your query contains a by condition, it will display all returned legend sequences.
 
-![Legend With Tags](../../img/alias-3.png)
+<img src="../../img/alias-3.png" width="60%" >
 
-:material-numeric-2-circle: **Position**: Currently supports hiding, bottom, or right-side legends (clicking on a legend item hides/shows the corresponding metric).
+2. Position: Currently supports choosing to hide, bottom, or right-side legends (clicking on the metric line in the legend allows you to hide/show the corresponding metric).
 
-:material-3-circle: **Displayed Value**: Choose which values or calculated values to display in the legend.
+3. Display Values: Choose which values or calculated values to show in the legend.
 
-For time series charts, legend values are aggregated based on chart query results. Options include `Last (last value)`, `First (first value)`, `Avg (average)`, `Min (minimum)`, `Max (maximum)`, `Sum (sum)`, `Count (number of points)`.
+Time series chart legend values will undergo additional aggregation calculations based on the chart query results. Currently, you can choose from `Last (last value)`, `First (first value)`, `Avg (average)`, `Min (minimum)`, `Max (maximum)`, `Sum (sum)`, `Count (number of points)`.
 
-As shown below, `First` returns the first value from the current time series query result, while `Last` returns the last value. Clicking on the legend value allows sorting in ascending/descending order.
+As shown below: `First` returns the first value of the current time series query result, and `Last` returns the last value of the current time series query result. Clicking on the legend value supports ascending/descending sorting.
 
-**Note**: `Avg`, `Sum`, and `Count` display different results based on the selected time interval (original interval and auto-alignment).
+**Note**: `Avg`, `Sum`, and `Count` display different results depending on the selected time interval (original interval and automatic alignment).
 
-![Legend Values](../../img/chart030.png)
+<img src="../../img/chart030.png" width="70%" >
 
 ### Data Format {#data_format}
 
-:material-numeric-1-circle: **Decimal Places**: Choose between 0, 1, 2, 3 decimal places, or full precision.
+1. Decimal Places: You can choose 0, 1, 2, 3 decimal places or full precision.
+2. Thousand Separator: Enabled by default; when disabled, it shows the raw value without separators.
 
-:material-numeric-2-circle: **Thousand Separator**: Enabled by default; when disabled, the original value is displayed without separators.
-
-<<< custom_key.brand_name >>> dashboard chart query results support automatic thousand separator formatting.
+<<< custom_key.brand_name >>> dashboard chart query results support automatically adding data with thousand separators for display.
 
 ![](../img/13.table_1.png)
 
-If units are set, the data format follows the set units.
+If units are set, the data format will be displayed according to the set units.
 
 ![](../img/13.table_2.png)
 
-After setting, preview the chart with thousand separator formatting, or according to the specified unit format.
+After setting, the data format can be previewed with thousand separators, or according to the set unit format.
 
-- Thousand separator formatting:
+- Thousand Separator Data Format Display:
 
-![Thousand Separator Formatting](../../img/13.table_4.png)
+<img src="../../img/13.table_4.png" width="70%" >
 
-- Specified data format:
+- Set Data Format Display:
 
-![Specified Data Format](../../img/13.table_5.png)
+<img src="../../img/13.table_5.png" width="70%" >
 
 
 ## Advanced Configurations
 
-### Lock Time Range
+### Lock Time
 
-Fixes the time range for the current chart query, independent of the global time component. After setting, the user-defined time will appear in the top-right corner of the chart, e.g., [xx minutes], [xx hours], [xx days]. For example, if the locked time interval is 30 minutes, even adjusting the time widget will only display data from the last 30 minutes.
+This fixes the time range for querying data in the current chart, independent of the global time component. After setting successfully, the upper-right corner of the chart will display the user-defined time, such as [xx minutes], [xx hours], [xx days]. For example, if the locked time interval is 30 minutes, even if the time control in the upper-right corner is adjusted, the current chart will only display data from the last 30 minutes.
 
-### Rule Mapping
 
-Set the metric ranges and corresponding background and font colors for different columns. Metrics within the set range will be displayed according to the defined styles.
+### Rule Mapping 
 
-Set metric ranges and mapping values; when the metric value falls within the set range, it will display the corresponding mapped value.
+Set metric ranges and corresponding background colors, font colors for different columns. Metrics within the defined range will be displayed according to the set styles.
 
-When multiple settings are met simultaneously, the last matching style will be applied.
+Set metric ranges and mapping values; when the metric value falls within the set data range, it will display as the corresponding mapped value.
 
-When setting value mappings, both the **Display As** and **Color** fields are optional:
+When a metric value satisfies multiple settings simultaneously, it will display as the style of the last satisfied condition.
 
-- **Display As** defaults to empty, meaning no mapped value is shown;
-- **Color** defaults to empty, meaning the original color is used.
+When setting value mappings, neither the "Display As" nor the "Color" fields are mandatory:
+
+- "Display As" defaults to blank, meaning no mapping value will be displayed;
+- "Color" defaults to blank, meaning no color mapping will be applied and the original color will be displayed.
+
 
 ### Field Mapping
 
-In practical business scenarios, if the fields to be queried differ from those displayed on the front end, you can enable field mapping in the chart. This feature works with object mapping in view variables and is disabled by default.
+In practical business scenarios, if the fields to be queried do not match the fields displayed on the front end, you can enable field mapping in the chart. This feature works together with the object mapping function of view variables and is off by default.
 
-After enabling field mapping, the chart displays the **grouped fields** and their corresponding **mapped fields**. Ungrouped fields without specified mappings are not displayed.
+After enabling field mapping, the chart will display the **grouped fields** and their corresponding **mapped fields**. Grouped fields without specified mappings will not be displayed.
+
 
 ### Workspace Authorization
 
-When enabled, you can query data from external workspaces within the current workspace's chart.
+Once enabled, you can query data from external workspaces under the current chart in the current workspace.
 
-Below the chart, select the target workspace from the authorized workspaces dropdown list for querying.
+Below the chart, you can select the target workspace from the authorized workspace dropdown list to perform queries.
+
 
 ### Data Sampling
 
-Applicable only to workspaces using the Doris log data engine.
+Applies only to Doris log data engine workspaces.
 
-When enabled, sampling queries are performed on non-metric data, with a dynamic sampling rate based on data volume.
+After enabling, sampling queries will be performed on data other than "Metrics". The sampling rate is not fixed and adjusts dynamically based on the volume of data.
+
 
 ### Time Offset
 
-Non-time series data may have at least a 1-minute delay after being stored. When selecting relative time queries, this can lead to missing recent data.
+Due to at least a 1-minute delay in querying non-time-series data after it has been stored, selecting relative time queries may result in recent data not being collected, leading to data loss.
 
-Enabling time offset shifts the actual query time range forward by 1 minute when querying relative time intervals, preventing data gaps due to storage delays. For example, if the current time is 12:30 and you query the last 15 minutes of data, with time offset enabled, the actual query time is 12:14-12:29.
+After enabling time offset, when querying relative time ranges, the actual query time range shifts forward by 1 minute to prevent data retrieval from being empty due to storage delays. For example, if the current time is 12:30 and you query the last 15 minutes of data, with time offset enabled, the actual query time would be 12:14-12:29.
 
-**Note**:
+???+ warning "Note"
 
-1. This setting applies only to relative time queries. For absolute time ranges, time offset does not apply.
-2. For charts with time intervals, like time series charts, if the set time interval exceeds 1 minute, time offset does not apply. For charts without time intervals, such as summary charts and bar charts, time offset remains effective.
+    - This setting applies only to relative times. If the query time range is an "absolute time range," the time offset will not take effect.
+    - For charts with time intervals, such as time series charts, if the set time interval exceeds 1 minute, the time offset will not take effect. It only takes effect when the interval is <= 1 minute. For charts without time intervals, such as summary charts or bar charts, the time offset remains effective.

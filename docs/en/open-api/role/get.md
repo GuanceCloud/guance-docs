@@ -5,7 +5,7 @@
 <br />**GET /api/v1/role/\{role_uuid\}/get**
 
 ## Overview
-Retrieve a role
+Get role
 
 
 
@@ -13,8 +13,8 @@ Retrieve a role
 ## Route Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:--------|:----------------------|
-| role_uuid | string | Yes | Role UUID<br> |
+|:-------------------|:-------|:-----|:----------------|
+| role_uuid | string | Y | Role UUID<br> |
 
 
 ## Additional Parameter Notes
@@ -42,10 +42,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/role/role_xxxx
         "creator": "acnt_xxxx32",
         "creatorInfo": {
             "acntWsNickname": "",
-            "email": "lwc@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
-            "name": "lwc@qq.com",
-            "username": "lwc@qq.com"
+            "name": "xxx@<<< custom_key.brand_main_domain >>>",
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "deleteAt": -1,
         "desc": "",
@@ -78,10 +78,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/role/role_xxxx
         "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "lwc@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "",
-            "name": "lwc@qq.com",
-            "username": "lwc@qq.com"
+            "name": "xxx@<<< custom_key.brand_main_domain >>>",
+            "username": "xxx@<<< custom_key.brand_main_domain >>>"
         },
         "uuid": "role_xxxx32",
         "workspaceUUID": "wksp_xxxx32"

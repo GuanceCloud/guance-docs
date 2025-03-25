@@ -1,4 +1,4 @@
-# Workspace Creation
+# Workspace - Create
 
 ---
 
@@ -7,44 +7,52 @@
 ## Overview
 Create a workspace.
 
-Use an existing workspace API Key to create a new workspace. The owner of the new workspace will default to the owner of the space associated with this request's API Key.
+Use an existing workspace API Key to create a new workspace.
+The owner of the new workspace will default to the owner of the space associated with this request's API Key.
+
+
+
 
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:------------------|:-------|:-----|:----------------|
-| name | string | Y | Name<br>Example: supper_workspace <br>Allow null: False <br>Maximum length: 256 <br> |
-| desc | string | N  | Description<br>Example: Workspace description <br>Allow null: True <br>Allow empty string: True <br> |
-| menuStyle | string | N  | Workspace menu style, options include Operations/Testing/Development<br>Example: Operations <br>Allow null: False <br>Allow empty string: True <br> |
-| needCreateAk | boolean | N  | Whether to create a workspace AK<br>Example: True <br>Allow null: False <br> |
-| akName | string | N  | Workspace AK name<br>Example: test_ak <br>Allow null: False <br> |
-| language | string | N  | Workspace language<br>Allow null: True <br>Allow empty string: True <br>Optional values: ['zh', 'en'] <br> |
+|:---------------------|:---------|:----------|:-----------------------|
+| name | string | Y | Name<br>Example: supper_workspace <br>Allow empty: False <br>Maximum length: 256 <br> |
+| desc | string |  | Description<br>Example: Workspace description <br>Allow empty: True <br>Allow empty string: True <br> |
+| menuStyle | string |  | Workspace menu bar style, Operations/Testing/Development<br>Example: Operations <br>Allow empty: False <br>Allow empty string: True <br> |
+| needCreateAk | boolean |  | Whether to create a workspace AK<br>Example: True <br>Allow empty: False <br> |
+| akName | string |  | Workspace AK name<br>Example: True <br>Allow empty: False <br> |
+| language | string |  | Workspace language<br>Allow empty: True <br>Allow empty string: True <br>Optional values: ['zh', 'en'] <br> |
 
-## Additional Parameter Explanation
+## Supplementary Parameter Explanation
 
-Data Explanation.*
 
-- Request Parameter Explanation
+Data explanation.*
 
-| Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| name       | string | Name of the new workspace |
-| desc             | string | Description of the new workspace                                                 |
-| needCreateAk       | boolean  | Whether to create an API KEY in the new workspace     |
-| akName            | string  | Name of the API KEY                                         |
+- Request parameter explanation
+
+| Parameter Name           | type | Description                                                 |
+| ------------------------ | ---- | ---------------------------------------------------------- |
+| name       | string | Name of the new space |
+| desc             | string | Description of the new space                                                |
+| needCreateAk       | boolean  | Whether to create an API KEY in the new space     |
+| akName            | string  | Name of the API KEY                                       |
+
+------
+
+- Response parameter explanation
+
+| Parameter Name           | type | Description                                                 |
+| ------------------------ | ---- | ---------------------------------------------------------- |
+| akInfo       | dict | Information about the API KEY of the new space |
+| ownerInfo             | dict | Information about the owner of the new space                                               |
+| wsInfo    | dict | Relevant information about the space                  |
+| versionType    | string | Space version type                  |
 
 ------
 
-- Response Parameter Explanation
 
-| Parameter Name           | Type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
-| akInfo       | dict | Information about the new workspace's API KEY |
-| ownerInfo             | dict | Information about the owner of the new workspace                                                 |
-| wsInfo    | dict | Relevant information about the workspace                  |
-| versionType    | string | Version type of the workspace                  |
 
-------
 
 ## Request Example
 ```shell
@@ -56,6 +64,9 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/crea
 --compressed
 --insecure
 ```
+
+
+
 
 ## Response
 ```shell
@@ -73,7 +84,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/workspace/crea
         "makeResourceExceptionCode": "",
         "ownerInfo": {
             "accountUUID": "acnt_xxxxxxxxxx",
-            "email": "xxxxx@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "name": "Test"
         },
         "wsInfo": {

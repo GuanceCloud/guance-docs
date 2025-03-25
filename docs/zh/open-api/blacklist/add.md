@@ -63,7 +63,7 @@
 | values    |  array  |  N | 查询条件具体数值 |
 
 **4. operation 说明**
-参考 行协议过滤器<<< homepage >>>/datakit/datakit-filter/
+参考 [ 行协议过滤器 ](../../../datakit/datakit-filter/)
 
 |key|说明|
 |---|----|

@@ -1,24 +1,24 @@
 # Android Application Integration
 ---
-<<< custom_key.brand_name >>> application monitoring can collect metrics data from various Android applications and analyze the performance of each Android application in a visualized manner.
+<<< custom_key.brand_name >>> application monitoring can collect various Android application Metrics data and analyze the performance of each Android application endpoint in a visualized way.
 
 ## Prerequisites
 
-**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you, and you can directly integrate your application.
+**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you. You can directly integrate your application.
 
 - Install [DataKit](../../datakit/datakit-install.md);
-- Configure the [RUM Collector](../../integrations/rum.md);
-- Configure DataKit to be [publicly accessible and install the IP geolocation database](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- Configure [RUM Collector](../../integrations/rum.md);
+- Ensure DataKit is [publicly accessible with IP geolocation information database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
 ## Application Integration {#android-integration} 
 
-Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Monitoring** page, click on the top-left **[Create Application](../index.md#create)** to start creating a new application.
+Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Analysis** page, click the top-left **[Create]** to start creating a new application.
 
-- <<< custom_key.brand_name >>> provides **public DataWay** for direct reception of RUM data without the need to install the DataKit collector. Configuring `site` and `clientToken` parameters is sufficient.
+- <<< custom_key.brand_name >>> provides a **public DataWay** to receive RUM data directly without installing the DataKit collector. Configuring `site` and `clientToken` parameters is sufficient.
 
 ![](../img/android_01.png)
 
-- <<< custom_key.brand_name >>> also supports **local environment deployment** for receiving RUM data, which requires meeting the prerequisites.
+- <<< custom_key.brand_name >>> also supports receiving RUM data via **local environment deployment**, which requires meeting the prerequisites.
 
 ![](../img/6.rum_android_1.png)
 
@@ -34,7 +34,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Mon
 
 ### Gradle Configuration {#gradle-setting}
 
-* Add the SDK's remote repository address in the `build.gradle` file at the root directory of the project
+* Add the remote repository address of the `SDK` in the root directory's `build.gradle` file.
 
 === "buildscript"
 
@@ -43,16 +43,16 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Mon
 	    //...
 	    repositories {
 	        //...
-	        //Add the SDK's remote repository address
+	        //Add the SDK remote repository address
 	        maven {
 	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
 	        }
 	    }
 	    dependencies {
 	        //...
-	        //Add Plugin dependency, requiring AGP 7.4.2 or above, Gradle 7.2.0 or above
+	        //Add Plugin plugin, AGP 7.4.2 or above, Gradle 7.2.0 or above required
 	        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:[latest_version]'
-	        // For AGP versions below 7.4.2, use ft-plugin-legacy 
+	        // For AGP 7.4.2 versions below, use ft-plugin-legacy 
 	        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[latest_version]'
 	        
 	    }
@@ -60,7 +60,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Mon
 	allprojects {
 	    repositories {
 	        //...
-	        //Add the SDK's remote repository address
+	        //Add the SDK remote repository address
 	        maven {
 	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
 	        }
@@ -78,7 +78,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Mon
 	        google()
 	        mavenCentral()
 	        gradlePluginPortal()
-	        //Add the SDK's remote repository address
+	        //Add the SDK remote repository address
 	        maven {
 	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
 	        }
@@ -89,7 +89,7 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Mon
 	    repositories {
 	        google()
 	        mavenCentral()
-	        //Add the SDK's remote repository address
+	        //Add the SDK remote repository address
 	        maven {
 	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
 	        }
@@ -99,24 +99,24 @@ Log in to the <<< custom_key.brand_name >>> console, go to the **User Access Mon
 	//build.gradle
 	
 	plugins{
-		//Add Plugin dependency, requiring AGP 7.4.2 or above, Gradle 7.2.0 or above
+		//Add Plugin plugin, AGP 7.4.2 or above, Gradle 7.2.0 or above required
 		id 'com.cloudcare.ft.mobile.sdk.tracker.plugin' version '[lastest_version]' apply false
-		// For AGP versions below 7.4.2, use ft-plugin-legacy 
+		//For AGP 7.4.2 versions below, use ft-plugin-legacy 
 		//id 'com.cloudcare.ft.mobile.sdk.tracker.plugin.legacy' version '[lastest_version]' apply false
 	}
 	
 	```
 
 
-* In the `build.gradle` file of the main module `app` of the project, add dependencies for the `SDK`, usage of `Plugin`, and support for Java 8
+* Add `SDK` dependencies and `Plugin` usage along with Java 8 support in the main module `app`'s `build.gradle` file.
 
 ```groovy
 dependencies {
     //Add SDK dependency
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:[latest_version]'
-    //Dependency for capturing native layer crash information, must be used with ft-sdk, cannot be used alone
+    //Dependency to capture native layer crash information, must be used with ft-sdk
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:[latest_version]'
-    //Recommended version, other versions have not been fully compatibility tested
+    //Recommended version, other versions may not be fully compatible
     implementation 'com.google.code.gson:gson:2.8.5'
 
 }
@@ -127,13 +127,13 @@ FTExt {
     //Whether to display Plugin logs, default is false
     showLog = true
 	
-    //Set ASM version, supporting asm7 - asm9, default is asm9
+    //Set ASM version, supporting asm7 - asm9, default asm9
     //asmVersion='asm7'
 
-    //ASM ignore path configuration, paths with . and / are equivalent
+    //ASM ignore path configuration, paths '.' and '/' are equivalent
     //ignorePackages=['com.ft','com/ft']
 
-	//Native so specified path, just specify up to the abi file's parent directory
+	//Native so specified path, only need to specify the upper directory of the abi file
 	// |-stripped_native_libs
 	// 		|-release
 	// 			|-out
@@ -144,12 +144,12 @@ FTExt {
     //nativeLibPath='/build/intermediates/merged_native_libs/release/out/lib'
 }
 android{
-	//...omit some code
+	//...Omitted some code
 	defaultConfig {
-        //...omit some code
+        //...Omitted some code
         ndk {
-            //When using ft-native to capture native layer crash information, select supported abi architectures based on the platforms adapted by the application.
-            //Currently, ft-native includes abi architectures 'arm64-v8a',
+            //When using ft-native to capture native layer crash information, select supported abi architectures based on the different platforms adapted by the application.
+            //Currently, the included abi architectures in ft-native are 'arm64-v8a',
             // 'armeabi-v7a', 'x86', 'x86_64'
             abiFilters 'armeabi-v7a'
         }
@@ -161,10 +161,10 @@ android{
 }
 ```
 
-> Refer to the latest versions of ft-sdk, ft-plugin, and ft-native above.
+> Check the latest version names for ft-sdk, ft-plugin, and ft-native above.
 
 ## Application Configuration {#application-setting}
-Theoretically, the best place to initialize the SDK is in the `onCreate` method of `Application`. If your application has not yet created an `Application`, you need to create one and declare it in `AndroidManifest.xml`. Refer to the example [here](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml).
+Theoretically, the best place to initialize the SDK is in the `onCreate` method of `Application`. If your application hasn't created an `Application`, you need to create one and declare it in the `AndroidManifest.xml` under `Application`. Example reference [here](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml).
 
 ```xml
 <application 
@@ -185,7 +185,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 			 //Local environment deployment, Datakit deployment
 	        FTSDKConfig config = FTSDKConfig.builder(datakitUrl);
 
-			//Using public DataWay
+			//Use public DataWay
 			FTSDKConfig config = FTSDKConfig.builder(datawayUrl, clientToken);
 
 	        FTSdk.install(config);
@@ -202,7 +202,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 			//Local environment deployment, Datakit deployment
 			val config = FTSDKConfig.builder(datakitUrl)
 
-			//Using public DataWay
+			//Use public DataWay
 			val config = FTSDKConfig.builder(datawayUrl, clientToken)
 
 			FTSdk.install(config)
@@ -211,26 +211,26 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	}
     ```
 
-| **Method Name** | **Type** | **Required** | **Description** |
+| **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- | 
-| datakitUrl | String | Yes | Datakit access URL, example: http://10.0.0.1:9529, default port is 9529. The device where the SDK is installed must be able to access this address. **Note: Choose either datakit or dataway configuration**|
-| datawayUrl | String | Yes | Public Dataway access URL, example: http://10.0.0.1:9528, default port is 9528. The device where the SDK is installed must be able to access this address. **Note: Choose either datakit or dataway configuration** |
-| clientToken | String | Yes | Authentication token, must be configured with datawayUrl |
-| setDebug | Boolean | No | Whether to enable debug mode. Default is `false`. Logs will only print when this is enabled |
-| setEnv | EnvType | No | Set the collection environment, default is `EnvType.PROD` |
-| setEnv | String | No | Set the collection environment, default is `prod`. **Note: Only configure one of String or EnvType types**|
-| setOnlySupportMainProcess | Boolean | No | Whether to only support running in the main process, default is `true`. If execution is required in other processes, set this field to `false` |
-| setEnableAccessAndroidID | Boolean | No | Enable obtaining `Android ID`, default is `true`. If set to `false`, the `device_uuid` field data will not be collected. For market privacy review related [see here](#adpot-to-privacy-audits) |
-| addGlobalContext | Dictionary | No | Add global attributes to the SDK, refer to [this](#key-conflict) for addition rules |
-| setServiceName | String | No | Set the service name, affects Log and RUM service fields, default is `df_rum_android` |
-| setAutoSync | Boolean | No | Whether to enable auto synchronization, default is `true`. When set to `false`, use `FTSdk.flushSyncData()` to manage data synchronization manually |  
-| setSyncPageSize | Int | No | Set the number of items per sync request, `SyncPageSize.MINI` 5 items, `SyncPageSize.MEDIUM` 10 items, `SyncPageSize.LARGE` 50 items, default `SyncPageSize.MEDIUM`   |
-| setCustomSyncPageSize | Enum | No | Set the number of items per sync request, range [5,), note that the larger the number of items, the more computing resources will be used, default is 10 **Note: Only configure one of setSyncPageSize and setCustomSyncPageSize**   |
-| setSyncSleepTime | Int | No | Set the intermittent time for synchronization, range [0,5000], default is not set  |
-| enableDataIntegerCompatible | Void | No | This configuration is recommended when coexisting with web data. It handles web data type storage compatibility issues. Version 1.6.9 defaults to enabling this  |
-| setNeedTransformOldCache | Boolean | No | Whether to support synchronizing old cache data from versions of ft-sdk below 1.6.0, default is false |
-| setCompressIntakeRequests | Boolean | No | Compress sync data, supported by ft-sdk version 1.6.3 and above |
-| enableLimitWithDbSize | Void | No | Enable limiting data size using db, default is 100MB, unit is Byte. The larger the database, the greater the disk pressure. By default, this is not enabled.<br>**Note:** After enabling, `FTLoggerConfig.setLogCacheLimitCount` and `FTRUMConfig.setRumCacheLimitCount` will become ineffective. Supported by ft-sdk version 1.6.6 and above |
+| datakitUrl | String | Yes | Datakit access URL address, example: http://10.0.0.1:9529, port defaults to 9529, the device where the SDK is installed needs to be able to access this address. **Note: Choose either datakit or dataway configuration**|
+| datawayUrl | String | Yes | Public Dataway access URL address, example: http://10.0.0.1:9528, port defaults to 9528, the device where the SDK is installed needs to be able to access this address. **Note: Choose either datakit or dataway configuration** |
+| clientToken | String | Yes | Authentication token, must be configured together with datawayUrl  |
+| setDebug | Boolean | No | Whether to enable debug mode. Default is `false`, enabling it will allow printing SDK operation logs |
+| setEnv | EnvType | No | Set collection environment, default is `EnvType.PROD` |
+| setEnv | String | No | Set collection environment, default is `prod`. **Note: Only configure one of String or EnvType types**|
+| setOnlySupportMainProcess | Boolean | No | Whether to only support running in the main process, default is `true`, if execution is needed in other processes, set this field to `false` |
+| setEnableAccessAndroidID | Boolean | No | Enable obtaining `Android ID`, default is `true`, setting to `false` will prevent the collection of the `device_uuid` field, related to market privacy audits [view here](#adpot-to-privacy-audits) |
+| addGlobalContext | Dictionary | No | Add global properties to the SDK, addition rules refer to [here](#key-conflict) |
+| setServiceName | String | No | Set service name, affects Log and RUM `service` field data, default is `df_rum_android` |
+| setAutoSync | Boolean | No | Whether to enable automatic synchronization, default is `true`. When set to `false`, use `FTSdk.flushSyncData()` to manage data synchronization manually |  
+| setSyncPageSize | Int | No | Set the number of entries per sync request, `SyncPageSize.MINI` 5 entries, `SyncPageSize.MEDIUM` 10 entries, `SyncPageSize.LARGE` 50 entries, default `SyncPageSize.MEDIUM`   |
+| setCustomSyncPageSize | Enum | No | Set the number of entries per sync request, range [5,), note that the larger the number of entries, the more computational resources are consumed, default is 10 **Note: Only configure one of setSyncPageSize and setCustomSyncPageSize**   |
+| setSyncSleepTime | Int | No | Set the intermittent time for synchronization, range [0,5000], default not set |
+| enableDataIntegerCompatible | Void | No | Suggested to enable when coexisting with web data. This configuration handles storage compatibility issues for web data types. Version 1.6.9 enables this by default |
+| setNeedTransformOldCache | Boolean | No | Whether to transform old cache data from ft-sdk versions below 1.6.0, default is `false` |
+| setCompressIntakeRequests | Boolean | No | Compress sync data, versions 1.6.3 and above of ft-sdk support this method |
+| enableLimitWithDbSize | Void | No | Enable limiting data size using db, default 100MB, unit Byte, the larger the database, the greater the disk pressure, default is not enabled.<br>**Note:** After enabling, `FTLoggerConfig.setLogCacheLimitCount` and `FTRUMConfig.setRumCacheLimitCount` will become ineffective. Versions 1.6.6 and above of ft-sdk support this method |
 
 ### RUM Configuration {#rum-config}
 
@@ -273,25 +273,25 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	```
 
 
-| **Method Name** | **Type** | **Required** | **Description** |
+| **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
-| setRumAppId | String | Yes | Sets the `Rum AppId`. Corresponds to setting the RUM `appid`, enabling RUM collection functionality, [method to obtain appid](#android-integration) |
-| setSamplingRate | Float | No | Set the collection rate, value range [0,1], 0 means no collection, 1 means full collection, default value is 1. Applies to all View, Action, LongTask, Error data within the same session_id |
-| setEnableTrackAppCrash | Boolean | No | Whether to report App crash logs, default is `false`, enables displaying error stack trace data in error analysis. <br> [About de-obfuscating content in crash logs](#retrace-log).<br><br>For ft-sdk versions 1.5.1 and above, `extraLogCatWithJavaCrash` and `extraLogCatWithNativeCrash` can be used to control whether logcat is displayed in Java Crash and Native Crash |
-| setExtraMonitorTypeWithError | Array| No | Set auxiliary monitoring information, adding additional monitoring data to Rum crash data, `ErrorMonitorType.BATTERY` for battery level, `ErrorMonitorType.MEMORY` for memory usage, `ErrorMonitorType.CPU` for CPU occupancy |
-| setDeviceMetricsMonitorType | Array | No | Set View monitoring information, adding monitoring data during the View lifecycle, `DeviceMetricsMonitorType.BATTERY` monitors the highest output current of the current page, `DeviceMetricsMonitorType.MEMORY` monitors the current application's memory usage, `DeviceMetricsMonitorType.CPU` monitors CPU jumps, `DeviceMetricsMonitorType.FPS` monitors screen frame rate. Monitoring frequency, `DetectFrequency.DEFAULT` 500 milliseconds, `DetectFrequency.FREQUENT` 100 milliseconds, `DetectFrequency.RARE` 1 second |
-| setEnableTrackAppANR | Boolean | No | Whether to enable ANR detection, default is `false`.<br><br>For ft-sdk versions 1.5.1 and above, `extraLogCatWithANR` can be used to control whether logcat is displayed in ANR |
-| setEnableTrackAppUIBlock | Boolean, long  | No | Whether to enable UI lag detection, default is `false`, for ft-sdk versions 1.6.4 and above, `blockDurationMs` can be used to control the detection time range [100,), unit is milliseconds, default is 1 second  |
+| setRumAppId | String | Yes | Set `Rum AppId`. Corresponding to RUM `appid`, this will enable the RUM collection function, [method to obtain appid](#android-integration) |
+| setSamplingRate | Float | No | Set the sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Scope applies to all View, Action, LongTask, Error data within the same session_id |
+| setEnableTrackAppCrash | Boolean | No | Whether to report App crash logs, default is `false`, enabling it will display error stack data in error analysis.<br> [Regarding conversion of obfuscated content in crash logs](#retrace-log).<br><br>ft-sdk 1.5.1 and above versions can set whether logcat is displayed in Java Crash and Native Crash through `extraLogCatWithJavaCrash` and `extraLogCatWithNativeCrash` |
+| setExtraMonitorTypeWithError | Array| No | Set auxiliary monitoring information, add additional monitoring data to `Rum` crash data, `ErrorMonitorType.BATTERY` for battery level, `ErrorMonitorType.MEMORY` for memory usage, `ErrorMonitorType.CPU` for CPU occupancy |
+| setDeviceMetricsMonitorType | Array | No | Set View monitoring information, add monitoring data during the View lifecycle, `DeviceMetricsMonitorType.BATTERY` monitors the highest current output on the current page, `DeviceMetricsMonitorType.MEMORY` monitors the application memory usage, `DeviceMetricsMonitorType.CPU` monitors CPU jumps , `DeviceMetricsMonitorType.FPS` monitors screen frame rate. Monitoring cycle, `DetectFrequency.DEFAULT` 500 milliseconds, `DetectFrequency.FREQUENT` 100 milliseconds, `DetectFrequency.RARE` 1 second |
+| setEnableTrackAppANR | Boolean | No | Whether to enable ANR detection, default is `false`.<br><br>ft-sdk 1.5.1 and above versions can set whether logcat is displayed in ANR through `extraLogCatWithANR` |
+| setEnableTrackAppUIBlock | Boolean, long  | No | Whether to enable UI blocking detection, default is `false`, ft-sdk 1.6.4 and above versions can control the detection time range [100,) in milliseconds, default is 1 second |
 | setEnableTraceUserAction | Boolean | No | Whether to automatically track user operations, currently only supports user startup and click operations, default is `false` |
 | setEnableTraceUserView | Boolean | No | Whether to automatically track user page operations, default is `false` |
 | setEnableTraceUserResource | Boolean | No | Whether to automatically track user network requests, only supports `Okhttp`, default is `false` |
-| setEnableResourceHostIP | Boolean | No | Whether to collect the IP address of the requested target domain. Affects only the default collection when `EnableTraceUserResource` is true. For custom Resource collection, use `FTResourceEventListener.FTFactory(true)` to enable this feature. Additionally, a single Okhttp instance caches the IP for the same domain, and only generates once if the connected server IP does not change.|
-| setResourceUrlHandler | Callback| No | Set conditions to filter Resources, default is no filtering |
-| setOkHttpEventListenerHandler | Callback| No | ASM sets a global Okhttp EventListener, default is not set |
-| setOkHttpResourceContentHandler | Callback| No | ASM sets a global `FTResourceInterceptor.ContentHandlerHelper`, default is not set, supported by ft-sdk 1.6.7 and above, [custom Resource](#okhttp_resource_trace_interceptor_custom) |
-| addGlobalContext | Dictionary | No | Add custom tags for distinguishing data sources in user monitoring. If tracking function is needed, the parameter `key` is `track_id` and `value` can be any value. Refer to [this](#key-conflict) for addition rules |
-| setRumCacheLimitCount | int | No | Local cache limit for RUM count [10_000,), default is 100_000. Supported by ft-sdk 1.6.6 and above |
-| setRumCacheDiscardStrategy | RUMCacheDiscard | No | Set discard rule for RUM data when it reaches the limit, default is `RUMCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data, supported by ft-sdk 1.6.6 and above  |
+| setEnableResourceHostIP | Boolean | No | Whether to collect the IP address of the requested target domain. Scope: Only affects default collection when `EnableTraceUserResource` is true. For custom Resource collection, use `FTResourceEventListener.FTFactory(true)` to enable this feature. Additionally, there is an IP caching mechanism for single Okhttp with the same domain, and the connection IP to the server will only generate once under the premise of no change in the same `OkhttpClient` |
+| setResourceUrlHandler | Callback| No | Set conditions to filter Resources, default does not filter |
+| setOkHttpEventListenerHandler | Callback| No | ASM sets global Okhttp EventListener, default does not set |
+| setOkHttpResourceContentHandler | Callback| No | ASM sets global `FTResourceInterceptor.ContentHandlerHelper`, default does not set, ft-sdk 1.6.7 and above supports, [custom Resource](#okhttp_resource_trace_interceptor_custom) |
+| addGlobalContext | Dictionary | No | Add custom tags for distinguishing data sources in user monitoring. If tracking functionality is needed, parameter `key` should be `track_id`, `value` as any number, refer to [here](#key-conflict) for addition rules |
+| setRumCacheLimitCount | int | No | Local cache limit count for RUM [10_000,), default is 100_000. ft-sdk 1.6.6 and above supports |
+| setRumCacheDiscardStrategy | RUMCacheDiscard | No | Set discard rule for data when RUM reaches its limit, default is `RUMCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data, ft-sdk 1.6.6 and above supports |
 
 ### Log Configuration {#log-config}
 
@@ -320,16 +320,16 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	        )
 	```
 
-| **Method Name** | **Type** | **Required** | **Description** |
+| **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
-| setSamplingRate | Float | No | Set the collection rate, value range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
-| setEnableConsoleLog | Boolean | No | Whether to report console logs, log level mapping<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning, <br> `prefix` is the control prefix filter parameter, default is no filtering. Note: Android console volume is very large, to avoid affecting application performance and reducing unnecessary resource waste, it is recommended to use `prefix` to filter out valuable logs |
+| setSamplingRate | Float | No | Set the sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
+| setEnableConsoleLog | Boolean | No | Whether to report console logs, log levels correspond<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning,<br> `prefix` is the filtering parameter for the control prefix, default does not set filtering. Note: Android console volume is very large, to avoid affecting application performance and reducing unnecessary resource waste, it is suggested to use `prefix` to filter out valuable logs |
 | setEnableLinkRUMData | Boolean | No | Whether to associate with RUM data, default is `false` |
 | setEnableCustomLog | Boolean| No | Whether to upload custom logs, default is `false` |
-| setLogLevelFilters | Array | No | Set log level filters, default is no filtering |
-| addGlobalContext | Dictionary | No | Add global attributes to logs, refer to [this](#key-conflict) for addition rules |
-| setLogCacheLimitCount | Int | No | Limit the maximum number of local cached log entries [1000,), larger logs mean greater disk cache pressure, default is 5000   |
-| setLogCacheDiscardStrategy| LogCacheDiscard | No | Set the discard rule for logs when they reach the limit, default is `LogCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data |
+| setLogLevelFilters | Array | No | Set log level filters, default is not set |
+| addGlobalContext | Dictionary | No | Add global properties to log, addition rules refer to [here](#key-conflict) |
+| setLogCacheLimitCount | Int | No | Local cache maximum log entry limit [1000,), larger logs mean greater disk cache pressure, default is 5000   |
+| setLogCacheDiscardStrategy| LogCacheDiscard | No | Set discard rule for logs when they reach their limit, default is `LogCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data |
 
 ### Trace Configuration {#trace-config}
 
@@ -353,17 +353,17 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	        )
 	```
 
-| **Method Name** | **Type** | **Required** | **Description** |
+| **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
-| setSamplingRate | Float | No | Set the collection rate, value range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
-| setTraceType | TraceType | No | Set the trace type, default is `DDTrace`, currently supports `Zipkin`, `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if integrating OpenTelemetry, choose the corresponding trace type and check supported types and agent configurations |
+| setSamplingRate | Float | No | Set the sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
+| setTraceType | TraceType | No | Set the trace type, default is `DDTrace`, currently supports `Zipkin` , `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if accessing OpenTelemetry and choosing corresponding trace types, please refer to supported types and agent configurations |
 | setEnableLinkRUMData | Boolean | No | Whether to associate with RUM data, default is `false` |
-| setEnableAutoTrace | Boolean | No | Set whether to enable automatic HTTP trace, currently only supports automatic tracing for OKhttp, default is `false` |
-| setOkHttpTraceHeaderHandler | Callback| No | ASM sets a global `FTTraceInterceptor.HeaderHandler`, default is not set, supported by ft-sdk 1.6.8 and above, example reference [custom Trace](#okhttp_resource_trace_interceptor_custom) |
+| setEnableAutoTrace | Boolean | No | Set whether to enable automatic http trace, currently only supports OKhttp automatic tracing, default is `false` |
+| setOkHttpTraceHeaderHandler | Callback| No | ASM sets global `FTTraceInterceptor.HeaderHandler`, default is not set, ft-sdk 1.6.8 and above supports, example reference [custom Trace](#okhttp_resource_trace_interceptor_custom) |
 
 ## RUM User Data Tracking {#rum-trace}
 
-`FTRUMConfig` configures `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` to achieve automatic data acquisition or manually use `FTRUMGlobalManager` to add these data, as shown below:
+Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` to achieve automatic data acquisition effects or manually use `FTRUMGlobalManager` to add these data, examples are as follows:
 
 ### Action
 
@@ -386,13 +386,13 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     *
 	     * @param actionName action name
 	     * @param actionType action type
-	     * @param property   Additional attribute parameters
+	     * @param property   Additional attributes
 	     */
 	    public void startAction(String actionName, String actionType, HashMap<String, Object> property)
 
 
 		/**
-		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
@@ -400,21 +400,21 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 		public void addAction(String actionName, String actionType)
 
 		/**
-		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
-		 * @param property Extended properties
+		 * @param property Extended attributes
 		 */
 		public void addAction(String actionName, String actionType, HashMap<String, Object> property)
 
 		 /**
-		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
 		 * @param duration   Nanoseconds, duration
-		 * @param property Extended properties
+		 * @param property Extended attributes
 		 */
 		public void addAction(String actionName, String actionType, long duration, HashMap<String, Object> property) 
     
@@ -438,12 +438,12 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     *
 	     * @param actionName action name
 	     * @param actionType action type
-	     * @param property   Additional attribute parameters
+	     * @param property   Additional attributes
 	     */
 	    fun startAction(actionName: String, actionType: String, property: HashMap<String, Any>)
 
 		/**
-		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
@@ -451,11 +451,11 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 		fun addAction(actionName: String, actionType: String)
 
 		/**
-		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
-		 * @param property Extended properties
+		 * @param property Extended attributes
 		 */
 		fun addAction(actionName: String, actionType: String, property: HashMap<String, Any>)
 
@@ -465,12 +465,12 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 		 * @param actionName action name
 		 * @param actionType action type
 		 * @param duration   Nanoseconds, duration
-		 * @param property Extended properties
+		 * @param property Extended attributes
 		 */
 		fun addAction(actionName: String, actionType: String, duration: Long, property: HashMap<String, Any>)
 
 	```
-> `startAction` internally has a timing algorithm to calculate the duration, trying to correlate nearby occurring Resource, LongTask, Error data during the calculation period. It has a 100 ms frequent trigger protection and is recommended for user operation type data. If there is a need for frequent calls, use `addAction`. This data will not conflict with `startAction` and will not associate with current Resource, LongTask, Error data.
+> `startAction` internally has a timing algorithm that tries to associate nearby occurring Resource, LongTask, Error data during the calculation period. It has a 100 ms frequent trigger protection and is recommended for user operation type data. If frequent calls are needed, use `addAction`, this data will not conflict with `startAction` and will not associate with current Resource, LongTask, Error data.
 
 
 #### Code Example
@@ -478,19 +478,19 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 === "Java"
 
 	```java
-	// Scenario 1
+	// Scene 1
 	FTRUMGlobalManager.get().startAction("login", "action_type");
 
-	// Scenario 2: Dynamic parameters
+	// Scene 2: Dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().startAction("login", "action_type", map);
 
 
-	// Scenario 1
+	// Scene 1
 	FTRUMGlobalManager.get().addAction("login", "action_type");
 
-	// Scenario 2: Dynamic parameters
+	// Scene 2: Dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().addAction("login", "action_type", map);
@@ -500,19 +500,19 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 	```kotlin
 
-	// Scenario 1
+	// Scene 1
 	FTRUMGlobalManager.get().startAction("login", "action_type")
 
-	// Scenario 2: Dynamic parameters
+	// Scene 2: Dynamic parameters
 	val map = HashMap<String,Any>()
 	map["ft_key"]="ft_value"
 	FTRUMGlobalManager.get().startAction("login","action_type",map)
 
 
-	// Scenario 1
+	// Scene 1
 	FTRUMGlobalManager.get().startAction("login", "action_type")
 
-	// Scenario 2: Dynamic parameters
+	// Scene 2: Dynamic parameters
 	val map = HashMap<String,Any>()
 	map["ft_key"]="ft_value"
 	FTRUMGlobalManager.get().startAction("login","action_type",map)
@@ -528,7 +528,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	```java
 
 	    /**
-	     * Start view
+	     * View start
 	     *
 	     * @param viewName Current page name
 	     */
@@ -536,7 +536,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 
 	    /**
-	     * Start view
+	     * View start
 	     *
 	     * @param viewName Current page name
 	     * @param property Additional attribute parameters
@@ -545,12 +545,12 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 
 	    /**
-	     * End view
+	     * View end
 	     */
 	    public void stopView()
 
 	    /**
-	     * End view
+	     * View end
 	     *
 	     * @param property Additional attribute parameters
 	     */
@@ -564,14 +564,14 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	```kotlin
 
 		/**
-	     * Start view
+	     * View start
 	     *
 	     * @param viewName Current page name
 	     */
 		fun startView(viewName: String)
 
 		 /**
-	     * Start view
+	     * View start
 	     *
 	     * @param viewName Current page name
 	     * @param property Additional attribute parameters
@@ -580,12 +580,12 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 		fun startView(viewName: String, property: HashMap<String, Any>)
 
 		 /**
-	     * End view
+	     * View end
 	     */
 		fun stopView()
 
 		 /**
-	     * End view
+	     * View end
 	     *
 	     * @param property Additional attribute parameters
 	     */
@@ -602,10 +602,10 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	protected void onResume() {
 	    super.onResume();
 
-	    // Scenario 1
+	    // Scene 1
 	    FTRUMGlobalManager.get().startView("Current Page Name");
 
-	    // Scenario 2: Dynamic parameters
+	    // Scene 2: Dynamic parameters
 	    HashMap<String, Object> map = new HashMap<>();
 	    map.put("ft_key", "ft_value");
 	    map.put("ft_key_will_change", "ft_value");
@@ -616,12 +616,12 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	protected void onPause() {
 	    super.onPause();
 
-	    // Scenario 1
+	    // Scene 1
 	    FTRUMGlobalManager.get().stopView();
 
-	    // Scenario 2 : Dynamic parameters
+	    // Scene 2 : Dynamic parameters
 	    HashMap<String, Object> map = new HashMap<>();
-	    map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change this value will be changed to ft_value_change when stopView is called
+	    map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change this value will be changed to ft_value_change when stopView
 	    FTRUMGlobalManager.get().startView("Current Page Name", map);
 	}
 	```
@@ -632,10 +632,10 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	override fun onResume() {
 	     super.onResume()
 
-	     // Scenario 1
+	     // Scene 1
 	     FTRUMGlobalManager.get().startView("Current Page Name")
 
-	     // Scenario 2: Dynamic parameters
+	     // Scene 2: Dynamic parameters
 	     val map = HashMap<String, Any>()
 	     map["ft_key"] = "ft_value"
 	     map["ft_key_will_change"] = "ft_value"
@@ -646,13 +646,13 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	override fun onPause() {
 	     super.onPause()
 
-	     // Scenario 1
+	     // Scene 1
 	     FTRUMGlobalManager.get().stopView()
 
 
-	     // Scenario 2 : Dynamic parameters
+	     // Scene 2 : Dynamic parameters
 	     val map = HashMap<String, Any>()
-	     map["ft_key_will_change"] = "ft_value_change" //ft_key_will_change this value will be changed to ft_value_change when stopView is called
+	     map["ft_key_will_change"] = "ft_value_change" //ft_key_will_change this value will be changed to ft_value_change when stopView
 	     FTRUMGlobalManager.get().startView("Current Page Name", map)
 
 	}
@@ -694,7 +694,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     * @param message   Message
 	     * @param errorType Error type
 	     * @param state     Program running state
-		 * @param property  Additional properties
+		 * @param property  Additional attributes
 	     */
 	    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
 
@@ -741,7 +741,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     * @param message   Message
 	     * @param errorType Error type
 	     * @param state     Program running state
-	     * @param property  Additional properties
+	     * @param property  Additional attributes
 	     */
 	    public void addError(String log, String message, String errorType, AppState state, HashMap<String, Object> property)
 
@@ -754,7 +754,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     * @param errorType Error type
 	     * @param state     Program running state
 	     * @param dateline  Occurrence time, nanoseconds
-	     * @param property  Additional properties
+	     * @param property  Additional attributes
 	     */
 	    public void addError(String log, String message, long dateline, String errorType,
 	                         AppState state, HashMap<String, Object> property)
@@ -793,7 +793,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     * @param message   Message
 	     * @param errorType Error type
 	     * @param state     Program running state
-	     * @param property  Additional properties
+	     * @param property  Additional attributes
 	     */
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>)
 
@@ -805,7 +805,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     * @param errorType Error type
 	     * @param state     Program running state
 	     * @param dateline  Occurrence time, nanoseconds
-	     * @param property  Additional properties
+	     * @param property  Additional attributes
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
 
@@ -838,7 +838,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     * @param message   Message
 	     * @param errorType Error type
 	     * @param state     Program running state
-		 * @param property  Additional properties
+		 * @param property  Additional attributes
 	     */
 		fun addError(log: String, message: String, errorType: String, state: AppState, property: HashMap<String, Any>)
 
@@ -850,25 +850,26 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     * @param errorType Error type
 	     * @param state     Program running state
 	     * @param dateline  Occurrence time, nanoseconds
-		 * @param property  Additional properties
+		 * @param property  Additional attributes
 	     */
-		fun addError(log: String, message```kotlin
 		fun addError(log: String, message: String, dateline: Long, errorType: String,state: AppState, property: HashMap<String, Any>)
 
-```
+	```
 
 #### Code Example
 
 === "Java"
 
 	```java
-	// Scenario 1:
+	// Scene 1:
+	FTRUMGlobalManager.get().addError```java
+	// Scene 1:
 	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN);
 
-	// Scenario 2: Delay recording the occurred error, generally the time is when the error occurred
+	// Scene 2: Delay recording the error that occurred, this time is generally the time when the error occurred
 	FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000L, ErrorType.JAVA, AppState.RUN);
 
-	// Scenario 3: Dynamic parameters
+	// Scene 3: Dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN, map);
@@ -878,13 +879,13 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 	```kotlin
 
-	// Scenario 1:
+	// Scene 1:
 	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN)
 
-	// Scenario 2: Delay recording the occurred error, generally the time is when the error occurred
+	// Scene 2: Delay recording the error that occurred, this time is generally the time when the error occurred
 	FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000, ErrorType.JAVA, AppState.RUN)
 
-	// Scenario 3: Dynamic parameters
+	// Scene 3: Dynamic parameters
 	val map = HashMap<String, Any>()
 	map["ft_key"] = "ft_value"
 	FTRUMGlobalManager.get().addError("error log", "error msg",ErrorType.JAVA,AppState.RUN,map)
@@ -931,7 +932,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	     *
 	     * @param log      Log content
 	     * @param duration Duration, nanoseconds
-		 */
+	     */
 
 		fun addLongTask(log: String, duration: Long, property: HashMap<String, Any>)
 
@@ -942,10 +943,10 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 === "Java"
 
 	```java
-	// Scenario 1
+	// Scene 1
 	FTRUMGlobalManager.get().addLongTask("error log", 1000000L);
 
-	// Scenario 2: Dynamic parameters
+	// Scene 2: Dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().addLongTask("", 1000000L, map);
@@ -956,10 +957,10 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 	```kotlin
 
-	// Scenario 1
+	// Scene 1
 	FTRUMGlobalManager.get().addLongTask("error log",1000000L)
 
-	// Scenario 2: Dynamic parameters
+	// Scene 2: Dynamic parameters
 	 val map = HashMap<String, Any>()
 	 map["ft_key"] = "ft_value"
 	 FTRUMGlobalManager.get().addLongTask("", 1000000L,map)
@@ -975,30 +976,30 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	```java
 
 	    /**
-	     * Start resource
+	     * Resource start
 	     *
-	     * @param resourceId Resource ID
+	     * @param resourceId Resource Id
 	     */
 	    public void startResource(String resourceId)
 
 	    /**
-	     * Start resource
+	     * Resource start
 	     *
-	     * @param resourceId Resource ID
+	     * @param resourceId Resource Id
 	     */
 	    public void startResource(String resourceId, HashMap<String, Object> property)
 
 	    /**
-	     * Stop resource
+	     * Resource end
 	     *
-	     * @param resourceId Resource ID
+	     * @param resourceId Resource Id
 	     */
 	    public void stopResource(String resourceId)
 
 	    /**
-	     * Stop resource
+	     * Resource end
 	         *
-	     * @param resourceId Resource ID
+	     * @param resourceId Resource Id
 	     * @param property   Additional attribute parameters
 	     */
 	    public void stopResource(final String resourceId, HashMap<String, Object> property)
@@ -1020,30 +1021,30 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	```kotlin
 
 	/**
-	 * Start resource
+	 * Resource start
 	 *
-	 * @param resourceId Resource ID
+	 * @param resourceId Resource Id
 	 */
 	fun startResource(resourceId: String)
 
 	/**
-	 * Start resource
+	 * Resource start
 	 *
-	 * @param resourceId Resource ID
+	 * @param resourceId Resource Id
 	 */
 	fun startResource(resourceId: String, property: HashMap<String, Any>)
 
 	/**
-	 * Stop resource
+	 * Resource end
 	 *
-	 * @param resourceId Resource ID
+	 * @param resourceId Resource Id
 	 */
 	fun stopResource(resourceId: String)
 
 	/**
-	 * Stop resource
+	 * Resource end
 	 *
-	 * @param resourceId Resource ID
+	 * @param resourceId Resource Id
 	 * @param property   Additional attribute parameters
 	 */
 	fun stopResource(resourceId: String, property: HashMap<String, Any>)
@@ -1065,7 +1066,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 	```java
 
-	// Scenario 1
+	// Scene 1
 	// Request start
 	FTRUMGlobalManager.get().startResource("resourceId");
 
@@ -1074,7 +1075,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	// Request end
 	FTRUMGlobalManager.get().stopResource("resourceId");
 
-	// Finally, after the request ends, send related data metrics of the request
+	// Finally, after the request ends, send relevant data metrics of the request
 	ResourceParams params = new ResourceParams();
 	params.setUrl("https://<<< custom_key.brand_main_domain >>>");
 	params.setResponseContentType(response.header("Content-Type"));
@@ -1092,7 +1093,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	FTRUMGlobalManager.get().addResource("resourceId", params, bean);
 
 
-	// Scenario 2 : Dynamic parameters usage
+	// Scene 2: Dynamic parameter usage
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	map.put("ft_key_will_change", "ft_value");
@@ -1101,7 +1102,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 	//...
 	HashMap<String, Object> map = new HashMap<>()；
-	map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change this value will be changed to ft_value_change when stopResource is called
+	map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change this value will be changed to ft_value_change at stopResource
 	FTRUMGlobalManager.get().stopResource(uuid,map);
 
 	```
@@ -1109,14 +1110,14 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 === "Kotlin"
 
 	```kotlin
-	// Scenario 1
-	// Request start
+	// Scene 1
+	//Request start
 	FTRUMGlobalManager.get().startResource("resourceId")
 
-	// Request end
+	//Request end
 	FTRUMGlobalManager.get().stopResource("resourceId")
 
-	// Finally, after the request ends, send related data metrics of the request
+	//Finally, after the request ends, send relevant data metrics of the request
 	val params = ResourceParams()
 	params.url = "https://<<< custom_key.brand_main_domain >>>"
 	params.responseContentType = response.header("Content-Type")
@@ -1132,7 +1133,7 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	//...
 	FTRUMGlobalManager.get().addResource("resourceId",params,bean)
 
-	// Scenario 2 : Dynamic parameters usage
+	// Scene 2: Dynamic parameter usage
 	val map = hashMapOf<String, Any>(
 	        "ft_key" to "ft_value",
 	        "ft_key_will_change" to "ft_value"
@@ -1143,13 +1144,13 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 	val map = hashMapOf<String, Any>(
 	        "ft_key_will_change" to "ft_value_change"
 	)
-	// ft_key_will_change this value will be changed to ft_value_change when stopResource is called
+	// ft_key_will_change this value will be changed to ft_value_change at stopResource
 
 	FTRUMGlobalManager.get().stopResource(uuid, map)
 
 	```
 
-| **Method Name** | **Required** | **Description** |**Note** |
+| **Method Name** | **Required** | **Meaning** |**Description** |
 | --- | --- | --- | --- |
 | NetStatusBean.fetchStartTime | No | Request start time | |
 | NetStatusBean.tcpStartTime | No | TCP connection time |  |
@@ -1160,20 +1161,20 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 | NetStatusBean.responseEndTime | No | Response end time |  |
 | NetStatusBean.sslStartTime | No | SSL start time |  |
 | NetStatusBean.sslEndTime | No | SSL end time | |
-| NetStatusBean.property| No | Additional properties | |
+| NetStatusBean.property| No | Additional attributes | |
 | ResourceParams.url | Yes | URL address | |
 | ResourceParams.requestHeader | No | Request header parameters |  |
 | ResourceParams.responseHeader | No | Response header parameters |  |
 | ResourceParams.responseConnection | No | Response connection | |
-| ResourceParams.responseContentType | No | Response ContentType | |
-| ResourceParams.responseContentEncoding | No | Response ContentEncoding |  |
-| ResourceParams.resourceMethod | No | Request method | GET, POST, etc. |
-| ResourceParams.responseBody | No | Returned body content | |
-| ResourceParams.property| No | Additional properties |  |
+| ResourceParams.responseContentType | No | Response Content Type | |
+| ResourceParams.responseContentEncoding | No | Response Content Encoding |  |
+| ResourceParams.resourceMethod | No | Request method | GET, POST etc. |
+| ResourceParams.responseBody | No | Return body content | |
+| ResourceParams.property| No | Additional attributes |  |
 
 ## Logger Log Printing {#log} 
 Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.setEnableCustomLog(true)`
-> Currently, log content is limited to 30 KB, and any exceeding characters will be truncated.
+> Currently, the log content is limited to 30 KB, and any exceeding characters will be truncated.
 
 ### Usage Method
 
@@ -1181,7 +1182,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 
 	```java
 	    /**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1189,16 +1190,16 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    public void logBackground(String content, Status status)
 
 	    /**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
-		 * @param property Additional properties
+		 * @param property Additional attributes
 	     */
 	    public void logBackground(String content, Status status, HashMap<String, Object> property)
 
 		/**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1206,17 +1207,17 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    public void logBackground(String content, String status)
 
 	    /**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
-		 * @param property Additional properties
+		 * @param property Additional attributes
 	     */
 	    public void logBackground(String content, String status, HashMap<String, Object> property)
 
 
 	    /**
-	     * Store multiple log entries locally in sync
+	     * Store multiple log data locally for synchronization
 	     *
 	     * @param logDataList {@link LogData} list
 	     */
@@ -1230,7 +1231,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	```kotlin
 
 	    /**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1238,16 +1239,16 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    fun logBackground(content: String, status: Status)
 
 	    /**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
-	     * @param property Log properties
+	     * @param property Log attributes
 	     */
 	    fun logBackground(content: String, status: Status, property: HashMap<String, Any>)
 
 		/**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1255,16 +1256,16 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    fun logBackground(content: String, status: String)
 
 	    /**
-	     * Store a single log entry locally in sync
+	     * Store a single log data locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
-	     * @param property Log properties
+	     * @param property Log attributes
 	     */
 	    fun logBackground(content: String, status: String, property: HashMap<String, Any>)
 
 	    /**
-	     * Store multiple log entries locally in sync
+	     * Store multiple log data locally for synchronization
 	     *
 	     * @param logDataList Log data list
 	     */
@@ -1281,7 +1282,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 | Status.WARNING | Warning |
 | Status.ERROR | Error |
 | Status.CRITICAL | Critical |
-| Status.OK | OK |
+| Status.OK | Recovery |
 
 ### Code Example
 
@@ -1306,21 +1307,21 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 === "Kotlin"
 
 	```kotlin
-	// Upload a single log
+	//Upload a single log
 	FTLogger.getInstance().logBackground("test", Status.INFO)
 
-	// Pass parameters to HashMap
+	//Pass parameters to HashMap
 	val map = HashMap<String,Any>()
 	map["ft_key"]="ft_value"
 	FTLogger.getInstance().logBackground("test", Status.INFO,map)
 
-	// Batch upload logs
+	//Batch upload logs
 	FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
 	```
 
-## Tracer Network Link Tracing
+## Tracer Network Trace Tracking
 
-Configure `FTTraceConfig` to enable `enableAutoTrace` to automatically add trace data, or manually use `FTTraceManager` to add `Propagation Header` in HTTP requests, as shown below:
+Configure `FTTraceConfig` with `enableAutoTrace` to automatically add trace data, or manually use `FTTraceManager` to add `Propagation Header` in Http requests, as shown below:
 
 === "Java"
 
@@ -1333,7 +1334,7 @@ Configure `FTTraceConfig` to enable `enableAutoTrace` to automatically add trace
 	OkHttpClient client = new OkHttpClient.Builder().addInterceptor(chain -> {
 	    Request original = chain.request();
 	    Request.Builder requestBuilder = original.newBuilder();
-	    // Add trace header parameters to the request
+	    // Add trace header parameters in the request
 	    for (String key : headers.keySet()) {
 	        requestBuilder.header(key, headers.get(key));
 	    }
@@ -1364,14 +1365,14 @@ Configure `FTTraceConfig` to enable `enableAutoTrace` to automatically add trace
 	```kotlin
 	val url = "https://<<< custom_key.brand_main_domain >>>"
 	val uuid ="uuid"
-	// Get trace header parameters
+	//Get trace header parameters
 	val headers = FTTraceManager.get().getTraceHeader(uuid, url)
 
 	val client: OkHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
 
 	                    val original = chain.request()
 	                    val requestBuilder = original.newBuilder()
-	                    // Add trace header parameters to the request
+	                    //Add trace header parameters in the request
 	                    for (key in headers.keys) {
 	                        requestBuilder.header(key!!, headers[key]!!)
 	                    }
@@ -1399,11 +1400,11 @@ Configure `FTTraceConfig` to enable `enableAutoTrace` to automatically add trace
 	client.newCall(builder.build()).execute()
 	```
 
-## Customizing Resource and TraceHeader via OKHttp Interceptor {#okhttp_resource_trace_interceptor_custom}
+## Customizing Resource and TraceHeader through OKHttp Interceptor {#okhttp_resource_trace_interceptor_custom}
 
-When both `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace` are enabled, custom `Interceptor` configurations have higher priority.
- > For ft-sdk versions < 1.4.1, you need to disable `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace`.
- > For ft-sdk versions > 1.6.7, custom Trace Headers can be associated with RUM data.
+The configuration of `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace`, if both are enabled simultaneously, will prioritize loading the custom `Interceptor` configuration.
+ > For ft-sdk < 1.4.1, you need to disable `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace`.
+ > ft-sdk > 1.6.7 supports associating custom Trace Headers with RUM data
 
 === "Java"
 
@@ -1417,12 +1418,12 @@ When both `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enabl
 	                   return map;
 	              }
 
-				 // Supported by ft-sdk 1.6.7 and above
+				 // Supported from 1.6.7 onwards
 				  @Override
 				  public String getSpanID() {
 					return "span_id";
 				 }
-				// Supported by ft-sdk 1.6.7 and above
+				// Supported from 1.6.7 onwards
 				 @Override
 				 public String getTraceID() {
 					return "trace_id";
@@ -1445,7 +1446,7 @@ When both `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enabl
                    extraData.put("df_response_header", response.headers().toString());
                    if ("application/json".equals(contentType) ||
                            "application/xml".equals(contentType)) {
-                       // Read part of the body to avoid consuming large data
+                       // Copy part of the body to avoid consuming large data
                        ResponseBody body = response.peekBody(33554432);
                        extraData.put("df_response_body", body.string());
                    }
@@ -1492,15 +1493,15 @@ When both `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enabl
         }
 
         override fun onException(e: Exception, extraData: HashMap<String, Any>) {
-            // Handle exception
+            // Handle exception situation
         }
     }))
     .eventListenerFactory(FTResourceEventListener.FTFactory())
     .build()
 	```
 
-## Binding and Unbinding User Information {#userdata-bind-and-unbind}
-Use `FTSdk` to bind and unbind user information 
+## User Data Binding and Unbinding {#userdata-bind-and-unbind}
+Use `FTSdk` for user binding and unbinding 
 
 ### Usage Method
 
@@ -1545,19 +1546,19 @@ Use `FTSdk` to bind and unbind user information
 
 
 #### UserData
-| **Method Name** | **Meaning** | **Required** | **Note** |
+| **Method Name** | **Meaning** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | setId | Set user ID | No | |
 | setName | Set username | No | |
 | setEmail | Set email | No | |
-| setExts | Set user extensions | No | Refer to [this](#key-conflict) for addition rules|
+| setExts | Set user extensions | No | Addition rules refer to [here](#key-conflict)|
 
 ### Code Example
 
 === "Java"
 
 	```java
-	// Call this method after successful user login to bind user information
+	// You can call this method after a successful user login to bind user information
 	FTSdk.bindRumUserData("001");
 
 	UserData userData = new UserData();
@@ -1569,7 +1570,7 @@ Use `FTSdk` to bind and unbind user information
 	userData.setExts(extMap);
 	FTSdk.bindRumUserData(userData);
 
-	// Call this method after user logout to unbind user information
+	// You can call this method after the user logs out to unbind user information
 	FTSdk.unbindRumUserData();
 
 	```
@@ -1577,21 +1578,21 @@ Use `FTSdk` to bind and unbind user information
 === "Kotlin"
 
 	```kotlin
-	// Call this method after successful user login to bind user information
+	//You can call this method after a successful user login to bind user information
 	FTSdk.bindRumUserData("001")
 
 
-	// Bind more user data
+	//Bind more user data
 	val userData = UserData()
 	userData.name = "test.user"
 	userData.id = "test.id"
-	userData.email = "test@mail.com"
+	userData("test@mail.com")
 	val extMap = HashMap<String, String>()
 	extMap["ft_key"] = "ft_value"
-	userData.exts = extMap
+	userData.setExts(extMap)
 	FTSdk.bindRumUserData(userData)
 
-	// Call this method after user logout to unbind user information
+	//You can call this method after the user logs out to unbind user information
 	FTSdk.unbindRumUserData()
 	```
 
@@ -1604,7 +1605,7 @@ Use `FTSdk` to close the SDK
 
 	```java
 	    /**
-	     * Shutdown running objects within the SDK
+	     * Close running objects within SDK
 	     */
 	    public static void shutDown()
 
@@ -1615,7 +1616,7 @@ Use `FTSdk` to close the SDK
 
 	``` kotlin
 	    /**
-	     * Shutdown running objects within the SDK
+	     * Close running objects within SDK
 	     */
 	    fun shutDown()
 	```
@@ -1625,26 +1626,26 @@ Use `FTSdk` to close the SDK
 === "Java"
 
 	```java
-	// If dynamically changing SDK configuration, you need to shut down first to avoid incorrect data generation
+	// If dynamically changing SDK configuration, need to close first to avoid incorrect data generation
 	FTSdk.shutDown();
 	```
 
 === "Kotlin"
 
 	```kotlin
-	// If dynamically changing SDK configuration, you need to shut down first to avoid incorrect data generation
+	//If dynamically changing SDK configuration, need to close first to avoid incorrect data generation
 	FTSdk.shutDown()
 	```
 
 ## Clearing SDK Cache Data
-Use `FTSdk` to clear unsent cached data 
+Use `FTSdk` to clear unsent cache data 
 
 ### Usage Method
 === "Java"
 
 	```java
 	    /**
-		 * Clear unsent cached data
+		 * Clear unsent cache data
 		 */
 	    public static void clearAllData()
 
@@ -1655,7 +1656,7 @@ Use `FTSdk` to clear unsent cached data
 
 	``` kotlin
 	     /**
-		  * Clear unsent cached data
+		  * Clear unsent cache data
 		  */
 	    fun clearAllData()
 	```
@@ -1674,9 +1675,9 @@ Use `FTSdk` to clear unsent cached data
 	FTSdk.clearAllData()
 	```
 
-## Synchronizing Data Actively
+## Active Data Synchronization
 Use `FTSdk` to actively synchronize data.
-> When `FTSdk.setAutoSync(false)` is set, manual data synchronization is required
+> When `FTSdk.setAutoSync(false)`, manual data synchronization is required.
 
 ### Usage Method
 
@@ -1684,7 +1685,7 @@ Use `FTSdk` to actively synchronize data.
 
 	```java
 	   /**
-	     * Active data synchronization
+	     * Actively synchronize data
 	     */
 	    public static void flushSyncData()
 	```
@@ -1693,7 +1694,7 @@ Use `FTSdk` to actively synchronize data.
 
 	```kotlin
 	   /**
-	     * Active data synchronization
+	     * Actively synchronize data
 	     */
 	    fun flushSyncData()
 	```
@@ -1714,7 +1715,7 @@ Use `FTSdk` to actively synchronize data.
 
 
 
-## Dynamically Enable and Disable AndroidID Acquisition
+## Dynamically Enable or Disable AndroidID Acquisition
 Use `FTSdk` to set whether to acquire Android ID in the SDK
 
 ### Usage Method
@@ -1725,7 +1726,7 @@ Use `FTSdk` to set whether to acquire Android ID in the SDK
 	   /**
 	     * Dynamically control acquiring Android ID
 	     *
-	     * @param enableAccessAndroidID true to apply, false not to apply
+	     * @param enableAccessAndroidID True to apply, false not to apply
 	     */
 	    public static void setEnableAccessAndroidID(boolean enableAccessAndroidID)
 	```
@@ -1736,7 +1737,7 @@ Use `FTSdk` to set whether to acquire Android ID in the SDK
 	   /**
 	     * Dynamically control acquiring Android ID
 	     *
-	     * @param enableAccessAndroidID true to apply, false not to apply
+	     * @param enableAccessAndroidID True to apply, false not to apply
 	     */
 	    fun setEnableAccessAndroidID(enableAccessAndroidID:Boolean)
 	```
@@ -1756,16 +1757,16 @@ Use `FTSdk` to set whether to acquire Android ID in the SDK
 === "Kotlin"
 
 	```kotlin
-	// Enable acquiring Android ID
+	//Enable acquiring Android ID
 	FTSdk.setEnableAccessAndroidID(true)
 
-	// Disable acquiring Android ID
+	//Disable acquiring Android ID
 	FTSdk.setEnableAccessAndroidID(false)
 	```
 
 ## Adding Custom Tags
 
-Use `FTSdk` to dynamically add tags during SDK runtime
+Use `FTSdk` to dynamically add tags while the SDK is running
 
 ### Usage Method
 
@@ -1773,19 +1774,19 @@ Use `FTSdk` to dynamically add tags during SDK runtime
 
 	```java
 	/**
-	 * Dynamically set global tags
+	 * Dynamically set global tag
 	 * @param globalContext
 	 */
 	public static void appendGlobalContext(HashMap<String,Object> globalContext)
 
 	/**
-	 * Dynamically set RUM global tags
+	 * Dynamically set RUM global tag
 	 * @param globalContext
 	 */
 	public static void appendRUMGlobalContext(HashMap<String,Object> globalContext)
 
 	/**
-	 * Dynamically set log global tags
+	 * Dynamically set log global tag
 	 * @param globalContext
 	 */
 	public static void appendLogGlobalContext(HashMap<String,Object> globalContext)
@@ -1796,19 +1797,19 @@ Use `FTSdk` to dynamically add tags during SDK runtime
 
 	```kotlin
 	/**
-	 * Dynamically set global tags
+	 * Dynamically set global tag
 	 * @param globalContext
 	 */
 	fun appendGlobalContext(globalContext: HashMap<String, Any>) 
 
 	/**
-	 * Dynamically set RUM global tags
+	 * Dynamically set RUM global tag
 	 * @param globalContext
 	 */
 	fun appendRUMGlobalContext(globalContext: HashMap<String, Any>) 
 
 	/**
-	 * Dynamically set log global tags
+	 * Dynamically set log global tag
 	 * @param globalContext
 	 */
 	fun appendLogGlobalContext(globalContext: HashMap<String, Any>)
@@ -1857,33 +1858,33 @@ Use `FTSdk` to dynamically add tags during SDK runtime
 ```java
 -dontwarn com.ft.sdk.**
 
-### ft-sdk Library
+### ft-sdk library
 -keep class com.ft.sdk.**{*;}
 
-### ft-native Library
+### ft-native library
 -keep class ftnative.*{*;}
 
-### Prevent Action names from being obfuscated in View classes ###
+### Prevent Action name class names from being obfuscated during acquisition
 -keepnames class * extends android.view.View
 -keepnames class * extends android.view.MenuItem
 ```
 
 ## Symbol File Upload {#source_map}
-### Plugin Upload (Supported only by datakit [local deployment])
-The `ft-plugin` version needs to support the latest symbol file upload rules starting from version `1.3.0`, supporting `productFlavor` multi-version management. The plugin will execute symbol file upload after `gradle task assembleRelease`. Detailed configuration can be referenced in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
+### Plugin Upload (Only supported for datakit[local deployment])
+`ft-plugin` version needs `1.3.0` or above to support the latest symbol file upload rules, supporting `productFlavor` multi-version management, plugin will execute symbol file upload after `gradle task assembleRelease`, detailed configuration can be referenced [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
 
 ``` groovy
 FTExt {
 	//...
     autoUploadMap = true
     autoUploadNativeDebugSymbol = true
-    datakitUrl = 'https://datakit.url' 	// datakit reporting address, no need to configure if generateSourceMapOnly=true
-    datawayToken = 'dataway_token' 		// space token, no need to configure if generateSourceMapOnly=true
-    appId = "appid_xxxxx"				// appid, no need to configure if generateSourceMapOnly=true
-    env = 'common'						// environment, no need to configure if generateSourceMapOnly=true
-	generateSourceMapOnly = false // Only generate sourcemap, default is false, path example: /app/build/tmp/ft{flavor}SourceMapMerge-release.zip, supported by ft-plugin:1.3.4 and above
+    datakitUrl = 'https://datakit.url' 	// datakit reporting address, no need to configure when generateSourceMapOnly=true
+    datawayToken = 'dataway_token' 		// space token, no need to configure when generateSourceMapOnly=true
+    appId = "appid_xxxxx"				// appid, no need to configure when generateSourceMapOnly=true
+    env = 'common'						// environment, no need to configure when generateSourceMapOnly=true
+	generateSourceMapOnly = false // Only generate sourcemap, default is false, path example: /app/build/tmp/ft{flavor}SourceMapMerge-release.zip, ft-plugin:1.3.4 and above versions support
 
-    prodFlavors { // prodFlavors configuration overrides outer settings
+    prodFlavors { //prodFlavors configuration overrides outer layer settings
         prodTest {
             autoUploadMap = false
             autoUploadNativeDebugSymbol = false
@@ -1905,17 +1906,17 @@ FTExt {
 
 ```
 ### Manual Upload
-Use `plugin` to enable `generateSourceMapOnly = true`, execute `gradle task assembleRelease` to generate, or pack into a `zip` file manually, then upload to `datakit` or from <<< custom_key.brand_name >>> Studio. It is recommended to use the `zip` command line for packing to avoid including system hidden files in the `zip` package. Refer to [sourcemap upload](../sourcemap/set-sourcemap.md) for symbol uploading.
+Use `plugin` with `generateSourceMapOnly = true`, execute `gradle task assembleRelease` to generate, or package into a `zip` file manually, then upload to `datakit` or upload from <<< custom_key.brand_name >>> Studio, recommend using `zip` command line for packaging to avoid including some system hidden files into the `zip` package, symbol upload reference [sourcemap upload](../sourcemap/set-sourcemap.md)
 
-> For Unity Native Symbol files, refer to the [official documentation](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
+> Unity Native Symbol files reference [official documentation](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 
 ## Permission Configuration Description
 
 | **Name** | **Required** | **Usage Reason** |
 | --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
+| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitates precise data analysis, affects cellular network information acquisition in SDK |
 
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
+> For details on how to request dynamic permissions, refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
 
 ## Plugin AOP Ignoring {#ingore_aop}
 Through Plugin AOP covering methods, add `@IngoreAOP` to ignore ASM insertion
@@ -1941,7 +1942,7 @@ Through Plugin AOP covering methods, add `@IngoreAOP` to ignore ASM insertion
 	```
 
 ## WebView Data Monitoring
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
+For WebView data monitoring, the page accessed by WebView needs to integrate [Web Monitoring SDK](../web/app-access.md)
 
 ## Custom Tag Usage Example {#track}
 
@@ -1965,7 +1966,7 @@ android{
 }
 ```
 
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
+2. Add corresponding `BuildConfig` constants in `RUM` configuration
 
 === "Java"
 
@@ -1986,9 +1987,9 @@ android{
 	                //… Add other configurations
 	        )
 	```
-### Runtime File Reading and Writing Method
+### Runtime Read/Write File Method
 
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
+1. Use file-type data storage, such as `SharedPreferences`, configure `SDK` usage, and add code to retrieve tag data in the configuration location.
 
 === "Java"
 
@@ -2037,11 +2038,11 @@ android{
 	        }
 	```
 
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
+3. Finally restart the application, detailed steps can be found in [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
 
 ### SDK Runtime Addition
 
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained with network requests.
+After the SDK initialization is complete, using `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` allows dynamic addition of tags, which takes effect immediately upon setting. Subsequently, the reported RUM or Log data will automatically include tag data. This usage method suits scenarios where tag data needs to be obtained with network requests delayed.
 
 ```java
 // Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
@@ -2056,21 +2057,22 @@ getInfoFromNet(info){
 
 ```
 
-## Common Issues {#FAQ}
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
 
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
+## Common Issues {#FAQ}
+### Add Local Variables to Avoid Field Conflicts {#key-conflict}
+
+To avoid conflicts between custom fields and SDK data, it is recommended to prefix tag names with a **project abbreviation**, such as `df_tag_name`. Values for `key` can be [checked in source code](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When global variables in the SDK conflict with RUM, Log variables, RUM, Log will override the global variables in the SDK.
 
 ### SDK Compatibility
 
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible) 
+* [Runnable Environments](app-troubleshooting.md#runnable)
+* [Compatible Environments](app-troubleshooting.md#compatible) 
 
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
+### Adapting to Market Privacy Audits {#adpot-to-privacy-audits}
 #### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
+[Go to check](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 #### Method 1: SDK AndroidID Configuration
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
+The SDK uses Android ID to better associate data from the same user. If needed for app store listings, follow these ways to adapt to market privacy audits.
 
 === "Java"
 
@@ -2088,7 +2090,7 @@ To better correlate data from the same user, the SDK uses Android ID. If you nee
 	    }
 	}
 
-	// Enable after user agrees to the privacy policy
+	// Enable after user agrees to privacy policy
 	FTSdk.setEnableAccessAndroidID(true);
 	```
 
@@ -2098,10 +2100,10 @@ To better correlate data from the same user, the SDK uses Android ID. If you nee
 	class DemoApplication : Application() {
 	    override fun onCreate() {
 
-	        // Set setEnableAccessAndroidID to false during initialization
+	        //Set setEnableAccessAndroidID to false during initialization
 	        val config = FTSDKConfig
 	            .builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
+	            . setEnableAccessAndroidID(false)
 
 	        FTSdk.install(config)
 
@@ -2109,33 +2111,11 @@ To better correlate data from the same user, the SDK uses Android ID. If you nee
 	    }
 	}
 
-	// Enable after user agrees to the privacy policy
+	//Enable after user agrees to privacy policy
 	FTSdk.setEnableAccessAndroidID(true);
 	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
+#### Method 2: Delayed Initialization of SDK
+If you need to delay loading the SDK in your app, it's suggested to initialize it as follows.
 
 === "Java"
 
@@ -2144,9 +2124,10 @@ If you need to delay loading the SDK in your application, it is recommended to i
 	public class DemoApplication extends Application {
 		@Override
 		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
+		    //If```java
+		    //If already agreed to the protocol, initialize in Application
 			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
+				FTSdk.init(); //SDK initialization pseudo-code
 			}
 		}
 	}
@@ -2155,14 +2136,14 @@ If you need to delay loading the SDK in your application, it is recommended to i
 	public class MainActivity extends Activity {
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
+			//Not read privacy statement
+			if ( notReadProtocol ) {
+			    //Show privacy statement popup
 				showProtocolView();
 	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
+			    //If agree to privacy statement
+				if( agreeProtocol ){
+					FTSdk.init(); //SDK initialization pseudo-code
 				}
 			}
 		}
@@ -2177,7 +2158,7 @@ If you need to delay loading the SDK in your application, it is recommended to i
 	    override fun onCreate() {
 	        // If already agreed to the protocol, initialize in Application
 	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
+	            FTSdk.init() //SDK initialization pseudo-code
 	        }
 	    }
 	}
@@ -2187,29 +2168,26 @@ If you need to delay loading the SDK in your application, it is recommended to i
 	    override fun onCreate(savedInstanceState: Bundle?) {
 	        // Not read privacy statement
 	        if (notReadProtocol) {
-	            // Show privacy statement dialog
+	            // Show privacy statement popup
 	            showProtocolView()
 	
-	            // If agreed to the privacy statement
+	            // If agree to privacy statement
 	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
+	                FTSdk.init() //SDK initialization pseudo-code
 	            }
 	        }
 	    }
 	}
 	```
-
 #### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
+`flutter`, `react-native`, `unity` can use a similar delayed initialization method as native Android to adapt to app market privacy audits.
 
 ### How to Integrate SDK Without Using ft-plugin {#manual-set}
+<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to some compatibility issues, it may be impossible to use `ft-plugin`. Affected functionalities include **RUM** `Action`, `Resource`, and automatic capture of Java and Kotlin `println` **console logs**, as well as automatic upload of symbol files.
 
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
+Currently, we have another integration solution for this situation:
 
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
+* Application launch events need to be called before SDK initialization, refer to source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
 
 === "Java"
 
@@ -2218,7 +2196,7 @@ Currently, we have an alternative integration solution for such scenarios, as fo
 	@Override
 	public void onCreate() {
 	    super.onCreate();
-	    // Must be called before SDK initialization
+	    // Needs to be called before SDK initialization
 	    FTAutoTrack.startApp(null);
 	    // Set SDK configuration
 	    setSDK(this);
@@ -2228,17 +2206,18 @@ Currently, we have an alternative integration solution for such scenarios, as fo
 === "Kotlin"
 
 	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
+	  //Application
+	    override fun onCreate() {
+	        super.onCreate()
+		// Needs to be called before SDK initialization
+	        FTAutoTrack.startApp(null)
+	        // Set SDK configuration
+	        setSDK(this)
+
+	    }
 	```
 
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
+* Key events like button clicks need to be manually added at the trigger location, for example, Button onClick event, refer to source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
 
 === "Java"
 
@@ -2249,17 +2228,18 @@ Currently, we have an alternative integration solution for such scenarios, as fo
 	        FTRUMGlobalManager.get().startAction("[action button]", "click");
 	    }
 	});
+
 	```
 
 === "Kotlin"
 
 	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
+		view.setOnClickListener{
+			FTRUMGlobalManager.get().startAction("[action button]", "click")
+		}
 	```
 
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
+* `OKhttp` integrates `Resource` and `Trace` through `addInterceptor` and `eventListener`, refer to the following example, source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
 
 === "Java"
 
@@ -2283,3956 +2263,5 @@ Currently, we have an alternative integration solution for such scenarios, as fo
 	val client = builder.build()
 	```
 
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
+* For other network frameworks, you need to manually implement using `FTRUMGlobalManager` methods such as `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. For specific implementation methods, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
 ```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init()
-
-getInfoFromNet(info){
-	HashMap<String, Object> globalContext = new HashMap<>();
-	globalContext.put("delay_key", info.value);
-	FTSdk.appendGlobalContext(globalContext)
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-	HashMap<String, Object> globalContext = new HashMap<>();
-	globalContext.put("delay_key", info.value);
-	FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-	HashMap<String, Object> globalContext = new HashMap<>();
-	globalContext.put("delay_key", info.value);
-	FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init()
-
-getInfoFromNet(info){
-	HashMap<String, Object> globalContext = new HashMap<>();
-	globalContext.put("delay_key", info.value);
-	FTSdk.appendGlobalContext(globalContext)
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init()
-
-getInfoFromNet(info){
-	HashMap<String, Object> globalContext = new HashMap<>();
-	globalContext.put("delay_key", info.value);
-	FTSdk.appendGlobalContext(globalContext)
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init()
-
-getInfoFromNet(info){
-	HashMap<String, Object> globalContext = new HashMap<>();
-	globalContext.put("delay_key", info.value);
-	FTSdk.appendGlobalContext(globalContext)
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-    HashMap<String, Object> globalContext = new HashMap<>();
-    globalContext.put("delay_key", info.value);
-    FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Symbol File Upload {#source_map}
-
-### Plugin Upload (Supported only by datakit [local deployment])
-
-The `ft-plugin` version needs to support the latest symbol file upload rules starting from version `1.3.0`, supporting `productFlavor` multi-version management. The plugin will execute symbol file upload after `gradle task assembleRelease`. Detailed configuration can be referenced in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
-
-```groovy
-FTExt {
-	//...
-    autoUploadMap = true
-    autoUploadNativeDebugSymbol = true
-    datakitUrl = 'https://datakit.url' 	// datakit reporting address, no need to configure if generateSourceMapOnly=true
-    datawayToken = 'dataway_token' 		// space token, no need to configure if generateSourceMapOnly=true
-    appId = "appid_xxxxx"				// appid, no need to configure if generateSourceMapOnly=true
-    env = 'common'						// environment, no need to configure if generateSourceMapOnly=true
-	generateSourceMapOnly = false // Only generate sourcemap, default is false, path example: /app/build/tmp/ft{flavor}SourceMapMerge-release.zip, supported by ft-plugin:1.3.4 and above
-
-    prodFlavors { // prodFlavors configuration overrides outer settings
-        prodTest {
-            autoUploadMap = false
-            autoUploadNativeDebugSymbol = false
-            datakitUrl = 'https://datakit.url'
-    		datawayToken = 'dataway_token'
-            appId = "appid_prodTest"
-            env = "gray"
-        }
-        prodPublish {
-            autoUploadMap = true
-            autoUploadNativeDebugSymbol = true
-            datakitUrl = 'https://datakit.url'
-    		datawayToken = 'dataway_token'
-            appId = "appid_prodPublish"
-            env = "prod"
-        }
-    }
-}
-```
-
-### Manual Upload
-
-Use `plugin` to enable `generateSourceMapOnly = true`, execute `gradle task assembleRelease` to generate, or pack into a `zip` file manually, then upload to `datakit` or from <<< custom_key.brand_name >>> Studio. It is recommended to use the `zip` command line for packing to avoid including system hidden files in the `zip` package. Refer to [symbol file upload](../sourcemap/set-sourcemap.md) for symbol uploading.
-
-> For Unity Native Symbol files, refer to the [official documentation](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-    HashMap<String, Object> globalContext = new HashMap<>();
-    globalContext.put("delay_key", info.value);
-    FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-    HashMap<String, Object> globalContext = new HashMap<>();
-    globalContext.put("delay_key", info.value);
-    FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if(agreeProtocol){
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if(agreeProtocol){
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-    HashMap<String, Object> globalContext = new HashMap<>();
-    globalContext.put("delay_key", info.value);
-    FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if (agreeProtocol) {
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if (agreeProtocol) {
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Symbol File Upload {#source_map}
-
-### Plugin Upload (Supported only by datakit [local deployment])
-
-The `ft-plugin` version needs to support the latest symbol file upload rules starting from version `1.3.0`, supporting `productFlavor` multi-version management. The plugin will execute symbol file upload after `gradle task assembleRelease`. Detailed configuration can be referenced in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
-
-```groovy
-FTExt {
-	//...
-    autoUploadMap = true
-    autoUploadNativeDebugSymbol = true
-    datakitUrl = 'https://datakit.url' 	// datakit reporting address, no need to configure if generateSourceMapOnly=true
-    datawayToken = 'dataway_token' 		// space token, no need to configure if generateSourceMapOnly=true
-    appId = "appid_xxxxx"				// appid, no need to configure if generateSourceMapOnly=true
-    env = 'common'						// environment, no need to configure if generateSourceMapOnly=true
-	generateSourceMapOnly = false // Only generate sourcemap, default is false, path example: /app/build/tmp/ft{flavor}SourceMapMerge-release.zip, supported by ft-plugin:1.3.4 and above
-
-    prodFlavors { // prodFlavors configuration overrides outer settings
-        prodTest {
-            autoUploadMap = false
-            autoUploadNativeDebugSymbol = false
-            datakitUrl = 'https://datakit.url'
-    		datawayToken = 'dataway_token'
-            appId = "appid_prodTest"
-            env = "gray"
-        }
-        prodPublish {
-            autoUploadMap = true
-            autoUploadNativeDebugSymbol = true
-            datakitUrl = 'https://datakit.url'
-    		datawayToken = 'dataway_token'
-            appId = "appid_prodPublish"
-            env = "prod"
-        }
-    }
-}
-```
-
-### Manual Upload
-
-Use `plugin` to enable `generateSourceMapOnly = true`, execute `gradle task assembleRelease` to generate, or pack into a `zip` file manually, then upload to `datakit` or from <<< custom_key.brand_name >>> Studio. It is recommended to use the `zip` command line for packing to avoid including system hidden files in the `zip` package. Refer to [symbol file upload](../sourcemap/set-sourcemap.md) for symbol uploading.
-
-> For Unity Native Symbol files, refer to the [official documentation](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-    HashMap<String, Object> globalContext = new HashMap<>();
-    globalContext.put("delay_key", info.value);
-    FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Common Issues {#FAQ}
-
-### Adding Local Variables to Avoid Field Conflicts {#key-conflict}
-
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, for example `df_tag_name`. You can check the source code for `key` values used in the project [here](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When SDK global variables appear with the same variables as RUM and Log, RUM and Log will overwrite the SDK's global variables.
-
-### SDK Compatibility
-
-* [Runnable Environment](app-troubleshooting.md#runnable)
-* [Compatible Environment](app-troubleshooting.md#compatible)
-
-### Adapting to Market Privacy Reviews {#adpot-to-privacy-audits}
-
-#### Privacy Statement
-[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
-
-#### Method 1: SDK AndroidID Configuration
-
-To better correlate data from the same user, the SDK uses Android ID. If you need to list your app in an app store, you need to handle market privacy reviews using the following methods.
-
-=== "Java"
-
-	```java
-	public class DemoApplication extends Application {
-	    @Override
-	    public void onCreate() {
-	        // Set setEnableAccessAndroidID to false during initialization
-	        FTSDKConfig config = new FTSDKConfig.Builder(DATAKIT_URL)
-	                .setEnableAccessAndroidID(false)
-	                .build();
-	        FTSdk.install(config);
-
-	        // ...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-
-	        // Set setEnableAccessAndroidID to false during initialization
-	        val config = FTSDKConfig.builder(DATAKIT_URL)
-	            .setEnableAccessAndroidID(false)
-
-	        FTSdk.install(config)
-
-	        //...
-	    }
-	}
-
-	// Enable after user agrees to the privacy policy
-	FTSdk.setEnableAccessAndroidID(true)
-	```
-
-#### Method 2: Delayed SDK Initialization
-
-If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
-
-=== "Java"
-
-	```java
-	// Application
-	public class DemoApplication extends Application {
-		@Override
-		public void onCreate() {
-		    // If already agreed to the protocol, initialize in Application
-			if (agreeProtocol) {
-				FTSdk.init(); // Pseudo-code for SDK initialization
-			}
-		}
-	}
-	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// Not read privacy statement
-			if (notReadProtocol) {
-			    // Show privacy statement dialog
-				showProtocolView();
-	
-			    // If agreed to the privacy statement
-				if (agreeProtocol) {
-					FTSdk.init(); // Pseudo-code for SDK initialization
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() // Pseudo-code for SDK initialization
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement dialog
-	            showProtocolView()
-	
-	            // If agreed to the privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() // Pseudo-code for SDK initialization
-	            }
-	        }
-	    }
-	}
-	```
-
-#### Third-party Frameworks {#third-party}
-
-For `flutter`, `react-native`, and `unity`, a similar delayed initialization method can be used to handle app store privacy reviews.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to compatibility issues, there may be cases where `ft-plugin` cannot be used. Affected functionalities include **RUM** `Action`, `Resource`, and `android.util.Log`, Java and Kotlin `println` **console log auto-capture**, and automatic symbol file uploads.
-
-Currently, we have an alternative integration solution for such scenarios, as follows:
-
-* Application launch events should call `FTAutoTrack.startApp(null)` before initializing the SDK. Refer to the source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	// Application
-	override fun onCreate() {
-	    super.onCreate()
-	    // Must be called before SDK initialization
-	    FTAutoTrack.startApp(null)
-	    // Set SDK configuration
-	    setSDK(this)
-	}
-	```
-
-* For event handlers like button clicks, manually add them at the trigger location. For example, for a Button onClick event, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	view.setOnClickListener {
-		FTRUMGlobalManager.get().startAction("[action button]", "click")
-	}
-	```
-
-* For `OKhttp`, integrate `Resource` and `Trace` through `addInterceptor` and `eventListener`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, use `FTRUMGlobalManager` methods `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. Refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-
-## Permissions Configuration Description
-
-| **Name** | **Required** | **Usage Reason** |
-| --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitating precise data analysis, impacts the acquisition of cellular network information in the SDK |
-
-> For details on how to request dynamic permissions, please refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
-
-## Plugin AOP Ignoring {#ignore_aop}
-
-Through Plugin AOP covering methods, add `@IgnoreAOP` to ignore ASM insertion.
-
-=== "Java"
-
-	```java
-	View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @IgnoreAOP
-            public void onClick(View v) {
-
-            }
-        }
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	View.setOnClickListener @IgnoreAOP {
-
-        }
-	```
-
-## WebView Data Monitoring
-
-WebView data monitoring requires integrating the [Web Monitoring SDK](../web/app-access.md) on the visited page.
-
-## Custom Tag Usage Example {#track}
-
-### Compile-time Configuration Method
-
-1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
-
-```groovy
-android{
-    //…
-	productFlavors {
-        prodTest {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Test Value\""
- 			//…
-        }
-        prodPublish {
-            buildConfigField "String", "CUSTOM_VALUE", "\"Custom Publish Value\""
- 			//…
-        }
-    }
-}
-```
-
-2. In the `RUM` configuration, add corresponding `BuildConfig` constants
-
-=== "Java"
-
-	```java
-	FTSdk.initRUMWithConfig(
-	        new FTRUMConfig()
-	            .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	            //... Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	FTSdk.initRUMWithConfig(
-	            FTRUMConfig()
-	                .addGlobalContext(CUSTOM_STATIC_TAG, BuildConfig.CUSTOM_VALUE)
-	                //… Add other configurations
-	)
-	```
-
-### Runtime File Reading and Writing Method
-
-1. Through file-type data storage, such as `SharedPreferences`, configure the use of `SDK` and add code to obtain tag data in the configuration section.
-
-=== "Java"
-
-	```java
-	SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	String customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set");
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     new FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue)
-	     //… Add other configurations
-	);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	val customDynamicValue = sp.getString(CUSTOM_DYNAMIC_TAG, "not set")
-
-	// Configure RUM
-	FTSdk.initRUMWithConfig(
-	     FTRUMConfig().addGlobalContext(CUSTOM_DYNAMIC_TAG, customDynamicValue!!)
-	     //… Add other configurations
-	)
-	```
-
-2. Add methods to change file data at any location.
-
-=== "Java"
-
-	```java
-	public void setDynamicParams(Context context, String value) {
-	    SharedPreferences sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE);
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply();
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	fun setDynamicParams(context: Context, value: String) {
-	    val sp = context.getSharedPreferences(SP_STORE_DATA, MODE_PRIVATE)
-	    sp.edit().putString(CUSTOM_DYNAMIC_TAG, value).apply()
-	}
-	```
-
-3. Finally, restart the application. Detailed instructions can be found in the [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L88)
-
-### SDK Runtime Addition
-
-After initializing the SDK, use `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` to dynamically add tags. Once set, it takes effect immediately. Subsequently reported RUM or Log data will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained via network requests.
-
-```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
-
-FTSdk.init();
-
-getInfoFromNet(info){
-    HashMap<String, Object> globalContext = new HashMap<>();
-    globalContext.put("delay_key", info.value);
-    FTSdk.appendGlobalContext(globalContext);
-}
-```
-
-## Summary
-
-This document provides detailed steps for integrating the Guance Android SDK into your application, including prerequisites, installation, configuration, and advanced features such as RUM, Trace, and Logger. Additionally, it covers best practices for handling common issues, adapting to market privacy reviews, and integrating without using `ft-plugin`. Follow these guidelines to ensure proper setup and optimal performance of the SDK in your Android application.

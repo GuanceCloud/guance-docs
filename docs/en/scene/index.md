@@ -1,43 +1,42 @@
 ---
 icon: zy/scene
 ---
-# Scene
+# Use Cases
 ---
 
-<<< custom_key.brand_name >>> provides a scene feature that primarily uses charts, allowing you to intuitively reproduce data insights through a series of customizable editing and filtering functions.
-
-At the same time, <<< custom_key.brand_name >>> [includes multiple built-in data monitoring view templates](./built-in-view/index.md), which you can import to create dashboards and explorers, and customize configurations; or choose a custom creation method to build data insight scenes with relevant settings.
+The "Use Cases" feature focuses on charts to help you flexibly display and analyze data. You can customize the editing and filtering of data, use built-in templates for various data monitoring views to quickly create dashboards and Explorers, or build personalized data insight scenarios from scratch.
 
 ---
 
 <div class="grid cards" markdown>
 
--   [:material-billboard:{ .lg .middle } __Dashboard__](dashboard/index.md) 
+-   [:material-billboard:{ .lg .middle } <font size=4>__Dashboards__](dashboard/index.md)</font> 
 
     ---
 
-    Use dashboards to construct data insight scenes, displaying data through various charts for tracking, analyzing key performance metrics, and monitoring system status.
+    <font size=3>Create data insight scenarios by displaying and analyzing key Metrics data through various charts, and monitor system operations</font>
 
 
--   [:material-database-export:{ .lg .middle } __Scheduled Reports__](report.md)
-
-    ---
-
-    Export dashboard data and generate scheduled reports, supporting different time periods such as daily, weekly, and monthly, sent via email to relevant personnel.
-
-
--   [:material-note-edit-outline:{ .lg .middle } __Notes__](note.md)
+-   [:material-clipboard-text-search:{ .lg .middle } <font size=4>__Explorers__](explorer/index.md)</font>
 
     ---
 
-    Create notes to write reports, integrating charts and documents for analysis, and share with team members to save anomaly data records for easier issue tracking and resolution.
+    <font size=3>Quickly create multiple custom Explorers to meet team-specific data viewing needs, achieving one-stop LOG management services</font>
 
 
--   [:material-clipboard-text-search:{ .lg .middle } __Explorer__](explorer/index.md)
+
+-   [:material-database-export:{ .lg .middle } <font size=4>__Scheduled Reports__](report.md)</font>
 
     ---
 
-    Quickly create multiple custom explorers to tailor data viewing needs with your team members, achieving one-stop log management services.
+    <font size=3>Schedule the export of dashboard data and generate reports, supporting cycles such as daily, weekly, monthly, with email delivery to relevant individuals</font>
+
+
+-   [:material-note-edit-outline:{ .lg .middle } <font size=4>__Notes__](note.md)</font>
+
+    ---
+
+    <font size=3>Create notes and write reports, integrating charts and documents for analysis, share with the team, and save records of abnormal data</font>
 
 
 </div>

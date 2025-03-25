@@ -8,14 +8,17 @@
 
 
 
+
 ## Route Parameters
 
-| Parameter Name | Type   | Required | Description             |
-|:--------------|:------|:-------|:----------------------|
-| issue_uuid    | string | Y     | issueUUID<br>         |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| issue_uuid           | string   | Y          | Issue UUID              |
 
 
-## Additional Parameter Explanation
+## Additional Parameter Notes
+
+
 
 
 
@@ -28,6 +31,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
 
 
 
+
 ## Response
 ```shell
 {
@@ -35,17 +39,17 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
     "content": {
         "attachments": [
             {
-                "fileName": "Special characters.  Set?image (3)::&*.png",
+                "fileName": "Special characters.  Collection?image (3)::&*.png",
                 "fileSuffix": "png",
                 "uuid": "att_xxxx32"
             },
             {
-                "fileName": "\\icon\\1.png",
+                "fileName": "\\Icon\\1.png",
                 "fileSuffix": "png",
                 "uuid": "att_xxxx32"
             },
             {
-                "fileName": "<<< custom_key.brand_name >>> icon2.png",
+                "fileName": "<<< custom_key.brand_name >>> Icon2.png",
                 "fileSuffix": "png",
                 "uuid": "att_xxxx32"
             },
@@ -72,7 +76,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
             "acntWsNickname": "",
             "email": "wsak_xxxx32",
             "iconUrl": "",
-            "name": "API Test",
+            "name": "Interface Testing",
             "username": "wsak_xxxx32",
             "uuid": "wsak_xxxx32"
         },
@@ -83,10 +87,10 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
         "deleteAt": -1,
         "description": "kong",
         "extend": {
-            "manager": [
+            "managers": [
                 "group_xxxx32",
                 "acnt_xxxx32",
-                "jj@qq.com"
+                "xxx@<<< custom_key.brand_main_domain >>>"
             ]
         },
         "id": 212982,
@@ -102,15 +106,15 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
             },
             {
                 "acntWsNickname": "",
-                "email": "88@qq.com",
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
                 "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
                 "name": "88 Test",
                 "username": "Test",
                 "uuid": "acnt_xxxx32"
             },
             {
-                "email": "jj@qq.com",
-                "name": "jj@qq.com"
+                "email": "xxx@<<< custom_key.brand_main_domain >>>",
+                "name": "xxx@<<< custom_key.brand_main_domain >>>"
             }
         ],
         "name": "Upload",
@@ -124,7 +128,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/issue/<issue_u
         "updator": "acnt_xxxx32",
         "updatorInfo": {
             "acntWsNickname": "",
-            "email": "88@qq.com",
+            "email": "xxx@<<< custom_key.brand_main_domain >>>",
             "iconUrl": "http://static.cloudcare.cn:10561/icon/acnt_xxxx32.png",
             "name": "88 Test",
             "username": "Test",

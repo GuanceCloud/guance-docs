@@ -1,21 +1,25 @@
-# Get a Single Data Access Rule
+# Get a single data access rule
 
 ---
 
 <br />**GET /api/v1/logging_query_rule/{logging_query_rule_uuid}/get**
 
 ## Overview
-Retrieve a single data access rule
+Get a single data access rule
+
+
 
 
 ## Route Parameters
 
-| Parameter Name            | Type   | Required | Description                |
-|:----------------------|:-----|:-------|:------------------------|
-| logging_query_rule_uuid | string | Y      | Data access rule UUID <br> |
+| Parameter Name        | Type     | Required   | Description              |
+|:---------------------|:---------|:-----------|:------------------------|
+| logging_query_rule_uuid | string | Y | Data access rule uuid<br> |
 
 
-## Additional Parameter Notes
+## Parameter Additional Notes
+
+
 
 
 
@@ -25,6 +29,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
 -H 'DF-API-KEY: <DF-API-KEY>' \
 --compressed
 ```
+
 
 
 
@@ -59,7 +64,7 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
                     "status": 0
                 },
                 "wsInfo": {
-                    "name": "[Doris] Development and Testing Together_",
+                    "name": "[Doris] Development Testing Together_",
                     "status": 0
                 }
             }
@@ -73,8 +78,8 @@ curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/logging_query_
         "reExprs": [
             {
                 "enable": true,
-                "name": "Mask QQ Email",
-                "reExpr": "[a-zA-Z0-9_]+@qq.com"
+                "name": "Desensitization of qq email",
+                "reExpr": "[a-zA-Z0-9_]+@<<< custom_key.brand_main_domain >>>"
             }
         ],
         "relRoleInfos": [

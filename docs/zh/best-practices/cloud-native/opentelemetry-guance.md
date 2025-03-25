@@ -12,7 +12,7 @@
 
 Grafana Tempo和 Loki 结合，能够让我们直观的看到日志链路情况，但 Loki 的特性也决定了它并不能为大型生产系统提供很好的日志处理分析能力。日志链路也只是可观测的一部分，仅仅是通过日志链路查询并不能解决大部分问题，特别是在微服务云原生架构时代，问题的多样性需要我们从多方面结合分析。如用户访问卡顿，不一定是程序问题，也有可能是当前系统网络、cpu等其他综合因素导致。在用户多云情况下，Grafana 不能有效的支撑其业务发展。
 
-[<<< custom_key.brand_name >>>](https://www.guance.com)
+[<<< custom_key.brand_name >>>](https://<<< custom_key.brand_main_domain >>>)
 
 是一个集指标数据、日志数据、APM 、RUM、基础设施、容器、中间件、网络性能等多种数据统一收集管理平台。使用<<< custom_key.brand_name >>>可以为我们全方位观测应用，而不仅仅是日志链路之间的观测。更多<<< custom_key.brand_name >>>信息请跳转到[产品优势](../../product-introduction/index.md)阅读。
 

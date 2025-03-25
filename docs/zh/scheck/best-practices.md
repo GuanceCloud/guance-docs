@@ -21,7 +21,7 @@
 | 服务名称 | 版本                                                         | 是否必须安装 | 用途            |
 | -------- | ------------------------------------------------------------ | ------------ | --------------- |
 | Datakit  | 1.1.6 以上 [安装方法](../datakit/datakit-install.md) | 必须         | 接受scheck 信号 |
-| DataFlux | [DataFlux SaaS](https://guance.com) 或其他私有部署版本      | 必须         | 查看安全巡检    |
+| DataFlux | [DataFlux SaaS](https://<<< custom_key.brand_main_domain >>>) 或其他私有部署版本      | 必须         | 查看安全巡检    |
 
 
 

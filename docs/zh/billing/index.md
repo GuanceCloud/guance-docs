@@ -93,7 +93,7 @@ icon: zy/billing
 
 <<< custom_key.brand_name >>>现有两套独立运行、统计数据量相关连的账号体系，共同为**商业版用户**实现用量计费与费用结算流程：
 
-- [<<< custom_key.brand_name >>>控制台](https://console.guance.com/)账号，可统计当前工作空间的数据量接入规模、账单明细等，同步到指定的费用中心账号。
+- [<<< custom_key.brand_name >>>控制台](https://<<< custom_key.studio_main_site >>>/)账号，可统计当前工作空间的数据量接入规模、账单明细等，同步到指定的费用中心账号。
 - [<<< custom_key.brand_name >>>费用中心](https://<<< custom_key.boss_domain >>>/)账号，可通过 `工作空间 ID` 进行绑定，实现**工作空间级别的统一费用管理**，并提供了多种费用结算方式供您选择。
 
 ![](img/billing-index-1.png)

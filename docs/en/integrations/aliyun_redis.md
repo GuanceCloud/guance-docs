@@ -2,7 +2,7 @@
 title: 'Alibaba Cloud Redis Standard Edition'
 tags: 
   - Alibaba Cloud
-summary: 'Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memory usage, disk read/write, network traffic, and accesses per second.'
+summary: 'Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memory usage, disk read/write, network traffic, access per second, etc.'
 __int_icon: icon/aliyun_redis
 dashboard:
   - desc: 'Alibaba Cloud Redis Standard Edition built-in view'
@@ -16,65 +16,66 @@ monitor:
 # Alibaba Cloud Redis Standard Edition
 <!-- markdownlint-enable -->
 
-Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memory usage, disk read/write, network traffic, and accesses per second.
+Alibaba Cloud Redis Standard Edition Metrics display, including CPU usage, memory usage, disk read/write, network traffic, access per second, etc.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable Guance Integration - Extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://func.guance.com/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
-### Install Script
 
-> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+### Installation Script
 
-To synchronize monitoring data for Alibaba Cloud Redis Standard Edition, we install the corresponding collection script: "Guance Integration (Alibaba Cloud - Redis Collection)" (ID: `guance_aliyun_redis`)
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
+
+To synchronize monitoring data of Alibaba Cloud Redis Standard Edition, we install the corresponding collection script: <<< custom_key.brand_name >>> Integration (Alibaba Cloud - Redis Collection) (ID: `guance_aliyun_redis`).
 
 After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
 
-Click 【Deploy Startup Script】and the system will automatically create a `Startup` script set and configure the corresponding startup script.
+Click 【Deploy and Start Script】, the system will automatically create a `Startup` script set and configure the corresponding startup script automatically.
 
-Additionally, you can see the corresponding automatic trigger configuration under 「Manage / Automatic Trigger Configuration」. Click 【Execute】to immediately execute once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+In addition, you can see the corresponding automatic trigger configuration in the 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
-We default to collecting some configurations; for details, see the Metrics section.
+We collect some configurations by default; for more details, see the Metrics section.
 
-[Configure Custom Cloud Object Metrics](https://func.guance.com/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
+[Customize cloud object metrics configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-monitor/){:target="_blank"}
 
 
 ### Verification
 
-1. Confirm in 「Manage / Automatic Trigger Configuration」whether the corresponding task has an automatic trigger configuration. You can also check the task records and logs to ensure there are no anomalies.
-2. In the Guance platform, under 「Infrastructure / Custom」, check if asset information exists.
-3. In the Guance platform, under 「Metrics」, check if the corresponding monitoring data exists.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and check the corresponding task records and logs for any anomalies.
+2. In the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if there is asset information.
+3. In the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there is corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud Cloud Monitoring, the default metric set is as follows. More metrics can be collected through configuration. [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud - Cloud Monitoring, the default metric set is as follows. You can collect more metrics via configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
-| Metric Id                | Metric Name               | Dimensions        | Statistics      | Unit     |
+| Metric Id                | Metric Name      | Dimensions        | Statistics      | Unit     |
 | ---- | ---- | ---- | ---- | ---- |
 | StandardAvgRt            | Average Response Time     | userId,instanceId | Average,Maximum | us       |
-| StandardBlockedClients   | Blocked Client Connections| userId,instanceId | Average,Maximum | Count    |
-| StandardConnectionUsage  | Connection Usage          | userId,instanceId | Average,Maximum | %        |
-| StandardCpuUsage         | CPU Usage                 | userId,instanceId | Average,Maximum | %        |
-| StandardHitRate          | Hit Rate                  | userId,instanceId | Average,Maximum | %        |
-| StandardIntranetIn       | Inbound Traffic           | userId,instanceId | Average,Maximum | KBytes/s |
-| StandardIntranetInRatio  | Inbound Bandwidth Usage   | userId,instanceId | Average,Maximum | %        |
-| StandardIntranetOut      | Outbound Traffic          | userId,instanceId | Average,Maximum | KBytes/s |
-| StandardIntranetOutRatio | Outbound Bandwidth Usage  | userId,instanceId | Average,Maximum | %        |
-| StandardKeys             | Number of Keys in Cache   | userId,instanceId | Average,Maximum | Count    |
-| StandardMemoryUsage      | Memory Usage              | userId,instanceId | Average,Maximum | %        |
-| StandardSyncDelayTime    | Multi-active Sync Delay   | userId,instanceId | Average,Maximum | seconds  |
-| StandardUsedConnection   | Used Connections          | userId,instanceId | Average,Maximum | Count    |
-| StandardUsedMemory       | Memory Usage Amount       | userId,instanceId | Average,Maximum | Bytes    |
-| StandardUsedQPS          | Average Queries Per Second| userId,instanceId | Average,Maximum | Count    |
+| StandardBlockedClients   | Blocked Client Connections | userId,instanceId | Average,Maximum | Count    |
+| StandardConnectionUsage  | Connection Usage Rate     | userId,instanceId | Average,Maximum | %        |
+| StandardCpuUsage         | CPU Usage Rate        | userId,instanceId | Average,Maximum | %        |
+| StandardHitRate          | Hit Rate           | userId,instanceId | Average,Maximum | %        |
+| StandardIntranetIn       | Inbound Traffic       | userId,instanceId | Average,Maximum | KBytes/s |
+| StandardIntranetInRatio  | Inbound Bandwidth Usage Rate   | userId,instanceId | Average,Maximum | %        |
+| StandardIntranetOut      | Outbound Traffic       | userId,instanceId | Average,Maximum | KBytes/s |
+| StandardIntranetOutRatio | Outbound Bandwidth Usage Rate | userId,instanceId | Average,Maximum | %        |
+| StandardKeys             | Number of Keys in Cache  | userId,instanceId | Average,Maximum | Count    |
+| StandardMemoryUsage      | Memory Usage Rate       | userId,instanceId | Average,Maximum | %        |
+| StandardSyncDelayTime    | Multi-active Synchronization Delay     | userId,instanceId | Average,Maximum | seconds  |
+| StandardUsedConnection   | Used Connections       | userId,instanceId | Average,Maximum | Count    |
+| StandardUsedMemory       | Memory Usage       | userId,instanceId | Average,Maximum | Bytes    |
+| StandardUsedQPS          | Average Access Per Second | userId,instanceId | Average,Maximum | Count    |
 
 ## Objects {#object}
 
-The object data structure of the collected Alibaba Cloud Redis objects can be viewed in 「Infrastructure - Custom」
+The collected Alibaba Cloud redis object data structure can be seen in 「Infrastructure - Custom」.
 
 ```json
 {
@@ -99,36 +100,36 @@ The object data structure of the collected Alibaba Cloud Redis objects can be vi
     "Capacity"  : "1024",
     "EndTime"   : "2022-12-13T16:00:00Z",
     "CreateTime": "2021-01-11T09:35:51Z",
-    "Accounts"  : "[{Account JSON data}]",
-    "message"   : "{Instance JSON data}"
+    "Accounts"  : "[{JSON Account Information}]",
+    "message"   : "{JSON Instance Data}"
   }
 }
 
 ```
 
-## Logging {#logging}
+## Logs {#logging}
 
 ### Slow Queries
 
 #### Prerequisites
 
-> Note: The code execution of this script depends on the collection of Redis instance objects. If custom object collection for Redis is not configured, the slow log script cannot collect slow log data.
+> Note: The code execution of this script depends on the Redis instance object collection. If custom object collection for Redis is not configured, the slow log script cannot collect slow log data.
 
 <!-- markdownlint-disable MD024 -->
 
-#### Install Script
+#### Installation Script
 
 <!-- markdownlint-enable -->
 
 On top of the previous setup, you need to install another script for **Redis Slow Query Log Collection**.
 
-In 「Manage / Script Market」, click and install the corresponding script package:
+In the 「Manage / Script Market」, click and install the corresponding script package:
 
-- 「Guance Integration (Alibaba Cloud - Redis Slow Query Log Collection)」(ID: `guance_aliyun_redis_slowlog`)
+- 「<<< custom_key.brand_name >>> Integration (Alibaba Cloud - Redis Slow Query Log Collection)」(ID: `guance_aliyun_redis_slowlog`)
 
-After data synchronization is normal, you can view the data in the 「Logs」section of Guance.
+After the data synchronization is normal, you can view the data in the 「Logs」 section of <<< custom_key.brand_name >>>.
 
-Sample data reported is as follows:
+An example of the reported data is as follows:
 
 ```json
 {
@@ -156,20 +157,21 @@ Sample data reported is as follows:
     "Command"    : "latency:eventloop",
     "ElapsedTime": 192000,
     "ExecuteTime": "2022-07-26T03:18:36Z",
-    "message"    : "{Instance JSON data}"
+    "message"    : "{JSON Instance Data}"
   }
 }
 
 ```
 
-Parameter descriptions are as follows:
+Descriptions of some parameters are as follows:
 
-| Field          | Type | Description                    |
-| :------------ | :--- | :----------------------------- |
-| `ElapsedTime` | int  | Execution duration, in milliseconds |
-| `ExecuteTime` | str  | Start time of execution         |
-| `IPAddress`   | str  | Client IP address              |
+| Field          | Type | Description                 |
+| :------------ | :--- | :--------------------------|
+| `ElapsedTime` | int  | Execution duration, unit in milliseconds |
+| `ExecuteTime` | str  | Execution start time         |
+| `IPAddress`   | str  | Client's IP address         |
 
-> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
+> *Note: Fields in `tags`, `fields` may change with subsequent updates.*
 >
-> Note: `fields.message` is a JSON serialized string
+> Note: `fields.message` is a JSON serialized string.
+</example>

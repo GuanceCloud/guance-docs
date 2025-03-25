@@ -2,69 +2,69 @@
 
 For all dashboards within the current workspace, you can manage them through the following operations.
 
-## Batch Operations
+## Batch operations
 
-This involves selecting dashboards for batch deletion, export, or modification of visibility scope.
+After selecting dashboards, you can perform batch deletion, export, and modify visibility scope operations.
 
-**Note**:
+???+ warning "Note"
 
-1. The homepage dashboard does not support modifying the visibility scope.
-2. Dashboards not created by the user do not support changing the scope to "Visible only to me" here.
+    - The home dashboard does not support modifying the visibility scope.
+    - Dashboards not created by the user do not support changing the scope to "Visible only to myself" here.
 
 ## Modify/Export/Delete {#options}
 
-Click the :material-dots-vertical: button on the dashboard to modify the dashboard name, export the dashboard to a JSON file, and delete the dashboard.
+Click the dashboard :material-dots-vertical: button to perform the following operations:
+    
+- Modify the dashboard name;
+- Export the dashboard as a JSON file;
+- Delete the dashboard.
 
-## Set Homepage Dashboard
+## Set Home Dashboard
 
-Set a dashboard as the workspace-level **Homepage Dashboard**. After setting, when members access this space, the homepage dashboard will be displayed by default.
+This involves setting the dashboard as the workspace-level "Home Dashboard". After completing the setup, when members subsequently access this space, the home dashboard will be displayed by default.
 
-**Note**: Only dashboards with "Public" visibility can be set as the **Homepage Dashboard**, and once set, the visibility scope cannot be modified.
+**Note**: Only supports setting the "Home Dashboard" for dashboards that are "Publicly visible", and after setting it, modifying the visibility scope is not supported.
 
 ![](../img/dash_01.gif)
 
 
 ## Filtering/Sorting
 
-On the left side of the dashboard, you can quickly filter and find corresponding dashboards through different categories.
+On the left side of the dashboard, you can quickly filter and search for corresponding dashboards through different categories, or you can set tags for the dashboard to enable quick filtering.
 
-You can also set tags for dashboards to quickly filter them.
-
-![](../img/dashboard006.png)
 
 | Category      | Description         |
 | ----------- | ------------------- |
-| My Favorites | Dashboards favorited by the logged-in user in the current workspace. Click the :octicons-star-24: favorite icon on the dashboard. |
-| Imported Projects | All dashboards in the current workspace created via **Import Custom Template**. |
-| Created by Me | All dashboards created by the logged-in user in the current workspace, including imported dashboards. |
-| Only Visible to Me | Non-public dashboards visible only to the creator, other members do not have viewing permissions. |
-| Frequently Viewed | Dashboards viewed more than 5 times in the past week by the logged-in user in the current workspace. |
+| My Favorites      | Dashboards favorited by the current user; click the dashboard :octicons-star-24: favorite icon.         |
+| Imported Projects      | Dashboards created by importing custom templates.         |
+| My Creations      | All dashboards created by the current user, including imported dashboards.         |
+| Visible Only to Me      | Non-public dashboards viewable only by the creator; other members have no viewing permissions.         |
+| Frequently Browsed      | Dashboards viewed more than 5 times in the past week by the current user.         |
+
 
 ## Carousel List {#player}
 
-If you need to handle multiple related business dashboards at the same time, you can use the carousel feature. After configuring related dashboards, it facilitates one-stop business sharing.
+If you need to handle multiple associated business dashboards at the same time, you can use the carousel function. After configuring associated dashboards, it becomes convenient to share business processes in one place.
 
 ![](../img/snapshot-14.png)
 
-1. Enter the **Carousel List** and click **Create Carousel**;
-2. Enter the carousel name;
-3. Select dashboards;
-4. Set refresh frequency;
+1. Enter the **Carousel List**, click **Create New Carousel**;
+2. Input the carousel name;
+3. Select the dashboard;
+4. Set the refresh frequency;
 5. Click confirm.
+
+After configuration, you can view the already set dashboards in the **Carousel List**.
+
+For the carousel list, you can take the following actions:
 
 <img src="../../img/1.dashboard_player_2.png" width="60%" >
 
-After configuration is complete, you can view the configured dashboards in the **Carousel List**.
-
-For the carousel list, you can perform the following operations:
-
-1. Click the play button, and the configured dashboards will play according to the set frequency;
-2. Click the edit button to modify the carousel configuration;
-3. Click delete to remove the carousel.
+- Click the play button, and the configured dashboards will play according to the set frequency;
+- Click the edit button to modify the carousel configuration;
+- Click delete to remove the carousel.
 
 
 ## Historical Snapshots {#history}
 
-In the **Historical Snapshots** area at the top right of the page, you can view all saved dashboard snapshots for the current workspace.
-
-![](../img/1.dashboard_player_4.png)
+In the **Historical Snapshots** section at the top right of the page, you can view all saved dashboard snapshots for the current workspace.

@@ -1,9 +1,10 @@
 # Log Engine Deployment
 
+
 ???+ warning "Note"
      Choose either OpenSearch or Elasticsearch.
      
-     For highly available OpenSearch deployment, refer to: [Highly Available OpenSearch Deployment](ha-opensearch.md)
+     For high availability OpenSearch deployment, refer to: [High Availability OpenSearch Deployment](ha-opensearch.md)
 
 ## Introduction {#intro}
 
@@ -14,10 +15,10 @@
 | **Log Engine (Choose One)**|      |
 | **OpenSearch** | Version: 2.3.0 | 
 | **Elasticsearch** | Version: 7.13.2 |        
-| **Prerequisites for Deployment** | [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed <br> [Kubernetes Storage](infra-kubernetes.md#kube-storage) has been deployed |
+| **Deployment Prerequisites** | [Kubernetes](infra-kubernetes.md#kubernetes-install) has been deployed <br> [Kubernetes Storage](infra-kubernetes.md#kube-storage) has been deployed |
 
 
-## Default Configuration Information for Deployment
+## Default Deployment Configuration Information
 
 === "OpenSearch"
     |      |     |
@@ -39,9 +40,9 @@
 ### Installation
 
 ???+ warning "Note" 
-     The `storageClassName` highlighted in the YAML should be set according to your actual situation. JVM is best set to 50% of physical memory; if the node's physical memory is 8GB, it can be set to `-Xmx4g -Xms4g`.
+     The `storageClassName` in the highlighted part needs to be determined according to the actual situation. JVM is best set to 50% of physical memory; if our node's physical memory is 8G, it can be set as `-Xmx4g -Xms4g`.
 
-Save openes.yaml and deploy it.
+Save openes.yaml and deploy.
 ???- note "openes.yaml (Click to expand)" 
     ```yaml hl_lines='147 247'
     ---
@@ -251,7 +252,7 @@ Save openes.yaml and deploy it.
               runAsNonRoot: true
               runAsUser: 1000
 
-            image: "pubrepo.jiagouyun.com/base/opensearch:2.3.0-85eb7af9"
+            image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/opensearch:2.3.0-85eb7af9"
             imagePullPolicy: "IfNotPresent"
             readinessProbe:
               failureThreshold: 3
@@ -305,7 +306,7 @@ Save openes.yaml and deploy it.
               subPath: opensearch.yml
     ``` 
 
-Execute the following commands to install:
+  Execute the installation command:
 ```shell
 kubectl create namespace middleware
 kubectl apply -f openes.yaml
@@ -313,7 +314,7 @@ kubectl apply -f openes.yaml
 
 ### Verify Deployment
 
-- Check Pod Status
+- Check pod status
 
 ```shell
 kubectl get pods -n middleware -l app.kubernetes.io/name=opensearch
@@ -328,10 +329,10 @@ opensearch-single-0   1/1     Running   0          4m37s
 
 ### Configure Accounts
 
-#### Add Elastic Password {#addpasswd}
+#### Add elastic Password {#addpasswd}
 
 ???+ warning "Note" 
-     The `{"password": "4dIv4VJQG5t5dcJOL8R5"}` part highlighted can be modified with your own password.
+     The password in the highlighted part `{"password": "4dIv4VJQG5t5dcJOL8R5"}` can be modified to your own.
 
 ```shell hl_lines='5'
 kubectl exec -ti -n middleware opensearch-single-0 -- curl -u admin:admin \
@@ -352,13 +353,13 @@ kubectl delete -n middleware pvc  opensearch-single-opensearch-single-0
 
 ### How to Troubleshoot
 
-#### View Container Status
+#### Check Container Status
 
 ```shell
 kubectl describe -n middleware pods opensearch-single-0
 ```
 
-#### View Container Logs
+#### Check Container Logs
 
 ```shell
 kubectl logs -n middleware -f opensearch-single-0 -c opensearch
@@ -373,10 +374,10 @@ kubectl logs -n middleware -f opensearch-single-0 -c opensearch
 ### Installation
 
 ???+ warning "Note" 
-     The `storageClassName` highlighted in the YAML should be set according to your actual situation. JVM is best set to 50% of physical memory; if the node's physical memory is 8GB, it can be set to `-Xmx4g -Xms4g`.
+     The `storageClassName` in the highlighted part needs to be determined according to the actual situation. JVM is best set to 50% of physical memory; if our node's physical memory is 8G, it can be set as `-Xmx4g -Xms4g`.
 
-Save es.yaml and deploy it.
-???- note "es.yaml (Click to expand)" 
+Save es.yaml and deploy.
+???- note "es.yaml(Click to expand)" 
     ```yaml hl_lines='88 140'
     ---
     apiVersion: v1
@@ -434,7 +435,7 @@ Save es.yaml and deploy it.
         spec:
           containers:
           - name: elasticsearch
-            image: pubrepo.jiagouyun.com/base/elasticsearch:7.13.2
+            image: pubrepo.<<< custom_key.brand_main_domain >>>/base/elasticsearch:7.13.2
             imagePullPolicy: IfNotPresent
             resources:
                 limits:
@@ -517,13 +518,13 @@ Save es.yaml and deploy it.
             app: elasticsearch
         spec:
           accessModes: [ "ReadWriteOnce" ]
-          storageClassName: df-nfs-storage ## Specify the existing StorageClassName in your environment. If empty, use the default storageclass (if configured). ##
+          storageClassName: df-nfs-storage ## Specify the StorageClassName that exists in the environment. If empty, use the default storageclass (provided there is a default option configured).##
           resources:
             requests:
-              storage: 50Gi  ## Specify the size based on actual needs ##
+              storage: 50Gi  ## Specify the space size according to actual needs ##
    
     ```
-  Execute the following commands to install:
+  Execute the installation command:
 ```shell
 kubectl create namespace middleware
 kubectl apply -f es.yaml
@@ -531,7 +532,7 @@ kubectl apply -f es.yaml
 
 ### Verify Deployment
 
-- Check Pod Status
+- Check pod status
 
 ```shell
 kubectl get pods -n middleware -l app=elasticsearch
@@ -547,18 +548,18 @@ es-cluster-0   1/1     Running   0          24h
 
 ### Configure Accounts
 
-#### Create Admin Account (Authentication Required)
+#### Create Administrator Account (Authentication Required)
 
-Use the kubectl command-line client to log in interactively to the deployed ES service and execute the operation to create a superuser.
+Through the kubectl command-line client, interactively log in to the deployed ES service and execute the superuser creation operation
 
 ```shell
 kubectl exec -ti -n middleware es-cluster-0 \
     -- bin/elasticsearch-users useradd copriwolf -p sayHi2Elastic -r superuser 
 ```
 
-#### Change Elastic Password {#changepasswd}
+#### Change elastic Password {#changepasswd}
 ???+ warning "Note" 
-     The `{"password": "4dIv4VJQG5t5dcJOL8R5"}` part highlighted can be modified with your own password.
+     The password in the highlighted part `{"password": "4dIv4VJQG5t5dcJOL8R5"}` can be modified to your own.
 
 ```shell hl_lines='4'
 kubectl exec -ti -n middleware es-cluster-0 -- curl -u copriwolf:sayHi2Elastic \
@@ -582,7 +583,7 @@ kubectl delete -n middleware pvc data-es-cluster-0
 
 === "OpenSearch"
     - Deployment
-    Save opensearch-dashboards.yaml and deploy it.
+    Save opensearch-dashboards.yaml and deploy.
 
     ???- note "opensearch-dashboards.yaml (Click to expand)" 
         ```yaml
@@ -645,10 +646,9 @@ kubectl delete -n middleware pvc data-es-cluster-0
                     - ALL
                   runAsNonRoot: true
                   runAsUser: 1000
-                image: "pubrepo.jiagouyun.com/base/opensearch-dashboards:2.3.0"
+                image: "pubrepo.<<< custom_key.brand_main_domain >>>/base/opensearch-dashboards:2.3.0"
                 imagePullPolicy: "IfNotPresent"
                 readinessProbe:
-```yaml
                   failureThreshold: 10
                   initialDelaySeconds: 10
                   periodSeconds: 20
@@ -696,13 +696,13 @@ kubectl delete -n middleware pvc data-es-cluster-0
 
     - Access
     
-    You can access using the `NodePort` type, `Node IP`:31601
+    You can access using the `NodePort` type, `node IP`:31601
     ![](img/22.opensearch-dashboards-login.png)
 
 === "Elasticsearch"
 
     - Deployment
-    Save kibana.yaml and deploy it.
+    Save kibana.yaml and deploy.
 
     ???- note "kibana.yaml (Click to expand)" 
         ```yaml
@@ -819,6 +819,5 @@ kubectl delete -n middleware pvc data-es-cluster-0
 
     - Access
     
-    You can access using the `NodePort` type, `Node IP`:32601
+    You can access using the `NodePort` type, `node IP`:32601
     ![](img/22.kibana-login.png)
-```

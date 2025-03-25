@@ -2,7 +2,7 @@
 
 ## 服务性能数据源定义 {#tm-definitions}
 
-`TM` 索引空间中保存了服务列表及性能指标相关数据，页面 [应用性能监测 - 性能指标](https://console.guance.com/tracing/service/performance){:target="_blank"} 上的数据即主要查询于该索引空间，TM` 对每个服务按照分钟、小时和天三个不同粒度对服务指标数据进行了聚合，以提升数据的查询效率。
+`TM` 索引空间中保存了服务列表及性能指标相关数据，页面 [应用性能监测 - 性能指标](https://<<< custom_key.studio_main_site >>>/tracing/service/performance){:target="_blank"} 上的数据即主要查询于该索引空间，TM` 对每个服务按照分钟、小时和天三个不同粒度对服务指标数据进行了聚合，以提升数据的查询效率。
 
 比如查询 `2024-03-19 15:00:00` ～ `2024-03-19 15:15:00` 15分钟内的所有服务指标数据，可以使用 DQL：
 

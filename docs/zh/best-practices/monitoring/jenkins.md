@@ -2,7 +2,7 @@
 ---
 
 ## 账号注册
-前往官方网站 [https://guance.com/](https://auth.guance.com/) 注册账号，使用已注册的账号/密码登录。
+前往官方网站 [https://<<< custom_key.brand_main_domain >>>/](https://<<< custom_key.studio_main_site_auth >>>/) 注册账号，使用已注册的账号/密码登录。
 
 ![1631932979(1).png](../images/jenkins-1.png)
 

@@ -37,7 +37,7 @@ Authing 是身份识别与访问管理解决方案提供商。
 
 进入应用配置页面，下拉到底部找到更多身份协议。配置 SAML2 身份提供商信息。如下图所示：
 
-（1）填写默认 ACS 地址（断言地址），点击保存。（此次配置仅为获取下一步的元数据使用，后面在<<< custom_key.brand_name >>>中获取到正确的断言地址后可以重新替换。断言地址示例：[https://auth.guance.com/saml/assertion](https://auth.guance.com/saml/assertion/)；）
+（1）填写默认 ACS 地址（断言地址），点击保存。（此次配置仅为获取下一步的元数据使用，后面在<<< custom_key.brand_name >>>中获取到正确的断言地址后可以重新替换。断言地址示例：[https://<<< custom_key.studio_main_site_auth >>>/saml/assertion](https://<<< custom_key.studio_main_site_auth >>>/saml/assertion/)；）
 
 （2）下载 SAML2 元数据文档，该文档后续会在<<< custom_key.brand_name >>> SSO 身份提供商创建处上传使用；
 

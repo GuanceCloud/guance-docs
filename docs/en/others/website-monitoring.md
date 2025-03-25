@@ -3,11 +3,11 @@
 
 ## Introduction
 
-Are you still troubled by the inability to proactively perceive user experience? Have you lost users due to poor website availability? As user access environments and scenarios become more diverse, it is crucial to obtain real user experiences of applications and promptly alert and address issues when user experience declines.
+Are you still troubled by the inability to perceive user access experiences in advance? Are you losing users due to poor website availability? As user access environments and scenarios become more diverse, it is crucial to obtain real user experiences of your applications and promptly warn when user experience declines for timely handling.
 
-To help you proactively identify user experience issues and anticipate network site errors, “<<< custom_key.brand_name >>>” provides an out-of-the-box Synthetic Tests solution. Using a global monitoring network, you can quickly implement website availability testing through API tests. By combining dimensions such as region, carrier, and time, you can periodically monitor URL site quality, uncover potential site issues before users encounter them, and promptly identify the causes of problems.
+To help you proactively identify user experience issues and preemptively sense network site errors, "<<< custom_key.brand_name >>>" provides an out-of-the-box Synthetic Tests solution. By leveraging a global monitoring network, you can quickly implement website availability testing through API Tests. You can combine dimensions such as region, carrier, and time to periodically monitor URL site quality, uncover potential site issues before users do, and promptly pinpoint the causes of problems.
 
-API Testing involves periodic availability monitoring of websites, domains, backend interfaces, etc., based on the `HTTP` protocol. Through real-time monitoring of sites, it statistically evaluates their availability, providing test logs and real-time alerts to help you quickly identify network issues and improve network access quality.
+API Tests are periodic availability tests conducted on websites, domains, and backend interfaces based on the `HTTP` protocol. By continuously monitoring sites, their availability is statistically tracked, providing probing logs and real-time alerts to help you quickly discover network issues and improve network access quality.
 
 ## Prerequisites
 
@@ -15,76 +15,76 @@ You need to first create a [<<< custom_key.brand_name >>> account](https://<<< c
 
 ## Methods/Steps
 
-### Step 1: Create a Test Task
+### Step 1: Create a Probing Task
 
-In the <<< custom_key.brand_name >>> workspace under "Synthetic Tests," click “Create” to set up a new API test task. This task will periodically monitor websites, domains, and backend interfaces based on the `HTTP` protocol, detecting performance and user experience from various regions and carriers.
+In the <<< custom_key.brand_name >>> workspace under "Synthetic Tests," click "Create" to set up an API Test task. This will periodically monitor websites, domains, and backend interfaces based on the `HTTP` protocol, detecting the performance status and user experience from different carriers across various regions.
 
 **Note:**
 
-- Only workspace administrators can create test tasks; other workspace members can only view information such as names, domains, types, and task statuses.
-- Free Plan workspaces can create up to 5 test tasks and only use "China" test nodes. If you need to create more test tasks or use additional international test nodes, please upgrade via the "Billing" page within your workspace.
+- Only workspace administrators can "Create" probing tasks; other workspace members can only view information such as names, domains, types, and task statuses.
+- Free Plan workspaces can create up to 5 probing tasks and only support the use of "China Region" probing nodes. If you need to create more probing tasks or use additional international probing nodes, please upgrade via the "Billing" page within your workspace.
 
-### Step 2: Customize the Test Task
+### Step 2: Customize Probing Tasks
 
-After entering the new “API Test” task, you can freely configure your periodic probing requirements, including:
+After entering the "Create API Test" task, you can freely configure your periodic probing needs, including:
 
-- Select Test Type: Currently supports `HTTP` protocol requests;
-- Define Request Format: Enter the URL, including four request methods `GET`, `POST`, `PUT`, and `HEAD`;
+- Selecting the probing type: Currently supports `HTTP` protocol requests;
+- Defining request formats: Input URLs with four request methods: `GET`, `POST`, `PUT`, and `HEAD`;
 
 ![](img/w1.png)
 
-- Advanced Settings: Configure advanced settings based on actual needs, including request settings, request body content, certificates, proxies, and privacy.
+- Advanced settings: Adjust advanced settings according to actual needs, including request settings, request body content, certificates, proxies, and privacy.
 
 ![](img/w2.png)
 
-- Name: A user-defined name for the cloud test that must be unique within the current workspace.
-- Availability Criteria: Supports adding conditions to match data. When multiple conditions are selected, they are combined with an AND relationship.
+- Name: A user-defined name for cloud probing that does not support duplication within the current workspace.
+- Availability judgment: Supports adding matching data conditions. When multiple conditions are selected, these conditions are logically combined using "AND."
 
 ![](img/w3.png)
 
-- Select Test Nodes: <<< custom_key.brand_name >>> currently covers 16 nodes globally. Users (Commercial Plan and above) can select one or more nodes from China or overseas regions to quickly start site quality monitoring.
-- Select Test Frequency: Choose the frequency of data returns for the cloud test. Options include 1 minute (Commercial Plan and above), 5 minutes (Commercial Plan and above), 15 minutes (Commercial Plan and above), 30 minutes, 1 hour, 6 hours, 12 hours, and 1 day.
+- Select probing nodes: Currently <<< custom_key.brand_name >>> covers 16 nodes globally, supporting the selection of one or more nodes in China and overseas regions (only available for Commercial Plan and above users) to quickly initiate service quality monitoring for sites.
+- Select probing frequency: Choose the return frequency of cloud probing data. Options include 1 minute (Commercial Plan and above), 5 minutes (Commercial Plan and above), 15 minutes (Commercial Plan and above), 30 minutes, 1 hour, 6 hours, 12 hours, and 1 day.
 
 ### Step 3: View Site Availability Status
 
-Based on the selected testing frequency, after the first test cycle completes, you can view the site's availability data through “Summary” and “Explorer.” For example, if you choose a monitoring frequency of "1h," wait 1-2 hours after configuration to view related data.
+Based on the selected detection frequency, after completing the first detection cycle (the duration of one detection cycle), you can view the corresponding site availability data for different probing tasks through "Overview" and "Explorer." **For example: If you select a monitoring frequency of "1h", wait 1-2 hours after configuration to view related data.**
 
-First, through “Summary,” you can analyze the site’s availability rate and response time across multiple dimensions like region, city, and carrier using rich visual data analysis tools such as maps, line charts, and time series graphs. Switching the “Time Widget” at the top allows you to quickly analyze trends and distributions.
+First, through "Overview," you can analyze the site's availability rate and response time from multiple dimensions such as region, city, and carrier, combining rich visual data analysis systems like maps, line charts, and time-series graphs. Switching the "Time Widget" at the top allows you to quickly analyze trends and distributions.
 
 ![](img/w4.png)
 
-Second, through “Explorer,” you can view all APM data within the current workspace.
+Secondly, through "Explorer," you can view all application performance data within the current workspace.
 
 ![](img/w5.png)
 
-## Advanced Reference
+## Advanced References
 
-### User-defined Node
+### Self-built Nodes
 
-<<< custom_key.brand_name >>> supports creating private deployment nodes distributed globally via “User-defined Node Management.” Refer to [User-defined Node Management](../usability-monitoring/self-node.md) for detailed operations, and consult [Network Dial Testing](../integrations/network/dialtesting.md) for specific deployment documentation.
+<<< custom_key.brand_name >>> supports quickly establishing private deployment nodes distributed globally through "Self-built Nodes Management." For detailed operation instructions, refer to [Self-built Nodes Management](../usability-monitoring/self-node.md). Specific deployment documentation can be found in [Network Testing](../integrations/network/dialtesting.md).
 
-The <<< custom_key.brand_name >>> platform supports establishing new test nodes globally. Through “User-defined Node Management,” you can create probe nodes based on geographic location and carrier to monitor the availability of internal/external service sites. If you need to perform cloud tests on internal corporate networks, deploy DataKit on servers that can access the internal network and configure your private deployment node. For public websites, no special setup is required.
+The <<< custom_key.brand_name >>> platform supports creating new probing nodes worldwide. Through "Self-built Nodes Management," you can establish probing nodes based on geographic location and carrier to monitor the availability of internal/external service sites. If you need to conduct cloud probing on your enterprise intranet, you must deploy DataKit on a server accessible to the intranet environment and configure your private deployment node. If you need to perform cloud probing on public websites, no special operations are required.
 
-For example, adding the following node:
+Take the addition of the following node as an example:
 
 - Geographic Location: Albania/Elbasan
 - Carrier: unicom
-- Node Code: Albania-Elbasan-unicom
+- Node code: Albania-Elbasan-unicom
 - Node Name: Albania-Elbasan-Unicom
 
-1. Through “Synthetic Tests” - “User-defined Node Management,” click “Create Node,” enter the following details, and confirm to quickly establish a global service quality monitoring point, expanding your service quality detection coverage.
+1. Through "Synthetic Tests" - "Self-built Nodes Management," click "Create" to establish a new node. Input the following details and confirm to quickly set up a service quality monitoring point distributed globally, expanding your service quality detection range.
 
 ![](img/w6.png)
 
-2. After completing “Create Node,” obtain the “Configuration Information” for the node in the list under “User-defined Node Management.”
+2. After completing the "Create" process, obtain the "Configuration Information" for this node in the "Self-built Nodes Management" list.
 
 ![](img/w7.png)
 
-3. Based on the obtained configuration information, install the test node on a server with node capabilities.
+3. Based on the acquired configuration information, install the probing node on a server capable of executing the node function.
 
-First, ensure your server has the latest version of DataKit installed. **If you haven’t installed DataKit, go to the dashboard’s “Integrations” - “DataKit” to install it. If you have DataKit installed, ensure it is the latest version.**
+First, ensure that your server has the latest version of DataKit installed. **If you have not installed DataKit, go to the dashboard's "Integrations" - "DataKit" to install it. If you already have DataKit installed, make sure it is the latest version.**
 
-- After installing DataKit, navigate to the installation directory’s conf.d/network, copy dialtesting.conf.sample and rename it to dialtesting.conf.
+- After installing DataKit, navigate to the conf.d/network directory under the installation folder, copy dialtesting.conf.sample, and rename it to dialtesting.conf.
 
 ![](img/w8.png)
 
@@ -96,6 +96,6 @@ ak = "bJljwJgfYFIGBxsxGv55"
 sk = "yWDP7urMuciYMW6aQxndetzZ6yL2xAkT2NfmfLwz"
 ```
 
-- Save the file and restart DataKit. Wait 1-2 minutes, and the node will be ready for use.
+- After saving the file content, restart DataKit. Wait 1-2 minutes, and the node will begin its operation.
 
 ![](img/w9.png)
