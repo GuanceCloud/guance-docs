@@ -39,6 +39,7 @@
 |  qtype | string  |  Y |  查询语句的类型 <br/> dql: 表示dql类型查询语句; <br/> promql: 表示 PromQl类型查询语句   |
 |  query | json  |  Y |  查询结构 |
 |  query.q  | string |   | 与 qtype 类型保持一致的 查询语句，例如 dql 或者 promql 查询语句|
+|  query.ignore_cache  | boolean |   | 查询是否禁用缓存, 默认为 fals,表示使用缓存|
 |  query.promqlType  | enum |   | qtype=promql时生效，promql的查询类型，可选值 `instantQuery` 和`rangeQuery`, 默认值为`rangeQuery` |
 |  query.highlight  | boolean |   | 是否显示高亮数据 |
 |  query.timeRange  | array  |   | 时间范围的时间戳列表 |
