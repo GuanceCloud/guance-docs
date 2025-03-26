@@ -1,8 +1,8 @@
 ---
 title     : 'SCheck'
-summary   : 'Receive data collected by SCheck'
+summary   : '接收 SCheck 采集的数据'
 tags:
-  - 'Security Checks'
+  - 'SECURITY'
 __int_icon: 'icon/scheck'
 ---
 
@@ -10,12 +10,12 @@ Operating system support: :fontawesome-brands-linux: :fontawesome-brands-windows
 
 ---
 
-Datakit can directly access the data from Security Checker. For specific usage of Security Checker, refer to [this link](../scheck/scheck-install.md).
-
-## Install Security Checker through DataKit {#install}
-
+Datakit has direct access to Security Checker's data. For specific use of Security Checker, see [here](../scheck/scheck-install.md).
+<!-- markdownlint-disable MD013 -->
+## To Install the Security Checker Installation Through the DataKit {#install}
+<!-- markdownlint-enable -->
 ```shell
 sudo datakit install --scheck
 ```
 
-After installation, Security Checker will send data to the DataKit `:9529/v1/write/security` interface by default.
+After installation, security Checker sends data to the DataKit `:9529/v1/write/security` interface by default.

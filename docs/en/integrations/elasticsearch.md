@@ -1,15 +1,15 @@
 ---
 title     : 'ElasticSearch'
-summary   : 'Collect ElasticSearch Metrics data'
+summary   : 'Collect ElasticSearch metrics'
 tags:
-  - 'DATABASE'
+  - 'DATA STORES'
 __int_icon      : 'icon/elasticsearch'
 dashboard :
   - desc  : 'ElasticSearch'
     path  : 'dashboard/en/elasticsearch'
 monitor   :
-  - desc  : 'ElasticSearch'
-    path  : 'monitor/en/elasticsearch'
+  - desc  : 'N/A'
+    path  : '-'
 ---
 
 
@@ -17,28 +17,27 @@ monitor   :
 
 ---
 
-The ElasticSearch collector primarily collects node operation status, cluster health, JVM performance status, index performance, and retrieval performance.
+ElasticSearch collector mainly collects node operation, cluster health, JVM performance, metric performance, retrieval performance and so on.
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requirements}
 
 - ElasticSearch version >= 6.0.0
-- ElasticSearch default collection is `Node Stats` metrics. If you need to collect `Cluster-Health` related metrics, set `cluster_health = true`
-- Setting `cluster_health = true` can produce the following Measurement sets
+- ElasticSearch collects `Node Stats` metrics by default. If you need to collect `Cluster-Health` related metrics, you need to set `cluster_health = true`
+- Setting `cluster_health = true` produces the following measurement
     - `elasticsearch_cluster_health`
-- Setting `cluster_stats = true` can produce the following Measurement sets
+
+- Setting `cluster_stats = true` produces the following measurement
     - `elasticsearch_cluster_stats`
 
-### User Permission Configuration {#user-permission}
+### User Rights Configuration {#user-permission}
 
-If account password access is enabled, corresponding permissions must be configured; otherwise, it will result in an error of failed monitoring information acquisition.
-
-Currently supported are [Elasticsearch](elasticsearch.md#perm-es), [Open Distro for Elasticsearch](elasticsearch.md#perm-open-es) and [OpenSearch](elasticsearch.md#perm-opensearch).
+If the account password access is turned on, the corresponding permissions need to be configured, otherwise it will lead to the failure of obtaining monitoring information. Elasticsearch, Open District for Elasticsearch, and OpenSearch are currently supported.
 
 #### Elasticsearch {#perm-es}
 
-- Create a role named `monitor`, with the following permissions
+- Create the role `monitor` and set the following permissions.
 
 ```http
 POST /_security/role/monitor
@@ -64,14 +63,14 @@ POST /_security/role/monitor
 ```
 
 - Create a custom user and assign the newly created `monitor` role.
-- For other information, refer to the configuration file description.
+- Please refer to the profile description for additional information.
 
-#### Open Distro for ElasticSearch {#perm-open-es}
+#### Open Distro for Elasticsearch {#perm-open-es}
 
 - Create a user
-- Create a role `monitor`, with the following permissions:
+- Create the role `monitor` and set the following permissions:
 
-``` http
+```http
 PUT _opendistro/_security/api/roles/monitor
 {
   "description": "monitor es cluster",
@@ -97,14 +96,14 @@ PUT _opendistro/_security/api/roles/monitor
 }
 ```
 
-- Set up the mapping relationship between roles and users
+- Set the mapping relationship between roles and users
 
 #### OpenSearch {#perm-opensearch}
 
 - Create a user
-- Create a role `monitor`, with the following permissions:
+- Create the role `monitor`, and set the following permissions:
 
-``` http
+```http
 PUT _plugins/_security/api/roles/monitor
 {
   "description": "monitor es cluster",
@@ -130,14 +129,14 @@ PUT _plugins/_security/api/roles/monitor
 }
 ```
 
-- Set up the mapping relationship between roles and users
-
 ### Collector Configuration {#input-config}
 
-<!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+- Set the mapping relationship between roles and users
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `elasticsearch.conf.sample` and rename it to `elasticsearch.conf`. Example as follows:
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
+
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `elasticsearch.conf.sample` and name it `elasticsearch.conf`. Examples are as follows:
     
     ```toml
         
@@ -209,16 +208,16 @@ PUT _plugins/_security/api/roles/monitor
     
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, the collector configuration can be injected via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) to start the collector.
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-By default, all data collection appends global election tags unless specified otherwise through `[inputs.elasticsearch.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.elasticsearch.tags]` if needed:
 
 ``` toml
 [inputs.elasticsearch.tags]
@@ -226,7 +225,6 @@ By default, all data collection appends global election tags unless specified ot
 # more_tag = "some_other_value"
 # ...
 ```
-
 
 
 
@@ -247,7 +245,7 @@ By default, all data collection appends global election tags unless specified ot
 |`node_id`|The id for the node.|
 |`node_name`|Human-readable identifier for the node.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -303,7 +301,6 @@ By default, all data collection appends global election tags unless specified ot
 
 
 
-
 ### `elasticsearch_indices_stats`
 
 - Tags
@@ -314,7 +311,7 @@ By default, all data collection appends global election tags unless specified ot
 |`cluster_name`|Name of the cluster, based on the Cluster name setting setting.|
 |`index_name`|Name of the index. The name '_all' target all data streams and indices in a cluster.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -368,7 +365,6 @@ By default, all data collection appends global election tags unless specified ot
 
 
 
-
 ### `elasticsearch_cluster_stats`
 
 - Tags
@@ -380,13 +376,12 @@ By default, all data collection appends global election tags unless specified ot
 |`node_name`|Name of the node.|
 |`status`|Health status of the cluster, based on the state of its primary and replica shards.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`nodes_process_open_file_descriptors_avg`|Average number of concurrently open file descriptors. Returns -1 if not supported.|float|count|
-
 
 
 
@@ -402,7 +397,7 @@ By default, all data collection appends global election tags unless specified ot
 |`cluster_name`|Name of the cluster.|
 |`cluster_status`|The cluster status: red, yellow, green.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -422,8 +417,23 @@ By default, all data collection appends global election tags unless specified ot
 
 
 
+## Custom Object {#object}
 
-## Custom Objects {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -444,7 +454,7 @@ By default, all data collection appends global election tags unless specified ot
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -456,15 +466,14 @@ By default, all data collection appends global election tags unless specified ot
 
 
 
-## Logs {#logging}
+## Logging {#logging}
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    Log collection only supports collecting logs from hosts where DataKit is already installed.
-<!-- markdownlint-enable -->
+    Log collection only supports log collection on installed DataKit hosts
 
-To collect ElasticSearch logs, you can enable `files` in elasticsearch.conf and enter the absolute path of the ElasticSearch log file. For example:
+To collect ElasticSearch logs, open `files` in ElasticSearch.conf and write to the absolute path of the ElasticSearch log file. For example:
 
 ```toml
 [[inputs.elasticsearch]]
@@ -472,20 +481,21 @@ To collect ElasticSearch logs, you can enable `files` in elasticsearch.conf and 
 [inputs.elasticsearch.log]
 files = ["/path/to/your/file.log"]
 ```
+<!-- markdownlint-enable -->
 
-After enabling log collection, by default, logs with a source (`source`) of `elasticsearch` will be generated.
+When log collection is turned on, a log with a log `source` of `elasticsearch` is generated by default.
 
-### Log Pipeline Field Splitting Explanation {#pipeline}
+### Log Pipeline Feature Cut Field Description {#pipeline}
 
-- ElasticSearch General Log Splitting
+- ElasticSearch Universal Log Cutting
   
-General log text example:
+Example of common log text:
 
-``` log
+```log
 [2021-06-01T11:45:15,927][WARN ][o.e.c.r.a.DiskThresholdMonitor] [master] high disk watermark [90%] exceeded on [A2kEFgMLQ1-vhMdZMJV3Iw][master][/tmp/elasticsearch-cluster/nodes/0] free: 17.1gb[7.3%], shards will be relocated away from this node; currently relocating away shards totalling [0] bytes; the node is expected to continue to exceed the high disk watermark when these relocations are complete
 ```
 
-The split fields list is as follows:
+The list of cut fields is as follows:
 
 | Field Name | Field Value                         | Description         |
 | ---    | ---                            | ---          |
@@ -494,15 +504,15 @@ The split fields list is as follows:
 | status | WARN                           | Log level     |
 | nodeId | master                         | Node name     |
 
-- ElasticSearch Slow Search Log Splitting
+- ElasticSearch Search for Slow Log Cutting
   
-Slow search log text example:
+Example of Searching for Slow Log Text:
 
-``` log
+```log
 [2021-06-01T11:56:06,712][WARN ][i.s.s.query              ] [master] [shopping][0] took[36.3ms], took_millis[36], total_hits[5 hits], types[], stats[], search_type[QUERY_THEN_FETCH], total_shards[1], source[{"query":{"match":{"name":{"query":"Nariko","operator":"OR","prefix_length":0,"max_expansions":50,"fuzzy_transpositions":true,"lenient":false,"zero_terms_query":"NONE","auto_generate_synonyms_phrase_query":true,"boost":1.0}}},"sort":[{"price":{"order":"desc"}}]}], id[], 
 ```
 
-The split fields list is as follows:
+The list of cut fields is as follows:
 
 | Field Name   | Field Value              | Description             |
 | ---      | ---                 | ---              |
@@ -511,17 +521,17 @@ The split fields list is as follows:
 | status   | WARN                | Log level         |
 | nodeId   | master              | Node name         |
 | index    | shopping            | Index name         |
-| duration | 36000000            | Request duration, unit ns|
+| duration | 36000000            | Request time, in ns |
 
-- ElasticSearch Slow Index Log Splitting
+- ElasticSearch Index Slow Log Cutting
 
-Slow index log text example:
+Example of indexing slow log text:
 
-``` log
+```log
 [2021-06-01T11:56:19,084][WARN ][i.i.s.index              ] [master] [shopping/X17jbNZ4SoS65zKTU9ZAJg] took[34.1ms], took_millis[34], type[_doc], id[LgC3xXkBLT9WrDT1Dovp], routing[], source[{"price":222,"name":"hello"}]
 ```
 
-The split fields list is as follows:
+The list of cut fields is as follows:
 
 | Field Name   | Field Value              | Description             |
 | ---      | ---                 | ---              |
@@ -530,4 +540,4 @@ The split fields list is as follows:
 | status   | WARN                | Log level         |
 | nodeId   | master              | Node name         |
 | index    | shopping            | Index name         |
-| duration | 34000000            | Request duration, unit ns|
+| duration | 34000000            | Request time, in ns |

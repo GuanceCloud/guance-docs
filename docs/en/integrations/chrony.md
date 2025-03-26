@@ -1,12 +1,12 @@
 ---
 title     : 'Chrony'
-summary   : 'Collect metrics data related to the Chrony server'
+summary   : 'Collect metrics related to Chrony server'
 __int_icon: 'icon/chrony'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -15,15 +15,14 @@ monitor   :
 
 ---
 
-The Chrony collector is used to collect metrics data related to the Chrony server.
-
-The Chrony collector supports remote collection, and the Datakit collector can run on various operating systems.
+The Chrony collector is used to collect metrics related to the Chrony server.
+The Chrony collector supports remote collection, and the collector Datakit can run on multiple operating systems.
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Precondition {#requirements}
 
-- Install the Chrony service
+- Install Chrony service
 
 ```shell
 $ yum -y install chrony    # [On CentOS/RHEL]
@@ -37,7 +36,7 @@ $ dnf -y install chrony    # [On Fedora 22+]
 
 ```
 
-- Verify correct installation by running the following command in the command line, and you should get similar results:
+- Verify if the installation is correct, execute the following command on the command line, and obtain similar results:
 
 ```shell
 $ chronyc -n tracking
@@ -59,14 +58,14 @@ Leap status     : Normal
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/chrony` directory under the DataKit installation directory, copy `chrony.conf.sample` and rename it to `chrony.conf`. Example:
+    Go to the `conf.d/chrony` directory under the DataKit installation directory, copy `chrony.conf.sample` and name it `chrony.conf`. Examples are as follows:
     
     ```toml
         
     [[inputs.chrony]]
-      ## (Optional) Collection interval, default is 10 seconds
+      ## (Optional) Collect interval, default is 10 seconds
       # interval = "10s"
     
       ## (Optional) Exec chronyc timeout, default is 8 seconds
@@ -76,12 +75,12 @@ Leap status     : Normal
       bin_path = "chronyc"
     
       ## (Optional) Remote chrony servers
-      ## If using remote chrony servers, election must be true
-      ## If using remote chrony servers, bin_paths should be shielded
+      ## If use remote chrony servers, election must be true
+      ## If use remote chrony servers, bin_paths should be shielded
       # remote_addrs = ["<ip>:22"]
       # remote_users = ["<remote_login_name>"]
       # remote_passwords = ["<remote_login_password>"]
-      ## If using remote_rsa_path, remote_passwords should be shielded
+      ## If use remote_rsa_path, remote_passwords should be shielded
       # remote_rsa_paths = ["/home/<your_name>/.ssh/id_rsa"]
       # remote_command = "chronyc -n tracking"
     
@@ -93,92 +92,92 @@ Leap status     : Normal
       # more_tag = "some_other_value"
     
     ```
-
+    
     After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (must be added as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
 
     - **ENV_INPUT_CHRONY_INTERVAL**
     
-        Collector repeat interval duration
+        Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **input.conf**: `interval`
     
-        **Default Value**: 10s
+        **Default**: 10s
     
     - **ENV_INPUT_CHRONY_TIMEOUT**
     
-        Timeout duration
+        Timeout
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `timeout`
+        **input.conf**: `timeout`
     
-        **Default Value**: 8s
+        **Default**: 8s
     
     - **ENV_INPUT_CHRONY_BIN_PATH**
     
-        Path to Chrony
+        The path of Chrony
     
-        **Field Type**: String
+        **Type**: String
     
-        **Collector Configuration Field**: `bin_path`
+        **input.conf**: `bin_path`
     
-        **Default Value**: `chronyc`
+        **Default**: `chronyc`
     
     - **ENV_INPUT_CHRONY_REMOTE_ADDRS**
     
-        Can use remote Chrony servers
+        If use remote Chrony servers
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_addrs`
+        **input.conf**: `remote_addrs`
     
         **Example**: ["192.168.1.1:22","192.168.1.2:22"]
     
     - **ENV_INPUT_CHRONY_REMOTE_USERS**
     
-        Remote login names
+        Remote login name
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_users`
+        **input.conf**: `remote_users`
     
         **Example**: ["user_1","user_2"]
     
     - **ENV_INPUT_CHRONY_REMOTE_PASSWORDS**
     
-        Remote login passwords
+        Remote password
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_passwords`
+        **input.conf**: `remote_passwords`
     
         **Example**: ["pass_1","pass_2"]
     
     - **ENV_INPUT_CHRONY_REMOTE_RSA_PATHS**
     
-        Key file paths
+        Remote rsa paths
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `remote_rsa_paths`
+        **input.conf**: `remote_rsa_paths`
     
         **Example**: ["/home/your_name/.ssh/id_rsa"]
     
     - **ENV_INPUT_CHRONY_REMOTE_COMMAND**
     
-        Execution command
+        Remote command
     
-        **Field Type**: String
+        **Type**: String
     
-        **Collector Configuration Field**: `remote_command`
+        **input.conf**: `remote_command`
     
         **Example**: "`chronyc -n tracking`"
     
@@ -186,25 +185,25 @@ Leap status     : Normal
     
         Enable election
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `election`
+        **input.conf**: `election`
     
-        **Default Value**: true
+        **Default**: true
     
     - **ENV_INPUT_CHRONY_TAGS**
     
-        Custom tags. If there are same-name tags in the configuration file, they will overwrite them.
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
 
 
@@ -220,7 +219,7 @@ Leap status     : Normal
 |`reference_id`|This is the reference ID and name (or IP address) of the server to which the computer is currently synchronized.|
 |`stratum`|The stratum indicates how many hops away from a computer with an attached reference clock we are.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -234,3 +233,5 @@ Leap status     : Normal
 |`skew`|This is the estimated error bound on the frequency.|float|PPM|
 |`system_time`|This is the current offset between the NTP clock and system clock.|float|s|
 |`update_interval`|This is the interval between the last two clock updates.|float|s|
+
+

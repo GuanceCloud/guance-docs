@@ -19,7 +19,7 @@ $ watch -n 3 'curl -s http://localhost:9529/metrics | grep -a datakit_cpu_usage'
 datakit_cpu_usage 4.9920266849857144
 ```
 
-其它指标也能通过类似方式来观察，目前已有的指标如下（当前版本 1.69.1）：
+其它指标也能通过类似方式来观察，目前已有的指标如下（当前版本 1.70.0）：
 
 <!-- 以下这些指标，通过执行 make metrics 方式能获取 -->
 | TYPE    | NAME                                                               | LABELS                                                                                            | HELP                                                                                                                 |
@@ -180,6 +180,10 @@ datakit_cpu_usage 4.9920266849857144
 | SUMMARY | `datakit_input_snmp_collect_cost`                                  | `N/A`                                                                                             | Every loop collect cost(in second)                                                                                   |
 | SUMMARY | `datakit_input_snmp_device_collect_cost`                           | `class`                                                                                           | Device collect cost(in second)                                                                                       |
 | GAUGE   | `datakit_input_snmp_alive_devices`                                 | `class`                                                                                           | Alive devices                                                                                                        |
+|SUMMARY  | `datakit_input_mysql_sql_query_cost_seconds`                       | `metric_name,sql_name`          |Time to query SQL(in second)|
+|SUMMARY  | `datakit_input_oracle_sql_query_cost_seconds`                      | `metric_name,sql_name`          |Time to query SQL(in second)|
+|SUMMARY  | `datakit_input_postgresql_sql_query_cost_seconds`                  | `metric_name,sql_name`          |Time to query SQL(in second)|
+|SUMMARY  | `datakit_input_sqlserver_sql_query_cost_seconds`                   | `metric_name,sql_name`          |Time to query SQL(in second)|
 | COUNTER | `datakit_input_zabbix_exporter_collect_metric_total`               | `object`                                                                                          | exporter metric count number from start                                                                              |
 | COUNTER | `datakit_input_zabbix_exporter_collect_file_total`                 | `object`                                                                                          | The files number of exporter file                                                                                    |
 | SUMMARY | `datakit_input_zabbix_exporter_request_api`                        | `status`                                                                                          | The time of success or failed API requests                                                                           |

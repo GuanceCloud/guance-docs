@@ -4,18 +4,17 @@ title: 'Built-in CDN List'
 ---
 
 <!-- markdownlint-disable -->
-
 ```toml
   cdn_map='''
   [
     {
         "domain":"15cdn.com",
-        "name":"Tengzheng Security Acceleration (formerly 15CDN)",
+        "name":"腾正安全加速(原 15CDN)",
         "website":"https://www.15cdn.com"
     },
     {
         "domain":"tzcdn.cn",
-        "name":"Tengzheng Security Acceleration (formerly 15CDN)",
+        "name":"腾正安全加速(原 15CDN)",
         "website":"https://www.15cdn.com"
     },
     {
@@ -30,42 +29,42 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"qhcdn.com",
-        "name":"360 Cloud CDN (Operated by QiAnXin)",
+        "name":"360 云 CDN (由奇安信运营)",
         "website":"https://cloud.360.cn/doc?name=cdn"
     },
     {
         "domain":"qh-cdn.com",
-        "name":"360 Cloud CDN (Operated by Qihoo 360)",
+        "name":"360 云 CDN (由奇虎 360 运营)",
         "website":"https://cloud.360.cn/doc?name=cdn"
     },
     {
         "domain":"qihucdn.com",
-        "name":"360 Cloud CDN (Operated by Qihoo 360)",
+        "name":"360 云 CDN (由奇虎 360 运营)",
         "website":"https://cloud.360.cn/doc?name=cdn"
     },
     {
         "domain":"360cdn.com",
-        "name":"360 Cloud CDN (Operated by Qihoo 360)",
+        "name":"360 云 CDN (由奇虎 360 运营)",
         "website":"https://cloud.360.cn/doc?name=cdn"
     },
     {
         "domain":"360cloudwaf.com",
-        "name":"QiAnXin Website Guardian",
+        "name":"奇安信网站卫士",
         "website":"https://wangzhan.qianxin.com"
     },
     {
         "domain":"360anyu.com",
-        "name":"QiAnXin Website Guardian",
+        "name":"奇安信网站卫士",
         "website":"https://wangzhan.qianxin.com"
     },
     {
         "domain":"360safedns.com",
-        "name":"QiAnXin Website Guardian",
+        "name":"奇安信网站卫士",
         "website":"https://wangzhan.qianxin.com"
     },
     {
         "domain":"360wzws.com",
-        "name":"QiAnXin Website Guardian",
+        "name":"奇安信网站卫士",
         "website":"https://wangzhan.qianxin.com"
     },
     {
@@ -105,7 +104,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"tl88.net",
-        "name":"Yitong Ruijin (Akamai China) Operated by Wangsu",
+        "name":"易通锐进(Akamai 中国)由网宿承接",
         "website":"https://www.akamai.com"
     },
     {
@@ -160,12 +159,12 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"126.net",
-        "name":"NetEase Cloud CDN",
+        "name":"网易云 CDN",
         "website":"https://www.163yun.com/product/cdn"
     },
     {
         "domain":"163jiasu.com",
-        "name":"NetEase Cloud CDN",
+        "name":"网易云 CDN",
         "website":"https://www.163yun.com/product/cdn"
     },
     {
@@ -190,57 +189,57 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"bdydns.com",
-        "name":"Baidu Cloud CDN",
+        "name":"百度云 CDN",
         "website":"https://cloud.baidu.com/product/cdn.html"
     },
     {
         "domain":"ccgslb.com.cn",
-        "name":"Chinanet Cache CDN",
+        "name":"蓝汛 CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"ccgslb.net",
-        "name":"Chinanet Cache CDN",
+        "name":"蓝汛 CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"ccgslb.com",
-        "name":"Chinanet Cache CDN",
+        "name":"蓝汛 CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"ccgslb.cn",
-        "name":"Chinanet Cache CDN",
+        "name":"蓝汛 CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"c3cache.net",
-        "name":"Chinanet Cache CDN",
+        "name":"蓝汛 CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"c3dns.net",
-        "name":"Chinanet Cache CDN",
+        "name":"蓝汛 CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"chinacache.net",
-        "name":"Chinanet Cache CDN",
+        "name":"蓝汛 CDN",
         "website":"https://cn.chinacache.com/"
     },
     {
         "domain":"wswebcdn.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com/"
     },
     {
         "domain":"lxdns.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com/"
     },
     {
         "domain":"wswebpic.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com/"
     },
     {
@@ -255,57 +254,57 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"chinanetcenter.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"customcdn.com.cn",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"customcdn.cn",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"51cdn.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"wscdns.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"cdn20.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"wsdvs.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"wsglb0.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"speedcdns.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"wtxcdn.com",
-        "name":"Wangsu CDN",
+        "name":"网宿 CDN",
         "website":"https://www.wangsu.com"
     },
     {
         "domain":"wsssec.com",
-        "name":"Wangsu WAF CDN",
+        "name":"网宿 WAF CDN",
         "website":"https://www.wangsu.com"
     },
     {
@@ -320,7 +319,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"hwcdn.net",
-        "name":"Stackpath (formerly Highwinds)",
+        "name":"Stackpath (原 Highwinds)",
         "website":"https://www.stackpath.com/highwinds"
     },
     {
@@ -340,12 +339,12 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"mwcloudcdn.com",
-        "name":"QUANTIL (Wangsu)",
+        "name":"QUANTIL (网宿)",
         "website":"https://www.quantil.com/"
     },
     {
         "domain":"mwcname.com",
-        "name":"QUANTIL (Wangsu)",
+        "name":"QUANTIL (网宿)",
         "website":"https://www.quantil.com/"
     },
     {
@@ -390,87 +389,87 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"chinacloudsites.cn",
-        "name":"Century互联 Shanghai BlueCloud (Supporting Azure China)",
+        "name":"世纪互联旗下上海蓝云(承载 Azure 中国)",
         "website":"https://www.21vbluecloud.com/"
     },
     {
         "domain":"spdydns.com",
-        "name":"Cloud Zhidu Fusion CDN",
+        "name":"云端智度融合 CDN",
         "website":"https://www.isurecloud.net/index.html"
     },
     {
         "domain":"jiashule.com",
-        "name":"Zhidao Chuangyu Cloud Security Acceleration CDN",
+        "name":"知道创宇云安全加速乐 CDN",
         "website":"https://www.yunaq.com/jsl/"
     },
     {
         "domain":"jiasule.org",
-        "name":"Zhidao Chuangyu Cloud Security Acceleration CDN",
+        "name":"知道创宇云安全加速乐 CDN",
         "website":"https://www.yunaq.com/jsl/"
     },
     {
         "domain":"365cyd.cn",
-        "name":"Zhidao Chuangyu Cloud Security CYD (Government Special Use)",
+        "name":"知道创宇云安全创宇盾(政务专用)",
         "website":"https://www.yunaq.com/cyd/"
     },
     {
         "domain":"huaweicloud.com",
-        "name":"Huawei Cloud WAF High-Defense Cloud Shield",
+        "name":"华为云 WAF 高防云盾",
         "website":"https://www.huaweicloud.com/product/aad.html"
     },
     {
         "domain":"cdnhwc1.com",
-        "name":"Huawei Cloud CDN",
+        "name":"华为云 CDN",
         "website":"https://www.huaweicloud.com/product/cdn.html"
     },
     {
         "domain":"cdnhwc2.com",
-        "name":"Huawei Cloud CDN",
+        "name":"华为云 CDN",
         "website":"https://www.huaweicloud.com/product/cdn.html"
     },
     {
         "domain":"cdnhwc3.com",
-        "name":"Huawei Cloud CDN",
+        "name":"华为云 CDN",
         "website":"https://www.huaweicloud.com/product/cdn.html"
     },
     {
         "domain":"dnion.com",
-        "name":"DiLian Technology",
+        "name":"帝联科技",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"ewcache.com",
-        "name":"DiLian Technology",
+        "name":"帝联科技",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"globalcdn.cn",
-        "name":"DiLian Technology",
+        "name":"帝联科技",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"tlgslb.com",
-        "name":"DiLian Technology",
+        "name":"帝联科技",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"fastcdn.com",
-        "name":"DiLian Technology",
+        "name":"帝联科技",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"flxdns.com",
-        "name":"DiLian Technology",
+        "name":"帝联科技",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"dlgslb.cn",
-        "name":"DiLian Technology",
+        "name":"帝联科技",
         "website":"http://www.dnion.com/"
     },
     {
         "domain":"newdefend.cn",
-        "name":"NiuDun Cloud Security",
+        "name":"牛盾云安全",
         "website":"https://www.newdefend.com"
     },
     {
@@ -480,222 +479,222 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"aocdn.com",
-        "name":"KeKao Yun CDN (TieTuKu)",
+        "name":"可靠云 CDN (贴图库)",
         "website":"http://www.kekaoyun.com/"
     },
     {
         "domain":"bsgslb.cn",
-        "name":"Baishan Cloud CDN",
+        "name":"白山云 CDN",
         "website":"https://zh.baishancloud.com/"
     },
     {
         "domain":"qingcdn.com",
-        "name":"Baishan Cloud CDN",
+        "name":"白山云 CDN",
         "website":"https://zh.baishancloud.com/"
     },
     {
         "domain":"bsclink.cn",
-        "name":"Baishan Cloud CDN",
+        "name":"白山云 CDN",
         "website":"https://zh.baishancloud.com/"
     },
     {
         "domain":"trpcdn.net",
-        "name":"Baishan Cloud CDN",
+        "name":"白山云 CDN",
         "website":"https://zh.baishancloud.com/"
     },
     {
         "domain":"anquan.io",
-        "name":"NiuDun Cloud Security",
+        "name":"牛盾云安全",
         "website":"https://www.newdefend.com"
     },
     {
         "domain":"cloudglb.com",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"fastweb.com",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"fastwebcdn.com",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"cloudcdn.net",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"fwcdn.com",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"fwdns.net",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"hadns.net",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"hacdn.net",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"cachecn.com",
-        "name":"KuaiWang CDN",
+        "name":"快网 CDN",
         "website":"http://www.fastweb.com.cn/"
     },
     {
         "domain":"qingcache.com",
-        "name":"QingCloud CDN",
+        "name":"青云 CDN",
         "website":"https://www.qingcloud.com/products/cdn/"
     },
     {
         "domain":"qingcloud.com",
-        "name":"QingCloud CDN",
+        "name":"青云 CDN",
         "website":"https://www.qingcloud.com/products/cdn/"
     },
     {
         "domain":"frontwize.com",
-        "name":"QingCloud CDN",
+        "name":"青云 CDN",
         "website":"https://www.qingcloud.com/products/cdn/"
     },
     {
         "domain":"msscdn.com",
-        "name":"Meituan Cloud CDN",
+        "name":"美团云 CDN",
         "website":"https://www.mtyun.com/product/cdn"
     },
     {
         "domain":"800cdn.com",
-        "name":"Western Digital",
+        "name":"西部数码",
         "website":"https://www.west.cn"
     },
     {
         "domain":"tbcache.com",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"aliyun-inc.com",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"aliyuncs.com",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"alikunlun.net",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"alikunlun.com",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"alicdn.com",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"aligaofang.com",
-        "name":"Alibaba Cloud Shield High Defense",
+        "name":"阿里云盾高防",
         "website":"https://www.aliyun.com/product/ddos"
     },
     {
         "domain":"yundunddos.com",
-        "name":"Alibaba Cloud Shield High Defense",
+        "name":"阿里云盾高防",
         "website":"https://www.aliyun.com/product/ddos"
     },
     {
         "domain":"kunlun*.com",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"cdngslb.com",
-        "name":"Alibaba Cloud CDN",
+        "name":"阿里云 CDN",
         "website":"https://www.aliyun.com/product/cdn"
     },
     {
         "domain":"yunjiasu-cdn.net",
-        "name":"Baidu Cloud Acceleration",
+        "name":"百度云加速",
         "website":"https://su.baidu.com"
     },
     {
         "domain":"momentcdn.com",
-        "name":"MoMen Cloud CDN",
+        "name":"魔门云 CDN",
         "website":"https://www.cachemoment.com"
     },
     {
         "domain":"aicdn.com",
-        "name":"YouPai Cloud",
+        "name":"又拍云",
         "website":"https://www.upyun.com"
     },
     {
         "domain":"qbox.me",
-        "name":"Qiniu Cloud",
+        "name":"七牛云",
         "website":"https://www.qiniu.com"
     },
     {
         "domain":"qiniu.com",
-        "name":"Qiniu Cloud",
+        "name":"七牛云",
         "website":"https://www.qiniu.com"
     },
     {
         "domain":"qiniudns.com",
-        "name":"Qiniu Cloud",
+        "name":"七牛云",
         "website":"https://www.qiniu.com"
     },
     {
         "domain":"jcloudcs.com",
-        "name":"JD Cloud CDN",
+        "name":"京东云 CDN",
         "website":"https://www.jdcloud.com/cn/products/cdn"
     },
     {
         "domain":"jdcdn.com",
-        "name":"JD Cloud CDN",
+        "name":"京东云 CDN",
         "website":"https://www.jdcloud.com/cn/products/cdn"
     },
     {
         "domain":"qianxun.com",
-        "name":"JD Cloud CDN",
+        "name":"京东云 CDN",
         "website":"https://www.jdcloud.com/cn/products/cdn"
     },
     {
         "domain":"jcloudlb.com",
-        "name":"JD Cloud CDN",
+        "name":"京东云 CDN",
         "website":"https://www.jdcloud.com/cn/products/cdn"
     },
     {
         "domain":"jcloud-cdn.com",
-        "name":"JD Cloud CDN",
+        "name":"京东云 CDN",
         "website":"https://www.jdcloud.com/cn/products/cdn"
     },
     {
         "domain":"maoyun.tv",
-        "name":"MaoCloud Fusion CDN",
+        "name":"猫云融合 CDN",
         "website":"https://www.maoyun.com/"
     },
     {
         "domain":"maoyundns.com",
-        "name":"MaoCloud Fusion CDN",
+        "name":"猫云融合 CDN",
         "website":"https://www.maoyun.com/"
     },
     {
         "domain":"xgslb.net",
-        "name":"WebLuker (ChinanetCache)",
+        "name":"WebLuker (蓝汛)",
         "website":"http://www.webluker.com"
     },
     {
@@ -735,17 +734,17 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"verycloud.cn",
-        "name":"VeryCloud Cloud Distribution",
+        "name":"VeryCloud 云分发",
         "website":"https://www.verycloud.cn/"
     },
     {
         "domain":"verycdn.net",
-        "name":"VeryCloud Cloud Distribution",
+        "name":"VeryCloud 云分发",
         "website":"https://www.verycloud.cn/"
     },
     {
         "domain":"verygslb.com",
-        "name":"VeryCloud Cloud Distribution",
+        "name":"VeryCloud 云分发",
         "website":"https://www.verycloud.cn/"
     },
     {
@@ -825,62 +824,62 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"netdna.com",
-        "name":"Stackpath (formerly MaxCDN)",
+        "name":"Stackpath (原 MaxCDN)",
         "website":"https://www.stackpath.com/maxcdn/"
     },
     {
         "domain":"netdna-cdn.com",
-        "name":"Stackpath (formerly MaxCDN)",
+        "name":"Stackpath (原 MaxCDN)",
         "website":"https://www.stackpath.com/maxcdn/"
     },
     {
         "domain":"netdna-ssl.com",
-        "name":"Stackpath (formerly MaxCDN)",
+        "name":"Stackpath (原 MaxCDN)",
         "website":"https://www.stackpath.com/maxcdn/"
     },
     {
         "domain":"cdntip.com",
-        "name":"Tencent Cloud CDN",
+        "name":"腾讯云 CDN",
         "website":"https://cloud.tencent.com/product/cdn-scd"
     },
     {
         "domain":"dnsv1.com",
-        "name":"Tencent Cloud CDN",
+        "name":"腾讯云 CDN",
         "website":"https://cloud.tencent.com/product/cdn-scd"
     },
     {
         "domain":"tencdns.net",
-        "name":"Tencent Cloud CDN",
+        "name":"腾讯云 CDN",
         "website":"https://cloud.tencent.com/product/cdn-scd"
     },
     {
         "domain":"dayugslb.com",
-        "name":"Tencent Cloud Dayu BGP High Defense",
+        "name":"腾讯云大禹 BGP 高防",
         "website":"https://cloud.tencent.com/product/ddos-advanced"
     },
     {
         "domain":"tcdnvod.com",
-        "name":"Tencent Cloud Video CDN",
+        "name":"腾讯云视频 CDN",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"tdnsv5.com",
-        "name":"Tencent Cloud CDN",
+        "name":"腾讯云 CDN",
         "website":"https://cloud.tencent.com/product/cdn-scd"
     },
     {
         "domain":"ksyuncdn.com",
-        "name":"Kingsoft Cloud CDN",
+        "name":"金山云 CDN",
         "website":"https://www.ksyun.com/post/product/CDN"
     },
     {
         "domain":"ks-cdn.com",
-        "name":"Kingsoft Cloud CDN",
+        "name":"金山云 CDN",
         "website":"https://www.ksyun.com/post/product/CDN"
     },
     {
         "domain":"ksyuncdn-k1.com",
-        "name":"Kingsoft Cloud CDN",
+        "name":"金山云 CDN",
         "website":"https://www.ksyun.com/post/product/CDN"
     },
     {
@@ -905,12 +904,12 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"lsycdn.com",
-        "name":"LanShi Cloud CDN",
+        "name":"蓝视云 CDN",
         "website":"https://cloud.lsy.cn/"
     },
     {
         "domain":"scsdns.com",
-        "name":"YiCloud Technology Cloud Acceleration CDN",
+        "name":"逸云科技云加速 CDN",
         "website":"http://www.exclouds.com/navPage/wise"
     },
     {
@@ -930,7 +929,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"sangfordns.com",
-        "name":"Sangfor AD Series Application Delivery Products Single-Sided Acceleration Solutions",
+        "name":"深信服 AD 系列应用交付产品  单边加速解决方案",
         "website":"http://www.sangfor.com.cn/topic/2011adn/solutions5.html"
     },
     {
@@ -985,7 +984,7 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"footprint.net",
-        "name":"CenturyLink CDN (formerly Level 3)",
+        "name":"CenturyLink CDN (原 Level 3)",
         "website":"https://www.centurylink.com/business/networking/cdn.html"
     },
     {
@@ -1045,282 +1044,282 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"zenedge.net",
-        "name":"Oracle Dyn Web Application Security suite (formerly Zenedge CDN)",
+        "name":"Oracle Dyn Web Application Security suite (原 Zenedge CDN)",
         "website":"https://cdn.tatacommunications.com"
     },
     {
         "domain":"biliapi.com",
-        "name":"Bilibili Business GSLB",
+        "name":"Bilibili 业务 GSLB",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"hdslb.net",
-        "name":"Bilibili High-Availability Load Balancing",
+        "name":"Bilibili 高可用负载均衡",
         "website":"https://github.com/bilibili/overlord"
     },
     {
         "domain":"hdslb.com",
-        "name":"Bilibili High-Availability Regional Load Balancing",
+        "name":"Bilibili 高可用地域负载均衡",
         "website":"https://github.com/bilibili/overlord"
     },
     {
         "domain":"xwaf.cn",
-        "name":"JiYu Cloud Security (Zhejiang YiYun Cloud Computing Co., Ltd.)",
+        "name":"极御云安全(浙江壹云云计算有限公司)",
         "website":"https://www.stopddos.cn"
     },
     {
         "domain":"shifen.com",
-        "name":"Baidu Subsidiary Business Regional Load Balancing System",
+        "name":"百度旗下业务地域负载均衡系统",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"sinajs.cn",
-        "name":"Sina Static Domain",
+        "name":"新浪静态域名",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"tencent-cloud.net",
-        "name":"Tencent Subsidiary Business Regional Load Balancing System",
+        "name":"腾讯旗下业务地域负载均衡系统",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"elemecdn.com",
-        "name":"Ele.me Static Domain and Regional Load Balancing",
+        "name":"饿了么静态域名与地域负载均衡",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"sinaedge.com",
-        "name":"SinaTech Fusion CDN Load Balancing",
+        "name":"新浪科技融合 CDN 负载均衡",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"sina.com.cn",
-        "name":"SinaTech Fusion CDN Load Balancing",
+        "name":"新浪科技融合 CDN 负载均衡",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"sinacdn.com",
-        "name":"SinaCloud CDN",
+        "name":"新浪云 CDN",
         "website":"https://www.sinacloud.com/doc/sae/php/cdn.html"
     },
     {
         "domain":"sinasws.com",
-        "name":"SinaCloud CDN",
+        "name":"新浪云 CDN",
         "website":"https://www.sinacloud.com/doc/sae/php/cdn.html"
     },
     {
         "domain":"saebbs.com",
-        "name":"SinaCloud SAE Cloud Engine",
+        "name":"新浪云 SAE 云引擎",
         "website":"https://www.sinacloud.com/doc/sae/php/cdn.html"
     },
     {
         "domain":"websitecname.cn",
-        "name":"MeichengInterconnect BuildSiteStar,
+        "name":"美橙互联旗下建站之星",
         "website":"https://www.sitestar.cn"
     },
     {
         "domain":"cdncenter.cn",
-        "name":"Meicheng Interconnect CDN",
+        "name":"美橙互联 CDN",
         "website":"https://www.cndns.com"
     },
     {
         "domain":"vhostgo.com",
-        "name":"Western Digital Virtual Host",
+        "name":"西部数码虚拟主机",
         "website":"https://www.west.cn"
     },
     {
         "domain":"jsd.cc",
-        "name":"Shanghai Yundun YUNDUN",
+        "name":"上海云盾 YUNDUN",
         "website":"https://www.yundun.com"
     },
     {
         "domain":"powercdn.cn",
-        "name":"Power Online CDN",
+        "name":"动力在线 CDN",
         "website":"http://www.powercdn.com"
     },
     {
         "domain":"21vokglb.cn",
-        "name":"Century Interconnect Cloud Express Business",
+        "name":"世纪互联云快线业务",
         "website":"https://www.21vianet.com"
     },
     {
         "domain":"21vianet.com.cn",
-        "name":"Century Interconnect Cloud Express Business",
+        "name":"世纪互联云快线业务",
         "website":"https://www.21vianet.com"
     },
     {
         "domain":"21okglb.cn",
-        "name":"Century Interconnect Cloud Express Business",
+        "name":"世纪互联云快线业务",
         "website":"https://www.21vianet.com"
     },
     {
         "domain":"21speedcdn.com",
-        "name":"Century Interconnect Cloud Express Business",
+        "name":"世纪互联云快线业务",
         "website":"https://www.21vianet.com"
     },
     {
         "domain":"21cvcdn.com",
-        "name":"Century Interconnect Cloud Express Business",
+        "name":"世纪互联云快线业务",
         "website":"https://www.21vianet.com"
     },
     {
         "domain":"okcdn.com",
-        "name":"Century Interconnect Cloud Express Business",
+        "name":"世纪互联云快线业务",
         "website":"https://www.21vianet.com"
     },
     {
         "domain":"okglb.com",
-        "name":"Century Interconnect Cloud Express Business",
+        "name":"世纪互联云快线业务",
         "website":"https://www.21vianet.com"
     },
     {
         "domain":"cdnetworks.net",
-        "name":"Beijing Tongxing Wandian Network Technology",
+        "name":"北京同兴万点网络技术",
         "website":"http://www.txnetworks.cn/"
     },
     {
         "domain":"txnetworks.cn",
-        "name":"Beijing Tongxing Wandian Network Technology",
+        "name":"北京同兴万点网络技术",
         "website":"http://www.txnetworks.cn/"
     },
     {
         "domain":"cdnnetworks.com",
-        "name":"Beijing Tongxing Wandian Network Technology",
+        "name":"北京同兴万点网络技术",
         "website":"http://www.txnetworks.cn/"
     },
     {
         "domain":"txcdn.cn",
-        "name":"Beijing Tongxing Wandian Network Technology",
+        "name":"北京同兴万点网络技术",
         "website":"http://www.txnetworks.cn/"
     },
     {
         "domain":"cdnunion.net",
-        "name":"Baoteng Interconnect Shanghai Wangen Network (CDN Union)",
+        "name":"宝腾互联旗下上海万根网络(CDN 联盟)",
         "website":"http://www.cdnunion.com"
     },
     {
         "domain":"cdnunion.com",
-        "name":"Baoteng Interconnect Shanghai Wangen Network (CDN Union)",
+        "name":"宝腾互联旗下上海万根网络(CDN 联盟)",
         "website":"http://www.cdnunion.com"
     },
     {
         "domain":"mygslb.com",
-        "name":"Baoteng Interconnect Shanghai Wangen Network (YaoCDN)",
+        "name":"宝腾互联旗下上海万根网络(YaoCDN)",
         "website":"http://www.vangen.cn"
     },
     {
         "domain":"cdnudns.com",
-        "name":"Baoteng Interconnect Shanghai Wangen Network (YaoCDN)",
+        "name":"宝腾互联旗下上海万根网络(YaoCDN)",
         "website":"http://www.vangen.cn"
     },
     {
         "domain":"sprycdn.com",
-        "name":"Baoteng Interconnect Shanghai Wangen Network (YaoCDN)",
+        "name":"宝腾互联旗下上海万根网络(YaoCDN)",
         "website":"http://www.vangen.cn"
     },
     {
         "domain":"chuangcdn.com",
-        "name":"Chuangshi Cloud Fusion CDN",
+        "name":"创世云融合 CDN",
         "website":"https://www.chuangcache.com/index.html"
     },
     {
         "domain":"aocde.com",
-        "name":"Chuangshi Cloud Fusion CDN",
+        "name":"创世云融合 CDN",
         "website":"https://www.chuangcache.com"
     },
     {
         "domain":"ctxcdn.cn",
-        "name":"China Telecom Tianyi Cloud CDN",
+        "name":"中国电信天翼云 CDN",
         "website":"https://www.ctyun.cn/product2/#/product/10027560"
     },
     {
         "domain":"yfcdn.net",
-        "name":"Yunfan Acceleration CDN",
+        "name":"云帆加速 CDN",
         "website":"https://www.yfcloud.com"
     },
     {
         "domain":"mmycdn.cn",
-        "name":"ManMan Cloud CDN (Zhonglian Lixin)",
+        "name":"蛮蛮云 CDN(中联利信)",
         "website":"https://www.chinamaincloud.com/cloudDispatch.html"
     },
     {
         "domain":"chinamaincloud.com",
-        "name":"ManMan Cloud CDN (Zhonglian Lixin)",
+        "name":"蛮蛮云 CDN(中联利信)",
         "website":"https://www.chinamaincloud.com/cloudDispatch.html"
     },
     {
         "domain":"cnispgroup.com",
-        "name":"Zhonglian Data (Zhonglian Lixin)",
+        "name":"中联数据(中联利信)",
         "website":"http://www.cnispgroup.com/"
     },
     {
         "domain":"cdnle.com",
-        "name":"Xin Le Shi Yun Lian (formerly Letv Cloud) CDN",
+        "name":"新乐视云联(原乐视云)CDN",
         "website":"http://www.lecloud.com/zh-cn"
     },
     {
         "domain":"gosuncdn.com",
-        "name":"Gaosheng Holdings CDN Technology",
+        "name":"高升控股 CDN 技术",
         "website":"http://www.gosun.com"
     },
     {
         "domain":"mmtrixopt.com",
-        "name":"mmTrix Performance Cube (under Gaosheng Holdings)",
+        "name":"mmTrix 性能魔方(高升控股旗下)",
         "website":"http://www.mmtrix.com"
     },
     {
         "domain":"cloudfence.cn",
-        "name":"LanDun Cloud CDN",
+        "name":"蓝盾云 CDN",
         "website":"https://www.cloudfence.cn/#/cloudWeb/yaq/yaqyfx"
     },
     {
         "domain":"ngaagslb.cn",
-        "name":"Xin Liu Cloud (Xin Liu Wan Lian)",
+        "name":"新流云(新流万联)",
         "website":"https://www.ngaa.com.cn"
     },
     {
         "domain":"p2cdn.com",
-        "name":"Xingyu Cloud P2P CDN",
+        "name":"星域云 P2P CDN",
         "website":"https://www.xycloud.com"
     },
     {
         "domain":"00cdn.com",
-        "name":"Xingyu Cloud P2P CDN",
+        "name":"星域云 P2P CDN",
         "website":"https://www.xycloud.com"
     },
     {
         "domain":"sankuai.com",
-        "name":"Meituan Cloud (SanKuai Technology) Load Balancing",
+        "name":"美团云(三快科技)负载均衡",
         "website":"https://www.mtyun.com"
     },
     {
         "domain":"lccdn.org",
-        "name":"LingZhi Cloud CDN (Hangzhou LingZhi Cloud Painting)",
+        "name":"领智云 CDN(杭州领智云画)",
         "website":"http://www.linkingcloud.com"
     },
     {
         "domain":"nscloudwaf.com",
-        "name":"LuMeng Cloud WAF",
+        "name":"绿盟云 WAF",
         "website":"https://cloud.nsfocus.com"
     },
     {
         "domain":"2cname.com",
-        "name":"NetDi Security",
+        "name":"网堤安全",
         "website":"https://www.ddos.com"
     },
     {
         "domain":"ucloudgda.com",
-        "name":"UCloud Rome Global Network Acceleration",
+        "name":"UCloud 罗马 Rome 全球网络加速",
         "website":"https://www.ucloud.cn/site/product/rome.html"
     },
     {
         "domain":"google.com",
-        "name":"Google Web Services",
+        "name":"Google Web 业务",
         "website":"https://lab.skk.moe/cdn"
     },
     {
         "domain":"1e100.net",
-        "name":"Google Web Services",
+        "name":"Google Web 业务",
         "website":"https://lab.skk.moe/cdn"
     },
     {
@@ -1330,12 +1329,12 @@ title: 'Built-in CDN List'
     },
     {
         "domain":"alipaydns.com",
-        "name":"Ant Financial Subsidiary Business Regional Load Balancing System",
+        "name":"蚂蚁金服旗下业务地域负载均衡系统",
         "website":"https://lab.skk.moe/cdn/"
     },
     {
         "domain":"wscloudcdn.com",
-        "name":"QuanSu Cloud (Wangsu) CloudEdge Cloud Acceleration",
+        "name":"全速云(网宿)CloudEdge 云加速",
         "website":"https://www.quansucloud.com/product.action?product.id=270"
     }
 ]

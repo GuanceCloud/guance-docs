@@ -35,7 +35,7 @@ Datakit 启动后。默认会暴露一些 [Prometheus 指标](../datakit/datakit
         
     [[inputs.dk]]
     
-      # See <<< homepage >>>/datakit/datakit-metrics/#metrics for all metrics exported by Datakit.
+      # See https://docs.<<<custom_key.brand_domain>>>/datakit/datakit-metrics/#metrics for all metrics exported by Datakit.
       metric_name_filter = [
         ### Collect all metrics(these may collect 300+ metrics of Datakit)
         ### if you want to collect all, make this rule the first in the list.
