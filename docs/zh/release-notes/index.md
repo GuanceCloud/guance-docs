@@ -37,6 +37,71 @@ icon: zy/release-notes
 
 </div>
 
+## 2025 年 3 月 26 日 {#20250326}
+
+### 功能更新 {#feature0326}
+
+
+#### 事件
+
+1. [未恢复事件](../events/event-explorer/unrecovered-events.md)：时间控件默认自动刷新，手动恢复事件恢复成功后新增前端页面提示。
+2. [事件详情](../events/event-explorer/event-details.md)：告警通知页面显示优化。
+3. 事件、智能监控查看器导出追加“是否通知”显示。
+
+#### 管理
+
+[数据转发](../management/backup/index.md#permission)：新增权限配置。通过为转发的数据设置查看权限，有效提高数据安全性。
+
+#### 监控
+
+1. [基础设施存活检测 V2](../monitoring/monitor/infrastructure-detection.md)：新增可配置检测区间。
+2. 通知对象管理：新增 Slack 和 Teams 两个通知对象，以满足全球更多用户的需求。
+
+#### 场景
+
+1. 视图变量：支持外部数据源查询。
+2. 图表：
+    
+    - 新增“[监控器总览](../scene/visual-chart/monitor_summary.md)”图表，集成监控器列表，展示最新状态，实现即时监测与异常态势感知。
+    - 命令面板：显示优化；
+    - 图表查询：在 DQL 查询中，使用 “wildcard” 或“正则”时，新增查询建议提示。
+
+#### 付费计划与账单
+
+1. 新增月账单模块，直观展示月消费总量。
+2. 新增导出账单功能。
+
+#### 应用访问监测
+
+应用列表 > 新建应用：新增“压缩上传”和“自定义托管地址”的参数配置。
+
+#### 可用性监测
+
+新增“南非”和“中国香港”作为拨测节点，进一步扩展全球覆盖范围。
+
+#### 日志
+
+1. [日志查看器](../logs/explorer.md)
+    - 快捷筛选操作项调整；
+    - 列表分词逻辑优化；
+    - JSON 格式数据新增 “[JSON 搜索](../logs/explorer-details.md#json)”；
+2. 索引 > 关键字段：新增“[一键获取](../logs/multi-index/index.md#extract)”。
+
+<!--
+#### AI 智能助手
+
+优化[生成图表](../guance-ai/index.md#chart)功能：通过本地 Func 缓存指标管理数据，生成的 DQL 更加贴近语义描述。
+
+-->
+### 新增集成 {#inte0326}
+
+- 新增 [Azure Network Interfaces](../integrations/azure_network_interfaces.md)；
+- 新增 [Azure Kubernetes](../integrations/azure_kubernetes.md)；
+- 新增 [Azure virtual network gateway](../integrations/azure_virtual_network_gateway.md)；
+- 完善英文集成翻译。
+
+### Bug 修复 {#bug0326}
+
 ## 2025 年 3 月 12 日 {#20250312}
 
 ### Breaking Changes {#breakingchanges0312}

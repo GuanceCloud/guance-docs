@@ -1,15 +1,15 @@
 nav:
   - index.md
-  - 'Web 监测': web
-  - '小程序监测': miniapp
-  - 'Android 监测': android
-  - 'iOS/tvOS 监测': ios
-  - 'React Native 监测': react-native
-  - 'Flutter 监测': flutter
-  - 'UniApp 监测': uni-app
-  - 'macOS 监测': macos
-  - 'C++ 监测': cpp
-  - 'Unity 监测': unity
+  - 'Web': web
+  - '小程序': miniapp
+  - 'Android': android
+  - 'iOS/tvOS': ios
+  - 'React Native': react-native
+  - 'Flutter': flutter
+  - 'UniApp': uni-app
+  - 'macOS': macos
+  - 'C++': cpp
+  - 'Unity': unity
   - '查看器': explorer
   - '分析看板': app-analysis.md
   - '会话重放': session-replay

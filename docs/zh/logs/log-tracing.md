@@ -22,6 +22,11 @@
 
 <img src="../img/log-tracing.png" width="80%" >
 
+### AI 错误分析
+
+> 观测云提供一键解析错误日志的能力。更多详情，可参考 [大模型自动提取](./explorer-details.md#ai)。
+
+
 ## 更多阅读
 
 <font size=3>

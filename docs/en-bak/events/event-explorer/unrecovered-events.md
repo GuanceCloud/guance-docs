@@ -1,7 +1,7 @@
 # Unrecovered Events
 ---
 
-![](../img/5.event_6.png)
+![](../img/unrecovered_events_list.png)
 
 Enter **Events** and Guance will show you the **Unrecovered Event Explorer** by default. You can view all unresolved events that are continuously triggered in the workspace, as well as data statistics for unresolved events under different alert levels and details of alert information.
 
