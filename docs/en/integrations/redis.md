@@ -1,6 +1,6 @@
 ---
 title     : 'Redis'
-summary   : 'Redis Metrics and log collection'
+summary   : 'Collect Redis metrics and logs'
 tags:
   - 'CACHING'
   - 'MIDDLEWARE'
@@ -13,21 +13,22 @@ monitor:
     path: 'monitor/en/redis'
 ---
 
+
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-Redis metrics collector, collects the following data:
+Redis indicator collector, which collects the following data:
 
-- If AOF data persistence is enabled, it will collect relevant metrics
+- Turn on AOF data persistence and collect relevant metrics
 - RDB data persistence metrics
 - Slow Log monitoring metrics
 - Big Key scan monitoring
-- Master-slave Replication
+- Master-slave replication
 
 ## Configuration {#config}
 
-Tested versions:
+Already tested version:
 
 - [x] 7.0.11
 - [x] 6.2.12
@@ -35,24 +36,29 @@ Tested versions:
 - [x] 5.0.14
 - [x] 4.0.14
 
-### Prerequisites {#reqirement}
+### Precondition {#reqirement}
 
-- When collecting data in a master-slave architecture, configure the host information of the slave node or the master node to obtain different master-slave related metric information.
-- Create a monitoring user (**optional**): for redis 6.0+, enter the `redis-cli` command line, create a user and authorize:
+- Redis version v5.0+
+
+When collecting data under the master-slave architecture, please configure the host information of the slave node or master node for data collection, and you can get the different metric information related to the master-slave.
+
+Create Monitor User (**optional**)
+
+redis6.0+ goes to the `redis-cli` command line, create the user and authorize
 
 ```sql
 ACL SETUSER username >password
 ACL SETUSER username on +@dangerous +ping
 ```
 
-- Authorize statistics for `hotkey/bigkey` information, enter the `redis-cli` command line:
+- goes to the `redis-cli` command line, authorization statistics `hotkey/bigkey` information
 
 ```sql
 CONFIG SET maxmemory-policy allkeys-lfu
 ACL SETUSER username on +get +@read +@connection +@keyspace ~*
 ```
 
-- Remote collection of hotkey & `bigkey` requires installing redis-cli (when collecting locally, redis-server already includes redis-cli):
+- collect hotkey & `bigkey` remote, need install redis-cli (collect local need not install it)
 
 ```shell
 # ubuntu 
@@ -65,9 +71,9 @@ yum install -y  redis
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST installation"
+=== "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `redis.conf.sample` and rename it to `redis.conf`. Example as follows:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `redis.conf.sample` and name it `redis.conf`. Examples are as follows:
     
     ```toml
         
@@ -75,7 +81,7 @@ yum install -y  redis
       host = "localhost"
       port = 6379
     
-      ## TLS connection config, redis-cli version must be up to 6.0+
+      ## TLS connection config, redis-cli version must up 6.0+
       ## These tls configuration files should be the same as the ones used on the server. 
       ## See also: https://redis.io/docs/latest/operate/oss_and_stack/management/security/encryption/
       # insecure_skip_verify = true
@@ -109,19 +115,19 @@ yum install -y  redis
       # redis_cli_path = "/usr/bin/redis-cli"
     
       ## @param hotkey - boolean - optional - default: false
-      ## If you collect hotkey, set this to true
+      ## If you collet hotkey, set this to true
       # hotkey = false
     
       ## @param bigkey - boolean - optional - default: false
-      ## If you collect bigkey, set this to true
+      ## If you collet bigkey, set this to true
       # bigkey = false
     
       ## @param key_interval - number - optional - default: 5m
-      ## Interval of collect hotkey & bigkey
+      ## Interval of collet hotkey & bigkey
       # key_interval = "5m"
     
       ## @param key_timeout - number - optional - default: 5m
-      ## Timeout of collect hotkey & bigkey
+      ## Timeout of collet hotkey & bigkey
       # key_timeout = "5m"
     
       ## @param key_scan_sleep - string - optional - default: "0.1"
@@ -166,7 +172,7 @@ yum install -y  redis
       # #required, glob logfiles
       # files = ["/var/log/redis/*.log"]
     
-      ## glob filter
+      ## glob filteer
       #ignore = [""]
     
       ## grok pipeline script path
@@ -186,40 +192,40 @@ yum install -y  redis
     
     ```
     
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
 ---
 
 ???+ attention
 
-    If it's Alibaba Cloud Redis, and corresponding username and password are set, `<PASSWORD>` in conf should be set to `your-user:your-password`, such as `datakit:Pa55W0rd`
+    If it is Alibaba Cloud Redis and the corresponding username and PASSWORD are set, the `<PASSWORD>` should be set to `your-user:your-password`, such as `datakit:Pa55W0rd`.
 <!-- markdownlint-enable -->
 
 ### Log Collection Configuration {#logging-config}
 
-To collect Redis logs, you need to enable log file output configuration in Redis `redis.config`:
+To collect Redis logs, you need to open the log file `redis.config` output configuration in Redis:
 
 ```toml
 [inputs.redis.log]
-    # Log path needs to be an absolute path
+    # Log path needs to be filled with absolute path
     files = ["/var/log/redis/*.log"]
 ```
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    When configuring log collection, DataKit must be installed on the same host as the Redis service, or use another method to mount the logs to the machine where DataKit is located.
-
-    In K8s, Redis logs can be exposed to stdout, and DataKit can automatically find the corresponding logs.
+    When configuring log collection, you need to install the DataKit on the same host as the Redis service, or otherwise mount the log on the DataKit machine.
+    
+    In K8s, Redis logs can be exposed to stdout, and DataKit can automatically find its corresponding log.
 <!-- markdownlint-enable -->
 
 ## Metrics {#metric}
-
-All the following data collections will append global election tags by default, or you can specify other tags through `[inputs.redis.tags]` in the configuration:
+<!-- markdownlint-disable MD009 -->
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.redis.tags]` if needed:
 
 ``` toml
  [inputs.redis.tags]
@@ -255,7 +261,7 @@ All the following data collections will append global election tags by default, 
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -278,8 +284,7 @@ All the following data collections will append global election tags by default, 
 |`resp`|Client RESP protocol version. Added in Redis 7.0.|float|count|
 |`ssub`|Number of shard channel subscriptions. Added in Redis 7.0.3.|float|count|
 |`sub`|Number of channel subscriptions|float|count|
-|`tot_mem`|Total memory consumed by this client in its various buffers.|float|count|
-
+|`tot_mem`|Total memory consumed by this client in its various buffers.|float|count| 
 
 
 
@@ -298,7 +303,7 @@ All the following data collections will append global election tags by default, 
 |`server_addr`|Server addr|
 |`service_name`|Service name|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -336,8 +341,7 @@ All the following data collections will append global election tags by default, 
 |`cluster_stats_messages_sent`|Number of messages sent via the cluster node-to-node binary bus.|float|count|
 |`cluster_stats_messages_update_received`|Another node slots configuration.|float|count|
 |`cluster_stats_messages_update_sent`|Another node slots configuration.|float|count|
-|`total_cluster_links_buffer_limit_exceeded`|Accumulated count of cluster links freed due to exceeding the `cluster-link-sendbuf-limit` configuration.|float|count|
-
+|`total_cluster_links_buffer_limit_exceeded`|Accumulated count of cluster links freed due to exceeding the `cluster-link-sendbuf-limit` configuration.|float|count| 
 
 
 
@@ -357,7 +361,7 @@ All the following data collections will append global election tags by default, 
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -366,8 +370,7 @@ All the following data collections will append global election tags by default, 
 |`failed_calls`|The number of failed calls (errors within the command execution).|float|count|
 |`rejected_calls`|The number of rejected calls (errors prior command execution).|float|count|
 |`usec`|The total CPU time consumed by these commands.|float|μs|
-|`usec_per_call`|The average CPU consumed per command execution.|float|μs|
-
+|`usec_per_call`|The average CPU consumed per command execution.|float|μs| 
 
 
 
@@ -387,15 +390,14 @@ All the following data collections will append global election tags by default, 
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_ttl`|Average ttl.|int|-|
 |`expires`|expires time.|int|-|
-|`keys`|Key.|int|-|
-
+|`keys`|Key.|int|-| 
 
 
 
@@ -425,7 +427,7 @@ All the following data collections will append global election tags by default, 
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -615,8 +617,7 @@ All the following data collections will append global election tags by default, 
 |`used_memory_peak_perc`|The percentage of used_memory_peak out of used_memory.|float|percent|
 |`used_memory_rss`|Number of bytes that Redis allocated as seen by the operating system (a.k.a resident set size)|float|B|
 |`used_memory_scripts`|Number of bytes used by cached Lua scripts.|float|B|
-|`used_memory_startup`|Initial amount of memory consumed by Redis at startup in bytes|float|B|
-
+|`used_memory_startup`|Initial amount of memory consumed by Redis at startup in bytes|float|B| 
 
 
 
@@ -639,7 +640,7 @@ All the following data collections will append global election tags by default, 
 |`slave_id`|Slave ID, only collected for master redis.|
 |`slave_state`|Slave state, only collected for master redis.|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -648,7 +649,7 @@ All the following data collections will append global election tags by default, 
 |`master_link_status`|Status of the link (up/down), `1` for up, `0` for down, only collected for slave redis.|int|-|
 |`master_repl_offset`|The server's current replication offset.|int|-|
 |`slave_lag`|Slave lag, only collected for master redis.|int|-|
-|`slave_offset`|Slave offset, only collected for master redis.|int|-|
+|`slave_offset`|Slave offset, only collected for master redis.|int|-| 
 
 
 
@@ -664,8 +665,7 @@ All the following data collections will append global election tags by default, 
 
 
 
-
-## Custom Objects {#object}
+## Custom Object {#object}
 
 
 
@@ -726,7 +726,7 @@ All the following data collections will append global election tags by default, 
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -738,7 +738,7 @@ All the following data collections will append global election tags by default, 
 
 
 
-## Logs {#logging}
+## Logging {#logging}
 
 <!-- markdownlint-disable MD024 -->
 
@@ -761,14 +761,13 @@ All the following data collections will append global election tags by default, 
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`keys_sampled`|Sampled keys in the key space.|int|-|
-|`value_length`|Key length.|int|-|
-
+|`value_length`|Key length.|int|-| 
 
 
 
@@ -789,14 +788,13 @@ All the following data collections will append global election tags by default, 
 |`server`|Server addr.|
 |`service_name`|Service name.|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`key_count`|Key count times.|int|-|
-|`keys_sampled`|Sampled keys in the key space.|int|-|
-
+|`keys_sampled`|Sampled keys in the key space.|int|-| 
 
 
 
@@ -838,7 +836,7 @@ All the following data collections will append global election tags by default, 
 |`server`|Server addr|
 |`service_name`|Service name|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -846,8 +844,7 @@ All the following data collections will append global election tags by default, 
 |`cost_time`|Latest event latency in millisecond.|int|ms|
 |`event_name`|Event name.|string|-|
 |`max_cost_time`|All-time maximum latency for this event.|int|ms|
-|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec|
-
+|`occur_time`|Unix timestamp of the latest latency spike for the event.|int|sec| 
 
 
 
@@ -855,7 +852,7 @@ All the following data collections will append global election tags by default, 
 
 ### `redis_slowlog`
 
-Redis slow query command history, here we collect it as logs.
+Redis 慢查询命令历史，这里我们将其以日志的形式采集
 
 - Tags
 
@@ -867,7 +864,7 @@ Redis slow query command history, here we collect it as logs.
 |`server`|server|
 |`service_name`|Service name|
 
-- Fields list
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -880,8 +877,7 @@ Redis slow query command history, here we collect it as logs.
 |`slowlog_id`|Slow log unique ID|int|-|
 |`slowlog_max`|Slow maximum duration|int|μs|
 |`slowlog_median`|Slow median duration|int|μs|
-|`slowlog_micros`|Cost time|int|μs|
-
+|`slowlog_micros`|Cost time|int|μs| 
 
 
 
@@ -889,22 +885,21 @@ Redis slow query command history, here we collect it as logs.
 
 
 <!-- markdownlint-enable -->
+### Logging Pipeline {#pipeline}
 
-### Pipeline Log Parsing {#pipeline}
-
-Original log:
+The original log is:
 
 ```log
 122:M 14 May 2019 19:11:40.164 * Background saving terminated with success
 ```
 
-Parsed fields list as follows:
+The list of cut fields is as follows:
 
-| Field Name      | Field Value                                      | Description                         |
-| ---         | ---                                         | ---                         |
-| `pid`       | `122`                                       | Process id                      |
-| `role`      | `M`                                         | Role                         |
-| `serverity` | `*`                                         | Service                         |
-| `status`     | `notice`                                    | Log level                     |
-| `msg`       | `Background saving terminated with success` | Log content                     |
+| Field Name  | Field Value                                 | Description                                  |
+| ---         | ---                                         | ---                                          |
+| `pid`       | `122`                                       | process id                                   |
+| `role`      | `M`                                         | role                                         |
+| `serverity` | `*`                                         | service                                      |
+| `statu`     | `notice`                                    | log level                                    |
+| `msg`       | `Background saving terminated with success` | log content                                  |
 | `time`      | `1557861100164000000`                       | Nanosecond timestamp (as line protocol time) |

@@ -1,6 +1,6 @@
 ---
 title     : 'RabbitMQ'
-summary   : 'Collect RabbitMQ Metrics data'
+summary   : 'Collect RabbitMQ metrics'
 tags:
   - 'MESSAGE QUEUES'
   - 'MIDDLEWARE'
@@ -13,28 +13,29 @@ monitor   :
     path  : 'monitor/en/rabbitmq'
 ---
 
+
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-The RabbitMQ collector gathers data via the `rabbitmq-management` plugin for monitoring RabbitMQ. It can:
+RabbitMQ collector monitors RabbitMQ by collecting data through the plug-in `rabbitmq-management` and can:
 
-- Provide a RabbitMQ Summary overview, such as connection count, queue count, total message count, etc.
-- Track RabbitMQ queue information, such as queue size and consumer count, etc.
-- Track RabbitMQ node information, such as usage of `socket` `mem`, etc.
-- Track RabbitMQ exchange information, such as `message_publish_count`, etc.
+- RabbitMQ overview, such as connections, queues, total messages, and so on.
+- Track RabbitMQ queue information, such as queue size, consumer count and so on.
+- Rack RabbitMQ node information, such as `socket` `mem`.
+- Tracking RabbitMQ exchange information such as `message_publish_count`.
 
 ## Configuration {#config}
 
-### Prerequisites {#reqirement}
+### Preconditions {#reqirement}
 
-- RabbitMQ version >= `3.8.14`; tested versions:
+- RabbitMQ version >= `3.8.14`; Already tested version:
     - [x] 3.11.x
     - [x] 3.10.x
     - [x] 3.9.x
     - [x] 3.8.x
 
-- Install `rabbitmq` using `Ubuntu` as an example
+- Install `rabbitmq`, take `Ubuntu` as an example
 
     ```shell
     sudo apt-get update
@@ -42,13 +43,13 @@ The RabbitMQ collector gathers data via the `rabbitmq-management` plugin for mon
     sudo service rabbitmq-server start
     ```
 
-- Enable `REST API plug-ins`
+- Start `REST API plug-ins`
 
     ```shell
     sudo rabbitmq-plugins enable rabbitmq_management
     ```
 
-- Create a user, for example:
+- Create user, for example:
 
     ```shell
     sudo rabbitmqctl add_user guance <SECRET>
@@ -57,12 +58,13 @@ The RabbitMQ collector gathers data via the `rabbitmq-management` plugin for mon
     ```
 
 ### Collector Configuration {#input-config}
-
 <!-- markdownlint-disable MD046 -->
-=== "HOST installation"
+=== "Host Installation"
 
-    Go to the *conf.d/rabbitmq* directory under the DataKit installation directory, copy `rabbitmq.conf.sample` and rename it to `rabbitmq.conf`. Example:
-    
+    Go to the `conf.d/rabbitmq` directory under the DataKit installation directory, copy `rabbitmq.conf.sample` and name it `rabbitmq.conf`. Examples are as follows:
+
+
+
     ```toml
         
     [[inputs.rabbitmq]]
@@ -105,12 +107,11 @@ The RabbitMQ collector gathers data via the `rabbitmq-management` plugin for mon
 
 === "Kubernetes"
 
-    You can currently enable the collector by injecting its configuration through [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
+## Metric {#metric}
 
-## Metrics {#metric}
-
-All the following data collected will append the global election tag by default, or you can specify other tags in the configuration via `[inputs.rabbitmq.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.rabbitmq.tags]` if needed:
 
 ``` toml
  [inputs.rabbitmq.tags]
@@ -118,6 +119,7 @@ All the following data collected will append the global election tag by default,
   # more_tag = "some_other_value"
   # ...
 ```
+
 
 
 
@@ -133,7 +135,7 @@ All the following data collected will append the global election tag by default,
 |`rabbitmq_version`|RabbitMQ version|
 |`url`|RabbitMQ url|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -169,7 +171,6 @@ All the following data collected will append the global election tag by default,
 
 
 
-
 ### `rabbitmq_queue`
 
 - Tags
@@ -184,7 +185,7 @@ All the following data collected will append the global election tag by default,
 |`url`|RabbitMQ host URL|
 |`vhost`|RabbitMQ queue virtual hosts|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -215,7 +216,6 @@ All the following data collected will append the global election tag by default,
 
 
 
-
 ### `rabbitmq_exchange`
 
 - Tags
@@ -233,7 +233,7 @@ All the following data collected will append the global election tag by default,
 |`url`|RabbitMQ host URL|
 |`vhost`|RabbitMQ exchange virtual hosts|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -259,7 +259,6 @@ All the following data collected will append the global election tag by default,
 
 
 
-
 ### `rabbitmq_node`
 
 - Tags
@@ -272,7 +271,7 @@ All the following data collected will append the global election tag by default,
 |`node_name`|RabbitMQ node name|
 |`url`|RabbitMQ url|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -296,8 +295,7 @@ All the following data collected will append the global election tag by default,
 
 
 
-
-## Custom Objects {#object}
+## Custom Object {#object}
 
 
 
@@ -323,7 +321,7 @@ All the following data collected will append the global election tag by default,
 
 
 
-- Tags
+- tag
 
 
 | Tag | Description |
@@ -334,7 +332,7 @@ All the following data collected will append the global election tag by default,
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metric List
+- Metric list
 
 
 | Metric | Description | Type | Unit |
@@ -346,39 +344,37 @@ All the following data collected will append the global election tag by default,
 
 
 
-## Logging {#logging}
-
+## Log Collection {#logging}
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
     DataKit must be installed on the host where RabbitMQ is located to collect RabbitMQ logs.
-<!-- markdownlint-enable -->
 
-To collect RabbitMQ logs, you can enable `files` in *rabbitmq.conf* and input the absolute path of the RabbitMQ log file. For example:
+To collect the RabbitMQ log, open `files` in RabbitMQ.conf and write to the absolute path of the RabbitMQ log file. For example:
 
 ```toml
-[[inputs.rabbitmq]]
-  ...
-  [inputs.rabbitmq.log]
-    files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
+    [[inputs.rabbitmq]]
+      ...
+      [inputs.rabbitmq.log]
+        files = ["/var/log/rabbitmq/rabbit@your-hostname.log"]
 ```
 
-After enabling log collection, by default, logs with a source (`source`) of `rabbitmq` will be generated.
+When log collection is turned on, a log with a log `source` of `rabbitmq` is generated by default.
+<!-- markdownlint-enable -->
+### Log Pipeline Function Cut Field Description {#pipeline}
 
-### Log Pipeline Field Splitting Explanation {#pipeline}
+- RabbitMQ universal log cutting
 
-- RabbitMQ General Log Splitting
+Example of common log text:
 
-General log text example:
-
-``` log
+```log
 2021-05-26 14:20:06.105 [warning] <0.12897.46> rabbitmqctl node_health_check and its HTTP API counterpart are DEPRECATED. See https://www.rabbitmq.com/monitoring.html#health-checks for replacement options.
 ```
 
-The list of fields after splitting is as follows:
+The list of cut fields is as follows:
 
 | Field Name | Field Value                             | Description                         |
-| ---        | ---                                     | ---                                 |
-| status     | warning                                 | Log level                           |
-| msg        | <0.12897.46>...replacement options       | Log content                         |
-| time       | 1622010006000000000                     | Nanosecond timestamp (as line protocol time) |
+| ---    | ---                                | ---                          |
+| status | warning                            | Log level                     |
+| msg    | <0.12897.46>...replacement options | Log level                     |
+| time   | 1622010006000000000                | Nanosecond timestamp (as row protocol time) |

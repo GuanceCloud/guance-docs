@@ -1,6 +1,6 @@
 ---
 title     : 'GitLab'
-summary   : 'Collect metrics data from GitLab'
+summary   : 'Collect GitLab metrics and logs'
 tags:
   - 'GITLAB'
   - 'CI/CD'
@@ -9,7 +9,7 @@ dashboard :
   - desc  : 'GitLab'
     path  : 'dashboard/en/gitlab'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -18,18 +18,20 @@ monitor   :
 
 ---
 
-Collect runtime data from GitLab and report it as Metrics to <<< custom_key.brand_name >>>.
+Collect GitLab operation data and report it to <<<custom_key.brand_name>>> in the form of metrics.
 
 ## Configuration {#config}
 
-First, you need to enable the data collection feature for the GitLab service and set up the whitelist. Specific operations are described in the following sections.
+### Collector Configuration {#input-config}
 
-After completing the GitLab settings, configure DataKit. Note that depending on the GitLab version and configuration, the collected data may vary.
+First, you need to open the data collection function of GitLab service and set the white list. See the following sections for specific operations.
+
+After the GitLab setup is complete, configure the DataKit. Note that the data collected may vary depending on the GitLab version and configuration.
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/gitlab` directory under the DataKit installation directory, copy `gitlab.conf.sample`, and rename it to `gitlab.conf`. An example is shown below:
+    Go to the `conf.d/gitlab` directory under the DataKit installation directory, copy `gitlab.conf.sample` and name it `gitlab.conf`. Examples are as follows:
     
     ```toml
         
@@ -61,68 +63,68 @@ After completing the GitLab settings, configure DataKit. Note that depending on 
         # more_tag = "some_other_value"
     
     ```
-
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can use [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector.
+    The collector can now be turned on by [ConfigMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### Enabling Data Collection Functionality in GitLab {#enable-prom}
+### GitLab Turns on Data Collection {#enable-prom}
 
-GitLab needs to have its Prometheus data collection functionality enabled. The method to do this (using an English page as an example) is as follows:
+GitLab needs to turn on the Prometheus data collection function as follows (taking English page as an example):
 
-- Log in with an administrator account to your GitLab page
+- Log in to your GitLab page as an administrator account
 - Go to `Admin Area` > `Settings` > `Metrics and profiling`
-- Select `Metrics - Prometheus`, click `Enable Prometheus Metrics` and then `save change`
+- Select `Metrics - Prometheus`, click `Enable Prometheus Metrics` and `save change`
 - Restart the GitLab service
 
-For more details, see the [official configuration documentation](https://docs.gitlab.com/ee/administration/monitoring/prometheus/gitlab_metrics.html#gitlab-prometheus-metrics){:target="_blank"}.
+See [official configuration doc](https://docs.gitlab.com/ee/administration/monitoring/prometheus/gitlab_metrics.html#gitlab-prometheus-metrics){:target="_blank"}.
 
-### Configuring Data Access Endpoint Whitelist {#white-list}
+### Configure Data Access Whitelist {#white-list}
 
-Enabling the data collection function alone is not enough, as GitLab has strict data management policies. You also need to configure the access endpoint's whitelist. The method is as follows:
+It is not enough to turn on the data collection function. GitLab is very strict with data management, so it is necessary to configure the white list on the access side. The opening mode is as follows:
 
-- Modify the GitLab configuration file `/etc/gitlab/gitlab.rb`, find `gitlab_rails['monitoring_whitelist'] = ['::1/128']` and add the DataKit access IP (usually the IP of the host where DataKit is located; if GitLab is running in a container, add based on actual conditions)
+- Modify the GitLab configuration file `/etc/gitlab/gitlab.rb`, find `gitlab_rails['monitoring_whitelist'] = ['::1/128']` and add the access IP of the DataKit to the array (typically the IP of the host where the DataKit resides, if the GitLab is running in a container, depending on the actual situation)
 - Restart the GitLab service
 
-For more details, see the [official configuration documentation](https://docs.gitlab.com/ee/administration/monitoring/ip_whitelist.html){:target="_blank"}.
+See [official configuration doc](https://docs.gitlab.com/ee/administration/monitoring/ip_whitelist.html){:target="_blank"}.
 
-### Enabling GitLab CI Visibility {#ci-visible}
+### Turn on GitLab CI Visualization {#ci-visible}
 
-Ensure that the DataFlux Func platform is already available.
+Ensure that the DataFlux Func platform is available.
 
-By configuring GitLab Webhooks, you can achieve GitLab CI visibility. This requires using DataFlux Func for data reporting. Follow these steps to enable:
+By configuring GitLab Webhook, GitLab CI visualization can be achieved. Data reporting needs to be done through DataFlux Func, and the steps to enable it are as follows:
 
-1. Install the GitLab CI integration on DataFlux Func (Script ID: `guance_gitlab_ci`). Refer to the [GitLab CI Integration Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-gitlab-ci/){:target="_blank"};
-2. In GitLab, go to `Settings` -> `Webhooks`, configure the URL to the API address from step one, and set Triggers to include Job events and Pipeline events. Click Add webhook to confirm;
+1. Install the GitLab CI integration (script ID: `guance_gitlab_ci`) on DataFlux Func. Follow the installation process as referenced in [GitLab CI Integration Configuration](https://func.<<<custom_key.brand_domain>>>/doc/script-market-guance-gitlab-ci/){:target="_blank"};
+2. In GitLab go to `Settings` > `Webhooks`, configure the URL to the API address obtained from step one. Trigger configure Job events and Pipeline events, and click Add webhook to confirm the addition;
 
-Trigger the GitLab CI process, and after execution, log in to <<< custom_key.brand_name >>> to view the CI execution status.
+Triggering the GitLab CI process will allow you to log in to <<<custom_key.brand_name>>> to view the execution status of CI after completion.
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following data collection will append the global election tag by default, or you can specify other tags in the configuration:
-
-- You can specify additional tags for **GitLab Metrics data** via `[inputs.gitlab.tags]` in the configuration:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.gitlab.tags]` if needed:
 
 ``` toml
-[inputs.gitlab.tags]
-# some_tag = "some_value"
-# more_tag = "some_other_value"
-# ...
+ [inputs.gitlab.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
-- You can specify additional tags for **GitLab CI data** via `[inputs.gitlab.ci_extra_tags]` in the configuration:
+We can specify additional tags for **Gitlab CI data** in the configuration by `[inputs.gitlab.ci_extra_tags]`:
 
 ``` toml
-[inputs.gitlab.ci_extra_tags]
-# some_tag = "some_value"
-# more_tag = "some_other_value"
-# ...
+ [inputs.gitlab.ci_extra_tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
-Note: To ensure proper functioning of GitLab CI, the extra tags specified for GitLab CI data will not overwrite any existing tags in the data (see the GitLab CI tag list below).
+Note: To ensure that GitLab CI functions properly, the extra tags specified for GitLab CI data do not overwrite tags already in its data (see below for a list of GitLab CI tags).
+
+
 
 
 
@@ -140,7 +142,7 @@ GitLab runtime metrics
 |`feature_category`|Feature category|
 |`storage`|Storage|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -176,7 +178,7 @@ GitLab programming language level metrics
 
 NA
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -198,10 +200,10 @@ GitLab HTTP metrics
 
 | Tag | Description |
 |  ----  | --------|
-|`method`|Method|
-|`status`|Status code|
+|`method`|方法|
+|`status`|状态码|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -233,7 +235,7 @@ GitLab Pipeline event metrics
 |`repository_url`|Repository URL|
 |`resource`|Project name|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -267,7 +269,7 @@ GitLab Job Event metrics
 |`sha`|The commit SHA corresponding to build|
 |`user_email`|User email|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -281,3 +283,5 @@ GitLab Job Event metrics
 |`pipeline_id`|Pipeline id for build|string|-|
 |`project_id`|Project id for build|string|-|
 |`runner_id`|Runner id for build|string|-|
+
+

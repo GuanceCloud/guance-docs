@@ -1,37 +1,40 @@
 ---
 title     : 'Disk'
-summary   : 'Collect metrics data for disk'
+summary   : 'Collect metrics of disk'
 tags:
   - 'HOST'
 __int_icon      : 'icon/disk'
 dashboard :
-  - desc  : 'Disk'
+  - desc  : 'disk'
     path  : 'dashboard/en/disk'
 monitor   :
-  - desc  : 'Host Monitoring Library'
+  - desc  : 'host detection library'
     path  : 'monitor/en/host'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The disk collector is used to collect information about the host disk, such as disk storage space and Inode usage.
+Disk collector is used to collect disk information, such as disk storage space, inode usage, etc.
 
 ## Configuration {#config}
 
-After successfully installing and starting DataKit, the Disk collector will be enabled by default, without requiring manual activation.
+After successfully installing and starting DataKit, the disk collector will be enabled by default without the need for manual activation.
 
 <!-- markdownlint-disable MD046 -->
 
+### Collector Configuration {#input-config}
+
 === "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `disk.conf.sample`, and rename it to `disk.conf`. Example as follows:
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `disk.conf.sample` and name it `disk.conf`. Examples are as follows:
 
     ```toml
         
     [[inputs.disk]]
-      ##(optional) collection interval, default is 10 seconds
+      ##(optional) collect interval, default is 10 seconds
       interval = '10s'
     
       ## Physical devices only (e.g. hard disks, cd-rom drives, USB keys)
@@ -55,24 +58,34 @@ After successfully installing and starting DataKit, the Disk collector will be e
       #  more_tag = "some_other_value"
     
     ```
-
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (you need to add it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
     - **ENV_INPUT_DISK_INTERVAL**
     
-        Collector repetition interval duration
+        Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **input.conf**: `interval`
     
-        **Default Value**: 10s
+        **Default**: 10s
+    
+    - **ENV_INPUT_DISK_TAGS**
+    
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
+    
+        **Type**: Map
+    
+        **input.conf**: `tags`
+    
+        **Example**: tag1=value1,tag2=value2
     
     - **ENV_INPUT_DISK_EXTRA_DEVICE**
     
@@ -116,11 +129,11 @@ After successfully installing and starting DataKit, the Disk collector will be e
 
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following data collected will append a global tag named `host` by default (the tag value is the hostname of the machine where DataKit resides), or you can specify other tags through `[inputs.disk.tags]` in the configuration:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.disk.tags]`:
 
-```toml
+``` toml
  [inputs.disk.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -128,8 +141,8 @@ All the following data collected will append a global tag named `host` by defaul
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ info "Disk Metrics Source"
-    On Linux, metrics are obtained by fetching mount information from */proc/self/mountinfo* and then sequentially obtaining disk metrics for each mount point (`statfs()`). For Windows, this is done through a series of Windows APIs such as `GetLogicalDriveStringsW()` system calls to obtain mount points, followed by `GetDiskFreeSpaceExW()` to get disk usage information.
+???+ info "Source of disk metrics"
+    Under Linux, we first get device and mount info from */proc/self/mountinfo*, then get disk usage metrics via `statfs()` syscall. For Windows, we get device and mount info via Windows APIs like `GetLogicalDriveStringsW()`, and get disk usage by another API `GetDiskFreeSpaceExW()`
 
     In the [:octicons-tag-24: Version-1.66.0](../datakit/changelog-2025.md#cl-1.66.0) release, the disk collector has been optimized. However, mount points for the same device will still be merged into one, with only the first mount point being taken. If you need to collect all mount points, a specific flag(`merge_on_device/ENV_INPUT_DISK_MERGE_ON_DEVICE`) must be disable. While this flag disabled, this may result in a significant increase in the number of time series in the disk measurement.
 <!-- markdownlint-enable -->
@@ -149,7 +162,7 @@ All the following data collected will append a global tag named `host` by defaul
 |`host`|System hostname.|
 |`mount_point`|Mount point.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -165,3 +178,5 @@ All the following data collected will append a global tag named `host` by defaul
 |`total`|Total disk size in bytes.|int|B|
 |`used`|Used disk size in bytes.|int|B|
 |`used_percent`|Used disk size in percent.|float|percent|
+
+

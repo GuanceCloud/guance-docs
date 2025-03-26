@@ -1,16 +1,17 @@
 ---
 title     : 'AWS Lambda Extension'
-summary   : 'Collect data through AWS Lambda Extension'
+summary   : 'Extend data collection through AWS Lambda'
 tags:
   - 'AWS'
 __int_icon      : 'icon/awslambda'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'None'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'None'
     path  : '-'
 ---
+
 
 :fontawesome-brands-linux: :material-kubernetes: :material-docker:
 
@@ -18,35 +19,35 @@ monitor   :
 
 [:octicons-tag-24: Version-1.34.0](../datakit/changelog.md#cl-1.34.0) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
-The AWS Lambda collector gathers Metrics and LOGs from AWS Lambda using the AWS Lambda Extension method.
+The AWS Lambda collector collects AWS Lambda metrics and logs through the Lambda extension.
 
 ## Installation {#installation}
 
-### Add Datakit Layer {#layer}
+### Adding a Datakit Layer {#layer}
 
-- [Create a layer via Zip](https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/creating-deleting-layers.html#layers-create){:target="_blank"}
+- [Create a Layer via Zip](https://docs.aws.amazon.com/lambda/latest/dg/creating-deleting-layers.html#layers-create){:target="_blank"}
 
     - Zip download links:
-        - [Linux amd64](https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit_aws_extension-linux-amd64.zip)
-        - [Linux arm64](https://static.<<< custom_key.brand_main_domain >>>/datakit/datakit_aws_extension-linux-arm64.zip)
+        - [Linux amd64](https://static.<<<custom_key.brand_main_domain>>>/datakit/datakit_aws_extension-linux-amd64.zip)
+        - [Linux arm64](https://static.<<<custom_key.brand_main_domain>>>/datakit/datakit_aws_extension-linux-arm64.zip)
 
-    - Open the [Layers page](https://console.amazonaws.cn/lambda/home#/layers){:target="_blank"} in the Lambda console (Layer page).
-    - Select **Create layer** (Create layer).
-    - Under **Layer configuration** (Layer configuration), enter the name of the layer in the **Name** (Name) field.
-    - Select **Upload a .zip file** (Upload a .zip file). Then, select **Upload** (Upload) to choose your local .zip file.
-    - Select **Create** (Create).
+    - Open the Lambda console [Layers page](https://console.aws.amazon.com/lambda/home#/layers){:target="_blank"}.
+    - Select **Create layer**.
+    - Under **Layer configuration**, enter the layer name in **Name**.
+    - Choose **Upload a .zip file**. Then, select **Upload** to choose the local .zip file.
+    - Select **Create**.
 
-- [Add a layer via ARN](https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/adding-layers.html){:target="_blank"}
+- [Add a Layer via ARN](https://docs.aws.amazon.com/lambda/latest/dg/adding-layers.html){:target="_blank"}
 
-    - Open the [Function page](https://console.amazonaws.cn/lambda/home#/functions){:target="_blank"} in the Lambda console.
+    - Open the Lambda console [Functions page](https://console.aws.amazon.com/lambda/home#/functions){:target="_blank"}.
     - Select the function you want to configure.
-    - Under **Layers**, select **Add a layer**.
-    - Under **Select a layer**, choose the **ARN** layer source.
-    - Enter the ARN into the text box and select **Verify**. Then, select **Add**.
+    - Under **Layers**, select **Add Layer**.
+    - Under **Select a layer**, choose **ARN** as the layer source.
+    - Enter the ARN in the text box, select **Verify**, and then choose **Add**.
 
-### Configure Required Environment Variables {#config-env}
+### Configure the Required Environment Variables {#env}
 
-- ENV_DATAWAY=`https://openway.<<< custom_key.brand_main_domain >>>?token=<your-token>`
+- ENV_DATAWAY=`https://openway.<<<custom_key.brand_main_domain>>>?token=<your-token>`
 
 ## Metrics {#metric}
 
@@ -66,7 +67,7 @@ The AWS Lambda collector gathers Metrics and LOGs from AWS Lambda using the AWS 
 |`aws_lambda_initialization_type`|Initialization type of the Lambda function.|
 |`aws_region`|AWS region where the function is executed.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -95,13 +96,13 @@ The AWS Lambda collector gathers Metrics and LOGs from AWS Lambda using the AWS 
 
 | Tag | Description |
 |  ----  | --------|
-|`aws_log_from`|Log sources, currently only functions are supported|
+|`aws_log_from`|log sources, currently only function are supported|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
-| ---- |---- | :---:    | :---: |
+| ---- |---- | :---:    | :----: |
 |`message`|Log message.|string|-|
 
 
@@ -110,4 +111,4 @@ The AWS Lambda collector gathers Metrics and LOGs from AWS Lambda using the AWS 
 
 - OpenTelemetry
 - statsd
-- ddtrace # Currently supports golang only. Since ddtrace has special operations in the lambda environment, add `tracer.WithLambdaMode(false)`.
+- ddtrace # Currently, only Go is supported. Due to special operations required by ddtrace in the lambda environment, you need to add `tracer.WithLambdaMode(false)`.

@@ -1,29 +1,30 @@
 ---
 title     : 'PostgreSQL'
-summary   : 'Collect metrics data from PostgreSQL'
+summary   : 'Collect PostgreSQL metrics'
 tags:
-  - 'DATABASES'
+  - 'DATA STORES'
 __int_icon      : 'icon/postgresql'
 dashboard :
-  - desc  : 'PostgreSQL'
+  - desc  : 'PostgrepSQL'
     path  : 'dashboard/en/postgresql'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-The PostgreSQL collector can collect instance operational status metrics from PostgreSQL instances and send them to <<< custom_key.brand_name >>>, helping with monitoring and analyzing various abnormal conditions in PostgreSQL.
+PostgreSQL collector can collect the running status index from PostgreSQL instance, and collect the index to <<<custom_key.brand_name>>> to help monitor and analyze various abnormal situations of PostgreSQL.
 
 ## Configuration {#config}
 
-### Prerequisites {#reqirement}
+### Preconditions {#reqirement}
 
 - PostgreSQL version >= 9.0
-- Create a monitoring account
+- Create user
 
 ```sql
 -- PostgreSQL >= 10
@@ -39,9 +40,9 @@ grant SELECT ON pg_stat_database to datakit;
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Deployment"
+=== "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `postgresql.conf.sample`, and rename it to `postgresql.conf`. An example is as follows:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `postgresql.conf.sample` and name it `postgresql.conf`. Examples are as follows:
 
     ```toml
         
@@ -71,7 +72,16 @@ grant SELECT ON pg_stat_database to datakit;
       #
       interval = "10s"
     
+      ## Set true to enable election
+      #
+      election = true
+    
+      ## Metric name in metric_exclude_list will not be collected.
+      #
+      metric_exclude_list = [""]
+    
       ## Relations config
+      #
       # The list of relations/tables can be specified to track per-relation metrics. To collect relation
       # relation_name refer to the name of a relation, either relation_name or relation_regex must be set.
       # relation_regex is a regex rule, only takes effect when relation_name is not set.
@@ -85,9 +95,6 @@ grant SELECT ON pg_stat_database to datakit;
       # relation_regex = "<TABLE_PATTERN>"
       # schemas = ["public"]
       # relkind = ["r", "p"]
-    
-      ## Set true to enable election
-      election = true
     
       ## Run a custom SQL query and collect corresponding metrics.
       #
@@ -116,16 +123,16 @@ grant SELECT ON pg_stat_database to datakit;
     
     ```
 
-    After configuration, simply [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration through [ConfigMap settings](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following data collected will append the global election tag by default. You can also specify other tags in the configuration through `[inputs.postgresql.tags]`.
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.postgresql.tags]` if needed:
 
 
 
@@ -140,7 +147,7 @@ All the following data collected will append the global election tag by default.
 |`db`|The database name|
 |`server`|The server address|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -172,7 +179,6 @@ All the following data collected will append the global election tag by default.
 
 
 
-
 ### `postgresql_lock`
 
 - Tags
@@ -187,13 +193,12 @@ All the following data collected will append the global election tag by default.
 |`server`|The server address|
 |`table`|The table name|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`lock_count`|The number of locks active for this database.|int|count|
-
 
 
 
@@ -212,7 +217,7 @@ All the following data collected will append the global election tag by default.
 |`server`|The server address|
 |`table`|The table name|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -220,7 +225,6 @@ All the following data collected will append the global election tag by default.
 |`idx_scan`|The number of index scans initiated on this table, tagged by index.|int|count|
 |`idx_tup_fetch`|The number of live rows fetched by index scans.|int|count|
 |`idx_tup_read`|The number of index entries returned by scans on this index.|int|count|
-
 
 
 
@@ -236,14 +240,13 @@ All the following data collected will append the global election tag by default.
 |`db`|The database name|
 |`server`|The server address|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`replication_delay`|The current replication delay in seconds. Only available with `postgresql` 9.1 and newer.|int|s|
 |`replication_delay_bytes`|The current replication delay in bytes. Only available with `postgresql` 9.2 and newer.|int|B|
-
 
 
 
@@ -261,7 +264,7 @@ All the following data collected will append the global election tag by default.
 |`slot_name`|The replication slot name|
 |`slot_type`|The replication slot type|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -279,7 +282,6 @@ All the following data collected will append the global election tag by default.
 
 
 
-
 ### `postgresql_size`
 
 - Tags
@@ -292,7 +294,7 @@ All the following data collected will append the global election tag by default.
 |`server`|The server address|
 |`table`|The table name|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -300,7 +302,6 @@ All the following data collected will append the global election tag by default.
 |`index_size`|The total disk space used by indexes attached to the specified table.|int|B|
 |`table_size`|The total disk space used by the specified table with TOAST data. Free space map and visibility map are not included.|int|B|
 |`total_size`|The total disk space used by the table, including indexes and TOAST data.|int|B|
-
 
 
 
@@ -318,7 +319,7 @@ All the following data collected will append the global election tag by default.
 |`server`|The server address|
 |`table`|The table name|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -336,7 +337,6 @@ All the following data collected will append the global election tag by default.
 
 
 
-
 ### `postgresql_stat`
 
 - Tags
@@ -349,7 +349,7 @@ All the following data collected will append the global election tag by default.
 |`server`|The server address|
 |`table`|The table name|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -373,7 +373,6 @@ All the following data collected will append the global election tag by default.
 
 
 
-
 ### `postgresql_slru`
 
 - Tags
@@ -385,7 +384,7 @@ All the following data collected will append the global election tag by default.
 |`name`|The name of the `SLRU`|
 |`server`|The server address|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -402,7 +401,6 @@ All the following data collected will append the global election tag by default.
 
 
 
-
 ### `postgresql_bgwriter`
 
 - Tags
@@ -413,7 +411,7 @@ All the following data collected will append the global election tag by default.
 |`db`|The database name|
 |`server`|The server address|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -433,7 +431,6 @@ All the following data collected will append the global election tag by default.
 
 
 
-
 ### `postgresql_connection`
 
 - Tags
@@ -444,14 +441,13 @@ All the following data collected will append the global election tag by default.
 |`db`|The database name|
 |`server`|The server address|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`max_connections`|The maximum number of client connections allowed to this database.|float|count|
 |`percent_usage_connections`|The number of connections to this database as a fraction of the maximum number of allowed connections.|float|count|
-
 
 
 
@@ -467,7 +463,7 @@ All the following data collected will append the global election tag by default.
 |`db`|The database name|
 |`server`|The server address|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -477,7 +473,6 @@ All the following data collected will append the global election tag by default.
 |`confl_lock`|Number of queries in this database that have been canceled due to dropped tablespaces. This will occur when a `temp_tablespace` is dropped while being used on a standby.|int|count|
 |`confl_snapshot`|Number of queries in this database that have been canceled due to old snapshots.|int|count|
 |`confl_tablespace`|Number of queries in this database that have been canceled due to dropped tablespaces. This will occur when a `temp_tablespace` is dropped while being used on a standby.|int|count|
-
 
 
 
@@ -493,7 +488,7 @@ All the following data collected will append the global election tag by default.
 |`db`|The database name|
 |`server`|The server address|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -506,8 +501,7 @@ All the following data collected will append the global election tag by default.
 
 
 
-
-## Custom Objects {#object}
+## Custom Object {#object}
 
 
 
@@ -580,7 +574,7 @@ All the following data collected will append the global election tag by default.
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -592,29 +586,29 @@ All the following data collected will append the global election tag by default.
 
 
 
-## Logs {#logging}
+## Log Collection {#logging}
 
-- PostgreSQL logs are by default output to `stderr`. To enable file logging, configure the following in the PostgreSQL configuration file `/etc/postgresql/<VERSION>/main/postgresql.conf`:
+- PostgreSQL logs are output to `stderr` by default. To open file logs, configure them in postgresql's configuration file `/etc/postgresql/<VERSION>/main/postgresql.conf` as follows:
 
 ```toml
-logging_collector = on    # Enable log writing to file
+logging_collector = on    # Enable log writing to files
 
-log_directory = 'pg_log'  # Set the file storage directory, absolute path or relative path (relative to PGDATA)
+log_directory = 'pg_log'  # Set the file storage directory, absolute path or relative path (relative PGDATA)
 
 log_filename = 'pg.log'   # Log file name
 log_statement = 'all'     # Record all queries
 
 #log_duration = on
-log_line_prefix= '%m [%p] %d [%a] %u [%h] %c ' # Log line prefix
+log_line_prefix= '%m [%p] %d [%a] %u [%h] %c ' # 日志行前缀
 log_file_mode = 0644
 
 # For Windows
 #log_destination = 'eventlog'
 ```
 
-For more configurations, refer to the [official documentation](https://www.postgresql.org/docs/11/runtime-config-logging.html){:target="_blank"}.
+For more configuration, please refer to the [doc](https://www.postgresql.org/docs/11/runtime-config-logging.html){:target="_blank"}。
 
-- By default, the PostgreSQL collector does not enable log collection. You can open the `files` section in *conf.d/db/postgresql.conf* and enter the absolute path of the PostgreSQL log file. For example:
+- The PostgreSQL collector does not have log collection enabled by default. You can open `files` in `conf.d/db/postgresql.conf`  and write to the absolute path of the PostgreSQL log file. For example:
 
 ```toml
 [[inputs.postgresql]]
@@ -625,13 +619,15 @@ For more configurations, refer to the [official documentation](https://www.postg
   files = ["/tmp/pgsql/postgresql.log"]
 ```
 
-After enabling log collection, logs with the source (`source`) as PostgreSQL will be generated by default.
+When log collection is turned on, a log with a log `source` of `postgresql` is generated by default.
 
-> Note: Log collection only supports logs located on hosts where DataKit is installed.
+**Notices:**
 
-### Log Pipeline Splitting {#pipeline}
+- Log collection only supports logs on hosts where DataKit is installed.
 
-Original log:
+### Log Pipeline Cut {#pipeline}
+
+The original log is
 
 ``` log
 2021-05-31 15:23:45.110 CST [74305] test [pgAdmin 4 - DB:postgres] postgres [127.0.0.1] 60b48f01.12241 LOG:  statement:
@@ -642,24 +638,24 @@ Original log:
         AND psd.datname not ilike 'azure_maintenance'   AND psd.datname not ilike 'postgres'
 ```
 
-Field descriptions after splitting:
+Description of the cut field:
 
-| Field Name             | Field Value                    | Description                                                        |
-| ---                | ---                       | ---                                                         |
-| `application_name` | `pgAdmin 4 - DB:postgres` | Name of the application connecting to the current database                                  |
-| `db_name`          | `test`                    | Accessed database                                                |
-| `process_id`       | `74305`                   | Client process ID for the current connection                                     |
-| `remote_host`      | `127.0.0.1`               | Client address                                                |
-| `session_id`       | `60b48f01.12241`          | Current session ID                                               |
-| `user`             | `postgres`                | Current username accessing the database                                              |
-| `status`           | `LOG`                     | Current log level (LOG,ERROR,FATAL,PANIC,WARNING,NOTICE,INFO) |
-| `time`             | `1622445825110000000`     | Log generation time                                                |
+| Field name         | Field Value               | Description                                                    |
+| ------------------ | ------------------------- | -------------------------------------------------------------- |
+| `application_name` | `pgAdmin 4 - DB:postgres` | The name of the application connecting to the current database |
+| `db_name`          | `test`                    | Database accessed                                              |
+| `process_id`       | `74305`                   | The client process ID of the current connection                |
+| `remote_host`      | `127.0.0.1`               | Address of the client                                          |
+| `session_id`       | `60b48f01.12241`          | ID of the current session                                      |
+| `user`             | `postgres`                | Current Access User Name                                       |
+| `status`           | `LOG`                     | Current log level (LOG,ERROR,FATAL,PANIC,WARNING,NOTICE,INFO)  |
+| `time`             | `1622445825110000000`     | Log generation time                                            |
 
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
 ### :material-chat-question: Missing metrics `postgresql_lock`, `postgresql_stat`, `postgresql_index`, `postgresql_size`, `postgresql_statio` {#faq-missing-relation-metrics}
 
-These metrics require the `relations` field to be enabled in the configuration file. If these metrics are partially missing, it might be due to the absence of related data causing the issue.
+To report these metrics, the `relations` field in the configuration file needs to be enabled. If some of these metrics are partially missing, it may be because there is no data for the relevant metrics.
 
 <!-- markdownlint-enable -->

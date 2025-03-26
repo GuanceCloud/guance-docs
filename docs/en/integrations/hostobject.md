@@ -1,14 +1,14 @@
 ---
-title     : 'HOST Objects'
-summary   : 'Collect basic HOST information'
+title     : 'Host Object'
+summary   : 'Collect Basic Host Information'
 tags:
   - 'HOST'
 __int_icon      : 'icon/hostobject'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -16,18 +16,20 @@ monitor   :
 
 ---
 
-The HOST object collector is used to collect basic HOST information, such as hardware models and basic resource consumption.
+Host Object is used to collect basic host information, such as hardware model, basic resource consumption and so on.
 
 ## Configuration {#config}
 
-After successfully installing Datakit and starting it, the HOST object collector will be enabled by default, without manual activation.
+### Collector Configuration {#input-config}
+
+In general, the host object is turned on by default and does not need to be configured.
 
 <!-- markdownlint-disable MD046 -->
 
-=== "HOST Installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `hostobject.conf.sample` and rename it to `hostobject.conf`. Example as follows:
-
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `hostobject.conf.sample` and name it `hostobject.conf`. Examples are as follows:
+    
     ```toml
         
     [inputs.hostobject]
@@ -91,44 +93,36 @@ After successfully installing Datakit and starting it, the HOST object collector
       # aws = "yyy"   # URL for AWS Cloud metadata token
     
     ```
-
-    After configuring, simply [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (needs to be added as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
     - **ENV_INPUT_HOSTOBJECT_ENABLE_NET_VIRTUAL_INTERFACES**
     
-        Allow collection of virtual network interfaces
+        Enable collect network virtual interfaces
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `enable_net_virtual_interfaces`
+        **input.conf**: `enable_net_virtual_interfaces`
     
-        **Default Value**: false
+        **Default**: false
     
     - **ENV_INPUT_HOSTOBJECT_IGNORE_ZERO_BYTES_DISK**
     
-        Ignore disks with size 0
+        Ignore the disk which space is zero
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `ignore_zero_bytes_disk`
+        **input.conf**: `ignore_zero_bytes_disk`
     
-        **Default Value**: false
+        **Default**: false
     
     - **ENV_INPUT_HOSTOBJECT_IGNORE_FSTYPES**
     
-        Ignore non-physical disks (like cloud disks, NFS), any non-empty string
-    
-        **Field Type**: Boolean
-    
-        **Collector Configuration Field**: `only_physical_device`
-    
-        **Default Value**: false
         Ignore disks with these file systems
     
         **Type**: String
@@ -149,130 +143,130 @@ After successfully installing Datakit and starting it, the HOST object collector
     
     - **ENV_INPUT_HOSTOBJECT_EXCLUDE_DEVICE**
     
-        Ignored devices
+        Exclude some with dev prefix
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: `exclude_device`
+        **input.conf**: `exclude_device`
     
         **Example**: `/dev/loop0,/dev/loop1`
     
     - **ENV_INPUT_HOSTOBJECT_EXTRA_DEVICE**
     
-        Additional devices to include
+        Additional device
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: `extra_device`
+        **input.conf**: `extra_device`
     
         **Example**: `/nfsdata,other`
     
     - **ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_ELECTION_TAGS**
     
-        Place cloud provider region/zone_id information into global election tags
+        Enable put cloud provider region/zone_id information into global election tags
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `enable_cloud_host_tags_global_election_tags`
+        **input.conf**: `enable_cloud_host_tags_global_election_tags`
     
-        **Default Value**: true
+        **Default**: true
     
     - **ENV_INPUT_HOSTOBJECT_CLOUD_META_AS_HOST_TAGS**
     
-        Place cloud provider region/zone_id information into global host tags
+        Enable put cloud provider region/zone_id information into global host tags
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `enable_cloud_host_tags_global_host_tags`
+        **input.conf**: `enable_cloud_host_tags_global_host_tags`
     
-        **Default Value**: true
+        **Default**: true
     
     - **ENV_INPUT_HOSTOBJECT_CLOUD_AWS_IMDS_V2**
     
         Enable AWS IMDSv2
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `enable_cloud_aws_imds_v2`
+        **input.conf**: `enable_cloud_aws_imds_v2`
     
-        **Default Value**: false
+        **Default**: false
     
     - **ENV_INPUT_HOSTOBJECT_CLOUD_AWS_IPV6**
     
         Enable AWS IPv6
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `enable_cloud_aws_ipv6`
+        **input.conf**: `enable_cloud_aws_ipv6`
     
-        **Default Value**: false
+        **Default**: false
     
     - **ENV_INPUT_HOSTOBJECT_TAGS**
     
-        Custom tags. If there are tags with the same name in the configuration file, they will override them.
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
     
     - **ENV_CLOUD_PROVIDER**
     
-        Specify cloud provider
+        Designate cloud service provider
     
-        **Field Type**: String
+        **Type**: String
     
-        **Collector Configuration Field**: `none`
+        **input.conf**: `none`
     
         **Example**: `aliyun/aws/tencent/hwcloud/azure`
     
     - **ENV_CLOUD_META_URL**
     
-        Cloud provider metadata URL mapping
+        Cloud metadata URL mapping
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `cloud_meta_url`
+        **input.conf**: `cloud_meta_url`
     
         **Example**: `{"tencent":"xxx", "aliyun":"yyy"}`
     
     - **ENV_INPUT_HOSTOBJECT_CLOUD_META_TOKEN_URL**
     
-        Cloud provider metadata token URL mapping
+        Cloud metadata Token URL mapping
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `cloud_meta_token_url`
+        **input.conf**: `cloud_meta_token_url`
     
         **Example**: `{"aws":"xxx","aliyun":"yyy"}`
 
 <!-- markdownlint-enable -->
 
-### Enable Cloud Sync {#cloudinfo}
+### Turn on Cloud Synchronization {#cloudinfo}
 
-Datakit enables cloud sync by default, currently supporting Alibaba Cloud/Tencent Cloud/AWS/Huawei Cloud/Microsoft Cloud/Volcengine. You can explicitly specify the cloud vendor through the cloud_provider tag, or let Datakit automatically detect it:
+Datakit turns on cloud synchronization by default, and currently supports Alibaba Cloud/Tencent Cloud/AWS/Huawei Cloud/Microsoft Cloud/Volcano Engine. You can specify the cloud vendor explicitly by setting the cloud_provider tag, or you can detect it automatically by Datakit:
 
 ```toml
 [inputs.hostobject.tags]
-  # Currently supported: aliyun/tencent/aws/hwcloud/azure. If not set, Datakit will automatically detect and set this tag.
+  # There are several kinds of aliyun/tencent/aws/hwcloud/azure supported at present. If not set, Datakit will detect and set this tag automatically
   cloud_provider = "aliyun"
 ```
 
-You can disable the cloud sync feature by setting `disable_cloud_provider_sync = true` in the configuration file.
+You can turn off cloud synchronization by configuring `disable_cloud_provider_sync = true` in the Host Object configuration file.
 
 ## Object {#object}
 
-All the following data collections will append a global tag named `host` by default (the tag value is the hostname where DataKit resides). You can also specify other tags via `[inputs.hostobject.tags]` in the configuration:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.hostobject.tags]`:
 
-```toml
+``` toml
  [inputs.hostobject.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
   # ...
 ```
 
-> Note: When adding custom tags here, try to avoid naming conflicts with existing tag keys/field keys. If there is a conflict, DataKit will choose the tag from the configuration to override the collected data, which may cause some data issues.
+> Note: When adding custom tags here, try not to have the same name as the existing tag key/field key. If it has the same name, DataKit will choose to configure the tag inside to overwrite the collected data, which may cause some data problems.
 
 
 
@@ -289,7 +283,7 @@ All the following data collections will append a global tag named `host` by defa
 |`os`|Host OS type|
 |`unicast_ip`|Host unicast ip|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -313,20 +307,20 @@ All the following data collections will append a global tag named `host` by defa
 
 
 
-If cloud sync is enabled, the following additional fields will appear (depending on the synchronized fields):
+If cloud synchronization is turned on, the following additional fields will be added (whichever field is synchronized to):
 
-| Field Name                  | Description           |  Type  |
-| ----------------------- | -------------- | :----: |
-| `cloud_provider`        | Cloud provider       | string |
+| Field Name                  | Description           | Type   |
+| ---                     | ----           | :---:  |
+| `cloud_provider`        | Cloud service provider       | string |
 | `description`           | Description           | string |
 | `instance_id`           | Instance ID        | string |
 | `instance_name`         | Instance name         | string |
 | `instance_type`         | Instance type       | string |
 | `instance_charge_type`  | Instance billing type   | string |
 | `instance_network_type` | Instance network type   | string |
-| `instance_status`       | Instance status       | string |
-| `security_group_id`     | Instance group       | string |
-| `private_ip`            | Instance private IP    | string |
+| `instance_status`       | Instance state       | string |
+| `security_group_id`     | Instance grouping       | string |
+| `private_ip`            | Instance private network IP    | string |
 | `zone_id`               | Instance Zone ID   | string |
 | `region`                | Instance Region ID | string |
 
@@ -348,7 +342,7 @@ The basic structure of the `message` field is as follows:
     "config_file": ...,
   },
 
-  "collectors": [ # Status of each collector
+  "collectors": [ # Operation of each collector
     ...
   ]
 }
@@ -356,67 +350,68 @@ The basic structure of the `message` field is as follows:
 
 #### `host.meta` {#host-meta}
 
-| Field Name             | Description                                           |  Type  |
-| ------------------ | ---------------------------------------------- | :----: |
-| `host_name`        | Hostname                                         | string |
-| `boot_time`        | Boot time                                       |  int   |
-| `os`               | Operating system type, e.g., `linux/windows/darwin`        | string |
-| `platform`         | Platform name, e.g., `ubuntu`                          | string |
-| `platform_family`  | Platform family, e.g., `ubuntu` belongs to `debian` family       | string |
-| `platform_version` | Platform version, e.g., `18.04`, i.e., an Ubuntu distribution version | string |
-| `kernel_release`   | Kernel version, e.g., `4.15.0-139-generic`              | string |
-| `arch`             | CPU hardware architecture, e.g., `x86_64/arm64` etc             | string |
-| `extra_cloud_meta` | If cloud sync is enabled, it will include a JSON string of cloud properties     | string |
+| Field Name             | Description                                           | Type   |
+| ---                | ----                                           | :---:  |
+| `host_name`        | hostname                                         | string |
+| `boot_time`        | Startup time                                       | int    |
+| `os`               | Operating system type, such as `linux/windows/darwin`        | string |
+| `platform`         | Platform name, such as `ubuntu`                          | string |
+| `platform_family`  | Platform classification, such as `ubuntu` belongs to `debian` classification       | string |
+| `platform_version` | Platform version, such as `18.04`, that is, a distribution version of Ubuntu | string |
+| `kernel_release`   | Kernel version, such as `4.15.0-139-generic`              | string |
+| `arch`             | Switch hardware architecture, such as `x86_64/arm64`            | string |
+| `extra_cloud_meta` | When cloud synchronization is turned on, it will bring a string of JSON data with cloud attributes.     | string |
 
 #### `host.cpu` {#host-cpu}
 
-| Field Name        | Description                                                    |  Type  |
-| ------------- | ------------------------------------------------------- | :----: |
-| `vendor_id`   | Vendor ID, e.g., `GenuineIntel`                            | string |
-| `module_name` | CPU model, e.g., `Intel(R) Core(TM) i5-8210Y CPU @ 1.60GHz` | string |
-| `cores`       | Number of cores                                                    |  int   |
-| `mhz`         | Frequency                                                    |  int   |
-| `cache_size`  | L2 cache size (KB)                                       |  int   |
+| Field Name        | Description                                                    | Type   |
+| ---           | ----                                                    |:---:   |
+| `vendor_id`   | Vendor ID, such as `GenuineIntel`                            | string |
+| `module_name` | CPU model, such as `Intel(R) Core(TM) i5-8210Y CPU @ 1.60GHz` | string |
+| `cores`       | Audit                                                    | int    |
+| `mhz`         | Frequency                                                    | int    |
+| `cache_size`  | L2 Cache size (KB)                                       | int    |
 
 #### `host.mem` {#host-mem}
 
 | Field Name         | Description       | Type |
-| -------------- | ---------- | :--: |
+| ---            | ----       |:---: |
 | `memory_total` | Total memory size | int  |
-| `swap_total`:  | Swap size  | int  |
+| `swap_total`:  | swap size  | int  |
 
 #### `host.net` {#host-net}
 
-| Field Name    | Description               |   Type   |
-| --------- | ------------------ | :------: |
-| `mtu`     | Maximum transmission unit       |   int    |
-| `name`    | Network card name           |  string  |
-| `mac`     | MAC address           |  string  |
-| `flags`   | Status bits (possibly multiple) | []string |
-| `ip4`     | IPv4 address          |  string  |
-| `ip6`     | IPv6 address          |  string  |
-| `ip4_all` | All IPv4 addresses     | []string |
-| `ip6_all` | All IPv6 addresses     | []string |
+| Field Name  | Description               | Type     |
+| ---     | ----               |:---:     |
+| `mtu`   | Maximum transmission unit       | int      |
+| `name`  | NIC Name           | string   |
+| `mac`   | MAC address           | string   |
+| `flags` | Status bits (may be multiple) | []string |
+| `ip4`   | IPv4 address          | string   |
+| `ip6`   | IPv6 address          | string   |
+| `ip4_all`| all IPv4 address     | []string |
+| `ip6_all`| all IPv6 address     | []string |
 
 #### `host.disk` {#host-disk}
 
-> In previous versions, only one mount point would be collected per device (specifically which one depends on the order in which the mount points appear in */proc/self/mountpoint*). Starting from [:octicons-tag-24: Version-1.66.0](../datakit/changelog.md#cl-1.66.0), the disk portion of the HOST object will collect all eligible mount points (e.g., those with device names beginning with `/dev`) to display all devices visible to Datakit, avoiding omissions.
+> In previous versions, only one mount point would be collected for the same device (which specific mount point was collected depended on the order in which the mount points appeared in */proc/self/mountpoint*). In the [:octicons-tag-24: Version-1.66.0](../datakit/changelog-2025.md#cl-1.66.0) release, the disk section of the host object will collect all mount points that meet certain criteria (such as device names starting with `/dev`). The purpose of this change is to display all devices visible to Datakit to avoid any omissions.
 
-| Field Name       | Description         |  Type  |
-| ------------ | ------------ | :----: |
+
+| Field Name       | Description         | Type   |
+| ---          | ----         |:---:   |
 | `device`     | Disk device name   | string |
-| `total`      | Disk total size   |  int   |
+| `total`      | Total disk size   | int    |
 | `mountpoint` | Mount point       | string |
 | `fstype`     | File system type | string |
 
 #### `host.election` {#host-election}
 
-> Note: When the `enable_election` option is turned off in the configuration file, this field will be null.
+> Note: This field is null when the `enable_election` option is turned off in the configuration file
 
-| Field Name      | Description     |  Type  |
-| ----------- | -------- | :----: |
+| Field Name      | Description     | Type   |
+| ---         | ----     | :---:  |
 | `elected`   | Election status | string |
-| `namespace` | Election namespace | string |
+| `namespace` | Election space | string |
 
 #### `host.conntrack` {#host-conntrack}
 
@@ -424,22 +419,22 @@ The basic structure of the `message` field is as follows:
 
 ???+ attention
 
-    `conntrack` is only supported on Linux platforms.
+    `conntrack` 仅 Linux 平台支持
 
 <!-- markdownlint-enable -->
 
-| Field Name                | Description                                           | Type |
-| --------------------- | ---------------------------------------------- | :--: |
-| `entries`             | Current number of connections                                   | int  |
-| `entries_limit`       | Size of the connection tracking table                               | int  |
-| `stat_found`          | Successful search entries count                             | int  |
-| `stat_invalid`        | Number of packets that cannot be tracked                             | int  |
-| `stat_ignore`         | Number of already tracked packets                             | int  |
-| `stat_insert`         | Number of inserted packets                                   | int  |
-| `stat_insert_failed`  | Number of failed insert packets                               | int  |
-| `stat_drop`           | Number of packets dropped due to tracking failure                         | int  |
-| `stat_early_drop`     | Number of tracked packet entries dropped due to full tracking table | int  |
-| `stat_search_restart` | Number of tracking table queries restarted due to hash table size modification | int  |
+| Field Name                | Description                                           | Type  |
+| ---                   | ---                                            | :---: |
+| `entries`             | Current number of connections                                   | int   |
+| `entries_limit`       | Size of Connection Trace Table                               | int   |
+| `stat_found`          | Number of successful search terms                             | int   |
+| `stat_invalid`        | Number of packets that cannot be tracked                             | int   |
+| `stat_ignore`         | Number of reports that have been tracked                             | int   |
+| `stat_insert`         | Number of packets inserted                                   | int   |
+| `stat_insert_failed`  | Number of packets that failed to insert                               | int   |
+| `stat_drop`           | Trace failed the number of discarded packets                         | int   |
+| `stat_early_drop`     | Number of partially tracked packet entries discarded due to full trace table | int   |
+| `stat_search_restart` | Number of trace table queries restarted due to hash table size modification   | int   |
 
 #### `host.filefd` {#host-filefd}
 
@@ -447,43 +442,43 @@ The basic structure of the `message` field is as follows:
 
 ???+ attention
 
-    `filefd` is only supported on Linux platforms.
+    `filefd` Linux platform only
 
 <!-- markdownlint-enable -->
 
 | Field Name         | Description                                                 | Type  |
-| -------------- | ---------------------------------------------------- | :---: |
-| `allocated`    | Number of allocated file handles                                 |  int  |
-| `maximum`      | Maximum number of file handles (deprecated, use `maximum_mega` instead) |  int  |
-| `maximum_mega` | Maximum number of file handles, in units of M(10^6)                     | float |
+| ---            | ---                                                  | :---: |
+| `allocated`    | Number of allocated file handles                                 | int   |
+| `maximum`      | Maximum number of file handles (deprecated, replaced by `maximum_mega`) | int   |
+| `maximum_mega` | Maximum number of file handles in M(10^6)                     | float |
 
 #### `host.config_file` {#host-config-file}
 
-`config_file` is a `file-path`: `file-content` map. The meaning of each field is as follows:
+config_file is a map of `file-path`: `file-content`, with the following meaning for each field:
 
-| Field Name         | Description                                                 | Type  |
+| 字段名         | 描述                                                 | 类型  |
 | -------------- | ---------------------------------------------------- | :---: |
-| `file-path`    | Absolute path of the configuration file                                   |  string  |
-| `file-content` | Content of the configuration file                                    |  string  |
+| `file-path`    | The absolute path of the configuration file           |  string  |
+| `file-content` | The contents of the configuration file                |  string  |
 
-#### Collector Running Status Fields List {#inputs-stats}
+#### Collector Performance Field List {#inputs-stats}
 
-The `collectors` field is a list of objects, with the following fields for each object:
+The `collectors` field is a list of objects with the following fields for each object:
 
-| Field Name          | Description                                               |  Type  |
-| --------------- | -------------------------------------------------- | :----: |
-| `name`          | Collector name                                         | string |
-| `count`         | Collection times                                           |  int   |
-| `last_err`      | Last error message, reports errors within the last 30 seconds (inclusive) | string |
-| `last_err_time` | Last error time (Unix timestamp, in seconds)          |  int   |
-| `last_time`     | Last collection time (Unix timestamp, in seconds)          |  int   |
+| Field Name          | Description                                             | Type   |
+| ---             | ----                                             | :---:  |
+| `name`          | Collector name                                       | string |
+| `count`         | Collection times                                         | int    |
+| `last_err`      | For the last error message, only the errors within the last 30 seconds (inclusive) are reported. | string |
+| `last_err_time` | The last time an error was reported (Unix timestamp in seconds).        | int    |
+| `last_time`     | Last collection time (Unix timestamp in seconds)       | int    |
 
 ## FAQ {#faq}
 
 <!-- markdownlint-disable MD013 -->
 
-### :material-chat-question: Why are `entries` and `entries_limit` not being collected and showing as -1? {#no-entries}
+### :material-chat-question: Why no `entries` and `entries_limit`, the value shows -1？ {#no-entries}
 
 <!-- markdownlint-enable -->
 
-Load the `nf_conntrack` module by running `modprobe nf_conntrack` in the terminal.
+Need to load `nf_conntrack` module, run `modprobe nf_conntrack` in a terminal.

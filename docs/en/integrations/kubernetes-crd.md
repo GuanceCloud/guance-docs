@@ -1,5 +1,5 @@
 ---
-title     : 'Kubernetes CRD'
+title     : 'Kubernetes CRD Extended Collection'
 summary   : 'Create Datakit CRD to collect'
 tags      :
   - 'PROMETHEUS'
@@ -11,21 +11,21 @@ __int_icon: 'icon/kubernetes'
 
 ---
 
-[:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
+[:octicons-tag-24: Version-1.4.6](../datakit/changelog.md#cl-1.4.6) · [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
 ## Introduction {#intro}
 
 **This feature is deprecated in Datakit 1.63.0.**
 
-This document describes how to create a Datakit resource in the Kubernetes cluster and configure the extended collector.
+This document describes how to create a DataKit resource in a Kubernetes cluster and configure an extension collector.
 
-### Add Authorization {#authorization}
+### Add Authentication {#authorization}
 
-If it's an upgraded version of DataKit, you need to add authorization under the `apiVersion: rbac.authorization.k8s.io/v1` item in the `datakit.yaml`, i.e., copy the following lines and add them to the end:
+If it is an upgraded version of DataKit, you need to add authentication in the `apiVersion: rbac.authorization.k8s.io/v1` entry of `datakit.yaml`, that is, copy the following lines and add them to the end:
 
 ```yaml
 - apiGroups:
-  - guance.com
+  - <<<custom_key.brand_main_domain>>>
   resources:
   - datakits
   verbs:
@@ -33,44 +33,46 @@ If it's an upgraded version of DataKit, you need to add authorization under the 
   - list
 ```
 
-### Create v1beta1 DataKit Instance and DataKit Object {#create}
+<!-- markdownlint-disable MD013 -->
+### Create v1beta1 DataKit Instance, Create DataKit Object {#create}
+<!-- markdownlint-enable -->
 
-Write the following content into the yaml configuration, for example *datakit-crd.yaml*. The meaning of each field is as follows:
+Write the following to the yaml configuration, such as `datakit-crd.yaml`, where each field has the following meaning:
 
-- `k8sNamespace`: Specifies the namespace, used with deployment to locate a set of Pods; this is a required field.
-- `k8sDaemonSet`: Specifies the DaemonSet name, used with the namespace to locate a set of Pods.
-- `k8sDeployment`: Specifies the deployment name, used with the namespace to locate a set of Pods.
-- `inputConf`: Collector configuration file, which finds the corresponding Pod based on the namespace and deployment, replaces the Pod wildcard information, and then runs the collector according to the inputConf content. It supports the following wildcards:
-    - `$IP`: Internal network IP of the Pod.
-    - `$NAMESPACE`: Namespace of the Pod.
-    - `$PODNAME`: Name of the Pod.
-    - `$NODENAME`: Name of the current node.
+- `k8sNamespace`: Specify namespace, locates a collection's Pod with deployment, required
+- `k8sDaemonSet`: Specify the DaemonSet name to locate a collection's Pod with namespace
+- `k8sDeployment`: Specify the deployment name, and locates the Pod of a collection with namespace
+- `inputConf`: Collector configuration file, find the corresponding Pod according to namespace and deployment, replace the wildcard information of Pod, and then run the collector according to inputConf content. The following wildcard characters are supported.
+    - `$IP`: Pod's intranet IP
+    - `$NAMESPACE`: Pod Namespace
+    - `$PODNAME`: Pod Name
+    - `$NODENAME`: The name of the current node
 
-Execute the command `kubectl apply -f datakit-crd.yaml`.
+Execute the `kubectl apply -f datakit-crd.yaml` command.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - DaemonSet and Deployment are two different Kubernetes resources, but here, both `k8sDaemonSet` and `k8sDeployment` can coexist. That is, in the same Namespace, the Pods created by DaemonSet and the Pods created by Deployment share the same CRD configuration. However, this is not recommended because fields like `source` are used in specific configurations to identify data sources, and mixing them will make the data boundaries unclear. It is suggested that in the same CRD configuration, only one of `k8sDaemonSet` and `k8sDeployment` exists.
+    - DaemonSet and Deployment are two different Kubernetes resources, but here `k8s DaemonSet` and `k8s Deployment` can exist at the same time. That is, under the same Namespace, the Pod created by DaemonSet and the Pod created by Deployment share the same CRD configuration. This is not recommended, however, because fields like `source` are used to identify data sources in specific configurations, and mixing them leads to unclear data boundaries. It is recommended that only one `k8s DaemonSet` and `k8s Deployment` exist in the same CRD configuration.
 
-    - Datakit only collects Pods that are on the same node, belonging to nearby collection, and does not cross nodes for collection.
+    - Datakit only collects Pod in the same node as it, which belongs to nearby collection and will not be collected across nodes.
 <!-- markdownlint-enable -->
 
 ## Example {#example}
 
-The complete example is as follows, including:
+A complete example is as follows, including:
 
 - Create CRD Datakit
-- Test namespaces and Datakit instance objects used
-- Configure Prom collector (`inputConf`)
+- Namespace and Datakit instance objects used for testing
+- Configure the Prom collector (`inputConf`)
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: datakits.guance.com
+  name: datakits.<<<custom_key.brand_main_domain>>>
 spec:
-  group: guance.com
+  group: <<<custom_key.brand_main_domain>>>
   versions:
   - name: v1beta1
     served: true
@@ -110,7 +112,7 @@ kind: Namespace
 metadata:
   name: datakit-crd
 ---
-apiVersion: "guance.com/v1beta1"
+apiVersion: "<<<custom_key.brand_main_domain>>>/v1beta1"
 kind: Datakit
 metadata:
   name: my-test-crd-object
@@ -124,14 +126,14 @@ spec:
           url="http://prom"
 ```
 
-### NGINX Ingress Configuration Example {#example-nginx}
+### Nginx Ingress Configuration Sample {#example-nginx}
 
-Here we use the DataKit CRD extension to collect Ingress metrics, i.e., collecting Ingress metrics through the prom collector.
+Here, we use DataKit CRD extension to collect Ingress metrics, that is, we collect Ingress metrics through prom collector.
 
-#### Prerequisites {#nginx-requirements}
+#### Requirements {#nginx-requirements}
 
-- [DaemonSet DataKit](../datakit/datakit-daemonset-deploy.md) has been deployed.
-- If the `Deployment` name is `ingress-nginx-controller`, then the yaml configuration is as follows:
+- Deployed [DaemonSet DataKit](../datakit/datakit-daemonset-deploy.md)
+- If the `Deployment` is called `ingress-nginx-controller`, the yaml configuration over there is as follows:
 
   ``` yaml
   ...
@@ -143,24 +145,24 @@ Here we use the DataKit CRD extension to collect Ingress metrics, i.e., collecti
       metadata:
         creationTimestamp: null
         labels:
-          app: ingress-nginx-controller  # This is just an example name
+          app: ingress-nginx-controller  # 这里只是一个示例名称
   ...
   ```
 
-#### Configuration Steps {#nginx-steps}
+#### Configuration Step {#nginx-steps}
 
-- First, create the Datakit CustomResourceDefinition
+- Create Datakit CustomResourceDefinition
 
-Execute the following creation command:
+Execute the following create command:
 
 ```bash
 cat <<EOF | kubectl apply -f -
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: datakits.guance.com
+  name: datakits.<<<custom_key.brand_main_domain>>>
 spec:
-  group: guance.com
+  group: <<<custom_key.brand_main_domain>>>
   versions:
     - name: v1beta1
       served: true
@@ -195,22 +197,21 @@ spec:
 EOF
 ```
 
-Check the deployment status:
+View deployment:
 
 ```bash
-kubectl get crds | grep guance.com
-
-datakits.guance.com   2022-08-18T10:44:09Z
+$ kubectl get crds | grep <<<custom_key.brand_main_domain>>>
+datakits.<<<custom_key.brand_main_domain>>>   2022-08-18T10:44:09Z
 ```
 
-- Create Datakit Resource
+- Create a Datakit resource
 
-For detailed Prometheus configuration, refer to [link](kubernetes-prom.md)
+Prometheus configuration can be found in [link](kubernetes-prom.md)
 
-Execute the following `yaml` :
+Execute the following `yaml`:
 
 ```yaml
-apiVersion: guance.com/v1beta1
+apiVersion: <<<custom_key.brand_main_domain>>>/v1beta1
 kind: DataKit
 metadata:
   name: prom-ingress
@@ -235,9 +236,9 @@ spec:
           namespace = "$NAMESPACE"
 ```
 
-> !!! Note that `namespace` can be customized, while `k8sDeployment` and `k8sNamespace` must be accurate.
+> !!! Note that `namespace` is customizable, while `k8sDeployment` and `k8sNamespace` must be accurate.
 
-Check the deployment status:
+View deployment:
 
 ```bash
 $ kubectl get dk -n datakit
@@ -245,17 +246,17 @@ NAME           AGE
 prom-ingress   18m
 ```
 
-- Check Metrics Collection Status
+- View Metric Collection
 
-Log into the `Datakit pod` and execute the following command:
+Log in to `Datakit pod` and execute the following command:
 
 ```bash
 datakit monitor
 ```
 
 <figure markdown>
-  ![](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-crd-ingress.png){ width="800" }
-  <figcaption> Ingress Data Collection </figcaption>
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/datakit-crd-ingress.png){ width="800" }
+  <figcaption> Ingress 数据采集 </figcaption>
 </figure>
 
-You can also log into the [<<< custom_key.brand_name >>> Platform](https://<<< custom_key.brand_main_domain >>>/){:target="_blank"}, go to 【Metrics】-【Explorer】to view the metrics data.
+You can also log in to [<<<custom_key.brand_name>>> Platform](https://www.<<<custom_key.brand_main_domain>>>/){:target="_blank"}, "Indicator"-"Viewer" to view metric data

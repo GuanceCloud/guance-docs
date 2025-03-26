@@ -1,6 +1,6 @@
 ---
 title     : 'SSH'
-summary   : 'Collect metrics data for SSH'
+summary   : 'Collect SSH metrics'
 tags:
   - 'HOST'
 __int_icon      : 'icon/ssh'
@@ -12,20 +12,21 @@ monitor   :
     path  : 'monitor/en/ssh'
 ---
 
+
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-Monitor the SSH/SFTP service and report data to <<< custom_key.brand_name >>>.
+Monitor SSH/SFTP services and report data to <<<custom_key.brand_name>>>.
 
 ## Configuration {#config}
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Go to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and rename it to `ssh.conf`. Example as follows:
+    Go to the `conf.d/ssh` directory under the DataKit installation directory, copy `ssh.conf.sample` and name it `ssh.conf`. Examples are as follows:
     
     ```toml
         ### You need to configure an [[inputs.ssh]] for each ssh/sftp to be monitored.
@@ -55,12 +56,12 @@ Monitor the SSH/SFTP service and report data to <<< custom_key.brand_name >>>.
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [configMap injection collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following data collection will append a global tag named `host` (tag value is the hostname where DataKit resides) by default. You can also specify other tags in the configuration through `[inputs.ssh.tags]`:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.ssh.tags]`:
 
 ``` toml
  [inputs.ssh.tags]
@@ -80,13 +81,15 @@ All the following data collection will append a global tag named `host` (tag val
 |  ----  | --------|
 |`host`|The host of ssh|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`sftp_check`|SFTP service status|bool|-|
-|`sftp_err`|Fail reason of connecting to SFTP service|string|-|
-|`sftp_response_time`|Response time of SFTP service|float|ms|
+|`sftp_err`|Fail reason of connect sftp service|string|-|
+|`sftp_response_time`|Response time of sftp service|float|ms|
 |`ssh_check`|SSH service status|bool|-|
-|`ssh_err`|Fail reason of connecting to SSH service|string|-|
+|`ssh_err`|Fail reason of connect ssh service|string|-|
+
+

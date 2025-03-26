@@ -1,29 +1,33 @@
 ---
-title     : 'Graphite'
-summary   : 'Collect metrics data exposed by Graphite Exporter'
+title     : 'Graphite Exporter'
+summary   : 'Collect Graphite Exporter exposed by Graphite Exporter'
 tags:
-  - 'External Data Integration'
+  - 'THIRD PARTY'
 __int_icon      : 'icon/graphite'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The Graphite collector can receive metrics data in the Graphite plaintext protocol format, convert it, and make it available for use with systems like Prometheus. As long as the corresponding Exporter address is configured, the metrics data can be integrated.
+The Graphite collector can receive metrics data in Graphite plaintext protocol format, transform it, and make it available for use by systems like Prometheus. By configuring the appropriate Exporter address, you can integrate the metrics data into these systems.
 
 ## Configuration {#config}
 
-<!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+### Preconditions {#requirements}
 
-    Navigate to the `conf.d/graphite` directory under the DataKit installation directory, copy `graphite.conf.sample`, and rename it to `graphite.conf`. An example is shown below:
+### Collector Configuration {#input-config}
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
+
+    Go to the `conf.d/graphite` directory under the DataKit installation directory, copy `graphite.conf.sample` and name it `graphite.conf`. Examples are as follows:
 
     ```toml
         
@@ -71,20 +75,20 @@ The Graphite collector can receive metrics data in the Graphite plaintext protoc
     
     ```
 
-    After configuration, [restart Datakit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can enable the collector through [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [configuring ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 <!-- markdownlint-enable -->
 
 ## Metric Mapping Configuration {#metric-mapping-configuration}
 
-The Graphite collector can transform metrics in **dot format** (e.g., `testA.testB.testC`) from the Graphite plaintext protocol into labeled metrics via mapping configurations in the config file. The transformation rules are similar to those of `statsd_exporter`, but here they are in TOML format. When configuring here, you need to specify the Measurement name `measurement_name`, and the mapped metrics will belong to this Measurement set. If no Measurement name is set or no mapping rule is configured, the metrics will default to the `graphite` Measurement set.
+Graphite collector can be configured to translate specific **dot-separated** graphite metrics into labeled metrics via configuration file. The conversion rules for these metrics are similar to the rules in statsd_exporter, but here they are configured in TOML format.
 
-For metrics without a mapping rule configured, all non-alphanumeric characters except `_` and `:` will be replaced with `_`.
+Metrics that don't match any mapping in the configuration file are translated into metrics without any labels and with names in which every non-alphanumeric character except `_` and `:` is replaced with `_`. When configuring here, you need to specify the name of the metric set `measurement_name`, and the mapped metrics will be categorized under this metric set. If the metric set name is not specified or no mapping rules are configured, it will default to the `graphite` metric set.
 
-An example mapping rule is as follows:
+An example mapping configuration:
 
 ```toml
 [inputs.graphite.metric_mapper]
@@ -121,7 +125,7 @@ hostname = "${1}"
 device = "${2}"
 ```
 
-The above rules will transform Graphite metrics into the following format:
+This would transform these example graphite metrics into metrics as follows:
 
 ```txt
 test.dispatcher.FooProcessor.send.success
@@ -137,15 +141,15 @@ servers.rack-003-server-c4de.networking.subnetworks.transmissions.eth0.failure.m
   => servers_networking_transmissions_failure_mean_rate{device="eth0",hostname="rack-003-server-c4de"}
 ```
 
-### Supported Mapping Rule Explanation {#support-mapping}
+### Support Mapping Configuration {#support-mapping}
 
-#### Global Mapping (Glob mapping) {#glob-mapping}
+#### Glob Mapping {#glob-mapping}
 
-The default global mapping rule uses `*` to represent dynamic parts of the metric.
+The default glob mapping style uses * to denote parts of the metric name that may vary.
 
-> Note: This uses **dot format** metrics, such as `test.a.b.c.d`.
+> Noted: now we use `dot-separated`, like `test.a.b.c.d`
 
-A similar configuration is as follows:
+An example mapping configuration:
 
 ```toml
 [inputs.graphite.metric_mapper]
@@ -170,7 +174,7 @@ outcome = "$3"
 provider = "$2"
 ```
 
-The transformed content is as follows:
+This would transform these example metrics into metrics as follows:
 
 ```txt
 test.dispatcher.FooProcessor.send.success
@@ -183,7 +187,7 @@ test.web-server.foo.bar
  => test_web_server_foo_bar{}
 ```
 
-> Note: Each mapping rule must have a `name` field, using `$n` to match the `n`th replacement in the line.
+> Noted: Every mapping configuration must have `name` field, The metric's name can contain $n-style references to be replaced by the n-th wildcard match in the matching line. That allows for dynamic rewrites, such as:
 
 ```txt
 [[inputs.graphite.metric_mapper.mappings]]
@@ -195,15 +199,15 @@ measurement_name = "test_counter"
 provider = "$1"
 ```
 
-For example, for `test.a.b.counter`, `$1` corresponds to `a`, and `$2` corresponds to `b`, and so on.
+Here use `test.a.b.c.counter` as an example, `$1` corresponds to `a`, `$2`corresponds to `b`, and so on.
 
-#### Regular Expression Matching Rules {#regular-regex-mapping}
+#### Regular expression matching {#regular-regex-mapping}
 
-Regular expression matching rules use standard regex patterns to match metric names. Specify `match_type = regex`.
+The regex matching rules use standard regular expression matching to match metric names. You need to specify match_type = regex.
 
-> Note: Regular expression matching is slower compared to global rules.
+> Noted: regex matching is slower than glob matching
 
-Example:
+An example mapping configuration:
 
 ```toml
 [[inputs.graphite_metric_mapper.mappings]]
@@ -217,16 +221,15 @@ hostname = "${1}"
 device = "${2}"
 ```
 
-> Note: In TOML, backslashes (`\`) in strings must be escaped, so use `\\`.
+> Noted: In TOML, backslashes (`\`) need to be escaped when used in strings, so you need to double-escape the backslashes by `\\`
 
-#### More Details {#more-details}
+#### More details {#more-details}
 
-Refer to [statsd_exporter](https://github.com/prometheus/statsd_exporter){:target="_blank"}
+please refer to [statsd_exporter](https://github.com/prometheus/statsd_exporter){:target="_blank"}
 
+### StrictMatch {#strict-match}
 
-### Strict Match {#strict-match}
-
-If you only want metrics that are configured with mapping rules and ignore all unconfigured ones, this can be achieved by setting `strict_match`.
+If you have a very large set of metrics you may want to skip the ones that don't match the mapping configuration. If that is the case you can force this behavior using the `strict_match`, and it will only store those metrics you really want.
 
 ```toml
 [inputs.graphite.metric_mapper]

@@ -1,33 +1,33 @@
 ---
 title     : 'Memory'
-summary   : 'Collect Metrics data of HOST memory'
+summary   : 'Collect metrics of host memory'
 tags:
   - 'HOST'
 __int_icon      : 'icon/mem'
 dashboard :
-  - desc  : 'Memory'
+  - desc  : 'memory'
     path  : 'dashboard/en/mem'
 monitor   :
-  - desc  : 'HOST Monitoring Library'
+  - desc  : 'host detection library'
     path  : 'monitor/en/host'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The Memory collector is used to collect system memory information, including some common Metrics such as total HOST memory, used memory, and utilized memory.
+Mem collector is used to collect system memory information, some general metrics such as total memory, used memory and so on.
 
 ## Configuration {#config}
 
-After successfully installing DataKit and starting it, the Memory collector will be enabled by default, without requiring manual activation.
+After successfully installing and starting DataKit, the Mem collector will be enabled by default without the need for manual activation.
+
+### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
+=== "Host Installation"
 
-=== "HOST Installation"
-
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `mem.conf.sample`, and rename it to `mem.conf`. Example:
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `mem.conf.sample` and name it `mem.conf`. Examples are as follows:
 
     ```toml
         
@@ -40,41 +40,40 @@ After successfully installing DataKit and starting it, the Memory collector will
       # more_tag = "some_other_value"
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can enable the collector through [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
 
     - **ENV_INPUT_MEM_INTERVAL**
     
-        Collector repeat interval duration
+        Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **input.conf**: `interval`
     
-        **Default Value**: 10s
+        **Default**: 10s
     
     - **ENV_INPUT_MEM_TAGS**
     
-        Custom tags. If the configuration file has tags with the same name, they will override them.
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
-
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-By default, all the following data collections append a global tag named `host` (the tag value is the hostname where DataKit resides), and you can specify other tags in the configuration through `[inputs.mem.tags]`:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.mem.tags]`:
 
-```toml
+``` toml
  [inputs.mem.tags]
   # some_tag = "some_value"
   # more_tag = "some_other_value"
@@ -92,7 +91,7 @@ By default, all the following data collections append a global tag named `host` 
 |  ----  | --------|
 |`host`|System hostname.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -132,3 +131,5 @@ By default, all the following data collections append a global tag named `host` 
 |`wired`|Wired. (Darwin)|int|B|
 |`write_back`|Memory which is actively being written back to the disk. (Linux)|int|B|
 |`write_back_tmp`|Memory used by FUSE for temporary write back buffers. (Linux)|int|B|
+
+

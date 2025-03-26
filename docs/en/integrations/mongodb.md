@@ -1,15 +1,15 @@
 ---
 title     : 'MongoDB'
-summary   : 'Collect MongoDB Metrics data'
+summary   : 'Collect mongodb metrics data'
 tags:
-  - 'DATABASE'
+  - 'DATA STORES'
 __int_icon      : 'icon/mongodb'
 dashboard :
-  - desc  : 'MongoDB Monitoring View'
+  - desc  : 'Mongodb'
     path  : 'dashboard/en/mongodb'
 monitor   :
-  - desc  : 'MongoDB Monitor'
-    path  : 'monitor/en/mongodb'
+  - desc  : 'N/A'
+    path  : '-'
 ---
 
 
@@ -17,23 +17,23 @@ monitor   :
 
 ---
 
-MongoDB DATABASE, Collection, MongoDB DATABASE cluster running status data collection.
+MongoDb database, Collection, MongoDb database cluster running status data Collection.
 
-## Configuration {#config}
+## Config {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requirements}
 
-- Tested versions:
+- Already tested version:
     - [x] 6.0
     - [x] 5.0
     - [x] 4.0
     - [x] 3.0
     - [x] 2.8.0
 
-- Development uses MongoDB version `4.4.5`;
-- Write the configuration file in the corresponding directory and start DataKit to complete the configuration;
-- Use TLS for secure connections by configuring the paths of the certificate files under `## TLS connection config` in the configuration file;
-- If MongoDB starts with access control, configure the necessary user permissions to establish an authorized connection:
+- Developed and used MongoDB version `4.4.5`;
+- Write the configuration file in the corresponding directory and then start DataKit to complete the configuration;
+- For secure connections using TLS, please configure the response certificate file path and configuration under `## TLS connection config` in the configuration file;
+- If MongoDB has access control enabled, you need to configure the necessary user rights to establish an authorized connection:
 
 ```sh
 # Run MongoDB shell.
@@ -56,16 +56,16 @@ $ mongo
 })
 ```
 
-> For more permission details, refer to the official documentation [Built-In Roles](https://www.mongodb.com/docs/manual/reference/built-in-roles/){:target="_blank"}.
+>More authorization information can refer to official documentation [Built-In Roles](https://www.mongodb.com/docs/manual/reference/built-in-roles/){:target="_blank"}。
 
-After executing the above commands, fill in the created "username" and "password" into the Datakit configuration file `conf.d/db/mongodb.conf`.
+After done with commands above, filling the `user` and `pwd` to Datakit configuration file `conf.d/db/mongodb.conf`.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Enter the `conf.d/db` directory under the DataKit installation directory, copy `mongodb.conf.sample`, and rename it to `mongodb.conf`. Example:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `mongodb.conf.sample` and name it `mongodb.conf`. Examples are as follows:
 
     ```toml
         
@@ -92,15 +92,6 @@ After executing the above commands, fill in the created "username" and "password
       ## A query string that specifies connection specific options as <name>=<value> pairs.
       # query_string = "authSource=admin&authMechanism=SCRAM-SHA-256"
     
-      ## A list of Mongodb servers URL
-      ## Note: must escape special characters in password before connect to Mongodb server, otherwise parse will failed.
-      ## Form: "mongodb://[user ":" pass "@"] host [ ":" port]"
-      ## Some examples:
-      ## mongodb://user:pswd@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=admin
-      ## mongodb://user:pswd@127.0.0.1:27017,
-      ## mongodb://10.10.3.33:18832,
-      # servers = ["mongodb://127.0.0.1:27017"]
-    
       ## When true, collect replica set stats
       gather_replica_set_stats = false
     
@@ -108,13 +99,13 @@ After executing the above commands, fill in the created "username" and "password
       ## Note that the query that counts jumbo chunks triggers a COLLSCAN, which may have an impact on performance.
       gather_cluster_stats = false
     
-      ## When true, collect per DATABASE stats
+      ## When true, collect per database stats
       gather_per_db_stats = true
     
       ## When true, collect per collection stats
       gather_per_col_stats = true
     
-      ## List of dbs where collections stats are collected, If empty, all dbs are concerned.
+      ## List of db where collections stats are collected, If empty, all dbs are concerned.
       col_stats_dbs = []
     
       ## When true, collect top command stats.
@@ -143,20 +134,20 @@ After executing the above commands, fill in the created "username" and "password
     
     ```
 
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector through [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### TLS Configuration (self-signed) {#tls}
+### TLS config (self-signed) {#tls}
 
-Use `openssl` to generate certificate files for MongoDB TLS configuration, enabling server-side encryption and client authentication.
+Use OpenSSL to generate a certificate file for MongoDB TLS configuration to enable server-side encryption and client-side authentication.
 
 - Configure TLS certificates
 
-Install `openssl` and run the following command:
+Install OpenSSL and run the following command:
 
 ```shell
 sudo apt install openssl -y
@@ -164,24 +155,24 @@ sudo apt install openssl -y
 
 - Configure MongoDB server-side encryption
 
-Use `openssl` to generate certificate-level key files, run the following command and input the corresponding verification block information as prompted:
+Use OpenSSL to generate a certificate-level key file, run the following command and enter the corresponding authentication block information at the command prompt:
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
 ```
 
-- `bits`: RSA key bit size, for example 2048
-- `days`: Expiration date
-- `mongod.key.pem`: Key file
+- `bits`: rsa key digits, for example, 2048
+- `days`: expired date
+- `mongod.key.pem`: key file
 - `mongod.cert.pem`: CA certificate file
 
-After running the above command, merge the `block` from both generated files by running the following command:
+Running the above command generates the `cert.pem` file and the `key.pem` file, and we need to merge the `block` inside the two files to run the following command:
 
 ```shell
 sudo bash -c "cat mongod.cert.pem mongod.key.pem >>mongod.pem"
 ```
 
-After merging, configure the TLS sub-item in the `/etc/mongod.config` file
+Configure the TLS subentry in the /etc/mongod.config file after merging
 
 ```yaml
 # TLS config
@@ -191,44 +182,44 @@ net:
     certificateKeyFile: </etc/ssl/mongod.pem>
 ```
 
-Start MongoDB using the configuration file by running the following command:
+Start MongoDB with the configuration file and run the following command:
 
 ```shell
 mongod --config /etc/mongod.conf
 ```
 
-Start MongoDB via the command line by running the following command:
+Start MongoDB from the command line and run the following command:
 
 ```shell
 mongod --tlsMode requireTLS --tlsCertificateKeyFile </etc/ssl/mongod.pem> --dbpath <.db/mongodb>
 ```
 
-Copy `mongod.cert.pem` as `mongo.cert.pem` to the MongoDB client and enable TLS:
+Copy mongod.cert.pem as mongo.cert.pem to MongoDB client and enable TLS:
 
 ```shell
 mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem>
 ```
 
-- Configure MongoDB client authentication
+- Configuring MongoDB Client Authentication
 
-Use `openssl` to generate certificate-level key files, run the following command:
+Use OpenSSL to generate a certificate-level key file and run the following command:
 
 ```shell
 sudo openssl req -x509 -newkey rsa:<bits> -days <days> -keyout <mongod.key.pem> -out <mongod.cert.pem> -nodes
 ```
 
-- `bits`: RSA key bit size, for example 2048
-- `days`: Expiration date
-- `mongo.key.pem`: Key file
+- `bits`: rsa key digits, for example, 2048
+- `days`: expired date
+- `mongo.key.pem`: key file
 - `mongo.cert.pem`: CA certificate file
 
-Merge `mongod.cert.pem` and `mongod.key.pem` files by running the following command:
+Merging the block in the mongod.cert.pem and mongod.key.pem files runs the following command:
 
 ```shell
 sudo bash -c "cat mongod.cert.pem mongod.key.pem >>mongod.pem"
 ```
 
-Copy the `mongod.cert.pem` file to the MongoDB server and configure the TLS item in the `/etc/mongod.config` file:
+Copy the mongod.cert.pem file to the MongoDB server and configure the TLS entry in the /etc/mongod.config file.
 
 ```yaml
 # Tls config
@@ -239,23 +230,23 @@ net:
     CAFile: </etc/ssl/mongod.cert.pem>
 ```
 
-Start MongoDB by running the following command:
+Start MongoDB and run the following command:
 
 ```shell
 mongod --config /etc/mongod.conf
 ```
 
-Copy `mongod.cert.pem` as `mongo.cert.pem`, copy `mongod.pem` as `mongo.pem` to the MongoDB client and enable TLS:
+Copy mongod.cert.pem for mongo.cert.pem; Copy mongod.pem for mongo.pem to MongoDB client and enable TLS:
 
 ```shell
 mongo --tls --host <mongod_url> --tlsCAFile </etc/ssl/mongo.cert.pem> --tlsCertificateKeyFile </etc/ssl/mongo.pem>
 ```
 
-> Note: When using self-signed certificates, `insecure_skip_verify` in the `mongodb.conf` configuration must be `true`.
+**Note:**`insecure_skip_verify` must be `true` in mongodb.conf configuration when using self-signed certificates.
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All data collection below will append global election tag by default. You can also specify other tags via `[inputs.mongodb.tags]` in the configuration:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.mongodb.tags]` if needed:
 
 ```toml
  [inputs.mongodb.tags]
@@ -266,9 +257,10 @@ All data collection below will append global election tag by default. You can al
 
 
 
+
 ### `mongodb`
 
-- Description
+- explain
 
 MongoDB measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
@@ -280,22 +272,22 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`active_reads`|The number of active client connections performing read operations.|int|count|
+|`active_reads`|The number of the active client connections performing read operations.|int|count|
 |`active_writes`|The number of active client connections performing write operations.|int|count|
 |`aggregate_command_failed`|The number of times that 'aggregate' command failed on this mongod|int|count|
 |`aggregate_command_total`|The number of times that 'aggregate' command executed on this mongod.|int|count|
 |`assert_msg`|The number of message assertions raised since the MongoDB process started. Check the log file for more information about these messages.|int|count|
 |`assert_regular`|The number of regular assertions raised since the MongoDB process started. Check the log file for more information about these messages.|int|count|
 |`assert_rollovers`|The number of times that the rollover counters have rolled over since the last time the MongoDB process started. The counters will rollover to zero after 2 30 assertions. Use this value to provide context to the other values in the asserts data structure.|int|count|
-|`assert_user`|The number of "user asserts" that have occurred since the last time the MongoDB process started. These are errors that users may generate, such as out of disk space or duplicate key. You can prevent these assertions by fixing a problem with your application or deployment. Check the MongoDB log for more information.|int|count|
+|`assert_user`|The number of "user asserts" that have occurred since the last time the MongoDB process started. These are errors that user may generate, such as out of disk space or duplicate key. You can prevent these assertions by fixing a problem with your application or deployment. Check the MongoDB log for more information.|int|count|
 |`assert_warning`|Changed in version 4.0. Starting in MongoDB 4.0, the field returns zero 0. In earlier versions, the field returns the number of warnings raised since the MongoDB process started.|int|count|
-|`available_reads`|The number of concurrent read transactions allowed into the WiredTiger storage engine|int|count|
-|`available_writes`|The number of concurrent write transactions allowed into the WiredTiger storage engine|int|count|
+|`available_reads`|The number of concurrent of read transactions allowed into the WiredTiger storage engine|int|count|
+|`available_writes`|The number of concurrent of write transactions allowed into the WiredTiger storage engine|int|count|
 |`commands`|The total number of commands issued to the database since the mongod instance last started. `opcounters.command` counts all commands except the write commands: insert, update, and delete.|int|count|
 |`commands_per_sec`|Deprecated, use commands.|int|count|
 |`connections_available`|The number of unused incoming connections available.|int|count|
@@ -354,12 +346,12 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 |`queries_per_sec`|Deprecated, use queries.|int|count|
 |`queued_reads`|The number of operations that are currently queued and waiting for the read lock. A consistently small read-queue, particularly of shorter operations, should cause no concern.|int|count|
 |`queued_writes`|The number of operations that are currently queued and waiting for the write lock. A consistently small write-queue, particularly of shorter operations, is no cause for concern.|int|count|
-|`repl_apply_batches_num`|The total number of batches applied across all DATABASEs.|int|count|
+|`repl_apply_batches_num`|The total number of batches applied across all databases.|int|count|
 |`repl_apply_batches_total_millis`|The total amount of time in milliseconds the mongod has spent applying operations from the oplog.|int|count|
 |`repl_apply_ops`|The total number of oplog operations applied. metrics.repl.apply.ops is incremented after each operation.|int|count|
 |`repl_buffer_count`|The current number of operations in the oplog buffer.|int|count|
 |`repl_buffer_size_bytes`|The current size of the contents of the oplog buffer.|int|count|
-|`repl_commands`|The total number of replicated commands issued to the DATABASE since the mongod instance last started.|int|count|
+|`repl_commands`|The total number of replicated commands issued to the database since the mongod instance last started.|int|count|
 |`repl_commands_per_sec`|Deprecated, use repl_commands.|int|count|
 |`repl_deletes`|The total number of replicated delete operations since the mongod instance last started.|int|count|
 |`repl_deletes_per_sec`|Deprecated, use repl_deletes.|int|count|
@@ -381,7 +373,7 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 |`repl_state`|The node state of replication member.|int|count|
 |`repl_updates`|The total number of replicated update operations since the mongod instance last started.|int|count|
 |`repl_updates_per_sec`|Deprecated, use repl_updates.|int|count|
-|`resident_megabytes`|The value of mem.resident is roughly equivalent to the amount of RAM, in MiB, currently used by the DATABASE process.|int|count|
+|`resident_megabytes`|The value of mem.resident is roughly equivalent to the amount of RAM, in MiB, currently used by the database process.|int|count|
 |`storage_freelist_search_bucket_exhausted`|The number of times that mongod has checked the free list without finding a suitably large record allocation.|int|count|
 |`storage_freelist_search_requests`|The number of times mongod has searched for available record allocations.|int|count|
 |`storage_freelist_search_scanned`|The number of available record allocations mongod has searched.|int|count|
@@ -410,8 +402,8 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 |`total_in_use`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently in use.|int|count|
 |`total_keys_scanned`|The total number of index items scanned during queries and query-plan evaluation.|int|count|
 |`total_refreshing`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently being refreshed.|int|count|
-|`total_tickets_reads`|A document that returns information on the number of concurrent read transactions allowed into the WiredTiger storage engine.|int|count|
-|`total_tickets_writes`|A document that returns information on the number of concurrent write transactions allowed into the WiredTiger storage engine.|int|count|
+|`total_tickets_reads`|A document that returns information on the number of concurrent of read transactions allowed into the WiredTiger storage engine.|int|count|
+|`total_tickets_writes`|A document that returns information on the number of concurrent of write transactions allowed into the WiredTiger storage engine.|int|count|
 |`ttl_deletes`|The total number of documents deleted from collections with a ttl index.|int|count|
 |`ttl_deletes_per_sec`|Deprecated, use ttl_deletes.|int|count|
 |`ttl_passes`|The number of times the background process removes documents from collections with a ttl index.|int|count|
@@ -445,10 +437,9 @@ MongoDB measurement. Some metrics may not appear depending on the MongoDB versio
 
 
 
-
 ### `mongodb_db_stats`
 
-- Description
+- explain
 
 MongoDB stats measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
@@ -457,28 +448,28 @@ MongoDB stats measurement. Some metrics may not appear depending on the MongoDB 
 
 | Tag | Description |
 |  ----  | --------|
-|`db_name`|DATABASE name|
+|`db_name`|database name|
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`avg_obj_size`|The average size of each document in bytes.|float|count|
-|`collections`|Contains a count of the number of collections in that DATABASE.|int|count|
-|`data_size`|The total size of the uncompressed data held in this DATABASE. The dataSize decreases when you remove documents.|int|count|
-|`index_size`|The total size of all indexes created on this DATABASE.|int|count|
-|`indexes`|Contains a count of the total number of indexes across all collections in the DATABASE.|int|count|
+|`collections`|Contains a count of the number of collections in that database.|int|count|
+|`data_size`|The total size of the uncompressed data held in this database. The dataSize decreases when you remove documents.|int|count|
+|`index_size`|The total size of all indexes created on this database.|int|count|
+|`indexes`|Contains a count of the total number of indexes across all collections in the database.|int|count|
 |`mapped_megabytes`|Mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
 |`non-mapped_megabytes`|Non mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
-|`objects`|Contains a count of the number of objects (i.e. documents) in the DATABASE across all collections.|int|count|
+|`objects`|Contains a count of the number of objects (i.e. documents) in the database across all collections.|int|count|
 |`ok`|Command execute state.|int|count|
 |`page_faults_per_sec`|Page Faults/sec is the average number of pages faulted per second. (Existed in 3.0 and earlier version)|int|count|
 |`percent_cache_dirty`|Size in bytes of the dirty data in the cache. This value should be less than the bytes currently in the cache value. (Existed in 3.0 and earlier version)|int|count|
 |`percent_cache_used`|Size in byte of the data currently in cache. This value should not be greater than the maximum bytes configured value. (Existed in 3.0 and earlier version)|int|count|
-|`storage_size`|The total amount of space allocated to collections in this DATABASE for document storage.|int|count|
+|`storage_size`|The total amount of space allocated to collections in this database for document storage.|int|count|
 |`wtcache_app_threads_page_read_count`|(Existed in 3.0 and earlier version)|int|count|
 |`wtcache_app_threads_page_read_time`|(Existed in 3.0 and earlier version)|int|count|
 |`wtcache_app_threads_page_write_count`|(Existed in 3.0 and earlier version)|int|count|
@@ -502,10 +493,9 @@ MongoDB stats measurement. Some metrics may not appear depending on the MongoDB 
 
 
 
-
 ### `mongodb_col_stats`
 
-- Description
+- explain
 
 MongoDB collection measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
 
@@ -515,11 +505,11 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 | Tag | Description |
 |  ----  | --------|
 |`collection`|collection name|
-|`db_name`|DATABASE name|
+|`db_name`|database name|
 |`host`|mongodb host|
 |`mongod_host`|mongodb host with port|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -556,13 +546,130 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 
 
 
-## Custom Objects {#object}
+
+
+### `mongodb_shard_stats`
+
+- explain
+
+MongoDB shard measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`host`|mongodb host|
+|`mongod_host`|mongodb host with port|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`available`|The number of connections available for this host to connect to the mongos.|int|count|
+|`created`|The number of connections the host has ever created to connect to the mongos.|int|count|
+|`in_use`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently in use.|int|count|
+|`refreshing`|Reports the total number of outgoing connections from the current mongod/mongos instance to other members of the sharded cluster or replica set that are currently being refreshed.|int|count|
 
 
 
 
 
-### `DATABASE`
+### `mongodb_top_stats`
+
+- explain
+
+MongoDB top measurement. Some metrics may not appear depending on the MongoDB version or DB running status.
+
+- Tags
+
+
+| Tag | Description |
+|  ----  | --------|
+|`collection`|collection name|
+|`host`|mongodb host|
+|`mongod_host`|mongodb host with port|
+
+- Metrics
+
+
+| Metric | Description | Type | Unit |
+| ---- |---- | :---:    | :----: |
+|`commands_count`|The total number of "command" event issues.|int|count|
+|`commands_time`|The amount of time in microseconds that "command" costs.|int|count|
+|`get_more_count`|The total number of `getmore` event issues.|int|count|
+|`get_more_time`|The amount of time in microseconds that `getmore` costs.|int|count|
+|`insert_count`|The total number of "insert" event issues.|int|count|
+|`insert_time`|The amount of time in microseconds that "insert" costs.|int|count|
+|`mapped_megabytes`|Mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
+|`non-mapped_megabytes`|Non mapped megabytes. (Existed in 3.0 and earlier version)|int|count|
+|`page_faults_per_sec`|Page Faults/sec is the average number of pages faulted per second. (Existed in 3.0 and earlier version)|int|count|
+|`percent_cache_dirty`|Size in bytes of the dirty data in the cache. This value should be less than the bytes currently in the cache value. (Existed in 3.0 and earlier version)|int|count|
+|`percent_cache_used`|Size in byte of the data currently in cache. This value should not be greater than the maximum bytes configured value. (Existed in 3.0 and earlier version)|int|count|
+|`queries_count`|The total number of "queries" event issues.|int|count|
+|`queries_time`|The amount of time in microseconds that "queries" costs.|int|count|
+|`read_lock_count`|The total number of "readLock" event issues.|int|count|
+|`read_lock_time`|The amount of time in microseconds that "readLock" costs.|int|count|
+|`remove_count`|The total number of "remove" event issues.|int|count|
+|`remove_time`|The amount of time in microseconds that "remove" costs.|int|count|
+|`total_count`|The total number of "total" event issues.|int|count|
+|`total_time`|The amount of time in microseconds that "total" costs.|int|count|
+|`update_count`|The total number of "update" event issues.|int|count|
+|`update_time`|The amount of time in microseconds that "update" costs.|int|count|
+|`write_lock_count`|The total number of "writeLock" event issues.|int|count|
+|`write_lock_time`|The amount of time in microseconds that "writeLock" costs.|int|count|
+|`wtcache_app_threads_page_read_count`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_app_threads_page_read_time`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_app_threads_page_write_count`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_bytes_read_into`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_bytes_written_from`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_current_bytes`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_internal_pages_evicted`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_max_bytes_configured`|Maximum cache size. (Existed in 3.0 and earlier version)|int|count|
+|`wtcache_modified_pages_evicted`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_pages_evicted_by_app_thread`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_pages_queued_for_eviction`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_pages_read_into`|Number of pages read into the cache. (Existed in 3.0 and earlier version)|int|count|
+|`wtcache_pages_requested_from`|Number of pages request from the cache. (Existed in 3.0 and earlier version)|int|count|
+|`wtcache_pages_written_from`|Pages written from cache. (Existed in 3.0 and earlier version)|int|count|
+|`wtcache_server_evicting_pages`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_tracked_dirty_bytes`|(Existed in 3.0 and earlier version)|int|count|
+|`wtcache_unmodified_pages_evicted`|Main statistics for page eviction. (Existed in 3.0 and earlier version)|int|count|
+|`wtcache_worker_thread_evictingpages`|(Existed in 3.0 and earlier version)|int|count|
+
+
+
+
+
+
+## Custom Object {#object}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `database`
 
 
 
@@ -577,7 +684,7 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -589,23 +696,23 @@ MongoDB collection measurement. Some metrics may not appear depending on the Mon
 
 
 
-## Log Collection {#logging}
+## Mongod Log Collection {#logging}
 
-Uncomment `# enable_mongod_log = false` in the configuration file and change `false` to `true`. Other mongod log configuration options are under `[inputs.mongodb.log]`. The commented-out configurations are default settings. If the paths correspond correctly, no additional configuration is required. After starting Datakit, you will see a collected Metrics set named `mongod_log`.
+Annotate the configuration file `# enable_mongod_log = false` and change `false` to `true`. Other configuration options for mongod log are in `[inputs.mongodb.log]`, and the commented configuration is very default. If the path correspondence is correct, no configuration is needed. After starting Datakit, you will see a collection measurement named `mongod_log`.
 
 Log raw data sample
 
-```log
+```not-set
 {"t":{"$date":"2021-06-03T09:12:19.977+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"WTCheckpointThread","msg":"WiredTiger message","attr":{"message":"[1622711539:977142][1:0x7f1b9f159700], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 653, snapshot max: 653 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0)"}}
 ```
 
-Log segmentation fields
+Log cut field
 
-| Field Name    | Field Value                        | Description                                                           |
-| ------------- | ---------------------------------- | --------------------------------------------------------------------- |
-| message       |                                   | Log raw data                                                         |
-| component     | STORAGE                           | The full component string of the log message                         |
-| context       | WTCheckpointThread                | The name of the thread issuing the log statement                     |
-| msg           | WiredTiger message                | The raw log output message as passed from the server or driver       |
-| status        | I                                 | The short severity code of the log message                           |
-| time          | 2021-06-03T09:12:19.977+00:00     | Timestamp                                                            |
+| Field Name | Field Value                   | Description                                                    |
+| ---------- | ----------------------------- | -------------------------------------------------------------- |
+| message    |                               | Log raw data                                                   |
+| component  | STORAGE                       | The full component string of the log message                   |
+| context    | WTCheckpointThread            | The name of the thread issuing the log statement               |
+| msg        | WiredTiger message            | The raw log output message as passed from the server or driver |
+| status     | I                             | The short severity code of the log message                     |
+| time       | 2021-06-03T09:12:19.977+00:00 | Timestamp                                                      |
