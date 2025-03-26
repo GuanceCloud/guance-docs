@@ -27,7 +27,7 @@ dk3(Datakit);
 k8s_dk1(Datakit);
 k8s_dk2(Datakit);
 k8s_dk3(Datakit);
-guance(Guance);
+brand_name("<<<custom_key.brand_name>>>");
 
 subgraph HOST DataKit
     direction TB;
@@ -48,17 +48,17 @@ subgraph k8s DataKit
  k8s_dk3
 end
     
-dk1 -.-> |upload data|guance;
-dk2 -.-> |upload data|guance;
-dk3 -.-> |upload data|guance;
-k8s_dk1 -.-> |upload data|guance;
-k8s_dk2 -.-> |upload data|guance;
-k8s_dk3 -.-> |upload data|guance;
+dk1 -.-> |upload data|brand_name;
+dk2 -.-> |upload data|brand_name;
+dk3 -.-> |upload data|brand_name;
+k8s_dk1 -.-> |upload data|brand_name;
+k8s_dk2 -.-> |upload data|brand_name;
+k8s_dk3 -.-> |upload data|brand_name;
 
 dca_server <--> |websocket| dk_upgrader1 & dk_upgrader2 & dk_upgrader3 & k8s_dk1 & k8s_dk2 & k8s_dk3
 dca_web -- HTTP --- dca_server;
 
-dca_server -.-> |login/auth| guance;
+dca_server -.-> |login/auth| brand_name;
 ```
 
 ## 开启 DCA 服务 {#config}
@@ -74,7 +74,7 @@ dca_server -.-> |login/auth| guance;
     示例：
     
     ```shell
-    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://127.0.0.1:9000/ws" DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://127.0.0.1:9000/ws" DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
     安装成功后，DataKit 将自动连接 DCA 服务。
@@ -124,7 +124,7 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
     运行容器之前，首先通过 `docker pull` 下载 DCA 镜像。
 
     ```shell
-    docker pull pubrepo.guance.com/tools/dca:latest
+    docker pull pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca:latest
     ```
 
     - 运行容器
@@ -132,7 +132,7 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
     通过 `docker run` 命令来创建和启动 DCA 容器，容器默认暴露访问端口是 80。
 
     ```shell
-    docker run -d --name dca -p 8000:80 pubrepo.guance.com/tools/dca
+    docker run -d --name dca -p 8000:80 pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca
     ```
 
     - 测试
@@ -141,7 +141,7 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
 
 === "k8s"
 
-    下载 [*dca.yaml*](https://static.guance.com/datakit/dca/dca.yaml){:target="_blank"}，并修改文件里面的相应配置，应用 `dca.yaml` 文件到 Kubernetes 集群中。
+    下载 [*dca.yaml*](https://static.<<<custom_key.brand_main_domain>>>/datakit/dca/dca.yaml){:target="_blank"}，并修改文件里面的相应配置，应用 `dca.yaml` 文件到 Kubernetes 集群中。
 
     ```shell
     kubectl apply -f dca.yaml
@@ -155,10 +155,10 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
 
 | 环境变量名称            | 类型   | 默认值                           | 说明                                                                                            |
 | ---------:              | ----:  | ---:                             | ------                                                                                          |
-| `DCA_CONSOLE_API_URL`        | string | `https://console-api.guance.com` | 观测云 console API 地址，参考 [节点地址](dca.md#node-address)                                                                        |
-| `DCA_CONSOLE_WEB_URL`        | string | `https://console.guance.com` | 观测云平台地址，参考 [节点地址](dca.md#node-address)                                                                         |
-| `DCA_STATIC_BASE_URL`        | string | `https://static.guance.com` | 静态文件服务器地址                                                                         |
-| `DCA_CONSOLE_PROXY`     | string | 无                               | 观测云 API 代理，不代理 DataKit 接口                                                            |
+| `DCA_CONSOLE_API_URL`        | string | `https://console-api.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> console API 地址，参考 [节点地址](dca.md#node-address)                                                                        |
+| `DCA_CONSOLE_WEB_URL`        | string | `https://console.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>>平台地址，参考 [节点地址](dca.md#node-address)                                                                         |
+| `DCA_STATIC_BASE_URL`        | string | `https://static.<<<custom_key.brand_main_domain>>>` | 静态文件服务器地址                                                                         |
+| `DCA_CONSOLE_PROXY`     | string | 无                               | <<<custom_key.brand_name>>> API 代理，不代理 DataKit 接口                                                            |
 | `DCA_LOG_LEVEL`         | string | INFO                             | 日志等级，取值为 debug/info/warn/error                  |
 | `DCA_LOG_PATH`         | string | INFO                             | 日志路径，如果需要输出到 stdout，则设置为 `stdout`                  |
 | `DCA_TLS_ENABLE`         | string |                              | 是否开启 TLS，设置该值表示开启                  |
@@ -168,29 +168,29 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
 示例：
 
 ```shell
-docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=WARN pubrepo.guance.com/tools/dca
+docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=WARN pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca
 ```
 
 ### 节点地址 {#node-address}
 
 | 部署类型  | 节点名       | `DCA_CONSOLE_API_URL`| `DCA_CONSOLE_WEB_URL`|
 |-------|-----------|--------------------------------| --------------------------------|
-| SaaS 部署 | 中国区 1（杭州）    | `https://console-api.guance.com`    | `https://console.guance.com` |
-| SaaS 部署 | 中国区 2（宁夏）    | `https://aws-console-api.guance.com`| `https://aws-console.guance.com` |
-| SaaS 部署 | 中国区 4（广州）    | `https://cn4-console-api.guance.com`| `https://cn4-console.guance.com` |
-| SaaS 部署 | 中国区 6（香港）    | `https://cn6-console-api.guance.com`| `https://cn6-console.guance.com` |
-| SaaS 部署 | 海外区 1（俄勒冈）  | `https://us1-console-api.guance.com`| `https://us1-console.guance.com` |
-| SaaS 部署 | 欧洲区 1（法兰克福）| `https://eu1-console-api.guance.com`| `https://eu1-console.guance.com` |
-| SaaS 部署 | 亚太区 1（新加坡）  | `https://ap1-console-api.guance.com`| `https://ap1-console.guance.com` |
+| SaaS 部署 | 中国区 1（杭州）    | `https://console-api.<<<custom_key.brand_main_domain>>>`    | `https://console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署 | 中国区 2（宁夏）    | `https://aws-console-api.<<<custom_key.brand_main_domain>>>`| `https://aws-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署 | 中国区 4（广州）    | `https://cn4-console-api.<<<custom_key.brand_main_domain>>>`| `https://cn4-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署 | 中国区 6（香港）    | `https://cn6-console-api.<<<custom_key.brand_main_domain>>>`| `https://cn6-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署 | 海外区 1（俄勒冈）  | `https://us1-console-api.<<<custom_key.brand_main_domain>>>`| `https://us1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署 | 欧洲区 1（法兰克福）| `https://eu1-console-api.<<<custom_key.brand_main_domain>>>`| `https://eu1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署 | 亚太区 1（新加坡）  | `https://ap1-console-api.<<<custom_key.brand_main_domain>>>`| `https://ap1-console.<<<custom_key.brand_main_domain>>>` |
 | 私有部署版 | 私有部署版     |实际部署地址|实际部署地址 |
 
 
 ### 登录 DCA {#login}
 
-DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进行访问。首次访问时，页面将导向一个登录跳转中转页面。点击页面下方「立即前往」按钮后，您将被引导至观测云平台。接下来，按照页面上的说明指引，配置 DCA 的地址。一旦配置完成，您便能够直接通过观测云平台实现无需登录即可访问 DCA 平台的功能。
+DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进行访问。首次访问时，页面将导向一个登录跳转中转页面。点击页面下方「立即前往」按钮后，您将被引导至<<<custom_key.brand_name>>>平台。接下来，按照页面上的说明指引，配置 DCA 的地址。一旦配置完成，您便能够直接通过<<<custom_key.brand_name>>>平台实现无需登录即可访问 DCA 平台的功能。
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-login-redirect.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-login-redirect.png){ width="800" }
 </figure>
 
 ### 查看 DataKit 列表 {#datakit-list}
@@ -208,7 +208,7 @@ DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进�
 默认情况下，只能查看当前工作空间里的 DataKit 相关信息，如果需要对 DataKit 进行管理，如 DataKit 升级、采集器、Pipeline 的 新建、删除、修改等，则需要赋予当前帐号**DCA 配置管理**权限，具体设置可参考[角色管理](../management/role-management.md)。
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-list.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-list.png){ width="800" }
 </figure>
 
 ### 查看 DataKit 运行情况 {#view-runtime}
@@ -216,7 +216,7 @@ DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进�
 登录到 DCA 后，选择工作空间，即可查看该工作空间下所有已经安装 DataKit 的主机名和 IP 信息。点击 DataKit 主机，即可远程连接到 DataKit ，查看该主机上 DataKit 的运行情况，包括版本、运行时间、发布日期、采集器运行情况等，以及可以对 DataKit 进行重新加载操作。
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-run-info-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-run-info-1.png){ width="800" }
 </figure>
 
 ### 采集器配置管理 {#view-inputs-conf}
@@ -228,7 +228,7 @@ DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进�
 - 帮助：可查看对应的采集器帮助文档
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-input-conf-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-input-conf-1.png){ width="800" }
 </figure>
 
 ### Pipelines 管理 {#view-pipeline}
@@ -236,17 +236,17 @@ DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进�
 远程连接到 DataKit 以后，点击「Pipelines」，即可查看，编辑和测试 DataKit 默认自带的 Pipeline 文件。关于 Pipeline 可参考文档 [文本数据处理](../pipeline/use-pipeline/index.md) 。
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-pipeline-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-pipeline-1.png){ width="800" }
 </figure>
 
 ### 查看黑名单 {#view-filters}
 
-远程连接到 DataKit 以后，点击「黑名单」，即可查看在观测云工作配置的黑名单，如下图所示 `source = default and (status in [unknown])` 即为配置的黑名单条件。
+远程连接到 DataKit 以后，点击「黑名单」，即可查看在<<<custom_key.brand_name>>>工作配置的黑名单，如下图所示 `source = default and (status in [unknown])` 即为配置的黑名单条件。
 
-注意：通过观测云创建的黑名单文件统一保存在路径：`/usr/local/datakit/data/.pull` 。
+注意：通过<<<custom_key.brand_name>>>创建的黑名单文件统一保存在路径：`/usr/local/datakit/data/.pull` 。
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-filter-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-filter-1.png){ width="800" }
 </figure>
 
 ### 查看日志 {#view-log}
@@ -254,7 +254,7 @@ DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进�
 远程连接到 DataKit 以后，点击「日志」，即可实时查看 DataKit 的日志，并且可以导出相应的日志到本地。
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-log-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-log-1.png){ width="800" }
 </figure>
 
 ## 更新日志 {#change-log}

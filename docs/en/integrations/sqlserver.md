@@ -1,36 +1,40 @@
 ---
 title     : 'SQLServer'
-summary   : 'Collect metrics data from SQLServer'
+summary   : 'Collect SQLServer Metrics'
 tags:
-  - 'DATABASE'
+  - 'DATA STORES'
 __int_icon      : 'icon/sqlserver'
 dashboard :
   - desc  : 'SQLServer'
     path  : 'dashboard/en/sqlserver'
 monitor   :
-  - desc  : 'SQLServer Monitor'
+  - desc  : 'SQLServer'
     path  : 'monitor/en/sqlserver'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-SQL Server collector collects related metrics such as `waitstats`, `database_io`.
+SQL Server Collector collects SQL Server `waitstats`, `database_io` and other related metrics.
+
 
 ## Configuration {#config}
 
-SQL Server version >= 2012, tested versions:
+SQL Server  version >= 2008, tested version:
 
 - [x] 2017
 - [x] 2019
 - [x] 2022
 
-### Prerequisites {#requirements}
+### Prerequisites {#requrements}
 
-- Create user:
+- SQL Server version >= 2019
 
-Linux, Windows:
+- Create a user:
+
+Linux、Windows:
 
 ```sql
 USE master;
@@ -50,21 +54,15 @@ USE master;
 GO
 CREATE LOGIN [guance] WITH PASSWORD = N'yourpassword';
 GO
+
 ```
 
 <!-- markdownlint-disable MD046 -->
-???+ attention "Notes"
-
-    Note that performing the above operations requires an account with corresponding permissions; otherwise, it might result in user creation failure or authorization failure.
-
-    - For self-built SQL Servers, users need permissions such as WITH GRANT OPTION, CREATE ANY LOGIN, CREATE ANY USER, ALTER ANY LOGIN. Alternatively, a user with sysadmin role or local user authorization can be used directly.
-    - For RDS for SQL Server, high-privilege accounts are required for authorization.
-
 ### Collector Configuration {#input-config}
 
-=== "HOST Installation"
+=== "Host Installation"
 
-    Go to the `conf.d/db` directory under the DataKit installation directory, copy `sqlserver.conf.sample` and rename it to `sqlserver.conf`. Example configuration is as follows:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `sqlserver.conf.sample` and name it `sqlserver.conf`. Examples are as follows:
     
     ```toml
         
@@ -88,6 +86,9 @@ GO
     
       ## connection timeout default: 30s
       connect_timeout = "30s"
+    
+      ## Metric name in metric_exclude_list will not be collected.
+      metric_exclude_list = [""]
     
       ## parameters to be added to the connection string
       ## Examples:
@@ -131,22 +132,22 @@ GO
     
     ```
     
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting its configuration through [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### Log Collection Configuration {#logging-config}
+#### Log Collector Configuration {#logging-config}
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    DataKit must be installed on the same host where SQLServer resides to collect logs.
+     DataKit must be installed on the host where SQLServer is running.
 <!-- markdownlint-enable -->
 
-To collect SQL Server logs, open `files` in *sqlserver.conf* and enter the absolute path of the SQL Server log file. For example:
+To collect SQL Server logs, enable `files` in *sqlserver.conf* and write to the absolute path of the SQL Server log file. For example:
 
 ```toml hl_lines="4"
 [[inputs.sqlserver]]
@@ -155,11 +156,11 @@ To collect SQL Server logs, open `files` in *sqlserver.conf* and enter the absol
         files = ["/var/opt/mssql/log/error.log"]
 ```
 
-After enabling log collection, logs will have a source (`source`) named `sqlserver` by default.
+When log collection is turned on, a log with a log (aka *source*) of`sqlserver` is collected.
 
-## Metrics {#metric}
+## Metrics {#measurements}
 
-By default, all data collected will append global election tags. You can also specify other tags in the configuration via `[inputs.sqlserver.tags]`:
+For all of the following data collections, the global election tags will be added automatically, we can add extra tags in `[inputs.sqlserver.tags]` if needed:
 
 ``` toml
  [inputs.sqlserver.tags]
@@ -171,6 +172,7 @@ By default, all data collected will append global election tags. You can also sp
 <!-- markdownlint-disable MD024 -->
 
 
+
 ### `sqlserver`
 
 - Tags
@@ -178,26 +180,27 @@ By default, all data collected will append global election tags. You can also sp
 
 | Tag | Description |
 |  ----  | --------|
-|`sqlserver_host`|Host name where SQLServer is installed|
+|`sqlserver_host`|Host name which installed SQLServer|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`committed_memory`|The amount of memory committed to the memory manager|int|B|
+|`committed_memory`|The amount of memory committed to the memory manager. Version > 2008|int|B|
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable|int|count|
-|`db_offline`|Number of databases in offline state|int|count|
-|`db_online`|Number of databases in online state|int|count|
-|`db_recovering`|Number of databases in recovering state|int|count|
-|`db_recovery_pending`|Number of databases in recovery_pending state|int|count|
-|`db_restoring`|Number of databases in restoring state|int|count|
-|`db_suspect`|Number of databases in suspect state|int|count|
-|`physical_memory`|Total physical memory on the machine|int|B|
+|`db_offline`|Num of database state in offline|int|count|
+|`db_online`|Num of database state in online|int|count|
+|`db_recovering`|Num of database state in recovering|int|count|
+|`db_recovery_pending`|Num of database state in recovery_pending|int|count|
+|`db_restoring`|Num of database state in restoring|int|count|
+|`db_suspect`|Num of database state in suspect|int|count|
+|`physical_memory`|Total physical memory on the machine. Version > 2008|int|B|
 |`server_memory`|Memory used|int|B|
-|`target_memory`|Amount of memory that can be consumed by the memory manager. When this value is larger than the committed memory, then the memory manager will try to obtain more memory. When it is smaller, the memory manager will try to shrink the amount of memory committed.|int|B|
+|`target_memory`|Amount of memory that can be consumed by the memory manager. When this value is larger than the committed memory, then the memory manager will try to obtain more memory. When it is smaller, the memory manager will try to shrink the amount of memory committed. Version > 2008|int|B|
 |`uptime`|Total time elapsed since the last computer restart|int|ms|
-|`virtual_memory`|Amount of virtual memory available to the process in user mode.|int|B|
+|`virtual_memory`|Amount of virtual memory available to the process in user mode. Version > 2008|int|B|
+
 
 
 
@@ -215,7 +218,7 @@ By default, all data collected will append global election tags. You can also sp
 |`object_name`|Category to which this counter belongs.|
 |`sqlserver_host`|Host name which installed SQLServer|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -269,6 +272,7 @@ By default, all data collected will append global election tags. You can also sp
 
 
 
+
 ### `sqlserver_waitstats`
 
 - Tags
@@ -280,7 +284,7 @@ By default, all data collected will append global election tags. You can also sp
 |`wait_category`|Wait category info|
 |`wait_type`|Name of the wait type. For more information, see Types of Waits, later in this topic|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -290,6 +294,7 @@ By default, all data collected will append global election tags. You can also sp
 |`signal_wait_time_ms`|Difference between the time that the waiting thread was signaled and when it started running|int|ms|
 |`wait_time_ms`|Total wait time for this wait type in milliseconds. This time is inclusive of signal_wait_time_ms|int|ms|
 |`waiting_tasks_count`|Number of waits on this wait type. This counter is incremented at the start of each wait.|int|count|
+
 
 
 
@@ -307,7 +312,7 @@ By default, all data collected will append global election tags. You can also sp
 |`physical_filename`|Operating-system file name.|
 |`sqlserver_host`|Host name which installed SQLServer|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -324,6 +329,7 @@ By default, all data collected will append global election tags. You can also sp
 
 
 
+
 ### `sqlserver_schedulers`
 
 - Tags
@@ -335,7 +341,7 @@ By default, all data collected will append global election tags. You can also sp
 |`scheduler_id`|ID of the scheduler. All schedulers that are used to run regular queries have ID numbers less than 1048576. Those schedulers that have IDs greater than or equal to 1048576 are used internally by SQL Server, such as the dedicated administrator connection scheduler. Is not nullable.|
 |`sqlserver_host`|Host name which installed SQLServer|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -358,6 +364,7 @@ By default, all data collected will append global election tags. You can also sp
 
 
 
+
 ### `sqlserver_volumespace`
 
 - Tags
@@ -368,7 +375,7 @@ By default, all data collected will append global election tags. You can also sp
 |`sqlserver_host`|Host name which installed SQLServer|
 |`volume_mount_point`|Mount point at which the volume is rooted. Can return an empty string. Returns null on Linux operating system.|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -376,6 +383,7 @@ By default, all data collected will append global election tags. You can also sp
 |`volume_available_space_bytes`|Available free space on the volume|int|B|
 |`volume_total_space_bytes`|Total size in bytes of the volume|int|B|
 |`volume_used_space_bytes`|Used size in bytes of the volume|int|B|
+
 
 
 
@@ -399,13 +407,14 @@ By default, all data collected will append global election tags. You can also sp
 |  ----  | --------|
 |`database_name`|Name of the database|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`data_size`|The size of file of Rows|float|KB|
 |`log_size`|The size of file of Log|float|KB|
+
 
 
 
@@ -419,12 +428,13 @@ By default, all data collected will append global election tags. You can also sp
 |  ----  | --------|
 |`database`|Database name|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`backup_count`|The total count of successful backups made for a database|int|count|
+
 
 
 
@@ -443,7 +453,7 @@ By default, all data collected will append global election tags. You can also sp
 |`state`|Database file state: 0 = Online, 1 = Restoring, 2 = Recovering, 3 = Recovery_Pending, 4 = Suspect, 5 = Unknown, 6 = Offline, 7 = Defunct|
 |`state_desc`|Description of the file state|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -455,7 +465,7 @@ By default, all data collected will append global election tags. You can also sp
 
 
 
-## Custom Objects {#object}
+## Custom Object {#object}
 
 
 
@@ -532,7 +542,7 @@ By default, all data collected will append global election tags. You can also sp
 |`name`|Object uniq ID|
 |`reason`|If status not ok, we'll get some reasons about the status|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -544,9 +554,22 @@ By default, all data collected will append global election tags. You can also sp
 
 
 
-## Logs {#logging}
+## Logging {#logging}
 
-All the following measurement sets are collected in the form of logs, and all log levels are `info`.
+Following measurements are collected as logs with the level of `info`.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -556,7 +579,7 @@ All the following measurement sets are collected in the form of logs, and all lo
 
 NA
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -577,13 +600,14 @@ NA
 
 
 
+
 ### `sqlserver_lock_table`
 
 - Tags
 
 NA
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -598,13 +622,14 @@ NA
 
 
 
+
 ### `sqlserver_lock_dead`
 
 - Tags
 
 NA
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -622,6 +647,7 @@ NA
 
 
 
+
 ### `sqlserver_logical_io`
 
 - Tags
@@ -631,7 +657,7 @@ NA
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -647,6 +673,7 @@ NA
 
 
 
+
 ### `sqlserver_worker_time`
 
 - Tags
@@ -656,7 +683,7 @@ NA
 |  ----  | --------|
 |`message`|Text of the SQL query|
 
-- Fields List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -679,19 +706,21 @@ NA
 
 <!-- markdownlint-enable -->
 
-### Log Pipeline Field Split Explanation {#pipeline}
+### Pipeline for  SQLServer logging {#pipeline}
 
-SQL Server general log text example:
+- SQL Server Common Log Pipeline
+
+Example of common log text:
 
 ```log
 2021-05-28 10:46:07.78 spid10s     0 transactions rolled back in database 'msdb' (4:0). This is an informational message only. No user action is required
 ```
 
-Fields after splitting are listed below:
+The list of extracted fields are as follows:
 
-| Field Name   | Field Value                | Explanation                                          |
-| -------- | --------------------- | --------------------------------------------- |
-| `msg`    | `spid...`             | Log content                                      |
-| `time`   | `1622169967780000000` | Nanosecond timestamp (as line protocol time)                  |
-| `origin` | `spid10s`             | Source                                            |
-| `status` | `info`                | Since the log does not have explicit fields indicating log level, default is info |
+| Field Name | Field Value         | Description                                                                                |
+| ---------- | ------------------- | ------------------------------------------------------------------------------------------ |
+| `msg`      | spid...             | log content                                                                                |
+| `time`     | 1622169967780000000 | nanosecond timestamp (as row protocol time)                                                |
+| `origin`   | spid10s             | source                                                                                     |
+| `status`   | info                | As the log does not have an explicit field to describe the log level, the default is info. |

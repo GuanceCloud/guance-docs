@@ -1,6 +1,6 @@
 ---
-title      : 'OpenTelemetry Exportor'
-summary    : '直接将 OpenTelemetry 的数据输出给观测云'
+title      : '<<<custom_key.brand_name>>> OpenTelemetry Exportor'
+summary    : '直接将 OpenTelemetry 的数据输出给<<<custom_key.brand_name>>>'
 __int_icon : 'icon/opentelemetry'
 tags       :
   - 'OTEL'
@@ -8,11 +8,11 @@ tags       :
 
 > *作者： 宋龙奇*
 
-<<< custom_key.brand_name >>>在 OTEL JAVA agent 中添加了一个 `guance-exporter`，该 exporter 可以将链路和指标直接发送到<<< custom_key.brand_name >>>中心。
+<<<custom_key.brand_name>>>在 OTEL JAVA agent 中添加了一个 `guance-exporter`，该 exporter 可以将链路和指标直接发送到<<<custom_key.brand_name>>>中心。
 
-[guance-exporter](https://github.com/GuanceCloud/guance-java-exporter){:target="_blank"} 在 GitHub 中是开源的，并且集成到了<<< custom_key.brand_name >>>二次开发的 [otel-java-agent](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"} 之中。
+[guance-exporter](https://github.com/GuanceCloud/guance-java-exporter){:target="_blank"} 在 GitHub 中是开源的，并且集成到了<<<custom_key.brand_name>>>二次开发的 [otel-java-agent](https://github.com/GuanceCloud/opentelemetry-java-instrumentation){:target="_blank"} 之中。
 
-guance-exporter 可以将数据直接发送到<<< custom_key.brand_name >>>，也就是 `endpoint`, 发送的数据格式是 InfluxDB point。
+guance-exporter 可以将数据直接发送到<<<custom_key.brand_name>>>，也就是 `endpoint`, 发送的数据格式是 InfluxDB point。
 
 ## 下载 {#download}
 
@@ -24,7 +24,7 @@ guance-exporter 可以将数据直接发送到<<< custom_key.brand_name >>>，�
 java  -javaagent:/usr/local/opentelemetry-javaagent-1.26.3-guance.jar \
 -Dotel.traces.exporter=guance \
 -Dotel.metrics.exporter=guance \ 
--Dotel.exporter.guance.endpoint=https://openway.<<< custom_key.brand_main_domain >>> \ 
+-Dotel.exporter.guance.endpoint=https://openway.<<<custom_key.brand_main_domain>>> \ 
 -Dotel.exporter.guance.token=<TOKEN> \
 -jar app.jar
 ```
@@ -34,15 +34,15 @@ java  -javaagent:/usr/local/opentelemetry-javaagent-1.26.3-guance.jar \
 ```shell
 export OTEL_TRACES_EXPORTER=guance
 export OTEL_METRICS_EXPORTER=guance
-export OTEL_EXPORTER_GUANCE_ENDPOINT=https://openway.<<< custom_key.brand_main_domain >>>
+export OTEL_EXPORTER_GUANCE_ENDPOINT=https://openway.<<<custom_key.brand_main_domain>>>
 export OTEL_EXPORTER_GUANCE_TOKEN=<TOKEN>
 ```
 
 参数说明：
 
 - `guance` exporter 名称。
-- `endpoint` <<< custom_key.brand_name >>>中心地址，通常为 `https://openway.<<< custom_key.brand_main_domain >>>`。
-- `token` <<< custom_key.brand_name >>>用户空间 token。
+- `endpoint` <<<custom_key.brand_name>>>中心地址，通常为 `https://openway.<<<custom_key.brand_main_domain>>>`。
+- `token` <<<custom_key.brand_name>>>用户空间 token。
 
 注意： 不配置 `otel.metrics.exporter` 则指标不会上传，`otel.traces.exporter` 同理。但是 `endpoint` 和 `token` 是必填的。
 
@@ -119,7 +119,7 @@ import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
 public class OpenTelemetryInitializer {
     public static OpenTelemetry initialize() {
         GuanceSpanExporter guanceExporter = new GuanceSpanExporter();
-        guanceExporter.setEndpoint("https://openway.<<< custom_key.brand_main_domain >>>"); // dataway
+        guanceExporter.setEndpoint("https://openway.<<<custom_key.brand_main_domain>>>"); // dataway
         guanceExporter.setToken("tkn_0d9ebb47xxxxxxxxx");    // your token
 
         SdkTracerProvider tracerProvider = SdkTracerProvider.builder()
@@ -157,4 +157,4 @@ public class YourClass {
 
 ## 指标 {#metrics}
 
-guance-exporter 支持 metric 数据发送到<<< custom_key.brand_name >>>，指标集的名字是 `otel_service` 。
+guance-exporter 支持 metric 数据发送到<<<custom_key.brand_name>>>，指标集的名字是 `otel_service` 。

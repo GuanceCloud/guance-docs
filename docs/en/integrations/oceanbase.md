@@ -1,14 +1,14 @@
 ---
 title     : 'OceanBase'
-summary   : 'Collect OceanBase Metrics data'
+summary   : 'Collect OceanBase metrics'
 tags:
-  - 'DATABASE'
+  - 'DATA STORES'
 __int_icon      : 'icon/oceanbase'
 dashboard :
   - desc  : 'OceanBase'
     path  : 'dashboard/en/oceanbase'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -17,19 +17,19 @@ monitor   :
 
 ---
 
-Supports collecting OceanBase monitoring metrics through the system tenant.
+Collecting OceanBase performance metrics through the sys tenant.
 
-Tested versions:
+Already tested version:
 
-- [x] OceanBase 3.2.4 Enterprise Edition
+- [x] OceanBase Enterprise 3.2.4
 
 ## Configuration {#config}
 
-### Prerequisites {#reqirement}
+### Precondition {#reqirement}
 
 - Create a monitoring account
 
-Use the OceanBase system tenant account to create a monitoring account and grant the following permissions:
+Create a monitoring account using a sys tenant account and grant the following privileges:
 
 ```sql
 CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
@@ -37,25 +37,24 @@ CREATE USER 'datakit'@'localhost' IDENTIFIED BY '<UNIQUEPASSWORD>';
 -- MySQL 8.0+ create the datakit user with the caching_sha2_password method
 CREATE USER 'datakit'@'localhost' IDENTIFIED WITH caching_sha2_password by '<UNIQUEPASSWORD>';
 
--- Granting privileges
+-- Grant the required permissions 
 GRANT SELECT ON *.* TO 'datakit'@'localhost';
 ```
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    - If using `localhost` results in the collector reporting the following error, replace `localhost` with `::1` <br/>
+    - Note that if you find the collector has the following error when using `localhost` , you need to replace the above `localhost` with `::1` <br/>
     `Error 1045: Access denied for user 'datakit'@'localhost' (using password: YES)`
 
-    - The above creation and authorization operations limit the `datakit` user to accessing only on the OceanBase host (`localhost`). If remote collection is required, it is recommended to replace `localhost` with `%` (indicating that DataKit can access from any machine), or use a specific DataKit installation machine address.
-<!-- markdownlint-enable -->
+    - All the above creation and authorization operations limit that the user `datakit` can only access OceanBase on local host (`localhost`). If OceanBase is collected remotely, it is recommended to replace `localhost` with `%` (indicating that DataKit can access OceanBase on any machine), or use a specific DataKit installation machine address.
+
 
 ### Collector Configuration {#input-config}
 
-<!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/db` directory under the DataKit installation directory, copy `oceanbase.conf.sample` and rename it to `oceanbase.conf`. Example as follows:
+    Go to the `conf.d/db` directory under the DataKit installation directory, copy `oceanbase.conf.sample` and name it `oceanbase.conf`. Examples are as follows:
     
     ```toml
         
@@ -116,39 +115,38 @@ GRANT SELECT ON *.* TO 'datakit'@'localhost';
     
     ```
     
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting its configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
-<!-- markdownlint-enable -->
+## Long Running Queries {#slow}
 
-## Slow Query Support {#slow}
+Datakit could reports the SQLs, those executed time exceeded the threshold time defined by user, to <<<custom_key.brand_name>>>, displays in the `Logs` side bar, the source name is `oceanbase_log`.
 
-DataKit can report SQL statements that execute longer than a user-defined time to <<< custom_key.brand_name >>>, showing them in logs with the source name `oceanbase_log`.
+This function is disabled by default, user could enabling it by modify Datakit's OceanBase configuration like followings:
 
-This feature is disabled by default. Users can enable it in the OceanBase configuration file as follows:
-
-Change the value after `slow_query_time` from `0s` to the desired threshold, with a minimum of 1 millisecond; generally recommended is 10 seconds.
+Change the string value after `slow_query_time` from `0s` to the threshold time, minimal value is 1 millsecond. Generally, recommand it to `10s`.
 
 ```conf
 
-slow_query_time = "10s"
+slow_query_time = "0s"
 
 ```
 
-???+ info "Field Description"
-    - `failed_obfuscate`: The reason for SQL obfuscation failure. This appears only when SQL obfuscation fails. The original SQL statement will then be reported.
-    For more field explanations, see [here](https://www.oceanbase.com/docs/enterprise-oceanbase-database-cn-10000000000376688){:target="_blank"}.
+???+ info "Fields description"
+    - `failed_obfuscate`：SQL obfuscated failed reason. Only exist when SQL obfuscated failed. Original SQL will be reported when SQL obfuscated failed.
+    [More fields](https://www.oceanbase.com/docs/enterprise-oceanbase-database-cn-10000000000376688){:target="_blank"}.
 
-???+ attention "Important Information"
-    - If the value is `0s`, empty, or less than 1 millisecond, the slow query function of the OceanBase collector will not be enabled, i.e., the default state.
-    - SQL statements that have not completed execution will not be queried.
+???+ attention "Attention"
+    - If the string value after `--slow-query-time` is `0s` or empty or less than 1 millisecond, this function is disabled, which is also the default state.
+    - The SQL would not display here when NOT executed completed.
 
-## Metrics {#metric}
+<!-- markdownlint-enable -->
+## Metric {#metric}
 
-By default, all data collected will append the global election tag, and other tags can also be specified in the configuration through `[inputs.oceanbase.tags]`:
+For all of the following data collections, the global election tags will added automatically, we can add extra tags in `[inputs.oceanbase.tags]` if needed:
 
 ``` toml
  [inputs.oceanbase.tags]
@@ -178,7 +176,7 @@ By default, all data collected will append the global election tag, and other ta
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Field List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -211,7 +209,7 @@ By default, all data collected will append the global election tag, and other ta
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Field List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -239,7 +237,7 @@ By default, all data collected will append the global election tag, and other ta
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Field List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -268,7 +266,7 @@ By default, all data collected will append the global election tag, and other ta
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Field List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -297,7 +295,7 @@ By default, all data collected will append the global election tag, and other ta
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Field List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -327,7 +325,7 @@ By default, all data collected will append the global election tag, and other ta
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Field List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -337,7 +335,7 @@ By default, all data collected will append the global election tag, and other ta
 
 
 
-## Logs {#logging}
+## Log {#logging}
 
 
 
@@ -363,10 +361,33 @@ By default, all data collected will append the global election tag, and other ta
 |`tenant_id`|Tenant id|
 |`tenant_name`|Tenant Name|
 
-- Field List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`message`|The text of the logging.|string|-|
 |`status`|The status of the logging, only supported `info/emerg/alert/critical/error/warning/debug/OK/unknown`.|string|-|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

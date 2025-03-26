@@ -258,6 +258,7 @@ NFSd 是 NFS 服务的守护进程，是服务器端的一个关键组件，负�
 |`fs_size`|Total size of the filesystem.|int|B|
 |`fs_used`|Used space on the filesystem.|int|B|
 |`fs_used_percent`|Percentage of used space on the filesystem.|float|percent|
+|`operations_latency_seconds`|Average RPC latency (RTT) for a given operation, in seconds.|float|s|
 |`operations_major_timeouts_total`|Number of times a request has had a major timeout for a given operation.|int|count|
 |`operations_queue_time_seconds_total`|Duration all requests spent queued for transmission for a given operation before they were sent, in seconds.|s|count|
 |`operations_received_bytes_total`|Number of bytes received for a given operation, including RPC headers and payload.|int|B|

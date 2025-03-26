@@ -360,7 +360,7 @@ spec:
     spec:
       containers:
       - name: prom-server
-        image: pubrepo.<<< custom_key.brand_main_domain >>>/datakit-dev/prom-server:v2
+        image: pubrepo.<<<custom_key.brand_main_domain>>>/datakit-dev/prom-server:v2
         imagePullPolicy: IfNotPresent
         env:
         - name: ENV_PORT
@@ -414,12 +414,29 @@ data:
           readOnly: true
 ```
 
-1. 最后启动 Datakit，在日志中能看到 `create prom url xxxxx for testing/prom-svc` 的内容，并在<<< custom_key.brand_name >>>页面看到 `prom-svc` 指标集。
+1. 最后启动 Datakit，在日志中能看到 `create prom url xxxxx for testing/prom-svc` 的内容，并在<<<custom_key.brand_name>>>页面看到 `prom-svc` 指标集。
 
 
 ---
 
 ## FAQ {#faq}
+
+### 记录 UP 指标 {#collector-up}
+
+up 指标是一个内置的重要指标，用于表示某个目标的健康状态，主要用于监控目标是否处于“正常”运行状态。KubernetesPrometheus 采集器默认开启 up 指标，以便提供关于目标服务是否可用的实时数据。
+
+up 指标属于 `collector` 指标集，包含三个标签字段：`job`、`host` 和 `instance`，以及一个关键指标字段 `up`。其含义如下：
+
+- `job`：采集任务的名称。这个标签有两种命名方式：
+    - 手动在 Kubernetes Prometheus 配置中指定 `measurement`，且 `measurement` 不为空。例如 `kube-etcd`
+    - 由目标服务的 Namespace 和 Name 拼接而成。例如 `middleware/etcd-abc`
+- `instance`：采集目标的实例，表示为 `IP:PORT`。例如 `172.16.10.10:9090`
+- `host`：采集目标的主机，即目标的 `IP` 地址。如果该值是 localhost 或环回地址（如 `127.0.0.1`），则该值为空字符串
+- up：表示目标的运行状态
+    - 当值为 1 时，表示目标正在运行并且可访问（即目标是 “up”）
+    - 当值为 0 时，表示目标不可用，通常意味着目标无法访问或发生故障（即目标是 “down”）
+
+此外，up 指标会自动添加 Datakit 的全局 `election_tags`。
 
 ### Selector 描述与示例 {#selector-example}
 

@@ -1,23 +1,23 @@
 ---
 title     : 'OpenTelemetry Golang'
-summary   : 'OpenTelemetry Golang Integration'
+summary   : 'Tracing Golang applications with OpenTelemetry'
 tags      :
   - 'GOLANG'
   - 'OTEL'
   - 'APM'
+  - 'TRACING'
 __int_icon: 'icon/opentelemetry'
 ---
 
+In this paper, the common Web-side three-tier architecture mode is used to realize the link tracing and observability of OTEL.
 
-This article demonstrates the implementation of OTEL's APM and observability using a common three-layer architecture pattern on the Web side.
+Before using OTEL to send Trace to Datakit, make sure you have [configured the collector](opentelemetry.md).
 
-Before sending Traces to Datakit via OTEL, please ensure that you have [configured the collector](opentelemetry.md).
+## Next, implement in pseudo code {#code}
 
-## Next, use pseudocode for implementation {#code}
+Simulation scenario: A user's login request flows through various modules on the server and is returned to the client. Add link tracking and marking in each process, and finally log in to the <<<custom_key.brand_name>>> platform to check the processing time and service status of each module in this process.
 
-Simulated scenario: A user login request flows through various modules on the server side and returns to the client. In each process, add trace links and mark them, finally check the processing time of each module and the service status on the <<< custom_key.brand_name >>> platform.
-
-Process introduction: User requests reach the web layer, are parsed, and sent to the service layer, which queries the database in the dao layer, ultimately returning the result to the user.
+Process introduction: The user requests to the web layer, after analysis, send to the service layer, need to query the database of the dao layer, and finally return the results to the user.
 
 ``` go
 package main
@@ -93,9 +93,9 @@ func initProvider() func() {
 
 var tracer = otel.Tracer("tracer_user_login")
 
-// web handler processes request data
+// web handler process request data
 func user(w http.ResponseWriter, r *http.Request) {
-    // ... receive client requests
+    // ... receving client request
     log.Println("doing user")
     // labels represent additional key-value descriptors that can be bound to a
     // metric observer or recorder.
@@ -116,7 +116,7 @@ func user(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte("ok"))
 }
 
-// service calls the service layer to handle business logic
+// service invoke service to handle biz.
 func service(ctx context.Context) {
     log.Println("service")
     ctx1, iSpan := tracer.Start(ctx, "Sample-service")
@@ -125,13 +125,13 @@ func service(ctx context.Context) {
     iSpan.End()
 }
 
-// dao represents the data access layer
+// dao data access layer
 func dao(ctx context.Context) {
     log.Println("dao")
     ctxD, iSpan := tracer.Start(ctx, "Sample-dao")
     <-time.After(time.Second / 2)
 
-    // Create a sub-span for querying databases and other operations
+    // create a child span for query etc.
     _, sqlSpan := tracer.Start(ctxD, "do_sql")
     sqlSpan.SetStatus(codes.Ok, "is ok") //
     <-time.After(time.Second)
@@ -157,15 +157,17 @@ func main() {
 }
 ```
 
-## View Results {#view}
+## View Effect {#view}
 
-After logging into [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/tracing/service/table?time=15m){:target="_blank"}, view «APM -> Trace -> Click on a single trace»
+Log in to [<<<custom_key.brand_name>>>](https://console.<<<custom_key.brand_main_domain>>>/tracing/service/table?time=15m){:target="_blank"} and then view `application performance monitoring` -> `links` -> Click on a single `link`
 
-![not-set](imgs/otel-go-example.png)
+![OTEL-go-example"](imgs/otel-go-example.png)
 
-In the flame graph, you can see the execution time and call flow of each module.
+In the flame diagram, you can see the execution time, call flow and so on in each module.
 
-## References {#more-readings}
+---
 
-- [Golang OpenTelemetry Source Code Example](https://github.com/open-telemetry/opentelemetry-go/tree/main/example/otel-collector){:target="_blank"}
-- [Official Documentation](https://opentelemetry.io/docs/instrumentation/go/getting-started/){:target="_blank"}
+## Reference {#more-readings}
+
+- Source sample [GitHub-OpenTelemetry-go](https://github.com/open-telemetry/opentelemetry-go/tree/main/example/otel-collector){:target="_blank"}
+- [Doc](https://opentelemetry.io/docs/instrumentation/go/getting-started/){:target="_blank"}

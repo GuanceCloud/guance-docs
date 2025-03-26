@@ -1,88 +1,87 @@
 ---
 title     : 'OpenTelemetry Java'
-summary   : 'OpenTelemetry Java Integration'
+summary   : 'Tracing Java applications with OpenTelemetry'
 tags      :
   - 'JAVA'
   - 'OTEL'
   - 'APM'
+  - 'TRACING'
 __int_icon: 'icon/opentelemetry'
 ---
 
+Before using OTEL to send Trace to Datakit, make sure you have [configured the collector](opentelemetry.md).
 
-Before sending Trace to Datakit using OTEL, please ensure that you have [configured the collector](opentelemetry.md).
-
-Configuration: [Datakit Configure OTEL](opentelemetry.md)
+Configuration: [Datakit Configuration OTEL](opentelemetry.md)
 
 ## Add Dependencies {#dependencies}
 
 Add dependencies in pom.xml
 
 ``` xml
-<!-- Add opentelemetry -->
-<dependency>
-    <groupId>io.opentelemetry</groupId>
-    <artifactId>opentelemetry-sdk</artifactId>
-    <version>1.9.0</version>
-</dependency>
-<dependency>
-    <groupId>io.opentelemetry</groupId>
-    <artifactId>opentelemetry-exporter-otlp</artifactId>
-    <version>1.9.0</version>
-</dependency>
-<dependency>
-    <groupId>io.grpc</groupId>
-    <artifactId>grpc-netty-shaded</artifactId>
-    <version>1.41.0</version>
-</dependency>
-<dependency>
-    <groupId>io.opentelemetry</groupId>
-    <artifactId>opentelemetry-semconv</artifactId>
-    <version>1.9.0-alpha</version>
-</dependency>
-<!-- Use grpc protocol -->
-<dependency>
-    <groupId>io.grpc</groupId>
-    <artifactId>grpc-protobuf</artifactId>
-    <version>1.36.1</version>
-</dependency>
+    <!-- add opentelemetry  -->
+    <dependency>
+        <groupId>io.opentelemetry</groupId>
+        <artifactId>opentelemetry-sdk</artifactId>
+        <version>1.9.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.opentelemetry</groupId>
+        <artifactId>opentelemetry-exporter-otlp</artifactId>
+        <version>1.9.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.grpc</groupId>
+        <artifactId>grpc-netty-shaded</artifactId>
+        <version>1.41.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.opentelemetry</groupId>
+        <artifactId>opentelemetry-semconv</artifactId>
+        <version>1.9.0-alpha</version>
+    </dependency>
+    <!-- use grpc protocol -->
+    <dependency>
+        <groupId>io.grpc</groupId>
+        <artifactId>grpc-protobuf</artifactId>
+        <version>1.36.1</version>
+    </dependency>
+
 ```
 
 ## Java Agent Form {#with-agent}
 
-There are multiple ways to start the Agent; next, we will introduce how to start it via environment variables, command line, and Tomcat configuration.
+There are many ways you can start an Agent. Next, we will show you how to start an Agent through environment variables, command line, and Tomcat configuration.
 
-- Start with environment variables
+<!-- markdownlint-disable MD029 -->
+1. Start in the form of environment variables
 
 ```shell
-export JAVA_OPTS="-javaagent:PATH/TO/opentelemetry-javaagent.jar"
-export OTEL_TRACES_EXPORTER=otlp
-export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
+$export JAVA_OPTS="-javaagent:PATH/TO/opentelemetry-javaagent.jar"
+$ export OTEL_TRACES_EXPORTER=otlp
 ```
 
-- Start with command line
+2. Command line activation
 
 ```shell
 java -javaagent:opentelemetry-javaagent-1.13.1.jar \
-    -Dotel.traces.exporter=otlp \
-    -Dotel.exporter.otlp.endpoint=http://localhost:4317 \
-    -jar your-server.jar
+-Dotel.traces.exporter=otlp \
+-Dotel.exporter.otlp.endpoint=http://localhost:4317 \
+-jar your-server.jar
 ```
 
-- Tomcat configuration form
+3. Tomcat configuration form
 
 ```shell
-cd <local tomcat installation directory>
+cd <tomcat installation directory>
 cd bin
-
 vim catalina.sh
+# add at second line
+CATALINA_OPTS="$CATALINA_OPTS -javaagent:PATH/TO/opentelemetry-javaagent.jar -Dotel.traces.exporter=otlp"; export CATALINA_OPTS
 
-# Add on the second line
-CATALINA_OPTS="$CATALINA_OPTS -javaagent:PATH/TO/opentelemetry-javaagent.jar -Dotel.traces.exporter=otlp -Dotel.exporter.otlp.endpoint=http://localhost:4317"; export CATALINA_OPTS
-
-# Restart Tomcat
+# restart Tomcat
 ```
-
-When configuring the field `exporter.otlp.endpoint`, you can omit the configuration and use the default value (localhost:4317), as Datakit and the Java program are on the same HOST, and the default port is also 4317.
+<!-- markdownlint-enable -->
+When configuring the field `exporter.otlp.endpoint`, you can dispense with the configuration and use the default value (localhost: 4317), because Datakit is on the same host as the Java program, and the default port is also 4317.
 
 ## Java 2: Code Injection Form {#with-code}
 
@@ -105,13 +104,14 @@ import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
 import java.util.concurrent.TimeUnit;
 import static java.lang.Thread.sleep;
 
+
 public class otlpdemo {
     public static void main(String[] args) {
         try {
             OtlpGrpcSpanExporter grpcSpanExporter = OtlpGrpcSpanExporter.builder()
-                    .setEndpoint("http://127.0.0.1:4317")   // When configuring the .setEndpoint parameter, you must add https or http
+                    .setEndpoint("http://127.0.0.1:4317")   // if setEndpoint is configure, http/https must be added
                     .setTimeout(2, TimeUnit.SECONDS)
-                    //.addHeader("header1", "1") // Add header
+                    //.addHeader("header1", "1") // 添加 header
                     .build();
 
             String s = grpcSpanExporter.toString();
@@ -140,19 +140,19 @@ public class otlpdemo {
                     .startSpan();
             childSpan.setAttribute("tagsA", "vllelel");
             // do stuff
-            sleep(500);    // delay for 1 second
+            sleep(500);    // delay 0.5 second
             for (int i = 0; i < 10; i++) {
                 Span childSpan1 = tracer.spanBuilder("child")
                         .setParent(Context.current().with(parentSpan))
                         .startSpan();
-                sleep(1000);    // delay for 1 second
+                sleep(1000);    // delay 1 second
                 System.out.println(i);
                 childSpan1.end();
             }
             childSpan.end();
             childSpan.end(0, TimeUnit.NANOSECONDS);
             System.out.println("span end");
-            sleep(1000);    // delay for 1 second
+            sleep(1000);    //delay 1 second
             parentSpan.end();
             tracerProvider.shutdown();
 
@@ -165,15 +165,17 @@ public class otlpdemo {
 }
 ```
 
-## View Effects {#view}
+## View Effect {#view}
 
-After logging into [<<< custom_key.brand_name >>>](https://<<< custom_key.studio_main_site >>>/tracing/service/table?time=15m){:target="_blank"}, view 「APM -> APM -> Click a single trace」
+Log in to [<<<custom_key.brand_name>>>](https://console.<<<custom_key.brand_main_domain>>>/tracing/service/table?time=15m){:target="_blank"} and view `application performance monitoring` -> `links` -> Click on a single `link`
 
 ![avatar](imgs/otel-java-example.png)
 
-In the flame graph, you can see the execution time and call flow of each module.
+In the flame diagram, you can see the execution time, call flow and so on in each module.
 
-## References {#more-readings}
+---
 
-- [OpenTelemetry Java Source Code Example](https://github.com/open-telemetry/opentelemetry-java){:target="_blank"}
-- [Official Documentation](https://opentelemetry.io/docs/instrumentation/go/getting-started/){:target="_blank"}
+## Reference {#more-readings}
+
+- Source sample [GitHub-OpenTelemetry-Java](https://github.com/open-telemetry/opentelemetry-java){:target="_blank"}
+- [Doc](https://opentelemetry.io/docs/instrumentation/go/getting-started/){:target="_blank"}

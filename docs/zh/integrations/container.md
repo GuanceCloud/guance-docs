@@ -1,6 +1,6 @@
 ---
 title: 'Kubernetes'
-summary: '采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<< custom_key.brand_name >>>。'
+summary: '采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。'
 __int_icon:    'icon/kubernetes/'  
 tags:
   - 'KUBERNETES'
@@ -36,7 +36,7 @@ monitor:
 
 ---
 
-采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<< custom_key.brand_name >>>。
+采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。
 
 ## 采集器配置 {#config}
 
@@ -416,7 +416,7 @@ monitor:
     
     - **ENV_INPUT_CONTAINER_LOGGING_MAX_MULTILINE_LIFE_DURATION**
     
-        日志采集的单次多行最大生命周期，此周期结束将清空和上传现存的多行数据，避免堆积
+        已弃用。日志采集的单次多行最大生命周期，此周期结束将清空和上传现存的多行数据，避免堆积
     
         **字段类型**: Duration
     
