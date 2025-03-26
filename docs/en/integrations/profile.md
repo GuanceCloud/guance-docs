@@ -1,14 +1,14 @@
 ---
 title     : 'Profiling'
-summary   : 'Collect runtime performance data of applications'
-__int_icon: 'icon/profiling'
+summary   : 'Collect application runtime performance data'
 tags:
   - 'PROFILE'
+__int_icon: 'icon/profiling'
 dashboard :
-  - desc  : 'Not available yet'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available yet'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -17,21 +17,21 @@ monitor   :
 
 ---
 
-Profile supports collecting dynamic performance data of applications running in different language environments such as Java, Python, and Go, helping users examine CPU, memory, and IO performance issues.
+Profile supports collecting dynamic performance data of applications running in different language environments such as Java/Python, and helps users to view performance problems of CPU, memory and IO.
 
 ## Configuration {#config}
 
-Currently, DataKit has two methods for collecting profiling data:
+At present, DataKit collects profiling data in two ways:
 
-- Push method: Requires enabling the DataKit Profile service where the client actively pushes data to DataKit.
-- Pull method: Currently only supported by [Go](profile-go.md), requiring manual configuration of related information.
+- Push mode: the DataKit Profile service needs to be opened, and the client actively pushes data to the DataKit
 
-### Collector Configuration {#input-config}
+- Pull method: currently only [Go](profile-go.md) support, need to manually configure relevant information
 
+### DataKit Configuration {#datakit-config}
 <!-- markdownlint-disable MD046 -->
-=== "HOST installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/profile` directory under the DataKit installation directory, copy `profile.conf.sample`, and rename it to `profile.conf`. Below is the description of the configuration file:
+    Go to the `conf.d/profile` directory under the DataKit installation directory, copy `profile.conf.sample` and name it `profile.conf`. The configuration file is described as follows:
     
     ```shell
         
@@ -114,27 +114,15 @@ Currently, DataKit has two methods for collecting profiling data:
     
     ```
     
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service) to start the Profile service.
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector through [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
+## Profiling {#profiling}
 
-### Client Application Configuration {#app-config}
-
-The client application needs to be configured separately based on the programming language. The currently supported languages are as follows:
-
-- [Java](profile-java.md)
-- [Go](profile-go.md)
-- [Python](profile-python.md)
-- [C/C++](profile-cpp.md)
-- [NodeJS](profile-nodejs.md)
-- [.NET](profile-dotnet.md)
-
-## Profiling Fields {#profiling}
-
-By default, all collected data will append a global tag named `host` (the tag value is the hostname of the DataKit host). You can also specify other tags via `[inputs.profile.tags]` in the configuration:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.profile.tags]`:
 
 ``` toml
  [inputs.profile.tags]
@@ -172,7 +160,7 @@ By default, all collected data will append a global tag named `host` (the tag va
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -186,4 +174,3 @@ By default, all collected data will append a global tag named `host` (the tag va
 |`trace_id`|Trace id|string|-|
 
 
-</example>

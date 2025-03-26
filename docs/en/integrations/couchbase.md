@@ -1,54 +1,51 @@
 ---
 title     : 'Couchbase'
-summary   : 'Collect metrics data related to Couchbase servers'
+summary   : 'Collect Couchbase server metrics'
 tags:
-  - 'DATABASE'
+  - 'DATA STORES'
 __int_icon      : 'icon/couchbase'
 dashboard :
-  - desc  : 'Built-in views for Couchbase'
+  - desc  : 'Couchbase dashboard'
     path  : 'dashboard/en/couchbase'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
-
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:  · [:fontawesome-solid-flag-checkered:](../datakit/index.md#legends "Election Enabled")
 
 ---
 
-The Couchbase collector is used to collect metrics data related to Couchbase servers.
+The Couchbase collector can take metrics from the Couchbase server.
 
-The Couchbase collector supports remote collection and can run on various operating systems.
 
-Tested versions:
+Already tested version:
 
 - [x] Couchbase enterprise-7.2.0
 - [x] Couchbase community-7.2.0
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requirements}
 
-- Install Couchbase service
+- Install Couchbase server
   
-[Official Documentation - CentOS/RHEL Installation](https://docs.couchbase.com/server/current/install/install-intro.html){:target="_blank"}
+[official document - CentOS/RHEL install](https://docs.couchbase.com/server/current/install/install-intro.html){:target="_blank"}
 
-[Official Documentation - Debian/Ubuntu Installation](https://docs.couchbase.com/server/current/install/ubuntu-debian-install.html){:target="_blank"}
+[official document - Debian/Ubuntu install](https://docs.couchbase.com/server/current/install/ubuntu-debian-install.html){:target="_blank"}
 
-[Official Documentation - Windows Installation](https://docs.couchbase.com/server/current/install/install-package-windows.html){:target="_blank"}
+[official document - Windows install](https://docs.couchbase.com/server/current/install/install-package-windows.html){:target="_blank"}
 
-- Verify the correct installation
+- Verify correct installation
 
-  Access the URL `<ip>:8091` in a browser to enter the Couchbase management interface.
+  Visit URL in browser `<ip>:8091` can open Couchbase manage UI.
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
-
-    - Data collection will use ports `8091` `9102` `18091` `19102`. When collecting remotely, these ports need to be open on the server being collected.
+    - To collect data, several ports `8091` `9102` `18091` `19102` need to be used. When collecting data remotely, these ports need to be opened.
 <!-- markdownlint-enable -->
 
-### Collector Configuration {#input-config}
+### Collector Configuration {#input-conifg}
 
 <!-- markdownlint-disable MD046 -->
 === "Host Installation"
@@ -103,7 +100,7 @@ Tested versions:
     
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
@@ -115,7 +112,7 @@ Tested versions:
     
         Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
         **input.conf**: `interval`
     
@@ -255,13 +252,13 @@ Tested versions:
 
 ### TLS config {#tls}
 
-TLS requires support from the Couchbase enterprise version
+TLS need Couchbase enterprise
 
-[Official Documentation - Configure Server Certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-server-certificates.html){:target="_blank"}
+[official document - configure-server-certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-server-certificates.html){:target="_blank"}
 
-[Official Documentation - Configure Client Certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-client-certificates.html){:target="_blank"}
+[official document - configure-client-certificates](https://docs.couchbase.com/server/current/manage/manage-security/configure-client-certificates.html){:target="_blank"}
 
-## Metrics {#metric}
+## Metric {#metric}
 
 
 
@@ -275,9 +272,9 @@ TLS requires support from the Couchbase enterprise version
 |`cluster`|Cluster name.|
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
-|`node`|Node IP.|
+|`node`|Node ip.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -335,7 +332,7 @@ TLS requires support from the Couchbase enterprise version
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -343,7 +340,7 @@ TLS requires support from the Couchbase enterprise version
 |`basic_dataused_bytes`|Basic data used.|float|B|
 |`basic_diskfetches`|Basic disk fetches.|float|bool|
 |`basic_diskused_bytes`|Basic disk used.|float|B|
-|`basic_itemcount`|BucketItemCount first tries to retrieve an accurate bucket count via N1QL, but falls back to the REST API if that cannot be done (when there's no index to count all items in a bucket).|float|count|
+|`basic_itemcount`|BucketItemCount first tries to retrieve an accurate bucket count via N1QL, but falls back to the REST API if that cannot be done (when there's no index to count all items in a bucket.|float|count|
 |`basic_memused_bytes`|Basic memory used.|float|B|
 |`basic_opspersec`|Basic ops per second.|float|s|
 |`basic_quota_user_percent`|Basic quota percent used.|float|percent|
@@ -361,11 +358,11 @@ TLS requires support from the Couchbase enterprise version
 |`cluster`|Cluster name.|
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
-|`node`|Node IP.|
-|`source`|Source ID.|
-|`target`|Target ID.|
+|`node`|Node ip.|
+|`source`|Source id.|
+|`target`|Target id.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -397,7 +394,7 @@ TLS requires support from the Couchbase enterprise version
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -436,7 +433,7 @@ TLS requires support from the Couchbase enterprise version
 |`instance`|Instance endpoint.|
 |`keyspace`|Key space name.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -470,7 +467,7 @@ TLS requires support from the Couchbase enterprise version
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -492,7 +489,7 @@ TLS requires support from the Couchbase enterprise version
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -519,7 +516,7 @@ TLS requires support from the Couchbase enterprise version
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -560,9 +557,9 @@ TLS requires support from the Couchbase enterprise version
 |`cluster`|Cluster name.|
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
-|`node`|Node IP.|
+|`node`|Node ip.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -949,3 +946,5 @@ TLS requires support from the Couchbase enterprise version
 |`vbuckets_total_queue_age`|Sum of disk queue item age in milliseconds.|float|ms|
 |`written_bytes`|Bytes written.|float|B|
 |`xdc_ops`|Total `XDCR` operations per second for this bucket.|float|req/s|
+
+

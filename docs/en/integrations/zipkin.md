@@ -1,15 +1,16 @@
 ---
 title     : 'Zipkin'
-summary   : 'Zipkin Tracing data ingestion'
-__int_icon      : 'icon/zipkin'
+summary   : 'Zipkin Tracing Data Ingestion'
 tags      :
   - 'ZIPKIN'
   - 'APM'
+  - 'TRACING'
+__int_icon      : 'icon/zipkin'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -17,15 +18,16 @@ monitor   :
 
 ---
 
-The Zipkin Agent embedded in Datakit is used to receive, process, and analyze data following the Zipkin Tracing protocol.
+The Zipkin Agent embedded in Datakit is used to receive, calculate and analyze the data of Zipkin Tracing protocol.
 
 ## Configuration {#config}
 
-### Collector Configuration {#input-config}
-<!-- markdownlint-disable MD046 -->
-=== "HOST installation"
+### Collector Config {#input-config}
 
-    Navigate to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample`, and rename it as `zipkin.conf`. An example is shown below:
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
+
+    Go to the `conf.d/zipkin` directory under the DataKit installation directory, copy `zipkin.conf.sample` and name it `zipkin.conf`. Examples are as follows:
 
     ```toml
         
@@ -82,15 +84,15 @@ The Zipkin Agent embedded in Datakit is used to receive, process, and analyze da
     
     ```
 
-    After configuring, simply restart DataKit.
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    Currently, the collector configuration can be injected via the [ConfigMap method](../datakit/datakit-daemonset-deploy.md#configmap-setting) to enable the collector.
+    At present, the collector can be turned on by [injecting the collector configuration in ConfigMap mode](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
-    Supported environment variables in Kubernetes are listed in the table below:
+    Multiple environment variables supported that can be used in Kubernetes showing below:
 
-    | Environment Variable Name                            | Type        | Example                                                                             |
+    | Environment Variable Name             | Type        | Example                                                                          |
     | ------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
     | `ENV_INPUT_ZIPKIN_PATH_V1`            | string      | "/api/v1/spans"                                                                  |
     | `ENV_INPUT_ZIPKIN_PATH_V2`            | string      | "/api/v2/spans"                                                                  |
@@ -102,10 +104,9 @@ The Zipkin Agent embedded in Datakit is used to receive, process, and analyze da
     | `ENV_INPUT_ZIPKIN_TAGS`               | JSON string | `{"k1":"v1", "k2":"v2", "k3":"v3"}`                                              |
     | `ENV_INPUT_ZIPKIN_THREADS`            | JSON string | `{"buffer":1000, "threads":100}`                                                 |
     | `ENV_INPUT_ZIPKIN_STORAGE`            | JSON string | `{"storage":"./zipkin_storage", "capacity": 5120}`                               |
-
 <!-- markdownlint-enable -->
 
-## Trace Fields {#tracing}
+## Tracing {#tracing}
 
 
 
@@ -138,7 +139,7 @@ The Zipkin Agent embedded in Datakit is used to receive, process, and analyze da
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -154,7 +155,7 @@ The Zipkin Agent embedded in Datakit is used to receive, process, and analyze da
 
 
 
-## Zipkin Documentation {#docs}
+## Zipkin Docs {#docs}
 
 - [Quick Start](https://zipkin.io/pages/quickstart.html){:target="_blank"}
 - [Docs](https://zipkin.io/pages/instrumenting.html){:target="_blank"}

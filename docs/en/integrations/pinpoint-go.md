@@ -1,43 +1,44 @@
 ---
 title     : 'PinPoint Golang'
-summary   : 'PinPoint Golang Integration'
+summary   : 'Tracing Golang applications with PinPoint'
 __int_icon: 'icon/pinpoint'
 tags      :
   - 'PINPOINT'
   - 'GOLANG'
   - 'APM'
+  - 'TRACING'
 ---
 
-- [Pinpoint Golang Agent Code Repository](https://github.com/pinpoint-apm/pinpoint-go-agent){:target="_blank"}
-- [Pinpoint Golang Code Examples](https://github.com/pinpoint-apm/pinpoint-go-agent/tree/main/example){:target="_blank"}
-- [Pinpoint Golang Agent Configuration Documentation](https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/doc/config.md){:target="_blank"}
+- [Pinpoint Golang Agent code repository](https://github.com/pinpoint-apm/pinpoint-go-agent){:target="_blank"}
+- [Pinpoint Golang code example](https://github.com/pinpoint-apm/pinpoint-go-agent/tree/main/example){:target="_blank"}
+- [Pinpoint Golang Agent Configuration Document](https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/doc/config.md){:target="_blank"}
 
 ---
 
 ## Configure Datakit Agent {#config-datakit-agent}
 
-Refer to [Configure Pinpoint Agent in Datakit](pinpoint.md#agent-config)
+Refer to [Configuring Pinpoint Agent in Datakit](pinpoint.md#agent-config)
 
 ## Configure Pinpoint Golang Agent {#config-pinpoint-golang-agent}
 
-The Pinpoint Golang Agent can be configured in multiple ways, including command-line arguments, configuration files, environment variables. The configuration priority from high to low is:
+Pinpoint Golang Agent can be configured through a variety of methods including command line parameters, configuration files, and environment variables. The configuration priority from high to low is:
 
-- Command-line arguments
-- Environment variables
-- Configuration files
-- Configuration functions
-- Default configurations
+- Command line parameters
+- environment variables
+- Configuration file
+- Configuration function
+- default allocation
 
-The Pinpoint Golang Agent also supports runtime dynamic changes of configurations. All configuration items marked as dynamic can be dynamically configured during runtime.
+Pinpoint Golang Agent also supports dynamic configuration changes during runtime. All configuration item parameters marked dynamic can be dynamically configured during runtime.
 
-Basic parameter descriptions:
+Basic parameter description:
 
-Each heading below represents a configuration item in the configuration file, and each configuration item description lists the corresponding command-line argument, environment variable, configuration function, value type, and additional information.
+Each of the following titles is a configuration item in the configuration file, and the list in the description of each configuration item will sequentially list the corresponding command line parameters, environment variables, configuration functions, configuration value types, and additional information.
 
 <!-- markdownlint-disable MD006 MD007 -->
 `ConfigFile`
 
-:   Supports [JSON](https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/example/pinpoint-config.json){:target="_blank"}, [YAML](https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/example/pinpoint-config.yaml){:target="_blank"}, [Properties Configuration File](https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/example/pinpoint-config.prop){:target="_blank"}. Configuration items in the configuration file are case-sensitive.
+:   Configuration file supports [JSON](https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/example/pinpoint-config.json){:target="_blank"}, [YAML]( https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/example/pinpoint-config.yaml){:target="_blank"},[Properties configuration file](https://github.com/pinpoint-apm/pinpoint-go-agent/blob/main/example/pinpoint-config.prop){:target="_blank"}. Configuration items in the configuration file are case-sensitive
 
    - --pinpoint-configfile
    - PINPOINT_GO_CONFIGFILE
@@ -45,7 +46,7 @@ Each heading below represents a configuration item in the configuration file, an
    - string
    - case-sensitive
 
-   For configuration fields separated by '.', they will appear indented in the configuration file. For example:
+   Configuration fields that are separated by '.' will appear indented in the configuration file. For example:
 
    ``` yaml
    applicationName: "MyAppName"
@@ -59,7 +60,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `ApplicationName`
 
-:   ApplicationName configures the name of the application. If this item is not configured, the Agent will fail to start.
+:   ApplicationName configures the name of the application. If this item is not configured, the Agent will not be able to start.
 
    - --pinpoint-applicationname
    - PINPOINT_GO_APPLICATIONNAME
@@ -70,7 +71,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `ApplicationType`
 
-:   ApplicationType configures the type of the application.
+:   ApplicationType configures the type of application
 
    - --pinpoint-applicationtype
    - PINPOINT_GO_APPLICATIONTYPE
@@ -80,7 +81,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `AgentId`
 
-:   AgentId is used to configure an ID to distinguish different Agents. It is recommended to include the hostname. If it is not configured or incorrectly configured, the Agent will use an automatically generated ID.
+:   AgentId is used to configure ID to distinguish different Agents. It is recommended to include hostname. If not configured or misconfigured, the Agent will use an automatically generated id.
 
    - --pinpoint-agentid
    - PINPOINT_GO_AGENTID
@@ -91,7 +92,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `AgentName`
 
-:   AgentName configures the name of the Agent.
+:   AgentName configures the Agent name.
 
    - --pinpoint-agentname
    - PINPOINT_GO_AGENTNAME
@@ -113,37 +114,37 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Collector.AgentPort`
 
-:   Collector.AgentPort configures the agent port number of the Pinpoint Collector.
+:   Collector.AgentPort configures the Agent port number of Pinpoint Collector.
 
    - --pinpoint-collector-agentport
    - PINPOINT_GO_COLLECTOR_AGENTPORT
    - WithCollectorAgentPort()
    - int
-   - default: 9991 (Default port number for Datakit Pinpoint Agent is 9991)
+   - default: 9991 (The default port number in Datakit Pinpoint Agent is 9991)
 
 `Collector.SpanPort`
 
-:   Collector.SpanPort configures the span port number of the Pinpoint Collector.
+:   Collector.SpanPort configures the Span port number of the Pinpoint Collector.
 
    - --pinpoint-collector-spanport
    - PINPOINT_GO_COLLECTOR_SPANPORT
    - WithCollectorSpanPort()
    - int
-   - default: 9993 (Default port number for Datakit Pinpoint Agent is 9991)
+   - default: 9993 (The default port number in Datakit Pinpoint Agent is 9991)
 
 `Collector.StatPort`
 
-:   Collector.StatPort configures the stat port number of the Pinpoint Collector.
+:   Collector.StatPort configures the Stat port number of Pinpoint Collector.
 
    - --pinpoint-collector-statport
    - PINPOINT_GO_COLLECTOR_STATPORT
    - WithCollectorStatPort()
    - int
-   - default: 9992 (Default port number for Datakit Pinpoint Agent is 9991)
+   - default: 9992 (The default port number in Datakit Pinpoint Agent is 9991)
 
 `Sampling.Type`
 
-:   Sampling.Type configures the sampler type, either "COUNTER" or "PERCENT".
+:   Sampling.Type configures the sampler type, "COUNTER" or "PERCENT".
 
    - --pinpoint-sampling-type
    - PINPOINT_GO_SAMPLING_TYPE
@@ -155,7 +156,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Sampling.CounterRate`
 
-:   Sampling.CounterRate configures the sampling rate for the counter sampler. The sampling rate is 1/rate. For example, if the rate is set to 1, the sampling rate is 100%, and if the rate is set to 100, the sampling rate is 1%.
+:   Sampling.CounterRate configures the counting sampler sampling rate. The sampling rate is 1/rate. For example, if rate is configured as 1 then the sampling rate is 100%, then if rate is configured as 100 then the sampling rate is 1%.
 
    - --pinpoint-sampling-counterrate
    - PINPOINT_GO_SAMPLING_COUNTERRATE
@@ -167,7 +168,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Sampling.PercentRate`
 
-:   Sampling.PercentRate configures the sampling rate for the percentage sampler.
+:   Sampling.PercentRate configures the sampling rate of the percentage sampler.
 
    - --pinpoint-sampling-percentrate
    - PINPOINT_GO_SAMPLING_PERCENTRATE
@@ -189,7 +190,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Span.MaxCallStackDepth`
 
-:   Span.MaxCallStackDepth configures the maximum depth of the call stack that Span can probe.
+:   Span.MaxCallStackDepth configures the maximum depth of the call stack that Span can detect.
 
    - --pinpoint-span-maxcallstackdepth
    - PINPOINT_GO_SPAN_MAXCALLSTACKDEPTH
@@ -202,7 +203,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Span.MaxCallStackSequence`
 
-:   Span.MaxCallStackDepth configures the maximum sequence length of the calls that Span can probe.
+:   Span.MaxCallStackDepth configures the longest sequence of call stations that Span can detect.
 
    - --pinpoint-span-maxcallstacksequence
    - PINPOINT_GO_SPAN_MAXCALLSTACKSEQUENCE
@@ -215,7 +216,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Stat.CollectInterval`
 
-:   Stat.CollectInterval configures the collection frequency.
+:   Stat.CollectInterval configures statistics frequency.
 
    - --pinpoint-stat-collectinterval
    - PINPOINT_GO_STAT_COLLECTINTERVAL
@@ -226,7 +227,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Stat.BatchCount`
 
-:   Stat.BatchCount configures the number of statistics sent in batches.
+:   Stat.BatchCount configures the number of batches to send statistical data.
 
    - --pinpoint-stat-batchcount
    - PINPOINT_GO_STAT_BATCHCOUNT
@@ -236,7 +237,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Log.Level`
 
-:   Log.Level configures the log level of the Agent, trace/debug/info/warn/error must be configured.
+:   Log.Level configures the level of Agent logs. trace/debug/info/warn/error must be configured.
 
    - --pinpoint-log-level
    - PINPOINT_GO_LOG_LEVEL
@@ -248,7 +249,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Log.Output`
 
-:   Log.Output configures the log output, stderr/stdout/file path.
+:   Log.Output configures the output of the log, stderr/stdout/file path.
 
    - --pinpoint-log-output
    - PINPOINT_GO_LOG_OUTPUT
@@ -260,7 +261,7 @@ Each heading below represents a configuration item in the configuration file, an
 
 `Log.MaxSize`
 
-:   Log.MaxSize configures the maximum capacity of the log file.
+:   Log.MaxSize configures the maximum size of the log file.
 
    - --pinpoint-log-maxsize
    - PINPOINT_GO_LOG_MAXSIZE
@@ -271,19 +272,19 @@ Each heading below represents a configuration item in the configuration file, an
 
 <!-- markdownlint-enable -->
 
-## Manually Instrument Applications {#manual-instrumentation}
+## Manual instrumentation of applications {#manual-instrumentation}
 
-For virtual machine-based programming languages such as JAVA, automatic instrumentation can be achieved by injecting an instrumentation agent directly into the virtual machine. However, for compiled programming languages like Golang that run independently after compilation, manual instrumentation is required.
+For programming languages with virtual machines, such as JAVA, automatic detection can be started by directly injecting the detection agent into the virtual machine. However, for programming languages that need to be compiled and run independently, such as Golang, manual detection is required.
 
-The Pinpoint Golang Agent provides two methods for manual instrumentation:
+Manual detection can be done in two ways in Pinpoint Golang Agent:
 
-- Using the [Pinpoint Golang Plugin Library](https://github.com/pinpoint-apm/pinpoint-go-agent/tree/main/plugin){:target="_blank"}
-- Using the Pinpoint Agent Golang API for manual instrumentation
+- Use [Pinpoint Golang plug-in library](https://github.com/pinpoint-apm/pinpoint-go-agent/tree/main/plugin){:target="_blank"}
+- Manual detection using Pinpoint Agent Golang API
 
 <!-- markdownlint-disable MD006 MD007  MD038 -->
 `Span`
 
-:   In Pinpoint, a Span represents the top-level program operation of a service or application, such as creating a Span in an HTTP handler:
+:   Span in Pinpoint represents the top-level program operation of service or application, such as creating Span in HTTP handler:
 
    ```golang
    func doHandle(w http.ResponseWriter, r *http.Request) {
@@ -295,11 +296,11 @@ The Pinpoint Golang Agent provides two methods for manual instrumentation:
    }
    ```
 
-   You can instrument single-call-stack applications and generate a Span. Tracer.EndSpan() must be called to complete the Span and send it to the remote Collector. The SpanRecorder and Annotation interfaces can be used to record link data in the Span.
+   You can instrument a single call stack application and generate a span. Tracer.EndSpan() must be called to complete the Span and send it to the remote Collector. The SpanRecorder and Annotation interfaces can be used to record link data in Span.
 
 `SpanEvent`
 
-:   Each SpanEvent in Pinpoint represents a program operation within the scope of a Span, such as accessing a database, calling a function, or making a request to another service. You can report a span using Tracer.NewSpanEvent(), and you must call Tracer.EndSpanEvent() to complete the span.
+:   Each SpanEvent in Pinpoint represents a program operation within the scope of a Span detection, such as accessing a database, calling a function, making a request to another service, etc. You can report a span through Tracer.NewSpanEvent(), and Tracer.EndSpanEvent() must be called to complete a span.
 
    ```golang
    func doHandle(w http.ResponseWriter, r *http.Request) {
@@ -322,12 +323,12 @@ The Pinpoint Golang Agent provides two methods for manual instrumentation:
    }
    ```
 
-` Distribute Tracing Context`
+`Distribution Tracing Context`
 
-:   If a request comes from another node monitored by Pinpoint, the data exchange will include a distributed tracing context. Most of this data comes from the previous node and is packaged in the request message body. Pinpoint provides two functions to handle the reading and writing of the distributed tracing context.
+:   If a request comes from another node monitored by Pinpoint, a data exchange context will be included in the data exchange. Most data of this type comes from the previous node and is packaged in the request message body. Pinpoint provides two functions to read and write the data exchange context.
 
-   - Tracer.Extract(reader DistributedTracingContextReader) // Extracts the distributed context.
-   - Tracer.Inject(writer DistributedTracingContextWriter) // Injects the context into the request.
+   - Tracer.Extract(reader DistributedTracingContextReader) // Extract the distribution context.
+   - Tracer.Inject(writer DistributedTracingContextWriter) // Inject context into the request.
 
    ```golang
    func externalRequest(tracer pinpoint.Tracer) int {
@@ -352,12 +353,12 @@ The Pinpoint Golang Agent provides two methods for manual instrumentation:
    }
    ```
 
-` Pass Context Between Function Calls `
+`Transparent transmission of call context between functions`
 
-:   Passing the call context between different APIs within the same service and across processes is achieved through operations on context.Context. The Pinpoint Golang Agent injects the Tracer into the Context to achieve context linking.
+:   The transparent transmission of calling context between different APIs in the same service and in different processes is achieved through the operation of context.Context. Pinpoint Golang Agent implements context linking by injecting Tracer into Context.
 
-   - NewContext() // Injects the Tracer into the Context.
-   - FromContext() // Imports a Tracer.
+   - NewContext() // Inject Tracer into Context.
+   - FromContext() // Import a Tracer.
 
    ```golang
    func tableCount(w http.ResponseWriter, r *http.Request) {
@@ -375,11 +376,11 @@ The Pinpoint Golang Agent provides two methods for manual instrumentation:
    }
    ```
 
-` Instrument Goroutines`
+`Detect Goroutine`
 
-:   The Pinpoint Tracer was designed to instrument single-call-stack applications, so sharing the same Tracer across different threads will cause resource contention and lead to program crashes. You can create a new Tracer to instrument Goroutines by calling Tracer.NewGoroutineTracer().
+:   Pinpoint Tracer was originally designed to detect applications with a single call stack, so sharing the same Tracer between different threads will cause resource preemption and cause the program to crash. You can create a new Tracer to detect Goroutines by calling Tracer.NewGoroutineTracer().
 
-   Passing the Tracer between threads can be done in several ways:
+   Tracers can be passed between threads in the following ways:
 
    - function parameter
 

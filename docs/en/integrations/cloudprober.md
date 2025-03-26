@@ -1,12 +1,12 @@
 ---
 title     : 'Cloudprober'
-summary   : 'Receive Cloudprober data'
+summary   : 'Collect Cloudprober data'
 __int_icon      : 'icon/cloudprober'
 dashboard :
-  - desc  : 'Not available yet'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available yet'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -15,15 +15,15 @@ monitor   :
 
 ---
 
-Cloudprober is an open-source application for tracking and monitoring. DataKit can easily connect to the data sets collected by Cloudprober through simple configuration.
+Cloudprober is an open source tracking and monitoring application. The DataKit can be easily configured to access the data set collected by Cloudprober.
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requirements}
 
 Cloudprober Installation:
 
-Take Ubuntu `cloudprober-v0.11.2` as an example, download as follows; for other versions or systems, refer to the [download page](https://github.com/google/cloudprober/releases){:target="_blank"}:
+Take Ubuntu `cloudprober-v0.11.2` as an example. Download way as follows. See [Download Page](https://github.com/google/cloudprober/releases){:target="_blank"}：
 
 ```shell
 curl -O https://github.com/google/cloudprober/releases/download/v0.11.2/cloudprober-v0.11.2-ubuntu-x86_64.zip
@@ -35,9 +35,9 @@ Unzip
 unzip cloudprober-v0.11.2-ubuntu-x86_64.zip
 ```
 
-As an example of probing Baidu, create a `cloudprober.cfg` file and write into it:
+Take probing Baidu as an example, create a  `cloudprober.cfg` file and write it:
 
-``` conf
+```conf
 probe {
   name: "baidu_homepage"
   type: HTTP
@@ -49,7 +49,7 @@ probe {
 }
 ```
 
-Run Cloudprober:
+Running Cloudprober:
 
 ```shell
 ./cloudprober --config_file /your_path/cloudprober.cfg
@@ -58,13 +58,13 @@ Run Cloudprober:
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Go to the `conf.d/cloudprober` directory under the DataKit installation directory, copy `cloudprober.conf.sample` and rename it to `cloudprober.conf`. Example as follows:
+    Go to the `conf.d/cloudprober` directory under the DataKit installation directory, copy `cloudprober.conf.sample` and name it `cloudprober.conf`. Examples are as follows:
     
     ```toml
     [[inputs.cloudprober]]
-        # Default Cloudprober metrics route (prometheus format)
+        # Cloudprober default metric route（prometheus format）
         url = "http://localhost:9313/metrics" 
     
         # ##(optional) collection interval, default is 5s
@@ -80,11 +80,12 @@ Run Cloudprober:
     
         [inputs.cloudprober.tags]
           # a = "b"`
+    
     ```
 
     After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
