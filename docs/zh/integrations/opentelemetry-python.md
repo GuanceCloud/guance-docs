@@ -2,7 +2,7 @@
 title     : 'OpenTelemetry Python'
 summary   : 'OpenTelemetry Python 集成'
 tags      :
-  - 'Python'
+  - 'PYTHON'
   - 'OTEL'
   - '链路追踪'
 __int_icon: 'icon/opentelemetry'

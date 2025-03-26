@@ -2,7 +2,7 @@
 title     : 'OpenTelemetry Python'
 summary   : 'OpenTelemetry Python Integration'
 tags      :
-  - 'Python'
+  - 'PYTHON'
   - 'OTEL'
   - 'APM'
 __int_icon: 'icon/opentelemetry'
