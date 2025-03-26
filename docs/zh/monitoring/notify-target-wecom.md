@@ -17,9 +17,9 @@
 
 <img src="../img/notify_target_wecom_1.png" width="60%" >
 
-<img src="../img/notify_target_wecom_2.png" width="60%" >
+<img src="../img/notify_target_wecom_2.png" width="50%" >
 
-<img src="../img/notify_target_wecom_3.png" width="60%" >
+<img src="../img/notify_target_wecom_3.png" width="50%" >
 
 ## 回到企业微信机器人配置页面
 

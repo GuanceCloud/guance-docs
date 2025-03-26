@@ -19,14 +19,14 @@
 1. 定义当前通知对象的名称；
 2. 为当前通知对象配置密钥/ Webhook 地址等信息：
 
-:material-numeric-1-circle: [钉钉机器人](./notify-target-dingtalk.md)  
-:material-numeric-2-circle: [企业微信机器人](./notify-target-wecom.md)    
-:material-numeric-3-circle: [飞书机器人](./notify-target-lark.md)      
-:material-numeric-4-circle: [Webhook 自定义](./notify-target-webhook.md)     
-:material-numeric-5-circle: [短信组](./notify-target-sms.md)       
-:material-numeric-6-circle: [简单 HTTP 请求](./notify-target-http.md)      
-:material-numeric-7-circle: [Slack](./notify-target-slack.md)     
-:material-numeric-8-circle: [Teams](./notify-target-teams.md)      
+    - [钉钉机器人](./notify-target-dingtalk.md)  
+    - [企业微信机器人](./notify-target-wecom.md)    
+    - [飞书机器人](./notify-target-lark.md)      
+    - [Webhook 自定义](./notify-target-webhook.md)     
+    - [短信组](./notify-target-sms.md)       
+    - [简单 HTTP 请求](./notify-target-http.md)      
+    - [Slack](./notify-target-slack.md)     
+    - [Teams](./notify-target-teams.md)      
 
 ### 配置操作权限 {#permission}
 
