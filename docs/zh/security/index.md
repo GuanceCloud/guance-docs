@@ -120,14 +120,14 @@ datafluxRum.startSessionReplayRecording()
 
 Session Replay 支持对敏感元素的屏蔽功能，您可以根据业务需求灵活设置需要屏蔽的内容，例如手机号等敏感信息。以下为具体的操作方法：
 
-通过元素属性配置屏蔽
+###### 通过元素属性配置屏蔽
 
 可以为需要屏蔽的元素添加 data-gc-privacy 属性，支持以下四种属性值：
 
-• allow：允许数据采集，无屏蔽处理。       
-• mask：遮罩内容，将内容以掩码形式显示。       
-• mask-user-input：遮罩用户输入，防止记录敏感输入数据。        
-• hidden：完全隐藏内容。     
+• allow：允许数据采集，无屏蔽处理。  
+• mask：遮罩内容，将内容以掩码形式显示。  
+• mask-user-input：遮罩用户输入，防止记录敏感输入数据。  
+• hidden：完全隐藏内容。
 
 示例代码：
 
@@ -145,7 +145,7 @@ Session Replay 支持对敏感元素的屏蔽功能，您可以根据业务需�
 <div class="mobile" data-gc-privacy="hidden">13523xxxxx</div>
 ```
 
-通过元素类名配置屏蔽
+###### 通过元素类名配置屏蔽
 
 支持通过为元素添加特定的类名实现屏蔽功能。目前支持以下类名：
 
@@ -170,22 +170,54 @@ Session Replay 支持对敏感元素的屏蔽功能，您可以根据业务需�
 <div class="mobile gc-privacy-hidden">13523xxxxx</div>
 ```
 
+###### 使用 `shouldMaskNode` 实现自定义节点屏蔽策略
+
+在某些特殊场景中，可能需要对特定的 DOM 节点进行定制化屏蔽处理。例如，在安全等级较高的应用中，可能希望对页面中所有包含数值的文本内容进行统一屏蔽。这种需求可以通过配置 `shouldMaskNode` 回调函数来实现更灵活的隐私控制策略。
+
+```js
+import { datafluxRum } from '@cloudcare/browser-rum'
+
+datafluxRum.init({
+  applicationId: '<DATAFLUX_APPLICATION_ID>',
+  datakitOrigin: '<DATAKIT ORIGIN>',
+  service: 'browser',
+  env: 'production',
+  version: '1.0.0',
+  sessionSampleRate: 100,
+  sessionReplaySampleRate: 100,
+  trackInteractions: true,
+  defaultPrivacyLevel: 'mask-user-input' | 'mask' | 'allow',
+  shouldMaskNode: (node, privacyLevel) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      // 如果是文本节点，判断内容是否包含数字
+      const textContent = node.textContent || ''
+      return /\d+/.test(textContent)
+    }
+    return false
+  },
+})
+
+datafluxRum.startSessionReplayRecording()
+```
+
+上述示例中，shouldMaskNode 函数会针对所有文本节点进行判断，如果内容中包含数字（如金额、手机号等），则自动进行屏蔽处理，从而提升用户数据的隐私保护能力。
+
 配置说明和建议
 
 1. 优先级规则：
-   
+
    • 如果同时设置了 data-gc-privacy 属性和类名，建议按照项目文档说明确定优先级。
 
 2. 适用场景：
 
-   • allow：适用于无需屏蔽的常规数据。     
-   • mask：适用于需要掩码显示的敏感数据，例如手机号。       
-   • mask-user-input：适用于需要保护输入内容的场景，例如密码框。      
-   • hidden：适用于不希望显示或记录的内容。       
+   • allow：适用于无需屏蔽的常规数据。  
+   • mask：适用于需要掩码显示的敏感数据，例如手机号。  
+   • mask-user-input：适用于需要保护输入内容的场景，例如密码框。  
+   • hidden：适用于不希望显示或记录的内容。
 
 3. 最佳实践：
 
-   • 优先选择简单清晰的方式（如类名或属性），确保配置准确。     
-   • 在高敏感数据场景中，如用户隐私表单，建议使用 mask-user-input 或 hidden。     
+   • 优先选择简单清晰的方式（如类名或属性），确保配置准确。  
+   • 在高敏感数据场景中，如用户隐私表单，建议使用 mask-user-input 或 hidden。
 
 通过以上方法，您可以灵活配置敏感元素的屏蔽规则，提升数据安全性并满足业务合规需求。

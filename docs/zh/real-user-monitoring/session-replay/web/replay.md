@@ -2,6 +2,14 @@
 
 ---
 
+## 配置 {#config}
+
+| 配置项                           | 类型     | 默认值    | 描述                                                                                                                                                                                  |
+| -------------------------------- | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sessionReplaySampleRate`        | Number   | `100`     | 回放数据采集百分比: <br>`100` 表示全收集；`0` 表示不收集                                                                                                                              |
+| `sessionReplayOnErrorSampleRate` | Number   | `0`       | 在发生错误时记录回放的采样率。此类回放将记录错误发生前最多一分钟的事件，并持续记录直到会话结束。`100` 表示捕获所有发生错误的会话，`0` 表示不捕获任何会话回放。SDK 版本要求`>= 3.2.18` |
+| `shouldMaskNode`                 | Function | undefined | session replay 屏蔽某个节点数据录制，可用于实现对某些自定义节点屏蔽效果。SDK 版本要求`>= 3.2.18`                                                                                      |
+
 ## 开启 Session Replay
 
 通过您之前的 SDK 引入方式，替换 NPM 包为 `> 3.0.0` 版本、或者替换原来的 CDN 链接为 `https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js`。SDK 初始化 `init()` 之后并不会自动采集 Session Replay Record 数据，需要执行 `startSessionReplayRecording` 开启数据的采集，这对于一些只采集特定情况 Session Replay Record 数据很有用，比如：
@@ -62,6 +70,48 @@ window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
 </script>
 ```
 
+### 如何实现仅采集错误相关的 Session Replay 数据（SDK 版本要求 `≥3.2.18`）
+
+#### 功能说明
+
+当页面发生错误时，SDK 将自动执行以下操作：
+
+1. **回溯采集**：记录错误发生前 **1 分钟** 的完整页面快照
+2. **持续录制**：从错误发生时刻起持续记录直至会话结束
+3. **智能补偿**：通过独立采样通道确保错误场景的全覆盖
+
+#### 配置示例
+
+````javascript
+<script
+  src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  type="text/javascript"
+></script>
+<script>
+// 初始化 SDK 核心配置
+window.DATAFLUX_RUM && window.DATAFLUX_RUM.init({
+   // 必填参数
+   applicationId: '<DATAFLUX_APPLICATION_ID>',
+   datakitOrigin: '<DATAKIT_ORIGIN>',
+
+   // 环境标识
+   service: 'browser',
+   env: 'production',
+   version: '1.0.0',
+
+   // 采样策略配置
+   sessionSampleRate: 100,          // 全量基础会话采集 (100%)
+   sessionReplaySampleRate: 0,       // 关闭常规录屏采样
+   sessionReplayOnErrorSampleRate: 100, // 错误场景 100% 采样
+
+   // 辅助功能
+   trackInteractions: true          // 启用用户行为追踪
+});
+
+// 强制开启录屏引擎（必须调用）
+window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording();
+</script>
+
 ## 注意事项
 
 ### 某些 HTML 元素在播放时候不可见
@@ -96,7 +146,7 @@ Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此�
 ```js
 <link rel="stylesheet" crossorigin="anonymous"
       href="https://assets.example.com/style.css”>
-```
+````
 
 此外，在 assets.example.com 中授权 example.com 域。这允许资源文件通过设置 [Access-Control-Allow-Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) Header 头来正确加载资源。
 
