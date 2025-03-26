@@ -28,27 +28,32 @@ The displayed metrics for Alibaba Cloud ECS include CPU utilization, memory util
 ## Configuration  {#config}
 
 ### Install Func
+It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites are automatically installed. Please proceed with script installation.
 
-It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed. Please continue with the script installation.
+If you deploy Func on your own, refer to [Self-hosted Func Deployment](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-If you deploy Func on your own, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
+### Enable Script
 
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
 
+#### Enable Managed Script
 
-### Installation Script
+1. Log in to the <<< custom_key.brand_name >>> console.
+2. Click on the 【Manage】 menu and select 【Cloud Account Management】.
+3. Click 【Add Cloud Account】, select 【Alibaba Cloud】, and fill in the required information on the interface. If the cloud account information has been configured before, skip this step.
+4. Click 【Test】. After a successful test, click 【Save】. If the test fails, check whether the configuration information is correct and retest.
+5. In the 【Cloud Account Management】 list, you can see the added cloud accounts. Click on the corresponding cloud account to enter the details page.
+6. Click the 【Integration】 button on the cloud account details page. In the `Not Installed` list, find `Alibaba Cloud ECS`, click the 【Install】 button, and follow the installation interface to complete the installation.
 
-> Note: Please prepare the required Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+#### Manually Enable Script
 
-To synchronize monitoring data of ECS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud-ECS Collection)" (ID: `guance_aliyun_ecs`)
+1. Log in to the Func console, click 【Script Market】, enter the official script market, and search for `guance_aliyun_ecs`.
 
-After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
+2. After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK ID, AK Secret, and account name.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+3. Click 【Deploy Start Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding start script.
 
-After enabling, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
-
-> If you want to collect corresponding logs, you also need to enable the corresponding log collection script. If you want to collect billing information, you need to enable the cloud billing collection script.
-
+4. After enabling, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
 We default to collecting some configurations; for more details, see the Metrics section.
 
