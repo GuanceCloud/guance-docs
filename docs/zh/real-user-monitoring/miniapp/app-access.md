@@ -1,12 +1,14 @@
-# 微信小程序应用接入
+# 小程序应用接入
 ---
 
 
-<<< custom_key.brand_name >>>应用监测能够收集各个小程序应用的指标数据，通过引入 SDK 文件，监控小程序性能指标、错误 Log 以及资源请求情况数据，上报到<<< custom_key.brand_name >>>平台后，以可视化的方式分析各个小程序应用端的性能。
+通过引入 SDK 文件，收集小程序应用的性能指标、错误日志和资源请求数据，并上报到<<< custom_key.brand_name >>>平台，以可视化方式分析小程序应用的性能。
 
 ## 前置条件
 
-**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+???+ warning "注意"
+
+    若已开通 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动配置，可直接接入应用。
 
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
 - 配置 [RUM 采集器](../../integrations/rum.md)；
@@ -14,13 +16,17 @@
 
 ## 应用接入
 
-登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+1. 进入**用户访问监测 > 新建应用 > 小程序**；
+2. 输入应用名称；
+3. 输入应用 ID；
+4. 选择应用接入方式：
 
-![](../img/6.rum_miniapp.png)
+    - 公网 DataWay：直接接收 RUM 数据，无需安装 DataKit 采集器。  
+    - 本地环境部署：满足前置条件后接收 RUM 数据。
 
 ## 使用方法
 
-在小程序的 app.js 文件以如下方式引入代码：
+在小程序的 `app.js` 文件以如下方式引入代码：
 
 **注意**：引入位置需要在 App() 初始化之前。
 

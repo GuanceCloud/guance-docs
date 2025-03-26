@@ -66,6 +66,16 @@
 
 ![](img/log_explorer_bpf.png)
 
+### JSON 搜索 {#json}
+
+在 JSON 格式的日志中，针对 Key 和 Value 均可进行 JSON 搜索。点击后，查看器搜索栏会添加 `@key:value` 的格式进行搜索。
+
+对于多层级的 JSON 数据，使用 `.` 承接来表示层级关系。例如，`@key1.key2:value` 表示搜索 `key1` 下的 `key2` 对应的值。
+
+<img src="../img/log_content_json_search.png" width="70%" >
+
+> 更多详情，可参考 [JSON 搜索](../getting-started/function-details/explorer-search.md#json)。
+
 ## 扩展字段
 
 - 在搜索栏，可输入字段名称或值快速搜索定位；

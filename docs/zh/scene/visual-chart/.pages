@@ -23,6 +23,7 @@ nav:
     - '日志流图': log-stream.md
     - '对象列表图': object-list.md
     - '告警统计图': alert-statistics.md
+    - '监控器总览': monitor_summary.md
     - '文本': text.md
     - '视频': video.md
     - '图片': picture.md
