@@ -7,8 +7,8 @@
 | 配置项                           | 类型     | 默认值    | 描述                                                                                                                                                                                  |
 | -------------------------------- | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sessionReplaySampleRate`        | Number   | `100`     | 回放数据采集百分比: <br>`100` 表示全收集；`0` 表示不收集                                                                                                                              |
-| `sessionReplayOnErrorSampleRate` | Number   | `0`       | 在发生错误时记录回放的采样率。此类回放将记录错误发生前最多一分钟的事件，并持续记录直到会话结束。`100` 表示捕获所有发生错误的会话，`0` 表示不捕获任何会话回放。SDK 版本要求`>= 3.2.18` |
-| `shouldMaskNode`                 | Function | undefined | session replay 屏蔽某个节点数据录制，可用于实现对某些自定义节点屏蔽效果。SDK 版本要求`>= 3.2.18`                                                                                      |
+| `sessionReplayOnErrorSampleRate` | Number   | `0`       | 在发生错误时记录回放的采样率。此类回放将记录错误发生前最多一分钟的事件，并持续记录直到会话结束。`100` 表示捕获所有发生错误的会话，`0` 表示不捕获任何会话回放。SDK 版本要求`>= 3.2.19` |
+| `shouldMaskNode`                 | Function | undefined | session replay 屏蔽某个节点数据录制，可用于实现对某些自定义节点屏蔽效果。SDK 版本要求`>= 3.2.19`                                                                                      |
 
 ## 开启 Session Replay
 
@@ -70,7 +70,7 @@ window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
 </script>
 ```
 
-### 如何实现仅采集错误相关的 Session Replay 数据（SDK 版本要求 `≥3.2.18`）
+### 如何实现仅采集错误相关的 Session Replay 数据（SDK 版本要求 `≥3.2.19`）
 
 #### 功能说明
 
