@@ -82,7 +82,7 @@ window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
 
 #### 配置示例
 
-````javascript
+```javascript
 <script
   src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
   type="text/javascript"
@@ -111,6 +111,7 @@ window.DATAFLUX_RUM && window.DATAFLUX_RUM.init({
 // 强制开启录屏引擎（必须调用）
 window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording();
 </script>
+```
 
 ## 注意事项
 
@@ -146,7 +147,7 @@ Session Replay 不是视频，而是基于 DOM 快照重建的 iframe。因此�
 ```js
 <link rel="stylesheet" crossorigin="anonymous"
       href="https://assets.example.com/style.css”>
-````
+```
 
 此外，在 assets.example.com 中授权 example.com 域。这允许资源文件通过设置 [Access-Control-Allow-Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) Header 头来正确加载资源。
 
