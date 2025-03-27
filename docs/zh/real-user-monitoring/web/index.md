@@ -126,7 +126,7 @@ datafluxRum.startSessionReplayRecording()
 </script>
 ```
 
-## 如何实现仅采集错误会话事件（SDK 版本要求 `≥3.2.18`）
+## 如何实现仅采集错误会话事件（SDK 版本要求 `≥3.2.19`）
 
 #### 功能特性
 
@@ -269,7 +269,7 @@ datafluxRum.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 
 在 SDK 初始化后，调用`startSessionReplayRecording()`方法来开启会话重放的录制。您可以选择在特定条件下开启，如用户登录后 [开启会话录制](../session-replay/index.md)。
 
-#### 如何实现仅采集错误相关的 Session Replay 数据（SDK 版本要求 `≥3.2.18`）
+#### 如何实现仅采集错误相关的 Session Replay 数据（SDK 版本要求 `≥3.2.19`）
 
 ##### 功能说明
 
