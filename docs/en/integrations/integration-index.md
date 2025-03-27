@@ -166,6 +166,19 @@ icon: zy/integrations
   
   		<!-- 集成list -->
   		<div class="fth-integration-list-content">
+             <div
+  				class="fth-integration-list-item"
+                style="display:none"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/integration-default-logo.png"
+									alt=""
+  						/>
+  					</div>
+  				</div>
+  			</div>
   		
   			<div
   				class="fth-integration-list-item"
@@ -10370,7 +10383,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
                     const tags = tagsStr || '';
                     const name = (nameStr && nameStr.toLowerCase()) || '';
                     const summary = summaryStr ? summaryStr.toLowerCase() : '';
-                    originList.push({ tags, name, summary, dom: item });
+                    name && originList.push({ tags, name, summary, dom: item });
                 });
                 searchIntegration();
             }
