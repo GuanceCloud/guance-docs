@@ -1211,7 +1211,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../apache"
   				data-tags="MIDDLEWARE,WEB SERVER"
   				data-name="Apache"
-  				data-summary="The Apache collector can gather request counts, connection counts, and more from Apache services."
+  				data-summary="Apache collector can collect the number of requests, connections, etc. from the Apache service"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1222,7 +1222,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Apache" class="fth-integration-name">Apache</div>
-                            <div title="The Apache collector can gather request counts, connection counts, and more from Apache services." class="fth-integration-desc">The Apache collector can gather request counts, connection counts, and more from Apache services.</div>
+                            <div title="Apache collector can collect the number of requests, connections, etc. from the Apache service" class="fth-integration-desc">Apache collector can collect the number of requests, connections, etc. from the Apache service</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2291,7 +2291,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../awslambda"
   				data-tags="AWS"
   				data-name="AWS Lambda Extension"
-  				data-summary="Collect data through AWS Lambda Extension"
+  				data-summary="Extend data collection through AWS Lambda"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2302,7 +2302,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS Lambda Extension" class="fth-integration-name">AWS Lambda Extension</div>
-                            <div title="Collect data through AWS Lambda Extension" class="fth-integration-desc">Collect data through AWS Lambda Extension</div>
+                            <div title="Extend data collection through AWS Lambda" class="fth-integration-desc">Extend data collection through AWS Lambda</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2468,6 +2468,36 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_redis_cache"
+  				data-tags="AZURE"
+  				data-name="Azure Redis Cache"
+  				data-summary="Collect Azure Redis Cache metric data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_redis_cache/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Redis Cache" class="fth-integration-name">Azure Redis Cache</div>
+                            <div title="Collect Azure Redis Cache metric data" class="fth-integration-desc">Collect Azure Redis Cache metric data</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_sqlserver"
   				data-tags="AZURE"
   				data-name="Azure SQL Servers"
@@ -2559,9 +2589,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../beats_output"
-  				data-tags="LOGS"
+  				data-tags="LOG"
   				data-name="Filebeat"
-  				data-summary="Receives log data collected by Filebeat"
+  				data-summary="Receive log collected by Filebeat "
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2572,7 +2602,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Filebeat" class="fth-integration-name">Filebeat</div>
-                            <div title="Receives log data collected by Filebeat" class="fth-integration-desc">Receives log data collected by Filebeat</div>
+                            <div title="Receive log collected by Filebeat " class="fth-integration-desc">Receive log collected by Filebeat </div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2589,9 +2619,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../cassandra"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="Cassandra"
-  				data-summary="Collect Cassandra Metrics data"
+  				data-summary="Collect Cassandra metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2602,7 +2632,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Cassandra" class="fth-integration-name">Cassandra</div>
-                            <div title="Collect Cassandra Metrics data" class="fth-integration-desc">Collect Cassandra Metrics data</div>
+                            <div title="Collect Cassandra metrics" class="fth-integration-desc">Collect Cassandra metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2619,9 +2649,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../cat"
-  				data-tags="APM"
+  				data-tags="TRACING,APM"
   				data-name="Dianping CAT"
-  				data-summary="Meituan Dianping’s performance, capacity, and business Metrics monitoring system"
+  				data-summary="The performance, capacity, and business indicator monitoring system of Meituan Dianping"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2632,7 +2662,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Dianping CAT" class="fth-integration-name">Dianping CAT</div>
-                            <div title="Meituan Dianping’s performance, capacity, and business Metrics monitoring system" class="fth-integration-desc">Meituan Dianping’s performance, capacity, and business Metrics monitoring system</div>
+                            <div title="The performance, capacity, and business indicator monitoring system of Meituan Dianping" class="fth-integration-desc">The performance, capacity, and business indicator monitoring system of Meituan Dianping</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2651,7 +2681,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../chrony"
   				data-tags=""
   				data-name="Chrony"
-  				data-summary="Collect metrics data related to the Chrony server"
+  				data-summary="Collect metrics related to Chrony server"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2662,7 +2692,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Chrony" class="fth-integration-name">Chrony</div>
-                            <div title="Collect metrics data related to the Chrony server" class="fth-integration-desc">Collect metrics data related to the Chrony server</div>
+                            <div title="Collect metrics related to Chrony server" class="fth-integration-desc">Collect metrics related to Chrony server</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2679,9 +2709,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../clickhousev1"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="ClickHouse"
-  				data-summary="Collect metrics data from ClickHouse"
+  				data-summary="Collect metrics of ClickHouse"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2692,7 +2722,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="ClickHouse" class="fth-integration-name">ClickHouse</div>
-                            <div title="Collect metrics data from ClickHouse" class="fth-integration-desc">Collect metrics data from ClickHouse</div>
+                            <div title="Collect metrics of ClickHouse" class="fth-integration-desc">Collect metrics of ClickHouse</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2741,7 +2771,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../cloudprober"
   				data-tags=""
   				data-name="Cloudprober"
-  				data-summary="Receive Cloudprober data"
+  				data-summary="Collect Cloudprober data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2752,7 +2782,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Cloudprober" class="fth-integration-name">Cloudprober</div>
-                            <div title="Receive Cloudprober data" class="fth-integration-desc">Receive Cloudprober data</div>
+                            <div title="Collect Cloudprober data" class="fth-integration-desc">Collect Cloudprober data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2769,9 +2799,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../cockroachdb"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="CockroachDB"
-  				data-summary="Collect metrics data from CockroachDB"
+  				data-summary="Collect CockroachDB metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2782,7 +2812,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="CockroachDB" class="fth-integration-name">CockroachDB</div>
-                            <div title="Collect metrics data from CockroachDB" class="fth-integration-desc">Collect metrics data from CockroachDB</div>
+                            <div title="Collect CockroachDB metrics" class="fth-integration-desc">Collect CockroachDB metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2831,7 +2861,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../consul"
   				data-tags="MIDDLEWARE"
   				data-name="Consul"
-  				data-summary="Collect metrics data from Consul"
+  				data-summary="Collect metrics of Consul"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2842,7 +2872,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Consul" class="fth-integration-name">Consul</div>
-                            <div title="Collect metrics data from Consul" class="fth-integration-desc">Collect metrics data from Consul</div>
+                            <div title="Collect metrics of Consul" class="fth-integration-desc">Collect metrics of Consul</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2859,9 +2889,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../container-log"
-  				data-tags="LOGS,CONTAINERS,KUBERNETES"
+  				data-tags="LOG,CONTAINER,KUBERNETES"
   				data-name="Kubernetes Logs"
-  				data-summary="Collect logs data from Containers and Kubernetes"
+  				data-summary="Collect container and Kubernetes log"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2872,7 +2902,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Kubernetes Logs" class="fth-integration-name">Kubernetes Logs</div>
-                            <div title="Collect logs data from Containers and Kubernetes" class="fth-integration-desc">Collect logs data from Containers and Kubernetes</div>
+                            <div title="Collect container and Kubernetes log" class="fth-integration-desc">Collect container and Kubernetes log</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2889,9 +2919,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../container"
-  				data-tags="KUBERNETES,CONTAINERS"
+  				data-tags="KUBERNETES,CONTAINER"
   				data-name="Kubernetes"
-  				data-summary="Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to <<< custom_key.brand_name >>>."
+  				data-summary="Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2902,7 +2932,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Kubernetes" class="fth-integration-name">Kubernetes</div>
-                            <div title="Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to <<< custom_key.brand_name >>>." class="fth-integration-desc">Collect CONTAINERS and Kubernetes Metrics, objects, and LOG data, and report them to <<< custom_key.brand_name >>>.</div>
+                            <div title="Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud." class="fth-integration-desc">Collect metrics, objects, and log data for Container and Kubernetes, and report them to the guance cloud.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2921,7 +2951,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../coredns"
   				data-tags="MIDDLEWARE"
   				data-name="CoreDNS"
-  				data-summary="Collect Metrics data related to CoreDNS"
+  				data-summary="Collect CoreDNS metrics and logs"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2932,7 +2962,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="CoreDNS" class="fth-integration-name">CoreDNS</div>
-                            <div title="Collect Metrics data related to CoreDNS" class="fth-integration-desc">Collect Metrics data related to CoreDNS</div>
+                            <div title="Collect CoreDNS metrics and logs" class="fth-integration-desc">Collect CoreDNS metrics and logs</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2949,9 +2979,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../couchbase"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="Couchbase"
-  				data-summary="Collect metrics data related to Couchbase servers"
+  				data-summary="Collect Couchbase server metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2962,7 +2992,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Couchbase" class="fth-integration-name">Couchbase</div>
-                            <div title="Collect metrics data related to Couchbase servers" class="fth-integration-desc">Collect metrics data related to Couchbase servers</div>
+                            <div title="Collect Couchbase server metrics" class="fth-integration-desc">Collect Couchbase server metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2979,9 +3009,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../couchdb"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="CouchDB"
-  				data-summary="Collect metrics data from CouchDB"
+  				data-summary="Collect CouchDB server metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2992,7 +3022,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="CouchDB" class="fth-integration-name">CouchDB</div>
-                            <div title="Collect metrics data from CouchDB" class="fth-integration-desc">Collect metrics data from CouchDB</div>
+                            <div title="Collect CouchDB server metrics" class="fth-integration-desc">Collect CouchDB server metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3011,7 +3041,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../cpu"
   				data-tags="HOST"
   				data-name="CPU"
-  				data-summary="Collect CPU Metrics data"
+  				data-summary="Collect metric of cpu"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3022,7 +3052,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="CPU" class="fth-integration-name">CPU</div>
-                            <div title="Collect CPU Metrics data" class="fth-integration-desc">Collect CPU Metrics data</div>
+                            <div title="Collect metric of cpu" class="fth-integration-desc">Collect metric of cpu</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3039,9 +3069,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../db2"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="DB2"
-  				data-summary="Collect metrics data from IBM DB2"
+  				data-summary="Collect IBM DB2 metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3052,7 +3082,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DB2" class="fth-integration-name">DB2</div>
-                            <div title="Collect metrics data from IBM DB2" class="fth-integration-desc">Collect metrics data from IBM DB2</div>
+                            <div title="Collect IBM DB2 metrics" class="fth-integration-desc">Collect IBM DB2 metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3069,9 +3099,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-attach"
-  				data-tags="APM,JAVA"
-  				data-name="Automatically Inject DDTrace-Java Agent"
-  				data-summary="DDTrace Java Integration"
+  				data-tags="APM,TRACING,JAVA"
+  				data-name="DDTrace Attach "
+  				data-summary="Attach DDTrace to Java applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3081,8 +3111,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Automatically Inject DDTrace-Java Agent" class="fth-integration-name">Automatically Inject DDTrace-Java Agent</div>
-                            <div title="DDTrace Java Integration" class="fth-integration-desc">DDTrace Java Integration</div>
+                            <div title="DDTrace Attach " class="fth-integration-name">DDTrace Attach </div>
+                            <div title="Attach DDTrace to Java applications" class="fth-integration-desc">Attach DDTrace to Java applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3099,9 +3129,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-cpp"
-  				data-tags="APM,C/C++"
+  				data-tags="APM,TRACING,C/C++"
   				data-name="DDTrace C++"
-  				data-summary="DDTrace C++ Integration"
+  				data-summary="Tracing C++ Application with DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3112,7 +3142,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace C++" class="fth-integration-name">DDTrace C++</div>
-                            <div title="DDTrace C++ Integration" class="fth-integration-desc">DDTrace C++ Integration</div>
+                            <div title="Tracing C++ Application with DDTrace" class="fth-integration-desc">Tracing C++ Application with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3129,9 +3159,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-ext-java"
-  				data-tags="DDTRACE,APM"
-  				data-name="DDTrace Extension"
-  				data-summary="<<< custom_key.brand_name >>> extends the support of DDTrace for components"
+  				data-tags="DDTRACE,APM,TRACING"
+  				data-name="DDTrace Extensions"
+  				data-summary="Extensions on DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3141,8 +3171,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="DDTrace Extension" class="fth-integration-name">DDTrace Extension</div>
-                            <div title="<<< custom_key.brand_name >>> extends the support of DDTrace for components" class="fth-integration-desc"><<< custom_key.brand_name >>> extends the support of DDTrace for components</div>
+                            <div title="DDTrace Extensions" class="fth-integration-name">DDTrace Extensions</div>
+                            <div title="Extensions on DDTrace" class="fth-integration-desc">Extensions on DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3159,9 +3189,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-golang"
-  				data-tags="DDTRACE,GOLANG,APM"
+  				data-tags="DDTRACE,GOLANG,APM,TRACING"
   				data-name="DDTrace Golang"
-  				data-summary="DDTrace Golang Integration"
+  				data-summary="Tracing Golang application with DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3172,7 +3202,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace Golang" class="fth-integration-name">DDTrace Golang</div>
-                            <div title="DDTrace Golang Integration" class="fth-integration-desc">DDTrace Golang Integration</div>
+                            <div title="Tracing Golang application with DDTrace" class="fth-integration-desc">Tracing Golang application with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3189,9 +3219,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-java"
-  				data-tags="DDTRACE,JAVA,APM"
+  				data-tags="DDTRACE,JAVA,APM,TRACING"
   				data-name="DDTrace Java"
-  				data-summary="DDTrace Java Integration"
+  				data-summary="Tracing Java application with DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3202,7 +3232,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace Java" class="fth-integration-name">DDTrace Java</div>
-                            <div title="DDTrace Java Integration" class="fth-integration-desc">DDTrace Java Integration</div>
+                            <div title="Tracing Java application with DDTrace" class="fth-integration-desc">Tracing Java application with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3219,9 +3249,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-jmxfetch"
-  				data-tags="DDTRACE,JAVA,APM"
+  				data-tags="DDTRACE,JAVA"
   				data-name="DDTrace JMX"
-  				data-summary="DDTrace JMX Integration"
+  				data-summary="Export JVM metrics with DDTrace JMX"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3232,7 +3262,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace JMX" class="fth-integration-name">DDTrace JMX</div>
-                            <div title="DDTrace JMX Integration" class="fth-integration-desc">DDTrace JMX Integration</div>
+                            <div title="Export JVM metrics with DDTrace JMX" class="fth-integration-desc">Export JVM metrics with DDTrace JMX</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3249,9 +3279,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-nodejs"
-  				data-tags="DDTRACE,NODEJS,APM"
+  				data-tags="DDTRACE,NODEJS,APM,TRACING"
   				data-name="DDTrace NodeJS"
-  				data-summary="DDTrace NodeJS Integration"
+  				data-summary="Tracing NodeJS applications with DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3262,7 +3292,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace NodeJS" class="fth-integration-name">DDTrace NodeJS</div>
-                            <div title="DDTrace NodeJS Integration" class="fth-integration-desc">DDTrace NodeJS Integration</div>
+                            <div title="Tracing NodeJS applications with DDTrace" class="fth-integration-desc">Tracing NodeJS applications with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3279,9 +3309,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-php"
-  				data-tags="DDTRACE,PHP,APM"
+  				data-tags="DDTRACE,PHP,TRACING,APM"
   				data-name="DDTrace PHP"
-  				data-summary="DDTrace PHP Integration"
+  				data-summary="Tracing PHP applications with DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3292,7 +3322,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace PHP" class="fth-integration-name">DDTrace PHP</div>
-                            <div title="DDTrace PHP Integration" class="fth-integration-desc">DDTrace PHP Integration</div>
+                            <div title="Tracing PHP applications with DDTrace" class="fth-integration-desc">Tracing PHP applications with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3309,9 +3339,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-python"
-  				data-tags="DDTRACE,PYTHON,APM"
+  				data-tags="DDTRACE,PYTHON,APM,TRACING"
   				data-name="DDTrace Python"
-  				data-summary="DDTrace Python Integration"
+  				data-summary="Tracing Python applications with DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3322,7 +3352,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace Python" class="fth-integration-name">DDTrace Python</div>
-                            <div title="DDTrace Python Integration" class="fth-integration-desc">DDTrace Python Integration</div>
+                            <div title="Tracing Python applications with DDTrace" class="fth-integration-desc">Tracing Python applications with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3339,9 +3369,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace-ruby"
-  				data-tags="DDTRACE,RUBY,APM"
+  				data-tags="DDTRACE,RUBY,APM,TRACING"
   				data-name="DDTrace Ruby"
-  				data-summary="DDTrace Ruby Integration"
+  				data-summary="Tracing Ruby applications with DDTrace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3352,7 +3382,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace Ruby" class="fth-integration-name">DDTrace Ruby</div>
-                            <div title="DDTrace Ruby Integration" class="fth-integration-desc">DDTrace Ruby Integration</div>
+                            <div title="Tracing Ruby applications with DDTrace" class="fth-integration-desc">Tracing Ruby applications with DDTrace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3369,7 +3399,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ddtrace"
-  				data-tags="DDTRACE,APM"
+  				data-tags="APM,TRACING,DDTRACE"
   				data-name="DDTrace"
   				data-summary="Receive APM data from DDTrace"
   			>
@@ -3400,8 +3430,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../dialtesting"
   				data-tags="TESTING,NETWORK"
-  				data-name="Network Testing"
-  				data-summary="Obtain network performance data through network testing."
+  				data-name="Diatesting"
+  				data-summary="Obtain network performance through network dialing test"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3411,8 +3441,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Network Testing" class="fth-integration-name">Network Testing</div>
-                            <div title="Obtain network performance data through network testing." class="fth-integration-desc">Obtain network performance data through network testing.</div>
+                            <div title="Diatesting" class="fth-integration-name">Diatesting</div>
+                            <div title="Obtain network performance through network dialing test" class="fth-integration-desc">Obtain network performance through network dialing test</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3430,8 +3460,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../dialtesting_json"
   				data-tags="TESTING,NETWORK"
-  				data-name="Custom Dial Testing Tasks"
-  				data-summary="Customize dial testing collectors to tailor dial testing tasks"
+  				data-name="Customize Dialtesting"
+  				data-summary="Customize your dialtesting task with local configurations"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3441,8 +3471,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Custom Dial Testing Tasks" class="fth-integration-name">Custom Dial Testing Tasks</div>
-                            <div title="Customize dial testing collectors to tailor dial testing tasks" class="fth-integration-desc">Customize dial testing collectors to tailor dial testing tasks</div>
+                            <div title="Customize Dialtesting" class="fth-integration-name">Customize Dialtesting</div>
+                            <div title="Customize your dialtesting task with local configurations" class="fth-integration-desc">Customize your dialtesting task with local configurations</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3461,7 +3491,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../disk"
   				data-tags="HOST"
   				data-name="Disk"
-  				data-summary="Collect metrics data for disk"
+  				data-summary="Collect metrics of disk"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3472,7 +3502,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Disk" class="fth-integration-name">Disk</div>
-                            <div title="Collect metrics data for disk" class="fth-integration-desc">Collect metrics data for disk</div>
+                            <div title="Collect metrics of disk" class="fth-integration-desc">Collect metrics of disk</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3491,7 +3521,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../diskio"
   				data-tags="HOST"
   				data-name="Disk IO"
-  				data-summary="Collect Disk IO Metrics data"
+  				data-summary="Collect metrics of disk io"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3502,7 +3532,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Disk IO" class="fth-integration-name">Disk IO</div>
-                            <div title="Collect Disk IO Metrics data" class="fth-integration-desc">Collect Disk IO Metrics data</div>
+                            <div title="Collect metrics of disk io" class="fth-integration-desc">Collect metrics of disk io</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3519,9 +3549,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../dk"
-  				data-tags="HOSTs"
-  				data-name="DataKit Self-Monitoring Metrics Collection"
-  				data-summary="Collection of DataKit self-running metrics"
+  				data-tags="HOST"
+  				data-name="DataKit metrics"
+  				data-summary="Collect DataKit metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3531,8 +3561,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="DataKit Self-Monitoring Metrics Collection" class="fth-integration-name">DataKit Self-Monitoring Metrics Collection</div>
-                            <div title="Collection of DataKit self-running metrics" class="fth-integration-desc">Collection of DataKit self-running metrics</div>
+                            <div title="DataKit metrics" class="fth-integration-name">DataKit metrics</div>
+                            <div title="Collect DataKit metrics" class="fth-integration-desc">Collect DataKit metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3669,9 +3699,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../doris"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="Doris"
-  				data-summary="Collect Doris Metrics data"
+  				data-summary="Collect metrics of Doris"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3682,7 +3712,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Doris" class="fth-integration-name">Doris</div>
-                            <div title="Collect Doris Metrics data" class="fth-integration-desc">Collect Doris Metrics data</div>
+                            <div title="Collect metrics of Doris" class="fth-integration-desc">Collect metrics of Doris</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3731,7 +3761,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../ebpf"
   				data-tags="EBPF,NETWORK"
   				data-name="eBPF"
-  				data-summary="Collect Linux network data via eBPF"
+  				data-summary="Collect Linux network data through eBPF"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3742,7 +3772,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="eBPF" class="fth-integration-name">eBPF</div>
-                            <div title="Collect Linux network data via eBPF" class="fth-integration-desc">Collect Linux network data via eBPF</div>
+                            <div title="Collect Linux network data through eBPF" class="fth-integration-desc">Collect Linux network data through eBPF</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3759,9 +3789,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ebpftrace"
-  				data-tags="APM,EBPF"
+  				data-tags="APM,TRACING,EBPF"
   				data-name="eBPF Tracing"
-  				data-summary="Associate eBPF collected link spans to generate traces"
+  				data-summary="Associate eBPF span and generate trace"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3772,7 +3802,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="eBPF Tracing" class="fth-integration-name">eBPF Tracing</div>
-                            <div title="Associate eBPF collected link spans to generate traces" class="fth-integration-desc">Associate eBPF collected link spans to generate traces</div>
+                            <div title="Associate eBPF span and generate trace" class="fth-integration-desc">Associate eBPF span and generate trace</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3789,9 +3819,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../elasticsearch"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="ElasticSearch"
-  				data-summary="Collect ElasticSearch Metrics data"
+  				data-summary="Collect ElasticSearch metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3802,7 +3832,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="ElasticSearch" class="fth-integration-name">ElasticSearch</div>
-                            <div title="Collect ElasticSearch Metrics data" class="fth-integration-desc">Collect ElasticSearch Metrics data</div>
+                            <div title="Collect ElasticSearch metrics" class="fth-integration-desc">Collect ElasticSearch metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3851,7 +3881,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../etcd"
   				data-tags="MIDDLEWARE"
   				data-name="etcd"
-  				data-summary="Collect metrics data from etcd"
+  				data-summary="Collect etcd metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3862,7 +3892,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="etcd" class="fth-integration-name">etcd</div>
-                            <div title="Collect metrics data from etcd" class="fth-integration-desc">Collect metrics data from etcd</div>
+                            <div title="Collect etcd metrics" class="fth-integration-desc">Collect etcd metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3911,7 +3941,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../external"
   				data-tags=""
   				data-name="External"
-  				data-summary="Launch external programs for collection"
+  				data-summary="Start external program for collection"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3922,7 +3952,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="External" class="fth-integration-name">External</div>
-                            <div title="Launch external programs for collection" class="fth-integration-desc">Launch external programs for collection</div>
+                            <div title="Start external program for collection" class="fth-integration-desc">Start external program for collection</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3971,7 +4001,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../flinkv1"
   				data-tags="MIDDLEWARE"
   				data-name="Flink"
-  				data-summary="Collect metrics data from Flink"
+  				data-summary="Collect Flink metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3982,7 +4012,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Flink" class="fth-integration-name">Flink</div>
-                            <div title="Collect metrics data from Flink" class="fth-integration-desc">Collect metrics data from Flink</div>
+                            <div title="Collect Flink metrics" class="fth-integration-desc">Collect Flink metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4061,7 +4091,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../gitlab"
   				data-tags="GITLAB,CI/CD"
   				data-name="GitLab"
-  				data-summary="Collect metrics data from GitLab"
+  				data-summary="Collect GitLab metrics and logs"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4072,7 +4102,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="GitLab" class="fth-integration-name">GitLab</div>
-                            <div title="Collect metrics data from GitLab" class="fth-integration-desc">Collect metrics data from GitLab</div>
+                            <div title="Collect GitLab metrics and logs" class="fth-integration-desc">Collect GitLab metrics and logs</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4121,7 +4151,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../gpu_smi"
   				data-tags="HOST"
   				data-name="GPU"
-  				data-summary="Collect NVIDIA GPU Metrics data"
+  				data-summary="Collect NVIDIA GPU metrics and logs"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4132,7 +4162,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="GPU" class="fth-integration-name">GPU</div>
-                            <div title="Collect NVIDIA GPU Metrics data" class="fth-integration-desc">Collect NVIDIA GPU Metrics data</div>
+                            <div title="Collect NVIDIA GPU metrics and logs" class="fth-integration-desc">Collect NVIDIA GPU metrics and logs</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4179,9 +4209,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../graphite"
-  				data-tags="External Data Integration"
-  				data-name="Graphite"
-  				data-summary="Collect metrics data exposed by Graphite Exporter"
+  				data-tags="THIRD PARTY"
+  				data-name="Graphite Exporter"
+  				data-summary="Collect Graphite Exporter exposed by Graphite Exporter"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4191,8 +4221,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Graphite" class="fth-integration-name">Graphite</div>
-                            <div title="Collect metrics data exposed by Graphite Exporter" class="fth-integration-desc">Collect metrics data exposed by Graphite Exporter</div>
+                            <div title="Graphite Exporter" class="fth-integration-name">Graphite Exporter</div>
+                            <div title="Collect Graphite Exporter exposed by Graphite Exporter" class="fth-integration-desc">Collect Graphite Exporter exposed by Graphite Exporter</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4450,8 +4480,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../host_healthcheck"
   				data-tags="HOST"
-  				data-name="HOST Health Check"
-  				data-summary="Periodically check the health of HOST processes and NETWORK"
+  				data-name="Health Check"
+  				data-summary="Regularly check the host process and network health status"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4461,8 +4491,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="HOST Health Check" class="fth-integration-name">HOST Health Check</div>
-                            <div title="Periodically check the health of HOST processes and NETWORK" class="fth-integration-desc">Periodically check the health of HOST processes and NETWORK</div>
+                            <div title="Health Check" class="fth-integration-name">Health Check</div>
+                            <div title="Regularly check the host process and network health status" class="fth-integration-desc">Regularly check the host process and network health status</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4480,8 +4510,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../host_processes"
   				data-tags="HOST"
-  				data-name="Processes"
-  				data-summary="Collect metrics and object data for processes"
+  				data-name="Process"
+  				data-summary="Collect host process metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4491,8 +4521,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Processes" class="fth-integration-name">Processes</div>
-                            <div title="Collect metrics and object data for processes" class="fth-integration-desc">Collect metrics and object data for processes</div>
+                            <div title="Process" class="fth-integration-name">Process</div>
+                            <div title="Collect host process metrics" class="fth-integration-desc">Collect host process metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4510,8 +4540,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../hostdir"
   				data-tags="HOST"
-  				data-name="File Directory"
-  				data-summary="Collect metrics data of file directories"
+  				data-name="Host Directory"
+  				data-summary="Collect metrics from file directories"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4521,8 +4551,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="File Directory" class="fth-integration-name">File Directory</div>
-                            <div title="Collect metrics data of file directories" class="fth-integration-desc">Collect metrics data of file directories</div>
+                            <div title="Host Directory" class="fth-integration-name">Host Directory</div>
+                            <div title="Collect metrics from file directories" class="fth-integration-desc">Collect metrics from file directories</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4540,8 +4570,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../hostobject"
   				data-tags="HOST"
-  				data-name="HOST Objects"
-  				data-summary="Collect basic HOST information"
+  				data-name="Host Object"
+  				data-summary="Collect Basic Host Information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4551,8 +4581,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="HOST Objects" class="fth-integration-name">HOST Objects</div>
-                            <div title="Collect basic HOST information" class="fth-integration-desc">Collect basic HOST information</div>
+                            <div title="Host Object" class="fth-integration-name">Host Object</div>
+                            <div title="Collect Basic Host Information" class="fth-integration-desc">Collect Basic Host Information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5531,7 +5561,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../iis"
   				data-tags="WINDOWS,IIS,WEB SERVER"
   				data-name="IIS"
-  				data-summary="Collect IIS Metrics data"
+  				data-summary="Collect IIS metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5542,7 +5572,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="IIS" class="fth-integration-name">IIS</div>
-                            <div title="Collect IIS Metrics data" class="fth-integration-desc">Collect IIS Metrics data</div>
+                            <div title="Collect IIS metrics" class="fth-integration-desc">Collect IIS metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5589,9 +5619,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../influxdb"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="InfluxDB"
-  				data-summary="Collect InfluxDB Metrics data"
+  				data-summary="Collect InfluxDB metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5602,7 +5632,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="InfluxDB" class="fth-integration-name">InfluxDB</div>
-                            <div title="Collect InfluxDB Metrics data" class="fth-integration-desc">Collect InfluxDB Metrics data</div>
+                            <div title="Collect InfluxDB metrics" class="fth-integration-desc">Collect InfluxDB metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5651,7 +5681,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../ipmi"
   				data-tags="IPMI"
   				data-name="IPMI"
-  				data-summary="IPMI Metrics display information about the current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of monitored devices."
+  				data-summary="Collect IPMI metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5662,7 +5692,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="IPMI" class="fth-integration-name">IPMI</div>
-                            <div title="IPMI Metrics display information about the current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of monitored devices." class="fth-integration-desc">IPMI Metrics display information about the current, voltage, power consumption, occupancy rate, fan speed, temperature, and device status of monitored devices.</div>
+                            <div title="Collect IPMI metrics" class="fth-integration-desc">Collect IPMI metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5769,9 +5799,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../jaeger"
-  				data-tags="JAEGER,APM"
+  				data-tags="JAEGER,APM,TRACING"
   				data-name="Jaeger"
-  				data-summary="Receive Jaeger APM data"
+  				data-summary="Receive Jaeger APM Data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5782,7 +5812,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Jaeger" class="fth-integration-name">Jaeger</div>
-                            <div title="Receive Jaeger APM data" class="fth-integration-desc">Receive Jaeger APM data</div>
+                            <div title="Receive Jaeger APM Data" class="fth-integration-desc">Receive Jaeger APM Data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5861,7 +5891,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../jenkins"
   				data-tags="JENKINS,CI/CD"
   				data-name="Jenkins"
-  				data-summary="Collect metrics and logs from Jenkins"
+  				data-summary="Collect Jenkins metrics and logs"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5872,7 +5902,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Jenkins" class="fth-integration-name">Jenkins</div>
-                            <div title="Collect metrics and logs from Jenkins" class="fth-integration-desc">Collect metrics and logs from Jenkins</div>
+                            <div title="Collect Jenkins metrics and logs" class="fth-integration-desc">Collect Jenkins metrics and logs</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5951,7 +5981,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../jvm"
   				data-tags="JAVA"
   				data-name="JVM"
-  				data-summary="Collect JVM Metrics data"
+  				data-summary="Collect the JVM metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5962,7 +5992,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="JVM" class="fth-integration-name">JVM</div>
-                            <div title="Collect JVM Metrics data" class="fth-integration-desc">Collect JVM Metrics data</div>
+                            <div title="Collect the JVM metrics" class="fth-integration-desc">Collect the JVM metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6101,7 +6131,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../kafka"
   				data-tags="MIDDLEWARE,MESSAGE QUEUES"
   				data-name="Kafka"
-  				data-summary="Collect Kafka metrics data"
+  				data-summary="Collect metrics of Kafka"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6112,7 +6142,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Kafka" class="fth-integration-name">Kafka</div>
-                            <div title="Collect Kafka metrics data" class="fth-integration-desc">Collect Kafka metrics data</div>
+                            <div title="Collect metrics of Kafka" class="fth-integration-desc">Collect metrics of Kafka</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6131,7 +6161,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../kafkamq"
   				data-tags="MESSAGE QUEUES,LOG"
   				data-name="KafkaMQ"
-  				data-summary="Collect existing Metrics and LOG data via Kafka"
+  				data-summary="Collect metrics and log data via Kafka"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6142,7 +6172,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="KafkaMQ" class="fth-integration-name">KafkaMQ</div>
-                            <div title="Collect existing Metrics and LOG data via Kafka" class="fth-integration-desc">Collect existing Metrics and LOG data via Kafka</div>
+                            <div title="Collect metrics and log data via Kafka" class="fth-integration-desc">Collect metrics and log data via Kafka</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6340,7 +6370,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../kubernetes-crd"
   				data-tags="PROMETHEUS,KUBERNETES"
-  				data-name="Kubernetes CRD"
+  				data-name="Kubernetes CRD Extended Collection"
   				data-summary="Create Datakit CRD to collect"
   			>
   				<div class="fth-integration-list-card">
@@ -6351,7 +6381,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Kubernetes CRD" class="fth-integration-name">Kubernetes CRD</div>
+                            <div title="Kubernetes CRD Extended Collection" class="fth-integration-name">Kubernetes CRD Extended Collection</div>
                             <div title="Create Datakit CRD to collect" class="fth-integration-desc">Create Datakit CRD to collect</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
@@ -6371,7 +6401,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../kubernetes-prom"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes Prometheus Exporter"
-  				data-summary="Collect Prometheus Metrics exposed by custom Pods in a Kubernetes cluster"
+  				data-summary="Collect Prometheus metrics among Kubernetes Pod"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6382,7 +6412,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Kubernetes Prometheus Exporter" class="fth-integration-name">Kubernetes Prometheus Exporter</div>
-                            <div title="Collect Prometheus Metrics exposed by custom Pods in a Kubernetes cluster" class="fth-integration-desc">Collect Prometheus Metrics exposed by custom Pods in a Kubernetes cluster</div>
+                            <div title="Collect Prometheus metrics among Kubernetes Pod" class="fth-integration-desc">Collect Prometheus metrics among Kubernetes Pod</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6400,8 +6430,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../kubernetes-prometheus-operator-crd"
   				data-tags="PROMETHEUS,KUBERNETES"
-  				data-name="Prometheus CRD"
-  				data-summary="Support Prometheus-Operator CRD and collect corresponding Metrics"
+  				data-name="Kubernetes Prometheus CRD"
+  				data-summary="Collecting on Prometheus-Operator CRD"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6411,8 +6441,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Prometheus CRD" class="fth-integration-name">Prometheus CRD</div>
-                            <div title="Support Prometheus-Operator CRD and collect corresponding Metrics" class="fth-integration-desc">Support Prometheus-Operator CRD and collect corresponding Metrics</div>
+                            <div title="Kubernetes Prometheus CRD" class="fth-integration-name">Kubernetes Prometheus CRD</div>
+                            <div title="Collecting on Prometheus-Operator CRD" class="fth-integration-desc">Collecting on Prometheus-Operator CRD</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6461,7 +6491,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../kubernetesprometheus"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes Prometheus Discovery"
-  				data-summary="Supports discovering and collecting exposed Prometheus Metrics in Kubernetes"
+  				data-summary="Auto discovery and collecting Prometheus exported metrics among Kubernetes"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6472,7 +6502,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Kubernetes Prometheus Discovery" class="fth-integration-name">Kubernetes Prometheus Discovery</div>
-                            <div title="Supports discovering and collecting exposed Prometheus Metrics in Kubernetes" class="fth-integration-desc">Supports discovering and collecting exposed Prometheus Metrics in Kubernetes</div>
+                            <div title="Auto discovery and collecting Prometheus exported metrics among Kubernetes" class="fth-integration-desc">Auto discovery and collecting Prometheus exported metrics among Kubernetes</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6519,9 +6549,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../logfwd"
-  				data-tags="KUBERNETES,LOGS,CONTAINERS"
-  				data-name="Log Sidecar"
-  				data-summary="Sidecar form of log collection"
+  				data-tags="KUBERNETES,LOG,CONTAINER"
+  				data-name="Sidecar for Pod Logging"
+  				data-summary="Collect pod logging via Sidecar"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6531,8 +6561,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Log Sidecar" class="fth-integration-name">Log Sidecar</div>
-                            <div title="Sidecar form of log collection" class="fth-integration-desc">Sidecar form of log collection</div>
+                            <div title="Sidecar for Pod Logging" class="fth-integration-name">Sidecar for Pod Logging</div>
+                            <div title="Collect pod logging via Sidecar" class="fth-integration-desc">Collect pod logging via Sidecar</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6549,9 +6579,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../logfwdserver"
-  				data-tags="KUBERNETES,LOGS,CONTAINERS"
-  				data-name="Log Forward"
-  				data-summary="Collect log data inside Pod via sidecar method"
+  				data-tags="KUBERNETES,LOG,CONTAINER"
+  				data-name="Log Forward Server"
+  				data-summary="Collect log data in Pod through sidecar method"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6561,8 +6591,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Log Forward" class="fth-integration-name">Log Forward</div>
-                            <div title="Collect log data inside Pod via sidecar method" class="fth-integration-desc">Collect log data inside Pod via sidecar method</div>
+                            <div title="Log Forward Server" class="fth-integration-name">Log Forward Server</div>
+                            <div title="Collect log data in Pod through sidecar method" class="fth-integration-desc">Collect log data in Pod through sidecar method</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6579,9 +6609,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../logging"
-  				data-tags="LOGS"
-  				data-name="LOG COLLECTION"
-  				data-summary="Collect log data from the HOST"
+  				data-tags="LOG"
+  				data-name="Log Collector"
+  				data-summary="Collect log data on the host"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6591,8 +6621,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="LOG COLLECTION" class="fth-integration-name">LOG COLLECTION</div>
-                            <div title="Collect log data from the HOST" class="fth-integration-desc">Collect log data from the HOST</div>
+                            <div title="Log Collector" class="fth-integration-name">Log Collector</div>
+                            <div title="Collect log data on the host" class="fth-integration-desc">Collect log data on the host</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6611,7 +6641,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../logging_socket"
   				data-tags="LOG"
   				data-name="Socket Logging"
-  				data-summary="Mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector."
+  				data-summary="Accept Java/Go/Python logging framework remotely"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6622,7 +6652,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Socket Logging" class="fth-integration-name">Socket Logging</div>
-                            <div title="Mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector." class="fth-integration-desc">Mainly describes how to configure Socket in Java/Go/Python logging frameworks to send logs to the Datakit log collector.</div>
+                            <div title="Accept Java/Go/Python logging framework remotely" class="fth-integration-desc">Accept Java/Go/Python logging framework remotely</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6669,9 +6699,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../logstreaming"
-  				data-tags="LOGS"
+  				data-tags="LOG"
   				data-name="Log Streaming"
-  				data-summary="Reporting log data via HTTP"
+  				data-summary="Report log data via HTTP"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6682,7 +6712,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Log Streaming" class="fth-integration-name">Log Streaming</div>
-                            <div title="Reporting log data via HTTP" class="fth-integration-desc">Reporting log data via HTTP</div>
+                            <div title="Report log data via HTTP" class="fth-integration-desc">Report log data via HTTP</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6701,7 +6731,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../lsblk"
   				data-tags="HOST"
   				data-name="Lsblk"
-  				data-summary="Collect metrics data from block devices"
+  				data-summary="Collect metrics of block device"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6712,7 +6742,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Lsblk" class="fth-integration-name">Lsblk</div>
-                            <div title="Collect metrics data from block devices" class="fth-integration-desc">Collect metrics data from block devices</div>
+                            <div title="Collect metrics of block device" class="fth-integration-desc">Collect metrics of block device</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6731,7 +6761,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../mem"
   				data-tags="HOST"
   				data-name="Memory"
-  				data-summary="Collect Metrics data of HOST memory"
+  				data-summary="Collect metrics of host memory"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6742,7 +6772,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Memory" class="fth-integration-name">Memory</div>
-                            <div title="Collect Metrics data of HOST memory" class="fth-integration-desc">Collect Metrics data of HOST memory</div>
+                            <div title="Collect metrics of host memory" class="fth-integration-desc">Collect metrics of host memory</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6761,7 +6791,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../memcached"
   				data-tags="CACHING,MIDDLEWARE"
   				data-name="Memcached"
-  				data-summary="Collect metrics data from Memcached"
+  				data-summary="Collect memcached metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6772,7 +6802,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Memcached" class="fth-integration-name">Memcached</div>
-                            <div title="Collect metrics data from Memcached" class="fth-integration-desc">Collect metrics data from Memcached</div>
+                            <div title="Collect memcached metrics data" class="fth-integration-desc">Collect memcached metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6879,9 +6909,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../mongodb"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="MongoDB"
-  				data-summary="Collect MongoDB Metrics data"
+  				data-summary="Collect mongodb metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6892,7 +6922,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="MongoDB" class="fth-integration-name">MongoDB</div>
-                            <div title="Collect MongoDB Metrics data" class="fth-integration-desc">Collect MongoDB Metrics data</div>
+                            <div title="Collect mongodb metrics data" class="fth-integration-desc">Collect mongodb metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6969,9 +6999,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../mysql"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="MySQL"
-  				data-summary="Collect MySQL Metrics data"
+  				data-summary="Collect MySQL metrics and logs"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -6982,7 +7012,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="MySQL" class="fth-integration-name">MySQL</div>
-                            <div title="Collect MySQL Metrics data" class="fth-integration-desc">Collect MySQL Metrics data</div>
+                            <div title="Collect MySQL metrics and logs" class="fth-integration-desc">Collect MySQL metrics and logs</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7029,9 +7059,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../neo4j"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="Neo4j"
-  				data-summary="Collect Neo4j Metrics data"
+  				data-summary="Collect Neo4j server metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7042,7 +7072,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Neo4j" class="fth-integration-name">Neo4j</div>
-                            <div title="Collect Neo4j Metrics data" class="fth-integration-desc">Collect Neo4j Metrics data</div>
+                            <div title="Collect Neo4j server metrics" class="fth-integration-desc">Collect Neo4j server metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7059,9 +7089,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../net"
-  				data-tags="HOST,NETWORK"
-  				data-name="Net"
-  				data-summary="Collect network card metrics data"
+  				data-tags="HOST"
+  				data-name="Network"
+  				data-summary="Collect NIC metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7071,8 +7101,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Net" class="fth-integration-name">Net</div>
-                            <div title="Collect network card metrics data" class="fth-integration-desc">Collect network card metrics data</div>
+                            <div title="Network" class="fth-integration-name">Network</div>
+                            <div title="Collect NIC metrics data" class="fth-integration-desc">Collect NIC metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7091,7 +7121,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../netflow"
   				data-tags="NETWORK"
   				data-name="NetFlow"
-  				data-summary="The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into <<< custom_key.brand_name >>> to help analyze various NetFlow anomalies."
+  				data-summary="NetFlow collector can be used to visualize and monitor NetFlow-enabled device."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7102,7 +7132,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="NetFlow" class="fth-integration-name">NetFlow</div>
-                            <div title="The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into <<< custom_key.brand_name >>> to help analyze various NetFlow anomalies." class="fth-integration-desc">The NetFlow collector can be used to visualize and monitor devices that have NetFlow enabled, and collect logs into <<< custom_key.brand_name >>> to help analyze various NetFlow anomalies.</div>
+                            <div title="NetFlow collector can be used to visualize and monitor NetFlow-enabled device." class="fth-integration-desc">NetFlow collector can be used to visualize and monitor NetFlow-enabled device.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7121,7 +7151,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../netstat"
   				data-tags="NETWORK,HOST"
   				data-name="NetStat"
-  				data-summary="Collect network interface traffic Metrics data"
+  				data-summary="Collect NIC traffic metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7132,7 +7162,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="NetStat" class="fth-integration-name">NetStat</div>
-                            <div title="Collect network interface traffic Metrics data" class="fth-integration-desc">Collect network interface traffic Metrics data</div>
+                            <div title="Collect NIC traffic metrics data" class="fth-integration-desc">Collect NIC traffic metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7149,7 +7179,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../newrelic"
-  				data-tags="NEWRELIC,APM"
+  				data-tags="APM,NEWRELIC,TRACING"
   				data-name="New Relic"
   				data-summary="Receive data from New Relic Agent"
   			>
@@ -7181,7 +7211,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../nfs"
   				data-tags="HOST"
   				data-name="NFS"
-  				data-summary="NFS Metrics Collection"
+  				data-summary="Collect metrics of NFS"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7192,7 +7222,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="NFS" class="fth-integration-name">NFS</div>
-                            <div title="NFS Metrics Collection" class="fth-integration-desc">NFS Metrics Collection</div>
+                            <div title="Collect metrics of NFS" class="fth-integration-desc">Collect metrics of NFS</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7211,7 +7241,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../nginx"
   				data-tags="WEB SERVER,MIDDLEWARE"
   				data-name="Nginx"
-  				data-summary="Collect metrics data from Nginx"
+  				data-summary="Collect metrics of Nginx"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7222,7 +7252,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Nginx" class="fth-integration-name">Nginx</div>
-                            <div title="Collect metrics data from Nginx" class="fth-integration-desc">Collect metrics data from Nginx</div>
+                            <div title="Collect metrics of Nginx" class="fth-integration-desc">Collect metrics of Nginx</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7361,7 +7391,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../nsq"
   				data-tags="MESSAGE QUEUES,MIDDLEWARE"
   				data-name="NSQ"
-  				data-summary="Collect NSQ Metrics data"
+  				data-summary="Collect NSQ metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7372,7 +7402,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="NSQ" class="fth-integration-name">NSQ</div>
-                            <div title="Collect NSQ Metrics data" class="fth-integration-desc">Collect NSQ Metrics data</div>
+                            <div title="Collect NSQ metrics" class="fth-integration-desc">Collect NSQ metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7389,9 +7419,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../oceanbase"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="OceanBase"
-  				data-summary="Collect OceanBase Metrics data"
+  				data-summary="Collect OceanBase metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7402,7 +7432,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="OceanBase" class="fth-integration-name">OceanBase</div>
-                            <div title="Collect OceanBase Metrics data" class="fth-integration-desc">Collect OceanBase Metrics data</div>
+                            <div title="Collect OceanBase metrics" class="fth-integration-desc">Collect OceanBase metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7509,9 +7539,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry-go"
-  				data-tags="GOLANG,OTEL,APM"
+  				data-tags="GOLANG,OTEL,APM,TRACING"
   				data-name="OpenTelemetry Golang"
-  				data-summary="OpenTelemetry Golang Integration"
+  				data-summary="Tracing Golang applications with OpenTelemetry"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7522,7 +7552,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="OpenTelemetry Golang" class="fth-integration-name">OpenTelemetry Golang</div>
-                            <div title="OpenTelemetry Golang Integration" class="fth-integration-desc">OpenTelemetry Golang Integration</div>
+                            <div title="Tracing Golang applications with OpenTelemetry" class="fth-integration-desc">Tracing Golang applications with OpenTelemetry</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7539,9 +7569,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry-java"
-  				data-tags="JAVA,OTEL,APM"
+  				data-tags="JAVA,OTEL,APM,TRACING"
   				data-name="OpenTelemetry Java"
-  				data-summary="OpenTelemetry Java Integration"
+  				data-summary="Tracing Java applications with OpenTelemetry"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7552,7 +7582,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="OpenTelemetry Java" class="fth-integration-name">OpenTelemetry Java</div>
-                            <div title="OpenTelemetry Java Integration" class="fth-integration-desc">OpenTelemetry Java Integration</div>
+                            <div title="Tracing Java applications with OpenTelemetry" class="fth-integration-desc">Tracing Java applications with OpenTelemetry</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7599,9 +7629,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry"
-  				data-tags="OTEL,APM"
+  				data-tags="OTEL,APM,TRACING"
   				data-name="OpenTelemetry"
-  				data-summary="Receive OpenTelemetry Metrics, logs, and APM data"
+  				data-summary="Collect OpenTelemetry metric, log and APM data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7612,7 +7642,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="OpenTelemetry" class="fth-integration-name">OpenTelemetry</div>
-                            <div title="Receive OpenTelemetry Metrics, logs, and APM data" class="fth-integration-desc">Receive OpenTelemetry Metrics, logs, and APM data</div>
+                            <div title="Collect OpenTelemetry metric, log and APM data" class="fth-integration-desc">Collect OpenTelemetry metric, log and APM data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7629,9 +7659,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../oracle"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="Oracle"
-  				data-summary="Collect Oracle Metrics data"
+  				data-summary="Collect Oracle Metric"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7642,7 +7672,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Oracle" class="fth-integration-name">Oracle</div>
-                            <div title="Collect Oracle Metrics data" class="fth-integration-desc">Collect Oracle Metrics data</div>
+                            <div title="Collect Oracle Metric" class="fth-integration-desc">Collect Oracle Metric</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7659,9 +7689,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../otel-ext-java"
-  				data-tags="OTEL,APM"
+  				data-tags="OTEL,APM,TRACING"
   				data-name="OpenTelemetry Extensions"
-  				data-summary="<<< custom_key.brand_name >>> has made additional extensions to the OpenTelemetry plugin"
+  				data-summary="<<<custom_key.brand_name>>> added more OpenTelemetry plugins"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7672,7 +7702,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="OpenTelemetry Extensions" class="fth-integration-name">OpenTelemetry Extensions</div>
-                            <div title="<<< custom_key.brand_name >>> has made additional extensions to the OpenTelemetry plugin" class="fth-integration-desc"><<< custom_key.brand_name >>> has made additional extensions to the OpenTelemetry plugin</div>
+                            <div title="<<<custom_key.brand_name>>> added more OpenTelemetry plugins" class="fth-integration-desc"><<<custom_key.brand_name>>> added more OpenTelemetry plugins</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7690,8 +7720,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../otel-guance-exporter"
   				data-tags="OTEL"
-  				data-name="OpenTelemetry Exportor"
-  				data-summary="Directly output OpenTelemetry data to platform"
+  				data-name="OpenTelemetry Exportor for <<<custom_key.brand_name>>>"
+  				data-summary="Export OpenTelemetry data to GuanCe Cloud directly"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7701,8 +7731,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="OpenTelemetry Exportor" class="fth-integration-name">OpenTelemetry Exportor</div>
-                            <div title="Directly output OpenTelemetry data to platform" class="fth-integration-desc">Directly output OpenTelemetry data to platform</div>
+                            <div title="OpenTelemetry Exportor for <<<custom_key.brand_name>>>" class="fth-integration-name">OpenTelemetry Exportor for <<<custom_key.brand_name>>></div>
+                            <div title="Export OpenTelemetry data to GuanCe Cloud directly" class="fth-integration-desc">Export OpenTelemetry data to GuanCe Cloud directly</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7779,9 +7809,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../pinpoint-go"
-  				data-tags="PINPOINT,GOLANG,APM"
+  				data-tags="PINPOINT,GOLANG,APM,TRACING"
   				data-name="PinPoint Golang"
-  				data-summary="PinPoint Golang Integration"
+  				data-summary="Tracing Golang applications with PinPoint"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7792,7 +7822,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="PinPoint Golang" class="fth-integration-name">PinPoint Golang</div>
-                            <div title="PinPoint Golang Integration" class="fth-integration-desc">PinPoint Golang Integration</div>
+                            <div title="Tracing Golang applications with PinPoint" class="fth-integration-desc">Tracing Golang applications with PinPoint</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7809,9 +7839,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../pinpoint-java"
-  				data-tags="PINPOINT,JAVA,APM"
+  				data-tags="PINPOINT,JAVA,APM,TRACING"
   				data-name="PinPoint Java"
-  				data-summary="PinPoint Java Integration"
+  				data-summary="Tracing Java applications with PinPoint"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7822,7 +7852,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="PinPoint Java" class="fth-integration-name">PinPoint Java</div>
-                            <div title="PinPoint Java Integration" class="fth-integration-desc">PinPoint Java Integration</div>
+                            <div title="Tracing Java applications with PinPoint" class="fth-integration-desc">Tracing Java applications with PinPoint</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7839,9 +7869,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../pinpoint"
-  				data-tags="PINPOINT,APM"
+  				data-tags="PINPOINT,APM,TRACING"
   				data-name="Pinpoint"
-  				data-summary="Pinpoint Tracing data access"
+  				data-summary="Receive Pinpoint Tracing data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7852,7 +7882,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Pinpoint" class="fth-integration-name">Pinpoint</div>
-                            <div title="Pinpoint Tracing data access" class="fth-integration-desc">Pinpoint Tracing data access</div>
+                            <div title="Receive Pinpoint Tracing data" class="fth-integration-desc">Receive Pinpoint Tracing data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7869,9 +7899,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../ploffload"
-  				data-tags="PIPELINE"
+  				data-tags=""
   				data-name="Pipeline Offload"
-  				data-summary="Receive data offloaded from Datakit Pipeline for processing"
+  				data-summary="Receive pending data offloaded from the datakit pipeline"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7882,7 +7912,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Pipeline Offload" class="fth-integration-name">Pipeline Offload</div>
-                            <div title="Receive data offloaded from Datakit Pipeline for processing" class="fth-integration-desc">Receive data offloaded from Datakit Pipeline for processing</div>
+                            <div title="Receive pending data offloaded from the datakit pipeline" class="fth-integration-desc">Receive pending data offloaded from the datakit pipeline</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7899,9 +7929,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../postgresql"
-  				data-tags="DATABASES"
+  				data-tags="DATA STORES"
   				data-name="PostgreSQL"
-  				data-summary="Collect metrics data from PostgreSQL"
+  				data-summary="Collect PostgreSQL metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7912,7 +7942,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="PostgreSQL" class="fth-integration-name">PostgreSQL</div>
-                            <div title="Collect metrics data from PostgreSQL" class="fth-integration-desc">Collect metrics data from PostgreSQL</div>
+                            <div title="Collect PostgreSQL metrics" class="fth-integration-desc">Collect PostgreSQL metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7931,7 +7961,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../profile-cpp"
   				data-tags="C/C++,PROFILE"
   				data-name="Profiling C++"
-  				data-summary="C++ Profiling Integration"
+  				data-summary="Profling C++ applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7942,7 +7972,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Profiling C++" class="fth-integration-name">Profiling C++</div>
-                            <div title="C++ Profiling Integration" class="fth-integration-desc">C++ Profiling Integration</div>
+                            <div title="Profling C++ applications" class="fth-integration-desc">Profling C++ applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7959,7 +7989,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../profile-dotnet"
-  				data-tags=".Net,PROFILE"
+  				data-tags=".NET,PROFILE"
   				data-name="Profiling .Net"
   				data-summary=".Net Profiling Integration"
   			>
@@ -7990,8 +8020,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../profile-go"
   				data-tags="GOLANG,PROFILE"
-  				data-name="Profiling Golang"
-  				data-summary="Golang Profiling Integration"
+  				data-name="Profiling C++"
+  				data-summary="Profling Golang applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8001,8 +8031,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Profiling Golang" class="fth-integration-name">Profiling Golang</div>
-                            <div title="Golang Profiling Integration" class="fth-integration-desc">Golang Profiling Integration</div>
+                            <div title="Profiling C++" class="fth-integration-name">Profiling C++</div>
+                            <div title="Profling Golang applications" class="fth-integration-desc">Profling Golang applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8021,7 +8051,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../profile-java"
   				data-tags="JAVA,PROFILE"
   				data-name="Profiling Java"
-  				data-summary="Java Profiling Integration"
+  				data-summary="Profling Java applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8032,7 +8062,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Profiling Java" class="fth-integration-name">Profiling Java</div>
-                            <div title="Java Profiling Integration" class="fth-integration-desc">Java Profiling Integration</div>
+                            <div title="Profling Java applications" class="fth-integration-desc">Profling Java applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8051,7 +8081,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../profile-nodejs"
   				data-tags="NODEJS,PROFILE"
   				data-name="Profiling NodeJS"
-  				data-summary="NodeJS Profiling Integration"
+  				data-summary="Profling NodeJS applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8062,7 +8092,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Profiling NodeJS" class="fth-integration-name">Profiling NodeJS</div>
-                            <div title="NodeJS Profiling Integration" class="fth-integration-desc">NodeJS Profiling Integration</div>
+                            <div title="Profling NodeJS applications" class="fth-integration-desc">Profling NodeJS applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8111,7 +8141,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../profile-python"
   				data-tags="PYTHON,PROFILE"
   				data-name="Profiling Python"
-  				data-summary="Python Profiling Integration"
+  				data-summary="Profling Python applications"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8122,7 +8152,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Profiling Python" class="fth-integration-name">Profiling Python</div>
-                            <div title="Python Profiling Integration" class="fth-integration-desc">Python Profiling Integration</div>
+                            <div title="Profling Python applications" class="fth-integration-desc">Profling Python applications</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8141,7 +8171,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../profile"
   				data-tags="PROFILE"
   				data-name="Profiling"
-  				data-summary="Collect runtime performance data of applications"
+  				data-summary="Collect application runtime performance data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8152,7 +8182,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Profiling" class="fth-integration-name">Profiling</div>
-                            <div title="Collect runtime performance data of applications" class="fth-integration-desc">Collect runtime performance data of applications</div>
+                            <div title="Collect application runtime performance data" class="fth-integration-desc">Collect application runtime performance data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8169,9 +8199,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../prom"
-  				data-tags="External Data Integration,PROMETHEUS"
+  				data-tags="PROMETHEUS,THIRD PARTY"
   				data-name="Prometheus Exporter"
-  				data-summary="Collect metrics data exposed by Prometheus Exporter"
+  				data-summary="Collect metrics exposed by Prometheus Exporter"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8182,7 +8212,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Prometheus Exporter" class="fth-integration-name">Prometheus Exporter</div>
-                            <div title="Collect metrics data exposed by Prometheus Exporter" class="fth-integration-desc">Collect metrics data exposed by Prometheus Exporter</div>
+                            <div title="Collect metrics exposed by Prometheus Exporter" class="fth-integration-desc">Collect metrics exposed by Prometheus Exporter</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8199,9 +8229,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../prom_remote_write"
-  				data-tags="External Data Integration,PROMETHEUS"
+  				data-tags="THIRD PARTY,PROMETHEUS"
   				data-name="Prometheus Remote Write"
-  				data-summary="Gathering Metrics data through Prometheus Remote Write"
+  				data-summary="Receive metrics via Prometheus Remote Write"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8212,7 +8242,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Prometheus Remote Write" class="fth-integration-name">Prometheus Remote Write</div>
-                            <div title="Gathering Metrics data through Prometheus Remote Write" class="fth-integration-desc">Gathering Metrics data through Prometheus Remote Write</div>
+                            <div title="Receive metrics via Prometheus Remote Write" class="fth-integration-desc">Receive metrics via Prometheus Remote Write</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8229,7 +8259,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../promtail"
-  				data-tags="External Data Integration"
+  				data-tags="THIRD PARTY"
   				data-name="Promtail"
   				data-summary="Collect log data reported by Promtail"
   			>
@@ -8259,9 +8289,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../proxy"
-  				data-tags="PROXY"
+  				data-tags=""
   				data-name="Proxy"
-  				data-summary="Proxy Datakit’s HTTP requests"
+  				data-summary="Proxy HTTP requests to Datakit"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8272,7 +8302,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Proxy" class="fth-integration-name">Proxy</div>
-                            <div title="Proxy Datakit’s HTTP requests" class="fth-integration-desc">Proxy Datakit’s HTTP requests</div>
+                            <div title="Proxy HTTP requests to Datakit" class="fth-integration-desc">Proxy HTTP requests to Datakit</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8289,9 +8319,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../pushgateway"
-  				data-tags="External Data Integration,PROMETHEUS"
+  				data-tags="THIRD PARTY,PROMETHEUS"
   				data-name="Prometheus Push Gateway"
-  				data-summary="Enable Pushgateway API to receive Prometheus Metrics data"
+  				data-summary="Enable Pushgateway API to receive Prometheus metric data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8302,7 +8332,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Prometheus Push Gateway" class="fth-integration-name">Prometheus Push Gateway</div>
-                            <div title="Enable Pushgateway API to receive Prometheus Metrics data" class="fth-integration-desc">Enable Pushgateway API to receive Prometheus Metrics data</div>
+                            <div title="Enable Pushgateway API to receive Prometheus metric data" class="fth-integration-desc">Enable Pushgateway API to receive Prometheus metric data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8321,7 +8351,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../pyroscope"
   				data-tags="PYROSCOPE,PROFILE"
   				data-name="Pyroscope"
-  				data-summary="Grafana Pyroscope application performance collector"
+  				data-summary="Grafana Pyroscope Application Performance Profiler"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8332,7 +8362,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Pyroscope" class="fth-integration-name">Pyroscope</div>
-                            <div title="Grafana Pyroscope application performance collector" class="fth-integration-desc">Grafana Pyroscope application performance collector</div>
+                            <div title="Grafana Pyroscope Application Performance Profiler" class="fth-integration-desc">Grafana Pyroscope Application Performance Profiler</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8351,7 +8381,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../pythond"
   				data-tags="PYTHON"
   				data-name="Pythond"
-  				data-summary="Collect data through Python extensions"
+  				data-summary="Collect data via Python extension"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8362,7 +8392,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Pythond" class="fth-integration-name">Pythond</div>
-                            <div title="Collect data through Python extensions" class="fth-integration-desc">Collect data through Python extensions</div>
+                            <div title="Collect data via Python extension" class="fth-integration-desc">Collect data via Python extension</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8411,7 +8441,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../rabbitmq"
   				data-tags="MESSAGE QUEUES,MIDDLEWARE"
   				data-name="RabbitMQ"
-  				data-summary="Collect RabbitMQ Metrics data"
+  				data-summary="Collect RabbitMQ metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8422,7 +8452,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="RabbitMQ" class="fth-integration-name">RabbitMQ</div>
-                            <div title="Collect RabbitMQ Metrics data" class="fth-integration-desc">Collect RabbitMQ Metrics data</div>
+                            <div title="Collect RabbitMQ metrics" class="fth-integration-desc">Collect RabbitMQ metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8561,7 +8591,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../redis"
   				data-tags="CACHING,MIDDLEWARE"
   				data-name="Redis"
-  				data-summary="Redis Metrics and log collection"
+  				data-summary="Collect Redis metrics and logs"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8572,7 +8602,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Redis" class="fth-integration-name">Redis</div>
-                            <div title="Redis Metrics and log collection" class="fth-integration-desc">Redis Metrics and log collection</div>
+                            <div title="Collect Redis metrics and logs" class="fth-integration-desc">Collect Redis metrics and logs</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8709,9 +8739,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../sec-checker"
-  				data-tags="Security Checks"
+  				data-tags="SECURITY"
   				data-name="SCheck"
-  				data-summary="Receive data collected by SCheck"
+  				data-summary="接收 SCheck 采集的数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8722,7 +8752,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="SCheck" class="fth-integration-name">SCheck</div>
-                            <div title="Receive data collected by SCheck" class="fth-integration-desc">Receive data collected by SCheck</div>
+                            <div title="接收 SCheck 采集的数据" class="fth-integration-desc">接收 SCheck 采集的数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8739,9 +8769,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../sensors"
-  				data-tags="HOSTs"
-  				data-name="Hardware Sensors Data Collection"
-  				data-summary="Collect hardware temperature metrics using the Sensors command"
+  				data-tags="HOST"
+  				data-name="Hardware Sensors"
+  				data-summary="Collect hardware temperature indicators through Sensors command"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8751,8 +8781,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Hardware Sensors Data Collection" class="fth-integration-name">Hardware Sensors Data Collection</div>
-                            <div title="Collect hardware temperature metrics using the Sensors command" class="fth-integration-desc">Collect hardware temperature metrics using the Sensors command</div>
+                            <div title="Hardware Sensors" class="fth-integration-name">Hardware Sensors</div>
+                            <div title="Collect hardware temperature indicators through Sensors command" class="fth-integration-desc">Collect hardware temperature indicators through Sensors command</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8769,9 +8799,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../skywalking"
-  				data-tags="APM,SKYWALKING"
+  				data-tags="APM,TRACING,SKYWALKING"
   				data-name="SkyWalking"
-  				data-summary="SkyWalking Tracing data ingestion"
+  				data-summary="SkyWalking Tracing Data Ingestion"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8782,7 +8812,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="SkyWalking" class="fth-integration-name">SkyWalking</div>
-                            <div title="SkyWalking Tracing data ingestion" class="fth-integration-desc">SkyWalking Tracing data ingestion</div>
+                            <div title="SkyWalking Tracing Data Ingestion" class="fth-integration-desc">SkyWalking Tracing Data Ingestion</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8801,7 +8831,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../smart"
   				data-tags="HOST"
   				data-name="Disk S.M.A.R.T"
-  				data-summary="Collect disk metrics through `smartctl`"
+  				data-summary="Collect disk metrics through smartctl"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8812,7 +8842,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Disk S.M.A.R.T" class="fth-integration-name">Disk S.M.A.R.T</div>
-                            <div title="Collect disk metrics through `smartctl`" class="fth-integration-desc">Collect disk metrics through `smartctl`</div>
+                            <div title="Collect disk metrics through smartctl" class="fth-integration-desc">Collect disk metrics through smartctl</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8831,7 +8861,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../snmp"
   				data-tags="SNMP"
   				data-name="SNMP"
-  				data-summary="Collect SNMP device Metrics and object data"
+  				data-summary="Collect metrics and object data from SNMP devices"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8842,7 +8872,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="SNMP" class="fth-integration-name">SNMP</div>
-                            <div title="Collect SNMP device Metrics and object data" class="fth-integration-desc">Collect SNMP device Metrics and object data</div>
+                            <div title="Collect metrics and object data from SNMP devices" class="fth-integration-desc">Collect metrics and object data from SNMP devices</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8861,7 +8891,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../socket"
   				data-tags="NETWORK"
   				data-name="Socket"
-  				data-summary="Collect metrics data for TCP/UDP ports"
+  				data-summary="Collect metrics of TCP/UDP ports"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8872,7 +8902,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Socket" class="fth-integration-name">Socket</div>
-                            <div title="Collect metrics data for TCP/UDP ports" class="fth-integration-desc">Collect metrics data for TCP/UDP ports</div>
+                            <div title="Collect metrics of TCP/UDP ports" class="fth-integration-desc">Collect metrics of TCP/UDP ports</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8889,9 +8919,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../solr"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="Solr"
-  				data-summary="Collect metrics data from Solr"
+  				data-summary="Collect Solr metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8902,7 +8932,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Solr" class="fth-integration-name">Solr</div>
-                            <div title="Collect metrics data from Solr" class="fth-integration-desc">Collect metrics data from Solr</div>
+                            <div title="Collect Solr metrics" class="fth-integration-desc">Collect Solr metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8919,9 +8949,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../sqlserver"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="SQLServer"
-  				data-summary="Collect metrics data from SQLServer"
+  				data-summary="Collect SQLServer Metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8932,7 +8962,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="SQLServer" class="fth-integration-name">SQLServer</div>
-                            <div title="Collect metrics data from SQLServer" class="fth-integration-desc">Collect metrics data from SQLServer</div>
+                            <div title="Collect SQLServer Metrics" class="fth-integration-desc">Collect SQLServer Metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8951,7 +8981,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../ssh"
   				data-tags="HOST"
   				data-name="SSH"
-  				data-summary="Collect metrics data for SSH"
+  				data-summary="Collect SSH metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8962,7 +8992,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="SSH" class="fth-integration-name">SSH</div>
-                            <div title="Collect metrics data for SSH" class="fth-integration-desc">Collect metrics data for SSH</div>
+                            <div title="Collect SSH metrics" class="fth-integration-desc">Collect SSH metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8979,9 +9009,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../statsd"
-  				data-tags="External Data Integration"
+  				data-tags="THIRD PARTY"
   				data-name="StatsD"
-  				data-summary="Collect metrics data reported by StatsD"
+  				data-summary="Collect metrics reported by StatsD"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8992,7 +9022,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="StatsD" class="fth-integration-name">StatsD</div>
-                            <div title="Collect metrics data reported by StatsD" class="fth-integration-desc">Collect metrics data reported by StatsD</div>
+                            <div title="Collect metrics reported by StatsD" class="fth-integration-desc">Collect metrics reported by StatsD</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9011,7 +9041,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../swap"
   				data-tags="HOST"
   				data-name="Swap"
-  				data-summary="Collect metrics data for host swap memory"
+  				data-summary="Collect metrics of host swap"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9022,7 +9052,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Swap" class="fth-integration-name">Swap</div>
-                            <div title="Collect metrics data for host swap memory" class="fth-integration-desc">Collect metrics data for host swap memory</div>
+                            <div title="Collect metrics of host swap" class="fth-integration-desc">Collect metrics of host swap</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9041,7 +9071,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../system"
   				data-tags="HOST"
   				data-name="System"
-  				data-summary="Collect metrics data related to the host system"
+  				data-summary="Collecting metrics data related to the host system"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9052,7 +9082,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="System" class="fth-integration-name">System</div>
-                            <div title="Collect metrics data related to the host system" class="fth-integration-desc">Collect metrics data related to the host system</div>
+                            <div title="Collecting metrics data related to the host system" class="fth-integration-desc">Collecting metrics data related to the host system</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9069,9 +9099,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../tdengine"
-  				data-tags="DATABASE"
+  				data-tags="DATA STORES"
   				data-name="TDengine"
-  				data-summary="Collect metrics data from TDengine"
+  				data-summary="Collect TDengine metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9082,7 +9112,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="TDengine" class="fth-integration-name">TDengine</div>
-                            <div title="Collect metrics data from TDengine" class="fth-integration-desc">Collect metrics data from TDengine</div>
+                            <div title="Collect TDengine metrics" class="fth-integration-desc">Collect TDengine metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9099,9 +9129,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../telegraf"
-  				data-tags="External Data Integration"
+  				data-tags="THIRD PARTY"
   				data-name="Telegraf"
-  				data-summary="Receive data collected by Telegraf"
+  				data-summary="Accept Telegraf collected data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9112,7 +9142,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Telegraf" class="fth-integration-name">Telegraf</div>
-                            <div title="Receive data collected by Telegraf" class="fth-integration-desc">Receive data collected by Telegraf</div>
+                            <div title="Accept Telegraf collected data" class="fth-integration-desc">Accept Telegraf collected data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9581,7 +9611,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../tomcat"
   				data-tags="WEB SERVER,MIDDLEWARE"
   				data-name="Tomcat"
-  				data-summary="Collect Tomcat Metrics data"
+  				data-summary="Collect Tomcat metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9592,7 +9622,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Tomcat" class="fth-integration-name">Tomcat</div>
-                            <div title="Collect Tomcat Metrics data" class="fth-integration-desc">Collect Tomcat Metrics data</div>
+                            <div title="Collect Tomcat metrics" class="fth-integration-desc">Collect Tomcat metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9609,9 +9639,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../tracing-propagator"
-  				data-tags="APM"
+  				data-tags="APM,TRACING"
   				data-name="Tracing Propagator"
-  				data-summary="Information propagation mechanism and usage in multiple tracing links"
+  				data-summary="Propagation between multiple tracing agents"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9622,7 +9652,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Tracing Propagator" class="fth-integration-name">Tracing Propagator</div>
-                            <div title="Information propagation mechanism and usage in multiple tracing links" class="fth-integration-desc">Information propagation mechanism and usage in multiple tracing links</div>
+                            <div title="Propagation between multiple tracing agents" class="fth-integration-desc">Propagation between multiple tracing agents</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -10031,7 +10061,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../vsphere"
   				data-tags="VMWARE"
   				data-name="vSphere"
-  				data-summary="Collect vSphere Metrics data"
+  				data-summary="Collect vSphere metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -10042,7 +10072,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="vSphere" class="fth-integration-name">vSphere</div>
-                            <div title="Collect vSphere Metrics data" class="fth-integration-desc">Collect vSphere Metrics data</div>
+                            <div title="Collect vSphere metrics" class="fth-integration-desc">Collect vSphere metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -10060,8 +10090,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				class="fth-integration-list-item"
   				data-href="../windows_event"
   				data-tags="WINDOWS"
-  				data-name="Windows Events"
-  				data-summary="Collecting event logs from Windows"
+  				data-name="Windows Event"
+  				data-summary="Collect event logs in Windows"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -10071,8 +10101,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Windows Events" class="fth-integration-name">Windows Events</div>
-                            <div title="Collecting event logs from Windows" class="fth-integration-desc">Collecting event logs from Windows</div>
+                            <div title="Windows Event" class="fth-integration-name">Windows Event</div>
+                            <div title="Collect event logs in Windows" class="fth-integration-desc">Collect event logs in Windows</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -10119,9 +10149,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../zabbix_exporter"
-  				data-tags="External Data Ingestion"
-  				data-name="Zabbix Data Ingestion"
-  				data-summary="Zabbix realTime data ingestion"
+  				data-tags="THIRD PARTY"
+  				data-name="Zabbix Export"
+  				data-summary="Zabbix real-time data exporter"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -10131,8 +10161,8 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="Zabbix Data Ingestion" class="fth-integration-name">Zabbix Data Ingestion</div>
-                            <div title="Zabbix realTime data ingestion" class="fth-integration-desc">Zabbix realTime data ingestion</div>
+                            <div title="Zabbix Export" class="fth-integration-name">Zabbix Export</div>
+                            <div title="Zabbix real-time data exporter" class="fth-integration-desc">Zabbix real-time data exporter</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -10179,9 +10209,9 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   			<div
   				class="fth-integration-list-item"
   				data-href="../zipkin"
-  				data-tags="ZIPKIN,APM"
+  				data-tags="ZIPKIN,APM,TRACING"
   				data-name="Zipkin"
-  				data-summary="Zipkin Tracing data ingestion"
+  				data-summary="Zipkin Tracing Data Ingestion"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -10192,7 +10222,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Zipkin" class="fth-integration-name">Zipkin</div>
-                            <div title="Zipkin Tracing data ingestion" class="fth-integration-desc">Zipkin Tracing data ingestion</div>
+                            <div title="Zipkin Tracing Data Ingestion" class="fth-integration-desc">Zipkin Tracing Data Ingestion</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

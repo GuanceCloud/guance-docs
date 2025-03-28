@@ -122,7 +122,7 @@ dependencies {
 
 }
 //应用插件
-apply plugin: 'ft-plugin'
+apply plugin: 'ft-plugin'   //如果使用旧版本兼容 ft-plugin-legacy，无需更改
 //配置插件使用参数
 FTExt {
     //是否显示 Plugin 日志，默认为 false
