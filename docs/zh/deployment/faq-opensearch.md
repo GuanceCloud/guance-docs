@@ -34,14 +34,15 @@ PUT  wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000160
 ```
 
 ```shell
-POST _alias
+POST _aliases
 {
   "actions": [
-  "add": 
     {
-    "index": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000160",
-    "alias": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging",
-    "is_write_index": true
+      "add": {
+        "index": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-001778",
+        "alias": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging",
+        "is_write_index": true
+      }
     }
   ]
 }
