@@ -1,14 +1,14 @@
 ---
 title     : 'Log Streaming'
-summary   : 'Reporting log data via HTTP'
+summary   : 'Report log data via HTTP'
 tags:
-  - 'LOGS'
+  - 'LOG'
 __int_icon      : 'icon/logstreaming'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -17,16 +17,20 @@ monitor   :
 
 ---
 
-Start an HTTP Server to receive log text data and report it to <<< custom_key.brand_name >>>. The HTTP URL is fixed as: `/v1/write/logstreaming`, i.e., `http://Datakit_IP:PORT/v1/write/logstreaming`
+Start an HTTP Server, receive the log text data and report it to <<<custom_key.brand_name>>>.
 
-> Note: If DataKit is deployed in Kubernetes as a DaemonSet, you can access it via Service. The address would be `http://datakit-service.datakit:9529`
+HTTP URL is fixed as: `/v1/write/logstreaming`, that is, `http://Datakit_IP:PORT/v1/write/logstreaming`
+
+Note: If DataKit is deployed in Kubernetes as a daemonset, it can be accessed as a Service at `http://datakit-service.datakit:9529`
 
 ## Configuration {#config}
 
-<!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+### Collector Configuration {#input-config}
 
-    Navigate to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample` and rename it to `logstreaming.conf`. Example:
+<!-- markdownlint-disable MD046 -->
+=== "Host Installation"
+
+    Go to the `conf.d/log` directory under the DataKit installation directory, copy `logstreaming.conf.sample` and name it `logstreaming.conf`. Examples are as follows:
     
     ```toml
         
@@ -48,33 +52,33 @@ Start an HTTP Server to receive log text data and report it to <<< custom_key.br
       #   capacity = 5120
     
     ```
-
-    After configuration, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, the collector configuration can be enabled through [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-### Supported Parameters {#args}
+### Support Parameter {#args}
 
-Log-Streaming supports adding parameters in the HTTP URL to manipulate log data. The parameter list is as follows:
+logstreaming supports adding parameters to the HTTP URL to manipulate log data. The list of parameters is as follows:
 
 - `type`: Data format, currently only supports `influxdb` and `firelens`.
-    - When `type` is `inflxudb` (`/v1/write/logstreaming?type=influxdb`), this indicates that the data itself is line protocol format (default precision is `s`). It will only add built-in Tags and no other operations will be performed.
-    - When `type` is `firelens` (`/v1/write/logstreaming?type=firelens`), the data format should be multiple JSON logs.
-    - If this value is empty, the data will be processed with line splitting and Pipeline.
-- `source`: Identifies the data source, i.e., the measurement in the line protocol. For example, `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
-    - This value is invalid when `type` is `influxdb`
+    - When `type` is `inflxudb` (`/v1/write/logstreaming?type=influxdb`), the data itself is in row protocol format (default precision is `s`), and only built-in Tags will be added and nothing else will be done
+    - When `type` is `firelens` (`/v1/write/logstreaming?type=firelens`), the data format should be multiple logs in JSON format
+    - When this value is empty, the data will be processed such as branching and Pipeline
+- `source`: Identify the source of the data, that is, the measurement of the line protocol. Such as `nginx` or `redis` (`/v1/write/logstreaming?source=nginx`)
+    - This value is not valid when `type` is `influxdb`
     - Default is `default`
-- `service`: Adds a service tag field, for example (`/v1/write/logstreaming?service=nginx_service`)
-    - Defaults to the value of the `source` parameter.
-- `pipeline`: Specifies the name of the pipeline to be used for the data, for example `nginx.p` (`/v1/write/logstreaming?pipeline=nginx.p`)
-- `tags`: Adds custom tags, separated by English commas `,`, for example `key1=value1` and `key2=value2` (`/v1/write/logstreaming?tags=key1=value1,key2=value2`)
+- `service`: Add a service label field, such as (`/v1/write/logstreaming?service=nginx_service`）
+    - Default to `source` parameter value.
+- `pipeline`: Specify the Pipeline name required for the data, such as `nginx.p`（`/v1/write/logstreaming?pipeline=nginx.p`）
+- `tags`: Add custom tags, split by `,`, such as `key1=value1` and `key2=value2`（`/v1/write/logstreaming?tags=key1=value1,key2=value2`)
 
-#### FireLens Data Source Type {#firelens}
+#### FireLens data source types {#firelens}
 
-The `log`, `source`, and `date` fields in this type of data will be specially handled. Data example:
+The `log`, `source`, and `date` fields in this type of data will be treated specially. Data example:
 
 ```json
 [
@@ -97,24 +101,24 @@ The `log`, `source`, and `date` fields in this type of data will be specially ha
 ]
 ```
 
-After extracting the two logs from the list, the `log` will serve as the `message` field of the data, `date` will be converted into the log's timestamp, and `source` will be renamed to `firelens_source`.
+After extracting the two logs in the list, `log` will be used as the `message` field of the data, `date` will be converted to the time of the log, and `source` will be renamed to `firelens_source`.
 
 ### Usage {#usage}
 
-- Fluentd using Influxdb Output [Documentation](https://github.com/fangli/fluent-plugin-influxdb){:target="_blank"}
-- Fluentd using HTTP Output [Documentation](https://docs.fluentd.org/output/http){:target="_blank"}
-- Logstash using Influxdb Output [Documentation](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-influxdb.html){:target="_blank"}
-- Logstash using HTTP Output [Documentation](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-http.html){:target="_blank"}
+- Fluentd uses Influxdb Output [doc](https://github.com/fangli/fluent-plugin-influxdb){:target="_blank"}
+- Fluentd uses HTTP Output [doc](https://docs.fluentd.org/output/http){:target="_blank"}
+- Logstash uses Influxdb Output [doc](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-influxdb.html){:target="_blank"}
+- Logstash uses HTTP Output [doc](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-http.html){:target="_blank"}
 
-Simply configure the Output Host as the Log-Streaming URL (`http://Datakit_IP:PORT/v1/write/logstreaming`) and add the corresponding parameters.
+Simply configure Output Host as a logstreaming URL (`http://Datakit_IP:PORT/v1/write/logstreaming`）and add corresponding parameters.
 
-## Logs {#logging}
+## Metric {#metric}
 
 
 
 ### `default`
 
-Using the `source` field in the configuration file, default is `default`.
+Using `source` field in the config file, default is `default`.
 
 - Tags
 
@@ -124,13 +128,12 @@ Using the `source` field in the configuration file, default is `default`.
 |`ip_or_hostname`|Request IP or hostname.|
 |`service`|Service name. Using the `service` parameter in the URL.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`message`|Message text, exists when default. Can use Pipeline to delete this field.|string|-|
+|`message`|Message text, existed when default. Could use Pipeline to delete this field.|string|-|
 |`status`|Log status.|string|-|
 
 
-</example>

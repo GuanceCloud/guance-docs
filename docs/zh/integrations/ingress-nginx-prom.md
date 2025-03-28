@@ -1,22 +1,22 @@
 ---
-title     : 'Ingress Nginx (Prometheus)'
-summary   : '采集 Ingress Nginx (Prometheus) 相关指标信息'
+title: 'Ingress Nginx (Prometheus)'
+summary: '采集 Ingress Nginx (Prometheus) 相关指标信息'
 __int_icon: 'icon/ingress'
-dashboard :
-  - desc  : 'Ingress Nginx 监控视图'
-    path  : 'dashboard/zh/ingress_nginx'
-monitor   :
-  - desc  : '暂无'
-    path  : '-'
+dashboard:
+  - desc: 'Ingress Nginx 监控视图'
+    path: 'dashboard/zh/ingress_nginx'
+monitor:
+  - desc: '暂无'
+    path: '-'
 ---
 
 <!-- markdownlint-disable MD025 -->
+
 # Ingress Nginx (Prometheus)
+
 <!-- markdownlint-enable -->
 
-
 Ingress 性能指标展示，包括 Ingress Controller 的平均 CPU 使用率、平均内存使用、网络请求/响应合计、Ingress Config 的加载次数、Ingress Config 上次加载结果、Ingress 的转发成功率等。
-
 
 ## 配置 {#config}
 
@@ -25,6 +25,7 @@ Ingress 性能指标展示，包括 Ingress Controller 的平均 CPU 使用率�
 - 已部署 DataKit，请参考 Kubernetes 集群 <[安装 Datakit](../datakit/datakit-daemonset-deploy.md)>
 
 ### 安装部署
+
 说明：示例 Ingress 版本为 `willdockerhub/ingress-nginx-controller:v1.0.0`(CentOS 环境下 `kubeadmin` 部署)，各个不同版本指标可能存在差异。
 
 ### 指标采集
@@ -36,7 +37,7 @@ wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.
 ```
 
 - 编辑 deploy.yaml
-把 service 的 type 设置成 `NodePort`，并对外暴露 `10254` 端口
+  把 service 的 type 设置成 `NodePort`，并对外暴露 `10254` 端口
 
 ```yaml
 
@@ -112,19 +113,19 @@ kubectl apply -f deploy.yaml
 
 `nginx_ingress_controller_requests` 指标在<<< custom_key.brand_name >>>上的指标就是 `prom_ingress` 指标集下的 `requests` 指标。
 
-| 指标                                                         | 描述                                                         | 数据类型 | 单位  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ----- |
-| nginx_ingress_controller_requests                            | The total number of client requests                          | int      | count |
+| 指标                                                         | 描述                                                                                | 数据类型 | 单位  |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------- | -------- | ----- |
+| nginx_ingress_controller_requests                            | The total number of client requests                                                 | int      | count |
 | nginx_ingress_controller_nginx_process_connections           | current number of client connections with state {active, reading, writing, waiting} | int      | count |
-| nginx_ingress_controller_success                             | Cumulative number of Ingress controller reload operations    | int      | count |
-| nginx_ingress_controller_config_last_reload_successful       | Whether the last configuration reload attempt was successful | int      | count |
-| nginx_ingress_controller_nginx_process_resident_memory_bytes | number of bytes of memory in use                             | float    | B     |
-| nginx_ingress_controller_nginx_process_cpu_seconds_total     | Cpu usage in seconds                                         | float    | B     |
-| nginx_process_resident_memory_bytes                          | number of bytes of memory in use                             | int      | B     |
-| nginx_ingress_controller_request_duration_seconds_bucket     | The request processing time in milliseconds                  | int      | count |
-| nginx_ingress_controller_request_size_sum                    | The request length (including request line, header, and request body) | int      | count |
-| nginx_ingress_controller_response_size_sum                   | The response length (including request line, header, and request body) | int      | count |
-| nginx_ingress_controller_ssl_expire_time_seconds             | Number of seconds since 1970 to the SSL Certificate expire   | int      | count |
+| nginx_ingress_controller_success                             | Cumulative number of Ingress controller reload operations                           | int      | count |
+| nginx_ingress_controller_config_last_reload_successful       | Whether the last configuration reload attempt was successful                        | int      | count |
+| nginx_ingress_controller_nginx_process_resident_memory_bytes | number of bytes of memory in use                                                    | float    | B     |
+| nginx_ingress_controller_nginx_process_cpu_seconds_total     | Cpu usage in seconds                                                                | float    | B     |
+| nginx_process_resident_memory_bytes                          | number of bytes of memory in use                                                    | int      | B     |
+| nginx_ingress_controller_request_duration_seconds_bucket     | The request processing time in milliseconds                                         | int      | count |
+| nginx_ingress_controller_request_size_sum                    | The request length (including request line, header, and request body)               | int      | count |
+| nginx_ingress_controller_response_size_sum                   | The response length (including request line, header, and request body)              | int      | count |
+| nginx_ingress_controller_ssl_expire_time_seconds             | Number of seconds since 1970 to the SSL Certificate expire                          | int      | count |
 
 ## 最佳实践 {#more-reading}
 

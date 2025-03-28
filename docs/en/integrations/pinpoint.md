@@ -1,15 +1,16 @@
 ---
 title     : 'Pinpoint'
-summary   : 'Pinpoint Tracing data access'
+summary   : 'Receive Pinpoint Tracing data'
 tags      :
   - 'PINPOINT'
   - 'APM'
-__int_icon: 'icon/pinpoint'
+  - 'TRACING'
+__int_icon      : 'icon/pinpoint'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -20,16 +21,16 @@ monitor   :
 
 ---
 
-Datakit's built-in Pinpoint Agent is used to receive, compute, and analyze Pinpoint Tracing protocol data.
+The built-in Pinpoint Agent in Datakit is used to receive, calculate, and analyze Pinpoint Tracing protocol data.
 
 ## Configuration {#config}
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host installation"
 
-    Navigate to the `conf.d/pinpoint` directory under the DataKit installation directory, copy `pinpoint.conf.sample`, and rename it to `pinpoint.conf`. An example is as follows:
+    Enter the `conf.d/pinpoint` directory under the DataKit installation directory, copy `pinpoint.conf.sample` and name it `pinpoint.conf`. Examples are as follows:
 
     ```toml
         
@@ -79,7 +80,7 @@ Datakit's built-in Pinpoint Agent is used to receive, compute, and analyze Pinpo
     
     ```
 
-    The listening address configuration item for the Datakit Pinpoint Agent is:
+    Datakit Pinpoint Agent listening address configuration items are:
 
     ```toml
     # Pinpoint GRPC service endpoint for
@@ -90,51 +91,51 @@ Datakit's built-in Pinpoint Agent is used to receive, compute, and analyze Pinpo
     address = "127.0.0.1:9991"
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, [Restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can enable the collector by injecting the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (you need to add it as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
     - **ENV_INPUT_PINPOINT_ADDRESS**
     
-        Proxy URL
+        Agent span server
     
-        **Field Type**: String
+        **Type**: String
     
-        **Collector Configuration Field**: `address`
+        **input.conf**: `address`
     
         **Example**: 127.0.0.1:9991
     
     - **ENV_INPUT_PINPOINT_KEEP_RARE_RESOURCE**
     
-        Maintain a list of rare tracing resources
+        Keep rare tracing resources list switch
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `keep_rare_resource`
+        **input.conf**: `keep_rare_resource`
     
-        **Default Value**: false
+        **Default**: false
     
     - **ENV_INPUT_PINPOINT_DEL_MESSAGE**
     
-        Delete trace messages
+        Delete trace message
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `del_message`
+        **input.conf**: `del_message`
     
-        **Default Value**: false
+        **Default**: false
     
     - **ENV_INPUT_PINPOINT_CLOSE_RESOURCE**
     
-        Ignore specified server tracing (regex match)
+        Ignore tracing resources that service (regular)
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `close_resource`
+        **input.conf**: `close_resource`
     
         **Example**: {"service1":["resource1","other"],"service2":["resource2","other"]}
     
@@ -142,55 +143,55 @@ Datakit's built-in Pinpoint Agent is used to receive, compute, and analyze Pinpo
     
         Global sampling rate
     
-        **Field Type**: Float
+        **Type**: Float
     
-        **Collector Configuration Field**: `sampler`
+        **input.conf**: `sampler`
     
         **Example**: 0.3
     
     - **ENV_INPUT_PINPOINT_STORAGE**
     
-        Local cache path and size (MB)
+        Local cache file path and size (MB) 
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `storage`
+        **input.conf**: `storage`
     
         **Example**: {"storage":"./pinpoint_storage", "capacity": 5120}
     
     - **ENV_INPUT_PINPOINT_TAGS**
     
-        Custom tags. If the configuration file has tags with the same name, they will override them.
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Field Type**: JSON
+        **Type**: JSON
     
-        **Collector Configuration Field**: `tags`
+        **input.conf**: `tags`
     
-        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}                             |
+        **Example**: {"k1":"v1", "k2":"v2", "k3":"v3"}
 
-???+ warning "The following limitations exist for the Pinpoint Agent in Datakit"
+???+ warning "The Pinpoint Agent in Datakit has the following limitations"
 
     - Currently only supports gRPC protocol
-    - Multiple services (Agent/Metadata/Stat/Span) use the same port
-    - Differences exist between Pinpoint traces and Datakit traces, see [below](pinpoint.md#opentracing-vs-pinpoint)
+    - Multiple services (Agent/Metadata/Stat/Span) combined into one service use the same port
+    - There are differences between Pinpoint links and Datakit links, see [below](pinpoint.md#opentracing-vs-pinpoint) for details
 
 <!-- markdownlint-enable -->
 
-### Pinpoint Agent Configuration {#agent-config}
+### Pinpoint Agent configuration {#agent-config}
 
 - Download the required Pinpoint APM Agent
 
-Pinpoint supports multi-language APM Collectors. This document uses JAVA Agent for configuration. [Download](https://github.com/pinpoint-apm/pinpoint/releases){:target="_blank"} JAVA APM Collector.
+Pinpoint supports the multi-language APM Collector. This document uses JAVA Agent for configuration. [Download](https://github.com/pinpoint-apm/pinpoint/releases){:target="_blank"} JAVA APM Collector.
 
-- Configure the Pinpoint APM Collector, open */path_to_pinpoint_agent/pinpoint-root.config* and configure the corresponding multi-service ports.
+- Configure Pinpoint APM Collector, open */path_to_pinpoint_agent/pinpoint-root.config* and configure the corresponding multi-service ports
 
     - Configure `profiler.transport.module = GRPC`
-    - Configure `profiler.transport.grpc.agent.collector.port = 9991`   (i.e., the port configured in the Datakit Pinpoint Agent)
-    - Configure `profiler.transport.grpc.metadata.collector.port = 9991` (i.e., the port configured in the Datakit Pinpoint Agent)
-    - Configure `profiler.transport.grpc.stat.collector.port = 9991`    (i.e., the port configured in the Datakit Pinpoint Agent)
-    - Configure `profiler.transport.grpc.span.collector.port = 9991`    (i.e., the port configured in the Datakit Pinpoint Agent)
+    - Configure `profiler.transport.grpc.agent.collector.port = 9991`   (i.e. the port configured in Datakit Pinpoint Agent)
+    - Configure `profiler.transport.grpc.metadata.collector.port = 9991`(i.e. the port configured in Datakit Pinpoint Agent)
+    - Configure `profiler.transport.grpc.stat.collector.port = 9991`    (i.e. the port configured in Datakit Pinpoint Agent)
+    - Configure `profiler.transport.grpc.span.collector.port = 9991`    (i.e. the port configured in Datakit Pinpoint Agent)
 
-- Start the Pinpoint APM Agent with the following command
+- Start Pinpoint APM Agent startup command
 
 ```shell
 $ java -javaagent:/path_to_pinpoint/pinpoint-bootstrap.jar \
@@ -200,40 +201,40 @@ $ java -javaagent:/path_to_pinpoint/pinpoint-bootstrap.jar \
     -jar /path_to_your_app.jar
 ```
 
-Datakit trace data adheres to the OpenTracing protocol. In Datakit, a single trace is linked through a simple parent-child structure (the child span stores the id of the parent span), and each span corresponds to a function call.
+Datakit link data follows the OpenTracing protocol. A link in Datakit is concatenated through a simple parent-child (the child span stores the id of the parent span) structure and each span corresponds to a function call.
 
 <figure markdown>
-  ![OpenTracing](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-opentracing.png){ width="600" }
+  ![OpenTracing](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/datakit-opentracing.png){ width="600" }
   <figcaption>OpenTracing</figcaption>
 </figure>
 
-Pinpoint APM trace data is more complex:
+Pinpoint APM link data is more complex:
 
-- The parent span is responsible for generating the ID of the child span.
-- The child span also stores the ID of the parent span.
-- Span events replace spans in OpenTracing.
-- A span represents a single response process of a service.
+- The parent span is responsible for generating the ID of the child span
+- The ID of the parent span must also be stored in the child span.
+- Use span event instead of span in OpenTracing
+- A span is a response process for a service
 
 <figure markdown>
-  ![Pinpoint](https://static.<<< custom_key.brand_main_domain >>>/images/datakit/datakit-pinpoint.png){ width="600" }
+  ![Pinpoint](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/datakit-pinpoint.png){ width="600" }
   <figcaption>Pinpoint</figcaption>
 </figure>
 
 ### PinPointV2 {#pinpointv2}
 
-`DataKit 1.19.0` version reoptimized and changed `source` to `PinPointV2`. The new version reorganizes the relationship between `SpanChunk` and `Span`, the relationship between `Event` and `Span`, the relationship between `Span` and `Span`, 
-and resolves the time alignment issue of `startElapsed` and `endElapsed` in `Event`.
+`DataKit 1.19.0` version has been re-optimized and changed `source` to `PinPointV2`. The new version of link data reorganizes the relationship between `SpanChunk` and `Span`, the relationship between `Event` and `Span`, and the relationship between `Span` and `Span`.
+And the time alignment problem between `startElapsed` and `endElapsed` in `Event`.
 
 Main logical points:
 
-- Cache the `serviceType` service table and write it to a file to prevent data loss after DataKit restarts.
-- If `parentSpanId` in `Span` is not -1, then cache it. If `parentSpanId:-1`, retrieve the `Span` from the cache based on the `nextSpanId` in `spanEvent` and append it to a trace.
-- Cache all `event`s in `SpanChunk`, and retrieve them all from the cache when the main `Span` is received, appending them to the trace.
-- Accumulate the current `Event`'s `startElapsed` sequentially as the start time of the next `Event`.
+- Cache the `serviceType` service table and write it to a file to prevent data loss when DataKit restarts.
+- Cache if `parentSpanId` in `Span` is not -1. For example, if `parentSpanId:-1` is used, the `Span` will be fetched from the cache and spliced into a link based on the `nextSpanId` in `spanEvent`.
+- Cache all `event` in `SpanChunk`, until the main `Span` is received, all are taken out from the cache and appended to the link.
+- Accumulate `startElapsed` in the current `Event` in order as the start time of the next `Event`.
 - Determine the parent-child relationship of the current `Event` according to the `Depth` field.
-- Replace the `sql` statement with the current 'resource' name when encountering database queries.
+- Database queries will replace the current 'resource' name with `sql` statements.
 
-## Trace Fields {#tracing}
+## Tracing {#tracing}
 
 
 
@@ -266,7 +267,7 @@ Main logical points:
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -286,7 +287,7 @@ Main logical points:
 
 
 
-## Metrics Fields {#metrics}
+## Metric {#metrics}
 
 
 
@@ -313,7 +314,7 @@ Main logical points:
 |`pid`|Process ID|
 |`ports`|Open ports|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -338,9 +339,9 @@ Main logical points:
 
 
 
-## Pinpoint Reference Materials {#references}
+## Pinpoint References {#references}
 
-- [Pinpoint Official Documentation](https://pinpoint-apm.gitbook.io/pinpoint/){:target="_blank"}
-- [Pinpoint Version Document Library](https://pinpoint-apm.github.io/pinpoint/index.html){:target="_blank"}
-- [Pinpoint Official Repository](https://github.com/pinpoint-apm){:target="_blank"}
-- [Pinpoint Online Instance](http://125.209.240.10:10123/main){:target="_blank"}
+- [Pinpoint official documentation](https://pinpoint-apm.gitbook.io/pinpoint/){:target="_blank"}
+- [Pinpoint version documentation library](https://pinpoint-apm.github.io/pinpoint/index.html){:target="_blank"}
+- [Pinpoint official repository](https://github.com/pinpoint-apm){:target="_blank"}
+- [Pinpoint online example](http://125.209.240.10:10123/main){:target="_blank"}

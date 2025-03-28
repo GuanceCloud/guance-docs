@@ -166,6 +166,19 @@ icon: zy/integrations
   
   		<!-- 集成list -->
   		<div class="fth-integration-list-content">
+            <div
+  				class="fth-integration-list-item"
+                style="display:none"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+                            src="../icon/integration-default-logo.png"
+                            alt=""
+  						/>
+  					</div>
+  				</div>
+  			</div>
   		
   			<div
   				class="fth-integration-list-item"
@@ -502,7 +515,7 @@ icon: zy/integrations
   				data-href="../aliyun_lindorm"
   				data-tags="阿里云"
   				data-name="阿里云 Lindorm"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>。"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -513,7 +526,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="阿里云 Lindorm" class="fth-integration-name">阿里云 Lindorm</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>。" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1588,7 +1601,7 @@ icon: zy/integrations
   				data-href="../aws_ec2"
   				data-tags="AWS"
   				data-name="AWS EC2"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1599,7 +1612,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS EC2" class="fth-integration-name">AWS EC2</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1648,7 +1661,7 @@ icon: zy/integrations
   				data-href="../aws_ecs"
   				data-tags="AWS"
   				data-name="AWS ECS"
-  				data-summary="Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用观测云监控其服务运行态。"
+  				data-summary="Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用<<< custom_key.brand_name >>>监控其服务运行态。"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1659,7 +1672,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS ECS" class="fth-integration-name">AWS ECS</div>
-                            <div title="Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用观测云监控其服务运行态。" class="fth-integration-desc">Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用观测云监控其服务运行态。</div>
+                            <div title="Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用<<< custom_key.brand_name >>>监控其服务运行态。" class="fth-integration-desc">Amazon ECS 功能与 亚马逊云科技 Fargate 无服务器计算引擎集成，使用<<< custom_key.brand_name >>>监控其服务运行态。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1678,7 +1691,7 @@ icon: zy/integrations
   				data-href="../aws_elasticache_redis"
   				data-tags="AWS"
   				data-name="AWS ElastiCache Redis"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1689,7 +1702,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS ElastiCache Redis" class="fth-integration-name">AWS ElastiCache Redis</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1708,7 +1721,7 @@ icon: zy/integrations
   				data-href="../aws_elasticache_serverless"
   				data-tags="AWS"
   				data-name="AWS ElastiCache Serverless"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1719,7 +1732,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS ElastiCache Serverless" class="fth-integration-name">AWS ElastiCache Serverless</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1738,7 +1751,7 @@ icon: zy/integrations
   				data-href="../aws_elb"
   				data-tags="AWS"
   				data-name="AWS ELB"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1749,7 +1762,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS ELB" class="fth-integration-name">AWS ELB</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1768,7 +1781,7 @@ icon: zy/integrations
   				data-href="../aws_emr"
   				data-tags="AWS"
   				data-name="AWS EMR"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1779,7 +1792,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS EMR" class="fth-integration-name">AWS EMR</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1858,7 +1871,7 @@ icon: zy/integrations
   				data-href="../aws_kinesis"
   				data-tags="AWS"
   				data-name="AWS Kinesis"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1869,7 +1882,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS Kinesis" class="fth-integration-name">AWS Kinesis</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1888,7 +1901,7 @@ icon: zy/integrations
   				data-href="../aws_kinesis_analytics"
   				data-tags="AWS"
   				data-name="AWS KinesisAnalytics"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1899,7 +1912,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS KinesisAnalytics" class="fth-integration-name">AWS KinesisAnalytics</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1978,7 +1991,7 @@ icon: zy/integrations
   				data-href="../aws_memorydb"
   				data-tags="AWS"
   				data-name="AWS MemoryDB"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1989,7 +2002,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS MemoryDB" class="fth-integration-name">AWS MemoryDB</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2038,7 +2051,7 @@ icon: zy/integrations
   				data-href="../aws_msk"
   				data-tags="AWS"
   				data-name="AWS MSK"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2049,7 +2062,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS MSK" class="fth-integration-name">AWS MSK</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2128,7 +2141,7 @@ icon: zy/integrations
   				data-href="../aws_rds_mysql"
   				data-tags="AWS"
   				data-name="AWS RDS MySQL"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2139,7 +2152,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS RDS MySQL" class="fth-integration-name">AWS RDS MySQL</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2188,7 +2201,7 @@ icon: zy/integrations
   				data-href="../aws_s3"
   				data-tags="AWS"
   				data-name="AWS S3"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2199,7 +2212,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS S3" class="fth-integration-name">AWS S3</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2305,6 +2318,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_kubernetes"
+  				data-tags="AZURE"
+  				data-name="Azure Kubernetes"
+  				data-summary="采集 Azure Kubernetes 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_kubernetes/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Kubernetes" class="fth-integration-name">Azure Kubernetes</div>
+                            <div title="采集 Azure Kubernetes 指标数据" class="fth-integration-desc">采集 Azure Kubernetes 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_load_balancer"
   				data-tags="AZURE"
   				data-name="Azure Load Balancer"
@@ -2365,6 +2408,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_network_interfaces"
+  				data-tags="AZURE"
+  				data-name="Azure Network Interfaces"
+  				data-summary="采集 Azure Network Interface 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_network_interfaces/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Network Interfaces" class="fth-integration-name">Azure Network Interfaces</div>
+                            <div title="采集 Azure Network Interface 指标数据" class="fth-integration-desc">采集 Azure Network Interface 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_public_ip"
   				data-tags="AZURE,网络"
   				data-name="Azure Public Ip Address"
@@ -2395,6 +2468,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_redis_cache"
+  				data-tags="AZURE"
+  				data-name="Azure Redis Cache"
+  				data-summary="采集 Azure Redis Cache 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_redis_cache/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Redis Cache" class="fth-integration-name">Azure Redis Cache</div>
+                            <div title="采集 Azure Redis Cache 指标数据" class="fth-integration-desc">采集 Azure Redis Cache 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_sqlserver"
   				data-tags="AZURE"
   				data-name="Azure SQL Servers"
@@ -2410,6 +2513,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div title="Azure SQL Servers" class="fth-integration-name">Azure SQL Servers</div>
                             <div title="采集 Azure SQL Servers 指标数据" class="fth-integration-desc">采集 Azure SQL Servers 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../azure_virtual_network_gateway"
+  				data-tags="AZURE"
+  				data-name="Azure Virtual Network Gateway"
+  				data-summary="采集 Azure Virtual Network Gateway 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_Virtual_network_gateway/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Virtual Network Gateway" class="fth-integration-name">Azure Virtual Network Gateway</div>
+                            <div title="采集 Azure Virtual Network Gateway 指标数据" class="fth-integration-desc">采集 Azure Virtual Network Gateway 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2613,7 +2746,7 @@ icon: zy/integrations
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/asset//icon.png"
+									src="../icon/cloud_billing//icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
@@ -2788,7 +2921,7 @@ icon: zy/integrations
   				data-href="../container"
   				data-tags="KUBERNETES,容器"
   				data-name="Kubernetes"
-  				data-summary="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。"
+  				data-summary="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2799,7 +2932,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="Kubernetes" class="fth-integration-name">Kubernetes</div>
-                            <div title="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。" class="fth-integration-desc">采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到观测云。</div>
+                            <div title="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。" class="fth-integration-desc">采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2830,36 +2963,6 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div title="CoreDNS" class="fth-integration-name">CoreDNS</div>
                             <div title="采集 CoreDNS 的指标数据" class="fth-integration-desc">采集 CoreDNS 的指标数据</div>
-                        </div>
-                        <div class="fth-integration-mask-image"></div>
-  					</div>
-  					<div class="integration-list-item-right">
-  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  							<path
-  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
-  							></path>
-  						</svg>
-  					</div>
-  				</div>
-  			</div>
-  		
-  			<div
-  				class="fth-integration-list-item"
-  				data-href="../couchbase-prom"
-  				data-tags=""
-  				data-name="CouchBase Exporter"
-  				data-summary="采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。"
-  			>
-  				<div class="fth-integration-list-card">
-  					<div class="integration-list-item-left">
-  						<img
-									src="../icon/couchbase/icon.png"
-									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
-									alt=""
-  						/>
-  						<div class="fth-integration-description">
-                            <div title="CouchBase Exporter" class="fth-integration-name">CouchBase Exporter</div>
-                            <div title="采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。" class="fth-integration-desc">采集器可以从 CouchBase 实例中采取很多指标，比如数据使用的内存和磁盘、当前连接数等多种指标，并将指标采集到观测云，帮助监控分析 CouchBase 各种异常情况。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3058,7 +3161,7 @@ icon: zy/integrations
   				data-href="../ddtrace-ext-java"
   				data-tags="DDTRACE,链路追踪"
   				data-name="DDTrace 扩展"
-  				data-summary="观测云扩展了 DDTrace 对组建的支持"
+  				data-summary="<<<custom_key.brand_name>>>扩展了 DDTrace 对组建的支持"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3069,7 +3172,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace 扩展" class="fth-integration-name">DDTrace 扩展</div>
-                            <div title="观测云扩展了 DDTrace 对组建的支持" class="fth-integration-desc">观测云扩展了 DDTrace 对组建的支持</div>
+                            <div title="<<<custom_key.brand_name>>>扩展了 DDTrace 对组建的支持" class="fth-integration-desc"><<<custom_key.brand_name>>>扩展了 DDTrace 对组建的支持</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4048,7 +4151,7 @@ icon: zy/integrations
   				data-href="../grafana-guance-data-source"
   				data-tags=""
   				data-name="Grafana Guance Datasource"
-  				data-summary="Grafana 接入观测云数据提供的 Datasource 源"
+  				data-summary="Grafana 接入<<< custom_key.brand_name >>>数据提供的 Datasource 源"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4059,7 +4162,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="Grafana Guance Datasource" class="fth-integration-name">Grafana Guance Datasource</div>
-                            <div title="Grafana 接入观测云数据提供的 Datasource 源" class="fth-integration-desc">Grafana 接入观测云数据提供的 Datasource 源</div>
+                            <div title="Grafana 接入<<< custom_key.brand_name >>>数据提供的 Datasource 源" class="fth-integration-desc">Grafana 接入<<< custom_key.brand_name >>>数据提供的 Datasource 源</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4588,7 +4691,7 @@ icon: zy/integrations
   				data-href="../huawei_apic"
   				data-tags="华为云"
   				data-name="华为云 API"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4599,7 +4702,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 API" class="fth-integration-name">华为云 API</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4617,8 +4720,8 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../huawei_asm"
   				data-tags="华为云"
-  				data-name="华为云ASM链路追踪 TO 观测云"
-  				data-summary="华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。"
+  				data-name="华为云ASM链路追踪 TO <<< custom_key.brand_name >>>"
+  				data-summary="华为云的ASM的链路追踪数据输出到<<< custom_key.brand_name >>>，进行查看、分析。"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4628,8 +4731,8 @@ icon: zy/integrations
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="华为云ASM链路追踪 TO 观测云" class="fth-integration-name">华为云ASM链路追踪 TO 观测云</div>
-                            <div title="华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。" class="fth-integration-desc">华为云的ASM的链路追踪数据输出到观测云，进行查看、分析。</div>
+                            <div title="华为云ASM链路追踪 TO <<< custom_key.brand_name >>>" class="fth-integration-name">华为云ASM链路追踪 TO <<< custom_key.brand_name >>></div>
+                            <div title="华为云的ASM的链路追踪数据输出到<<< custom_key.brand_name >>>，进行查看、分析。" class="fth-integration-desc">华为云的ASM的链路追踪数据输出到<<< custom_key.brand_name >>>，进行查看、分析。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4647,8 +4750,8 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../huawei_cce"
   				data-tags="华为云"
-  				data-name="使用观测云采集华为云CCE指标数据"
-  				data-summary="观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。"
+  				data-name="使用<<< custom_key.brand_name >>>采集华为云CCE指标数据"
+  				data-summary="<<< custom_key.brand_name >>>支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4658,8 +4761,8 @@ icon: zy/integrations
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="使用观测云采集华为云CCE指标数据" class="fth-integration-name">使用观测云采集华为云CCE指标数据</div>
-                            <div title="观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。" class="fth-integration-desc">观测云支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。</div>
+                            <div title="使用<<< custom_key.brand_name >>>采集华为云CCE指标数据" class="fth-integration-name">使用<<< custom_key.brand_name >>>采集华为云CCE指标数据</div>
+                            <div title="<<< custom_key.brand_name >>>支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。" class="fth-integration-desc"><<< custom_key.brand_name >>>支持对 CCE 中各类资源的运行状态和服务能力进行监测，包括 Containers、Pods、Services、Deployments、Clusters、Nodes、Replica Sets、Jobs、Cron Jobs 等。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4678,7 +4781,7 @@ icon: zy/integrations
   				data-href="../huawei_css_es"
   				data-tags="华为云"
   				data-name="华为云搜索服务 CSS for Elasticsearch"
-  				data-summary="华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。"
+  				data-summary="采集 华为云搜索服务 CSS for Elasticsearch 监控指标"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4689,7 +4792,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云搜索服务 CSS for Elasticsearch" class="fth-integration-name">华为云搜索服务 CSS for Elasticsearch</div>
-                            <div title="华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。" class="fth-integration-desc">华为云搜索服务 CSS for Elasticsearch 的核心性能指标包括查询延迟、索引速度、搜索速度、磁盘使用率和 CPU 使用率，这些都是评估和优化 Elasticsearch 性能的关键指标。</div>
+                            <div title="采集 华为云搜索服务 CSS for Elasticsearch 监控指标" class="fth-integration-desc">采集 华为云搜索服务 CSS for Elasticsearch 监控指标</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4798,7 +4901,7 @@ icon: zy/integrations
   				data-href="../huawei_dis"
   				data-tags="华为云"
   				data-name="华为云 DIS"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集华为云 DIS 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4809,7 +4912,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 DIS" class="fth-integration-name">华为云 DIS</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="采集华为云 DIS 指标数据" class="fth-integration-desc">采集华为云 DIS 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4828,7 +4931,7 @@ icon: zy/integrations
   				data-href="../huawei_ecs"
   				data-tags="华为云"
   				data-name="华为云 ECS"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集 华为云 ECS 监控指标"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4839,7 +4942,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 ECS" class="fth-integration-name">华为云 ECS</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="采集 华为云 ECS 监控指标" class="fth-integration-desc">采集 华为云 ECS 监控指标</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4888,7 +4991,7 @@ icon: zy/integrations
   				data-href="../huawei_elb"
   				data-tags="华为云"
   				data-name="华为云 ELB"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集 华为云 ELB 监控指标"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -4899,7 +5002,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 ELB" class="fth-integration-name">华为云 ELB</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="采集 华为云 ELB 监控指标" class="fth-integration-desc">采集 华为云 ELB 监控指标</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5068,7 +5171,7 @@ icon: zy/integrations
   				data-href="../huawei_kafka"
   				data-tags="华为云"
   				data-name="华为云 DMS Kafka"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集华为云 DMS Kafka 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5079,7 +5182,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 DMS Kafka" class="fth-integration-name">华为云 DMS Kafka</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="采集华为云 DMS Kafka 指标数据" class="fth-integration-desc">采集华为云 DMS Kafka 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5128,7 +5231,7 @@ icon: zy/integrations
   				data-href="../huawei_obs"
   				data-tags="华为云"
   				data-name="华为云 OBS"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集华为云 OBS 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5139,7 +5242,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 OBS" class="fth-integration-name">华为云 OBS</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="采集华为云 OBS 指标数据" class="fth-integration-desc">采集华为云 OBS 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5158,7 +5261,7 @@ icon: zy/integrations
   				data-href="../huawei_rabbitmq"
   				data-tags="华为云"
   				data-name="华为云 DMS RabbitMQ"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。"
+  				data-summary="采集 华为云 DMS RabbitMQ 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5169,7 +5272,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 DMS RabbitMQ" class="fth-integration-name">华为云 DMS RabbitMQ</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。</div>
+                            <div title="采集 华为云 DMS RabbitMQ 指标数据" class="fth-integration-desc">采集 华为云 DMS RabbitMQ 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5248,7 +5351,7 @@ icon: zy/integrations
   				data-href="../huawei_rds_postgresql"
   				data-tags="华为云"
   				data-name="华为云 RDS PostgreSQL"
-  				data-summary="华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。"
+  				data-summary="采集 华为云 RDS PostgreSQL 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5259,7 +5362,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 RDS PostgreSQL" class="fth-integration-name">华为云 RDS PostgreSQL</div>
-                            <div title="华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。" class="fth-integration-desc">华为云 RDS PostgreSQL 的展示指标包括查询性能、事务吞吐量、并发连接数和数据可靠性，这些指标反映了RDS PostgreSQL 在处理大规模关系型数据存储和事务处理时的性能表现和可靠性。</div>
+                            <div title="采集 华为云 RDS PostgreSQL 指标数据" class="fth-integration-desc">采集 华为云 RDS PostgreSQL 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5308,7 +5411,7 @@ icon: zy/integrations
   				data-href="../huawei_rocketmq"
   				data-tags="华为云"
   				data-name="华为云 DMS RocketMQ"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。"
+  				data-summary="采集 华为云 DMS RocketMQ 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5319,7 +5422,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 DMS RocketMQ" class="fth-integration-name">华为云 DMS RocketMQ</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云。</div>
+                            <div title="采集 华为云 DMS RocketMQ 指标数据" class="fth-integration-desc">采集 华为云 DMS RocketMQ 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5338,7 +5441,7 @@ icon: zy/integrations
   				data-href="../huawei_roma"
   				data-tags="华为云"
   				data-name="华为云 ROMA"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="采集 华为云 ROMA 指标数据"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5349,7 +5452,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="华为云 ROMA" class="fth-integration-name">华为云 ROMA</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="采集 华为云 ROMA 指标数据" class="fth-integration-desc">采集 华为云 ROMA 指标数据</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5548,7 +5651,7 @@ icon: zy/integrations
   				data-href="../issue_dingtalk"
   				data-tags=""
   				data-name="异常追踪 - 钉钉"
-  				data-summary="观测云异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到观测云"
+  				data-summary="<<< custom_key.brand_name >>>异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5559,7 +5662,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="异常追踪 - 钉钉" class="fth-integration-name">异常追踪 - 钉钉</div>
-                            <div title="观测云异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到观测云" class="fth-integration-desc">观测云异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到观测云</div>
+                            <div title="<<< custom_key.brand_name >>>异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到<<< custom_key.brand_name >>>" class="fth-integration-desc"><<< custom_key.brand_name >>>异常追踪与钉钉深度集成，方便将异常追踪信息发送给钉钉，通过钉钉进行回复并回传到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -5578,7 +5681,7 @@ icon: zy/integrations
   				data-href="../issue_feishu"
   				data-tags=""
   				data-name="异常追踪 - 飞书"
-  				data-summary="观测云异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到观测云"
+  				data-summary="<<< custom_key.brand_name >>>异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -5589,7 +5692,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="异常追踪 - 飞书" class="fth-integration-name">异常追踪 - 飞书</div>
-                            <div title="观测云异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到观测云" class="fth-integration-desc">观测云异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到观测云</div>
+                            <div title="<<< custom_key.brand_name >>>异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到<<< custom_key.brand_name >>>" class="fth-integration-desc"><<< custom_key.brand_name >>>异常追踪与飞书深度集成，方便将异常追踪信息发送给飞书，通过飞书进行回复并回传到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7173,7 +7276,7 @@ icon: zy/integrations
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/node_js/icon.png"
+									src="../icon/nodejs/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
@@ -7348,7 +7451,7 @@ icon: zy/integrations
   				data-href="../openlit"
   				data-tags="OTEL,链路追踪"
   				data-name="OpenLIT"
-  				data-summary="OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云"
+  				data-summary="OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7359,7 +7462,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="OpenLIT" class="fth-integration-name">OpenLIT</div>
-                            <div title="OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云" class="fth-integration-desc">OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到观测云</div>
+                            <div title="OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到<<< custom_key.brand_name >>>" class="fth-integration-desc">OpenLIT 通过简化生成式 AI 和大模型语言(LLM)的开发流程，并提供全面的可观测性支持，并将可观测性数据上报到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7436,7 +7539,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../opentelemetry-python"
-  				data-tags="Python,OTEL,链路追踪"
+  				data-tags="PYTHON,OTEL,链路追踪"
   				data-name="OpenTelemetry Python"
   				data-summary="OpenTelemetry Python 集成"
   			>
@@ -7528,7 +7631,7 @@ icon: zy/integrations
   				data-href="../otel-ext-java"
   				data-tags="OTEL,链路追踪"
   				data-name="OpenTelemetry 扩展"
-  				data-summary="观测云对 OpenTelemetry 插件做了额外的扩展"
+  				data-summary="<<<custom_key.brand_name>>>对 OpenTelemetry 插件做了额外的扩展"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7539,7 +7642,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="OpenTelemetry 扩展" class="fth-integration-name">OpenTelemetry 扩展</div>
-                            <div title="观测云对 OpenTelemetry 插件做了额外的扩展" class="fth-integration-desc">观测云对 OpenTelemetry 插件做了额外的扩展</div>
+                            <div title="<<<custom_key.brand_name>>>对 OpenTelemetry 插件做了额外的扩展" class="fth-integration-desc"><<<custom_key.brand_name>>>对 OpenTelemetry 插件做了额外的扩展</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7557,8 +7660,8 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../otel-guance-exporter"
   				data-tags="OTEL"
-  				data-name="观测云 OpenTelemetry Exportor"
-  				data-summary="直接将 OpenTelemetry 的数据输出给观测云"
+  				data-name="<<<custom_key.brand_name>>> OpenTelemetry Exportor"
+  				data-summary="直接将 OpenTelemetry 的数据输出给<<<custom_key.brand_name>>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7568,8 +7671,8 @@ icon: zy/integrations
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="观测云 OpenTelemetry Exportor" class="fth-integration-name">观测云 OpenTelemetry Exportor</div>
-                            <div title="直接将 OpenTelemetry 的数据输出给观测云" class="fth-integration-desc">直接将 OpenTelemetry 的数据输出给观测云</div>
+                            <div title="<<<custom_key.brand_name>>> OpenTelemetry Exportor" class="fth-integration-name"><<<custom_key.brand_name>>> OpenTelemetry Exportor</div>
+                            <div title="直接将 OpenTelemetry 的数据输出给<<<custom_key.brand_name>>>" class="fth-integration-desc">直接将 OpenTelemetry 的数据输出给<<<custom_key.brand_name>>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8248,7 +8351,7 @@ icon: zy/integrations
   				data-href="../quick-guide"
   				data-tags=""
   				data-name="Grafana Dashboard Import"
-  				data-summary="Grafana Dashboard 模版导入观测云工具"
+  				data-summary="Grafana Dashboard 模版导入<<< custom_key.brand_name >>>工具"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -8259,7 +8362,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="Grafana Dashboard Import" class="fth-integration-name">Grafana Dashboard Import</div>
-                            <div title="Grafana Dashboard 模版导入观测云工具" class="fth-integration-desc">Grafana Dashboard 模版导入观测云工具</div>
+                            <div title="Grafana Dashboard 模版导入<<< custom_key.brand_name >>>工具" class="fth-integration-desc">Grafana Dashboard 模版导入<<< custom_key.brand_name >>>工具</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -8998,7 +9101,7 @@ icon: zy/integrations
   				data-href="../tencent_cdb"
   				data-tags="腾讯云"
   				data-name="腾讯云 CDB"
-  				data-summary="使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9009,7 +9112,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 CDB" class="fth-integration-name">腾讯云 CDB</div>
-                            <div title="使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「官方脚本市场」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9058,7 +9161,7 @@ icon: zy/integrations
   				data-href="../tencent_clb_private"
   				data-tags="腾讯云"
   				data-name="腾讯云 CLB Private"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9069,7 +9172,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 CLB Private" class="fth-integration-name">腾讯云 CLB Private</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9088,7 +9191,7 @@ icon: zy/integrations
   				data-href="../tencent_clb_public"
   				data-tags="腾讯云"
   				data-name="腾讯云 CLB Public"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9099,7 +9202,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 CLB Public" class="fth-integration-name">腾讯云 CLB Public</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9118,7 +9221,7 @@ icon: zy/integrations
   				data-href="../tencent_cos"
   				data-tags="腾讯云"
   				data-name="腾讯云 COS"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9129,7 +9232,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 COS" class="fth-integration-name">腾讯云 COS</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9148,7 +9251,7 @@ icon: zy/integrations
   				data-href="../tencent_cvm"
   				data-tags="腾讯云"
   				data-name="腾讯云 CVM"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9159,7 +9262,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 CVM" class="fth-integration-name">腾讯云 CVM</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9208,7 +9311,7 @@ icon: zy/integrations
   				data-href="../tencent_mariadb"
   				data-tags="腾讯云"
   				data-name="腾讯云 MariaDB"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9219,7 +9322,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 MariaDB" class="fth-integration-name">腾讯云 MariaDB</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9238,7 +9341,7 @@ icon: zy/integrations
   				data-href="../tencent_memcached"
   				data-tags="腾讯云"
   				data-name="腾讯云 Memcached"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9249,7 +9352,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 Memcached" class="fth-integration-name">腾讯云 Memcached</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9268,7 +9371,7 @@ icon: zy/integrations
   				data-href="../tencent_mongodb"
   				data-tags="腾讯云"
   				data-name="腾讯云 MongoDB"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9279,7 +9382,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 MongoDB" class="fth-integration-name">腾讯云 MongoDB</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9298,7 +9401,7 @@ icon: zy/integrations
   				data-href="../tencent_postgresql"
   				data-tags="腾讯云"
   				data-name="腾讯云 PostgreSQL"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9309,7 +9412,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 PostgreSQL" class="fth-integration-name">腾讯云 PostgreSQL</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9358,7 +9461,7 @@ icon: zy/integrations
   				data-href="../tencent_sqlserver"
   				data-tags="腾讯云"
   				data-name="腾讯云 SQLServer"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9369,7 +9472,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 SQLServer" class="fth-integration-name">腾讯云 SQLServer</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -9388,7 +9491,7 @@ icon: zy/integrations
   				data-href="../tencent_tdsql_c_mysql"
   				data-tags="腾讯云"
   				data-name="腾讯云 TDSQL_C_MySQL"
-  				data-summary="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云"
+  				data-summary="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9399,7 +9502,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="腾讯云 TDSQL_C_MySQL" class="fth-integration-name">腾讯云 TDSQL_C_MySQL</div>
-                            <div title="使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云" class="fth-integration-desc">使用脚本市场中「观测云云同步」系列脚本包把云监控 云资产的数据同步到观测云</div>
+                            <div title="使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>>" class="fth-integration-desc">使用脚本市场中「<<< custom_key.brand_name >>>云同步」系列脚本包把云监控 云资产的数据同步到<<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -10250,7 +10353,7 @@ icon: zy/integrations
                     const tags = tagsStr || '';
                     const name = (nameStr && nameStr.toLowerCase()) || '';
                     const summary = summaryStr ? summaryStr.toLowerCase() : '';
-                    originList.push({ tags, name, summary, dom: item });
+                    name && originList.push({ tags, name, summary, dom: item });
                 });
                 searchIntegration();
             }

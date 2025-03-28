@@ -36,7 +36,7 @@ icon: zy/monitoring
 
     <br/>
 
--   [<font color=coral> :octicons-mute-16:{ .lg .middle } __静默管理__</font>](./silent-management.md)
+-   [<font color=coral> :octicons-mute-16:{ .lg .middle } __静默管理__</font>](./mute-management.md)
 
     ---
 
@@ -53,11 +53,11 @@ icon: zy/monitoring
 
     <br/>
 
--   [<font color=coral> :material-satellite-uplink:{ .lg .middle } __通知对象管理__</font>](./notify-object.md)
+-   [<font color=coral> :material-satellite-uplink:{ .lg .middle } __通知对象管理__</font>](./notify-target.md)
 
     ---
 
-    即设置告警事件时的通知对象，包括系统[默认通知对象](./notify-object.md#default)（钉钉机器人、企业微信机器人、飞书机器人、Webhook自定义、邮件组和短信组）和[自建通知对象](./notify-object.md#custom)。
+    即设置告警事件时的通知对象，包括系统[默认通知对象](./notify-target.md#default)（钉钉机器人、企业微信机器人、飞书机器人、Webhook自定义、邮件组和短信组）和[自建通知对象](./notify-target.md#custom)。
 
     </div>
 

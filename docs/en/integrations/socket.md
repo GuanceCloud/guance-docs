@@ -1,6 +1,6 @@
 ---
 title     : 'Socket'
-summary   : 'Collect metrics data for TCP/UDP ports'
+summary   : 'Collect metrics of TCP/UDP ports'
 tags:
   - 'NETWORK'
 __int_icon      : 'icon/socket'
@@ -16,26 +16,26 @@ monitor   :
 
 ---
 
-Collect metrics data for UDP/TCP ports.
+The socket collector is used to collect UDP/TCP port information.
 
 ## Configuration {#config}
 
-### Prerequisites {#requrements}
+### Preconditions {#requrements}
 
-The UDP metrics require the operating system to have the `nc` program.
+UDP metrics require the operating system to have `nc` programs.
 
 <!-- markdownlint-disable MD046 -->
 ???+ attention
 
-    The socket collector is suitable for intranet TCP/UDP port detection. For public network services, it is recommended to use the [TESTING feature](dialtesting.md). If the service address points to the local machine, disable the election function of the collector (`election: false`) to avoid invalid collection.
+    The socket collector are suitable for collecting local network TCP/UDP service. For public network, [Dialtesting](dialtest.md) is recommended. If the URLs point to localhost, please turn off the election flag(`election: false`).
 <!-- markdownlint-enable -->
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Go to the `conf.d/socket` directory under the DataKit installation directory, copy `socket.conf.sample` and rename it to `socket.conf`. An example is as follows:
+    Go to the `conf.d/socket` directory under the DataKit installation directory, copy `socket.conf.sample` and name it `socket.conf`. Examples are as follows:
     
     ```toml
         
@@ -64,22 +64,22 @@ The UDP metrics require the operating system to have the `nc` program.
       # more_tag = "some_other_value"
     ```
     
-    After configuring, restart DataKit.
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting its configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following metric sets will append the global tags `proto/dest_host/dest_port` by default. You can also specify other tags in the configuration through `[inputs.socket.tags]`:
+For all of the following measurements, the `proto/dest_host/dest_port` global tag is appended by default, or other tags can be specified in the configuration by `[inputs.socket.tags]`:
 
 ``` toml
-[inputs.socket.tags]
- # some_tag = "some_value"
- # more_tag = "some_other_value"
- # ...
+ [inputs.socket.tags]
+  # some_tag = "some_value"
+  # more_tag = "some_other_value"
+  # ...
 ```
 
 
@@ -93,15 +93,15 @@ All the following metric sets will append the global tags `proto/dest_host/dest_
 |  ----  | --------|
 |`dest_host`|TCP domain or host, such as `wwww.baidu.com`, `1.2.3.4`|
 |`dest_port`|TCP port, such as `80`|
-|`proto`|Protocol, constant value `tcp`|
+|`proto`|Protocol, const to be `tcp`|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`response_time`|TCP connection time (without DNS query time)|int|μs|
-|`response_time_with_dns`|TCP connection time (with DNS query time)|int|μs|
+|`response_time`|TCP connection time(without DNS query time)|int|μs|
+|`response_time_with_dns`|TCP connection time(with DNS query time)|int|μs|
 |`success`|1: success/-1: failed|int|-|
 
 
@@ -115,11 +115,13 @@ All the following metric sets will append the global tags `proto/dest_host/dest_
 |  ----  | --------|
 |`dest_host`|UDP host|
 |`dest_port`|UDP port|
-|`proto`|Protocol, constant value `udp`|
+|`proto`|Protocol, const to be `udp`|
 
-- Metric List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`success`|1: success/-1: failed|int|-|
+
+

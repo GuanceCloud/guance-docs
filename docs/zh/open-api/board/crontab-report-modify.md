@@ -30,7 +30,7 @@
 | singleExecuteTime | int |  | 单次执行的时间戳<br>允许为空: True <br> |
 | extend | json |  | 额外信息<br>允许为空: True <br> |
 | timezone | string | Y | 定时报告时区<br>例子: Asia/Shanghai <br>允许为空: True <br> |
-| notifyType | string | Y | 定时报告通知类型<br>例子: email <br>允许为空: True <br>可选值: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot'] <br> |
+| notifyType | string | Y | 定时报告通知类型<br>例子: email <br>允许为空: True <br>可选值: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot', 'HTTPRequest', 'slackIncomingWebhook', 'teamsWorkflowWebhook'] <br> |
 
 ## 参数补充说明
 
@@ -51,7 +51,7 @@
 | singleExecuteTime            | int  | 单次执行的时间戳                                         |
 | extend            | json  | 扩展信息,用于前端界面展示信息显示                                         |
 | timezone            | string  | 时区                                         |
-| notifyType            | string  | 通知类型,枚举值(email,dingTalkRobot,wecharRobot, feishuRobot)                                         |
+| notifyType            | string  | 通知类型                                         |
 
 - extend扩展字段说明
 

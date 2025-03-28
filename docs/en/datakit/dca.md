@@ -27,7 +27,7 @@ dk3(Datakit);
 k8s_dk1(Datakit);
 k8s_dk2(Datakit);
 k8s_dk3(Datakit);
-guance(Guance);
+brandname("<<<custom_key.brand_name>>>");
 
 subgraph HOST DataKit
     direction TB;
@@ -48,17 +48,17 @@ subgraph k8s DataKit
  k8s_dk3
 end
     
-dk1 -.-> |upload data|guance;
-dk2 -.-> |upload data|guance;
-dk3 -.-> |upload data|guance;
-k8s_dk1 -.-> |upload data|guance;
-k8s_dk2 -.-> |upload data|guance;
-k8s_dk3 -.-> |upload data|guance;
+dk1 -.-> |upload data|brandname;
+dk2 -.-> |upload data|brandname;
+dk3 -.-> |upload data|brandname;
+k8s_dk1 -.-> |upload data|brandname;
+k8s_dk2 -.-> |upload data|brandname;
+k8s_dk3 -.-> |upload data|brandname;
 
 dca_server <--> |websocket| dk_upgrader1 & dk_upgrader2 & dk_upgrader3 & k8s_dk1 & k8s_dk2 & k8s_dk3
 dca_web -- HTTP --- dca_server;
 
-dca_server -.-> |login/auth| guance;
+dca_server -.-> |login/auth| brandname;
 ```
 
 ## Start DCA Service {#config}
@@ -74,7 +74,7 @@ dca_server -.-> |login/auth| guance;
     Example:
     
     ```shell
-    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://127.0.0.1:8000/ws" DK_DATAWAY=https://openway.guance.com?token=<TOKEN> bash -c "$(curl -L https://static.guance.com/datakit/install.sh)"
+    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://127.0.0.1:8000/ws" DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
     
     After successful installation, the DataKit will automatically connect to the DCA service.。
@@ -123,7 +123,7 @@ DCA Web is the Web version of DCA client, which provides the interface proxy of 
     Before running the container, first download the DCA image through `docker pull`.
 
     ```shell
-    docker pull pubrepo.guance.com/tools/dca
+    docker pull pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca
     ```
 
     - Run the container
@@ -131,7 +131,7 @@ DCA Web is the Web version of DCA client, which provides the interface proxy of 
     The DCA container is created and started with the `docker run` command, and the default exposed access port of the container is 80.
 
     ```shell
-    docker run -d --name dca -p 8000:80 pubrepo.guance.com/tools/dca
+    docker run -d --name dca -p 8000:80 pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca
     ```
 
     - Testing
@@ -140,7 +140,7 @@ DCA Web is the Web version of DCA client, which provides the interface proxy of 
 
 === "k8s"
 
-    Download [*dca.yaml*](https://static.guance.com/datakit/dca/dca.yaml){:target="_blank"}. Edit the configuration parameters in the file and apply `dca.yaml` to your Kubernetes cluster.
+    Download [*dca.yaml*](https://static.<<<custom_key.brand_main_domain>>>/datakit/dca/dca.yaml){:target="_blank"}. Edit the configuration parameters in the file and apply `dca.yaml` to your Kubernetes cluster.
 
     ```shell
     $ kubectl apply -f dca.yaml
@@ -153,10 +153,10 @@ By default, DCA will adopt the default configuration of the system. If you need 
 
 | Environment Variable Name            | Type   | Default Value                         | Description                                                                                            |
 | :---------              | ----:  | :---                           | ------                                                                                          |
-| `DCA_CONSOLE_API_URL`        | string | `https://console-api.guance.com` | Guance Cloud console API address, refer [node address](dca.md#node-address) |
-| `DCA_CONSOLE_WEB_URL`        | string | `https://console.guance.com` | Guance Cloud page address, refer [node address](dca.md#node-address)                                                                        |
-| `DCA_STATIC_BASE_URL`        | string | `https://static.guance.com` | static resource address                                                                         |
-| `DCA_CONSOLE_PROXY`     | string | None                              | Guance Cloud API proxy, but does not proxy the DataKit API |
+| `DCA_CONSOLE_API_URL`        | string | `https://console-api.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> console API address, refer [node address](dca.md#node-address) |
+| `DCA_CONSOLE_WEB_URL`        | string | `https://console.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> page address, refer [node address](dca.md#node-address)                                                                        |
+| `DCA_STATIC_BASE_URL`        | string | `https://static.<<<custom_key.brand_main_domain>>>` | static resource address                                                                         |
+| `DCA_CONSOLE_PROXY`     | string | None                              | <<<custom_key.brand_name>>> API proxy, but does not proxy the DataKit API |
 | `DCA_LOG_LEVEL`         | string |                                | Log level, the value is debug/info/warn/error.                  |
 | `DCA_LOG_PATH` | string   |                | The log path. If you need to write the log to `stdout`, you can set it to `stdout` |
 | `DCA_TLS_ENABLE`         | string |                              | enable TLS when the value is not empty                  |
@@ -166,29 +166,29 @@ By default, DCA will adopt the default configuration of the system. If you need 
 Example:
 
 ```shell
-docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=info pubrepo.guance.com/tools/dca
+docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=info pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca
 ```
 
 ### Node address {#node-address}
 
 | Deploy Type  | Node Name       | `DCA_CONSOLE_API_URL`| `DCA_CONSOLE_WEB_URL`|
 |-------|-----------|--------------------------------| --------------------------------|
-| SaaS | China 1(Hangzhou)  | `https://console-api.guance.com`     | `https://console.guance.com` |
-| SaaS | China 2(Ningxia)   | `https://aws-console-api.guance.com`|`https://aws-console.guance.com` |
-| SaaS | China 4(Guangzhou) | `https://cn4-console-api.guance.com`|`https://cn4-console.guance.com` |
-| SaaS | China 6(Hong Kong) | `https://cn6-console-api.guance.com`|`https://cn6-console.guance.com` |
-| SaaS | Overseas Region1(Oregon) |`https://us1-console-api.guance.com`|`https://us1-console.guance.com` |
-| SaaS | European 1(Frankfurt) |`https://eu1-console-api.guance.com`|`https://eu1-console.guance.com` |
-| SaaS | Asia 1(Singapore) |`https://ap1-console-api.guance.com`|`https://ap1-console.guance.com` |
+| SaaS | China 1(Hangzhou)  | `https://console-api.<<<custom_key.brand_main_domain>>>`     | `https://console.<<<custom_key.brand_main_domain>>>` |
+| SaaS | China 2(Ningxia)   | `https://aws-console-api.<<<custom_key.brand_main_domain>>>`|`https://aws-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS | China 4(Guangzhou) | `https://cn4-console-api.<<<custom_key.brand_main_domain>>>`|`https://cn4-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS | China 6(Hong Kong) | `https://cn6-console-api.<<<custom_key.brand_main_domain>>>`|`https://cn6-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS | Overseas Region1(Oregon) |`https://us1-console-api.<<<custom_key.brand_main_domain>>>`|`https://us1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS | European 1(Frankfurt) |`https://eu1-console-api.<<<custom_key.brand_main_domain>>>`|`https://eu1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS | Asia 1(Singapore) |`https://ap1-console-api.<<<custom_key.brand_main_domain>>>`|`https://ap1-console.<<<custom_key.brand_main_domain>>>` |
 | Private | Private     |Deployment address |Deployment address |
 
 
 ### Log in to DCA {#login}
 
-After the DCA is enabled and installed, you can access it by entering the address `localhost:8000` in your browser. When you visit it for the first time, the page will redirect you to a login transition page. After clicking the "Go Now" button at the bottom of the page, you will be guided to the GuanceCloud platform. Then, follow the instructions on the page to configure the DCA address. Once the configuration is completed, you will be able to directly access the DCA platform through the Guance Cloud platform without logging in.
+After the DCA is enabled and installed, you can access it by entering the address `localhost:8000` in your browser. When you visit it for the first time, the page will redirect you to a login transition page. After clicking the "Go Now" button at the bottom of the page, you will be guided to the <<<custom_key.brand_name>>>. Then, follow the instructions on the page to configure the DCA address. Once the configuration is completed, you will be able to directly access the DCA platform through the <<<custom_key.brand_name>>> platform without logging in.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-login-redirect.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-login-redirect.png){ width="800" }
 </figure>
 
 ### View Datakit list {#datakit-list}
@@ -206,7 +206,7 @@ Hosts remotely managed through DCA are divided into three states:
 By default, you can only view information of the DataKit in the current workspace. If you need to manage DataKit, such as upgrading it, creating, deleting, or modifying DataKit collector config file, pipelines, you need to grant current user DCA configuration management permission. Please refer to [role management](../management/role-management.md) for specific settings.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-list.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-list.png){ width="800" }
 </figure>
 
 ### View How DataKit is Running {#view-runtime}
@@ -214,7 +214,7 @@ By default, you can only view information of the DataKit in the current workspac
 After logging in to DCA, select a workspace to view the hostname and IP information of all DataKits installed in that workspace. Click on the DataKit host to connect to the DataKit remotely, and view the running status of the DataKit on the host, including version, running time, publishing data and collector running status.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-run-info-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-run-info-1.png){ width="800" }
 </figure>
 
 ### View Collector Configuration {#view-inputs-conf}
@@ -228,7 +228,7 @@ After connecting to the DataKit remotely, click "Collector Configuration" to vie
 Note: DCA does not support configuration of collector at present, so it is necessary to log in to the host remotely for configuration operation.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-input-conf-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-input-conf-1.png){ width="800" }
 </figure>
 
 ### View Log Pipeline {#view-pipeline}
@@ -236,17 +236,17 @@ Note: DCA does not support configuration of collector at present, so it is neces
 After connecting to the DataKit remotely, click「Pipelines」to view the Pipeline file that comes with the DataKit by default. Refer to the document [text data processing](../pipeline/index.md) for Pipeline.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-pipeline-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-pipeline-1.png){ width="800" }
 </figure>
 
 ### View the Blacklist {#view-filters}
 
-After connecting to DataKit remotely, click "Blacklist" to view the blacklist configured in the Guance Cloud. As shown in the following figure, `source = default and (status in [unknown])` is the configured blacklist condition.
+After connecting to DataKit remotely, click "Blacklist" to view the blacklist configured in the <<<custom_key.brand_name>>>. As shown in the following figure, `source = default and (status in [unknown])` is the configured blacklist condition.
 
-Note: The blacklist files created through Guance Cloud are stored in the path: `/usr/local/datakit/data/.pull`.
+Note: The blacklist files created through <<<custom_key.brand_name>>> are stored in the path: `/usr/local/datakit/data/.pull`.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-filter-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-filter-1.png){ width="800" }
 </figure>
 
 ### View DataKit log {#view-log}
@@ -254,7 +254,7 @@ Note: The blacklist files created through Guance Cloud are stored in the path: `
 After connecting to DataKit remotely, click "Log" to view the logs of DataKit and also the logs can be exported.
 
 <figure markdown>
-  ![](https://static.guance.com/images/datakit/dca/dca-log-1.png){ width="800" }
+  ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-log-1.png){ width="800" }
 </figure>
 
 ## Changelog {#change-log}

@@ -1,6 +1,6 @@
 ---
 title     : 'Swap'
-summary   : 'Collect metrics data for host swap memory'
+summary   : 'Collect metrics of host swap'
 tags:
   - 'HOST'
 __int_icon      : 'icon/swap'
@@ -8,30 +8,30 @@ dashboard :
   - desc  : 'Swap'
     path  : 'dashboard/en/swap'
 monitor   :
-  - desc  : 'Host Monitoring Library'
+  - desc  : 'Host monitoring library'
     path  : 'monitor/en/host'
 ---
+
 
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 ---
 
-The swap collector is used to collect usage information about the swap memory on the host.
-
 ## Configuration {#config}
 
-After successfully installing and starting DataKit, the Swap collector will be enabled by default, requiring no manual activation.
+The swap collector is used to collect the usage of the host swap memory.
 
 <!-- markdownlint-disable MD046 -->
+## Collector Configuration {#input-config}
 
-=== "HOST Installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `swap.conf.sample`, and rename it to `swap.conf`. Example:
-
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `swap.conf.sample` and name it `swap.conf`. Examples are as follows:
+    
     ```toml
         
     [[inputs.swap]]
-      ##(optional) collection interval, default is 10 seconds
+      ##(optional) collect interval, default is 10 seconds
       interval = '10s'
       ##
     
@@ -42,39 +42,39 @@ After successfully installing and starting DataKit, the Swap collector will be e
     
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    After configuration, restart DataKit.
 
 === "Kubernetes"
 
-    You can enable the collector via [ConfigMap injection](../datakit/datakit-daemonset-deploy.md#configmap-setting) or by [setting ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting).
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (you need to add it as a default collector in ENV_DEFAULT_ENABLED_INPUTS):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
     - **ENV_INPUT_SWAP_INTERVAL**
     
-        Collector repeat interval duration
+        Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **input.conf**: `interval`
     
-        **Default Value**: 10s
+        **Default**: 10s
     
     - **ENV_INPUT_SWAP_TAGS**
     
-        Custom tags. If there are tags with the same name in the configuration file, they will overwrite them.
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following data collections will append a global tag named `host` by default (the tag value is the hostname where DataKit resides), and you can also specify other tags through `[inputs.swap.tags]` in the configuration:
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or other tags can be specified in the configuration by `[inputs.swap.tags]`:
 
 ```toml
 [inputs.swap.tags]
@@ -92,16 +92,18 @@ All the following data collections will append a global tag named `host` by defa
 
 | Tag | Description |
 |  ----  | --------|
-|`host`|Hostname|
+|`host`|hostname|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`free`|Total free swap memory on the host.|int|B|
-|`in`|Moving data from swap space to the machine's main memory.|int|B|
-|`out`|Moving contents of main memory to swap disk when main memory fills up.|int|B|
-|`total`|Total swap memory on the host.|int|B|
-|`used`|Used swap memory on the host.|int|B|
-|`used_percent`|Percentage of used swap memory on the host.|float|percent|
+|`free`|Host swap memory total.|int|B|
+|`in`|Moving data from swap space to main memory of the machine.|int|B|
+|`out`|Moving main memory contents to swap disk when main memory space fills up.|int|B|
+|`total`|Host swap memory free.|int|B|
+|`used`|Host swap memory used.|int|B|
+|`used_percent`|Host swap memory percentage used.|float|percent|
+
+

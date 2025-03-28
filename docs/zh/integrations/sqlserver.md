@@ -20,7 +20,7 @@ SQL Server 采集器采集 SQL Server `waitstats`、`database_io` 等相关指�
 
 ## 配置 {#config}
 
-SQL Server 版本 >= 2012, 已测试的版本：
+SQL Server 版本 >= 2008, 已测试的版本：
 
 - [x] 2017
 - [x] 2019
@@ -88,6 +88,9 @@ GO
     
       ## connection timeout default: 30s
       connect_timeout = "30s"
+    
+      ## Metric name in metric_exclude_list will not be collected.
+      metric_exclude_list = [""]
     
       ## parameters to be added to the connection string
       ## Examples:
@@ -185,7 +188,7 @@ GO
 
 | Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
-|`committed_memory`|The amount of memory committed to the memory manager|int|B|
+|`committed_memory`|The amount of memory committed to the memory manager. Version > 2008|int|B|
 |`cpu_count`|Specifies the number of logical CPUs on the system. Not nullable|int|count|
 |`db_offline`|Num of database state in offline|int|count|
 |`db_online`|Num of database state in online|int|count|
@@ -193,11 +196,11 @@ GO
 |`db_recovery_pending`|Num of database state in recovery_pending|int|count|
 |`db_restoring`|Num of database state in restoring|int|count|
 |`db_suspect`|Num of database state in suspect|int|count|
-|`physical_memory`|Total physical memory on the machine|int|B|
+|`physical_memory`|Total physical memory on the machine. Version > 2008|int|B|
 |`server_memory`|Memory used|int|B|
-|`target_memory`|Amount of memory that can be consumed by the memory manager. When this value is larger than the committed memory, then the memory manager will try to obtain more memory. When it is smaller, the memory manager will try to shrink the amount of memory committed.|int|B|
+|`target_memory`|Amount of memory that can be consumed by the memory manager. When this value is larger than the committed memory, then the memory manager will try to obtain more memory. When it is smaller, the memory manager will try to shrink the amount of memory committed. Version > 2008|int|B|
 |`uptime`|Total time elapsed since the last computer restart|int|ms|
-|`virtual_memory`|Amount of virtual memory available to the process in user mode.|int|B|
+|`virtual_memory`|Amount of virtual memory available to the process in user mode. Version > 2008|int|B|
 
 
 

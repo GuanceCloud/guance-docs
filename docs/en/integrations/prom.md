@@ -1,15 +1,15 @@
 ---
 title     : 'Prometheus Exporter'
-summary   : 'Collect metrics data exposed by Prometheus Exporter'
+summary   : 'Collect metrics exposed by Prometheus Exporter'
 tags:
-  - 'External Data Integration'
   - 'PROMETHEUS'
-__int_icon: 'icon/prometheus'
+  - 'THIRD PARTY'
+__int_icon      : 'icon/prometheus'
 dashboard :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 monitor   :
-  - desc  : 'Not available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
@@ -17,14 +17,19 @@ monitor   :
 
 ---
 
-The Prom collector can obtain various metrics data exposed by Prometheus Exporters. By configuring the corresponding Exporter address, you can integrate the metrics data.
+The Prom collector can obtain all kinds of metric data exposed by Prometheus Exporters, so long as the corresponding Exporter address is configured, the metric data can be accessed.
 
 ## Configuration {#config}
 
-<!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+### Preconditions {#requirements}
 
-    Enter the `conf.d/prom` directory under the DataKit installation directory, copy `prom.conf.sample` and rename it to `prom.conf`. An example is as follows:
+### Collector Configuration {#input-config}
+
+<!-- markdownlint-disable MD046 -->
+Only metric data in Prometheus form can be accessed.
+=== "Host Installation"
+
+    Go to the `conf.d/prom` directory under the DataKit installation directory, copy `prom.conf.sample` and name it `prom.conf`. Examples are as follows:
     
     ```toml
         
@@ -116,7 +121,7 @@ The Prom collector can obtain various metrics data exposed by Prometheus Exporte
       ## The matched tags would be dropped, but the item would still be sent.
       # tags_ignore = ["xxxx"]
     
-      ## Customize authentication. For now support Bearer Token only.
+      ## Customize authentification. For now support Bearer Token only.
       ## Filling in 'token' or 'token_file' is acceptable.
       # [inputs.prom.auth]
         # type = "bearer_token"
@@ -175,70 +180,66 @@ The Prom collector can obtain various metrics data exposed by Prometheus Exporte
 
 === "Kubernetes"
 
-    Currently, you can enable the collector through [ConfigMap method to inject collector configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
-???+ attention "interval configuration"
+???+ attention "Configuration of interval"
 
-    Prometheus metrics collection imposes certain overhead on target services (HTTP requests). To prevent unexpected configurations, the collection interval is currently set to 30s by default, and the configuration item is not clearly displayed in the conf. If you must configure the collection interval, you can add this configuration in the conf:
+    Prometheus' metrics collection will cause some overhead (HTTP request) to the target service. To prevent unexpected configuration, the collection interval is currently 30s by default, and the configuration items are not obviously released in conf. If you must configure the collection interval, you can add this configuration in conf:
 
     ``` toml hl_lines="2"
     [[inputs.prom]]
         interval = "10s"
     ```
 <!-- markdownlint-enable -->
+### Configure Extra header {#extra-header}
 
-### Configure extra headers {#extra-header}
-
-The Prom collector supports adding additional request headers in the HTTP requests for data pulling (e.g., Basic Authentication):
+The Prom collector supports configuring additional request headers in HTTP requests for data pull, (Example basic authentication):
 
 ```toml
   [inputs.prom.http_headers]
-    Authorization = “Basic bXl0b21jYXQ="
+  Root = "passwd"
+  Michael = "1234"
 ```
 
-### Tag renaming {#tag-rename}
+### About Tag Renaming {#tag-rename}
 
-> Note: For [DataKit global tag keys](../datakit/datakit-conf.md#update-global-tag), they cannot be renamed here.
+> Note: For [DataKit global tag key](../datakit/datakit-conf.md#update-global-tag), renaming them is not supported here.
 
-`tags_rename` can replace the tag names of the collected Prometheus Exporter data. The `overwrite_exist_tags` inside enables the option to overwrite existing tags. For example, for the existing Prometheus Exporter data:
+`tags_rename` can replace the tag name of the collected Prometheus Exporter data, and `overwrite_exist_tags` is used to open the option of overwriting existing tags. For example, for existing Prometheus Exporter data:
 
 ```not-set
 http_request_duration_seconds_bucket{le="0.003",status_code="404",tag_exists="yes", method="GET"} 1
 ```
 
-Assuming the `tags_rename` configuration is as follows:
+Assume that the `tags_rename` configuration here is as follows:
 
 ```toml
 [inputs.prom.tags_rename]
   overwrite_exist_tags = true
   [inputs.prom.tags_rename.mapping]
     status_code = "StatusCode",
-    method      = "tag_exists", // Renames the `method` tag to an existing tag
+    method      = "tag_exists", // 将 `method` 这个 tag 重命名为一个已存在的 tag
 ```
 
-The final line protocol data will become (ignoring timestamps):
+Then the final line protocol data will become (ignoring the timestamp):
 
 ```shell
-# Notice that the tag_exists is affected, its value becomes the original method's value
+# Note that tag_exists is affected here, and its value is the value of the original method
 http,StatusCode=404,le=0.003,tag_exists=GET request_duration_seconds_bucket=1
 ```
 
-If `overwrite_exist_tags` is disabled, the final data will be:
+If `overwrite_exist_tags` is disabled, the final data is:
 
 ```shell
-# Both tag_exists and method tags remain unchanged
+# Neither tag_exists nor method has changed
 http,StatusCode=404,le=0.003,method=GET,tag_exists=yes request_duration_seconds_bucket=1
 ```
 
-Note that tag names are case-sensitive. You can test the data situation with the following debugging tool to decide how to replace tag names.
+Note that the tag name here is case-sensitive, and you can test the data with the following debugging tool to determine how to replace the tag name.
 
-## Metrics {#metric}
+## Protocol Conversion Description {#proto-transfer}
 
-The metrics exposed by Prometheus Exporter vary widely, based on the actual collected metrics.
-
-## Protocol Conversion Explanation {#proto-transfer}
-
-Since Prometheus data format differs from InfluxDB’s line protocol format, for Prometheus, the following represents a segment of data exposed in a K8s cluster:
+Because the data format of Prometheus is different from the line protocol format of Influxdb. For Prometheus, the following is a piece of data exposed in a K8s cluster:
 
 ```not-set
 node_filesystem_avail_bytes{device="/dev/disk1s1",fstype="apfs",mountpoint="/"} 1.21585664e+08
@@ -262,39 +263,39 @@ node_filesystem_files{device="/dev/disk1s4",fstype="apfs",mountpoint="/private/v
 node_filesystem_files{device="/dev/disk3s1",fstype="apfs",mountpoint="/Volumes/PostgreSQL 13.2-2"} 9.223372036854776e+18
 node_filesystem_files{device="/dev/disk5s1",fstype="apfs",mountpoint="/Volumes/Git 2.15.0 Mavericks Intel Universal"} 9.223372036854776e+18
 node_filesystem_files{device="map -hosts",fstype="autofs",mountpoint="/net"} 0
-node_filesystem_files{device="map auto_home",fstype="autof}
+node_filesystem_files{device="map auto_home",fstype="autof
 ```
 
-For InfluxDB, one possible organization of the above data is:
+For Influxdb, one way to organize the above data is
 
 ```not-set
 node_filesystem,tag-list available_bytes=1.21585664e+08,device_error=0,files=9.223372036854776e+18 time
 ```
 
-The basis for organization is:
+Its organizational basis is:
 
-- In the metrics exposed by Prometheus, if the name prefixes are all `node_filesystem`, then they are normalized to the line protocol measurement set `node_filesystem`.
-- The original Prometheus metrics, with the prefix removed, are placed into the metrics of the measurement set `node_filesystem`.
-- By default, all tags in Prometheus (i.e., the `{}` part) are retained in InfluxDB's line protocol.
+- In Prometheus exposed metrics, if the name prefix is `node_filesystem`, then it is specified on the line protocol measurement `node_filesystem`.
+- Place the original Prometheus metrics with their prefixes cut off into the metrics of the measurement `node_filesystem`.
+- By default, all tags in Prometheus (that is, parts in `{}` )remain in the row protocol of Influxdb
 
-To achieve such partitioning, you can configure `prom.conf` as follows:
+To achieve this cutting purpose, you can configure `prom.conf` as follows
 
-```toml
+```not-set
   [[inputs.prom.measurements]]
     prefix = "node_filesystem_"
     name = "node_filesystem"
 ```
 
-## Command-line Debugging {#debug}
+## Command Line Debug Measurement {#debug}
 
-Since Prometheus exposes a large number of metrics, not all of them may be needed, hence DataKit provides a simple tool to debug `prom.conf`. By continuously adjusting the `prom.conf` configuration, the following objectives can be achieved:
+Because Prometheus exposes a lot of metrics, you don't necessarily need all of them, so DataKit provides a simple tool to debug `prom.conf` . If you constantly adjust the configuration of `prom.conf`, you can achieve the following purposes:
 
-- Collect only Prometheus metrics that conform to certain naming rules.
-- Collect only specific types of metrics (`metric_types`), such as `gauge` type metrics and `counter` type metrics.
+- Only Prometheus metrics that meet certain name rules are collected
+- Collect only partial measurement data (`metric_types`), such as `gauge` type indicators and `counter` type metrics
 
-Datakit supports direct command-line debugging of prom collector configuration files. Copy out a `prom.conf` template from conf.d/prom, fill in the corresponding Exporter address, and you can debug this `prom.conf` via DataKit:
+DataKit supports debugging the configuration file of prom collector directly from the command line, copying a prom.conf template from conf.d/prom, filling in the corresponding Exporter address, and debugging this `prom.conf` through DataKit:
 
-Run the following command to debug `prom.conf`:
+Debug `prom.conf` by executing the following command
 
 ```shell
 datakit debug --prom-conf prom.conf
@@ -302,9 +303,9 @@ datakit debug --prom-conf prom.conf
 
 Parameter description:
 
-- `prom-conf`: Specifies the configuration file, which defaults to searching for the `prom.conf` file in the current directory. If it is not found, it will look for the corresponding file in the *<datakit-install-dir\>/conf.d/prom* directory.
+- `prom-conf`: Specifies the configuration file. By default, it looks for the `prom.conf` file in the current directory. If it is not found, it will look for the corresponding file in the *<datakit-install-dir\>/conf.d/prom* directory.
 
-Example output:
+Output sample:
 
 ```not-set
 ================= Line Protocol Points ==================
@@ -330,10 +331,10 @@ Total line protocol points: 261
 Total measurements: 3 (prom_node, prom_go, prom_promhttp)
 ```
 
-Output explanation:
+Output description:
 
-- Line Protocol Points: Generated line protocol points.
-- Summary: Aggregated results
-    - Total time series: Number of time series.
-    - Total line protocol points: Number of line protocol points.
-    - Total measurements: Number of measurement sets and their names.
+- Line Protocol Points: Generated line protocol points
+- Summary: Summary results
+    - Total time series: Number of timelines
+    - Total line protocol points: Line protocol points
+    - Total measurements: Number of measurements and their names.

@@ -34,7 +34,7 @@ Cat 通过采集系统的各种指标数据，如 CPU、内存、网络、磁盘
 
 数据分类：
 
-| 数据类型简写 | 类型                | 说明        | 当前版本的 Datakit 是否接入 | 对应到<<< custom_key.brand_name >>>中的数据类型     |
+| 数据类型简写 | 类型                | 说明        | 当前版本的 Datakit 是否接入 | 对应到<<<custom_key.brand_name>>>中的数据类型     |
 |--------|-------------------|:----------|:------------------:|:-----------------|
 | t      | transaction start | 事务开始      |        true        | trace            |
 | T      | transaction end   | 事务结束      |        true        | trace            |
@@ -52,7 +52,7 @@ Cat 通过采集系统的各种指标数据，如 CPU、内存、网络、磁盘
 
     - 数据全在 Datakit 中，cat 的 web 页面已经没有数据，所以启动的意义不大，并且页面报错： **出问题 CAT 的服务端[xxx.xxx]**
     - 配置客户端行为可以在 client 的启动中做
-    - cat server 也会将 transaction 数据发送到 dk，造成<<< custom_key.brand_name >>>页面大量的垃圾数据
+    - cat server 也会将 transaction 数据发送到 dk，造成<<<custom_key.brand_name>>>页面大量的垃圾数据
 
 
 - 不启动 cat server： 在 Datakit 中配置
@@ -130,35 +130,6 @@ Cat 通过采集系统的各种指标数据，如 CPU、内存、网络、磁盘
 1. `tcp_port` 对应的是 client 端配置 servers ip 地址
 
 ---
-
-## <<< custom_key.brand_name >>>链路和指标 {#trace-metric}
-
-### <<< custom_key.brand_name >>>链路 {#guance-trace}
-
-登录<<< custom_key.brand_name >>>，点击 应用性能检测 -> 链路 查看链路详情。
-
-<!-- markdownlint-disable MD033 -->
-<figure>
-  <img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/cat-gateway.png" style="height: 500px" alt="链路详情页面">
-  <figcaption> 链路详情页面 </figcaption>
-</figure>
-
-
-[//]: # (<img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/cat-gateway.png" height="500">  )
-
-### <<< custom_key.brand_name >>>指标 {#guance-metric}
-
-先[下载仪表板](https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/DianPing-Cat%20%E7%9B%91%E6%8E%A7%E8%A7%86%E5%9B%BE.json){:target="_blank"}
-
-在<<< custom_key.brand_name >>>，点击 场景 -> 仪表板 -> 新建仪表板。 导入下载好的 JSON 文件即可。
-
-效果展示：
-
-<!-- markdownlint-disable MD046 MD033 -->
-<figure >
-  <img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/metric.png" style="height: 500px" alt="cat 监控视图">
-  <figcaption> cat 监控视图 </figcaption>
-</figure>
 
 
 ## 数据字段说明 {#fields}

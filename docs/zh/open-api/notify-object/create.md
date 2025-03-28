@@ -14,7 +14,7 @@
 
 | 参数名        | 类型     | 必选   | 说明              |
 |:-----------|:-------|:-----|:----------------|
-| type | string | Y | 触发规则类型, 默认为`trigger`<br>允许为空: True <br>可选值: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'simpleHTTPRequest', 'slackIncomingWebhook'] <br> |
+| type | string | Y | 触发规则类型, 默认为`trigger`<br>允许为空: True <br>可选值: ['dingTalkRobot', 'HTTPRequest', 'wechatRobot', 'mailGroup', 'feishuRobot', 'sms', 'simpleHTTPRequest', 'slackIncomingWebhook', 'teamsWorkflowWebhook'] <br> |
 | name | string | Y | 通知对象名字<br>允许为空: False <br> |
 | optSet | json |  | 告警设置<br>允许为空: False <br> |
 | openPermissionSet | boolean |  | 开启 自定义权限配置, (默认 false:不开启), 开启后 该规则的操作权限根据 permissionSet<br>允许为空: False <br> |
@@ -80,7 +80,13 @@
 | :------- | :----- | :------- | :----------- |
 | url      | String | 必须 | HTTP 调⽤地址 |
 
-**8. `type`=`slackIncomingWebhook` 时，optSet的参数 **
+**8. `type`=`slackIncomingWebhook` 时，optSet的参数 (2025-03-26 迭代 新增)**
+
+| key      | 类型   | 是否必须 | 说明  |
+| :------- | :----- | :------- | :----------- |
+| webhook  | String | 必须    | 机器⼈调⽤地址 |
+
+**9. `type`=`teamsWorkflowWebhook` 时，optSet的参数 (2025-03-26 迭代 新增)**
 
 | key      | 类型   | 是否必须 | 说明  |
 | :------- | :----- | :------- | :----------- |

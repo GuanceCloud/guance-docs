@@ -71,7 +71,13 @@ datafluxRum.startSessionReplayRecording()
     ;(d = o.createElement(u)), (d.async = 1), (d.src = n)
     n = o.getElementsByTagName(u)[0]
     n.parentNode.insertBefore(d, n)
-  })(window, document, 'script', 'https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js', 'DATAFLUX_RUM')
+  })(
+    window,
+    document,
+    'script',
+    'https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js',
+    'DATAFLUX_RUM'
+  )
 
   window.DATAFLUX_RUM.onReady(function () {
     window.DATAFLUX_RUM.init({
@@ -97,7 +103,10 @@ datafluxRum.startSessionReplayRecording()
 在 HTML 文件中添加脚本：
 
 ```html
-<script src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js" type="text/javascript"></script>
+<script
+  src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  type="text/javascript"
+></script>
 <script>
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
@@ -114,6 +123,35 @@ datafluxRum.startSessionReplayRecording()
     })
   // 开启会话重放录制
   window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
+</script>
+```
+
+## 如何实现仅采集错误会话事件（SDK 版本要求 `≥3.2.19`）
+
+#### 功能特性
+
+当页面触发错误时，SDK 将自动执行：
+▸ 持续记录：从错误触发时开始，完整保留会话全生命周期数据  
+▸ 精准补偿：通过独立采样通道确保错误场景 100% 捕获
+
+#### 配置方案
+
+```javascript
+<script
+  src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  type="text/javascript"
+></script>
+<script>
+// 核心配置初始化
+window.DATAFLUX_RUM && window.DATAFLUX_RUM.init({
+
+   ...
+   // 精准采集策略
+   sessionSampleRate: 0,             // 关闭常规会话采集
+   sessionOnErrorSampleRate: 100, // 全量采集错误会话
+
+});
+
 </script>
 ```
 
@@ -231,6 +269,40 @@ datafluxRum.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 
 在 SDK 初始化后，调用`startSessionReplayRecording()`方法来开启会话重放的录制。您可以选择在特定条件下开启，如用户登录后 [开启会话录制](../session-replay/index.md)。
 
+#### 如何实现仅采集错误相关的 Session Replay 数据（SDK 版本要求 `≥3.2.19`）
+
+##### 功能说明
+
+当页面发生错误时，SDK 将自动执行以下操作：
+
+1. **回溯采集**：记录错误发生前 **1 分钟** 的完整页面快照
+2. **持续录制**：从错误发生时刻起持续记录直至会话结束
+3. **智能补偿**：通过独立采样通道确保错误场景的全覆盖
+
+##### 配置示例
+
+```javascript
+<script
+  src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  type="text/javascript"
+></script>
+<script>
+// 初始化 SDK 核心配置
+window.DATAFLUX_RUM && window.DATAFLUX_RUM.init({
+   ....
+
+   // 采样策略配置
+   sessionSampleRate: 100,          // 全量基础会话采集 (100%)
+   sessionReplaySampleRate: 0,       // 关闭常规录屏采样
+   sessionReplayOnErrorSampleRate: 100, // 错误场景 100% 采样
+
+});
+
+// 强制开启录屏引擎（必须调用）
+window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording();
+</script>
+```
+
 ## 注意事项
 
 - 会话重放不支持 iframe、视频、音频、画布等元素的播放。
@@ -243,3 +315,7 @@ datafluxRum.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 - 根据业务需求，调整`sessionSampleRate`和`sessionReplaySampleRate`等参数以优化数据采集。
 
 通过以上步骤，您可以成功将<<< custom_key.brand_name >>> RUM SDK 集成到您的 Web 应用中，并开始收集数据和使用会话重放功能来优化用户体验和性能。
+
+```
+
+```

@@ -1,10 +1,13 @@
 # Android 应用接入
 ---
-<<< custom_key.brand_name >>>应用监测能够通过收集各个 Android 应用的指标数据，以可视化的方式分析各个 Android 应用端的性能。
+
+通过收集 Android 应用的指标数据，以可视化方式分析应用性能。
 
 ## 前置条件
 
-**注意**：若您开通了 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动帮您配置完成，直接接入应用即可。
+???+ warning "注意"
+
+    若已开通 [RUM Headless](../../dataflux-func/headless.md) 服务，前置条件已自动配置，可直接接入应用。
 
 - 安装 [DataKit](../../datakit/datakit-install.md)；  
 - 配置 [RUM 采集器](../../integrations/rum.md)；
@@ -12,15 +15,13 @@
 
 ## 应用接入 {#android-integration} 
 
-登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测**页面，点击左上角 **[新建应用](../index.md#create)**，即可开始创建一个新的应用。
+1. 进入**用户访问监测 > 新建应用 > Android**；
+2. 输入应用名称；
+3. 输入应用 ID；
+4. 选择应用接入方式：
 
-- <<< custom_key.brand_name >>>提供**公网 DataWay**直接接收 RUM 数据，无需安装 DataKit 采集器。配置 `site` 和 `clientToken` 参数即可。
-
-![](../img/android_01.png)
-
-- <<< custom_key.brand_name >>>同时支持**本地环境部署**接收 RUM 数据，该方式需满足前置条件。
-
-![](../img/6.rum_android_1.png)
+    - 公网 DataWay：直接接收 RUM 数据，无需安装 DataKit 采集器。  
+    - 本地环境部署：满足前置条件后接收 RUM 数据。
 
 
 ## 安装 {#setup}
@@ -164,7 +165,8 @@ android{
 > 最新的版本请看上方的 ft-sdk 、ft-plugin 、ft-native 的版本名
 
 ## Application 配置 {#application-setting}
-理论上最佳初始化 SDK 的位置在 `Application` 的 `onCreate` 方法中，如果您的应用还没有创建 `Application`，您需要创建一个，并且在 `AndroidManifest.xml` 中 `Application` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)。
+
+理论上，最佳的 SDK 初始化位置是在 `Application` 的 `onCreate` 方法中，如果您的应用尚未创建 `Application`，您需要创建一个，并在 `AndroidManifest.xml` 中声明，示例请参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml)。
 
 ```xml
 <application 

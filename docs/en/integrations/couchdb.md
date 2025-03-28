@@ -1,8 +1,8 @@
 ---
 title     : 'CouchDB'
-summary   : 'Collect metrics data from CouchDB'
+summary   : 'Collect CouchDB server metrics'
 tags:
-  - 'DATABASE'
+  - 'DATA STORES'
 __int_icon      : 'icon/couchdb'
 dashboard :
   - desc  : 'CouchDB'
@@ -17,29 +17,29 @@ monitor   :
 
 ---
 
-The CouchDB collector is used to collect metrics data related to CouchDB, and currently only supports Prometheus format data.
+CouchDB collector is used to collect metric data related to CouchDB, and currently it only supports data in Prometheus format.
 
-Tested versions:
+Already tested version:
 
 - [x] CouchDB 3.3.2
 - [x] CouchDB 3.2
-- [ ] CouchDBCouchDB 3.1 and earlier versions are not supported
+- [ ] CouchDB 3.1 this and versions earlier than this do not support
 
 ## Configuration {#config}
 
-### Prerequisites {#requirements}
+### Preconditions {#requirements}
 
-- Install the CouchDB service
+- Install CouchDB server
   
-  Refer to the [official installation documentation](https://docs.couchdb.org/en/stable/install/index.html){:target="_blank"}
+See [official document](https://docs.couchdb.org/en/stable/install/index.html){:target="_blank"}
 
 - Verify correct installation
 
-  Access the URL `<ip>:5984/_utils/` in your browser to enter the CouchDB management interface.
+  Visit URL in browser `<ip>:5984/_utils/` can open CouchDB manage UI.
 
-- Open the CouchDB Prometheus port
+- Open CouchDB Prometheus port
   
-  Locate and edit the CouchDB startup configuration file, usually located at `/opt/couchdb/etc/local.ini`
+  Search CouchDB start config file, usually `/opt/couchdb/etc/local.ini`
 
   ```ini
   [prometheus]
@@ -48,7 +48,7 @@ Tested versions:
   port = 17986
   ```
 
-  Change to
+  Change as
 
   ```ini
   [prometheus]
@@ -57,23 +57,23 @@ Tested versions:
   port = 17986
   ```
 
-  Refer to the [official configuration documentation](https://docs.couchdb.org/en/stable/config/misc.html#configuration-of-prometheus-endpoint){:target="_blank"}
+  See [official document](https://docs.couchdb.org/en/stable/config/misc.html#configuration-of-prometheus-endpoint){:target="_blank"}
   
-- Restart the CouchDB service
+- Restart CouchDB
 
 <!-- markdownlint-disable MD046 -->
 ???+ tip
 
-    - Data collection will use ports `5984` and `17986`, so these ports need to be open for remote collection.
-    - If `bind_address = 127.0.0.1` and it's for local collection, no modification is needed.
+    - To collect data, several ports `5984` `17986` need to be used. When collecting data remotely, these ports need to be opened.
+    - bind_address = 127.0.0.1 If it is a local collection, there is no need to modify it.
 <!-- markdownlint-enable -->
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/couchdb` directory under the DataKit installation directory, copy `couchdb.conf.sample` and rename it to `couchdb.conf`. Example as follows:
+    Go to the `conf.d/couchdb` directory under the DataKit installation directory, copy `couchdb.conf.sample` and name it `couchdb.conf`. Examples are as follows:
     
     ```toml
         
@@ -103,15 +103,15 @@ Tested versions:
     
     ```
 
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    Currently, you can enable the collector by injecting its configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
 
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
 
 
@@ -125,13 +125,13 @@ Tested versions:
 |`code`|Code of HTTP responses, in 200 201 202 204 206 301 304 400 403 404 405 406 409 412 414 415 416 417 500 501 503.|
 |`host`|Host name.|
 |`instance`|Instance endpoint.|
-|`level`|Log level, in `alert` `critical` `debug` `emergency` `error` `info` `notice` `warning`.|
+|`level`|Log lever, in `alert` `critical` `debug` `emergency` `error` `info` `notice` `warning`.|
 |`memory_type`|Erlang memory type, in `total` `processes` `processes_used` `system` `atom` `atom_used` `binary` `code` `ets`|
 |`method`|HTTP requests type, in `COPY` `DELETE` `GET` `HEAD` `OPTIONS` `POST` `PUT`.|
 |`quantile`|Histogram `quantile`.|
 |`stage`|`Rexi` stream stage, like `init_stream`.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -149,7 +149,7 @@ Tested versions:
 |`couch_replicator_changes_read_failures_total`|Number of failed replicator changes read failures.|float|count|
 |`couch_replicator_changes_reader_deaths_total`|Number of failed replicator changes readers.|float|count|
 |`couch_replicator_checkpoints_failure_total`|Number of failed checkpoint saves.|float|count|
-|`couch_replicator_checkpoints_total`|Number of checkpoints successfully saved.|float|count|
+|`couch_replicator_checkpoints_total`|Number of checkpoints successfully saves.|float|count|
 |`couch_replicator_cluster_is_stable`|1 if cluster is stable, 0 if unstable.|float|count|
 |`couch_replicator_connection_acquires_total`|Number of times connections are shared.|float|count|
 |`couch_replicator_connection_closes_total`|Number of times a worker is gracefully shut down.|float|count|
@@ -167,7 +167,7 @@ Tested versions:
 |`couch_replicator_failed_starts_total`|Number of replications that have failed to start.|float|count|
 |`couch_replicator_jobs_adds_total`|Number of jobs added to replicator scheduler.|float|count|
 |`couch_replicator_jobs_crashed`|Replicator scheduler crashed jobs.|float|count|
-|`couch_replicator_jobs_crashes_total`|Number of job crashes noticed by replicator scheduler.|float|count|
+|`couch_replicator_jobs_crashes_total`|Number of job crashed noticed by replicator scheduler.|float|count|
 |`couch_replicator_jobs_duplicate_adds_total`|Number of duplicate jobs added to replicator scheduler.|float|count|
 |`couch_replicator_jobs_pending`|Replicator scheduler pending jobs.|float|count|
 |`couch_replicator_jobs_removes_total`|Number of jobs removed from replicator scheduler.|float|count|
@@ -312,3 +312,5 @@ Tested versions:
 |`rexi_streams_timeout_total`|Number of `rexi` stream initialization timeouts.|float|count|
 |`rexi_streams_timeout_wait_for_ack_total`|Number of `rexi` stream timeouts while waiting for `acks`.|float|count|
 |`uptime_seconds`|CouchDB uptime.|float|s|
+
+

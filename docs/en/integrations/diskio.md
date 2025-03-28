@@ -1,6 +1,6 @@
 ---
 title     : 'Disk IO'
-summary   : 'Collect Disk IO Metrics data'
+summary   : 'Collect metrics of disk io'
 tags:
   - 'HOST'
 __int_icon      : 'icon/diskio'
@@ -8,7 +8,7 @@ dashboard :
   - desc  : 'Disk IO'
     path  : 'dashboard/en/diskio'
 monitor   :
-  - desc  : 'Host Monitoring Library'
+  - desc  : 'Host detection library'
     path  : 'monitor/en/host'
 ---
 
@@ -17,37 +17,36 @@ monitor   :
 
 ---
 
-The Disk IO collector is used to collect metrics related to disk traffic and time.
+Diskio collector is used to collect the index of disk flow and time.
 
 ## Configuration {#config}
 
-After successfully installing DataKit and starting it, the DiskIO collector will be enabled by default, and no manual activation is required.
+After successfully installing and starting DataKit, the DiskIO collector will be enabled by default without the need for manual activation.
 
-### Prerequisites {#requirement}
+### Precondition {#requirement}
 
-For some older versions of the Windows operating system, if you encounter a Datakit error: **"The system cannot find the file specified."**
+For some older versions of Windows operating systems, if you encounter an error with Datakit: **"The system cannot find the file specified."**
 
-Please run PowerShell as an administrator and execute:
+Run PowerShell as an administrator and execute:
 
 ```powershell
-$ diskperf -Y
-...
+diskperf -Y
 ```
 
-After successful execution, the Datakit service needs to be restarted.
+The Datakit service needs to be restarted after successful execution.
 
 ### Collector Configuration {#input-config}
 
 <!-- markdownlint-disable MD046 -->
 
-=== "HOST Installation"
+=== "Host Installation"
 
-    Navigate to the `conf.d/host` directory under the DataKit installation directory, copy `diskio.conf.sample`, and rename it to `diskio.conf`. An example is as follows:
-
+    Go to the `conf.d/host` directory under the DataKit installation directory, copy `diskio.conf.sample` and name it `diskio.conf`. Examples are as follows:
+    
     ```toml
         
     [[inputs.diskio]]
-      ## (optional) collect interval, default is 10 seconds
+      ##(optional) collect interval, default is 10 seconds
       interval = '10s'
     
       ## By default, gather stats for all devices including
@@ -82,80 +81,80 @@ After successful execution, the Datakit service needs to be restarted.
       # some_tag = "some_value"
       # more_tag = "some_other_value"
     ```
-
-    After configuring, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
+    
+    Once configured, [restart DataKit](../datakit/datakit-service-how-to.md#manage-service).
 
 === "Kubernetes"
 
-    You can inject the collector configuration via [ConfigMap](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [configure ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) to enable the collector.
+    Can be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting) or [Config ENV_DATAKIT_INPUTS](../datakit/datakit-daemonset-deploy.md#env-setting) .
 
-    It also supports modifying configuration parameters via environment variables (requires adding it to ENV_DEFAULT_ENABLED_INPUTS as a default collector):
-
+    Can also be turned on by environment variables, (needs to be added as the default collector in ENV_DEFAULT_ENABLED_INPUTS):
+    
     - **ENV_INPUT_DISKIO_INTERVAL**
     
-        Collector repeat interval duration
+        Collect interval
     
-        **Field Type**: Duration
+        **Type**: Duration
     
-        **Collector Configuration Field**: `interval`
+        **input.conf**: `interval`
     
-        **Default Value**: 10s
+        **Default**: 10s
     
     - **ENV_INPUT_DISKIO_DEVICES**
     
-        Set interfaces using regular expressions to collect these expected devices
+        Setting interfaces using regular expressions will collect these expected devices
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: `devices`
+        **input.conf**: `devices`
     
         **Example**: `^sda\d,^sdb\d,vd.*`
     
     - **ENV_INPUT_DISKIO_DEVICE_TAGS**
     
-        Device additional tags
+        Device metadata added tags
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: `device_tags`
+        **input.conf**: `device_tags`
     
         **Example**: ID_FS_TYPE,ID_FS_USAGE
     
     - **ENV_INPUT_DISKIO_NAME_TEMPLATES**
     
-        Use the same metadata source as device_ tags
+        Using the same metadata source as device_tags
     
-        **Field Type**: List
+        **Type**: List
     
-        **Collector Configuration Field**: `name_templates`
+        **input.conf**: `name_templates`
     
         **Example**: $ID_FS_LABEL,$DM_VG_NAME/$DM_LV_NAME
     
     - **ENV_INPUT_DISKIO_SKIP_SERIAL_NUMBER**
     
-        Do not require disk serial number
+        disk serial number is not required
     
-        **Field Type**: Boolean
+        **Type**: Boolean
     
-        **Collector Configuration Field**: `skip_serial_number`
+        **input.conf**: `skip_serial_number`
     
-        **Default Value**: false
+        **Default**: false
     
     - **ENV_INPUT_DISKIO_TAGS**
     
-        Custom tags. If the configuration file has tags with the same name, they will overwrite them.
+        Customize tags. If there is a tag with the same name in the configuration file, it will be overwritten
     
-        **Field Type**: Map
+        **Type**: Map
     
-        **Collector Configuration Field**: `tags`
+        **input.conf**: `tags`
     
         **Example**: tag1=value1,tag2=value2
 
 <!-- markdownlint-enable -->
 
-## Metrics {#metric}
+## Metric {#metric}
 
-All the following data collected will append a global tag named `host` by default (the tag value is the hostname where DataKit resides), and you can also choose another host name through `[[inputs.diskio.tags]]` in the configuration.
+For all of the following data collections, a global tag named `host` is appended by default (the tag value is the host name of the DataKit), or it can be named by `[[inputs.diskio.tags]]` alternative host in the configuration.
 
 
 
@@ -169,7 +168,7 @@ All the following data collected will append a global tag named `host` by defaul
 |`host`|System hostname.|
 |`name`|Device name.|
 
-- Metrics List
+- Metrics
 
 
 | Metric | Description | Type | Unit |
@@ -179,7 +178,7 @@ All the following data collected will append a global tag named `host` by defaul
 |`merged_reads`|The number of merged read requests.|int|count|
 |`merged_writes`|The number of merged write requests.|int|count|
 |`read_bytes`|The number of bytes read from the device.|int|B|
-|`read_bytes/sec`|The number of bytes read per second.|int|B/S|
+|`read_bytes/sec`|The number of bytes read from the per second.|int|B/S|
 |`read_time`|Time spent reading.|int|ms|
 |`reads`|The number of read requests.|int|count|
 |`weighted_io_time`|Weighted time spent doing I/Os.|int|ms|
@@ -190,36 +189,41 @@ All the following data collected will append a global tag named `host` by defaul
 
 
 
-### Extended Metrics {#extend}
+### Extended Metric {#extend}
 
 [:octicons-tag-24: Version-1.5.7](../datakit/changelog.md#cl-1.5.7)
 
-### Collecting Disk `await` on Linux Platforms {#linux-await}
+### Collecting disk `await` for Linux {#linux-await}
 
-By default, DataKit cannot collect the disk `await` metric. If you need to obtain this metric, you can collect it via a [custom Python collector](../developers/pythond.md).
+By default, DataKit cannot collect the disk `await` metric. If you need to obtain this metric, you can collect it by [Custom Collector with Python](../developers/pythond.md).
 
-Navigate to the DataKit installation directory, copy the `pythond.conf.sample` file and rename it to `pythond.conf`. Modify the corresponding configuration as follows:
+Preconditions
+
+- [Enable Pythond collector](../developers/pythond.md)
+
+Enter the DataKit installation directory, copy the `pythond.conf.sample` file and rename it to `pythond.conf`. Modify the corresponding configuration as follows:
 
 ```toml
+
 [[inputs.pythond]]
 
-    # Python collector name
+    # Python collector name 
     name = 'diskio'  # required
 
-    # Environment variables required to run the Python collector
+    # Environment variables 
     #envs = ['LD_LIBRARY_PATH=/path/to/lib:$LD_LIBRARY_PATH',]
 
-    # Absolute path to the Python collector executable (absolute path recommended)
+    # Python collector executable path (preferably use absolute path) 
     cmd = "python3" # required. python3 is recommended.
 
-    # Relative path to user scripts (specify folder; after filling this out, all modules and py files in the next level directory of this folder will be applied)
+    # Relative path of the user script
     dirs = ["diskio"]
 
 ```
 
-- Install the `sar` command, refer to [https://github.com/sysstat/sysstat#installation](https://github.com/sysstat/sysstat#installation){:target="\_blank"}
+- Install `sar` command. You can refer to [https://github.com/sysstat/sysstat#installation](https://github.com/sysstat/sysstat#installation){:target="_blank"}
 
-Ubuntu installation reference as follows:
+Install from Ubuntu
 
 ```shell
 sudo apt-get install sysstat
@@ -230,7 +234,7 @@ sudo vi /etc/default/sysstat
 sudo service sysstat restart
 ```
 
-After installation, you can execute the following command to check if it was successful.
+After installation, you can ran the following command to check if it was successful.
 
 ```shell
 sar -d -p 3 1
@@ -256,11 +260,12 @@ Average:          DEV       tps  rd_sec/s  wr_sec/s  avgrq-sz  avgqu-sz     awai
 Average:       dev8-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
 Average:     dev253-0      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
 Average:     dev253-1      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+
 ```
 
-### Collection Script {#py-script}
+### Collect Scripts {#py-script}
 
-Create a new file *<DataKit Directory>/python.d/diskio/diskio.py*, with the following content:
+Create file *<DataKit Dir\>/python.d/diskio/diskio.py* and add the following content:
 
 ```python
 import subprocess
@@ -346,31 +351,31 @@ class DiskIO(DataKitFramework):
                     if index == 0:
                         continue
                     stat_info[name] = stat[index]
-                stats.append(stat_info)
+                stats.append(stat_info) 
         return stats
+
 ```
 
-After saving the file, restart DataKit, and shortly afterward, you should see the corresponding metrics on the <<< custom_key.brand_name >>> platform.
+After saving the file, restart DataKit and you will be able to see the corresponding metrics on the <<<custom_key.brand_name>>> shortly.
 
-### Metrics List {#ext-metrics}
+### Metric List {#ext-metrics}
 
-The `sar` command can retrieve many useful [disk metrics](https://man7.org/linux/man-pages/man1/sar.1.html){:target="_blank"}. The above script only collects `await` and `svctm`. If you need to collect additional metrics, modify the script accordingly.
+The `sar` command can obtain many useful [disk metrics](https://man7.org/linux/man-pages/man1/sar.1.html){:target="_blank"}. The above script only collect `await` and `svctm`. If you need to collect additional metrics, you can modify the script accordingly.
 
-| Metric  | Description         | Type  | Unit |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---- |
-| `await` | The average time (in milliseconds) for I/O requests issued to the device to be served. This includes the time spent by the requests in queue and the time spent servicing them. | float | ms   |
-| `svctm` | The average service time (in milliseconds) for I/O requests that were issued to the device.                                                                                | float | ms   |
-
+| Metric  | Description                                                                                                                                                                      | Type  | Unit |
+| ----    | ----                                                                                                                                                                             | ----  | ---- |
+| `await` | The average time (in milliseconds) for I/O requests issued to the device to be served.  This includes the time spent by the requests in queue and the time spent servicing them. | float | ms   |
+| `svctm` | awaitThe average service time (in milliseconds) for I/O requests that were issued to the device.                                                                                 | float | ms   |
 
 ## FAQ {#faq}
 
-### What is the data source for `diskio` metrics on Linux hosts? {#linux-diskio}
+### What is the data source on Linux hosts {#linux-diskio}
 
-On Linux hosts, the metrics are obtained from the */proc/diskstats* file through parsing and calculation; each column's explanation can be referenced in the [documentation](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats){:target="_blank"};
+On Linux hosts, the metrics are parsed and calculated from the */proc/diskstats* file; an explanation of each column can be found in [docs](https://www.kernel.org/doc/Documentation/ABI/testing/procfs-diskstats){:target="_blank"};
 
-The correspondence between some data source columns and metrics is as follows:
+The corresponding relationship between some data source columns and indicators is as follows:
 
-| `diskstats` Field                           | `diskio` Metric                                                                                                  |
+| Fields                                     | `diskio` metrics                                                                                               |
 | ---                                        | ---                                                                                                            |
 | col04: reads completed successfully        | `reads`                                                                                                        |
 | col05: reads merged                        | `merged_reads`                                                                                                 |
@@ -384,7 +389,7 @@ The correspondence between some data source columns and metrics is as follows:
 | col13: time spent doing I/Os (ms)          | `io_time`                                                                                                      |
 | col14: weighted time spent doing I/Os (ms) | `weighted_io_time`                                                                                             |
 
-Note:
+Attention:
 
-1. Sector size (`sector_size`) is 512 bytes;
-1. Except for `read_bytes/sec` and `write_bytes/sec`, all others are incremental values.
+1. `sector_size` is 512 bytes.
+1. All are count but `read_bytes/sec` and `write_bytes/sec`.

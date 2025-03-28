@@ -102,6 +102,9 @@ GRANT replication client on *.*  to 'datakit'@'localhost';
       ## Set true to enable election
       election = true
     
+      ## Metric name in metric_exclude_list will not be collected, such as ["mysql_schema", "mysql_user_status"]
+      metric_exclude_list = [""]
+    
       [inputs.mysql.log]
         # #required, glob logfiles
         # files = ["/var/log/mysql/*.log"]

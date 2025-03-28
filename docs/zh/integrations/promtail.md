@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-启动一个 HTTP 端点监听并接收 Promtail 日志数据，上报到<<< custom_key.brand_name >>>。
+启动一个 HTTP 端点监听并接收 Promtail 日志数据，上报到<<<custom_key.brand_name>>>。
 
 ## 配置 {#config}
 

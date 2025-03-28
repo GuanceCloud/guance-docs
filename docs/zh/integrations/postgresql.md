@@ -16,7 +16,7 @@ monitor   :
 
 ---
 
-PostgreSQL 采集器可以从 PostgreSQL 实例中采集实例运行状态指标，并将指标采集到<<< custom_key.brand_name >>>，帮助监控分析 PostgreSQL 各种异常情况。
+PostgreSQL 采集器可以从 PostgreSQL 实例中采集实例运行状态指标，并将指标采集到<<<custom_key.brand_name>>>，帮助监控分析 PostgreSQL 各种异常情况。
 
 ## 配置 {#config}
 
@@ -71,7 +71,16 @@ grant SELECT ON pg_stat_database to datakit;
       #
       interval = "10s"
     
+      ## Set true to enable election
+      #
+      election = true
+    
+      ## Metric name in metric_exclude_list will not be collected.
+      #
+      metric_exclude_list = [""]
+    
       ## Relations config
+      #
       # The list of relations/tables can be specified to track per-relation metrics. To collect relation
       # relation_name refer to the name of a relation, either relation_name or relation_regex must be set.
       # relation_regex is a regex rule, only takes effect when relation_name is not set.
@@ -85,9 +94,6 @@ grant SELECT ON pg_stat_database to datakit;
       # relation_regex = "<TABLE_PATTERN>"
       # schemas = ["public"]
       # relkind = ["r", "p"]
-    
-      ## Set true to enable election
-      election = true
     
       ## Run a custom SQL query and collect corresponding metrics.
       #

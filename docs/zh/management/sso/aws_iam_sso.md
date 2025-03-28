@@ -46,7 +46,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 1. 定义该应用程序的显示名称，如 `guance`；
 2. 按需输入描述；
 3. 在 “IAM Identity Center 元数据”下，点击下载 IAM Identity Center SAML 元数据文件和证书；
-4. 在应用程序元数据，将“应用程序 ACS URL” 和“应用程序 SAML 受众”两个字段填写为：https://<<< custom_key.studio_main_site_auth >>>/login/sso；
+4. 在应用程序元数据，选择“上载应用程序 SMAL 元数据文件”，此处选择在<<< custom_key.brand_name >>>下载的[元数据文件](#for_idp_file)；
 5. 提交当前配置；
 6. 页面将提示应用程序添加成功。
 
@@ -68,10 +68,12 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 
 ### 附加角色属性
 
-1. 定义需要映射到角色的用户或组属性，如 `groups`；
-2. 定义映射到此字符串值的属性，如 `roles`；
+1. 定义需要映射到角色的用户或组属性，此处选用 `email`、`familyName` 两个字段；
+2. 定义映射到此字符串值的属性，分别为 `$(user:email}`、`$(user:familyName}`；
 3. 保存当前修改。
 4. 后续前往<<< custom_key.brand_name >>>配置[角色映射](./role_mapping.md)。
+
+<img src="../../img/aws_iam_sso-19.png" width="70%" >
 
 ## 4、分配用户和组访问权限
 
@@ -118,7 +120,7 @@ AWS IAM Identity Center（原 AWS SSO）是 AWS 提供的集中式身份管理�
 
 
 
-## 5、在<<< custom_key.brand_name >>>创建用户 SSO 身份提供商
+## 5、在<<< custom_key.brand_name >>>创建用户 SSO 身份提供商 {#for_idp_file}
 
 1. 登录进入<<< custom_key.brand_name >>>工作空间 > 管理 > 成员管理 > 用户 SSO；
 2. 选择 SAML；

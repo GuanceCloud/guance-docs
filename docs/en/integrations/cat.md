@@ -1,73 +1,70 @@
 ---
-title      : 'Dianping CAT'
-summary    : 'Meituan Dianping’s performance, capacity, and business Metrics monitoring system'
-__int_icon : 'icon/cat'
-tags       :
+title     : 'Dianping CAT'
+summary   : 'The performance, capacity, and business indicator monitoring system of Meituan Dianping'
+__int_icon      : 'icon/cat'
+tags:
+  - 'TRACING'
   - 'APM'
 dashboard :
-  - desc  : 'Cat Monitoring View'
+  - desc  : 'Cat dashboard'
     path  : 'dashboard/en/cat'
 monitor   :
-  - desc  : 'Not Available'
+  - desc  : 'N/A'
     path  : '-'
 ---
 
 [:octicons-tag-24: Version-1.9.0](../datakit/changelog.md#cl-1.9.0) ·
 [:octicons-beaker-24: Experimental](../datakit/index.md#experimental)
 
+---
+
 :fontawesome-brands-linux: :fontawesome-brands-windows: :fontawesome-brands-apple: :material-kubernetes: :material-docker:
 
 
 ---
 
-[Dianping-cat](https://github.com/dianping/cat){:target="_blank"} is briefly called Cat, an open-source distributed real-time monitoring system mainly used for monitoring system performance, capacity, and business Metrics. It is a monitoring system developed by Meituan Dianping, which has been open-sourced and widely applied.
+[Dianping-cat](https://github.com/dianping/cat){:target="_blank"}  Cat is an open-source distributed real-time monitoring system mainly used to monitor the performance, capacity, and business indicators of the system. It is a monitoring system developed by Meituan Dianping Company and is currently open source and widely used.
 
-Cat collects various system Metrics data such as CPU, memory, network, disk, etc., for real-time monitoring and analysis, helping developers quickly locate and resolve system issues. In addition, it provides some common monitoring functions such as alerts, statistics, log analysis, etc., making it convenient for developers to monitor and analyze the system.
+Cat collects various indicator data of the system, such as CPU, memory, network, disk, etc., for real-time monitoring and analysis, helping developers quickly locate and solve system problems.
+At the same time, it also provides some commonly used monitoring functions, such as alarms, statistics, log analysis, etc., to facilitate system monitoring and analysis by developers.
 
-## Data Types {#data}
+
+## Data Type {#data}
 
 Data transmission protocol:
 
-- plaintext : Plain text mode, Datakit currently does not support it.
-- native : Text format with specific symbols as delimiters, currently supported by Datakit.
+- Plaintext: Plain text mode, currently not supported by Datakit.
+
+- Native: Text form separated by specific symbols, currently supported by Datakit.
 
 
-Data classification:
+Data Classification：
 
-| Data Type Abbreviation | Type                | Description        | Is Current Version of Datakit Integrated? | Corresponding Data Type in <<< custom_key.brand_name >>>     |
-|--------|-------------------|:----------|:------------------:|:-----------------|
-| t      | transaction start | Transaction Start      |        true        | trace            |
-| T      | transaction end   | Transaction End      |        true        | trace            |
-| E      | event             | Event        |       false        | -                |
-| M      | metric            | Custom Metrics     |       false        | -                |
-| L      | trace             | Trace        |       false        | -                |
-| H      | heartbeat         | Heartbeat       |        true        | Measurements               |
-
-
-
-## Client Startup Mode {#cat-start}
-
-- Start cat server mode
-
-    - All data is in Datakit, the web page of cat has no data, so starting it doesn't make much sense, and the page shows errors: **CAT service [xxx.xxx] encountered an issue**
-    - Configure client behavior during startup
-    - The cat server will also send transaction data to dk, causing a large amount of garbage data on the <<< custom_key.brand_name >>> page
+| type | long type         | doc               | Datakit support | Corresponding data type |
+|------|-------------------|:------------------|:---------------:|:------------------------|
+| t    | transaction start | transaction start |      true       | trace                   |
+| T    | transaction end   | transaction end   |      true       | trace                   |
+| E    | event             | event             |      false      | -                       |
+| M    | metric            | metric            |      false      | -                       |
+| L    | trace             | trace             |      false      | -                       |
+| H    | heartbeat         | heartbeat         |      true       | metric                      |
 
 
-- Do not start cat server: Configure in Datakit
-
-    - `startTransactionTypes`: Used to define custom transaction types; specified transaction types will be automatically created by Cat. Multiple transaction types are separated by semicolons.
-    - `block`: Specifies a threshold for blocking monitoring in milliseconds. When the execution time of a transaction exceeds this threshold, Cat will record the blocking situation of that transaction.
-    - `routers`: Specifies the address and port number of the Cat server. Multiple server addresses and port numbers are separated by semicolons. Cat will automatically send data to these servers to ensure data reliability and disaster recovery.
-    - `sample`: Specifies the sampling rate, i.e., only part of the data will be sent to the Cat server. The value ranges from 0 to 1, where 1 means all data will be sent to the Cat server, and 0 means no data will be sent.
-    - `matchTransactionTypes`: Defines matching rules for custom transaction types, typically used in API service monitoring to specify which interfaces' performance needs to be monitored.
 
 
-Therefore: It is not recommended to start a cat_home (cat server) service. Relevant configurations can be done in client.xml, see below.
+## CAT start mode {#cat-start}
+
+The data is all in the Datakit, and the web page of cat no longer has data, so the significance of starting is not significant.
+
+Moreover, the cat server will also send transaction data to the dk, causing a large amount of garbage data on the <<<custom_key.brand_name>>> page. It is not recommended to start a cat_ Home (cat server) service.
+
+The corresponding configuration can be configured in client.xml, please refer to the following text.
+
+
 
 ## Configuration {#config}
 
-### Client Configuration {#client-config}
+client config：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -79,14 +76,13 @@ Therefore: It is not recommended to start a cat_home (cat server) service. Relev
 </config>
 ```
 
-> Note: The 9529 port in the configuration is the http port of Datakit. 2280 is the port opened by the cat collector.
-
-### Collector Configuration {#input-config}
+> Note: The 9529 port in the configuration is the HTTP port of the Datakit. 2280 is the 2280 port opened by the cat input.
 
 <!-- markdownlint-disable MD046 -->
-=== "HOST Installation"
 
-    Enter the `conf.d/cat` directory under the DataKit installation directory, copy `cat.conf.sample` and rename it to `cat.conf`. Example:
+=== "Host Installation"
+
+    Go to the `conf.d/cat` directory under the DataKit installation directory, copy `cat.conf.sample` and name it `cat.conf`. Examples are as follows:
     
     ```toml
         
@@ -94,7 +90,7 @@ Therefore: It is not recommended to start a cat_home (cat server) service. Relev
       ## tcp port
       tcp_port = "2280"
     
-      ##native or plaintext, datakit only supports native(NT1) !!!
+      ##native or plaintext, datakit only support native(NT1) !!!
       decode = "native"
     
       ## This is default cat-client Kvs configs.
@@ -113,63 +109,30 @@ Therefore: It is not recommended to start a cat_home (cat server) service. Relev
     
     ```
 
-    After configuring, [restart DataKit](datakit-service-how-to.md#manage-service).
-
 === "Kubernetes"
 
-    Currently, you can enable the collector via [ConfigMap injection](datakit-daemonset-deploy.md#configmap-setting).
-<!-- markdownlint-enable -->
+    The collector can now be turned on by [ConfigMap Injection Collector Configuration](../datakit/datakit-daemonset-deploy.md#configmap-setting).
+<!-- markdownlint-disable MD046 -->
 
 ---
 
-Notes for the configuration file:
+Notes on configuration files:
 
-1. `startTransactionTypes` `MatchTransactionTypes` `block` `routers` `sample` are data returned to the client side.
-1. `routers` is the IP or domain name of Datakit.
-1. `tcp_port` corresponds to the server IP address configured on the client side.
+1. `startTransactionTypes` `MatchTransactionTypes` `block` `routers` `sample`  is the data returned to the client end
+1. `routers` is Datakit IP or Domain
+1. `tcp_port`  client config `servers ip` address
 
 ---
 
-## <<< custom_key.brand_name >>> Tracing and Measurements {#trace-metric}
-
-### <<< custom_key.brand_name >>> Tracing {#guance-trace}
-
-Log in to <<< custom_key.brand_name >>>, click APM -> Trace to view trace details.
-
-<!-- markdownlint-disable MD033 -->
-<figure>
-  <img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/cat-gateway.png" style="height: 500px" alt="Trace Details Page">
-  <figcaption> Trace Details Page </figcaption>
-</figure>
-
-
-[//]: # (<img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/cat-gateway.png" height="500">  )
-
-### <<< custom_key.brand_name >>> Measurements {#guance-metric}
-
-First [download the dashboard](https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/DianPing-Cat%20Monitoring%20View.json){:target="_blank"}
-
-In <<< custom_key.brand_name >>>, click Use Cases -> Dashboard -> Create Dashboard. Import the downloaded JSON file.
-
-Display Effect:
-
-<!-- markdownlint-disable MD046 MD033 -->
-<figure >
-  <img src="https://df-storage-dev.oss-cn-hangzhou.aliyuncs.com/songlongqi/cat/metric.png" style="height: 500px" alt="Cat Monitoring View">
-  <figcaption> Cat Monitoring View </figcaption>
-</figure>
-
-## Data Field Explanation {#fields}
+## Metric {#metric}
 
 
 
-
-
-### Measurement Types {#metric}
+### `cat`
 
 
 
-- Tags for Measurements
+- Tags
 
 
 | Tag | Description |
@@ -183,10 +146,10 @@ Display Effect:
 |`runtime_user-dir`|The path of jar.|
 |`runtime_user-name`|User name.|
 
-- List of Measurements
+- Metrics
 
 
-| Measurement | Description | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`disk_free`|Free disk size.|float|B|
 |`disk_total`|Total disk size of data nodes.|float|B|
@@ -215,14 +178,11 @@ Display Effect:
 
 
 
+### ``
 
 
 
-### Tracing Field Explanation {#tracing}
-
-
-
-- Tags (String type)
+- Tags
 
 
 | Tag | Description |
@@ -245,10 +205,10 @@ Display Effect:
 |`status`|Span status|
 |`version`|Application version info. Available in Jaeger. Optional.|
 
-- Measurement list (non-String type, or long String type)
+- Metrics
 
 
-| Measurement | Description | Type | Unit |
+| Metric | Description | Type | Unit |
 | ---- |---- | :---:    | :----: |
 |`duration`|Duration of span|int|μs|
 |`message`|Origin content of span|string|-|
@@ -257,3 +217,5 @@ Display Effect:
 |`span_id`|Span id|string|-|
 |`start`|start time of span.|int|usec|
 |`trace_id`|Trace id|string|-|
+
+

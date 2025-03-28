@@ -5,7 +5,7 @@
 
 The data source for unresolved events aggregates event data using `df_fault_id` as a unique identifier and displays the most recent results. You can use this visualization tool to intuitively understand a series of key data points from event levels to baseline thresholds that trigger alerts. From event levels and durations to alert notifications, Monitors, and event content, along with historical trigger trend charts, these pieces of information collectively form a comprehensive view that helps you analyze and understand events from different angles, thus enabling more informed response decisions.
 
-![](../img/5.event_6.png)
+![](../img/unrecovered_events_list.png)
 
 ## Event Cards
 
