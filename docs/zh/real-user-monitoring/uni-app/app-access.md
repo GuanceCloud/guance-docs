@@ -30,14 +30,18 @@
 
 ```text
 |--datakit-uniapp-native-plugin
-	|-- Hbuilder_Example				// GCUniPlugin 插件的示例工程
-	    |-- nativeplugins          // 示例工程的本地插件文件夹
-	        |-- GCUniPlugin           // ⭐️ GCUniPlugin 原生插件包 ⭐️
-	            |-- android              // 存放 android 插件所需要的依赖库及资源文件
-	            |-- ios                  // 存放 ios 插件所需要的依赖库及资源文件
-	            |-- package.json         // 插件配置文件
-	|-- UniPlugin-Android		    // 插件开发 Android 主工程 
-	|-- UniPlugin-iOS					  // 插件开发 iOS 主工程 
+  |-- Hbuilder_Example		      // GCUniPlugin 插件的示例工程
+	  |-- nativeplugins		      // 示例工程的本地插件文件夹
+		  |-- GCUniPlugin         // ⭐️ GCUniPlugin 原生插件包 ⭐️
+		  |   |-- android         // 存放 android 插件所需要的依赖库及资源文件
+		  |   |-- ios             // 存放 ios 插件所需要的依赖库及资源文件
+		  |   |-- package.json    // 插件配置文件
+	  |-- GCPageMixin.js          // view 自动抓取使用 js, GCPageMixin.js 与 GCWatchRouter.js  同时配合使用
+	  |-- GCWatchRouter.js        // view 自动抓取使用 js, GCPageMixin.js 与 GCWatchRouter.js  同时配合使用
+	  |-- GCPageViewMixinOnly.js  // view 自动抓取使用 js，GCPageViewMixinOnly.js 单独使用
+	  |-- GCRequest.js            // resource 与 trace 使用 js，提供 APM 与网络请求监测能力
+  |-- UniPlugin-Android           // 插件开发 Android 主工程 
+  |-- UniPlugin-iOS               // 插件开发 iOS 主工程 
 ```
 
 将 **GCUniPlugin** 文件夹配置到您的 uni_app 项目的 “nativeplugins” 下，还需要在 manifest.json 文件的 “App原生插件配置” 项下点击“选择本地插件”，在列表中选择 GCUniPlugin 插件：
@@ -143,26 +147,19 @@
 ```javascript
 // 在 App.vue 配置
 <script>
-    var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
-    export default {
-        onLaunch: function() {
-            console.log('App Launch')
-            guanceModule.sdkConfig({
-                'datakitUrl': 'your datakitUrl',
-                'debug': true,
-                'env': 'common',
-                'globalContext': {
-                    'custom_key': 'custom value'
-                }
-            })
-        },
-        onShow: function() {
-            console.log('App Show')
-        },
-        onHide: function() {
-            console.log('App Hide')
-        }
-    }
+	var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
+	export default {
+		onLaunch: function() {
+			guanceModule.sdkConfig({
+				'datakitUrl': 'your datakitUrl',
+				'debug': true,
+				'env': 'common',
+				'globalContext': {
+					'custom_key': 'custom value'
+				}
+			})
+		}
+	}
 </script>
 <style>
 </style>
@@ -192,11 +189,11 @@
 ```javascript
 var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
 rum.setConfig({
-        'androidAppId':'YOUR_ANDROID_APP_ID',
-				'iOSAppId':'YOUR_IOS_APP_ID',
-				'errorMonitorType':'all', // or 'errorMonitorType':['battery','memory']
-				'deviceMonitorType':['cpu','memory']// or  'deviceMonitorType':'all'
-			})
+  'androidAppId':'YOUR_ANDROID_APP_ID',
+  'iOSAppId':'YOUR_IOS_APP_ID',
+  'errorMonitorType':'all', // or 'errorMonitorType':['battery','memory']
+  'deviceMonitorType':['cpu','memory']// or  'deviceMonitorType':'all'
+})
 ```
 
 | 参数名称                 | 参数类型     | 必须 | 说明                                                     |
@@ -245,8 +242,8 @@ logger.setConfig({
 ```javascript
 var tracer = uni.requireNativePlugin("GCUniPlugin-Tracer");
 tracer.setConfig({
-				'traceType': 'ddTrace'
-			})
+  'traceType': 'ddTrace'
+})
 ```
 
 | 参数名称              | 参数类型 | 必须 | 参数说明                                                     |
@@ -272,9 +269,9 @@ RUM 会绑定该 Action 可能触发的 Resource、Error、LongTask 事件。避
 
 ```javascript
 rum.startAction({
-					'actionName': 'action name',
-					'actionType': 'action type'
-				})
+  'actionName': 'action name',
+  'actionType': 'action type'
+})
 ```
 
 | 参数名称   | 参数类型 | 必须 | 参数说明         |
@@ -289,9 +286,9 @@ rum.startAction({
 
 ```javascript
 rum.addAction({
-					'actionName': 'action name',
-					'actionType': 'action type'
-				})
+  'actionName': 'action name',
+  'actionType': 'action type'
+})
 ```
 
 | 参数名称   | 参数类型 | 必须 | 参数说明         |
@@ -304,37 +301,57 @@ rum.addAction({
 
 * 自动采集
 
+**方式一:**
+只需要在设置 `App.vue` 与应用进入的第一个页面。可参考 SDK 包内 `GCUniPlugin` 插件的示例工程中 `Hbuilder_Example/App.vue`、 `Hbuilder_Example/pages/index/index.vue`
+
 ```javascript
-// 自动采集，可参考 SDK 包内 GCUniPlugin 插件的示例工程
 // step 1. 在 SDK 包内找到 GCWatchRouter.js、GCPageMixin.js 文件，添加到您的工程
 // step 2. 在 App.vue 添加 Router 监控，如下：
 <script>
-	import WatchRouter from '@/GCWatchRouter.js'
-	export default {
-    mixins:[WatchRouter],
-	}
+  import WatchRouter from '@/GCWatchRouter.js'
+  export default {
+	mixins:[WatchRouter], //<<< Notice
+  }
 </script>
 // step 3. 在应用显示的第一个 page 页面添加 pageMixin 如下
 <script>
-	import GCPageMixin from '../../GCPageMixin.js';
-	export default {
-		data() {
-			return {}
-		},
-		mixins:[GCPageMixin],
-	}
+  import GCPageMixin from '../../GCPageMixin.js';
+  export default {
+	data() {
+	  return {}
+	},
+	mixins:[GCPageMixin], //<<< Notice
+  }
+</script>
+```
+
+**方式二:**
+应用于需要监测的每个页面，需要与 `GCWatchRouter.js` 分开使用。可参考 SDK 包内 `GCUniPlugin` 插件的示例工程中 `Hbuilder_Example/pages/rum/index.vue`
+
+```javascript
+//在 SDK 包内找到 GCPageViewMixinOnly.js 添加到您的工程
+<script>
+import { rumViewMixin } from '../../GCPageViewMixinOnly.js';
+export default {
+	data() {
+		return {			
+		}
+	},
+	mixins:[rumViewMixin], //<<< Notice
+	methods: {}
+}
 </script>
 ```
 
 * 手动采集
 
-```dart
+```javascript
 // 手动采集 View 的生命周期
 // step 1（可选）
 rum.onCreateView({
-					'viewName': 'Current Page Name',
-					'loadTime': 100000000,
-				})
+  'viewName': 'Current Page Name',
+  'loadTime': 100000000,
+})
 // step 2
 rum.startView('Current Page Name')
 // step 3  
@@ -345,7 +362,7 @@ rum.stopView()
 
 创建页面时长记录
 
-| 参数名称 | 参数类型 | 必须 | 参数说明                     |
+| 字段 | 类型 | 必须 | 说明                      |
 | -------- | -------- | -------- | ---------------------------- |
 | viewName | string   | 是       | 页面名称                     |
 | loadTime | number   | 是       | 页面加载时间(纳秒级别时间戳) |
@@ -354,7 +371,7 @@ rum.stopView()
 
 进入页面
 
-| 参数名称 | 参数类型 | 必须 | 参数说明         |
+| 字段 | 类型 | 必须 | 说明          |
 | -------- | -------- | -------- | ---------------- |
 | viewName | string   | 是       | 页面名称         |
 | property | object   | 否       | 事件上下文(可选) |
@@ -363,7 +380,7 @@ rum.stopView()
 
 离开页面
 
-| 参数名称 | 参数类型 | 必须 | 参数说明         |
+| 字段 | 类型 | 必须 | 说明          |
 | -------- | -------- | -------- | ---------------- |
 | property | object   | 否       | 事件上下文(可选) |
 
@@ -376,37 +393,26 @@ rum.stopView()
 <script>
   var rum = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
   var appState = 'startup';
-	// 只能在App.vue里监听
-	export default {
-		onLaunch: function() {
-			console.log('App Launch')
-		},
-		onShow: function() {
-      appState = 'run'
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		},
-    onError:function(err){   
-			if (err instanceof Error){
-				console.log('Error name:', err.name);
-				console.log('Error message:', err.message);
-				console.log('Error stack:',err.stack);
-				rum.addError({
-					'message': err.message,
-					'stack': err.stack,
-          'state': appState,
-				})
-			}else if(err instanceof String){
-				console.log('Error:', err);
-				rum.addError({
-					'message': err,
-					'stack': err,
-          'state': appState,
-				})
-			}
-	}
+  // 只能在App.vue里监听
+  export default {
+	onShow: function() {
+	  appState = 'run'
+	},
+	onError:function(err){   
+	  if (err instanceof Error){
+		rum.addError({
+		  'message': err.message,
+		  'stack': err.stack,
+		  'state': appState,
+		})
+	  }else if(err instanceof String){
+		rum.addError({
+		  'message': err,
+		  'stack': err,
+		  'state': appState,
+		})
+	  }
+  }
 </script>
 ```
 
@@ -415,15 +421,15 @@ rum.stopView()
 ```javascript
 // 手动添加
 rum.addError({
-					'message': 'Error message',
-					'stack': 'Error stack',
-				})
+  'message': 'Error message',
+  'stack': 'Error stack',
+})
 ```
 #### API - addError
 
 添加 Error 事件
 
-| 参数名称 | 参数类型 | 必须 | 参数说明                                   |
+| 字段 | 类型 | 必须 | 说明                                   |
 | :------- | -------- | -------- | ------------------------------------------ |
 | message  | string   | 是       | 错误信息                                   |
 | stack    | string   | 是       | 堆栈信息                                   |
@@ -431,138 +437,56 @@ rum.addError({
 | type | string | 否 | 错误类型，默认 `uniapp_crash` |
 | property | object   | 否       | 事件上下文(可选)                           |
 
-### Resource
+### Resource {#resource}
+* 自动采集
 
-SDK 提供了一个示例方法 `gc.request`。该方法封装自 `uni.request` 的网络请求方法，您可以直接将 `uni.request` 方法替换为 `gc.request` 进行网络请求。
+SDK 提供调用方法 `gc.request`，继承 `uni.request` 的网络请求方法方式，可替换 `uni.request` 进行使用。
 
-**额外参数：`filterPlatform`**
-
-* **功能**：`filterPlatform` 参数用于指定哪些平台的资源数据不应被采集。
-* **使用场景**：当启用 `enableNativeUserResource` 功能时，uniapp 在 iOS 端会自动采集通过系统 API 发起的网络请求数据。为了避免数据重复采集，您可以在使用 `gc.request` 时，通过添加 `filterPlatform: ["ios"]`参数来屏蔽在 iOS 平台上的手动数据采集。
-
-**`gc.request` 实现**
-
-```javascript
-// GCRequest.js
-var rum = uni.requireNativePlugin("GCUniPlugin-RUM");
-var tracer = uni.requireNativePlugin("GCUniPlugin-Tracer");
-// 获取平台信息
-const platform = uni.getSystemInfoSync().platform;
-export default {
-    getUUID() {
-    	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    		var r = Math.random() * 16 | 0,
-    			v = c == 'x' ? r : (r & 0x3 | 0x8);
-    		return v.toString(16);
-    	});
-    },
-    isEmpty(value) {
-	    return value === null || value === undefined;
-	},
-	/// 通过 filterPlatform 参数进行平台过滤，当开启 `enableNativeUserResource` 时，
-	//  由于 uniapp 的网络请求在 iOS 端是使用系统 API 实现的，iOS 所有 resource 数据能够一并采集，
-	/// 此时请屏蔽 iOS 端 uniapp 中手动采集，以防止数据重复采集。
-	/// 例:["ios"], iOS 端设置不进行 trace 追踪与 RUM 采集。
-    request(options){ 
-		let key = this.getUUID();
-		var filter;
-		if(this.isEmpty(options.filterPlatform)){
-			filter = false
-		}else{
-	        filter = options.filterPlatform.includes(platform);
-		}
-		var traceHeader = {}
-		if(filter == false){
-		  // trace 关联 RUM
-		  var traceHeader = tracer.getTraceHeader({
-		  	'key': key,
-		  	'url': options.url,
-		  })
-		}
-		traceHeader = Object.assign({},traceHeader, options.header)
-		rum.startResource({
-			'key':key,
-		});
-		var responseHeader;
-		var responseBody;
-		var resourceStatus;
-		return uni.request({
-			url: options.url,
-			method: options.method,
-			header: traceHeader,
-			data:options.data,
-			timeout:options.timeout,
-			success: (res) => {
-				if(!filter){
-				  responseHeader = res.header;
-				  responseBody = res.data;
-				  resourceStatus = res.statusCode;
-				}
-				if(this.isEmpty(options.success)){
-					options.success(res);
-				}
-			},
-			fail:(err) => {
-				if(!filter){
-				  responseBody = err.errMsg;
-				}
-				if(this.isEmpty(options.fail)){
-					options.fail(err);
-				}
-			},
-			complete() {
-				if(!filter){
-				  rum.stopResource({
-				  	'key':key,
-				  })
-				  rum.addResource({
-				  	'key': key,
-				  	'content': {
-				  		'url': options.url,
-				  		'httpMethod': options.method,
-				  		'requestHeader': traceHeader,
-				  		'responseHeader': responseHeader,
-				  		'responseBody': responseBody,
-				  		'resourceStatus': resourceStatus,
-				  	}
-				  })
-				}
-				if(this.isEmpty(options.complete)){
-					options.complete();
-				}
-			}
-		});
-	}
-} 
+**替换方式**
+```diff
++ import gc from './GCRequest.js'; 
+- uni.request({
++ gc.request({
+  //...
+});
 ```
 
 **使用示例**
-
 ```javascript
+//在 SDK 包内找到 GCRequest.js 添加到您的工程
 import gc from './GCRequest.js';
 gc.request({
-				url: requestUrl,
-				method: method,
-				header: header,
-				filterPlatform:["ios"],
-				timeout:30000,
-				success(res)  {
-					console.log('success:' + JSON.stringify(res))
-				},
-				fail(err) {
-					console.log('fail:' + JSON.stringify(err))
-				},
-				complete() {
-					console.log('complete:' + JSON.stringify(err))
-				}
-			});
+  url: requestUrl,
+  method: method,
+  header: header,
+  filterPlatform:["ios"], 
+  timeout:30000,
+  success(res)  {
+	console.log('success:' + JSON.stringify(res))
+  },
+  fail(err) {
+	console.log('fail:' + JSON.stringify(err))
+  },
+  complete() {
+	console.log('complete:' + JSON.stringify(err))
+  }
+});
 ```
+
+| 额外字段 | 类型 | 必须 | 说明                                   |
+| :------- | -------- | -------- | ------------------------------------------ |
+| filterPlatform    |  array  | 否       | 当启用 `enableNativeUserResource` 功能时，uniapp 在 iOS 端会自动采集通过系统 API 发起的网络请求数据。为了避免数据重复采集，您可以在使用 `gc.request` 时，通过添加 `filterPlatform: ["ios"]`参数来屏蔽在 iOS 平台上的手动数据采集。                                 |
+
+* 手动采集
+
+通过手动调用`startResource`,`stopResource`,`addResource`自行实现, 可以参考 [GCRequest.js](https://github.com/GuanceCloud/datakit-uniapp-native-plugin/blob/master/Hbuilder_Example/GCRequest.js) 的实现方式
+
 
 #### API - startResource
 
 HTTP 请求开始
 
-| 参数名称 | 参数类型 | 必须 | 参数说明         |
+| 字段 | 类型 | 必须 | 说明          |
 | :------- | -------- | -------- | ---------------- |
 | key      | string   | 是       | 请求唯一标识     |
 | property | object   | 否       | 事件上下文(可选) |
@@ -571,7 +495,7 @@ HTTP 请求开始
 
 HTTP 请求结束
 
-| 参数名称 | 参数类型 | 必须 | 参数说明         |
+| 字段 | 类型 | 必须 | 说明          |
 | :------- | -------- | -------- | ---------------- |
 | key      | string   | 是       | 请求唯一标识     |
 | property | object   | 否       | 事件上下文(可选) |
@@ -599,14 +523,14 @@ HTTP 请求结束
 ```javascript
 var logger = uni.requireNativePlugin("GCUniPlugin-Logger");
 logger.logging({
-					'content':`Log content`,
-					'status':status
-				})
+  'content':`Log content`,
+  'status':status
+})
 ```
 
 ### API - logging
 
-| 参数名称 | 参数类型 | 必须 | 参数说明                 |
+| 字段 | 类型 | 必须 | 说明                  |
 | :------- | -------- | -------- | ------------------------ |
 | content  | string   | 是       | 日志内容，可为json字符串 |
 | status   | string   | 是       | 日志等级                 |
@@ -624,31 +548,37 @@ logger.logging({
 
 ## Tracer 网络链路追踪
 
+* 自动采集
+
+通过 `gc.request`进行请求调用方式进行请求，会自行进行添加 Propagation Header，参考 [Resource](#resource)
+
+* 手动采集
+
 ```javascript
 //示例使用 uni.request 进行网络请求
 var tracer = uni.requireNativePlugin("GCUniPlugin-Tracer");
-let key = Utils.getUUID();//可参考 example utils.js
+let key = Utils.getUUID();//可参考 Hbuilder_Example/utils.js
 var header = tracer.getTraceHeader({
-					'key': key,
-					'url': requestUrl,
-				})
+	  'key': key,
+	  'url': requestUrl,
+})
 uni.request({
-          url: requestUrl,
-          header: header,
-          success() {
-            console.log('success');
-          },
-          complete() {
-            console.log('complete');
-          }
-        });
+		url: requestUrl,
+		header: header,
+		success() {
+
+		},
+		complete() {
+
+		}
+});
 ```
 
 #### API - getTraceHeader
 
 获取 trace 需要添加的请求头，获取后添加到 HTTP 请求的请求头中。
 
-| 参数名称 | 参数类型 | 必须 | 参数说明     |
+| 字段 | 类型 | 必须 | 说明      |
 | :------- | -------- | -------- | ------------ |
 | key      | string   | 是       | 请求唯一标识 |
 | url      | string   | 是       | 请求 URL     |
@@ -661,13 +591,13 @@ uni.request({
 var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
 
 guanceModule.bindRUMUserData({
-				'userId':'Test userId',
-				'userName':'Test name',
-				'userEmail':'test@123.com',
-				'extra':{
-					'age':'20'
-				}
-			})
+  'userId':'Test userId',
+  'userName':'Test name',
+  'userEmail':'test@123.com',
+  'extra':{
+	'age':'20'
+  }
+})
   
 guanceModule.unbindRUMUserData()
 ```
@@ -676,7 +606,7 @@ guanceModule.unbindRUMUserData()
 
 绑定用户信息：
 
-| 参数名称  | 参数类型 | 必须 | 参数说明       |
+| 字段 | 类型 | 必须 | 说明        |
 | :-------- | -------- | -------- | -------------- |
 | userId    | string   | 是       | 用户Id         |
 | userName  | string   | 否       | 用户名称       |
@@ -720,26 +650,31 @@ guanceModule.flushSyncData()
 
 当配置 `guanceModule.sdkConfig` 为 `false` 时，需要主动触发数据同步方法，进行数据同步。
 
+## WebView 数据监测
+
+WebView 数据监测，需要在 WebView 访问页面集成 [Web 监测 SDK](../web/app-access.md)
+> Android 仅支持离线打包与 uni 小程序
+
 ## 添加自定义标签 {#user-global-context}
 
 ```javascript
 var guanceModule = uni.requireNativePlugin("GCUniPlugin-MobileAgent");
 ftMobileSDK.appendGlobalContext({
-				  'ft_global_key':'ft_global_value'
-			  })
+		  'ft_global_key':'ft_global_value'
+})
 ftMobileSDK.appendRUMGlobalContext({
-				  'ft_global_rum_key':'ft_global_rum_value'
-  			  })
+		  'ft_global_rum_key':'ft_global_rum_value'
+})
 ftMobileSDK.appendLogGlobalContext({
-				  'ft_global_log_key':'ft_global_log_value'
-		     })  			  
+		  'ft_global_log_key':'ft_global_log_value'
+})  			  
 ```
 
 ### API - appendGlobalContext
 
 添加自定义全局参数。作用于 RUM、Log 数据
 
-| 参数名称 | 参数类型 | 必须 | 参数说明       |
+| 字段 | 类型 | 必须 | 说明        |
 | :------- | -------- | ---- | -------------- |
 | 无       | object   | 是   | 自定义全局参数 |
 
@@ -747,7 +682,7 @@ ftMobileSDK.appendLogGlobalContext({
 
 添加自定义 RUM 全局参数。作用于 RUM 数据
 
-| 参数名称 | 参数类型 | 必须 | 参数说明            |
+| 字段 | 类型 | 必须 | 说明             |
 | :------- | -------- | ---- | ------------------- |
 | 无       | object   | 是   | 自定义全局 RUM 参数 |
 
@@ -755,7 +690,7 @@ ftMobileSDK.appendLogGlobalContext({
 
 添加自定义 RUM、Log 全局参数。作用于 Log 数据
 
-| 参数名称 | 参数类型 | 必须 | 参数说明            |
+| 字段 | 类型 | 必须 | 说明             |
 | :------- | -------- | ---- | ------------------- |
 | 无       | object   | 是   | 自定义全局 Log 参数 |
 
