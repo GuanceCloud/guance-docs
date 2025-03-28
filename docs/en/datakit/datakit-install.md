@@ -21,13 +21,13 @@ Log in to the workspace, click "Integration" on the left and select "Datakit" at
     - `bash`
     
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)" 
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)" 
     ```
     
     - `ash`
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> ash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> ash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
     After the installation is completed, you will see a prompt that the installation is successful at the terminal.
@@ -38,10 +38,10 @@ Log in to the workspace, click "Integration" on the left and select "Datakit" at
     
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -52,18 +52,18 @@ You can specify the environment variable `DK_LITE` to install DataKit lite ([:oc
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_LITE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_LITE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_LITE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -94,18 +94,18 @@ You can specify the environment variable `DK_ELINKER` to install DataKit ELinker
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_ELINKER=1 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_ELINKER=1 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_ELINKER="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -129,17 +129,17 @@ DataKit ELinker only contains collectors as below:
 We can install specific DataKit version, for example 1.2.3:
 
 ```shell
-DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install-1.2.3.sh)"
+DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install-1.2.3.sh)"
 ```
 
 And the same as Windows:
 
 ```powershell
 Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-$env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+$env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install-1.2.3.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install-1.2.3.ps1 -destination .install.ps1;
 powershell ./.install.ps1;
 ```
 
@@ -150,18 +150,18 @@ If you need to define some DataKit configuration during the installation phase, 
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_NAMESPACE=<namespace> bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_NAMESPACE=<namespace> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_NAMESPACE="<namespace>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 ---
@@ -329,19 +329,19 @@ The environment variables supported by the installation script are as follows (s
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_DATAWAY_ENABLE_SINKER=on DK_SINKER_GLOBAL_CUSTOMER_KEYS=key1,key2 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_DATAWAY_ENABLE_SINKER=on DK_SINKER_GLOBAL_CUSTOMER_KEYS=key1,key2 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_DATAWAY_ENABLE_SINKER="on";
     $env:DK_SINKER_GLOBAL_CUSTOMER_KEYS="key1,key2";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
