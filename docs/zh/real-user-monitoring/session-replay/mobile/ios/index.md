@@ -48,7 +48,7 @@
 | touchPrivacy        | FTTouchPrivacyLevel        | 否   | 会话重放中触控屏蔽的可用隐私级别。默认`FTTouchPrivacyLevelHide`。<br>`FTTouchPrivacyLevelShow`: 显示所有用户触控<br>`FTTouchPrivacyLevelHide`:屏蔽所有用户触控<br>**设置后覆盖 `privacy` 的配置**<br> SDK 1.6.1 以上版本支持这个参数 |
 | textAndInputPrivacy | FTTextAndInputPrivacyLevel | 否   | 会话重放中文本和输入屏蔽的可用隐私级别。默认 `FTTextAndInputPrivacyLevelMaskAll`<br>`FTTextAndInputPrivacyLevelMaskSensitiveInputs`:显示除敏感输入外的所有文本，例如密码输入<br>`FTTextAndInputPrivacyLevelMaskAllInputs`:屏蔽所有输入字段，例如 `UITextField`、`UISwitch`、`UISlider` 等<br>`FTTextAndInputPrivacyLevelMaskAll`:屏蔽所有文本和输入<br>**设置后覆盖 `privacy` 的配置**<br/>SDK 1.6.1 以上版本支持这个参数 |
 
-## 隐私覆盖
+## 隐私覆盖 {#privacy_override}
 
 > SDK 1.6.1 以上版本支持
 
@@ -65,7 +65,7 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 * 隐私覆盖会影响视图及其子视图。这意味着，即使覆盖应用于可能不会立即生效的视图（例如，将图片覆盖应用于文本输入），覆盖仍会应用于所有子视图。
 * **隐私覆盖优先级：子视图 > 父视图  > 全局设置**
 
-### 文本和输入覆盖
+### 文本和输入覆盖 {#text_and_input_override}
 
 要覆盖文本和输入隐私，请在视图实例上使用 `sessionReplayOverrides.textAndInputPrivacy` 将其设为 `FTTextAndInputPrivacyLevelOverride` 枚举中的某个值。若需移除现有覆盖规则，直接将该属性设为 `FTTextAndInputPrivacyLevelOverrideNone` 即可。
 
@@ -112,7 +112,7 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
        myView.sessionReplayPrivacyOverrides.touchPrivacy = .none;
     ```
 
-### 隐藏元素覆盖
+### 隐藏元素覆盖 {#privacy_hidden}
 
 对于需要完全隐藏的敏感元素，请使用 `sessionReplayPrivacyOverrides.hide` 进行设置。
 

@@ -44,7 +44,7 @@ implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-session-replay-mate
 | setTouchPrivacy | TouchPrivacy | 否 |`TouchPrivacy.SHOW` 不进行触控数据屏蔽, `TouchPrivacy.HIDE` 屏蔽触控数据。**设置后覆盖 `setPrivacy` 的配置** `ft-session-replay` 0.1.1-alpha01 以上版本支持|
 | addExtensionSupport | ExtensionSupport | 否 |添加额外自定义支持。使用 `ft-session-replay-material` 可以使用 `MaterialExtensionSupport` 提供额外 Material 组件采集支持  |
 
-## 隐私覆盖
+## 隐私覆盖 {#privacy_override}
 
 > ft-session-replay 0.1.1-alpha01 以上版本支持
 
@@ -61,7 +61,7 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 * 隐私覆盖会影响视图及其子视图。这意味着，即使覆盖应用于可能不会立即生效的视图（例如，将图片覆盖应用于文本输入），覆盖仍会应用于所有子视图。
 * **隐私覆盖优先级：子视图 > 父视图  > 全局设置**
 
-### 文本和输入覆盖
+### 文本和输入覆盖 {#text_and_input_override}
 
 要覆盖文本和输入隐私，请在视图实例上使用 `PrivacyOverrideExtensions.setSessionReplayTextAndInputPrivacy(View,TextAndInputPrivacy)` 将其设为 `TextAndInputPrivacy` 枚举中的某个值。若需移除现有覆盖规则，直接将该属性设为 `null` 即可。
 
@@ -109,7 +109,7 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 	```
 
 
-### 隐藏元素覆盖
+### 隐藏元素覆盖 {#privacy_hidden}
 
 对于需要完全隐藏的敏感元素，请使用 `PrivacyOverrideExtensions.setSessionReplayHidden(View,Boolean)` 进行设置。
 
