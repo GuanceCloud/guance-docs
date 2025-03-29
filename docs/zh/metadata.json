@@ -95,9 +95,9 @@
     "last_translated": "2025-03-10T03:49:06.256441"
   },
   "real-user-monitoring/web/app-access.md": {
-    "hash": "c07fdfb6f353e44de08a62a4bece791ce30640d83e0f2a0c1d43b0a5e1b10402",
-    "last_translated": "2025-03-28T14:19:58.987032",
-    "translation_time": 134.44
+    "hash": "12d9f55b88b643282ca90daddedc800fc0cc7ee8ae81c45e1123bdc972a37768",
+    "last_translated": "2025-03-29T20:40:41.250525",
+    "translation_time": 103.9
   },
   "deployment/Kubernetes-HA-Guide.md": {
     "hash": "ba0479d57bd44f5414f50d47aabca374b67d8aa7c6099c6d507febc67d542601",
@@ -2053,9 +2053,9 @@
     "last_translated": "2025-03-08T04:33:40.339425"
   },
   "real-user-monitoring/session-replay/mobile/ios/index.md": {
-    "hash": "79e637f0602c5f47c0781ae69a87603b2718e80b9e556c1dae7ea40c5fbf0244",
-    "last_translated": "2025-03-28T14:35:03.844195",
-    "translation_time": 119.19
+    "hash": "62aca0f73cda3a119b03eb446a592adc9dd596209edb6425de56b06a515e417c",
+    "last_translated": "2025-03-29T20:40:11.506135",
+    "translation_time": 74.15
   },
   "open-api/self-built-checker/enable.md": {
     "hash": "c0faad34f367dfb3c07096163f35ab532b0add873efe2698f47de58e0c68f4e4",
@@ -2850,9 +2850,9 @@
     "last_translated": "2025-03-08T09:00:06.205836"
   },
   "real-user-monitoring/android/app-access.md": {
-    "hash": "2d2bdf0f826223bc9836ee5198a750c8b824ac56dd20ad7f4c54ae4dfe494fb4",
-    "last_translated": "2025-03-28T14:44:03.908435",
-    "translation_time": 847.77
+    "hash": "aa8da429e92677fe4fd3c8eeb3072da5bf74d813721a6ab15adc99987f80ad75",
+    "last_translated": "2025-03-29T20:51:29.870935",
+    "translation_time": 752.51
   },
   "real-user-monitoring/web/sampling.md": {
     "hash": "50d5df21e11f6db759ceb4307c8fed535aae7afdbeeae20bd368043918d59e3a",
@@ -6516,9 +6516,9 @@
     "translation_time": 42.37
   },
   "real-user-monitoring/uni-app/app-access.md": {
-    "hash": "7f66b63b5cd9907f2f74c903497fadcfe6681700f78d50d130652ea9a6d9712f",
-    "last_translated": "2025-03-23T20:54:35.776341",
-    "translation_time": 419.6
+    "hash": "7a0a119dc0668cc7a7b77a4b62e912c91bbb7d4dcb5237d67aa46f703fc4fb02",
+    "last_translated": "2025-03-29T20:44:42.287981",
+    "translation_time": 344.93
   },
   "best-practices/insight/pythond.md": {
     "hash": "2077022bd08eee072dbdd7e376bb5438811941e83fa6dc4bae5a8c4537e6b814",
@@ -6665,9 +6665,9 @@
     "last_translated": "2025-03-10T01:34:20.049961"
   },
   "real-user-monitoring/session-replay/mobile/android/index.md": {
-    "hash": "8e7c4cfb436ed9b5a36c83c3079389e5a5cbb3476ebcd313562d3c84806a21ee",
-    "last_translated": "2025-03-28T14:39:10.918833",
-    "translation_time": 48.5
+    "hash": "efa42d18afd74d251413c9bab667064801eee8739898e7f340fd3c7be5f7ed6b",
+    "last_translated": "2025-03-29T20:40:03.904992",
+    "translation_time": 66.56
   },
   "integrations/newrelic.md": {
     "hash": "7596b8eee1da4fc2e3190fc2da2021573dd7d1c192b3b4af528f2e237082bc95",
