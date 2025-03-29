@@ -310,7 +310,7 @@ rum.addAction({
 <script>
   import WatchRouter from '@/GCWatchRouter.js'
   export default {
-	mixins:[WatchRouter], //<<< Notice
+	mixins:[WatchRouter], //<--- Notice
   }
 </script>
 // step 3. 在应用显示的第一个 page 页面添加 pageMixin 如下
@@ -320,7 +320,7 @@ rum.addAction({
 	data() {
 	  return {}
 	},
-	mixins:[GCPageMixin], //<<< Notice
+	mixins:[GCPageMixin], //<--- Notice
   }
 </script>
 ```
@@ -337,7 +337,7 @@ export default {
 		return {			
 		}
 	},
-	mixins:[rumViewMixin], //<<< Notice
+	mixins:[rumViewMixin], //<--- Notice
 	methods: {}
 }
 </script>
