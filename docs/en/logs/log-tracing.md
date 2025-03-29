@@ -5,22 +5,27 @@ The log error tracking Explorer is designed to present all error log data collec
 
 ## Error List
 
-In the error tracking list, you can inspect error information within a specific time range. You can also use the quick filter on the left to filter data according to business needs, or enter filtering conditions in the search bar to quickly locate the required data.
+In the error tracking list, you can review error information within a specific time range. You can also use the quick filter on the left to screen data according to your business needs, or enter filtering conditions in the search bar to quickly locate the required data.
 
 <img src="../img/log-tracing-1.png" width="80%" >
 
-> For more related operations about the list, refer to [Log List](./manag-explorer.md).
+> For more related operations on the list, refer to [Log List](./manag-explorer.md).
 
 ## Error Details
 
-Click on a log entry to enter the details page. You can:
+Click on a log entry to access the details page. You can:
 
-- View detailed information related to this `error` data, such as its source and involved services;
-- Use the error distribution chart to visually understand changes in error trends;
+- View detailed information related to this `error` data, such as its source and associated services;
+- Use the error distribution chart to intuitively understand changes in error trends;
 - View extended field information associated with this data entry;
-- Browse context logs related to this data entry to obtain more background information.
+- Browse context logs related to this data for more background information.
 
 <img src="../img/log-tracing.png" width="80%" >
+
+### AI Error Analysis
+
+> Guance provides the ability to parse error logs with one click. For more details, refer to [Large Model Automatic Extraction](./explorer-details.md#ai).
+
 
 ## Further Reading
 

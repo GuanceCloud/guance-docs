@@ -550,7 +550,7 @@ spec:
     - /bin/bash
     - -c
     - --
-    image: pubrepo.<<<custom_key.brand_domain>>>/base/ubuntu:18.04
+    image: pubrepo.<<<custom_key.brand_main_domain>>>/base/ubuntu:18.04
     imagePullPolicy: IfNotPresent
     name: demo
     volumeMounts:

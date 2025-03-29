@@ -151,7 +151,7 @@
 
     ``` shell
       $ cat dockerfile
-      from pubrepo.<<<custom_key.brand_domain>>>/base/ubuntu:18.04 as base
+      from pubrepo.<<<custom_key.brand_main_domain>>>/base/ubuntu:18.04 as base
       run mkdir -p /opt
       run echo 'i=0; \n\
       while true; \n\
@@ -202,7 +202,7 @@
       spec:
        containers:
        - name: log-output
-        image: pubrepo.<<<custom_key.brand_domain>>>/base/ubuntu:18.04
+        image: pubrepo.<<<custom_key.brand_main_domain>>>/base/ubuntu:18.04
         args:
         - /bin/sh
         - -c
@@ -255,7 +255,7 @@ $ kubectl annotate pods my-pod datakit/logs="[{\"disable\":false,\"source\":\"lo
 
     ``` shell
       $ cat dockerfile
-      from pubrepo.<<<custom_key.brand_domain>>>/base/ubuntu:18.04 as base
+      from pubrepo.<<<custom_key.brand_main_domain>>>/base/ubuntu:18.04 as base
       run mkdir -p /opt
       run echo 'i=0; \n\
       while true; \n\
@@ -316,7 +316,7 @@ $ kubectl annotate pods my-pod datakit/logs="[{\"disable\":false,\"source\":\"lo
       spec:
        containers:
        - name: logging-demo
-        image: pubrepo.<<<custom_key.brand_domain>>>/base/ubuntu:18.04
+        image: pubrepo.<<<custom_key.brand_main_domain>>>/base/ubuntu:18.04
         args:
         - /bin/sh
         - -c
@@ -975,8 +975,8 @@ Datakit 需要挂载 `/mnt/container_logs` hostpath 才能使得正常采集，�
     
     现支持以下 4 个字段规则，这 4 个字段都是基础设施的属性字段：
     
-    - image : `image:pubrepo.<<<custom_key.brand_domain>>>/datakit/datakit:1.18.0`
-    - image_name : `image_name:pubrepo.<<<custom_key.brand_domain>>>/datakit/datakit`
+    - image : `image:pubrepo.<<<custom_key.brand_main_domain>>>/datakit/datakit:1.18.0`
+    - image_name : `image_name:pubrepo.<<<custom_key.brand_main_domain>>>/datakit/datakit`
     - image_short_name : `image_short_name:datakit`
     - namespace : `namespace:datakit-ns`
     
@@ -1011,7 +1011,7 @@ Datakit 需要挂载 `/mnt/container_logs` hostpath 才能使得正常采集，�
     
     - a：`hello/hello-http:latest`
     - b：`world/world-http:latest`
-    - c：`pubrepo.<<<custom_key.brand_domain>>>/datakit/datakit:1.2.0`
+    - c：`pubrepo.<<<custom_key.brand_main_domain>>>/datakit/datakit:1.2.0`
     
     如果只希望采集 Pod a 的日志，那么配置 ENV_INPUT_CONTAINER_CONTAINER_INCLUDE_LOG 即可：
     

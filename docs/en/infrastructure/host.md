@@ -1,39 +1,39 @@
-# HOST
+# HOSTS
 ---
 
-After completing the HOST data collection, it will be automatically synchronized to <<< custom_key.brand_name >>> Management Console. In the HOST Explorer, you can view all collected HOST data.
+After the HOST data collection is completed, it is automatically synchronized to the <<< custom_key.brand_name >>> management console. In the HOST Explorer, you can view all collected HOST data.
 
-The console provides two professional analysis views (selectable via the view tab in the top left corner):
+The console provides two professional analysis views (select through the view tab in the top-left corner):
 
-- **HOST Object List**: Displays metrics data for all HOSTs within the current workspace over the past 2 days, including HOST name/tags, CPU usage, memory usage, and CPU load, helping users monitor HOST operating status.
+- **HOST Object List**: Displays HOST Metrics data from the last 2 days within the current workspace, including HOST name/tags, CPU usage, memory usage, and CPU load, helping users monitor HOST operational status.
 
-- **HOST Topology Diagram**: Visualizes dynamic topology structures of HOST clusters, providing analysis dimensions such as operating system type, DataKit version, cloud provider, and deployment region. It supports cross-level topology drilling to facilitate HOST relationship analysis.
+- **HOST Topology Map**: Visually presents the dynamic topology structure of the HOST cluster, providing analysis dimensions such as operating system type, DataKit version, cloud vendor, and deployment region, with support for cross-level topology drilling, facilitating HOST relationship analysis.
 
-## Manage HOST
+## Manage HOSTS
 
 ### Data Sorting
 
-In the HOST object list, you can sort metric data in ascending or descending order:
+In the HOST object list, you can sort Metric data in ascending or descending order:
 
 <img src="../img/host-queue.png" width="60%" >
 
-**Note**: Due to delays in data storage, these metrics are not updated in real-time. The system calculates the average value of the last 15 minutes every 5 minutes, so there may be some deviation in the final data.
+**Note**: Due to data warehousing delays, these Metrics are not updated in real-time. The system calculates the average value every 5 minutes for the last 15 minutes, so there may be some deviation in the final data.
 
 
-### Display Online HOSTs Only {#online}
+### Display Online HOSTS Only {#online}
 
-Clicking the "Display Online HOSTs Only" button quickly lists HOSTs that have reported data in the last 10 minutes.
+Clicking the "Display Online HOSTS Only" button quickly lists HOSTS that have reported data within the last 10 minutes.
 
 ???+ warning "Note"
 
-    - If HOST data is interrupted for more than 10 minutes, CPU usage, MEM usage, and CPU load will be displayed as `-`;
-    - If a HOST has no data reporting for more than 24 hours, it will be removed from the list.
+    - If HOST data reporting breaks for more than 10 minutes, CPU usage, MEM usage, and CPU load will display as `-`;
+    - If a HOST has not reported data for over 24 hours, it will be removed from the list.
 
 <img src="../img/host-status.png" width="60%" >
 
 ### Time Widget {#time}
 
-In the upper right corner of the Explorer, you can select HOST data for different time ranges, including:
+In the upper-right corner of the Explorer, you can select HOST data for different time ranges, including:
 
 - Last 2 hours
 - Last 6 hours
@@ -42,25 +42,25 @@ In the upper right corner of the Explorer, you can select HOST data for differen
 
 ## HOST Details {#details}
 
-By clicking on the HOST name in the HOST object list, the side-sliding HOST details page allows you to view basic information, extended attributes, associated information, and bound views for that HOST.
+By clicking on the HOST name in the HOST object list, a side-sliding HOST details page appears where you can view basic information, extended attributes, related information, and bound Views for that HOST.
 
 ### Mute HOST {#mute}
 
-This feature can temporarily ignore alert notifications for specific HOSTs, reducing interference and focusing on important tasks, such as known temporary issues or maintenance periods.
+This feature allows you to temporarily ignore alert notifications for specific HOSTS, reducing distractions and focusing on important tasks, such as known temporary issues or maintenance periods.
 
-1. On the HOST detail page, click **Mute HOST**;
-2. Select mute time type;
+1. On the HOST details page, click **Mute HOST**;
+2. Select the mute duration;
 3. Click confirm.
 
 <img src="../img/3.host_15.png" width="70%" >
 
-After configuration, return to the HOST list where muted HOSTs will display a mute mark. During the mute period, you will not receive alarm notifications for this HOST, and related alarm events will be automatically stored in event management. You can view all muted HOSTs under **Monitoring > [Mute Management](../monitoring/silent-management.md)**.
+After configuration, return to the HOST list, and muted HOSTS will display a mute mark. During the mute period, you will not receive any alert notifications for that HOST, and related alert events will automatically be stored in event management. You can view all muted HOSTS under **Monitoring > [Mute Management](../monitoring/mute-management.md)**.
 
 > For more details, refer to [Alert Settings](../monitoring/alert-setting.md).
 
 ![](img/mute.png)
 
-To cancel muting, you can directly click "Cancel Mute" in the HOST detail or operate in "Monitoring > Mute Management".
+To cancel muting, simply click "Cancel Mute" in the HOST details or operate under "Monitoring > Mute Management".
 
 <img src="../img/mute_1.png" width="70%" >
 
@@ -68,22 +68,22 @@ To cancel muting, you can directly click "Cancel Mute" in the HOST detail or ope
 
 ### Export Data
 
-If you need to export a specific HOST's data, simply click the :material-tray-arrow-up: icon in the top right corner.
+If you need to export a HOST data record, click the :material-tray-arrow-up: icon in the upper-right corner.
 
 ![](img/host_data_export.png)
 
 
 ### HOST Labels {#label}
 
-In multi-HOST management environments, you can customize labels for each HOST. Based on property labels, the final data classification and query filtering can be achieved.
+In multi-HOST management environments, you can customize labels for each HOST. Based on property labels, final data classification and filtering queries can be performed.
 
-1. Click the edit button to the right of **Labels**;
+1. Click the edit button next to **Labels**;
 
-2. Select labels from the drop-down list, or press Enter to add new labels;
+2. Select labels from the dropdown list or directly add by pressing Enter;
 
 3. After adding, save.
 
-**Note**: After configuring labels, they will take effect after waiting for 1-5 minutes.
+**Note**: After label configuration, it takes 1-5 minutes to take effect.
 
 
 ![](img/7.host_label_1.png)
@@ -92,54 +92,54 @@ In multi-HOST management environments, you can customize labels for each HOST. B
 
 ### Basic Information
 
-In the basic information section of the HOST detail page, you can add [HOST Labels](#label), view integration running conditions, system information, and cloud provider information.
+In the basic information section of the HOST details page, you can add [HOST Labels](#label), check integration running conditions, system information, and cloud vendor information.
 
 #### Integration Running Conditions
 
-**Integration Running Conditions** displays the installed DataKit version information and related collector running conditions for this HOST. There are two states for running conditions:
+**Integration Running Conditions** displays DataKit version information installed on this HOST and the running status of related collectors. There are two running statuses:
 
-- Collectors in normal running state are default displayed as "light blue";
+- Collectors in normal running state are displayed by default as "light blue";
 
-- Faulty collectors are default displayed as "red" and support viewing error information by clicking.
+- Collectors with errors are displayed by default as "red" and support viewing error information by clicking.
 
-At the same time, collectors with view symbols :fontawesome-solid-chart-simple: support monitoring view inspection:
+At the same time, collectors with View symbols :fontawesome-solid-chart-simple: support monitoring View inspection:
 
 ![](img/7.host_detail_2.png)
 
 #### System Information
 
-The HOST detail page displays the system information of the HOST, covering HOST name, operating system, processor, memory, network, disk, connection tracking, and files, among others.
+The HOST details page shows system information about the HOST, covering HOST name, operating system, processor, memory, network, disk, connection tracking, and files, among others.
 
 
-#### Cloud Provider Information
+#### Cloud Vendor Information
 
-For cloud HOSTs configured with [Cloud Sync](../integrations/hostobject.md#cloudinfo), the HOST detail page also provides the following information: cloud platform, instance name, instance ID, instance specification, region, availability zone, creation time, network type, billing type, and IP address, etc.
+For cloud HOSTS configured with [cloud synchronization](../integrations/hostobject.md#cloudinfo), the HOST details page also provides the following information: cloud platform, instance name, instance ID, instance specification, region, availability zone, creation time, network type, payment type, and IP address, among others.
 
 
 ### Extended Attributes
 
-You can view all properties related to the HOST. Searching by field name or value is supported to narrow down the scope of inspection.
+You can view all attributes related to the HOST. Supports searching and filtering via field name or value to narrow down the scope.
 
-Hover over the corresponding field value to display its original format.
+Hover over the corresponding field's value to display its original format.
 
 <img src="../img/value.png" width="60%" >
 
-### Correlation Analysis
+### Associated Analysis
 
-<<< custom_key.brand_name >>> supports correlation analysis for each infrastructure object. Besides the basic information of the HOST, you can comprehensively understand the HOST's associated Metrics, LOGs, processes, events, CONTAINERS, NETWORKs, Security Checks, etc., enabling faster and more comprehensive monitoring of HOST operation conditions.
+<<< custom_key.brand_name >>> supports associated analysis for each infrastructure object. Besides basic HOST information, you can comprehensively understand the HOST’s related Metrics, LOGs, processes, events, CONTAINERS, NETWORKs, security checks, etc., for faster and more comprehensive monitoring of HOST operations.
 
 <img src="../img/9.host_4.png" width="60%" >
 
 #### Bind Built-in Views {#view}
 
-Besides the system-default views displayed here, user-defined views can also be bound.
+Besides the system-default Views displayed here, you can also bind user Views.
 
-1. Enter the built-in view binding page;
-2. View default associated fields. You can choose to retain or delete fields and add new `key:value` fields;
-3. Select the view;
-4. After binding, you can view the bound built-in views in the HOST object details. By clicking the jump button :material-arrow-right-top-bold:, you can navigate to the corresponding built-in view page.
+1. Enter the built-in View binding page;
+2. Check the default associated fields. You can choose to retain or delete fields, or add new `key:value` fields;
+3. Select the View;
+4. After binding, you can view the bound built-in Views in the HOST object details and jump to the corresponding built-in View page by clicking the jump button :material-arrow-right-top-bold:.
 
-**Note**: If the current data does not include the associated fields of the bound view, the view will not be displayed on the detail page; otherwise, it will be displayed.
+**Note**: If the current data does not contain the associated fields of the bound View, the View will not be displayed on the details page; otherwise, it will be displayed.
 
 <img src="../img/view.png" width="70%" >
 
@@ -147,7 +147,7 @@ Besides the system-default views displayed here, user-defined views can also be 
 
 <img src="../img/view-3.png" width="70%" >
 
-Click the jump button :material-arrow-right-top-bold: to enter the corresponding built-in view page.
+Click the jump button :material-arrow-right-top-bold:, and you can enter the corresponding built-in View page.
 
 <img src="../img/view-4.png" width="70%" >
 
@@ -157,15 +157,15 @@ Click the jump button :material-arrow-right-top-bold: to enter the corresponding
 
 === "Metrics"
 
-    You can monitor the performance status of the HOST <u>within the last 24 hours</u> in real-time, including CPU load, memory usage, etc.
+    You can monitor in real-time the performance status of the HOST <u>within the last 24 hours</u>, including CPU load, memory usage, etc.
 
     <img src="../img/host-metric.png" width="60%" >
 
 === "LOGs"
 
-    You can view the <u>last 1 hour</u> LOGs and LOG counts related to the HOST.
+    You can view <u>within the last hour</u> LOGs and LOG counts related to the HOST.
      
-    **Note**: To provide a smoother user query experience, <<< custom_key.brand_name >>> defaults to saving user browsing settings for LOGs (including "maximum number of lines displayed", "columns displayed") so that **associated LOGs** remain consistent with LOGs. However, any custom adjustments made during the associated LOGs session are not saved after exiting the page.
+    **Note**: To provide a smoother user query experience, <<< custom_key.brand_name >>> defaults to saving the user's browsing settings for LOGs (including “maximum number of rows to display” and “columns to display”) so that **associated LOGs** match the LOGs. However, custom adjustments made in associated LOGs are not saved after exiting the page.
 
     <img src="../img/host-log.png" width="60%" >
 
@@ -173,35 +173,35 @@ Click the jump button :material-arrow-right-top-bold: to enter the corresponding
 
 === "Processes"
 
-    You can view the <u>last 10 minutes</u> processes and process counts related to the HOST.
+    You can view <u>within the last 10 minutes</u> processes and process counts related to the HOST.
     
     <img src="../img/host-process.png" width="60%" >
 
 === "Events"
 
-    You can view the <u>last 1 hour</u> alert events (associated field: `host`) related to the HOST.
+    You can view <u>within the last hour</u> alert Events related to the HOST (associated field: `host`).
     
     <img src="../img/host-event.png" width="60%" >
 
 === "CONTAINERS"
 
-    You can view all CONTAINER data related to the HOST <u>in the last 10 minutes</u>.
+    You can view all CONTAINER data related to the HOST <u>within the last 10 minutes</u>.
     
     <img src="../img/host-container.png" width="60%" >
 
-=== "Security Check"
+=== "Security Checks"
 
-    You can view Security Check data related to the HOST <u>in the last 1 day</u>.
+    You can view Security Check data related to the HOST <u>within the last day</u>.
 
     <img src="../img/host-intecheck.png" width="60%" >
 
 === "NETWORK"
 
-    Host networking supports viewing network traffic between hosts. It supports viewing source host to target network traffic and data connections based on server or client sides, visually displaying them in real-time. This helps businesses understand their business systems' network operational status in real-time, quickly analyze, track, and locate issues, preventing or avoiding business problems caused by declining or interrupted network performance.
+    HOST NETWORK supports viewing network traffic between HOSTs. It supports viewing source HOST to target network traffic and data connections based on server and client sides, displaying them in real-time through visualization methods, helping businesses understand their system's network operation status in real-time, quickly analyzing, tracking, and locating faults, preventing or avoiding business problems caused by decreased or interrupted network performance.
     
-    After successful collection of host network data, it is reported to the <<< custom_key.brand_name >>> console. You can view the host's network performance monitoring data information in two forms: **Topology** and **Summary**, in the NETWORK section of the **Infrastructure > Host** details page.
+    After successful collection of HOST NETWORK data, it is reported to the <<< custom_key.brand_name >>> console, where you can view the HOST's NETWORK performance monitoring data information in either **Topology** or **Summary** form under the NETWORK section of the HOST details page in **Infrastructure > HOST**.
     
-    > For more details, refer to [Network](network.md).
+    > For more details, refer to [NETWORK](network.md).
 
     <img src="../img/host-net.png" width="60%" >
 

@@ -1,25 +1,26 @@
-# Billing Settlement Method
+# Billing Settlement Methods
 ---
 
-<<< custom_key.brand_name >>> supports settlement through a **Billing Center account** or **cloud account**. Under the cloud account settlement model, multiple site cloud bills can be consolidated into one cloud account for settlement.
+Settlement is supported through a **Billing Center account** or a **cloud account**. Under the cloud account settlement model, bills from multiple sites can be consolidated and settled under one cloud account.
 
 
 ![](../img/billing-index-1.png)
 
-## Deduction Order
+## Deduction Order for Settlement
 
-1. If you choose to settle with <<< custom_key.brand_name >>> Billing Center account, the deduction order for pay-as-you-go billing is: standard coupons > discount coupons > prepaid cards > cash > prepaid card balance (negative value for overdue payments). Among these, SMS and Test consumption can only be paid using cash, prepaid cards, or prepaid card balance.
-2. If you choose cloud account settlement, the deduction order for pay-as-you-go billing is: standard coupons > discount coupons > prepaid cards > cloud account cash balance. Among these, SMS and Test consumption can only be paid using prepaid cards and cloud account cash balance.
-3. Once the workspace settlement method is set to cloud account settlement, it cannot be changed to other settlement methods (such as changing from [Alibaba Cloud Account A] to [Alibaba Cloud Account B] or from [AWS Account] to [Alibaba Cloud Account]), unless the associated cloud account subscription is canceled or released.
+- Billing Center account settlement: The deduction order for invoices is regular coupons > discount coupons > prepaid cards > cash > prepaid card balance (negative value for overdue payment). SMS and TESTING consumption by volume is limited to cash, prepaid cards, or prepaid card balances.
+- Cloud account settlement: The deduction order for invoices is regular coupons > discount coupons > prepaid cards > cloud account cash balance. SMS and TESTING consumption by volume is limited to prepaid cards and cloud account cash balance.
+
+???+ warning "Note"
+
+    After selecting cloud account settlement, it cannot be changed to another settlement method unless the bound cloud account is unsubscribed or released.
 
 ## Billing Center Account Settlement
 
-You can directly recharge and settle through the Billing Center account on the <<< custom_key.brand_name >>> Billing Center platform. One Billing Center account can be associated with multiple workspaces for fee settlement.
+On the <<< custom_key.brand_name >>> Billing Center platform, Billing Center accounts can be used to recharge and settle payments for multiple associated workspaces.
 
-In <<< custom_key.brand_name >>> Billing Center, you can recharge in cash, manage coupons, manage prepaid cards, change settlement methods, and also manage accounts, view detailed bills, account balances, bound workspaces, and other related information through the Billing Center.
+On this platform, you can perform cash recharges, coupon management, prepaid card management, change settlement methods, as well as manage accounts, view detailed invoices, account balances, and information about the linked workspaces.
 
 ## Cloud Account Settlement {#cloud-account}
 
-You can recharge and settle through a cloud account. One cloud account supports associating multiple workspaces across multiple sites for fee settlement.
-
-**Note**: Cloud account settlement supports prioritizing the use of coupons or prepaid cards provided by <<< custom_key.brand_name >>> for payment. After the fees in coupons or prepaid cards are exhausted, the cloud account fees will continue to be deducted.
+Recharge and settle payments via a cloud account; one cloud account can be associated with multiple workspaces across multiple sites for fee settlement. Cloud account settlement supports prioritizing the use of <<< custom_key.brand_name >>> provided coupons or prepaid cards for deductions, and after they are exhausted, it will continue to deduct fees from the cloud account.

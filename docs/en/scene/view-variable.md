@@ -1,63 +1,61 @@
 # View Variables
 ---
 
-In dynamic visual data analysis, view variables play a key role. They allow users to update visualization results in real time by changing the value of one or more view variables. This real-time interactivity helps users dynamically filter and analyze data according to their needs, thereby gaining deeper insights into the stories behind the data.
+View variables are crucial in dynamic visual data analysis. They allow users to update visualization results in real-time by changing the value of one or more view variables, thus dynamically filtering and analyzing data according to their needs.
 
 
-## Adding View Variables {#add}
+## Start Adding {#add}
 
-Click to enter the view variable tab page:
 
-![](img/variable-1.png)
+1. Variable Name: The name of the current set of view variables, which needs to be referenced in chart queries when adding charts to the dashboard. The format is: `#{variable_name}`;   
+2. Display Name: The name displayed for the current set of view variables on the dashboard, for example: if the variable name is `host`, the display name could be `HOST`;   
+3. [Query](#query); 
 
-To add a view variable, click to enter the create page:
+    - Sorting: Default sorting, ascending or descending order can be applied to the view variables returned by the query.
 
-<img src="../img/variable-2.png" width="70%" >
+4. Display Options
 
-:material-numeric-1-circle: Variable Name: The name of the variable in the current set of view variables. When adding a chart in the dashboard, it needs to be referenced in the chart query, with the format: `#{variable name}`.
+    - Hide: When enabled, the variable will not be visible on the dashboard in non-edit mode.
+    - Include * Option: Enabled by default.
+    - Multi-value: Allows selecting multiple values simultaneously.
 
-:material-numeric-2-circle: Display Name: The name displayed for the current set of view variables in the dashboard, for example: if the variable name is `host`, the display name would be `HOST`.
+5. Default Value: The initial variable for the current view variable on the dashboard. The dropdown here will list variables based on the configuration in **Display Options**, allowing you to select the initial variable to view by default on the dashboard. If the default value is empty, the latest field data will be displayed on the dashboard.
 
-:material-numeric-3-circle: [Query](#query)
+    - *: Condition is empty (null), no filtering for `by` conditions;
+    - All values: Treats the result values from the view variable query statement as parameters;
+    - Custom: Directly input a value in the selection bar and press Enter to create it. You can search for your target variable in the selection bar.
 
-- Sorting: Default sorting, ascending/descending arrangement of returned view variables.
+Click **Select All** to select all values in the current list.
 
-:material-numeric-4-circle: Display Options
+???+ warning "Note"
 
-- Hide: If enabled, the variable will not be visible in the dashboard outside of edit mode.
-- Include * Option: Enabled by default.
-- Multi-value: Allows selecting multiple values simultaneously.
+    If workspace data reporting has gaps, you may not be able to select data when configuring view variables. In such cases, you can preset fields during configuration, and once data reporting resumes normally, the fields will automatically match.
 
-:material-numeric-5-circle: Default Value: The initial variable of the current view variable in the dashboard. The dropdown here will list variables based on the configuration in **Display Options**, allowing selection of the initial variable to view in the dashboard. If the default value is empty, the latest field data will be displayed in the dashboard.
+## Manage Variables
 
-- *: Condition is empty (null), no filtering applied for `by` conditions;
-- All values: Treats the result values from the view variable query statement as parameters;
-- Custom: Enter a value directly in the selection bar and press Enter to create. You can search for your target variable in the selection bar.
-
-Click **Select** to select all values in the current list.
-
-**Note**: If workspace data reporting is interrupted, you cannot select data when configuring view variables. You can preset fields during configuration, and once data reporting resumes normally, the fields will automatically match.
-
-For already created view variables, you can clone, re-edit, or delete them as needed.
-
-![](img/variable-3.png)
-
-If you choose to hide a variable while configuring view variables, it will show :fontawesome-regular-eye-slash: a hidden button on the right side of the list.
+- Directly clone, re-edit, or delete variables;    
+- If you choose to hide a variable while configuring view variables, that variable will display a :fontawesome-regular-eye-slash: Hidden button on the right side of the list.
 
 ![](img/variable-5.png)
 
 ### Variable Query {#query}
 
-View variables support four types of queries: DQL Query, PromQL Query, UI Query, and Custom.
+Query methods:
 
-#### Value Range
+- [DQL Query](#dql) 
+- [PromQL Query](#promql)     
+- [UI Query](#ui)      
+- [External Data Source](#external)    
+- [Custom](#custom)    
 
-There are two ways to define the value range of view variables:
+#### Range of Values
 
-:material-numeric-1-circle-outline: Follow dashboard interactivity, i.e., list variable query data based on the time range selected in the dashboard's time widget;  
-:material-numeric-2-circle-outline: Do not follow dashboard interactivity, i.e., list all data from the variable query, unaffected by the time range selected in the dashboard's time widget.
+The range of values for view variables can be defined in two ways:
 
-Below is an explanation of the value ranges for different data sources:
+- Linked with the dashboard, i.e., listing the data queried based on the time range selected by the dashboard's time widget;  
+- Not linked with the dashboard, i.e., listing all data queried without being affected by the time range selected by the dashboard's time widget.
+
+Below is an explanation of the range of values for different data sources:
 
 <div class="grid" markdown>
 
@@ -65,74 +63,77 @@ Below is an explanation of the value ranges for different data sources:
 
     | Data Type | Measurement Set   | Tags   | Default Value   |
     | ------  | -------- | -------- | -------- |
-    | Metrics     | SHOW_MEASUREMENT() function;<br>This function does not support adding time filters;<br>Value range: all measurement sets in the current workspace. | SHOW_TAG_KEY(from=['measurement set name']) function;<br>This function does not support adding time filters;<br>Value range: tags under the selected measurement set in the current workspace. | SHOW_TAG_VALUE(from=['measurement set name'], keyin=['tag name']);<br>This function does not support adding time filters. |
+    | Metrics     | SHOW_MEASUREMENT() function;<br>This function does not support adding time filters;<br>Range: all measurement sets in the current workspace. | SHOW_TAG_KEY(from=['measurement_set_name']) function;<br>This function does not support adding time filters;<br>Range: tags under the selected measurement set in the current workspace. | SHOW_TAG_VALUE(from=['measurement_set_name'], keyin=['tag_name']);<br>This function does not support adding time filters. |
 
 === "Base Objects"
 
-    | Data Type | Category   | Properties/Tags   | Default Value   |
+    | Data Type | Classification   | Attributes/Tags   | Default Value   |
     | ------  | -------- | -------- | -------- |
-    | Base Objects | O::RE(`.*`):(DISTINCT_BY_COLLAPSE(`class`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**;<br>Value range: all source values under the default index within the selected time. | SHOW_OBJECT_FIELD('kubernetes_nodes');<br>This function **does not support** adding time filters;<br>Value range: all fields under the object data in the current workspace. | O::`kubernetes_nodes`:(DISTINCT_BY_COLLAPSE(`namespace`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**. |
+    | Base Objects | O::RE(`.*`):(DISTINCT_BY_COLLAPSE(`class`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**;<br>Range: all source values in the default index within the selected time period. | SHOW_OBJECT_FIELD('kubernetes_nodes');<br>This function **does not support** adding time filters;<br>Range: all fields under object data in the current workspace. | O::`kubernetes_nodes`:(DISTINCT_BY_COLLAPSE(`namespace`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**. |
 
 === "Resource Catalog"
 
-    | Data Type | Category   | Properties/Tags   | Default Value   |
+    | Data Type | Classification   | Attributes/Tags   | Default Value   |
     | ------  | -------- | -------- | -------- |
-    | Resource Catalog | CO::RE(`.*`):(DISTINCT_BY_COLLAPSE(`class`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**<br>Value range: all source values under the default index within the selected time. | SHOW_CUSTOM_OBJECT_FIELD('class value');<br>This function **does not support** adding time filters;<br>Value range: all fields under the resource catalog data in the current workspace. | CO::`cdsmnl`:(DISTINCT_BY_COLLAPSE(`cds`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**. |
+    | Resource Catalog | CO::RE(`.*`):(DISTINCT_BY_COLLAPSE(`class`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**<br>Range: all source values in the default index within the selected time period. | SHOW_CUSTOM_OBJECT_FIELD('class_value');<br>This function **does not support** adding time filters;<br>Range: all fields under resource catalog data in the current workspace. | CO::`cdsmnl`:(DISTINCT_BY_COLLAPSE(`cds`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**. |
 
 === "Logs"
 
     | Data Type | Log Source   | Attribute   | Default Value   |
     | ------  | -------- | -------- | -------- |
-    | Logs     | L::RE(`.*`):(DISTINCT_BY_COLLAPSE(`source`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**;<br>Value range: all source values under the default index within the selected time. | SHOW_LOGGING_FIELD(index='default');<br>This function **does not support** adding time filters;<br>Value range: all fields under the log data in the current workspace. | L::RE(`.*`):(DISTINCT_BY_COLLAPSE(`trace_id`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**. |
+    | Logs     | L::RE(`.*`):(DISTINCT_BY_COLLAPSE(`source`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**;<br>Range: all source values in the default index within the selected time period. | SHOW_LOGGING_FIELD(index='default');<br>This function **does not support** adding time filters;<br>Range: all fields under log data in the current workspace. | L::RE(`.*`):(DISTINCT_BY_COLLAPSE(`trace_id`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**. |
+
 
 === "Application Performance"
 
     | Data Type | Attribute      | Default Value   |
     | ------  | -------- | -------- |
-    | APM | SHOW_TRACING_FIELD();<br>This function **does not support** adding time filters;<br>Value range: all fields under the tracing data in the current workspace. | T::RE(`.*`):(DISTINCT_BY_COLLAPSE(`resource`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**. |
+    | APM | SHOW_TRACING_FIELD();<br>This function **does not support** adding time filters;<br>Range: all fields under tracing data in the current workspace. | T::RE(`.*`):(DISTINCT_BY_COLLAPSE(`resource`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**. |
 
 === "User Access"
 
     | Data Type | Data Classification   | Attribute   | Default Value   |
     | ------  | -------- | -------- | -------- |
-    | RUM PV | R::RE(`.*`):(DISTINCT_BY_COLLAPSE(`source`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**;<br>Value range: all source values under the default index within the selected time. | SHOW_RUM_FIELD('source value');<br>This function **does not support** adding time filters;<br>Value range: all fields under the user access data in the current workspace. | R::`error`:(DISTINCT_BY_COLLAPSE(`province`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**. |
+    | RUM | R::RE(`.*`):(DISTINCT_BY_COLLAPSE(`source`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**;<br>Range: all source values in the default index within the selected time period. | SHOW_RUM_FIELD('source_value');<br>This function **does not support** adding time filters;<br>Range: all fields under user access data in the current workspace. | R::`error`:(DISTINCT_BY_COLLAPSE(`province`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**. |
 
 === "Security Check"
 
     | Data Type | Attribute      | Default Value   |
     | ------  | -------- | -------- |
-    | Security Check | SHOW_SECURITY_FIELD();<br>This function **does not support** adding time filters;<br>Value range: all fields under the security check data in the current workspace. | S::RE(`.*`):(DISTINCT_BY_COLLAPSE(`rule`));<br>This function **supports** adding time filters, **follows dashboard time widget interactivity**. |
+    | Security Check | SHOW_SECURITY_FIELD();<br>This function **does not support** adding time filters;<br>Range: all fields under security check data in the current workspace. | S::RE(`.*`):(DISTINCT_BY_COLLAPSE(`rule`));<br>This function **supports** adding time filters, **linked with the dashboard's time widget**. |
 
 </div>
 
 #### DQL Query {#dql}
 
-During the DQL query process, users can directly write DQL statements to query and return corresponding data values. You can add time range filters and configure [cascading queries](#cascade) in your queries.
+In the DQL query process, users can directly write DQL statements to return corresponding data values. You can add time range filters and configure [cascading queries](#cascade) in your queries.
 
 > Click [Learn More About DQL Definitions and Syntax](../dql/define.md).
 
 *DQL Statement Query Example:*
 
-**Note**: It is recommended to use this method for non-Metrics data such as infrastructure and logs.
+???+ warning "Note"
+
+    Infrastructure, logs, etc., <u>non-metrics data</u> are recommended to use this method.
 
 | Syntax | Description |
 | --- | --- |
-| Data Source Type::Data Source:(distinct('property field name')){filter conditions} | M/metric - Time Series Metric Data;<br>O/object - Object Data;<br>L/logging - Logging Data;<br>E/event - Event Data;<br>T/tracing - Tracing Data;<br>R/rum - RUM Data. |
+| Data Source Type::Data Source:(distinct('Attribute Field Name')){Filter Conditions} | M/metric - Time series metrics data;<br>O/object - Object data;<br>L/logging - Log data;<br>E/event - Event data;<br>T/tracing - Tracing data;<br>R/rum - RUM data. |
 | R::view:(distinct(`app_id`)) | Returns the `app_id` list for web application user access monitoring. |
 | R::view:(distinct(`env`)){`app_id` = '8f05003ebccad062'} | Returns the `env` list corresponding to Web application user access monitoring `app_id=8f05003ebccad062`. | 
-| R::view:(distinct(`env`)){`app_id` = `#{appid}`} | By using `#{variable name}` in the DQL statement, it can be used for [cascading queries](#cascade), indicating that the variable name of the previous query is set to `app_id`, thus returning the `env` list corresponding to the selected `app_id` in the previous query. |
+| R::view:(distinct(`env`)){`app_id` = `#{appid}`} | By using `#{variable_name}` in the DQL statement, it can be used for [cascading queries](#cascade), indicating that the variable name for the previous query is set to `app_id`, then returns the `env` list corresponding to the selected `app_id` in the previous variable. |
 
 ##### Adding Time Range Explanation
 
-When querying view variables using DQL statements, you can add a time range in the [xx:xx:xx] format:
+When querying view variables using DQL statements, you can add a time range in the format [xx:xx:xx]:
 
-- If a time range is added in the DQL query, it takes precedence over the time range selected in the dashboard time widget;
-- If no time range is added in the DQL query, it defaults to using the time range selected in the dashboard time widget.
+- If a time range is added in the DQL query, it takes precedence over the time range selected by the dashboard time widget;
+- If no time range is added in the DQL query, it defaults to using the time range selected by the dashboard time widget.
 
 *Example:*
 
 ```
-# Query the container host list from the last 10 minutes 
+# Query container host list for the last 10 minutes 
 O::docker_containers:(distinct(`host`)) [10m]
 ```
 
@@ -144,7 +145,9 @@ When using DQL queries, you can use the Show function to return corresponding da
 
 *Show Function Query Example:*
 
-**Note**: It is recommended to use this query method for Metrics data.
+???+ warning "Note"
+
+    If metrics data is enabled, it is recommended to use this query method.
 
 | Syntax | Description |
 | --- | --- |
@@ -154,80 +157,89 @@ When using DQL queries, you can use the Show function to return corresponding da
 
 #### PromQL Query {#promql}
 
-In PromQL queries, handwritten query statements are supported. The queries default to using the time range selected in the dashboard time widget and return corresponding data values.
+PromQL queries support manually written query statements, defaulting to using the time selected by the dashboard time widget for querying and returning data.
 
-> Refer to [PromQL Quick Start](../dql/promql.md) for more information about PromQL queries.
+> For more information about PromQL queries, refer to [PromQL Quick Start](../dql/promql.md).
 
-#### UI Query
+#### UI Query {#ui}
 
-In UI queries, you can select data sources such as metrics, base objects, resource catalogs, logs, application performance, user access, and security checks. You can directly click to select query variables on the UI to return corresponding data values.
+UI queries support selecting the following data sources: metrics, base objects, resource catalogs, logs, application performance, user access, security checks.
 
-In UI queries, you cannot add a time range or configure [cascading queries](#cascade).
+By clicking to select query variables in the UI interface, you can obtain corresponding data values. However, in this mode, you cannot add a time range or configure [cascading queries](#cascade).
 
+#### External Data Source {#external}
 
+Directly integrate various external data sources like MySQL, calling native query statements to retrieve data in real-time.
 
-#### Custom Query
+1. Select data source;
+2. Input query statement;
+3. Choose sorting method.
 
-Custom refers to users being able to directly define a set of numerical values for use as view variables without needing to obtain related values through query statements. Content in custom variable options should be separated by English commas `,`. Custom queries do not support adding time ranges or configuring cascading queries.
+> For more details, refer to [External Data Sources](../dataflux-func/external_data.md).
 
-![](img/11.variable_10.png)
+#### Custom Query {#custom}
 
-### Cascading Query {#cascade}
+Custom queries allow users to directly define a set of values for view variables without needing to acquire them through query statements. Each option is separated by an English comma `,`. This query method does not support adding time ranges or configuring cascading queries.
 
-When configuring two or more view variables, and the second view variable requires querying based on the result of the first view variable, you can use a cascading query. Similarly, cascading queries can support multiple view variables linked together.
+<img src="../img/custom_query.png" width="60%" >
 
-**Note**: Cascading queries only support DQL statements for query configurations.
+### Cascading Queries {#cascade}
+
+When configuring two or more view variables and the second view variable needs to perform linked queries based on the results of the first view variable, cascading queries can be used.
+
+Cascading queries support linking multiple view variables but only support configuration using DQL statements.
+
+???+ warning "Note"
+
+    Cascading queries only support DQL statement configurations.
+
+| Logical Operator      | Variable Value Matching Type     | Example    |
+| ------------- | -------------- | ------- |
+| = 、!=      | Exact match, supports multi-select. | R::view:(distinct(`env`)) {`app_id` = `#{appid}`      |
+| match（re）、not match（re）<br>wildcard、not wildcard | Fuzzy match, supports multi-select. | R::view:(distinct(`env`)) {`app_id` = re(`#{appid}`)} |
 
 #### Example
 
-Below is an example of configuring a cascading filter for Web application overview view variables in user access monitoring, which requires linking queries based on **Application ID**, **Environment**, and **Version**.
+Below is an example of configuring cascading filtering for view variables in the User Access Monitoring Web Application Overview, based on Application ID, Environment, and Version.
 
 ![](img/18.variable_3.png)
 
-**Configuration Explanation:**
-
-There are three variables: **Application ID**, **Environment**, and **Version**, so three variable query statements need to be configured in the dashboard. In the second and third query statements, use the `#{variable name}` from the previous configuration to complete the cascading query configuration.
+Three variable query statements need to be configured in the dashboard. The second and third query statements use the `#{variable_name}` from the previous level to complete the cascading query configuration.
 
 ![](img/18.variable_2.png)
 
 
-- **Variable 1 (Application ID)**: Query the application list named `df_web_rum_sdk`:
+- **Variable 1 (Application ID)**: Query the application list where the application name is `df_web_rum_sdk`:
 
 ```
 R::view:(distinct(`app_id`)){sdk_name = `df_web_rum_sdk`}
 ```
 
-- **Variable 2 (Environment)**: Query the environment list under the selected Application ID from Variable 1 for applications named `df_web_rum_sdk`:
+- **Variable 2 (Environment)**: Query the environment list under the selected Application ID in Variable 1, where the application name is `df_web_rum_sdk`:
 
 ```
 R::view:(distinct(`env`)) {app_id = `#{appid}` and sdk_name = `df_web_rum_sdk`}
 ```
 
-- **Variable 3 (Version)**: Query the version list under the selected Environment from Variable 2 for applications named `df_web_rum_sdk`:
+- **Variable 3 (Version)**: Query the version list under the selected Environment in Variable 2, where the application name is `df_web_rum_sdk`:
 
 ```
 R::view:(distinct(`version`)) {app_id = `#{appid}` and env = `#{env}`  and sdk_name = `df_web_rum_sdk`}
 ```
 
-#### Logical Operators
-
-| Logical Operator      | Variable Value Match Type     | Example    |
-| ------------- | -------------- | ------- |
-| = 、!=      | Exact match, supports multi-select. | R::view:(distinct(`env`)) {`app_id` = `#{appid}`      |
-| match（re）、not match（re）<br>wildcard、not wildcard | Fuzzy match, supports multi-select. | R::view:(distinct(`env`)) {`app_id` = re(`#{appid}`)} |
 
 
-## Adding Object Mapping
+## Add Object Mapping
 
-Field mapping can be set for infrastructure object data. Field mapping **is solely for improving display effects and will not affect the original field data.**
+For infrastructure object data, field mappings can be set to improve the display effect without affecting the original field data.
 
-To add object mapping, click to enter the create page:
+To add object mapping, click to enter the creation page:
 
 ![](img/variable001.png)
 
-Select the data source, object category, and two property fields that need mapping. For example: map `container_id` to display as `container_name`. In the dashboard, the view variable value will be displayed as `container_name (container_id)` but during queries, the value passed will still be `container_id`. Additionally, if the field mapping feature is enabled in chart settings, the [legend](./visual-chart/timeseries-chart.md#legend) in the chart will display the mapped field value.
+Select the data source, object classification, and two attributes/fields that need mapping. For example: map `container_id` to `container_name`. On the dashboard, the view variable value will be displayed as `container_name (container_id)` but still pass the value of `container_id` during querying. Additionally, if the field mapping function is enabled in the chart settings, the chart's [legend](./visual-chart/timeseries-chart.md#legend) will display the mapped field value.
 
-For already created object mappings, you can re-edit or delete them as needed.
+For already created object mappings, you can edit or delete them as needed.
 
 ![](img/variable-4.png)
 
@@ -235,28 +247,28 @@ For already created object mappings, you can re-edit or delete them as needed.
 
 ### View Variable Configuration Example
 
-1. After creating the view variable, associate it with the chart to enable联动筛选 between the chart and the view variable.
+1. After creating the view variable, associate it with the chart to achieve联动筛选 between the chart and the view variable.
 
-1) In the chart query, select the variable for the `value` field. (The dropdown shows the variable name.)
+1) In the chart query, when filtering fields, select this variable for the `value`. (The dropdown displays the variable name)
 
 ![](img/8.variable_11.png)
 
-2) Switching the variable value in the scene view will cause the chart to filter and display based on the variable tag.
+2) Switch the variable value in the scene view, and the chart will filter and display based on the variable label.
 
 ![](img/8.variable_12.png)
 
-2. In the chart, clicking on a specific timeline or data point can directly add in reverse, enabling global联动查看of charts related to the selected value.
+2. In the chart, after selecting a specific timeline or data point, you can directly click to add in reverse, achieving global linkage to view related chart data analysis for the selected value.
 
 **Note**:
     
 - Prerequisite: There exists a `by` grouping condition in the corresponding [DQL](../scene/view-variable.md#dql);
-- Chart scope involved: Time series chart, summary chart, pie chart, top list, gauge, bar chart, scatter plot, bubble chart, table chart, rectangle tree chart, China map, world map, hexbin chart
+- Chart scope involved: Time series chart, Summary chart, Pie chart, Top List, Dashboard, Bar chart, Scatter plot, Bubble chart, Table chart, Treemap, China map, World map, Honeycomb chart
 
 1) After clicking on a specific timeline or data point, click the setting condition under **Apply to View Variable** in the displayed card. 
 
 ![](img/variables_2.png)
 
-2) This will populate the dashboard’s view variable. The effect is shown below:
+2) It will fill into the view variable in the dashboard. The effect is shown below:
 
 ![](img/variables_3.png)
 
@@ -266,11 +278,11 @@ Object mapping can be applied in two places: the dropdown display in view variab
 
 #### Applying in View Variables
 
-When adding an object's [property field] in view variables, if the field also has a field mapping set, then in the view variables, it displays as: mapped field (queried field).
+When adding an object's [attribute field] in view variables, if the field has also been set for field mapping, it will be displayed in the view variable as: Mapped field (queried field).
 
 *Example:*
 
-1) Add a `container_id` variable in [View Variables] (as shown below).
+1) Add the `container_id` variable in [View Variables] (as shown in the figure below).
 
 ![](img/variable002.png)
 
@@ -278,29 +290,29 @@ When adding an object's [property field] in view variables, if the field also ha
 
 ![](img/variable001.png)
 
-3) At this point, the variable in the view will display as: `container_name(container_id)`.
+3) At this point, the variable in the view will be displayed as: `container_name(container_id)`.
 
 ![](img/x10.png)
 
 #### Applying in Charts
 
-When querying an object's attribute field in charts and enabling field mapping in the settings, if the field also has a field mapping set, then in the chart variables, it displays as: mapped field (queried field).
+When querying an object's attribute field in a chart and enabling field mapping in the settings, if the field has also been set for field mapping, it will be displayed in the chart variable as: Mapped field (queried field).
 
 *Example:*
 
-1) In [Object Mapping], set `host` to map to `name` (as shown below):
+1) Set `host` to map to `name` in [Object Mapping] (as shown in the figure below):
 
 ![](img/variable003.png)
 
 
-2) Use this field in the chart query and enable [Field Mapping] in the [Settings], then in the chart, it displays as `name(host)`.
+2) Use this field in the chart query and enable [Field Mapping] in the [Settings], so the chart will display in the format `name(host)`.
 
 ![](img/x12.png)
 
 ???+ warning "Note"
 
-    - Object mapping only supports setting object class data;   
-    - When using object mapping, you must first define a view variable based on object class fields;           
-    - For queries of the same object category, two mappings cannot be set, i.e., the query field dropdown will not include fields already added for that object category; 
-    - When field mapping is enabled, the chart displays the **grouped field** and the corresponding **mapped field**, un-mapped grouped fields are not displayed;   
-    - When field mapping is disabled, the chart does not display mapped fields, showing normal fields instead.
+    - Object mapping only supports setting for object class data;   
+    - When using object mapping, you must first define a view variable based on an object class field;           
+    - For the same object classification query field, two mappings cannot be set, meaning the query field dropdown will not include fields already added for that object classification; 
+    - When enabling field mapping, the chart will display the **grouped field** and the corresponding **mapped field**, unassigned grouped fields will not be displayed;   
+    - When disabling field mapping, the chart will not display the mapped field, displaying normally instead.
