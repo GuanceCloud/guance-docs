@@ -1,3946 +1,64 @@
 {
-  "monitoring/bot-obs/cloudasset.md": {
-    "hash": "0c78be1f1b495c472464b3dcbe3fe5991f2b51f2f43a52a256b2c66608488fe6",
-    "last_translated": "2025-03-23T20:18:57.466702",
-    "translation_time": 44.25,
+  "pipeline/use-pipeline/index.md": {
+    "hash": "fea868ec7ae2377aad900ec6dc27d68cef95d3f8f8e3e8a25b2af3e30f0583f1",
+    "last_translated": "2025-03-28T14:17:52.239015",
+    "translation_time": 7.69,
     "usage": {
-      "prompt_tokens": 2788,
-      "completion_tokens": 1151,
-      "total_tokens": 3939,
-      "prompt_price": 0.0022304,
-      "completion_price": 0.002302,
-      "total_price": 0.0045324,
+      "prompt_tokens": 1771,
+      "completion_tokens": 201,
+      "total_tokens": 1972,
+      "prompt_price": 0.0014168,
+      "completion_price": 0.000402,
+      "total_price": 0.0018188,
       "currency": "USD"
     }
   },
-  "getting-started/function-details/logs-blacklist.md": {
-    "hash": "a9cfb0eb855f9a7f3f2ffc596c18f8671cc4450d08d125b2d2f6dcb7cba66a12",
-    "last_translated": "2025-03-23T20:19:01.583380",
-    "translation_time": 48.37,
+  "logs/log-tracing.md": {
+    "hash": "62a56c2e423177f8e3184afa2f1fdfa0aec18f13edd7518fa18d7c5d2c4d5194",
+    "last_translated": "2025-03-28T14:17:55.503075",
+    "translation_time": 10.95,
     "usage": {
-      "prompt_tokens": 2308,
-      "completion_tokens": 746,
-      "total_tokens": 3054,
-      "prompt_price": 0.0018464,
-      "completion_price": 0.001492,
-      "total_price": 0.0033384,
+      "prompt_tokens": 1968,
+      "completion_tokens": 389,
+      "total_tokens": 2357,
+      "prompt_price": 0.0015744,
+      "completion_price": 0.000778,
+      "total_price": 0.0023524,
       "currency": "USD"
     }
   },
-  "dataflux-func/headless.md": {
-    "hash": "4b11c32a1ea7cd34f9b45bb7c70d91d23a394dbc7cb620919338292a7b41dca4",
-    "last_translated": "2025-03-23T20:19:05.931593",
-    "translation_time": 52.72,
+  "monitoring/notify-target-http.md": {
+    "hash": "7a79779ad55e996076205994cd3242d035fc5a04033d1322d96eb6fc45505a4b",
+    "last_translated": "2025-03-28T14:17:57.260717",
+    "translation_time": 1.74,
     "usage": {
-      "prompt_tokens": 2698,
-      "completion_tokens": 1152,
-      "total_tokens": 3850,
-      "prompt_price": 0.0021584,
-      "completion_price": 0.002304,
-      "total_price": 0.0044624,
+      "prompt_tokens": 1602,
+      "completion_tokens": 30,
+      "total_tokens": 1632,
+      "prompt_price": 0.0012816,
+      "completion_price": 6e-05,
+      "total_price": 0.0013416,
       "currency": "USD"
     }
   },
-  "agreements/account-cancellation.md": {
-    "hash": "e7a20a3b55acc7ac4c84cc7d7dfcfec9f0d122b68d99b1a63c72acf244aa1833",
-    "last_translated": "2025-03-23T20:19:17.940391",
-    "translation_time": 64.73,
+  "monitoring/notify-target-webhook.md": {
+    "hash": "5c7696f41533a5263f26d783d67c18e7024b43b22c8158200d7d1ccdea5a3ede",
+    "last_translated": "2025-03-28T14:18:08.517309",
+    "translation_time": 23.97,
     "usage": {
-      "prompt_tokens": 2728,
-      "completion_tokens": 1211,
-      "total_tokens": 3939,
-      "prompt_price": 0.0021824,
-      "completion_price": 0.002422,
-      "total_price": 0.0046044,
-      "currency": "USD"
-    }
-  },
-  "monitoring/monitor/custom-template.md": {
-    "hash": "fa5e8c726dd17f0d3590d98c58d110456b4c262fd49042718ea5a07d33b76ac0",
-    "last_translated": "2025-03-23T20:19:20.952952",
-    "translation_time": 19.35,
-    "usage": {
-      "prompt_tokens": 1921,
-      "completion_tokens": 362,
-      "total_tokens": 2283,
-      "prompt_price": 0.0015368,
-      "completion_price": 0.000724,
-      "total_price": 0.0022608,
-      "currency": "USD"
-    }
-  },
-  "billing-center/login.md": {
-    "hash": "80b68bcdfda38355fa10f478979702671bbb42ff25ff2e3dbfc4538a2716527c",
-    "last_translated": "2025-03-23T20:19:33.955540",
-    "translation_time": 16.0,
-    "usage": {
-      "prompt_tokens": 1870,
-      "completion_tokens": 304,
-      "total_tokens": 2174,
-      "prompt_price": 0.001496,
-      "completion_price": 0.000608,
-      "total_price": 0.002104,
-      "currency": "USD"
-    }
-  },
-  "scheck/best-practices.md": {
-    "hash": "c7341ff58a98d8da7a5eb88024d5b59efa23e8ad4e8983ea7913d20850df6d8a",
-    "last_translated": "2025-03-23T20:19:34.777873",
-    "translation_time": 81.57,
-    "usage": {
-      "prompt_tokens": 2763,
-      "completion_tokens": 1134,
-      "total_tokens": 3897,
-      "prompt_price": 0.0022104,
-      "completion_price": 0.002268,
-      "total_price": 0.0044784,
-      "currency": "USD"
-    }
-  },
-  "external-api/account/.pages": {
-    "hash": "a5463791d3f8a22e09ad42c68978ecfe7db9b5cda766b4914d2ad9c5ad9050cf",
-    "last_translated": "2025-03-23T20:19:39.887062",
-    "translation_time": 5.1,
-    "usage": {
-      "prompt_tokens": 1660,
-      "completion_tokens": 96,
-      "total_tokens": 1756,
-      "prompt_price": 0.001328,
-      "completion_price": 0.000192,
-      "total_price": 0.00152,
-      "currency": "USD"
-    }
-  },
-  "product-introduction/index.md": {
-    "hash": "66366e905b228bc39993daef8449595a1c139b0e8e2a9c5d6080ca5d39bb8c57",
-    "last_translated": "2025-03-23T20:19:47.468448",
-    "translation_time": 49.98,
-    "usage": {
-      "prompt_tokens": 2362,
-      "completion_tokens": 805,
-      "total_tokens": 3167,
-      "prompt_price": 0.0018896,
-      "completion_price": 0.00161,
-      "total_price": 0.0034996,
-      "currency": "USD"
-    }
-  },
-  "open-api/blacklist/add.md": {
-    "hash": "8f60d880f30526aec5b22d6c2535c201c12258b8d591a0fe275d0ea1caea5dc3",
-    "last_translated": "2025-03-23T20:20:05.850727",
-    "translation_time": 112.64,
-    "usage": {
-      "prompt_tokens": 3009,
-      "completion_tokens": 1371,
-      "total_tokens": 4380,
-      "prompt_price": 0.0024072,
-      "completion_price": 0.002742,
-      "total_price": 0.0051492,
-      "currency": "USD"
-    }
-  },
-  "open-api/viewer/list.md": {
-    "hash": "7f592162b96ed713932b3a12e517b50ce9c8763af75bb98438734358ac675248",
-    "last_translated": "2025-03-23T20:20:23.801025",
-    "translation_time": 77.85,
-    "usage": {
-      "prompt_tokens": 3039,
-      "completion_tokens": 1452,
-      "total_tokens": 4491,
-      "prompt_price": 0.0024312,
-      "completion_price": 0.002904,
-      "total_price": 0.0053352,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue-auto-discovery/list.md": {
-    "hash": "1b9d2885dcf81495319a40aa96ffe0e9e9db9564fc807db9803dc42410459fdd",
-    "last_translated": "2025-03-23T20:20:31.552113",
-    "translation_time": 70.58,
-    "usage": {
-      "prompt_tokens": 2712,
-      "completion_tokens": 1144,
-      "total_tokens": 3856,
-      "prompt_price": 0.0021696,
-      "completion_price": 0.002288,
-      "total_price": 0.0044576,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue/add.md": {
-    "hash": "0f5ec0f1516f64ba9ffcca8c9e7999bbd9f467d9729b7233440bc9eab78cfb22",
-    "last_translated": "2025-03-23T20:20:33.111488",
-    "translation_time": 139.91,
-    "usage": {
-      "prompt_tokens": 3555,
-      "completion_tokens": 1918,
-      "total_tokens": 5473,
-      "prompt_price": 0.002844,
-      "completion_price": 0.003836,
-      "total_price": 0.00668,
-      "currency": "USD"
-    }
-  },
-  "agreements/boss-account-cancellation.md": {
-    "hash": "8a6257aab40d9d831d7f218adf4186dec4036bbb2894eb7099f0f127e032d356",
-    "last_translated": "2025-03-23T20:20:35.616994",
-    "translation_time": 61.65,
-    "usage": {
-      "prompt_tokens": 2839,
-      "completion_tokens": 1342,
-      "total_tokens": 4181,
-      "prompt_price": 0.0022712,
-      "completion_price": 0.002684,
-      "total_price": 0.0049552,
-      "currency": "USD"
-    }
-  },
-  "events/event-explorer/event-details.md": {
-    "hash": "93966d70a0db7b4d1715a5fd6f9737bb03dad0d78abe1ae381fdd1e7d02548bd",
-    "last_translated": "2025-03-23T20:20:40.412214",
-    "translation_time": 52.93,
-    "usage": {
-      "prompt_tokens": 2645,
-      "completion_tokens": 1042,
-      "total_tokens": 3687,
-      "prompt_price": 0.002116,
-      "completion_price": 0.002084,
-      "total_price": 0.0042,
-      "currency": "USD"
-    }
-  },
-  "open-api/index.md": {
-    "hash": "5410bfdf49943ed5713476bd591e221e4ec41dbea0c99bf31437a6d7fa51d81c",
-    "last_translated": "2025-03-23T20:20:47.525400",
-    "translation_time": 67.63,
-    "usage": {
-      "prompt_tokens": 2924,
-      "completion_tokens": 1280,
-      "total_tokens": 4204,
-      "prompt_price": 0.0023392,
-      "completion_price": 0.00256,
-      "total_price": 0.0048992,
-      "currency": "USD"
-    }
-  },
-  "metrics/collection.md": {
-    "hash": "55bb8c90c50cec145993a929be07236d4f6102f4dc62cb56e373657253a763e7",
-    "last_translated": "2025-03-23T20:20:47.549944",
-    "translation_time": 7.13,
-    "usage": {
-      "prompt_tokens": 1704,
-      "completion_tokens": 152,
-      "total_tokens": 1856,
-      "prompt_price": 0.0013632,
-      "completion_price": 0.000304,
-      "total_price": 0.0016672,
-      "currency": "USD"
-    }
-  },
-  "monitoring/notify-object.md": {
-    "hash": "5ca249006012e1a81c1e5af6069f5e0368a3522dce8d489b2e3ee20390195fc3",
-    "last_translated": "2025-03-23T20:21:24.138635",
-    "translation_time": 190.93,
-    "usage": {
-      "prompt_tokens": 3871,
-      "completion_tokens": 2251,
-      "total_tokens": 6122,
-      "prompt_price": 0.0030968,
-      "completion_price": 0.004502,
-      "total_price": 0.0075988,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/k8s-skywalking.md": {
-    "hash": "008e8b6bfe4c7dd5bbd9647e76dbbd7fa3592604d5aa4a33357af507bde2ee50",
-    "last_translated": "2025-03-23T20:21:47.361218",
-    "translation_time": 83.55,
-    "usage": {
-      "prompt_tokens": 2885,
-      "completion_tokens": 1290,
-      "total_tokens": 4175,
-      "prompt_price": 0.002308,
-      "completion_price": 0.00258,
-      "total_price": 0.004888,
-      "currency": "USD"
-    }
-  },
-  "deployment/hwcloud-deployment-manual.md": {
-    "hash": "6952e99785d036ef6eeb34f4e0934ee01c6875caca058d6d335094a632059e0f",
-    "last_translated": "2025-03-23T20:22:00.894930",
-    "translation_time": 115.03,
-    "usage": {
-      "prompt_tokens": 3977,
-      "completion_tokens": 2318,
-      "total_tokens": 6295,
-      "prompt_price": 0.0031816,
-      "completion_price": 0.004636,
-      "total_price": 0.0078176,
-      "currency": "USD"
-    }
-  },
-  "application-performance-monitoring/service-manag/service-data-definitions.md": {
-    "hash": "392914303b3a4cbeb98882402b32c31db09e34277f5524949bb9f5ef8c2d3d3c",
-    "last_translated": "2025-03-23T20:22:01.370317",
-    "translation_time": 228.16,
-    "usage": {
-      "prompt_tokens": 5461,
-      "completion_tokens": 3855,
-      "total_tokens": 9316,
-      "prompt_price": 0.0043688,
-      "completion_price": 0.00771,
-      "total_price": 0.0120788,
-      "currency": "USD"
-    }
-  },
-  "open-api/logging-query-rule/add.md": {
-    "hash": "9ff18a0e60e4031c70f952600788f8eec2bb683c2273bd2d72c13731e5866370",
-    "last_translated": "2025-03-23T20:22:07.492993",
-    "translation_time": 94.37,
-    "usage": {
-      "prompt_tokens": 3487,
-      "completion_tokens": 1869,
-      "total_tokens": 5356,
-      "prompt_price": 0.0027896,
-      "completion_price": 0.003738,
-      "total_price": 0.0065276,
-      "currency": "USD"
-    }
-  },
-  "scene/visual-chart/chart-config.md": {
-    "hash": "0922e38fc6b7ee6820643e698935ac69984a9620430f8b556b52aa21ca22e08e",
-    "last_translated": "2025-03-23T20:22:13.114923",
-    "translation_time": 101.55,
-    "usage": {
-      "prompt_tokens": 3345,
-      "completion_tokens": 1742,
-      "total_tokens": 5087,
-      "prompt_price": 0.002676,
-      "completion_price": 0.003484,
-      "total_price": 0.00616,
-      "currency": "USD"
-    }
-  },
-  "scene/built-in-view/index.md": {
-    "hash": "2ea50bb131d839d40a23a562fc10b563aa8e5c040033de61653c3b473e8ba742",
-    "last_translated": "2025-03-23T20:22:18.754261",
-    "translation_time": 31.38,
-    "usage": {
-      "prompt_tokens": 2188,
-      "completion_tokens": 566,
-      "total_tokens": 2754,
-      "prompt_price": 0.0017504,
-      "completion_price": 0.001132,
-      "total_price": 0.0028824,
-      "currency": "USD"
-    }
-  },
-  "open-api/data-query-rule/list.md": {
-    "hash": "7d9dacbc01d518fe87c44dade968725815fc4ec8237e91dfcd060677cf790d3d",
-    "last_translated": "2025-03-23T20:22:23.732516",
-    "translation_time": 250.52,
-    "usage": {
-      "prompt_tokens": 6369,
-      "completion_tokens": 4766,
-      "total_tokens": 11135,
-      "prompt_price": 0.0050952,
-      "completion_price": 0.009532,
-      "total_price": 0.0146272,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/sourcemap/webpack-upload-sourcemaps.md": {
-    "hash": "001dabf0695eb56f1c80f92ffa6278f17f6b5a698db903fd0ad490e1458a5e1b",
-    "last_translated": "2025-03-23T20:22:45.251995",
-    "translation_time": 81.1,
-    "usage": {
-      "prompt_tokens": 3296,
-      "completion_tokens": 1625,
-      "total_tokens": 4921,
-      "prompt_price": 0.0026368,
-      "completion_price": 0.00325,
-      "total_price": 0.0058868,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue/get.md": {
-    "hash": "09e7b11880baf4593eba5542bf47f8655c9a18459f1e95aedc2e917aa14e154b",
-    "last_translated": "2025-03-23T20:22:50.866817",
-    "translation_time": 49.95,
-    "usage": {
-      "prompt_tokens": 2589,
-      "completion_tokens": 1012,
-      "total_tokens": 3601,
-      "prompt_price": 0.0020712,
-      "completion_price": 0.002024,
-      "total_price": 0.0040952,
-      "currency": "USD"
-    }
-  },
-  "deployment/admin-management.md": {
-    "hash": "9d9cdfc49757188b198480d87b1cc8fd5dbce3bc10955cf849bab4853512e4cf",
-    "last_translated": "2025-03-23T20:22:50.874362",
-    "translation_time": 37.74,
-    "usage": {
-      "prompt_tokens": 2246,
-      "completion_tokens": 679,
-      "total_tokens": 2925,
-      "prompt_price": 0.0017968,
-      "completion_price": 0.001358,
-      "total_price": 0.0031548,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/workspace-weekly-report.md": {
-    "hash": "58927e81f4c80b240221c4519e1e8a2a843ea95191f4810db32c0ea1ded7fd67",
-    "last_translated": "2025-03-23T20:22:57.641154",
-    "translation_time": 130.08,
-    "usage": {
-      "prompt_tokens": 3734,
-      "completion_tokens": 2038,
-      "total_tokens": 5772,
-      "prompt_price": 0.0029872,
-      "completion_price": 0.004076,
-      "total_price": 0.0070632,
-      "currency": "USD"
-    }
-  },
-  "getting-started/function-details/inform-group.md": {
-    "hash": "166e539f257cd5e7e7502cf81b069d1ca80073234e3e2dd23cbb3a78d89d63af",
-    "last_translated": "2025-03-23T20:23:17.206771",
-    "translation_time": 53.46,
-    "usage": {
-      "prompt_tokens": 2730,
-      "completion_tokens": 1113,
-      "total_tokens": 3843,
-      "prompt_price": 0.002184,
-      "completion_price": 0.002226,
-      "total_price": 0.00441,
-      "currency": "USD"
-    }
-  },
-  "application-performance-monitoring/error.md": {
-    "hash": "f7e06c9ad5d3acae69a2f92abd4eb12d1d4fa010da39b0d236fd8bc1b7408cfc",
-    "last_translated": "2025-03-23T20:23:20.727721",
-    "translation_time": 79.34,
-    "usage": {
-      "prompt_tokens": 3249,
-      "completion_tokens": 1635,
-      "total_tokens": 4884,
-      "prompt_price": 0.0025992,
-      "completion_price": 0.00327,
-      "total_price": 0.0058692,
-      "currency": "USD"
-    }
-  },
-  "open-api/sso/saml-list.md": {
-    "hash": "b21343ebb340e4695417b24cc7b676b2e8c0f4b066bc3c6a116c7d3f37e27aca",
-    "last_translated": "2025-03-23T20:23:32.425853",
-    "translation_time": 41.54,
-    "usage": {
-      "prompt_tokens": 2443,
-      "completion_tokens": 864,
-      "total_tokens": 3307,
-      "prompt_price": 0.0019544,
-      "completion_price": 0.001728,
-      "total_price": 0.0036824,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue/modify.md": {
-    "hash": "02e526139396df7e25a4c18479f147eb46275237026e949776ee853756b64ab1",
-    "last_translated": "2025-03-23T20:23:39.639769",
-    "translation_time": 80.87,
-    "usage": {
-      "prompt_tokens": 3247,
-      "completion_tokens": 1631,
-      "total_tokens": 4878,
-      "prompt_price": 0.0025976,
-      "completion_price": 0.003262,
-      "total_price": 0.0058596,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/order.md": {
-    "hash": "d8e5c9f109aeb41c950079d5bbd3eaf42633434fdd1d8d183838ef1b7ae785c3",
-    "last_translated": "2025-03-23T20:23:59.044451",
-    "translation_time": 191.5,
-    "usage": {
-      "prompt_tokens": 4435,
-      "completion_tokens": 2884,
-      "total_tokens": 7319,
-      "prompt_price": 0.003548,
-      "completion_price": 0.005768,
-      "total_price": 0.009316,
-      "currency": "USD"
-    }
-  },
-  "management/cloud-account-manag.md": {
-    "hash": "769d16e679e67f85034db1ef7d4b13bee17f70934297ea1e6d73fef64e3cd02d",
-    "last_translated": "2025-03-23T20:24:00.888047",
-    "translation_time": 70.0,
-    "usage": {
-      "prompt_tokens": 2796,
-      "completion_tokens": 1215,
-      "total_tokens": 4011,
-      "prompt_price": 0.0022368,
-      "completion_price": 0.00243,
-      "total_price": 0.0046668,
-      "currency": "USD"
-    }
-  },
-  "logs/explorer.md": {
-    "hash": "a72061e9fac6e6303fb2718ed4624609ada9b1d0c3cdc4a54ac5db5a68b47a51",
-    "last_translated": "2025-03-23T20:24:27.708373",
-    "translation_time": 28.65,
-    "usage": {
-      "prompt_tokens": 2210,
-      "completion_tokens": 595,
-      "total_tokens": 2805,
-      "prompt_price": 0.001768,
-      "completion_price": 0.00119,
-      "total_price": 0.002958,
-      "currency": "USD"
-    }
-  },
-  "exception/index.md": {
-    "hash": "b76566e8a168feac5eb2bc5a0c084e469b6d3a14278f43c23f802a613cdfd715",
-    "last_translated": "2025-03-23T20:24:37.941797",
-    "translation_time": 37.04,
-    "usage": {
-      "prompt_tokens": 2017,
-      "completion_tokens": 452,
-      "total_tokens": 2469,
-      "prompt_price": 0.0016136,
-      "completion_price": 0.000904,
-      "total_price": 0.0025176,
-      "currency": "USD"
-    }
-  },
-  "open-api/board/crontab-report-add.md": {
-    "hash": "340af599e425f79d03f736d09411922216b518e2f22157e3aa503b1e20414158",
-    "last_translated": "2025-03-23T20:24:39.012133",
-    "translation_time": 66.57,
-    "usage": {
-      "prompt_tokens": 2914,
-      "completion_tokens": 1277,
-      "total_tokens": 4191,
-      "prompt_price": 0.0023312,
-      "completion_price": 0.002554,
-      "total_price": 0.0048852,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/uni-app/sdk-changelog.md": {
-    "hash": "13f5cc9a6844fb0f7f462115cf9e039affcbd011cb116308989c95327efc2259",
-    "last_translated": "2025-03-23T20:24:58.044828",
-    "translation_time": 20.09,
-    "usage": {
-      "prompt_tokens": 2270,
-      "completion_tokens": 663,
-      "total_tokens": 2933,
-      "prompt_price": 0.001816,
-      "completion_price": 0.001326,
-      "total_price": 0.003142,
-      "currency": "USD"
-    }
-  },
-  "external-api/workspace-ak/add.md": {
-    "hash": "fb08430e10f0d9621cdf67413a9c5a327e3d230b5f70e9fd7351ec37d09338ee",
-    "last_translated": "2025-03-23T20:25:03.376514",
-    "translation_time": 5.32,
-    "usage": {
-      "prompt_tokens": 1754,
-      "completion_tokens": 174,
-      "total_tokens": 1928,
-      "prompt_price": 0.0014032,
-      "completion_price": 0.000348,
-      "total_price": 0.0017512,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/session-replay/web/replay.md": {
-    "hash": "58411551c8e957ce09ddde4ff37f98bcfe9bc7a50aaadbed5bbaf0b1653f7269",
-    "last_translated": "2025-03-23T20:25:18.672300",
-    "translation_time": 50.95,
-    "usage": {
-      "prompt_tokens": 2788,
-      "completion_tokens": 1203,
-      "total_tokens": 3991,
-      "prompt_price": 0.0022304,
-      "completion_price": 0.002406,
-      "total_price": 0.0046364,
-      "currency": "USD"
-    }
-  },
-  "open-api/logging-query-rule/get.md": {
-    "hash": "d7658dbd915527e206ed2758a9ebcb1f4c8755432e4f1b7530b965c69fdd4cd3",
-    "last_translated": "2025-03-23T20:25:21.841117",
-    "translation_time": 42.82,
-    "usage": {
-      "prompt_tokens": 2507,
-      "completion_tokens": 926,
-      "total_tokens": 3433,
-      "prompt_price": 0.0020056,
-      "completion_price": 0.001852,
-      "total_price": 0.0038576,
-      "currency": "USD"
-    }
-  },
-  "deployment/ha-opensearch.md": {
-    "hash": "b21738d134d18990cb3112b159cee474b52f0c0025fc8d48c2c4ade995094ccb",
-    "last_translated": "2025-03-23T20:25:24.705989",
-    "translation_time": 105.05,
-    "usage": {
-      "prompt_tokens": 4744,
-      "completion_tokens": 3092,
-      "total_tokens": 7836,
-      "prompt_price": 0.0037952,
-      "completion_price": 0.006184,
-      "total_price": 0.0099792,
-      "currency": "USD"
-    }
-  },
-  "plans/commercial.md": {
-    "hash": "ddd5c7c5d688ada0637e71121f4ae4566a9f6d3ce4aa7d0f1f04dac831d572b5",
-    "last_translated": "2025-03-23T20:25:42.924885",
-    "translation_time": 18.21,
-    "usage": {
-      "prompt_tokens": 2053,
-      "completion_tokens": 482,
-      "total_tokens": 2535,
-      "prompt_price": 0.0016424,
-      "completion_price": 0.000964,
-      "total_price": 0.0026064,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/kafka.md": {
-    "hash": "458bd381e33055f6a61049374abc77e8e213d7e8e134c467fd4e5c67493241b3",
-    "last_translated": "2025-03-23T20:25:43.613084",
-    "translation_time": 146.39,
-    "usage": {
-      "prompt_tokens": 5067,
-      "completion_tokens": 3177,
-      "total_tokens": 8244,
-      "prompt_price": 0.0040536,
-      "completion_price": 0.006354,
-      "total_price": 0.0104076,
-      "currency": "USD"
-    }
-  },
-  "open-api/logging-query-rule/modify.md": {
-    "hash": "2e4823a88b63371db7cad359366eb420f3b2c16d8bbc40fe5c7ade6eb5af187d",
-    "last_translated": "2025-03-23T20:25:57.683705",
-    "translation_time": 54.29,
-    "usage": {
-      "prompt_tokens": 3411,
-      "completion_tokens": 1781,
-      "total_tokens": 5192,
-      "prompt_price": 0.0027288,
-      "completion_price": 0.003562,
-      "total_price": 0.0062908,
-      "currency": "USD"
-    }
-  },
-  "events/event-explorer/index.md": {
-    "hash": "4934dd1b81d7c724c02fe55c2787a2579241adc750cbb5e5c2c106197cb3bd78",
-    "last_translated": "2025-03-23T20:26:03.339071",
-    "translation_time": 5.64,
-    "usage": {
-      "prompt_tokens": 1687,
-      "completion_tokens": 125,
-      "total_tokens": 1812,
-      "prompt_price": 0.0013496,
-      "completion_price": 0.00025,
-      "total_price": 0.0015996,
-      "currency": "USD"
-    }
-  },
-  "open-api/log-backup-cfg/modify.md": {
-    "hash": "82617194e6cd44d644011f411d256605194e9aecb886bf2368d7289c9f60feda",
-    "last_translated": "2025-03-23T20:26:09.824094",
-    "translation_time": 51.14,
-    "usage": {
-      "prompt_tokens": 2931,
-      "completion_tokens": 1370,
-      "total_tokens": 4301,
-      "prompt_price": 0.0023448,
-      "completion_price": 0.00274,
-      "total_price": 0.0050848,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/log-report-one-node.md": {
-    "hash": "58cd7ff03bfea4d23df0ac0523bae31f1310a39b8bc184723afad97b683ef8a4",
-    "last_translated": "2025-03-23T20:26:15.503625",
-    "translation_time": 210.24,
-    "usage": {
-      "prompt_tokens": 5740,
-      "completion_tokens": 4125,
-      "total_tokens": 9865,
-      "prompt_price": 0.004592,
-      "completion_price": 0.00825,
-      "total_price": 0.012842,
-      "currency": "USD"
-    }
-  },
-  "scene/dashboard/history-version.md": {
-    "hash": "f9c371d92283582b81551e23863792cb33ae543637d7286f73d8a477f485778f",
-    "last_translated": "2025-03-23T20:26:18.364392",
-    "translation_time": 15.02,
-    "usage": {
-      "prompt_tokens": 1875,
-      "completion_tokens": 333,
-      "total_tokens": 2208,
-      "prompt_price": 0.0015,
-      "completion_price": 0.000666,
-      "total_price": 0.002166,
-      "currency": "USD"
-    }
-  },
-  "getting-started/function-details/explorer-search.md": {
-    "hash": "92844a90079ba460d9c12f137d63ab0f380e98f113865c69ee1615decd169777",
-    "last_translated": "2025-03-23T20:26:35.656905",
-    "translation_time": 360.02,
-    "usage": {
-      "prompt_tokens": 8268,
-      "completion_tokens": 6476,
-      "total_tokens": 14744,
-      "prompt_price": 0.0066144,
-      "completion_price": 0.012952,
-      "total_price": 0.0195664,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/opentelemetry-params-for-java.md": {
-    "hash": "9bc838e32869df24a02b3b37cf63ff2cc9e62fdee8ae990bd0f5007b3b8e96ca",
-    "last_translated": "2025-03-23T20:27:10.174475",
-    "translation_time": 229.43,
-    "usage": {
-      "prompt_tokens": 6402,
-      "completion_tokens": 4720,
-      "total_tokens": 11122,
-      "prompt_price": 0.0051216,
-      "completion_price": 0.00944,
-      "total_price": 0.0145616,
-      "currency": "USD"
-    }
-  },
-  "open-api/service-manage/list.md": {
-    "hash": "2ec18040be889cc650839318f6f4a64fff42c35f781232e7449982494ad8abc1",
-    "last_translated": "2025-03-23T20:27:22.807053",
-    "translation_time": 64.43,
-    "usage": {
-      "prompt_tokens": 3310,
-      "completion_tokens": 1683,
-      "total_tokens": 4993,
-      "prompt_price": 0.002648,
-      "completion_price": 0.003366,
-      "total_price": 0.006014,
-      "currency": "USD"
-    }
-  },
-  "best-practices/partner/rancher-datakit-install.md": {
-    "hash": "9a94618c0135b88213603fd0a7871856962a0bf83ded6671b7b0ab9f29758713",
-    "last_translated": "2025-03-23T20:27:32.473474",
-    "translation_time": 56.8,
-    "usage": {
-      "prompt_tokens": 3478,
-      "completion_tokens": 1867,
-      "total_tokens": 5345,
-      "prompt_price": 0.0027824,
-      "completion_price": 0.003734,
-      "total_price": 0.0065164,
-      "currency": "USD"
-    }
-  },
-  "open-api/field-cfg/list.md": {
-    "hash": "0d8fd6de825e25baf8bd13d0304984de7fe6313fec57e68309f61af7a0781fcb",
-    "last_translated": "2025-03-23T20:27:47.235760",
-    "translation_time": 37.05,
-    "usage": {
-      "prompt_tokens": 3133,
-      "completion_tokens": 1560,
-      "total_tokens": 4693,
-      "prompt_price": 0.0025064,
-      "completion_price": 0.00312,
-      "total_price": 0.0056264,
-      "currency": "USD"
-    }
-  },
-  "deployment/single-deploy.md": {
-    "hash": "f40feefe4940403d73abfbb5c9e3f72127aa188575e3011f84fb87a0376d8331",
-    "last_translated": "2025-03-23T20:27:57.931742",
-    "translation_time": 108.09,
-    "usage": {
-      "prompt_tokens": 5013,
-      "completion_tokens": 3294,
-      "total_tokens": 8307,
-      "prompt_price": 0.0040104,
-      "completion_price": 0.006588,
-      "total_price": 0.0105984,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/k8s-logs.md": {
-    "hash": "faa1e9664aecb67ad2be34ec269d4215e5500b3b749d8b1a6aacab13ccc5a677",
-    "last_translated": "2025-03-23T20:28:08.533924",
-    "translation_time": 166.68,
-    "usage": {
-      "prompt_tokens": 5542,
-      "completion_tokens": 3904,
-      "total_tokens": 9446,
-      "prompt_price": 0.0044336,
-      "completion_price": 0.007808,
-      "total_price": 0.0122416,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/multi-cluster.md": {
-    "hash": "88b8af781e055d9bcfe5083b901e936b2496be1341b1ab5406098f4292decd19",
-    "last_translated": "2025-03-23T20:28:09.970122",
-    "translation_time": 37.48,
-    "usage": {
-      "prompt_tokens": 2661,
-      "completion_tokens": 1060,
-      "total_tokens": 3721,
-      "prompt_price": 0.0021288,
-      "completion_price": 0.00212,
-      "total_price": 0.0042488,
-      "currency": "USD"
-    }
-  },
-  "open-api/notify-object/create.md": {
-    "hash": "5d60f997ece2455a0e11cde975f9c4d1a074ee311f6e235911e5de6d4636ca97",
-    "last_translated": "2025-03-23T20:28:20.302094",
-    "translation_time": 57.48,
-    "usage": {
-      "prompt_tokens": 2724,
-      "completion_tokens": 1033,
-      "total_tokens": 3757,
-      "prompt_price": 0.0021792,
-      "completion_price": 0.002066,
-      "total_price": 0.0042452,
-      "currency": "USD"
-    }
-  },
-  "events/event_data_sharding.md": {
-    "hash": "4c5b42ed5fa14b7583d422278800d9031ddbbe695b6fc31b14048148250fb47c",
-    "last_translated": "2025-03-23T20:28:27.623910",
-    "translation_time": 164.0,
-    "usage": {
-      "prompt_tokens": 5955,
-      "completion_tokens": 3977,
-      "total_tokens": 9932,
-      "prompt_price": 0.004764,
-      "completion_price": 0.007954,
-      "total_price": 0.012718,
-      "currency": "USD"
-    }
-  },
-  "scene/visual-chart/timeseries-chart.md": {
-    "hash": "b459f122f445089670058266eccd92d980f35c625b9dd0d16ceff9bd5f5fb927",
-    "last_translated": "2025-03-23T20:28:27.637836",
-    "translation_time": 132.13,
-    "usage": {
-      "prompt_tokens": 5274,
-      "completion_tokens": 3642,
-      "total_tokens": 8916,
-      "prompt_price": 0.0042192,
-      "completion_price": 0.007284,
-      "total_price": 0.0115032,
-      "currency": "USD"
-    }
-  },
-  "open-api/workspace-member/list.md": {
-    "hash": "4b8d43bf260cea84de75db8e1ef3c3e8ebf711e9bc1474a64c5d0252a6967447",
-    "last_translated": "2025-03-23T20:28:33.043395",
-    "translation_time": 24.49,
-    "usage": {
-      "prompt_tokens": 2168,
-      "completion_tokens": 590,
-      "total_tokens": 2758,
-      "prompt_price": 0.0017344,
-      "completion_price": 0.00118,
-      "total_price": 0.0029144,
-      "currency": "USD"
-    }
-  },
-  "deployment/change-boce-center.md": {
-    "hash": "ed8c8e119400e183d8c05826bc7ee86d022e90704bd4a83a466d30a71d64de73",
-    "last_translated": "2025-03-23T20:28:40.714478",
-    "translation_time": 20.39,
-    "usage": {
-      "prompt_tokens": 2331,
-      "completion_tokens": 746,
-      "total_tokens": 3077,
-      "prompt_price": 0.0018648,
-      "completion_price": 0.001492,
-      "total_price": 0.0033568,
-      "currency": "USD"
-    }
-  },
-  "getting-started/function-details/network-analysis.md": {
-    "hash": "dbe3b73987a619360f1d74a5572cd21ffeb14e28e005a1e39a3a765a52d2ad44",
-    "last_translated": "2025-03-23T20:29:00.355567",
-    "translation_time": 27.3,
-    "usage": {
-      "prompt_tokens": 2545,
-      "completion_tokens": 935,
-      "total_tokens": 3480,
-      "prompt_price": 0.002036,
-      "completion_price": 0.00187,
-      "total_price": 0.003906,
-      "currency": "USD"
-    }
-  },
-  "deployment/upgrade-version.md": {
-    "hash": "64bc6f566887130de3074cc2b5f4be36b3b5c144f65eb72d834907a44e4aac8a",
-    "last_translated": "2025-03-23T20:29:12.462355",
-    "translation_time": 62.48,
-    "usage": {
-      "prompt_tokens": 2756,
-      "completion_tokens": 1296,
-      "total_tokens": 4052,
-      "prompt_price": 0.0022048,
-      "completion_price": 0.002592,
-      "total_price": 0.0047968,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/cloud-idle-resources.md": {
-    "hash": "ad165045a6e433f759be0754317d26e6e727f0cf31b3650c9f7f42016877edac",
-    "last_translated": "2025-03-23T20:29:16.431877",
-    "translation_time": 78.48,
-    "usage": {
-      "prompt_tokens": 3330,
-      "completion_tokens": 1730,
-      "total_tokens": 5060,
-      "prompt_price": 0.002664,
-      "completion_price": 0.00346,
-      "total_price": 0.006124,
-      "currency": "USD"
-    }
-  },
-  "logs/miniapp-collection.md": {
-    "hash": "70484143db9f6e1ffd85b51ef7d54497154445b14a2c7c230630f928ee50fe95",
-    "last_translated": "2025-03-23T20:29:23.104215",
-    "translation_time": 42.37,
-    "usage": {
-      "prompt_tokens": 3292,
-      "completion_tokens": 1656,
-      "total_tokens": 4948,
-      "prompt_price": 0.0026336,
-      "completion_price": 0.003312,
-      "total_price": 0.0059456,
-      "currency": "USD"
-    }
-  },
-  "management/sso/configuration-faq.md": {
-    "hash": "d2d08c64ca41f3c8dedd62cef0d01c1df190c5a460af194b33699dc8025caaaf",
-    "last_translated": "2025-03-23T20:30:15.476042",
-    "translation_time": 75.1,
-    "usage": {
-      "prompt_tokens": 3177,
-      "completion_tokens": 1664,
-      "total_tokens": 4841,
-      "prompt_price": 0.0025416,
-      "completion_price": 0.003328,
-      "total_price": 0.0058696,
-      "currency": "USD"
-    }
-  },
-  "others/host-observable.md": {
-    "hash": "169d58e100204b1e10db3032e9b0f80ebc096826a7363670b302ad7b37a4ca3b",
-    "last_translated": "2025-03-23T20:30:20.236412",
-    "translation_time": 67.76,
-    "usage": {
-      "prompt_tokens": 3254,
-      "completion_tokens": 1686,
-      "total_tokens": 4940,
-      "prompt_price": 0.0026032,
-      "completion_price": 0.003372,
-      "total_price": 0.0059752,
-      "currency": "USD"
-    }
-  },
-  "billing-center/faq.md": {
-    "hash": "095acd62acfa38687180452c788c87dc444185d3410684518843a234fa0c08ae",
-    "last_translated": "2025-03-23T20:30:27.349533",
-    "translation_time": 7.1,
-    "usage": {
-      "prompt_tokens": 1718,
-      "completion_tokens": 134,
-      "total_tokens": 1852,
-      "prompt_price": 0.0013744,
-      "completion_price": 0.000268,
-      "total_price": 0.0016424,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/istio.md": {
-    "hash": "7727476fe58dd0aeaed1ec9aac76670572ce638f4f1cb7f90f04b67823e7cc6e",
-    "last_translated": "2025-03-23T20:30:44.364809",
-    "translation_time": 516.86,
-    "usage": {
-      "prompt_tokens": 32051,
-      "completion_tokens": 10167,
-      "total_tokens": 42218,
-      "prompt_price": 0.0256408,
-      "completion_price": 0.020333999999999998,
-      "total_price": 0.0459748,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "plans/commercial-aws.md": {
-    "hash": "4c3e9fa5a3e1efbcb275311500e0c8459126cfcf602e3985e2866858109b64dc",
-    "last_translated": "2025-03-23T20:31:16.568554",
-    "translation_time": 113.45,
-    "usage": {
-      "prompt_tokens": 4019,
-      "completion_tokens": 2489,
-      "total_tokens": 6508,
-      "prompt_price": 0.0032152,
-      "completion_price": 0.004978,
-      "total_price": 0.0081932,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/trace-glame-graph.md": {
-    "hash": "207333fec5576667ef97643026f9c579147407364a27194ae41a6ed695865bbb",
-    "last_translated": "2025-03-23T20:31:16.915617",
-    "translation_time": 209.67,
-    "usage": {
-      "prompt_tokens": 6316,
-      "completion_tokens": 4675,
-      "total_tokens": 10991,
-      "prompt_price": 0.0050528,
-      "completion_price": 0.00935,
-      "total_price": 0.0144028,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/rum_errors.md": {
-    "hash": "deff19b9743e42aee680703b75e3615ebfbc4ddc6b90174d11308428c2f7b2cf",
-    "last_translated": "2025-03-23T20:31:30.844902",
-    "translation_time": 63.48,
-    "usage": {
-      "prompt_tokens": 3463,
-      "completion_tokens": 1825,
-      "total_tokens": 5288,
-      "prompt_price": 0.0027704,
-      "completion_price": 0.00365,
-      "total_price": 0.0064204,
-      "currency": "USD"
-    }
-  },
-  "open-api/pipeline/modify.md": {
-    "hash": "9e396806266235bc4f0ebf20d66f5d9931975bf3235971b6236015511195ed78",
-    "last_translated": "2025-03-23T20:31:53.674847",
-    "translation_time": 37.08,
-    "usage": {
-      "prompt_tokens": 2641,
-      "completion_tokens": 1087,
-      "total_tokens": 3728,
-      "prompt_price": 0.0021128,
-      "completion_price": 0.002174,
-      "total_price": 0.0042868,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/opentelemetry-operator.md": {
-    "hash": "6d9fb18a8c4b21afd1bef54626c6d2ad94c1c526daa2b377ffb577443ae453d6",
-    "last_translated": "2025-03-23T20:31:54.239809",
-    "translation_time": 206.59,
-    "usage": {
-      "prompt_tokens": 6404,
-      "completion_tokens": 4781,
-      "total_tokens": 11185,
-      "prompt_price": 0.0051232,
-      "completion_price": 0.009562,
-      "total_price": 0.0146852,
-      "currency": "USD"
-    }
-  },
-  "deployment/application-configuration-guide.md": {
-    "hash": "2e80de4a1cac3a42b19ac595cb682d8c5187b9a3a3e0f82795a459b07a1d25a3",
-    "last_translated": "2025-03-23T20:32:12.500576",
-    "translation_time": 389.56,
-    "usage": {
-      "prompt_tokens": 30301,
-      "completion_tokens": 8459,
-      "total_tokens": 38760,
-      "prompt_price": 0.0242408,
-      "completion_price": 0.016918,
-      "total_price": 0.041158799999999995,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "deployment/self-monitoring.md": {
-    "hash": "86d4c4cbff8b205d4c48ca97bdb8dccf916f293fd93df0df72fcde7515550825",
-    "last_translated": "2025-03-23T20:32:13.562905",
-    "translation_time": 555.91,
-    "usage": {
-      "prompt_tokens": 34247,
-      "completion_tokens": 11346,
-      "total_tokens": 45593,
-      "prompt_price": 0.0273976,
-      "completion_price": 0.022692,
-      "total_price": 0.0500896,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "monitoring/monitor/template.md": {
-    "hash": "e11e61c8c166f35d1f9d0f027b489f777879f1910a8b8947be1f68eece100610",
-    "last_translated": "2025-03-23T20:32:28.926178",
-    "translation_time": 104.55,
-    "usage": {
-      "prompt_tokens": 3373,
-      "completion_tokens": 1492,
-      "total_tokens": 4865,
-      "prompt_price": 0.0026984,
-      "completion_price": 0.002984,
-      "total_price": 0.0056824,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/scene-dubbo.md": {
-    "hash": "b2a7f4a759890f1073bc882323cb04be5a451c0c4425115327eb91251cdd22f9",
-    "last_translated": "2025-03-23T20:32:46.070650",
-    "translation_time": 150.58,
-    "usage": {
-      "prompt_tokens": 5175,
-      "completion_tokens": 3626,
-      "total_tokens": 8801,
-      "prompt_price": 0.00414,
-      "completion_price": 0.007252,
-      "total_price": 0.011392,
-      "currency": "USD"
-    }
-  },
-  "open-api/sso/saml-create.md": {
-    "hash": "af44045d89f3233ef0c2e7b4c03b18372df5e48723030aef70e8fb0394b6c926",
-    "last_translated": "2025-03-23T20:32:55.267367",
-    "translation_time": 267.63,
-    "usage": {
-      "prompt_tokens": 7543,
-      "completion_tokens": 5803,
-      "total_tokens": 13346,
-      "prompt_price": 0.0060344,
-      "completion_price": 0.011606,
-      "total_price": 0.0176404,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/im_jira.md": {
-    "hash": "26f313b9aa2795810c4df13ea021afe2c7576957004e44a98292e52698d35e68",
-    "last_translated": "2025-03-23T20:32:56.799102",
-    "translation_time": 85.94,
-    "usage": {
-      "prompt_tokens": 3679,
-      "completion_tokens": 2114,
-      "total_tokens": 5793,
-      "prompt_price": 0.0029432,
-      "completion_price": 0.004228,
-      "total_price": 0.0071712,
-      "currency": "USD"
-    }
-  },
-  "application-performance-monitoring/explorer/auto_wire/apm_datakit_operator.md": {
-    "hash": "05bfd2f35072b74b39ba2e96e9874dec1f05c99f6857856f6ed1d7d8d522eb5e",
-    "last_translated": "2025-03-23T20:33:00.744275",
-    "translation_time": 47.17,
-    "usage": {
-      "prompt_tokens": 2310,
-      "completion_tokens": 723,
-      "total_tokens": 3033,
-      "prompt_price": 0.001848,
-      "completion_price": 0.001446,
-      "total_price": 0.003294,
-      "currency": "USD"
-    }
-  },
-  "management/sso/aws_iam_sso.md": {
-    "hash": "2e881bf76d090db38fba7d3fe0663aae291b5dff8bb44b7705239f1ae4e2f86b",
-    "last_translated": "2025-03-23T20:33:21.849349",
-    "translation_time": 69.33,
-    "usage": {
-      "prompt_tokens": 3196,
-      "completion_tokens": 1595,
-      "total_tokens": 4791,
-      "prompt_price": 0.0025568,
-      "completion_price": 0.00319,
-      "total_price": 0.0057468,
-      "currency": "USD"
-    }
-  },
-  "billing/billing-account/huawei-account.md": {
-    "hash": "c2fde1c3027fd68a6a439aa38ad3017ae4504a2d8969deb640df0446dffabb16",
-    "last_translated": "2025-03-23T20:33:26.807012",
-    "translation_time": 31.52,
-    "usage": {
-      "prompt_tokens": 2659,
-      "completion_tokens": 1131,
-      "total_tokens": 3790,
-      "prompt_price": 0.0021272,
-      "completion_price": 0.002262,
-      "total_price": 0.0043892,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/skywalking-apm-rum-log.md": {
-    "hash": "3c803b039d37d43c5cc7fd07f237de94b50b8713b30c2109a4d7ca852b6fae36",
-    "last_translated": "2025-03-23T20:34:02.939332",
-    "translation_time": 128.68,
-    "usage": {
-      "prompt_tokens": 3689,
-      "completion_tokens": 2069,
-      "total_tokens": 5758,
-      "prompt_price": 0.0029512,
-      "completion_price": 0.004138,
-      "total_price": 0.0070892,
-      "currency": "USD"
-    }
-  },
-  "management/role-management.md": {
-    "hash": "b8283aafa78e9140c55304a6e53f82929d9d6bd14472b194c56d1b85dbc1a769",
-    "last_translated": "2025-03-23T20:34:22.821207",
-    "translation_time": 86.0,
-    "usage": {
-      "prompt_tokens": 3047,
-      "completion_tokens": 1505,
-      "total_tokens": 4552,
-      "prompt_price": 0.0024376,
-      "completion_price": 0.00301,
-      "total_price": 0.0054476,
-      "currency": "USD"
-    }
-  },
-  "datakit/datakit-docker-deploy.md": {
-    "hash": "fa698957628e0099a4091d1ae384a3d76c5fbfa27896dcb9feba5e28d10ef4e7",
-    "last_translated": "2025-03-23T20:34:22.990110",
-    "translation_time": 56.17,
-    "usage": {
-      "prompt_tokens": 2850,
-      "completion_tokens": 1248,
-      "total_tokens": 4098,
-      "prompt_price": 0.00228,
-      "completion_price": 0.002496,
-      "total_price": 0.004776,
-      "currency": "USD"
-    }
-  },
-  "open-api/board/crontab-report-list.md": {
-    "hash": "7aceaddbbafa8fc84d6a83e989a522cfe46a341a64d2e7a00bae494c57dfdfc1",
-    "last_translated": "2025-03-23T20:34:33.005479",
-    "translation_time": 124.06,
-    "usage": {
-      "prompt_tokens": 3899,
-      "completion_tokens": 2327,
-      "total_tokens": 6226,
-      "prompt_price": 0.0031192,
-      "completion_price": 0.004654,
-      "total_price": 0.0077732,
-      "currency": "USD"
-    }
-  },
-  "deployment/switch-domain.md": {
-    "hash": "fce5e2b2c902b4dcd29428416be43eb7cf25d6df25ec7b2809aca8a61666efb4",
-    "last_translated": "2025-03-23T20:34:55.202005",
-    "translation_time": 32.36,
-    "usage": {
-      "prompt_tokens": 2599,
-      "completion_tokens": 1020,
-      "total_tokens": 3619,
-      "prompt_price": 0.0020792,
-      "completion_price": 0.00204,
-      "total_price": 0.0041192,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/slo-part1.md": {
-    "hash": "ab7f1c55f20b832a0527ed01dde22bdf35a46a981aa2f90839ca35577c084280",
-    "last_translated": "2025-03-23T20:35:01.148775",
-    "translation_time": 135.06,
-    "usage": {
-      "prompt_tokens": 3802,
-      "completion_tokens": 2313,
-      "total_tokens": 6115,
-      "prompt_price": 0.0030416,
-      "completion_price": 0.004626,
-      "total_price": 0.0076676,
-      "currency": "USD"
-    }
-  },
-  "events/inte-monitoring-event.md": {
-    "hash": "895c7f51d02421e10bfe1bc3101e4fdc3ec05795e826c30b469d30e6899d18d5",
-    "last_translated": "2025-03-23T20:35:14.721459",
-    "translation_time": 13.56,
-    "usage": {
-      "prompt_tokens": 1692,
-      "completion_tokens": 118,
-      "total_tokens": 1810,
-      "prompt_price": 0.0013536,
-      "completion_price": 0.000236,
-      "total_price": 0.0015896,
-      "currency": "USD"
-    }
-  },
-  "open-api/notes/list.md": {
-    "hash": "fbb186aaca2f8aafc00a12aeccee96ca7bd66d5f3a893862c4fcb52578361068",
-    "last_translated": "2025-03-23T20:35:20.598888",
-    "translation_time": 25.38,
-    "usage": {
-      "prompt_tokens": 2081,
-      "completion_tokens": 506,
-      "total_tokens": 2587,
-      "prompt_price": 0.0016648,
-      "completion_price": 0.001012,
-      "total_price": 0.0026768,
-      "currency": "USD"
-    }
-  },
-  "deployment/infra-mysql.md": {
-    "hash": "fd74d585e20fe6857c5078e25ea34d13af4615837d41a2b19d6d52e229554e5a",
-    "last_translated": "2025-03-23T20:35:31.897405",
-    "translation_time": 58.88,
-    "usage": {
-      "prompt_tokens": 2792,
-      "completion_tokens": 1183,
-      "total_tokens": 3975,
-      "prompt_price": 0.0022336,
-      "completion_price": 0.002366,
-      "total_price": 0.0045996,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/data-link.md": {
-    "hash": "e9f43c5d3dd40652b69e6cabffd69e99010fec5c07dbbfa71d2092c6f685a3ee",
-    "last_translated": "2025-03-23T20:35:53.705921",
-    "translation_time": 151.84,
-    "usage": {
-      "prompt_tokens": 4145,
-      "completion_tokens": 2597,
-      "total_tokens": 6742,
-      "prompt_price": 0.003316,
-      "completion_price": 0.005194,
-      "total_price": 0.00851,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/memory-leak.md": {
-    "hash": "fe4390edb5e4e0104eb667de9a0a672aebaee3df267f08b1bd765845b4f725e7",
-    "last_translated": "2025-03-23T20:35:54.658554",
-    "translation_time": 111.7,
-    "usage": {
-      "prompt_tokens": 3408,
-      "completion_tokens": 1784,
-      "total_tokens": 5192,
-      "prompt_price": 0.0027264,
-      "completion_price": 0.003568,
-      "total_price": 0.0062944,
-      "currency": "USD"
-    }
-  },
-  "developers/custom-how-to.md": {
-    "hash": "c8451ee073ccd866846e0bbb1bd6c6d39b581da20ff88456cfb537cd071690e0",
-    "last_translated": "2025-03-23T20:36:03.405818",
-    "translation_time": 100.4,
-    "usage": {
-      "prompt_tokens": 3103,
-      "completion_tokens": 1511,
-      "total_tokens": 4614,
-      "prompt_price": 0.0024824,
-      "completion_price": 0.003022,
-      "total_price": 0.0055044,
-      "currency": "USD"
-    }
-  },
-  "agreements/upgrade-agreement.md": {
-    "hash": "d3d8e1b1ff101eabea9b6e20a4a3d7c9096d9b2460c9c94266589cd35f2f449b",
-    "last_translated": "2025-03-23T20:36:15.057900",
-    "translation_time": 261.37,
-    "usage": {
-      "prompt_tokens": 7119,
-      "completion_tokens": 5864,
-      "total_tokens": 12983,
-      "prompt_price": 0.0056952,
-      "completion_price": 0.011728,
-      "total_price": 0.0174232,
-      "currency": "USD"
-    }
-  },
-  "scene/dashboard/index.md": {
-    "hash": "bcfcdfd6e2e3ccc587b4acecac64e85919036341ce9db5615ea21562cf600e75",
-    "last_translated": "2025-03-23T20:36:24.508257",
-    "translation_time": 30.78,
-    "usage": {
-      "prompt_tokens": 2461,
-      "completion_tokens": 813,
-      "total_tokens": 3274,
-      "prompt_price": 0.0019688,
-      "completion_price": 0.001626,
-      "total_price": 0.0035948,
-      "currency": "USD"
-    }
-  },
-  "agreements/center-service.md": {
-    "hash": "b65c4feb6e48a3f209b2901677bc70b0612598b60c1cf16eae3d30888e4f7d46",
-    "last_translated": "2025-03-23T20:36:26.163242",
-    "translation_time": 429.72,
-    "usage": {
-      "prompt_tokens": 8646,
-      "completion_tokens": 7894,
-      "total_tokens": 16540,
-      "prompt_price": 0.0069168,
-      "completion_price": 0.015788,
-      "total_price": 0.0227048,
-      "currency": "USD"
-    }
-  },
-  "external-api/query-data/query-data.md": {
-    "hash": "e01fea6d5079864d0b20bf242462425ddfe6b2f7097fb7174e0a2a221a6831c6",
-    "last_translated": "2025-03-23T20:36:41.823810",
-    "translation_time": 81.21,
-    "usage": {
-      "prompt_tokens": 3113,
-      "completion_tokens": 1405,
-      "total_tokens": 4518,
-      "prompt_price": 0.0024904,
-      "completion_price": 0.00281,
-      "total_price": 0.0053004,
-      "currency": "USD"
-    }
-  },
-  "billing-center/account-management.md": {
-    "hash": "c8756e895063bb3df60e08d848ca4bbba5aa0f9908de1e64c5ef1f0a608dc7e7",
-    "last_translated": "2025-03-23T20:37:10.214846",
-    "translation_time": 44.03,
-    "usage": {
-      "prompt_tokens": 2234,
-      "completion_tokens": 688,
-      "total_tokens": 2922,
-      "prompt_price": 0.0017872,
-      "completion_price": 0.001376,
-      "total_price": 0.0031632,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue/modifyissuereply.md": {
-    "hash": "22f5f32cb9f7bbae6f145bd4c715824fa065d95677e57b37fbb4b6ba4c987647",
-    "last_translated": "2025-03-23T20:37:27.195597",
-    "translation_time": 45.35,
-    "usage": {
-      "prompt_tokens": 2605,
-      "completion_tokens": 1015,
-      "total_tokens": 3620,
-      "prompt_price": 0.002084,
-      "completion_price": 0.00203,
-      "total_price": 0.004114,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/opentelemetry-observable.md": {
-    "hash": "d56e35ac5be855c5b93aff46f5d7f6e90aaf338f1a2d515ea53c7f8287ec1128",
-    "last_translated": "2025-03-23T20:37:52.223572",
-    "translation_time": 87.7,
-    "usage": {
-      "prompt_tokens": 3405,
-      "completion_tokens": 1800,
-      "total_tokens": 5205,
-      "prompt_price": 0.002724,
-      "completion_price": 0.0036,
-      "total_price": 0.006324,
-      "currency": "USD"
-    }
-  },
-  "deployment/oidc-custom-url.md": {
-    "hash": "51254e51dab0101331d2aabb34cebe97a531297a333e6c248b92492fff201ff7",
-    "last_translated": "2025-03-23T20:38:08.756373",
-    "translation_time": 125.34,
-    "usage": {
-      "prompt_tokens": 4129,
-      "completion_tokens": 2443,
-      "total_tokens": 6572,
-      "prompt_price": 0.0033032,
-      "completion_price": 0.004886,
-      "total_price": 0.0081892,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/user_insight_funnel.md": {
-    "hash": "e479d7cb5e47f581c24bca79fa8d8188adf9721c86a75e63390d04bf024274e0",
-    "last_translated": "2025-03-23T20:38:10.814912",
-    "translation_time": 18.58,
-    "usage": {
-      "prompt_tokens": 2169,
-      "completion_tokens": 603,
-      "total_tokens": 2772,
-      "prompt_price": 0.0017352,
-      "completion_price": 0.001206,
-      "total_price": 0.0029412,
-      "currency": "USD"
-    }
-  },
-  "datakit/.pages": {
-    "hash": "1507f9fe1857aa05e76a0b26633ec2f4d9c4e78658b1c2e63ce9d7e8c603c771",
-    "last_translated": "2025-03-23T20:38:38.625766",
-    "translation_time": 27.8,
-    "usage": {
-      "prompt_tokens": 2098,
-      "completion_tokens": 521,
-      "total_tokens": 2619,
-      "prompt_price": 0.0016784,
-      "completion_price": 0.001042,
-      "total_price": 0.0027204,
-      "currency": "USD"
-    }
-  },
-  "pipeline/use-pipeline/pipeline-offload.md": {
-    "hash": "3b1238dfe5e200d2b200194abfe94ae473f5bc7a33782042b0fdca747366ab8d",
-    "last_translated": "2025-03-23T20:39:01.968651",
-    "translation_time": 23.33,
-    "usage": {
-      "prompt_tokens": 2321,
-      "completion_tokens": 742,
-      "total_tokens": 3063,
-      "prompt_price": 0.0018568,
-      "completion_price": 0.001484,
-      "total_price": 0.0033408,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/cloudfee-instance.md": {
-    "hash": "4a009c27acfeed9ec1acb1b9001461dcfe856d525d0739af1878cda6f8d2e0b0",
-    "last_translated": "2025-03-23T20:39:20.977242",
-    "translation_time": 113.77,
-    "usage": {
-      "prompt_tokens": 3431,
-      "completion_tokens": 1829,
-      "total_tokens": 5260,
-      "prompt_price": 0.0027448,
-      "completion_price": 0.003658,
-      "total_price": 0.0064028,
-      "currency": "USD"
-    }
-  },
-  "monitoring/monitor/index.md": {
-    "hash": "f1c089d31748408e44aaf232a3ebadd094380cdf37f5e2e6d70b17ab36273fd2",
-    "last_translated": "2025-03-23T20:39:26.649259",
-    "translation_time": 5.53,
-    "usage": {
-      "prompt_tokens": 1737,
-      "completion_tokens": 164,
-      "total_tokens": 1901,
-      "prompt_price": 0.0013896,
-      "completion_price": 0.000328,
-      "total_price": 0.0017176,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/microservices2.md": {
-    "hash": "7dfcee12262eed39aa8fdb8177d172fe139a0b63f3f5c2290210d4ded0174f69",
-    "last_translated": "2025-03-23T20:39:40.910936",
-    "translation_time": 150.68,
-    "usage": {
-      "prompt_tokens": 3860,
-      "completion_tokens": 2254,
-      "total_tokens": 6114,
-      "prompt_price": 0.003088,
-      "completion_price": 0.004508,
-      "total_price": 0.007596,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/k8s-logback-socket.md": {
-    "hash": "cea6a1c0698f0b8a4fb47091a2e9b810cd4388290aed14a64c72d60d7b224079",
-    "last_translated": "2025-03-23T20:39:43.148389",
-    "translation_time": 402.39,
-    "usage": {
-      "prompt_tokens": 7743,
-      "completion_tokens": 6122,
-      "total_tokens": 13865,
-      "prompt_price": 0.0061944,
-      "completion_price": 0.012244,
-      "total_price": 0.0184384,
-      "currency": "USD"
-    }
-  },
-  "mobile/index.md": {
-    "hash": "422724bd2bb2f84954339b5672b71ead2af8d53fd6199e46cd7d3cc9a37e94fc",
-    "last_translated": "2025-03-23T20:41:03.167896",
-    "translation_time": 96.5,
-    "usage": {
-      "prompt_tokens": 4577,
-      "completion_tokens": 2918,
-      "total_tokens": 7495,
-      "prompt_price": 0.0036616,
-      "completion_price": 0.005836,
-      "total_price": 0.0094976,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue/list.md": {
-    "hash": "ccbbfa2c29959cc1de87ebab478a9d83176518cecb33e0c51e35da8785b0a310",
-    "last_translated": "2025-03-23T20:41:19.321861",
-    "translation_time": 96.16,
-    "usage": {
-      "prompt_tokens": 3199,
-      "completion_tokens": 1549,
-      "total_tokens": 4748,
-      "prompt_price": 0.0025592,
-      "completion_price": 0.003098,
-      "total_price": 0.0056572,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/flutter/app-access.md": {
-    "hash": "70cd2f6fc500c22e71e616cb6b0ea16689550c639d228743250c00ac05481191",
-    "last_translated": "2025-03-23T20:41:29.603320",
-    "translation_time": 357.69,
-    "usage": {
-      "prompt_tokens": 8235,
-      "completion_tokens": 6292,
-      "total_tokens": 14527,
-      "prompt_price": 0.006588,
-      "completion_price": 0.012584,
-      "total_price": 0.019172,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/datakit-daemonset.md": {
-    "hash": "9c87f7487acc2dc99d2d42be519f91e18a2dcbc22a2816ece3204a564009f0d8",
-    "last_translated": "2025-03-23T20:41:40.961163",
-    "translation_time": 158.98,
-    "usage": {
-      "prompt_tokens": 5345,
-      "completion_tokens": 3734,
-      "total_tokens": 9079,
-      "prompt_price": 0.004276,
-      "completion_price": 0.007468,
-      "total_price": 0.011744,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/slo-part3.md": {
-    "hash": "2d1b2695976266b43da31d4a4df34569d982fd7e4195acab8075d5cb88c00380",
-    "last_translated": "2025-03-23T20:41:48.995903",
-    "translation_time": 29.66,
-    "usage": {
-      "prompt_tokens": 2626,
-      "completion_tokens": 1086,
-      "total_tokens": 3712,
-      "prompt_price": 0.0021008,
-      "completion_price": 0.002172,
-      "total_price": 0.0042728,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/guance-elk-efk.md": {
-    "hash": "face28f2b0b9a6978c907ab80a2aaef0211612a0db4a2d5469fd9c05e361ade8",
-    "last_translated": "2025-03-23T20:41:57.898767",
-    "translation_time": 640.97,
-    "usage": {
-      "prompt_tokens": 34227,
-      "completion_tokens": 10744,
-      "total_tokens": 44971,
-      "prompt_price": 0.0273816,
-      "completion_price": 0.021488,
-      "total_price": 0.0488696,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "scene/note.md": {
-    "hash": "5cdaa7fddf64e282b0bd360f63c2826445a04464762eee78cc5fd2ba393fb25f",
-    "last_translated": "2025-03-23T20:42:04.683602",
-    "translation_time": 35.07,
-    "usage": {
-      "prompt_tokens": 2100,
-      "completion_tokens": 533,
-      "total_tokens": 2633,
-      "prompt_price": 0.00168,
-      "completion_price": 0.001066,
-      "total_price": 0.002746,
-      "currency": "USD"
-    }
-  },
-  "scheck/custom-how-to.md": {
-    "hash": "ba8e8d9a82d16bbbbcf784b1df357f371e045a04d303b145183eac20dc747e6d",
-    "last_translated": "2025-03-23T20:42:24.210730",
-    "translation_time": 81.02,
-    "usage": {
-      "prompt_tokens": 3098,
-      "completion_tokens": 1517,
-      "total_tokens": 4615,
-      "prompt_price": 0.0024784,
-      "completion_price": 0.003034,
-      "total_price": 0.0055124,
-      "currency": "USD"
-    }
-  },
-  "deployment/ingress-nginx-install.md": {
-    "hash": "4dc6187ec21fe8b3391633f544f05fa3fb738b26e35b338d0ce6dc7da7933523",
-    "last_translated": "2025-03-23T20:42:48.681795",
-    "translation_time": 43.98,
-    "usage": {
-      "prompt_tokens": 2730,
-      "completion_tokens": 1110,
-      "total_tokens": 3840,
-      "prompt_price": 0.002184,
-      "completion_price": 0.00222,
-      "total_price": 0.004404,
-      "currency": "USD"
-    }
-  },
-  "dataflux-func/automata.md": {
-    "hash": "45c907a576b25ef03920337dc2b91cc7613a88a2f5ab0956c3dcbc2fc02aac0d",
-    "last_translated": "2025-03-23T20:43:08.225743",
-    "translation_time": 44.0,
-    "usage": {
-      "prompt_tokens": 2786,
-      "completion_tokens": 1226,
-      "total_tokens": 4012,
-      "prompt_price": 0.0022288,
-      "completion_price": 0.002452,
-      "total_price": 0.0046808,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/spring-cloud-sample.md": {
-    "hash": "1cae4f32fd4e60a6597d0cc3a2207159548c172abda63e32c08544b50f4a3d6b",
-    "last_translated": "2025-03-23T20:43:08.481731",
-    "translation_time": 473.74,
-    "usage": {
-      "prompt_tokens": 28637,
-      "completion_tokens": 8401,
-      "total_tokens": 37038,
-      "prompt_price": 0.0229096,
-      "completion_price": 0.016802,
-      "total_price": 0.0397116,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "deployment/iframe.md": {
-    "hash": "a391b04c1debd021713b51bef77dfe3c91d940fcce39d69666e88b9070eea923",
-    "last_translated": "2025-03-23T20:43:11.738223",
-    "translation_time": 23.04,
-    "usage": {
-      "prompt_tokens": 1907,
-      "completion_tokens": 332,
-      "total_tokens": 2239,
-      "prompt_price": 0.0015256,
-      "completion_price": 0.000664,
-      "total_price": 0.0021896,
-      "currency": "USD"
-    }
-  },
-  "billing-method/faq.md": {
-    "hash": "4fb6b47627d89fd1e86e911b178b136170aff7f3da187cb550154214bb0f12a5",
-    "last_translated": "2025-03-23T20:43:16.167050",
-    "translation_time": 7.93,
-    "usage": {
-      "prompt_tokens": 1683,
-      "completion_tokens": 128,
-      "total_tokens": 1811,
-      "prompt_price": 0.0013464,
-      "completion_price": 0.000256,
-      "total_price": 0.0016024,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue-notification-policy/list.md": {
-    "hash": "a3aba1d2850286d21c96f9ff3bccfd29effc40265f41bad079f1dcf3c85bbd94",
-    "last_translated": "2025-03-23T20:43:50.815940",
-    "translation_time": 129.83,
-    "usage": {
-      "prompt_tokens": 3765,
-      "completion_tokens": 2192,
-      "total_tokens": 5957,
-      "prompt_price": 0.003012,
-      "completion_price": 0.004384,
-      "total_price": 0.007396,
-      "currency": "USD"
-    }
-  },
-  "deployment/nfs-provisioner.md": {
-    "hash": "8c0a2d7c19f47e5144788d1be0d2c090d4ef0ba76f9911bd6cc2796966a6a926",
-    "last_translated": "2025-03-23T20:44:02.596313",
-    "translation_time": 133.58,
-    "usage": {
-      "prompt_tokens": 3600,
-      "completion_tokens": 1985,
-      "total_tokens": 5585,
-      "prompt_price": 0.00288,
-      "completion_price": 0.00397,
-      "total_price": 0.00685,
-      "currency": "USD"
-    }
-  },
-  "management/index.md": {
-    "hash": "819210aff0051779dee9a48ddaac2ff94b14f4271e442aa68260bd83646abccc",
-    "last_translated": "2025-03-23T20:44:30.521093",
-    "translation_time": 74.34,
-    "usage": {
-      "prompt_tokens": 3751,
-      "completion_tokens": 2173,
-      "total_tokens": 5924,
-      "prompt_price": 0.0030008,
-      "completion_price": 0.004346,
-      "total_price": 0.0073468,
-      "currency": "USD"
-    }
-  },
-  "dql/advanced-funcs/local-funcs.md": {
-    "hash": "b5c2f6767e652e7fe44c3983e4521c9e7ddbf14a7b04edf9295755ac54a0bb2e",
-    "last_translated": "2025-03-23T20:44:34.040372",
-    "translation_time": 31.43,
-    "usage": {
-      "prompt_tokens": 2262,
-      "completion_tokens": 683,
-      "total_tokens": 2945,
-      "prompt_price": 0.0018096,
-      "completion_price": 0.001366,
-      "total_price": 0.0031756,
-      "currency": "USD"
-    }
-  },
-  "open-api/workspace/role-sensitive-mask-field-get.md": {
-    "hash": "babf4a15f090e750ab2c9f5a968f7a83617f547acac4afa820b74ea01b07b7c3",
-    "last_translated": "2025-03-23T20:44:47.936508",
-    "translation_time": 13.89,
-    "usage": {
-      "prompt_tokens": 1870,
-      "completion_tokens": 298,
-      "total_tokens": 2168,
-      "prompt_price": 0.001496,
-      "completion_price": 0.000596,
-      "total_price": 0.002092,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/apm.md": {
-    "hash": "0745d6ad2981924ab46fcae63113602321d0863aeec4fcb51b8689fb85cacf29",
-    "last_translated": "2025-03-23T20:45:05.912982",
-    "translation_time": 188.0,
-    "usage": {
-      "prompt_tokens": 5897,
-      "completion_tokens": 4267,
-      "total_tokens": 10164,
-      "prompt_price": 0.0047176,
-      "completion_price": 0.008534,
-      "total_price": 0.0132516,
-      "currency": "USD"
-    }
-  },
-  "logs/multi-index/index.md": {
-    "hash": "9728a65f31017e7f4b6771cad513eefb5cc35ec5f7e8b7a9df0e6c7ac80575f1",
-    "last_translated": "2025-03-23T20:45:08.097890",
-    "translation_time": 116.35,
-    "usage": {
-      "prompt_tokens": 3603,
-      "completion_tokens": 1888,
-      "total_tokens": 5491,
-      "prompt_price": 0.0028824,
-      "completion_price": 0.003776,
-      "total_price": 0.0066584,
-      "currency": "USD"
-    }
-  },
-  "scene/built-in-view/bind-view.md": {
-    "hash": "42c322d8f34cead5042d1fa39afc202404e5d71c80dc749b1801d6961d936311",
-    "last_translated": "2025-03-23T20:45:14.672591",
-    "translation_time": 26.72,
-    "usage": {
-      "prompt_tokens": 2150,
+      "prompt_tokens": 2147,
       "completion_tokens": 578,
-      "total_tokens": 2728,
-      "prompt_price": 0.00172,
+      "total_tokens": 2725,
+      "prompt_price": 0.0017176,
       "completion_price": 0.001156,
-      "total_price": 0.002876,
-      "currency": "USD"
-    }
-  },
-  "deployment/infra-logengine.md": {
-    "hash": "c3a8c26ffd5c605b567beb91dcdc4b03cbb875d83c8eebca4d8b4040206fd4e2",
-    "last_translated": "2025-03-23T20:45:27.754551",
-    "translation_time": 552.68,
-    "usage": {
-      "prompt_tokens": 30265,
-      "completion_tokens": 9429,
-      "total_tokens": 39694,
-      "prompt_price": 0.024212,
-      "completion_price": 0.018858,
-      "total_price": 0.04307,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "datakit/changelog-2025.md": {
-    "hash": "6f676b0a514d8193e84210569b0d6b20d31ba0d32a6eef984e82c1623d34f4bb",
-    "last_translated": "2025-03-23T20:45:28.949835",
-    "translation_time": 58.41,
-    "usage": {
-      "prompt_tokens": 3816,
-      "completion_tokens": 1931,
-      "total_tokens": 5747,
-      "prompt_price": 0.0030528,
-      "completion_price": 0.003862,
-      "total_price": 0.0069148,
-      "currency": "USD"
-    }
-  },
-  "open-api/log-backup-cfg/add.md": {
-    "hash": "00b42358bced9565854a8d603f4ba6498b2390841f0609da83743fc4df347f91",
-    "last_translated": "2025-03-23T20:45:28.979199",
-    "translation_time": 98.15,
-    "usage": {
-      "prompt_tokens": 3033,
-      "completion_tokens": 1430,
-      "total_tokens": 4463,
-      "prompt_price": 0.0024264,
-      "completion_price": 0.00286,
-      "total_price": 0.0052864,
-      "currency": "USD"
-    }
-  },
-  "open-api/workspace-member/batch-invitation.md": {
-    "hash": "dbb81c89c88afdd603c084c90847d4c49198d38067291548b167db657c67cb43",
-    "last_translated": "2025-03-23T20:45:42.383779",
-    "translation_time": 13.42,
-    "usage": {
-      "prompt_tokens": 1956,
-      "completion_tokens": 377,
-      "total_tokens": 2333,
-      "prompt_price": 0.0015648,
-      "completion_price": 0.000754,
-      "total_price": 0.0023188,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue/createissuereply.md": {
-    "hash": "aed9fb3e36a3aa4c7b71c5acf1dd111e2112013d844c1ed6139eb14a194059bf",
-    "last_translated": "2025-03-23T20:45:50.540103",
-    "translation_time": 44.62,
-    "usage": {
-      "prompt_tokens": 2556,
-      "completion_tokens": 968,
-      "total_tokens": 3524,
-      "prompt_price": 0.0020448,
-      "completion_price": 0.001936,
-      "total_price": 0.0039808,
-      "currency": "USD"
-    }
-  },
-  "deployment/dataway.md": {
-    "hash": "85c406d6e635c8f2c8a14e9c69231fe93fa2f2e8a17ca1714e37dab23354f8b8",
-    "last_translated": "2025-03-23T20:46:06.175820",
-    "translation_time": 611.5,
-    "usage": {
-      "prompt_tokens": 33861,
-      "completion_tokens": 10960,
-      "total_tokens": 44821,
-      "prompt_price": 0.027088799999999996,
-      "completion_price": 0.02192,
-      "total_price": 0.049008800000000005,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "open-api/log-index-cfg/add.md": {
-    "hash": "cc19d213a998260fd432ab76ce3235edf8a182053a430516166a0f4e2e1b01ca",
-    "last_translated": "2025-03-23T20:46:18.377092",
-    "translation_time": 49.38,
-    "usage": {
-      "prompt_tokens": 3011,
-      "completion_tokens": 1336,
-      "total_tokens": 4347,
-      "prompt_price": 0.0024088,
-      "completion_price": 0.002672,
-      "total_price": 0.0050808,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/react-native/sdk-changelog.md": {
-    "hash": "bea02ceb7b569f36e44608fcd84d4e9191c67e4041da6c141a117e2cc2e7cb6c",
-    "last_translated": "2025-03-23T20:46:38.732024",
-    "translation_time": 90.62,
-    "usage": {
-      "prompt_tokens": 3338,
-      "completion_tokens": 1610,
-      "total_tokens": 4948,
-      "prompt_price": 0.0026704,
-      "completion_price": 0.00322,
-      "total_price": 0.0058904,
-      "currency": "USD"
-    }
-  },
-  "others/k8s-observable.md": {
-    "hash": "29fc49c4eddfa14b1b4c4d2c00fec5ef3d4bbe944d9cf170f3f5a81ee03edb72",
-    "last_translated": "2025-03-23T20:47:03.442870",
-    "translation_time": 45.05,
-    "usage": {
-      "prompt_tokens": 2555,
-      "completion_tokens": 959,
-      "total_tokens": 3514,
-      "prompt_price": 0.002044,
-      "completion_price": 0.001918,
-      "total_price": 0.003962,
-      "currency": "USD"
-    }
-  },
-  "application-performance-monitoring/collection/sampling.md": {
-    "hash": "af8099744244660c82226ef4d47aaa62a84e9452e4d2ab9a5ec10d893a5537e0",
-    "last_translated": "2025-03-23T20:47:11.628706",
-    "translation_time": 89.23,
-    "usage": {
-      "prompt_tokens": 3276,
-      "completion_tokens": 1617,
-      "total_tokens": 4893,
-      "prompt_price": 0.0026208,
-      "completion_price": 0.003234,
-      "total_price": 0.0058548,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/microservices3.md": {
-    "hash": "d4a44bff958a2517ba342cf74dafb2dce54e06d55b6ad6ad9a0887c7e7872554",
-    "last_translated": "2025-03-23T20:47:14.656101",
-    "translation_time": 84.1,
-    "usage": {
-      "prompt_tokens": 4219,
-      "completion_tokens": 2650,
-      "total_tokens": 6869,
-      "prompt_price": 0.0033752,
-      "completion_price": 0.0053,
-      "total_price": 0.0086752,
-      "currency": "USD"
-    }
-  },
-  "others/apm-observable.md": {
-    "hash": "a3b17206f30808b2826b11db711ef308970290702a1c9973afa757341ebb094d",
-    "last_translated": "2025-03-23T20:47:30.561191",
-    "translation_time": 122.79,
-    "usage": {
-      "prompt_tokens": 4125,
-      "completion_tokens": 2553,
-      "total_tokens": 6678,
-      "prompt_price": 0.0033,
-      "completion_price": 0.005106,
-      "total_price": 0.008406,
-      "currency": "USD"
-    }
-  },
-  "open-api/workspace-ak/add.md": {
-    "hash": "e0e2a516b7440b95b8f480cd66c1a0f3242daf70d23764305e2fe36f996a073e",
-    "last_translated": "2025-03-23T20:47:32.401279",
-    "translation_time": 20.76,
-    "usage": {
-      "prompt_tokens": 2067,
-      "completion_tokens": 485,
-      "total_tokens": 2552,
-      "prompt_price": 0.0016536,
-      "completion_price": 0.00097,
-      "total_price": 0.0026236,
-      "currency": "USD"
-    }
-  },
-  "events/event-explorer/event-list.md": {
-    "hash": "8eaac94d35bb34cb5eb6b1056c65918df0acc69e540cd602551e6be88528ee15",
-    "last_translated": "2025-03-23T20:47:36.165117",
-    "translation_time": 32.71,
-    "usage": {
-      "prompt_tokens": 1884,
-      "completion_tokens": 321,
-      "total_tokens": 2205,
-      "prompt_price": 0.0015072,
-      "completion_price": 0.000642,
-      "total_price": 0.0021492,
-      "currency": "USD"
-    }
-  },
-  "others/scheck.md": {
-    "hash": "b85d53dd49a34fd4f041d66104e597ac29793755104faa9df2956fb7248f0164",
-    "last_translated": "2025-03-23T20:48:09.693207",
-    "translation_time": 37.27,
-    "usage": {
-      "prompt_tokens": 2924,
-      "completion_tokens": 1323,
-      "total_tokens": 4247,
-      "prompt_price": 0.0023392,
-      "completion_price": 0.002646,
-      "total_price": 0.0049852,
-      "currency": "USD"
-    }
-  },
-  "deployment/infra-metric.md": {
-    "hash": "f7557749eef616a1195168246cfc3b081561e2d950784d30645cffa3ef130cef",
-    "last_translated": "2025-03-23T20:48:10.748380",
-    "translation_time": 302.25,
-    "usage": {
-      "prompt_tokens": 7421,
-      "completion_tokens": 5757,
-      "total_tokens": 13178,
-      "prompt_price": 0.0059368,
-      "completion_price": 0.011514,
-      "total_price": 0.0174508,
-      "currency": "USD"
-    }
-  },
-  "management/status-page.md": {
-    "hash": "395761eea5db2b6914b485c66d8193933a8f41241d6e6792d7d20cf4d7ebc943",
-    "last_translated": "2025-03-23T20:48:13.215089",
-    "translation_time": 58.54,
-    "usage": {
-      "prompt_tokens": 2803,
-      "completion_tokens": 1282,
-      "total_tokens": 4085,
-      "prompt_price": 0.0022424,
-      "completion_price": 0.002564,
-      "total_price": 0.0048064,
-      "currency": "USD"
-    }
-  },
-  "open-api/workspace-ak/list.md": {
-    "hash": "6524ecc5fe933d67d4497ec424f1519a64419feb235d6ad9b0ca47ecdb38c386",
-    "last_translated": "2025-03-23T20:48:24.981534",
-    "translation_time": 11.75,
-    "usage": {
-      "prompt_tokens": 1969,
-      "completion_tokens": 408,
-      "total_tokens": 2377,
-      "prompt_price": 0.0015752,
-      "completion_price": 0.000816,
-      "total_price": 0.0023912,
-      "currency": "USD"
-    }
-  },
-  "monitoring/event-template.md": {
-    "hash": "2e70aaf7c61bdcbe058cd470a718e88f35d71d547f94083f91ca89e3187028b1",
-    "last_translated": "2025-03-23T20:48:29.890219",
-    "translation_time": 111.14,
-    "usage": {
-      "prompt_tokens": 5076,
-      "completion_tokens": 3316,
-      "total_tokens": 8392,
-      "prompt_price": 0.0040608,
-      "completion_price": 0.006632,
-      "total_price": 0.0106928,
-      "currency": "USD"
-    }
-  },
-  "logs/explorer-details.md": {
-    "hash": "e0dfac50cb59e5c77c5d5eb30faba918c1a4aa201c2008521b44d5e0fc017a21",
-    "last_translated": "2025-03-23T20:48:38.855228",
-    "translation_time": 152.66,
-    "usage": {
-      "prompt_tokens": 4590,
-      "completion_tokens": 2895,
-      "total_tokens": 7485,
-      "prompt_price": 0.003672,
-      "completion_price": 0.00579,
-      "total_price": 0.009462,
-      "currency": "USD"
-    }
-  },
-  "developers/custom-object.md": {
-    "hash": "5091d3fdf0ecbdeffaed9d296bb99dea83db292662d4993cb40bbff6f0ec1405",
-    "last_translated": "2025-03-23T20:48:49.276035",
-    "translation_time": 19.37,
-    "usage": {
-      "prompt_tokens": 1911,
-      "completion_tokens": 339,
-      "total_tokens": 2250,
-      "prompt_price": 0.0015288,
-      "completion_price": 0.000678,
-      "total_price": 0.0022068,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/gitlab-ci.md": {
-    "hash": "525b632051be20a75446dbaa2df867f41da047fbbdd3c979bf5ee241dd347a9b",
-    "last_translated": "2025-03-23T20:49:08.808218",
-    "translation_time": 98.23,
-    "usage": {
-      "prompt_tokens": 4449,
-      "completion_tokens": 2773,
-      "total_tokens": 7222,
-      "prompt_price": 0.0035592,
-      "completion_price": 0.005546,
-      "total_price": 0.0091052,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/opentelemetry-guance.md": {
-    "hash": "24691392f95a8d7fa3fafae41a4badc2f480586708ae307435257b704c305432",
-    "last_translated": "2025-03-23T20:49:28.405490",
-    "translation_time": 253.72,
-    "usage": {
-      "prompt_tokens": 6640,
-      "completion_tokens": 4895,
-      "total_tokens": 11535,
-      "prompt_price": 0.005312,
-      "completion_price": 0.00979,
-      "total_price": 0.015102,
-      "currency": "USD"
-    }
-  },
-  "deployment/infra-kubernetes.md": {
-    "hash": "0b09ecc8433529735df64234b1c8b46185b42d60d011d2e73f92607e9145828a",
-    "last_translated": "2025-03-23T20:49:54.235210",
-    "translation_time": 103.47,
-    "usage": {
-      "prompt_tokens": 3246,
-      "completion_tokens": 1620,
-      "total_tokens": 4866,
-      "prompt_price": 0.0025968,
-      "completion_price": 0.00324,
-      "total_price": 0.0058368,
-      "currency": "USD"
-    }
-  },
-  "ci-visibility/data-collection.md": {
-    "hash": "6a16a4ebc13a199351fe82b6cc0333198addf139f2936b4fb556db86d26bb81d",
-    "last_translated": "2025-03-23T20:50:03.466970",
-    "translation_time": 9.22,
-    "usage": {
-      "prompt_tokens": 1849,
-      "completion_tokens": 270,
-      "total_tokens": 2119,
-      "prompt_price": 0.0014792,
-      "completion_price": 0.00054,
-      "total_price": 0.0020192,
-      "currency": "USD"
-    }
-  },
-  "open-api/pipeline/add.md": {
-    "hash": "a2aaae7389a04bfd1ffa6c75e24310d0cfbd5ec40574efab75b97cd99d41fd16",
-    "last_translated": "2025-03-23T20:50:39.300050",
-    "translation_time": 35.81,
-    "usage": {
-      "prompt_tokens": 2565,
-      "completion_tokens": 1001,
-      "total_tokens": 3566,
-      "prompt_price": 0.002052,
-      "completion_price": 0.002002,
-      "total_price": 0.004054,
-      "currency": "USD"
-    }
-  },
-  "logs/manag-explorer.md": {
-    "hash": "8ecdd19e2b2d596ba5af1f84341181bb0df398851a85142acf6049b481065dc8",
-    "last_translated": "2025-03-23T20:50:47.661655",
-    "translation_time": 142.66,
-    "usage": {
-      "prompt_tokens": 3930,
-      "completion_tokens": 2296,
-      "total_tokens": 6226,
-      "prompt_price": 0.003144,
-      "completion_price": 0.004592,
-      "total_price": 0.007736,
-      "currency": "USD"
-    }
-  },
-  "agreements/legal-declaration.md": {
-    "hash": "f23105299be8152d0b04a763c717155b304c0c8f9d16adb13f5e33ddd9325d36",
-    "last_translated": "2025-03-23T20:50:49.630925",
-    "translation_time": 130.76,
-    "usage": {
-      "prompt_tokens": 3991,
-      "completion_tokens": 2439,
-      "total_tokens": 6430,
-      "prompt_price": 0.0031928,
-      "completion_price": 0.004878,
-      "total_price": 0.0080708,
-      "currency": "USD"
-    }
-  },
-  "open-api/checker/receive.md": {
-    "hash": "a36bb68c2fc7a9b3e6f4255bd9ea5ac364af9059336962d3266454622467e325",
-    "last_translated": "2025-03-23T20:51:29.764717",
-    "translation_time": 50.45,
-    "usage": {
-      "prompt_tokens": 2738,
-      "completion_tokens": 1126,
-      "total_tokens": 3864,
-      "prompt_price": 0.0021904,
-      "completion_price": 0.002252,
-      "total_price": 0.0044424,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/apm.md": {
-    "hash": "351bae22d95e48a899fcdcd1705e262c3db13a726918f708cd41ebfbc7f296d0",
-    "last_translated": "2025-03-23T20:51:43.225092",
-    "translation_time": 55.55,
-    "usage": {
-      "prompt_tokens": 4363,
-      "completion_tokens": 2362,
-      "total_tokens": 6725,
-      "prompt_price": 0.0034904,
-      "completion_price": 0.004724,
-      "total_price": 0.0082144,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/amazon-ecs.md": {
-    "hash": "12797a47166e4ad20e8b52618b57330aafc7147e01a6477b235a2cd61de8263e",
-    "last_translated": "2025-03-23T20:51:52.535826",
-    "translation_time": 62.89,
-    "usage": {
-      "prompt_tokens": 4182,
-      "completion_tokens": 2546,
-      "total_tokens": 6728,
-      "prompt_price": 0.0033456,
-      "completion_price": 0.005092,
-      "total_price": 0.0084376,
-      "currency": "USD"
-    }
-  },
-  "external-api/index.md": {
-    "hash": "4ff0bce59a1f4f4f2b04965d2748af85328b9b01fad452438158c92e26a9f49e",
-    "last_translated": "2025-03-23T20:51:52.747273",
-    "translation_time": 9.5,
-    "usage": {
-      "prompt_tokens": 1971,
-      "completion_tokens": 357,
-      "total_tokens": 2328,
-      "prompt_price": 0.0015768,
-      "completion_price": 0.000714,
-      "total_price": 0.0022908,
-      "currency": "USD"
-    }
-  },
-  "open-api/aggs-to-metric/get.md": {
-    "hash": "ce8a85d863658d3ec5aa977f8da89bf06b4318f2fa47429674c1db557f95f55b",
-    "last_translated": "2025-03-23T20:52:20.172317",
-    "translation_time": 27.41,
-    "usage": {
-      "prompt_tokens": 2261,
-      "completion_tokens": 684,
-      "total_tokens": 2945,
-      "prompt_price": 0.0018088,
-      "completion_price": 0.001368,
-      "total_price": 0.0031768,
-      "currency": "USD"
-    }
-  },
-  "deployment/ha-tdengine.md": {
-    "hash": "e4a682242a8e0b51b5d6bb9df427fd59fb23592a01953c4131e4f426eb99b6ab",
-    "last_translated": "2025-03-23T20:52:29.936217",
-    "translation_time": 201.11,
-    "usage": {
-      "prompt_tokens": 6583,
-      "completion_tokens": 4990,
-      "total_tokens": 11573,
-      "prompt_price": 0.0052664,
-      "completion_price": 0.00998,
-      "total_price": 0.0152464,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/spring-native.md": {
-    "hash": "0847fc5f7ef86b492dba894d94a9d85a3721be7b215d949a61f4c1b83f8aa3b2",
-    "last_translated": "2025-03-23T20:52:54.938512",
-    "translation_time": 62.39,
-    "usage": {
-      "prompt_tokens": 3382,
-      "completion_tokens": 1733,
-      "total_tokens": 5115,
-      "prompt_price": 0.0027056,
-      "completion_price": 0.003466,
-      "total_price": 0.0061716,
-      "currency": "USD"
-    }
-  },
-  "open-api/log-index-cfg/bind.md": {
-    "hash": "32f2ace50f4915d2e2d4b04d7536fb0aeada30549d0ecb3bf10f7b2a0c2d03b2",
-    "last_translated": "2025-03-23T20:53:22.388310",
-    "translation_time": 52.43,
-    "usage": {
-      "prompt_tokens": 2523,
-      "completion_tokens": 935,
-      "total_tokens": 3458,
-      "prompt_price": 0.0020184,
-      "completion_price": 0.00187,
-      "total_price": 0.0038884,
-      "currency": "USD"
-    }
-  },
-  "deployment/changelog/2023.md": {
-    "hash": "72ab396bd1adf55948183f60f44aa18badafa4abc1ddb43ed4f7668dc4445e94",
-    "last_translated": "2025-03-23T20:53:34.830392",
-    "translation_time": 833.9,
-    "usage": {
-      "prompt_tokens": 46849,
-      "completion_tokens": 15559,
-      "total_tokens": 62408,
-      "prompt_price": 0.0374792,
-      "completion_price": 0.031118,
-      "total_price": 0.0685972,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "best-practices/insight/tracing_method.md": {
-    "hash": "a4361a1301fd28ad47050365c1c82995e1e49525a319215fbfe596bbb60bac25",
-    "last_translated": "2025-03-23T20:53:39.770720",
-    "translation_time": 79.58,
-    "usage": {
-      "prompt_tokens": 3494,
-      "completion_tokens": 1919,
-      "total_tokens": 5413,
-      "prompt_price": 0.0027952,
-      "completion_price": 0.003838,
-      "total_price": 0.0066332,
-      "currency": "USD"
-    }
-  },
-  "studio-backend/studio-change-log.md": {
-    "hash": "74055a136ebf8d5d646fa57a6f3eb8a4e0aa32fac71d7efb449aa5596f09e688",
-    "last_translated": "2025-03-23T20:53:47.744342",
-    "translation_time": 12.9,
-    "usage": {
-      "prompt_tokens": 2060,
-      "completion_tokens": 504,
-      "total_tokens": 2564,
-      "prompt_price": 0.001648,
-      "completion_price": 0.001008,
-      "total_price": 0.002656,
-      "currency": "USD"
-    }
-  },
-  "release-notes/2021.md": {
-    "hash": "e15136ec2dfa9d9f9c51cc3c82f47b25e00c72258203d7739461ffc54f471f82",
-    "last_translated": "2025-03-23T20:53:57.141422",
-    "translation_time": 948.37,
-    "usage": {
-      "prompt_tokens": 92610,
-      "completion_tokens": 21680,
-      "total_tokens": 114290,
-      "prompt_price": 0.074088,
-      "completion_price": 0.043359999999999996,
-      "total_price": 0.117448,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "open-api/workspace-ak/get.md": {
-    "hash": "4d41f11faaa07c3e73469c89f13258eff2c4a32f793afc6137f2fc312dcef8b7",
-    "last_translated": "2025-03-23T20:53:59.172726",
-    "translation_time": 11.41,
-    "usage": {
-      "prompt_tokens": 1962,
-      "completion_tokens": 383,
-      "total_tokens": 2345,
-      "prompt_price": 0.0015696,
-      "completion_price": 0.000766,
-      "total_price": 0.0023356,
-      "currency": "USD"
-    }
-  },
-  "billing/commercial-version.md": {
-    "hash": "85d0b8bc3854dcf7858346c022ca76e743e079368f411cd1a340902307f57bec",
-    "last_translated": "2025-03-23T20:54:00.117843",
-    "translation_time": 37.71,
-    "usage": {
-      "prompt_tokens": 2367,
-      "completion_tokens": 791,
-      "total_tokens": 3158,
-      "prompt_price": 0.0018936,
-      "completion_price": 0.001582,
-      "total_price": 0.0034756,
-      "currency": "USD"
-    }
-  },
-  "best-practices/partner/eks.md": {
-    "hash": "d70021c6f35590984d5a46170b98f2da1013f60222b0be576c27ca16937d3dde",
-    "last_translated": "2025-03-23T20:54:15.831676",
-    "translation_time": 80.88,
-    "usage": {
-      "prompt_tokens": 3090,
-      "completion_tokens": 1477,
-      "total_tokens": 4567,
-      "prompt_price": 0.002472,
-      "completion_price": 0.002954,
-      "total_price": 0.005426,
-      "currency": "USD"
-    }
-  },
-  "open-api/member-group/get.md": {
-    "hash": "44c09be650a0ff8f5d31a33c78e3e8d36ad639864231dd4473f24c9d4eb436b8",
-    "last_translated": "2025-03-23T20:54:27.647602",
-    "translation_time": 11.8,
-    "usage": {
-      "prompt_tokens": 1863,
-      "completion_tokens": 291,
-      "total_tokens": 2154,
-      "prompt_price": 0.0014904,
-      "completion_price": 0.000582,
-      "total_price": 0.0020724,
-      "currency": "USD"
-    }
-  },
-  "getting-started/index.md": {
-    "hash": "fdc2c74f2cad1e6cbf8b2291dcc59a4813e7665c90904626951acc459f3b72ec",
-    "last_translated": "2025-03-23T20:54:32.262319",
-    "translation_time": 4.6,
-    "usage": {
-      "prompt_tokens": 1648,
-      "completion_tokens": 75,
-      "total_tokens": 1723,
-      "prompt_price": 0.0013184,
-      "completion_price": 0.00015,
-      "total_price": 0.0014684,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/uni-app/app-access.md": {
-    "hash": "7f66b63b5cd9907f2f74c903497fadcfe6681700f78d50d130652ea9a6d9712f",
-    "last_translated": "2025-03-23T20:54:35.787561",
-    "translation_time": 419.6,
-    "usage": {
-      "prompt_tokens": 10357,
-      "completion_tokens": 8014,
-      "total_tokens": 18371,
-      "prompt_price": 0.0082856,
-      "completion_price": 0.016028,
-      "total_price": 0.0243136,
-      "currency": "USD"
-    }
-  },
-  "others/website-monitoring.md": {
-    "hash": "f8f2561048a5243fbdeb3d6f80e35e575ddff67da288f72ddab9f1d5f5f18746",
-    "last_translated": "2025-03-23T20:54:37.486433",
-    "translation_time": 57.7,
-    "usage": {
-      "prompt_tokens": 3038,
-      "completion_tokens": 1424,
-      "total_tokens": 4462,
-      "prompt_price": 0.0024304,
-      "completion_price": 0.002848,
-      "total_price": 0.0052784,
-      "currency": "USD"
-    }
-  },
-  "open-api/role/get.md": {
-    "hash": "282a4089ca9af9cbbb141e7fddfd3ad5135cbb8e354f1543d642515b3e2f9275",
-    "last_translated": "2025-03-23T20:55:13.215902",
-    "translation_time": 37.41,
-    "usage": {
-      "prompt_tokens": 2187,
-      "completion_tokens": 602,
-      "total_tokens": 2789,
-      "prompt_price": 0.0017496,
-      "completion_price": 0.001204,
-      "total_price": 0.0029536,
-      "currency": "USD"
-    }
-  },
-  "infrastructure/custom/data-reporting.md": {
-    "hash": "f9edec9af1d283fd839882b355ec7be0ba4ca603d49ea3de3d640a472a69d7dd",
-    "last_translated": "2025-03-23T20:55:28.214779",
-    "translation_time": 50.71,
-    "usage": {
-      "prompt_tokens": 3226,
-      "completion_tokens": 1636,
-      "total_tokens": 4862,
-      "prompt_price": 0.0025808,
-      "completion_price": 0.003272,
-      "total_price": 0.0058528,
-      "currency": "USD"
-    }
-  },
-  "deployment/dataway-sink.md": {
-    "hash": "5b65da46296757e96b94d89a9c171c88863e9fc6d598f245d95be96a8ce59d81",
-    "last_translated": "2025-03-23T20:55:28.224054",
-    "translation_time": 359.81,
-    "usage": {
-      "prompt_tokens": 9095,
-      "completion_tokens": 7282,
-      "total_tokens": 16377,
-      "prompt_price": 0.007276,
-      "completion_price": 0.014564,
-      "total_price": 0.02184,
-      "currency": "USD"
-    }
-  },
-  "deployment/how-to-start.md": {
-    "hash": "cb5768b17065d9adb654a56ee3169d93e06e6984f84be9e5e060e0eca064484e",
-    "last_translated": "2025-03-23T20:55:47.275330",
-    "translation_time": 34.04,
-    "usage": {
-      "prompt_tokens": 2765,
-      "completion_tokens": 1246,
-      "total_tokens": 4011,
-      "prompt_price": 0.002212,
-      "completion_price": 0.002492,
-      "total_price": 0.004704,
-      "currency": "USD"
-    }
-  },
-  "others/container-observable.md": {
-    "hash": "75383edc205a128590b184a5e75afe896e35ef49f66c49827aaff005bc7d9e45",
-    "last_translated": "2025-03-23T20:55:51.946405",
-    "translation_time": 23.71,
-    "usage": {
-      "prompt_tokens": 2396,
-      "completion_tokens": 811,
-      "total_tokens": 3207,
-      "prompt_price": 0.0019168,
-      "completion_price": 0.001622,
-      "total_price": 0.0035388,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/sourcemap/vite-upload-sourcemaps.md": {
-    "hash": "ca558ecfb9f44ae0939ba94edec2b78832a30d267af2e3e580338a02c879fa39",
-    "last_translated": "2025-03-23T20:55:56.777618",
-    "translation_time": 84.5,
-    "usage": {
-      "prompt_tokens": 3518,
-      "completion_tokens": 1878,
-      "total_tokens": 5396,
-      "prompt_price": 0.0028144,
-      "completion_price": 0.003756,
-      "total_price": 0.0065704,
-      "currency": "USD"
-    }
-  },
-  "open-api/notification-schedule/get.md": {
-    "hash": "4fdc975db606dce5d366ed3c05ada70e463aee8fa9a302875839814f996e4fcf",
-    "last_translated": "2025-03-23T20:56:12.162561",
-    "translation_time": 20.2,
-    "usage": {
-      "prompt_tokens": 2356,
-      "completion_tokens": 777,
-      "total_tokens": 3133,
-      "prompt_price": 0.0018848,
-      "completion_price": 0.001554,
-      "total_price": 0.0034388,
-      "currency": "USD"
-    }
-  },
-  "open-api/checker/create.md": {
-    "hash": "7204805d8312cc3fb25bde42c4725c418edcd22c5139a49c96430ef448842a3e",
-    "last_translated": "2025-03-23T20:56:22.993955",
-    "translation_time": 453.7,
-    "usage": {
-      "prompt_tokens": 9735,
-      "completion_tokens": 7514,
-      "total_tokens": 17249,
-      "prompt_price": 0.007788,
-      "completion_price": 0.015028,
-      "total_price": 0.022816,
-      "currency": "USD"
-    }
-  },
-  "open-api/dialing-task/.pages": {
-    "hash": "682d5c46714e02b30b6e872dfc3533b13c0ce494106a5ace256e2cbba886222b",
-    "last_translated": "2025-03-23T20:56:27.462270",
-    "translation_time": 4.45,
-    "usage": {
-      "prompt_tokens": 1644,
-      "completion_tokens": 70,
-      "total_tokens": 1714,
-      "prompt_price": 0.0013152,
-      "completion_price": 0.00014,
-      "total_price": 0.0014552,
-      "currency": "USD"
-    }
-  },
-  "open-api/notification-schedule/modify.md": {
-    "hash": "c454b6009ee26e614073cc12f75d23ef7f600d05afc47815155c15e19fbc2a9c",
-    "last_translated": "2025-03-23T20:56:52.460127",
-    "translation_time": 40.28,
-    "usage": {
-      "prompt_tokens": 2899,
-      "completion_tokens": 1274,
-      "total_tokens": 4173,
-      "prompt_price": 0.0023192,
-      "completion_price": 0.002548,
-      "total_price": 0.0048672,
-      "currency": "USD"
-    }
-  },
-  "datakit/datakit-offline-install.md": {
-    "hash": "a78f4461ef708d9c2d6929c5fd87de7cc8e5e5032762e0077a96d0d49a8691b9",
-    "last_translated": "2025-03-23T20:56:54.669927",
-    "translation_time": 324.89,
-    "usage": {
-      "prompt_tokens": 8727,
-      "completion_tokens": 7073,
-      "total_tokens": 15800,
-      "prompt_price": 0.0069816,
-      "completion_price": 0.014146,
-      "total_price": 0.0211276,
-      "currency": "USD"
-    }
-  },
-  "application-performance-monitoring/explorer/explorer-analysis.md": {
-    "hash": "4100dff05b40dee3791d844dfde0b2ecd4c3b3dc84c87a509caf21e77d3df46b",
-    "last_translated": "2025-03-23T20:57:09.052798",
-    "translation_time": 188.92,
-    "usage": {
-      "prompt_tokens": 5849,
-      "completion_tokens": 4244,
-      "total_tokens": 10093,
-      "prompt_price": 0.0046792,
-      "completion_price": 0.008488,
-      "total_price": 0.0131672,
-      "currency": "USD"
-    }
-  },
-  "logs/manual.md": {
-    "hash": "bcdad4ac963d870144d28f904b5799b3986db98265f4497a4f662de484203a47",
-    "last_translated": "2025-03-23T20:57:17.509273",
-    "translation_time": 200.35,
-    "usage": {
-      "prompt_tokens": 4348,
-      "completion_tokens": 2742,
-      "total_tokens": 7090,
-      "prompt_price": 0.0034784,
-      "completion_price": 0.005484,
-      "total_price": 0.0089624,
-      "currency": "USD"
-    }
-  },
-  "others/log-observable.md": {
-    "hash": "78c1b700d873893b985229819f3cd86a8f7ea0f268566a5e01b3c4611dc20a0a",
-    "last_translated": "2025-03-23T20:57:29.767989",
-    "translation_time": 102.47,
-    "usage": {
-      "prompt_tokens": 3223,
-      "completion_tokens": 1669,
-      "total_tokens": 4892,
-      "prompt_price": 0.0025784,
-      "completion_price": 0.003338,
-      "total_price": 0.0059164,
-      "currency": "USD"
-    }
-  },
-  "release-notes/index.md": {
-    "hash": "42874fa3820984e5ae4fffe398ca94b40407f0fab4f4c9b261cc30121fe0cc06",
-    "last_translated": "2025-03-23T20:57:34.570311",
-    "translation_time": 215.39,
-    "usage": {
-      "prompt_tokens": 6510,
-      "completion_tokens": 4437,
-      "total_tokens": 10947,
-      "prompt_price": 0.005208,
-      "completion_price": 0.008874,
-      "total_price": 0.014082,
-      "currency": "USD"
-    }
-  },
-  "external-api/workspace/change-brand-key.md": {
-    "hash": "4f91c31b1941f229950fc9d65604d251fc6ee6a0f55b1e8ccec0ae83c6120c91",
-    "last_translated": "2025-03-23T20:57:40.550850",
-    "translation_time": 5.97,
-    "usage": {
-      "prompt_tokens": 1739,
-      "completion_tokens": 155,
-      "total_tokens": 1894,
-      "prompt_price": 0.0013912,
-      "completion_price": 0.00031,
-      "total_price": 0.0017012,
-      "currency": "USD"
-    }
-  },
-  "external-api/workspace/.pages": {
-    "hash": "64f05ea061323c2a6b733120e9fd685faa3446b9593d91eec10469e883ce449f",
-    "last_translated": "2025-03-23T20:57:53.009924",
-    "translation_time": 12.44,
-    "usage": {
-      "prompt_tokens": 1737,
-      "completion_tokens": 155,
-      "total_tokens": 1892,
-      "prompt_price": 0.0013896,
-      "completion_price": 0.00031,
-      "total_price": 0.0016996,
-      "currency": "USD"
-    }
-  },
-  "deployment/launcher-install.md": {
-    "hash": "5c057733542539fa428454b12569e116ab8d04301ae3c1e4b0ae2b4717f7a636",
-    "last_translated": "2025-03-23T20:57:54.182931",
-    "translation_time": 145.95,
-    "usage": {
-      "prompt_tokens": 4393,
-      "completion_tokens": 2789,
-      "total_tokens": 7182,
-      "prompt_price": 0.0035144,
-      "completion_price": 0.005578,
-      "total_price": 0.0090924,
-      "currency": "USD"
-    }
-  },
-  "others/process-observable.md": {
-    "hash": "2202abe877354c99f5e3f426975f9d3ccb0b5e77371530d34c230c1b967bf35c",
-    "last_translated": "2025-03-23T20:58:01.787915",
-    "translation_time": 69.31,
-    "usage": {
-      "prompt_tokens": 2538,
-      "completion_tokens": 949,
-      "total_tokens": 3487,
-      "prompt_price": 0.0020304,
-      "completion_price": 0.001898,
-      "total_price": 0.0039284,
-      "currency": "USD"
-    }
-  },
-  "billing/faq/settlement-bill.md": {
-    "hash": "ed258bdae1a2b10a4776ab69a37a42ef695da08813a11959a472324e7a8d7d80",
-    "last_translated": "2025-03-23T20:58:05.767046",
-    "translation_time": 35.97,
-    "usage": {
-      "prompt_tokens": 2482,
-      "completion_tokens": 938,
-      "total_tokens": 3420,
-      "prompt_price": 0.0019856,
-      "completion_price": 0.001876,
-      "total_price": 0.0038616,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/stdout-log.md": {
-    "hash": "a597de0b3f44c337066e515541016f85df504b4e5e5969457298343957f33745",
-    "last_translated": "2025-03-23T20:58:22.400183",
-    "translation_time": 114.92,
-    "usage": {
-      "prompt_tokens": 3348,
-      "completion_tokens": 1727,
-      "total_tokens": 5075,
-      "prompt_price": 0.0026784,
-      "completion_price": 0.003454,
-      "total_price": 0.0061324,
-      "currency": "USD"
-    }
-  },
-  "exception/calendar.md": {
-    "hash": "5c39e5eba4981b6744d120855ef2895fadbdd9281b87b6aad512adbeb3035d3a",
-    "last_translated": "2025-03-23T20:58:38.589083",
-    "translation_time": 36.78,
-    "usage": {
-      "prompt_tokens": 2297,
-      "completion_tokens": 660,
-      "total_tokens": 2957,
-      "prompt_price": 0.0018376,
-      "completion_price": 0.00132,
-      "total_price": 0.0031576,
-      "currency": "USD"
-    }
-  },
-  "external-api/workspace/create.md": {
-    "hash": "f3bb8549aaecdeaedc16058b8c73273a2d04349a3d436682d3551b0148b68a0c",
-    "last_translated": "2025-03-23T20:58:46.040441",
-    "translation_time": 51.84,
-    "usage": {
-      "prompt_tokens": 2348,
-      "completion_tokens": 768,
-      "total_tokens": 3116,
-      "prompt_price": 0.0018784,
-      "completion_price": 0.001536,
-      "total_price": 0.0034144,
-      "currency": "USD"
-    }
-  },
-  "plans/trail.md": {
-    "hash": "0b50226a613c6211838255b2e6a58f8da0c62fe3efbef0416d0e08c74402d3e9",
-    "last_translated": "2025-03-23T20:59:35.252593",
-    "translation_time": 89.47,
-    "usage": {
-      "prompt_tokens": 3650,
-      "completion_tokens": 1997,
-      "total_tokens": 5647,
-      "prompt_price": 0.00292,
-      "completion_price": 0.003994,
-      "total_price": 0.006914,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/skywalking-jvm.md": {
-    "hash": "9c558f8e9097f909053623eb293cedc205aa863dd7ee04411f7f878e14c5872b",
-    "last_translated": "2025-03-23T20:59:40.046570",
-    "translation_time": 61.44,
-    "usage": {
-      "prompt_tokens": 3592,
-      "completion_tokens": 1985,
-      "total_tokens": 5577,
-      "prompt_price": 0.0028736,
-      "completion_price": 0.00397,
-      "total_price": 0.0068436,
-      "currency": "USD"
-    }
-  },
-  "agreements/legal-declaration-en.md": {
-    "hash": "271b22e28fa89c7980046e1652dd5d83e0b9d0c8c804d32ad77c8597d9603d16",
-    "last_translated": "2025-03-23T20:59:40.459316",
-    "translation_time": 78.04,
-    "usage": {
-      "prompt_tokens": 3800,
-      "completion_tokens": 2231,
-      "total_tokens": 6031,
-      "prompt_price": 0.00304,
-      "completion_price": 0.004462,
-      "total_price": 0.007502,
-      "currency": "USD"
-    }
-  },
-  "deployment/clouddial-troubleshooting.md": {
-    "hash": "d53904eed1cee1708576664b7d51fa79a8a3b6460d129bf8ce83cf6c71584ed7",
-    "last_translated": "2025-03-23T20:59:55.428051",
-    "translation_time": 69.36,
-    "usage": {
-      "prompt_tokens": 3268,
-      "completion_tokens": 1654,
-      "total_tokens": 4922,
-      "prompt_price": 0.0026144,
-      "completion_price": 0.003308,
-      "total_price": 0.0059224,
-      "currency": "USD"
-    }
-  },
-  "logs/browser-collection.md": {
-    "hash": "aaf231dcf60eb689680e9196c4617ba56c2725505ffc6c7665839592433ba7d3",
-    "last_translated": "2025-03-23T21:00:18.148160",
-    "translation_time": 203.46,
-    "usage": {
-      "prompt_tokens": 5597,
-      "completion_tokens": 3832,
-      "total_tokens": 9429,
-      "prompt_price": 0.0044776,
-      "completion_price": 0.007664,
-      "total_price": 0.0121416,
-      "currency": "USD"
-    }
-  },
-  "billing-center/account-wallet/yearly-package/purchase.md": {
-    "hash": "3702ab4a214d1d552443857ecc2460007d77d00b5d71073adcd59cc6b905bcb8",
-    "last_translated": "2025-03-23T21:00:21.247364",
-    "translation_time": 45.98,
-    "usage": {
-      "prompt_tokens": 2263,
-      "completion_tokens": 750,
-      "total_tokens": 3013,
-      "prompt_price": 0.0018104,
-      "completion_price": 0.0015,
-      "total_price": 0.0033104,
-      "currency": "USD"
-    }
-  },
-  "billing/billing-account/aws-account.md": {
-    "hash": "8230473e4f0b2019fedebc6056c3fa99f16ed0bc731e43625957b6137ead3fea",
-    "last_translated": "2025-03-23T21:00:40.570635",
-    "translation_time": 22.41,
-    "usage": {
-      "prompt_tokens": 2314,
-      "completion_tokens": 732,
-      "total_tokens": 3046,
-      "prompt_price": 0.0018512,
-      "completion_price": 0.001464,
-      "total_price": 0.0033152,
-      "currency": "USD"
-    }
-  },
-  "agreements/upgrade-agreement-en.md": {
-    "hash": "f8ad2bbb0ce752815ce4e166a846e3ff29848773c303a4695595e8e965944c88",
-    "last_translated": "2025-03-23T21:00:46.184753",
-    "translation_time": 289.39,
-    "usage": {
-      "prompt_tokens": 6997,
-      "completion_tokens": 5428,
-      "total_tokens": 12425,
-      "prompt_price": 0.0055976,
-      "completion_price": 0.010856,
-      "total_price": 0.0164536,
-      "currency": "USD"
-    }
-  },
-  "open-api/checker/list.md": {
-    "hash": "c47963efab68e96ce4ecf45bdc8e726e58b52b5c1392a02d23f727b2daefb9dd",
-    "last_translated": "2025-03-23T21:01:20.263891",
-    "translation_time": 84.82,
-    "usage": {
-      "prompt_tokens": 3083,
-      "completion_tokens": 1503,
-      "total_tokens": 4586,
-      "prompt_price": 0.0024664,
-      "completion_price": 0.003006,
-      "total_price": 0.0054724,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/aws_ak_errorlog.md": {
-    "hash": "cf62286c19946051890d806f89e9a1ca17580bf9c2d56e6f4f1459cb1be430ad",
-    "last_translated": "2025-03-23T21:01:27.498743",
-    "translation_time": 107.02,
-    "usage": {
-      "prompt_tokens": 3204,
-      "completion_tokens": 1572,
-      "total_tokens": 4776,
-      "prompt_price": 0.0025632,
-      "completion_price": 0.003144,
-      "total_price": 0.0057072,
-      "currency": "USD"
-    }
-  },
-  "management/sso/okta.md": {
-    "hash": "f982cb73ab68a00f801ea6bceaf8bda8860fe6dea931d3aae1fe2293df5311b4",
-    "last_translated": "2025-03-23T21:01:29.032251",
-    "translation_time": 48.45,
-    "usage": {
-      "prompt_tokens": 3139,
-      "completion_tokens": 1586,
-      "total_tokens": 4725,
-      "prompt_price": 0.0025112,
-      "completion_price": 0.003172,
-      "total_price": 0.0056832,
-      "currency": "USD"
-    }
-  },
-  "scene/visual-chart/alert-statistics.md": {
-    "hash": "6e06d5765f11c5685ab064cb0e7694acf479395b7d9cb364bb5ea73ba4fdf7da",
-    "last_translated": "2025-03-23T21:01:56.636651",
-    "translation_time": 29.12,
-    "usage": {
-      "prompt_tokens": 1927,
-      "completion_tokens": 340,
-      "total_tokens": 2267,
-      "prompt_price": 0.0015416,
-      "completion_price": 0.00068,
-      "total_price": 0.0022216,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/self-tracking.md": {
-    "hash": "9809db7d0b0721eab59e50a3501c99e7bf30e2d1cb3bc1fd3b7312112f90840b",
-    "last_translated": "2025-03-23T21:01:58.972896",
-    "translation_time": 29.92,
-    "usage": {
-      "prompt_tokens": 2498,
-      "completion_tokens": 884,
-      "total_tokens": 3382,
-      "prompt_price": 0.0019984,
-      "completion_price": 0.001768,
-      "total_price": 0.0037664,
-      "currency": "USD"
-    }
-  },
-  "management/faq.md": {
-    "hash": "46b468f3ff16b78dd1b5dfa6af8fa4a2691f1a697c94639d2a69fedd28c0fad0",
-    "last_translated": "2025-03-23T21:02:16.812614",
-    "translation_time": 17.82,
-    "usage": {
-      "prompt_tokens": 1921,
-      "completion_tokens": 350,
-      "total_tokens": 2271,
-      "prompt_price": 0.0015368,
-      "completion_price": 0.0007,
-      "total_price": 0.0022368,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/Kubernetes/k8s-health.md": {
-    "hash": "b253a36d48ecb55f161a96209219a0dc79d93f4045e1179cf85faeeb6c9e431a",
-    "last_translated": "2025-03-23T21:02:19.360780",
-    "translation_time": 118.09,
-    "usage": {
-      "prompt_tokens": 3794,
-      "completion_tokens": 2100,
-      "total_tokens": 5894,
-      "prompt_price": 0.0030352,
-      "completion_price": 0.0042,
-      "total_price": 0.0072352,
-      "currency": "USD"
-    }
-  },
-  "management/api-key/open-api.md": {
-    "hash": "c797c7ca1e35a0c810a2d711cc7eee3e56e2d66ffbe8047e9f3be64d258f7d26",
-    "last_translated": "2025-03-23T21:02:22.670378",
-    "translation_time": 62.39,
-    "usage": {
-      "prompt_tokens": 2811,
-      "completion_tokens": 1174,
-      "total_tokens": 3985,
-      "prompt_price": 0.0022488,
-      "completion_price": 0.002348,
-      "total_price": 0.0045968,
-      "currency": "USD"
-    }
-  },
-  "best-practices/partner/aliyun-bill.md": {
-    "hash": "226b41eb0a3ed4f68ff089068401869c108f3f94107caa014fde67a66359d0c9",
-    "last_translated": "2025-03-23T21:02:48.892355",
-    "translation_time": 339.82,
-    "usage": {
-      "prompt_tokens": 8090,
-      "completion_tokens": 6286,
-      "total_tokens": 14376,
-      "prompt_price": 0.006472,
-      "completion_price": 0.012572,
-      "total_price": 0.019044,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/rum-datakit-cluster.md": {
-    "hash": "57b6daba4169f8b4d1a3c66c8d5fbd42ddeba8f5165967d97cb1a8bfcb6ada0a",
-    "last_translated": "2025-03-23T21:02:54.090953",
-    "translation_time": 31.4,
-    "usage": {
-      "prompt_tokens": 2387,
-      "completion_tokens": 831,
-      "total_tokens": 3218,
-      "prompt_price": 0.0019096,
-      "completion_price": 0.001662,
-      "total_price": 0.0035716,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/jenkins.md": {
-    "hash": "e97c79e03ff253d68c06f52e5ed6e3193fe96c6a1b9f7e05bea5a9c271d1be58",
-    "last_translated": "2025-03-23T21:03:21.753907",
-    "translation_time": 62.37,
-    "usage": {
-      "prompt_tokens": 2628,
-      "completion_tokens": 1036,
-      "total_tokens": 3664,
-      "prompt_price": 0.0021024,
-      "completion_price": 0.002072,
-      "total_price": 0.0041744,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/mysql-performance.md": {
-    "hash": "c86fa8a4bf7389f7499bec60d6c2f841857bac5c9285e11e305ef23621b2ccaa",
-    "last_translated": "2025-03-23T21:03:58.457473",
-    "translation_time": 69.54,
-    "usage": {
-      "prompt_tokens": 3626,
-      "completion_tokens": 1945,
-      "total_tokens": 5571,
-      "prompt_price": 0.0029008,
-      "completion_price": 0.00389,
-      "total_price": 0.0067908,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/springboot-tomcat.md": {
-    "hash": "e904ec97700afd930be88faa6efd7a4c1ba3d3b26ae2bbdc38579b16de70a86e",
-    "last_translated": "2025-03-23T21:04:00.279317",
-    "translation_time": 38.51,
-    "usage": {
-      "prompt_tokens": 2808,
-      "completion_tokens": 1186,
-      "total_tokens": 3994,
-      "prompt_price": 0.0022464,
-      "completion_price": 0.002372,
-      "total_price": 0.0046184,
-      "currency": "USD"
-    }
-  },
-  "monitoring/monitor/monitor-rule.md": {
-    "hash": "c15573896d8abc8c1e8469ea184e14c1fc075fd928504fcd83a94c15595686ec",
-    "last_translated": "2025-03-23T21:04:03.624086",
-    "translation_time": 106.79,
-    "usage": {
-      "prompt_tokens": 3692,
-      "completion_tokens": 2000,
-      "total_tokens": 5692,
-      "prompt_price": 0.0029536,
-      "completion_price": 0.004,
-      "total_price": 0.0069536,
-      "currency": "USD"
-    }
-  },
-  "deployment/changelog/index.md": {
-    "hash": "09050a3f512739fca1c9dfd3c42c395a947aaf92010d6b2f16a7b1cb769c43b8",
-    "last_translated": "2025-03-23T21:04:43.523921",
-    "translation_time": 166.87,
-    "usage": {
-      "prompt_tokens": 5883,
-      "completion_tokens": 4019,
-      "total_tokens": 9902,
-      "prompt_price": 0.0047064,
-      "completion_price": 0.008038,
-      "total_price": 0.0127444,
+      "total_price": 0.0028736,
       "currency": "USD"
     }
   },
   "open-api/board/crontab-report-modify.md": {
-    "hash": "e3b24ea7258ed946525ee1cc0bb56cd51fddf8728f14632c21a411d0aea7bb5d",
-    "last_translated": "2025-03-23T21:05:02.562959",
-    "translation_time": 62.26,
-    "usage": {
-      "prompt_tokens": 2971,
-      "completion_tokens": 1359,
-      "total_tokens": 4330,
-      "prompt_price": 0.0023768,
-      "completion_price": 0.002718,
-      "total_price": 0.0050948,
-      "currency": "USD"
-    }
-  },
-  "management/sso/keycloak.md": {
-    "hash": "1cf1e196c20774fef68fefad9da631793da4a720e769dc0a2f4a8741092e24c2",
-    "last_translated": "2025-03-23T21:05:11.367250",
-    "translation_time": 137.26,
-    "usage": {
-      "prompt_tokens": 4199,
-      "completion_tokens": 2649,
-      "total_tokens": 6848,
-      "prompt_price": 0.0033592,
-      "completion_price": 0.005298,
-      "total_price": 0.0086572,
-      "currency": "USD"
-    }
-  },
-  "management/work-order-management.md": {
-    "hash": "2d3eb94f6868b985d22408a73edc90f1abb2f51e5c974be4c894619c6dcd4cdb",
-    "last_translated": "2025-03-23T21:05:14.923363",
-    "translation_time": 76.45,
-    "usage": {
-      "prompt_tokens": 2973,
-      "completion_tokens": 1348,
-      "total_tokens": 4321,
-      "prompt_price": 0.0023784,
-      "completion_price": 0.002696,
-      "total_price": 0.0050744,
-      "currency": "USD"
-    }
-  },
-  "release-notes/2024.md": {
-    "hash": "e293b723af48fbb52757966820bdbee141d1851b197933a7a3bca5d1928a2361",
-    "last_translated": "2025-03-23T21:05:41.094905",
-    "translation_time": 1051.38,
-    "usage": {
-      "prompt_tokens": 86085,
-      "completion_tokens": 17646,
-      "total_tokens": 103731,
-      "prompt_price": 0.068868,
-      "completion_price": 0.035292,
-      "total_price": 0.10416,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "monitoring/bot-obs/disk-usage.md": {
-    "hash": "dc70bdb817e194e5102d7395409c42c5cc64796460e1ebb7c688b0a553273fa0",
-    "last_translated": "2025-03-23T21:06:18.873480",
-    "translation_time": 63.93,
-    "usage": {
-      "prompt_tokens": 3429,
-      "completion_tokens": 1740,
-      "total_tokens": 5169,
-      "prompt_price": 0.0027432,
-      "completion_price": 0.00348,
-      "total_price": 0.0062232,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/slo-part2.md": {
-    "hash": "bab1f0bd943965e672fabffc0bd349ce08c420e89625578da5832ee0908e62f0",
-    "last_translated": "2025-03-23T21:06:32.857558",
-    "translation_time": 51.74,
-    "usage": {
-      "prompt_tokens": 3098,
-      "completion_tokens": 1542,
-      "total_tokens": 4640,
-      "prompt_price": 0.0024784,
-      "completion_price": 0.003084,
-      "total_price": 0.0055624,
-      "currency": "USD"
-    }
-  },
-  "datakit/datakit-install.md": {
-    "hash": "dd0e0b0d8ce627362343bb34e7203f5e1f45b96b52bd52f0a1d21450be5f4c32",
-    "last_translated": "2025-03-23T21:06:35.370506",
-    "translation_time": 415.3,
-    "usage": {
-      "prompt_tokens": 9308,
-      "completion_tokens": 7369,
-      "total_tokens": 16677,
-      "prompt_price": 0.0074464,
-      "completion_price": 0.014738,
-      "total_price": 0.0221844,
-      "currency": "USD"
-    }
-  },
-  "agreements/center-charge.md": {
-    "hash": "848b5a46fd88e6c3e499f412a0af542ac1fc823382423fc1d7cdda76336a5e5b",
-    "last_translated": "2025-03-23T21:07:12.082531",
-    "translation_time": 120.7,
-    "usage": {
-      "prompt_tokens": 4588,
-      "completion_tokens": 3188,
-      "total_tokens": 7776,
-      "prompt_price": 0.0036704,
-      "completion_price": 0.006376,
-      "total_price": 0.0100464,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/host-linux.md": {
-    "hash": "1cbc1991be358fe59642f721827799c8914eb8fb5ac40c25cc3e1182c70d9e16",
-    "last_translated": "2025-03-23T21:07:21.578957",
-    "translation_time": 158.03,
-    "usage": {
-      "prompt_tokens": 4643,
-      "completion_tokens": 2891,
-      "total_tokens": 7534,
-      "prompt_price": 0.0037144,
-      "completion_price": 0.005782,
-      "total_price": 0.0094964,
-      "currency": "USD"
-    }
-  },
-  "open-api/service-manage/export.md": {
-    "hash": "eaf08f18be4c82931d81ab5152acf8c24adc1aaf9cdbb0f8cfe88b1b4e035288",
-    "last_translated": "2025-03-23T21:07:28.468114",
-    "translation_time": 53.08,
-    "usage": {
-      "prompt_tokens": 2629,
-      "completion_tokens": 1049,
-      "total_tokens": 3678,
-      "prompt_price": 0.0021032,
-      "completion_price": 0.002098,
-      "total_price": 0.0042012,
-      "currency": "USD"
-    }
-  },
-  "management/sso/authing.md": {
-    "hash": "a6fc821f861a67ef62bb56e23f5edfc8662797603d5b19bd960dbda2da1e1c1a",
-    "last_translated": "2025-03-23T21:07:44.797017",
-    "translation_time": 23.2,
-    "usage": {
-      "prompt_tokens": 2334,
-      "completion_tokens": 772,
-      "total_tokens": 3106,
-      "prompt_price": 0.0018672,
-      "completion_price": 0.001544,
-      "total_price": 0.0034112,
-      "currency": "USD"
-    }
-  },
-  "product-introduction/customer-value.md": {
-    "hash": "85fa3e00e09821dadefba5ecb2e9527a668d9b21c1be7d70188e86e7fa94ca35",
-    "last_translated": "2025-03-23T21:08:32.578816",
-    "translation_time": 47.76,
-    "usage": {
-      "prompt_tokens": 2384,
-      "completion_tokens": 869,
-      "total_tokens": 3253,
-      "prompt_price": 0.0019072,
-      "completion_price": 0.001738,
-      "total_price": 0.0036452,
-      "currency": "USD"
-    }
-  },
-  "deployment/openebs-install.md": {
-    "hash": "a76c7125a64b712d9470f218856a3d2742fd6de1abe31e5afa669ba7fd118d8f",
-    "last_translated": "2025-03-23T21:08:40.535138",
-    "translation_time": 88.44,
-    "usage": {
-      "prompt_tokens": 3416,
-      "completion_tokens": 1796,
-      "total_tokens": 5212,
-      "prompt_price": 0.0027328,
-      "completion_price": 0.003592,
-      "total_price": 0.0063248,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/rum-performance.md": {
-    "hash": "5d9d3e398550140f6194cb9b41c332e6251e19206cca57002efae17283329b84",
-    "last_translated": "2025-03-23T21:09:04.340931",
-    "translation_time": 95.85,
-    "usage": {
-      "prompt_tokens": 3693,
-      "completion_tokens": 2039,
-      "total_tokens": 5732,
-      "prompt_price": 0.0029544,
-      "completion_price": 0.004078,
-      "total_price": 0.0070324,
-      "currency": "USD"
-    }
-  },
-  "open-api/board/list.md": {
-    "hash": "638ca1ac6b4311fd8b321e4518d663112db5050e2164e82db2e283f1c9005f59",
-    "last_translated": "2025-03-23T21:09:06.952873",
-    "translation_time": 34.36,
-    "usage": {
-      "prompt_tokens": 2345,
-      "completion_tokens": 764,
-      "total_tokens": 3109,
-      "prompt_price": 0.001876,
-      "completion_price": 0.001528,
-      "total_price": 0.003404,
-      "currency": "USD"
-    }
-  },
-  "external-api/account/change-brand-key.md": {
-    "hash": "e84b7a14c333711973a3c71b70e2785a31d4ad2457371a0bf1c681efd2cb5c14",
-    "last_translated": "2025-03-23T21:09:15.953737",
-    "translation_time": 8.98,
-    "usage": {
-      "prompt_tokens": 1740,
-      "completion_tokens": 161,
-      "total_tokens": 1901,
-      "prompt_price": 0.001392,
-      "completion_price": 0.000322,
-      "total_price": 0.001714,
-      "currency": "USD"
-    }
-  },
-  "deployment/faq-k8s.md": {
-    "hash": "c8c1f575a2b9022088b265608f219c8612ce57bd6c3684b776e41c7e7b746cf1",
-    "last_translated": "2025-03-23T21:09:44.453662",
-    "translation_time": 28.48,
-    "usage": {
-      "prompt_tokens": 2348,
-      "completion_tokens": 796,
-      "total_tokens": 3144,
-      "prompt_price": 0.0018784,
-      "completion_price": 0.001592,
-      "total_price": 0.0034704,
-      "currency": "USD"
-    }
-  },
-  "deployment/velero-install.md": {
-    "hash": "6d95a33c9abca96c26e0e1756c47144e9ced94912e92cc55d408461890b9f7e5",
-    "last_translated": "2025-03-23T21:09:57.771971",
-    "translation_time": 218.88,
-    "usage": {
-      "prompt_tokens": 5424,
-      "completion_tokens": 3724,
-      "total_tokens": 9148,
-      "prompt_price": 0.0043392,
-      "completion_price": 0.007448,
-      "total_price": 0.0117872,
-      "currency": "USD"
-    }
-  },
-  "management/api-key/index.md": {
-    "hash": "c8381225ac4670aac076f797e1d04212d36524d7db84a6704668603ac5421211",
-    "last_translated": "2025-03-23T21:10:06.265688",
-    "translation_time": 8.47,
-    "usage": {
-      "prompt_tokens": 1764,
-      "completion_tokens": 182,
-      "total_tokens": 1946,
-      "prompt_price": 0.0014112,
-      "completion_price": 0.000364,
-      "total_price": 0.0017752,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/k8s-rum-apm-log.md": {
-    "hash": "cc06cc389a7308faf9bb2fd48748c9ae2e27c603f815d8e90d82522bd9da657a",
-    "last_translated": "2025-03-23T21:10:35.124684",
-    "translation_time": 588.92,
-    "usage": {
-      "prompt_tokens": 32675,
-      "completion_tokens": 10351,
-      "total_tokens": 43026,
-      "prompt_price": 0.026139999999999997,
-      "completion_price": 0.020701999999999998,
-      "total_price": 0.046842,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "best-practices/monitoring/jvm.md": {
-    "hash": "8cd38daacdc32f0e3748f30700695a0e368168d3ebc4318bff335986203d50d9",
-    "last_translated": "2025-03-23T21:11:09.432112",
-    "translation_time": 425.79,
-    "usage": {
-      "prompt_tokens": 28943,
-      "completion_tokens": 8644,
-      "total_tokens": 37587,
-      "prompt_price": 0.0231544,
-      "completion_price": 0.017287999999999998,
-      "total_price": 0.0404424,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "monitoring/bot-obs/spot-alive.md": {
-    "hash": "8501d6fc24f03dd81bfdb7e8d3e966be3dfcbe84cdb3a72ab9ffc08c5bb2f456",
-    "last_translated": "2025-03-23T21:11:22.210979",
-    "translation_time": 75.93,
-    "usage": {
-      "prompt_tokens": 3090,
-      "completion_tokens": 1533,
-      "total_tokens": 4623,
-      "prompt_price": 0.002472,
-      "completion_price": 0.003066,
-      "total_price": 0.005538,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/chai-havesters.md": {
-    "hash": "15c4a1a403d4381cef02648967b53fede2dad466afa336b528a89d30e5b60ecf",
-    "last_translated": "2025-03-23T21:11:56.110277",
-    "translation_time": 195.56,
-    "usage": {
-      "prompt_tokens": 5835,
-      "completion_tokens": 3994,
-      "total_tokens": 9829,
-      "prompt_price": 0.004668,
-      "completion_price": 0.007988,
-      "total_price": 0.012656,
-      "currency": "USD"
-    }
-  },
-  "events/index.md": {
-    "hash": "ae528744b2262ab033f10b433b88cd12431fcca6188fbe1e55ead16f86fb5661",
-    "last_translated": "2025-03-23T21:11:56.126475",
-    "translation_time": 80.99,
-    "usage": {
-      "prompt_tokens": 3781,
-      "completion_tokens": 2055,
-      "total_tokens": 5836,
-      "prompt_price": 0.0030248,
-      "completion_price": 0.00411,
-      "total_price": 0.0071348,
-      "currency": "USD"
-    }
-  },
-  "open-api/issue/getissuereplylist.md": {
-    "hash": "7e52962b42b7f7deabaec332a8dcb8210e257d0035e1740609c6e8266f3d6f6a",
-    "last_translated": "2025-03-23T21:12:32.498284",
-    "translation_time": 36.37,
-    "usage": {
-      "prompt_tokens": 2286,
-      "completion_tokens": 715,
-      "total_tokens": 3001,
-      "prompt_price": 0.0018288,
-      "completion_price": 0.00143,
-      "total_price": 0.0032588,
-      "currency": "USD"
-    }
-  },
-  "external-api/account/create.md": {
-    "hash": "1b97eefc9717443a27609ff2393f6458a6499ccecbdb7a83b1205cb466eafa82",
-    "last_translated": "2025-03-23T21:12:46.200263",
-    "translation_time": 50.05,
-    "usage": {
-      "prompt_tokens": 2675,
-      "completion_tokens": 1095,
-      "total_tokens": 3770,
-      "prompt_price": 0.00214,
-      "completion_price": 0.00219,
-      "total_price": 0.00433,
-      "currency": "USD"
-    }
-  },
-  "others/network-observable.md": {
-    "hash": "bdcecd8b4f51d5b09898349258a843d05e3a249f06fb605ea1af9bde327cae7d",
-    "last_translated": "2025-03-23T21:13:51.398869",
-    "translation_time": 78.87,
-    "usage": {
-      "prompt_tokens": 3243,
-      "completion_tokens": 1613,
-      "total_tokens": 4856,
-      "prompt_price": 0.0025944,
-      "completion_price": 0.003226,
-      "total_price": 0.0058204,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/opentelemetry-simpling.md": {
-    "hash": "cb581e4ccbe7a7a8a114a9a9e9f774b9a62283745986f9189630d6d898e203c3",
-    "last_translated": "2025-03-23T21:14:30.186679",
-    "translation_time": 200.74,
-    "usage": {
-      "prompt_tokens": 5269,
-      "completion_tokens": 3617,
-      "total_tokens": 8886,
-      "prompt_price": 0.0042152,
-      "completion_price": 0.007234,
-      "total_price": 0.0114492,
-      "currency": "USD"
-    }
-  },
-  "release-notes/2022.md": {
-    "hash": "97baa9e9f89f65b611a8274f2a410e3b515b1040f882ee52e160e689e131d5a6",
-    "last_translated": "2025-03-23T21:15:19.889342",
-    "translation_time": 1082.36,
-    "usage": {
-      "prompt_tokens": 125628,
-      "completion_tokens": 23320,
-      "total_tokens": 148948,
-      "prompt_price": 0.10050239999999999,
-      "completion_price": 0.04664,
-      "total_price": 0.1471424,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "management/sso/aliyun-idaas.md": {
-    "hash": "8efb1712aa97df9948e607b99619b226938791ac66b6e540df9c1c0bd70f3c48",
-    "last_translated": "2025-03-23T21:15:31.046788",
-    "translation_time": 60.84,
-    "usage": {
-      "prompt_tokens": 2784,
-      "completion_tokens": 1210,
-      "total_tokens": 3994,
-      "prompt_price": 0.0022272,
-      "completion_price": 0.00242,
-      "total_price": 0.0046472,
-      "currency": "USD"
-    }
-  },
-  "deployment/changelog/2022.md": {
-    "hash": "38a0c25144ecbd7d1e64f5d5c4866dd86c68ae71bc5924f3ad437f7f5e6e55a0",
-    "last_translated": "2025-03-23T21:15:40.405180",
-    "translation_time": 547.54,
-    "usage": {
-      "prompt_tokens": 37583,
-      "completion_tokens": 11322,
-      "total_tokens": 48905,
-      "prompt_price": 0.0300664,
-      "completion_price": 0.022643999999999997,
-      "total_price": 0.0527104,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "best-practices/cloud-native/ingress-crd.md": {
-    "hash": "684a126ba04363d5daf2a75863e31fa9f85ce440766ec03c84f859f8ea1921db",
-    "last_translated": "2025-03-23T21:15:56.606344",
-    "translation_time": 372.14,
-    "usage": {
-      "prompt_tokens": 8836,
-      "completion_tokens": 7199,
-      "total_tokens": 16035,
-      "prompt_price": 0.0070688,
-      "completion_price": 0.014398,
-      "total_price": 0.0214668,
-      "currency": "USD"
-    }
-  },
-  "deployment/experience-function.md": {
-    "hash": "71a30ce3f0c7261b211da57337c93f616b1d6e327024790b5489380dbe92912f",
-    "last_translated": "2025-03-23T21:16:03.450295",
-    "translation_time": 23.03,
-    "usage": {
-      "prompt_tokens": 2047,
-      "completion_tokens": 478,
-      "total_tokens": 2525,
-      "prompt_price": 0.0016376,
-      "completion_price": 0.000956,
-      "total_price": 0.0025936,
-      "currency": "USD"
-    }
-  },
-  "dataflux-func/index.md": {
-    "hash": "a21864e9325c8a883b24258df56ca4376ee956cbcc0308d73341c677ece04c94",
-    "last_translated": "2025-03-23T21:16:11.050334",
-    "translation_time": 7.58,
-    "usage": {
-      "prompt_tokens": 1703,
-      "completion_tokens": 132,
-      "total_tokens": 1835,
-      "prompt_price": 0.0013624,
-      "completion_price": 0.000264,
-      "total_price": 0.0016264,
-      "currency": "USD"
-    }
-  },
-  "billing/billing-account/aliyun-account.md": {
-    "hash": "927e5d427f2630ac8036fef6909fabb3e071168c629c4ea18197d7a796d53472",
-    "last_translated": "2025-03-23T21:16:20.974905",
-    "translation_time": 49.91,
-    "usage": {
-      "prompt_tokens": 2623,
-      "completion_tokens": 1089,
-      "total_tokens": 3712,
-      "prompt_price": 0.0020984,
-      "completion_price": 0.002178,
-      "total_price": 0.0042764,
-      "currency": "USD"
-    }
-  },
-  "deployment/changelog/2024.md": {
-    "hash": "59199c08315bf2a7e127be6ed8d63d035f1046a39bb671370a968955e7a63da1",
-    "last_translated": "2025-03-23T21:16:56.704800",
-    "translation_time": 1143.68,
-    "usage": {
-      "prompt_tokens": 103650,
-      "completion_tokens": 22328,
-      "total_tokens": 125978,
-      "prompt_price": 0.08292,
-      "completion_price": 0.044656,
-      "total_price": 0.127576,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "monitoring/bot-obs/host-restart.md": {
-    "hash": "6bc0532344c701faf836e730dc7768a2428c70685099d697c0945baae4eeafd8",
-    "last_translated": "2025-03-23T21:17:04.312415",
-    "translation_time": 53.25,
-    "usage": {
-      "prompt_tokens": 3447,
-      "completion_tokens": 1855,
-      "total_tokens": 5302,
-      "prompt_price": 0.0027576,
-      "completion_price": 0.00371,
-      "total_price": 0.0064676,
-      "currency": "USD"
-    }
-  },
-  "others/pod-observable.md": {
-    "hash": "7d6bfcac7c366bb509665cfbb338f2dbb4e64f42d13dfc9f21498dea748358e3",
-    "last_translated": "2025-03-23T21:17:21.963346",
-    "translation_time": 25.24,
-    "usage": {
-      "prompt_tokens": 2572,
-      "completion_tokens": 990,
-      "total_tokens": 3562,
-      "prompt_price": 0.0020576,
-      "completion_price": 0.00198,
-      "total_price": 0.0040376,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/nginx.md": {
-    "hash": "a3723cb94f5b45551776f44db83483fbb7469213d5ef1bfe9f69711c96dcf2b8",
-    "last_translated": "2025-03-23T21:17:50.031273",
-    "translation_time": 238.61,
-    "usage": {
-      "prompt_tokens": 7102,
-      "completion_tokens": 5116,
-      "total_tokens": 12218,
-      "prompt_price": 0.0056816,
-      "completion_price": 0.010232,
-      "total_price": 0.0159136,
-      "currency": "USD"
-    }
-  },
-  "events/event-explorer/unrecovered-events.md": {
-    "hash": "c2257acea5c2c7958650c8a137057c24ab9043403ce2c3584cbbc524d35682ce",
-    "last_translated": "2025-03-23T21:18:05.855256",
-    "translation_time": 61.52,
-    "usage": {
-      "prompt_tokens": 2939,
-      "completion_tokens": 1333,
-      "total_tokens": 4272,
-      "prompt_price": 0.0023512,
-      "completion_price": 0.002666,
-      "total_price": 0.0050172,
-      "currency": "USD"
-    }
-  },
-  "billing/billing-account/enterprise-account.md": {
-    "hash": "48ec20e0ce333758f0da467880f5f3f76e36723c297df637c4cc701344cc14ad",
-    "last_translated": "2025-03-23T21:18:06.710056",
-    "translation_time": 16.66,
-    "usage": {
-      "prompt_tokens": 1846,
-      "completion_tokens": 284,
-      "total_tokens": 2130,
-      "prompt_price": 0.0014768,
-      "completion_price": 0.000568,
-      "total_price": 0.0020448,
-      "currency": "USD"
-    }
-  },
-  "usability-monitoring/request-task/index.md": {
-    "hash": "e41360aa6b05e74abc3bed3548fd947e0c9b320a37ff3c1eccce9b3212e7f8ef",
-    "last_translated": "2025-03-23T21:18:24.692643",
-    "translation_time": 17.96,
-    "usage": {
-      "prompt_tokens": 1966,
-      "completion_tokens": 398,
-      "total_tokens": 2364,
-      "prompt_price": 0.0015728,
-      "completion_price": 0.000796,
-      "total_price": 0.0023688,
-      "currency": "USD"
-    }
-  },
-  "management/sso/index.md": {
-    "hash": "b8c815f87f06f1e6cafc6934769c54ad98639655cac3ffe3d2e356dedce4d524",
-    "last_translated": "2025-03-23T21:18:33.407127",
-    "translation_time": 71.43,
-    "usage": {
-      "prompt_tokens": 4856,
-      "completion_tokens": 3043,
-      "total_tokens": 7899,
-      "prompt_price": 0.0038848,
-      "completion_price": 0.006086,
-      "total_price": 0.0099708,
-      "currency": "USD"
-    }
-  },
-  "open-api/aggs-to-metric/list.md": {
-    "hash": "bfe9739e2e473074d700dc3fb4fafb2fed7dc278bde87c41d9005931f4d12b06",
-    "last_translated": "2025-03-23T21:18:57.909448",
-    "translation_time": 33.19,
-    "usage": {
-      "prompt_tokens": 2473,
-      "completion_tokens": 891,
-      "total_tokens": 3364,
-      "prompt_price": 0.0019784,
-      "completion_price": 0.001782,
-      "total_price": 0.0037604,
-      "currency": "USD"
-    }
-  },
-  "datakit/datakit-operator.md": {
-    "hash": "c84788870e9e47f0456120caef8d77b4bb8464f6711f4f1968d3cdb58426accf",
-    "last_translated": "2025-03-23T21:19:04.834044",
-    "translation_time": 378.61,
-    "usage": {
-      "prompt_tokens": 9822,
-      "completion_tokens": 7970,
-      "total_tokens": 17792,
-      "prompt_price": 0.0078576,
-      "completion_price": 0.01594,
-      "total_price": 0.0237976,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/android/app-access.md": {
-    "hash": "ba81c1e1c7e9e15fa109638070db34108421866aa5b46fb61bae565f06df2417",
-    "last_translated": "2025-03-23T21:19:53.854119",
-    "translation_time": 891.27,
-    "usage": {
-      "prompt_tokens": 84282,
-      "completion_tokens": 17465,
-      "total_tokens": 101747,
-      "prompt_price": 0.0674256,
-      "completion_price": 0.034929999999999996,
-      "total_price": 0.1023556,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "best-practices/cloud-native/ingress-nginx.md": {
-    "hash": "b96c1f66c805286673117e06a92cb06fccca3c68f81dbe96dc873a9b317e4db2",
-    "last_translated": "2025-03-23T21:19:54.307175",
-    "translation_time": 80.88,
-    "usage": {
-      "prompt_tokens": 3816,
-      "completion_tokens": 2154,
-      "total_tokens": 5970,
-      "prompt_price": 0.0030528,
-      "completion_price": 0.004308,
-      "total_price": 0.0073608,
-      "currency": "USD"
-    }
-  },
-  "dataflux-func/external_data.md": {
-    "hash": "dc26f42a51c731da1d12522b018ce51c5821e58471a6e819687e4809956007f7",
-    "last_translated": "2025-03-23T21:19:57.833676",
-    "translation_time": 111.96,
-    "usage": {
-      "prompt_tokens": 4845,
-      "completion_tokens": 3209,
-      "total_tokens": 8054,
-      "prompt_price": 0.003876,
-      "completion_price": 0.006418,
-      "total_price": 0.010294,
-      "currency": "USD"
-    }
-  },
-  "datakit/datakit-conf.md": {
-    "hash": "be4870a09a901e4009b82e29bbcb7542ba0fa9c15afb3294b1938db9f15419fb",
-    "last_translated": "2025-03-23T21:20:00.570281",
-    "translation_time": 518.34,
-    "usage": {
-      "prompt_tokens": 33519,
-      "completion_tokens": 10835,
-      "total_tokens": 44354,
-      "prompt_price": 0.026815199999999997,
-      "completion_price": 0.02167,
-      "total_price": 0.048485200000000006,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "best-practices/cloud-native/logback-socket.md": {
-    "hash": "5a90b16186a02c505b880e2df0d3ad8b09cdd1ab05f4e832a5058c2a4d272d07",
-    "last_translated": "2025-03-23T21:20:06.998302",
-    "translation_time": 69.07,
-    "usage": {
-      "prompt_tokens": 4382,
-      "completion_tokens": 2761,
-      "total_tokens": 7143,
-      "prompt_price": 0.0035056,
-      "completion_price": 0.005522,
-      "total_price": 0.0090276,
-      "currency": "USD"
-    }
-  },
-  "others/custom-object-observable.md": {
-    "hash": "40cfa8a97034b2b0b1bc850cea82232f0139adfad60730f41357cb85ff78bdc8",
-    "last_translated": "2025-03-23T21:20:20.515875",
-    "translation_time": 26.64,
-    "usage": {
-      "prompt_tokens": 2195,
-      "completion_tokens": 637,
-      "total_tokens": 2832,
-      "prompt_price": 0.001756,
-      "completion_price": 0.001274,
-      "total_price": 0.00303,
-      "currency": "USD"
-    }
-  },
-  "scene/index.md": {
-    "hash": "977bb4f186a7f24c25c25ca75290b18926672082edbecec9f8ce0fabde8e2f55",
-    "last_translated": "2025-03-23T21:20:22.462966",
-    "translation_time": 15.45,
-    "usage": {
-      "prompt_tokens": 1910,
-      "completion_tokens": 345,
-      "total_tokens": 2255,
-      "prompt_price": 0.001528,
-      "completion_price": 0.00069,
-      "total_price": 0.002218,
-      "currency": "USD"
-    }
-  },
-  "open-api/notification-schedule/add.md": {
-    "hash": "2e8750162176fa01de2a8f3a0269639ff0763887a01199df994816b019696888",
-    "last_translated": "2025-03-23T21:20:33.565785",
-    "translation_time": 35.72,
-    "usage": {
-      "prompt_tokens": 3078,
-      "completion_tokens": 1421,
-      "total_tokens": 4499,
-      "prompt_price": 0.0024624,
-      "completion_price": 0.002842,
-      "total_price": 0.0053044,
-      "currency": "USD"
-    }
-  },
-  "best-practices/partner/rancher-datakit.md": {
-    "hash": "1ecf7ae3640549badbe390ae0b103437e3058442f447451a87835c75d97cce41",
-    "last_translated": "2025-03-23T21:20:40.309263",
-    "translation_time": 695.95,
-    "usage": {
-      "prompt_tokens": 39195,
-      "completion_tokens": 13614,
-      "total_tokens": 52809,
-      "prompt_price": 0.031356,
-      "completion_price": 0.027228,
-      "total_price": 0.058584,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "exception/channel.md": {
-    "hash": "234aa79615f8dace34af5356a2087489aae656605483d674f677c0c97c8673d0",
-    "last_translated": "2025-03-23T21:20:44.575711",
-    "translation_time": 50.25,
+    "hash": "83db3b80be78f393bd1f91fb9b12d7ffe427d646b1d062821b62d4f17fd7143c",
+    "last_translated": "2025-03-28T14:18:34.575166",
+    "translation_time": 50.02,
     "usage": {
       "prompt_tokens": 2967,
       "completion_tokens": 1376,
@@ -3951,622 +69,1246 @@
       "currency": "USD"
     }
   },
-  "plans/index.md": {
-    "hash": "8f134d00e07170ca95ade72866976621a3bdffe4fb80cf3f07a316e943602670",
-    "last_translated": "2025-03-23T21:20:55.910166",
-    "translation_time": 55.32,
+  "datakit/ecs-fargate.md": {
+    "hash": "0d7eb07c5389af1001dc527559d4a2c1f8661a103b2f78abbb82165365cca946",
+    "last_translated": "2025-03-28T14:18:38.742781",
+    "translation_time": 54.19,
     "usage": {
-      "prompt_tokens": 2947,
-      "completion_tokens": 1438,
-      "total_tokens": 4385,
-      "prompt_price": 0.0023576,
-      "completion_price": 0.002876,
-      "total_price": 0.0052336,
+      "prompt_tokens": 2738,
+      "completion_tokens": 1120,
+      "total_tokens": 3858,
+      "prompt_price": 0.0021904,
+      "completion_price": 0.00224,
+      "total_price": 0.0044304,
       "currency": "USD"
     }
   },
-  "best-practices/monitoring/datakit-operator.md": {
-    "hash": "99203b38de8953ea702e22095bca5d82d1cfef45baa15db4367513d7bb24b840",
-    "last_translated": "2025-03-23T21:21:07.830986",
-    "translation_time": 47.29,
+  "scene/visual-chart/monitor_summary.md": {
+    "hash": "6227b2036d559f744c666bc6724b379b1b815abc0ee7dfe6fb4a61c30d9302f5",
+    "last_translated": "2025-03-28T14:18:38.866930",
+    "translation_time": 30.34,
     "usage": {
-      "prompt_tokens": 2822,
-      "completion_tokens": 1228,
-      "total_tokens": 4050,
-      "prompt_price": 0.0022576,
-      "completion_price": 0.002456,
-      "total_price": 0.0047136,
+      "prompt_tokens": 1724,
+      "completion_tokens": 146,
+      "total_tokens": 1870,
+      "prompt_price": 0.0013792,
+      "completion_price": 0.000292,
+      "total_price": 0.0016712,
       "currency": "USD"
     }
   },
-  "open-api/service-manage/add.md": {
-    "hash": "d305aa6897dd020b77f74149d2f858d8a00501ffc521b6052b80f75aebc26623",
-    "last_translated": "2025-03-23T21:21:07.842473",
-    "translation_time": 45.35,
+  "real-user-monitoring/web/index.md": {
+    "hash": "a2a60715a82f94f6189dafa7d892babbba398ce7e9d63fb1989177b61013341a",
+    "last_translated": "2025-03-28T14:19:07.699773",
+    "translation_time": 83.14,
     "usage": {
-      "prompt_tokens": 3621,
-      "completion_tokens": 1950,
-      "total_tokens": 5571,
-      "prompt_price": 0.0028968,
-      "completion_price": 0.0039,
-      "total_price": 0.0067968,
+      "prompt_tokens": 4386,
+      "completion_tokens": 2663,
+      "total_tokens": 7049,
+      "prompt_price": 0.0035088,
+      "completion_price": 0.005326,
+      "total_price": 0.0088348,
       "currency": "USD"
     }
   },
-  "open-api/notification-schedule/list.md": {
-    "hash": "7787da0ddef9c5900c19c92d142b9cbd0cbf213677af7a83b5a4db2342e997cb",
-    "last_translated": "2025-03-23T21:21:12.820445",
-    "translation_time": 39.24,
+  "exception/calendar.md": {
+    "hash": "eb0732ad5a8f26f993b8f4aeea902d931e4716c5f1a4b9d4130c9a7ff3d210ed",
+    "last_translated": "2025-03-28T14:19:08.837635",
+    "translation_time": 34.25,
     "usage": {
-      "prompt_tokens": 3278,
-      "completion_tokens": 1696,
-      "total_tokens": 4974,
-      "prompt_price": 0.0026224,
-      "completion_price": 0.003392,
-      "total_price": 0.0060144,
+      "prompt_tokens": 2297,
+      "completion_tokens": 689,
+      "total_tokens": 2986,
+      "prompt_price": 0.0018376,
+      "completion_price": 0.001378,
+      "total_price": 0.0032156,
       "currency": "USD"
     }
   },
-  "open-api/sso/saml-modify.md": {
-    "hash": "033e043b8b6ee1e7f2dbebcafa1b1fa37e454708b482b1cc95ef3f5ca0e5666b",
-    "last_translated": "2025-03-23T21:21:18.444769",
-    "translation_time": 133.59,
+  "scene/visual-chart/chart-query.md": {
+    "hash": "32fafbab53e6a4c20702a2ab509a6b319ea52676375654ce03f53128744db3af",
+    "last_translated": "2025-03-28T14:19:17.020869",
+    "translation_time": 92.46,
     "usage": {
-      "prompt_tokens": 5165,
-      "completion_tokens": 3567,
-      "total_tokens": 8732,
-      "prompt_price": 0.004132,
-      "completion_price": 0.007134,
-      "total_price": 0.011266,
+      "prompt_tokens": 4343,
+      "completion_tokens": 2698,
+      "total_tokens": 7041,
+      "prompt_price": 0.0034744,
+      "completion_price": 0.005396,
+      "total_price": 0.0088704,
       "currency": "USD"
     }
   },
-  "scene/dashboard/config_page.md": {
-    "hash": "8963d96549c662262d2a243dc18d82688c93bd7c87b9d408c8208003806254ff",
-    "last_translated": "2025-03-23T21:21:52.432726",
-    "translation_time": 39.59,
+  "open-api/query-data/query-data-v1.md": {
+    "hash": "d9eff32d2d22c9b37565356bd7774183b1bdf452b28aba800d4aa371728f1d3f",
+    "last_translated": "2025-03-28T14:19:17.032278",
+    "translation_time": 79.75,
     "usage": {
-      "prompt_tokens": 2631,
-      "completion_tokens": 1052,
-      "total_tokens": 3683,
-      "prompt_price": 0.0021048,
-      "completion_price": 0.002104,
-      "total_price": 0.0042088,
+      "prompt_tokens": 3800,
+      "completion_tokens": 2125,
+      "total_tokens": 5925,
+      "prompt_price": 0.00304,
+      "completion_price": 0.00425,
+      "total_price": 0.00729,
       "currency": "USD"
     }
   },
-  "deployment/get-guance-images.md": {
-    "hash": "447df92ec6cdf561b865ae9347e40f96acd985e2dc856cf5ef6b9257d3253b70",
-    "last_translated": "2025-03-23T21:21:56.645265",
-    "translation_time": 48.79,
+  "monitoring/notify-target-wecom.md": {
+    "hash": "e062de21cd6889b5e8647de24def6b24ac06a81c0ca35c9055a0bb0417e3e4ef",
+    "last_translated": "2025-03-28T14:19:31.660400",
+    "translation_time": 22.81,
     "usage": {
-      "prompt_tokens": 2976,
-      "completion_tokens": 1321,
-      "total_tokens": 4297,
-      "prompt_price": 0.0023808,
-      "completion_price": 0.002642,
-      "total_price": 0.0050228,
+      "prompt_tokens": 1798,
+      "completion_tokens": 215,
+      "total_tokens": 2013,
+      "prompt_price": 0.0014384,
+      "completion_price": 0.00043,
+      "total_price": 0.0018684,
       "currency": "USD"
     }
   },
-  "pipeline/index.md": {
-    "hash": "d1bcfc63a168b552cd0989d435e6b6489dab4292204d70141c6575ab741dcad8",
-    "last_translated": "2025-03-23T21:22:09.389070",
-    "translation_time": 84.8,
+  "billing/billing-account/index.md": {
+    "hash": "abc2e6198c3c6546f93e1249c02391b037bbc7173aebfa5dbb3290ae0442d86e",
+    "last_translated": "2025-03-28T14:19:38.512361",
+    "translation_time": 21.48,
     "usage": {
-      "prompt_tokens": 3945,
-      "completion_tokens": 2286,
-      "total_tokens": 6231,
-      "prompt_price": 0.003156,
-      "completion_price": 0.004572,
-      "total_price": 0.007728,
+      "prompt_tokens": 1939,
+      "completion_tokens": 343,
+      "total_tokens": 2282,
+      "prompt_price": 0.0015512,
+      "completion_price": 0.000686,
+      "total_price": 0.0022372,
       "currency": "USD"
     }
   },
-  "real-user-monitoring/react-native/app-access.md": {
-    "hash": "d44509aa33f1a97a5d262e2eb05d352ace61c9af872884cf5d3437ad6097cd26",
-    "last_translated": "2025-03-23T21:22:14.331226",
-    "translation_time": 377.71,
+  "logs/multi-index/index.md": {
+    "hash": "3bd2cdada137206aa977461255c64e245b51060ada1c52e74fff097209c5b1ae",
+    "last_translated": "2025-03-28T14:19:48.607545",
+    "translation_time": 69.73,
     "usage": {
-      "prompt_tokens": 29499,
-      "completion_tokens": 8586,
-      "total_tokens": 38085,
-      "prompt_price": 0.0235992,
-      "completion_price": 0.017172,
-      "total_price": 0.0407712,
-      "currency": "USD",
-      "exceed_token_limit": true
-    }
-  },
-  "application-performance-monitoring/explorer/auto_wire/helm.md": {
-    "hash": "1055a4e75003e64ac7f09106877369360b36c9bca2c945e150e3687f2303e3b9",
-    "last_translated": "2025-03-23T21:22:16.816499",
-    "translation_time": 24.37,
-    "usage": {
-      "prompt_tokens": 2247,
-      "completion_tokens": 662,
-      "total_tokens": 2909,
-      "prompt_price": 0.0017976,
-      "completion_price": 0.001324,
-      "total_price": 0.0031216,
-      "currency": "USD"
-    }
-  },
-  "cloud-billing/index.md": {
-    "hash": "48ff71836485e5afd1890c9e2fe92e91e3138b1292f9376bcae4cab4825f61a3",
-    "last_translated": "2025-03-23T21:22:19.298428",
-    "translation_time": 22.63,
-    "usage": {
-      "prompt_tokens": 2181,
-      "completion_tokens": 622,
-      "total_tokens": 2803,
-      "prompt_price": 0.0017448,
-      "completion_price": 0.001244,
-      "total_price": 0.0029888,
-      "currency": "USD"
-    }
-  },
-  "datakit/datakit-update.md": {
-    "hash": "07a9bb950de5a880f0aacd0567dfbd8769e497b789ecb98a6f7c65b8055a7439",
-    "last_translated": "2025-03-23T21:22:23.563320",
-    "translation_time": 75.7,
-    "usage": {
-      "prompt_tokens": 4197,
-      "completion_tokens": 2589,
-      "total_tokens": 6786,
-      "prompt_price": 0.0033576,
-      "completion_price": 0.005178,
-      "total_price": 0.0085356,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/idle-resources.md": {
-    "hash": "9c2a8366919644463221767919d1d1f62f262c40c1171742ae868ee55cd96f9d",
-    "last_translated": "2025-03-23T21:22:49.211698",
-    "translation_time": 34.86,
-    "usage": {
-      "prompt_tokens": 2902,
-      "completion_tokens": 1314,
-      "total_tokens": 4216,
-      "prompt_price": 0.0023216,
-      "completion_price": 0.002628,
-      "total_price": 0.0049496,
-      "currency": "USD"
-    }
-  },
-  "open-api/service-manage/get.md": {
-    "hash": "985cc754bd74079a1baf2278247d4907d7720593ea5caab7fe188a53f2dbab6b",
-    "last_translated": "2025-03-23T21:23:03.409888",
-    "translation_time": 44.09,
-    "usage": {
-      "prompt_tokens": 2681,
-      "completion_tokens": 1098,
-      "total_tokens": 3779,
-      "prompt_price": 0.0021448,
-      "completion_price": 0.002196,
-      "total_price": 0.0043408,
-      "currency": "USD"
-    }
-  },
-  "billing-center/account-wallet/index.md": {
-    "hash": "650dae1102071bdc9ad550823177c8a50714b8339ef02e59efcedd3132008d1e",
-    "last_translated": "2025-03-23T21:23:06.722572",
-    "translation_time": 57.31,
-    "usage": {
-      "prompt_tokens": 3081,
-      "completion_tokens": 1511,
-      "total_tokens": 4592,
-      "prompt_price": 0.0024648,
-      "completion_price": 0.003022,
-      "total_price": 0.0054868,
+      "prompt_tokens": 3685,
+      "completion_tokens": 1988,
+      "total_tokens": 5673,
+      "prompt_price": 0.002948,
+      "completion_price": 0.003976,
+      "total_price": 0.006924,
       "currency": "USD"
     }
   },
   "scene/view-variable.md": {
-    "hash": "48cba1fb0a906634272226a486c178d8265ead1688b7de8dd20920992718b50b",
-    "last_translated": "2025-03-23T21:23:09.708682",
-    "translation_time": 149.38,
+    "hash": "db8a736781c506e0c1cf884d663afab5766b53d0a4f41c62c7354443ac9a02e2",
+    "last_translated": "2025-03-28T14:19:56.623854",
+    "translation_time": 124.37,
     "usage": {
-      "prompt_tokens": 5691,
-      "completion_tokens": 3958,
-      "total_tokens": 9649,
-      "prompt_price": 0.0045528,
-      "completion_price": 0.007916,
-      "total_price": 0.0124688,
+      "prompt_tokens": 5673,
+      "completion_tokens": 3945,
+      "total_tokens": 9618,
+      "prompt_price": 0.0045384,
+      "completion_price": 0.00789,
+      "total_price": 0.0124284,
+      "currency": "USD"
+    }
+  },
+  "scene/visual-chart/command-panel.md": {
+    "hash": "a15961396064f4c27af8447761b41779b46b8ad64803120a2892e669da911196",
+    "last_translated": "2025-03-28T14:19:57.600018",
+    "translation_time": 8.98,
+    "usage": {
+      "prompt_tokens": 1798,
+      "completion_tokens": 222,
+      "total_tokens": 2020,
+      "prompt_price": 0.0014384,
+      "completion_price": 0.000444,
+      "total_price": 0.0018824,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/web/app-access.md": {
+    "hash": "c07fdfb6f353e44de08a62a4bece791ce30640d83e0f2a0c1d43b0a5e1b10402",
+    "last_translated": "2025-03-28T14:19:58.999517",
+    "translation_time": 134.44,
+    "usage": {
+      "prompt_tokens": 4909,
+      "completion_tokens": 3060,
+      "total_tokens": 7969,
+      "prompt_price": 0.0039272,
+      "completion_price": 0.00612,
+      "total_price": 0.0100472,
+      "currency": "USD"
+    }
+  },
+  "events/event-explorer/unrecovered-events.md": {
+    "hash": "113aaf59be75b62daef3e2f883717296c79bec2ede3ded8d2294126e828b63f4",
+    "last_translated": "2025-03-28T14:20:05.330681",
+    "translation_time": 57.62,
+    "usage": {
+      "prompt_tokens": 2921,
+      "completion_tokens": 1321,
+      "total_tokens": 4242,
+      "prompt_price": 0.0023368,
+      "completion_price": 0.002642,
+      "total_price": 0.0049788,
+      "currency": "USD"
+    }
+  },
+  "monitoring/notify-target-dingtalk.md": {
+    "hash": "775dbd6736b267407ff8327349e21be9bca98bb86e4645b890d43d0928297233",
+    "last_translated": "2025-03-28T14:20:18.968230",
+    "translation_time": 22.33,
+    "usage": {
+      "prompt_tokens": 2025,
+      "completion_tokens": 497,
+      "total_tokens": 2522,
+      "prompt_price": 0.00162,
+      "completion_price": 0.000994,
+      "total_price": 0.002614,
+      "currency": "USD"
+    }
+  },
+  "scene/visual-chart/timeseries-chart.md": {
+    "hash": "90dd8bc51bf57ae167c149a0ffb8bdbb85fb51493be7c7875d4fcdc9a121dfb4",
+    "last_translated": "2025-03-28T14:20:54.955637",
+    "translation_time": 97.91,
+    "usage": {
+      "prompt_tokens": 3942,
+      "completion_tokens": 2398,
+      "total_tokens": 6340,
+      "prompt_price": 0.0031536,
+      "completion_price": 0.004796,
+      "total_price": 0.0079496,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/miniapp/app-access.md": {
+    "hash": "962bb2d0fdc59f9132ffb8632f8d6b6dffcd54bbf3570fc3b718fb710cf1220d",
+    "last_translated": "2025-03-28T14:21:13.929103",
+    "translation_time": 68.58,
+    "usage": {
+      "prompt_tokens": 3483,
+      "completion_tokens": 1844,
+      "total_tokens": 5327,
+      "prompt_price": 0.0027864,
+      "completion_price": 0.003688,
+      "total_price": 0.0064744,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-eks-deploy.md": {
+    "hash": "52871e594597483611926cf71352908edae04c52ac3b2c2b5e61340226030ac3",
+    "last_translated": "2025-03-28T14:21:17.548636",
+    "translation_time": 58.54,
+    "usage": {
+      "prompt_tokens": 3976,
+      "completion_tokens": 2320,
+      "total_tokens": 6296,
+      "prompt_price": 0.0031808,
+      "completion_price": 0.00464,
+      "total_price": 0.0078208,
+      "currency": "USD"
+    }
+  },
+  "monitoring/monitor/infrastructure-detection.md": {
+    "hash": "a69eaaed32fa2ba49f0c4a7207d445415e6f33b8f36b1d1c04c86195972e9de9",
+    "last_translated": "2025-03-28T14:22:06.997458",
+    "translation_time": 72.03,
+    "usage": {
+      "prompt_tokens": 3477,
+      "completion_tokens": 1853,
+      "total_tokens": 5330,
+      "prompt_price": 0.0027816,
+      "completion_price": 0.003706,
+      "total_price": 0.0064876,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-helm.md": {
+    "hash": "159da561311934a5983def5050b6c04d2c849a7437d87352406fa40b1bfd345d",
+    "last_translated": "2025-03-28T14:22:07.701165",
+    "translation_time": 149.18,
+    "usage": {
+      "prompt_tokens": 5420,
+      "completion_tokens": 3823,
+      "total_tokens": 9243,
+      "prompt_price": 0.004336,
+      "completion_price": 0.007646,
+      "total_price": 0.011982,
+      "currency": "USD"
+    }
+  },
+  "monitoring/index.md": {
+    "hash": "80c0683355b8dc7567dcbc8f9ae0a17b7ac71ec82db7b8178ab6129663e908f4",
+    "last_translated": "2025-03-28T14:22:38.168308",
+    "translation_time": 31.16,
+    "usage": {
+      "prompt_tokens": 2322,
+      "completion_tokens": 757,
+      "total_tokens": 3079,
+      "prompt_price": 0.0018576,
+      "completion_price": 0.001514,
+      "total_price": 0.0033716,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-update.md": {
+    "hash": "228569d4957ab48a98d61e85934132388504cbe5baa99da23fa0f5b38e3173b8",
+    "last_translated": "2025-03-28T14:22:47.916972",
+    "translation_time": 93.97,
+    "usage": {
+      "prompt_tokens": 4228,
+      "completion_tokens": 2602,
+      "total_tokens": 6830,
+      "prompt_price": 0.0033824,
+      "completion_price": 0.005204,
+      "total_price": 0.0085864,
+      "currency": "USD"
+    }
+  },
+  "monitoring/notify-target-teams.md": {
+    "hash": "1df6cd3dac0ad71d42df06b11015b8beb6d29af5c4e6bd07377e8339ac28a66f",
+    "last_translated": "2025-03-28T14:22:53.761685",
+    "translation_time": 15.58,
+    "usage": {
+      "prompt_tokens": 1902,
+      "completion_tokens": 325,
+      "total_tokens": 2227,
+      "prompt_price": 0.0015216,
+      "completion_price": 0.00065,
+      "total_price": 0.0021716,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/.pages": {
+    "hash": "145bc61ba48b6f452ee95d176647f9356366a0aff595c095638238fa2ccc52a8",
+    "last_translated": "2025-03-28T14:23:00.439732",
+    "translation_time": 12.51,
+    "usage": {
+      "prompt_tokens": 1752,
+      "completion_tokens": 182,
+      "total_tokens": 1934,
+      "prompt_price": 0.0014016,
+      "completion_price": 0.000364,
+      "total_price": 0.0017656,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-install.md": {
+    "hash": "2bc47f719c9de159ec829ab2d5c7302f53d92312b83616e32428c32d94b1e4c2",
+    "last_translated": "2025-03-28T14:23:37.508101",
+    "translation_time": 352.95,
+    "usage": {
+      "prompt_tokens": 9451,
+      "completion_tokens": 7556,
+      "total_tokens": 17007,
+      "prompt_price": 0.0075608,
+      "completion_price": 0.015112,
+      "total_price": 0.0226728,
       "currency": "USD"
     }
   },
   "scene/report.md": {
-    "hash": "1ed440e14c48bf8bb78707917138175c93c88d794adfc6faf76e2cc2b09669b5",
-    "last_translated": "2025-03-23T21:23:21.622032",
-    "translation_time": 18.19,
+    "hash": "eb593b48b8fbdd21798abfd1e8b3914f04870c785d6cf5eecb51658c325b45d4",
+    "last_translated": "2025-03-28T14:23:38.279811",
+    "translation_time": 37.82,
     "usage": {
       "prompt_tokens": 2305,
-      "completion_tokens": 742,
-      "total_tokens": 3047,
+      "completion_tokens": 743,
+      "total_tokens": 3048,
       "prompt_price": 0.001844,
-      "completion_price": 0.001484,
-      "total_price": 0.003328,
+      "completion_price": 0.001486,
+      "total_price": 0.00333,
       "currency": "USD"
     }
   },
-  "deployment/get-license.md": {
-    "hash": "309330d4241ea3094eb9115e9a78098c83c9bb1de990eee2d144f008f46e12d8",
-    "last_translated": "2025-03-23T21:23:22.440718",
-    "translation_time": 15.7,
+  "datakit/datakit-proxy.md": {
+    "hash": "5f5fc55ece84a28218d15d3ee434b37c31da4297ee1501d2e7d77420645dc8a7",
+    "last_translated": "2025-03-28T14:23:47.395368",
+    "translation_time": 53.62,
     "usage": {
-      "prompt_tokens": 2077,
-      "completion_tokens": 548,
-      "total_tokens": 2625,
-      "prompt_price": 0.0016616,
-      "completion_price": 0.001096,
-      "total_price": 0.0027576,
+      "prompt_tokens": 2994,
+      "completion_tokens": 1403,
+      "total_tokens": 4397,
+      "prompt_price": 0.0023952,
+      "completion_price": 0.002806,
+      "total_price": 0.0052012,
       "currency": "USD"
     }
   },
-  "best-practices/monitoring/swarm-bee.md": {
-    "hash": "f85a20bc3ced5d07fe87b314255223324e9d5372e47c0b32f8ca910da8b2c366",
-    "last_translated": "2025-03-23T21:23:33.225742",
-    "translation_time": 134.76,
+  "release-notes/index.md": {
+    "hash": "641a2b9e1fa5eb2e0d3336b5c0d4b5e9818a1c0bb7154d2e8406a76672cd12bb",
+    "last_translated": "2025-03-28T14:23:56.047312",
+    "translation_time": 238.43,
     "usage": {
-      "prompt_tokens": 5754,
-      "completion_tokens": 3899,
-      "total_tokens": 9653,
-      "prompt_price": 0.0046032,
-      "completion_price": 0.007798,
-      "total_price": 0.0124012,
+      "prompt_tokens": 7443,
+      "completion_tokens": 5159,
+      "total_tokens": 12602,
+      "prompt_price": 0.0059544,
+      "completion_price": 0.010318,
+      "total_price": 0.0162724,
       "currency": "USD"
     }
   },
-  "open-api/service-manage/modify.md": {
-    "hash": "18c93a5f5d8b22da36e753c62b656288da2b5900c619abb8f1e9e6cd02c4ea2a",
-    "last_translated": "2025-03-23T21:23:43.768761",
-    "translation_time": 80.19,
+  "logs/explorer-details.md": {
+    "hash": "05871f25d6e275c4b93d7e33a9f519c999a1ff20d808ea2db2de028c6f36f278",
+    "last_translated": "2025-03-28T14:24:28.105239",
+    "translation_time": 140.39,
     "usage": {
-      "prompt_tokens": 3690,
-      "completion_tokens": 1967,
-      "total_tokens": 5657,
-      "prompt_price": 0.002952,
-      "completion_price": 0.003934,
-      "total_price": 0.006886,
+      "prompt_tokens": 4728,
+      "completion_tokens": 3099,
+      "total_tokens": 7827,
+      "prompt_price": 0.0037824,
+      "completion_price": 0.006198,
+      "total_price": 0.0099804,
       "currency": "USD"
     }
   },
-  "developers/custom-bot-obs.md": {
-    "hash": "cb2750a2ba166c58865c94edb854b6e351d074fe58d969935b8cfd31f8dc7a76",
-    "last_translated": "2025-03-23T21:24:07.853813",
-    "translation_time": 111.02,
+  "datakit/datakit-docker-deploy.md": {
+    "hash": "3108431af0aecabc6b29297c13fcc613a5bd5ea8f4fc7676099c960b2a3b1d86",
+    "last_translated": "2025-03-28T14:24:46.535691",
+    "translation_time": 59.12,
     "usage": {
-      "prompt_tokens": 4496,
-      "completion_tokens": 2787,
-      "total_tokens": 7283,
-      "prompt_price": 0.0035968,
-      "completion_price": 0.005574,
-      "total_price": 0.0091708,
+      "prompt_tokens": 2859,
+      "completion_tokens": 1240,
+      "total_tokens": 4099,
+      "prompt_price": 0.0022872,
+      "completion_price": 0.00248,
+      "total_price": 0.0047672,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-dql-how-to.md": {
+    "hash": "adca8d962b51a3451974a0ce7e6d658195785d6a2b27048373ae9c0c7689abea",
+    "last_translated": "2025-03-28T14:24:50.755600",
+    "translation_time": 73.23,
+    "usage": {
+      "prompt_tokens": 2677,
+      "completion_tokens": 1088,
+      "total_tokens": 3765,
+      "prompt_price": 0.0021416,
+      "completion_price": 0.002176,
+      "total_price": 0.0043176,
+      "currency": "USD"
+    }
+  },
+  "scene/visual-chart/topology-map.md": {
+    "hash": "1006f55fbaaedb9bf24d6c6046191618f4da1086c595190ed5d6bf2e87bce3ad",
+    "last_translated": "2025-03-28T14:25:01.068448",
+    "translation_time": 32.94,
+    "usage": {
+      "prompt_tokens": 2147,
+      "completion_tokens": 546,
+      "total_tokens": 2693,
+      "prompt_price": 0.0017176,
+      "completion_price": 0.001092,
+      "total_price": 0.0028096,
+      "currency": "USD"
+    }
+  },
+  "datakit/pb-vs-lp.md": {
+    "hash": "2fd46fc0a58332306fd17b65b0c53c1e2e165732af33da7816046c3d00da89c2",
+    "last_translated": "2025-03-28T14:25:07.158691",
+    "translation_time": 71.1,
+    "usage": {
+      "prompt_tokens": 3322,
+      "completion_tokens": 1763,
+      "total_tokens": 5085,
+      "prompt_price": 0.0026576,
+      "completion_price": 0.003526,
+      "total_price": 0.0061836,
+      "currency": "USD"
+    }
+  },
+  "events/event-explorer/event-list.md": {
+    "hash": "016fb9078354ce29b39e8dc2570ad492645e3fa16fee3dea2e0f6921bf8e3a40",
+    "last_translated": "2025-03-28T14:25:28.459065",
+    "translation_time": 21.28,
+    "usage": {
+      "prompt_tokens": 1884,
+      "completion_tokens": 312,
+      "total_tokens": 2196,
+      "prompt_price": 0.0015072,
+      "completion_price": 0.000624,
+      "total_price": 0.0021312,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/react-native/app-access.md": {
+    "hash": "693ce3b62e04d68688be5247c7f0ac1d5af463b12aff31be7bd217ef536ae912",
+    "last_translated": "2025-03-28T14:26:02.348247",
+    "translation_time": 443.59,
+    "usage": {
+      "prompt_tokens": 29604,
+      "completion_tokens": 8677,
+      "total_tokens": 38281,
+      "prompt_price": 0.0236832,
+      "completion_price": 0.017354,
+      "total_price": 0.041037199999999996,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "security/index.md": {
+    "hash": "ab36b0b27bd577d15840c38d97bffe6b7eb87fc9a8b6bbddf8d8f6688c0e8703",
+    "last_translated": "2025-03-28T14:26:13.033468",
+    "translation_time": 86.48,
+    "usage": {
+      "prompt_tokens": 3774,
+      "completion_tokens": 2221,
+      "total_tokens": 5995,
+      "prompt_price": 0.0030192,
+      "completion_price": 0.004442,
+      "total_price": 0.0074612,
+      "currency": "USD"
+    }
+  },
+  "scene/visual-chart/.pages": {
+    "hash": "59d7ea8d304539c85256678160b7c61b134de836e191a75eb30209164910f095",
+    "last_translated": "2025-03-28T14:26:31.890804",
+    "translation_time": 18.84,
+    "usage": {
+      "prompt_tokens": 1924,
+      "completion_tokens": 337,
+      "total_tokens": 2261,
+      "prompt_price": 0.0015392,
+      "completion_price": 0.000674,
+      "total_price": 0.0022132,
+      "currency": "USD"
+    }
+  },
+  "datakit/aliyun-access.md": {
+    "hash": "56b2c7ce409d0efb343becb9309a478d7de6df38e00a8b3e9b081c9ed7cb6ad2",
+    "last_translated": "2025-03-28T14:26:35.392781",
+    "translation_time": 94.31,
+    "usage": {
+      "prompt_tokens": 3018,
+      "completion_tokens": 1464,
+      "total_tokens": 4482,
+      "prompt_price": 0.0024144,
+      "completion_price": 0.002928,
+      "total_price": 0.0053424,
+      "currency": "USD"
+    }
+  },
+  "monitoring/mute-management.md": {
+    "hash": "31de4ff2825f2be57058f03049aed7975d5bc4b26dee79a2c5433f97fd989c81",
+    "last_translated": "2025-03-28T14:26:36.598966",
+    "translation_time": 68.13,
+    "usage": {
+      "prompt_tokens": 2922,
+      "completion_tokens": 1333,
+      "total_tokens": 4255,
+      "prompt_price": 0.0023376,
+      "completion_price": 0.002666,
+      "total_price": 0.0050036,
+      "currency": "USD"
+    }
+  },
+  "monitoring/notify-target-sms.md": {
+    "hash": "378609a2b471494502b9373ddabbab581fc2fa57aa3c73e29c3e5db25ce54e5f",
+    "last_translated": "2025-03-28T14:26:40.276391",
+    "translation_time": 4.87,
+    "usage": {
+      "prompt_tokens": 1629,
+      "completion_tokens": 57,
+      "total_tokens": 1686,
+      "prompt_price": 0.0013032,
+      "completion_price": 0.000114,
+      "total_price": 0.0014172,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-conf.md": {
+    "hash": "9914d457af15619d24e8dbd9cfd5563ca57b673f819098f4152f3f66b8fe74fa",
+    "last_translated": "2025-03-28T14:28:39.411141",
+    "translation_time": 547.74,
+    "usage": {
+      "prompt_tokens": 33551,
+      "completion_tokens": 10783,
+      "total_tokens": 44334,
+      "prompt_price": 0.026840799999999998,
+      "completion_price": 0.021566,
+      "total_price": 0.0484068,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "datakit/datakit-tools-how-to.md": {
+    "hash": "daa8474dfec143e410f560b829d0cac44114e7b93dbfcf190c72a523eaacdb44",
+    "last_translated": "2025-03-28T14:28:49.263909",
+    "translation_time": 310.97,
+    "usage": {
+      "prompt_tokens": 7476,
+      "completion_tokens": 5702,
+      "total_tokens": 13178,
+      "prompt_price": 0.0059808,
+      "completion_price": 0.011404,
+      "total_price": 0.0173848,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-filter.md": {
+    "hash": "2eb38eed00de4dbe89f9f6b49d35fc3313ad15d8512c921fd38795ff321c34f5",
+    "last_translated": "2025-03-28T14:29:54.658828",
+    "translation_time": 232.29,
+    "usage": {
+      "prompt_tokens": 6251,
+      "completion_tokens": 4455,
+      "total_tokens": 10706,
+      "prompt_price": 0.0050008,
+      "completion_price": 0.00891,
+      "total_price": 0.0139108,
+      "currency": "USD"
+    }
+  },
+  "open-api/notify-object/create.md": {
+    "hash": "64e1ddbf289576f50670fc83eb7eefd904bc7f3f5384590d580407cc6092ae6e",
+    "last_translated": "2025-03-28T14:29:56.130257",
+    "translation_time": 66.85,
+    "usage": {
+      "prompt_tokens": 2829,
+      "completion_tokens": 1127,
+      "total_tokens": 3956,
+      "prompt_price": 0.0022632,
+      "completion_price": 0.002254,
+      "total_price": 0.0045172,
+      "currency": "USD"
+    }
+  },
+  "management/backup/index.md": {
+    "hash": "5443c8c9c7d48d492a3ea1495407f1d2c0def36536d0613ef9b1efa1ea00e079",
+    "last_translated": "2025-03-28T14:29:57.779241",
+    "translation_time": 78.35,
+    "usage": {
+      "prompt_tokens": 2643,
+      "completion_tokens": 1082,
+      "total_tokens": 3725,
+      "prompt_price": 0.0021144,
+      "completion_price": 0.002164,
+      "total_price": 0.0042784,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-daemonset-deploy.md": {
+    "hash": "ca2dbb5bcfbd998c81859a443abe746ef8442f63171a243ff7284f9661e8c71d",
+    "last_translated": "2025-03-28T14:30:08.322287",
+    "translation_time": 530.76,
+    "usage": {
+      "prompt_tokens": 29563,
+      "completion_tokens": 8742,
+      "total_tokens": 38305,
+      "prompt_price": 0.023650400000000002,
+      "completion_price": 0.017484,
+      "total_price": 0.0411344,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "open-api/checker/receive.md": {
+    "hash": "36ef9b59ceb45f330baa2a02020a3c64bb2dee4b5f2f183d68d580a2c6c791b0",
+    "last_translated": "2025-03-28T14:30:59.439712",
+    "translation_time": 61.64,
+    "usage": {
+      "prompt_tokens": 2738,
+      "completion_tokens": 1112,
+      "total_tokens": 3850,
+      "prompt_price": 0.0021904,
+      "completion_price": 0.002224,
+      "total_price": 0.0044144,
+      "currency": "USD"
+    }
+  },
+  "management/sso/aws_iam_sso.md": {
+    "hash": "e022652c9490f6076aeb33f640f580044d0b6a4d8e67af511637a5717f97dd18",
+    "last_translated": "2025-03-28T14:31:57.565497",
+    "translation_time": 109.23,
+    "usage": {
+      "prompt_tokens": 3241,
+      "completion_tokens": 1629,
+      "total_tokens": 4870,
+      "prompt_price": 0.0025928,
+      "completion_price": 0.003258,
+      "total_price": 0.0058508,
+      "currency": "USD"
+    }
+  },
+  "open-api/board/crontab-report-add.md": {
+    "hash": "f5580e62dad7a6815fec9cca8980b1e6d8896d42453e15e077fd98b81685834a",
+    "last_translated": "2025-03-28T14:32:20.374832",
+    "translation_time": 80.92,
+    "usage": {
+      "prompt_tokens": 2910,
+      "completion_tokens": 1276,
+      "total_tokens": 4186,
+      "prompt_price": 0.002328,
+      "completion_price": 0.002552,
+      "total_price": 0.00488,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-logging.md": {
+    "hash": "7241d396ee687490a0b021013e71c38fa0a8781fd77ec877c6772be9e4e62724",
+    "last_translated": "2025-03-28T14:32:48.782610",
+    "translation_time": 769.76,
+    "usage": {
+      "prompt_tokens": 38405,
+      "completion_tokens": 13110,
+      "total_tokens": 51515,
+      "prompt_price": 0.030724,
+      "completion_price": 0.02622,
+      "total_price": 0.056943999999999995,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "getting-started/function-details/explorer-search.md": {
+    "hash": "f87907f7b4118b0eb30fc2a4fbeedfe6966501d29ae64796737cdf24053d83bf",
+    "last_translated": "2025-03-28T14:33:04.644868",
+    "translation_time": 388.02,
+    "usage": {
+      "prompt_tokens": 8285,
+      "completion_tokens": 6514,
+      "total_tokens": 14799,
+      "prompt_price": 0.006628,
+      "completion_price": 0.013028,
+      "total_price": 0.019656,
       "currency": "USD"
     }
   },
   "infrastructure/host.md": {
-    "hash": "daf539fdcbfd9fae343754005035cc2c31abe7b70fb0d9024b7eb3dbb422eaa0",
-    "last_translated": "2025-03-23T21:24:28.245447",
-    "translation_time": 66.6,
+    "hash": "b6f976d2f902d616f5bc8092e93612fc2d26405fcf07e646a5e1e40fd038881e",
+    "last_translated": "2025-03-28T14:33:33.582199",
+    "translation_time": 96.0,
     "usage": {
       "prompt_tokens": 3595,
-      "completion_tokens": 2019,
-      "total_tokens": 5614,
+      "completion_tokens": 2011,
+      "total_tokens": 5606,
       "prompt_price": 0.002876,
-      "completion_price": 0.004038,
-      "total_price": 0.006914,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/tomcat_ruoyi.md": {
-    "hash": "4c964cfa59d52b863d411399ab998b206b7d542044ef0427179712b748d52706",
-    "last_translated": "2025-03-23T21:24:28.306682",
-    "translation_time": 99.08,
-    "usage": {
-      "prompt_tokens": 5216,
-      "completion_tokens": 3521,
-      "total_tokens": 8737,
-      "prompt_price": 0.0041728,
-      "completion_price": 0.007042,
-      "total_price": 0.0112148,
-      "currency": "USD"
-    }
-  },
-  "management/sso/azure-ad.md": {
-    "hash": "8d34810bb0fc0a51dc96b9d2e9702898aba17495d26e6c83946852fc88c3ddca",
-    "last_translated": "2025-03-23T21:24:34.436941",
-    "translation_time": 50.65,
-    "usage": {
-      "prompt_tokens": 3049,
-      "completion_tokens": 1467,
-      "total_tokens": 4516,
-      "prompt_price": 0.0024392,
-      "completion_price": 0.002934,
-      "total_price": 0.0053732,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/apm-errors.md": {
-    "hash": "47e3c91d92e4aaf621348e26e7825ac28f7f4f6ee7223ee325e83ce36ab2a517",
-    "last_translated": "2025-03-23T21:24:46.862382",
-    "translation_time": 84.4,
-    "usage": {
-      "prompt_tokens": 3609,
-      "completion_tokens": 1970,
-      "total_tokens": 5579,
-      "prompt_price": 0.0028872,
-      "completion_price": 0.00394,
-      "total_price": 0.0068272,
-      "currency": "USD"
-    }
-  },
-  "external-api/account/modify.md": {
-    "hash": "a4c38bb6f34b53c8855ceca38c1ef7b8485c95f95faf9f314141f2fb6e884035",
-    "last_translated": "2025-03-23T21:25:03.723934",
-    "translation_time": 35.46,
-    "usage": {
-      "prompt_tokens": 2171,
-      "completion_tokens": 588,
-      "total_tokens": 2759,
-      "prompt_price": 0.0017368,
-      "completion_price": 0.001176,
-      "total_price": 0.0029128,
-      "currency": "USD"
-    }
-  },
-  "open-api/workspace/create.md": {
-    "hash": "6cf41e14d244b6eb79283c721fb07dbc75edc401fcfd64233026ce0779212fd9",
-    "last_translated": "2025-03-23T21:25:04.122934",
-    "translation_time": 56.24,
-    "usage": {
-      "prompt_tokens": 2768,
-      "completion_tokens": 1180,
-      "total_tokens": 3948,
-      "prompt_price": 0.0022144,
-      "completion_price": 0.00236,
-      "total_price": 0.0045744,
-      "currency": "USD"
-    }
-  },
-  "logs/collection.md": {
-    "hash": "e0dc169c30060ee5f710a6b2338dd0c69576a65371a1cb2e622e2e0f32e257cd",
-    "last_translated": "2025-03-23T21:25:16.359011",
-    "translation_time": 48.04,
-    "usage": {
-      "prompt_tokens": 2257,
-      "completion_tokens": 653,
-      "total_tokens": 2910,
-      "prompt_price": 0.0018056,
-      "completion_price": 0.001306,
-      "total_price": 0.0031116,
-      "currency": "USD"
-    }
-  },
-  "others/write-text.md": {
-    "hash": "5fee4f21a7d40cc3fd2803dd9f040cd3bba19fab3f8908c6ad1a7fd52a9f1f90",
-    "last_translated": "2025-03-23T21:25:21.828325",
-    "translation_time": 34.95,
-    "usage": {
-      "prompt_tokens": 2253,
-      "completion_tokens": 659,
-      "total_tokens": 2912,
-      "prompt_price": 0.0018024,
-      "completion_price": 0.001318,
-      "total_price": 0.0031204,
-      "currency": "USD"
-    }
-  },
-  "billing/index.md": {
-    "hash": "aa601adb233fbf1d93b3392184ed66d89bbdc0e5f23fa33f994e4e4bbbe2b702",
-    "last_translated": "2025-03-23T21:25:53.139800",
-    "translation_time": 49.39,
-    "usage": {
-      "prompt_tokens": 2950,
-      "completion_tokens": 1337,
-      "total_tokens": 4287,
-      "prompt_price": 0.00236,
-      "completion_price": 0.002674,
-      "total_price": 0.005034,
-      "currency": "USD"
-    }
-  },
-  "best-practices/insight/java-rum-apm-log.md": {
-    "hash": "1a71f2be52fd754f9f467122ceda64da7d257e079652e10156933f0fdadda97e",
-    "last_translated": "2025-03-23T21:26:07.216072",
-    "translation_time": 177.49,
-    "usage": {
-      "prompt_tokens": 6271,
-      "completion_tokens": 4453,
-      "total_tokens": 10724,
-      "prompt_price": 0.0050168,
-      "completion_price": 0.008906,
-      "total_price": 0.0139228,
-      "currency": "USD"
-    }
-  },
-  "deployment/infra-redis.md": {
-    "hash": "bc4c1388b7d4e6b59c8195ab3419f18399c5028affe35e28d4049a7e56485f37",
-    "last_translated": "2025-03-23T21:26:11.257414",
-    "translation_time": 49.4,
-    "usage": {
-      "prompt_tokens": 2256,
-      "completion_tokens": 667,
-      "total_tokens": 2923,
-      "prompt_price": 0.0018048,
-      "completion_price": 0.001334,
-      "total_price": 0.0031388,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/microservices1.md": {
-    "hash": "242784bb1b0d0c33427681e6b586243e5d4f03c7c84f1606e95f6db1dc187ae8",
-    "last_translated": "2025-03-23T21:26:20.940427",
-    "translation_time": 325.01,
-    "usage": {
-      "prompt_tokens": 8940,
-      "completion_tokens": 7253,
-      "total_tokens": 16193,
-      "prompt_price": 0.007152,
-      "completion_price": 0.014506,
-      "total_price": 0.021658,
-      "currency": "USD"
-    }
-  },
-  "plans/commercial-register.md": {
-    "hash": "bb5ca24da62f154bc0c4dbb143ea2d4343b16e57fdfb7e5fa494e1ef1194fb15",
-    "last_translated": "2025-03-23T21:26:29.220767",
-    "translation_time": 114.77,
-    "usage": {
-      "prompt_tokens": 3898,
-      "completion_tokens": 2283,
-      "total_tokens": 6181,
-      "prompt_price": 0.0031184,
-      "completion_price": 0.004566,
-      "total_price": 0.0076844,
-      "currency": "USD"
-    }
-  },
-  "open-api/dialing-task/default-region-list.md": {
-    "hash": "9e31838cf24614b3402b07d17aebbd6a9b969a9a1f1c57b52ef6a453624906a6",
-    "last_translated": "2025-03-23T21:26:46.977766",
-    "translation_time": 35.7,
-    "usage": {
-      "prompt_tokens": 2192,
-      "completion_tokens": 622,
-      "total_tokens": 2814,
-      "prompt_price": 0.0017536,
-      "completion_price": 0.001244,
-      "total_price": 0.0029976,
-      "currency": "USD"
-    }
-  },
-  "best-practices/monitoring/ansible-batch-processing.md": {
-    "hash": "e3d462614b52061d6e70d551450599627351663f17a9662ca94ae61cc2d44a7b",
-    "last_translated": "2025-03-23T21:26:53.920011",
-    "translation_time": 97.54,
-    "usage": {
-      "prompt_tokens": 3650,
-      "completion_tokens": 1963,
-      "total_tokens": 5613,
-      "prompt_price": 0.00292,
-      "completion_price": 0.003926,
-      "total_price": 0.006846,
-      "currency": "USD"
-    }
-  },
-  "scene/dashboard/config_list.md": {
-    "hash": "5453178f4a4a82979a48bd013c6f2d8aff1ad6284c865f67a86c78b5b22420df",
-    "last_translated": "2025-03-23T21:26:56.144559",
-    "translation_time": 35.18,
-    "usage": {
-      "prompt_tokens": 2186,
-      "completion_tokens": 612,
-      "total_tokens": 2798,
-      "prompt_price": 0.0017488,
-      "completion_price": 0.001224,
-      "total_price": 0.0029728,
+      "completion_price": 0.004022,
+      "total_price": 0.006898,
       "currency": "USD"
     }
   },
   "real-user-monitoring/session-replay/mobile/ios/index.md": {
-    "hash": "4af19fa8bb69addf06b31701d1a9aa077389f7cfb1b1275a88842a04718ebbea",
-    "last_translated": "2025-03-23T21:27:11.404803",
-    "translation_time": 64.15,
+    "hash": "79e637f0602c5f47c0781ae69a87603b2718e80b9e556c1dae7ea40c5fbf0244",
+    "last_translated": "2025-03-28T14:35:03.858899",
+    "translation_time": 119.19,
     "usage": {
-      "prompt_tokens": 3389,
-      "completion_tokens": 1741,
-      "total_tokens": 5130,
-      "prompt_price": 0.0027112,
-      "completion_price": 0.003482,
-      "total_price": 0.0061932,
-      "currency": "USD"
-    }
-  },
-  "product-introduction/glossary.md": {
-    "hash": "33252e108ff3325d9131bff5d3bec9af0b1220eb2f5267c9f06d7a7b21b7b590",
-    "last_translated": "2025-03-23T21:27:24.364787",
-    "translation_time": 140.22,
-    "usage": {
-      "prompt_tokens": 4479,
-      "completion_tokens": 2805,
-      "total_tokens": 7284,
-      "prompt_price": 0.0035832,
-      "completion_price": 0.00561,
-      "total_price": 0.0091932,
-      "currency": "USD"
-    }
-  },
-  "monitoring/bot-obs/Kubernetes/k8s-pod-restart.md": {
-    "hash": "e93f2b3e9cc701ff5d7cc23310b85090e5c167d433761c8b4a99dfdf8a10b1bc",
-    "last_translated": "2025-03-23T21:28:07.337166",
-    "translation_time": 98.1,
-    "usage": {
-      "prompt_tokens": 3763,
-      "completion_tokens": 2033,
-      "total_tokens": 5796,
-      "prompt_price": 0.0030104,
-      "completion_price": 0.004066,
-      "total_price": 0.0070764,
-      "currency": "USD"
-    }
-  },
-  "best-practices/cloud-native/pod-log.md": {
-    "hash": "9d5de1dc18051c93426359f831084d8d86ce3461fb44339229b35ca3cb301a1d",
-    "last_translated": "2025-03-23T21:28:29.764567",
-    "translation_time": 156.6,
-    "usage": {
-      "prompt_tokens": 4626,
-      "completion_tokens": 2959,
-      "total_tokens": 7585,
-      "prompt_price": 0.0037008,
-      "completion_price": 0.005918,
-      "total_price": 0.0096188,
+      "prompt_tokens": 3506,
+      "completion_tokens": 1809,
+      "total_tokens": 5315,
+      "prompt_price": 0.0028048,
+      "completion_price": 0.003618,
+      "total_price": 0.0064228,
       "currency": "USD"
     }
   },
   "real-user-monitoring/ios/app-access.md": {
-    "hash": "95254cb4b2848e4cee6b5e02dc93bf06d3363fa4bb59dcf390dcb43ebf704fc6",
-    "last_translated": "2025-03-23T21:31:21.768858",
-    "translation_time": 961.86,
+    "hash": "6c7a6b8f5b98b7f247e9286301ccc1c58c516c5be5020696634ac17aec589515",
+    "last_translated": "2025-03-28T14:35:29.849725",
+    "translation_time": 1065.29,
     "usage": {
-      "prompt_tokens": 88275,
-      "completion_tokens": 18782,
-      "total_tokens": 107057,
-      "prompt_price": 0.07061999999999999,
-      "completion_price": 0.037564,
-      "total_price": 0.108184,
+      "prompt_tokens": 88326,
+      "completion_tokens": 19091,
+      "total_tokens": 107417,
+      "prompt_price": 0.0706608,
+      "completion_price": 0.038182,
+      "total_price": 0.10884279999999999,
       "currency": "USD",
       "exceed_token_limit": true
     }
   },
-  "datakit/datakit-metrics.md": {
-    "hash": "df19339c3bdcb7f80c4edc60151d34991f3ebd142b0dc3e36178e93738b3f045",
-    "last_translated": "2025-03-23T21:32:51.502487",
-    "translation_time": 558.26,
+  "datakit/why-no-data.md": {
+    "hash": "0caeba3757dc85a885031e26258adb31187ae53bbc7173bd3445e9446f671033",
+    "last_translated": "2025-03-28T14:35:51.310020",
+    "translation_time": 559.4,
     "usage": {
-      "prompt_tokens": 30061,
-      "completion_tokens": 9330,
-      "total_tokens": 39391,
-      "prompt_price": 0.024048800000000002,
-      "completion_price": 0.01866,
-      "total_price": 0.042708800000000005,
+      "prompt_tokens": 29115,
+      "completion_tokens": 8720,
+      "total_tokens": 37835,
+      "prompt_price": 0.023292,
+      "completion_price": 0.01744,
+      "total_price": 0.040732000000000004,
       "currency": "USD",
       "exceed_token_limit": true
+    }
+  },
+  "datakit/dca.md": {
+    "hash": "dd0fd550a6914eaaff9b9bb8130803927d6915acf24e54a41cd87de6a1bf4346",
+    "last_translated": "2025-03-28T14:36:17.892559",
+    "translation_time": 164.29,
+    "usage": {
+      "prompt_tokens": 4799,
+      "completion_tokens": 3119,
+      "total_tokens": 7918,
+      "prompt_price": 0.0038392,
+      "completion_price": 0.006238,
+      "total_price": 0.0100772,
+      "currency": "USD"
+    }
+  },
+  "pipeline/use-pipeline/pipeline-offload.md": {
+    "hash": "8708b4110e1f96ec1ca68b7415b4cee709e6e4f8185b8fce08c44a40c59ddc4f",
+    "last_translated": "2025-03-28T14:36:57.172007",
+    "translation_time": 65.84,
+    "usage": {
+      "prompt_tokens": 2328,
+      "completion_tokens": 771,
+      "total_tokens": 3099,
+      "prompt_price": 0.0018624,
+      "completion_price": 0.001542,
+      "total_price": 0.0034044,
+      "currency": "USD"
+    }
+  },
+  "monitoring/.pages": {
+    "hash": "3d0f644ac204319bf1ab46971d6cd3ec61f26418d8460df4fc75a0bfdae25ab2",
+    "last_translated": "2025-03-28T14:36:59.252844",
+    "translation_time": 41.34,
+    "usage": {
+      "prompt_tokens": 1812,
+      "completion_tokens": 247,
+      "total_tokens": 2059,
+      "prompt_price": 0.0014496,
+      "completion_price": 0.000494,
+      "total_price": 0.0019436,
+      "currency": "USD"
+    }
+  },
+  "monitoring/notify-target-slack.md": {
+    "hash": "396ed68e58296d965cc1da379511827de1ab846632b34e825f3d568771ba6b93",
+    "last_translated": "2025-03-28T14:37:16.170350",
+    "translation_time": 18.98,
+    "usage": {
+      "prompt_tokens": 1868,
+      "completion_tokens": 290,
+      "total_tokens": 2158,
+      "prompt_price": 0.0014944,
+      "completion_price": 0.00058,
+      "total_price": 0.0020744,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-operator.md": {
+    "hash": "7ad2e016f4d24a7f13e2eb11823969108efde4f516fcdf41da7749ac860f531a",
+    "last_translated": "2025-03-28T14:37:25.941246",
+    "translation_time": 451.25,
+    "usage": {
+      "prompt_tokens": 9922,
+      "completion_tokens": 8092,
+      "total_tokens": 18014,
+      "prompt_price": 0.0079376,
+      "completion_price": 0.016184,
+      "total_price": 0.0241216,
+      "currency": "USD"
+    }
+  },
+  "logs/manag-explorer.md": {
+    "hash": "7fe9c61a14462c3a9c005f983bd00b3e5a7cd919a17d8c0aa0a0541c7eb5e4cb",
+    "last_translated": "2025-03-28T14:37:28.563673",
+    "translation_time": 144.69,
+    "usage": {
+      "prompt_tokens": 3934,
+      "completion_tokens": 2266,
+      "total_tokens": 6200,
+      "prompt_price": 0.0031472,
+      "completion_price": 0.004532,
+      "total_price": 0.0076792,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/macos/app-access.md": {
+    "hash": "2e3eb90da404a45d5692e6aa152a9b6c6c6df3586cd927609bacd0696d80243f",
+    "last_translated": "2025-03-28T14:38:22.415829",
+    "translation_time": 702.12,
+    "usage": {
+      "prompt_tokens": 34615,
+      "completion_tokens": 11066,
+      "total_tokens": 45681,
+      "prompt_price": 0.027692,
+      "completion_price": 0.022132,
+      "total_price": 0.049824,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "datakit/datakit-performance.md": {
+    "hash": "d255a933a46e988119bf5190da2dd31bd0ab2964922fab9b23d309e22dca1ff3",
+    "last_translated": "2025-03-28T14:38:28.818936",
+    "translation_time": 62.86,
+    "usage": {
+      "prompt_tokens": 2935,
+      "completion_tokens": 1312,
+      "total_tokens": 4247,
+      "prompt_price": 0.002348,
+      "completion_price": 0.002624,
+      "total_price": 0.004972,
+      "currency": "USD"
+    }
+  },
+  "datakit/changelog-2025.md": {
+    "hash": "79c6f105516a4c19f199374d318b720d005dc97a4add07b0422619ce3344387e",
+    "last_translated": "2025-03-28T14:39:04.136753",
+    "translation_time": 107.95,
+    "usage": {
+      "prompt_tokens": 4196,
+      "completion_tokens": 2274,
+      "total_tokens": 6470,
+      "prompt_price": 0.0033568,
+      "completion_price": 0.004548,
+      "total_price": 0.0079048,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-offline-install.md": {
+    "hash": "c1330867097cc25aa07275c6609300099be09fac6310c265493552c6ff4956a7",
+    "last_translated": "2025-03-28T14:39:07.132800",
+    "translation_time": 406.74,
+    "usage": {
+      "prompt_tokens": 9030,
+      "completion_tokens": 7333,
+      "total_tokens": 16363,
+      "prompt_price": 0.007224,
+      "completion_price": 0.014666,
+      "total_price": 0.02189,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/session-replay/mobile/android/index.md": {
+    "hash": "8e7c4cfb436ed9b5a36c83c3079389e5a5cbb3476ebcd313562d3c84806a21ee",
+    "last_translated": "2025-03-28T14:39:10.931084",
+    "translation_time": 48.5,
+    "usage": {
+      "prompt_tokens": 3474,
+      "completion_tokens": 1802,
+      "total_tokens": 5276,
+      "prompt_price": 0.0027792,
+      "completion_price": 0.003604,
+      "total_price": 0.0063832,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-monitor.md": {
+    "hash": "0547f965556b595159084d67a18d6a37d78273720ccbdc9a5d9221eed2cd93f2",
+    "last_translated": "2025-03-28T14:39:36.608186",
+    "translation_time": 67.77,
+    "usage": {
+      "prompt_tokens": 3564,
+      "completion_tokens": 1942,
+      "total_tokens": 5506,
+      "prompt_price": 0.0028512,
+      "completion_price": 0.003884,
+      "total_price": 0.0067352,
+      "currency": "USD"
+    }
+  },
+  "usability-monitoring/index.md": {
+    "hash": "d8a45563024314e43740549b853824d69302782657a2a1291d7d655e5d4e629f",
+    "last_translated": "2025-03-28T14:39:50.208789",
+    "translation_time": 13.58,
+    "usage": {
+      "prompt_tokens": 2119,
+      "completion_tokens": 528,
+      "total_tokens": 2647,
+      "prompt_price": 0.0016952,
+      "completion_price": 0.001056,
+      "total_price": 0.0027512,
+      "currency": "USD"
+    }
+  },
+  "datakit/index.md": {
+    "hash": "479af00a3a32107796b6ff663578b16bb7147d00db61bf7d3e8d6749b9ea3565",
+    "last_translated": "2025-03-28T14:39:53.158135",
+    "translation_time": 42.21,
+    "usage": {
+      "prompt_tokens": 2500,
+      "completion_tokens": 902,
+      "total_tokens": 3402,
+      "prompt_price": 0.002,
+      "completion_price": 0.001804,
+      "total_price": 0.003804,
+      "currency": "USD"
+    }
+  },
+  "open-api/index.md": {
+    "hash": "3f160e0d028dee5087f9c7f71c077ef5c7a0f0cce25630806fbc405215a2431e",
+    "last_translated": "2025-03-28T14:39:58.497106",
+    "translation_time": 51.34,
+    "usage": {
+      "prompt_tokens": 2924,
+      "completion_tokens": 1274,
+      "total_tokens": 4198,
+      "prompt_price": 0.0023392,
+      "completion_price": 0.002548,
+      "total_price": 0.0048872,
+      "currency": "USD"
+    }
+  },
+  "scene/visual-chart/pie-chart.md": {
+    "hash": "5c3bddbc33ba1fadfb0e7e21f098c822a113a96c7f048c9cf23116fa3b84125b",
+    "last_translated": "2025-03-28T14:40:01.393009",
+    "translation_time": 11.16,
+    "usage": {
+      "prompt_tokens": 1816,
+      "completion_tokens": 249,
+      "total_tokens": 2065,
+      "prompt_price": 0.0014528,
+      "completion_price": 0.000498,
+      "total_price": 0.0019508,
+      "currency": "USD"
+    }
+  },
+  "datakit/confd.md": {
+    "hash": "fc921c86d80715fe990aa9bc462d2d6d6f97041f54af474e05185b80f5d2156f",
+    "last_translated": "2025-03-28T14:40:09.874895",
+    "translation_time": 161.3,
+    "usage": {
+      "prompt_tokens": 5365,
+      "completion_tokens": 3753,
+      "total_tokens": 9118,
+      "prompt_price": 0.004292,
+      "completion_price": 0.007506,
+      "total_price": 0.011798,
+      "currency": "USD"
+    }
+  },
+  "open-api/query-data/query-data.md": {
+    "hash": "0e100e08466af413ed1edca731aff8474f7c4ec9a1b6cd678127de34aadd66b6",
+    "last_translated": "2025-03-28T14:40:29.344695",
+    "translation_time": 210.07,
+    "usage": {
+      "prompt_tokens": 6132,
+      "completion_tokens": 4418,
+      "total_tokens": 10550,
+      "prompt_price": 0.0049056,
+      "completion_price": 0.008836,
+      "total_price": 0.0137416,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-service-how-to.md": {
+    "hash": "56983caa30f029c46dd90656d10e5a5c53a84ba5a36ff6b3e41f538aee62e2f5",
+    "last_translated": "2025-03-28T14:40:34.650457",
+    "translation_time": 41.47,
+    "usage": {
+      "prompt_tokens": 2726,
+      "completion_tokens": 1109,
+      "total_tokens": 3835,
+      "prompt_price": 0.0021808,
+      "completion_price": 0.002218,
+      "total_price": 0.0043988,
+      "currency": "USD"
+    }
+  },
+  "pipeline/use-pipeline/pipeline-category.md": {
+    "hash": "8081559ae37ed1b481e5488b0b72e802c66e3dd295536d97bfba97599e78dc79",
+    "last_translated": "2025-03-28T14:41:26.360562",
+    "translation_time": 142.21,
+    "usage": {
+      "prompt_tokens": 5455,
+      "completion_tokens": 3694,
+      "total_tokens": 9149,
+      "prompt_price": 0.004364,
+      "completion_price": 0.007388,
+      "total_price": 0.011752,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/session-replay/web/replay.md": {
+    "hash": "32d3aa91487f0963053de3b5abf8cc8df680a076d5fccacb0c92430f970d8b7c",
+    "last_translated": "2025-03-28T14:41:35.626730",
+    "translation_time": 60.96,
+    "usage": {
+      "prompt_tokens": 3404,
+      "completion_tokens": 1773,
+      "total_tokens": 5177,
+      "prompt_price": 0.0027232,
+      "completion_price": 0.003546,
+      "total_price": 0.0062692,
+      "currency": "USD"
+    }
+  },
+  "monitoring/notify-target.md": {
+    "hash": "c6191427a5a2ccba71b76f1945641bef641a08b697e8277719286dcb35ee2cd6",
+    "last_translated": "2025-03-28T14:41:53.720670",
+    "translation_time": 18.08,
+    "usage": {
+      "prompt_tokens": 2322,
+      "completion_tokens": 727,
+      "total_tokens": 3049,
+      "prompt_price": 0.0018576,
+      "completion_price": 0.001454,
+      "total_price": 0.0033116,
+      "currency": "USD"
+    }
+  },
+  "datakit/election.md": {
+    "hash": "fc690250e516d8b0b077f998136df9c5728b1c8c91f210e8c2f1036b46f9db79",
+    "last_translated": "2025-03-28T14:41:55.685972",
+    "translation_time": 86.32,
+    "usage": {
+      "prompt_tokens": 4017,
+      "completion_tokens": 2412,
+      "total_tokens": 6429,
+      "prompt_price": 0.0032136,
+      "completion_price": 0.004824,
+      "total_price": 0.0080376,
+      "currency": "USD"
     }
   },
   "datakit/changelog.md": {
-    "hash": "b6b517aeafda616f9cc4cacb91dfc2754228ce522d6a694a9dc88ea20485f9b6",
-    "last_translated": "2025-03-23T21:55:09.360459",
-    "translation_time": 2328.36,
+    "hash": "630a669d594832c4210eda60024e5a4c6f5b6e624654e9144a04bb973339a285",
+    "last_translated": "2025-03-28T14:41:58.366362",
+    "translation_time": 2.66,
     "usage": {
-      "prompt_tokens": 470691,
-      "completion_tokens": 43473,
-      "total_tokens": 514164,
-      "prompt_price": 0.37655279999999997,
-      "completion_price": 0.086946,
-      "total_price": 0.4634988000000001,
+      "prompt_tokens": 1637,
+      "completion_tokens": 70,
+      "total_tokens": 1707,
+      "prompt_price": 0.0013096,
+      "completion_price": 0.00014,
+      "total_price": 0.0014496,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-batch-deploy.md": {
+    "hash": "5dc2cb8a063467a5a64f22b89e6660265457c08fb23097dddb24a356c9b1e767",
+    "last_translated": "2025-03-28T14:42:18.526330",
+    "translation_time": 24.79,
+    "usage": {
+      "prompt_tokens": 2287,
+      "completion_tokens": 703,
+      "total_tokens": 2990,
+      "prompt_price": 0.0018296,
+      "completion_price": 0.001406,
+      "total_price": 0.0032356,
+      "currency": "USD"
+    }
+  },
+  "open-api/query-data/query-data-asynchronous.md": {
+    "hash": "95ec0dc2417c88d0808b996f66be13d7e6bf7c1c857396cf248137cf2a507b06",
+    "last_translated": "2025-03-28T14:42:22.385760",
+    "translation_time": 56.01,
+    "usage": {
+      "prompt_tokens": 2961,
+      "completion_tokens": 1335,
+      "total_tokens": 4296,
+      "prompt_price": 0.0023688,
+      "completion_price": 0.00267,
+      "total_price": 0.0050388,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-input-conf.md": {
+    "hash": "535f98125bc2c18d248d20c4e25cb483aa8c3bd99d6f940d3f3eb90bd378d9ac",
+    "last_translated": "2025-03-28T14:42:32.107163",
+    "translation_time": 150.7,
+    "usage": {
+      "prompt_tokens": 5656,
+      "completion_tokens": 3950,
+      "total_tokens": 9606,
+      "prompt_price": 0.0045248,
+      "completion_price": 0.0079,
+      "total_price": 0.0124248,
+      "currency": "USD"
+    }
+  },
+  "datakit/aws-access.md": {
+    "hash": "7cb837900c7e8fb7a088fc5414192f6e2b0d6be861048450714bf6acc50d6692",
+    "last_translated": "2025-03-28T14:42:56.635649",
+    "translation_time": 58.25,
+    "usage": {
+      "prompt_tokens": 3788,
+      "completion_tokens": 2112,
+      "total_tokens": 5900,
+      "prompt_price": 0.0030304,
+      "completion_price": 0.004224,
+      "total_price": 0.0072544,
+      "currency": "USD"
+    }
+  },
+  "deployment/changelog/2024.md": {
+    "hash": "691637c818d3d7b7a331ca75a2e6ad98f30b467bed98a590ce15c833e74b2736",
+    "last_translated": "2025-03-28T14:43:34.348019",
+    "translation_time": 1123.58,
+    "usage": {
+      "prompt_tokens": 103650,
+      "completion_tokens": 23305,
+      "total_tokens": 126955,
+      "prompt_price": 0.08292,
+      "completion_price": 0.04661,
+      "total_price": 0.12953,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "real-user-monitoring/android/app-access.md": {
+    "hash": "2d2bdf0f826223bc9836ee5198a750c8b824ac56dd20ad7f4c54ae4dfe494fb4",
+    "last_translated": "2025-03-28T14:44:03.921100",
+    "translation_time": 847.77,
+    "usage": {
+      "prompt_tokens": 47843,
+      "completion_tokens": 16383,
+      "total_tokens": 64226,
+      "prompt_price": 0.0382744,
+      "completion_price": 0.032766,
+      "total_price": 0.0710404,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "datakit/apis.md": {
+    "hash": "801add5db4663c9203c2df9099b1db541d30316453ec98c3aac7dc9c4a78dba0",
+    "last_translated": "2025-03-28T14:44:28.610931",
+    "translation_time": 538.74,
+    "usage": {
+      "prompt_tokens": 35695,
+      "completion_tokens": 11655,
+      "total_tokens": 47350,
+      "prompt_price": 0.028555999999999998,
+      "completion_price": 0.023309999999999997,
+      "total_price": 0.051866,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "datakit/development.md": {
+    "hash": "b331bf793f498443939a5c1e2fed0cbb86ca1b9ab1430aacf3382c590759d6f5",
+    "last_translated": "2025-03-28T14:45:37.907256",
+    "translation_time": 328.01,
+    "usage": {
+      "prompt_tokens": 9333,
+      "completion_tokens": 7421,
+      "total_tokens": 16754,
+      "prompt_price": 0.0074664,
+      "completion_price": 0.014842,
+      "total_price": 0.0223084,
+      "currency": "USD"
+    }
+  },
+  "datakit/datakit-metrics.md": {
+    "hash": "f1d54cfc04630720231774933b834d52a312db6b44390729c6a803222e07feb0",
+    "last_translated": "2025-03-28T14:46:49.459255",
+    "translation_time": 410.94,
+    "usage": {
+      "prompt_tokens": 30339,
+      "completion_tokens": 9465,
+      "total_tokens": 39804,
+      "prompt_price": 0.0242712,
+      "completion_price": 0.01893,
+      "total_price": 0.043201199999999995,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "release-notes/2024.md": {
+    "hash": "0759fdfed6ded4be993e369150de7b199a2b54ddb665f329bd18b63fe5a1b7d9",
+    "last_translated": "2025-03-28T14:47:14.328198",
+    "translation_time": 865.53,
+    "usage": {
+      "prompt_tokens": 86085,
+      "completion_tokens": 16954,
+      "total_tokens": 103039,
+      "prompt_price": 0.068868,
+      "completion_price": 0.033908,
+      "total_price": 0.102776,
       "currency": "USD",
       "exceed_token_limit": true
     }

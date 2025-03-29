@@ -1,4 +1,4 @@
-# Create a single scheduled report
+# Create a Single Scheduled Report
 
 ---
 
@@ -12,46 +12,46 @@
 ## Body Request Parameters
 
 | Parameter Name        | Type     | Required   | Description              |
-|:-------------------|:-------|:-----|:----------------|
+|:---------------------|:---------|:-----------|:------------------------|
 | title | string | Y | Scheduled report name<br>Allow empty: True <br>Maximum length: 200 <br> |
 | content | string |  | Scheduled report content<br>Allow empty: True <br>Maximum length: 1000 <br>Allow empty string: True <br> |
 | dashboardUUID | string | Y | Dashboard uuid<br>Allow empty: False <br> |
 | recipient | array | Y | Recipient information<br>Example: [acnt_xxxx, xxx@<<< custom_key.brand_main_domain >>>, acnt_yyy] <br>Allow empty: False <br> |
 | variables | json |  | View variable information<br>Allow empty: True <br> |
 | timeRange | string | Y | Query time range<br>Example: 1d <br>Allow empty: True <br> |
-| crontab | string |  | Crontab for the scheduled task<br>Example: 1 2 * * * <br>Allow empty: True <br>Allow empty string: True <br> |
+| crontab | string |  | Crontab for scheduled tasks<br>Example: 1 2 * * * <br>Allow empty: True <br>Allow empty string: True <br> |
 | singleExecuteTime | int |  | Timestamp for single execution<br>Allow empty: True <br> |
 | extend | json |  | Additional information<br>Allow empty: True <br> |
 | timezone | string | Y | Scheduled report timezone<br>Example: Asia/Shanghai <br>Allow empty: True <br> |
-| notifyType | string | Y | Scheduled report notification type<br>Example: email <br>Allow empty: True <br>Optional values: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot'] <br> |
+| notifyType | string | Y | Scheduled report notification type<br>Example: email <br>Allow empty: True <br>Optional values: ['email', 'dingTalkRobot', 'wechatRobot', 'feishuRobot', 'HTTPRequest', 'slackIncomingWebhook', 'teamsWorkflowWebhook'] <br> |
 
-## Supplementary Parameter Explanation
+## Supplementary Parameter Notes
 
 
-Data explanation.*
+Data notes.*
 
-- Request parameter explanation
+- Request parameter notes
 
-| Parameter Name           | type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
+| Parameter Name           | Type | Description                                                 |
+| ----------------------- | ---- | ---------------------------------------------------------- |
 | title       | string | Scheduled report name |
 | content             | string | Scheduled report content                                                 |
 | dashboardUUID       | string  | Scheduled report's dashboard UUID     |
-| recipient            | list  | List of recipients for the scheduled report, user account acnt_/email/notification target uuid                                         |
+| recipient            | list  | List of recipient information for the scheduled report, user account acnt_/email/notification object uuid                                         |
 | variables            | json  | View variable information                                         |
-| timeRange            | string  | Query time range, integer plus d/h/m format, example: 3d, 15m, 2h                                       |
-| crontab            | string  | Crontab for repeated execution of the scheduled task                                         |
+| timeRange            | string  | Query time range, integer plus d/h/m format, e.g.: 3d, 15m, 2h                                       |
+| crontab            | string  | Crontab for repeated execution of scheduled tasks                                         |
 | singleExecuteTime            | int  | Timestamp for single execution                                         |
-| extend            | json  | Extended information, used for displaying interface information                                         |
+| extend            | json  | Extended information used to display interface information                                         |
 | timezone            | string  | Timezone                                         |
-| notifyType            | string  | Notification type, enumerated values (email, dingTalkRobot, wecharRobot, feishuRobot)                                         |
+| notifyType            | string  | Notification type                                        |
 
-- Extend extended field explanation
+- Extend extended field notes
 
-| Parameter Name           | type | Description                                                 |
-| ---------------- | ---- | ---------------------------------------------------- |
+| Parameter Name           | Type | Description                                                 |
+| ----------------------- | ---- | ---------------------------------------------------------- |
 | shareConfig       | json | Scheduled report sharing configuration |    ｜
-| shareConfig.shareMethod  | string | Scheduled report sharing configuration public or enciphered default is public                           |
+| shareConfig.shareMethod  | string | Scheduled report sharing configuration public or encipher public and encrypted default public                           |
 | shareConfig.password     | string | Scheduled report sharing password encrypted sharing password                         |
 
 
