@@ -39,7 +39,7 @@ command will be prompted, such as:
     Online version available: 1.2.9, commit 9f5ac898be (release at 2022-03-10 12:03:12)
     
     Upgrade:
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
@@ -63,7 +63,7 @@ command will be prompted, such as:
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 ---
@@ -201,7 +201,7 @@ If the new version is unsatisfactory and eager to roll back the recovery functio
 === "Linux/macOS"
 
     ```shell
-    DK_UPGRADE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install1.2.3.sh)"
+    DK_UPGRADE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install1.2.3.sh)"
     ```
 === "Windows"
 
@@ -210,7 +210,7 @@ If the new version is unsatisfactory and eager to roll back the recovery functio
     $env:DK_UPGRADE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install1.2.3.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install1.2.3.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->

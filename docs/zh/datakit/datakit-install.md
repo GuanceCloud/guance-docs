@@ -22,13 +22,13 @@
     - `bash`
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
     - `ash`
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> ash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> ash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
     安装完成后，在终端会看到安装成功的提示。
@@ -39,10 +39,10 @@
     
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -55,18 +55,18 @@
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_LITE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_LITE=1 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_LITE="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 
@@ -99,18 +99,18 @@
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_ELINKER=1 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_ELINKER=1 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_ELINKER="1";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -133,17 +133,17 @@ DataKit ELinker 只包含以下采集器：
 可通过在安装命令中指定版本号来安装指定版本的 DataKit，如安装 1.2.3 版本的 DataKit：
 
 ```shell
-DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install-1.2.3.sh)"
+DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install-1.2.3.sh)"
 ```
 
 Windows 下同理：
 
 ```powershell
 Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-$env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+$env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install-1.2.3.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install-1.2.3.ps1 -destination .install.ps1;
 powershell ./.install.ps1;
 ```
 
@@ -155,18 +155,18 @@ powershell ./.install.ps1;
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_NAMESPACE=[NAMESPACE] bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_NAMESPACE=[NAMESPACE] bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_NAMESPACE="[NAMESPACE]";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
@@ -351,19 +351,19 @@ NAME1="value1" NAME2="value2"
 === "Linux/macOS"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_DATAWAY_ENABLE_SINKER=on DK_SINKER_GLOBAL_CUSTOMER_KEYS=key1,key2 bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_DATAWAY_ENABLE_SINKER=on DK_SINKER_GLOBAL_CUSTOMER_KEYS=key1,key2 bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_DATAWAY_ENABLE_SINKER="on";
     $env:DK_SINKER_GLOBAL_CUSTOMER_KEYS="key1,key2";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
 <!-- markdownlint-enable -->
