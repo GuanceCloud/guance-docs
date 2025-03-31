@@ -56,3 +56,4 @@ nav:
   - 'Func 函数': outer-function
   - '账单分析': billing
   - '免登录Token': offline-token
+  - 'dql图表图片': chart-image
