@@ -1,11 +1,11 @@
-# 获取图表图片
+# 获取时序趋势图
 
 ---
 
 <br />**GET /api/v1/chart_image/get**
 
 ## 概述
-获取图表图片内容
+根据指定 DQL / PromQL 查询语句获取时序趋势图
 
 
 
@@ -33,11 +33,18 @@
 
 
 
+## 请求例子
+```shell
+curl 'https://openapi.<<< custom_key.brand_main_domain >>>/api/v1/chart_image/get?clientToken=xxxxx&qtype=dql&q=M%3A%3A%60cpu%60%3A(avg(%60usage_idle%60))%20BY%20%60host%60&interval=60&startTime=1743391592&endTime=1743392492&tz=Asia%2FShanghai' \
+--data ''
+```
+
+
 
 
 ## 响应
 ```shell
- 
+# 响应内容为图片流数据 
 ```
 
 
