@@ -140,18 +140,18 @@ await FTReactNativeRUM.setConfig(rumConfig);
 | iOSAppId | string | 是 | app_id，应用访问监测控制台申请 |
 | sampleRate | number | 否 | 采样率，取值范围 [0,1]，0 表示不采集，1 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据|
 | enableAutoTrackUserAction | boolean | 否 | 是否自动采集 `React Native` 组件点击事件，开启后可配合  `accessibilityLabel`设置actionName，更多自定义操作请参考[此处](#rum-action) |
-| enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error |
+| enableAutoTrackError | boolean | 否 | 是否自动采集 `React Native` Error, 默认`false` |
 | enableNativeUserAction | boolean | 否 | 是否进行 `Native Action` 追踪，原生 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | boolean | 否 | 是否进行 `Native View` 自动追踪，纯 `React Native` 应用建议关闭，，默认为 `false` |
-| enableNativeUserResource | boolean | 否 | 是否开始 `Native Resource`自动追踪，由于 React-Native 的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 enableNativeUserResource 后，所有 resource 数据能够一并采集。 |
-| errorMonitorType |enum ErrorMonitorType | 否 | 错误事件监控补充类型 |
-| deviceMonitorType | enum DeviceMetricsMonitorType | 否 | 视图的性能监控类型                                           |
-| detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期 |
-| enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 true 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
+| enableNativeUserResource | boolean | 否 | 是否开始 `Native Resource`自动追踪，由于 React-Native 的网络请求在 iOS、Android 端是使用系统 API 实现的，所以开启 `enableNativeUserResource` 后，所有 resource 数据能够一并采集。默认`false` |
+| errorMonitorType |enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `RUM` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率，默认不开启 |
+| deviceMonitorType | enum DeviceMetricsMonitorType | 否 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery`（仅 Android） 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率, 默认不开启                                           |
+| detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期，默认为 `DetectFrequency.normal` |
+| enableResourceHostIP | boolean | 否 | 是否采集请求目标域名地址的 IP。作用域：只影响 `enableNativeUserResource`  为 `true` 的默认采集。iOS：`>= iOS 13` 下支持。Android：单个 Okhttp 对相同域名存在 IP 缓存机制，相同 `OkhttpClient`，在连接服务端 IP 不发生变化的前提下，只会生成一次。 |
 | globalContext | object | 否 | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](../android/app-access.md#key-conflict) |
-| enableTrackNativeCrash | boolean | 否 | 是否采集 `Native Error` |
-| enableTrackNativeAppANR | boolean | 否 | 是否采集 `Native ANR`                                        |
-| enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze` |
+| enableTrackNativeCrash | boolean | 否 |  是否开启 `Android Java Crash` 和 `OC/C/C++` 崩溃的监测, 默认`false` |
+| enableTrackNativeAppANR | boolean | 否 | 是否开启 `Native ANR` 监测, 默认`false`                                       |
+| enableTrackNativeFreeze | boolean | 否 | 是否采集 `Native Freeze`, 默认`false` |
 | nativeFreezeDurationMs | number | 否 | 设置采集 `Native Freeze`卡顿的阈值，取值范围 [100,)，单位毫秒。iOS 默认 250ms，Android 默认 1000ms |
 | rumDiscardStrategy | string | 否 | 丢弃策略：`FTRUMCacheDiscard.discard`丢弃新数据（默认）、`FTRUMCacheDiscard.discardOldest`丢弃旧数据 |
 | rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10_000,)，默认 100_000 |
