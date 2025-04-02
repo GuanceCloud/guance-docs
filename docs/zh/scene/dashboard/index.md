@@ -4,7 +4,7 @@
 
 **仪表板**将功能相关的可视化报表同时展示在同一界面，通过多维度数据分析构建数据洞察场景。您可通过自定义新建空白仪表板或导入自定义模板开始构建可视化场景，借助添加图表、时间控件、关键词搜索、标签过滤等方式全面监控不同来源的数据指标。
 
-## 新建仪表板
+## 开始新建
 
 您可以通过三种方式创建一个仪表板。
 
@@ -16,7 +16,7 @@
 
 ### 空白仪表板 {#blank}
 
-![](../img/8.dashboard_1.png)
+![](../img/blank_dashboard.png)
 
 1. 定义当前仪表板的名称；
 2. 定义该仪表板的标识 ID；
@@ -27,7 +27,7 @@
 
 #### 标识 ID
 
-<<< custom_key.brand_name >>>定义该 ID 为 `identifier`，用于确定仪表板或视图的唯一性。
+该 ID 被定义为 `identifier`，用于确定仪表板或视图的唯一性。
 
 ##### 应用场景
 
@@ -71,7 +71,7 @@
 
 ### 自定义模板 {#custom}
 
-![](../img/1.dashboard_2.png)
+![](../img/custom_dashboard.png)
 
 1. 定义当前仪表板的名称；
 2. 定义该仪表板的标识 ID；
@@ -83,7 +83,7 @@
 
 ### 内置模版库 {#view}
 
-![](../img/3.dashboard_2.png)
+![](../img/dashboard_view.png)
 
 即选即用，包括[系统视图](../built-in-view/index.md#system)和[用户视图](../built-in-view/index.md#user)。
 

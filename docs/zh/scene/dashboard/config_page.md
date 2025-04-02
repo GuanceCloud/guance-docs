@@ -5,7 +5,7 @@
 
 ## 卡片属性信息 {#metadata}
 
-进入特定仪表板后，在页面上方 `metadata` 处查看图示信息，可查看和修改仪表板的名称、描述、标签和可见范围，也可在此处删除仪表板。
+进入特定仪表板后，在页面上方 `metadata` 处查看图示信息，可查看和修改仪表板的 ID、名称、描述、标签和可见范围，也可在此处删除仪表板。
 
 <img src="../../img/dashboard-metadata.png" width="70%" >
 
@@ -27,15 +27,16 @@
 3. 按需选择分组颜色；
 4. 点击确定。
 
-![](../img/dashboard-group.png)
+
+<img src="../../img/dashboard-group.png" width="60%" >
 
 如需对该分组进行修改，hover 并点击右侧设置按钮即可。
 
-![](../img/dashboard-group-1.png)
+<img src="../../img/dashboard-group-1.png" width="70%" >
 
 ## 跨工作空间查询 {#cross-workspace}
 
-若工作空间被授予了其他工作空间，可在仪表板中切换工作空间查看对应图表信息。
+若工作空间被[授予](../../management/data-authorization.md)了其他工作空间，可在仪表板中切换工作空间查看对应图表信息。
 
 ???+ warning "注意"
 
@@ -77,7 +78,7 @@
 
 仪表版创建完成后，点击 :octicons-gear-24: 可对仪表板进行以下操作。
 
-![](../img/2.dashboard_3.png)
+<img src="../../img/dashboard_settings.png" width="70%" >
 
 
 ### 新建 Issue 
@@ -99,7 +100,6 @@
 
 
 
-
 ### 保存到内置视图
 
 1. 视图名称默认为当前仪表板名称，可修改；
@@ -114,7 +114,7 @@
 
 同时因为设置了绑定关系 `label:*`，在基础设施设置过 “Label 属性”的主机、容器详情页均可查看绑定的内置视图 “CPU 监控视图”。
 
-![](../img/2.dashboard_6.png)
+![](../img/dashboard_label_in_view.png)
 
 
 ### 导出/导入仪表板 JSON
