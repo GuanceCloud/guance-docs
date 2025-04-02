@@ -35,7 +35,7 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     Add the environment variable `HTTPS_PROXY="1.2.3.4:9530"`, and the installation command is as follows:
     
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"'
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"'
     ```
     
     - Using the Nginx proxy
@@ -43,7 +43,7 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     Add the environment variable `DK_PROXY_TYPE="nginx"; DK_NGINX_IP="1.2.3.4";`, and the installation command is as follows:
     
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_NGINX_IP=1.2.3.4 HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"'
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_NGINX_IP=1.2.3.4 HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"'
     ```
 
 === "Windows"
@@ -54,11 +54,11 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:HTTPS_PROXY -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
     
@@ -68,12 +68,12 @@ At present, DataKit has a inner proxy collector; The same goal can also be achie
     
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_NGINX_IP="1.2.3.4";
     $env:DK_PROXY_TYPE="nginx";
     Set-ExecutionPolicy Bypass -scope Process -Force;
     Import-Module bitstransfer;
-    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+    start-bitstransfer -ProxyUsage Override -ProxyList $env:DK_NGINX_IP -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
     powershell ./.install.ps1;
     ```
     
@@ -320,14 +320,14 @@ On the intranet machine, point it to the Nginx file server by setting `DK_INSTAL
 === "Linux/Mac"
 
     ```shell
-    DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> DK_INSTALLER_BASE_URL=http://[Nginx-Server]:8080/datakit HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"'
+    DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> DK_INSTALLER_BASE_URL=http://[Nginx-Server]:8080/datakit HTTPS_PROXY=http://1.2.3.4:9530 bash -c 'eval "$(curl -L ${DK_INSTALLER_BASE_URL}/install.sh)"'
     ```
 
 === "Windows"
 
     ```powershell
     Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+    $env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
     $env:DK_INSTALLER_BASE_URL="http://[Nginx-Server]:8080/datakit";
     $env:HTTPS_PROXY="1.2.3.4:9530";
     Set-ExecutionPolicy Bypass -scope Process -Force;

@@ -2,7 +2,7 @@
 title: 'AWS ECS'
 tags: 
   - AWS
-summary: 'Amazon ECS features integrated with Amazon Web Services Fargate serverless compute engine, using <<< custom_key.brand_name >>> to monitor its service runtime.'
+summary: 'Amazon ECS features are integrated with Amazon Web Services Fargate serverless computing engine, using <<< custom_key.brand_name >>> to monitor the service runtime.'
 __int_icon: 'icon/aws_ecs'
 dashboard:
   - desc: 'AWS ECS'
@@ -20,39 +20,47 @@ cloudCollector:
 # AWS ECS
 <!-- markdownlint-enable -->
 
-Amazon ECS features integrated with Amazon Web Services `Fargate` serverless compute engine, using <<< custom_key.brand_name >>> to monitor its service runtime.
+Amazon ECS features are integrated with Amazon Web Services `Fargate` serverless computing engine, using <<< custom_key.brand_name >>> to monitor the service runtime.
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable the <<< custom_key.brand_name >>> integration - extension - hosted Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func on your own, refer to [Self-hosted Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-### Installation Script
 
-> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permissions `ReadOnlyAccess`).
+### Enable Script
 
-To synchronize EC2 cloud resource monitoring data, we install the corresponding collection script: 「<<< custom_key.brand_name >>> Integration (AWS-ECS Collection)」(ID: `guance_aws_ecs`)
+> Note: Please prepare an Alibaba Cloud AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
 
-After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
+#### Managed Version Enable Script
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+1. Log in to <<< custom_key.brand_name >>> Console.
+2. Click on the 【Manage】 menu and select 【Cloud Account Management】.
+3. Click 【Add Cloud Account】, choose 【AWS】, and fill in the required information on the interface. If the cloud account information has already been configured, skip this step.
+4. Click 【Test】. After a successful test, click 【Save】. If the test fails, check whether the related configuration information is correct and retest.
+5. In the 【Cloud Account Management】 list, you can see the added cloud accounts. Click on the corresponding cloud account to enter the details page.
+6. Click the 【Integration】 button on the cloud account details page. Under the `Not Installed` list, find `AWS ECS`, click the 【Install】 button, and follow the installation interface to complete the installation.
 
-In addition, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】to run it immediately without waiting for the scheduled time. After a short while, you can view the execution task records and corresponding logs.
 
-We collect some configurations by default. For details, see the Metrics section [Custom Cloud Object Metrics Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+#### Manual Enable Script
+
+1. Log in to the Func Console, click 【Script Market】, enter the official script market, and search for `guance_aws_ecs`.
+2. After clicking 【Install】, input the corresponding parameters: AWS AK ID, AK Secret, and account name.
+3. Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+4. After enabling, you can see the corresponding automatic trigger configuration under 「Management / Automatic Trigger Configuration」. Click 【Execute】 to immediately execute once without waiting for the scheduled time. Wait a moment, and you can view the execution task records and corresponding logs.
 
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations, and check the corresponding task records and logs for any abnormalities.
-2. On the <<< custom_key.brand_name >>> platform, in 「Infrastructure / Custom」, check if there is asset information.
-3. On the <<< custom_key.brand_name >>> platform, in 「Metrics」, check if there is corresponding monitoring data.
+1. Confirm in 「Management / Automatic Trigger Configuration」 whether the corresponding task has the corresponding automatic trigger configuration. You can also check the corresponding task records and logs for any anomalies.
+2. In <<< custom_key.brand_name >>>, 「Infrastructure / Custom」, check if there is asset information.
+3. In <<< custom_key.brand_name >>>, 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon CloudWatch, the default metric set is as follows. You can collect more metrics through configuration. [Amazon CloudWatch Metrics Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
+After configuring Amazon CloudWatch, the default metric set is as follows. More metrics can be collected through configuration. [Amazon CloudWatch Metric Details](https://docs.amazonaws.cn/AmazonECS/latest/developerguide/viewing_cloudwatch_metrics.html){:target="_blank"}
 
 ### Instance Metrics
 

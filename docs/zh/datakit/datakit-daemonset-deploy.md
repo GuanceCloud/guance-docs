@@ -272,7 +272,7 @@ spec:
 
     **字段类型**: URL
 
-    **示例**: `https://openway.<<<custom_key.brand_domain>>>.com?token=xxx`
+    **示例**: `https://openway.<<<custom_key.brand_main_domain>>>.com?token=xxx`
 
     **必填**: Yes
 
@@ -373,7 +373,7 @@ spec:
 
     **字段类型**: URL
 
-    **示例**: `https://openway.<<<custom_key.brand_domain>>>?token=xxx`
+    **示例**: `https://openway.<<<custom_key.brand_main_domain>>>?token=xxx`
 
     **必填**: Yes
 

@@ -1,26 +1,27 @@
-# Android Application Integration
+# Android App Integration
 ---
-<<< custom_key.brand_name >>> application monitoring can collect various Android application Metrics data and analyze the performance of each Android application endpoint in a visualized way.
+
+By collecting metrics data from Android apps, analyze app performance in a visualized way.
 
 ## Prerequisites
 
-**Note**: If you have enabled the [RUM Headless](../../dataflux-func/headless.md) service, the prerequisites have been automatically configured for you. You can directly integrate your application.
+???+ warning "Note"
 
-- Install [DataKit](../../datakit/datakit-install.md);
+    If the [RUM Headless](../../dataflux-func/headless.md) service has been enabled, the prerequisites are already configured and you can directly integrate the app.
+
+- Install [DataKit](../../datakit/datakit-install.md);  
 - Configure [RUM Collector](../../integrations/rum.md);
-- Ensure DataKit is [publicly accessible with IP geolocation information database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- DataKit is configured to be [publicly accessible with an IP geolocation database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
-## Application Integration {#android-integration} 
+## App Integration {#android-integration} 
 
-Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Analysis** page, click the top-left **[Create]** to start creating a new application.
+1. Go to **User Analysis > Create > Android**;
+2. Input the app name;
+3. Input the app ID;
+4. Choose the integration method:
 
-- <<< custom_key.brand_name >>> provides a **public DataWay** to receive RUM data directly without installing the DataKit collector. Configuring `site` and `clientToken` parameters is sufficient.
-
-![](../img/android_01.png)
-
-- <<< custom_key.brand_name >>> also supports receiving RUM data via **local environment deployment**, which requires meeting the prerequisites.
-
-![](../img/6.rum_android_1.png)
+    - Public DataWay: Directly receives RUM data without needing to install the DataKit collector.  
+    - Local Environment Deployment: Receives RUM data after meeting the prerequisites.
 
 
 ## Installation {#setup}
@@ -34,7 +35,7 @@ Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Anal
 
 ### Gradle Configuration {#gradle-setting}
 
-* Add the remote repository address of the `SDK` in the root directory's `build.gradle` file.
+* Add the remote repository address for `SDK` in the `build.gradle` file at the root directory of the project.
 
 === "buildscript"
 
@@ -43,16 +44,16 @@ Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Anal
 	    //...
 	    repositories {
 	        //...
-	        //Add the SDK remote repository address
+	        //Add the remote repository address for SDK
 	        maven {
 	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
 	        }
 	    }
 	    dependencies {
 	        //...
-	        //Add Plugin plugin, AGP 7.4.2 or above, Gradle 7.2.0 or above required
+	        //Add Plugin dependency, requires AGP 7.4.2 or higher, Gradle 7.2.0 or higher
 	        classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin:[latest_version]'
-	        // For AGP 7.4.2 versions below, use ft-plugin-legacy 
+	        // For AGP versions below 7.4.2, use ft-plugin-legacy 
 	        //classpath 'com.cloudcare.ft.mobile.sdk.tracker.plugin:ft-plugin-legacy:[latest_version]'
 	        
 	    }
@@ -60,7 +61,7 @@ Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Anal
 	allprojects {
 	    repositories {
 	        //...
-	        //Add the SDK remote repository address
+	        //Add the remote repository address for SDK
 	        maven {
 	            url 'https://mvnrepo.jiagouyun.com/repository/maven-releases'
 	        }
@@ -78,7 +79,7 @@ Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Anal
 	        google()
 	        mavenCentral()
 	        gradlePluginPortal()
-	        //Add the SDK remote repository address
+	        //Add the remote repository address for SDK
 	        maven {
 	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
 	        }
@@ -89,7 +90,7 @@ Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Anal
 	    repositories {
 	        google()
 	        mavenCentral()
-	        //Add the SDK remote repository address
+	        //Add the remote repository address for SDK
 	        maven {
 	            url('https://mvnrepo.jiagouyun.com/repository/maven-releases')
 	        }
@@ -99,41 +100,41 @@ Log in to the <<< custom_key.brand_name >>> console, navigate to the **User Anal
 	//build.gradle
 	
 	plugins{
-		//Add Plugin plugin, AGP 7.4.2 or above, Gradle 7.2.0 or above required
+		//Add Plugin dependency, requires AGP 7.4.2 or higher, Gradle 7.2.0 or higher
 		id 'com.cloudcare.ft.mobile.sdk.tracker.plugin' version '[lastest_version]' apply false
-		//For AGP 7.4.2 versions below, use ft-plugin-legacy 
+		// For AGP versions below 7.4.2, use ft-plugin-legacy 
 		//id 'com.cloudcare.ft.mobile.sdk.tracker.plugin.legacy' version '[lastest_version]' apply false
 	}
 	
 	```
 
 
-* Add `SDK` dependencies and `Plugin` usage along with Java 8 support in the main module `app`'s `build.gradle` file.
+* Add `SDK` dependencies and `Plugin` usage, along with Java 8 support in the main module `app`'s `build.gradle` file.
 
 ```groovy
 dependencies {
     //Add SDK dependency
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-sdk:[latest_version]'
-    //Dependency to capture native layer crash information, must be used with ft-sdk
+    //Dependency to capture native layer crash information, must be used with ft-sdk and cannot be used alone
     implementation 'com.cloudcare.ft.mobile.sdk.tracker.agent:ft-native:[latest_version]'
-    //Recommended version, other versions may not be fully compatible
+    //Recommended version, other versions have not undergone sufficient compatibility testing
     implementation 'com.google.code.gson:gson:2.8.5'
 
 }
 //Apply plugin
-apply plugin: 'ft-plugin'
+apply plugin: 'ft-plugin'   //If using old version compatible ft-plugin-legacy, no change needed
 //Configure plugin usage parameters
 FTExt {
     //Whether to display Plugin logs, default is false
     showLog = true
 	
-    //Set ASM version, supporting asm7 - asm9, default asm9
+    //Set ASM version, supports asm7 - asm9, default is asm9
     //asmVersion='asm7'
 
-    //ASM ignore path configuration, paths '.' and '/' are equivalent
+    //ASM ignore path configuration, paths with . and / are equivalent
     //ignorePackages=['com.ft','com/ft']
 
-	//Native so specified path, only need to specify the upper directory of the abi file
+	//native so specified path, only need to specify the upper directory of the abi file
 	// |-stripped_native_libs
 	// 		|-release
 	// 			|-out
@@ -144,12 +145,12 @@ FTExt {
     //nativeLibPath='/build/intermediates/merged_native_libs/release/out/lib'
 }
 android{
-	//...Omitted some code
+	//...omit some code
 	defaultConfig {
-        //...Omitted some code
+        //...omit some code
         ndk {
-            //When using ft-native to capture native layer crash information, select supported abi architectures based on the different platforms adapted by the application.
-            //Currently, the included abi architectures in ft-native are 'arm64-v8a',
+            //When using ft-native to capture native layer crash information, select supported abi architectures based on the application's platform
+            //Currently ft-native includes abi architectures 'arm64-v8a',
             // 'armeabi-v7a', 'x86', 'x86_64'
             abiFilters 'armeabi-v7a'
         }
@@ -161,10 +162,11 @@ android{
 }
 ```
 
-> Check the latest version names for ft-sdk, ft-plugin, and ft-native above.
+> The latest versions can be seen above in the ft-sdk, ft-plugin, and ft-native version names.
 
 ## Application Configuration {#application-setting}
-Theoretically, the best place to initialize the SDK is in the `onCreate` method of `Application`. If your application hasn't created an `Application`, you need to create one and declare it in the `AndroidManifest.xml` under `Application`. Example reference [here](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml).
+
+Theoretically, the best place for SDK initialization is in the `Application`'s `onCreate` method. If your application does not yet have an `Application`, you need to create one and declare it in `AndroidManifest.xml`. Example reference [here](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/AndroidManifest.xml).
 
 ```xml
 <application 
@@ -213,24 +215,24 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 | **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- | 
-| datakitUrl | String | Yes | Datakit access URL address, example: http://10.0.0.1:9529, port defaults to 9529, the device where the SDK is installed needs to be able to access this address. **Note: Choose either datakit or dataway configuration**|
-| datawayUrl | String | Yes | Public Dataway access URL address, example: http://10.0.0.1:9528, port defaults to 9528, the device where the SDK is installed needs to be able to access this address. **Note: Choose either datakit or dataway configuration** |
-| clientToken | String | Yes | Authentication token, must be configured together with datawayUrl  |
-| setDebug | Boolean | No | Whether to enable debug mode. Default is `false`, enabling it will allow printing SDK operation logs |
+| datakitUrl | String | Yes | Datakit access URL address, example: http://10.0.0.1:9529, default port 9529, the device where the SDK is installed needs to access this address. **Note: choose either datakit or dataway configuration**|
+| datawayUrl | String | Yes | Public Dataway access URL address, example: http://10.0.0.1:9528, default port 9528, the device where the SDK is installed needs to access this address. **Note: choose either datakit or dataway configuration** |
+| clientToken | String | Yes | Authentication token, must be configured with datawayUrl  |
+| setDebug | Boolean | No | Whether to enable debug mode. Default is `false`, enabling will allow printing of SDK runtime logs |
 | setEnv | EnvType | No | Set collection environment, default is `EnvType.PROD` |
-| setEnv | String | No | Set collection environment, default is `prod`. **Note: Only configure one of String or EnvType types**|
-| setOnlySupportMainProcess | Boolean | No | Whether to only support running in the main process, default is `true`, if execution is needed in other processes, set this field to `false` |
-| setEnableAccessAndroidID | Boolean | No | Enable obtaining `Android ID`, default is `true`, setting to `false` will prevent the collection of the `device_uuid` field, related to market privacy audits [view here](#adpot-to-privacy-audits) |
-| addGlobalContext | Dictionary | No | Add global properties to the SDK, addition rules refer to [here](#key-conflict) |
-| setServiceName | String | No | Set service name, affects Log and RUM `service` field data, default is `df_rum_android` |
+| setEnv | String | No | Set collection environment, default is `prod`. **Note: configure either String or EnvType type**|
+| setOnlySupportMainProcess | Boolean | No | Whether to only run in the main process, default is `true` , if execution is needed in other processes, set this field to `false` |
+| setEnableAccessAndroidID | Boolean | No | Enable obtaining `Android ID`, default is `true`, setting to `false` will prevent collection of `device_uuid` data, market privacy review related[view here](#adpot-to-privacy-audits) |
+| addGlobalContext | Dictionary | No | Add SDK global properties, refer to [here](#key-conflict) for addition rules |
+| setServiceName | String | No | Set service name, affects `service` field data in Log and RUM, default is `df_rum_android` |
 | setAutoSync | Boolean | No | Whether to enable automatic synchronization, default is `true`. When set to `false`, use `FTSdk.flushSyncData()` to manage data synchronization manually |  
-| setSyncPageSize | Int | No | Set the number of entries per sync request, `SyncPageSize.MINI` 5 entries, `SyncPageSize.MEDIUM` 10 entries, `SyncPageSize.LARGE` 50 entries, default `SyncPageSize.MEDIUM`   |
-| setCustomSyncPageSize | Enum | No | Set the number of entries per sync request, range [5,), note that the larger the number of entries, the more computational resources are consumed, default is 10 **Note: Only configure one of setSyncPageSize and setCustomSyncPageSize**   |
-| setSyncSleepTime | Int | No | Set the intermittent time for synchronization, range [0,5000], default not set |
-| enableDataIntegerCompatible | Void | No | Suggested to enable when coexisting with web data. This configuration handles storage compatibility issues for web data types. Version 1.6.9 enables this by default |
-| setNeedTransformOldCache | Boolean | No | Whether to transform old cache data from ft-sdk versions below 1.6.0, default is `false` |
-| setCompressIntakeRequests | Boolean | No | Compress sync data, versions 1.6.3 and above of ft-sdk support this method |
-| enableLimitWithDbSize | Void | No | Enable limiting data size using db, default 100MB, unit Byte, the larger the database, the greater the disk pressure, default is not enabled.<br>**Note:** After enabling, `FTLoggerConfig.setLogCacheLimitCount` and `FTRUMConfig.setRumCacheLimitCount` will become ineffective. Versions 1.6.6 and above of ft-sdk support this method |
+| setSyncPageSize | Int | No | Set the number of items per sync request, `SyncPageSize.MINI` 5 items, `SyncPageSize.MEDIUM` 10 items, `SyncPageSize.LARGE` 50 items, default `SyncPageSize.MEDIUM`   |
+| setCustomSyncPageSize | Enum | No | Set the number of items per sync request, range [5,), note that the larger the number of items, the more computational resources are required, default is 10 **Note: only configure one of setSyncPageSize and setCustomSyncPageSize**   |
+| setSyncSleepTime | Int | No | Set the inter-sync sleep time, range [0,5000], default is not set |
+| enableDataIntegerCompatible | Void | No | It is recommended to enable when coexisting with web data. This configuration handles web data type storage compatibility issues. Version 1.6.9 enables this by default |
+| setNeedTransformOldCache | Boolean | No | Whether to transform old cache data from versions below ft-sdk 1.6.0, default is `false` |
+| setCompressIntakeRequests | Boolean | No | Compress sync data, ft-sdk versions 1.6.3 and above support this method |
+| enableLimitWithDbSize | Void | No | Enable limiting data size using db, default is 100MB, unit is Byte, larger databases increase disk pressure, default is not enabled.<br>**Note:** After enabling, `FTLoggerConfig.setLogCacheLimitCount` and `FTRUMConfig.setRumCacheLimitCount` will become ineffective. ft-sdk versions 1.6.6 and above support this method |
 
 ### RUM Configuration {#rum-config}
 
@@ -275,23 +277,23 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 
 | **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
-| setRumAppId | String | Yes | Set `Rum AppId`. Corresponding to RUM `appid`, this will enable the RUM collection function, [method to obtain appid](#android-integration) |
-| setSamplingRate | Float | No | Set the sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Scope applies to all View, Action, LongTask, Error data within the same session_id |
-| setEnableTrackAppCrash | Boolean | No | Whether to report App crash logs, default is `false`, enabling it will display error stack data in error analysis.<br> [Regarding conversion of obfuscated content in crash logs](#retrace-log).<br><br>ft-sdk 1.5.1 and above versions can set whether logcat is displayed in Java Crash and Native Crash through `extraLogCatWithJavaCrash` and `extraLogCatWithNativeCrash` |
-| setExtraMonitorTypeWithError | Array| No | Set auxiliary monitoring information, add additional monitoring data to `Rum` crash data, `ErrorMonitorType.BATTERY` for battery level, `ErrorMonitorType.MEMORY` for memory usage, `ErrorMonitorType.CPU` for CPU occupancy |
-| setDeviceMetricsMonitorType | Array | No | Set View monitoring information, add monitoring data during the View lifecycle, `DeviceMetricsMonitorType.BATTERY` monitors the highest current output on the current page, `DeviceMetricsMonitorType.MEMORY` monitors the application memory usage, `DeviceMetricsMonitorType.CPU` monitors CPU jumps , `DeviceMetricsMonitorType.FPS` monitors screen frame rate. Monitoring cycle, `DetectFrequency.DEFAULT` 500 milliseconds, `DetectFrequency.FREQUENT` 100 milliseconds, `DetectFrequency.RARE` 1 second |
-| setEnableTrackAppANR | Boolean | No | Whether to enable ANR detection, default is `false`.<br><br>ft-sdk 1.5.1 and above versions can set whether logcat is displayed in ANR through `extraLogCatWithANR` |
-| setEnableTrackAppUIBlock | Boolean, long  | No | Whether to enable UI blocking detection, default is `false`, ft-sdk 1.6.4 and above versions can control the detection time range [100,) in milliseconds, default is 1 second |
-| setEnableTraceUserAction | Boolean | No | Whether to automatically track user operations, currently only supports user startup and click operations, default is `false` |
+| setRumAppId | String | Yes | Set `Rum AppId`. Corresponds to setting RUM `appid`, which will enable RUM data collection, [get appid method](#android-integration) |
+| setSamplingRate | Float | No | Set the sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Scope applies to all View, Action, LongTask, Error data under the same session_id |
+| setEnableTrackAppCrash | Boolean | No | Whether to report App crash logs, default is `false`, enabling will display error stack data in error analysis.<br> [Regarding deobfuscation of crash logs](#retrace-log).<br><br>ft-sdk 1.5.1 and above versions, can set whether logcat is displayed in Java Crash and Native Crash through `extraLogCatWithJavaCrash`, `extraLogCatWithNativeCrash` |
+| setExtraMonitorTypeWithError | Array| No | Set auxiliary monitoring information, add additional monitoring data to `Rum` crash data, `ErrorMonitorType.BATTERY` for battery level, `ErrorMonitorType.MEMORY` for memory usage, `ErrorMonitorType.CPU` for CPU usage |
+| setDeviceMetricsMonitorType | Array | No | Set View monitoring information, add monitoring data during the View lifecycle, `DeviceMetricsMonitorType.BATTERY` monitors the highest output current of the current page, `DeviceMetricsMonitorType.MEMORY` monitors the current application's memory usage, `DeviceMetricsMonitorType.CPU` monitors CPU jumps, `DeviceMetricsMonitorType.FPS` monitors screen frame rate. Monitoring frequency, `DetectFrequency.DEFAULT` 500 milliseconds, `DetectFrequency.FREQUENT` 100 milliseconds, `DetectFrequency.RARE` 1 second |
+| setEnableTrackAppANR | Boolean | No | Whether to enable ANR detection, default is `false`.<br><br>ft-sdk 1.5.1 and above versions, can set whether logcat is displayed in ANR through `extraLogCatWithANR` |
+| setEnableTrackAppUIBlock | Boolean, long  | No | Whether to enable UI lag detection, default is `false`, ft-sdk 1.6.4 and above versions can control the detection time range [100,) in milliseconds, default is 1 second |
+| setEnableTraceUserAction | Boolean | No | Whether to automatically track user actions, currently only supports user start and click operations, default is `false` |
 | setEnableTraceUserView | Boolean | No | Whether to automatically track user page operations, default is `false` |
 | setEnableTraceUserResource | Boolean | No | Whether to automatically track user network requests, only supports `Okhttp`, default is `false` |
-| setEnableResourceHostIP | Boolean | No | Whether to collect the IP address of the requested target domain. Scope: Only affects default collection when `EnableTraceUserResource` is true. For custom Resource collection, use `FTResourceEventListener.FTFactory(true)` to enable this feature. Additionally, there is an IP caching mechanism for single Okhttp with the same domain, and the connection IP to the server will only generate once under the premise of no change in the same `OkhttpClient` |
-| setResourceUrlHandler | Callback| No | Set conditions to filter Resources, default does not filter |
-| setOkHttpEventListenerHandler | Callback| No | ASM sets global Okhttp EventListener, default does not set |
-| setOkHttpResourceContentHandler | Callback| No | ASM sets global `FTResourceInterceptor.ContentHandlerHelper`, default does not set, ft-sdk 1.6.7 and above supports, [custom Resource](#okhttp_resource_trace_interceptor_custom) |
-| addGlobalContext | Dictionary | No | Add custom tags for distinguishing data sources in user monitoring. If tracking functionality is needed, parameter `key` should be `track_id`, `value` as any number, refer to [here](#key-conflict) for addition rules |
+| setEnableResourceHostIP | Boolean | No | Whether to collect the IP address of the requested target domain. Scope: Only affects default collection when `EnableTraceUserResource` is set to true. For custom Resource collection, use `FTResourceEventListener.FTFactory(true)` to enable this feature. Additionally, there is an IP cache mechanism for single Okhttp instances targeting the same domain; under the premise that the IP connection to the server does not change, only one instance will be generated |
+| setResourceUrlHandler | Callback| No | Set filtering conditions for Resources, default is no filtering |
+| setOkHttpEventListenerHandler | Callback| No | ASM sets global Okhttp EventListener, default is not set |
+| setOkHttpResourceContentHandler | Callback| No | ASM sets global `FTResourceInterceptor.ContentHandlerHelper`, default is not set, ft-sdk 1.6.7 and above supports, [custom Resource](#okhttp_resource_trace_interceptor_custom) |
+| addGlobalContext | Dictionary | No | Add custom tags, used to distinguish data sources for user monitoring. If tracking functionality is required, then parameter `key` should be `track_id` and `value` any numerical value. Refer to [here](#key-conflict) for notes on adding rules |
 | setRumCacheLimitCount | int | No | Local cache limit count for RUM [10_000,), default is 100_000. ft-sdk 1.6.6 and above supports |
-| setRumCacheDiscardStrategy | RUMCacheDiscard | No | Set discard rule for data when RUM reaches its limit, default is `RUMCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data, ft-sdk 1.6.6 and above supports |
+| setRumCacheDiscardStrategy | RUMCacheDiscard | No | Set discard rule for data when RUM reaches its limit, default is `RUMCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards oldest data, ft-sdk 1.6.6 and above supports  |
 
 ### Log Configuration {#log-config}
 
@@ -323,13 +325,13 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 | **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
 | setSamplingRate | Float | No | Set the sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
-| setEnableConsoleLog | Boolean | No | Whether to report console logs, log levels correspond<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning,<br> `prefix` is the filtering parameter for the control prefix, default does not set filtering. Note: Android console volume is very large, to avoid affecting application performance and reducing unnecessary resource waste, it is suggested to use `prefix` to filter out valuable logs |
-| setEnableLinkRUMData | Boolean | No | Whether to associate with RUM data, default is `false` |
+| setEnableConsoleLog | Boolean | No | Whether to report console logs, log level correspondence<br>Log.v -> ok;<br>Log.i -> info;<br> Log.d -> debug;<br>Log.e -> error;<br>Log.w -> warning, <br> `prefix` is the filter parameter for the control prefix, default is no filter. Note: Android console volume is quite large, to avoid affecting application performance and reducing unnecessary resource waste, it is suggested to use `prefix` to filter out valuable logs |
+| setEnableLinkRUMData | Boolean | No | Whether to link with RUM data, default is `false` |
 | setEnableCustomLog | Boolean| No | Whether to upload custom logs, default is `false` |
-| setLogLevelFilters | Array | No | Set log level filters, default is not set |
-| addGlobalContext | Dictionary | No | Add global properties to log, addition rules refer to [here](#key-conflict) |
-| setLogCacheLimitCount | Int | No | Local cache maximum log entry limit [1000,), larger logs mean greater disk cache pressure, default is 5000   |
-| setLogCacheDiscardStrategy| LogCacheDiscard | No | Set discard rule for logs when they reach their limit, default is `LogCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data |
+| setLogLevelFilters | Array | No | Set log level filters, default is no filter |
+| addGlobalContext | Dictionary | No | Add log global properties, refer to [here](#key-conflict) for addition rules |
+| setLogCacheLimitCount | Int | No | Local cache maximum log entry limit [1000,), the larger the log, the greater the disk cache pressure, default is 5000   |
+| setLogCacheDiscardStrategy| LogCacheDiscard | No | Set the log discard rule when logs reach the limit, default is `LogCacheDiscard.DISCARD`, `DISCARD` discards appended data, `DISCARD_OLDEST` discards old data |
 
 ### Trace Configuration {#trace-config}
 
@@ -356,14 +358,14 @@ Theoretically, the best place to initialize the SDK is in the `onCreate` method 
 | **Method Name** | **Type** | **Required** | **Meaning** |
 | --- | --- | --- | --- |
 | setSamplingRate | Float | No | Set the sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. |
-| setTraceType | TraceType | No | Set the trace type, default is `DDTrace`, currently supports `Zipkin` , `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if accessing OpenTelemetry and choosing corresponding trace types, please refer to supported types and agent configurations |
-| setEnableLinkRUMData | Boolean | No | Whether to associate with RUM data, default is `false` |
-| setEnableAutoTrace | Boolean | No | Set whether to enable automatic http trace, currently only supports OKhttp automatic tracing, default is `false` |
-| setOkHttpTraceHeaderHandler | Callback| No | ASM sets global `FTTraceInterceptor.HeaderHandler`, default is not set, ft-sdk 1.6.8 and above supports, example reference [custom Trace](#okhttp_resource_trace_interceptor_custom) |
+| setTraceType | TraceType | No | Set the type of trace, default is `DDTrace`, currently supports `Zipkin` , `Jaeger`, `DDTrace`, `Skywalking` (8.0+), `TraceParent` (W3C), if choosing corresponding trace type when integrating OpenTelemetry, please consult supported types and agent configurations |
+| setEnableLinkRUMData | Boolean | No | Whether to link with RUM data, default is `false` |
+| setEnableAutoTrace | Boolean | No | Set whether to enable automatic HTTP trace, currently only supports OKhttp's automatic tracing, default is `false` |
+| setOkHttpTraceHeaderHandler | Callback| No | ASM sets global `FTTraceInterceptor.HeaderHandler`, default is not set, ft-sdk 1.6.8 and above supports, refer to [custom Trace](#okhttp_resource_trace_interceptor_custom) for examples |
 
 ## RUM User Data Tracking {#rum-trace}
 
-Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` to achieve automatic data acquisition effects or manually use `FTRUMGlobalManager` to add these data, examples are as follows:
+Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `enableTraceUserResource` to achieve automatic data acquisition or manually use `FTRUMGlobalManager` to add these data, as shown below:
 
 ### Action
 
@@ -386,13 +388,13 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     *
 	     * @param actionName action name
 	     * @param actionType action type
-	     * @param property   Additional attributes
+	     * @param property   Additional attribute parameters
 	     */
 	    public void startAction(String actionName, String actionType, HashMap<String, Object> property)
 
 
 		/**
-		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
@@ -400,7 +402,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 		public void addAction(String actionName, String actionType)
 
 		/**
-		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
@@ -409,11 +411,11 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 		public void addAction(String actionName, String actionType, HashMap<String, Object> property)
 
 		 /**
-		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
-		 * @param duration   Nanoseconds, duration
+		 * @param duration   Nanoseconds, duration time
 		 * @param property Extended attributes
 		 */
 		public void addAction(String actionName, String actionType, long duration, HashMap<String, Object> property) 
@@ -438,12 +440,12 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     *
 	     * @param actionName action name
 	     * @param actionType action type
-	     * @param property   Additional attributes
+	     * @param property   Additional attribute parameters
 	     */
 	    fun startAction(actionName: String, actionType: String, property: HashMap<String, Any>)
 
 		/**
-		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
@@ -451,7 +453,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 		fun addAction(actionName: String, actionType: String)
 
 		/**
-		 * Add Action, this kind of data cannot be associated with Error, Resource, LongTask data
+		 * Add Action, this type of data cannot be associated with Error, Resource, LongTask data
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
@@ -464,13 +466,13 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 		 *
 		 * @param actionName action name
 		 * @param actionType action type
-		 * @param duration   Nanoseconds, duration
+		 * @param duration   Nanoseconds, duration time
 		 * @param property Extended attributes
 		 */
 		fun addAction(actionName: String, actionType: String, duration: Long, property: HashMap<String, Any>)
 
 	```
-> `startAction` internally has a timing algorithm that tries to associate nearby occurring Resource, LongTask, Error data during the calculation period. It has a 100 ms frequent trigger protection and is recommended for user operation type data. If frequent calls are needed, use `addAction`, this data will not conflict with `startAction` and will not associate with current Resource, LongTask, Error data.
+> startAction internally has a timing algorithm, during which it attempts to associate nearby occurring Resource, LongTask, Error data. There is a 100 ms frequent trigger protection, suggesting its use for user operation type data. If frequent calls are required, use addAction, this data will not conflict with startAction and will not associate with current Resource, LongTask, Error data.
 
 
 #### Code Example
@@ -478,19 +480,19 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 === "Java"
 
 	```java
-	// Scene 1
+	// Scenario 1
 	FTRUMGlobalManager.get().startAction("login", "action_type");
 
-	// Scene 2: Dynamic parameters
+	// Scenario 2: Dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().startAction("login", "action_type", map);
 
 
-	// Scene 1
+	// Scenario 1
 	FTRUMGlobalManager.get().addAction("login", "action_type");
 
-	// Scene 2: Dynamic parameters
+	// Scenario 2: Dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().addAction("login", "action_type", map);
@@ -500,19 +502,19 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 
 	```kotlin
 
-	// Scene 1
+	// Scenario 1
 	FTRUMGlobalManager.get().startAction("login", "action_type")
 
-	// Scene 2: Dynamic parameters
+	// Scenario 2: Dynamic parameters
 	val map = HashMap<String,Any>()
 	map["ft_key"]="ft_value"
 	FTRUMGlobalManager.get().startAction("login","action_type",map)
 
 
-	// Scene 1
+	// Scenario 1
 	FTRUMGlobalManager.get().startAction("login", "action_type")
 
-	// Scene 2: Dynamic parameters
+	// Scenario 2: Dynamic parameters
 	val map = HashMap<String,Any>()
 	map["ft_key"]="ft_value"
 	FTRUMGlobalManager.get().startAction("login","action_type",map)
@@ -602,10 +604,10 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	protected void onResume() {
 	    super.onResume();
 
-	    // Scene 1
+	    // Scenario 1
 	    FTRUMGlobalManager.get().startView("Current Page Name");
 
-	    // Scene 2: Dynamic parameters
+	    // Scenario 2: Dynamic parameters
 	    HashMap<String, Object> map = new HashMap<>();
 	    map.put("ft_key", "ft_value");
 	    map.put("ft_key_will_change", "ft_value");
@@ -616,12 +618,12 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	protected void onPause() {
 	    super.onPause();
 
-	    // Scene 1
+	    // Scenario 1
 	    FTRUMGlobalManager.get().stopView();
 
-	    // Scene 2 : Dynamic parameters
+	    // Scenario 2 : Dynamic parameters
 	    HashMap<String, Object> map = new HashMap<>();
-	    map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change this value will be changed to ft_value_change when stopView
+	    map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change This value will be changed to ft_value_change when stopView is called
 	    FTRUMGlobalManager.get().startView("Current Page Name", map);
 	}
 	```
@@ -632,10 +634,10 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	override fun onResume() {
 	     super.onResume()
 
-	     // Scene 1
+	     // Scenario 1
 	     FTRUMGlobalManager.get().startView("Current Page Name")
 
-	     // Scene 2: Dynamic parameters
+	     // Scenario 2: Dynamic parameters
 	     val map = HashMap<String, Any>()
 	     map["ft_key"] = "ft_value"
 	     map["ft_key_will_change"] = "ft_value"
@@ -646,13 +648,13 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	override fun onPause() {
 	     super.onPause()
 
-	     // Scene 1
+	     // Scenario 1
 	     FTRUMGlobalManager.get().stopView()
 
 
-	     // Scene 2 : Dynamic parameters
+	     // Scenario 2 : Dynamic parameters
 	     val map = HashMap<String, Any>()
-	     map["ft_key_will_change"] = "ft_value_change" //ft_key_will_change this value will be changed to ft_value_change when stopView
+	     map["ft_key_will_change"] = "ft_value_change" //ft_key_will_change This value will be changed to ft_value_change when stopView is called
 	     FTRUMGlobalManager.get().startView("Current Page Name", map)
 
 	}
@@ -671,7 +673,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     */
 	    public void addError(String log, String message, ErrorType errorType, AppState state)
 
@@ -682,7 +684,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 	     */
 	    public void addError(String log, String message, long dateline, ErrorType errorType, AppState state)
@@ -693,7 +695,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 		 * @param property  Additional attributes
 	     */
 	    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
@@ -705,7 +707,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 	     */
 	    public void addError(String log, String message, long dateline, ErrorType errorType,
@@ -718,7 +720,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     */
 	    public void addError(String log, String message, String errorType, AppState state)
 
@@ -729,7 +731,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 	     */
 	    public void addError(String log, String message, long dateline, String errorType, AppState state)
@@ -740,7 +742,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param property  Additional attributes
 	     */
 	    public void addError(String log, String message, String errorType, AppState state, HashMap<String, Object> property)
@@ -752,7 +754,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 	     * @param property  Additional attributes
 	     */
@@ -771,7 +773,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     */
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState)
 
@@ -781,7 +783,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType, state: AppState)
@@ -792,7 +794,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param property  Additional attributes
 	     */
 		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>)
@@ -803,7 +805,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 	     * @param property  Additional attributes
 	     */
@@ -816,7 +818,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     */
 		fun addError(log: String, message: String, errorType: String, state: AppState)
 
@@ -826,7 +828,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: String, state: AppState)
@@ -837,7 +839,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 		 * @param property  Additional attributes
 	     */
 		fun addError(log: String, message: String, errorType: String, state: AppState, property: HashMap<String, Any>)
@@ -848,7 +850,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * @param log       Log
 	     * @param message   Message
 	     * @param errorType Error type
-	     * @param state     Program running state
+	     * @param state     Program running status
 	     * @param dateline  Occurrence time, nanoseconds
 		 * @param property  Additional attributes
 	     */
@@ -861,31 +863,13 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 === "Java"
 
 	```java
-	// Scene 1:
-	FTRUMGlobalManager.get().addError```java
-	// Scene 1:
+	// Scenario 1:
 	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN);
 
-	// Scene 2: Delay recording the error that occurred, this time is generally the time when the error occurred
-	FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000L, ErrorType.JAVA, AppState.RUN);
-
-	// Scene 3: Dynamic parameters
-	HashMap<String, Object> map = new HashMap<>();
-	map.put("ft_key", "ft_value");
-	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN, map);
-	```
-
-=== "Kotlin"
-
-	```kotlin
-
-	// Scene 1:
-	FTRUMGlobalManager.get().addError("error log", "error msg", ErrorType.JAVA, AppState.RUN)
-
-	// Scene 2: Delay recording the error that occurred, this time is generally the time when the error occurred
+	// Scenario 2: Delayed recording of errors, this time generally refers to the time when the error occurred
 	FTRUMGlobalManager.get().addError("error log", "error msg", 16789000000000000000, ErrorType.JAVA, AppState.RUN)
 
-	// Scene 3: Dynamic parameters
+	// Scenario 3: Dynamic parameters
 	val map = HashMap<String, Any>()
 	map["ft_key"] = "ft_value"
 	FTRUMGlobalManager.get().addError("error log", "error msg",ErrorType.JAVA,AppState.RUN,map)
@@ -902,7 +886,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * Add long task
 	     *
 	     * @param log      Log content
-	     * @param duration Duration, nanoseconds
+	     * @param duration Duration time, nanoseconds
 	     */
 	    public void addLongTask(String log, long duration)
 
@@ -910,7 +894,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * Add long task
 	     *
 	     * @param log      Log content
-	     * @param duration Duration, nanoseconds
+	     * @param duration Duration time, nanoseconds
 	     */
 	    public void addLongTask(String log, long duration, HashMap<String, Object> property)
 
@@ -923,7 +907,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * Add long task
 	     *
 	     * @param log      Log content
-	     * @param duration Duration, nanoseconds
+	     * @param duration Duration time, nanoseconds
 	     */
 		fun addLongTask(log: String, duration: Long)
 
@@ -931,7 +915,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	     * Add long task
 	     *
 	     * @param log      Log content
-	     * @param duration Duration, nanoseconds
+	     * @param duration Duration time, nanoseconds
 	     */
 
 		fun addLongTask(log: String, duration: Long, property: HashMap<String, Any>)
@@ -943,10 +927,10 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 === "Java"
 
 	```java
-	// Scene 1
+	// Scenario 1
 	FTRUMGlobalManager.get().addLongTask("error log", 1000000L);
 
-	// Scene 2: Dynamic parameters
+	// Scenario 2: Dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	FTRUMGlobalManager.get().addLongTask("", 1000000L, map);
@@ -957,10 +941,10 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 
 	```kotlin
 
-	// Scene 1
+	// Scenario 1
 	FTRUMGlobalManager.get().addLongTask("error log",1000000L)
 
-	// Scene 2: Dynamic parameters
+	// Scenario 2: Dynamic parameters
 	 val map = HashMap<String, Any>()
 	 map["ft_key"] = "ft_value"
 	 FTRUMGlobalManager.get().addLongTask("", 1000000L,map)
@@ -990,15 +974,15 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	    public void startResource(String resourceId, HashMap<String, Object> property)
 
 	    /**
-	     * Resource end
+	     * Resource termination
 	     *
 	     * @param resourceId Resource Id
 	     */
 	    public void stopResource(String resourceId)
 
 	    /**
-	     * Resource end
-	         *
+	     * Resource termination
+	     *
 	     * @param resourceId Resource Id
 	     * @param property   Additional attribute parameters
 	     */
@@ -1035,14 +1019,14 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	fun startResource(resourceId: String, property: HashMap<String, Any>)
 
 	/**
-	 * Resource end
+	 * Resource termination
 	 *
 	 * @param resourceId Resource Id
 	 */
 	fun stopResource(resourceId: String)
 
 	/**
-	 * Resource end
+	 * Resource termination
 	 *
 	 * @param resourceId Resource Id
 	 * @param property   Additional attribute parameters
@@ -1066,7 +1050,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 
 	```java
 
-	// Scene 1
+	// Scenario 1
 	// Request start
 	FTRUMGlobalManager.get().startResource("resourceId");
 
@@ -1075,7 +1059,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	// Request end
 	FTRUMGlobalManager.get().stopResource("resourceId");
 
-	// Finally, after the request ends, send relevant data metrics of the request
+	// Finally, after the request ends, send related data metrics for the request
 	ResourceParams params = new ResourceParams();
 	params.setUrl("https://<<< custom_key.brand_main_domain >>>");
 	params.setResponseContentType(response.header("Content-Type"));
@@ -1093,7 +1077,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	FTRUMGlobalManager.get().addResource("resourceId", params, bean);
 
 
-	// Scene 2: Dynamic parameter usage
+	// Scenario 2 : Use dynamic parameters
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("ft_key", "ft_value");
 	map.put("ft_key_will_change", "ft_value");
@@ -1102,7 +1086,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 
 	//...
 	HashMap<String, Object> map = new HashMap<>()；
-	map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change this value will be changed to ft_value_change at stopResource
+	map.put("ft_key_will_change", "ft_value_change"); //ft_key_will_change This value will be changed to ft_value_change when stopResource is called
 	FTRUMGlobalManager.get().stopResource(uuid,map);
 
 	```
@@ -1110,18 +1094,18 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 === "Kotlin"
 
 	```kotlin
-	// Scene 1
+	// Scenario 1
 	//Request start
 	FTRUMGlobalManager.get().startResource("resourceId")
 
 	//Request end
 	FTRUMGlobalManager.get().stopResource("resourceId")
 
-	//Finally, after the request ends, send relevant data metrics of the request
+	//Finally, after the request ends, send related data metrics for the request
 	val params = ResourceParams()
 	params.url = "https://<<< custom_key.brand_main_domain >>>"
 	params.responseContentType = response.header("Content-Type")
-	params.responseConnection = response.header("Connection")
+	arams.responseConnection = response.header("Connection")
 	params.responseContentEncoding = response.header("Content-Encoding")
 	params.responseHeader = response.headers.toString()
 	params.requestHeader = request.headers.toString()
@@ -1133,7 +1117,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	//...
 	FTRUMGlobalManager.get().addResource("resourceId",params,bean)
 
-	// Scene 2: Dynamic parameter usage
+	// Scenario 2 : Use dynamic parameters
 	val map = hashMapOf<String, Any>(
 	        "ft_key" to "ft_value",
 	        "ft_key_will_change" to "ft_value"
@@ -1144,7 +1128,7 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 	val map = hashMapOf<String, Any>(
 	        "ft_key_will_change" to "ft_value_change"
 	)
-	// ft_key_will_change this value will be changed to ft_value_change at stopResource
+	// ft_key_will_change This value will be changed to ft_value_change when stopResource is called
 
 	FTRUMGlobalManager.get().stopResource(uuid, map)
 
@@ -1166,15 +1150,15 @@ Configure `FTRUMConfig` with `enableTraceUserAction`, `enableTraceUserView`, `en
 | ResourceParams.requestHeader | No | Request header parameters |  |
 | ResourceParams.responseHeader | No | Response header parameters |  |
 | ResourceParams.responseConnection | No | Response connection | |
-| ResourceParams.responseContentType | No | Response Content Type | |
-| ResourceParams.responseContentEncoding | No | Response Content Encoding |  |
+| ResourceParams.responseContentType | No | Response ContentType | |
+| ResourceParams.responseContentEncoding | No | Response ContentEncoding |  |
 | ResourceParams.resourceMethod | No | Request method | GET, POST etc. |
-| ResourceParams.responseBody | No | Return body content | |
+| ResourceParams.responseBody | No | Returned body content | |
 | ResourceParams.property| No | Additional attributes |  |
 
 ## Logger Log Printing {#log} 
-Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.setEnableCustomLog(true)`
-> Currently, the log content is limited to 30 KB, and any exceeding characters will be truncated.
+Use `FTLogger` for custom log output, requires enabling `FTLoggerConfig.setEnableCustomLog(true)`
+> Current log content limit is 30 KB, any characters exceeding this will be truncated.
 
 ### Usage Method
 
@@ -1182,7 +1166,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 
 	```java
 	    /**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1190,7 +1174,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    public void logBackground(String content, Status status)
 
 	    /**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1199,7 +1183,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    public void logBackground(String content, Status status, HashMap<String, Object> property)
 
 		/**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1207,7 +1191,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    public void logBackground(String content, String status)
 
 	    /**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1217,7 +1201,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 
 
 	    /**
-	     * Store multiple log data locally for synchronization
+	     * Store multiple log entries locally for synchronization
 	     *
 	     * @param logDataList {@link LogData} list
 	     */
@@ -1231,7 +1215,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	```kotlin
 
 	    /**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1239,7 +1223,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    fun logBackground(content: String, status: Status)
 
 	    /**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1248,7 +1232,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    fun logBackground(content: String, status: Status, property: HashMap<String, Any>)
 
 		/**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1256,7 +1240,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    fun logBackground(content: String, status: String)
 
 	    /**
-	     * Store a single log data locally for synchronization
+	     * Store a single log entry locally for synchronization
 	     *
 	     * @param content Log content
 	     * @param status  Log level
@@ -1265,7 +1249,7 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	    fun logBackground(content: String, status: String, property: HashMap<String, Any>)
 
 	    /**
-	     * Store multiple log data locally for synchronization
+	     * Store multiple log entries locally for synchronization
 	     *
 	     * @param logDataList Log data list
 	     */
@@ -1319,9 +1303,9 @@ Use `FTLogger` for custom log output, which requires enabling `FTLoggerConfig.se
 	FTLogger.getInstance().logBackground(mutableListOf(LogData("test",Status.INFO)))
 	```
 
-## Tracer Network Trace Tracking
+## Tracer Network Link Trace
 
-Configure `FTTraceConfig` with `enableAutoTrace` to automatically add trace data, or manually use `FTTraceManager` to add `Propagation Header` in Http requests, as shown below:
+Configure `FTTraceConfig` to enable `enableAutoTrace` automatically adding trace data, or manually use `FTTraceManager` in Http requests with `Propagation Header`, as shown below:
 
 === "Java"
 
@@ -1400,11 +1384,11 @@ Configure `FTTraceConfig` with `enableAutoTrace` to automatically add trace data
 	client.newCall(builder.build()).execute()
 	```
 
-## Customizing Resource and TraceHeader through OKHttp Interceptor {#okhttp_resource_trace_interceptor_custom}
+## Customizing Resource and TraceHeader via OKHttp Interceptor {#okhttp_resource_trace_interceptor_custom}
 
-The configuration of `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace`, if both are enabled simultaneously, will prioritize loading the custom `Interceptor` configuration.
- > For ft-sdk < 1.4.1, you need to disable `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace`.
- > ft-sdk > 1.6.7 supports associating custom Trace Headers with RUM data
+When both `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace` are enabled simultaneously, the custom `Interceptor` configuration has priority.
+ > For ft-sdk versions < 1.4.1, need to disable `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfig`'s `enableAutoTrace`.
+ > For ft-sdk versions > 1.6.7, support associating custom Trace Headers with RUM data.
 
 === "Java"
 
@@ -1418,12 +1402,12 @@ The configuration of `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfi
 	                   return map;
 	              }
 
-				 // Supported from 1.6.7 onwards
+				 // Supported in versions 1.6.7 and above
 				  @Override
 				  public String getSpanID() {
 					return "span_id";
 				 }
-				// Supported from 1.6.7 onwards
+				// Supported in versions 1.6.7 and above
 				 @Override
 				 public String getTraceID() {
 					return "trace_id";
@@ -1446,7 +1430,7 @@ The configuration of `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfi
                    extraData.put("df_response_header", response.headers().toString());
                    if ("application/json".equals(contentType) ||
                            "application/xml".equals(contentType)) {
-                       // Copy part of the body to avoid consuming large data
+                       //copy part of body to avoid consuming large data
                        ResponseBody body = response.peekBody(33554432);
                        extraData.put("df_response_body", body.string());
                    }
@@ -1493,7 +1477,7 @@ The configuration of `FTRUMConfig`'s `enableTraceUserResource` and `FTTraceConfi
         }
 
         override fun onException(e: Exception, extraData: HashMap<String, Any>) {
-            // Handle exception situation
+            // Handle exception case
         }
     }))
     .eventListenerFactory(FTResourceEventListener.FTFactory())
@@ -1551,14 +1535,14 @@ Use `FTSdk` for user binding and unbinding
 | setId | Set user ID | No | |
 | setName | Set username | No | |
 | setEmail | Set email | No | |
-| setExts | Set user extensions | No | Addition rules refer to [here](#key-conflict)|
+| setExts | Set user extensions | No | Refer to [here](#key-conflict) for addition rules|
 
 ### Code Example
 
 === "Java"
 
 	```java
-	// You can call this method after a successful user login to bind user information
+	// Can call this method after successful user login to bind user information
 	FTSdk.bindRumUserData("001");
 
 	UserData userData = new UserData();
@@ -1570,7 +1554,7 @@ Use `FTSdk` for user binding and unbinding
 	userData.setExts(extMap);
 	FTSdk.bindRumUserData(userData);
 
-	// You can call this method after the user logs out to unbind user information
+	// Can call this method after user logout to unbind user information
 	FTSdk.unbindRumUserData();
 
 	```
@@ -1578,7 +1562,7 @@ Use `FTSdk` for user binding and unbinding
 === "Kotlin"
 
 	```kotlin
-	//You can call this method after a successful user login to bind user information
+	//Can call this method after successful user login to bind user information
 	FTSdk.bindRumUserData("001")
 
 
@@ -1592,7 +1576,7 @@ Use `FTSdk` for user binding and unbinding
 	userData.setExts(extMap)
 	FTSdk.bindRumUserData(userData)
 
-	//You can call this method after the user logs out to unbind user information
+	//Can call this method after user logout to unbind user information
 	FTSdk.unbindRumUserData()
 	```
 
@@ -1626,14 +1610,14 @@ Use `FTSdk` to close the SDK
 === "Java"
 
 	```java
-	// If dynamically changing SDK configuration, need to close first to avoid incorrect data generation
+	// If dynamically changing SDK configuration, need to close first to prevent incorrect data generation
 	FTSdk.shutDown();
 	```
 
 === "Kotlin"
 
 	```kotlin
-	//If dynamically changing SDK configuration, need to close first to avoid incorrect data generation
+	// If dynamically changing SDK configuration, need to close first to prevent incorrect data generation
 	FTSdk.shutDown()
 	```
 
@@ -1675,7 +1659,7 @@ Use `FTSdk` to clear unsent cache data
 	FTSdk.clearAllData()
 	```
 
-## Active Data Synchronization
+## Synchronizing Data Actively
 Use `FTSdk` to actively synchronize data.
 > When `FTSdk.setAutoSync(false)`, manual data synchronization is required.
 
@@ -1685,7 +1669,7 @@ Use `FTSdk` to actively synchronize data.
 
 	```java
 	   /**
-	     * Actively synchronize data
+	     * Active data synchronization
 	     */
 	    public static void flushSyncData()
 	```
@@ -1694,7 +1678,7 @@ Use `FTSdk` to actively synchronize data.
 
 	```kotlin
 	   /**
-	     * Actively synchronize data
+	     * Active data synchronization
 	     */
 	    fun flushSyncData()
 	```
@@ -1715,7 +1699,7 @@ Use `FTSdk` to actively synchronize data.
 
 
 
-## Dynamically Enable or Disable AndroidID Acquisition
+## Dynamically Enabling or Disabling AndroidID Acquisition
 Use `FTSdk` to set whether to acquire Android ID in the SDK
 
 ### Usage Method
@@ -1724,7 +1708,7 @@ Use `FTSdk` to set whether to acquire Android ID in the SDK
 
 	```java
 	   /**
-	     * Dynamically control acquiring Android ID
+	     * Dynamically control acquisition of Android ID
 	     *
 	     * @param enableAccessAndroidID True to apply, false not to apply
 	     */
@@ -1735,7 +1719,7 @@ Use `FTSdk` to set whether to acquire Android ID in the SDK
 
 	```kotlin
 	   /**
-	     * Dynamically control acquiring Android ID
+	     * Dynamically control acquisition of Android ID
 	     *
 	     * @param enableAccessAndroidID True to apply, false not to apply
 	     */
@@ -1766,7 +1750,7 @@ Use `FTSdk` to set whether to acquire Android ID in the SDK
 
 ## Adding Custom Tags
 
-Use `FTSdk` to dynamically add tags while the SDK is running
+Use `FTSdk` to dynamically add tags during SDK runtime
 
 ### Usage Method
 
@@ -1858,20 +1842,20 @@ Use `FTSdk` to dynamically add tags while the SDK is running
 ```java
 -dontwarn com.ft.sdk.**
 
-### ft-sdk library
+### ft-sdk Library
 -keep class com.ft.sdk.**{*;}
 
-### ft-native library
+### ft-native Library
 -keep class ftnative.*{*;}
 
-### Prevent Action name class names from being obfuscated during acquisition
+### Prevent Action name from being obfuscated when getting action_name
 -keepnames class * extends android.view.View
 -keepnames class * extends android.view.MenuItem
 ```
 
 ## Symbol File Upload {#source_map}
-### Plugin Upload (Only supported for datakit[local deployment])
-`ft-plugin` version needs `1.3.0` or above to support the latest symbol file upload rules, supporting `productFlavor` multi-version management, plugin will execute symbol file upload after `gradle task assembleRelease`, detailed configuration can be referenced [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
+### Plugin Upload (Only supports datakit[local deployment])
+The `ft-plugin` version needs `1.3.0` or higher to support the latest symbol file upload rules, supporting `productFlavor` multi-version management. The plugin will execute symbol file upload after `gradle task assembleRelease`. Detailed configurations can be referenced in [SDK Demo](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/build.gradle#L59)
 
 ``` groovy
 FTExt {
@@ -1882,7 +1866,7 @@ FTExt {
     datawayToken = 'dataway_token' 		// space token, no need to configure when generateSourceMapOnly=true
     appId = "appid_xxxxx"				// appid, no need to configure when generateSourceMapOnly=true
     env = 'common'						// environment, no need to configure when generateSourceMapOnly=true
-	generateSourceMapOnly = false // Only generate sourcemap, default is false, path example: /app/build/tmp/ft{flavor}SourceMapMerge-release.zip, ft-plugin:1.3.4 and above versions support
+	generateSourceMapOnly = false //Generate sourcemap only, default is false, path example: /app/build/tmp/ft{flavor}SourceMapMerge-release.zip, ft-plugin:1.3.4 and above versions support
 
     prodFlavors { //prodFlavors configuration overrides outer layer settings
         prodTest {
@@ -1906,20 +1890,20 @@ FTExt {
 
 ```
 ### Manual Upload
-Use `plugin` with `generateSourceMapOnly = true`, execute `gradle task assembleRelease` to generate, or package into a `zip` file manually, then upload to `datakit` or upload from <<< custom_key.brand_name >>> Studio, recommend using `zip` command line for packaging to avoid including some system hidden files into the `zip` package, symbol upload reference [sourcemap upload](../sourcemap/set-sourcemap.md)
+Use `plugin` with `generateSourceMapOnly = true` to generate through `gradle task assembleRelease` or package into a `zip` file manually, then upload to `datakit` or upload via <<< custom_key.brand_name >>> Studio, recommended to use `zip` command line to package to avoid including system hidden files in the `zip` package. Symbol upload reference [sourcemap upload](../sourcemap/set-sourcemap.md)
 
-> Unity Native Symbol files reference [official documentation](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
+> Unity Native Symbol files refer to [official documentation](https://docs.unity3d.com/Manual/android-symbols.html#public-symbols)
 
 ## Permission Configuration Description
 
 | **Name** | **Required** | **Usage Reason** |
 | --- | --- | --- |
-| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitates precise data analysis, affects cellular network information acquisition in SDK |
+| `READ_PHONE_STATE` | No | Used to obtain device information of the phone, facilitates precise data analysis, affects the acquisition of cellular network information in SDK |
 
 > For details on how to request dynamic permissions, refer to [Android Developer](https://developer.android.google.cn/training/permissions/requesting?hl=en)
 
-## Plugin AOP Ignoring {#ingore_aop}
-Through Plugin AOP covering methods, add `@IngoreAOP` to ignore ASM insertion
+## Plugin AOP Ignore {#ingore_aop}
+Through Plugin AOP method coverage, add `@IngoreAOP` to ignore ASM insertion
 
 === "Java"
 
@@ -1942,11 +1926,11 @@ Through Plugin AOP covering methods, add `@IngoreAOP` to ignore ASM insertion
 	```
 
 ## WebView Data Monitoring
-For WebView data monitoring, the page accessed by WebView needs to integrate [Web Monitoring SDK](../web/app-access.md)
+For WebView data monitoring, integrate the [Web Monitoring SDK](../web/app-access.md) on the accessed page.
 
 ## Custom Tag Usage Example {#track}
 
-### Compile-time Configuration Method
+### Compilation Configuration Method
 
 1. Create multiple `productFlavors` in `build.gradle` to distinguish tags
 
@@ -1966,7 +1950,7 @@ android{
 }
 ```
 
-2. Add corresponding `BuildConfig` constants in `RUM` configuration
+2. In the `RUM` configuration, add corresponding `BuildConfig` constants
 
 === "Java"
 
@@ -1989,7 +1973,7 @@ android{
 	```
 ### Runtime Read/Write File Method
 
-1. Use file-type data storage, such as `SharedPreferences`, configure `SDK` usage, and add code to retrieve tag data in the configuration location.
+1. Through file type data storage, such as `SharedPreferences`, configure the use of `SDK`, add code to get tag data in the configuration location.
 
 === "Java"
 
@@ -2042,10 +2026,10 @@ android{
 
 ### SDK Runtime Addition
 
-After the SDK initialization is complete, using `FTSdk.appendGlobalContext(globalContext)`, `FTSdk.appendRUMGlobalContext(globalContext)`, `FTSdk.appendLogGlobalContext(globalContext)` allows dynamic addition of tags, which takes effect immediately upon setting. Subsequently, the reported RUM or Log data will automatically include tag data. This usage method suits scenarios where tag data needs to be obtained with network requests delayed.
+After the SDK is initialized, you can dynamically add tags using `FTSdk.appendGlobalContext(globalContext)`、`FTSdk.appendRUMGlobalContext(globalContext)`、`FTSdk.appendLogGlobalContext(globalContext)`. After setting, it takes effect immediately. Subsequent data reported by RUM or Log will automatically include tag data. This usage method is suitable for scenarios where tag data needs to be obtained with delay, such as when tag data requires network requests to obtain.
 
 ```java
-// Pseudo-code for SDK initialization, set tags after obtaining parameters from the network
+//SDK Initialization pseudocode, set tags after obtaining parameters from the network
 
 FTSdk.init() 
 
@@ -2059,20 +2043,20 @@ getInfoFromNet(info){
 
 
 ## Common Issues {#FAQ}
-### Add Local Variables to Avoid Field Conflicts {#key-conflict}
+### Adding Local Variables to Avoid Key Conflicts {#key-conflict}
 
-To avoid conflicts between custom fields and SDK data, it is recommended to prefix tag names with a **project abbreviation**, such as `df_tag_name`. Values for `key` can be [checked in source code](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When global variables in the SDK conflict with RUM, Log variables, RUM, Log will override the global variables in the SDK.
+To avoid conflicts between custom fields and SDK data, it is recommended to prefix labels with **project abbreviation**, such as `df_tag_name`. Keys used in the project can be [queried in source code](https://github.com/GuanceCloud/datakit-android/blob/dev/ft-sdk/src/main/java/com/ft/sdk/garble/utils/Constants.java). When global variables in SDK appear identical to those in RUM, Log, RUM and Log will override the global variables in SDK.
 
 ### SDK Compatibility
 
-* [Runnable Environments](app-troubleshooting.md#runnable)
-* [Compatible Environments](app-troubleshooting.md#compatible) 
+* [Runnable Environment](app-troubleshooting.md#runnable)
+* [Compatible Environment](app-troubleshooting.md#compatible) 
 
 ### Adapting to Market Privacy Audits {#adpot-to-privacy-audits}
 #### Privacy Statement
-[Go to check](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
+[Go to view](<<< homepage >>>/agreements/app-sdk-privacy-policy/)
 #### Method 1: SDK AndroidID Configuration
-The SDK uses Android ID to better associate data from the same user. If needed for app store listings, follow these ways to adapt to market privacy audits.
+The SDK uses Android ID to better associate data from the same user. If you need to list your app on an app market, you can handle market privacy audits as follows.
 
 === "Java"
 
@@ -2114,8 +2098,8 @@ The SDK uses Android ID to better associate data from the same user. If needed f
 	//Enable after user agrees to privacy policy
 	FTSdk.setEnableAccessAndroidID(true);
 	```
-#### Method 2: Delayed Initialization of SDK
-If you need to delay loading the SDK in your app, it's suggested to initialize it as follows.
+#### Method 2: Delayed SDK Initialization
+If you need to delay loading the SDK in your application, it is recommended to initialize it as follows.
 
 === "Java"
 
@@ -2124,144 +2108,12 @@ If you need to delay loading the SDK in your app, it's suggested to initialize i
 	public class DemoApplication extends Application {
 		@Override
 		public void onCreate() {
-		    //If```java
 		    //If already agreed to the protocol, initialize in Application
 			if(agreeProtocol){
-				FTSdk.init(); //SDK initialization pseudo-code
+				FTSdk.init(); //SDK initialization pseudocode
 			}
 		}
 	}
 	
-	// Privacy Statement Activity page
-	public class MainActivity extends Activity {
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			//Not read privacy statement
-			if ( notReadProtocol ) {
-			    //Show privacy statement popup
-				showProtocolView();
-	
-			    //If agree to privacy statement
-				if( agreeProtocol ){
-					FTSdk.init(); //SDK initialization pseudo-code
-				}
-			}
-		}
-	}
-	```
-	
-=== "Kotlin"
-
-	```kotlin
-	// Application	
-	class DemoApplication : Application() {
-	    override fun onCreate() {
-	        // If already agreed to the protocol, initialize in Application
-	        if (agreeProtocol) {
-	            FTSdk.init() //SDK initialization pseudo-code
-	        }
-	    }
-	}
-	
-	// Privacy Statement Activity page
-	class MainActivity : Activity() {
-	    override fun onCreate(savedInstanceState: Bundle?) {
-	        // Not read privacy statement
-	        if (notReadProtocol) {
-	            // Show privacy statement popup
-	            showProtocolView()
-	
-	            // If agree to privacy statement
-	            if (agreeProtocol) {
-	                FTSdk.init() //SDK initialization pseudo-code
-	            }
-	        }
-	    }
-	}
-	```
-#### Third-party Frameworks {#third-party}
-`flutter`, `react-native`, `unity` can use a similar delayed initialization method as native Android to adapt to app market privacy audits.
-
-### How to Integrate SDK Without Using ft-plugin {#manual-set}
-<<< custom_key.brand_name >>> uses Android Gradle Plugin Transformation to implement code injection for automatic data collection. However, due to some compatibility issues, it may be impossible to use `ft-plugin`. Affected functionalities include **RUM** `Action`, `Resource`, and automatic capture of Java and Kotlin `println` **console logs**, as well as automatic upload of symbol files.
-
-Currently, we have another integration solution for this situation:
-
-* Application launch events need to be called before SDK initialization, refer to source code example [DemoForManualSet.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoForManualSet.kt)
-
-=== "Java"
-
-	```java
-	// Application
-	@Override
-	public void onCreate() {
-	    super.onCreate();
-	    // Needs to be called before SDK initialization
-	    FTAutoTrack.startApp(null);
-	    // Set SDK configuration
-	    setSDK(this);
-	}
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	  //Application
-	    override fun onCreate() {
-	        super.onCreate()
-		// Needs to be called before SDK initialization
-	        FTAutoTrack.startApp(null)
-	        // Set SDK configuration
-	        setSDK(this)
-
-	    }
-	```
-
-* Key events like button clicks need to be manually added at the trigger location, for example, Button onClick event, refer to source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	view.setOnClickListener(new View.OnClickListener() {
-	    @Override
-	    public void onClick(View v) {
-	        FTRUMGlobalManager.get().startAction("[action button]", "click");
-	    }
-	});
-
-	```
-
-=== "Kotlin"
-
-	```kotlin
-		view.setOnClickListener{
-			FTRUMGlobalManager.get().startAction("[action button]", "click")
-		}
-	```
-
-* `OKhttp` integrates `Resource` and `Trace` through `addInterceptor` and `eventListener`, refer to the following example, source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt):
-
-=== "Java"
-
-	```java
-	OkHttpClient.Builder builder = new OkHttpClient.Builder()
-	.addInterceptor(new FTTraceInterceptor())
-	.addInterceptor(new FTResourceInterceptor())
-	.eventListenerFactory(new FTResourceEventListener.FTFactory());
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true));
-	OkHttpClient client = builder.build();
-	```
-
-=== "Kotlin"
-
-	```kotlin
-	val builder = OkHttpClient.Builder()
-	.addInterceptor(FTTraceInterceptor())
-	.addInterceptor(FTResourceInterceptor())
-	.eventListenerFactory(FTResourceEventListener.FTFactory())
-	//.eventListenerFactory(new FTResourceEventListener.FTFactory(true))
-	val client = builder.build()
-	```
-
-* For other network frameworks, you need to manually implement using `FTRUMGlobalManager` methods such as `startResource`, `stopResource`, `addResource`, and `FTTraceManager.getTraceHeader`. For specific implementation methods, refer to the source code example [ManualActivity.kt](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/ManualActivity.kt).
-```
+	// Privacy Statement Activity Page
+	public class MainActivity extends Activity

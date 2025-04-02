@@ -1,72 +1,71 @@
 # Data Forwarding
 ---
 
-<!--
-???- quote "Change Log"
 
-    **2023.11.2**:
-    
-    1. Support for saving data to <<< custom_key.brand_name >>> side OSS, S3, OBS data repositories;
-    2. The navigation position of [Data Forwarding] has been moved to the [Manage] module but can still be accessed via secondary menus under [Logs], [RUM], and [APM].
+<<< custom_key.brand_name >>> supports saving logs, application performance, user access, and event data to its object storage or forwarding it to external storage systems. You can freely choose the storage destination and flexibly manage data forwarding.
 
-    **2023.9.26**: Data forwarding rule queries now support RUM and APM data.
-
-    **2023.9.21**: Added entry points for querying external storage forwarding rules; support for enabling/disabling forwarding rules.
-
-    **2023.9.7**: The original [Backup Logs] was officially renamed to [Data Forwarding].
--->
-
-<<< custom_key.brand_name >>> supports saving logs, application performance, user access, and event data to its object storage or forwarding it to external storage systems. You can freely choose your storage destination and manage data forwarding flexibly.
-
-After the rules take effect, on the Data Forwarding page, you can set query times and data forwarding rules to quickly retrieve stored data, including <<< custom_key.brand_name >>> backup logs, AWS S3, Huawei Cloud OBS, Alibaba Cloud OSS, and Kafka message queues.
+After the rule takes effect, on the data forwarding page, you can quickly search for stored data by setting query times and data forwarding rules, including <<< custom_key.brand_name >>> backup logs, AWS S3, Huawei Cloud OBS, Alibaba Cloud OSS, and Kafka MESSAGE QUEUES, etc.
 
 
 ## Prerequisites
 
-Commercial Plan users of <<< custom_key.brand_name >>> can use the data forwarding feature. Free Plan users need to [upgrade to a Commercial Plan](../../plans/trail.md#upgrade-commercial).
+Commercial Plan only.
 
-## Create Rule
+## Start Creating
 
-Enter the **Data Forwarding** page and click **Forwarding Rules > Create Rule**.
-
-**Note**: After creating a data forwarding rule, it will be executed every 5 minutes.  
-
-![](../img/back-5.png)
-
-### :material-numeric-1-circle: Input Rule Name
-
-1. Rule Name: The name of the current data forwarding rule, limited to 30 characters.
-2. Include Extended Fields: By default, only the `message` field content of logs that meet the conditions is forwarded. If you select "Include Extended Fields," the entire log entry that meets the conditions will be forwarded. Application performance and user access data are forwarded as complete entries by default and are not affected by this option.
-
-**Note**: If multiple data forwarding rules are created, priority is given to rules that include extended fields. If different rules match the same data, the entire log entry will be forwarded according to the rule that includes extended fields.
-
-### :material-numeric-2-circle: Define Filter Conditions
-
-1. Data Source: Includes logs, application performance, user access, and event data.
-
-2. Filter Conditions: Supports custom logic between conditions. You can choose **All Conditions** or **Any Condition**:
-
-    - All Conditions: Only log data matching all filter conditions will be saved for data forwarding.
-    - Any Condition: Log data matching any one of the filter conditions will be saved for data forwarding.
-
-**Note**: Not adding filter conditions means saving all log data; you can add multiple filter conditions.
-
-**Condition Operators Table:**
-
-| Condition Operator | Match Type     |
-| ------------- | -------------- |
-| in, not in      | Exact match, supports multiple values (comma-separated) |
-| match, not match | Fuzzy match, supports regular expression syntax |
-
-### :material-numeric-3-circle: Select Archive Type
+Enter the **Data Forwarding > Forwarding Rules > Create** page.
 
 ???+ warning "Note"
 
-    Five archive types are available across the site.
+    After creating a data forwarding rule, the system will execute the rule validation every 5 minutes.  
 
-To provide more comprehensive data forwarding storage options, <<< custom_key.brand_name >>> supports five storage paths.
+<img src="../img/create_data_forward_rules.png" width="70%" >
 
-:material-numeric-1-circle-outline: <<< custom_key.brand_name >>>: When choosing <<< custom_key.brand_name >>> as the data forwarding storage object, matched log data will be saved to **<<< custom_key.brand_name >>>'s OSS, S3, OBS object storage**.
+
+
+### Enter Rule Name
+
+1. Rule Name: The name of the current data forwarding rule.   
+2. Include Extended Fields: By default, only the `message` field content of logs that meet the conditions will be forwarded. If you check "Include Extended Fields," then the entire log data that meets the conditions will be forwarded. APM and RUM data are forwarded as entire data by default, unaffected by this option.
+
+???+ warning "Note"
+
+    When creating multiple data forwarding rules, priority is given to matching rules with extended fields included. If different rules match the same data, the entire log data will be displayed according to the logic of including extended fields.     
+
+
+### Define Filtering Conditions
+
+
+1. Data Source: Includes LOGS, APM, RUM, and EVENT DATA.
+
+2. Filtering Conditions: Supports customizing the logical operations between conditions; you can select **All Conditions** or **Any Condition**:
+
+    - All Conditions: Only logs that match all filtering conditions will be saved for data forwarding;
+
+    - Any Condition: Logs that satisfy any one of the filtering conditions will be saved for data forwarding.
+
+**Condition operators are listed in the table below:**
+
+| Condition Operator      | Match Type     | 
+| ------------- | -------------- | 
+| in, not in      | Exact match, supports multiple values (comma-separated) | 
+| match, not match | Fuzzy match, supports regular expression syntax | 
+
+???+ warning "Note"
+
+    Not adding filtering conditions means saving all log data; supports adding multiple filtering conditions.
+
+
+### Select Archiving Type
+
+???+ warning "Note"
+
+    All five archiving types are available across the site.
+
+
+To provide more comprehensive data forwarding storage methods, <<< custom_key.brand_name >>> supports five storage paths.
+
+:material-numeric-1-circle-outline: <<< custom_key.brand_name >>>: When selecting <<< custom_key.brand_name >>> as the data forwarding storage object, matched log data will be saved in **<<< custom_key.brand_name >>>'s OSS, S3, OBS object storage**.
 
 :material-numeric-2-circle-outline: [AWS S3](./backup-aws.md);
 
@@ -74,63 +73,42 @@ To provide more comprehensive data forwarding storage options, <<< custom_key.br
 
 :material-numeric-4-circle-outline: [Alibaba Cloud OSS](./backup-ali.md);
 
-:material-numeric-5-circle-outline: [Kafka Message Queue](./backup-kafka.md).
+:material-numeric-5-circle-outline: [Kafka MESSAGE QUEUES](./backup-kafka.md).
 
-**Note**: When selecting <<< custom_key.brand_name >>> as the data forwarding storage object, log data is stored for a minimum of 180 days by default. Once created, the rule cannot be canceled, and daily fees are charged during the storage period. You can modify the data forwarding storage policy at **Manage > Settings > Change Data Storage Policy**.
+???+ warning "Note"
 
-## View Forwarding Rules
+    When selecting <<< custom_key.brand_name >>> as the data forwarding storage object, the minimum log data retention period is 180 days by default. Once the rule is created, it cannot be canceled, and fees will be charged daily during the retention period; you can go to **Manage > Settings > Change Data Storage Policy** to modify.
 
-After creating the rule, you automatically enter the forwarding rules list:
+### Define Data Viewing Permissions {#permission}
 
-1. You can search by entering the rule name;
+Setting viewing permissions for forwarded data can effectively enhance data security.
 
-2. You can enable or disable the current rule;
-
-3. Click the :material-text-search:, edit, :fontawesome-regular-trash-can: buttons on the right side of the rule to perform corresponding actions;
-
-4. You can select multiple rules for batch operations.
-
-**Note**:
-
-- Viewing forwarded data may have a delay of up to 1 hour;
-
-- In edit mode, **Access Type** and **Region** cannot be adjusted; rules selecting **<<< custom_key.brand_name >>>** storage have consistent editing and viewing content;
-
-- Deleting a rule does not delete already forwarded data but stops new data from being forwarded.
-
-### Forwarding Rules Explorer {#explorer}
-
-Returning to the **Data Forwarding** page, you will default to the **Forwarded Data** tab. You can query within a custom time range using the time widget.
-
-![](../img/back_data_explorer.png)
-
-<<< custom_key.brand_name >>> retrieves file search match data in batches based on the selected time, returning 50 entries per batch. If the first query returns fewer than 50 entries or no data, you can manually click **Continue Query** until the scan is complete.
-
-Since the queried data is unordered, you can sort the listed data by time range. This action does not affect the data query results.
-
-## Further Reading
-
-<font size=2>
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Data Forwarding Billing Logic</font>](../../billing-method/billing-item.md#backup)
+- No Restrictions: All members of the workspace can view forwarded data;
+- Custom: Specify the roles of members who can view forwarded data.
 
 
-</div>
+## Manage Forwarding Rules
 
-<div class="grid cards" markdown>
+All created data forwarding rules can be viewed in the forwarding rule list. You can manage the list through the following operations:
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Best Practices for Forwarding Log Data to OSS</font>](../../best-practices/partner/log-backup-to-oss-by-func.md)
+- Search by entering the rule name;
 
-</div>
+- Enable or disable the current rule;
 
+- Click the search, edit, or delete button on the right side of the rule to perform corresponding actions;
 
-<div class="grid cards" markdown>
+- Optionally select multiple rules for batch operations.
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Explorer</font>](../../getting-started/function-details/explorer-search.md)
+???+ warning "Note"
 
+    - There may be up to a 1-hour delay when viewing forwarded data;          
+    - In edit mode, access type and region cannot be adjusted; for rules choosing <<< custom_key.brand_name >>> storage, editing and viewing content are consistent;           
+    - After deleting a rule, the already forwarded data will not be deleted, but no new data will be generated.
 
-</div>
+## Data Viewing {#explorer}
 
-</font>
+On the data viewing page, you can search and query the latest data results based on time range and forwarding rules. Regular expression syntax can also be used here for searching.
+
+<img src="../img/backup_data_explorer.png" width="70%" >
+
+The system will retrieve files in batches according to the selected time to search for matching data, returning 50 entries per batch. If no data is found on the first query or fewer than 50 entries are returned, you can manually click "Continue Query" until the scan is complete.

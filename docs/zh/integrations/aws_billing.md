@@ -39,7 +39,7 @@ cloudCollector:
 
 1. 登陆Func 控制台，点击【脚本市场】，进入官方脚本市场，搜索 `guance_aws_billing_by_instance`
 
-2. 点击【安装】后，输入相应的参数：AK ID 、AK Secret 及账户名。
+2. 点击【安装】后，输入相应的参数：AWS AK ID 、AK Secret 及账户名。
 
 3. 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
 

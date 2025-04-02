@@ -23,6 +23,7 @@ nav:
     - 'Log Stream': log-stream.md
     - 'Object List': object-list.md
     - 'Alert Statistics': alert-statistics.md
+    - 'Monitor Summary': monitor_summary.md
     - 'Text': text.md
     - 'Video': video.md
     - 'Picture': picture.md

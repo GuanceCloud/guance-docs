@@ -3039,17 +3039,17 @@ volumes:
 - Linux/Mac:
 
 ```shell
-DK_DATAWAY=https://openway.<<<custom_key.brand_name>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_name>>>/datakit/install.sh)"
+DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
 ```
 
 - Windows
 
 ```powershell
 Remove-Item -ErrorAction SilentlyContinue Env:DK_*;
-$env:DK_DATAWAY="https://openway.<<<custom_key.brand_name>>>?token=<TOKEN>";
+$env:DK_DATAWAY="https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN>";
 Set-ExecutionPolicy Bypass -scope Process -Force;
 Import-Module bitstransfer;
-start-bitstransfer  -source https://static.<<<custom_key.brand_name>>>/datakit/install.ps1 -destination .install.ps1;
+start-bitstransfer  -source https://static.<<<custom_key.brand_main_domain>>>/datakit/install.ps1 -destination .install.ps1;
 powershell ./.install.ps1;
 ```
 
