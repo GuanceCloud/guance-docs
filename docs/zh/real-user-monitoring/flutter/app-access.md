@@ -133,10 +133,15 @@ void main() async {
 | enableNativeUserAction | bool | 否 | 是否进行 `Native Action` 追踪，原生系统 `Button` 点击事件，应用启动事件，默认为 `false` |
 | enableNativeUserView | bool | 否 | 是否进行 `Native View` 自动追踪，纯 `Flutter` 应用建议关闭，，默认为 `false` |
 | enableNativeUserResource | bool | 否 | 是否进行 `Native Resource` 自动追踪，纯 `Flutter` 应用建议关闭，默认为 `false` |
-| errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `RUM` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 |
-| deviceMetricsMonitorType | enum DeviceMetricsMonitorType | 否 |在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery` 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率 |
+| enableAppUIBlock | bool | 否 | 是否进行 `Native Freeze` 自动追踪，默认为 `false` |
+| nativeUiBlockDurationMS | int | 否 | 是否对 `Native Freeze` 的时间范围进行设置, 取值范围 [100,)，单位毫秒。iOS 默认 250ms，Android 默认 1000ms |
+| enableTrackNativeAppANR | bool | 否 | 是否开启 `Native ANR` 监测，默认为 `false`  |
+| enableTrackNativeCrash | bool | 否 | 是否开启 `Android Java Crash` 和 `OC/C/C++` 崩溃的监测，默认为 `false`|
+| errorMonitorType | enum ErrorMonitorType | 否 | 设置辅助监控信息，添加附加监控数据到 `RUM` Error 数据中，`ErrorMonitorType.battery` 为电池余量，`ErrorMonitorType.memory` 为内存用量，`ErrorMonitorType.cpu` 为 CPU 占有率 ，默认不开启|
+| deviceMetricsMonitorType | enum DeviceMetricsMonitorType | 否 | 在 View 周期中，添加监控数据，`DeviceMetricsMonitorType.battery`（仅 Android） 监控当前页的最高输出电流输出情况，`DeviceMetricsMonitorType.memory` 监控当前应用使用内存情况，`DeviceMetricsMonitorType.cpu` 监控 CPU 跳动次数 ，`DeviceMetricsMonitorType.fps` 监控屏幕帧率, 默认不开启 |
+| detectFrequency | enum DetectFrequency | 否 | 视图的性能监控采样周期，默认为 `DetectFrequency.normal` |
 | globalContext | Map | 否 | 自定义全局参数 |
-| rumDiscardStrategy | string | 否 | 丢弃策略：`FTRUMCacheDiscard.discard`丢弃新数据（默认）、`FTRUMCacheDiscard.discardOldest`丢弃旧数据 |
+| rumCacheDiscard | enum | 否 | 丢弃策略：`FTRUMCacheDiscard.discard`丢弃新数据（默认）、`FTRUMCacheDiscard.discardOldest`丢弃旧数据 |
 | rumCacheLimitCount | number | 否 | 本地缓存最大 RUM 条目数量限制 [10_000,)，默认 100_000 |
 | isInTakeUrl | callBack | 否 | 设置需要过滤的 Resource 条件，默认不过滤|
 
@@ -222,8 +227,7 @@ String customDynamicValue = prefs.getString("customDynamicValue")?? "not set";
 ```dart
 await FTTracer().setConfig(
   enableLinkRUMData: true,
-  enableAutoTrace:false,
-  enableNativeAutoTrace: false
+  enableAutoTrace: true,
 );
 ```
 
