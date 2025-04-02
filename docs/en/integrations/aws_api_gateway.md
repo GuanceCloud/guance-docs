@@ -2,7 +2,7 @@
 title: 'AWS API Gateway'
 tags: 
   - AWS
-summary: 'The displayed Metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These Metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management.'
+summary: 'The displayed metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management.'
 __int_icon: 'icon/aws_api_gateway'
 dashboard:
 
@@ -23,57 +23,65 @@ cloudCollector:
 # AWS API Gateway
 <!-- markdownlint-enable -->
 
-The displayed Metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These Metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management.
+The displayed metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management.
 
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to activate the <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - managed Func: all prerequisites are automatically installed. Please continue with script installation.
 
 If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 ### Installation Script
 
-> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Note: Please prepare the required Amazon AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize monitoring data of AWS API Gateway cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-Gateway Collection)" (ID: `guance_aws_gateway`)
+#### Managed Edition Activation Script
 
-After clicking 【Install】, input the corresponding parameters: Amazon AK, Amazon account name.
+1. Log in to <<< custom_key.brand_name >>> console
+2. Click on the 【Manage】 menu, select 【Cloud Account Management】
+3. Click 【Add Cloud Account】, select 【AWS】, fill in the required information on the interface. If cloud account information has been configured before, skip this step
+4. Click 【Test】, if the test is successful, click 【Save】. If the test fails, check whether the related configuration information is correct and retest
+5. In the 【Cloud Account Management】 list, you can see the added cloud accounts. Click the corresponding cloud account to enter the details page
+6. Click the 【Integration】 button on the cloud account details page. Under the `Not Installed` list, find `AWS API Gateway`, click the 【Install】 button, and an installation interface will pop up for installation.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-Then, in the collection script, change the regions in collector_configs and cloudwatch_configs to the actual regions.
+#### Manual Activation Script
 
-In addition, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a while, you can check the execution task records and corresponding logs.
+1. Log in to the Func console, click 【Script Market】, enter the official script market, and search for `guance_aws_gateway`
 
-We default to collecting some configurations; for more details, see the Metrics section [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-gateway/){:target="_blank"}
+2. After clicking 【Install】, input the corresponding parameters: AWS AK ID, AK Secret, and account name.
+
+3. Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+
+4. After enabling, you can see the corresponding automatic trigger configuration in 「Management / Automatic Trigger Configuration」. Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
 
 ### Verification
 
-1. In "Manage / Automatic Trigger Configuration", confirm whether the corresponding automatic trigger configuration exists for the task, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom", check if there is asset information.
-3. On the <<< custom_key.brand_name >>> platform, under "Metrics", check if there is corresponding monitoring data.
+1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can view the corresponding task records and logs to check for any abnormalities.
+2. In <<< custom_key.brand_name >>>, 「Infrastructure / Custom」, check whether there is asset information.
+3. In <<< custom_key.brand_name >>>, 「Metrics」, check whether there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon-CloudWatch, the default Measurement set is as follows. You can collect more Metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html){:target="_blank"}
+After configuring Amazon-CloudWatch, the default metric sets are as follows. You can collect more metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html){:target="_blank"}
 
 ### Instance Metrics
 
-The `AWS/ApiGateway` namespace includes the following instance Metrics.
+The `AWS/ApiGateway` namespace includes the following instance metrics.
 
-| Metric                    | Description                                                         |
-| :---------------------- | :----------------------------------------------------------- |
-| `4XXError`    | The number of client errors captured during a given period. The Sum statistic represents this Metric, i.e., the total count of 4XXError errors during the given period. The Average statistic represents the 4XXError error rate, i.e., the total count of 4XXError errors divided by the total number of requests during the period. The denominator corresponds to the Count Metric (see below). Unit: Count |
-| `5XXError`       | The number of server-side errors captured during a given period. The Sum statistic represents this Metric, i.e., the total count of 5XXError errors during the given period. The Average statistic represents the 5XXError error rate, i.e., the total count of 5XXError errors divided by the total number of requests during the period. The denominator corresponds to the Count Metric (see below). Unit: Count |
-| `Count`      | The total number of API requests during a given period. The SampleCount statistic represents this Metric. Unit: Count |
-| `Latency`     | The time it takes from when API Gateway receives a request from the client until it returns a response to the client. Latency includes integration latency and other API Gateway overheads. Unit: Millisecond  |
+| Metric                  | Description                                                         |
+| :---------------------- | :------------------------------------------------------------------ |
+| `4XXError`             | Captures the number of client errors during a given period. The Sum statistic represents this metric, i.e., the total count of 4XXError errors during the given period. The Average statistic represents the 4XXError error rate, i.e., the total count of 4XXError errors divided by the total number of requests during that period. The denominator corresponds to the Count metric (see below). Unit: Count |
+| `5XXError`             | Captures the number of server-side errors during a given period. The Sum statistic represents this metric, i.e., the total count of 5XXError errors during the given period. The Average statistic represents the 5XXError error rate, i.e., the total count of 5XXError errors divided by the total number of requests during that period. The denominator corresponds to the Count metric (see below). Unit: Count |
+| `Count`                | Total number of API requests during a given period. The SampleCount statistic represents this metric. Unit: Count |
+| `Latency`              | The time taken from when API Gateway receives a request from the client until it returns the response to the client. Latency includes integration latency and other API Gateway overheads. Unit: Millisecond |
 
 ## Objects {#object}
 
-The collected AWS API Gateway object data structure can be viewed in "Infrastructure - Custom".
+The collected AWS API Gateway object data structure can be viewed under 「Infrastructure - Custom」
 
 ```json
 {
@@ -98,6 +106,6 @@ The collected AWS API Gateway object data structure can be viewed in "Infrastruc
 }
 ```
 
-> *Note: Fields in `tags` and `fields` may vary with subsequent updates.*
+> *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 >
-> Tip 1: The value of `ApiId` is the instance ID, used as a unique identifier.
+> Tip 1: The value of `ApiId` is the instance ID, used as unique identification.
