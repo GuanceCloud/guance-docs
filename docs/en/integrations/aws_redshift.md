@@ -6,11 +6,11 @@ summary: 'The core performance Metrics of AWS Redshift include query performance
 __int_icon: 'icon/aws_redshift'
 dashboard:
 
-  - desc: 'AWS Redshift built-in Views'
+  - desc: 'AWS Redshift built-in views'
     path: 'dashboard/en/aws_redshift'
 
 monitor:
-  - desc: 'AWS Redshift Monitors'
+  - desc: 'AWS Redshift monitors'
     path: 'monitor/en/aws_redshift'
 
 cloudCollector:
@@ -31,52 +31,59 @@ The core performance Metrics of AWS Redshift include query performance, disk spa
 
 ### Install Func
 
-It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites will be automatically installed. Please continue with the script installation.
 
-If you deploy Func by yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 
 ### Installation Script
 
-> Note: Please prepare the required Amazon AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+> Note: Please prepare an Amazon AK that meets the requirements in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-To synchronize Redshift monitoring data, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-Redshift Collection)" (ID: `guance_aws_redshift`)
+#### Script for enabling managed version
 
-After clicking 【Install】, enter the corresponding parameters: Amazon AK, Amazon account name.
+1. Log in to the <<< custom_key.brand_name >>> console
+2. Click on the 【Manage】 menu and select 【Cloud Account Management】
+3. Click 【Add Cloud Account】, choose 【AWS】, and fill in the required information on the interface; if cloud account information has been configured before, skip this step
+4. Click 【Test】, after a successful test click 【Save】. If the test fails, check whether the relevant configuration information is correct and retest.
+5. In the 【Cloud Account Management】 list, you can see the added cloud accounts. Click on the corresponding cloud account to enter the details page.
+6. On the cloud account details page, click the 【Integration】 button, find `AWS Redshift` under the `Not Installed` list, click the 【Install】 button, and install it from the pop-up installation interface.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+#### Manual Enablement Script
 
-In addition, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a while, you can view the execution task records and corresponding logs.
+1. Log in to the Func console, click 【Script Market】, enter the official script market, and search for: `guance_aws_redshift`
 
+2. After clicking 【Install】, input the corresponding parameters: AWS AK ID, AK Secret, and account name.
 
+3. Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup scripts.
 
-We collect some configurations by default, for details, see the Metrics column [Customize Cloud Object Metrics Configuration](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+4. After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】 to immediately execute once without waiting for the scheduled time. Wait a moment, you can view the execution task records and corresponding logs.
 
 
 ### Verification
 
-1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding task has the corresponding automatic trigger configuration, and at the same time, you can check the corresponding task records and logs for any abnormalities.
-2. On the <<< custom_key.brand_name >>> platform, under 「Infrastructure / Custom」, check if there is asset information.
-3. On the <<< custom_key.brand_name >>> platform, under 「Metrics」, check if there is corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」, confirm whether the corresponding tasks have the corresponding automatic trigger configurations. You can also check the corresponding task records and logs for any anomalies.
+2. In <<< custom_key.brand_name >>>, 「Infrastructure / Custom」, check if there is asset information.
+3. In <<< custom_key.brand_name >>>, 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-Configure Amazon CloudWatch, the default Measurement set is as follows. You can collect more Metrics through configuration [Amazon CloudWatch Metrics Details](https://docs.aws.amazon.com/zh_cn/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
+After configuring Amazon-Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration. [Amazon Cloud Monitoring Metrics Details](https://docs.aws.amazon.com/en_us/redshift/latest/mgmt/metrics-listing.html){:target="_blank"}
 
 ### Redshift Metrics
 
 | Metric Name | Description | Unit | Dimensions |
 | :---: | :---: | :---: | :---: |
-| CPUUtilization | Percentage of CPU usage. For clusters, this metric represents the sum of CPU usage values for all nodes (leader node and compute nodes). | % | ClusterIdentifier |
-| HealthStatus | Cluster health check | 1: Normal or 0: Abnormal | ClusterIdentifier |
+| CPUUtilization | Percentage of CPU used. For clusters, this metric represents the sum of the CPU usage values for all nodes (leader node and compute nodes) | % | ClusterIdentifier |
+| HealthStatus | The health check status of the cluster | 1: Normal or 0: Abnormal | ClusterIdentifier |
 | MaintenanceMode | Whether the cluster is in maintenance mode | 1: ON or 0: OFF | ClusterIdentifier |
-| PercentageDiskSpaceUsed | Percentage of used disk space | % | ClusterIdentifier |
+| PercentageDiskSpaceUsed | Percentage of disk space used | % | ClusterIdentifier |
 | DatabaseConnections | Number of database connections in the cluster | count | ClusterIdentifier |
 | CommitQueueLength | Number of transactions waiting to commit at a given point in time | count | ClusterIdentifier |
-| ConcurrencyScalingActiveClusters | The number of concurrent scaling clusters actively processing queries at any given time | count | ClusterIdentifier |
+| ConcurrencyScalingActiveClusters | The number of concurrency scaling clusters actively processing queries at any given time | count | ClusterIdentifier |
 | NetworkReceiveThroughput | The rate at which nodes or clusters receive data | byte/s | ClusterIdentifier |
 | NetworkTransmitThroughput | The rate at which nodes or clusters write data | byte/s | ClusterIdentifier |
-| MaxConfiguredConcurrencyScalingClusters | Maximum number of concurrent scaling clusters configured from parameter groups | count | ClusterIdentifier |
+| MaxConfiguredConcurrencyScalingClusters | Maximum number of concurrency scaling clusters configured from the parameter group | count | ClusterIdentifier |
 | NumExceededSchemaQuotas | Number of schemas exceeding quotas | count | ClusterIdentifier |
 | ReadIOPS | Average number of disk read operations per second | count/s | ClusterIdentifier |
 | ReadLatency | Average time required for disk read I/O operations | seconds | ClusterIdentifier |
@@ -89,7 +96,7 @@ Configure Amazon CloudWatch, the default Measurement set is as follows. You can 
 
 ## Objects {#object}
 
-The structure of collected Amazon AWS Redshift object data can be viewed under 「Infrastructure - Custom」
+The collected Amazon AWS Redshift object data structure can be viewed in the 「Infrastructure - Custom」 section.
 
 ```json
 {
@@ -127,7 +134,7 @@ The structure of collected Amazon AWS Redshift object data can be viewed under �
 
 ```
 
-> *Note: The fields in `tags` and `fields` may change with subsequent updates.*
+> *Note: Fields in `tags`, `fields` may change with subsequent updates.*
 >
 > Tip 1: The value of `tags.name` is the instance ID, used as a unique identifier.
 >
