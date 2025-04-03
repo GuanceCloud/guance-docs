@@ -1241,7 +1241,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../apisix"
   				data-tags=""
   				data-name="APISIX"
-  				data-summary="Collect APISIX related metrics, logs, and tracing information"
+  				data-summary="Collect APISIX related Metrics, LOGs, and APM information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1252,7 +1252,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="APISIX" class="fth-integration-name">APISIX</div>
-                            <div title="Collect APISIX related metrics, logs, and tracing information" class="fth-integration-desc">Collect APISIX related metrics, logs, and tracing information</div>
+                            <div title="Collect APISIX related Metrics, LOGs, and APM information" class="fth-integration-desc">Collect APISIX related Metrics, LOGs, and APM information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2513,6 +2513,36 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						<div class="fth-integration-description">
                             <div title="Azure SQL Servers" class="fth-integration-name">Azure SQL Servers</div>
                             <div title="Collect metrics data from Azure SQL Servers" class="fth-integration-desc">Collect metrics data from Azure SQL Servers</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../azure_storage"
+  				data-tags="AZURE"
+  				data-name="Azure Storage"
+  				data-summary="Collect Azure Storage metrics data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_storage/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Storage" class="fth-integration-name">Azure Storage</div>
+                            <div title="Collect Azure Storage metrics data" class="fth-integration-desc">Collect Azure Storage metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3851,7 +3881,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../emqx"
   				data-tags=""
   				data-name="EMQX"
-  				data-summary="Collect EMQX collection, topics, subscriptions, message, packet related Metrics information"
+  				data-summary="Collect EMQX collection, topics, subscriptions, message, and packet related Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3862,7 +3892,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="EMQX" class="fth-integration-name">EMQX</div>
-                            <div title="Collect EMQX collection, topics, subscriptions, message, packet related Metrics information" class="fth-integration-desc">Collect EMQX collection, topics, subscriptions, message, packet related Metrics information</div>
+                            <div title="Collect EMQX collection, topics, subscriptions, message, and packet related Metrics information" class="fth-integration-desc">Collect EMQX collection, topics, subscriptions, message, and packet related Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4073,6 +4103,36 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						<div class="fth-integration-description">
                             <div title="Fluentd" class="fth-integration-name">Fluentd</div>
                             <div title="Collect Fluentd logs" class="fth-integration-desc">Collect Fluentd logs</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../gcp_ce"
+  				data-tags="GCP"
+  				data-name="GCP Compute Engine"
+  				data-summary="Collect resource metrics such as CPU, memory, disk, and network for GCP Compute Engine virtual machines"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/gcp_ce/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="GCP Compute Engine" class="fth-integration-name">GCP Compute Engine</div>
+                            <div title="Collect resource metrics such as CPU, memory, disk, and network for GCP Compute Engine virtual machines" class="fth-integration-desc">Collect resource metrics such as CPU, memory, disk, and network for GCP Compute Engine virtual machines</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7031,7 +7091,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../nacos"
   				data-tags=""
   				data-name="Nacos"
-  				data-summary="Collect Nacos related Metrics information"
+  				data-summary="Collect information related to Nacos Metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7042,7 +7102,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Nacos" class="fth-integration-name">Nacos</div>
-                            <div title="Collect Nacos related Metrics information" class="fth-integration-desc">Collect Nacos related Metrics information</div>
+                            <div title="Collect information related to Nacos Metrics" class="fth-integration-desc">Collect information related to Nacos Metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
