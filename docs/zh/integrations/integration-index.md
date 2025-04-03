@@ -2528,6 +2528,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_storage"
+  				data-tags="AZURE"
+  				data-name="Azure Storage"
+  				data-summary="采集 Azure Storage 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_storage/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Storage" class="fth-integration-name">Azure Storage</div>
+                            <div title="采集 Azure Storage 指标数据" class="fth-integration-desc">采集 Azure Storage 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_virtual_network_gateway"
   				data-tags="AZURE"
   				data-name="Azure Virtual Network Gateway"
@@ -4043,6 +4073,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div title="Fluentd" class="fth-integration-name">Fluentd</div>
                             <div title="采集 Fluentd 的日志" class="fth-integration-desc">采集 Fluentd 的日志</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../gcp_ce"
+  				data-tags="GCP"
+  				data-name="GCP Compute Engine"
+  				data-summary="采集 GCP Compute Engine 虚拟机CPU、内存、磁盘、网络等资源指标"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/gcp_ce/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="GCP Compute Engine" class="fth-integration-name">GCP Compute Engine</div>
+                            <div title="采集 GCP Compute Engine 虚拟机CPU、内存、磁盘、网络等资源指标" class="fth-integration-desc">采集 GCP Compute Engine 虚拟机CPU、内存、磁盘、网络等资源指标</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
