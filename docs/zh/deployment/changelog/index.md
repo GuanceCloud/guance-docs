@@ -1,5 +1,38 @@
 # 版本历史
 
+## 1.108.195（2025 年 03 月 26 日） {#1.108.195}
+
+pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.108.195:launcher-aead114-1743399725
+
+### 离线镜像包下载
+
+- AMD64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-amd64-1.108.195.tar.gz
+    - MD5: `03acc2e8d325b7b1be25b5971497cd8c`
+
+- ARM64 架构下载: https://static.<<< custom_key.brand_main_domain >>>/dataflux/package/guance-arm64-1.108.195.tar.gz
+    - MD5: `f60ae5208194381346fbdc3d22df707b`
+
+???+ attention 重要版本依赖更新说明
+
+    ### 此部署版，对于 GuanceDB 组件的最低版本要求
+
+    #### GuanceDB for Logs
+    - guance-select: v1.13.5+
+    - guance-insert: v1.13.5+
+
+    #### GuanceDB for Metrics
+    - guance-select: v1.13.5+
+    - guance-insert: v1.13.5+
+    - guance-storage: v1.13.5+
+
+### 部署版更新
+
+- 数据存储结构调整
+    - 将可用性监测数据从原日志表迁移至独立表，本版本采用双写机制同时写入新旧表，但功能上仍从旧表进行数据查询
+    - 对 RUM 数据进行表结构拆分，原统一存储的 Session 和 View 数据将分离至独立表，本版本通过双写方式保证数据兼容，但功能上仍从旧表进行数据查询
+
+更多产品功能更新说明，请参考产品功能 [更新日志 -> 2025 年 03 月 26 日](../../release-notes/index.md#20250326)
+
 ## 1.107.194（2025 年 03 月 12 日） {#1.107.194}
 
 pubrepo.<<< custom_key.brand_main_domain >>>/dataflux/1.107.194:launcher-e747002-1742390108
