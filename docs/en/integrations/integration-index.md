@@ -363,7 +363,7 @@ icon: zy/integrations
   			<div
   				class="fth-integration-list-item"
   				data-href="../aliyun_ecs"
-  				data-tags="Alibaba Cloud,HOST"
+  				data-tags="Alibaba Cloud,HOSTs"
   				data-name="Alibaba Cloud ECS"
   				data-summary="The displayed metrics for Alibaba Cloud ECS include CPU utilization, memory utilization, network bandwidth, and disk IOPS. These metrics reflect the performance of ECS instances in terms of computing, memory, networking, and storage."
   			>
@@ -1241,7 +1241,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../apisix"
   				data-tags=""
   				data-name="APISIX"
-  				data-summary="Collect APISIX related metrics, logs, and tracing information"
+  				data-summary="Collect APISIX related Metrics, LOGs, and APM information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1252,7 +1252,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="APISIX" class="fth-integration-name">APISIX</div>
-                            <div title="Collect APISIX related metrics, logs, and tracing information" class="fth-integration-desc">Collect APISIX related metrics, logs, and tracing information</div>
+                            <div title="Collect APISIX related Metrics, LOGs, and APM information" class="fth-integration-desc">Collect APISIX related Metrics, LOGs, and APM information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1361,7 +1361,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_api_gateway"
   				data-tags="AWS"
   				data-name="AWS API Gateway"
-  				data-summary="The displayed Metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These Metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management."
+  				data-summary="The displayed metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1372,7 +1372,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS API Gateway" class="fth-integration-name">AWS API Gateway</div>
-                            <div title="The displayed Metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These Metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management." class="fth-integration-desc">The displayed Metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These Metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management.</div>
+                            <div title="The displayed metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management." class="fth-integration-desc">The displayed metrics for AWS API Gateway include request response time, throughput, concurrent connections, and error rate. These metrics reflect the performance and reliability of API Gateway when handling API requests and traffic management.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1451,7 +1451,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_cloudfront"
   				data-tags="AWS"
   				data-name="AWS CloudFront"
-  				data-summary="The core performance Metrics of AWS CloudFront include the total number of requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of the content delivery network."
+  				data-summary="The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1462,7 +1462,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS CloudFront" class="fth-integration-name">AWS CloudFront</div>
-                            <div title="The core performance Metrics of AWS CloudFront include the total number of requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of the content delivery network." class="fth-integration-desc">The core performance Metrics of AWS CloudFront include the total number of requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of the content delivery network.</div>
+                            <div title="The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network." class="fth-integration-desc">The core performance Metrics of AWS CloudFront include total requests, data transfer volume, HTTP error rate, cache hit rate, and latency. These can help users evaluate and optimize the performance of their content delivery network.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1541,7 +1541,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_dynamodb"
   				data-tags="AWS"
   				data-name="AWS DynamoDB"
-  				data-summary="The displayed metrics for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput, among others. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access."
+  				data-summary="The displayed Metrics for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput, etc. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1552,7 +1552,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS DynamoDB" class="fth-integration-name">AWS DynamoDB</div>
-                            <div title="The displayed metrics for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput, among others. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access." class="fth-integration-desc">The displayed metrics for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput, among others. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access.</div>
+                            <div title="The displayed Metrics for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput, etc. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access." class="fth-integration-desc">The displayed Metrics for AWS DynamoDB include throughput capacity units, latency, concurrent connections, and read/write throughput, etc. These metrics reflect the performance and scalability of DynamoDB when handling large-scale data storage and access.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1601,7 +1601,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_ec2"
   				data-tags="AWS"
   				data-name="AWS EC2"
-  				data-summary="Use script market "<<< custom_key.brand_name >>> cloud sync" series script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>"
+  				data-summary="Use the script package series of 「<<< custom_key.brand_name >>> Cloud Sync」in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1612,7 +1612,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS EC2" class="fth-integration-name">AWS EC2</div>
-                            <div title="Use script market "<<< custom_key.brand_name >>> cloud sync" series script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use script market "<<< custom_key.brand_name >>> cloud sync" series script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>></div>
+                            <div title="Use the script package series of 「<<< custom_key.brand_name >>> Cloud Sync」in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the script package series of 「<<< custom_key.brand_name >>> Cloud Sync」in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1661,7 +1661,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_ecs"
   				data-tags="AWS"
   				data-name="AWS ECS"
-  				data-summary="Amazon ECS features integrated with Amazon Web Services Fargate serverless compute engine, using <<< custom_key.brand_name >>> to monitor its service runtime."
+  				data-summary="Amazon ECS features are integrated with Amazon Web Services Fargate serverless computing engine, using <<< custom_key.brand_name >>> to monitor the service runtime."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1672,7 +1672,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS ECS" class="fth-integration-name">AWS ECS</div>
-                            <div title="Amazon ECS features integrated with Amazon Web Services Fargate serverless compute engine, using <<< custom_key.brand_name >>> to monitor its service runtime." class="fth-integration-desc">Amazon ECS features integrated with Amazon Web Services Fargate serverless compute engine, using <<< custom_key.brand_name >>> to monitor its service runtime.</div>
+                            <div title="Amazon ECS features are integrated with Amazon Web Services Fargate serverless computing engine, using <<< custom_key.brand_name >>> to monitor the service runtime." class="fth-integration-desc">Amazon ECS features are integrated with Amazon Web Services Fargate serverless computing engine, using <<< custom_key.brand_name >>> to monitor the service runtime.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1691,7 +1691,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_elasticache_redis"
   				data-tags="AWS"
   				data-name="AWS ElastiCache Redis"
-  				data-summary="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>."
+  				data-summary="Use the script package series of "<<< custom_key.brand_name >>> Cloud Sync" in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1702,7 +1702,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS ElastiCache Redis" class="fth-integration-name">AWS ElastiCache Redis</div>
-                            <div title="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>." class="fth-integration-desc">Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.</div>
+                            <div title="Use the script package series of "<<< custom_key.brand_name >>> Cloud Sync" in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the script package series of "<<< custom_key.brand_name >>> Cloud Sync" in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1781,7 +1781,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_emr"
   				data-tags="AWS"
   				data-name="AWS EMR"
-  				data-summary="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>"
+  				data-summary="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1792,7 +1792,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS EMR" class="fth-integration-name">AWS EMR</div>
-                            <div title="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>></div>
+                            <div title="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1811,7 +1811,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_eventbridge"
   				data-tags="AWS"
   				data-name="AWS EventBridge"
-  				data-summary="The displayed Metrics of AWS EventBridge include event delivery latency, throughput, event size, and scalability. These Metrics reflect the performance and reliability of EventBridge when handling large-scale event streams and real-time data delivery."
+  				data-summary="The displayed Metrics for AWS EventBridge include event delivery latency, throughput, event scale, and scalability. These Metrics reflect the performance and reliability of EventBridge when handling large-scale event streams and real-time data delivery."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1822,7 +1822,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS EventBridge" class="fth-integration-name">AWS EventBridge</div>
-                            <div title="The displayed Metrics of AWS EventBridge include event delivery latency, throughput, event size, and scalability. These Metrics reflect the performance and reliability of EventBridge when handling large-scale event streams and real-time data delivery." class="fth-integration-desc">The displayed Metrics of AWS EventBridge include event delivery latency, throughput, event size, and scalability. These Metrics reflect the performance and reliability of EventBridge when handling large-scale event streams and real-time data delivery.</div>
+                            <div title="The displayed Metrics for AWS EventBridge include event delivery latency, throughput, event scale, and scalability. These Metrics reflect the performance and reliability of EventBridge when handling large-scale event streams and real-time data delivery." class="fth-integration-desc">The displayed Metrics for AWS EventBridge include event delivery latency, throughput, event scale, and scalability. These Metrics reflect the performance and reliability of EventBridge when handling large-scale event streams and real-time data delivery.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1871,7 +1871,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_kinesis"
   				data-tags="AWS"
   				data-name="AWS Kinesis"
-  				data-summary="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>"
+  				data-summary="Use the script packages in the script market named «<<< custom_key.brand_name >>> Cloud Sync» series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1882,7 +1882,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS Kinesis" class="fth-integration-name">AWS Kinesis</div>
-                            <div title="Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the "<<< custom_key.brand_name >>> Cloud Sync" series script packages in the script market to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>></div>
+                            <div title="Use the script packages in the script market named «<<< custom_key.brand_name >>> Cloud Sync» series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>." class="fth-integration-desc">Use the script packages in the script market named «<<< custom_key.brand_name >>> Cloud Sync» series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1901,7 +1901,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_kinesis_analytics"
   				data-tags="AWS"
   				data-name="AWS KinesisAnalytics"
-  				data-summary="Use the script market "<<< custom_key.brand_name >>> Cloud Sync" series script packages to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>"
+  				data-summary="Use the script market "<<< custom_key.brand_name >>> cloud sync" series script package to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1912,7 +1912,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS KinesisAnalytics" class="fth-integration-name">AWS KinesisAnalytics</div>
-                            <div title="Use the script market "<<< custom_key.brand_name >>> Cloud Sync" series script packages to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the script market "<<< custom_key.brand_name >>> Cloud Sync" series script packages to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>></div>
+                            <div title="Use the script market "<<< custom_key.brand_name >>> cloud sync" series script package to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the script market "<<< custom_key.brand_name >>> cloud sync" series script package to synchronize cloud monitoring and cloud assets data to <<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -1931,7 +1931,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_lambda"
   				data-tags="AWS"
   				data-name="AWS Lambda"
-  				data-summary="The displayed Metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These Metrics reflect the response speed, scalability, and resource utilization of the Lambda functions."
+  				data-summary="The displayed Metrics for AWS Lambda include cold start time, execution time, number of concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -1942,7 +1942,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS Lambda" class="fth-integration-name">AWS Lambda</div>
-                            <div title="The displayed Metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These Metrics reflect the response speed, scalability, and resource utilization of the Lambda functions." class="fth-integration-desc">The displayed Metrics for AWS Lambda include cold start time, execution time, concurrent executions, and memory usage. These Metrics reflect the response speed, scalability, and resource utilization of the Lambda functions.</div>
+                            <div title="The displayed Metrics for AWS Lambda include cold start time, execution time, number of concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions." class="fth-integration-desc">The displayed Metrics for AWS Lambda include cold start time, execution time, number of concurrent executions, and memory usage. These metrics reflect the response speed, scalability, and resource utilization of Lambda functions.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2111,7 +2111,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_opensearch"
   				data-tags="AWS"
   				data-name="AWS OpenSearch"
-  				data-summary="AWS OpenSearch, including connection counts, request numbers, latency, slow queries, etc."
+  				data-summary="AWS OpenSearch, including connection counts, request counts, latency, slow queries, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2122,7 +2122,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS OpenSearch" class="fth-integration-name">AWS OpenSearch</div>
-                            <div title="AWS OpenSearch, including connection counts, request numbers, latency, slow queries, etc." class="fth-integration-desc">AWS OpenSearch, including connection counts, request numbers, latency, slow queries, etc.</div>
+                            <div title="AWS OpenSearch, including connection counts, request counts, latency, slow queries, etc." class="fth-integration-desc">AWS OpenSearch, including connection counts, request counts, latency, slow queries, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2141,7 +2141,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_rds_mysql"
   				data-tags="AWS"
   				data-name="AWS RDS MySQL"
-  				data-summary="Use script packages in the script market of "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>."
+  				data-summary="Use the script packages in the script market named 「<<< custom_key.brand_name >>> Cloud Sync」 series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2152,7 +2152,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS RDS MySQL" class="fth-integration-name">AWS RDS MySQL</div>
-                            <div title="Use script packages in the script market of "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>." class="fth-integration-desc">Use script packages in the script market of "<<< custom_key.brand_name >>> Cloud Sync" series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.</div>
+                            <div title="Use the script packages in the script market named 「<<< custom_key.brand_name >>> Cloud Sync」 series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the script packages in the script market named 「<<< custom_key.brand_name >>> Cloud Sync」 series to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2201,7 +2201,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aws_s3"
   				data-tags="AWS"
   				data-name="AWS S3"
-  				data-summary="Use the script market "<<< custom_key.brand_name >>> cloud sync" series of script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>."
+  				data-summary="Use the series of script packages in the script market named 「<<< custom_key.brand_name >>> Cloud Sync」 to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2212,7 +2212,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="AWS S3" class="fth-integration-name">AWS S3</div>
-                            <div title="Use the script market "<<< custom_key.brand_name >>> cloud sync" series of script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>." class="fth-integration-desc">Use the script market "<<< custom_key.brand_name >>> cloud sync" series of script packages to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>.</div>
+                            <div title="Use the series of script packages in the script market named 「<<< custom_key.brand_name >>> Cloud Sync」 to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>>" class="fth-integration-desc">Use the series of script packages in the script market named 「<<< custom_key.brand_name >>> Cloud Sync」 to synchronize cloud monitoring and cloud asset data to <<< custom_key.brand_name >>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2321,7 +2321,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../azure_kubernetes"
   				data-tags="AZURE"
   				data-name="Azure Kubernetes"
-  				data-summary="Collect Azure Kubernetes metric data"
+  				data-summary="Collect Azure Kubernetes Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2332,7 +2332,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Azure Kubernetes" class="fth-integration-name">Azure Kubernetes</div>
-                            <div title="Collect Azure Kubernetes metric data" class="fth-integration-desc">Collect Azure Kubernetes metric data</div>
+                            <div title="Collect Azure Kubernetes Metrics data" class="fth-integration-desc">Collect Azure Kubernetes Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2411,7 +2411,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../azure_network_interfaces"
   				data-tags="AZURE"
   				data-name="Azure Network Interfaces"
-  				data-summary="Collect Azure Network Interface metric data"
+  				data-summary="Collect Azure Network Interface Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2422,7 +2422,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Azure Network Interfaces" class="fth-integration-name">Azure Network Interfaces</div>
-                            <div title="Collect Azure Network Interface metric data" class="fth-integration-desc">Collect Azure Network Interface metric data</div>
+                            <div title="Collect Azure Network Interface Metrics data" class="fth-integration-desc">Collect Azure Network Interface Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2471,7 +2471,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../azure_redis_cache"
   				data-tags="AZURE"
   				data-name="Azure Redis Cache"
-  				data-summary="Collect Azure Redis Cache metric data"
+  				data-summary="Collect metrics data from Azure Redis Cache"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2482,7 +2482,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Azure Redis Cache" class="fth-integration-name">Azure Redis Cache</div>
-                            <div title="Collect Azure Redis Cache metric data" class="fth-integration-desc">Collect Azure Redis Cache metric data</div>
+                            <div title="Collect metrics data from Azure Redis Cache" class="fth-integration-desc">Collect metrics data from Azure Redis Cache</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2513,6 +2513,36 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						<div class="fth-integration-description">
                             <div title="Azure SQL Servers" class="fth-integration-name">Azure SQL Servers</div>
                             <div title="Collect metrics data from Azure SQL Servers" class="fth-integration-desc">Collect metrics data from Azure SQL Servers</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../azure_storage"
+  				data-tags="AZURE"
+  				data-name="Azure Storage"
+  				data-summary="Collect Azure Storage metrics data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_storage/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Storage" class="fth-integration-name">Azure Storage</div>
+                            <div title="Collect Azure Storage metrics data" class="fth-integration-desc">Collect Azure Storage metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3851,7 +3881,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../emqx"
   				data-tags=""
   				data-name="EMQX"
-  				data-summary="Collect EMQX collection, topics, subscriptions, message, packet related Metrics information"
+  				data-summary="Collect EMQX collection, topics, subscriptions, message, and packet related Metrics information"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3862,7 +3892,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="EMQX" class="fth-integration-name">EMQX</div>
-                            <div title="Collect EMQX collection, topics, subscriptions, message, packet related Metrics information" class="fth-integration-desc">Collect EMQX collection, topics, subscriptions, message, packet related Metrics information</div>
+                            <div title="Collect EMQX collection, topics, subscriptions, message, and packet related Metrics information" class="fth-integration-desc">Collect EMQX collection, topics, subscriptions, message, and packet related Metrics information</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -4073,6 +4103,36 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						<div class="fth-integration-description">
                             <div title="Fluentd" class="fth-integration-name">Fluentd</div>
                             <div title="Collect Fluentd logs" class="fth-integration-desc">Collect Fluentd logs</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../gcp_ce"
+  				data-tags="GCP"
+  				data-name="GCP Compute Engine"
+  				data-summary="Collect resource metrics such as CPU, memory, disk, and network for GCP Compute Engine virtual machines"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/gcp_ce/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="GCP Compute Engine" class="fth-integration-name">GCP Compute Engine</div>
+                            <div title="Collect resource metrics such as CPU, memory, disk, and network for GCP Compute Engine virtual machines" class="fth-integration-desc">Collect resource metrics such as CPU, memory, disk, and network for GCP Compute Engine virtual machines</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7031,7 +7091,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../nacos"
   				data-tags=""
   				data-name="Nacos"
-  				data-summary="Collect Nacos related Metrics information"
+  				data-summary="Collect information related to Nacos Metrics"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7042,7 +7102,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Nacos" class="fth-integration-name">Nacos</div>
-                            <div title="Collect Nacos related Metrics information" class="fth-integration-desc">Collect Nacos related Metrics information</div>
+                            <div title="Collect information related to Nacos Metrics" class="fth-integration-desc">Collect information related to Nacos Metrics</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

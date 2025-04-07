@@ -2179,7 +2179,7 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	}
 	```
 #### 第三方框架 {#third-party}
-`flutter`、`react-native`、`unity` 可以采用与以上原生 Android 相似延迟初始化方式，来应对应用市场隐私审核。
+`flutter`、`react-native`、`uni-app`、`unity` 可以采用与以上原生 Android 相似延迟初始化方式，来应对应用市场隐私审核。
 
 ### 不使用 ft-plugin 情况下如何接入 SDK {#manual-set}
 <<< custom_key.brand_name >>>使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。

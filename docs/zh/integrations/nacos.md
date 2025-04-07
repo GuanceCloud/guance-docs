@@ -140,7 +140,9 @@ cp prom.conf.sample nacos-prom.conf
 
 更多 Nacos 指标，可以参考 [Nacos 官方网站-监控](https://nacos.io/zh-cn/docs/monitor-guide.html)
 
+<<<% if custom_key.brand_key == "guance" %>>>
 ## 最佳实践 {#best-practices}
-<div class="grid cards" data-href="https://learning.guance.com/uploads/banner_f446194a3c.png" data-title="Nacos 可观测性最佳实践" data-desc=" 本文介绍如何通过观测云采集 Nacos 的指标数据，监控 Nacos 的运行状态，确保服务稳定性和可靠性。"  markdown>
-<[Nacos 可观测性最佳实践](https://www.guance.com/learn/articles/nacos){:target="_blank"}>
+<div class="grid cards" data-href="https://learning.<<< custom_key.brand_main_domain >>>/uploads/banner_f446194a3c.png" data-title="Nacos 可观测性最佳实践" data-desc=" 本文介绍如何通过<<< custom_key.brand_name >>>采集 Nacos 的指标数据，监控 Nacos 的运行状态，确保服务稳定性和可靠性。"  markdown>
+<[Nacos 可观测性最佳实践](https://<<< custom_key.brand_main_domain >>>/learn/articles/nacos){:target="_blank"}>
 </div>
+<<<% endif %>>>
