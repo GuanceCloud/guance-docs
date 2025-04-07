@@ -8,7 +8,7 @@
 - 柱状图
 - 条形图
 
-![](../img/bar.png)
+<img src="../../img/bar.png" width="60%" >
 
 
 

@@ -13,7 +13,7 @@
 可在查询框中输入关键词进行查询定位，或添加 `by` 条件进行数据聚合显示。
 
 
-在告警列表中，hover 在某条事件数据上，可直接[新建与该条事件相关的 Issue](../../events/event-explorer/unrecovered-events.md#issue) 或直接[恢复该条事件](../../events/event-explorer/unrecovered-events.md#recover)。
+在告警列表中，hover 在某条事件数据上，可[新建与该条事件相关的 Issue](../../events/event-explorer/unrecovered-events.md#issue) 或直接[恢复该条事件](../../events/event-explorer/unrecovered-events.md#recover)。
 
 
 ## 图表配置

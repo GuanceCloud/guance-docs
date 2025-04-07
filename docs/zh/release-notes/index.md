@@ -56,7 +56,7 @@ icon: zy/release-notes
 
 1. [基础设施存活检测 V2](../monitoring/monitor/infrastructure-detection.md)：新增可配置检测区间。
 2. 告警策略：通知匹配逻辑调整，提升事件在命中多组策略及复杂告警策略场景下的执行效率。
-3. 通知对象管理：新增 Slack 和 Teams 两个通知对象，以满足全球更多用户的需求。
+3. 通知对象管理：新增 [Slack](../monitoring/notify-target-slack.md) 和 [Teams](../monitoring/notify-target-teams.md) 两个通知对象，以满足全球更多用户的需求。
 
 #### 场景
 

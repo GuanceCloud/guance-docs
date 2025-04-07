@@ -7,11 +7,11 @@
 
 单个图表支持以下查询方式：
 
-:material-numeric-1-circle: [简单查询](#simple)
-:material-numeric-2-circle: [表达式查询](#expression)
-:material-numeric-3-circle: [DQL 查询](#dql)
-:material-numeric-4-circle: [PromQL 查询](#promql)
-:material-numeric-5-circle: [数据源](#func)
+:material-numeric-1-circle: [简单查询](#simple)   
+:material-numeric-2-circle: [表达式查询](#expression)       
+:material-numeric-3-circle: [DQL 查询](#dql)       
+:material-numeric-4-circle: [PromQL 查询](#promql)       
+:material-numeric-5-circle: [数据源](#func)         
 
 ???+ abstract "切换查询方式"
 

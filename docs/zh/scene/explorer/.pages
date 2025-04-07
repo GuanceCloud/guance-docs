@@ -1,3 +1,5 @@
 nav:
   - index.md
-  - '快速搭建自定义查看器': custom-explorer.md
+  - '快速搭建': custom-explorer.md
+  - '列表管理': config_list.md
+  - '页面管理': config_page.md
