@@ -31,6 +31,7 @@
 ### 部署说明
 * s3 存储桶一旦配置不可修改。如需修改，只能清空数据，重新安装Doris集群
 * Doris通过 **主机** 部署。无论是否有网络，都需要先将物料包放置到指定位置
+* 自采购磁盘硬件做 RAID 不能为 RAID 0
 
 
 | 类别           | 说明                                           |
@@ -227,8 +228,8 @@ clusters:
 clusters:
   - name: xxx
     vars:
-      # 副本数
-      replication_factor:
+      # 副本数配置。测试环境可以配置为 1，生产环境建议配置 2 及以上
+      replication_factor: 2
       # FE 机器内存 GB
       fe_host_mem_gb:
       # FE 机器数
@@ -241,6 +242,8 @@ clusters:
       be_data_disk_num:
       # BE 单数据盘大小 GB
       be_data_disk_gb:
+      # BE cgroup cpu 目录，根据下文查看支持 v1 还是 v2 ，填写对应地址
+      be_cgroup_cpu_path: 
       # fe 自身日志保留时间
       fe_log_retention: 3d
       # FE 和 BE 机器的内网网段
@@ -337,7 +340,7 @@ ls /sys/fs/cgroup/cgroup.controllers
 	    chmod 770 /sys/fs/cgroup/cpu/doris && \
 	    chmod 770 /sys/fs/cgroup/memory/doris && \
 	    chown -R doris:doris /sys/fs/cgroup/cpu/doris && \
-	    chown -R doris:doris /sys/fs/cgroup/memory/doris'·
+	    chown -R doris:doris /sys/fs/cgroup/memory/doris'
 	
 	[Install]
 	WantedBy=multi-user.target
