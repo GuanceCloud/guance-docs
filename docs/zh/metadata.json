@@ -481,9 +481,9 @@
     "last_translated": "2025-03-07T20:06:36.878013"
   },
   "real-user-monitoring/web/index.md": {
-    "hash": "a2a60715a82f94f6189dafa7d892babbba398ce7e9d63fb1989177b61013341a",
-    "last_translated": "2025-03-28T14:19:07.686039",
-    "translation_time": 83.14
+    "hash": "f81355d86f44f49971e95dcdbfa882063f8e637097d7599aaf14b97bab729ead",
+    "last_translated": "2025-04-07T11:00:30.835073",
+    "translation_time": 98.67
   },
   "open-api/offline-token/create-temporary-token.md": {
     "hash": "33092cb07d712a8c5de11a6274847d0cd39f4f8cd3d0163fa15a53f8b2699972",
@@ -1213,9 +1213,9 @@
     "translation_time": 44.03
   },
   "deployment/changelog/index.md": {
-    "hash": "09050a3f512739fca1c9dfd3c42c395a947aaf92010d6b2f16a7b1cb769c43b8",
-    "last_translated": "2025-03-23T21:04:43.513324",
-    "translation_time": 166.87
+    "hash": "0b1c2cd012551cd2f420fd37a835012f030df074e467677ae4383608ff443f99",
+    "last_translated": "2025-04-07T11:02:17.258113",
+    "translation_time": 205.09
   },
   "integrations/ebpf.md": {
     "hash": "edbe745d08b22a08a36e89f669e92b27e4a0030dd6882b46ff082568d2324d74",
@@ -2850,9 +2850,9 @@
     "last_translated": "2025-03-08T09:00:06.205836"
   },
   "real-user-monitoring/android/app-access.md": {
-    "hash": "aa8da429e92677fe4fd3c8eeb3072da5bf74d813721a6ab15adc99987f80ad75",
-    "last_translated": "2025-03-29T20:51:29.870935",
-    "translation_time": 752.51
+    "hash": "7740a9bb3060fbc671827e245ad9e30a84e1a1a90e4770ba4d94ad5a143be3b6",
+    "last_translated": "2025-04-07T11:16:45.587567",
+    "translation_time": 1073.42
   },
   "real-user-monitoring/web/sampling.md": {
     "hash": "50d5df21e11f6db759ceb4307c8fed535aae7afdbeeae20bd368043918d59e3a",
@@ -2957,9 +2957,9 @@
     "last_translated": "2025-03-08T09:34:36.048804"
   },
   "real-user-monitoring/react-native/app-access.md": {
-    "hash": "693ce3b62e04d68688be5247c7f0ac1d5af463b12aff31be7bd217ef536ae912",
-    "last_translated": "2025-03-28T14:26:02.336667",
-    "translation_time": 443.59
+    "hash": "322d56d32f99f3714410573483e5897b27f336dd146ec865da8837a1943a5767",
+    "last_translated": "2025-04-07T11:07:06.376064",
+    "translation_time": 494.21
   },
   "scene/visual-chart/china-map.md": {
     "hash": "9fe7742a0a19f11220be5fd0844430e783f64d2f704cfcaf3755e4378ff126a7",
@@ -3598,8 +3598,9 @@
     "last_translated": "2025-03-08T15:08:54.833096"
   },
   "real-user-monitoring/android/app-troubleshooting.md": {
-    "hash": "52693bde707b1b96f27a72aafd0b287bb8a2569751442adcf63b27b4ab97e042",
-    "last_translated": "2025-03-09T23:35:48.086653"
+    "hash": "c8fe04f7e6738dc17e0f6e424df4b9f8bdcd0da775727c21df2715b095edc588",
+    "last_translated": "2025-04-07T11:01:46.125722",
+    "translation_time": 173.96
   },
   "real-user-monitoring/sourcemap/index.md": {
     "hash": "3adea2be54c8e046f55dd8e6b1b511b60fc9c5bb58712f78f015ef4c0d544d3a",
@@ -4177,9 +4178,9 @@
     "last_translated": "2025-03-08T18:33:57.321824"
   },
   "real-user-monitoring/flutter/app-access.md": {
-    "hash": "70cd2f6fc500c22e71e616cb6b0ea16689550c639d228743250c00ac05481191",
-    "last_translated": "2025-03-23T20:41:29.590601",
-    "translation_time": 357.69
+    "hash": "eae4334588cde914caa4a5aac7a98ca98155a78b29d1ae196a2b0529c9f400ff",
+    "last_translated": "2025-04-07T11:04:53.371936",
+    "translation_time": 361.2
   },
   "open-api/viewer/modify.md": {
     "hash": "0162a67027e482a1848ad5373ec90934b4d01a4b201646ba8eced7ba5db775bf",
@@ -4230,8 +4231,9 @@
     "last_translated": "2025-03-08T18:54:11.325944"
   },
   "open-api/.pages": {
-    "hash": "ad64068615297934034f1d150c9bde4380f7de485bd73d1b7de2622bb38dff8f",
-    "last_translated": "2025-03-08T18:54:48.312012"
+    "hash": "a0869595ce67da6e6ec5a4c82de74f10ed37fae71df05b8d535a04be8fcaa0c6",
+    "last_translated": "2025-04-07T10:59:28.182821",
+    "translation_time": 36.01
   },
   "open-api/dialing-region/list.md": {
     "hash": "5f652200f8ccf46a800915b2c17450e3a42aa8e6fd6cde4ea19da94341dc202e",
@@ -5204,8 +5206,9 @@
     "last_translated": "2025-03-09T02:02:07.260548"
   },
   "deployment/faq-opensearch.md": {
-    "hash": "4e0a42d5280bb87eb8f84e09eb69f0800ee478b9dd9a47593e47088cb41a537a",
-    "last_translated": "2025-03-09T02:02:32.292218"
+    "hash": "acf34b9cdd2b58f0a7480655903921f7cdfa5df6ea4debd6b60660b50026b16b",
+    "last_translated": "2025-04-07T10:59:12.642373",
+    "translation_time": 20.47
   },
   "integrations/solr.md": {
     "hash": "7ddf0d9bd61467df3d9c3d4867df619ced1b185c7ea7fb1ab420ae372817d839",
@@ -7412,5 +7415,15 @@
     "hash": "c6191427a5a2ccba71b76f1945641bef641a08b697e8277719286dcb35ee2cd6",
     "last_translated": "2025-03-28T14:41:53.711066",
     "translation_time": 18.08
+  },
+  "open-api/chart-image/.pages": {
+    "hash": "7aedf2f62bd590fc7da6fa287310280386de59e425f0b74569a7fec084252ae1",
+    "last_translated": "2025-04-07T10:58:55.415024",
+    "translation_time": 3.25
+  },
+  "open-api/chart-image/get.md": {
+    "hash": "60b20047f70518e752410b2ff8b524b74f04b8a519fbe3e1c6524b0249c1ca0b",
+    "last_translated": "2025-04-07T10:59:12.618616",
+    "translation_time": 20.45
   }
 }
