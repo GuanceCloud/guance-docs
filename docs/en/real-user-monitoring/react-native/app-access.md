@@ -1,4 +1,4 @@
-# React Native App Integration
+# React Native Application Integration
 
 ---
 
@@ -6,25 +6,25 @@
 
 ???+ warning "Note"
 
-    If the [RUM Headless](../../dataflux-func/headless.md) service has been enabled, the prerequisites are automatically configured, and you can directly integrate the app.
+    If the [RUM Headless](../../dataflux-func/headless.md) service has been enabled, the prerequisites have been automatically configured, and you can directly integrate the application.
 
 - Install [DataKit](../../datakit/datakit-install.md);  
 - Configure [RUM Collector](../../integrations/rum.md);
-- DataKit is configured to be [publicly accessible on the internet and with the IP geolocation information database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
+- DataKit should be configured as [publicly accessible on the internet and with the IP geolocation information database installed](../../datakit/datakit-tools-how-to.md#install-ipdb).
 
-## App Integration
+## Application Integration
 
 ???+ warning "Note"
 
-    The current React Native version supports only Android and iOS platforms.
+    The current React Native version only supports Android and iOS platforms temporarily.
 
 1. Go to **User Analysis > Create > React Native**;
-2. Input the app name;
-3. Input the app ID;
-4. Select the integration method:
+2. Enter the application name;
+3. Input the application ID;
+4. Select the application integration method:
 
-    - Public DataWay: Directly receives RUM data without installing the DataKit collector.  
-    - Local Deployment: Receives RUM data after meeting the prerequisites.
+    - Public DataWay: Directly receives RUM data without installing the DataKit collector.
+    - Local Environment Deployment: Receives RUM data after meeting the prerequisites.
 
 
 ## Installation {#install}
@@ -35,7 +35,7 @@
 
 **Demo Address**: [https://github.com/GuanceCloud/datakit-react-native/example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example)
 
-Run the following command in the project path from the terminal:
+In the project path, run the command in the terminal:
 
 ```bash
 npm install @cloudcare/react-native-mobile
@@ -50,10 +50,10 @@ This will add a line like this to the package.json of the package:
 }
 ```
 
-**Additional Android Integration Configuration:**
+**Additional Configuration for Android Integration:**
 
 * Configure Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting) to collect App startup events and network request data, as well as Android Native related events (page transitions, click events, Native network requests, WebView data).
-* Note that you need to configure the <<< custom_key.brand_name >>> Android Maven repository address simultaneously in Gradle for both Plugin and AAR. Refer to the [build.gradle](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/android/build.gradle) configuration in the example.
+* Note that it is necessary to configure <<< custom_key.brand_name >>> Android Maven repository address simultaneously in Gradle, both Plugin and AAR are required. For configuration details, see the example [build.gradle](https://github.com/GuanceCloud/datakit-react-native/blob/dev/example/android/build.gradle) configuration.
 
 Now in your code, you can use:
 
@@ -97,22 +97,22 @@ await FTMobileReactNative.sdkConfig(config);
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| datakitUrl | string | Yes | Datakit access URL address, example: [http://10.0.0.1:9529](http://10.0.0.1:9529/), default port 9529. Note: Devices with SDK installed must be able to access this address. **Note: Choose either datakit or dataway configuration** |
-| datawayUrl | string | Yes | Dataway access URL address, example: [http://10.0.0.1:9528](http://10.0.0.1:9528/), default port 9528. Note: Devices with SDK installed must be able to access this address. **Note: Choose either datakit or dataway configuration** |
-| clientToken | string | Yes | Authentication token, must be used together with datawayUrl |
+| datakitUrl | string | Yes | Datakit access URL address, example: [http://10.0.0.1:9529](http://10.0.0.1:9529/), default port 9529, note: the device where SDK is installed must be able to access this address. **Note: Choose one between datakit and dataway configurations** |
+| datawayUrl | string | Yes | Dataway access URL address, example: [http://10.0.0.1:9528](http://10.0.0.1:9528/), default port 9528, note: the device where SDK is installed must be able to access this address. **Note: Choose one between datakit and dataway configurations** |
+| clientToken | string | Yes | Authentication token, needs to be used together with datawayUrl |
 | debug | boolean | No | Set whether to allow printing logs, default `false` |
-| env | string | No | Environment configuration, default `prod`, any character, it is recommended to use single words, such as `test` etc. |
-| envType | enum EnvType | No | Environment configuration, default `EnvType.prod`. Note: Only one of env or envType needs to be configured |
-| service | string | No | Set the name of the business or service, affecting the service field data in Logs and RUM. Default: `df_rum_ios`, `df_rum_android` |
+| env | string | No | Environment configuration, default `prod`, any character, suggest using a single word, e.g., `test` etc. |
+| envType | enum EnvType | No | Environment configuration, default `EnvType.prod`. Note: Only one of env and envType needs to be configured |
+| service | string | No | Set the name of the associated business or service, affects the service field data in Logs and RUM. Default: `df_rum_ios`, `df_rum_android` |
 | autoSync | boolean | No | Whether to enable automatic synchronization. Default `true` |
-| syncPageSize | number | No | Set the number of entries for synchronization requests. Range [5,). Note: The larger the number of entries requested, the more computational resources data synchronization will consume |
+| syncPageSize | number | No | Set the number of entries per synchronization request. Range [5,]. Note: The larger the number of request entries, the more computing resources will be used for data synchronization |
 | syncSleepTime | number | No | Set the intermittent time for synchronization. Range [0,5000], default not set |
-| enableDataIntegerCompatible | boolean | No | It is recommended to enable when coexistence with web data is needed. This configuration is used to handle web data type storage compatibility issues. Versions 0.3.12 and later default to enabling |
-| globalContext | object | No | Add custom tags. Refer to the rules [here](../android/app-access.md#key-conflict) |
-| compressIntakeRequests | boolean | No | Set whether to compress synchronized data, default off |
-| enableLimitWithDbSize | boolean | No | Enable using db to limit data size, default 100MB, unit Byte, the larger the database, the greater the disk pressure, default not enabled.<br>**Note:** After enabling, Log configuration `logCacheLimitCount` and RUM configuration `rumCacheLimitCount` will become invalid. SDK versions 0.3.10 and above support this parameter |
-| dbCacheLimit | number | No | DB cache size limit. Range [30MB,), default 100MB, unit byte, SDK versions 0.3.10 and above support this parameter |
-| dbDiscardStrategy | string | No | Set the data discard rule in the database.<br>Discard strategy: `FTDBCacheDiscard.discard` discards new data (default), `FTDBCacheDiscard.discardOldest` discards old data. SDK versions 0.3.10 and above support this parameter |
+| enableDataIntegerCompatible | boolean | No | It is recommended to enable when coexisting with web data. This configuration is used to handle web data type storage compatibility issues. Default enabled in versions 0.3.12 and above |
+| globalContext | object | No | Add custom labels. Refer to [here](../android/app-access.md#key-conflict) for adding rules |
+| compressIntakeRequests | boolean | No | Set whether to compress synchronized data, default disabled |
+| enableLimitWithDbSize | boolean | No | Enable using db size limit, default 100MB, unit Byte, the larger the database, the greater the disk pressure, default not enabled.<br>**Note:** After enabling, the Log configuration `logCacheLimitCount` and RUM configuration `rumCacheLimitCount` will be invalid. Supported by SDK versions 0.3.10 and above |
+| dbCacheLimit | number | No | DB cache limit size. Range [30MB,), default 100MB, unit byte, supported by SDK versions 0.3.10 and above |
+| dbDiscardStrategy | string | No | Set the data discard rule in the database.<br>Discard strategy: `FTDBCacheDiscard.discard` discards new data (default), `FTDBCacheDiscard.discardOldest` discards old data. Supported by SDK versions 0.3.10 and above |
 
 ### RUM Configuration {#rum-config}
 
@@ -135,25 +135,25 @@ await FTReactNativeRUM.setConfig(rumConfig);
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| androidAppId | string | Yes | app_id, applied through the User Analysis console |
-| iOSAppId | string | Yes | app_id, applied through the User Analysis console |
-| sampleRate | number | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Scope: All View, Action, LongTask, Error data under the same session_id |
-| enableAutoTrackUserAction | boolean | No | Whether to automatically collect `React Native` component click events, enable to set actionName via `accessibilityLabel`, refer to [here](#rum-action) for more customization |
-| enableAutoTrackError | boolean | No | Whether to automatically collect `React Native` Errors |
-| enableNativeUserAction | boolean | No | Whether to perform `Native Action` tracing, native `Button` click events, app startup events, default is `false` |
-| enableNativeUserView | boolean | No | Whether to perform `Native View` automatic tracing, pure `React Native` applications are recommended to turn this off, default is `false` |
-| enableNativeUserResource | boolean | No | Whether to start `Native Resource` automatic tracing, since React-Native's network requests on iOS and Android use system APIs, enabling `enableNativeUserResource` allows all resource data to be collected. |
-| errorMonitorType |enum ErrorMonitorType | No | Supplementary error event monitoring types |
-| deviceMonitorType | enum DeviceMetricsMonitorType | No | Monitoring type for view performance                                           |
-| detectFrequency | enum DetectFrequency | No | Sampling period for view performance monitoring |
-| enableResourceHostIP | boolean | No | Whether to collect the IP address of the target domain name. Scope: Only affects the default collection when `enableNativeUserResource` is set to true. iOS: Supported under `>= iOS 13`. Android: Okhttp maintains an IP cache mechanism for the same domain, so only one generation occurs if the server IP does not change under the same `OkhttpClient`. |
-| globalContext | object | No | Add custom tags, used to distinguish user monitoring data sources. If tracking functionality is required, the parameter `key` should be `track_id` and `value` can be any number. Refer to [here](../android/app-access.md#key-conflict) for additional notes on adding rules |
-| enableTrackNativeCrash | boolean | No | Whether to collect `Native Crash` |
-| enableTrackNativeAppANR | boolean | No | Whether to collect `Native ANR`                                        |
-| enableTrackNativeFreeze | boolean | No | Whether to collect `Native Freeze` |
-| nativeFreezeDurationMs | number | No | Set the threshold for collecting `Native Freeze` delays, range [100,), unit milliseconds. iOS default 250ms, Android default 1000ms |
+| androidAppId | string | Yes | app_id, applied for in the user analysis monitoring console |
+| iOSAppId | string | Yes | app_id, applied for in the user analysis monitoring console |
+| sampleRate | number | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1. Scope: all View, Action, LongTask, Error data under the same session_id |
+| enableAutoTrackUserAction | boolean | No | Whether to automatically collect `React Native` component click events, after enabling, you can set actionName via `accessibilityLabel`, refer to [here](#rum-action) for more customization options |
+| enableAutoTrackError | boolean | No | Whether to automatically collect `React Native` Errors, default `false` |
+| enableNativeUserAction | boolean | No | Whether to track `Native Action`, such as native `Button` click events and app startup events, default `false` |
+| enableNativeUserView | boolean | No | Whether to perform `Native View` automatic tracking, it is recommended to turn off for pure `React Native` applications, default `false` |
+| enableNativeUserResource | boolean | No | Whether to start `Native Resource` automatic tracking, since React-Native network requests on iOS and Android ends use system APIs, after enabling `enableNativeUserResource`, all resource data can be collected together. Default `false` |
+| errorMonitorType |enum ErrorMonitorType | No | Set auxiliary monitoring information, add additional monitoring data to `RUM` Error data, `ErrorMonitorType.battery` for battery level, `ErrorMonitorType.memory` for memory usage, `ErrorMonitorType.cpu` for CPU usage, default not enabled |
+| deviceMonitorType | enum DeviceMetricsMonitorType | No | In the View lifecycle, add monitoring data, `DeviceMetricsMonitorType.battery` (only Android) monitors the highest output current situation on the current page, `DeviceMetricsMonitorType.memory` monitors the current application's memory usage, `DeviceMetricsMonitorType.cpu` monitors CPU jitter times, `DeviceMetricsMonitorType.fps` monitors screen frame rate, default not enabled                                           |
+| detectFrequency | enum DetectFrequency | No | Sampling frequency for view performance monitoring, default `DetectFrequency.normal` |
+| enableResourceHostIP | boolean | No | Whether to collect the IP address of the target domain name of the request. Scope: only affects the default collection when `enableNativeUserResource` is `true`. iOS: Supported under `>= iOS 13`. Android: Okhttp has an IP caching mechanism for the same domain, for the same `OkhttpClient`, it generates only once if the server IP does not change. |
+| globalContext | object | No | Add custom tags, used to distinguish user monitoring data sources, if tracking function is needed, then parameter `key` is `track_id`, `value` is any number, refer to [here](../android/app-access.md#key-conflict) for notes on adding rules |
+| enableTrackNativeCrash | boolean | No | Whether to enable monitoring of `Android Java Crash` and `OC/C/C++` crashes, default `false` |
+| enableTrackNativeAppANR | boolean | No | Whether to enable `Native ANR` monitoring, default `false` |
+| enableTrackNativeFreeze | boolean | No | Whether to collect `Native Freeze`, default `false` |
+| nativeFreezeDurationMs | number | No | Set the threshold for collecting `Native Freeze` stalls, range [100,), unit milliseconds. iOS default 250ms, Android default 1000ms |
 | rumDiscardStrategy | string | No | Discard strategy: `FTRUMCacheDiscard.discard` discards new data (default), `FTRUMCacheDiscard.discardOldest` discards old data |
-| rumCacheLimitCount | number | No | Maximum local cache count limit for RUM entries [10_000,), default 100_000 |
+| rumCacheLimitCount | number | No | Maximum number of local cached RUM entries [10_000,), default 100_000 |
 
 ### Log Configuration {#log-config}
 
@@ -168,12 +168,12 @@ await FTReactNativeLog.logConfig(logConfig);
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | sampleRate | number | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1.   |
-| enableLinkRumData | boolean | No | Whether to link with `RUM` |
-| enableCustomLog | boolean | No | Whether to enable custom logging |
+| enableLinkRumData | boolean | No | Whether to associate with `RUM` |
+| enableCustomLog | boolean | No | Whether to enable custom logs |
 | logLevelFilters | Array<FTLogStatus> | No | Log level filtering |
-| globalContext | NSDictionary | No | Add custom log tags, refer to the rules [here](../android/app-access.md#key-conflict) |
-| logCacheLimitCount | number | No | Maximum local cache count limit for log entries [1000,), larger logs mean higher disk caching pressure, default 5000 |
-| discardStrategy | enum FTLogCacheDiscard | No | Set the log discard rule when reaching the limit. Default `FTLogCacheDiscard.discard`, `discard` discards appended data, `discardOldest` discards old data |
+| globalContext | NSDictionary | No | Add custom log tags, refer to [here](../android/app-access.md#key-conflict) for adding rules |
+| logCacheLimitCount | number | No | Maximum number of locally cached log entries [1000,), the larger the log, the greater the disk cache pressure, default 5000 |
+| discardStrategy | enum FTLogCacheDiscard | No | Set the log discard rule when the log reaches the limit. Default `FTLogCacheDiscard.discard`, `discard` discards appended data, `discardOldest` discards old data |
 
 ### Trace Configuration {#trace-config}
 
@@ -188,8 +188,8 @@ await FTReactNativeTrace.setConfig(traceConfig);
 | --- | --- | --- | --- |
 | sampleRate | number | No | Sampling rate, range [0,1], 0 means no collection, 1 means full collection, default value is 1.  |
 | traceType | enum TraceType | No | Trace type, default `TraceType.ddTrace` |
-| enableLinkRUMData | boolean | No | Whether to link with `RUM` data, default `false` |
-| enableNativeAutoTrace | boolean | No | Whether to enable native network automatic tracing iOS NSURLSession ,Android OKhttp (Since `React Native`'s network requests on iOS and Android use system APIs, enabling `enableNativeAutoTrace` allows all `React Native` data to be traced.) |
+| enableLinkRUMData | boolean | No | Whether to associate with `RUM` data, default `false` |
+| enableNativeAutoTrace | boolean | No | Whether to enable automatic tracing of native network requests for iOS NSURLSession and Android OKhttp (since `React Native` network requests on iOS and Android ends use system APIs, after enabling `enableNativeAutoTrace`, all `React Native` data can be traced together.) |
 
 > **Note:**
 >
@@ -208,11 +208,11 @@ await FTReactNativeTrace.setConfig(traceConfig);
 > AppRegistry.registerComponent('main', () => App);
 > ```
 
-## RUM User Data Tracing
+## RUM User Data Tracking
 
 ### View
 
-When initializing the SDK [RUM Configuration](#rum-config), you can configure `enableNativeUserView` to enable automatic collection of `Native Views`, `React Native Views` since React Native provides extensive libraries to create screen navigation, manual collection is supported by default. You can use the following methods to manually start and stop views.
+When initializing the SDK [RUM Configuration](#rum-config), you can enable `enableNativeUserView` to automatically collect `Native Views`. Since `React Native Views` provide extensive libraries to create screen navigation, manual collection is supported by default. You can use the following methods to manually start and stop views.
 
 #### Custom View
 
@@ -294,7 +294,7 @@ Add the [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/dataki
 
 * Method One:
 
-  If you use `createNativeStackNavigator();` to create a native navigation stack, it is recommended to add `screenListeners` to start collection, allowing page loading durations to be recorded, as shown below:
+  If you use `createNativeStackNavigator();` to create a native navigation stack, it is recommended to add `screenListeners` to start collection, which allows you to track page loading durations, as follows:
 
 ```typescript
   import {FTRumReactNavigationTracking} from './FTRumReactNavigationTracking';
@@ -310,7 +310,7 @@ Add the [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/dataki
 
 * Method Two:
 
-  If `createNativeStackNavigator();` is not used, you need to add the automatic collection method inside the `NavigationContainer` component, as follows:
+  If you do not use `createNativeStackNavigator();`, you need to add the automatic collection method in the `NavigationContainer` component, as follows:
 
   **Note: This method cannot collect page loading durations**
   
@@ -330,11 +330,11 @@ Add the [FTRumReactNavigationTracking.tsx](https://github.com/GuanceCloud/dataki
    </NavigationContainer>
 ```
 
-Refer to the [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example) for specific usage examples.
+For specific usage examples, refer to [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example).
 
 ##### Expo Router
 
-If you are using [Expo Router](https://expo.github.io/router/docs/), add the following method in the app/_layout.js file for data collection.
+If you use [Expo Router](https://expo.github.io/router/docs/), add the following method in the app/_layout.js file to collect data.
 
 ```js
 import { useEffect } from 'react';
@@ -351,22 +351,22 @@ export default function Layout() {
        FTReactNativeRUM.startView(viewKey);
     }, [viewKey, pathname]);
 
-    // Export all child routes in the most basic way.
+    // Export all the child routes in the most basic way.
     return <Slot />;
 }
 ```
 
 ### Action {#rum-action}
 
-When initializing the SDK [RUM Configuration](#rum-config), configure `enableAutoTrackUserAction` and `enableNativeUserAction` to enable automatic collection, or manually add through the following methods.
+When initializing the SDK [RUM Configuration](#rum-config), configure `enableAutoTrackUserAction` and `enableNativeUserAction` to enable automatic collection, or use the following methods for manual addition.
 
 #### Usage Method
 
 ```typescript
 /**
- * Start RUM Action. RUM binds possible Resource, Error, LongTask events triggered by this Action.
- * Avoid multiple additions within 0.1 seconds. Only one Action can be associated with the same View at the same time, 
- * while the previous Action is not ended, the new Action will be discarded. Adding Actions with `addAction` method does not affect each other.
+ * Start RUM Action. RUM binds the possible Resource, Error, LongTask events triggered by this Action.
+ * Avoid multiple additions within 0.1 seconds. Only one Action can be associated with the same View at a time,
+ * and the new Action will be discarded if the previous Action has not ended. Adding Actions with `addAction` method does not affect each other.
  * @param actionName action name
  * @param actionType action type
  * @param property event context (optional)
@@ -374,7 +374,7 @@ When initializing the SDK [RUM Configuration](#rum-config), configure `enableAut
  */
 startAction(actionName:string,actionType:string,property?:object): Promise<void>;
  /**
-  * Add Action event. Such data cannot associate Error, Resource, LongTask data, there is no discard logic.
+  * Add Action event. Such data cannot be associated with Error, Resource, LongTask data, and there is no discard logic.
   * @param actionName action name
   * @param actionType action type
   * @param property event context (optional)
@@ -395,9 +395,9 @@ FTReactNativeRUM.addAction('actionName','actionType',{'custom.foo': 'something'}
 
 **More Customized Collection Operations**
 
-After enabling `enableAutoTrackUserAction`, the SDK automatically collects click operations for components with the `onPress` attribute. If you want to perform some customized actions based on automatic tracking, the SDK supports the following operations:
+After enabling `enableAutoTrackUserAction`, the SDK will automatically collect click operations of components with the `onPress` attribute. If you want to perform some customized operations on top of automatic tracking, the SDK supports the following:
 
-* Customize the `actionName` for a component's click event
+* Customize the `actionName` of a certain component's click event
 
   Set through the `accessibilityLabel` attribute
 
@@ -410,9 +410,9 @@ After enabling `enableAutoTrackUserAction`, the SDK automatically collects click
    />
 ```
 
-* Do not collect click events for a certain component
+* Do not collect the click event of a certain component
 
-  Can be set by adding the `ft-enable-track` custom parameter, setting its value to `false`
+  Can be set by adding the `ft-enable-track` custom parameter, set value to `false`
 
 ```typescript
   <Button title="Action Click" 
@@ -425,7 +425,7 @@ After enabling `enableAutoTrackUserAction`, the SDK automatically collects click
 
 * Add extra attributes to the click event of a certain component
 
-  Can be set by adding the `ft-extra-property` custom parameter, requiring **JSON string value**
+  Can be set by adding the `ft-extra-property` custom parameter, requiring **the value to be a JSON string**
 
 ```typescript
   <Button title="Action 添加额外属性"
@@ -438,7 +438,7 @@ After enabling `enableAutoTrackUserAction`, the SDK automatically collects click
 
 ### Error
 
-When initializing the SDK [RUM Configuration](#rum-config), configure `enableAutoTrackError` to enable automatic collection, or manually add through the following methods.
+When initializing the SDK [RUM Configuration](#rum-config), configure `enableAutoTrackError` to enable automatic collection, or use the following methods for manual addition.
 
 #### Usage Method
 
@@ -446,7 +446,7 @@ When initializing the SDK [RUM Configuration](#rum-config), configure `enableAut
 /**
  * Exception capture and log collection.
  * @param stack stack log
- * @param message error information
+ * @param message error message
  * @param property event context (optional)
  * @returns a Promise.
  */
@@ -455,7 +455,7 @@ addError(stack: string, message: string,property?:object): Promise<void>;
  * Exception capture and log collection.
  * @param type error type
  * @param stack stack log
- * @param message error information
+ * @param message error message
  * @param property event context (optional)
  * @returns a Promise.
  */
@@ -476,7 +476,7 @@ FTReactNativeRUM.addErrorWithType("custom_error", "error stack", "error message"
 
 ### Resource
 
-When initializing the SDK [RUM Configuration](#rum-config), configure `enableNativeUserResource` to enable automatic collection, or manually add through the following methods.
+When initializing the SDK [RUM Configuration](#rum-config), configure `enableNativeUserResource` to enable automatic collection, or use the following methods for manual addition.
 
 #### Usage Method
 
@@ -544,7 +544,7 @@ async getHttp(url:string){
 
 ## Logger Log Printing
 
-> Currently, log content is limited to 30 KB, exceeding characters will be truncated.
+> Currently, log content is limited to 30 KB, and characters exceeding this limit will be truncated.
 ### Usage Method
 
 ```typescript
@@ -577,9 +577,9 @@ FTReactNativeLog.logging("info log content","info");
 | FTLogStatus.critical | Critical |
 | FTLogStatus.ok | Recovery |
 
-## Tracer Network Trace Tracking
+## Tracer Network Link Tracing
 
-When initializing the SDK [Trace Configuration](#trace-config), you can enable automatic network trace tracking, also supporting user-defined collection. The usage method and examples are as follows:
+When initializing the SDK [Trace Configuration](#trace-config), automatic network link tracing can be enabled, and user-defined collection is also supported. The usage method and example are as follows:
 
 ### Usage Method
 
@@ -620,7 +620,7 @@ async getHttp(url:string){
   }
 ```
 
-## User Information Binding and Unbinding
+## Binding and Unbinding User Information
 
 ### Usage Method
 
@@ -662,7 +662,7 @@ FTMobileReactNative.bindRUMUserData('react-native-user','uesr_name')
 FTMobileReactNative.unbindRUMUserData()
 ```
 
-## Close SDK
+## Closing the SDK
 
 Use `FTMobileReactNative` to close the SDK.
 
@@ -670,7 +670,7 @@ Use `FTMobileReactNative` to close the SDK.
 
 ```typescript
 /**
- * Shut down running objects within the SDK.
+ * Close running objects inside the SDK
  */
 shutDown():Promise<void>
 ```
@@ -681,9 +681,9 @@ shutDown():Promise<void>
 FTMobileReactNative.shutDown();
 ```
 
-## Clear SDK Cache Data
+## Clearing Cached Data in the SDK
 
-Use `FTMobileReactNative` to clear uncached data that has not been uploaded.
+Use `FTMobileReactNative` to clear uncached data that has not been reported.
 
 ### Usage Method
 
@@ -703,17 +703,17 @@ clearAllData():Promise<void>
 FTMobileReactNative.clearAllData();
 ```
 
-## Actively Synchronize Data
+## Active Data Synchronization
 
-When the configuration `FTMobileConfig.autoSync` is set to `true`, no additional operations are required; the SDK will automatically synchronize data.
+When `FTMobileConfig.autoSync` is configured as `true`, no additional actions are required; the SDK will synchronize data automatically.
 
-When the configuration `FTMobileConfig.autoSync` is set to `false`, you need to actively trigger the data synchronization method to synchronize data.
+When `FTMobileConfig.autoSync` is configured as `false`, you need to actively trigger the data synchronization method for data synchronization.
 
 ### Usage Method
 
 ```typescript
 /**
- * Actively synchronize data, when the configuration `FTMobileConfig.autoSync=false`, you need to actively trigger this method to synchronize data.
+ * Actively synchronize data. When `FTMobileConfig.autoSync=false`, this method needs to be triggered actively for data synchronization.
  * @returns a Promise.
  */
 flushSyncData():Promise<void>;
@@ -725,25 +725,25 @@ flushSyncData():Promise<void>;
 FTMobileReactNative.flushSyncData();
 ```
 
-## Add Custom Tags {#user-global-context}
+## Adding Custom Tags {#user-global-context}
 
 ### Usage Method
 
 ```typescript
 /**
- * Add custom global parameters. Applies to RUM, Log data.
+ * Add custom global parameters. Applied to RUM, Log data
  * @param context Custom global parameters.
  * @returns a Promise.
  */
 appendGlobalContext(context:object):Promise<void>;
 /**
- * Add custom RUM global parameters. Applies to RUM data.
+ * Add custom RUM global parameters. Applied to RUM data
  * @param context Custom RUM global parameters.
  * @returns a Promise.
  */
 appendRUMGlobalContext(context:object):Promise<void>;
 /**
- * Add custom RUM, Log global parameters. Applies to Log data.
+ * Add custom RUM, Log global parameters. Applied to Log data
  * @param context Custom Log global parameters.
  * @returns a Promise.
  */
@@ -760,19 +760,19 @@ FTMobileReactNative.appendRUMGlobalContext({'rum_key':'rum_value'});
 FTMobileReactNative.appendLogGlobalContext({'log_key':'log_value'});
 ```
 
-## Symbol File Upload {#source_map}
+## Uploading Symbol Files {#source_map}
 
 ### Automatic Packaging of Symbol Files
 
-#### Add Automatic Symbol File Packaging Script
+#### Adding Automatic Symbol File Packaging Script
 
-Script tool: [cloudcare-react-native-mobile-cli](https://github.com/GuanceCloud/datakit-react-native/blob/dev/cloudcare-react-native-mobile-cli-v1.0.0.tgz)
+Script Tool: [cloudcare-react-native-mobile-cli](https://github.com/GuanceCloud/datakit-react-native/blob/dev/cloudcare-react-native-mobile-cli-v1.0.0.tgz)
 
-`cloudcare-react-native-mobile-cli` is a script tool that helps configure automatic acquisition of React Native and Native sourcemaps during release builds, packaging them into zip files.
+`cloudcare-react-native-mobile-cli` is a script tool that helps configure automatic acquisition of React Native and Native sourcemaps during release builds and packages them into zip files.
 
-Add it locally to `package.json` development dependencies.
+Use the local file method to add it to the `package.json` development dependencies 
 
-For example: Place `cloudcare-react-native-mobile-cli.tgz` in the React Native project directory.
+For example: Place `cloudcare-react-native-mobile-cli.tgz` in the React Native project directory
 
 ```json
  "devDependencies": {
@@ -780,11 +780,11 @@ For example: Place `cloudcare-react-native-mobile-cli.tgz` in the React Native p
   }
 ```
 
-Execute `yarn install` after adding.
+Execute `yarn install` after adding
 
 **Note: Android environment requires adding Gradle Plugin [ft-plugin](../android/app-access.md#gradle-setting), version requirement: >=1.3.4**
 
-Add `Plugin` usage and parameter settings in the main module `app`'s `build.gradle` file.
+Add the `Plugin` usage and parameter settings in the `build.gradle` file of the main module `app` of the project
 
 ```java
 apply plugin: 'ft-plugin'
@@ -796,9 +796,9 @@ FTExt {
 }
 ```
 
-#### Execute Configuration Commands
+#### Execute Configuration Command
 
-Run the `yarn ft-cli setup` command in the React Native project directory to automatically acquire React Native and Native sourcemaps during release builds and package them into zip files. The following logs indicate successful setup.
+In the React Native project directory, execute the terminal command `yarn ft-cli setup` to automatically acquire React Native and Native sourcemaps during release builds and package them as zip files. The following logs indicate successful settings.
 
 ```sh
 ➜  example git:(test-cli) ✗ yarn ft-cli setup
@@ -818,13 +818,13 @@ Finished running command Setup to automatically get react-native and native sour
 ✨  Done in 1.00s.
 ```
 
-**Zip file location after release build:**
+**After performing the release build, the zip file packaging address:**
 
 iOS: Inside the iOS folder (./ios/sourcemap.zip)
 
-Android: RN project directory (./sourcemap.zip)
+Android: RN project directory (./sourcemap.zip) 
 
-### Manual Symbol File Packaging
+### Manual Packaging of Symbol Files
 
 [React Native Zip Package Packaging Instructions](../sourcemap/set-sourcemap.md/#sourcemap-zip)
 
@@ -834,13 +834,13 @@ Android: RN project directory (./sourcemap.zip)
 
 ## WebView Data Monitoring
 
-To monitor WebView data, integrate the [Web Monitoring SDK](../web/app-access.md) in the pages accessed by WebView.
+To monitor WebView data, integrate the [Web Monitoring SDK](../web/app-access.md) on the pages accessed by WebView.
 
 ## Custom Tag Usage Examples {#track}
 
-### Compile-time Configuration Method
+### Compilation Configuration Method
 
-1. Use `react-native-config` to configure multi-environments, setting corresponding custom tag values in different environments.
+1. Use `react-native-config` to configure multiple environments, setting corresponding custom tag values in different environments.
 
 ```typescript
 let rumConfig: FTRUMConfig = {
@@ -859,9 +859,9 @@ let rumConfig: FTRUMConfig = {
  await FTReactNativeRUM.setConfig(rumConfig); 
 ```
 
-### Runtime File Read/Write Method
+### Runtime Read/Write File Method
 
-1. Through persistent data methods, such as `AsyncStorage`, obtain stored custom tags when initializing the SDK.
+1. Through data persistence methods, such as `AsyncStorage`, obtain stored custom tags when initializing the SDK.
 
 ```typescript
  let rumConfig: FTRUMConfig = {
@@ -878,9 +878,9 @@ let rumConfig: FTRUMConfig = {
  await new Promise(function(resolve) {
        AsyncStorage.getItem("track_id",(error,result)=>{
         if (result === null){
-          console.log('获取失败' + error);
+          console.log('Failed to retrieve' + error);
         }else {
-          console.log('获取成功' + result);
+          console.log('Retrieved successfully' + result);
           if( result != undefined){
             rumConfig.globalContext = {"track_id":result};
           }
@@ -890,26 +890,26 @@ let rumConfig: FTRUMConfig = {
      });
 ```
 
-2. Add or modify custom tags to the file at any point.
+2. Add or change custom tags to the file at any point.
 
 ```typescript
 AsyncStorage.setItem("track_id",valueString,(error)=>{
     if (error){
-        console.log('存储失败' + error);
+        console.log('Failed to store' + error);
     }else {
-        console.log('存储成功');
+        console.log('Stored successfully');
     }
 })
 ```
 
-3. Restart the application to take effect.
+3. Finally, restart the application to take effect.
 
 ### SDK Runtime Addition
 
-After the SDK initialization is completed, use `FTReactNativeRUM.appendGlobalContext(globalContext)`、`FTReactNativeRUM.appendRUMGlobalContext(globalContext)`、`FTReactNativeRUM.appendLogGlobalContext(globalContext)` to dynamically add tags, which will take effect immediately. Subsequently, RUM or Log data reported will automatically include tag data. This usage method is suitable for scenarios where data is delayed, such as tag data needing network requests.
+After the SDK initialization is completed, use `FTReactNativeRUM.appendGlobalContext(globalContext)`、`FTReactNativeRUM.appendRUMGlobalContext(globalContext)`、`FTReactNativeRUM.appendLogGlobalContext(globalContext)` to dynamically add tags. After setting, it will take effect immediately. Subsequently, the data reported by RUM or Log will automatically add tag data. This usage method is suitable for scenarios where data needs to be obtained with delay, such as when tag data needs to be obtained via network requests.
 
 ```typescript
-//SDK Initialization pseudocode, obtain
+//SDK initialization pseudocode, retrieve
 FTMobileReactNative.sdkConfig(config);
 
 function getInfoFromNet(info:Info){
@@ -920,31 +920,31 @@ function getInfoFromNet(info:Info){
 
 ## Native and React Native Hybrid Development {#hybrid}
 
-If your project is natively developed with some pages or business processes implemented using React Native, the installation and initialization configuration method of the SDK is as follows:
+If your project is natively developed and some pages or business processes are implemented using React Native, follow these steps for SDK installation and initialization configuration:
 
-* Installation: [Installation](#install) remains unchanged
+* Installation: [Installation](#install) method remains unchanged
 
-* Initialization: Refer to [iOS SDK Initialization Configuration](../ios/app-access.md#init) and [Android SDK Initialization Configuration](../android/app-access.md#init) for initialization configuration in the native project.
+* Initialization: Refer to [iOS SDK Initialization Configuration](../ios/app-access.md#init) and [Android SDK Initialization Configuration](../android/app-access.md#init) to initialize in the native project
 
 * React Native Configuration:
 
-    > RN SDK 0.3.11 supports
+    > RN SDK 0.3.11 support
 
-    No initialization configuration is required on the React Native side. If you need to automatically collect `React Native Error` and `React Native Action`, proceed as follows:
+    There is no need for initialization configuration on the React Native side. If you need to automatically collect `React Native Error` and `React Native Action`, follow the methods below:
 
     ```typescript
     import {FTRumActionTracking,FTRumErrorTracking} from '@cloudcare/react-native-mobile';
-    //Enable automatic collection of react-native control clicks
+    // Enable automatic collection of react-native component clicks
     FTRumActionTracking.startTracking();
-    //Enable automatic collection of react-native Errors
+    // Enable automatic collection of react-native Errors
     FTRumErrorTracking.startTracking();
     ```
 
 * Native Project Configuration:
 
-    > RN SDK 0.3.11 supports
+    > RN SDK 0.3.11 support
 
-    When enabling RUM Resource automatic collection, it is necessary to filter out React Native symbolization calls and Expo log calls that occur only in the development environment. Method as follows:
+    When enabling RUM Resource automatic collection, you need to filter out React Native symbolization calls and Expo log calls that only occur in the development environment. The method is as follows:
 
     **iOS**
 
@@ -960,7 +960,7 @@ If your project is natively developed with some pages or business processes impl
           rumConfig.resourceUrlHandler = ^BOOL(NSURL * _Nonnull url) {
             return [FTReactNativeUtils filterBlackResource:url];
           };
-        #endif```objective-c
+        #endif
         ```
     === "Swift"
   
@@ -1011,11 +1011,11 @@ If your project is natively developed with some pages or business processes impl
             }
         ```
 
-Refer to the [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example) for specific usage examples.
+For specific usage examples, refer to [example](https://github.com/GuanceCloud/datakit-react-native/tree/dev/example).
 
 ## Publish Package Related Configurations
 ### Android
-* [Android R8/Prograd Configuration](../android/app-access.md#r8_proguard)
+* [Android R8/Proguard Configurations](../android/app-access.md#r8_proguard)
 * [Android Symbol File Upload](../android/app-access.md#source_map)
 
 ### iOS

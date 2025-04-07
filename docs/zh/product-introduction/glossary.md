@@ -14,6 +14,8 @@
 | [DataKit](../datakit/index.md)       | DataKit 是<<< custom_key.brand_name >>>的实时数据采集 Agent，支持上百种数据采集，DataKit 采集数据后会先发送到 DataWay 数据网关，再经由 DataWay 上报到中心进行存储和分析。DataKit 需部署到用户自己的 IT 环境中，支持多个操作系统。<br/>默认采集频率：5分钟 |
 | [Func](../dataflux-func/index.md) | Func 即 DataFlux Func，是<<< custom_key.brand_name >>>的扩展编程平台，可用于函数开发、管理和执行。简单易用、只需编写代码并发布，自动为函数生成 HTTP API 接口，官方内置各种开箱即用的脚本库，轻松供<<< custom_key.brand_name >>>调用。 |
 
+<<<% if custom_key.brand_key == 'guance' %>>>
+
 ## 存储引擎套件 {#storage-suite}
 
 
@@ -30,6 +32,8 @@
 关系架构图：
 
 ![](img/glossary.png)
+
+<<<% endif %>>>
 
 ## 功能
 

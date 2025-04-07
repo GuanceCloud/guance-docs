@@ -1,73 +1,16 @@
 {
-  "real-user-monitoring/session-replay/mobile/android/index.md": {
-    "hash": "efa42d18afd74d251413c9bab667064801eee8739898e7f340fd3c7be5f7ed6b",
-    "last_translated": "2025-03-29T20:40:03.919044",
-    "translation_time": 66.56,
+  "product-introduction/glossary.md": {
+    "hash": "b2bce96d027166f6e4554d79ac0a5b0834cca7093c01c63d85c66375a9899723",
+    "last_translated": "2025-04-07T18:07:04.320597",
+    "translation_time": 130.41,
     "usage": {
-      "prompt_tokens": 3488,
-      "completion_tokens": 1833,
-      "total_tokens": 5321,
-      "prompt_price": 0.0027904,
-      "completion_price": 0.003666,
-      "total_price": 0.0064564,
+      "prompt_tokens": 4500,
+      "completion_tokens": 2827,
+      "total_tokens": 7327,
+      "prompt_price": 0.0036,
+      "completion_price": 0.005654,
+      "total_price": 0.009254,
       "currency": "USD"
-    }
-  },
-  "real-user-monitoring/session-replay/mobile/ios/index.md": {
-    "hash": "62aca0f73cda3a119b03eb446a592adc9dd596209edb6425de56b06a515e417c",
-    "last_translated": "2025-03-29T20:40:11.519632",
-    "translation_time": 74.15,
-    "usage": {
-      "prompt_tokens": 3520,
-      "completion_tokens": 1848,
-      "total_tokens": 5368,
-      "prompt_price": 0.002816,
-      "completion_price": 0.003696,
-      "total_price": 0.006512,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/web/app-access.md": {
-    "hash": "12d9f55b88b643282ca90daddedc800fc0cc7ee8ae81c45e1123bdc972a37768",
-    "last_translated": "2025-03-29T20:40:41.264222",
-    "translation_time": 103.9,
-    "usage": {
-      "prompt_tokens": 4911,
-      "completion_tokens": 3079,
-      "total_tokens": 7990,
-      "prompt_price": 0.0039288,
-      "completion_price": 0.006158,
-      "total_price": 0.0100868,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/uni-app/app-access.md": {
-    "hash": "7a0a119dc0668cc7a7b77a4b62e912c91bbb7d4dcb5237d67aa46f703fc4fb02",
-    "last_translated": "2025-03-29T20:44:42.301225",
-    "translation_time": 344.93,
-    "usage": {
-      "prompt_tokens": 10011,
-      "completion_tokens": 7886,
-      "total_tokens": 17897,
-      "prompt_price": 0.0080088,
-      "completion_price": 0.015772,
-      "total_price": 0.0237808,
-      "currency": "USD"
-    }
-  },
-  "real-user-monitoring/android/app-access.md": {
-    "hash": "aa8da429e92677fe4fd3c8eeb3072da5bf74d813721a6ab15adc99987f80ad75",
-    "last_translated": "2025-03-29T20:51:29.886430",
-    "translation_time": 752.51,
-    "usage": {
-      "prompt_tokens": 47873,
-      "completion_tokens": 16383,
-      "total_tokens": 64256,
-      "prompt_price": 0.038298399999999996,
-      "completion_price": 0.032766,
-      "total_price": 0.0710644,
-      "currency": "USD",
-      "exceed_token_limit": true
     }
   }
 }
