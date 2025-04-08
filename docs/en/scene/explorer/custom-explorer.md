@@ -1,56 +1,30 @@
-# Quick Setup of Custom Explorer
+# Quickly Build a Custom Explorer
 ---
 
-The Explorer, as an important tool for observability, supports us in quickly locating issues through search, filtering, and other methods. <<< custom_key.brand_name >>>, based on the existing Explorer, **supports creating custom Explorers within scenes**.
 
-Custom Explorers adopt a brand-new unified layout, responsive configuration mode, and more scientific data association settings. You can experience the following features in a custom Explorer:
+## Start Creating
 
-- Multiple custom chart display settings;
-- Custom quick filter fields;
-- Custom default columns for list display;
-- Binding with associated built-in views.
+1. Enter the scenario > Explorer > Create an explorer;
+2. Configure charts: In edit mode, you can add up to 3 statistical chart types;
+3. Configure quick filter fields: Click the quick filter edit button to add fields and aliases;
+4. Configure data list display fields: Click the list edit button to update default display fields and aliases.
+5. Complete editing;
+6. After creation, you can view it in the explorer list.
 
-## Getting Started
 
-1. Navigate to the **Scene > Explorer** page, click **Create**, and enter the creation page.
+???+ warning "Note"
 
-**Note**: If you set indexes under **Logs > Index**, you can choose different log contents corresponding to various indexes in the custom Explorer.
+    If [log indices](../../logs/multi-index/index.md) have been set, you can choose log content from different indices in the custom explorer.
 
-<img src="../../img/1111.png" width="60%" >
 
-> For more details, refer to [Log Index](../../logs/multi-index/index.md).
 
-2. Configure charts:
+## More Reading
 
-In edit mode, you can add up to 3 statistical charts.
-
-![](../img/2222.gif)
-
-3. Configure quick filter fields:
-
-Click the **Quick Filter** edit button to add fields and aliases.
-
-![](../img/3333.gif)
-
-4. Configure data list display fields:
-
-Click the **List** edit button to update the default display fields and aliases.
-
-![](../img/4444.gif)
-
-5. After creation, view your Explorer from the Explorer list.
-
-In non-edit mode, hover over the **Data Range** to view all filter conditions.
-
-<img src="../../img/range.png" width="60%" >
-
-## Further Reading
-
-<font size=3>
+<font size=2>
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Customize Your Viewing Needs with Custom Log Explorer</font>](./index.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; Custom Log Explorer</font>](./index.md)
 
 
 </div>

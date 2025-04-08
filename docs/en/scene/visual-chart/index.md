@@ -1,8 +1,7 @@
 # Visualization Charts
-
 ---
 
-<<< custom_key.brand_name >>> provides over 20 standardized visualization charts, allowing you to easily customize dashboards according to your business needs. Additionally, using advanced features such as view variables can achieve data interactivity between charts, ensuring personalized and professional data presentation.
+<<< custom_key.brand_name >>> is equipped with over 20 standardized visualization charts, allowing you to easily customize dashboards according to business needs. At the same time, by using advanced features such as view variables, data linkage between charts can be achieved, ensuring personalization and professionalism in data presentation.
 
 <!--
 
@@ -16,7 +15,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Summary Chart**</font>](overview-chart.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Overview Chart**</font>](overview-chart.md)
 
 </div>
 
@@ -63,7 +62,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Top List**</font>](leaderboard.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Leaderboard**</font>](leaderboard.md)
 
 </div>
 
@@ -113,7 +112,7 @@
 
 <div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Image**</font>](picture.md)
+- [<font color="coral"> :fontawesome-solid-arrow-right-long: &nbsp; **Picture**</font>](picture.md)
 
 </div>
 
@@ -170,17 +169,17 @@
 
 |                   <font color=coral size=3>:fontawesome-regular-circle-down: &nbsp;**Chart Details**</font>                 |                |                |   |   |
 | :-------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: |
-| [Time Series Chart](timeseries-chart.md){ .md-button .md-button--primary } | [Summary Chart](overview-chart.md){ .md-button .md-button--primary } | [Table Chart](table-chart.md){ .md-button .md-button--primary } |[Treemap](treemap.md){ .md-button .md-button--primary } |[Funnel Chart](funnel-chart.md){ .md-button .md-button--primary } |
-| [Pie Chart](pie-chart.md){ .md-button .md-button--primary } | [Bar Chart](bar-chart.md){ .md-button .md-button--primary } | [Histogram](histogram.md){ .md-button .md-button--primary } |[SLO](slo-chart.md){ .md-button .md-button--primary } |[Top List](leaderboard.md){ .md-button .md-button--primary } |
+| [Time Series Chart](timeseries-chart.md){ .md-button .md-button--primary } | [Overview Chart](overview-chart.md){ .md-button .md-button--primary } | [Table Chart](table-chart.md){ .md-button .md-button--primary } |[Treemap](treemap.md){ .md-button .md-button--primary } |[Funnel Chart](funnel-chart.md){ .md-button .md-button--primary } |
+| [Pie Chart](pie-chart.md){ .md-button .md-button--primary } | [Bar Chart](bar-chart.md){ .md-button .md-button--primary } | [Histogram](histogram.md){ .md-button .md-button--primary } |[SLO](slo-chart.md){ .md-button .md-button--primary } |[Leaderboard](leaderboard.md){ .md-button .md-button--primary } |
 | [Dashboard](dashboard/index.md){ .md-button .md-button--primary } | [Scatter Plot](scatter-plot.md){ .md-button .md-button--primary } | [Bubble Chart](bubble-chart.md){ .md-button .md-button--primary } |[China Map](china-map.md){ .md-button .md-button--primary } |[World Map](world-map.md){ .md-button .md-button--primary } |
-| [Cellular Map](cellular-map.md){ .md-button .md-button--primary } | [Sankey Diagram](sankey.md){ .md-button .md-button--primary } | [Text](text.md){ .md-button .md-button--primary } |[Image](picture.md){ .md-button .md-button--primary } |[Video](video.md){ .md-button .md-button--primary } |
+| [Cellular Map](cellular-map.md){ .md-button .md-button--primary } | [Sankey Diagram](sankey.md){ .md-button .md-button--primary } | [Text](text.md){ .md-button .md-button--primary } |[Picture](picture.md){ .md-button .md-button--primary } |[Video](video.md){ .md-button .md-button--primary } |
 | [Command Panel](command-panel.md){ .md-button .md-button--primary } | [IFrame](iframe.md){ .md-button .md-button--primary } | [Log Stream Chart](log-stream.md){ .md-button .md-button--primary } |[Object List Chart](object-list.md){ .md-button .md-button--primary } |[Alert Statistics Chart](alert-statistics.md){ .md-button .md-button--primary } | 
 | [Topology Map](topology-map.md){ .md-button .md-button--primary } |  |  |  |  |
 
 -->
 
 
-## Adding a Chart
+## Adding Charts
 
 1. Enter the dashboard page;
 2. Start adding a chart;
@@ -189,79 +188,72 @@
 
 <img src="../img/add_chart.png" width="60%" >
 
-<img src="../img/add_chart-1.png" width="60%" >
-
-<img src="../img/add_chart-2.png" width="60%" >
-
-<img src="../img/add_chart-3.png" width="60%" >
 
 ## Chart Types {#type}
 
-:material-numeric-1-circle: **Common Charts**
+1. **Common Charts**
 
-- [Time Series Chart](./timeseries-chart.md): Used to display data trends over time
+- [Time Series Chart](./timeseries-chart.md): Displays trends of data over time.
     - Time series line chart
     - Time series bar chart
     - Time series area chart
 
-- [Grouped Bar Chart](./bar-chart.md): Used to show comparisons between items
+- [Grouped Bar Chart](./bar-chart.md): Used to show comparisons between items.
     - Grouped bar chart
-    - Grouped bar chart (horizontal)
+    - Grouped column chart
 
-- [Top List](./leaderboard.md): Used to display ranking of grouped data over a period of time
+- [Leaderboard](./leaderboard.md): Displays rankings of grouped data over a period of time.
 
-- [Pie Chart](./pie-chart.md): Used to show the proportion of data
+- [Pie Chart](./pie-chart.md): Displays the proportion of data.
     - Pie chart
     - Donut chart
     - Rose chart
 
-- [Summary Chart](./overview-chart.md): Used to display a key value or metric
+- [Overview Chart](./overview-chart.md): Displays a key value or metric.
 
 
-:material-numeric-3-circle: [**Table Chart**](./table-chart.md)
+3. [**Table Chart**](./table-chart.md)
 
-- Grouped table chart: Displays metrics for different categories or groups
-- Time series table chart: Displays data trends over time
-
-
-:material-numeric-4-circle: **Maps**
-
-- [China Map](./china-map.md): Used to display distribution across different geographic locations, with colors indicating data size
-- [World Map](./world-map.md): Used to display distribution across different geographic locations, with colors indicating data size
-
-:material-numeric-5-circle: **Scatter Plots**
-
-- [Scatter Plot](./scatter-plot.md): Displays data as points to show relationships between two variables and their impact
-- [Bubble Chart](./bubble-chart.md): Displays relationships between three variables, with bubble size indicating the third variable
+- Grouped table chart: Displays metrics for different categories or groups.
+- Time series table chart: Displays trends of data changing over time.
 
 
-:material-numeric-6-circle: **Distribution Charts**
+4. **Maps**
 
-- [Cellular Map](./cellular-map.md): Displays distribution of multiple datasets, with color intensity indicating data size
-- [Topology Map](./topology-map.md): Shows relationships and relative positions between different entities
-- [Treemap](./treemap.md): Displays proportions of different categories, effectively utilizing space to show more data compared to pie charts
-- [Histogram](./histogram.md): Also known as a frequency distribution chart, it shows data distribution through bars of varying heights
-- [Heatmap](./heatmap_scene.md): Uses color gradients to represent data density or intensity, typically showing different numerical ranges
+- [China Map](./china-map.md): Displays distribution across different geographical locations, indicating data size through color intensity.
+- [World Map](./world-map.md): Displays distribution across different geographical locations, indicating data size through color.
 
+5. **Scatter Plots**
 
-:material-numeric-7-circle: **Other Charts**
+- [Scatter Plot](./scatter-plot.md): Displays data as points, showing relationships and influence between two variables.
+- [Bubble Chart](./bubble-chart.md): Displays relationships and influence between three variables, representing the third variable by bubble size.
 
-- [SLO](./slo-chart.md): Requires selecting a pre-configured SLO monitoring to display related performance data
-- [Dashboard](./dashboard.md): Used to display progress or completion status of metrics
-- [Funnel Chart](./funnel-chart.md): Used to display conversion rates in business processes
-- [Sankey Diagram](./sankey.md): A special type of flowchart used to show data or energy flow
+6. **Distribution Charts**
 
-:material-numeric-8-circle: **Advanced Charts**
+- [Cellular Map](./cellular-map.md): Displays distributions of multiple datasets, indicating data size through block color intensity.
+- [Topology Map](./topology-map.md): Displays relationships and relative positions between different entities.
+- [Treemap](./treemap.md): Displays proportions of different categories, effectively utilizing space compared to pie charts, and can display more data.
+- [Histogram](./histogram.md): Also known as a quality distribution chart, represents data distribution with a series of bars of varying heights.
+- [Heatmap](./heatmap_scene.md): Represents data density or intensity through color changes, typically using gradient colors to indicate different numerical ranges.
 
-- [Log Stream Chart](./log-stream.md): Displays log data in a time series table format, customizable for displaying log ranges and columns
-- [Object List Chart](./object-list.md): Displays infrastructure data in a table format, including "base objects" and "resource catalog"
-- [Alert Statistics Chart](./alert-statistics.md): Displays unresolved alert events in a list format, enabling quick identification and response to system issues
-- [Text](./text.md): Adds prompts, explanations, and various content like text, images, and hyperlinks in Markdown-formatted documents
-- [Video](./video.md): Embeds video content in dashboards by adding video URLs, enhancing information delivery
-- [Image](./picture.md): Displays images in dashboards, supports embedding image URLs with options like fill, fit, stretch, and center
-- [Command Panel](./command-panel.md): Composed of command buttons, allows users to execute specific commands or navigate to specified links
-- [IFrame](./iframe.md): Embeds external pages in dashboards, supporting https and http links
+7. **Other Charts**
 
+- [SLO](./slo-chart.md): Requires selecting an already configured SLO monitoring to display related performance data.
+- [Dashboard](./dashboard.md): Displays progress or completion status of metrics.
+- [Funnel Chart](./funnel-chart.md): Displays conversion within business processes.
+- [Sankey Diagram](./sankey.md): A special flowchart used to display data or energy flow.
+
+8. **Advanced Charts**
+
+- [Log Stream Chart](./log-stream.md): Displays log data in a time-series table format, allowing customization of displayed log ranges and columns.
+- [Object List Chart](./object-list.md): Displays infrastructure data in a table format, including "basic objects" and "resource catalogs."
+- [Alert Statistics Chart](./alert-statistics.md): Displays unresolved alert events in a list format, enabling quick identification and response to urgent system issues.
+- [Monitor Summary](./monitor_summary.md): Automatically queries monitor events from the last 2 days and displays the latest trigger event status.
+- [Text](./text.md): Adds tips, explanations, and various content (such as text, images, and hyperlinks) in Markdown formatted documents.
+- [Video](./video.md): Displays video content on the dashboard by adding a video URL, enhancing information delivery effects.
+- [Picture](./picture.md): Displays images on the dashboard, supports adding image URLs, and provides multiple image display options like fill, fit, stretch, and center.
+- [Command Panel](./command-panel.md): Composed of command buttons, allows users to execute specific commands or navigate to designated links by clicking.
+- [IFrame](./iframe.md): Embeds external pages into the dashboard, supporting https and http links.
 
 
 ## Chart Settings {#settings}
@@ -270,42 +262,40 @@
 
 - Modify: Edit chart configuration;
 - [Combine Charts](#conbine);
-- Copy: Copies all configurations of the chart; can be used in current or other dashboards, notes;
-- Clone: Directly clones the chart to the current dashboard;
+- Copy: Copies all configurations of the current chart; can be used in the current or other dashboards, notes;
+- Clone: Directly clones the current chart to the current dashboard;
 - Delete: Deletes the current chart;
-- [Share](#share): Share the current chart externally
+- [Share](#share): Shares the current chart externally.
 
 ### Time Interval {#interval}
 
+The external time interval display of a chart is affected by the settings inside the chart > Advanced Settings > Time Interval.
+
+<img src="../img/chart_time_interval.png" width="70%" >
+
 #### Lock Time
 
-If "Last 15 minutes" is selected in the lock time setting;
+Select the required data query time range in the time widget, save it, and the locked time will be displayed synchronously outside the chart.
 
-![](../img/chart008.png)
+<img src="../img/chart_lock_time.png" width="70%" >
 
-When previewing the chart, the selected locked time will appear in the top right corner of the chart.
+<img src="../img/chart_lock_time_1.png" width="70%" >
 
-![](../img/chart009.png)
+#### Automatic Alignment
 
-#### Auto Align
+Adjusting the timeline aligns data collected at different time points or frequencies to the same time base.
 
-If "Auto Align" is selected in the time interval setting;
+In charts like time series, if the time interval is set to **Automatic Alignment**, after saving, the external chart will synchronously display the time interval option.
 
-![](../img/chart010.png)
-
-When previewing the chart, the time interval option will appear in the top right corner of the chart.
-
-![](../img/chart011.png)
 
 ### Combine Charts {#conbine}
 
-The combine charts feature allows users to add single charts or integrate multiple charts. It also enables the selection of view variables from the current dashboard to filter data flexibly on combined charts.
-
+The combine charts feature supports adding one or multiple charts and applying view variables from the current dashboard, enabling flexible filtering and comparison.
 
 1. Click modify to enter the chart combination configuration page;
-2. Define the title of the combined chart;
-3. Configure variables for the combined chart;
-4. Select charts;
+2. Define the title for the current combined chart;
+3. Configure variables for this combined chart;
+4. Select the chart;
 5. Click confirm.
 
 
@@ -320,27 +310,28 @@ The combine charts feature allows users to add single charts or integrate multip
 
 #### Start Sharing
 
-1. Click settings > share;
-2. Choose the chart query time;
-3. Get the embed code;
+1. Click Settings > Share;
+2. Select the chart query time;
+3. Obtain the embed code;
 4. The chart sharing is now successful.
 
-<<< custom_key.brand_name >>> generates the embed code based on the chart query time. For example, if the chart query time is the last 15 minutes, the embedded platform will display results for the last 15 minutes.
+The embed code will be generated based on the chart's query time. For example, if the chart query time is the last 15 minutes, then after embedding on another platform, the chart will display results for the last 15 minutes.
 
-<img src="../img/table_share.png" width="60%" >
+<img src="../img/table_share.png" width="80%" >
 
-![](../img/table_share-1.png)
+<img src="../img/table_share-1.png" width="80%" >
 
-**Note:**
+???+ warning "Note"
 
-- If the chart has a locked time, the chart query time will display as the locked time and cannot be changed;
-- The width and height of the shared chart default to the dimensions in the view, but the embed code can be modified;
-- If the chart is associated with view variables, it shares the chart based on the currently selected view variables, such as the currently selected host if associated with `host`.
+    - If the chart locks time, the query time is fixed to the locked time and cannot be changed;
+    - The default width and height of the shared chart are the view dimensions, which can be modified via the embed code;
+    - If the chart associates with view variables, it will display according to the currently selected variable values when shared.
+
 
 
 #### View Shared Charts
 
-<<< custom_key.brand_name >>> stores all shared charts in **Management > Share Management > [Shared Charts](../../management/share-management.md)**.
+Shared charts are stored under **Manage > Share Management > [Shared Charts](../../management/share-management.md)**.
 
 
 
@@ -348,48 +339,45 @@ The combine charts feature allows users to add single charts or integrate multip
 
 Click :material-tray-arrow-down: to export the chart as a PNG image.
 
-<img src="../img/upload.png" width="70%" >
-
-Among them, time series charts, pie charts, top lists, bar charts, treemaps can also be exported as CSV files.
-
-<img src="../img/upload-1.png" width="70%" >
-
+Specific chart types such as time series charts, pie charts, leaderboards, bar charts, treemaps, etc., can also be exported as CSV files, meeting more data usage needs.
 
 ### Analyze Charts {#analysis}
 
-In the dashboard, clicking the **Analyze** button on the chart or double-clicking an empty area of the chart can zoom in for detailed viewing and analysis. You can hover over the chart to view data information or select [Timeline](timeseries-chart.md#timeline) to view metric trends within a specific time range.
+In the dashboard, click the **Analyze** button on the chart or double-click the blank area of the chart to zoom in for deeper insights. Hover over with the mouse to quickly view data information, select [Timeline](timeseries-chart.md#timeline) to view metric trends for a specific time range.
 
-![](../img/0615-1.gif)
+- When hovering over a certain timeline, if other charts have `by` grouping conditions and the same tags, relevant charts will highlight corresponding sections, facilitating correlation analysis;
+- Clicking on the chart can view its [DQL Query Statement](chart-query.md), making it easier to understand the data logic behind the chart.
 
-- When hovering over a particular time series in the chart, if other charts have grouping conditions with the same tags, they will highlight corresponding sections;
-- Clicking a chart displays the [DQL Query Statement](chart-query.md).
+<img src="../img/chart_analysis.gif" width="70%" >
 
-#### [Similar Trend Metrics](./timeseries-chart.md#similar)
+#### [Similar Trend Metrics](./timeseries-chart.md#similar) 
 
-#### Related Analysis
+#### Related Views
 
-- Clicking a query allows you to view related analyses, such as logs, containers, processes, traces, etc.
-
-- When the chart query includes host (`host`) information and the grouping condition selects `by host`, you can also view related host monitoring views.
+Clicking on a query can view associated analyses, such as logs, containers, processes, traces, etc.; if the chart query includes host (`host`) information and the grouping condition is `by host`, the host monitoring view can also be viewed.
 
 <img src="../img/related-analysis.png" width="70%" >
 
-#### Drill-down Analysis {#deep}
+#### Drill Down Analysis {#deep}
 
-To uncover root causes of events and achieve more precise data analysis and troubleshooting, you can perform drill-down analysis on all metric data.
+Drill down analysis breaks down summarized data into finer granularities to pinpoint the exact location where problems occur.
 
-Click into **Drill-down Analysis**, select the target time range, and click **Start Search** to present drill-down analysis results. In the query results, you can view the first-level labels and corresponding time series analysis for that time range.
+1. Click to enter drill down analysis;
+2. Box-select the target time region;
+3. Click to start the search, and you can view the drill down labels and corresponding time series chart results within that region.
 
-**Note**: Drill-down analysis only supports simple queries.
+???+ warning "Note"
 
-![](../img/0615-2.gif)
+    Drill down analysis only supports simple queries.
+
+<img src="../img/drill_down_analysis.png" width="70%" >
 
 #### Root Cause Analysis {#root}
 
-To accurately identify the root cause of business logic issues, you can use the root cause analysis feature to quickly pinpoint the source of faults. Currently, root cause analysis supports analyzing `disk usage` and `memory usage`.
+Through data association reasoning, identify the root cause of the problem. Root cause analysis supports analyzing `disk utilization` and `memory utilization`.
 
-**Note**: Root cause analysis only supports simple queries.
+???+ warning "Note"
 
-![](../img/0615-3.png)
+    Root cause analysis only supports simple queries.
 
-![](../img/0615-3-1.png)
+<img src="../img/root_analysis.png" width="70%" >

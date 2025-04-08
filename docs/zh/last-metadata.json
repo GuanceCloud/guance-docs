@@ -1,15 +1,15 @@
 {
-  "product-introduction/glossary.md": {
-    "hash": "b2bce96d027166f6e4554d79ac0a5b0834cca7093c01c63d85c66375a9899723",
-    "last_translated": "2025-04-07T18:07:04.320597",
-    "translation_time": 130.41,
+  "scene/visual-chart/chart-query.md": {
+    "hash": "d17806ecbc188b5137872983b402391a3ce4bef1668095930408e907dd3f8f43",
+    "last_translated": "2025-04-08T15:40:33.969654",
+    "translation_time": 141.84,
     "usage": {
-      "prompt_tokens": 4500,
-      "completion_tokens": 2827,
-      "total_tokens": 7327,
-      "prompt_price": 0.0036,
-      "completion_price": 0.005654,
-      "total_price": 0.009254,
+      "prompt_tokens": 4349,
+      "completion_tokens": 2708,
+      "total_tokens": 7057,
+      "prompt_price": 0.0034792,
+      "completion_price": 0.005416,
+      "total_price": 0.0088952,
       "currency": "USD"
     }
   }
