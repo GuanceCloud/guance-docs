@@ -3788,6 +3788,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../druid"
+  				data-tags=""
+  				data-name="Druid"
+  				data-summary="采集 Druid 数据库连接池相关指标信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/druid/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Druid" class="fth-integration-name">Druid</div>
+                            <div title="采集 Druid 数据库连接池相关指标信息" class="fth-integration-desc">采集 Druid 数据库连接池相关指标信息</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../ebpf"
   				data-tags="EBPF,NETWORK"
   				data-name="eBPF"
@@ -10271,7 +10301,7 @@ icon: zy/integrations
   	</div>
   	<script>
   		!(function () {
-            const limitTags = ['阿里云', '腾讯云', '华为云', '火山引擎','谷歌云', 'AWS', 'AZURE', '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
+            const limitTags = ['阿里云', '腾讯云', '华为云', '火山引擎','谷歌云', 'AWS', 'AZURE',"GCP", '中间件', '主机', 'IPMI', 'KUBERNETES', '容器', '网络', 'EBPF', 'BPF', 'SNMP', 'PROMETHEUS', 'ZABBIX', 'TELEGRAF', '缓存', '消息队列', '数据库', '语言', '链路追踪', 'PROFILE', '日志', '拨测', 'WEB', '移动端', 'CI/CD', 'JENKINS', 'GITLAB', '会话重放', 'WINDOWS'];
             const limitTagsToLower=limitTags.map(v=>v.toLowerCase())
             const tagAll = { label: '全部', value: '' };
   			const debounce = (fn, delay, immediate) => {

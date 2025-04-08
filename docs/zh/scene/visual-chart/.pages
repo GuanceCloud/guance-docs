@@ -32,5 +32,9 @@ nav:
   - '图表配置': chart-config.md
   - '图表查询': chart-query.md
   - '图表 JSON': chart-json.md
-  - '图表链接': chart-link.md
-  - '事件关联': events-relative.md
+  - '图表链接': 
+    - chart-link.md
+    - '默认链接': chart-link-default-link.md
+    - '自定义链接': chart-link-custom-link.md
+    - '场景示例': chart-link-use-case.md
+  - '事件关联': events-association.md

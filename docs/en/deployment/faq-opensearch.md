@@ -2,11 +2,11 @@
 
 ## 1 OpenSearch Accidentally Deleted Index
 
-Problem Description: In some environments with limited disk space, it is necessary to [delete indexes](es-disk-full.md), which can easily lead to the accidental deletion of the largest index number, causing <<< custom_key.brand_name >>> kodo-x index writing errors.
+Problem description: Since some environments have limited disk space, it is necessary to [delete the index](es-disk-full.md), which can easily lead to accidental deletion of the largest index number, causing <<< custom_key.brand_name >>> kodo-x to report errors when writing to the index.
 
 Solution:
 
-Using wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging as an example:
+Take wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging as an example.
 
 - Check if the largest index is missing
 
@@ -23,7 +23,7 @@ wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000159  -- false
 
 ```
 
-> It was found that wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000159 is the largest index, and the next one should be wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000160
+> It is found that wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000159 is the largest index, and the next one is wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000160
 
 
 - Fix the write operation
@@ -33,17 +33,16 @@ PUT  wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000160
 ```
 
 ```shell
-POST _alias
+POST _aliases
 {
   "actions": [
-  {
-    "add": 
     {
-      "index": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-000160",
-      "alias": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging",
-      "is_write_index": true
+      "add": {
+        "index": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging-001778",
+        "alias": "wksp_f8f7efcc6c4948ec96c751bbcfb7c8fc_logging",
+        "is_write_index": true
+      }
     }
-  }
   ]
 }
 ```

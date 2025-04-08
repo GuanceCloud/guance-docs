@@ -21,9 +21,8 @@
 
 ## 用户视图 {#user}
 
-自定义并保存的视图模板。
+[自定义并保存](../../scene/built-in-view/bind-view.md)的视图模板。
 
-> 具体操作，可参考 [绑定内置视图](../../scene/built-in-view/bind-view.md)。
 
 ???+ warning "注意"
 
@@ -62,11 +61,11 @@
 
 若当前工作空间被授权访问其他工作空间的数据，可在视图中 pin 住目标工作空间 A，使其成为默认查询空间。
 
-<img src="../img/view-pin.png" width="60%" >
+<img src="../img/view-pin.png" width="70%" >
 
 若查看器详情页绑定了此用户视图，默认按 pin 的工作空间数据展示。
 
-![](../img/pin-example.png)
+<img src="../img/pin-example.png" width="70%" >
 
 
 

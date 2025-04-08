@@ -2,26 +2,26 @@
 
 ## Overview
 
-<<< custom_key.brand_name >>> RUM SDK (Real User Monitoring) provides a powerful set of tools for monitoring and analyzing the real user behavior and performance of Web applications. This quick start guide will help you quickly integrate the RUM SDK into your Web application, distinguishing between DK method integration and public network DataWay integration, while detailing how to customize and add data TAGs.
+<<< custom_key.brand_name >>> RUM SDK (Real User Monitoring) provides a powerful set of tools for monitoring and analyzing real user behaviors and performance of Web applications. This quick start guide will help you quickly integrate the RUM SDK into your Web application, distinguishing between DK method integration and public network DataWay integration, while detailing how to customize and add data TAGs.
 
 ## Prerequisites
 
-- **Install DataKit**: Ensure that DataKit is installed and configured to be publicly accessible (for DK method integration). [How to install DataKit](../../datakit/datakit-install.md);
-- **Configure RUM Collector**: Follow <<< custom_key.brand_name >>> documentation to configure the RUM collector [How to configure RUM collector](../../integrations/rum.md);
+- **Install DataKit**: Ensure that DataKit is installed and configured as publicly accessible (for DK method integration). [How to install DataKit](../../datakit/datakit-install.md);
+- **Configure RUM Collector**: Configure the RUM collector according to the <<< custom_key.brand_name >>> documentation [How to configure RUM collector](../../integrations/rum.md);
 
 ## Integration Methods
 
 ### 1. DK Method Integration
 
-- Ensure that DataKit is installed and configured to be publicly accessible. [Publicly accessible and IP geographic information database installation](../../datakit/datakit-tools-how-to.md#install-ipdb)
-- In the <<< custom_key.brand_name >>> console, obtain parameters such as `applicationId`, `env`, and `version` [Create Application](../index.md#create).
+- Ensure DataKit is installed and configured as publicly accessible. [Publicly accessible and IP geographic information database installation](../../datakit/datakit-tools-how-to.md#install-ipdb)
+- In the <<< custom_key.brand_name >>> console, obtain parameters such as `applicationId`, `env`, `version` [Create Application](../index.md#create).
 - When integrating the SDK, configure `datakitOrigin` as the domain name or IP of DataKit.
 
 ### 2. Public Network OpenWay Integration
 
-- Log in to the <<< custom_key.brand_name >>> console, go to the **Synthetic Tests** page, click the top-left **Create Application**, and obtain the `applicationId`, `clientToken`, and `site` parameters. [Create Application](../index.md#create)
-- Configure `site` and `clientToken` parameters, which support uploading SourceMap in the console.
-- When integrating the SDK, no need to configure `datakitOrigin`; the SDK will default send data to the public network DataWay.
+- Log in to the <<< custom_key.brand_name >>> console, go to the **Synthetic Tests** page, click on the top-left **Create Application**, and obtain the `applicationId`, `clientToken`, and `site` parameters. [Create Application](../index.md#create)
+- Configure the `site` and `clientToken` parameters, which support uploading SourceMap in the console.
+- When integrating the SDK, no configuration of `datakitOrigin` is required; the SDK will default to sending data to the public network DataWay.
 
 ## SDK Integration
 
@@ -40,9 +40,9 @@ import { datafluxRum } from '@cloudcare/browser-rum'
 
 datafluxRum.init({
   applicationId: 'Your Application ID',
-  datakitOrigin: '<DataKit Domain Name or IP>', // Needs configuration for DK method integration
-  clientToken: 'clientToken', // Required for public network OpenWay integration
-  site: 'Public OpenWay Address', // Required for public network OpenWay integration
+  datakitOrigin: '<DataKit domain name or IP>', // Needs to be configured for DK method integration
+  clientToken: 'clientToken', // Needs to be filled out for public network OpenWay integration
+  site: 'Public OpenWay address', // Needs to be filled out for public network OpenWay integration
   env: 'production',
   version: '1.0.0',
   sessionSampleRate: 100,
@@ -51,7 +51,7 @@ datafluxRum.init({
   // Other optional configurations...
 })
 
-// Start SESSION REPLAY recording
+// Enable SESSION REPLAY recording
 datafluxRum.startSessionReplayRecording()
 ```
 
@@ -82,9 +82,9 @@ Add the script in your HTML file:
   window.DATAFLUX_RUM.onReady(function () {
     window.DATAFLUX_RUM.init({
       applicationId: 'Your Application ID',
-      datakitOrigin: '<DataKit Domain Name or IP>', // Needs configuration for DK method integration
-      clientToken: 'clientToken', // Required for public network OpenWay integration
-      site: 'Public OpenWay Address', // Required for public network OpenWay integration
+      datakitOrigin: '<DataKit domain name or IP>', // Needs to be configured for DK method integration
+      clientToken: 'clientToken', // Needs to be filled out for public network OpenWay integration
+      site: 'Public OpenWay address', // Needs to be filled out for public network OpenWay integration
       env: 'production',
       version: '1.0.0',
       sessionSampleRate: 100,
@@ -92,7 +92,7 @@ Add the script in your HTML file:
       trackUserInteractions: true,
       // Other configurations...
     })
-    // Start SESSION REPLAY recording
+    // Enable SESSION REPLAY recording
     window.DATAFLUX_RUM.startSessionReplayRecording()
   })
 </script>
@@ -111,9 +111,9 @@ Add the script in your HTML file:
   window.DATAFLUX_RUM &&
     window.DATAFLUX_RUM.init({
       applicationId: 'Your Application ID',
-      datakitOrigin: '<DataKit Domain Name or IP>', // Needs configuration for DK method integration
-      clientToken: 'clientToken', // Required for public network OpenWay integration
-      site: 'Public OpenWay Address', // Required for public network OpenWay integration
+      datakitOrigin: '<DataKit domain name or IP>', // Needs to be configured for DK method integration
+      clientToken: 'clientToken', // Needs to be filled out for public network OpenWay integration
+      site: 'Public OpenWay address', // Needs to be filled out for public network OpenWay integration
       env: 'production',
       version: '1.0.0',
       sessionSampleRate: 100,
@@ -121,7 +121,7 @@ Add the script in your HTML file:
       trackUserInteractions: true,
       // Other configurations...
     })
-  // Start SESSION REPLAY recording
+  // Enable SESSION REPLAY recording
   window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording()
 </script>
 ```
@@ -130,23 +130,24 @@ Add the script in your HTML file:
 
 #### Feature Characteristics
 
-When an error occurs on the page, the SDK will automatically:
-▸ Continuous Recording: From the moment the error triggers, it fully retains all lifecycle data of the session  
-▸ Precise Compensation: Ensures 100% capture of error scenarios through an independent sampling channel  
+When an error occurs on the page, the SDK will automatically perform:
 
-#### Configuration Plan
+1. **Continuous Recording**: From the moment the error is triggered, fully retain all lifecycle data of the session
+2. **Precise Compensation**: Through independent sampling channels, ensure 100% capture of error scenarios
+
+#### Configuration Scheme
 
 ```javascript
 <script
-  src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
   type="text/javascript"
 ></script>
 <script>
-// Core Configuration Initialization
+// Core configuration initialization
 window.DATAFLUX_RUM && window.DATAFLUX_RUM.init({
 
    ...
-   // Precise Sampling Strategy
+   // Precise collection strategy
    sessionSampleRate: 0,             // Disable regular session collection
    sessionOnErrorSampleRate: 100, // Fully collect error sessions
 
@@ -155,17 +156,17 @@ window.DATAFLUX_RUM && window.DATAFLUX_RUM.init({
 </script>
 ```
 
-## Custom Adding Data TAGs
+## Custom Adding of Data TAGs
 
-Use the `setGlobalContextProperty` or `setGlobalContext` API to add additional TAGs to all RUM events [Add custom tag](./custom-sdk/add-additional-tag.md).
+Use the `setGlobalContextProperty` or `setGlobalContext` API to add extra TAGs to all RUM events [Add custom tag](./custom-sdk/add-additional-tag.md).
 
 ### Example
 
 ```javascript
-// Use setGlobalContextProperty to add a single TAG
+// Add a single TAG using setGlobalContextProperty
 window.DATAFLUX_RUM && window.DATAFLUX_RUM.setGlobalContextProperty('userName', 'Zhang San')
 
-// Use setGlobalContext to add multiple TAGs
+// Add multiple TAGs using setGlobalContext
 window.DATAFLUX_RUM &&
   window.DATAFLUX_RUM.setGlobalContext({
     userAge: 28,
@@ -173,19 +174,19 @@ window.DATAFLUX_RUM &&
   })
 ```
 
-With the above code, you can add `userName`, `userAge`, and `userGender` TAGs to all RUM events.
+Through the above code, you can add `userName`, `userAge`, and `userGender` TAGs to all RUM events.
 
 ## Tracking User Actions
 
 ### Control Whether to Enable Action Collection
 
-Control whether to collect user click actions using the `trackUserInteractions` initialization parameter.
+Control whether to collect user click actions through the `trackUserInteractions` initialization parameter.
 
 ### Customize Action Names
 
-- Customize Action names by adding the `data-guance-action-name` attribute or `data-custom-name` (depending on the `actionNameAttribute` configuration) to clickable elements.
+- Customize the Action name by adding the `data-guance-action-name` attribute or `data-custom-name` (depending on the `actionNameAttribute` configuration) to clickable elements.
 
-### Use `addAction` API to Customize Actions
+### Use the `addAction` API to Customize Actions
 
 ```javascript
 // Synchronous loading via CDN
@@ -238,7 +239,7 @@ datafluxRum.addError(error, { pageStatus: 'beta' })
 
 ## Custom User Identification
 
-Use the `setUser` API to add identification attributes (such as ID, name, email) for the current user [Add custom User Information](./custom-sdk/user-id.md).
+Use the `setUser` API to add identification attributes for the current user (such as ID, name, email) [Add custom User Information](./custom-sdk/user-id.md).
 
 ```javascript
 // Synchronous loading via CDN
@@ -263,11 +264,11 @@ datafluxRum.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 
 ### Ensure SDK Version Support
 
-Ensure that the SDK version you are using supports the SESSION REPLAY feature (usually versions `> 3.0.0`).
+Ensure the SDK version you are using supports SESSION REPLAY functionality (usually versions `> 3.0.0`).
 
-### Start SESSION REPLAY Recording
+### Enable SESSION REPLAY Recording
 
-After initializing the SDK, call the `startSessionReplayRecording()` method to start SESSION REPLAY recording. You can choose to enable it under specific conditions, such as after user login [Start SESSION REPLAY](../session-replay/index.md).
+After initializing the SDK, call the `startSessionReplayRecording()` method to enable SESSION REPLAY recording. You can choose to enable it under specific conditions, such as after user login [Enable Session Recording](../session-replay/index.md).
 
 #### How to Collect Only SESSION REPLAY Data Related to Errors (SDK Version Requirement `≥3.2.19`)
 
@@ -275,24 +276,24 @@ After initializing the SDK, call the `startSessionReplayRecording()` method to s
 
 When an error occurs on the page, the SDK will automatically perform the following operations:
 
-1. **Retrospective Collection**: Records a complete snapshot of the page one minute before the error occurs
-2. **Continuous Recording**: Continuously records from the moment the error occurs until the session ends
-3. **Smart Compensation**: Ensures full coverage of error scenarios through an independent sampling channel
+1. **Retrospective Collection**: Record a complete page snapshot for **1 minute** before the error occurred
+2. **Continuous Recording**: Continuously record until the session ends from the moment the error occurred
+3. **Smart Compensation**: Through independent sampling channels, ensure full coverage of error scenarios
 
 ##### Configuration Example
 
 ```javascript
 <script
-  src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
   type="text/javascript"
 ></script>
 <script>
-// Initialize Core SDK Configuration
+// Initialize core SDK configuration
 window.DATAFLUX_RUM && window.DATAFLUX_RUM.init({
    ....
 
-   // Sampling Strategy Configuration
-   sessionSampleRate: 100,          // Full base session collection (100%)
+   // Sampling strategy configuration
+   sessionSampleRate: 100,          // Full basic session collection (100%)
    sessionReplaySampleRate: 0,       // Disable regular screen recording sampling
    sessionReplayOnErrorSampleRate: 100, // 100% sampling for error scenarios
 
@@ -303,15 +304,15 @@ window.DATAFLUX_RUM && window.DATAFLUX_RUM.startSessionReplayRecording();
 </script>
 ```
 
-## Precautions
+## Notes
 
-- SESSION REPLAY does not support iframe, video, audio, canvas playback, etc.
-- Ensure static resources (such as fonts, images) remain accessible during replay; CORS policies may need to be set.
-- For CSS styles and mouse hover events, ensure CSS rules can be accessed via the CSSStyleSheet interface.
+- SESSION REPLAY does not support playback of iframe, video, audio, canvas, and other elements.
+- Ensure static resources (such as fonts, images) remain accessible during replay, possibly requiring CORS policy settings.
+- For CSS styles and mouse hover events, ensure access to CSS rules via the CSSStyleSheet interface.
 
 ## Debugging and Optimization
 
 - Use the logs and monitoring tools provided by the SDK to debug and optimize your application's performance.
-- Adjust parameters such as `sessionSampleRate` and `sessionReplaySampleRate` according to business needs to optimize data collection.
+- Adjust parameters such as `sessionSampleRate` and `sessionReplaySampleRate` based on business needs to optimize data collection.
 
 By following the steps above, you can successfully integrate the <<< custom_key.brand_name >>> RUM SDK into your Web application and begin collecting data and using SESSION REPLAY functionality to optimize user experience and performance.
