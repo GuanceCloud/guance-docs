@@ -37,6 +37,90 @@ icon: zy/release-notes
 
 </div>
 
+## 2025 年 4 月 9 日 {#20250409}
+
+### 功能更新 {#feature0409}
+
+#### 场景
+
+1. 图表优化    
+    - 柱状图：
+        - 调整[别名](../scene/visual-chart/chart-config.md#alias)位置，支持列出所有指标和分组；
+        - 新增 X 轴配置项；
+        - 支持以指标的维度显示颜色，最终一个指标对应一种颜色。
+    - 分组[表格图](../scene/visual-chart/table-chart.md)：
+        - 支持基于分组选择排序；
+        - 返回数量下拉中新增 200 选项，支持手动输入最大数量调整为 1,000。
+    - 时序图 > [折线图](../scene/visual-chart/timeseries-chart.md#line-chart)：新增线条“风格”设置，包括线性、平滑、前阶梯、后阶梯。
+2. 快照：针对配置权限的[仪表板快照](../getting-started/function-details/share-snapshot.md#sharing-method)分享新增权限提示。
+3. 查看器、仪表板 > 时间控件：新增 “最近 1 分钟”、“最近 5 分钟”，默认选中后者。
+
+#### 管理
+
+- [跨工作空间授权](../management/data-authorization.md)：支持跨站点进行数据授权，实现扩展数据共享。
+- 数据转发：
+    - 新增审计事件记录：勾选“包含扩展字段”后，过滤条件为“日志”的数据中，只有符合条件的整条日志数据会被转发。其余数据类型将默认转发整条数据，不受此选项影响。
+    - 在管理 > 审计事件下新增“数据转发”作为三级目录。
+    - 调整查看器的查询时间逻辑：
+        - 更改为按天查询，不支持跨天查询；
+        - 查看转发数据时，系统自动查询并持续加载直至完整显示，无需用户手动点击；
+        - 管理 > 空间管理 > 高级设置：新增[“数据转发查询时长”](../management/backup/index.md#query_time_change)配置。
+- 数据访问、Pipeline、黑名单权限拆分，将“管理”权限调整为：“新建、编辑”和“删除”。
+
+#### 监控
+
+1. 系统通知：新增关联日志的跳转链接，允许跳转到日志查看器并筛选出此通知对象发送失败的日志。
+2. 监控器：
+    - 从模版新建 > 官方模版库：新增搜索功能；
+    - 配置页面 > [事件内容](../monitoring/monitor/monitor-rule.md#content)：更新注意提示。仅当启用关联异常追踪时，`@ 成员`配置才会生效并向指定成员发送此处的事件内容。
+    - 阈值检测：新增[恢复条件](../monitoring/monitor/threshold-detection.md#recover-conditions)开关，配置恢复条件及严重程度，当查询结果为多个值时，任意一值满足触发条件则产生恢复事件。
+
+#### 异常追踪
+
+Issue 邮件通知中的“来源”修改为超链接，用户点击后可以直接访问。
+
+#### RUM
+
+SourceMap：
+
+- 页面交互调整，由原来的弹窗改为单独页面；
+- 列表页面新增搜索、导出功能。
+
+
+#### AI 智能助手
+
+[AI 错误分析](../logs/explorer-details.md#ai)：添加上下文支持根因分析，帮助用户更快、更全面理解错误发生的上下文，提高诊断效率。
+
+
+#### 集成 > 扩展
+
+DataFlux Func 托管版/ RUM Headless：应用扣费新增邮件提醒和系统通知。
+
+#### 基础设施
+
+主机 > 详情页：磁盘容量统计区分本地磁盘和远端磁盘显示。
+
+### 新增集成 {#inte0409}
+
+1. 新增 [GCP Compute Engine](../integrations/gcp_ce.md)；
+2. 新增 [Azure Storage](../integrations/azure_storage.md)；
+3. 新增 [Azure redis cache](../integrations/azure_redis_cache.md)；
+4. 新增 [Azure kubernetes](../integrations/azure_kubernetes.md)；
+5. 新增 [Azure Postgresql](../integrations/azure_postgresql.md)；
+6. 新增 阿里云 Rds MYSQL automata 集成；
+7. 更新 [Trino](../integrations/trino.md)；
+8. 调整 AWS/阿里云关于 Automata 的集成文档：新增`托管版开通脚本`步骤。
+
+### Bug 修复 {#bug0409}
+
+1. 修复了调用 OpenAPI 获取未恢复事件与实际不符的问题。
+2. 修复了事件查看器在搜索时报错的问题。
+3. 修复了外接数据源数据查询异常的问题。
+4. 修复了异常追踪邮件通知的相关问题。
+5. 修复了异常追踪 > 分析看板加载缓慢的问题。
+
+
+
 ## 2025 年 3 月 26 日 {#20250326}
 
 ### 功能更新 {#feature0326}
@@ -89,12 +173,7 @@ icon: zy/release-notes
     - JSON 格式数据新增 “[JSON 搜索](../logs/explorer-details.md#json)”；
 2. 索引 > 关键字段：新增“[一键获取](../logs/multi-index/index.md#extract)”。
 
-<!--
-#### AI 智能助手
 
-优化[生成图表](../guance-ai/index.md#chart)功能：通过本地 Func 缓存指标管理数据，生成的 DQL 更加贴近语义描述。
-
--->
 ### 新增集成 {#inte0326}
 
 - 新增 [Azure Network Interfaces](../integrations/azure_network_interfaces.md)；
@@ -194,11 +273,11 @@ icon: zy/release-notes
 
 ### 新增集成 {#inte0312}
 
-- 新增 [azure_load_balancer](../integrations/azure_load_balancer.md)；
-- 重写 [K8S server api](../integrations/kubernetes-api-server.md)；
-- 更新 [Gitlab CI](../integrations/gitlab.md)；
-- 翻译 Volcengine 相关视图；
-- 翻译 AWS 相关视图。
+1. 新增 [azure_load_balancer](../integrations/azure_load_balancer.md)；
+2. 重写 [K8S server api](../integrations/kubernetes-api-server.md)；
+3. 更新 [Gitlab CI](../integrations/gitlab.md)；
+4. 翻译 Volcengine 相关视图；
+5. 翻译 AWS 相关视图。
 
 ### Bug 修复 {#bug0312}
 
@@ -257,13 +336,13 @@ icon: zy/release-notes
 
 ### 新增集成 {#inte0227}
 
-- 新增 [AWS 云账单](../integrations/aws_billing.md)；
-- 新增 [Kube Scheduler](../integrations/kube_scheduler.md)；
-- 新增 [MQTT](../integrations/mqtt.md)；
-- 重写 [APISIX](../integrations/apisix.md)；
-- 更新 [tidb](../integrations/tidb.md) 英文文档和视图；
-- 更新 [Zookeeper](../integrations/zookeeper.md) 视图、补充集成图标；
-- 修复部分组件 mainfest.yaml 英文翻译。
+1. 新增 [AWS 云账单](../integrations/aws_billing.md)；
+2. 新增 [Kube Scheduler](../integrations/kube_scheduler.md)；
+3. 新增 [MQTT](../integrations/mqtt.md)；
+4. 重写 [APISIX](../integrations/apisix.md)；
+5. 更新 [tidb](../integrations/tidb.md) 英文文档和视图；
+6. 更新 [Zookeeper](../integrations/zookeeper.md) 视图、补充集成图标；
+7. 修复部分组件 mainfest.yaml 英文翻译。
 
 ### Bug 修复 {#bug0227}
 
