@@ -9,7 +9,6 @@ Supports monitoring anomalies in data related to metrics, logs, infrastructure, 
 
 ## Detection Configuration {#steps}
 
-![](../img/monitor14.png)
 
 ### Detection Frequency
 

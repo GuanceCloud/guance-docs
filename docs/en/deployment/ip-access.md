@@ -30,7 +30,7 @@ kubectl patch svc server -n func2 -p '{"spec": {"type": "NodePort"}}'
 
 - **Log in to the launcher interface via browser**
 
-![ip-access1](img/ip-access1.png)
+
 
 - **Modify the ConfigMap configuration related to backend management in forethought-webclient**
 
