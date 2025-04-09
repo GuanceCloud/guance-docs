@@ -851,7 +851,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aliyun_rds_mysql"
   				data-tags="Alibaba Cloud"
   				data-name="Alibaba Cloud RDS MySQL"
-  				data-summary="Display of Alibaba Cloud RDS MySQL Metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
+  				data-summary="Alibaba Cloud RDS MySQL Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -862,7 +862,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Alibaba Cloud RDS MySQL" class="fth-integration-name">Alibaba Cloud RDS MySQL</div>
-                            <div title="Display of Alibaba Cloud RDS MySQL Metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Display of Alibaba Cloud RDS MySQL Metrics, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
+                            <div title="Alibaba Cloud RDS MySQL Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Alibaba Cloud RDS MySQL Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2423,6 +2423,36 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						<div class="fth-integration-description">
                             <div title="Azure Network Interfaces" class="fth-integration-name">Azure Network Interfaces</div>
                             <div title="Collect Azure Network Interface Metrics data" class="fth-integration-desc">Collect Azure Network Interface Metrics data</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../azure_postgresql"
+  				data-tags="AZURE"
+  				data-name="Azure PostgreSQL"
+  				data-summary="Collect Azure PostgreSQL Metrics data"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_postgresql/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure PostgreSQL" class="fth-integration-name">Azure PostgreSQL</div>
+                            <div title="Collect Azure PostgreSQL Metrics data" class="fth-integration-desc">Collect Azure PostgreSQL Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

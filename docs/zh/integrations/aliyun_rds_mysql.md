@@ -11,6 +11,10 @@ dashboard:
 monitor:
   - desc: '阿里云 RDS 监控器'
     path: 'monitor/zh/aliyun_rds_mysql/'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/zh/aliyun_rds_mysql'
 ---
 
 
@@ -54,7 +58,7 @@ monitor:
 3. 在<<< custom_key.brand_name >>>，「指标」查看是否有对应监控数据
 
 ## 指标 {#metric}
-配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+配置好阿里云-云监控,默认的指标集如下, 可以通过配置的方式采集更多的指标 [阿里云云监控指标详情](https://cms.console.aliyun.com/metric-meta/acs_ecs_dashboard/ecs?spm=a2c4g.11186623.0.0.252476abTrNabN){:target="_blank"}
 
 | Metric Id                    |          Metric Name           | Dimensions        | Statistics              | Unit        |
 | ---- | :----: | ------ | ------ | ---- |
