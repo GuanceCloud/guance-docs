@@ -35,10 +35,7 @@ The automated deployment process is expected to take 10-15 minutes. After activa
 
 After RUM Headless is activated, if you need to modify the configuration information, refer to the following content:
 
-<!--
 
-![](img/headless-2.png)
--->
 
 ### Modify Service Address
 
