@@ -67,7 +67,7 @@ icon: zy/release-notes
     - 调整查看器的查询时间逻辑：
         - 更改为按天查询，不支持跨天查询；
         - 查看转发数据时，系统自动查询并持续加载直至完整显示，无需用户手动点击；
-        - 管理 > 空间管理 > 高级设置：新增[“数据转发查询时长”](../management/backup/index.md#query_time_change)配置。
+        - 管理 > 空间设置 > 高级设置：新增[“数据转发查询时长”](../management/backup/index.md#query_time_change)配置。
 - 数据访问、Pipeline、黑名单权限拆分，将“管理”权限调整为：“新建、编辑”和“删除”。
 
 #### 监控
