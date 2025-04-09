@@ -374,49 +374,24 @@ android{
 === "Java"
 
 	```java
-		/**
-	     *  添加 Action
-	     *
-	     * @param actionName action 名称
-	     * @param actionType action 类型
-	     */
-	    public void startAction(String actionName, String actionType)
-
 
 	    /**
 	     * 添加 Action
 	     *
 	     * @param actionName action 名称
 	     * @param actionType action 类型
-	     * @param property   附加属性参数
+	     * @param property   附加属性参数(可选)
 	     */
 	    public void startAction(String actionName, String actionType, HashMap<String, Object> property)
 
-
-		/**
-		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
-		 *
-		 * @param actionName action 名称
-		 * @param actionType action 类型
-		 */
-		public void addAction(String actionName, String actionType)
-
-		/**
-		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
-		 *
-		 * @param actionName action 名称
-		 * @param actionType action 类型
-		 * @param property 扩展属性
-		 */
-		public void addAction(String actionName, String actionType, HashMap<String, Object> property)
 
 		 /**
 		 * 添加 Action， 此类数据无法关联 Error，Resource，LongTask 数据
 		 *
 		 * @param actionName action 名称
 		 * @param actionType action 类型
-		 * @param duration   纳秒，持续时间
-		 * @param property 扩展属性
+		 * @param duration   纳秒，持续时间(可选)
+		 * @param property 扩展属性(可选)
 		 */
 		public void addAction(String actionName, String actionType, long duration, HashMap<String, Object> property) 
     
@@ -426,48 +401,24 @@ android{
 === "Kotlin"
 
 	```kotlin
-		/**
-	     *  添加 action
-	     *
-	     * @param actionName action 名称
-	     * @param actionType action 类型
-	     */
-		fun startAction(actionName: String, actionType: String)
-
 
 		/**
 	     * 添加 action
 	     *
 	     * @param actionName action 名称
 	     * @param actionType action 类型
-	     * @param property   附加属性参数
+	     * @param property   附加属性参数(可选)
 	     */
 	    fun startAction(actionName: String, actionType: String, property: HashMap<String, Any>)
 
-		/**
-		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
-		 *
-		 * @param actionName action 名称
-		 * @param actionType action 类型
-		 */
-		fun addAction(actionName: String, actionType: String)
-
-		/**
-		 * 添加 Action，此类数据无法关联 Error，Resource，LongTask 数据
-		 *
-		 * @param actionName action 名称
-		 * @param actionType action 类型
-		 * @param property 扩展属性
-		 */
-		fun addAction(actionName: String, actionType: String, property: HashMap<String, Any>)
 
 		/**
 		 * 添加 Action
 		 *
 		 * @param actionName action 名称
 		 * @param actionType action 类型
-		 * @param duration   纳秒，持续时间
-		 * @param property 扩展属性
+		 * @param duration   纳秒，持续时间(可选)
+		 * @param property 扩展属性(可选)
 		 */
 		fun addAction(actionName: String, actionType: String, duration: Long, property: HashMap<String, Any>)
 
@@ -533,28 +484,15 @@ android{
 	     * view 起始
 	     *
 	     * @param viewName 当前页面名称
-	     */
-	    public void startView(String viewName)
-
-
-	    /**
-	     * view 起始
-	     *
-	     * @param viewName 当前页面名称
-	     * @param property 附加属性参数
+	     * @param property 附加属性参数(可选)
 	     */
 	    public void startView(String viewName, HashMap<String, Object> property)
 
 
 	    /**
 	     * view 结束
-	     */
-	    public void stopView()
-
-	    /**
-	     * view 结束
 	     *
-	     * @param property 附加属性参数
+	     * @param property 附加属性参数(可选)
 	     */
 	    public void stopView(HashMap<String, Object> property)
 
@@ -565,31 +503,20 @@ android{
 
 	```kotlin
 
-		/**
-	     * view 起始
-	     *
-	     * @param viewName 当前页面名称
-	     */
-		fun startView(viewName: String)
-
 		 /**
 	     * view 起始
 	     *
 	     * @param viewName 当前页面名称
-	     * @param property 附加属性参数
+	     * @param property 附加属性参数(可选)
 	     */
 
 		fun startView(viewName: String, property: HashMap<String, Any>)
 
-		 /**
-	     * view 结束
-	     */
-		fun stopView()
 
 		 /**
 	     * view 结束
 	     *
-	     * @param property 附加属性参数
+	     * @param property 附加属性参数(可选)
 	     */
 		fun stopView(property: HashMap<String, Any>)
 
@@ -667,192 +594,58 @@ android{
 === "Java"
 
 	```java
-	    /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     */
-	    public void addError(String log, String message, ErrorType errorType, AppState state)
-
-
-	     /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-	     */
-	    public void addError(String log, String message, long dateline, ErrorType errorType, AppState state)
-
-	    /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-		 * @param property  附加属性
-	     */
-	    public void addError(String log, String message, ErrorType errorType, AppState state, HashMap<String, Object> property)
-
-
-	    /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-	     */
-	    public void addError(String log, String message, long dateline, ErrorType errorType,
-	                         AppState state, HashMap<String, Object> property)
-
-		
 		/**
 	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
-	     * @param errorType 错误类型
+	     * @param errorType 错误类型, ErrorType
 	     * @param state     程序运行状态
+	     * @param dateline  发生时间，纳秒(可选)
+	     * @param property  附加属性(可选)
 	     */
-	    public void addError(String log, String message, String errorType, AppState state)
-
-
-	     /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-	     */
-	    public void addError(String log, String message, long dateline, String errorType, AppState state)
-
+	    public void addError(String log, String message, long dateline, ErrorType errorType,
+	                         AppState state, HashMap<String, Object> property)
 	    /**
 	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
-	     * @param errorType 错误类型
+	     * @param errorType 错误类型, String
 	     * @param state     程序运行状态
-	     * @param property  附加属性
-	     */
-	    public void addError(String log, String message, String errorType, AppState state, HashMap<String, Object> property)
-
-
-	    /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-	     * @param property  附加属性
+	     * @param dateline  发生时间，纳秒(可选)
+	     * @param property  附加属性(可选)
 	     */
 	    public void addError(String log, String message, long dateline, String errorType,
 	                         AppState state, HashMap<String, Object> property)
-
 
 	```
 
 === "Kotlin"
 
 	```kotlin
-		/**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     */
-		fun addError(log: String, message: String, errorType: ErrorType, state: AppState)
 
 		 /**
 	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
-	     * @param errorType 错误类型
+	     * @param errorType 错误类型, ErrorType
 	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-	     */
-		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType, state: AppState)
-
-		 /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     * @param property  附加属性
-	     */
-		fun addError(log: String, message: String, errorType: ErrorType, state: AppState, property: HashMap<String, Any>)
-
-		 /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-	     * @param property  附加属性
+	     * @param dateline  发生时间，纳秒(可选)
+		 * @param property  附加属性(可选)
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: ErrorType,state: AppState, property: HashMap<String, Any>)
 
-
-			/**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     */
-		fun addError(log: String, message: String, errorType: String, state: AppState)
-
 		 /**
 	     * 添加错误信息
 	     *
 	     * @param log       日志
 	     * @param message   消息
-	     * @param errorType 错误类型
+	     * @param errorType 错误类型, String
 	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-	     */
-		fun addError(log: String, message: String, dateline: Long, errorType: String, state: AppState)
-
-		 /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-		 * @param property  附加属性
-	     */
-		fun addError(log: String, message: String, errorType: String, state: AppState, property: HashMap<String, Any>)
-
-		 /**
-	     * 添加错误信息
-	     *
-	     * @param log       日志
-	     * @param message   消息
-	     * @param errorType 错误类型
-	     * @param state     程序运行状态
-	     * @param dateline  发生时间，纳秒
-		 * @param property  附加属性
+	     * @param dateline  发生时间，纳秒(可选)
+		 * @param property  附加属性(可选)
 	     */
 		fun addError(log: String, message: String, dateline: Long, errorType: String,state: AppState, property: HashMap<String, Any>)
 
@@ -898,19 +691,13 @@ android{
 === "Java"
 
 	```java
-	    /**
-	     * 添加长任务
-	     *
-	     * @param log      日志内容
-	     * @param duration 持续时间，纳秒
-	     */
-	    public void addLongTask(String log, long duration)
 
 	    /**
 	     * 添加长任务
 	     *
 	     * @param log      日志内容
 	     * @param duration 持续时间，纳秒
+		 * @param property   附加属性参数(可选)
 	     */
 	    public void addLongTask(String log, long duration, HashMap<String, Object> property)
 
@@ -919,19 +706,13 @@ android{
 === "Kotlin"
 
 	```kotlin
-	    /**
-	     * 添加长任务
-	     *
-	     * @param log      日志内容
-	     * @param duration 持续时间，纳秒
-	     */
-		fun addLongTask(log: String, duration: Long)
 
 		/**
 	     * 添加长任务
 	     *
 	     * @param log      日志内容
 	     * @param duration 持续时间，纳秒
+		 * @param property   附加属性参数(可选)
 	     */
 
 		fun addLongTask(log: String, duration: Long, property: HashMap<String, Any>)
@@ -979,13 +760,7 @@ android{
 	     * resource 起始
 	     *
 	     * @param resourceId 资源 Id
-	     */
-	    public void startResource(String resourceId)
-
-	    /**
-	     * resource 起始
-	     *
-	     * @param resourceId 资源 Id
+		 * @param property   附加属性参数(可选)
 	     */
 	    public void startResource(String resourceId, HashMap<String, Object> property)
 
@@ -993,14 +768,7 @@ android{
 	     * resource 终止
 	     *
 	     * @param resourceId 资源 Id
-	     */
-	    public void stopResource(String resourceId)
-
-	    /**
-	     * resource 终止
-	         *
-	     * @param resourceId 资源 Id
-	     * @param property   附加属性参数
+	     * @param property   附加属性参数(可选)
 	     */
 	    public void stopResource(final String resourceId, HashMap<String, Object> property)
 
@@ -1023,29 +791,16 @@ android{
 	/**
 	 * resource 起始
 	 *
-	 * @param resourceId 资源 Id
-	 */
-	fun startResource(resourceId: String)
-
-	/**
-	 * resource 起始
-	 *
-	 * @param resourceId 资源 Id
+	 * @param resourceId 资源 Id(可选)
 	 */
 	fun startResource(resourceId: String, property: HashMap<String, Any>)
 
-	/**
-	 * resource 终止
-	 *
-	 * @param resourceId 资源 Id
-	 */
-	fun stopResource(resourceId: String)
 
 	/**
 	 * resource 终止
 	 *
 	 * @param resourceId 资源 Id
-	 * @param property   附加属性参数
+	 * @param property   附加属性参数(可选)
 	 */
 	fun stopResource(resourceId: String, property: HashMap<String, Any>)
 
@@ -1181,40 +936,24 @@ android{
 === "Java"
 
 	```java
-	    /**
-	     * 将单条日志数据存入本地同步
-	     *
-	     * @param content 日志内容
-	     * @param status  日志等级
-	     */
-	    public void logBackground(String content, Status status)
 
 	    /**
 	     * 将单条日志数据存入本地同步
 	     *
 	     * @param content 日志内容
-	     * @param status  日志等级
-		 * @param property 附加属性
+	     * @param status  日志等级，enum Status
+		 * @param property 附加属性(可选)
 	     */
 	    public void logBackground(String content, Status status, HashMap<String, Object> property)
 
-		/**
-	     * 将单条日志数据存入本地同步
-	     *
-	     * @param content 日志内容
-	     * @param status  日志等级
-	     */
-	    public void logBackground(String content, String status)
-
 	    /**
 	     * 将单条日志数据存入本地同步
 	     *
 	     * @param content 日志内容
-	     * @param status  日志等级
-		 * @param property 附加属性
+	     * @param status  日志等级，String
+		 * @param property 附加属性(可选)
 	     */
 	    public void logBackground(String content, String status, HashMap<String, Object> property)
-
 
 	    /**
 	     * 将多条日志数据存入本地同步
@@ -1222,7 +961,6 @@ android{
 	     * @param logDataList {@link LogData} 列表
 	     */
 	    public void logBackground(List<LogData> logDataList)
-
 
 	```
 
@@ -1235,32 +973,17 @@ android{
 	     *
 	     * @param content 日志内容
 	     * @param status  日志等级
-	     */
-	    fun logBackground(content: String, status: Status)
-
-	    /**
-	     * 将单条日志数据存入本地同步
-	     *
-	     * @param content 日志内容
-	     * @param status  日志等级
-	     * @param property 日志属性
+	     * @param property 日志属性(可选)
 	     */
 	    fun logBackground(content: String, status: Status, property: HashMap<String, Any>)
 
-		/**
-	     * 将单条日志数据存入本地同步
-	     *
-	     * @param content 日志内容
-	     * @param status  日志等级
-	     */
-	    fun logBackground(content: String, status: String)
 
 	    /**
 	     * 将单条日志数据存入本地同步
 	     *
 	     * @param content 日志内容
 	     * @param status  日志等级
-	     * @param property 日志属性
+	     * @param property 日志属性(可选)
 	     */
 	    fun logBackground(content: String, status: String, property: HashMap<String, Any>)
 
@@ -2180,6 +1903,9 @@ SDK 为更好关联相同用户数据，会使用 Android ID。如果需要在�
 	```
 #### 第三方框架 {#third-party}
 `flutter`、`react-native`、`uni-app`、`unity` 可以采用与以上原生 Android 相似延迟初始化方式，来应对应用市场隐私审核。
+
+### Jetpack Compose 支持 {#compose-support}
+目前暂时不支持自动采集 compose 组件生成的页面，但是可以通过手动 `Action` 和 `View` 的自定义接口，点击事件和页面跳转事件进行追踪，可以参考[这里](https://github.com/GuanceDemo/guance-app-demo/blob/master/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/compose/MainScreen.kt)
 
 ### 不使用 ft-plugin 情况下如何接入 SDK {#manual-set}
 <<< custom_key.brand_name >>>使用的 Androig Grale Plugin Transformation 实现的代码注入，从而实现数据自动收集。但是由于一些兼容性问题，可能存在无法使用 `ft-plugin` 的问题。受影响包括 **RUM** `Action`，`Resource`，和 `android.util.Log` ，Java 与 Kotlin `println` **控制台日志自动抓取**，以及符号文件的自动上传。
