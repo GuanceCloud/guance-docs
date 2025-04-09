@@ -46,7 +46,7 @@
 
 <<< custom_key.brand_name >>>提供两种数据存储方案：**默认存储**和 **SLS 存储**：
 
-- 默认存储：使用<<< custom_key.brand_name >>> [GuanceDB](./gauncedb.md) 存储指标类数据，Elasticsearch / OpenSearch 存储日志类数据；
+- 默认存储：使用<<< custom_key.brand_name >>>自研存储指标类数据，Elasticsearch / OpenSearch 存储日志类数据；
 - SLS 存储：使用阿里云日志服务 SLS 存储数据，日志库（LogStore）存储日志类数据，时序库（MetricStore）存储指标类数据。
 
 

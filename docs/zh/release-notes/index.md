@@ -39,6 +39,11 @@ icon: zy/release-notes
 
 ## 2025 年 4 月 9 日 {#20250409}
 
+### OpenAPI 更新 {#openapi0409}
+
+1. 支持创建、编辑、删除多步拨测任务；
+2. 支持配置工作空间数量上限限制。
+
 ### 功能更新 {#feature0409}
 
 #### 场景
@@ -46,21 +51,19 @@ icon: zy/release-notes
 1. 图表优化    
     - 柱状图：
         - 调整[别名](../scene/visual-chart/chart-config.md#alias)位置，支持列出所有指标和分组；
-        - 新增 X 轴配置项；
-        - 支持以指标的维度显示颜色，最终一个指标对应一种颜色。
+        - 新增 X 轴配置项。
     - 分组[表格图](../scene/visual-chart/table-chart.md)：
         - 支持基于分组选择排序；
         - 返回数量下拉中新增 200 选项，支持手动输入最大数量调整为 1,000。
     - 时序图 > [折线图](../scene/visual-chart/timeseries-chart.md#line-chart)：新增线条“风格”设置，包括线性、平滑、前阶梯、后阶梯。
 2. 快照：针对配置权限的[仪表板快照](../getting-started/function-details/share-snapshot.md#sharing-method)分享新增权限提示。
-3. 查看器、仪表板 > 时间控件：新增 “最近 1 分钟”、“最近 5 分钟”，默认选中后者。
+3. 查看器、仪表板 > 时间控件：新增“最近 1 分钟”、“最近 5 分钟”，默认选中后者。
 
 #### 管理
 
 - [跨工作空间授权](../management/data-authorization.md)：支持跨站点进行数据授权，实现扩展数据共享。
 - 数据转发：
-    - 新增审计事件记录：勾选“包含扩展字段”后，过滤条件为“日志”的数据中，只有符合条件的整条日志数据会被转发。其余数据类型将默认转发整条数据，不受此选项影响。
-    - 在管理 > 审计事件下新增“数据转发”作为三级目录。
+    - 数据类型新增“审计事件”。
     - 调整查看器的查询时间逻辑：
         - 更改为按天查询，不支持跨天查询；
         - 查看转发数据时，系统自动查询并持续加载直至完整显示，无需用户手动点击；
@@ -89,7 +92,11 @@ SourceMap：
 
 #### AI 智能助手
 
-[AI 错误分析](../logs/explorer-details.md#ai)：添加上下文支持根因分析，帮助用户更快、更全面理解错误发生的上下文，提高诊断效率。
+优化[生成图表](../guance-ai/index.md#chart)功能：通过本地 Func 缓存指标管理数据，生成的 DQL 更加贴近语义描述。
+
+#### [AI 错误分析](../logs/explorer-details.md#ai)
+
+添加上下文支持根因分析，帮助用户更快、更全面理解错误发生的上下文，提高诊断效率。
 
 
 #### 集成 > 扩展
@@ -107,9 +114,10 @@ DataFlux Func 托管版/ RUM Headless：应用扣费新增邮件提醒和系统�
 3. 新增 [Azure redis cache](../integrations/azure_redis_cache.md)；
 4. 新增 [Azure kubernetes](../integrations/azure_kubernetes.md)；
 5. 新增 [Azure Postgresql](../integrations/azure_postgresql.md)；
-6. 新增 阿里云 Rds MYSQL automata 集成；
-7. 更新 [Trino](../integrations/trino.md)；
-8. 调整 AWS/阿里云关于 Automata 的集成文档：新增`托管版开通脚本`步骤。
+6. 新增 阿里云 Rds MYSQL Automata 集成；
+7. 新增 [Druid](../integrations/druid.md) 集成
+8. 更新 [Trino](../integrations/trino.md)；
+9. 调整 AWS/阿里云关于 Automata 的集成文档：新增`托管版开通脚本`步骤。
 
 ### Bug 修复 {#bug0409}
 
@@ -118,10 +126,13 @@ DataFlux Func 托管版/ RUM Headless：应用扣费新增邮件提醒和系统�
 3. 修复了外接数据源数据查询异常的问题。
 4. 修复了异常追踪邮件通知的相关问题。
 5. 修复了异常追踪 > 分析看板加载缓慢的问题。
+6. 修复了柱状图显示颜色不正确的问题。
 
 
 
 ## 2025 年 3 月 26 日 {#20250326}
+
+
 
 ### 功能更新 {#feature0326}
 
@@ -173,6 +184,15 @@ DataFlux Func 托管版/ RUM Headless：应用扣费新增邮件提醒和系统�
     - JSON 格式数据新增 “[JSON 搜索](../logs/explorer-details.md#json)”；
 2. 索引 > 关键字段：新增“[一键获取](../logs/multi-index/index.md#extract)”。
 
+### 部署版更新 {#deployment0409}
+
+模版管理：
+
+- 页面交互优化，包含显示列新增“模版类型”等；
+- 顶部筛选项新增“模版类型”；
+- 支持批量导出模版；
+- 导入模版时，支持预览查看模版详情；
+- 内置视图、Pipeline、监控器模板上传支持同名覆盖逻辑。
 
 ### 新增集成 {#inte0326}
 

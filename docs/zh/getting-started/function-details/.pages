@@ -1,7 +1,9 @@
 nav:
-  - '查看器': explorer-search.md
+  - '查看器': 
+    - explorer-search.md
+    - '特殊字符查询说明': special-character-query.md
   - '快照':
     - snapshot.md
     - '保存快照': save-snapshot.md
     - '分享快照': share-snapshot.md
-  - '特殊字符查询说明': special-character-query.md
+  

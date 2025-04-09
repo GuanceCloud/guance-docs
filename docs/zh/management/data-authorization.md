@@ -69,38 +69,38 @@
 === "仪表板"
 
 
-    <img src="img/data_auth_dashboard.png" width="70%" >
+    <img src="../img/data_auth_dashboard.png" width="70%" >
 
     ---
 
 === "图表查询"
 
-    <img src="img/data_auth_chart.png" width="70%" >
+    <img src="../img/data_auth_chart.png" width="70%" >
 
     ---
 
 
 === "内置视图"
 
-    <img src="img/data_auth_inner_view.png" width="70%" >
+    <img src="../img/data_auth_inner_view.png" width="70%" >
 
     ---
 
 === "日志查看器"
 
-    <img src="img/data_auth_log_explorer.png" width="70%" >
+    <img src="../img/data_auth_log_explorer.png" width="70%" >
 
     ---
 
 === "错误追踪"
 
-    <img src="img/data_auth_log_error.png" width="70%" >
+    <img src="../img/data_auth_log_error.png" width="70%" >
 
     ---
 
 === "资源目录"
 
-    <img src="img/data_auth_resource_catalog.png" width="70%" >
+    <img src="../img/data_auth_resource_catalog.png" width="70%" >
 
     ---
 
