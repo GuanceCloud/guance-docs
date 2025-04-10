@@ -9,7 +9,7 @@
 
 ---
 
-DCA(Datakit Control App) is mainly used to manage DataKit, such as DataKit list view, configuration file management, Pipeline management and help document view. At present, it supports two usage modes, namely desktop and web page.
+DCA(DataKit Control App) is a web-based management system for centralized DataKit administration. Utilizing a B/S architecture and WebSocket bidirectional communication protocol, it enables unified management of DataKit, such as DataKit list view, runtime info, configuration file management and Pipeline management.
 
 DCA network topology model explained:
 
@@ -61,58 +61,10 @@ dca_web -- HTTP --- dca_server;
 dca_server -.-> |login/auth| brandname;
 ```
 
-## Start DCA Service {#config}
-
-<!-- markdownlint-disable MD046 -->
-=== "DCA enabled on host installation"
-
-    Add the following environment variables before installing the command:
-    
-    - `DK_DCA_ENABLE`: Whether to turn on, turn on set to `on`
-    - `DK_DCA_WEBSOCKET_SERVER`: DCA websocket server address.([:octicons-tag-24: Version-1.64.0](changelog.md#cl-1.64.0))
-    
-    Example:
-    
-    ```shell
-    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://127.0.0.1:8000/ws" DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
-    ```
-    
-    After successful installation, the DataKit will automatically connect to the DCA service.。
-
-=== "Kubernetes"
-
-    Can be turned on by [setting DCA related environment variable](../datakit/datakit-daemonset-deploy.md#env-dca).
-
-=== "`datakit.conf`"
-
-    Modify configuration file `datakit.conf`:
-    
-    ```toml
-    [dca]
-        # Open
-        enable = true
-    
-        # websocket server address
-        websocket_server = "ws://127.0.0.1:8000/ws"
-    
-    ```
-    
-    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
-
-=== "Kubernetes"
-
-    See [here](datakit-daemonset-deploy.md#env-dca)
-
----
-
-<!-- markdownlint-enable -->
 ## DCA Web Service {#dca-web}
-<!-- markdownlint-disable MD046 -->
-???+ Attention
 
-    Different versions of DataKit interfaces may differ, and it is recommended to upgrade DataKit to the latest version in order to better use DCA. In addition, the Web version of DCA and desktop version still have some missing functions, which will be added slowly later, *and gradually abandon the current desktop version*.
-<!-- markdownlint-enable -->
-DCA Web is the Web version of DCA client, which provides the interface proxy of DataKit by deploying a back-end service and provides a front-end Web page to access DataKit.
+The DCA web service currently supports deployment via container images only, which can be implemented through either Docker or Kubernetes.
+
 <!-- markdownlint-disable MD046 -->
 === "Docker"
 
@@ -136,9 +88,9 @@ DCA Web is the Web version of DCA client, which provides the interface proxy of 
 
     - Testing
 
-    After the container runs successfully, it can be accessed through the browser: http://localhost:8000
+    After the container runs successfully, it can be accessed through the browser: http://localhost:8000. And the websocket address is `ws://localhost:8000/ws`.
 
-=== "k8s"
+=== "Kubernetes"
 
     Download [*dca.yaml*](https://static.<<<custom_key.brand_main_domain>>>/datakit/dca/dca.yaml){:target="_blank"}. Edit the configuration parameters in the file and apply `dca.yaml` to your Kubernetes cluster.
 
@@ -146,22 +98,23 @@ DCA Web is the Web version of DCA client, which provides the interface proxy of 
     $ kubectl apply -f dca.yaml
     $ kubectl get pod -n datakit
     ```
+
 <!-- markdownlint-enable -->
 ### Environment Variable Configuration {#envs}
 
 By default, DCA will adopt the default configuration of the system. If you need to customize the configuration, you can modify it by injecting environment variables. The following environment variables are currently supported:
 
-| Environment Variable Name            | Type   | Default Value                         | Description                                                                                            |
-| :---------              | ----:  | :---                           | ------                                                                                          |
-| `DCA_CONSOLE_API_URL`        | string | `https://console-api.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> console API address, refer [node address](dca.md#node-address) |
-| `DCA_CONSOLE_WEB_URL`        | string | `https://console.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> page address, refer [node address](dca.md#node-address)                                                                        |
-| `DCA_STATIC_BASE_URL`        | string | `https://static.<<<custom_key.brand_main_domain>>>` | static resource address                                                                         |
-| `DCA_CONSOLE_PROXY`     | string | None                              | <<<custom_key.brand_name>>> API proxy, but does not proxy the DataKit API |
-| `DCA_LOG_LEVEL`         | string |                                | Log level, the value is debug/info/warn/error.                  |
-| `DCA_LOG_PATH` | string   |                | The log path. If you need to write the log to `stdout`, you can set it to `stdout` |
-| `DCA_TLS_ENABLE`         | string |                              | enable TLS when the value is not empty                  |
-| `DCA_TLS_CERT_FILE`         | string |                              | the cert file path, such as `/etc/ssl/certs/server.crt`                  |
-| `DCA_TLS_KEY_FILE`         | string |                              | the key file path, such as `/etc/ssl/certs/server.key`                  |
+| Environment Variable Name | Type   | Default Value                                            | Description                                                                                |
+| :---------                | ----:  | :---                                                     | ------                                                                                     |
+| `DCA_CONSOLE_API_URL`     | string | `https://console-api.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> console API address, refer [node address](dca.md#node-address) |
+| `DCA_CONSOLE_WEB_URL`     | string | `https://console.<<<custom_key.brand_main_domain>>>`     | <<<custom_key.brand_name>>> page address, refer [node address](dca.md#node-address)        |
+| `DCA_STATIC_BASE_URL`     | string | `https://static.<<<custom_key.brand_main_domain>>>`      | static resource address                                                                    |
+| `DCA_CONSOLE_PROXY`       | string | None                                                     | <<<custom_key.brand_name>>> API proxy, but does not proxy the DataKit API                  |
+| `DCA_LOG_LEVEL`           | string | info                                                     | Log level, the value is debug/info/warn/error.                                             |
+| `DCA_LOG_PATH`            | string | None                                                     | The log path. If you need to write the log to `stdout`, you can set it to `stdout`         |
+| `DCA_TLS_ENABLE`          | string | None                                                     | enable TLS when the value is not empty                                                     |
+| `DCA_TLS_CERT_FILE`       | string | None                                                     | the cert file path, such as `/etc/ssl/certs/server.crt`                                    |
+| `DCA_TLS_KEY_FILE`        | string | None                                                     | the key file path, such as `/etc/ssl/certs/server.key`                                     |
 
 Example:
 
@@ -171,19 +124,75 @@ docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=info
 
 ### Node address {#node-address}
 
-| Deploy Type  | Node Name       | `DCA_CONSOLE_API_URL`| `DCA_CONSOLE_WEB_URL`|
-|-------|-----------|--------------------------------| --------------------------------|
-| SaaS | China 1(Hangzhou)  | `https://console-api.<<<custom_key.brand_main_domain>>>`     | `https://console.<<<custom_key.brand_main_domain>>>` |
-| SaaS | China 2(Ningxia)   | `https://aws-console-api.<<<custom_key.brand_main_domain>>>`|`https://aws-console.<<<custom_key.brand_main_domain>>>` |
-| SaaS | China 4(Guangzhou) | `https://cn4-console-api.<<<custom_key.brand_main_domain>>>`|`https://cn4-console.<<<custom_key.brand_main_domain>>>` |
-| SaaS | China 6(Hong Kong) | `https://cn6-console-api.<<<custom_key.brand_main_domain>>>`|`https://cn6-console.<<<custom_key.brand_main_domain>>>` |
-| SaaS | Overseas Region1(Oregon) |`https://us1-console-api.<<<custom_key.brand_main_domain>>>`|`https://us1-console.<<<custom_key.brand_main_domain>>>` |
-| SaaS | European 1(Frankfurt) |`https://eu1-console-api.<<<custom_key.brand_main_domain>>>`|`https://eu1-console.<<<custom_key.brand_main_domain>>>` |
-| SaaS | Asia 1(Singapore) |`https://ap1-console-api.<<<custom_key.brand_main_domain>>>`|`https://ap1-console.<<<custom_key.brand_main_domain>>>` |
-| Private | Private     |Deployment address |Deployment address |
+<<<% if custom_key.brand_key == 'guance' %>>>
+| Deploy Type | Node Name                | `DCA_CONSOLE_API_URL`                                        | `DCA_CONSOLE_WEB_URL`                                    |
+| -------     | -----------              | --------------------------------                             | --------------------------------                         |
+| SaaS        | China 1(Hangzhou)        | `https://console-api.<<<custom_key.brand_main_domain>>>`     | `https://console.<<<custom_key.brand_main_domain>>>`     |
+| SaaS        | China 2(Ningxia)         | `https://aws-console-api.<<<custom_key.brand_main_domain>>>` | `https://aws-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS        | China 4(Guangzhou)       | `https://cn4-console-api.<<<custom_key.brand_main_domain>>>` | `https://cn4-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS        | China 6(Hong Kong)       | `https://cn6-console-api.<<<custom_key.brand_main_domain>>>` | `https://cn6-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS        | Overseas Region1(Oregon) | `https://us1-console-api.<<<custom_key.brand_main_domain>>>` | `https://us1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS        | European 1(Frankfurt)    | `https://eu1-console-api.<<<custom_key.brand_main_domain>>>` | `https://eu1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS        | Asia 1(Singapore)        | `https://ap1-console-api.<<<custom_key.brand_main_domain>>>` | `https://ap1-console.<<<custom_key.brand_main_domain>>>` |
+| Private     | Private                  | Deployment address                                           | Deployment address                                       |
+<<<% else %>>>
+ | Deploy Type | Node Name                  | `DCA_CONSOLE_API_URL`                                        | `DCA_CONSOLE_WEB_URL`                                    |
+ | -------     | -----------                | --------------------------------                             | --------------------------------                         |
+ | SaaS        | Americas 1 (Oregon)        | `https://us1-console-api.<<<custom_key.brand_main_domain>>>` | `https://us1-console.<<<custom_key.brand_main_domain>>>` |
+ | SaaS        | Europe 1 (Frankfurt)       | `https://eu1-console-api.<<<custom_key.brand_main_domain>>>` | `https://eu1-console.<<<custom_key.brand_main_domain>>>` |
+ | SaaS        | Asia-Pacific 1 (Singapore) | `https://ap1-console-api.<<<custom_key.brand_main_domain>>>` | `https://ap1-console.<<<custom_key.brand_main_domain>>>` |
+ | SaaS        | Africa 1 (South Africa)    | `https://za1-console-api.<<<custom_key.brand_main_domain>>>` | `https://za1-console.<<<custom_key.brand_main_domain>>>` |
+ | SaaS        | Indonesia 1 (Jakarta)      | `https://id1-console-api.<<<custom_key.brand_main_domain>>>` | `https://id1-console.<<<custom_key.brand_main_domain>>>` |
+<<<% endif %>>>
 
+## DataKit config {#config}
 
-### Log in to DCA {#login}
+<!-- markdownlint-disable MD046 -->
+???+ Attention
+
+    Different versions of DataKit interfaces may differ, and it is recommended to upgrade DataKit to the latest version in order to better use DCA.
+
+=== "DCA enabled on host installation"
+
+    Add the following environment variables before installing the command:
+    
+    - `DK_DCA_ENABLE`: Whether to turn on, turn on set to `on`
+    - `DK_DCA_WEBSOCKET_SERVER`: DCA websocket server address.([:octicons-tag-24: Version-1.64.0](changelog.md#cl-1.64.0))
+    
+    Example:
+    
+    ```shell
+    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://127.0.0.1:8000/ws" DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
+    ```
+    
+    After successful installation, the DataKit will automatically connect to the DCA service.。
+
+=== "Kubernetes"
+
+    Can be turned on by [setting DCA related environment variable](../datakit/datakit-daemonset-deploy.md#env-dca).
+
+=== "*datakit.conf*"
+
+    Modify configuration file *datakit.conf*:
+    
+    ```toml
+    [dca]
+        # Open
+        enable = true
+    
+        # websocket server address
+        websocket_server = "ws://<dca_server_address>/ws"
+    
+    ```
+    
+    Once configured, [restart DataKit](datakit-service-how-to.md#manage-service).
+
+---
+
+<!-- markdownlint-enable -->
+## DCA management {#dca-manage}
+
+### Login to DCA {#login}
 
 After the DCA is enabled and installed, you can access it by entering the address `localhost:8000` in your browser. When you visit it for the first time, the page will redirect you to a login transition page. After clicking the "Go Now" button at the bottom of the page, you will be guided to the <<<custom_key.brand_name>>>. Then, follow the instructions on the page to configure the DCA address. Once the configuration is completed, you will be able to directly access the DCA platform through the <<<custom_key.brand_name>>> platform without logging in.
 
@@ -225,7 +234,7 @@ After connecting to the DataKit remotely, click "Collector Configuration" to vie
 - Sample list: You can view all the sample files under it.
 - Help: You can view the corresponding collector help document
 
-Note: DCA does not support configuration of collector at present, so it is necessary to log in to the host remotely for configuration operation.
+Note: DCA does not support configuration of collector at present, so it is necessary to login to the host remotely for configuration operation.
 
 <figure markdown>
   ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-input-conf-1.png){ width="800" }

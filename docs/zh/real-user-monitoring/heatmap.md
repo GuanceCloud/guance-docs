@@ -111,18 +111,20 @@ Hover 在左侧热图页面，点击色块可直接查看该区的点击数与�
 
 对于以保存的热图，您可以：
 
-:material-numeric-1-circle-outline: 将当前热图作为快照进行外部分享，[操作步骤同快照](../getting-started/function-details/snapshot.md#share)。
+:material-numeric-1-circle-outline: 将当前热图作为快照进行外部分享，[操作步骤同快照](../getting-started/function-details/share-snapshot.md)。
 
 被分享的热图可在管理 > 分享管理 > 分享快照处查看：
 
 <img src="../img/save-2.png" width="70%" >
 
-???+ warning "注意：在被分享的热图快照页面中"
+???+ warning "注意"
 
-    1. 分享出去的热图快照无法被再次保存；
-    2. 不支持切换应用；
-    3. 不支持跳转至查看器中打开；
-    4. 不支持点击会话重放。
+    在被分享的热图快照页面中：
+
+    - 分享出去的热图快照无法被再次保存；
+    - 不支持切换应用；
+    - 不支持跳转至查看器中打开；
+    - 不支持点击会话重放。
 
 :material-numeric-2-circle-outline: 直接复制热图链接
 

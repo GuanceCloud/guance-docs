@@ -136,6 +136,9 @@ SDK 除了支持通过 `FTSessionReplayConfig` 配置全局屏蔽级别，还支
 	PrivacyOverrideExtensions.setSessionReplayHidden(view, false)
 	```
 
+## Jetpack Compose 支持
+目前暂不支持 Jetpack Compose 相关界面的 Session Replay 录制
+
 ## 代码和配置参考
  * [Android Demo Gradle 配置](https://github.com/GuanceDemo/guance-app-demo/blob/session_replay/src/android/demo/app/build.gradle#L159)
  * [Android Demo 代码调用](https://github.com/GuanceDemo/guance-app-demo/blob/session_replay/src/android/demo/app/src/main/java/com/cloudcare/ft/mobile/sdk/demo/DemoApplication.kt#L90)

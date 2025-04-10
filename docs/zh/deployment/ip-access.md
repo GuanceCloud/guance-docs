@@ -30,7 +30,6 @@ kubectl patch svc  server -n func2 -p '{"spec": {"type": "NodePort"}}'
 
 - **浏览器登陆launcher界面**
 
-![ip-access1](img/ip-access1.png)
 
 - **修改forethought-webclient 关于后台管理的相关Configmap配置**
 

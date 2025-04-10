@@ -688,6 +688,8 @@ In this version, the data protocol has been extended. After upgrading from an ol
 - Upgrade the center base to 1.87.167 or
 - Modify the [upload protocol configuration `content_encoding`](datakit-conf.md#dataway-settings) in *datakit.conf* to `v2`
 
+<<<% if custom_key.brand_key == 'guance' %>>>
+
 #### For InfluxDB {#cl-1.30.0-brk-influxdb}
 
 If your time series storage is InfluxDB, then **do not upgrade Datakit**. Please maintain the highest version at 1.29.1. We'll upgraded the central latter to make it compatible with InfluxDB.
@@ -695,6 +697,8 @@ If your time series storage is InfluxDB, then **do not upgrade Datakit**. Please
 Additionally, if the central has been upgraded to a newer version (1.87.167+), then lower versions of Datakit should also **use the `v1` upload protocol**. Please switch from `v2` to `v1` if you have set `v2` before.
 
 If you do indeed want to upgrade to a newer version of Datakit, please replace the time series engine with GuanceDB for metrics.
+
+<<<% endif %>>>
 
 ---
 

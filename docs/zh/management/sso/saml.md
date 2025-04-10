@@ -12,7 +12,7 @@
 
     - 若工作空间内启用 [SAML 映射](./role_mapping.md)，则优先按映射规则分配角色。
 
-6. [会话保持](#login-hold-time)：设置 SSO 登录会话的无操作保持时间和最大保持时间。超时后，登录会话将失效。  
+6. [会话保持](#login-hold-time)：设置 SSO 登录会话的无操作保持时间和最大保持时间。
 
 > 关于角色权限，可参考 [角色管理](../role-management.md)。  
 
@@ -20,7 +20,7 @@
 
 身份提供商添加成功后，点击右侧**更新**按钮，即可获取 **Entity ID** 和**断言地址**，根据身份提供商的要求在对应的 SAML 配置完成后即可。
 
-<img src="../img/metadata.png" width="70%" >
+<img src="../../img/metadata.png" width="70%" >
 
 
 | 字段      | 描述                  |

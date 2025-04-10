@@ -25,7 +25,7 @@ Let's assume a case where we need to authorize the data from workspace A to be v
 
 In the Guance workspace B (e.g. DataFlux), click **Management > Settings > Workspace ID**, click **Copy** to obtain its ID.
 
-<img src="../img/9.dataauth_11.png" width="70%" >
+
 
 :material-numeric-3-circle-outline: Select the role: You can select any role in the current workspace except for "Owner". When the authorized workspace views the data, the data access permissions will be assigned based on the selected role's scope.
 
@@ -34,18 +34,18 @@ For example, if workspace A has Role 1 and Role 2, and you authorize workspace B
 
 After adding, you can view the authorized workspace B (e.g. DataFlux) that has permission to view the data of the current workspace A in the Authorization List.
 
-![](img/3.data_1.png)
+
 
 If you need to revoke the data authorization for a certain workspace, you can click **Delete** on the right or select **Bulk Delete**.
 
-![](img/3.data_2.png)
+
 
 
 ## Data Association
 
 After workspace B (e.g. DataFlux) is granted data authorization, you can open **Scenes > [Dashboard](../scene/dashboard.md)** or **[Note](../scene/note.md)**, select a chart component, and in the **Advanced Settings > Data Authorize**, choose the authorized workspace A (e.g. Development-----), and then you can use **[Chart Query](../scene/visual-chart/chart-query.md)** to view and analyze the data of the authorized workspace A (e.g. Development-----).
 
-![](img/9.dataauth_7.png)
+
 
 
 ## Mail Notification
