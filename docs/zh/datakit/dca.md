@@ -9,7 +9,7 @@
 
 ---
 
-DCA（Datakit Control App）主要用于管理 Datakit，如 Datakit 列表查看、配置文件管理、Pipeline 管理以及帮助文档的查看等功能。
+DCA（DataKit Control App）是集中管理 DataKit 的 Web 管控系统，采用 B/S 架构和 WebSocket 双向通信协议对 DataKit 进行统一管理，如 DataKit 列表查看、运行信息、配置文件管理、Pipeline 管理等。
 
 DCA 基本网络拓扑结构如下：
 
@@ -61,58 +61,9 @@ dca_web -- HTTP --- dca_server;
 dca_server -.-> |login/auth| brand_name;
 ```
 
-## 开启 DCA 服务 {#config}
+## DCA web 服务部署 {#dca-web}
 
-<!-- markdownlint-disable MD046 -->
-=== "主机安装时启用 DCA 功能"
-
-    在安装命令前添加以下环境变量：
-    
-    - `DK_DCA_ENABLE`: 是否开启，开启设置为 `on`
-    - `DK_DCA_WEBSOCKET_SERVER`: 配置 DCA 的 websocket 服务地址 ([:octicons-tag-24: Version-1.64.0](changelog.md#cl-1.64.0))
-    
-    示例：
-    
-    ```shell
-    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://127.0.0.1:9000/ws" DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
-    ```
-
-    安装成功后，DataKit 将自动连接 DCA 服务。
-
-=== "Kubernetes"
-
-    可通过 [设置 DCA 相关环境变量](../datakit/datakit-daemonset-deploy.md#env-dca) 来开启 DCA 功能。
-
-=== "*datakit.conf*"
-
-    修改配置文件 *datakit.conf*:
-    
-    ```toml
-    [dca]
-        # 开启
-        enable = true
-
-        # DCA 服务地址
-        websocket_server = "ws://127.0.0.1:8000/ws"
-
-    ```
-
-    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
-
-<!-- markdownlint-enable -->
-
----
-
-## DCA web 服务 {#dca-web}
-
-<!-- markdownlint-disable MD046 -->
-???+ Attention
-
-    不同版本的 DataKit 接口可能存在差异，为了更好地使用 DCA，建议升级 DataKit 为最新版本。
-
-<!-- markdownlint-enable -->
-
-DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来提供 DataKit 的接口代理，并提供前端 Web 页面来实现对 DataKit 的访问。
+DCA web 服务目前仅支持镜像安装，可通过 Docker 或 Kubernetes 来部署 DCA 服务。
 
 <!-- markdownlint-disable MD046 -->
 === "Docker"
@@ -137,9 +88,9 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
 
     - 测试
 
-    容器运行成功后，可以通过浏览器进行访问：`http://localhost:8000`
+    容器运行成功后， Web 服务地址为 `http://localhost:8000`, WebSocket 服务地址为 `ws://localhost:8000/ws`。
 
-=== "k8s"
+=== "Kubernetes"
 
     下载 [*dca.yaml*](https://static.<<<custom_key.brand_main_domain>>>/datakit/dca/dca.yaml){:target="_blank"}，并修改文件里面的相应配置，应用 `dca.yaml` 文件到 Kubernetes 集群中。
 
@@ -153,26 +104,27 @@ DCA web 是 DCA 客户端的 web 版本，它通过部署一个后端服务来�
 
 默认情况下，DCA 会采用系统默认的配置，如果需要自定义配置，可以通过注入环境变量方式来进行修改。目前支持以下环境变量：
 
-| 环境变量名称            | 类型   | 默认值                           | 说明                                                                                            |
-| ---------:              | ----:  | ---:                             | ------                                                                                          |
-| `DCA_CONSOLE_API_URL`        | string | `https://console-api.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> console API 地址，参考 [节点地址](dca.md#node-address)                                                                        |
-| `DCA_CONSOLE_WEB_URL`        | string | `https://console.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>>平台地址，参考 [节点地址](dca.md#node-address)                                                                         |
-| `DCA_STATIC_BASE_URL`        | string | `https://static.<<<custom_key.brand_main_domain>>>` | 静态文件服务器地址                                                                         |
-| `DCA_CONSOLE_PROXY`     | string | 无                               | <<<custom_key.brand_name>>> API 代理，不代理 DataKit 接口                                                            |
-| `DCA_LOG_LEVEL`         | string | INFO                             | 日志等级，取值为 debug/info/warn/error                  |
-| `DCA_LOG_PATH`         | string | INFO                             | 日志路径，如果需要输出到 stdout，则设置为 `stdout`                  |
-| `DCA_TLS_ENABLE`         | string |                              | 是否开启 TLS，设置该值表示开启                  |
-| `DCA_TLS_CERT_FILE`         | string |                              | 证书文件路径，如： `/etc/ssl/certs/server.crt`                  |
-| `DCA_TLS_KEY_FILE`         | string |                              | 私钥文件路径，如： `/etc/ssl/certs/server.key`                  |
+ | 环境变量名称          | 类型   | 默认值                                                   | 说明                                                                               |
+ | ---------:            | ----:  | ---:                                                     | ------                                                                             |
+ | `DCA_CONSOLE_API_URL` | string | `https://console-api.<<<custom_key.brand_main_domain>>>` | <<<custom_key.brand_name>>> console API 地址，参考 [节点地址](dca.md#node-address) |
+ | `DCA_CONSOLE_WEB_URL` | string | `https://console.<<<custom_key.brand_main_domain>>>`     | <<<custom_key.brand_name>>>平台地址，参考 [节点地址](dca.md#node-address)          |
+ | `DCA_STATIC_BASE_URL` | string | `https://static.<<<custom_key.brand_main_domain>>>`      | 静态文件服务器地址                                                                 |
+ | `DCA_CONSOLE_PROXY`   | string | 无                                                       | <<<custom_key.brand_name>>> API 代理，不代理 DataKit 接口                          |
+ | `DCA_LOG_LEVEL`       | string | info                                                     | 日志等级，取值为 debug/info/warn/error                                             |
+ | `DCA_LOG_PATH`        | string | 无                                                       | 日志路径，如果需要输出到 stdout，则设置为 `stdout`                                 |
+ | `DCA_TLS_ENABLE`      | string | 无                                                       | 是否开启 TLS，设置该值表示开启                                                     |
+ | `DCA_TLS_CERT_FILE`   | string | 无                                                       | 证书文件路径，如： `/etc/ssl/certs/server.crt`                                     |
+ | `DCA_TLS_KEY_FILE`    | string | 无                                                       | 私钥文件路径，如： `/etc/ssl/certs/server.key`                                     |
 
 示例：
 
 ```shell
-docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=WARN pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca
+docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=info pubrepo.<<<custom_key.brand_main_domain>>>/tools/dca
 ```
 
 ### 节点地址 {#node-address}
 
+<<<% if custom_key.brand_key == 'guance' %>>>
 | 部署类型  | 节点名       | `DCA_CONSOLE_API_URL`| `DCA_CONSOLE_WEB_URL`|
 |-------|-----------|--------------------------------| --------------------------------|
 | SaaS 部署 | 中国区 1（杭州）    | `https://console-api.<<<custom_key.brand_main_domain>>>`    | `https://console.<<<custom_key.brand_main_domain>>>` |
@@ -183,11 +135,74 @@ docker run -d --name dca -p 8000:80 -e DCA_LOG_PATH=stdout -e DCA_LOG_LEVEL=WARN
 | SaaS 部署 | 欧洲区 1（法兰克福）| `https://eu1-console-api.<<<custom_key.brand_main_domain>>>`| `https://eu1-console.<<<custom_key.brand_main_domain>>>` |
 | SaaS 部署 | 亚太区 1（新加坡）  | `https://ap1-console-api.<<<custom_key.brand_main_domain>>>`| `https://ap1-console.<<<custom_key.brand_main_domain>>>` |
 | 私有部署版 | 私有部署版     |实际部署地址|实际部署地址 |
+<<<% else %>>>
+| Deploy Type | Node Name           | `DCA_CONSOLE_API_URL`                                        | `DCA_CONSOLE_WEB_URL`                                    |
+| -------     | -----------         | --------------------------------                             | --------------------------------                         |
+| SaaS 部署   | 美洲区 1（俄勒冈）   | `https://us1-console-api.<<<custom_key.brand_main_domain>>>` | `https://us1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署   | 欧洲区 1（法兰克福） | `https://eu1-console-api.<<<custom_key.brand_main_domain>>>` | `https://eu1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署   | 亚太区 1（新加坡）   | `https://ap1-console-api.<<<custom_key.brand_main_domain>>>` | `https://ap1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署   | 非洲区 1（南非）     | `https://za1-console-api.<<<custom_key.brand_main_domain>>>` | `https://za1-console.<<<custom_key.brand_main_domain>>>` |
+| SaaS 部署   | 印尼区 1（雅加达）   | `https://id1-console-api.<<<custom_key.brand_main_domain>>>` | `https://id1-console.<<<custom_key.brand_main_domain>>>` |
+<<<% endif %>>>
 
+## DataKit 客户端配置 {#config}
+
+<!-- markdownlint-disable MD046 -->
+???+ Attention
+
+    不同版本的 DataKit 接口可能存在差异，为了更好地使用 DCA，建议升级 DataKit 为最新版本。
+
+
+=== "主机安装时启用 DCA 功能"
+
+    在安装命令前添加以下环境变量：
+    
+    - `DK_DCA_ENABLE` 
+
+      是否开启，开启设置为 `on`
+
+    - `DK_DCA_WEBSOCKET_SERVER` 
+    
+      配置 DCA web 服务的 WebSocket 地址 ([:octicons-tag-24: Version-1.64.0](changelog.md#cl-1.64.0))，即 `ws://<dca_server_address>/ws`
+    
+    示例：
+    
+    ```shell
+    DK_DCA_ENABLE=on DK_DCA_WEBSOCKET_SERVER="ws://<DCA_SERVER_ADDRESS>/ws" DK_DATAWAY=https://openway.<<<custom_key.brand_main_domain>>>?token=<TOKEN> bash -c "$(curl -L https://static.<<<custom_key.brand_main_domain>>>/datakit/install.sh)"
+    ```
+
+    安装成功后，DataKit 将自动连接 DCA 服务。
+
+=== "Kubernetes"
+
+    可通过 [设置 DCA 相关环境变量](../datakit/datakit-daemonset-deploy.md#env-dca) 来开启 DCA 功能。
+
+=== "*datakit.conf*"
+
+    修改配置文件 *datakit.conf*:
+    
+    ```toml
+    [dca]
+        # 开启
+        enable = true
+
+        # DCA 服务地址
+        websocket_server = "ws://<dca_server_address>/ws"
+
+    ```
+
+    配置好后，[重启 DataKit](datakit-service-how-to.md#manage-service) 即可。
+
+---
+
+
+<!-- markdownlint-enable -->
+
+## DCA 功能使用 {#dca-manage}
 
 ### 登录 DCA {#login}
 
-DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进行访问。首次访问时，页面将导向一个登录跳转中转页面。点击页面下方「立即前往」按钮后，您将被引导至<<<custom_key.brand_name>>>平台。接下来，按照页面上的说明指引，配置 DCA 的地址。一旦配置完成，您便能够直接通过<<<custom_key.brand_name>>>平台实现无需登录即可访问 DCA 平台的功能。
+DCA 开启和安装以后，您可在浏览器输入 DCA web 服务地址进行访问。首次访问时，页面将导向一个登录跳转中转页面。点击页面下方「立即前往」按钮后，您将被引导至<<<custom_key.brand_name>>>平台。接下来，按照页面上的说明指引，配置 DCA 的地址。一旦配置完成，您便能够直接通过<<<custom_key.brand_name>>>平台实现无需登录即可访问 DCA 平台的功能。
 
 <figure markdown>
   ![](https://static.<<<custom_key.brand_main_domain>>>/images/datakit/dca/dca-login-redirect.png){ width="800" }
@@ -261,7 +276,7 @@ DCA 开启和安装以后，您可在浏览器输入地址 `localhost:8000` 进�
 
 ### 0.1.0(2024/11/27) {#cl-0.1.0}
 
-- 重构 DCA 底层框架，使用 websocket 协议进行通信，便于管理不同网络环境下的 DataKit。
+- 重构 DCA 底层框架，使用 WebSocket 协议进行通信，便于管理不同网络环境下的 DataKit。
 - 新增管理 DataKit 主配置的功能。
 - 新增支持 TLS 配置。
 - 调整 DataKit 的”重新加载“功能为“重启“。

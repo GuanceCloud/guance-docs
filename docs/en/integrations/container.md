@@ -1802,6 +1802,8 @@ The logging of the Kubernetes Event.
 |`involved_namespace`|Namespace defines the space within which each name must be unique for involved object.|string|-|
 |`involved_uid`|The UID of involved object.|string|-|
 |`message`|Details of event log|string|-|
+|`source_component`|Component from which the event is generated.|string|-|
+|`source_host`|Node name on which the event is generated.|string|-|
 
 
 
