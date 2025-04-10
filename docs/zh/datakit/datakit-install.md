@@ -500,9 +500,7 @@ DK_APM_INSTRUMENTATION_ENABLED=docker \
 Mac 上安装时，如果安装/升级过程中出现
 
 ```shell
-"launchctl" failed with stderr: /Library/LaunchDaemons/cn.dataflux.datakit.plist: Service is disabled
-# 或者
-"launchctl" failed with stderr: /Library/LaunchDaemons/com.guance.datakit.plist: Service is disabled
+"launchctl" failed with stderr: /Library/LaunchDaemons/com.datakit.plist: Service is disabled
 ```
 
 执行
@@ -514,9 +512,7 @@ sudo launchctl enable system/datakit
 然后再执行如下命令即可
 
 ```shell
-sudo launchctl load -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
-# 或者
-sudo launchctl load -w /Library/LaunchDaemons/com.guance.datakit.plist
+sudo launchctl load -w /Library/LaunchDaemons/com.datakit.plist
 ```
 
 <!-- markdownlint-disable MD013 -->

@@ -467,15 +467,23 @@ spec:
 
 - **ENV_DATAWAY_WAL_WORKERS**
 
-    设置 WAL worker 个数，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
+    设置 WAL worker 个数，默认为 CPU 配额核心数 X 8 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: Int
 
 - **ENV_DATAWAY_WAL_MEM_CAPACITY**
 
-    设置 WAL 内存队列长度，默认为 CPU 配额核心数 X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
+    设置 WAL 内存队列长度，默认为 CPU 配额核心数 X 8 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **字段类型**: Int
+
+- **ENV_DATAWAY_WAL_NO_DROP_CATEGORIES**
+
+    当 WAL 磁盘限定容量写满时，设置不主动丢弃的数据类型列表 [:octicons-tag-24: Version-1.71.0](changelog.md#cl-1.71.0)
+
+    **字段类型**: List
+
+    **示例**: `'L,T,N'`
 
 - **ENV_DATAWAY_WAL_PATH**
 
