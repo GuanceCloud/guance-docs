@@ -2468,6 +2468,36 @@ icon: zy/integrations
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../azure_redis_cache"
+  				data-tags="AZURE"
+  				data-name="Azure Redis Cache"
+  				data-summary="采集 Azure Redis Cache 指标数据"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/azure_redis_cache/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Azure Redis Cache" class="fth-integration-name">Azure Redis Cache</div>
+                            <div title="采集 Azure Redis Cache 指标数据" class="fth-integration-desc">采集 Azure Redis Cache 指标数据</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../azure_sqlserver"
   				data-tags="AZURE"
   				data-name="Azure SQL Servers"
@@ -2891,7 +2921,7 @@ icon: zy/integrations
   				data-href="../container"
   				data-tags="KUBERNETES,容器"
   				data-name="Kubernetes"
-  				data-summary="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<< custom_key.brand_name >>>。"
+  				data-summary="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -2902,7 +2932,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="Kubernetes" class="fth-integration-name">Kubernetes</div>
-                            <div title="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<< custom_key.brand_name >>>。" class="fth-integration-desc">采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<< custom_key.brand_name >>>。</div>
+                            <div title="采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。" class="fth-integration-desc">采集 Container 和 Kubernetes 的指标、对象和日志数据，上报到<<<custom_key.brand_name>>>。</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -3131,7 +3161,7 @@ icon: zy/integrations
   				data-href="../ddtrace-ext-java"
   				data-tags="DDTRACE,链路追踪"
   				data-name="DDTrace 扩展"
-  				data-summary="<<< custom_key.brand_name >>>扩展了 DDTrace 对组建的支持"
+  				data-summary="<<<custom_key.brand_name>>>扩展了 DDTrace 对组建的支持"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -3142,7 +3172,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="DDTrace 扩展" class="fth-integration-name">DDTrace 扩展</div>
-                            <div title="<<< custom_key.brand_name >>>扩展了 DDTrace 对组建的支持" class="fth-integration-desc"><<< custom_key.brand_name >>>扩展了 DDTrace 对组建的支持</div>
+                            <div title="<<<custom_key.brand_name>>>扩展了 DDTrace 对组建的支持" class="fth-integration-desc"><<<custom_key.brand_name>>>扩展了 DDTrace 对组建的支持</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7601,7 +7631,7 @@ icon: zy/integrations
   				data-href="../otel-ext-java"
   				data-tags="OTEL,链路追踪"
   				data-name="OpenTelemetry 扩展"
-  				data-summary="<<< custom_key.brand_name >>>对 OpenTelemetry 插件做了额外的扩展"
+  				data-summary="<<<custom_key.brand_name>>>对 OpenTelemetry 插件做了额外的扩展"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7612,7 +7642,7 @@ icon: zy/integrations
   						/>
   						<div class="fth-integration-description">
                             <div title="OpenTelemetry 扩展" class="fth-integration-name">OpenTelemetry 扩展</div>
-                            <div title="<<< custom_key.brand_name >>>对 OpenTelemetry 插件做了额外的扩展" class="fth-integration-desc"><<< custom_key.brand_name >>>对 OpenTelemetry 插件做了额外的扩展</div>
+                            <div title="<<<custom_key.brand_name>>>对 OpenTelemetry 插件做了额外的扩展" class="fth-integration-desc"><<<custom_key.brand_name>>>对 OpenTelemetry 插件做了额外的扩展</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -7630,8 +7660,8 @@ icon: zy/integrations
   				class="fth-integration-list-item"
   				data-href="../otel-guance-exporter"
   				data-tags="OTEL"
-  				data-name="OpenTelemetry Exportor"
-  				data-summary="直接将 OpenTelemetry 的数据输出给观测云"
+  				data-name="<<<custom_key.brand_name>>> OpenTelemetry Exportor"
+  				data-summary="直接将 OpenTelemetry 的数据输出给<<<custom_key.brand_name>>>"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -7641,8 +7671,8 @@ icon: zy/integrations
 									alt=""
   						/>
   						<div class="fth-integration-description">
-                            <div title="OpenTelemetry Exportor" class="fth-integration-name">OpenTelemetry Exportor</div>
-                            <div title="直接将 OpenTelemetry 的数据输出给观测云" class="fth-integration-desc">直接将 OpenTelemetry 的数据输出给观测云</div>
+                            <div title="<<<custom_key.brand_name>>> OpenTelemetry Exportor" class="fth-integration-name"><<<custom_key.brand_name>>> OpenTelemetry Exportor</div>
+                            <div title="直接将 OpenTelemetry 的数据输出给<<<custom_key.brand_name>>>" class="fth-integration-desc">直接将 OpenTelemetry 的数据输出给<<<custom_key.brand_name>>></div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

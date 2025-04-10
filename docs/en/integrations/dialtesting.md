@@ -32,12 +32,12 @@ The collector collects the data of network dialing test results, and all the dat
         
     [[inputs.dialtesting]]
       # We can also configure a JSON path like "file:///your/dir/json-file-name"
-      server = "https://dflux-dial.<<<custom_key.brand_domain>>>"
+      server = "https://dflux-dial.<<<custom_key.brand_main_domain>>>"
     
       # [require] node ID
       region_id = "default"
     
-      # if server are dflux-dial.<<<custom_key.brand_domain>>>, ak/sk required
+      # if server are dflux-dial.<<<custom_key.brand_main_domain>>>, ak/sk required
       ak = ""
       sk = ""
     
