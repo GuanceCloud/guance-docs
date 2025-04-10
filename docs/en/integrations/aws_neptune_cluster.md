@@ -30,67 +30,70 @@ The displayed Metrics for the AWS Neptune Cluster include cold start time, execu
 
 ### Install Func
 
-It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): all prerequisites are automatically installed, please continue with script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - DataFlux Func (Automata): All prerequisites are automatically installed. Please continue with the script installation.
 
-If you deploy Func yourself, refer to [Self-deploy Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
 
 ### Installation Script
 
-> Note: Please prepare an Amazon Web Services AK that meets the requirements in advance (for simplicity, you can directly grant CloudWatch read-only access `CloudWatchReadOnlyAccess`)
+> Note: Please prepare the required Amazon Cloud AK in advance (for simplicity, you can directly grant `CloudWatchReadOnlyAccess` permission to CloudWatch).
 
-To synchronize monitoring data of ECS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (AWS-Neptune Cluster Collection)" (ID: `guance_aws_lambda`)
+#### Script for Enabling the Managed Version
 
-After clicking 【Install】, input the corresponding parameters: AWS AK ID, AWS AK SECRET.
+1. Log in to the <<< custom_key.brand_name >>> console.
+2. Click on the 【Manage】 menu and select 【Cloud Account Management】.
+3. Click 【Add Cloud Account】, choose 【AWS】, and fill in the required information on the interface. If a cloud account has already been configured, skip this step.
+4. Click 【Test】. After a successful test, click 【Save】. If the test fails, check whether the related configuration information is correct and retest.
+5. In the 【Cloud Account Management】 list, you can see the added cloud accounts. Click on the corresponding cloud account to enter the details page.
+6. On the cloud account details page, click the 【Integration】 button. In the `Not Installed` list, find `AWS Neptune Cluster`, click the 【Install】 button, and install it via the pop-up installation interface.
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script. In the startup script, ensure that 'regions' match the actual regions where instances are located.
+#### Manual Activation Script
 
-Once enabled, you can see the corresponding automatic trigger configuration in "Manage / Automatic Trigger Configuration." Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
-
-> If you need to collect corresponding logs, you must also enable the corresponding log collection script. If you need to collect billing information, you must enable the cloud billing collection script.
-
-
-We default to collecting some configurations; for more details, see [Customize Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aws-cloudwatch/){:target="_blank"}
+1. Log in to the Func console, click 【Script Market】, enter the official script market, and search for: `guance_aws_neptune_cluster`.
+2. After clicking 【Install】, input the relevant parameters: AWS AK ID, AK Secret, and account name.
+3. Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+4. After enabling, you can see the corresponding automatic trigger configuration under 「Management / Automatic Trigger Configuration」. Click 【Execute】 to run it immediately without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
 
 
 ### Verification
 
-1. Confirm in "Manage / Automatic Trigger Configuration" whether the corresponding tasks have the relevant automatic trigger configurations, and check the corresponding task records and logs for any anomalies.
-2. In the <<< custom_key.brand_name >>> platform, under "Infrastructure / Custom," check if asset information exists.
-3. In the <<< custom_key.brand_name >>> platform, under "Metrics," check if there are corresponding monitoring data.
+1. In 「Management / Automatic Trigger Configuration」, confirm whether the corresponding task has an automatic trigger configuration. You can also check the corresponding task records and logs for any abnormalities.
+2. In <<< custom_key.brand_name >>>, 「Infrastructure / Custom」, check if there is asset information.
+3. In <<< custom_key.brand_name >>>, 「Metrics」, check if there are corresponding monitoring data.
 
 ## Metrics {#metric}
-After configuring Amazon CloudWatch, the default Measurement set is as follows. You can collect more Metrics through configuration:
+After configuring Amazon Cloud Monitoring, the default Measurement set is as follows. You can collect more Metrics through configuration:
 
-[Amazon CloudWatch Neptune Cluster Metrics Details](https://docs.aws.amazon.com/en_us/neptune/latest/userguide/cw-metrics.html){:target="_blank"}
+[Amazon Cloud Monitoring Neptune Cluster Metric Details](https://docs.aws.amazon.com/en_us/neptune/latest/userguide/cw-metrics.html){:target="_blank"}
 
 
 ### Metrics
 
 | Metric                                              | Description                                                         |
 | :------------------------------------------------ | :------------------------------------------------------------------ |
-| `BackupRetentionPeriodStorageUsed`                           | Total amount of backup storage used to support backups from the Neptune database cluster's backup retention window (in bytes). This is included in the total reported by the TotalBackupStorageBilled metric. |
-| `BufferCacheHitRatio`                           | Percentage of requests served by the buffer cache. This Metric can be used to diagnose query latency since cache misses can cause significant delays. If the cache hit ratio drops below 99.9%, consider upgrading the instance type to cache more data in memory. |
-| `ClusterReplicaLag`                           | Total lag (in milliseconds) when replicating updates from the primary instance to the read-only replica. |
-| `ClusterReplicaLagMaximum`                           | Maximum delay (in milliseconds) between the primary instance and each Neptune database instance in the database cluster. |
-| `ClusterReplicaLagMinimum`                           | Minimum delay (in milliseconds) between the primary instance and each Neptune database instance in the database cluster. |
-| `CPUUtilization`                           | Percentage of CPU utilized. |
-| `EngineUptime`                           | Length of time the instance has been running (in seconds). |
-| `FreeableMemory`                           | Amount of random-access memory available (in bytes). |
-| `GlobalDbDataTransferBytes`                           | Number of bytes of redo log data transferred from the primary server in one AWS region to the secondary AWS region in a Neptune global database. |
-| `GlobalDbReplicatedWriteIO`                           | Number of write I/O operations replicated from the primary server in one AWS region stored to the cluster volume in the secondary AWS region in a global database.<br/> Billing for each database cluster in a Neptune global database is calculated using VolumeWriteIOPS to measure the number of write operations performed within that cluster. For the primary database cluster, billing is calculated using GlobalDbReplicatedWriteIO to account for cross-region replication to the secondary database clusters. |
-| `GlobalDbProgressLag`                           | Milliseconds by which the secondary cluster lags behind the primary cluster for user transactions and system transactions. |
-| `GremlinRequestsPerSec`                           | Number of requests per second to the Gremlin engine. |
-| `GremlinWebSocketOpenConnections`                           | Number of times WebSocket connections are opened with Neptune. |
-| `LoaderRequestsPerSec`                           | Number of loader requests per second. |
-| `MainRequestQueuePendingRequests`                           | Number of requests waiting in the input queue to be executed. When requests exceed the maximum queue capacity, Neptune starts throttling requests. |
+| `BackupRetentionPeriodStorageUsed`                           | Total backup storage used (in bytes) to support the backup retention window for the Neptune database cluster. This is included in the total reported by the TotalBackupStorageBilled metric. |
+| `BufferCacheHitRatio`                           | The percentage of requests served from the buffer cache. This metric can be used to diagnose query latency since cache misses cause significant delays. If the cache hit ratio is below 99.9%, consider upgrading the instance type to cache more data in memory. |
+| `ClusterReplicaLag`                           | For read-only replicas, the total lag (in milliseconds) when copying updates from the primary instance. |
+| `ClusterReplicaLagMaximum`                           | The maximum delay amount between the primary instance and each Neptune database instance in the database cluster, measured in milliseconds. |
+| `ClusterReplicaLagMinimum`                           | The minimum delay amount between the primary instance and each Neptune database instance in the database cluster, measured in milliseconds. |
+| `CPUUtilization`                           | CPU utilization as a percentage. |
+| `EngineUptime`                           | The length of time the instance has been running (in seconds). |
+| `FreeableMemory`                           | The amount of available random access memory (in bytes). |
+| `GlobalDbDataTransferBytes`                           | The number of bytes of redo log data transferred from the primary AWS region to the secondary AWS region in Neptune global databases. |
+| `GlobalDbReplicatedWriteIO`                           | The number of write I/O operations replicated from the primary AWS region stored to the cluster volume in the secondary AWS region within the global database.<br/> For each database cluster in Neptune global databases, billing calculations use VolumeWriteIOPS to measure the write operations performed within that cluster. For the primary database cluster, billing calculations use GlobalDbReplicatedWriteIO to account for cross-region replication to the secondary database clusters. |
+| `GlobalDbProgressLag`                           | The number of milliseconds that the secondary cluster lags behind the primary cluster for user transactions and system transactions. |
+| `GremlinRequestsPerSec`                           | The number of requests per second to the Gremlin engine. |
+| `GremlinWebSocketOpenConnections`                           | The number of times WebSocket connections have been opened with Neptune. |
+| `LoaderRequestsPerSec`                           | The number of loader requests per second. |
+| `MainRequestQueuePendingRequests`                           | The number of requests waiting in the input queue for execution. When requests exceed the maximum queue capacity, Neptune begins throttling requests. |
 | `NCUUtilization`                           | At the cluster level, NCUUtilization reports the percentage of the maximum capacity used across the entire cluster. |
-| `NetworkThroughput`                           | Network throughput received from clients and transmitted to clients for each instance in the Neptune database cluster, measured in bytes per second. This throughput does not include network traffic between instances in the database cluster and the cluster volume. |
+| `NetworkThroughput`                           | The network throughput for each instance in the Neptune database cluster receiving from clients and transmitting to clients, measured in bytes per second. This throughput does not include network traffic between instances and the cluster volume within the database cluster. |
 
 
 ## Objects {#object}
 
-The collected AWS Neptune Cluster object data structure can be viewed in "Infrastructure - Custom."
+The object data structure collected for AWS Neptune Cluster can be seen in 「Infrastructure - Custom」.
 
 ```json
 {
@@ -111,8 +114,8 @@ The collected AWS Neptune Cluster object data structure can be viewed in "Infras
   "fields": {
     "CreatedTime"         : "2022-03-09T06:13:31Z",
     "ListenerDescriptions": "{JSON data}",
-    "AvailabilityZones"   : "{JSON data for availability zones}",
-    "message"             : "{JSON data for instance}"
+    "AvailabilityZones"   : "{Availability Zone JSON data}",
+    "message"             : "{Instance JSON data}"
   }
 }
 ```

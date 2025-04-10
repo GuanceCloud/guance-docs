@@ -31,7 +31,7 @@ Enter the page where you want to save a snapshot, adjust the time widget in the 
     
     **Explorer > Top Snapshot Button** (left of the search box), click **Save Snapshot**.
 
-    <img src="../../img/snapshot-1.png" width="80%" >
+    
 
 === "Dashboard Settings Button"
 
@@ -45,7 +45,7 @@ Enter the page where you want to save a snapshot, adjust the time widget in the 
 
 After successfully bringing up the **Save Snapshot** window, you can configure the settings for this snapshot.
 
-<img src="../../img/snapshot-2.png" width="60%" >
+
 
 1. Enter the snapshot name;
 2. Visibility scope: including **Public** and **Private**.
@@ -98,9 +98,7 @@ Enter **Scenarios > Dashboard**, and in the upper right-hand corner under **Hist
 
 In the snapshot list on the right, click :octicons-share-android-16:, to share the current specific snapshot.
 
-<!--
-<img src="../../img/snapshot-0724.png" width="60%" >
--->
+
 
 ### Basic Configuration
 
@@ -140,13 +138,13 @@ Users with the share link can view the <<< custom_key.brand_name >>> workspace d
     
 **Note**: In the Log Explorer, users with [snapshot viewing](../../management/logdata-access.md#snapshot) permissions can view the filtering conditions in the search bar above the snapshot page and add additional search criteria.
 
-<img src="../../img/snapshot-7.png" width="50%" >
+
 
 :material-numeric-2-circle: Encrypted Sharing
 
 Set a password conforming to `4-8 digits and English letters`. Users with both the share link and the corresponding password can view the <<< custom_key.brand_name >>> workspace data displayed by this snapshot.
 
-<img src="../../img/snapshot-8.png" width="50%" >
+
 
 #### Additional Options
 
@@ -154,17 +152,16 @@ Set a password conforming to `4-8 digits and English letters`. Users with both t
     
 - Enabling the top bar shows platform introduction text at the top.
 
-<img src="../../img/snapshot-11.png" width="90%" >
 
 - Disabling the top bar hides the platform introduction text.
 
-<img src="../../img/snapshot-10.png" width="90%" >
+
 
 :material-numeric-2-circle: Display Watermark
 
 Snapshots can display a watermark with the sharer's name in the format "Shared by: Name".
 
-<img src="../../img/7.snapshot_3.png" width="90%" >
+
 
 ### Data Masking {#sensitive}
 
@@ -173,46 +170,16 @@ You can configure masking rules for field values within the snapshot. Input the 
 - Masking fields: multiple selections supported;
 - Regular expressions: use regex syntax for masking; refer to [Data Access](../../management/logdata-access.md#config) for more operations.
 
-<img src="../../img/snapshot-mask.png" width="60%" >
+<img src="../../img/snapshot_mask.png" width="60%" >
 
 
-<!--
-**Note**:  
-
-- If the regex configuration includes groups, only the content within the group will be masked;   
-- If the regex configuration does not include groups, the entire match will be masked.
-  
-*Example: Need to share a snapshot of log data with a member while hiding UID.*
-
-Configure data masking rules with regex. Here, no groups are used:
-
-<img src="../../img/0727-sensitive.png" width="50%" >
-
-After setting the sharing method, validity period, etc., click **Confirm**. Check the [View Snapshot](#view) page, and the UID information will be hidden:
-
-For example, the `message` field contains: `2023-07-27 07:20:56.240 [INFO][65]  UID:"9e269876-361b-4ba4-a566-8f8ccae74d68"`, after configuration, it displays as `2023-07-27 07:20:56.240 [INFO][65] *** `.
-
-![](../img/0727-sensitive-1.png)
-
-
-
-If the regex configuration includes groups `UID:(".*?")`, i.e.:
-
-<img src="../../img/0727-sensitive-2.png" >
-
-The masked effect is:
-
-For example, after configuration, it displays as `2023-07-27 07:20:56.240 [INFO][65] UID:***`.
-
-![](../img/0727-sensitive-3.png)
--->
 
 
 ### IP Restrictions {#ip}
 
 Enable IP whitelist: This adds an extra layer of protection to snapshot sharing.
 
-<img src="../../img/snapshot-ip.png" width="60%" >
+<img src="../../img/snapshot_ip.png" width="60%" >
 
 When enabling the IP whitelist, you can choose to use the current workspace's IP whitelist or customize the input:
 
@@ -225,11 +192,11 @@ When enabling the IP whitelist, you can choose to use the current workspace's IP
 
 After completing all configurations for sharing the snapshot, you can choose to preview the snapshot effect:
 
-<img src="../../img/snapshot-preview.png" width="60%" >
+
 
 The masking effect in the snapshot is shown below:
 
-<img src="../../img/snapshot-preview-page.png" width="70%" >
+
 
 **Note**: This preview mirrors the actual sharing process. For example, if you set IP whitelist restrictions in the [configuration steps](#share), IPs outside the whitelist will also be unable to view the preview snapshot.
 
@@ -245,12 +212,12 @@ Members with permissions to [save, analyze, and manage snapshots](#permission) c
 
     Enter **Management > Share Management > Shared Snapshots** module.
 
-    <img src="../../img/snapshot-12.png" width="80%" >
+    <img src="../../img/sharing_snapshot_manag_entry.png" width="80%" >
 
 === "Snapshot Share Window" 
 
     When performing [snapshot sharing](#sharing-method), click **View Share List** in the top-right corner to navigate to the **Shared Snapshots** management module.
 
-    <img src="../../img/snapshot-12-1.png" width="60%" >
+    <img src="../../img/sharing_snapshot_list.png" width="60%" >
 
 </div>

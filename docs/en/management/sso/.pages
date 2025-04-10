@@ -1,11 +1,15 @@
 nav:
   - index.md
-  - 'Role Mapping': role_mapping.md
-  - Configuration Examples:
-    - 'Alibaba Cloud IDaaS': aliyun-idaas.md
-    - 'Authing': authing.md
-    - 'Azure AD': azure-ad.md
-    - 'IAM Identity Center': aws_iam_sso.md
-    - 'Okta': okta.md
-    - 'Keycloak': keycloak.md
-  - 'FAQ': configuration-faq.md
+  - 'SAML': 
+    - saml.md
+    - Configuration examples:
+      - 'Alibaba Cloud IDaaS': aliyun-idaas.md
+      - 'Authing': authing.md
+      - 'Azure AD': azure-ad.md
+      - 'IAM Identity Center': aws_iam_sso_saml.md
+      - 'Okta': okta.md
+      - 'Keycloak': keycloak.md
+  - 'OIDC': 
+    - oidc.md
+  - 'Role mapping': role_mapping.md
+  - 'Frequently asked questions': configuration-faq.md

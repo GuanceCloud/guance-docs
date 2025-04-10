@@ -109,8 +109,9 @@ systemctl restart datakit
 
 详细指标信息参考[官方文档](https://www.emqx.io/docs/zh/v5.1/observability/metrics-and-stats.html#%E6%8C%87%E6%A0%87%E5%AF%B9%E7%85%A7%E6%89%8B%E5%86%8C)
 
-
+<<<% if custom_key.brand_key == "guance" %>>>
 ## 最佳实践 {#best-practices}
-<div class="grid cards" data-href="https://learning.guance.com/uploads/banner_e4008e857e.png" data-title="EMQX 可观测性最佳实践" data-desc="通过将 EMQX 指标数据接入到观测云，让用户更好地理解和控制 EMQX 集群的行为，从而提高系统的可靠性和效率。"  markdown>
-<[EMQX 可观测性最佳实践](https://www.guance.com/learn/articles/EMQX){:target="_blank"}>
+<div class="grid cards" data-href="https://learning.<<< custom_key.brand_main_domain >>>/uploads/banner_e4008e857e.png" data-title="EMQX 可观测性最佳实践" data-desc="通过将 EMQX 指标数据接入到<<< custom_key.brand_name >>>，让用户更好地理解和控制 EMQX 集群的行为，从而提高系统的可靠性和效率。"  markdown>
+<[EMQX 可观测性最佳实践](https://<<< custom_key.brand_main_domain >>>/learn/articles/EMQX){:target="_blank"}>
 </div>
+<<<% endif %>>>

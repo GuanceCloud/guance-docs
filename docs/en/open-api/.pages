@@ -3,39 +3,39 @@ nav:
   - 'Public Request Parameters': public-request-params.md
   - 'Public Response Structure': public-response-params.md
   - 'Signature Authentication': signature-certification.md
-  - 'Usage Limits': api-limit.md
+  - 'Usage Limitations': api-limit.md
   - 'Request Example': example.md
-  - 'Common Error Definitions': error-definition.md
-  - 'Use Case - Dashboard': board
-  - 'Use Case - Notes': notes
-  - 'Use Case - Explorer': viewer
-  - 'Use Case - Built-in Views': inner-dashboard
-  - 'Use Case - Service Management': service-manage
+  - 'Public Error Definitions': error-definition.md
+  - 'Use Cases - Dashboard': board
+  - 'Use Cases - Notes': notes
+  - 'Use Cases - Explorers': viewer
+  - 'Use Cases - Built-in Views': inner-dashboard
+  - 'Use Cases - Service Management': service-manage
   - 'Events': keyevent
   - 'Incident - Channels': channel
-  - 'Incident - Issue': issue
+  - 'Incident - Issues': issue
   - 'Incident - Schedules': notification-schedule
   - 'Incident - Configuration Management - Notification Policies': issue-notification-policy
   - 'Incident - Configuration Management - Issue Discovery': issue-auto-discovery
   - 'Infrastructure': objects
-  - 'Infrastructure - Resource Catalog': objc-set
-  - 'Logs - Pattern Query': logmine
-  - 'Logs - Index': log-index-cfg
-  - 'Logs - Data Forwarding': log-backup-cfg
-  - 'Logs - Data Access': logging-query-rule
-  - 'Metrics - Get Measurement Information': metric
-  - 'Metrics - Aggregate and Generate Metrics': aggs-to-metric
-  - 'RUM PV - Application': rum-cfg-set
-  - 'RUM PV - SourceMap': rum-sourcemap
-  - 'Synthetic Tests - Test Tasks': dialing-task
-  - 'Synthetic Tests - User-defined Node Management': dialing-region
+  - 'Infrastructure - Resource Catalogs': objc-set
+  - 'LOG - Pattern Queries': logmine
+  - 'LOG - Indexes': log-index-cfg
+  - 'LOG - Data Forwarding': log-backup-cfg
+  - 'LOG - Data Access': logging-query-rule
+  - 'Metrics - Retrieve Measurement Information': metric
+  - 'Metrics - Aggregate to Generate Metrics': aggs-to-metric
+  - 'RUM PV - Applications': rum-cfg-set
+  - 'RUM PV - SourceMaps': rum-sourcemap
+  - 'Synthetic Tests - Testing Tasks': dialing-task
+  - 'Synthetic Tests - Self-built Nodes Management': dialing-region
   - 'Monitoring - Checkers': checker
   - 'Monitoring - SLO': slo
-  - 'Monitoring - Intelligent Inspection': self-built-checker
-  - 'Monitoring - Mute Configuration': mute
+  - 'Monitoring - Intelligent Inspections': self-built-checker
+  - 'Monitoring - Mute Configurations': mute
   - 'Monitoring - Alert Strategies': alert-policy
   - 'Monitoring - Alert Strategies - Custom Notification Dates': alert-policy-notice-date
-  - 'Monitoring - Notification Targets Management': notify-object
+  - 'Monitoring - Notification Targets': notify-object
   - 'Management - Field Management': field-cfg
   - 'Management - Global Tags': tag
   - 'Management - Member Management': workspace-member
@@ -45,14 +45,15 @@ nav:
   - 'Management - Member Management - SSO Management - Custom Mapping Rules (Deployment Plan)': custom-login-mapping
   - 'Management - Role Management': role
   - 'Management - API Key Management': workspace-ak
-  - 'Management - Blacklist': blacklist
-  - 'Management - Pipeline': pipeline
+  - 'Management - Blacklists': blacklist
+  - 'Management - Pipelines': pipeline
   - 'Management - Data Access': data-query-rule
   - 'Management - Sensitive Data Masking': workspace-data-mask
-  - 'Workspace': workspace
-  - 'Workspace - Attribute Claims': workspace-declaration
+  - 'Workspaces': workspace
+  - 'Workspaces - Attribute Claims': workspace-declaration
   - 'Snapshot Management': snapshot
   - 'DQL Data Query': query-data
   - 'Func Functions': outer-function
   - 'Billing Analysis': billing
-  - 'Login Token': offline-token
+  - 'Login-Free Tokens': offline-token
+  - 'Chart Images': chart-image

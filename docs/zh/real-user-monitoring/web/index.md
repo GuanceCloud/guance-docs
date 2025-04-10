@@ -131,14 +131,15 @@ datafluxRum.startSessionReplayRecording()
 #### 功能特性
 
 当页面触发错误时，SDK 将自动执行：
-▸ 持续记录：从错误触发时开始，完整保留会话全生命周期数据  
-▸ 精准补偿：通过独立采样通道确保错误场景 100% 捕获
+
+1. **持续记录**：从错误触发时开始，完整保留会话全生命周期数据
+2. **精准补偿**：通过独立采样通道确保错误场景 100% 捕获
 
 #### 配置方案
 
 ```javascript
 <script
-  src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
   type="text/javascript"
 ></script>
 <script>
@@ -283,7 +284,7 @@ datafluxRum.setUser({ id: '1234', name: 'John Doe', email: 'john@doe.com' })
 
 ```javascript
 <script
-  src="https://<<< custom_key.static_domain >>>/browser-sdk/v3/dataflux-rum.js"
+  src="https://static.<<< custom_key.brand_main_domain >>>/browser-sdk/v3/dataflux-rum.js"
   type="text/javascript"
 ></script>
 <script>

@@ -1,21 +1,21 @@
 nav:
   - index.md
-  - 'Web Monitoring': web
-  - 'Mini Program Monitoring': miniapp
-  - 'Android Monitoring': android
-  - 'iOS/tvOS Monitoring': ios
-  - 'React Native Monitoring': react-native
-  - 'Flutter Monitoring': flutter
-  - 'UniApp Monitoring': uni-app
-  - 'macOS Monitoring': macos
-  - 'C++ Monitoring': cpp
-  - 'Unity Monitoring': unity
-  - 'Explorer': explorer
-  - 'Analysis Dashboard': app-analysis.md
-  - 'Session Replay': session-replay
-  - 'User Analysis':
-    - 'Session Heatmap': heatmap.md
+  - 'Web': web
+  - 'Miniapp': miniapp
+  - 'Android': android
+  - 'iOS/tvOS': ios
+  - 'React Native': react-native
+  - 'Flutter': flutter
+  - 'UniApp': uni-app
+  - 'macOS': macos
+  - 'C++': cpp
+  - 'Unity': unity
+  - 'Explorers': explorer
+  - 'Application Analysis': app-analysis.md
+  - 'SESSION REPLAY': session-replay
+  - 'User Analyses':
+    - 'Session Heatmaps': heatmap.md
     - 'Funnel Analysis': user_insight_funnel.md
-  - 'Data Access': rumdata_access.md
+  - 'RUM Data Access': rumdata_access.md
   - 'Self-tracking': self-tracking.md
   - 'SourceMap': sourcemap

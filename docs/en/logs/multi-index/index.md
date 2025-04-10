@@ -1,51 +1,62 @@
 # Log Index
 ---
 
-<<< custom_key.brand_name >>> features advanced log indexing capabilities. By creating and managing multiple indices, the system automatically archives log data to the corresponding index based on predefined filtering conditions. Additionally, you can customize data storage policies for each index to effectively control and reduce storage costs, achieving dual optimization in data management flexibility and economic efficiency.
+By creating and managing multiple indices, the system automatically archives log data to the corresponding index based on predefined filtering conditions. Additionally, you can customize the data storage strategy for each index to effectively control and reduce storage costs, achieving flexibility in data management and economic efficiency.
 
-Under the log index feature, you can:
+Under the log index, you can:
 
-- [Create an Index](#create);
-- [Bind External Indices](#binding-index).
+- [Create an index](#create);
+- [Bind external index](#binding-index).
 
 ???+ warning "Note"
 
-    By default, multi-log indices cannot be created, **please contact <<< custom_key.brand_name >>> customer manager to apply for this feature**.
+    By default, multi-log indexing cannot be created, **please contact your account manager to enable this feature**.
 
 ## Start Creating {#create}
 
-1. Navigate to the **Logs > Index > Create Index** page;
-2. Customize the name of the index;  
-3. Add filtering conditions: supports `in`, `not in`, etc., screening methods;
-4. Configure data storage policies, select standard storage duration, low-frequency storage duration, and archive storage duration;
+1. Navigate to the **Log > Index > Create Index** page;
+2. Customize the name of the index;
+3. Add filter conditions: supports `in`, `not in` and other filtering methods;
+4. Configure the data storage strategy, select standard storage duration, infrequent access storage duration, and archive storage duration;
 5. Input [key fields](#key_key).
-    
+
 ???+ warning "Note"
 
-    Deployment Plan users can customize input data storage policy durations here, range: 1d ~ 1800d. 
+    Deployment Plan users can customize the data retention period here, range: 1d ~ 1800d.
 
 ???+ abstract "Index Rules"
 
-    - The index name must be unique, starting with a letter, containing only lowercase letters, numbers, or “_” characters, unmodifiable, and deleted index names cannot be recreated;
-    - Default index: all logs are stored by default in the index named `default`, which only supports modification of key fields; 
-    - Log flow: after setting multiple indices, logs flow into the first matching index, and the same log will not be saved across indices;  
-    - Index quantity limit: including the `default` index, there can be at most 6 indices, meaning up to 5 custom indices can be created;
-    - Member permissions: standard members and read-only members have only viewing rights, while administrators and owners can edit, delete, and drag to reorder.
+    - The index name must be unique, start with a letter, and only contain lowercase letters, numbers, or “_” characters. It cannot be modified, and once deleted, the index name cannot be recreated;
+    - Default index: all logs are stored by default in an index named `default`. This index only supports modification of key fields;
+    - Log flow: after setting up multiple indices, logs will flow into the first matching index. A single log will not be saved across different indices;
+    - Index quantity limit: including the `default` index, there can be a maximum of 6 indices, meaning up to 5 custom indices can be created;
+    - Member permissions: standard members and read-only members have view permissions only, while administrators and owners can edit, delete, and drag to reorder.
 
 ### Key Fields {#key_key}
 
-Set exclusive key fields under the index dimension to ensure that the display of log data is not affected by column configuration settings, ultimately presenting in the log Explorer > [Stacked Mode](../manag-explorer.md#mode), facilitating efficient differentiation and analysis of data from different log indices.
+Set exclusive key fields under the index dimension to ensure that the display of log data is not affected by column configuration settings, ultimately presented in the log Explorer > [Stacked Mode](../manag-explorer.md#mode), facilitating efficient differentiation and analysis of data under different log indices.
+
 
 #### Definition Rules
 
-- Use commas `,` as separators;
-- Fields listed in `message` are the key fields configured in the index, in the format `key:value`; if `value` has no value, it displays as “-”;
+- Use a comma `,` as the delimiter;
+- Fields listed in `message` are configured as key fields for the index, in the format `key:value`. If `value` has no value, it displays as “-”;
 - Log data configured with key fields in the index is unaffected by display items, targeting only the `message` column.
+
+#### One-click Acquisition {#extract}
+
+- When data is archived to this index, click the button and the system will automatically extract the key fields from the most recent day's reported data; at this point, the input box content will be overwritten by the newly obtained `key`;
+- If no data is reported for the current index, clicking the button will not change the input box content.
+
+???+ warning "Note"
+
+    If there are too many fields under the index, the input box will only extract the first 50 key fields.
+
 
 #### Display Example
 
 1. Define the key fields for `default` as `key1,source,key2,key3,pod_name,container_name,host,service`;
-2. In the Viewer, select to view data only from the `default` index;
+2. In the Viewer, select to view only the data from the `default` index;
 3. Effect as shown below:
 
 <img src="../img/key_key.png" width="50%" >
@@ -54,11 +65,11 @@ Set exclusive key fields under the index dimension to ensure that the display of
 
 <img src="../img/key_key_2.png" width="50%" >
 
-## Bind External Indices {#binding-index}
+## Bind External Index {#binding-index}
 
 ![](../img/external_log.png)
 
-<<< custom_key.brand_name >>> supports binding external index data. After successful binding, external index data can be queried and analyzed within the workspace.
+After binding successfully, you can query and analyze external index data within the workspace.
 
 Currently supported external indices include:
 
@@ -68,81 +79,87 @@ Currently supported external indices include:
 :material-numeric-4-circle: [LogEase](./logease.md)      
 :material-numeric-5-circle: [Volcengine TLS](./tls.md)          
 
-**Note**:
+???+ warning "Note"
 
-- Bound indices only support deletion; after canceling the binding, logs under the index cannot be queried;  
-- Other indices cannot have the same name as log indices and cannot duplicate historical log indices.
+    - Bound indices only support deletion. After unbinding, logs under that index cannot be queried;
+    - Other indices cannot have the same name as log indices or historical log indices.
 
 ## Field Mapping {#mapping}
 
-Since <<< custom_key.brand_name >>> and external indices may have inconsistent standard fields, field mapping functionality is provided to ensure normal function usage.
+Since <<< custom_key.brand_name >>> and external indices may have inconsistent standard fields, we provide field mapping functionality to ensure normal function usage.
 
-To quickly view and analyze external index log data in <<< custom_key.brand_name >>>, field mapping functionality is offered during external index binding to directly map log fields.
+To quickly view and analyze log data from external indices in <<< custom_key.brand_name >>>, <<< custom_key.brand_name >>> provides a field mapping feature that allows direct mapping of log fields when binding external indices.
 
 | Field      | Description        |
 | ----------- | ----------- |
-| `time`      | The reporting time of the log, SLS Logstore maps the `date` field to `time` by default, Elasticsearch, OpenSearch can be filled according to actual data; if this field does not exist, data in the log viewer will appear disordered.        |
-| `_docid`      | The unique ID of the log. After mapping, bound log details can be viewed. If the original field is not unique, the log with the earliest time is displayed after refreshing the details page. If this field does not exist, some content will be missing on the log details page.        |
-| `message`      | The content of the log. After mapping, the content of the bound log can be viewed and log data can be clustered and analyzed via the `message` field.        |
+| `time`      | The reporting time of the log. SLS Logstore maps the `date` field to `time` by default. For Elasticsearch and OpenSearch, you can fill in according to actual data. Without this field, data in the log viewer will be displayed out of order.        |
+| `_docid`      | The unique ID of the log. After mapping, you can view detailed information of the bound log. If the original field is not unique, the log with the earliest time is displayed upon refreshing the details page. Without this field, some content will be missing from the log detail page.        |
+| `message`      | The content of the log. After mapping, you can view the content of the bound log and cluster analyze log data through the `message` field.        |
 
 
 > For more details, refer to [Log Explorer Cluster Analysis](../explorer.md).
 
-You can also click **Edit** in the external index list to modify the field mappings of the required index.
+You can also click **Edit** in the external index list to modify the field mapping of the index you need.
 
 ???+ warning "Note"
 
-    - Each index's mapping rules are independent and separately saved;
-    - If a log contains the `_docid` field and another field is mapped to the same name, the original `_docid` in the log will not take effect.
+    - Each index's mapping rules are independent and saved separately;
+    - If a log contains a `_docid` field and the same field is mapped, the original `_docid` in the log will not take effect.
 
 ## Manage Indices {#manag}
 
-You can manage the index list through the following operations.
+You can manage the index list via the following operations.
 
 <div class="grid" markdown>
 
 === "Disable/Enable"
 
-    - After disabling an index, subsequent logs will no longer enter that index and will continue to match and flow into other indices for saving. If no other indices match, they will be saved in the default `default` index.
+    - After disabling an index, subsequent logs will no longer enter this index but will continue to match and save in other indices. If no other indices match, they will be saved in the default `default` index;
         
-    - After enabling an index, subsequent logs will re-enter that index for saving.
+    - After enabling an index, subsequent logs will re-enter this index for saving.
 
 === "Edit"
 
-    Click the **Edit** icon to modify already created log indices. In the figure below, after successfully creating the current index `index.da`, logs reported with `source` as `datakit` will match and flow into the first matching index for saving.
+    Click the **Edit** icon to modify already created log indices. As shown in the figure below, after the current index `index.da` is successfully created, log data with `source` as `datakit` will be matched and saved in the first applicable index.
 
-    **Note**: Changing the storage policy will delete the data in the index, so proceed with caution.
+    ???+ warning "Note"
+
+        Changing the storage strategy will delete data in the index, please proceed with caution.
 
     <img src="../img/6.index_3.png" width="60%" >
 
-=== "Operation Audit"
+=== "Audit Operations"
 
     Click to view all operation logs for the index.
 
 === "Delete"
 
-    Click the :fontawesome-regular-trash-can: icon to delete an already created log index.
+    Click the :fontawesome-regular-trash-can: icon to delete the created log index.
 
-    **Note**: After deletion, the logs in the index will also be deleted. If there are no other matching indices, subsequent reported logs will be saved in the default `default` index.
+    ???+ warning "Note"
+
+        After deletion, the log data in this index will also be deleted. If no other indices match, subsequent reported logs will be saved in the default `default` index.
 
     ![](../img/6.index_4.png)
 
-    If the deleted index was authorized for query by other workspaces, the other workspace will no longer be able to query the index after deletion.
+    If the deleted index was authorized for querying by another workspace, the other workspace will no longer be able to query this index after deletion.
 
     <img src="../img/6.index_5.png" width="60%" >
 
-    After deleting a log index, you can recreate an index with the same name as needed.
+    After deleting a log index, you can create an index with the same name if needed.
 
 === "Drag"
 
-    Click the :fontawesome-solid-grip-vertical: icon to drag and reorder already created log indices.
+    Click the :fontawesome-solid-grip-vertical: icon to drag and reorder created log indices.
 
-    **Note**: Logs will flow into the first matched index. Changing the order of indices might result in logs being redirected.
+    ???+ warning "Note"
+
+        Logs will flow into the first matching index. Changing the index order might cause logs to change their flow direction.
 
 </div>
 
 
-## More Reading
+## Further Reading
 
 
 <font size=2>

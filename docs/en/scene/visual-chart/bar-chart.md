@@ -1,14 +1,14 @@
 # Bar Chart
 ---
 
-Generally used to illustrate data changes over a period of time and compare different variables.
+Generally used to display data changes over a period of time and compare situations between different variables.
 
 Includes two types of chart displays:
 
 - Bar Chart
 - Horizontal Bar Chart
 
-![](../img/bar.png)
+<img src="../../img/bar.png" width="60%" >
 
 
 
@@ -18,17 +18,17 @@ Includes two types of chart displays:
 
 ### Stacking
 
-:material-numeric-1-circle: Type: Includes standard stacking and percentage stacking.
+1. Type: Includes regular stacking and percentage stacking.
 
-:material-numeric-2-circle: X-Axis
+2. X-axis
 
-- Grouping: Each group represents one bar, with datasets in the same group stacked;
-- Query: Each query represents one bar, with groups within the query stacked. 
+- Grouping: Each group represents one bar; datasets with the same grouping are stacked together;
+- Query: Each query represents one bar, and the groups within the queries are stacked for display.
 
 ### X/Y Axis
 
-Set the maximum and minimum values for the numerical X/Y axis.
+Sets the maximum and minimum values for the numerical X/Y axis.
 
 ### Baseline
 
-Add baseline value, baseline title, and baseline color. Set a standard or expected value for comparing changes and trends in the data.
+Adds baseline value, baseline title, and baseline color. Sets a standard or expected value for comparing changes and trends in the data.

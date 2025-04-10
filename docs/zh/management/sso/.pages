@@ -1,11 +1,15 @@
 nav:
   - index.md
+  - 'SAML': 
+    - saml.md
+    - 配置示例:
+      - '阿里云 IDaaS': aliyun-idaas.md
+      - 'Authing': authing.md
+      - 'Azure AD': azure-ad.md
+      - 'IAM Identity Center': aws_iam_sso_saml.md
+      - 'Okta': okta.md
+      - 'Keycloak': keycloak.md
+  - 'OIDC': 
+    - oidc.md
   - '角色映射': role_mapping.md
-  - 配置示例:
-    - '阿里云 IDaaS': aliyun-idaas.md
-    - 'Authing': authing.md
-    - 'Azure AD': azure-ad.md
-    - 'IAM Identity Center': aws_iam_sso.md
-    - 'Okta': okta.md
-    - 'Keycloak': keycloak.md
   - '常见问题': configuration-faq.md

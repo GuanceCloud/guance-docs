@@ -46,7 +46,7 @@
 
 ## 如何生成 SourceMap？
 
-源映射是名称以 .map 结尾的文件(例如 example.min.js.map 和 styles.css.map)。大多数构 建工具均可生成源映射，例如 [Vite](https://vitejs.dev/)、[webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/) 等。 一些工具默认包含源映射，而其他工具可能需要额外配置才能生成。
+源映射是名称以 `.map` 结尾的文件(例如 `example.min.js.map` 和 `styles.css.map`)。大多数构 建工具均可生成源映射，例如 [Vite](https://vitejs.dev/)、[webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/) 等。 一些工具默认包含源映射，而其他工具可能需要额外配置才能生成。
 
 ``` shell
  /* Example configuration: vite.config.js */
@@ -89,9 +89,9 @@
 
 可视化工具会对 **original** 列中的每一行进行颜色编码，以及 **generated** 列中对应的代码。 **mappings** 部分显示了已解码的代码映射。例如，条目 65-> 2:2表示:
 
-- **生成的**代码：单词 const 在压缩内容中的位置 65 处开始。
+- 生成的代码：单词 const 在压缩内容中的位置 65 处开始。
 
-- **原始**代码：字词 const 从原始内容中的第 2 行和第 2 列开始。
+- 原始代码：字词 const 从原始内容中的第 2 行和第 2 列开始。
 
 ![](../img/sourcemap_04.png)
 

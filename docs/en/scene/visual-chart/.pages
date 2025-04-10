@@ -23,6 +23,7 @@ nav:
     - 'Log Stream': log-stream.md
     - 'Object List': object-list.md
     - 'Alert Statistics': alert-statistics.md
+    - 'Monitor Summary': monitor_summary.md
     - 'Text': text.md
     - 'Video': video.md
     - 'Picture': picture.md
@@ -31,5 +32,9 @@ nav:
   - 'Chart Configuration': chart-config.md
   - 'Chart Query': chart-query.md
   - 'Chart JSON': chart-json.md
-  - 'Chart Link': chart-link.md
-  - 'Event Correlation': events-relative.md
+  - 'Chart Links': 
+    - chart-link.md
+    - 'Default Link': chart-link-default-link.md
+    - 'Custom Link': chart-link-custom-link.md
+    - 'Use Case': chart-link-use-case.md
+  - 'Event Association': events-association.md
