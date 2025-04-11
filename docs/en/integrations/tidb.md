@@ -1,40 +1,40 @@
 ---
 title     : 'TiDB'
-summary   : 'Collect related component Metrics information such as TiDB cluster, TiDB, Etcd, Region, etc.'
+summary   : 'Collect related component Metrics information of TiDB cluster, TiDB, Etcd, Region, etc.'
 __int_icon: 'icon/tidb'
 dashboard :
-  - desc  : 'TiDB Monitoring View'
+  - desc  : 'TiDB'
     path  : 'dashboard/en/tidb'
 monitor   :
-  - desc  : 'Not available'
-    path  : '-'
+  - desc  : 'TiDB'
+    path  : 'monitor/en/tidb'
 ---
 
 <!-- markdownlint-disable MD025 -->
 # TiDB
 <!-- markdownlint-enable -->
 
-The TiDB view displays information including the Summary (such as: start time, storage information, node information, etc.), cluster (cluster-related information), TiDB, Etcd, Region, and other related Metrics information.
+The TiDB view displays the relevant Metrics information, including the Summary (such as: start time, storage information, node information, etc.), cluster (related cluster information), TiDB, Etcd, Region, etc.
 
 
 ## Installation and Configuration {#config}
 
 ### Version Support
 
-Version support depends on TiDB's own system support.
+Version support depends on the support of the TiDB system itself.
 
 Note: The example TiDB version is 6.3+
 
-(Linux / Windows environment is the same)
+(Linux / Windows environments are the same)
 
-If you need to install TiDB, refer to the documentation [Deploying a Local Test Cluster for TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)
+If you need to install TiDB, refer to the document [Deploy a Local Test Cluster for TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4)
 
-The following collection process follows the deployment method outlined in [Deploying a Local Test Cluster for TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4) for data collection.
+The following collection process is based on the deployment method described in [Deploy a Local Test Cluster for TiDB](https://docs.pingcap.com/zh/tidb/stable/quick-start-with-tidb#%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E9%9B%86%E7%BE%A4) for collection.
 
 
 ### Metrics Collection Configuration
 
-All components of TiDB (a total of 4 components) have exposed `metrics`, with the protocol being http
+Each component of TiDB (a total of 4 components) has exposed `metrics`, with the protocol being http
 
 
 | Component | metrics port |
@@ -45,7 +45,7 @@ All components of TiDB (a total of 4 components) have exposed `metrics`, with th
 | TiFlash | 8234 <br/> 20292 |
 
 
-The above are the `metrics` ports related to single-node cluster component deployments. If it's a multi-node cluster, the port configuration is similar.
+The above are the `metrics` ports for single-node cluster component deployments; if it's a multi-node cluster, the port configuration is similar.
 
 #### Enable DataKit Collector
 
@@ -506,20 +506,20 @@ The above are the `metrics` ports related to single-node cluster component deplo
 		```
 
 <!-- markdownlint-disable MD033 -->
-<font color="red">*Note that adjustments need to be made where marked* </font>
+<font color="red">*Note that adjustments are required for marked places* </font>
 
 
-Main parameter descriptions:
+Main parameter explanations:
 
-- urls: `prometheus` Metrics address, fill in the Metrics url exposed by the corresponding component here.
-- source: Collector alias, it's recommended to make distinctions.
-- interval: Collection interval.
-- measurement_prefix: Measurement prefix, convenient for management classification.
-- tls_open: TLS configuration.
-- metric_types: Metrics types, leaving it blank represents collecting all Metrics, it's recommended to fill in as needed, involving Time Series.
-- tags_ignore: Ignore unnecessary tags.
-- [inputs.prom.tags_rename.mapping]: <font color="red">Tag renaming, if a tag has the same name as a field, then the tag needs to be renamed, otherwise the entire Metric cannot be collected.</font>
-- [inputs.prom.tags]: Set tags, applied to all Metrics under the current metrics.
+- urls: `prometheus` Metrics address, fill in the corresponding component exposed Metrics url here
+- source: Collector alias, recommended to differentiate
+- interval: Collection interval
+- measurement_prefix: Metrics set prefix, convenient for management and classification
+- tls_open: TLS configuration
+- metric_types: Metrics types, leaving it blank means collecting all Metrics, it's recommended to fill it according to needs, involving Time Series
+- tags_ignore: Ignore unnecessary tags
+- [inputs.prom.tags_rename.mapping]: <font color="red">Tag renaming, if there's a conflict between a tag and a field, the tag should be renamed; otherwise, the entire Metrics cannot be collected.</font>
+- [inputs.prom.tags] : Set tags, applied to all Metrics of the current Metrics
 <!-- markdownlint-enable -->
 
 ### Restart DataKit
