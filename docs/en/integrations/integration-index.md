@@ -851,7 +851,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aliyun_rds_mysql"
   				data-tags="Alibaba Cloud"
   				data-name="Alibaba Cloud RDS MySQL"
-  				data-summary="Alibaba Cloud RDS MySQL Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
+  				data-summary="Alibaba Cloud RDS MySQL Metrics Display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -862,7 +862,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Alibaba Cloud RDS MySQL" class="fth-integration-name">Alibaba Cloud RDS MySQL</div>
-                            <div title="Alibaba Cloud RDS MySQL Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Alibaba Cloud RDS MySQL Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
+                            <div title="Alibaba Cloud RDS MySQL Metrics Display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Alibaba Cloud RDS MySQL Metrics Display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -881,7 +881,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aliyun_rds_postgresql"
   				data-tags="Alibaba Cloud"
   				data-name="Alibaba Cloud RDS PostgreSQL"
-  				data-summary="Alibaba Cloud RDS PostgreSQL Metrics Display, including CPU usage, memory usage, etc."
+  				data-summary="Display of Alibaba Cloud RDS PostgreSQL Metrics, including CPU usage, memory usage, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -892,7 +892,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Alibaba Cloud RDS PostgreSQL" class="fth-integration-name">Alibaba Cloud RDS PostgreSQL</div>
-                            <div title="Alibaba Cloud RDS PostgreSQL Metrics Display, including CPU usage, memory usage, etc." class="fth-integration-desc">Alibaba Cloud RDS PostgreSQL Metrics Display, including CPU usage, memory usage, etc.</div>
+                            <div title="Display of Alibaba Cloud RDS PostgreSQL Metrics, including CPU usage, memory usage, etc." class="fth-integration-desc">Display of Alibaba Cloud RDS PostgreSQL Metrics, including CPU usage, memory usage, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -911,7 +911,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../aliyun_rds_sqlserver"
   				data-tags="Alibaba Cloud"
   				data-name="Alibaba Cloud RDS SQLServer"
-  				data-summary="Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
+  				data-summary="Alibaba Cloud RDS SQLServer Metrics Display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -922,7 +922,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="Alibaba Cloud RDS SQLServer" class="fth-integration-name">Alibaba Cloud RDS SQLServer</div>
-                            <div title="Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
+                            <div title="Alibaba Cloud RDS SQLServer Metrics Display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc." class="fth-integration-desc">Alibaba Cloud RDS SQLServer Metrics Display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -2591,18 +2591,18 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../azure_virtual_network_gateway"
   				data-tags="AZURE"
   				data-name="Azure Virtual Network Gateway"
-  				data-summary="Collect metrics data from Azure Virtual Network Gateway"
+  				data-summary="Collect Azure Virtual Network Gateway Metrics data"
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/azure_Virtual_network_gateway/icon.png"
+									src="../icon/azure_virtual_network_gateway/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
   						<div class="fth-integration-description">
                             <div title="Azure Virtual Network Gateway" class="fth-integration-name">Azure Virtual Network Gateway</div>
-                            <div title="Collect metrics data from Azure Virtual Network Gateway" class="fth-integration-desc">Collect metrics data from Azure Virtual Network Gateway</div>
+                            <div title="Collect Azure Virtual Network Gateway Metrics data" class="fth-integration-desc">Collect Azure Virtual Network Gateway Metrics data</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
@@ -6458,6 +6458,36 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   		
   			<div
   				class="fth-integration-list-item"
+  				data-href="../kubelet"
+  				data-tags="PROMETHEUS,KUBERNETES"
+  				data-name="Kubelet"
+  				data-summary="Collect Kubelet Metrics information"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/kubelet/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Kubelet" class="fth-integration-name">Kubelet</div>
+                            <div title="Collect Kubelet Metrics information" class="fth-integration-desc">Collect Kubelet Metrics information</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
   				data-href="../kubernetes-api-server"
   				data-tags="PROMETHEUS,KUBERNETES"
   				data-name="Kubernetes API Server"
@@ -9701,7 +9731,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   				data-href="../tidb"
   				data-tags=""
   				data-name="TiDB"
-  				data-summary="Collect related component Metrics information such as TiDB cluster, TiDB, Etcd, Region, etc."
+  				data-summary="Collect related component Metrics information of TiDB cluster, TiDB, Etcd, Region, etc."
   			>
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
@@ -9712,7 +9742,7 @@ Alibaba Cloud MongoDB Single Node Instance Metrics Display, including CPU usage,
   						/>
   						<div class="fth-integration-description">
                             <div title="TiDB" class="fth-integration-name">TiDB</div>
-                            <div title="Collect related component Metrics information such as TiDB cluster, TiDB, Etcd, Region, etc." class="fth-integration-desc">Collect related component Metrics information such as TiDB cluster, TiDB, Etcd, Region, etc.</div>
+                            <div title="Collect related component Metrics information of TiDB cluster, TiDB, Etcd, Region, etc." class="fth-integration-desc">Collect related component Metrics information of TiDB cluster, TiDB, Etcd, Region, etc.</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>
