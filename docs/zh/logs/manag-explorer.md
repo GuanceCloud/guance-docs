@@ -152,7 +152,6 @@ curl '<Endpoint>/api/v1/df/query_data?search_after=\[1680226330509,8572,"L_16802
 
 如果需要导出某条日志数据，打开该日志的详情页，点击右上角 :material-tray-arrow-up: 图标即可。
 
-![](../img/export-log-0808.png)
 
 
 ## 日志颜色高亮
