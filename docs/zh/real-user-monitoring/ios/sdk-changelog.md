@@ -1,6 +1,10 @@
 # 更新日志
 
 ---
+## **1.5.15 (2025/04/14)** {#1-5-15}
+
+1. 修复 Swift Package Manager 编译报错问题
+
 ## **1.5.14 (2025/03/07)** {#1-5-14}
 
 1. 新增 RUM `Resource` 数据字段 `resource_first_byte_time`、`resource_dns_time`、`resource_download_time`、`resource_connect_time`、`resource_ssl_time`、`resource_redirect_time`，支持在观测云上 Resource 耗时增强展示，并在支持「应用性能监测」火焰图对齐时间轴

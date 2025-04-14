@@ -385,19 +385,10 @@
     -(void)onCreateView:(NSString *)viewName loadTime:(NSNumber *)loadTime;
     
     /// 进入页面
-    ///
-    /// - Parameters:
-    ///  - viewName: 页面名称
-    -(void)startViewWithName:(NSString *)viewName;
-    
-    /// 进入页面
     /// - Parameters:
     ///  - viewName: 页面名称
     ///  - property: 事件自定义属性(可选)
     -(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
-    
-    /// 离开页面
-    -(void)stopView;
     
     /// 离开页面
     /// - Parameter property: 事件自定义属性(可选)
@@ -416,19 +407,10 @@
     open func onCreateView(_ viewName: String, loadTime: NSNumber)
     
     /// 进入页面
-    ///
-    /// - Parameters:
-    ///  - viewName: 页面名称
-    open func startView(withName viewName: String)
-    
-    /// 进入页面
     /// - Parameters:
     ///  - viewName: 页面名称
     ///  - property: 事件自定义属性(可选)
     open func startView(withName viewName: String, property: [AnyHashable : Any]?)
-    
-    /// 离开页面
-    open func stopView() 
     
     /// 离开页面
     /// - Parameter property: 事件自定义属性(可选)
@@ -555,14 +537,6 @@
 
     ```objectivec
     /// 添加 Error 事件
-    ///
-    /// - Parameters:
-    ///   - type: error 类型
-    ///   - message: 错误信息
-    ///   - stack: 堆栈信息
-    - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
-    
-    /// 添加 Error 事件
     /// - Parameters:
     ///   - type: error 类型
     ///   - message: 错误信息
@@ -583,14 +557,6 @@
 === "Swift"
 
     ```swift
-    /// 添加 Error 事件
-    ///
-    /// - Parameters:
-    ///   - type: error 类型
-    ///   - message: 错误信息
-    ///   - stack: 堆栈信息
-    open func addError(withType: String, message: String, stack: String)
-    
     /// 添加 Error 事件
     /// - Parameters:
     ///   - type: error 类型
@@ -641,13 +607,6 @@
 
     ```objectivec
     /// 添加 卡顿 事件
-    ///
-    /// - Parameters:
-    ///   - stack: 卡顿堆栈
-    ///   - duration: 卡顿时长（纳秒）
-    - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
-    
-    /// 添加 卡顿 事件
     /// - Parameters:
     ///   - stack: 卡顿堆栈
     ///   - duration: 卡顿时长（纳秒）
@@ -658,13 +617,6 @@
 === "Swift"
 
     ```swift
-    /// 添加 卡顿 事件
-    ///
-    /// - Parameters:
-    ///   - stack: 卡顿堆栈
-    ///   - duration: 卡顿时长（纳秒）
-    func addLongTask(withStack: String, duration: NSNumber)
-    
     /// 添加 卡顿 事件
     /// - Parameters:
     ///   - stack: 卡顿堆栈
@@ -702,11 +654,6 @@
 
     ```objectivec
     /// HTTP 请求开始
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    - (void)startResourceWithKey:(NSString *)key;
-    /// HTTP 请求开始
     /// - Parameters:
     ///   - key: 请求标识
     ///   - property: 事件自定义属性(可选)
@@ -719,11 +666,7 @@
     ///   - metrics: 请求相关性能属性
     ///   - content: 请求相关数据
     - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
-    /// HTTP 请求结束
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    - (void)stopResourceWithKey:(NSString *)key;
+    
     /// HTTP 请求结束
     /// - Parameters:
     ///   - key: 请求标识
@@ -734,22 +677,10 @@
 
     ```swift
     /// HTTP 请求开始
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    open func startResource(withKey key: String)
-    
-    /// HTTP 请求开始
     /// - Parameters:
     ///   - key: 请求标识
     ///   - property: 事件自定义属性(可选)
     open func startResource(withKey key: String, property: [AnyHashable : Any]?)
-    
-    /// HTTP 请求结束
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    open func stopResource(withKey key: String)
     
     /// HTTP 请求结束
     /// - Parameters:
@@ -835,22 +766,6 @@
 
 === "Objective-C"
 
-    ```objectivec
-    //  FTMobileAgent.h
-    //  FTMobileSDK
-    
-    /// 日志上报
-    /// @param content 日志内容，可为json字符串
-    /// @param status  事件等级和状态
-    -(void)logging:(NSString *)content status:(FTStatus)status;
-    
-    /// 日志上报
-    /// @param content 日志内容，可为json字符串
-    /// @param status  事件等级和状态
-    /// @param property 事件属性
-    -(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
-    ```
-    
     ```objective-c
     //
     //  FTLogger.h
@@ -889,24 +804,6 @@
 
 === "Swift"
 
-    ```swift
-    open class FTMobileAgent : NSObject {
-    /// 添加自定义日志
-    ///
-    /// - Parameters:
-    ///   - content: 日志内容，可为 json 字符串
-    ///   - status: 事件等级和状态
-    open func logging(_ content: String, status: FTLogStatus)
-    
-    /// 添加自定义日志
-    /// - Parameters:
-    ///   - content: 日志内容，可为 json 字符串
-    ///   - status: 事件等级和状态
-    ///   - property: 事件自定义属性(可选)
-    open func logging(_ content: String, status: FTLogStatus, property: [AnyHashable : Any]?)
-    }
-    ```
-    
     ```swift
     open class FTLogger : NSObject, FTLoggerProtocol {}
     public protocol FTLoggerProtocol : NSObjectProtocol {
@@ -983,25 +880,14 @@
 === "Objective-C"
 
     ```objectivec
-    // 方法一：通过 FTMobileAgent
-    // 注意：需要保证在使用的时候 SDK 已经初始化成功，否则在测试环境会断言失败从而崩溃。
-    [[FTMobileAgent sharedInstance] logging:@"test_custom" status:FTStatusInfo];
-    
-    // 方法二：通过 FTLogger （推荐）
-    // SDK 如果没有初始化成功，调用 FTLogger 中方法添加自定义日志会失败，但不会有断言失败崩溃问题。
+    // SDK 如果没有初始化成功，添加自定义日志会失败
     [[FTLogger sharedInstance] info:@"test" property:@{@"custom_key":@"custom_value"}];
-    
     ```
 
 === "Swift"
 
     ```swift
-    // 方法一：通过 FTMobileAgent
-    // 注意：需要保证在使用的时候 SDK 已经初始化成功，否则在测试环境会断言失败从而崩溃。
-    FTMobileAgent.sharedInstance().logging("contentStr", status: .statusInfo, property:["custom_key":"custom_value"])
-    
-    // 方法二：通过 FTLogger （推荐）
-    // SDK 如果没有初始化成功，调用 FTLogger 中方法添加自定义日志会失败，但不会有断言失败崩溃问题。
+    // SDK 如果没有初始化成功，添加自定义日志会失败
     FTLogger.shared().info("contentStr", property: ["custom_key":"custom_value"])
     ```
 
@@ -1072,7 +958,7 @@
 SDK 提供了一个类 `FTURLSessionDelegate`，可以通过该类对某一 URLSession 发起的网络请求进行自定义 **RUM Resource 采集**和**链路追踪**。
 
 * `FTURLSessionDelegate` 支持通过设置 `traceInterceptor` block 拦截 `URLResquest`，进行自定义链路追踪（SDK 1.5.9 及以上版本支持该方法），优先级 > `FTTraceConfig.traceInterceptor`。
-* `FTURLSessionDelegate` 支持通过设置 `provider` block 自定义 RUM Resource 需要额外采集的属性，优先级 > ``FTRumConfig.resourcePropertyProvider`。
+* `FTURLSessionDelegate` 支持通过设置 `provider` block 自定义 RUM Resource 需要额外采集的属性，优先级 > `FTRumConfig.resourcePropertyProvider`。
 * 与 `FTRumConfig.enableTraceUserResource` 、 `FTTraceConfig.enableAutoTrace`  一起使用时，优先级：**自定义 > 自动采集**。
 
 下面提供了三种方法，来满足用户的不同场景。
@@ -1329,23 +1215,9 @@ SDK 提供了一个类 `FTURLSessionDelegate`，可以通过该类对某一 URLS
     ///
     /// - Parameters:
     ///   - Id:  用户Id
-    - (void)bindUserWithUserID:(NSString *)userId;
-    
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmailL: 用户邮箱
-    - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail;
-    
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmail: 用户邮箱
-    ///   - extra: 用户的额外信息
+    ///   - userName: 用户名称（可选）
+    ///   - userEmail: 用户邮箱（可选）
+    ///   - extra: 用户的额外信息（可选）
     - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail extra:(nullable NSDictionary *)extra;
     
     /// 注销当前用户
@@ -1359,23 +1231,9 @@ SDK 提供了一个类 `FTURLSessionDelegate`，可以通过该类对某一 URLS
     ///
     /// - Parameters:
     ///   - Id:  用户Id
-    open func bindUser(withUserID userId: String)
-    
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmailL: 用户邮箱
-    open func bindUser(withUserID Id: String, userName: String?, userEmail: String?)
-       
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmail: 用户邮箱
-    ///   - extra: 用户的额外信息
+    ///   - userName: 用户名称（可选）
+    ///   - userEmail: 用户邮箱（可选）
+    ///   - extra: 用户的额外信息（可选）
     open func bindUser(withUserID Id: String, userName: String?, userEmail: String?, extra: [AnyHashable : Any]?)
     
     /// 注销当前用户
@@ -1388,10 +1246,6 @@ SDK 提供了一个类 `FTURLSessionDelegate`，可以通过该类对某一 URLS
 
     ```objectivec
     // 可以在用户登录成功后调用此方法用来绑定用户信息
-    [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID];
-    // or
-    [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL];
-    // or
     [[FTMobileAgent sharedInstance] bindUserWithUserID:USERID userName:USERNAME userEmail:USEREMAIL extra:@{EXTRA_KEY:EXTRA_VALUE}];
     
     // 可以在用户退出登录后调用此方法来解绑用户信息
@@ -1401,10 +1255,6 @@ SDK 提供了一个类 `FTURLSessionDelegate`，可以通过该类对某一 URLS
 
     ```swift
     // 可以在用户登录成功后调用此方法用来绑定用户信息
-    FTMobileAgent.sharedInstance().bindUser(withUserID: USERID)
-    // or
-    FTMobileAgent.sharedInstance().bindUser(withUserID: USERID, userName: USERNAME, userEmail: USEREMAIL)
-    // or
     FTMobileAgent.sharedInstance().bindUser(withUserID: USERID, userName: USERNAME, userEmail: USEREMAIL,extra:[EXTRA_KEY:EXTRA_VALUE])
     
     // 可以在用户退出登录后调用此方法来解绑用户信息

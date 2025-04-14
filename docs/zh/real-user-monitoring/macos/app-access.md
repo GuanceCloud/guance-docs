@@ -129,15 +129,15 @@
     
     ```
 
-| **属性**          | **类型**     | **必须** | **含义**                 | 注意                                                         |
-| ----------------- | ------------ | -------- | ------------------------ | ------------------------------------------------------------ |
-| datakitUrl        | NSString     | 是       | Datakit 访问地址         | datakit 访问 URL 地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
-| datawayUrl        | NSString     | 是       | 公网 Dataway 访问地址    | dataway 访问 URL 地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，注意：安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
-| clientToken       | NSString     | 是       | 认证 token               | 需要与 datawayUrl 同时使用                                   |
-| enableSDKDebugLog | BOOL         | 否       | 设置是否允许打印日志     | 默认 `NO`                                                    |
-| env               | NSString     | 否       | 设置采集环境             | 默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置<br/>`FTEnv`<br/>`FTEnvProd`： prod<br/>`FTEnvGray`： gray<br/>`FTEnvPre` ：pre <br/>`FTEnvCommon` ：common <br/>`FTEnvLocal`： local |
-| service           | NSString     | 否       | 设置所属业务或服务的名称 | 影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_macos`    |
-| globalContext     | NSDictionary | 否       | 添加自定义标签           | 添加规则请查阅[此处](#user-global-context)                   |
+| **属性**          | **类型**     | **必须** | **含义**                                                     |
+| ----------------- | ------------ | -------- | ------------------------------------------------------------ |
+| datakitUrl        | NSString     | 是       | Datakit 访问地址，例子：[http://10.0.0.1:9529](http://10.0.0.1:9529/)，端口默认 9529，安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| datawayUrl        | NSString     | 是       | 公网 Dataway 访问地址，例子：[http://10.0.0.1:9528](http://10.0.0.1:9528/)，端口默认 9528，安装 SDK 设备需能访问这地址.**注意：datakit 和 dataway 配置两者二选一** |
+| clientToken       | NSString     | 是       | 认证 token，需要与 datawayUrl 同时使用                       |
+| enableSDKDebugLog | BOOL         | 否       | 设置是否允许打印日志。默认 `NO`                              |
+| env               | NSString     | 否       | 设置采集环境。默认 `prod`，支持自定义，也可根据提供的 `FTEnv` 枚举通过 `-setEnvWithType:` 方法设置 |
+| service           | NSString     | 否       | 设置所属业务或服务的名称。影响 Log 和 RUM 中 service 字段数据。默认：`df_rum_ios` |
+| globalContext     | NSDictionary | 否       | 添加自定义标签。添加规则请查阅[此处](#user-global-context)   |
 
 ### RUM 配置 {#rum-config}
 
@@ -171,21 +171,21 @@
        FTSDKAgent.sharedInstance().startRum(withConfigOptions: rumConfig)
     ```
 
-| **属性**                 | **类型**                   | **必须** | **含义**                     | 注意                                                         |
-| ------------------------ | -------------------------- | -------- | ---------------------------- | ------------------------------------------------------------ |
-| appid                    | NSString                   | 是       | 用户访问监测应用 ID 唯一标识 | 对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#macOS-integration) |
-| sampleRate               | int                        | 否       | 采样率                   | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 1。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据                 |
-| enableTrackAppCrash      | BOOL                       | 否       | 设置是否需要采集崩溃日志     | 默认 `NO`                                                    |
-| enableTrackAppANR        | BOOL                       | 否       | 采集ANR卡顿无响应事件        | 默认 `NO`                                                    |
-| enableTrackAppFreeze     | BOOL                       | 否       | 采集UI卡顿事件               | 默认 `NO`                                                    |
-| enableTraceUserView      | BOOL                       | 否       | 设置是否追踪用户 View 操作   | 默认 `NO`                                                    |
-| enableTraceUserAction    | BOOL                       | 否       | 设置是否追踪用户 Action 操作 | 默认 `NO`                                                    |
-| enableTraceUserResource  | BOOL                       | 否       | 设置是否追踪用户网络请求     | 默认`NO`，仅作用于 native http                               |
-| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则 | 默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
-| errorMonitorType         | FTErrorMonitorType         | 否       | 错误事件监控补充类型         | 在采集的崩溃数据中添加监控的信息。<br/>`FTErrorMonitorType`<br/>`FTErrorMonitorAll`：开启所有监控： 电池、内存、CPU 使用率<br/>`FTErrorMonitorBattery`：电池电量<br/>`FTErrorMonitorMemory`：内存总量、内存使用率<br/>`FTErrorMonitorCpu`：Cpu 使用率 |
-| monitorFrequency         | FTMonitorFrequency         | 否       | 视图的性能监控采样周期       | 配置 `monitorFrequency` 来设置 **View** 监控项信息的采样周期。<br/>`FTMonitorFrequency`<br/>`FTMonitorFrequencyDefault`：500ms (默认)<br/>`FTMonitorFrequencyFrequent`：100ms<br/>`FTMonitorFrequencyRare`：1000ms |
-| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否       | 视图的性能监控类型           | 在采集的  **View** 数据中添加对应监控项信息。<br/>`FTDeviceMetricsMonitorType`<br/>`FTDeviceMetricsMonitorAll`：开启所有监控项:内存、CPU、FPS<br/>`FTDeviceMetricsMonitorMemory`：平均内存、最高内存<br/>`FTDeviceMetricsMonitorCpu`：CPU 跳动最大、平均数 |
-| globalContext            | NSDictionary               | 否       | 添加自定义标签               | 添加规则请查阅[此处](#user-global-context)                   |
+| **属性**                 | **类型**                   | **必须** | **含义**                     |
+| ------------------------ | -------------------------- | -------- | ---------------------------- |
+| appid                    | NSString                   | 是       | 用户访问监测应用 ID 唯一标识。对应设置 RUM `appid`，才会开启`RUM`的采集功能，[获取 appid 方法](#macOS-integration) |
+| sampleRate               | int                        | 否       | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。作用域为同一 session_id 下所有 View，Action，LongTask，Error 数据 |
+| enableTrackAppCrash      | BOOL                       | 否       | 设置是否需要采集崩溃日志。默认 `NO` |
+| enableTrackAppANR        | BOOL                       | 否       | 采集ANR卡顿无响应事件。默认 `NO` |
+| enableTrackAppFreeze     | BOOL                       | 否       | 采集UI卡顿事件。默认 `NO`       |
+| enableTraceUserView      | BOOL                       | 否       | 设置是否追踪用户 View 操作。默认 `NO` |
+| enableTraceUserAction    | BOOL                       | 否       | 设置是否追踪用户 Action 操作。默认 `NO` |
+| enableTraceUserResource  | BOOL                       | 否       | 设置是否追踪用户网络请求。默认`NO`，仅作用于 native http |
+| resourceUrlHandler | FTResourceUrlHandler | 否 | 自定义采集 resource 规则。默认不过滤。 返回：NO 表示要采集，YES 表示不需要采集。 |
+| errorMonitorType         | FTErrorMonitorType         | 否       | 错误事件监控补充类型。在采集的崩溃数据中添加监控的信息。`FTErrorMonitorBattery`为电池余量，`FTErrorMonitorMemory`为内存用量，`FTErrorMonitorCpu`为 CPU 占有率 。 |
+| monitorFrequency         | FTMonitorFrequency         | 否       | 视图的性能监控采样周期       |
+| deviceMetricsMonitorType | FTDeviceMetricsMonitorType | 否       | 视图的性能监控类型。在采集的  **View** 数据中添加对应监控项信息。`FTDeviceMetricsMonitorMemory`监控当前应用使用内存情况，`FTDeviceMetricsMonitorCpu`监控 CPU 跳动次数，`FTDeviceMetricsMonitorFps`监控屏幕帧率。 |
+| globalContext            | NSDictionary               | 否       | 添加自定义标签，用于用户监测数据源区分，如果需要使用追踪功能，则参数 `key` 为 `track_id` ,`value` 为任意数值，添加规则注意事项请查阅[此处](#user-global-context) |
 
 ### Log 配置 {#log-config}
 
@@ -214,15 +214,15 @@
         FTSDKAgent.sharedInstance().startLogger(withConfigOptions: loggerConfig)
     ```
 
-| **属性**                | **类型**          | **必须** | **含义**                          | 注意                                                         |
-| ----------------------- | ----------------- | -------- | --------------------------------- | ------------------------------------------------------------ |
-| sampleRate              | int               | 否       | 采样率                        | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。                   |
-| enableCustomLog         | BOOL              | 否       | 是否上传自定义 log                | 默认`NO`                                                     |
-| logLevelFilter          | NSArray           | 否       | 设置要采集的自定义 log 的状态数组 | 默认全采集                                                   |
-| enableLinkRumData       | BOOL              | 否       | 是否与 RUM 数据关联               | 默认`NO`                                                     |
-| discardType             | FTLogCacheDiscard | 否       | 设置频繁日志丢弃规则              | 默认 `FTDiscard` <br/>`FTLogCacheDiscard`:<br/>`FTDiscard`：默认，当日志数据数量大于最大值（5000）时，丢弃追加数据<br/>`FTDiscardOldest`：当日志数据大于最大值时,丢弃老数据 |
-| printCustomLogToConsole | BOOL              | 否       | 设置是否将自定义日志打印到控制台  | 默认`NO`<br/>自定义日志[输出格式](#printCustomLogToConsole)  |
-| globalContext           | NSDictionary      | 否       | 添加自定义标签                    | 添加规则请查阅[此处](#user-global-context)                   |
+| **属性**                | **类型**          | **必须** | **含义**                          |
+| ----------------------- | ----------------- | -------- | --------------------------------- |
+| sampleRate              | int               | 否       | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| enableCustomLog         | BOOL              | 否       | 是否上传自定义 log。默认`NO` |
+| logLevelFilter          | NSArray           | 否       | 设置要采集的自定义 log 的状态数组。默认全采集 |
+| enableLinkRumData       | BOOL              | 否       | 是否与 RUM 数据关联。默认`NO`                                |
+| discardType             | FTLogCacheDiscard | 否       | 设置日志达到限制上限以后的日志丢弃规则。默认 `FTDiscard` <br/>`FTDiscard`当日志数据数量大于最大值（5000）时，丢弃追加数据。`FTDiscardOldest`当日志数据大于最大值时,丢弃老数据。 |
+| printCustomLogToConsole | BOOL              | 否       | 设置是否将自定义日志输出到控制台。默认`NO`，自定义日志[输出格式](#printCustomLogToConsole) |
+| globalContext           | NSDictionary      | 否       | 添加 log 自定义标签，添加规则请查阅[此处](#user-global-context) |
 
 ### Trace 配置 {#trace-config}
 
@@ -245,12 +245,12 @@
        FTSDKAgent.sharedInstance().startTrace(withConfigOptions: traceConfig)
     ```
 
-| 属性              | 类型    | 必须 | 含义                        | 注意                                                         |
-| ----------------- | ------- | ---- | --------------------------- | ------------------------------------------------------------ |
-| sampleRate        | int     | 否   | 采样率                  | 取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。                  |
-| networkTraceType  | NS_ENUM | 否   | 设置链路追踪的类型          | 默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
-| enableLinkRumData | BOOL    | 否   | 是否与 RUM 数据关联         | 默认`NO`                                                     |
-| enableAutoTrace   | BOOL    | 否   | 设置是否开启自动 http trace | 默认`NO`，目前只支持 NSURLSession                            |
+| 属性              | 类型    | 必须 | 含义                        |
+| ----------------- | ------- | ---- | --------------------------- |
+| sampleRate        | int     | 否   | 采样率。取值范围 [0,100]，0 表示不采集，100 表示全采集，默认值为 100。 |
+| networkTraceType  | NS_ENUM | 否   | 设置链路追踪的类型。默认为 `DDTrace`，目前支持 `Zipkin` , `Jaeger`, `DDTrace`，`Skywalking` (8.0+)，`TraceParent` (W3C)，如果接入 OpenTelemetry 选择对应链路类型时，请注意查阅支持类型及 agent 相关配置 |
+| enableLinkRumData | BOOL    | 否   | 是否与 RUM 数据关联。默认`NO` |
+| enableAutoTrace   | BOOL    | 否   | 设置是否开启自动 http trace。默认`NO`，目前只支持 NSURLSession |
 
 ## RUM 用户数据追踪
 
@@ -278,19 +278,10 @@
     -(void)onCreateView:(NSString *)viewName loadTime:(NSNumber *)loadTime;
     
     /// 进入页面
-    ///
-    /// - Parameters:
-    ///  - viewName: 页面名称
-    -(void)startViewWithName:(NSString *)viewName;
-    
-    /// 进入页面
     /// - Parameters:
     ///  - viewName: 页面名称
     ///  - property: 事件自定义属性(可选)
     -(void)startViewWithName:(NSString *)viewName property:(nullable NSDictionary *)property;
-    
-    /// 离开页面
-    -(void)stopView;
     
     /// 离开页面
     /// - Parameter property: 事件自定义属性(可选)
@@ -309,19 +300,10 @@
     open func onCreateView(_ viewName: String, loadTime: NSNumber)
     
     /// 进入页面
-    ///
-    /// - Parameters:
-    ///  - viewName: 页面名称
-    open func startView(withName viewName: String)
-    
-    /// 进入页面
     /// - Parameters:
     ///  - viewName: 页面名称
     ///  - property: 事件自定义属性(可选)
     open func startView(withName viewName: String, property: [AnyHashable : Any]?)
-    
-    /// 离开页面
-    open func stopView() 
     
     /// 离开页面
     /// - Parameter property: 事件自定义属性(可选)
@@ -378,12 +360,6 @@
 
     ```objectivec
     /// 添加 Action 事件
-    ///
-    /// - Parameters:
-    ///   - actionName: 事件名称
-    ///   - actionType: 事件类型
-    - (void)addActionName:(NSString *)actionName actionType:(NSString *)actionType;
-    /// 添加 Action 事件
     /// - Parameters:
     ///   - actionName: 事件名称
     ///   - actionType: 事件类型
@@ -394,13 +370,6 @@
 === "Swift"
 
     ```swift
-    /// 添加 Action 事件
-    ///
-    /// - Parameters:
-    ///   - actionName: 事件名称
-    ///   - actionType: 事件类型
-    func addActionName(String, actionType: String)
-    
     /// 添加 Action 事件
     /// - Parameters:
     ///   - actionName: 事件名称
@@ -435,14 +404,6 @@
 
     ```objectivec
     /// 添加 Error 事件
-    ///
-    /// - Parameters:
-    ///   - type: error 类型
-    ///   - message: 错误信息
-    ///   - stack: 堆栈信息
-    - (void)addErrorWithType:(NSString *)type message:(NSString *)message stack:(NSString *)stack;
-    
-    /// 添加 Error 事件
     /// - Parameters:
     ///   - type: error 类型
     ///   - message: 错误信息
@@ -463,14 +424,6 @@
 === "Swift"
 
     ```swift
-    /// 添加 Error 事件
-    ///
-    /// - Parameters:
-    ///   - type: error 类型
-    ///   - message: 错误信息
-    ///   - stack: 堆栈信息
-    open func addError(withType: String, message: String, stack: String)
-    
     /// 添加 Error 事件
     /// - Parameters:
     ///   - type: error 类型
@@ -520,13 +473,6 @@
 
     ```objectivec
     /// 添加 卡顿 事件
-    ///
-    /// - Parameters:
-    ///   - stack: 卡顿堆栈
-    ///   - duration: 卡顿时长（纳秒）
-    - (void)addLongTaskWithStack:(NSString *)stack duration:(NSNumber *)duration;
-    
-    /// 添加 卡顿 事件
     /// - Parameters:
     ///   - stack: 卡顿堆栈
     ///   - duration: 卡顿时长（纳秒）
@@ -537,13 +483,6 @@
 === "Swift"
 
     ```swift
-    /// 添加 卡顿 事件
-    ///
-    /// - Parameters:
-    ///   - stack: 卡顿堆栈
-    ///   - duration: 卡顿时长（纳秒）
-    func addLongTask(withStack: String, duration: NSNumber)
-    
     /// 添加 卡顿 事件
     /// - Parameters:
     ///   - stack: 卡顿堆栈
@@ -581,11 +520,6 @@
 
     ```objectivec
     /// HTTP 请求开始
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    - (void)startResourceWithKey:(NSString *)key;
-    /// HTTP 请求开始
     /// - Parameters:
     ///   - key: 请求标识
     ///   - property: 事件自定义属性(可选)
@@ -598,11 +532,7 @@
     ///   - metrics: 请求相关性能属性
     ///   - content: 请求相关数据
     - (void)addResourceWithKey:(NSString *)key metrics:(nullable FTResourceMetricsModel *)metrics content:(FTResourceContentModel *)content;
-    /// HTTP 请求结束
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    - (void)stopResourceWithKey:(NSString *)key;
+    
     /// HTTP 请求结束
     /// - Parameters:
     ///   - key: 请求标识
@@ -613,22 +543,10 @@
 
     ```swift
     /// HTTP 请求开始
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    open func startResource(withKey key: String)
-    
-    /// HTTP 请求开始
     /// - Parameters:
     ///   - key: 请求标识
     ///   - property: 事件自定义属性(可选)
     open func startResource(withKey key: String, property: [AnyHashable : Any]?)
-    
-    /// HTTP 请求结束
-    ///
-    /// - Parameters:
-    ///   - key: 请求标识
-    open func stopResource(withKey key: String)
     
     /// HTTP 请求结束
     /// - Parameters:
@@ -716,22 +634,6 @@
 
 === "Objective-C"
 
-    ```objectivec
-    //  FTSDKAgent.h
-    //  FTMacOSSDK
-    
-    /// 日志上报
-    /// @param content 日志内容，可为json字符串
-    /// @param status  事件等级和状态
-    -(void)logging:(NSString *)content status:(FTStatus)status;
-    
-    /// 日志上报
-    /// @param content 日志内容，可为json字符串
-    /// @param status  事件等级和状态
-    /// @param property 事件属性
-    -(void)logging:(NSString *)content status:(FTLogStatus)status property:(nullable NSDictionary *)property;
-    ```
-    
     ```objective-c
     //
     //  FTLogger.h
@@ -770,24 +672,6 @@
 
 === "Swift"
 
-    ```swift
-    open class FTSDKAgent : NSObject {
-    /// 添加自定义日志
-    ///
-    /// - Parameters:
-    ///   - content: 日志内容，可为 json 字符串
-    ///   - status: 事件等级和状态
-    open func logging(_ content: String, status: FTLogStatus)
-    
-    /// 添加自定义日志
-    /// - Parameters:
-    ///   - content: 日志内容，可为 json 字符串
-    ///   - status: 事件等级和状态
-    ///   - property: 事件自定义属性(可选)
-    open func logging(_ content: String, status: FTLogStatus, property: [AnyHashable : Any]?)
-    }
-    ```
-    
     ```swift
     open class FTLogger : NSObject, FTLoggerProtocol {}
     public protocol FTLoggerProtocol : NSObjectProtocol {
@@ -986,23 +870,9 @@
     ///
     /// - Parameters:
     ///   - Id:  用户Id
-    - (void)bindUserWithUserID:(NSString *)userId;
-    
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmailL: 用户邮箱
-    - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail;
-    
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmail: 用户邮箱
-    ///   - extra: 用户的额外信息
+    ///   - userName: 用户名称 (可选)
+    ///   - userEmail: 用户邮箱 (可选)
+    ///   - extra: 用户的额外信息 (可选)
     - (void)bindUserWithUserID:(NSString *)Id userName:(nullable NSString *)userName userEmail:(nullable NSString *)userEmail extra:(nullable NSDictionary *)extra;
     
     /// 注销当前用户
@@ -1016,23 +886,9 @@
     ///
     /// - Parameters:
     ///   - Id:  用户Id
-    open func bindUser(withUserID userId: String)
-    
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmailL: 用户邮箱
-    open func bindUser(withUserID Id: String, userName: String?, userEmail: String?)
-       
-    /// 绑定用户信息
-    ///
-    /// - Parameters:
-    ///   - Id:  用户Id
-    ///   - userName: 用户名称
-    ///   - userEmail: 用户邮箱
-    ///   - extra: 用户的额外信息
+    ///   - userName: 用户名称 (可选)
+    ///   - userEmail: 用户邮箱 (可选)
+    ///   - extra: 用户的额外信息 (可选)
     open func bindUser(withUserID Id: String, userName: String?, userEmail: String?, extra: [AnyHashable : Any]?)
     
     /// 注销当前用户
