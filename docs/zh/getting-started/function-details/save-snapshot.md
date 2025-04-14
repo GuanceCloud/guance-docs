@@ -6,31 +6,40 @@
 
 进入想要保存快照的页面，调整右上角时间控件、并过滤出需要保存的数据后，使用如下方法即可弹出**保存快照**窗口。
 
-### 快捷键
+<div class="grid" markdown>
 
-:fontawesome-brands-windows: &nbsp; &nbsp; ++ctrl+k++
+=== ":material-numeric-1-circle:快捷键"
 
-:fontawesome-brands-apple: &nbsp; &nbsp; ++cmd+k++
+    :fontawesome-brands-windows: &nbsp; &nbsp; ++ctrl+k++
 
-???+ warning "注意"
+    :fontawesome-brands-apple: &nbsp; &nbsp; ++cmd+k++
 
-    您的后台程序存在的快捷键与如上快捷键冲突时，将无法使用**保存快照**的快捷键功能。
+    ???+ warning "注意"
 
-### 查看器
-    
-查看器 > 顶部快照按钮（搜索框左侧）：
+        您的后台程序存在的快捷键与如上快捷键冲突时，将无法使用**保存快照**的快捷键功能。
 
-<img src="../../img/snapshot_explorer.png" width="80%" >
+    ---
 
-### 仪表板
+=== ":material-numeric-2-circle:查看器"
+        
+    查看器 > 顶部快照按钮（搜索框左侧）：
 
-查看器 > 顶部设置按钮：
+    <img src="../../img/snapshot_explorer.png" width="80%" >
 
-<img src="../../img/snapshot_dashboard.png" width="80%" >
+    ---
+
+=== ":material-numeric-3-circle:仪表板"
+
+    查看器 > 顶部设置按钮：
+
+    <img src="../../img/snapshot_dashboard.png" width="80%" >
+
+    ---
+
+</div>
 
 
-
-## 开始保存 {#begin_save_snapshot}
+## 开始保存 {#begin-save-snapshot}
 
 成功弹出**保存快照**窗口后，即可对该条快照进行相关设置。
 
@@ -45,38 +54,46 @@
 
 您可以在以下入口查看已经保存的快照：
 
-### 在快照菜单查看
+<div class="grid" markdown>
 
-- **工作空间 > 快捷入口> 快照**菜单，可查看当前工作空间保存的所有快照。
+=== ":material-numeric-1-circle: 在快照菜单查看"
 
-<img src="../../img/snapshot-3.png" width="50%" >
+    **工作空间 > 快捷入口> 快照**菜单，可查看当前工作空间保存的所有快照。
 
-- 每页最多可显示 20 个快照，通过跳转至下一页，可以查看更多快照。
+    <img src="../../img/snapshot_in_bar.png" width="50%" >
 
-<img src="../../img/snapshot-4.png" width="50%" >
+    ---
 
-### 在查看器页面查看 
+=== ":material-numeric-2-circle: 在查看器页面查看" 
 
-进入**查看器 > 快照**，展示<u>当前查看器保存的快照</u>。例如，在**日志查看器**保存的快照，无法在**应用性能监测 > 链路**查看器中查看；  
+    进入**查看器 > 快照**，系统会显示该查看器保存的快照。快照仅在保存时的查看器中可见。例如，在日志查看器保存的快照，无法在 RUM 链路查看器中查看；  
 
-- Hover 至历史快照，会在悬浮窗口展示对应的时间范围、筛选条件。时间范围根据保存快照时的选择，分为“绝对时间”、“相对时间”和“默认”三种。
+    - Hover 至历史快照，显示快照的时间范围和筛选条件。时间范围分为以下三种：
 
-<img src="../../img/snapshot-5.png" width="60%" >
+        - 绝对时间：固定的时间区间。
+        - 相对时间：基于当前时间的动态区间。
+        - 默认：系统默认的时间设置。
 
-- 若已经点击进入某条历史快照，再次点击**快照**，点击**返回查看器**按钮即可回到进入该历史快照之前的默认查看器。
+    ![](../img/snapshot_in_explorer.png)
 
-<img src="../../img/snapshot-6.png" width="60%" >
+    ---
 
-### 在仪表板页面查看 
+=== ":material-numeric-3-circle: 在仪表板页面查看"
 
-进入**场景 > 仪表板**，在页面右上方**历史快照**处可查看当前工作空间保存的所有仪表板快照。
+    进入**场景 > 仪表板**，在页面右上方**历史快照**处可查看当前工作空间保存的所有仪表板快照。
 
-![](../img/snapshot-14.png)
+    <img src="../../img/snapshot_in_dashboard.png" width="80%" >
 
 
 ## 管理快照
 
-- 在 🔍栏，您可以输入快照名称，通过关键词搜索模糊匹配相关快照名称；  
-- 在快照右侧，可选择分享/删除快照、复制快照链接；  
-- 点击**快照名称**即可打开对应的数据副本，并复现该快照保存时的数据标签；  
-- 若在保存快照时，[可见范围选择仅自己可见](#snapshot-setting)，该快照名称后面会显示 :material-lock: ，其他人无法查看。
+针对已保存的快照，您可进行以下操作：
+
+<img src="../../img/manag_snapshot.png" width="60%" >
+
+- 在搜索栏中，输入快照名称即可通过关键词进行模糊匹配；       
+- 在快照右侧，您可以选择以下操作：  
+    - **分享/删除快照**：管理快照的可见性或删除不再需要的快照。    
+    - **复制快照链接**：获取快照的直接链接，便于快速分享或引用。      
+- 点击**快照名称**，即可打开对应的数据副本，并复现快照保存时的数据标签。       
+- 如果在保存快照时，将可见范围设置为[**仅自己可见**](#begin-save-snapshot)，快照名称后面会显示 :material-lock: 图标，其他人将无法查看该快照。    
