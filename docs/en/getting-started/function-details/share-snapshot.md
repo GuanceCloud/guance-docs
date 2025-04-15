@@ -1,7 +1,7 @@
 # Share Snapshot 
 ---
 
-In the [Snapshot List](./save-snapshot.md#check), click :octicons-share-android-16: on the right side of the target snapshot to share it.
+In the [Snapshot List](./save-snapshot.md#check), click :octicons-share-android-16: on the right side of the target snapshot to perform a sharing operation for that snapshot.
 
 
 ## Basic Configuration
@@ -10,7 +10,7 @@ In the [Snapshot List](./save-snapshot.md#check), click :octicons-share-android-
 
 ### Time Range
 
-When saving a snapshot, the selected time range is recorded. You can decide whether the recipient is allowed to change the time interval on the snapshot page.
+When saving a snapshot, the selected time range is recorded. You can decide whether the recipients are allowed to change the time interval of the snapshot page.
 
 ### Validity Period
 
@@ -23,7 +23,7 @@ Four options are provided:
 
 ???+ warning "Note"
 
-    If you select "Permanent", there may be data security risks. Please consider carefully.
+    If you select "Permanent validity," there may be data security risks. Please consider carefully.
 
 ### Sharing Method {#sharing-method}
 
@@ -32,59 +32,54 @@ Two snapshot sharing methods are supported:
 - [Public Sharing](#public)
 - [Encrypted Sharing](#private)
 
-After sharing, a corresponding link will be generated. You can share this link with "anyone," or use an encrypted method to share it with people who have the key.
+After sharing, corresponding links will be generated, which you can share with "anyone" or through encryption with those who have the key.
 
 ???+ abstract "Data Time Segment Description for Shared Snapshot Links"
 
-    - If "Absolute Time" is enabled when saving the snapshot, the absolute time of the snapshot will be displayed after sharing.
+    - If "Absolute Time" is selected when saving the snapshot, the shared link will display the absolute time at the moment of saving the snapshot.
 
-    For example: if at `13:30` you choose to save a snapshot of the last 15 minutes of data, then at `14:00`, opening the snapshot link will display data from `13:15 ~ 13:30`.
+    For example: If you choose to save a snapshot of the last 15 minutes of data at `13:30`, then opening the snapshot link at `14:00` will show data from `13:15 ~ 13:30`.
 
-    - If "Absolute Time" is disabled when saving the snapshot, the relative time of the snapshot will be displayed after sharing.
+    - If "Absolute Time" is not selected when saving the snapshot, the relative time at the moment of saving the snapshot will be displayed after sharing.
 
-    For example: if at `13:30` you choose to save a snapshot of the last 15 minutes of data, then at `14:00`, opening the snapshot link will display data from `13:45 ~ 14:00`.
+    For example: If you choose to save a snapshot of the last 15 minutes of data at `13:30`, then opening the snapshot link at `14:00` will show data from `13:45 ~ 14:00`.
 
-???+ warning "Dashboard and Snapshot Permission Cross Reference Description"
+???+ warning "Dashboard and Snapshot Permission Intersections"
 
-    - Dashboard permissions determine the initial visibility scope of snapshots, and the sharing method selected when saving a snapshot only affects the viewing permissions within the current workspace; it does not affect the permissions after sharing.
-    - After sharing, the snapshot permissions are mainly determined by dashboard permissions:
-        - Public or custom dashboards: Snapshots shared after are default public.
-        - Dashboards visible only to yourself: Snapshots shared after remain visible only to yourself.
+    - Dashboard permissions determine the initial visibility scope of snapshots, but the sharing method chosen when saving snapshots only affects viewing permissions within the current workspace and does not affect permissions after sharing.
+    - After sharing, snapshot permissions are primarily determined by dashboard permissions:
+        - Public or custom dashboards: Snapshots shared afterward default to public.
+        - Dashboards visible only to yourself: Snapshots shared afterward remain visible only to yourself.
     - Special cases:
-        - The "visible only to yourself" permission for dashboards takes precedence, but dashboards with "public" visibility will still become public after snapshot sharing;
-        - If the visibility scope of the dashboard changes later, the shared snapshot will be updated synchronously.
+        - The "visible only to yourself" permission of the dashboard takes precedence, but if the dashboard's visibility is set to "public", the snapshot will still become public after sharing;
+        - If the visibility of the dashboard changes later, the shared snapshot will update accordingly.
 
-    > For more details, please refer to [Dashboard Visibility Scope Configuration](../../scene/dashboard/index.md#range).
+    > For more details, refer to [Dashboard Visibility Configuration](../../scene/dashboard/index.md#range).
 
 #### Public Sharing {#public}
     
-Users who receive the sharing link can view the workspace data displayed in the snapshot.    
-    
-???+ warning "Note"
-
-    In the log explorer, users with [snapshot viewing](../../management/logdata-access.md#snapshot) permissions can see filtering conditions in the search bar at the top of the snapshot page and support adding search conditions.
+Users who obtain the sharing link can view the workspace data displayed in the snapshot.    
 
 
 #### Encrypted Sharing {#private}
 
-Set a password that conforms to the `4-8 digit and English letter combination` format. Only users who obtain both the sharing link and password can view the snapshot data.
+Set a password in the form of `4-8 digits and English letters combination`. Only users who obtain both the sharing link and the password can view the snapshot data.
 
 
 ### More Options
 
-1. Show Top Bar: When enabled, the top of the sharing page will display a platform introduction.
-2. Show Watermark: When enabled, the watermark showing the name of the sharer will be displayed in the format "Shared by: Name".
-
+1. Display Top Bar: When enabled, the top of the shared page will display a platform introduction note.
+2. Display Watermark: When enabled, a watermark showing the sharer’s name will be displayed in the format "Sharer: Name".
 
 
 ## Data Desensitization {#sensitive}
 
-You can configure desensitization for field values within the snapshot. Input the desensitized fields and regular expressions, click preview, and the content matched by the regular expression will be displayed as `*` in the current snapshot.
+You can configure desensitization for field values within the snapshot. Input desensitization fields and regular expressions, click preview, and the content matched by the regular expression will be displayed as `*` in the current snapshot.
 
-- Input desensitized fields (supports multiple selections);
+- Input desensitization fields (multi-select supported);
 - Regular Expression: Achieve desensitization through regular expression syntax.
 
-> For more operations, please refer to [Sensitive Data Desensitization](../../management/data-mask.md).
+> For more operations, refer to [Sensitive Data Desensitization](../../management/data-mask.md).
 
 <img src="../../img/snapshot_mask.png" width="60%" >
 
@@ -92,14 +87,14 @@ You can configure desensitization for field values within the snapshot. Input th
 
 ## Access Restrictions {#ip}
 
-Enabling the IP whitelist adds extra protection to snapshot sharing.
+Enabling an IP whitelist adds extra protection to snapshot sharing.
 
 <img src="../../img/snapshot_ip.png" width="60%" >
 
-- Workspace IP Whitelist: Follows changes in the workspace's IP whitelist configuration and cannot be edited or modified under snapshot sharing;
-- Custom Input: You can input a custom IP access whitelist. IPs not included will not be able to view the snapshot.
+- Workspace IP Whitelist: Follows changes in the workspace IP whitelist configuration; editing is not supported under snapshot sharing;
+- Custom Input: Allows custom input of IP access whitelists; IPs not included cannot view the snapshot.
 
-> For more details, please refer to [How to Configure IP Whitelist](../../management/settings/index.md#ip).
+> For more details, refer to [How to Configure IP Whitelist](../../management/settings/index.md#ip).
 
 ## Preview Snapshot
 
@@ -108,27 +103,23 @@ After completing all configurations, you can click "Preview Snapshot" to check t
 
 ???+ warning "Note"
 
-    This preview is exactly the same as the entire process of sharing snapshots in your real environment. For example, if an IP whitelist access restriction was set in the previous [configuration steps](#share), IPs outside the whitelist will also be unable to view the previewed snapshot.
+    The preview here is entirely consistent with the actual process of sharing snapshots in your environment. For example, if an IP whitelist restriction was set in the preceding [Configuration Steps](#ip), IPs outside the whitelist will also be unable to view the preview of the snapshot.
 
 ## Manage Sharing {#view}
 
-Members with [Save, Analyze, and Manage Snapshot Permissions](#permission) can enter the snapshot sharing management page via the following methods to view snapshots, view sharing links, cancel sharing, etc.:
+Members with [Save, Analyze, and Manage Snapshot Permissions](./snapshot.md#permission) can enter the shared snapshot management page via the following methods to view snapshots, view sharing links, cancel sharing, etc.:
 
-> For more details, please refer to [Sharing Management](../../management/share-management.md#snapshot).
+> For more details, refer to [Share Management](../../management/share-management.md#snapshot).
 
-<div class="grid" markdown>
 
 ### Manage
 
-Enter the **Manage > Sharing Management > Snapshot Sharing** module.
+Enter the **Manage > Share Management > Share Snapshot** module:
 
 <img src="../../img/sharing_snapshot_manag_entry.png" width="80%" >
 
 ### Snapshot Sharing Window
 
-When [sharing snapshots](#sharing-method), click "View Sharing List" in the upper-right corner to navigate to the **Snapshot Sharing** management module.
+When [Sharing Snapshots](#sharing-method), click "View Sharing List" in the upper-right corner to jump to the **Share Snapshot** management module.
 
 <img src="../../img/sharing_snapshot_list.png" width="60%" >
-
-
-</div>

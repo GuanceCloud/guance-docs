@@ -84,8 +84,9 @@
     "translation_time": 100.4
   },
   "real-user-monitoring/ios/sdk-changelog.md": {
-    "hash": "ab15ced2bb6b8629f646def346a170b7a66592ad7f3e549fef1ba763e487d6b6",
-    "last_translated": "2025-03-10T00:21:41.905596"
+    "hash": "6a2a086bf53c1f58f14ef0436d224e52cd81d2f2d533559a857166e41bae8027",
+    "last_translated": "2025-04-15T21:45:56.072611",
+    "translation_time": 74.16
   },
   "scheck/0093-vsftpd-uninstalled.md": {
     "hash": "f6a827056793980651daa43c998d486c768b2823d5edfa8359fb70fc75ed919b",
@@ -96,9 +97,9 @@
     "last_translated": "2025-03-10T03:49:06.256441"
   },
   "real-user-monitoring/web/app-access.md": {
-    "hash": "12d9f55b88b643282ca90daddedc800fc0cc7ee8ae81c45e1123bdc972a37768",
-    "last_translated": "2025-03-29T20:40:41.250525",
-    "translation_time": 103.9
+    "hash": "4d9729bb89ba9d7eb872f594fff8da297e85d4fce475f48752dc10b3939e75a7",
+    "last_translated": "2025-04-15T21:49:38.781731",
+    "translation_time": 252.62
   },
   "deployment/Kubernetes-HA-Guide.md": {
     "hash": "ba0479d57bd44f5414f50d47aabca374b67d8aa7c6099c6d507febc67d542601",
@@ -276,8 +277,9 @@
     "last_translated": "2025-03-07T19:03:45.659609"
   },
   "ci-visibility/explorer.md": {
-    "hash": "2e88ec67b62d4cb9f04acbc93613a24fd0ca5904cc15ca090521c6ecf41f5ac8",
-    "last_translated": "2025-03-07T19:05:14.189607"
+    "hash": "0d844523aad72b9630544f8589354f490d614783a422a2bc3268520dce182c83",
+    "last_translated": "2025-04-15T21:46:09.115220",
+    "translation_time": 87.2
   },
   "integrations/diskio.md": {
     "hash": "4433c47949174bd5784251b6dd2e860357bb7e4d8f665529390921c4297dfa9d",
@@ -293,9 +295,9 @@
     "translation_time": 79.34
   },
   "real-user-monitoring/ios/app-access.md": {
-    "hash": "6c7a6b8f5b98b7f247e9286301ccc1c58c516c5be5020696634ac17aec589515",
-    "last_translated": "2025-03-28T14:35:29.836759",
-    "translation_time": 1065.29
+    "hash": "075068b7a9619ddd665146d7db2036965b031088c25cc4b3590660ee246f231a",
+    "last_translated": "2025-04-15T22:02:55.538045",
+    "translation_time": 1006.41
   },
   "open-api/custom-login-mapping/batch-delete.md": {
     "hash": "5a52e0c18c9959f0466145d5449b5d9bbac9453c9b691622ae246f574430ee6b",
@@ -428,9 +430,9 @@
     "last_translated": "2025-03-07T19:49:44.335274"
   },
   "real-user-monitoring/macos/app-access.md": {
-    "hash": "2e3eb90da404a45d5692e6aa152a9b6c6c6df3586cd927609bacd0696d80243f",
-    "last_translated": "2025-03-28T14:38:22.399928",
-    "translation_time": 702.12
+    "hash": "492f3441688741a3207ef96e15b9c5ad7c7ab9926e5294a87fb5ab2a38bcd952",
+    "last_translated": "2025-04-15T21:53:18.461334",
+    "translation_time": 516.55
   },
   "plans/commercial-register.md": {
     "hash": "bb5ca24da62f154bc0c4dbb143ea2d4343b16e57fdfb7e5fa494e1ef1194fb15",
@@ -1099,9 +1101,9 @@
     "last_translated": "2025-03-07T22:44:43.834507"
   },
   "logs/manag-explorer.md": {
-    "hash": "7fe9c61a14462c3a9c005f983bd00b3e5a7cd919a17d8c0aa0a0541c7eb5e4cb",
-    "last_translated": "2025-03-28T14:37:28.550460",
-    "translation_time": 144.69
+    "hash": "3c149438e38d9e085eb69990cfd0bc141c1ebf25baabf31584bd5a08876c9676",
+    "last_translated": "2025-04-15T21:46:17.519257",
+    "translation_time": 95.6
   },
   "integrations/kubernetesprometheus.md": {
     "hash": "36058462768e25823e7765ab626d495a153d226ff326061700542b4022848a09",
@@ -1904,8 +1906,9 @@
     "last_translated": "2025-03-10T00:48:36.144033"
   },
   "metrics/generate-metrics.md": {
-    "hash": "fb7a9648348a355d9ad1c87176c0d1b849fe2f4b30bb4af118a78c14020148a8",
-    "last_translated": "2025-03-08T03:52:07.562805"
+    "hash": "7c331d2dc181d8780d6335492afa69b7f9a23eace6945a5f96a317a259d95528",
+    "last_translated": "2025-04-15T21:45:14.149983",
+    "translation_time": 32.23
   },
   "pipeline/use-pipeline/pipeline-category.md": {
     "hash": "8081559ae37ed1b481e5488b0b72e802c66e3dd295536d97bfba97599e78dc79",
@@ -2135,9 +2138,9 @@
     "last_translated": "2025-03-08T04:49:52.880606"
   },
   "release-notes/2024.md": {
-    "hash": "684094415bf42f66583fd910d55ebdb0828b609a0e7a41dc29340788f4cfa498",
-    "last_translated": "2025-04-10T21:22:46.452107",
-    "translation_time": 951.34
+    "hash": "a1d32275b6755b291dfe9af81557d51a17c03e68a2b8797225395be79f89766c",
+    "last_translated": "2025-04-15T21:55:41.660253",
+    "translation_time": 659.74
   },
   "best-practices/cloud-native/opentelemetry-guance.md": {
     "hash": "24691392f95a8d7fa3fafae41a4badc2f480586708ae307435257b704c305432",
@@ -2647,8 +2650,9 @@
     "last_translated": "2025-03-10T03:25:47.680876"
   },
   "scheck/explorer.md": {
-    "hash": "29eb530924ba277e3046b027a61a277de04d0aa8e9949398eb7c78a6078d69ab",
-    "last_translated": "2025-03-08T08:03:17.876473"
+    "hash": "420ec84bf9372c7a2424f2818ae651919aa42bb4ff25aa3536651f9d15c44ce7",
+    "last_translated": "2025-04-15T21:45:26.144991",
+    "translation_time": 44.23
   },
   "integrations/volcengine_vke.md": {
     "hash": "2fb5a029734f42cce67f0a7f15f09e277f0d54f4db78415f70ff8e1fd61a800f",
@@ -3137,8 +3141,9 @@
     "last_translated": "2025-03-08T11:32:13.447892"
   },
   "real-user-monitoring/web/faq.md": {
-    "hash": "6d0f2f637929cada3501ee113c3d492e0099fde033312d932a4b8cb08a1f6356",
-    "last_translated": "2025-03-08T11:35:00.421252"
+    "hash": "a53a935cb3df7d705eeb951cfc38fdc971b77128e0bec38df6f54d624c4f3a6d",
+    "last_translated": "2025-04-15T21:48:53.490939",
+    "translation_time": 146.24
   },
   "deployment/cloud-required.md": {
     "hash": "756b956995c233208129076fb4ae80321ad5e4fffab045636b8a970db42b6142",
@@ -3185,9 +3190,9 @@
     "last_translated": "2025-03-10T01:09:31.179915"
   },
   "release-notes/2022.md": {
-    "hash": "f3709726c53d4872d2aa93bfb4d03e84ea30d60666b2aa588480acaa8f21800a",
-    "last_translated": "2025-04-10T21:16:22.976581",
-    "translation_time": 619.6
+    "hash": "f02dab8ca65d5b0868503261475e2b7cde3a6350d8b1c7de3108a322859e123c",
+    "last_translated": "2025-04-15T22:05:07.935660",
+    "translation_time": 1193.68
   },
   "external-api/workspace-ak/delete.md": {
     "hash": "fe42eba9a1cca0829614ce03d3d87e6813702bbde7174d5c409e629c501f1354",
@@ -4771,9 +4776,9 @@
     "last_translated": "2025-03-08T22:37:54.747648"
   },
   "release-notes/index.md": {
-    "hash": "30aa2d31de322412a598648bb5a27a7c71d62a9b0401f9fcd70c82a6b2189969",
-    "last_translated": "2025-04-10T21:09:53.816310",
-    "translation_time": 164.08
+    "hash": "86dd8443ef75d6940860236087aec9b3c42dca3d8488fc6bbc4043f999c57a46",
+    "last_translated": "2025-04-15T21:50:21.963065",
+    "translation_time": 304.43
   },
   "open-api/viewer/export.md": {
     "hash": "e05e1842fb256e024c2744aeee5cb032276cb45cca913c9c10a60e28c8274a11",
@@ -5458,8 +5463,9 @@
     "last_translated": "2025-03-10T03:32:04.817847"
   },
   "others/explorer-search.md": {
-    "hash": "9873834b432bea0b840af96ebee6bd2aecfb35ae9a7bd96ce3f009b12081755e",
-    "last_translated": "2025-03-09T03:09:58.236189"
+    "hash": "c3b4ab0106410ea961b6ff9fd59135aafb5cbdf80232de0807a2227efad22eef",
+    "last_translated": "2025-04-15T21:45:44.418248",
+    "translation_time": 62.5
   },
   "scheck/0050-libusrbin-del.md": {
     "hash": "c36a4b81a9909340fb98f0bf14d19a136acc45c77bdc3071b21199cfa915e958",
@@ -5681,9 +5687,9 @@
     "last_translated": "2025-03-10T05:06:56.306079"
   },
   "application-performance-monitoring/explorer/explorer-analysis.md": {
-    "hash": "4100dff05b40dee3791d844dfde0b2ecd4c3b3dc84c87a509caf21e77d3df46b",
-    "last_translated": "2025-03-23T20:57:09.042496",
-    "translation_time": 188.92
+    "hash": "3b30543240d534df88e1b8d56d7d763cc8786668ef055e4c81520abf95253c20",
+    "last_translated": "2025-04-15T21:49:16.450060",
+    "translation_time": 185.51
   },
   "datakit/datakit-offline-install.md": {
     "hash": "c1330867097cc25aa07275c6609300099be09fac6310c265493552c6ff4956a7",
@@ -6078,9 +6084,9 @@
     "last_translated": "2025-03-09T05:57:35.873515"
   },
   "mobile/index.md": {
-    "hash": "422724bd2bb2f84954339b5672b71ead2af8d53fd6199e46cd7d3cc9a37e94fc",
-    "last_translated": "2025-03-23T20:41:03.157147",
-    "translation_time": 96.5
+    "hash": "4b35ccbbf8af801da47ad7368a004cf5dfc4c549ab2c6d9991b45dbe25e60cbc",
+    "last_translated": "2025-04-15T21:47:32.524403",
+    "translation_time": 123.43
   },
   "open-api/workspace/create.md": {
     "hash": "6cf41e14d244b6eb79283c721fb07dbc75edc401fcfd64233026ce0779212fd9",
@@ -6624,8 +6630,9 @@
     "last_translated": "2025-03-09T08:10:05.180909"
   },
   "real-user-monitoring/index.md": {
-    "hash": "6a670b6f78d1e43a291956cc04fbf8f8e697c29e4aa94249f8c4e1c420deb0c1",
-    "last_translated": "2025-03-09T23:50:48.174703"
+    "hash": "dcb0c668bb77cf475ee318bc13cacdbc00ca99e79268e0b2b5a1e14fb459d7e2",
+    "last_translated": "2025-04-15T21:45:29.077524",
+    "translation_time": 47.16
   },
   "plans/en-alicloud.md": {
     "hash": "4b9b1b5c356ac8cce61ea686a2addffc460d0d7c5db9cb82b8bb318454ed8051",
@@ -6906,9 +6913,9 @@
     "last_translated": "2025-03-09T09:23:13.900377"
   },
   "logs/collection.md": {
-    "hash": "e0dc169c30060ee5f710a6b2338dd0c69576a65371a1cb2e622e2e0f32e257cd",
-    "last_translated": "2025-03-23T21:25:16.349153",
-    "translation_time": 48.04
+    "hash": "9047651ade53b47d9fc7e1ec568cfbc87691ec265354092b844335fd6152874d",
+    "last_translated": "2025-04-15T21:46:10.928089",
+    "translation_time": 26.5
   },
   "open-api/permission/list.md": {
     "hash": "9af20276a1d4da1c486c656a75b1070742741ab116ab7abc81283ba7ce09e6f0",
@@ -6931,9 +6938,9 @@
     "last_translated": "2025-03-09T09:34:31.641548"
   },
   "getting-started/function-details/snapshot.md": {
-    "hash": "277b94a329f8127e87a40f636329629ff174a40aa8d5dfaa25083a0b4fca9465",
-    "last_translated": "2025-04-10T21:10:18.774957",
-    "translation_time": 6.69
+    "hash": "10867f379023606f3550c20ed8861f8194d4712f0062e0afa4352e7677c7df55",
+    "last_translated": "2025-04-15T21:46:27.236880",
+    "translation_time": 9.7
   },
   "integrations/sensors.md": {
     "hash": "200b243fd6209badd758bc3caabf8b3f7c9b354299dbfae5817a6860f2e8e1f5",
@@ -7195,8 +7202,9 @@
     "translation_time": 50.02
   },
   "real-user-monitoring/web/.pages": {
-    "hash": "f84f2b5886af5193c0f868f529faeb97b6c50a873c634c884666f2dab70caa30",
-    "last_translated": "2025-03-09T10:39:31.945827"
+    "hash": "ad21386fc2af9b9a2cd32e37935417601dacfa9d609dbaa27bc514e4c2251634",
+    "last_translated": "2025-04-15T21:45:17.522028",
+    "translation_time": 3.36
   },
   "open-api/pipeline/delete.md": {
     "hash": "1a80d3191dcd32c3ff1de1a487b5478c1d490bfef681d89cdfe9659d9bc07cb4",
@@ -7505,13 +7513,13 @@
     "translation_time": 56.93
   },
   "getting-started/function-details/save-snapshot.md": {
-    "hash": "e3474850c53e81dd10e30afb61c6cc973319babf39d00bc82c86f329336d763d",
-    "last_translated": "2025-04-10T21:07:29.559728",
-    "translation_time": 23.99
+    "hash": "04013619b96c04e3a78a39455e133217250d026eeb08078656e5255e7f743370",
+    "last_translated": "2025-04-15T21:46:30.889994",
+    "translation_time": 34.8
   },
   "getting-started/function-details/share-snapshot.md": {
-    "hash": "f5d80fc9bddb77390104e153b94af0673a50debc0dbd3512a6dabf26b3c13522",
-    "last_translated": "2025-04-10T21:09:21.854294",
-    "translation_time": 48.59
+    "hash": "58a68d479ed6286891d5f1e4967737087910806650da75817ddc19336c575108",
+    "last_translated": "2025-04-15T21:45:14.240381",
+    "translation_time": 32.32
   }
 }
