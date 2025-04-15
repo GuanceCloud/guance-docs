@@ -1,52 +1,106 @@
 # Cross-Workspace Authorization
 ---
 
-<<< custom_key.brand_name >>> operates on a per-workspace basis, with data in each workspace being independent to ensure data security. Additionally, <<< custom_key.brand_name >>> supports cross-workspace data authorization, allowing <u>data from multiple workspaces to be authorized for access by the current workspace</u>. This enables querying and displaying data through scenario dashboards and chart components in notes. If you have multiple workspaces, configuring data authorization allows you to view data from all workspaces within a single workspace.
 
-The ability to query data from other workspaces within the same site means that users can consolidate and query data from all workspaces within the same site in one workspace. Note that this feature is limited to workspaces within the same site.
-
-## Adding Data Authorization {#site}
-
-Go to **Manage > Cross-Workspace Authorization > Authorize To**, and click **Add Authorization**:
+<<< custom_key.brand_name >>> operates on a workspace basis, with each workspace's data being independent to ensure data security. At the same time, it supports cross-workspace data authorization, **allowing multiple workspaces' data to be authorized to the current workspace**, enabling queries and displays through scenario dashboards and chart components in notes. After configuring data authorization, you can view all workspace data from one workspace.
 
 
-
-:material-numeric-1-circle-outline: Enter Workspace ID:
-
-Let's assume a scenario where you need to authorize data from Workspace A to Workspace B (e.g., Guance) for viewing.
-
-In <<< custom_key.brand_name >>> Workspace B (e.g., Guance), go to **Manage > Settings > Workspace ID**, and click **Copy** to obtain its ID.
+The function of querying other workspace data within the same site inside a workspace allows users to aggregate queries for all workspace data within the same site in one workspace. Note that this feature is limited to workspaces within the same site.
 
 
-:material-numeric-2-circle-outline: Select Data Scope: This includes logs, APM, Metrics, base objects, resource catalogs, events, RUM, security checks, network, and profile; multiple selections are supported.
+???+ warning "Note"
 
-- Log Indexes: If you select log data (i.e., all or logs) as part of your data scope, you can choose the specific indexes you want to authorize for viewing.
+    Multi-site simultaneous queries are not supported.
 
-**Note**: The indexes here include default indexes and all log indexes. **External indexes are not included**.
+    
+## Add Authorization {#site}
 
-
-
-After adding, you can view the authorized workspaces in the **Authorization List** that have been granted access to view data from Workspace A (e.g., Guance).
-
-
-
-If you need to remove a data authorization for a workspace, you can click **Delete** on the right side or choose **Batch Delete**.
-
-
-
-## Data Linkage
-
-Once Workspace B (e.g., Guance) is authorized, it can open **Scenarios > [Dashboard](../scene/dashboard/index.md)** or **[Notes](../scene/note.md)**, select a chart component, and in **Advanced Settings > Space Authorization**, choose the authorized workspace A (as shown below). Then, you can use **[Chart Query](../scene/visual-chart/chart-query.md)** to view and analyze data from the authorized workspace A (as shown below).
+1. Go to **Management > Cross-Workspace Authorization > Authorize To**;
+2. Click **Add Authorization**;
+3. Select the authorized site;
+4. Enter the authorized workspace ID;
+5. Define the data scope;
+6. Confirm.
 
 
+???+ abstract "How to Obtain Workspace ID"
 
-## Email Notifications
+    Go to **Management > Settings > Workspace ID**, click **Copy**, and you will obtain the workspace ID.
 
-When data authorization is added or removed, the owners and administrators of the corresponding workspaces will receive email notifications.
+    <img src="../img/get_workspace_id.png" width="70%" >
+
+### Data Scope
+
+Includes cloud billing, logs, application performance, metrics, basic objects, resource catalogs, events, user access, security checks, networks, profile; supports multi-selection.
+
+- Log indexes: If the selected data scope includes log data (i.e., selecting "All", "Logs"), you can continue to select the indexes you need to authorize for viewing.
+
+???+ warning "Note"
+
+    The indexes here include default indexes and all log indexes. **External indexes are not included.**
+
+
+## View Authorization
+
+- Authorized To: Add authorizations for other workspaces in this workspace;
+
+- Can View: Add authorizations for this workspace in other workspaces.
+
+
+In the authorization list, you can perform the following operations for management:
+
+- Filter lists by site;
+- Search and locate by entering workspace name or ID;
+- Delete data authorization for a specific workspace;
+- Re-edit authorization rules via the edit button;
+- When adding or deleting data authorizations, the system will generate audit events and send email notifications to the owners and administrators of the corresponding workspaces.
 
 
 
-## Audit Events
+## Use Cases
 
-Adding or removing data authorizations generates audit events. Go to **Manage > Basic Settings > Security > Operation Audit**, click **View**, and you can see all audit events for the current workspace.
+After successfully adding cross-workspace authorization, you can use the following entries within the workspace for cross-space queries.
 
+
+<div class="grid" markdown>
+
+=== "Dashboard"
+
+
+    <img src="../img/data_auth_dashboard.png" width="70%" >
+
+    ---
+
+=== "Chart Query"
+
+    <img src="../img/data_auth_chart.png" width="70%" >
+
+    ---
+
+
+=== "Built-in Views"
+
+    <img src="../img/data_auth_inner_view.png" width="70%" >
+
+    ---
+
+=== "Log Explorers"
+
+    <img src="../img/data_auth_log_explorer.png" width="70%" >
+
+    ---
+
+=== "Error Tracking"
+
+    <img src="../img/data_auth_log_error.png" width="70%" >
+
+    ---
+
+=== "Resource Catalogs"
+
+    <img src="../img/data_auth_resource_catalog.png" width="70%" >
+
+    ---
+
+
+</div>

@@ -107,6 +107,16 @@ DataFlux Func 托管版/ RUM Headless：应用扣费新增邮件提醒和系统�
 
 主机 > 详情页：磁盘容量统计区分本地磁盘和远端磁盘显示。
 
+### 部署版更新 {#deployment0409}
+
+模版管理：
+
+- 页面交互优化，包含显示列新增“模版类型”等；
+- 顶部筛选项新增“模版类型”；
+- 支持批量导出模版；
+- 导入模版时，支持预览查看模版详情；
+- 内置视图、Pipeline、监控器模板上传支持同名覆盖逻辑。
+
 ### 新增集成 {#inte0409}
 
 1. 新增 [GCP Compute Engine](../integrations/gcp_ce.md)；
@@ -186,15 +196,6 @@ DataFlux Func 托管版/ RUM Headless：应用扣费新增邮件提醒和系统�
     - JSON 格式数据新增 “[JSON 搜索](../logs/explorer-details.md#json)”；
 2. 索引 > 关键字段：新增“[一键获取](../logs/multi-index/index.md#extract)”。
 
-### 部署版更新 {#deployment0409}
-
-模版管理：
-
-- 页面交互优化，包含显示列新增“模版类型”等；
-- 顶部筛选项新增“模版类型”；
-- 支持批量导出模版；
-- 导入模版时，支持预览查看模版详情；
-- 内置视图、Pipeline、监控器模板上传支持同名覆盖逻辑。
 
 ### 新增集成 {#inte0326}
 

@@ -2596,7 +2596,7 @@ icon: zy/integrations
   				<div class="fth-integration-list-card">
   					<div class="integration-list-item-left">
   						<img
-									src="../icon/azure_Virtual_network_gateway/icon.png"
+									src="../icon/azure_virtual_network_gateway/icon.png"
 									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
 									alt=""
   						/>
@@ -6383,6 +6383,36 @@ icon: zy/integrations
   						<div class="fth-integration-description">
                             <div title="KubeCost" class="fth-integration-name">KubeCost</div>
                             <div title="采集 KubeCost 指标信息" class="fth-integration-desc">采集 KubeCost 指标信息</div>
+                        </div>
+                        <div class="fth-integration-mask-image"></div>
+  					</div>
+  					<div class="integration-list-item-right">
+  						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  							<path
+  								d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"
+  							></path>
+  						</svg>
+  					</div>
+  				</div>
+  			</div>
+  		
+  			<div
+  				class="fth-integration-list-item"
+  				data-href="../kubelet"
+  				data-tags="PROMETHEUS,KUBERNETES"
+  				data-name="Kubelet"
+  				data-summary="采集 Kubelet 指标信息"
+  			>
+  				<div class="fth-integration-list-card">
+  					<div class="integration-list-item-left">
+  						<img
+									src="../icon/kubelet/icon.png"
+									onerror="this.onerror = ''; this.src = '../icon/integration-default-logo.png'"
+									alt=""
+  						/>
+  						<div class="fth-integration-description">
+                            <div title="Kubelet" class="fth-integration-name">Kubelet</div>
+                            <div title="采集 Kubelet 指标信息" class="fth-integration-desc">采集 Kubelet 指标信息</div>
                         </div>
                         <div class="fth-integration-mask-image"></div>
   					</div>

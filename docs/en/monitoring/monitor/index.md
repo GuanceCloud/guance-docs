@@ -1,12 +1,12 @@
 # Monitors
 ---
 
-You can quickly create monitors through the following methods:
+Two quick ways to create monitors:
 
-- [Use out-of-the-box monitoring templates](../monitor/template.md): Includes various official built-in monitoring templates, supporting one-click creation of monitors for HOSTs, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink, and more.  
-- [Customize a new monitor](./monitor-rule.md): Through more than ten detection rules such as threshold detection, log detection, mutation detection, interval detection, etc., define the trigger conditions for custom monitors. After enabling the monitor, you will receive alerts for related anomaly events.
+- [Use official templates](../monitor/template.md): Utilize various built-in monitoring templates to create HOST, Docker, Elasticsearch, Redis, Alibaba Cloud RDS, Alibaba Cloud SLB, Flink monitors with one click.
+- [Customize monitors](./monitor-rule.md): By configuring threshold detection, log detection, and over ten other detection rules, customize the trigger conditions for monitors and receive anomaly event alerts after enabling them.
 
 
-## Functional Extensions
+## Feature Extensions
 
-Save as a custom template: Save already created monitors as a [template](../monitor/custom-template.md) for easy addition or deletion of monitor configuration conditions later.
+You can save already created monitors as custom [templates](../monitor/custom-template.md) for easy adjustments and management of monitor configurations in the future.

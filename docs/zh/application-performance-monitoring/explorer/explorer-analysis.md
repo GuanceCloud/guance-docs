@@ -2,7 +2,7 @@
 
 ---
 
-数据采集成功后，即可在链路功能页面查看所有相关数据。利用[强大的搜索功能](../../getting-started/function-details/explorer-search.md#search)，您可以轻松筛选并查看任何时间段的链路数据，迅速识别并定位异常链路。
+数据采集成功后，即可在链路功能页面查看所有相关数据。利用[强大的搜索功能](../../getting-started/function-details/explorer-search.md)，您可以轻松筛选并查看任何时间段的链路数据，迅速识别并定位异常链路。
 
 [火焰图](#flame)为您提供了直观的视图，以观察链路中每个 Span 的流转和性能表现。此外，<<< custom_key.brand_name >>>的标签功能使您能够自动将基础设施、日志、用户访问监测等数据与链路分析相关联，支持代码级别的数据关联查看，帮助您快速定位并解决异常问题。[Span 列表](./explorer-analysis.md#span)、[瀑布图](./explorer-analysis.md#waterfall)等工具进一步为您展示某条链路下相关的 Span 信息。
 

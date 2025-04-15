@@ -3,11 +3,11 @@ title     : 'TiDB'
 summary   : '采集 TiDB cluster、TiDB、Etcd、Region 等相关组件指标信息'
 __int_icon: 'icon/tidb'
 dashboard :
-  - desc  : 'TiDB 监控视图'
+  - desc  : 'TiDB'
     path  : 'dashboard/zh/tidb'
 monitor   :
-  - desc  : '暂无'
-    path  : '-'
+  - desc  : 'TiDB'
+    path  : 'monitor/zh/tidb'
 ---
 
 <!-- markdownlint-disable MD025 -->

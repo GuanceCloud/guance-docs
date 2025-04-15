@@ -1,7 +1,7 @@
 # Bar Chart
 ---
 
-Generally used to display data changes over a period of time and compare situations between different variables.
+Generally applicable for showing data changes over a period of time and comparing the contrast between various variables.
 
 Includes two types of chart displays:
 
@@ -18,17 +18,21 @@ Includes two types of chart displays:
 
 ### Stacking
 
-1. Type: Includes regular stacking and percentage stacking.
+1. Type: Includes standard stacking and percentage stacking.
 
 2. X-axis
 
-- Grouping: Each group represents one bar; datasets with the same grouping are stacked together;
-- Query: Each query represents one bar, and the groups within the queries are stacked for display.
+    - Grouping: Each group corresponds to one bar; datasets with the same grouping are stacked;
+    - Query: Each query corresponds to one bar; groups within the query are stacked. 
 
-### X/Y Axis
+### X Axis
 
-Sets the maximum and minimum values for the numerical X/Y axis.
+Set rotated labels for sequence names to adjust the tilt angle of group names, allowing for more text content to be displayed.
+
+### Y Axis
+
+Set the maximum and minimum values for the numerical X/Y axis.
 
 ### Baseline
 
-Adds baseline value, baseline title, and baseline color. Sets a standard or expected value for comparing changes and trends in the data.
+Add baseline values, baseline titles, and baseline colors. Set a standard or expected value for comparing changes and trends in the data.
