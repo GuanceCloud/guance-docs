@@ -32,7 +32,7 @@ sudo docker run \
     --privileged \
     --publish 19529:9529 \
     -d \
-    pubrepo.<<<custom_key.brand_main_domain>>>/datakit/datakit:1.70.0
+    pubrepo.<<<custom_key.brand_main_domain>>>/datakit/datakit:1.71.0
 ```
 
 启动参数说明：

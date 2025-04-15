@@ -140,7 +140,7 @@ spec:
           fieldPath: metadata.namespace
     - name: LOGFWD_GLOBAL_SOURCE
       value: nginx-souce-test
-    image: pubrepo.<<<custom_key.brand_main_domain>>>/datakit/logfwd:1.70.0
+    image: pubrepo.<<<custom_key.brand_main_domain>>>/datakit/logfwd:1.71.0
     imagePullPolicy: Always
     resources:
       requests:
@@ -242,7 +242,7 @@ spec:
         fieldRef:
           apiVersion: v1
           fieldPath: metadata.namespace
-    image: pubrepo.<<<custom_key.brand_main_domain>>>/datakit/logfwd:1.70.0
+    image: pubrepo.<<<custom_key.brand_main_domain>>>/datakit/logfwd:1.71.0
     imagePullPolicy: Always
     resources:
       requests:

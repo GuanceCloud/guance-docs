@@ -2,9 +2,9 @@
 ---
 
 
-<<< custom_key.brand_name >>> supports saving logs, application performance, user access, and event data to its object storage or forwarding it to external storage systems. You can freely choose the storage destination and flexibly manage data forwarding.
+Supports saving log, application performance, user access, and event data to its object storage or forwarding it to an external storage system. You can freely choose the storage destination and flexibly manage data forwarding.
 
-After the rule takes effect, on the data forwarding page, you can quickly search for stored data by setting query times and data forwarding rules, including <<< custom_key.brand_name >>> backup logs, AWS S3, Huawei Cloud OBS, Alibaba Cloud OSS, and Kafka MESSAGE QUEUES, etc.
+After the rule takes effect, on the data forwarding page, you can quickly search for stored data by setting query times and data forwarding rules, including <<< custom_key.brand_name >>> backup logs, AWS S3, Huawei Cloud OBS, Alibaba Cloud OSS, and Kafka message queues, etc.
 
 
 ## Prerequisites
@@ -13,38 +13,37 @@ Commercial Plan only.
 
 ## Start Creating
 
-Enter the **Data Forwarding > Forwarding Rules > Create** page.
+Go to the **Data Forwarding > Forwarding Rules > Create** page.
 
 ???+ warning "Note"
 
-    After creating a data forwarding rule, the system will execute the rule validation every 5 minutes.  
+    After the data forwarding rule is created, the system will execute the rule validation every 5 minutes.
 
 <img src="../img/create_data_forward_rules.png" width="70%" >
 
 
+### Input Rule Name
 
-### Enter Rule Name
-
-1. Rule Name: The name of the current data forwarding rule.   
-2. Include Extended Fields: By default, only the `message` field content of logs that meet the conditions will be forwarded. If you check "Include Extended Fields," then the entire log data that meets the conditions will be forwarded. APM and RUM data are forwarded as entire data by default, unaffected by this option.
+1. Rule Name: The name of the current data forwarding rule.
+2. Include Extended Fields: By default, only the `message` field content of logs that meet the conditions will be forwarded. If you select "Include Extended Fields," the entire log data that meets the condition will be forwarded. Application performance and user access data are forwarded as entire records by default and are not affected by this option.
 
 ???+ warning "Note"
 
-    When creating multiple data forwarding rules, priority is given to matching rules with extended fields included. If different rules match the same data, the entire log data will be displayed according to the logic of including extended fields.     
+    When creating multiple data forwarding rules, priority is given to matching rules with extended fields included. If different rules match the same data, the rule with extended fields included will display the full log data.
 
 
 ### Define Filtering Conditions
 
 
-1. Data Source: Includes LOGS, APM, RUM, and EVENT DATA.
+1. Data Source: Includes logs, application performance, user access, and event data.
 
-2. Filtering Conditions: Supports customizing the logical operations between conditions; you can select **All Conditions** or **Any Condition**:
+2. Filtering Conditions: Supports custom logic between conditions; you can choose **all conditions** or **any condition**:
 
-    - All Conditions: Only logs that match all filtering conditions will be saved for data forwarding;
+    - All conditions: Only log data that matches all filtering conditions will be saved for data forwarding;
 
-    - Any Condition: Logs that satisfy any one of the filtering conditions will be saved for data forwarding.
+    - Any condition: Log data meeting any one of the filtering conditions will be saved for data forwarding.
 
-**Condition operators are listed in the table below:**
+**Condition operators are shown in the table below:**
 
 | Condition Operator      | Match Type     | 
 | ------------- | -------------- | 
@@ -63,9 +62,9 @@ Enter the **Data Forwarding > Forwarding Rules > Create** page.
     All five archiving types are available across the site.
 
 
-To provide more comprehensive data forwarding storage methods, <<< custom_key.brand_name >>> supports five storage paths.
+To provide a more comprehensive data forwarding storage method, <<< custom_key.brand_name >>> supports five storage paths.
 
-:material-numeric-1-circle-outline: <<< custom_key.brand_name >>>: When selecting <<< custom_key.brand_name >>> as the data forwarding storage object, matched log data will be saved in **<<< custom_key.brand_name >>>'s OSS, S3, OBS object storage**.
+:material-numeric-1-circle-outline: <<< custom_key.brand_name >>>: When choosing <<< custom_key.brand_name >>> as the data forwarding storage object, matched log data will be saved in the **<<< custom_key.brand_name >>> side's OSS, S3, OBS object storage**.
 
 :material-numeric-2-circle-outline: [AWS S3](./backup-aws.md);
 
@@ -73,23 +72,23 @@ To provide more comprehensive data forwarding storage methods, <<< custom_key.br
 
 :material-numeric-4-circle-outline: [Alibaba Cloud OSS](./backup-ali.md);
 
-:material-numeric-5-circle-outline: [Kafka MESSAGE QUEUES](./backup-kafka.md).
+:material-numeric-5-circle-outline: [Kafka Message Queue](./backup-kafka.md).
 
 ???+ warning "Note"
 
-    When selecting <<< custom_key.brand_name >>> as the data forwarding storage object, the minimum log data retention period is 180 days by default. Once the rule is created, it cannot be canceled, and fees will be charged daily during the retention period; you can go to **Manage > Settings > Change Data Storage Policy** to modify.
+    When choosing <<< custom_key.brand_name >>> as the data forwarding storage object, the minimum log data storage is set to 180 days by default. Once the rule is created, it cannot be canceled, and daily charges will apply during the storage period. You can go to **Manage > Settings > Change Data Storage Strategy** to make modifications.
 
-### Define Data Viewing Permissions {#permission}
+### Define Data View Permissions {#permission}
 
-Setting viewing permissions for forwarded data can effectively enhance data security.
+Setting view permissions for forwarded data can effectively enhance data security.
 
-- No Restrictions: All members of the workspace can view forwarded data;
-- Custom: Specify the roles of members who can view forwarded data.
+- No restrictions: All members of the workspace can view forwarded data;
+- Custom: Specify member roles who can view forwarded data.
 
 
 ## Manage Forwarding Rules
 
-All created data forwarding rules can be viewed in the forwarding rule list. You can manage the list through the following operations:
+All created data forwarding rules can be viewed in the forwarding rules list. You can manage the list via the following operations:
 
 - Search by entering the rule name;
 
@@ -101,14 +100,24 @@ All created data forwarding rules can be viewed in the forwarding rule list. You
 
 ???+ warning "Note"
 
-    - There may be up to a 1-hour delay when viewing forwarded data;          
-    - In edit mode, access type and region cannot be adjusted; for rules choosing <<< custom_key.brand_name >>> storage, editing and viewing content are consistent;           
-    - After deleting a rule, the already forwarded data will not be deleted, but no new data will be generated.
+    - Viewing forwarded data may have up to a 1-hour delay;
+    - In edit mode, access type and region cannot be adjusted; for rules selecting <<< custom_key.brand_name >>> storage, the editing and viewing content remains consistent;
+    - After deleting a rule, already forwarded data will not be deleted, but no new data will be generated.
 
 ## Data Viewing {#explorer}
 
-On the data viewing page, you can search and query the latest data results based on time range and forwarding rules. Regular expression syntax can also be used here for searching.
+On the data viewing page, you can search for the latest data results based on time range and forwarding rules. Regular expression syntax can also be used here.
 
 <img src="../img/backup_data_explorer.png" width="70%" >
 
-The system will retrieve files in batches according to the selected time to search for matching data, returning 50 entries per batch. If no data is found on the first query or fewer than 50 entries are returned, you can manually click "Continue Query" until the scan is complete.
+The system retrieves file search matching data in batches according to the selected time, returning 50 entries per batch. If no data is found or fewer than 50 entries are returned on the first query, you can manually click "Continue Query" until the scan is complete.
+
+## Data Forwarding Query Duration {#query_time_change}
+
+After configuring the query duration, when viewing forwarded data, the query time range will be affected by the duration configuration here.
+
+<img src="../img/backup_data_query_time_change.png" width="70%" >
+
+1. Go to Manage > Workspace Settings > Advanced Settings > Configure Query Duration;
+2. Select Duration;
+3. Confirm.

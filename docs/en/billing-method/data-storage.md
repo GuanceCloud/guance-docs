@@ -1,74 +1,75 @@
-# Data Storage Policy
+# Data Storage Strategy
 ---
 
-As business applications increase, the scope of data observability requirements continues to expand, and the storage duration needs for different types of data will also adjust accordingly. <<< custom_key.brand_name >>> provides multiple data storage policies. You can customize your data retention period based on your needs, effectively controlling data storage costs and saving expenses.
 
-## Data Retention Period
+As the number of business applications increases, the scope of data observation needs continues to expand, and the demand for storage duration of different types of data will also adjust accordingly. <<< custom_key.brand_name >>> provides multiple data storage strategies, allowing you to customize your data storage duration based on your needs, thereby effectively controlling data storage costs and saving expenses.
+
+## Data Storage Duration
 
 | <div style="width: 200px">Type</div> | Duration |
 | --- | --- |
-| Metrics | This is the global data retention policy for metrics. If you have special retention requirements for certain metric sets, you can customize them via [Configure Storage Policy](../metrics/dictionary.md).<br /><br />3 days / 7 days (default) / 14 days / 30 days / 180 days / 360 days |
+| Metrics | This is the global data retention strategy for metrics. If you have specific data retention duration requirements for certain metric sets, you can make custom modifications via [Configure Storage Strategy](../metrics/dictionary.md).<br /><br />3 days / 7 days (default) / 14 days / 30 days / 180 days / 360 days |
 | Logs | 3 days / 7 days / 14 days (default) / 30 days / 60 days |
 | Data Forwarding - <<< custom_key.brand_name >>> | 180 days (default) / 360 days / 720 days |
 | Events | 14 days (default) / 30 days / 60 days |
-| APM - Traces / Profiles | 3 days / 7 days / 14 days (default) |
+| Application Performance - APM / Profile | 3 days / 7 days / 14 days (default) |
 | RUM PV | 3 days / 7 days / 14 days (default) |
 | Security Check | 3 days / 7 days / 14 days (default) / 30 days / 60 days |
 
-### Changing Retention Period
+### Changing Storage Duration
 
-Owners of Commercial Plan workspaces can adjust data storage policies multiple times in a day. The first change takes effect immediately, while subsequent changes within the same day will take effect the next day according to the last adjustment record. After changing the policy, data will be evaluated for expiration based on the latest configuration and cleared at midnight the next day.
+The owner of a Commercial Plan workspace can adjust the data storage strategy multiple times in a day. Except for the first modification which takes effect immediately, other modification operations will take effect the next day according to the last adjustment record. After the strategy change, the data will be evaluated for expiration based on the latest configuration and cleared at 0 o'clock the next day.
 
 Steps to change:
 
-1. Go to [**Manage > Workspace Settings > Change Data Storage Policy**](../management/settings/index.md#change);
+1. Go to [**Manage > Workspace Settings > Change Data Storage Strategy**](../management/settings/index.md#change);
 2. Click **Replace**;
-3. Select the data type whose storage policy you want to modify and click **Edit**;
-4. Choose the desired retention period;
-5. After making changes, click **Confirm** to update the data retention period for the current workspace.
+3. Select the type of data storage strategy you want to modify, click **Edit**;
+4. Choose the required duration;
+5. After completing the modification, click **Confirm**, which will change the data storage duration within the current workspace.
 
 <img src="../img/2.data_storage_2.1.png" width="60%" >
 
-### Important Notes
+### Notes on Changes
 
-1. Only owners of Commercial Plan workspaces can perform this operation;  
-2. After changing the Metrics data retention policy, old data under the previous policy will be deleted. Please choose carefully.
-3. For changes in retention policies for data types other than Metrics, the new policy takes effect immediately, but old data under the previous policy will not be immediately deleted and will still incur charges until it is deleted according to the rolling deletion schedule.
+1. Only the owner of a Commercial Plan workspace can perform this operation;  
+2. After changing the storage strategy for metric data, the old data inside the old storage strategy will be deleted, please choose carefully.
+3. For changes in the storage strategy of other data types except metric data, the new retention strategy takes effect immediately, but the old data under the old storage strategy will not be deleted immediately and will still incur charges until the strategy rolls over and deletes the old data.
 
-    - Shorter retention period: Suppose APM data changes from 14 days to 7 days. Before the change date, data is charged based on the 14-day policy; after the change date, new data will be indexed and charged based on the new 7-day policy.
-    - Longer retention period: Suppose APM data changes from 7 days to 14 days. Before the change date, data is charged based on the 7-day policy; after the change date, new data will be indexed and charged based on the new 14-day policy.
+    - Shortened data retention: Suppose application performance data changes from 14 days to 7 days, with the adjustment time as the boundary line, the data before that time will continue to be charged according to the 14-day storage strategy, while the data after that time will generate new indices and be charged according to the new 7-day storage strategy;
+    - Extended data retention: Suppose application performance data changes from 7 days to 14 days, with the adjustment time as the boundary line, the data before that time will continue to be charged according to the 7-day storage strategy, while the data after that time will generate new indices and be charged according to the new 14-day storage strategy.
         
-> For more details, refer to [<<< custom_key.brand_name >>> ES Multi-Tenant Lifecycle Management Practice](../billing-method/es-life-cycle.md).
+> For more details, refer to [<<< custom_key.brand_name >>> ES Multi-tenant Lifecycle Management Practice](../billing-method/es-life-cycle.md).
 
 
 ## Data Storage Methods {#options}
 
 <<< custom_key.brand_name >>> offers two data storage solutions: **Default Storage** and **SLS Storage**:
 
-- Default Storage: Uses <<< custom_key.brand_name >>> [GuanceDB](./gauncedb.md) to store metrics data, and Elasticsearch / OpenSearch to store log data;
-- SLS Storage: Uses Alibaba Cloud Log Service SLS to store data, with LogStore storing log data and MetricStore storing metrics data.
+- Default Storage: Using <<< custom_key.brand_name >>>'s proprietary storage for metric-type data, Elasticsearch / OpenSearch for log-type data;
+- SLS Storage: Using Alibaba Cloud Log Service SLS to store data, storing log-type data in LogStore and metric-type data in MetricStore.
 
 
-### For Free Plan {#free}
+### Regarding Free Plan {#free}
 
-#### Billing Information
+#### Billing Notes
 
-1. If any billing items in the Free Plan reach their data quota, data reporting will stop updating; infrastructure and event data will continue to report updates, so you can still see infrastructure list data and event data;
-2. The Free Plan supports online upgrades to the Commercial Plan. No charges are incurred unless upgraded. Once upgraded to a paid plan, rollback is not possible;
-3. After upgrading to the Commercial Plan, collected data will continue to report to the <<< custom_key.brand_name >>> workspace, but data collected during the Free Plan period will no longer be viewable;
-4. Time Series and data forwarding statistics are for all data, while other billing items are incremental data. Incremental data statistics reset the free quota at midnight each day and are valid for that day.
+1. If different billing items in the Free Plan reach their data quota, data updates will stop being reported; infrastructure and event data will still support reporting updates, and you can still see infrastructure list data and event data;     
+2. The Free Plan supports online upgrades to the Commercial Plan. Without upgrading, there are no charges, but once upgraded to a paid version, it cannot be reverted;        
+3. After upgrading the Free Plan to the Commercial Plan, collected data will continue to be reported to the <<< custom_key.brand_name >>> workspace, but data collected during the Free Plan period will no longer be viewable;   
+4. Time Series and data forwarding statistics account for all data, other billing items are incremental data; incremental data statistics reset the free quota at 0 o'clock every day and are valid for the day.   
 
-<<< custom_key.brand_name >>> supports a free start, pay-as-you-go billing method, providing an out-of-the-box cloud platform for comprehensive observability. The Free Plan offers a 7-day data retention policy. If you need to change the data retention policy, you must [upgrade to the <<< custom_key.brand_name >>> Commercial Plan](../plans/trail.md#upgrade-commercial).
+<<< custom_key.brand_name >>> supports a free start, pay-as-you-go billing method, providing you with an out-of-the-box cloud platform that enables comprehensive observability. The Free Plan of <<< custom_key.brand_name >>> provides a 7-day data storage strategy. If you need to change the data storage strategy, you must [upgrade to the Commercial Plan of <<< custom_key.brand_name >>>](../plans/trail.md#upgrade-commercial) to make the change.
 
-| <div style="width: 160px">**Billing Item**</div>             | **Free Quota**  | <div style="width: 160px">**Data Retention Policy**</div> | **Notes**                                                     |
+| <div style="width: 160px">**Billing Items**</div>             | **Free Quota**  | <div style="width: 160px">**Data Storage Strategy**</div> | **Notes**                                                     |
 | ---------------------- | ------------- | ---------------- | ------------------------------------------------------------ |
-| Time Series Count      | 3000 entries  | 7 days           |                                                              |
-| Log Data Count         | 1 million/day | 7 days           | Data Scope: Events, Security Check, Logs (excluding Synthetic Tests logs) |
-| Data Forwarding Count  | /             | /                | ❌                                     |
-| APM Trace Count        | 8000/day      | 7 days           |                                                              |
-| APM Profile Count      | 60/day        | 7 days           |                                                              |
-| RUM PV Count           | 2000/day      | 7 days           |                                                              |
-| Session Replay Count   | 1000/day      | 7 days           |                                                              |
-| Synthetic Tests Count  | 200k/day      | 7 days           |                                                              |
-| Trigger Call Count     | 100k/day      | /                |                                                              |
-| SMS Sending Count      | /             | /                | ❌                                         |
+| Time Series Quantity   | 3000 entries | 7 days          |                                                              |
+| Log Data Quantity      | 1 million per day | 7 days          | Data Scope: Events, Security Check, Logs (excluding logs from Synthetic Tests) |
+| Data Forwarding Quantity | /            | /               | ❌                                     |
+| APM Trace Quantity     | 8000 per day  | 7 days          |                                                              |
+| APM Profile Quantity    | 60 per day    | 7 days          |                                                              |
+| RUM PV Quantity        | 2000 per day  | 7 days          |                                                              |
+| SESSION REPLAY Session Quantity | 1000 per day | 7 days          |                                                              |
+| Synthetic Testing Task Runs | 200k per day | 7 days          |                                                              |
+| Trigger Runs           | 100k per day  | /               |                                                              |
+| SMS Sending Runs       | /            | /               | ❌                                         |

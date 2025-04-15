@@ -231,7 +231,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Type**: URL
 
-    **Example**: `https://openway.<<<custom_key.brand_domain>>>.com?token=xxx`
+    **Example**: `https://openway.<<<custom_key.brand_main_domain>>>.com?token=xxx`
 
     **Required**: Yes
 
@@ -333,7 +333,7 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
     **Type**: URL
 
-    **Example**: `https://openway.<<<custom_key.brand_domain>>>?token=xxx`
+    **Example**: `https://openway.<<<custom_key.brand_main_domain>>>?token=xxx`
 
     **Required**: Yes
 
@@ -427,15 +427,23 @@ For string/bool/string-list/duration, it is recommended to use double quotation 
 
 - **ENV_DATAWAY_WAL_WORKERS**
 
-    Set WAL workers, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
+    Set WAL workers, default to limited CPU cores X 8 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Int
 
 - **ENV_DATAWAY_WAL_MEM_CAPACITY**
 
-    Set WAL memory queue length, default to limited CPU cores X 2 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
+    Set WAL memory queue length, default to limited CPU cores X 8 [:octicons-tag-24: Version-1.62.0](changelog.md#cl-1.62.0)
 
     **Type**: Int
+
+- **ENV_DATAWAY_WAL_NO_DROP_CATEGORIES**
+
+    Set category list that do not drop data if WAL disk full [:octicons-tag-24: Version-1.71.0](changelog.md#cl-1.71.0)
+
+    **Type**: List
+
+    **Example**: `'L,T,N'`
 
 - **ENV_DATAWAY_WAL_PATH**
 

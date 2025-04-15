@@ -471,9 +471,7 @@ In `datakit.conf`, modify the following configuration and the DataKit will read 
 If it appears during the installation/upgrade process when installing on macOS:
 
 ```shell
-"launchctl" failed with stderr: /Library/LaunchDaemons/cn.dataflux.datakit.plist: Service is disabled
-# or
-"launchctl" failed with stderr: /Library/LaunchDaemons/com.guance.datakit.plist: Service is disabled
+"launchctl" failed with stderr: /Library/LaunchDaemons/com.datakit.plist: Service is disabled
 ```
 
 Execute:
@@ -485,9 +483,7 @@ sudo launchctl enable system/datakit
 Then execute the following command:
 
 ```shell
-sudo launchctl load -w /Library/LaunchDaemons/cn.dataflux.datakit.plist
-# or
-sudo launchctl load -w /Library/LaunchDaemons/com.guance.datakit.plist
+sudo launchctl load -w /Library/LaunchDaemons/com.datakit.plist
 ```
 
 <!-- markdownlint-disable MD013 -->

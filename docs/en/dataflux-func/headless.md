@@ -1,58 +1,66 @@
 # RUM Headless
 
 
-RUM is used to collect user access monitoring data reported from web pages or mobile terminals. <<< custom_key.brand_name >>> provides a one-click activation service for RUM. After activation, it can be automatically installed and deployed on <<< custom_key.brand_name >>> cloud hosts, automatically completing the installation of DataKit, deployment of RUM collectors, and a series of other operations.
+RUM is used to collect user access monitoring data reported from web pages or mobile ends. <<< custom_key.brand_name >>> provides a one-click activation service for RUM. After activation, it can be automatically installed and deployed in <<< custom_key.brand_name >>> cloud hosts, automatically completing DataKit installation, RUM collector deployment, and a series of other operations.
 
-**Note**: The prerequisite for activating the autometa func platform is to contact the billing center to enable the whitelist channel. You need to contact your account manager and provide information such as the site and ID where the workspace is located.
+???+ warning "Note"
+
+    The prerequisite for activating the RUM Headless platform is to contact the billing center to enable the whitelist channel. You need to contact your account manager and provide information such as the site and ID of the workspace.
+
 
 ## One-Click Activation {#steps}
 
-In **Integration > RUM Headless**, or **Integration > Expansion > RUM Headless**, click to enter the activation process:
+In **Integrations > RUM Headless**, or **Integrations > Extensions > RUM Headless**, click to enter the activation process:
 
 ![](img/headless-1.png)
 
 ???+ warning "Permissions and Billing"
 
-    - Only one instance can be activated per workspace, and only the **Owner** has the activation and configuration permissions;
-    - RUM Headless is **billed monthly**, with one month's fee deducted upon successful activation. The next month’s fee will be automatically deducted one day before expiration (e.g., activation on 04/13 means billing on 04/12 and 05/12, and so on...).
+    - Only one can be activated per workspace, only **Owner** has activation and configuration permissions;
+    - RUM Headless is **billed monthly**, after successful activation, one month's fee will be deducted at once, and the next month's fee will be automatically deducted one day before expiration (for example: activation on 04/13, then fees will be deducted on 04/12, 05/12, and so on...).
 
 
 1. Click **Activate**;
 2. Fill in the HTTP service address;
 3. Select the required specifications for the application;
-4. Click **Activate Now**;
+4. Activate immediately.
 
 
-**Note**: HTTP service address: This is the HTTP service address of DataKit, which receives external data. This address needs to be filled when integrating applications:
+???+ warning "Note"
+
+    HTTP service address: That is, the HTTP service address of DataKit, which receives external data through this address. This address needs to be filled out when integrating applications:
 
 <img src="../img/headless-5.png" width="60%" >
 
-The automated deployment process is expected to take 10-15 minutes. After activation is completed, you can directly access the console under **Integration > Func > Expansion**. Click **Configuration > Overview** to view relevant information about RUM Headless.
+The automated deployment process is expected to take 10-15 minutes. After activation is completed, you can directly enter the console in **Integrations > Func > Extensions**. Click **Configure > Overview** to view the relevant information about RUM Headless.
 
 
 
-## Related Configuration
+## Related Configurations
 
-After RUM Headless is activated, if you need to modify the configuration information, refer to the following content:
-
+After the RUM Headless activation is complete, if you need to modify configuration information, refer to the following content.
 
 
 ### Modify Service Address
 
 1. Click **Modify**;
-2. Obtain and fill in the email verification code;
-3. Click confirm to complete **identity verification**, allowing modification of the current HTTP service address.
+2. Obtain and enter the email verification code;
+3. Confirm, complete **identity verification**, and you can modify the current HTTP service address.
 
-**Note**: The service address can be modified up to three times daily.
+???+ warning "Note"
+
+    The service address can be modified up to 3 times daily.
 
 
 ### Modify Specifications
 
 1. Click **Modify**;
-2. Obtain and fill in the email verification code;
-3. Click confirm to complete identity verification, allowing modification of the current specifications.
+2. Obtain and enter the email verification code;
+3. Confirm, complete identity verification, and you can modify the current specifications.
 
-**Note:** Changes to specifications take effect immediately on the same day and are billed according to the new specifications. The old specifications will be discarded directly without refund.
+???+ warning "Note"
+
+    After modifying the specifications, they take effect immediately on the same day, and billing starts according to the new specifications. The old specifications will be directly abandoned, and no refunds will be issued.
 
 ### Sourcemap Configuration
 
@@ -60,42 +68,44 @@ Sourcemap (source code mapping) is used to map compressed code in the production
 
 ![](img/headless-3.png)
 
-When uploading files, select the application type and [configure the completed Sourcemap](../integrations/rum.md#sourcemap), then drag or click to upload.
+When uploading files, select the application type, [configure the completed Sourcemap packaging](../integrations/rum.md#sourcemap), drag or click to upload.
 
-Below the 🔍 bar, you can view the names of uploaded files and their application types, and you can search by entering the file name; clicking :fontawesome-regular-trash-can: deletes the current file.
+Below the 🔍 bar, you can view the names of uploaded files and their application types; you can search by entering the file name; clicking :fontawesome-regular-trash-can: deletes the current file.
 
 ???+ warning "Upload Notes"
 
-    - File size cannot exceed 500MB;
+    - File size cannot exceed 500M;
     - File format must be `.zip`;
-    - File naming format should be `<app_id>-<env>-<version>`, where `app_id` is mandatory. Incorrect formatting will not take effect. Ensure that the file path after decompressing the package matches the URL path in `error_stack`;
+    - File naming format should be `<app_id>-<env>-<version>`, where `app_id` is mandatory. Incorrect formats will not take effect; ensure that the file paths after decompressing the package match the paths in the `error_stack` URL;
     - Multiple files cannot be uploaded simultaneously;
-    - Uploading files with the same name will prompt for overwriting, please pay attention.
+    - Uploading files with the same name will prompt an overwrite notice, please be cautious.
 
 ### Status Related
 
 On the RUM Headless configuration page, you can view the current application status.
 
-There may be five possible statuses for your current application:
+Your current application may have five possible statuses:
 
 | Status      | Description            |
 | ----------- | ------------- |
-| Activating      | Indicates that the one-click activation process for RUM Headless is ongoing.             |
-| Activated      | Indicates that the one-click activation process for RUM Headless has been completed.             |
-| Changing Plan      | Indicates that modifications are being made to the service address or specifications.              |
-| Upgrading      | Indicates that the current application service is being upgraded.               |
-| Operation Failed      | Indicates an operational issue during the activation process. You can **view error feedback** or directly [contact us](https://<<< custom_key.brand_main_domain >>>/aboutUs/introduce#contact).           |
+| Activating      | Indicates being in the one-click activation process for RUM Headless.             |
+| Activated      | Indicates the one-click activation process for RUM Headless has been completed.             |
+| Plan Changing      | Indicates currently modifying the service address or specifications.              |
+| Upgrading      | Indicates upgrading the current application service.               |
+| Operation Failed      | Indicates there are operational issues during the activation process. You can **view error feedback** or directly [contact us](https://<<< custom_key.brand_main_domain >>>/aboutUs/introduce#contact).           |
 
 ### Application Expiration
 
-If you have previously activated RUM Headless, all data will be retained for 7 days after expiration, and will be released upon expiration. Within these 7 days, if you need to activate the application again, you can choose to **restore all data** or **not restore data**:
+Three days before the application renewal charge date, the system will check if the balance is sufficient for renewal. If the balance is insufficient, the system will send email and system notifications to remind the workspace Owner.
 
-- Restore Data: Back up the previously retained data to the newly activated RUM;
-- Do Not Restore Data: Abandon all previous data and [reactivate the application](#steps).
+If you have used RUM Headless before and reactivate the application before its expiration, all application data can be restored. If overdue without renewal, data will be permanently deleted. The system retains data for the last 7 days. Within these 7 days, if you choose to reactivate the application, you can opt to restore all data or not restore any data.
+
+- Restore data: Back up previously retained data to the newly activated RUM;
+- Do not restore data: Abandon all previous data, [reactivate the application](#steps).
 
 
 ### Disable Application
 
-If you need to disable the current application service, click **Disable Application**, complete **identity verification**, and open the confirmation page where you can view the application expiration date.
+If you need to disable the current application service, click **Disable Application**, complete **identity verification**, and you can open the confirmation page to view the application expiration date.
 
-RUM Headless adopts a monthly billing model. Before the fees expire, you can still use the RUM service and can **restore activation** for RUM Headless as needed.
+RUM Headless uses a monthly billing model. Before the fee expires, you can still use the RUM service and can **restore activation** for RUM Headless as needed.

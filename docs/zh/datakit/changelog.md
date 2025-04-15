@@ -683,6 +683,7 @@ NOTE: 以下内容，合并到 1.62.0 版本发布
 - 升级中心底座至 [1.87.167](../deployment/changelog/2024.md#1.87.167)，或者
 - 修改 *datakit.conf* 中[上传协议配置 `content_encoding`](datakit-conf.md#dataway-settings)，将其改为 `v2`
 
+<<<% if custom_key.brand_key == 'guance' %>>>
 #### 对 InfluxDB 部署版的说明 {#cl-1.30.0-brk-influxdb}
 
 如果中心底座的时序存储是 InfluxDB，则 **不要升级 Datakit**，请保持在 1.29.1 这个最高版本。需后续中心升级之后，才能升级到更高的 Datakit 版本。
@@ -690,6 +691,7 @@ NOTE: 以下内容，合并到 1.62.0 版本发布
 另外，如果中心升级到了较新的版本（1.87.167+），则低版本的 Datakit 也 **不要采用 `v2` 上传协议**，请改用 `v1` 版本的上传协议。
 
 如果确实要要升级到较新的 Datakit 版本，请替换时序引擎为 GuanceDB for metrics。
+<<<% endif %>>>
 
 ---
 

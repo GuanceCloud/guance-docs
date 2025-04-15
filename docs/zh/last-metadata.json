@@ -1,16 +1,300 @@
 {
-  "scene/visual-chart/chart-query.md": {
-    "hash": "d17806ecbc188b5137872983b402391a3ce4bef1668095930408e907dd3f8f43",
-    "last_translated": "2025-04-08T15:40:33.969654",
-    "translation_time": 141.84,
+  "metrics/generate-metrics.md": {
+    "hash": "7c331d2dc181d8780d6335492afa69b7f9a23eace6945a5f96a317a259d95528",
+    "last_translated": "2025-04-15T21:45:14.158293",
+    "translation_time": 32.23,
     "usage": {
-      "prompt_tokens": 4349,
-      "completion_tokens": 2708,
-      "total_tokens": 7057,
-      "prompt_price": 0.0034792,
-      "completion_price": 0.005416,
-      "total_price": 0.0088952,
+      "prompt_tokens": 2838,
+      "completion_tokens": 1232,
+      "total_tokens": 4070,
+      "prompt_price": 0.0022704,
+      "completion_price": 0.002464,
+      "total_price": 0.0047344,
       "currency": "USD"
+    }
+  },
+  "getting-started/function-details/share-snapshot.md": {
+    "hash": "58a68d479ed6286891d5f1e4967737087910806650da75817ddc19336c575108",
+    "last_translated": "2025-04-15T21:45:14.248912",
+    "translation_time": 32.32,
+    "usage": {
+      "prompt_tokens": 2768,
+      "completion_tokens": 1170,
+      "total_tokens": 3938,
+      "prompt_price": 0.0022144,
+      "completion_price": 0.00234,
+      "total_price": 0.0045544,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/web/.pages": {
+    "hash": "ad21386fc2af9b9a2cd32e37935417601dacfa9d609dbaa27bc514e4c2251634",
+    "last_translated": "2025-04-15T21:45:17.531356",
+    "translation_time": 3.36,
+    "usage": {
+      "prompt_tokens": 1654,
+      "completion_tokens": 80,
+      "total_tokens": 1734,
+      "prompt_price": 0.0013232,
+      "completion_price": 0.00016,
+      "total_price": 0.0014832,
+      "currency": "USD"
+    }
+  },
+  "scheck/explorer.md": {
+    "hash": "420ec84bf9372c7a2424f2818ae651919aa42bb4ff25aa3536651f9d15c44ce7",
+    "last_translated": "2025-04-15T21:45:26.155126",
+    "translation_time": 44.23,
+    "usage": {
+      "prompt_tokens": 3074,
+      "completion_tokens": 1530,
+      "total_tokens": 4604,
+      "prompt_price": 0.0024592,
+      "completion_price": 0.00306,
+      "total_price": 0.0055192,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/index.md": {
+    "hash": "dcb0c668bb77cf475ee318bc13cacdbc00ca99e79268e0b2b5a1e14fb459d7e2",
+    "last_translated": "2025-04-15T21:45:29.087829",
+    "translation_time": 47.16,
+    "usage": {
+      "prompt_tokens": 2696,
+      "completion_tokens": 1092,
+      "total_tokens": 3788,
+      "prompt_price": 0.0021568,
+      "completion_price": 0.002184,
+      "total_price": 0.0043408,
+      "currency": "USD"
+    }
+  },
+  "others/explorer-search.md": {
+    "hash": "c3b4ab0106410ea961b6ff9fd59135aafb5cbdf80232de0807a2227efad22eef",
+    "last_translated": "2025-04-15T21:45:44.428291",
+    "translation_time": 62.5,
+    "usage": {
+      "prompt_tokens": 3523,
+      "completion_tokens": 1916,
+      "total_tokens": 5439,
+      "prompt_price": 0.0028184,
+      "completion_price": 0.003832,
+      "total_price": 0.0066504,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/ios/sdk-changelog.md": {
+    "hash": "6a2a086bf53c1f58f14ef0436d224e52cd81d2f2d533559a857166e41bae8027",
+    "last_translated": "2025-04-15T21:45:56.082873",
+    "translation_time": 74.16,
+    "usage": {
+      "prompt_tokens": 3595,
+      "completion_tokens": 1811,
+      "total_tokens": 5406,
+      "prompt_price": 0.002876,
+      "completion_price": 0.003622,
+      "total_price": 0.006498,
+      "currency": "USD"
+    }
+  },
+  "ci-visibility/explorer.md": {
+    "hash": "0d844523aad72b9630544f8589354f490d614783a422a2bc3268520dce182c83",
+    "last_translated": "2025-04-15T21:46:09.125288",
+    "translation_time": 87.2,
+    "usage": {
+      "prompt_tokens": 3306,
+      "completion_tokens": 1795,
+      "total_tokens": 5101,
+      "prompt_price": 0.0026448,
+      "completion_price": 0.00359,
+      "total_price": 0.0062348,
+      "currency": "USD"
+    }
+  },
+  "logs/collection.md": {
+    "hash": "9047651ade53b47d9fc7e1ec568cfbc87691ec265354092b844335fd6152874d",
+    "last_translated": "2025-04-15T21:46:10.939737",
+    "translation_time": 26.5,
+    "usage": {
+      "prompt_tokens": 2254,
+      "completion_tokens": 650,
+      "total_tokens": 2904,
+      "prompt_price": 0.0018032,
+      "completion_price": 0.0013,
+      "total_price": 0.0031032,
+      "currency": "USD"
+    }
+  },
+  "logs/manag-explorer.md": {
+    "hash": "3c149438e38d9e085eb69990cfd0bc141c1ebf25baabf31584bd5a08876c9676",
+    "last_translated": "2025-04-15T21:46:17.530682",
+    "translation_time": 95.6,
+    "usage": {
+      "prompt_tokens": 3921,
+      "completion_tokens": 2270,
+      "total_tokens": 6191,
+      "prompt_price": 0.0031368,
+      "completion_price": 0.00454,
+      "total_price": 0.0076768,
+      "currency": "USD"
+    }
+  },
+  "getting-started/function-details/snapshot.md": {
+    "hash": "10867f379023606f3550c20ed8861f8194d4712f0062e0afa4352e7677c7df55",
+    "last_translated": "2025-04-15T21:46:27.248803",
+    "translation_time": 9.7,
+    "usage": {
+      "prompt_tokens": 1750,
+      "completion_tokens": 177,
+      "total_tokens": 1927,
+      "prompt_price": 0.0014,
+      "completion_price": 0.000354,
+      "total_price": 0.001754,
+      "currency": "USD"
+    }
+  },
+  "getting-started/function-details/save-snapshot.md": {
+    "hash": "04013619b96c04e3a78a39455e133217250d026eeb08078656e5255e7f743370",
+    "last_translated": "2025-04-15T21:46:30.900498",
+    "translation_time": 34.8,
+    "usage": {
+      "prompt_tokens": 2408,
+      "completion_tokens": 809,
+      "total_tokens": 3217,
+      "prompt_price": 0.0019264,
+      "completion_price": 0.001618,
+      "total_price": 0.0035444,
+      "currency": "USD"
+    }
+  },
+  "mobile/index.md": {
+    "hash": "4b35ccbbf8af801da47ad7368a004cf5dfc4c549ab2c6d9991b45dbe25e60cbc",
+    "last_translated": "2025-04-15T21:47:32.534623",
+    "translation_time": 123.43,
+    "usage": {
+      "prompt_tokens": 4575,
+      "completion_tokens": 2914,
+      "total_tokens": 7489,
+      "prompt_price": 0.00366,
+      "completion_price": 0.005828,
+      "total_price": 0.009488,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/web/faq.md": {
+    "hash": "a53a935cb3df7d705eeb951cfc38fdc971b77128e0bec38df6f54d624c4f3a6d",
+    "last_translated": "2025-04-15T21:48:53.501392",
+    "translation_time": 146.24,
+    "usage": {
+      "prompt_tokens": 4654,
+      "completion_tokens": 3039,
+      "total_tokens": 7693,
+      "prompt_price": 0.0037232,
+      "completion_price": 0.006078,
+      "total_price": 0.0098012,
+      "currency": "USD"
+    }
+  },
+  "application-performance-monitoring/explorer/explorer-analysis.md": {
+    "hash": "3b30543240d534df88e1b8d56d7d763cc8786668ef055e4c81520abf95253c20",
+    "last_translated": "2025-04-15T21:49:16.460080",
+    "translation_time": 185.51,
+    "usage": {
+      "prompt_tokens": 5847,
+      "completion_tokens": 4185,
+      "total_tokens": 10032,
+      "prompt_price": 0.0046776,
+      "completion_price": 0.00837,
+      "total_price": 0.0130476,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/web/app-access.md": {
+    "hash": "4d9729bb89ba9d7eb872f594fff8da297e85d4fce475f48752dc10b3939e75a7",
+    "last_translated": "2025-04-15T21:49:38.791043",
+    "translation_time": 252.62,
+    "usage": {
+      "prompt_tokens": 6912,
+      "completion_tokens": 5023,
+      "total_tokens": 11935,
+      "prompt_price": 0.0055296,
+      "completion_price": 0.010046,
+      "total_price": 0.0155756,
+      "currency": "USD"
+    }
+  },
+  "release-notes/index.md": {
+    "hash": "86dd8443ef75d6940860236087aec9b3c42dca3d8488fc6bbc4043f999c57a46",
+    "last_translated": "2025-04-15T21:50:21.974849",
+    "translation_time": 304.43,
+    "usage": {
+      "prompt_tokens": 8703,
+      "completion_tokens": 6282,
+      "total_tokens": 14985,
+      "prompt_price": 0.0069624,
+      "completion_price": 0.012564,
+      "total_price": 0.0195264,
+      "currency": "USD"
+    }
+  },
+  "real-user-monitoring/macos/app-access.md": {
+    "hash": "492f3441688741a3207ef96e15b9c5ad7c7ab9926e5294a87fb5ab2a38bcd952",
+    "last_translated": "2025-04-15T21:53:18.465115",
+    "translation_time": 516.55,
+    "usage": {
+      "prompt_tokens": 31905,
+      "completion_tokens": 9867,
+      "total_tokens": 41772,
+      "prompt_price": 0.025523999999999998,
+      "completion_price": 0.019733999999999998,
+      "total_price": 0.04525800000000001,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "release-notes/2024.md": {
+    "hash": "a1d32275b6755b291dfe9af81557d51a17c03e68a2b8797225395be79f89766c",
+    "last_translated": "2025-04-15T21:55:41.671367",
+    "translation_time": 659.74,
+    "usage": {
+      "prompt_tokens": 49155,
+      "completion_tokens": 13931,
+      "total_tokens": 63086,
+      "prompt_price": 0.039324,
+      "completion_price": 0.027861999999999998,
+      "total_price": 0.067186,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "real-user-monitoring/ios/app-access.md": {
+    "hash": "075068b7a9619ddd665146d7db2036965b031088c25cc4b3590660ee246f231a",
+    "last_translated": "2025-04-15T22:02:55.549456",
+    "translation_time": 1006.41,
+    "usage": {
+      "prompt_tokens": 84570,
+      "completion_tokens": 17551,
+      "total_tokens": 102121,
+      "prompt_price": 0.067656,
+      "completion_price": 0.035102,
+      "total_price": 0.10275799999999999,
+      "currency": "USD",
+      "exceed_token_limit": true
+    }
+  },
+  "release-notes/2022.md": {
+    "hash": "f02dab8ca65d5b0868503261475e2b7cde3a6350d8b1c7de3108a322859e123c",
+    "last_translated": "2025-04-15T22:05:07.947055",
+    "translation_time": 1193.68,
+    "usage": {
+      "prompt_tokens": 125181,
+      "completion_tokens": 21791,
+      "total_tokens": 146972,
+      "prompt_price": 0.10014479999999999,
+      "completion_price": 0.043581999999999996,
+      "total_price": 0.1437268,
+      "currency": "USD",
+      "exceed_token_limit": true
     }
   }
 }

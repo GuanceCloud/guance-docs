@@ -1,175 +1,184 @@
 # Explorer Search
 ---
 
-During the process of data retrieval in various Explorers, we can use multiple search and filtering methods, such as fuzzy search, associated search, positive filtering, negative filtering, etc. Below is a detailed explanation.
+During the process of data retrieval in various Explorers, we can use multiple search and filtering methods, such as fuzzy search, associated search, forward filtering, reverse filtering, etc. Below, we will provide detailed explanations.
 
 ## Search Instructions
 
 ### Keyword Search
 
-The Explorer supports entering keywords in the search bar for retrieval. The query results will highlight the entered keywords, as shown in the following figure.
+Explorers support entering keywords in the search bar for retrieval. The search results will highlight the entered keywords as shown in the figure below.
 
 ![](img/13.search_1.png)
 
 ### Wildcard Search
 
-The Explorer supports entering wildcards for fuzzy matching searches. For example, entering `global*` in the log search bar returns log data containing "global". Any number of characters can follow "global", as shown in the figure.
+Explorers support entering wildcards for fuzzy matching searches, such as entering `global*` in the log search bar, which returns log data containing "global". The characters after global can be any number of characters, as shown in the figure.
 
 ![](img/8.search_2.png)
 
 ### Associated Search
 
-The Explorer supports logical AND/OR/NOT associated searches, which can be combined with wildcard searches.
+Explorers support related searches using AND/OR/NOT logic, which can be combined with wildcard searches.
 
 | Logical Relationship | Description                                                         |
-| -------------------- | ------------------------------------------------------------------- |
-| a AND b             | Results must include both a and b. More input keywords lead to more precise matches. `AND` can be replaced by `space` or `,`, i.e., `a,b` = `a b` = `a AND b` |
-| a OR b              | Results must include either a or b                                  |
-| NOT c               | Results must not include keyword c                                  |
+| -------- | ------------------------------------------------------------ |
+| a AND b  | Returns results that include both a and b. The more keywords you enter, the more precise the data match becomes. `AND` can be replaced by `space` or `,`, i.e., `a,b` = `a b` = `a AND b`. |
+| a OR b   | Returns results that contain either a or b.                     |
+| NOT c    | Returns results that do not contain keyword c.                   |
 
-![](img/13.search_4.png)
 
 ### JSON Search
 
-> Prerequisite: Workspace needs to be created after `June 23, 2022`
+> Prerequisite: Workspace must have been created after `June 23, 2022`.
 
-Currently, the JSON search feature is only available for the log Explorer, with the following instructions:
+Currently, the JSON search feature is only available for the Log Explorer, with instructions as follows:
 
-- It performs an exact match on the content of `message`, which must be in JSON format; other formats are not supported.
-- JSON search format is: `@key:value`. For multi-level JSON, use `.` to connect keys, e.g., `@key1.key2:value`.
+- By default, it performs an exact search on the content of `message`, requiring `message` to be in JSON format. Other formats of log content are not supported.
+- JSON search format is: `@key:value`, if multi-level JSON is used, it can be connected with `"."`, i.e., `@key1.key2:value`, as shown in the figure.
 
-![](img/7.log_json.png)
 
 ### Field Filtering
 
-In the Explorer, you can filter values based on `labels/attributes` using four filtering methods: positive filtering, negative filtering, wildcard matching, and reverse wildcard matching.
+In Explorers, you can filter values based on `labels/attributes` using four filtering methods: forward filtering, reverse filtering, wildcard matching, and inverse wildcard matching.
 
-- You can click the dropdown to filter or manually enter label content in the specified format and press Enter to filter.
-- Positive selection, negative selection, wildcard matching, and reverse wildcard matching are placed under four separate dropdowns, each tag being an `and` relationship.
-- If a label has both positive and negative states, it will be grayed out and uneditable in quick filters.
+- You can filter by clicking the dropdown or manually entering label content in the specified format and pressing Enter.
+- Forward selection, reverse selection, wildcard matching, and inverse wildcard matching are placed under four different dropdown labels, each having an `and` relationship between them.
+- If a label has both forward and reverse selection states simultaneously, the label will be grayed out and uneditable in quick filters.
 
 ![](img/5.explorer_search_1.png)
 
-#### Positive Filtering
+#### Forward Filtering
 
-Filtering is done using the `key:value` format. For example, searching for `status:error` in the log Explorer returns all logs where the status is error.
+Perform forward filtering searches using the form `key:value`, for example: searching for `status:error` in the Log Explorer returns all logs where the status is error.
 
 ![](img/positive_selection.gif)
 
-#### Negative Filtering
 
-Filtering is done using the `-key:value` format. For example, searching for `-status:info` in the log Explorer returns all logs where the status is **not** info.
+#### Reverse Filtering
+
+Perform reverse filtering searches using the form `-key:value`. For example: searching for `-status:info` in the Log Explorer returns all logs where the status **is not equal** to info.
 
 ![](img/reverse_selection.gif)
 
-*Manually entering label content for negative selection*
+*Manually inputting label content for reverse selection*
 ![](img/reverse_selection2.gif)
+
 
 #### Wildcard Matching (Wildcard Matching)
 
-Filtering is done using the `*key:value` format, allowing wildcards in the value for matching. For example, searching for `*host:prd-*` in the log Explorer returns all logs where the hostname starts with `prd-`.
+Perform wildcard matching searches using the form `*key:value`, allowing wildcard entry in value for matching. For example: searching for `*host:prd-*` in the Log Explorer returns all logs where the hostname starts with `prd-`.
 
 ![](img/wildcard_matching.gif)
 
-*Manually entering label content for wildcard matching*
+*Manually inputting label content for wildcard matching*
 ![](img/wildcard_matching2.gif)
 
-#### Reverse Wildcard Matching (Not Wildcard Matching)
+#### Inverse Wildcard Matching (Not Wildcard Matching)
 
-Filtering is done using the `-*key:value` format, allowing wildcards in the value for matching. For example, searching for `-*service:k8s*` in the log Explorer returns all logs where the service does not start with `k8s`. Supports manual entry of label content for reverse wildcard matching.
+Perform inverse wildcard matching searches using the form `-*key:value`, allowing wildcard entry in value for matching. For example: searching for `-*service:k8s*` in the Log Explorer returns all logs where the service does not start with `k8s`. Supports manual input of label content for inverse wildcard matching.
 
 ![](img/5.explorer_search_2.png)
 
 #### Editing Filters
 
-Selected labels support two editing methods:
+Selected labels support the following two editing methods:
 
 ##### Single-click Label
 
-Single-clicking a label opens a dialog box where you can modify the filter conditions. (Note: Label tags do not support dialog editing.)
+Single-clicking the label allows modification of the filtering condition in the popup dialog box. (Note: label tags do not support pop-up editing.)
 
-- Operations:
+- Operation Method:  
 
-  - `Equal`: Positive filtering, supports selecting tag values from the dropdown or manually entering and confirming with Enter.
-  - `Not Equal`: Negative filtering, supports selecting tag values from the dropdown or manually entering and confirming with Enter.
-  - `Wildcard Matching`: Supports entering wildcards for fuzzy matching, multiple values separated by `,`.
+  - `Equal`: i.e., forward filtering, supports selecting label values from the dropdown or manually entering label values and confirming with Enter;
+  - `Not Equal`: i.e., reverse filtering, supports selecting label values from the dropdown or manually entering label values and confirming with Enter;
+  - `Wildcard Matching`: i.e., Wildcard Matching, supports entering wildcards for fuzzy matching searches, multiple values are separated by “,”
 
 ![](img/edit_filter.png)
 
 ##### Double-click Label
 
-Double-clicking a label allows editing individual filter conditions, not multiple at once. As shown below:
+Double-clicking the label allows manual editing of a single filtering condition without modifying multiple ones at the same time, as shown below.
 
-**[key:value] Single-selection Label**
+**[key:value] Single-select Label**
 ![](img/double_click1.png)
 
-**[key:xx items] Multi-selection Label**
+**[key:xx items] Multi-select Label**
 ![](img/double_click2.png)
+
+
 
 ## Quick Filter Instructions {#quick-filter}
 
 By default, all label values are selected, indicating no filtering has been applied.
 
-1. Clicking the checkbox before a label value indicates "deselect" or "select" that value;
-2. Clicking the "Clear Filters" button in the top-right corner cancels the value filtering for that label;
-3. Deselecting the checkbox by default indicates a negative selection of that value, continuing to deselect other checkboxes indicates multiple negative selections;
-4. Clicking a row of a label value indicates a single positive selection of that value "only select this item", continuing to check other value checkboxes indicates multiple positive selections;
+1. Clicking the checkbox before the label value indicates "cancelling" or "selecting" this value;
+2. Clicking the "Clear Filters" button in the top-right corner cancels the value filtering for this label;
+3. By default, unchecking the preceding checkbox indicates reverse selection of this value, continuing to uncheck other checkboxes indicates reverse multi-selection;
+4. Clicking the row where the label value is located indicates forward single-selection of this value "only select this item", continuing to check the checkboxes of other values indicates forward multi-selection;
    ![](img/5.explorer_search_3.png)
-5. When a label has both positive and negative states, it is grayed out and uneditable in quick filters.
+5. When a forward single-selection of a certain value has been made, clicking the row where this value is located again "cancels the selection", canceling all filters;
+   ![](img/5.explorer_search_4.png)
+
+6. If a label has both forward and reverse selection states simultaneously, this label is grayed out and uneditable in quick filters.
 
 ![](img/5.explorer_search_5.png)
 
-6. If quick filters exceed 10 attribute values, you can input text for real-time search and click to perform wildcard and reverse wildcard matching for filtering.
+7. If quick filters exceed 10 attribute values, text input is supported for real-time search, supporting clicks on wildcard matching and inverse wildcard matching for filtering.
 
    ![](img/5.explorer_search_6.png)
 
+
+
 ### Custom Filter Fields
 
-In the Explorer, you can edit "Quick Filters" to add new "filter fields." Two configuration methods are supported: workspace-level filters and personal-level filters.
+In Explorers, you can edit "Quick Filters" to add new "Filter Fields". Two configuration methods are supported: workspace-level filter items and personal-level filter items.
 
-#### Workspace-Level Filters
+#### Workspace-Level Filter Items
 
-Configured by administrators/owners. Click the "Settings" button next to Quick Filters to configure workspace-level filters, supporting adding fields, editing field aliases, adjusting field order, and deleting fields.
+Configured by administrators/owners, click the "Settings" button next to the quick filter to configure workspace-level filter items, supporting adding fields, editing field aliases, adjusting field order, deleting fields.
 
-Note: Workspace-level filters are visible to all workspace members, but regular members and standard members cannot edit, delete, or move them.
+Note: Workspace-level filter items can be viewed by all members of the workspace, but regular members and standard members do not support editing, deleting, or moving positions.
 
-![](img/5.explorer_search_7.png)
 
-#### Personal-Level Filters
 
-All members can configure browser-based quick filters. Click the "Edit" button next to Quick Filters to configure personal-level filters, supporting adding fields, editing field aliases, adjusting field order, and deleting fields.
+#### Personal-Level Filter Items
 
-Note: Personal-level filters are only visible to the current user and not to other workspace members.
+All members can configure local browser-based quick filters, click the "Edit" button to the right of the quick filter to configure personal-level filter items, supporting adding fields, editing field aliases, adjusting field order, deleting fields.
+
+Note: Personal-level filter items are visible only to the current individual, other workspace members cannot view them.
 
 ![](img/5.explorer_search_8.png)
 
+
+
 ## Time Component Instructions
 
-<<< custom_key.brand_name >>> supports controlling the data display range of the current Explorer via time components. Users can quickly select built-in time ranges or customize the time range using "Start Time" and "End Time".
+<<< custom_key.brand_name >>> supports controlling the data display range of the current Explorer through the time component. Users can quickly select built-in time ranges for the current Explorer or customize the time range via "start time" and "end time".
 
 **Time Range**
 
-"Quick Select" presets multiple time ranges, including relative times (yesterday, last week, last month, etc.) and recent times (last 15 minutes, last 1 hour, last 1 day, etc.).
+The "Quick Select" presets multiple time ranges, including relative times (yesterday, last week, last month, etc.) and nearby times (last 15 minutes, last hour, last day, etc.).
 
-**Data Refresh Interval**
+**Data Refresh Time**
 
-<<< custom_key.brand_name >>> time component data refresh interval defaults to 30 seconds.
+<<< custom_key.brand_name >>>'s data refresh time for the time component defaults to 30 seconds.
 
 ![](img/4.url_3.png)
 
-Clicking the "Pause" button exits real-time data refresh mode and locks the current time range to absolute time.
+Click the "Pause" button to exit the real-time data refresh mode, locking the current time range to absolute time.
 
-> For example, if the time range is set to "last 15 minutes," clicking the "Pause" button shifts the Explorer's time range forward by 15 minutes.
+> For example: If the time range is set to "last 15 minutes," then after clicking the "Pause" button, the Explorer's time range shifts back 15 minutes.
 
 ![](img/4.url_4.png)
 
 ### URL Time Range {#url}
 
-In addition to the time ranges provided by the time component, <<< custom_key.brand_name >>> also supports modifying the `time` parameter directly in the browser URL to query data for the current workspace Explorer. It supports seconds, minutes, hours, and days, such as `time=30s`, `time=20m`, `time=6h`, `time=2d`, etc., as shown in the figure below where modifying `time=2h` displays data for the last 2 hours.
+Besides the time range provided by the time control, <<< custom_key.brand_name >>> also supports directly modifying the `time` parameter in the browser's URL to query data for the current workspace Explorer, supporting 4 units: seconds, minutes, hours, and days, such as time=30s, time=20m, time=6h, time=2d, as shown in the figure below where the browser modifies `time=2h`, displaying data from the last 2 hours.
 
 Note:
 
-- Each unit can only be used independently, not combined.
-- When the selected or entered time range is greater than or equal to 1 day, the Explorer automatically stops playback mode.
+- Each unit can only be used independently, combinations are not allowed.
+- When the selected or entered time range in the browser is greater than or equal to 1d, the Explorer automatically stops playback mode.
 
 ![](img/4.url_1.png)
