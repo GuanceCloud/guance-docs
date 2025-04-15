@@ -11,6 +11,10 @@ dashboard:
 monitor:
   - desc: '阿里云 RDS PostgreSQL 监控器'
     path: 'monitor/zh/aliyun_rds_postgresql/'
+
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/zh/aliyun_rds_postgresql'
 ---
 
 
@@ -24,23 +28,32 @@ monitor:
 
 ### 安装 Func
 
-推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func: 一切前置条件都自动安装好, 请继续脚本安装
+推荐开通 <<< custom_key.brand_name >>>集成 - 扩展 - 托管版 Func
 
-如果自行部署 Func 参考 [自行部署Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/)
+如果自行部署 Func 参考[自行部署 Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-> 推荐部署GSE版
-
-### 安装脚本
+### 开通脚本
 
 > 提示：请提前准备好符合要求的阿里云 AK（简单起见，可直接授予全局只读权限`ReadOnlyAccess`）
 
-同步 RDS 云资源的监控数据，我们安装对应的采集脚本：「<<< custom_key.brand_name >>>集成（阿里云- RDS 采集）」(ID：`guance_aliyun_rds`)
+#### 托管版开通脚本
 
-点击【安装】后，输入相应的参数：阿里云 AK、阿里云账户名。
+1. 登陆<<< custom_key.brand_name >>>控制台
+2. 点击【管理】菜单，选择【云帐号管理】
+3. 点击【添加云帐号】，选择【阿里云】，填写界面所需的信息，如之前已配置过云帐号信息，则忽略此步骤
+4. 点击【测试】，测试成功后点击【保存】，如果测试失败，请检查相关配置信息是否正确，并重新测试
+5. 点击【云帐号管理】列表上可以看到已添加的云账号，点击相应的云帐号，进入详情页
+6. 点击云帐号详情页的【集成】按钮，在`未安装`列表下，找到`阿里云 RDS PostgreSQL`，点击【安装】按钮，弹出安装界面安装即可。
 
-点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
+#### 手动开通脚本
 
-此外，在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
+1. 登陆Func 控制台，点击【脚本市场】，进入官方脚本市场，搜索:`guance_aliyun_rds`
+
+2. 点击【安装】后，输入相应的参数：阿里云 AK ID 、AK Secret 及账户名。
+
+3. 点击【部署启动脚本】，系统会自动创建 `Startup` 脚本集，并自动配置相应的启动脚本。
+
+4. 开启后可以在「管理 / 自动触发配置」里看到对应的自动触发配置。点击【执行】，即可立即执行一次，无需等待定期时间。稍等片刻，可以查看执行任务记录以及对应日志。
 
 我们默认采集了一些配置, 具体见指标一栏[配置自定义云对象指标](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 

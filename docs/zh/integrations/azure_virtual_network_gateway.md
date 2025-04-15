@@ -3,13 +3,13 @@ title: 'Azure Virtual Network Gateway'
 tags: 
   - 'AZURE'
 summary: '采集 Azure Virtual Network Gateway 指标数据'
-__int_icon: 'icon/azure_Virtual_network_gateway'
+__int_icon: 'icon/azure_virtual_network_gateway'
 dashboard:
   - desc: 'Azure Virtual Network Gateway'
-    path: 'dashboard/zh/azure_Virtual_network_gateway'
+    path: 'dashboard/zh/azure_virtual_network_gateway'
 monitor   :
   - desc  : 'Azure Virtual Network Gateway 检测库'
-    path  : 'monitor/zh/azure_Virtual_network_gateway'
+    path  : 'monitor/zh/azure_virtual_network_gateway'
 ---
 
 采集 Azure Virtual Network Gateway 指标数据

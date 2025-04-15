@@ -8,152 +8,92 @@ icon: zy/real-user-monitoring
       <source id="mp4" src="https://static.<<< custom_key.brand_main_domain >>>/dataflux/help/video/rum.mp4" type="video/mp4">
 </video>
 
+Real User Monitoring (RUM) 是一种实时监控技术，用于监测用户在 Web 端和移动端应用中的行为和性能表现。
 
-## 为何需要用户访问监测（RUM）？
+- 用户行为：RUM 捕获用户在 Web 和移动应用中的真实操作数据，包括页面加载时间、网络请求、用户交互和错误信息。     
+- 性能分析：帮助开发者和企业分析应用性能，识别性能瓶颈，优化用户体验。   
+- 错误管理：实时追踪和记录应用中的错误和异常，便于快速定位和解决问题。
+- 用户体验：通过多维度分析用户行为（如用户旅程、会话重放），深入了解用户使用习惯，提升应用质量。
+- 多平台支持：适用于 Web、移动应用（iOS、Android）和多种平台的实时监控需求。
 
-云原生时代，如何提升用户体验成为企业关注的新命题。企业不仅需要观测全面、真实的数据来确保其系统的稳定性和可靠性，还需要快速监测用户的使用行为和遇到的问题。
 
-由此，<<< custom_key.brand_name >>>提供用户访问监测（RUM）功能，力图完整追踪用户的每次访问，了解每个请求背后的真实需求，高效优化产品性能。
+## 数据来源
 
-## 数据从何而来？
-
-<<< custom_key.brand_name >>>用户访问监测通过 RUM Headless 自动化部署，采集 Web、Android、iOS、小程序和第三方框架的用户访问数据。您可以实时查看与分析用户访问数据，洞察用户访问环境，回溯用户操作路径及分解操作响应时间；还可以了解用户操作导致的一系列调用链的应用性能指标情况，实现端到端的全面监测，高效提高应用程序性能和用户体验。
+通过 RUM Headless 自动化部署，采集 Web、Android、iOS、小程序和第三方框架的用户访问数据。
 
 
 ![](img/rum-arch_1.png)
 
-## 如何开启用户访问监测（RUM）？
+## 如何开启
 
-要开启用户访问监测功能，**首先需要部署一个公网 DataKit 作为 Agent**，客户端的用户访问数据通过这个 Agent 将数据上报到<<< custom_key.brand_name >>>工作空间。
+1. 部署一个公网 DataKit 作为 Agent，用于上报客户端数据至工作空间；    
+2. [安装 DataKit](../datakit/datakit-install.md)；     
+3. 安装完成后，开启 [RUM 采集器](../integrations/rum.md)；      
+4. [接入应用配置](#get-applications)，开始采集用户访问数据。
 
-> 具体的 DataKit 安装方法与配置方法，可参考 [DataKit 安装](../datakit/datakit-install.md)。
-
-DataKit 安装完成后，**开启 [RUM 采集器](../integrations/rum.md)**，接入应用配置，即可开始采集用户访问的相关数据。
 
 ## 开始配置 {#create}
 
-登录<<< custom_key.brand_name >>>控制台，进入**用户访问监测 > 应用列表 > 新建应用**。
+进入**用户访问监测 > 应用列表 > 新建应用**。
 
 ![](img/rum_get_started.png)
 
-1. 输入**应用名称**、**应用 ID**；
+### 接入应用 {#get-applications}
 
-    - 应用名称：用于识别当前用户访问监测的应用名称；  
-    - 应用 ID：应用在当前工作空间的唯一标识，对应字段：`app_id`。该字段仅支持英文、数字、下划线输入，最多 48 个字符。
+:material-numeric-1-circle: [Web](web/app-access.md)            
+:material-numeric-2-circle: [Android](android/app-access.md)            
+:material-numeric-3-circle: [iOS](ios/app-access.md)       
+:material-numeric-4-circle: [小程序](miniapp/app-access.md)       
+:material-numeric-5-circle: [React Native](react-native/app-access.md)      
+:material-numeric-6-circle: [Flutter](flutter/app-access.md)     
+:material-numeric-7-circle: [UniApp](uni-app/app-access.md)            
+:material-numeric-8-circle: [macOS](macos/app-access.md)      
+:material-numeric-9-circle: [C++](cpp/app-access.md)       
 
-2. 选择**应用类型**，目前支持 Web、小程序、Android、iOS、macOS、React Native。
 
-3. SDK 配置：
+???+ warning "变更应用 ID"
 
-|                         应用接入配置                         |                                                              |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [Web 应用接入](web/app-access.md){ .md-button .md-button--primary } | [Android 应用接入](android/app-access.md){ .md-button .md-button--primary } | [iOS 应用接入](ios/app-access.md){ .md-button .md-button--primary } |
-| [小程序应用接入](miniapp/app-access.md){ .md-button .md-button--primary } | [React Native 应用接入](react-native/app-access.md){ .md-button .md-button--primary } | [Flutter 应用接入](flutter/app-access.md){ .md-button .md-button--primary } |
-| [UniApp 应用接入](uni-app/app-access.md){ .md-button .md-button--primary } | [macOS 应用接入](macos/app-access.md){ .md-button .md-button--primary } | [C++ 应用接入](cpp/app-access.md){ .md-button .md-button--primary } |
+    - 更改应用 ID 后，会同步更新 SDK 中的配置信息；    
+    - SDK 更新成功后，新的分析视图和查看器列表仅展示最新 `app_id` 关联数据，旧的应用 ID 数据将不再显示；   
+    - 用户访问指标检测监控器需及时变更到最新应用 ID 配置，或重新创建基于新 `app_id` 数据的指标检测；    
+    - 旧的应用 ID 数据可通过用户访问内置视图、自定义仪表板或 DQL 工具查看和分析；  
+    - 若配置自定义应用时未添加关联分析看板，则无法跳转至分析看板。
 
-<font color=coral>关于选择自定义应用类型的相关配置说明：</font>
 
-- 选择**自定义**应用类型，可在右侧查看对应的应用接入说明。
+## 会话重放
 
-- 在**分析看板**一栏，您可自定义选择工作空间内内置视图作为此应用的关联分析看板。
+RUM 以用户操作和会话为核心，能够捕捉 Web、小程序、Android、iOS 等应用的用户会话。[会话重放](./session-replay/index.md)利用现代浏览器的 API，实时捕获用户操作数据并重放操作路径，从而有效重现和解决错误。
 
-- 默认自定义应用类型<u>无分析看板</u>，需要手动配置关联。您可以同时绑定多个内置视图。
 
-| 操作      | 说明                          |
-| ----------- | ------------------------------------ |
-| 筛选下拉框       | 单选，支持模糊匹配搜索，范围：内置视图。  |
-| 跳转       | 点击即可跳转打开展示分析看板，并将当前应用 ID 带入到视图变量中。 |
-| 删除    | 点击即可删除已添加的关联分析看板。 |
-
-- 配置完成后，回到**应用列表**。您可以点击 :material-dots-horizontal: ，对该条应用进行编辑或删除。
-
-???+ warning "注意事项"
-
-    - 应用 ID 一经更改，需要同步更新 SDK 中的配置信息；   
-    - SDK 更新成功后，新的分析视图和查看器列表仅展示最新 `app_id` 关联数据，旧的应用 ID 对应数据将不会做显示；   
-    - 用户访问指标检测监控器请及时变更到最新应用 ID 配置或重新创建基于新的应用 ID 对应数据的指标检测；    
-    - 旧的应用 ID 数据可以通过用户访问内置视图、自定义仪表板或者 DQL 工具等方式查看分析；  
-    - 若在进行配置自定义应用时未添加关联分析看板，则无法跳转至分析看板。
-
-- 在**[分析看板](./app-analysis.md)**或**[查看器](./explorer/index.md)**可进一步查看当前用户访问应用程序的详细信息。
-
-## 何为会话重放？
-
-<<< custom_key.brand_name >>>用户访问监测的基本概念围绕用户操作和用户会话展开。基于用户在应用程序中执行的各种访问行为，<<< custom_key.brand_name >>>可以捕捉 Web 端、小程序、Android、iOS 和自定义应用的用户会话。
-
-借助现代浏览器提供的强大 API 拓展能力，<<< custom_key.brand_name >>>会话重放实时捕获用户的操作数据、重放用户的操作路径。如此一来，能有效重现、定位并解决错误。
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 会话重放配置说明</font>](./session-replay/index.md)
-
-<br/>
-
-</div>
-
-## 可视化分析用户访问数据
-
-### 分析看板 {#panel}
-
-用户访问监测 > 分析看板涵盖不同端口的多种分析场景，从性能、资源和错误三方面为您展示多项指标数据，您能够通过关键性能指标了解用户前端的真实体验，快速定位用户访问应用的问题，提高用户访问性能。
-
-![](img/panel-rum.gif)
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 分析看板查看多维度数据</font>](./app-analysis.md)
-
-<br/>
-
-</div>
+## 数据分析
 
 
 ### 查看器 {#explorer}
 
-接入应用并完成数据采集后，除上面的分析看板外，您还可以在查看器进一步了解每个用户会话（Session）、页面性能（View）、错误（Error）以及其他相关数据，并通过一系列设置全面了解和改善应用的运行状态和使用情况。
+完成数据采集后，除了使用分析看板，可以通过[查看器](./explorer/index.md)深入了解每个用户会话（Session）、页面性能（View）、错误（Error）等详细数据，全面掌握并优化应用的运行状态和用户体验。
 
 ![](img/explorer-rum.gif)
 
-<div class="grid cards" markdown>
+### 分析看板 {#panel}
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 探索查看器妙用</font>](./explorer/index.md)
+用户访问监测 > [分析看板](./app-analysis.md)涵盖不同端口的多种分析场景，从性能、资源和错误三方面为您展示多项指标数据，您能够通过关键性能指标了解用户前端的真实体验，快速定位用户访问应用的问题，提高用户访问性能。
 
-<br/>
-
-</div>
-
-## 自建链路异常数据追踪
-
-<<< custom_key.brand_name >>>用户访问监测可以设置自定义追踪任务，实时监控追踪轨迹，基于全面的追踪信息，快速精准定位异常根因；同时能保证链路上下文在不同环境下都能够完整透传，避免出现上下文丢失导致的断链现象，从而及时发现漏洞、异常和风险；还能通过浏览器插件的实现方式，创建简洁无代码的端到端测试。
-
-<div class="grid cards" markdown>
-
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 配置自建追踪</font>](./self-tracking.md)
-
-<br/>
-
-</div>
-
-## 利用生成指标细分数据
-
-面对庞大的原始数据体量，<<< custom_key.brand_name >>>用户访问监测的生成指标功能可以帮助 Dev & Ops 和业务方降低多维度分析的难度。其基于当前空间内的现有数据生成新的指标数据，联动绑定自定义仪表板，从而根据指标维度进行定期统计。
+![](img/panel-rum.gif)
 
 
-<div class="grid cards" markdown>
 
-- [<font color="coral"> :fontawesome-solid-arrow-up-right-from-square: &nbsp; 自定义生成指标</font>](./generate-metrics.md)
 
-<br/>
 
-</div>
+## 链路追踪
 
-## 数据存储策略与计费规则
+用户访问监测支持配置[自定义追踪](./self-tracking.md)任务，实时监控链路轨迹，实现精准根因分析；确保链路上下文在不同环境下的完整传递，防止上下文丢失导致的链路中断；通过浏览器插件支持零代码的端到端测试，便于快速验证和排查问题。
 
-<<< custom_key.brand_name >>>为用户访问数据提供 <u>3 天、7 天、14 天</u>三种数据存储时长选择，您可以按照需求在**管理 > 基本设置 > 变更数据存储策略**中调整。
 
-> 更多数据存储策略，可参考 [数据存储策略](../billing-method/data-storage.md)。
 
-基于<u>按需购买，按量付费</u>的计费方式，用户访问监测计费统计当前空间下一天内所有页面浏览产生的 PV 数量，采用梯度计费模式。
+## 生成指标
 
-> 更多计费规则，可参考 [计费方式](../billing-method/index.md#pv)。
+面对海量原始数据，用户访问监测 > [生成指标](../metrics/generate-metrics.md)能够快速简化多维分析流程，帮助 Dev & Ops 团队和业务方高效处理数据。该功能基于当前空间内的现有数据自动生成指标，并与自定义仪表板实时联动，支持按维度定期统计，加速数据洞察，提升决策效率。
+
+
+
 

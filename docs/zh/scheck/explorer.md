@@ -32,7 +32,7 @@
 
 ### 时间控件
 
-<<< custom_key.brand_name >>>查看器默认展示最近 15 分钟的数据，通过右上角的「时间控件」，您可以选择数据展示的时间范围。更多详情可参考文档 [时间控件说明](../getting-started/necessary-for-beginners/explorer-search.md#time)。
+<<< custom_key.brand_name >>>查看器默认展示最近 15 分钟的数据，通过右上角的「时间控件」，您可以选择数据展示的时间范围。
 
 ### 搜索与筛选
 

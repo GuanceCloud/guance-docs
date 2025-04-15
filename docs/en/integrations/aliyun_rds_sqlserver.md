@@ -2,15 +2,18 @@
 title: 'Alibaba Cloud RDS SQLServer'
 tags: 
   - Alibaba Cloud
-summary: 'Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.'
+summary: 'Alibaba Cloud RDS SQLServer Metrics Display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.'
 __int_icon: 'icon/aliyun_rds_sqlserver'
 dashboard:
-  - desc: 'Alibaba Cloud RDS SQLServer built-in views'
+  - desc: 'Alibaba Cloud RDS SQLServer built-in view'
     path: 'dashboard/en/aliyun_rds_sqlserver/'
 monitor:
   - desc: 'Alibaba Cloud RDS Monitor'
     path: 'monitor/en/aliyun_rds_sqlserver/'
 
+cloudCollector:
+  desc: 'cloud collector'
+  path: 'cloud-collector/en/aliyun_rds_sqlserver'
 ---
 
 <!-- markdownlint-disable MD025 -->
@@ -20,58 +23,66 @@ monitor:
 <!-- markdownlint-enable -->
 
 
-Alibaba Cloud RDS SQLServer Metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.
+Alibaba Cloud RDS SQLServer metrics display, including CPU usage, memory usage, IOPS, network bandwidth, InnoDB, TPS, QPS, etc.
 
 ## Configuration {#config}
 
 ### Install Func
 
-It is recommended to enable <<< custom_key.brand_name >>> integration - expansion - managed Func: all prerequisites are automatically installed. Please continue with the script installation.
+It is recommended to enable <<< custom_key.brand_name >>> integration - extension - managed Func
 
-If you deploy Func on your own, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
+If you deploy Func yourself, refer to [Self-deployed Func](https://<<< custom_key.func_domain >>>/doc/script-market-guance-integration/){:target="_blank"}
 
-> It is recommended to deploy the GSE version.
+### Enable Script
 
-### Installation Script
+> Tip: Please prepare the required Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`)
 
-> Note: Please prepare the required Alibaba Cloud AK in advance (for simplicity, you can directly grant global read-only permission `ReadOnlyAccess`).
+#### Managed Version Enable Script
 
-To synchronize monitoring data of RDS cloud resources, we install the corresponding collection script: "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Collection)" (ID: `guance_aliyun_rds`)
+1. Log in to <<< custom_key.brand_name >>> Console
+2. Click on the 【Manage】 menu and select 【Cloud Account Management】
+3. Click 【Add Cloud Account】, select 【Alibaba Cloud】, fill in the required information on the interface; if cloud account information has been configured before, skip this step
+4. Click 【Test】, after a successful test click 【Save】, if the test fails, check whether the related configuration information is correct and retest
+5. Click on the 【Cloud Account Management】 list to see the added cloud account, click the corresponding cloud account, and enter the details page
+6. Click the 【Integration】 button on the cloud account details page, under the `Not Installed` list, find `Alibaba Cloud RDS SQLServer`, click the 【Install】 button, and install it via the installation interface.
 
-After clicking 【Install】, enter the corresponding parameters: Alibaba Cloud AK, Alibaba Cloud account name.
+#### Manual Enable Script
 
-Click 【Deploy Startup Script】, and the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
+1. Log in to the Func console, click 【Script Market】, go to the official script market, search for `guance_aliyun_rds`
 
-In addition, you can see the corresponding automatic trigger configuration in "Management / Automatic Trigger Configuration". Click 【Execute】 to immediately execute once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+2. After clicking 【Install】, input the corresponding parameters: Alibaba Cloud AK ID, AK Secret, and account name.
 
-We default to collecting some configurations, details are listed under metrics.
+3. Click 【Deploy Startup Script】, the system will automatically create a `Startup` script set and automatically configure the corresponding startup script.
 
-[Configure custom cloud object metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds/){:target="_blank"}
+4. After enabling, you can see the corresponding automatic trigger configuration in 「Manage / Automatic Trigger Configuration」. Click 【Execute】, and it will immediately execute once without waiting for the scheduled time. After a short wait, you can view the execution task records and corresponding logs.
+We default collect some configurations, see the metrics section for details.
+
+[Configure Custom Cloud Object Metrics](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds/){:target="_blank"}
 
 
 ### Verification
 
-1. In "Management / Automatic Trigger Configuration", confirm whether the corresponding task has an automatic trigger configuration, and you can also check the corresponding task records and logs for any abnormalities.
-2. On the <<< custom_key.brand_name >>> platform, in "Infrastructure / Custom", check if there is asset information.
-3. On the <<< custom_key.brand_name >>> platform, in "Metrics", check if there is corresponding monitoring data.
+1. In 「Manage / Automatic Trigger Configuration」, confirm that the corresponding tasks have corresponding automatic trigger configurations, and at the same time, you can view the corresponding task records and log checks for any anomalies
+2. In <<< custom_key.brand_name >>>, 「Infrastructure / Custom」 check if there are asset information
+3. In <<< custom_key.brand_name >>>, 「Metrics」 check if there are corresponding monitoring data
 
 ## Metrics {#metric}
-After configuring Alibaba Cloud - Cloud Monitoring, the default metric sets are as follows. You can collect more metrics through configuration. [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
+After configuring Alibaba Cloud - Cloud Monitoring, the default metric set is as follows, more metrics can be collected through configuration [Alibaba Cloud Cloud Monitoring Metric Details](https://help.aliyun.com/document_detail/163515.html){:target="_blank"}
 
 | Metric Id              | Metric Name           | Dimensions        | Statistics              | Unit        |
 | ---- | ------ | ------ | ---- | ---- |
 | SQLServer_CpuUsage | SQLServerCpu Usage Rate    | userId,instanceId | Average,Maximum,Minimum | %           |
 | SQLServer_DiskUsage | SQLServer Disk Usage Rate   | userId,instanceId | Average,Maximum,Minimum | %           |
-| SQLServer_IOPS     | SQLServer IO Operations Per Second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| SQLServer_IOPS     | SQLServer IO per Second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
 | SQLServer_NetworkRead | SQLServer Network Outbound Bandwidth | userId,instanceId | Average,Maximum,Minimum | bits/s      |
 | SQLServer_NetworkWrite | SQLServer Network Inbound Bandwidth | userId,instanceId | Average,Maximum,Minimum | bits/s      |
-| SQLServer_QPS     | SQLServer Queries Per Second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| SQLServer_TPS     | SQLServer Transactions Per Second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
-| SQLServer_Tota_Conn | SQLServer Total Connections     | userId,instanceId | Average,Maximum,Minimum | count       |
+| SQLServer_QPS     | SQLServer Queries per Second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| SQLServer_TPS     | SQLServer Transactions per Second   | userId,instanceId | Average,Maximum,Minimum | countSecond |
+| SQLServer_TotalConn | SQLServer Total Connections     | userId,instanceId | Average,Maximum,Minimum | count       |
 
 ## Objects {#object}
 
-The collected Alibaba Cloud RDS object data structure can be seen from "Infrastructure - Custom".
+The collected Alibaba Cloud RDS object data structure can be seen from 「Infrastructure - Custom」
 
 ```json
 {
@@ -100,12 +111,12 @@ The collected Alibaba Cloud RDS object data structure can be seen from "Infrastr
     "LogSize"          : "10000",
     "BackupLogSize"    : "10000",
     "BackupDataSize"   : "10000",
-    "ConnectionString" : "{JSON connection address data}",
+    "ConnectionString" : "{Connection Address JSON Data}",
     "DBInstanceStorage": "100",
-    "accounts"         : "{JSON user privilege data}",
-    "databases"        : "{JSON database data}",
+    "accounts"         : "{User Permission Information JSON Data}",
+    "databases"        : "{Database Information JSON Data}",
     "SSLExpireTime"    : "2022-10-11T08:16:43Z",
-    "message"          : "{JSON instance data}",
+    "message"          : "{Instance JSON Data}",
   }
 }
 
@@ -117,21 +128,21 @@ The collected Alibaba Cloud RDS object data structure can be seen from "Infrastr
 
 #### Prerequisites for Slow Query Statistics
 
-> Note 1: The code execution of this script depends on the RDS instance object collection. If the custom object collection for RDS is not configured, the slow log script cannot collect slow log data.
-> Note 2: Due to the delay of 6~8 hours in returning statistics data from Alibaba Cloud, the collector updating data may have delays. Refer to the Alibaba Cloud documentation: Cloud Database RDS Slow Log Statistics for detailed information.
-> Note 3: This collector supports all versions of MySQL (excluding the basic edition of MySQL 5.7), SQL Server 2008 R2, MariaDB 10.3 type databases. To collect other types of databases, use the [Alibaba Cloud - RDS Slow Query Detail](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
+> Tip 1: The code execution of this script depends on RDS instance object collection. If RDS custom object collection is not configured, the slow log script cannot collect slow log data.
+> Tip 2: Due to the 6~8 hour delay in returning statistics data from Alibaba Cloud, the collector updating data may also experience delays. Refer to the Alibaba Cloud documentation: Cloud Database RDS Query Slow Log Statistics for detailed information.
+> Tip 3: This collector supports all versions of MySQL (excluding the basic version of MySQL 5.7), SQL Server 2008 R2, MariaDB 10.3 type databases. To collect other types of databases, use the [Alibaba Cloud - RDS Slow Query Detail](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"} collector.
 
-#### Slow Query Statistics Installation Script
+#### Installation Script for Slow Query Statistics
 
-On top of the previous setup, you need to install another script for **RDS Slow Query Statistics Log Collection**.
+On the previous basis, you need to install another script corresponding to **RDS Slow Query Statistics Log Collection**
 
-In "Management / Script Market", click and install the corresponding script package:
+In 「Manage / Script Market」, click and install the corresponding script package:
 
-- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Slow Query Statistics Log Collection)" (ID: `guance_aliyun_rds_slowlog`)
+- 「<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Slow Query Statistics Log Collection)」(ID: `guance_aliyun_rds_slowlog`)
 
-After the data synchronization is normal, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
+After the data is synchronized normally, you can view the data in the 「Logs」 of <<< custom_key.brand_name >>>.
 
-An example of the reported data is as follows:
+Example of reported data:
 
 ```json
 {
@@ -167,19 +178,19 @@ An example of the reported data is as follows:
 
 ```
 
-Descriptions of some parameters are as follows:
+Explanation of some parameters:
 
 | Field                            | Type | Description                                   |
 | :------------------------------ | :--- | :------------------------------------- |
-| `SQLServerTotalExecutionTimes`  | int  | SQL Server total execution time (milliseconds)      |
+| `SQLServerTotalExecutionTimes`  | int  | SQL Server execution duration (total value, milliseconds)      |
 | `AvgExecutionTime`              | int  | Execution time (average value) unit: seconds             |
 | `SQLServerAvgExecutionTime`     | int  | Execution time (average value) unit: seconds             |
-| `MySQLTotalExecutionTimes`      | int  | MySQL total execution time (seconds)         |
-| `SQLServerTotalExecutionTimes`  | int  | SQL Server total execution time (milliseconds) |
-| `SQLServerTotalExecutionCounts` | int  | SQL Server total execution counts            |
-| `MySQLTotalExecutionCounts`     | int  | MySQL total execution counts                 |
+| `MySQLTotalExecutionTimes`      | int  | MySQL execution time (total value) unit: seconds         |
+| `SQLServerTotalExecutionTimes`  | int  | SQL Server execution time (total value) unit: milliseconds |
+| `SQLServerTotalExecutionCounts` | int  | SQL Server execution count (total value)            |
+| `MySQLTotalExecutionCounts`     | int  | MySQL execution count (total value)                 |
 
-> *Note: Fields such as `AvgExecutionTime`, `SQLServerAvgExecutionTime`, `SQLServerTotalExecutionTimes`, etc., are only supported by SQL Server instances.*
+> *Note: Fields like `AvgExecutionTime`, `SQLServerAvgExecutionTime`, `SQLServerTotalExecutionTimes`, etc., are only supported by SQL Server instances.*
 > *Note: Fields in `tags` and `fields` may change with subsequent updates.*
 
 ### Slow Query Details
@@ -187,21 +198,21 @@ Descriptions of some parameters are as follows:
 #### Prerequisites for Slow Query Details
 
 
-> Note: The code execution of this script depends on the RDS instance object collection. If the custom object collection for RDS is not configured, the slow log script cannot collect slow log data.
+> Tip: The code execution of this script depends on RDS instance object collection. If RDS custom object collection is not configured, the slow log script cannot collect slow log data.
 
-#### Slow Query Details Installation Script
+#### Installation Script for Slow Query Details
 
-On top of the previous setup, you need to install another script for **RDS Slow Query Details Log Collection**.
+On the previous basis, you need to install another script corresponding to **RDS Slow Query Detail Log Collection**
 
-In "Management / Script Market", click and install the corresponding script package:
+In 「Manage / Script Market」, click and install the corresponding script package:
 
-- "<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Slow Query Details Log Collection)" (ID: `guance_aliyun_rds_slowlog_record`)
+- 「<<< custom_key.brand_name >>> Integration (Alibaba Cloud - RDS Slow Query Detail Log Collection)」(ID: `guance_aliyun_rds_slowlog_record`)
 
-After the data synchronization is normal, you can view the data in the "Logs" section of <<< custom_key.brand_name >>>.
+After the data is synchronized normally, you can view the data in the 「Logs」 of <<< custom_key.brand_name >>>.
 
-Configuration [Cloud Database RDS Slow Query Details](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
+Configuration [Cloud Database RDS Slow Query Detail](https://<<< custom_key.func_domain >>>/doc/script-market-guance-aliyun-rds-slowlog-record/){:target="_blank"}
 
-An example of the reported data is as follows:
+Example of reported data:
 
 ```json
 {
@@ -240,19 +251,19 @@ An example of the reported data is as follows:
 
 ```
 
-Descriptions of some parameters are as follows:
+Explanation of some parameters:
 
 | Field                    | Type | Description                       |
 | :---------------------- | :--- | :------------------------- |
 | `QueryTimes`            | int  | Execution duration. Unit: seconds (s)    |
 | `QueryTimesMS`          | int  | Execution duration. Unit: milliseconds (ms) |
-| `ReturnRowCounts`       | int  | Number of returned rows                   |
-| `ParseRowCounts`        | int  | Number of parsed rows                   |
+| `ReturnRowCounts`       | int  | Returned row counts                   |
+| `ParseRowCounts`        | int  | Parsed row counts                   |
 | `ExecutionStartTime`    | str  | Execution start time               |
-| `CpuTime`               | int  | CPU processing time                |
-| `RowsAffectedCount`     | int  | Number of affected rows                   |
-| `LastRowsAffectedCount` | int  | Number of affected rows for the last statement       |
+| `CpuTime`               | int  | CPU processing duration                |
+| `RowsAffectedCount`     | int  | Affected row counts                   |
+| `LastRowsAffectedCount` | int  | Last statement affected row counts       |
 
-> *Note: Fields such as `CpuTime`, `RowsAffectedCount`, `LastRowsAffectedCount` are only supported by SQL Server instances.*
+> *Note: Fields like `CpuTime`, `RowsAffectedCount`, `LastRowsAffectedCount`, etc., are only supported by SQL Server instances.*
 > *Note: Fields in `tags` and `fields` may change with subsequent updates.*
-> *Note: `fields.message` is a JSON serialized string.
+> *Tip: `fields.message` is a JSON serialized string

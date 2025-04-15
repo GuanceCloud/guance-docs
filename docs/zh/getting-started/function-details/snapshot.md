@@ -9,5 +9,5 @@
 
 ## 权限区分 {#permission}
 
-- [默认角色](../../management/role-management.md#descrip)：仅工作空间的拥有者（Owner）和管理员（Administrator）拥有保存、分享和管理快照的权限
+- [默认角色](../../management/role-management.md#descrip)：仅工作空间的拥有者（Owner）和管理员（Administrator）拥有保存、分享和管理快照的权限；
 - [自定义角色](../../management/role-management.md#customized-roles)：可通过自定义角色授予相关快照权限。
